@@ -7,7 +7,7 @@
    .. raw:: latex
 
       \section{LIEFERUMFANG}
-      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{AC-Ladekabel}{manual_icon1.png}{Benutzerhandbuch}
+      \HBInBoxThree{asset:in_the_box/main_unit1}{Jackery Explorer 1000}{ac_charging_cable.png}{AC-Ladekabel}{manual_icon1.png}{Benutzerhandbuch}
       \HBTipBlock{TIPP}{Das Autoladekabel ist nicht im Lieferumfang enthalten, kann jedoch separat auf unserer Website erworben werden. Bei Fragen wenden Sie sich bitte an den Jackery-Kundendienst.}
 
 .. only:: not latex
@@ -20,18 +20,18 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
-             :alt: Abbildung der Powerstation als Platzhalter.
+      * - .. image:: asset:in_the_box/main_unit1
+             :alt: Abbildung der Powerstation.
              :width: 120px
 
           **Jackery Explorer 1000**
         - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging_cable.png
-             :alt: Abbildung des AC-Ladekabels als Platzhalter.
+             :alt: Abbildung des AC-Ladekabels.
              :width: 120px
 
           **AC-Ladekabel**
         - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon1.png
-             :alt: Abbildung des Benutzerhandbuchs als Platzhalter.
+             :alt: Abbildung des Benutzerhandbuchs.
              :width: 120px
 
           Benutzerhandbuch

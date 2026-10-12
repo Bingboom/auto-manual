@@ -1,0 +1,91 @@
+{
+  "schema_version": "frozen-manual-section-index/v1",
+  "section_ids": [
+    "safety",
+    "symbols",
+    "in_the_box",
+    "product_overview",
+    "lcd_display",
+    "operations",
+    "ups",
+    "extra_battery",
+    "charging",
+    "storage",
+    "troubleshooting",
+    "specifications",
+    "warranty",
+    "app_setup"
+  ],
+  "source_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
+  "languages": {
+    "pl": {
+      "label": "Polski",
+      "physical_pages": [
+        160,
+        178
+      ],
+      "titles": [
+        "WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA",
+        "ZNACZENIE SYMBOLI",
+        "ZAWARTOŚĆ OPAKOWANIA",
+        "WIDOK OGÓLNY PRODUKTU",
+        "WYŚWIETLACZ LCD",
+        "OBSŁUGA",
+        "ZASILACZ BEZPRZERWOWY (UPS)",
+        "PODŁĄCZANIE DO ZESTAWÓW BATERII",
+        "ŁADOWANIE",
+        "PRZECHOWYWANIE",
+        "ROZWIĄZYWANIE PROBLEMÓW",
+        "DANE TECHNICZNE",
+        "GWARANCJA",
+        "KONFIGURACJA APLIKACJI"
+      ]
+    },
+    "pt": {
+      "label": "Português",
+      "physical_pages": [
+        122,
+        140
+      ],
+      "titles": [
+        "INFORMAÇÕES IMPORTANTES DE SEGURANÇA",
+        "SIGNIFICADO DOS SÍMBOLOS",
+        "CONTEÚDO DA EMBALAGEM",
+        "VISÃO GERAL DO PRODUTO",
+        "DISPLAY LCD",
+        "OPERAÇÕES",
+        "FONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)",
+        "CONECTE À(S) BATERIA(S) EXTERNA(S)",
+        "CARREGANDO",
+        "Armazenamento",
+        "SOLUÇÃO DE PROBLEMAS",
+        "ESPECIFICAÇÕES",
+        "GARANTIA",
+        "CONFIGURAÇÃO DO APLICATIVO"
+      ]
+    },
+    "nl": {
+      "label": "Nederlands",
+      "physical_pages": [
+        141,
+        159
+      ],
+      "titles": [
+        "BELANGRIJKE VEILIGHEIDSINFORMATIE",
+        "BETEKENIS VAN SYMBOLEN",
+        "WAT ZIT ER IN DE DOOS",
+        "PRODUCTOVERZICHT",
+        "LCD-SCHERM",
+        "HANDELINGEN",
+        "ONONDERBROKEN STROOMVOORZIENING (UPS)",
+        "AANSLUITEN OP BATTERIJPAKKET(TEN)",
+        "OPLADEN",
+        "Opslag",
+        "PROBLEEMOPLOSSING",
+        "Speciﬁcaties",
+        "GARANTIE",
+        "APP INSTELLEN"
+      ]
+    }
+  }
+}

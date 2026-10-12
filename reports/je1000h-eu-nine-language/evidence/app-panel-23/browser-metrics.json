@@ -1,0 +1,230 @@
+[
+  {
+    "lang": "pt",
+    "width": 840,
+    "panel": {
+      "labels": [
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Botão liga/desliga"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Botão de energia CC/USB"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Botão POWER CA1"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Botão POWER CA2"
+        }
+      ],
+      "loaded": true
+    },
+    "result": {
+      "loaded": true,
+      "natural": [
+        1088,
+        608
+      ],
+      "overflow": false,
+      "src": "assets/5a5a8acac5df_app-result-reused.png"
+    }
+  },
+  {
+    "lang": "pt",
+    "width": 390,
+    "panel": {
+      "labels": [
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Botão liga/desliga"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Botão de energia CC/USB"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Botão POWER CA1"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Botão POWER CA2"
+        }
+      ],
+      "loaded": true
+    },
+    "result": {
+      "loaded": true,
+      "natural": [
+        1088,
+        608
+      ],
+      "overflow": false,
+      "src": "assets/5a5a8acac5df_app-result-reused.png"
+    }
+  },
+  {
+    "lang": "nl",
+    "width": 840,
+    "panel": {
+      "labels": [
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Aan/Uit-knop"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Aan/uit-knop voor DC/USB"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Aan/uit-knop voor AC 1"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Aan/uit-knop voor AC 2"
+        }
+      ],
+      "loaded": true
+    },
+    "result": {
+      "loaded": true,
+      "natural": [
+        1088,
+        608
+      ],
+      "overflow": false,
+      "src": "assets/5a5a8acac5df_app-result-reused.png"
+    }
+  },
+  {
+    "lang": "nl",
+    "width": 390,
+    "panel": {
+      "labels": [
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Aan/Uit-knop"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Aan/uit-knop voor DC/USB"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Aan/uit-knop voor AC 1"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Aan/uit-knop voor AC 2"
+        }
+      ],
+      "loaded": true
+    },
+    "result": {
+      "loaded": true,
+      "natural": [
+        1088,
+        608
+      ],
+      "overflow": false,
+      "src": "assets/5a5a8acac5df_app-result-reused.png"
+    }
+  },
+  {
+    "lang": "pl",
+    "width": 840,
+    "panel": {
+      "labels": [
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Przycisk zasilania"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Przycisk zasilania DC/USB"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Przycisk zasilania AC 1"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Przycisk zasilania AC 2"
+        }
+      ],
+      "loaded": true
+    },
+    "result": {
+      "loaded": true,
+      "natural": [
+        1088,
+        608
+      ],
+      "overflow": false,
+      "src": "assets/5a5a8acac5df_app-result-reused.png"
+    }
+  },
+  {
+    "lang": "pl",
+    "width": 390,
+    "panel": {
+      "labels": [
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Przycisk zasilania"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Przycisk zasilania DC/USB"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Przycisk zasilania AC 1"
+        },
+        {
+          "inside": true,
+          "overflows": false,
+          "text": "Przycisk zasilania AC 2"
+        }
+      ],
+      "loaded": true
+    },
+    "result": {
+      "loaded": true,
+      "natural": [
+        1088,
+        608
+      ],
+      "overflow": false,
+      "src": "assets/5a5a8acac5df_app-result-reused.png"
+    }
+  }
+]

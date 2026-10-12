@@ -1,0 +1,20 @@
+[
+  {
+    "manifest": "package-manifest.json",
+    "count": 29,
+    "mismatches": []
+  },
+  {
+    "manifest": "html-manifest.json",
+    "count": 60,
+    "mismatches": []
+  },
+  {
+    "ir": "b92d4ac099bc0e0219705d76420ef40dfbcd435c258f458566a7bc8e54311390",
+    "html": "a942b17d977324fade22a9c0d73fc0ec582f6e47769e92f98ee618f4068eea43",
+    "native_text_unchanged": true
+  },
+  {
+    "artwork_same_as_r2": true
+  }
+]

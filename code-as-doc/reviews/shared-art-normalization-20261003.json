@@ -1,0 +1,1791 @@
+{
+  "schema_version": "solar-visual-normalization/v1",
+  "status": "agent-reviewed-candidates-not-enrolled",
+  "publication_eligible": false,
+  "source_inventory_sha256": "df2866388d3be92a3a3210d211e3a3178f8320e17361a5457394f1b48fd36113",
+  "method": "All 108 originals compared in nine contact sheets, enlarged socket comparisons, and all 11 SVGs in the browser. Raster previews of SVGs were rejected because their converter failed clip/transform semantics; browser display is authoritative. Grouping preserves host, receptacle, topology and caption. Canonical points to unmodified original bytes. No runtime substitution or scope expansion.",
+  "groups": [
+    {
+      "label": "SolarSaga 200 × 2",
+      "variant": "JE-1000F · 两个方孔插座 · 直连",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-01",
+      "canonical_id": "ART-5c91e2f80ff4",
+      "canonical_sha256": "5c91e2f80ff4ac164680ff48fe9419a32abbf67e8c11de357695c72a82b75e50",
+      "members": [
+        {
+          "id": "ART-051edf9ad4d7",
+          "sha256": "051edf9ad4d7407289890af573f397560298c087ffd9df51719df55dd993da92",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/uk/p103_solar_single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/uk/md/assets/p103_solar_single.png"
+          ],
+          "caption_observed": true,
+          "index": 2
+        },
+        {
+          "id": "ART-5084e21de4a2",
+          "sha256": "5084e21de4a2a11907327a72538e5625a61dc6bad374141347f1cc3570d99b67",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/pt/p120_solar_single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/pt/md/assets/p120_solar_single.png"
+          ],
+          "caption_observed": true,
+          "index": 25
+        },
+        {
+          "id": "ART-5c91e2f80ff4",
+          "sha256": "5c91e2f80ff4ac164680ff48fe9419a32abbf67e8c11de357695c72a82b75e50",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-direct_en_5c91e2f80ff4.png"
+          ],
+          "caption_observed": true,
+          "index": 32
+        },
+        {
+          "id": "ART-6517d09c91e1",
+          "sha256": "6517d09c91e131a51f7bec6a4cee21895ee5e419f1b3d9b98041127ed7b9a5df",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/pl/p154_solar_single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/pl/md/assets/p154_solar_single.png"
+          ],
+          "caption_observed": true,
+          "index": 40
+        },
+        {
+          "id": "ART-7f14d14b1364",
+          "sha256": "7f14d14b136430e54003e4624bbfe7c1aaaac6a9622ae422e515275ebaef6e33",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/artwork/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/nl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/pl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/pt/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/uk/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/artwork/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/nl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/pl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/pt/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/uk/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/artwork/7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/nl/assets/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/pl/assets/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/pt/assets/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/uk/assets/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/artwork/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/nl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/pl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/pt/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/uk/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/artwork/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/nl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/pl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/pt/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/uk/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/artwork/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/nl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/pl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/pt/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/uk/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/nl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/pl/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/pt/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/uk/assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png"
+          ],
+          "caption_observed": false,
+          "index": 54
+        },
+        {
+          "id": "ART-e6845301d09e",
+          "sha256": "e6845301d09e97482209c694f560f69126e6963c90c8b6f437f353d33c855e9f",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/nl/p137_solar_single.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/nl/md/assets/p137_solar_single.png"
+          ],
+          "caption_observed": true,
+          "index": 92
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 2",
+      "variant": "JE-1000F · 两个盖板插座 · 直连",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-02",
+      "canonical_id": "ART-3d1d76c2ff5d",
+      "canonical_sha256": "3d1d76c2ff5da5a4b5a2108c31c0310c16748e5fdb3d849da177fc0ffa3e7ef0",
+      "members": [
+        {
+          "id": "ART-2e3b2cbda5f2",
+          "sha256": "2e3b2cbda5f222d16714244d5be6b10c15e8b957001c3ce1552230fdc4933e14",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-direct_de_2e3b2cbda5f2.png",
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-direct_es_2e3b2cbda5f2.png",
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-direct_it_2e3b2cbda5f2.png"
+          ],
+          "caption_observed": true,
+          "index": 14
+        },
+        {
+          "id": "ART-3d1d76c2ff5d",
+          "sha256": "3d1d76c2ff5da5a4b5a2108c31c0310c16748e5fdb3d849da177fc0ffa3e7ef0",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-direct_fr_3d1d76c2ff5d.png"
+          ],
+          "caption_observed": true,
+          "index": 19
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 2",
+      "variant": "JE-2000F · 三个方孔插座 · 直连",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-03",
+      "canonical_id": "ART-9bd820ae0194",
+      "canonical_sha256": "9bd820ae0194f4d0466087cbd1fb66c7c255f78199cc1e2d5798cb8c33817918",
+      "members": [
+        {
+          "id": "ART-4360f4341ce2",
+          "sha256": "4360f4341ce2794e0c33584e112c1d411fa71d036c980bd79bd2c388e9d01bb1",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/artwork/pl/solar_single.png"
+          ],
+          "caption_observed": false,
+          "index": 21
+        },
+        {
+          "id": "ART-6ba37e9483c7",
+          "sha256": "6ba37e9483c7b6d36943ff55704620c86a3ec7cd4e6ae62516b3f88713c3722b",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p144_solar_single.png"
+          ],
+          "caption_observed": true,
+          "index": 47
+        },
+        {
+          "id": "ART-6c1e3e302742",
+          "sha256": "6c1e3e302742052e04798d67c2ba3eb0657eeede0344f1f2b58cc58044c04af9",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p126_solar_single.png"
+          ],
+          "caption_observed": true,
+          "index": 48
+        },
+        {
+          "id": "ART-9bd820ae0194",
+          "sha256": "9bd820ae0194f4d0466087cbd1fb66c7c255f78199cc1e2d5798cb8c33817918",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_en_full_frames/charging_solar_direct.png"
+          ],
+          "caption_observed": true,
+          "index": 62
+        },
+        {
+          "id": "ART-a145b6b11cce",
+          "sha256": "a145b6b11cceecf4b7c4b735af6d6c2d898cb36dede152b20d4cd4edb5274ade",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p162_solar_single.png"
+          ],
+          "caption_observed": true,
+          "index": 65
+        },
+        {
+          "id": "ART-a2c8d8807acf",
+          "sha256": "a2c8d8807acf70cf206a6039634a6c01b1444ed3b1133c1fa8f21c0b384e4cd2",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/artwork/shared/english-charging_solar_direct.png",
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language/web/nl/assets/a2c8d8807acf_english-charging_solar_direct.png",
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language/web/pl/assets/a2c8d8807acf_english-charging_solar_direct.png",
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language/web/pt/assets/a2c8d8807acf_english-charging_solar_direct.png"
+          ],
+          "caption_observed": false,
+          "index": 66
+        },
+        {
+          "id": "ART-a65f4ee2e233",
+          "sha256": "a65f4ee2e2332f79a3cc5f8fab5ce3fff11255d287d4bcce4b96e770e7a47148",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/artwork/nl/solar_single.png"
+          ],
+          "caption_observed": false,
+          "index": 68
+        },
+        {
+          "id": "ART-cb86f4db76d2",
+          "sha256": "cb86f4db76d21fc8dffe9732b666ff9e3b66bd8cc0d62ef56bdd46dc5dddb35f",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_en/charging_solar_direct.png"
+          ],
+          "caption_observed": true,
+          "index": 80
+        },
+        {
+          "id": "ART-e2ebb3b9a7cc",
+          "sha256": "e2ebb3b9a7cc2f92724be1dcfc792a6be8976009d0622fc95b75682bae093271",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/artwork/pt/solar_single.png"
+          ],
+          "caption_observed": false,
+          "index": 89
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 2",
+      "variant": "JE-2000F · 三个盖板插座 · 直连",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-04",
+      "canonical_id": "ART-37b9b80fb029",
+      "canonical_sha256": "37b9b80fb029c321730ef96a33a59a3181ffa9c3ed516a050aedc9aafb2ec721",
+      "members": [
+        {
+          "id": "ART-37b9b80fb029",
+          "sha256": "37b9b80fb029c321730ef96a33a59a3181ffa9c3ed516a050aedc9aafb2ec721",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_fr/charging_solar_direct.png"
+          ],
+          "caption_observed": true,
+          "index": 16
+        },
+        {
+          "id": "ART-52d6c529f846",
+          "sha256": "52d6c529f846bc514ba3c846873d697006ad3dad3a80e6812f8018777b999a64",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_it/charging_solar_direct.png"
+          ],
+          "caption_observed": true,
+          "index": 27
+        },
+        {
+          "id": "ART-55c8fe8b0384",
+          "sha256": "55c8fe8b038402a39f7040043eacfae7bd89b46fde1e6636e03f0e31f25fe251",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_es/charging_solar_direct.png"
+          ],
+          "caption_observed": true,
+          "index": 28
+        },
+        {
+          "id": "ART-8a9b8005fd29",
+          "sha256": "8a9b8005fd296f7c32760adea80e0a5e4a4c6549bd43b1050e0ab2371ba19e53",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_de/charging_solar_direct.png"
+          ],
+          "caption_observed": true,
+          "index": 57
+        },
+        {
+          "id": "ART-ca447eee6800",
+          "sha256": "ca447eee680013c58421e627d7ffe3244ef96278e1121eca03b9d10c04f434a3",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p108_solar_single.png"
+          ],
+          "caption_observed": true,
+          "index": 79
+        },
+        {
+          "id": "ART-fbdb3a45d1ae",
+          "sha256": "fbdb3a45d1aec930d3a8a06bf51b37000dfb383b56fc2c5c29728431a3d62def",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_uk/charging_solar_direct.png"
+          ],
+          "caption_observed": true,
+          "index": 103
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 2",
+      "variant": "JE-1000F JP · 三个双槽插座 · 直连",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-05",
+      "canonical_id": "ART-8332edf8c767",
+      "canonical_sha256": "8332edf8c7678e11924ab5efbc3aea63a72516f20f9ae4fde1c9d55983e1e287",
+      "members": [
+        {
+          "id": "ART-4cda4d8c0a9f",
+          "sha256": "4cda4d8c0a9fd224b6bec82b4410f4afb94ca139a33f8a616935490cf45eeaa8",
+          "paths": [
+            "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/native-solar-direct.svg"
+          ],
+          "caption_observed": false,
+          "index": 22
+        },
+        {
+          "id": "ART-8332edf8c767",
+          "sha256": "8332edf8c7678e11924ab5efbc3aea63a72516f20f9ae4fde1c9d55983e1e287",
+          "paths": [
+            "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/charging/solar_direct.png",
+            "docs/_build/JE-1000F/US/rst/_assets/templates/word_template/common_assets/charging/solar_direct.png",
+            "docs/templates/word_template/common_assets/charging/solar_direct.png"
+          ],
+          "caption_observed": true,
+          "index": 56
+        },
+        {
+          "id": "ART-d2b78c2619a0",
+          "sha256": "d2b78c2619a0bbaa221121e8bb6f115f810af3b31381df4c5a7eb8bb3935fd22",
+          "paths": [
+            "docs/renderers/latex/assets/je1000f_jp_solar_direct.png"
+          ],
+          "caption_observed": false,
+          "index": 83
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 4",
+      "variant": "JE-3000C · 方孔插座 · 双转接器",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-06",
+      "canonical_id": "ART-034ac8662eb2",
+      "canonical_sha256": "034ac8662eb295d552761be90113cc434164c8816f58384751618e997d792afe",
+      "members": [
+        {
+          "id": "ART-034ac8662eb2",
+          "sha256": "034ac8662eb295d552761be90113cc434164c8816f58384751618e997d792afe",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_en/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 0
+        },
+        {
+          "id": "ART-7ad94201abe4",
+          "sha256": "7ad94201abe40140734960df667a4523bb640c32d582b3807b8cc2b6654f8fda",
+          "paths": [
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-intake/artwork/shared/reference-solar_four.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/7ad94201abe4_reference-solar_four.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/pl/assets/7ad94201abe4_reference-solar_four.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/pt/assets/7ad94201abe4_reference-solar_four.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-nl-errata-intake/artwork/shared/reference-solar_four.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-nl-errata-web/web/nl/assets/7ad94201abe4_reference-solar_four.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake/artwork/shared/reference-solar_four.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-web/web/nl/assets/7ad94201abe4_reference-solar_four.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-web/web/pl/assets/7ad94201abe4_reference-solar_four.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-web/web/pt/assets/7ad94201abe4_reference-solar_four.png"
+          ],
+          "caption_observed": false,
+          "index": 52
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 4",
+      "variant": "JE-3000C · 盖板插座 · 双转接器",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-07",
+      "canonical_id": "ART-64c2d74df221",
+      "canonical_sha256": "64c2d74df2212a39e3f573ccd7e78731979450712ccc41a3d2b9ac1f5edfc09e",
+      "members": [
+        {
+          "id": "ART-0f6dfac6b313",
+          "sha256": "0f6dfac6b313b214a2b3b028150d5551389bd9bfc674c087d2edeceecc7cb052",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_de/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 5
+        },
+        {
+          "id": "ART-3a55abcfe0d9",
+          "sha256": "3a55abcfe0d9a78f376539744f2d71d5b60b11d5f1e7e96f251f11106e43a242",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_es/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 18
+        },
+        {
+          "id": "ART-64c2d74df221",
+          "sha256": "64c2d74df2212a39e3f573ccd7e78731979450712ccc41a3d2b9ac1f5edfc09e",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_fr/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 39
+        },
+        {
+          "id": "ART-8c460ea0858d",
+          "sha256": "8c460ea0858da2362f26666325a03ef5d0c2d3b9fa8babd4466386be4600c810",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_it/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 59
+        },
+        {
+          "id": "ART-c465d070c3e8",
+          "sha256": "c465d070c3e8dd1d3747aa5fc2f4ed573fa9ec8dde0f9483cc4072b480c39b3a",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_uk/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 76
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 4",
+      "variant": "JE-2000E · 方孔插座 · 双输入",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-08",
+      "canonical_id": "ART-fe0e666aca3b",
+      "canonical_sha256": "fe0e666aca3be3cb7b71ea7a40b4c1669d5b43dfe816666e5a94bbcae3b788ca",
+      "members": [
+        {
+          "id": "ART-28e4b2adcd7a",
+          "sha256": "28e4b2adcd7aa22eac5ef733e4e16ae31138f42d32833b16836477aba745c4e4",
+          "paths": [
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-candidate/three-language/artwork/pl/reference-solar_four.png",
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language/web/pl/assets/28e4b2adcd7a_reference-solar_four.png"
+          ],
+          "caption_observed": false,
+          "index": 12
+        },
+        {
+          "id": "ART-380a2a092660",
+          "sha256": "380a2a092660752c82737945c2cf34d73a3a0ca6bb1a51581692ff3ddec77dbc",
+          "paths": [
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-candidate/three-language/artwork/nl/reference-solar_four.png",
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language/web/nl/assets/380a2a092660_reference-solar_four.png"
+          ],
+          "caption_observed": false,
+          "index": 17
+        },
+        {
+          "id": "ART-8bdee882c119",
+          "sha256": "8bdee882c1191358fa004a6476ca5aca5301bc78bd561baf076d8597a0e1bfda",
+          "paths": [
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-candidate/three-language/artwork/pt/reference-solar_four.png",
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language/web/pt/assets/8bdee882c119_reference-solar_four.png"
+          ],
+          "caption_observed": false,
+          "index": 58
+        },
+        {
+          "id": "ART-fe0e666aca3b",
+          "sha256": "fe0e666aca3be3cb7b71ea7a40b4c1669d5b43dfe816666e5a94bbcae3b788ca",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_en/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 105
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 4",
+      "variant": "JE-2000E · 盖板插座 · 双输入",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-09",
+      "canonical_id": "ART-ce89e008b72a",
+      "canonical_sha256": "ce89e008b72a6541b72059f7e258fc187d11a10325dea2620b08ecd3f4ba28f1",
+      "members": [
+        {
+          "id": "ART-674807cf7f7d",
+          "sha256": "674807cf7f7dcddd6b2a81ca9d4bad2501be19623e099159b0ce35e6b09441d1",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_es/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 45
+        },
+        {
+          "id": "ART-bb18f58f6e65",
+          "sha256": "bb18f58f6e6578e3f92c682435a0d1ee37d6039bdb9f1fe98d3a3b0d63e6e37c",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_uk/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 75
+        },
+        {
+          "id": "ART-ce89e008b72a",
+          "sha256": "ce89e008b72a6541b72059f7e258fc187d11a10325dea2620b08ecd3f4ba28f1",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_fr/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 81
+        },
+        {
+          "id": "ART-ed5ffb54a716",
+          "sha256": "ed5ffb54a716fbef7b3500e06c20ac30e6924d138292a1179f34e95c26496931",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_it/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 98
+        },
+        {
+          "id": "ART-fe154a059060",
+          "sha256": "fe154a059060bfc0bf2ada7d8564665ad7cb433e945f46515b7b6fe102c747ed",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_de/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 106
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 4",
+      "variant": "JE-3600A · 方孔插座 · 双输入",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-10",
+      "canonical_id": "ART-a435ab83d55e",
+      "canonical_sha256": "a435ab83d55e2ff2ba91d21cd436b6bfb334f56fe1c672e485191ca3caac2b0e",
+      "members": [
+        {
+          "id": "ART-a435ab83d55e",
+          "sha256": "a435ab83d55e2ff2ba91d21cd436b6bfb334f56fe1c672e485191ca3caac2b0e",
+          "paths": [
+            "docs/renderers/web/assets/je3600a_eu_en/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 67
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 4",
+      "variant": "JE-3600A · 盖板插座 · 双输入",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-11",
+      "canonical_id": "ART-e6f34925df08",
+      "canonical_sha256": "e6f34925df08f5bd0f60cea96934c0b40b0d0be1d862f53b0875fc6c6866d7ff",
+      "members": [
+        {
+          "id": "ART-e6f34925df08",
+          "sha256": "e6f34925df08f5bd0f60cea96934c0b40b0d0be1d862f53b0875fc6c6866d7ff",
+          "paths": [
+            "docs/renderers/web/assets/je3600a_eu_fr/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 93
+        },
+        {
+          "id": "ART-f0967febf87c",
+          "sha256": "f0967febf87c4fc8022af15db633d69df90c91d43edf9400f52fb30a834b7728",
+          "paths": [
+            "docs/renderers/web/assets/je3600a_eu_es/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 99
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200 × 4",
+      "variant": "旧低清高机身图 · 型号需查证",
+      "status": "reference-only",
+      "note": "图中型号未获可靠来源绑定；不得按相似外形推定为JE-3600A。",
+      "group_id": "SOLAR-12",
+      "canonical_id": "ART-9df8813895e6",
+      "canonical_sha256": "9df8813895e672545085c2356f72c13fc30323f72fab4de973416ea66093ee7d",
+      "members": [
+        {
+          "id": "ART-9df8813895e6",
+          "sha256": "9df8813895e672545085c2356f72c13fc30323f72fab4de973416ea66093ee7d",
+          "paths": [
+            "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/charging/solar_adapter.png",
+            "docs/_build/JE-1000F/US/rst/_assets/templates/word_template/common_assets/charging/solar_adapter.png",
+            "docs/templates/word_template/common_assets/charging/solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 64
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 100 Air × 4",
+      "variant": "JE-1000H · 方孔插座 · 双转接器",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-13",
+      "canonical_id": "ART-a8f1bf85e46f",
+      "canonical_sha256": "a8f1bf85e46fc0be2e3920f280502bb1916942ae114d5090ed476dbcfb440bb8",
+      "members": [
+        {
+          "id": "ART-a8f1bf85e46f",
+          "sha256": "a8f1bf85e46fc0be2e3920f280502bb1916942ae114d5090ed476dbcfb440bb8",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_en/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 69
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 100 Air × 4",
+      "variant": "JE-1000H · 盖板插座 · 双转接器",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-14",
+      "canonical_id": "ART-40e930887286",
+      "canonical_sha256": "40e9308872866d4761118a9911e692e61675d6e7e69d0242434dfa6405672fba",
+      "members": [
+        {
+          "id": "ART-19d75944909b",
+          "sha256": "19d75944909b5b6b9ed160ae9998a3a27a362790218af5ffb8df11c448cd158f",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_es/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 8
+        },
+        {
+          "id": "ART-2de12fb0e1a7",
+          "sha256": "2de12fb0e1a7100bec8dee8ac5701a54d055986b4e6ef4ebfcc92c527a59cb5a",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_it/charging_solar.png",
+            "docs/renderers/web/assets/je1000h_eu_uk/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 13
+        },
+        {
+          "id": "ART-40e930887286",
+          "sha256": "40e9308872866d4761118a9911e692e61675d6e7e69d0242434dfa6405672fba",
+          "paths": [
+            "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/nl/reference-solar_four.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-temperature-web/web/nl/assets/40e930887286_reference-solar_four.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-web/web/nl/assets/40e930887286_reference-solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 20
+        },
+        {
+          "id": "ART-5f64e9ace443",
+          "sha256": "5f64e9ace443ee9abab4b6dd516a26645f783e3660ea2806c68d78e3ecff6fcc",
+          "paths": [
+            "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/pl/reference-solar_four.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-temperature-web/web/pl/assets/5f64e9ace443_reference-solar_four.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-web/web/pl/assets/5f64e9ace443_reference-solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 36
+        },
+        {
+          "id": "ART-b3addb094d34",
+          "sha256": "b3addb094d348305e942490d699ae02e5541708018220709ef05d5cda489f74e",
+          "paths": [
+            "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/pt/reference-solar_four.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-temperature-web/web/pt/assets/b3addb094d34_reference-solar_four.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-web/web/pt/assets/b3addb094d34_reference-solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 72
+        },
+        {
+          "id": "ART-b70f035b55ed",
+          "sha256": "b70f035b55edfc0b546cb7eec4c0bc11f8a105d0c9e84e52bd4875fd9397e206",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_de/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 74
+        },
+        {
+          "id": "ART-e9618794881c",
+          "sha256": "e9618794881c0f685f4ff2fe2c80abf36712ed76ffbc65a21f7b6c522c358027",
+          "paths": [
+            "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/reference-solar_four.png"
+          ],
+          "caption_observed": false,
+          "index": 95
+        },
+        {
+          "id": "ART-fce6a1bc0403",
+          "sha256": "fce6a1bc0403bd8b6a980f05c2f5a27bb68e5cdefb24151f09fcb03c6575f35f",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_fr/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 104
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 100 Air × 4",
+      "variant": "JE-2000F · 方孔插座 · 双转接器",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-15",
+      "canonical_id": "ART-6008a94a3019",
+      "canonical_sha256": "6008a94a3019ffb701c6246af17623dc1de49b3a74c326a2bac3ee1a34d9c1b2",
+      "members": [
+        {
+          "id": "ART-0f8f178ea8e2",
+          "sha256": "0f8f178ea8e2d494533c8cd6f52adc3ecca0932525c7cad5d0640abd0cac1dc1",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p163_solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 6
+        },
+        {
+          "id": "ART-2721dece1d3b",
+          "sha256": "2721dece1d3bcc0c6c2abfab91bc0658bb75106bdcbdc49c46b3da17a5a2f3eb",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p127_solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 11
+        },
+        {
+          "id": "ART-5229346c673a",
+          "sha256": "5229346c673aec0d704e36fbc99b17b20e1da0d13c3b309cb9164a1e5019df40",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/artwork/pt/solar_four.png"
+          ],
+          "caption_observed": false,
+          "index": 26
+        },
+        {
+          "id": "ART-5efb9ab7f236",
+          "sha256": "5efb9ab7f23635797743f75c3d3101ac42c8ba38704a4ffaaf7742a5c5bec48b",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p145_solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 35
+        },
+        {
+          "id": "ART-6008a94a3019",
+          "sha256": "6008a94a3019ffb701c6246af17623dc1de49b3a74c326a2bac3ee1a34d9c1b2",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_en_full_frames/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 38
+        },
+        {
+          "id": "ART-66ba2de6e335",
+          "sha256": "66ba2de6e335704002c6783b36f413d40daf148c96bea87c12a37ea099def45d",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/artwork/pl/solar_four.png"
+          ],
+          "caption_observed": false,
+          "index": 44
+        },
+        {
+          "id": "ART-6d04a1513362",
+          "sha256": "6d04a15133624235da14d2ce0925f847b50f3aeacfe372a52926173e8a75e2d2",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/artwork/nl/solar_four.png"
+          ],
+          "caption_observed": false,
+          "index": 49
+        },
+        {
+          "id": "ART-76630b6f82ea",
+          "sha256": "76630b6f82ea0589c397041c24a140d6c3362b181cd759f6d82814ea1bc5f13b",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_en/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 51
+        },
+        {
+          "id": "ART-9d50533db979",
+          "sha256": "9d50533db979af1d7d7de3b21df464fe139521714af7cd6aa22fb4a1c2e52142",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/artwork/shared/english-charging_solar_adapter.png",
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language/web/nl/assets/9d50533db979_english-charging_solar_adapter.png",
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language/web/pl/assets/9d50533db979_english-charging_solar_adapter.png",
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language/web/pt/assets/9d50533db979_english-charging_solar_adapter.png"
+          ],
+          "caption_observed": false,
+          "index": 63
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 100 Air × 4",
+      "variant": "JE-2000F · 盖板插座 · 双转接器",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-16",
+      "canonical_id": "ART-b01e52e2c2c0",
+      "canonical_sha256": "b01e52e2c2c061e365a68e8cca3abfb71d6ae28b133dab3e1d3d58fbcfdedcd8",
+      "members": [
+        {
+          "id": "ART-14cd214873e3",
+          "sha256": "14cd214873e30654fa7d8898aedf1ec68e251ef13f9973a555d3db2902428a29",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_es/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 7
+        },
+        {
+          "id": "ART-5e344ad0df88",
+          "sha256": "5e344ad0df88ab0f2473f56d1340ecaa802eaa2a7644904f800ca1b879881eef",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_de/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 33
+        },
+        {
+          "id": "ART-b01e52e2c2c0",
+          "sha256": "b01e52e2c2c061e365a68e8cca3abfb71d6ae28b133dab3e1d3d58fbcfdedcd8",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_fr/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 70
+        },
+        {
+          "id": "ART-b0b43f01a426",
+          "sha256": "b0b43f01a4265bc39a6ae20f817aa11007bbfc1e3ff13a5e7d3dd7c695ee0e6b",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_uk/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 71
+        },
+        {
+          "id": "ART-dd456e465afe",
+          "sha256": "dd456e465afec66719fc6c7088bb66b9321419049bbc51aac58fb879bc9abbac",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_it/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 87
+        },
+        {
+          "id": "ART-ff0bc29614cf",
+          "sha256": "ff0bc29614cf88423ca327aa0148f4201cbec8b87d0a6fddb5d91a5c29866198",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p109_solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 107
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 100 Air × 4",
+      "variant": "JE-1000F · 方孔插座 · 含接口二级放大图",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-17",
+      "canonical_id": "ART-c57e7dbb85f0",
+      "canonical_sha256": "c57e7dbb85f0c3833192c7331fc7495c233e8dd62845a380ed97eddd601d335b",
+      "members": [
+        {
+          "id": "ART-68cf1b08eff1",
+          "sha256": "68cf1b08eff113c41d6bc3c83f8a22468280d0fb481d8e6a86ed0dcbbaf0c1be",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/uk/p104_solar_four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/uk/md/assets/p104_solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 46
+        },
+        {
+          "id": "ART-82c9cafc5d55",
+          "sha256": "82c9cafc5d553d37c0e17944ad730f27e830ae525a5896df2eb509b0cc3cd00e",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/artwork/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/nl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/pl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/pt/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/uk/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/artwork/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/nl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/pl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/pt/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/uk/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/artwork/82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/nl/assets/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/pl/assets/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/pt/assets/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/uk/assets/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/artwork/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/nl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/pl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/pt/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/uk/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/artwork/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/nl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/pl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/pt/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/uk/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/artwork/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/nl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/pl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/pt/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/uk/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/nl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/pl/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/pt/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/uk/assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png"
+          ],
+          "caption_observed": false,
+          "index": 55
+        },
+        {
+          "id": "ART-c48643603761",
+          "sha256": "c4864360376196662255310cb0af6b1ac6db27460509726625cbbeb709ea3530",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/pl/p155_solar_four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/pl/md/assets/p155_solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 77
+        },
+        {
+          "id": "ART-c57e7dbb85f0",
+          "sha256": "c57e7dbb85f0c3833192c7331fc7495c233e8dd62845a380ed97eddd601d335b",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-adapter_en_c57e7dbb85f0.png"
+          ],
+          "caption_observed": true,
+          "index": 78
+        },
+        {
+          "id": "ART-ec6e2aa5b921",
+          "sha256": "ec6e2aa5b9219802706ba0da81144f381ccbdc41cd3fb9fc81302247a529b7b3",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/pt/p121_solar_four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/pt/md/assets/p121_solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 97
+        },
+        {
+          "id": "ART-f2d5dab46f5a",
+          "sha256": "f2d5dab46f5a1b8d076304e28f8346cbee852395a05bc85665395e4973486574",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/nl/p138_solar_four.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/nl/md/assets/p138_solar_four.png"
+          ],
+          "caption_observed": true,
+          "index": 101
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 100 Air × 4",
+      "variant": "JE-1000F · 盖板插座 · 含接口二级放大图",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-18",
+      "canonical_id": "ART-e9e777b55c2f",
+      "canonical_sha256": "e9e777b55c2fb65b6945630d28ebb3ac2c50ff47221fe63c9c5880e27d2c8d58",
+      "members": [
+        {
+          "id": "ART-6eb8244df99a",
+          "sha256": "6eb8244df99af302a5d115bad73b941dc29e575e1a945947d31de3afeafff7f8",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-adapter_de_6eb8244df99a.png",
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-adapter_es_6eb8244df99a.png",
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-adapter_it_6eb8244df99a.png"
+          ],
+          "caption_observed": true,
+          "index": 50
+        },
+        {
+          "id": "ART-e9e777b55c2f",
+          "sha256": "e9e777b55c2fb65b6945630d28ebb3ac2c50ff47221fe63c9c5880e27d2c8d58",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-solar-adapter_fr_e9e777b55c2f.png"
+          ],
+          "caption_observed": true,
+          "index": 96
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 100 Air × 4",
+      "variant": "JE-1000F JP · 双槽插座 · 含接口二级放大图",
+      "status": "reference-only",
+      "note": "保留JP技术标记；旧去字版42残留空文字框，不能作为最终候选。",
+      "group_id": "SOLAR-19",
+      "canonical_id": "ART-cebf89383670",
+      "canonical_sha256": "cebf89383670126e410d3ec2b2ef84548ec03be709f6cc844647bdbd7a14a008",
+      "members": [
+        {
+          "id": "ART-65497180bada",
+          "sha256": "65497180bada7f4c4ddfc2a2c936de871bbc13e087cbf0b3d7f6b2b6b57234e2",
+          "paths": [
+            "docs/renderers/latex/assets/je1000f_jp_solar_adapter.png"
+          ],
+          "caption_observed": false,
+          "index": 42
+        },
+        {
+          "id": "ART-6589274a236a",
+          "sha256": "6589274a236a8ea6ef02457e10857b6e449dfe1f20ca6979b1f246ee03c95e40",
+          "paths": [
+            "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/native-solar-adapter.svg"
+          ],
+          "caption_observed": false,
+          "index": 43
+        },
+        {
+          "id": "ART-cebf89383670",
+          "sha256": "cebf89383670126e410d3ec2b2ef84548ec03be709f6cc844647bdbd7a14a008",
+          "paths": [
+            "docs/renderers/latex/assets/solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 82
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 40 Air × 1",
+      "variant": "JE-100C · 单机直连",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-20",
+      "canonical_id": "ART-96adfad1e72c",
+      "canonical_sha256": "96adfad1e72c557534fb1a3eaee933f045d01552429f2afbc95d43eac7bb8367",
+      "members": [
+        {
+          "id": "ART-043d33f1912e",
+          "sha256": "043d33f1912ee2558af4358726854bf3c7c4eb84f8fc9b74d88750afa56011de",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_es/charging_solar.svg"
+          ],
+          "caption_observed": true,
+          "index": 1
+        },
+        {
+          "id": "ART-1cab09f22737",
+          "sha256": "1cab09f227375c1043606fea5cccdab91fca52847ce8c97a1929f9b5529ded95",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_nl/charging_solar.svg"
+          ],
+          "caption_observed": true,
+          "index": 9
+        },
+        {
+          "id": "ART-2f3c6db71b17",
+          "sha256": "2f3c6db71b17066f3aec2132e9ad91ae59d8e0df7370d142a5cc15ac0ed9851a",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_uk/charging_solar.svg"
+          ],
+          "caption_observed": true,
+          "index": 15
+        },
+        {
+          "id": "ART-4deeb006575d",
+          "sha256": "4deeb006575d6b1a343d0181ebc040a8e38286c1ccaf094486d053afde299482",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_it/charging_solar.svg"
+          ],
+          "caption_observed": true,
+          "index": 23
+        },
+        {
+          "id": "ART-505b44399e96",
+          "sha256": "505b44399e96d7cffdaa870f385fb6cfa4372a9dd4e6dc27853c64b87f003ef9",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_de/charging_solar.svg"
+          ],
+          "caption_observed": true,
+          "index": 24
+        },
+        {
+          "id": "ART-5eb099893149",
+          "sha256": "5eb099893149f9aac69ec57ee62cd720a5170089a7fc8a03f8726515f9971cad",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_shared/charging_solar.svg"
+          ],
+          "caption_observed": true,
+          "index": 34
+        },
+        {
+          "id": "ART-5fe22f62afed",
+          "sha256": "5fe22f62afedac2f80d265fa386dc63ffa18461e5fe62f128d770239a0800d0f",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_pl/charging_solar.svg"
+          ],
+          "caption_observed": true,
+          "index": 37
+        },
+        {
+          "id": "ART-96adfad1e72c",
+          "sha256": "96adfad1e72c557534fb1a3eaee933f045d01552429f2afbc95d43eac7bb8367",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_en/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 61
+        },
+        {
+          "id": "ART-d34751db8b70",
+          "sha256": "d34751db8b70a0749fb38ee6b61a5f81fcf89f5a12f8431ca4820618a4fa4e7d",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_fr/charging_solar.svg"
+          ],
+          "caption_observed": true,
+          "index": 84
+        },
+        {
+          "id": "ART-db780b4c6387",
+          "sha256": "db780b4c63879a7e109273ae5cee17de15f2e71409374d5dc3b456450504e23f",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_pt/charging_solar.svg"
+          ],
+          "caption_observed": true,
+          "index": 86
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 40 Air × 1",
+      "variant": "JE-300D · 侧面端口直连",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-21",
+      "canonical_id": "ART-23a83f3953d2",
+      "canonical_sha256": "23a83f3953d284aec4b8d232dee7c4e0d9cbbe08c733403cf9f6572197c42b6d",
+      "members": [
+        {
+          "id": "ART-23a83f3953d2",
+          "sha256": "23a83f3953d284aec4b8d232dee7c4e0d9cbbe08c733403cf9f6572197c42b6d",
+          "paths": [
+            "docs/renderers/web/assets/je300d_eu_en/charging_solar.png"
+          ],
+          "caption_observed": true,
+          "index": 10
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 100 × 2",
+      "variant": "JE-500A · Y形连接线",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-22",
+      "canonical_id": "ART-f282bcc365a1",
+      "canonical_sha256": "f282bcc365a10885a5392a9bf54bbf4ad77e0c563594f3cc200c03aa414f19a9",
+      "members": [
+        {
+          "id": "ART-f282bcc365a1",
+          "sha256": "f282bcc365a10885a5392a9bf54bbf4ad77e0c563594f3cc200c03aa414f19a9",
+          "paths": [
+            "docs/renderers/web/assets/je500a_eu_en/charging_solar_dual.png"
+          ],
+          "caption_observed": true,
+          "index": 100
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200（原标未写数量）",
+      "variant": "JE-500A · 单板直连",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-23",
+      "canonical_id": "ART-b5ee7098b2ea",
+      "canonical_sha256": "b5ee7098b2ead6e003736617199e48fe491e50eb731307d620d03c5e4c8349a5",
+      "members": [
+        {
+          "id": "ART-b5ee7098b2ea",
+          "sha256": "b5ee7098b2ead6e003736617199e48fe491e50eb731307d620d03c5e4c8349a5",
+          "paths": [
+            "docs/renderers/web/assets/je500a_eu_en/charging_solar_single.png"
+          ],
+          "caption_observed": true,
+          "index": 73
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200（原标未写数量）",
+      "variant": "JBP-2000B · 方孔插座主机＋电池包",
+      "status": "candidate",
+      "note": "",
+      "group_id": "SOLAR-24",
+      "canonical_id": "ART-7d3a1d2b3a59",
+      "canonical_sha256": "7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1",
+      "members": [
+        {
+          "id": "ART-56e1c9f06378",
+          "sha256": "56e1c9f0637809c378104fced339036b66583d7a3de9485857b4cff1fb2b242f",
+          "paths": [
+            "docs/renderers/latex/assets/jbp2000b_solar_charging.png"
+          ],
+          "caption_observed": false,
+          "index": 29
+        },
+        {
+          "id": "ART-7d3a1d2b3a59",
+          "sha256": "7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1",
+          "paths": [
+            "docs/renderers/web/assets/jbp2000b_eu_en/solar_charging.png"
+          ],
+          "caption_observed": true,
+          "index": 53
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200（原标未写数量）",
+      "variant": "JBP-2000B · 盖板插座主机＋电池包",
+      "status": "reference-only",
+      "note": "无文字版本，保留型号限定，不能自动补数量或改用其他插座。",
+      "group_id": "SOLAR-25",
+      "canonical_id": "ART-e7777b74c8b7",
+      "canonical_sha256": "e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef",
+      "members": [
+        {
+          "id": "ART-e7777b74c8b7",
+          "sha256": "e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef",
+          "paths": [
+            "docs/renderers/latex/assets/jbp2000b_eu_solar_charging.png"
+          ],
+          "caption_observed": false,
+          "index": 94
+        }
+      ]
+    },
+    {
+      "label": "SolarSaga 200（原标未写数量）",
+      "variant": "JBP-2000B JP · 主机＋电池包",
+      "status": "reference-only",
+      "note": "含日文扩展线说明；不能当通用无语言版本。",
+      "group_id": "SOLAR-26",
+      "canonical_id": "ART-f3df6d25fe39",
+      "canonical_sha256": "f3df6d25fe39e449c142ed150166686b0284b366db349e8fe33489d174df5a7f",
+      "members": [
+        {
+          "id": "ART-57cb9acf480a",
+          "sha256": "57cb9acf480afa2a3c503fcd3de5d53621bf1f418d643af9798c8124df22f9bb",
+          "paths": [
+            "docs/renderers/latex/assets/jbp2000b_jp_solar_charging.png"
+          ],
+          "caption_observed": false,
+          "index": 30
+        },
+        {
+          "id": "ART-f3df6d25fe39",
+          "sha256": "f3df6d25fe39e449c142ed150166686b0284b366db349e8fe33489d174df5a7f",
+          "paths": [
+            "docs/renderers/web/assets/jbp2000b_jp/solar_charging.png"
+          ],
+          "caption_observed": true,
+          "index": 102
+        }
+      ]
+    },
+    {
+      "label": "太阳能连接示意（原图未标型号/数量）",
+      "variant": "JBP-3600A · 高机身＋电池包",
+      "status": "reference-only",
+      "note": "图中没有SolarSaga型号/数量；不编造标识，不与其他主机合并。",
+      "group_id": "SOLAR-27",
+      "canonical_id": "ART-e4eb11ad06f6",
+      "canonical_sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768",
+      "members": [
+        {
+          "id": "ART-e4eb11ad06f6",
+          "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768",
+          "paths": [
+            "docs/renderers/latex/assets/jbp3600a_solar.png",
+            "docs/renderers/web/assets/jbp3600a_eu_en/solar_charging.png"
+          ],
+          "caption_observed": false,
+          "index": 91
+        }
+      ]
+    },
+    {
+      "label": "Solar Panel Connector · DC8020 Male",
+      "variant": "JS-100F · 两板背面连接图",
+      "status": "reference-only",
+      "note": "独立连接器示意，说明文字需原生HTML；不归入带型号太阳能整图。",
+      "group_id": "SOLAR-28",
+      "canonical_id": "ART-5a9d559d420e",
+      "canonical_sha256": "5a9d559d420ebecc9314ec8e515f11e35e4d29a6453a5dec5d143ab311e0663e",
+      "members": [
+        {
+          "id": "ART-5a9d559d420e",
+          "sha256": "5a9d559d420ebecc9314ec8e515f11e35e4d29a6453a5dec5d143ab311e0663e",
+          "paths": [
+            "docs/renderers/web/assets/js100f_eu_en/solar_panel_connector.png"
+          ],
+          "caption_observed": false,
+          "index": 31
+        }
+      ]
+    },
+    {
+      "label": "Solar Panel Connector · DC8020 Male",
+      "variant": "JS-200E · 两板正面连接图",
+      "status": "reference-only",
+      "note": "与JS-100F连接器布局不同，单独保留；说明文字需原生HTML。",
+      "group_id": "SOLAR-29",
+      "canonical_id": "ART-e3a5de366e53",
+      "canonical_sha256": "e3a5de366e53ed8dd6605a1b3f086ed8d45671c2493a334c100564d1d2f99d66",
+      "members": [
+        {
+          "id": "ART-e3a5de366e53",
+          "sha256": "e3a5de366e53ed8dd6605a1b3f086ed8d45671c2493a334c100564d1d2f99d66",
+          "paths": [
+            "docs/renderers/web/assets/js200e_eu_en/solar_panel_connector.png"
+          ],
+          "caption_observed": false,
+          "index": 90
+        }
+      ]
+    },
+    {
+      "label": "不推荐：主体丢失",
+      "variant": "JE-2000E · 错误提取产物",
+      "status": "reject",
+      "note": "只有圆点、胶囊和空框，太阳能/主机主体丢失。",
+      "group_id": "SOLAR-30",
+      "canonical_id": "ART-651b238bf3e3",
+      "canonical_sha256": "651b238bf3e3b3c8b3726c44a178fc75679ae2b88b2e6078afb707ecfbbd20b2",
+      "members": [
+        {
+          "id": "ART-651b238bf3e3",
+          "sha256": "651b238bf3e3b3c8b3726c44a178fc75679ae2b88b2e6078afb707ecfbbd20b2",
+          "paths": [
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-candidate/three-language/artwork/pl/reference-solar_single.png"
+          ],
+          "caption_observed": false,
+          "index": 41
+        }
+      ]
+    },
+    {
+      "label": "局部参考：未包含主机",
+      "variant": "JE-1000H · 转接器/太阳能裁片",
+      "status": "reference-only",
+      "note": "左侧连接线在边界截断；不能替代完整主机连接图。",
+      "group_id": "SOLAR-31",
+      "canonical_id": "ART-0934d106ad41",
+      "canonical_sha256": "0934d106ad41c9b4bcf4057b81c3895ae54c1702e127d569986eead92237d914",
+      "members": [
+        {
+          "id": "ART-0934d106ad41",
+          "sha256": "0934d106ad41c9b4bcf4057b81c3895ae54c1702e127d569986eead92237d914",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_en/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 3
+        },
+        {
+          "id": "ART-0ae63e952c78",
+          "sha256": "0ae63e952c783fd27cffebcf948a095b03eade283c96a07aedf3c4b9bf1836bb",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_it/charging_solar_adapter.png",
+            "docs/renderers/web/assets/je1000h_eu_uk/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 4
+        },
+        {
+          "id": "ART-8e8933db821a",
+          "sha256": "8e8933db821a47ace5843f885838ea393061d04dc7370342f26a5f0929b4ee92",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_fr/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 60
+        },
+        {
+          "id": "ART-d88923ba5900",
+          "sha256": "d88923ba59009a0ca82c136a418c081ef59df36d261c8cd1ac940996e2cdc7cf",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_de/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 85
+        },
+        {
+          "id": "ART-e1e9d2679231",
+          "sha256": "e1e9d26792312f1ed8d6b5db4f2ef2c96e5289b8e502d896a02b3a945f0d5854",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_es/charging_solar_adapter.png"
+          ],
+          "caption_observed": true,
+          "index": 88
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "scanned": 108,
+    "candidate_groups": 22,
+    "candidate_files": 92,
+    "reference_groups": 8,
+    "rejected_files": 1
+  },
+  "operator_selection_file_sha256": "18294df5c3967ae223701c12e2bbab81e5dbe4b54ad88c9d4d1d9a5faae62071",
+  "operator_selections": {
+    "status": "operator-selection-for-review",
+    "items": [
+      {
+        "id": "ART-21b5f19ca9a6",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-28f3cad42ae3",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-58c1d3604ca7",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-6aab9a14900a",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-71017f43bab4",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-73225cf9faa8",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-747147be99d7",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-7623ef10e229",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-7e1392ba6a45",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-7f743182c050",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-85921a9ad7fb",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-8be87c5a0849",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-91cec82eeaa5",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-9b148ea95d3a",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-b4744a483fa9",
+        "decision": "exclude",
+        "note": "这个图不对 像素极低 要重新取图"
+      },
+      {
+        "id": "ART-bdbf602db74a",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-c4b830c769a3",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-c7862a87e742",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-ce913ebfc775",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-cfb69b1ffc0b",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-d5100a538e96",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-e32e6ae96321",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-e422a56922eb",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-eed3299c3f6a",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-f4cdcb551105",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-f548c6504f49",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-fc4cc02b42ef",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-114690be6f4d",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-11f1a73a4cb5",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-1c272a00fbd2",
+        "decision": "exclude",
+        "note": "这个图 要重新提取 底色去掉"
+      },
+      {
+        "id": "ART-1d9fa89da31d",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-236891c20611",
+        "decision": "exclude",
+        "note": "这个图要重新提取 底色去掉"
+      },
+      {
+        "id": "ART-24e567ffad05",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-28a1671cdf5d",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-2a61fc0919cf",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-2c7663a3294d",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-315ee6fdbaa4",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-378ec250259d",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-3dead8521bd4",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-40529e39bab8",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-434d0907250f",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-4400c34e2e70",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-488ad9b49048",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-4bbbd7aa8e76",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-54c57e5ecc98",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-5bb172a98c92",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-5e5fc8a41e7c",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-6749bd38fdd0",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-698e38efcac9",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-6b991847e3f8",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-76085a1e7008",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-8936085b3f6f",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-89dae4b809de",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-908c33c16c06",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-9a9a245fe848",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-a8a846e9767a",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-cb30b4905185",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-cf04ff00bdeb",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-d47f06393b2a",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-d65978a258cc",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-dc89195f3ece",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-e1746d6937db",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-e36930ae4711",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-eb094578bf16",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-eb4a792ae716",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-f913a65f0774",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-f98670ebed48",
+        "decision": "limited",
+        "note": "只要识别到pdf有这个符号 就是共用的"
+      },
+      {
+        "id": "ART-5a9d559d420e",
+        "decision": "exclude",
+        "note": ""
+      },
+      {
+        "id": "ART-562f998c918a",
+        "decision": "exclude",
+        "note": ""
+      }
+    ]
+  }
+}

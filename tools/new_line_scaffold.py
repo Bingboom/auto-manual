@@ -517,7 +517,7 @@ def _refresh_fixture(
     source_root: str | Path,
     fixture_root: str | Path,
 ) -> dict[str, Any]:
-    from tools.data_snapshot_fixture_refresh import refresh_fixture_by_document_key
+    from tools.data.snapshot_fixture_refresh import refresh_fixture_by_document_key
 
     source = Path(source_root)
     fixture = Path(fixture_root)

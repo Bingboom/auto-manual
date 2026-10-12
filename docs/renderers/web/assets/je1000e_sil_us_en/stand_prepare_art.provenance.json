@@ -1,0 +1,20 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    2952.197021484375,
+    2005.40478515625,
+    3152.697021484375,
+    2100.90478515625
+  ],
+  "sha256": "249e291b0c6cf8f9faac1251d4efec0750f68a99f6bd081b3630ea42c104eb21",
+  "recipe": "data/asset_recipes/manual_je1000e_sil_us_stand_prepare_live.json",
+  "label_rect_pct": [
+    5.523909951683292,
+    8.43294952552356,
+    80,
+    8
+  ],
+  "policy": "Remove only PDF heading; preserve product markings, tools and background."
+}

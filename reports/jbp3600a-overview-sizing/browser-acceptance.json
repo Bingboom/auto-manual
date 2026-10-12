@@ -1,0 +1,344 @@
+[
+  {
+    "lang": "en",
+    "viewport": 1280,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 400
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 544
+      }
+    ]
+  },
+  {
+    "lang": "fr",
+    "viewport": 1280,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 400
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 544
+      }
+    ]
+  },
+  {
+    "lang": "es",
+    "viewport": 1280,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 400
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 544
+      }
+    ]
+  },
+  {
+    "lang": "de",
+    "viewport": 1280,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 400
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 544
+      }
+    ]
+  },
+  {
+    "lang": "it",
+    "viewport": 1280,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 400
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 544
+      }
+    ]
+  },
+  {
+    "lang": "uk",
+    "viewport": 1280,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 400
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 544
+      }
+    ]
+  },
+  {
+    "lang": "pt",
+    "viewport": 1280,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 400
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 544
+      }
+    ]
+  },
+  {
+    "lang": "nl",
+    "viewport": 1280,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 400
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 544
+      }
+    ]
+  },
+  {
+    "lang": "pl",
+    "viewport": 1280,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 400
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 544
+      }
+    ]
+  },
+  {
+    "lang": "en",
+    "viewport": 390,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 358
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 358
+      }
+    ]
+  },
+  {
+    "lang": "fr",
+    "viewport": 390,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 358
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 358
+      }
+    ]
+  },
+  {
+    "lang": "es",
+    "viewport": 390,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 358
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 358
+      }
+    ]
+  },
+  {
+    "lang": "de",
+    "viewport": 390,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 358
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 358
+      }
+    ]
+  },
+  {
+    "lang": "it",
+    "viewport": 390,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 358
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 358
+      }
+    ]
+  },
+  {
+    "lang": "uk",
+    "viewport": 390,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 358
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 358
+      }
+    ]
+  },
+  {
+    "lang": "pt",
+    "viewport": 390,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 358
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 358
+      }
+    ]
+  },
+  {
+    "lang": "nl",
+    "viewport": 390,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 358
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 358
+      }
+    ]
+  },
+  {
+    "lang": "pl",
+    "viewport": 390,
+    "overflow": false,
+    "panels": [
+      {
+        "file": "overview_front.png",
+        "loaded": true,
+        "max": "400px",
+        "width": 358
+      },
+      {
+        "file": "overview_left.png",
+        "loaded": true,
+        "max": "544px",
+        "width": 358
+      }
+    ]
+  }
+]

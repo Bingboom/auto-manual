@@ -40,6 +40,13 @@ def web_operation_projection(
     presentation: Mapping[str, Any],
 ) -> dict[str, Any]:
     projection = _projection(spec, "web")
+    explicit_mode = str(projection.get("presentation_mode") or "").strip()
+    contract_mode = str(presentation.get("presentation_mode") or "").strip()
+    if explicit_mode and explicit_mode != contract_mode:
+        raise ComponentSpecError(
+            f"{spec.component_id}: frozen presentation mode {explicit_mode!r} "
+            f"does not match target contract {contract_mode or None!r}"
+        )
     if str(presentation.get("id") or "") != projection["operation_id"]:
         raise ComponentSpecError(
             f"{spec.component_id}: Web presentation does not match operation id"

@@ -1,0 +1,252 @@
+{
+  "schema_version": "auto-manual-shared-web-symbols/v1",
+  "assets": [
+    {
+      "key": "warning/outline-triangle-tinted",
+      "path": "native-v1/symbol_warning_triangle.svg",
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-1.svg",
+        "source_sha256": "2a1cdabb87511d378a9d4e18b30a1e61d3fce5fb9c7be11a665d1dac9dfeef5c",
+        "repair": "retain existing SVG glyph paths and ancestor transforms; remove unrelated page/cell backdrop objects",
+        "retained_path_indices": [
+          56,
+          57,
+          58
+        ]
+      }
+    },
+    {
+      "key": "read-manual/book-information",
+      "path": "native-v1/symbol_read_manual.svg",
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-2.svg",
+        "source_sha256": "0273da6c2ff50078df7273974e47c2357d6e98bda546af36970c0564a75bb265",
+        "repair": "retain existing SVG glyph paths and ancestor transforms; remove unrelated page/cell backdrop objects",
+        "retained_path_indices": [
+          62,
+          63,
+          64
+        ]
+      }
+    },
+    {
+      "key": "electric-shock/bolt-triangle-tinted",
+      "path": "native-v1/symbol_electric_shock.svg",
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          657,
+          658,
+          659
+        ]
+      }
+    },
+    {
+      "key": "battery-charging/flame-battery-triangle-tinted",
+      "path": "native-v1/symbol_battery_charging.svg",
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          660,
+          661,
+          662,
+          663,
+          664,
+          665,
+          666
+        ]
+      }
+    },
+    {
+      "key": "explosive-material/burst-triangle-tinted",
+      "path": "native-v1/symbol_explosive_material.svg",
+      "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          667,
+          668,
+          669,
+          670
+        ]
+      }
+    },
+    {
+      "key": "heavy-object/person-load-triangle-tinted",
+      "path": "native-v1/symbol_heavy_object.svg",
+      "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          731,
+          732,
+          733,
+          734,
+          735,
+          736,
+          737,
+          738
+        ]
+      }
+    },
+    {
+      "key": "do-not-dismantle/screwdriver-prohibited",
+      "path": "native-v1/symbol_do_not_dismantle.svg",
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          642,
+          643,
+          644
+        ]
+      }
+    },
+    {
+      "key": "no-open-flame/fire-match-prohibited",
+      "path": "native-v1/symbol_no_open_flame.svg",
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          725,
+          726,
+          727,
+          728,
+          729,
+          730
+        ]
+      }
+    },
+    {
+      "key": "keep-away-from-children/adult-child-prohibited",
+      "path": "native-v1/symbol_keep_away_from_children.svg",
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          739,
+          740,
+          741,
+          742
+        ]
+      }
+    },
+    {
+      "key": "li-ion/recycle-li-ion",
+      "path": "native-v1/symbol_li_ion.svg",
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          645,
+          646,
+          647,
+          648,
+          649,
+          650,
+          651,
+          652,
+          653
+        ]
+      }
+    },
+    {
+      "key": "weee/crossed-bin-bar",
+      "path": "native-v1/symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "docs/renderers/web/assets/je100c_eu_shared/symbol_weee.png",
+        "decision": "reuse existing shared file byte-identical"
+      }
+    }
+  ],
+  "withdrawn": [
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+      "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+      "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+      "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+      "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+      "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+      "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+      "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+      "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+      "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+      "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/weee.png",
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    }
+  ]
+}

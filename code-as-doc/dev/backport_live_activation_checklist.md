@@ -1,6 +1,6 @@
 # Backport Live-Activation Checklist (F6 / F8)
 
-Status: operator checklist · Owner: 夏冰 · Created: 2026-06-19
+Status: active · Recorded detail: operator checklist · Owner: 夏冰 · Created: 2026-06-19
 
 Milestone F (F1–F8) is implemented in-repo. **F1–F5 and F7 are fully live.**
 **F6** (approval-gated source-table writes) and **F8** (`QC_Report` writeback) are
@@ -34,7 +34,7 @@ Read alongside:
 - `lark-cli` configured with the bot identity (`--as bot`) and Feishu app
   permissions for the target base/tables.
 - A review-doc backport run has produced its reports (from
-  `python tools/cloud_doc_backport.py run-review ... --data-root data/phase2 --lang <lang> --sibling <...>`),
+  `python -m tools.backport.cloud_doc run-review ... --data-root data/phase2 --lang <lang> --sibling <...>`),
   including `cloud_doc_backport_source_table_change_request.json` (F6) and a
   `findings.json` from `content_lint` (F8).
 
@@ -54,7 +54,7 @@ Read alongside:
    snapshot manifest `derived_files`.
 
 **Verify:** the sidecar's `tables.<table>.records` is non-empty for indexed
-tables. `python tools/content_lint.py --data-root data/phase2 --json` now shows
+tables. `python -m tools.content_lint --data-root data/phase2 --json` now shows
 `resolution_status: resolved` (not `snapshot_only`) for covered findings.
 
 **Gate:** operator-gated (live Feishu read + `data/phase2` contract, `AGENTS.md`
@@ -74,12 +74,12 @@ apply-source-table`**:
 
 ```
 # dry-run plan (default; no writes, no bindings needed):
-python tools/cloud_doc_backport.py apply-source-table \
+python -m tools.backport.cloud_doc apply-source-table \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_source_table_change_request.json \
   --approve <delta_hash> [--approve <delta_hash> ...]
 
 # live write (operator-deliberate): one --table-binding per writable table:
-python tools/cloud_doc_backport.py apply-source-table --report <…> \
+python -m tools.backport.cloud_doc apply-source-table --report <…> \
   --approve <delta_hash> --write \
   --table-binding "Manual_Copy_Source=<base_token>:<table_id>" --identity bot
 ```
@@ -138,7 +138,7 @@ append/upsert only.
 **Why:** F1 originally indexed `lcd_icons` only, while F2's Class D `source_ref`s are
 mostly `Spec_Master` / `Localized_Copy` — so F6 requests abstained
 (`record_id: null`) for those. Coverage is now extended in
-[`../../tools/source_record_index.py`](../../tools/source_record_index.py):
+[`../../tools/data/source_record_index.py`](../../tools/data/source_record_index.py):
 
 1. **`Spec_Master`** (#397): keyed by `document_key` + `Row_key` + `Slot_key`
    (`Slot_key` disambiguates the `usb_c` 30w/100w collision class).
@@ -176,8 +176,8 @@ a local `data/phase2/` snapshot) cannot exercise this path.
 
 ## References
 
-- Modules: [`../../tools/source_record_index.py`](../../tools/source_record_index.py),
-  [`../../tools/source_table_sync.py`](../../tools/source_table_sync.py),
+- Modules: [`../../tools/data/source_record_index.py`](../../tools/data/source_record_index.py),
+  [`../../tools/data/source_table_sync.py`](../../tools/data/source_table_sync.py),
   [`../../tools/qc_report.py`](../../tools/qc_report.py)
 - Workstream Q / roadmap: [`../optimization_project.md`](../optimization_project.md)
 - PR-level history: [`next_optimization_checklist.md`](../next_optimization_checklist.md) Milestone F

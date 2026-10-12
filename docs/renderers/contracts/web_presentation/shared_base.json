@@ -63,7 +63,8 @@
     },
     "meaning_symbols": {
       "source_patterns": [
-        "symbols_*"
+        "symbols_*",
+        "symbols"
       ],
       "signal_row_count": 4
     },
@@ -104,7 +105,8 @@
     },
     "operations": {
       "source_patterns": [
-        "*05_operation_guide_placeholder"
+        "*05_operation_guide_placeholder",
+        "*05_operation_guide_je2000e"
       ],
       "auto_resume_table": {
         "body_rows": 4

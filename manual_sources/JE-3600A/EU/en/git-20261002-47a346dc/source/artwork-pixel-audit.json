@@ -1,0 +1,198 @@
+[
+  {
+    "asset": "overview-front",
+    "size": [
+      1264,
+      660
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 834240
+  },
+  {
+    "asset": "overview-right",
+    "size": [
+      1264,
+      952
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 1203328
+  },
+  {
+    "asset": "operation-main-power",
+    "size": [
+      1260,
+      696
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [
+      [
+        161.8,
+        159.0,
+        329.0,
+        204.8
+      ],
+      [
+        39.3,
+        210.0,
+        331.1,
+        237.6
+      ],
+      [
+        263.0,
+        133.8,
+        274.9,
+        145.7
+      ]
+    ],
+    "protected_pixels": 594733
+  },
+  {
+    "asset": "operation-dc-usb-output",
+    "size": [
+      1260,
+      636
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [
+      [
+        38.0,
+        273.0,
+        167.8,
+        288.2
+      ]
+    ],
+    "protected_pixels": 751705
+  },
+  {
+    "asset": "operation-ac-output",
+    "size": [
+      1260,
+      740
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [
+      [
+        39.3,
+        52.4,
+        169.1,
+        67.6
+      ]
+    ],
+    "protected_pixels": 882403
+  },
+  {
+    "asset": "operation-energy-saving",
+    "size": [
+      1260,
+      824
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [
+      [
+        39.7,
+        269.4,
+        331.5,
+        330.1
+      ],
+      [
+        193.5,
+        431.5,
+        205.5,
+        443.5
+      ]
+    ],
+    "protected_pixels": 715921
+  },
+  {
+    "asset": "ups",
+    "size": [
+      1264,
+      952
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 1100784
+  },
+  {
+    "asset": "battery",
+    "size": [
+      1260,
+      812
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 1008144
+  },
+  {
+    "asset": "battery-accessories",
+    "size": [
+      1260,
+      332
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 392704
+  },
+  {
+    "asset": "charging-ac",
+    "size": [
+      1260,
+      420
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 493455
+  },
+  {
+    "asset": "charging-solar",
+    "size": [
+      1260,
+      532
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 662957
+  },
+  {
+    "asset": "charging-car",
+    "size": [
+      1260,
+      520
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 624708
+  },
+  {
+    "asset": "app-phone",
+    "size": [
+      648,
+      608
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 393984
+  },
+  {
+    "asset": "app-control",
+    "size": [
+      1260,
+      336
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 404676
+  },
+  {
+    "asset": "app-result",
+    "size": [
+      1000,
+      560
+    ],
+    "outside_text_and_approved_background_regions_differing_pixels": 0,
+    "approved_background_regions": [],
+    "protected_pixels": 560000
+  }
+]

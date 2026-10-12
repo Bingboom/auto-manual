@@ -2,6 +2,56 @@
   "schema_version": "web-manual-target-overlays/v1",
   "overlays": [
     {
+      "overlay_id": "ja-ad500a-sil-us-en-v1",
+      "target": {
+        "model": "JA-AD500A-SIL",
+        "region": "US"
+      },
+      "skeleton_profile": "charger-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": [
+            "warranty_en",
+            "warranty_fr",
+            "warranty_es"
+          ],
+          "section_count": 6,
+          "period_years": [
+            "1"
+          ]
+        },
+        "reference_figures": {
+          "source_patterns": [
+            "charging_en",
+            "charging_fr",
+            "charging_es"
+          ],
+          "figures": [
+            {
+              "id": "solar-connection",
+              "source_patterns": [
+                "charging_en",
+                "charging_fr",
+                "charging_es"
+              ],
+              "semantic_source_patterns": [
+                "charging_en",
+                "charging_fr",
+                "charging_es"
+              ],
+              "image_key": "solar.png",
+              "captions_embedded": true,
+              "web_replace_key": "reference.solar-connection"
+            }
+          ]
+        }
+      }
+    },
+    {
       "overlay_id": "js200e-eu-en-v1",
       "target": {
         "model": "JS-200E",
@@ -89,7 +139,15 @@
       "figure_coverage": {
         "policy_id": "je100c-eu-en-finished-figures-v1",
         "locales": [
-          "en"
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it",
+          "uk",
+          "pt",
+          "nl",
+          "pl"
         ],
         "required_slots": [
           "finished-panel.overview",
@@ -141,9 +199,163 @@
         "allowed_statuses": [
           "finished-panel",
           "approved-composite"
-        ]
+        ],
+        "slot_status_overrides": {
+          "operation.main-power": [
+            "base-art-live-copy"
+          ],
+          "operation.ac-output": [
+            "base-art-live-copy"
+          ],
+          "operation.dc-usb-output": [
+            "base-art-live-copy"
+          ],
+          "operation.energy-saving": [
+            "base-art-live-copy"
+          ],
+          "operation.led-light": [
+            "base-art-live-copy"
+          ],
+          "reference.charging-car": [
+            "base-art-live-copy"
+          ]
+        }
       },
-      "contract_overrides": {}
+      "contract_overrides": {
+        "operations": {
+          "figures": [
+            {
+              "id": "main-power",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "74004806e6c0996fb77b2260c046e055194855a96bed97c519bb58c292e3b5e2",
+                "step_anchors": [
+                  [
+                    76.5,
+                    15.42
+                  ],
+                  [
+                    76.5,
+                    34.17
+                  ]
+                ],
+                "step_width": 22.5,
+                "duration_anchor": [
+                  81.4,
+                  48.1
+                ]
+              }
+            },
+            {
+              "id": "ac-output",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "43a46a51a98773dd307ff35dd1ac684790109b2b8c437f87ceacbc3636bc1d75",
+                "step_anchors": [
+                  [
+                    84.0,
+                    26.51
+                  ],
+                  [
+                    84.0,
+                    36.98
+                  ]
+                ],
+                "step_width": 15.5,
+                "prerequisite_rect": [
+                  1.14,
+                  1.98,
+                  42.83,
+                  6.05
+                ],
+                "prerequisite_max_width": 55.0,
+                "prerequisite_fill": "#f8f8f8"
+              }
+            },
+            {
+              "id": "dc-usb-output",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "c46c92d6ee991a400208635802b5d2682f215cacaa748a3ca73068fdb18cdec3",
+                "step_anchors": [
+                  [
+                    86.0,
+                    20.28
+                  ],
+                  [
+                    86.0,
+                    31.69
+                  ]
+                ],
+                "step_width": 13.5,
+                "prerequisite_rect": [
+                  1.63,
+                  2.68,
+                  43.49,
+                  7.32
+                ],
+                "prerequisite_max_width": 55.0,
+                "prerequisite_fill": "#e8e8e8"
+              }
+            },
+            {
+              "id": "energy-saving",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "9dd943d3063031c0795ff8c4b2b6aac266bfb2bff78e2250e445f27352c23a07",
+                "footer_x": 72.0
+              }
+            },
+            {
+              "id": "led-light",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "483c0dcfcfd6c0f8c460a32d9e320f07c3b7571cc1af80b1ac9d5b8f235430cc",
+                "art_width": 56.8,
+                "step_markers": [
+                  "bulb-lit",
+                  "sos",
+                  "bulb-off"
+                ]
+              }
+            }
+          ]
+        },
+        "reference_figures": {
+          "figures": [
+            {
+              "id": "charging-car",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a918de3a4a3b22cc6f400d9250f24905459d010e13e4020c23eadf247e928e75",
+                "panel_top": 6.15,
+                "panel_fill": "#f2f3f3",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      64.0,
+                      30.6,
+                      18.0,
+                      8.96
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      55.0,
+                      3.73,
+                      42.12,
+                      11.19
+                    ],
+                    "fill": "#ffffff"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "overlay_id": "je1000f-eu-v1",
@@ -247,7 +459,7 @@
         "warranty": {
           "source_patterns": [
             "*11_warranty",
-            "warranty_en",
+            "warranty_*",
             "eu_warranty"
           ]
         }
@@ -274,7 +486,7 @@
       },
       "skeleton_profile": "battery-pack-v1",
       "capabilities": {
-        "figures": false,
+        "figures": true,
         "legacy_target_components": false
       },
       "figure_coverage": {
@@ -285,21 +497,202 @@
         "required_slots": [
           "finished-panel.overview_front",
           "finished-panel.overview_left",
-          "finished-panel.power_annotated",
+          "operation.main-power",
           "finished-panel.lcd_control_clean",
           "finished-panel.ac_charging",
-          "finished-panel.solar_charging"
+          "finished-panel.solar_charging",
+          "reference.clearance",
+          "reference.locking",
+          "finished-panel.stacking_clean"
         ],
         "allowed_statuses": [
           "finished-panel",
           "approved-composite"
-        ]
+        ],
+        "slot_status_overrides": {
+          "operation.main-power": [
+            "base-art-live-copy"
+          ],
+          "reference.clearance": [
+            "base-art-live-copy"
+          ],
+          "reference.locking": [
+            "base-art-live-copy"
+          ]
+        }
       },
       "contract_overrides": {
         "warranty": {
           "source_patterns": [
             "*11_warranty",
             "warranty_en"
+          ]
+        },
+        "product_overview": {
+          "source_patterns": []
+        },
+        "operations": {
+          "source_patterns": [
+            "operation_en"
+          ],
+          "auto_resume_table": null,
+          "key_combination_table": null,
+          "lcd_mode_table": null,
+          "figures": [
+            {
+              "id": "main-power",
+              "image_key": "power_native",
+              "layout": "status-right",
+              "step_ids": [
+                "on",
+                "off"
+              ],
+              "capture_prerequisite": false,
+              "capture_following_lines": 0,
+              "web_replace_key": "operation.main-power",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00",
+                "step_anchors": [
+                  [
+                    77,
+                    17
+                  ],
+                  [
+                    77,
+                    46
+                  ]
+                ],
+                "step_width": 22,
+                "duration_anchor": [
+                  78,
+                  64
+                ],
+                "duration_icon": "clock"
+              }
+            }
+          ]
+        },
+        "reference_figures": {
+          "source_patterns": [
+            "connections_en"
+          ],
+          "figures": [
+            {
+              "id": "clearance",
+              "image_key": "clearance_native",
+              "source_patterns": [
+                "connections_en"
+              ],
+              "capture_following_lines": 2,
+              "web_replace_key": "reference.clearance",
+              "presentation_mode": "base-art-live-copy",
+              "captions_embedded": false,
+              "base_art_layout": {
+                "art_sha256": "8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      54,
+                      83,
+                      33,
+                      7
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      28,
+                      88,
+                      33,
+                      7
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "locking",
+              "image_key": "locking_native",
+              "source_patterns": [
+                "connections_en"
+              ],
+              "capture_following_lines": 6,
+              "web_replace_key": "reference.locking",
+              "presentation_mode": "base-art-live-copy",
+              "captions_embedded": false,
+              "base_art_layout": {
+                "art_sha256": "d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      58,
+                      4,
+                      18,
+                      6
+                    ],
+                    "fill": "#434345",
+                    "color": "#ffffff"
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      58,
+                      52,
+                      18,
+                      6
+                    ],
+                    "fill": "#434345",
+                    "color": "#ffffff"
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      59.4,
+                      15.8,
+                      4,
+                      5
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      80.3,
+                      15.8,
+                      4,
+                      5
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      59.4,
+                      64.2,
+                      4,
+                      5
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      80.3,
+                      64.2,
+                      4,
+                      5
+                    ]
+                  }
+                ]
+              }
+            }
           ]
         }
       }
@@ -329,27 +722,50 @@
         "legacy_target_components": false
       },
       "figure_coverage": {
-        "policy_id": "ja-ad600a-eu-en-finished-figures-v1",
+        "policy_id": "ja-ad600a-eu-en-shared-labels-v5",
         "locales": [
           "en"
         ],
         "required_slots": [
-          "operation.installation-diagram",
-          "operation.wiring-steps",
-          "operation.secure-vehicle-body",
-          "operation.secure-modification-panel",
-          "operation.connection-diagram"
+          "reference.product-overview",
+          "reference.installation-diagram",
+          "reference.wiring-fuse",
+          "finished-panel.wiring_battery",
+          "reference.wiring-acc",
+          "finished-panel.body_clearance",
+          "finished-panel.body_mark",
+          "finished-panel.body_drill",
+          "finished-panel.body_secure",
+          "finished-panel.panel_mark",
+          "finished-panel.panel_drill",
+          "finished-panel.panel_secure",
+          "reference.charger-connection"
         ],
         "allowed_statuses": [
           "finished-panel",
           "approved-composite"
-        ]
+        ],
+        "slot_status_overrides": {
+          "reference.charger-connection": [
+            "base-art-live-copy"
+          ],
+          "reference.wiring-fuse": [
+            "base-art-live-copy"
+          ],
+          "reference.wiring-acc": [
+            "base-art-live-copy"
+          ],
+          "reference.product-overview": [
+            "base-art-live-copy"
+          ],
+          "reference.installation-diagram": [
+            "base-art-live-copy"
+          ]
+        }
       },
       "contract_overrides": {
         "warranty": {
-          "source_patterns": [
-            "*warranty*"
-          ],
+          "source_patterns": [],
           "section_count": 6,
           "period_years": [
             "2"
@@ -359,61 +775,342 @@
           "source_patterns": [
             "*installation*"
           ],
+          "figures": []
+        },
+        "reference_figures": {
+          "source_patterns": [
+            "*installation*",
+            "*product_overview*"
+          ],
           "figures": [
             {
+              "id": "charger-connection",
+              "web_replace_key": "reference.charger-connection",
+              "capture_following_lines": 3,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "8fb3b2ca8692360087ac958ebbce9e766c34af3e49183107a8fbae3008f3e427",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      5.10423,
+                      76.83426,
+                      22,
+                      4.66666
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      32.69123,
+                      87.09703,
+                      24,
+                      4.66666
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      58.13624,
+                      88.45427,
+                      40,
+                      4.66666
+                    ]
+                  }
+                ]
+              },
+              "image_key": "connection_base.png"
+            },
+            {
+              "id": "wiring-fuse",
+              "web_replace_key": "reference.wiring-fuse",
+              "capture_following_lines": 7,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "bafe8512654bb40af713ea793a4da5cb313740b4da9a36843cbfbea58ddc4207",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      6.68828,
+                      6.06895,
+                      22.89867,
+                      7.82042
+                    ],
+                    "fill": "#ffffff"
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      68.07025,
+                      6.06895,
+                      27.55563,
+                      7.82042
+                    ],
+                    "fill": "#ffffff"
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      14.8,
+                      50.8,
+                      25,
+                      13
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      41.47092,
+                      69.14923,
+                      56.62252,
+                      11.26761
+                    ],
+                    "color": "#dd4132"
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      12.62225,
+                      87.33768,
+                      17.88079,
+                      5.91549
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      42.87986,
+                      87.05176,
+                      29.13907,
+                      5.91549
+                    ]
+                  },
+                  {
+                    "line": 6,
+                    "rect": [
+                      88.64873,
+                      87.12077,
+                      8.27815,
+                      5.91549
+                    ]
+                  }
+                ]
+              },
+              "image_key": "wiring_fuse_base.svg"
+            },
+            {
+              "id": "wiring-acc",
+              "web_replace_key": "reference.wiring-acc",
+              "capture_following_lines": 2,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "3e7f503922a3b12c0cbbd613afa9328f080ca159a998b7f1f99067f97538b70b",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      13.01026,
+                      31.34406,
+                      25.16556,
+                      8.75
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      70.08774,
+                      29.56333,
+                      25.82781,
+                      17.70833
+                    ]
+                  }
+                ]
+              },
+              "image_key": "wiring_acc_base.png"
+            },
+            {
+              "id": "product-overview",
+              "web_replace_key": "reference.product-overview",
+              "capture_following_lines": 6,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      1.63678,
+                      24.84762,
+                      14.52887,
+                      6.92308
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      86.65672,
+                      22.753,
+                      11.99359,
+                      20.76923
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      1.63678,
+                      67.29454,
+                      14.52887,
+                      6.92308
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      86.55794,
+                      67.29454,
+                      11.75494,
+                      6.92308
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      1.55089,
+                      85.63454,
+                      14.06261,
+                      6.92308
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      86.65672,
+                      84.92915,
+                      11.99359,
+                      6.92308
+                    ]
+                  }
+                ]
+              },
+              "image_key": "product_overview_base.png",
+              "source_patterns": [
+                "*product_overview*"
+              ]
+            },
+            {
               "id": "installation-diagram",
-              "image_key": "installation_diagram",
-              "layout": "footer-panel",
-              "step_ids": [
-                "overview"
-              ],
-              "web_replace_key": "operation.installation-diagram"
-            },
-            {
-              "id": "wiring-steps",
-              "image_key": "wiring_steps",
-              "layout": "footer-panel",
-              "step_ids": [
-                "fuse",
-                "battery",
-                "acc"
-              ],
-              "web_replace_key": "operation.wiring-steps"
-            },
-            {
-              "id": "secure-vehicle-body",
-              "image_key": "secure_vehicle_body",
-              "layout": "footer-panel",
-              "step_ids": [
-                "clearance",
-                "mark",
-                "drill",
-                "secure"
-              ],
-              "web_replace_key": "operation.secure-vehicle-body"
-            },
-            {
-              "id": "secure-modification-panel",
-              "image_key": "secure_modification_panel",
-              "layout": "footer-panel",
-              "step_ids": [
-                "mark",
-                "drill",
-                "secure"
-              ],
-              "web_replace_key": "operation.secure-modification-panel"
-            },
-            {
-              "id": "connection-diagram",
-              "image_key": "connection_diagram",
-              "layout": "footer-panel",
-              "step_ids": [
-                "input",
-                "acc",
-                "output",
-                "power-station"
-              ],
-              "web_replace_key": "operation.connection-diagram"
+              "web_replace_key": "reference.installation-diagram",
+              "capture_following_lines": 8,
+              "presentation_mode": "base-art-live-copy",
+              "asset_scope": "shared",
+              "base_art_layout": {
+                "art_sha256": "0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      15.41664,
+                      17.53846,
+                      12.25632,
+                      1.86653
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      5.36711,
+                      82.59046,
+                      23.87818,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      43.14824,
+                      82.59046,
+                      20.68824,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      78.41365,
+                      82.59046,
+                      20.01403,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      5.36682,
+                      87.97159,
+                      25.45079,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      43.14796,
+                      87.97159,
+                      20.68852,
+                      2.31325
+                    ]
+                  },
+                  {
+                    "line": 6,
+                    "rect": [
+                      78.3555,
+                      87.68629,
+                      21.33003,
+                      4.81928
+                    ]
+                  },
+                  {
+                    "line": 7,
+                    "rect": [
+                      0.0,
+                      95.47781,
+                      91.9189,
+                      3.07373
+                    ],
+                    "fill": "#e6e7e8"
+                  }
+                ]
+              },
+              "image_key": "installation_diagram_base.png",
+              "source_patterns": [
+                "*installation*"
+              ]
             }
           ]
         }
@@ -455,6 +1152,645 @@
         "legacy_target_components": false
       },
       "contract_overrides": {}
+    },
+    {
+      "overlay_id": "je3000c-eu-shared-tables-v1",
+      "target": {
+        "model": "JE-3000C",
+        "region": "EU"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "operations": {
+          "source_patterns": [
+            "*05_operation_guide_placeholder",
+            "*05_operation_guide_de",
+            "*05_operation_guide_es",
+            "*05_operation_guide_fr",
+            "*05_operation_guide_it",
+            "*05_operation_guide_uk"
+          ]
+        }
+      }
+    },
+    {
+      "overlay_id": "je1000h-eu-shared-tables-v1",
+      "target": {
+        "model": "JE-1000H",
+        "region": "EU"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "operations": {
+          "source_patterns": [
+            "*05_operation_guide_placeholder",
+            "*05_operation_guide"
+          ]
+        }
+      }
+    },
+    {
+      "overlay_id": "je1000f-jp-v1",
+      "target": {
+        "model": "JE-1000F",
+        "region": "JP"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "warranty": {
+          "section_count": 7,
+          "period_years": []
+        },
+        "reference_figures": {
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "figures": [
+            {
+              "id": "app-add-device",
+              "source_patterns": [
+                "*12_app_setup_placeholder"
+              ],
+              "image_key": "app/add_device",
+              "capture_following_lines": 3,
+              "presentation": "shared-art-live-labels",
+              "captions_embedded": true,
+              "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+              "label_roles": [
+                "main-power",
+                "dc-usb",
+                "ac-power"
+              ],
+              "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+              "asset_scope": "shared",
+              "control_image_key": "overview/front_controls"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "overlay_id": "je2000f-cn-v1",
+      "target": {
+        "model": "JE-2000F",
+        "region": "CN"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "reference_figures": {
+          "source_patterns": [
+            "*12_app_setup_placeholder",
+            "*08_charging_methods",
+            "*05_operation_guide_placeholder"
+          ],
+          "figures": [
+            {
+              "id": "app-add-device",
+              "source_patterns": [
+                "*12_app_setup_placeholder"
+              ],
+              "image_key": "app/add_device",
+              "capture_following_lines": 3,
+              "presentation": "shared-art-live-labels",
+              "captions_embedded": false,
+              "phone_artwork": "docs/renderers/contracts/assets/app/je2000f_cn_add_device.png",
+              "label_roles": [
+                "main-power",
+                "dc-usb",
+                "ac-power"
+              ],
+              "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+              "asset_scope": "shared",
+              "control_image_key": "overview/front_controls",
+              "step_captions": [
+                {
+                  "role": "step-2-1",
+                  "html": "2.1",
+                  "text": "2.1"
+                },
+                {
+                  "role": "step-2-2",
+                  "html": "2.2",
+                  "text": "2.2"
+                }
+              ],
+              "phone_max_width_rem": 30,
+              "caption_centers_pct": [
+                19.2494,
+                80.6295
+              ]
+            },
+            {
+              "id": "charging-solar-direct",
+              "source_patterns": [
+                "*08_charging_methods"
+              ],
+              "image_key": "charging/solar_direct",
+              "capture_following_lines": 1,
+              "web_replace_key": "reference.charging-solar-direct",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a09a3f9a66bd56e55aa338f274f316d0965185bdc6dea7fde1137089a74fb4bf",
+                "panel_top": 0,
+                "panel_fill": "#f2f3f3",
+                "preserve_frame": true,
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      70.1107,
+                      85.4962,
+                      21.5252,
+                      8.0153
+                    ]
+                  }
+                ],
+                "mobile_labels": "overlay"
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "charging-solar-adapter",
+              "source_patterns": [
+                "*08_charging_methods"
+              ],
+              "image_key": "charging/solar_adapter",
+              "capture_following_lines": 2,
+              "web_replace_key": "reference.charging-solar-adapter",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a574f6bd2e7e28ac2a249b40ad39b0d76f146ebdd4fd93f7b497f53269174c41",
+                "panel_top": 0,
+                "panel_fill": "#f2f3f3",
+                "preserve_frame": true,
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      70.0031,
+                      81.83,
+                      22.9315,
+                      7.1382
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      39.0146,
+                      86.3725,
+                      26.96,
+                      7.1382
+                    ]
+                  }
+                ],
+                "mobile_labels": "overlay"
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "charging-car",
+              "source_patterns": [
+                "*08_charging_methods"
+              ],
+              "image_key": "charging/car_charge",
+              "capture_following_lines": 2,
+              "web_replace_key": "reference.charging-car",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "5a6efede4cb77251a80892f97303dd6ccaf906bd10f8e459720036536ce042d6",
+                "panel_top": 0,
+                "panel_fill": "#f2f3f3",
+                "preserve_frame": true,
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      70.5029,
+                      12.2047,
+                      10.182,
+                      9.4488
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      61.4008,
+                      79.9213,
+                      28.3863,
+                      12.2047
+                    ],
+                    "fill": "#ffffff"
+                  }
+                ],
+                "mobile_labels": "overlay"
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "app-connect-result",
+              "source_patterns": [
+                "*12_app_setup_placeholder"
+              ],
+              "semantic_source_patterns": [
+                "*12_app_setup_placeholder"
+              ],
+              "image_key": "app/connect_result",
+              "caption_labels": [
+                "2.3",
+                "2.4",
+                "2.5"
+              ],
+              "caption_layout": "equal",
+              "web_replace_key": "reference.app-connect-result",
+              "captions_embedded": false,
+              "caption_centers_pct": [
+                14.5937,
+                49.9171,
+                85.4892
+              ]
+            },
+            {
+              "id": "cn-operation-main-power",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/main_power",
+              "capture_following_lines": 5,
+              "web_replace_key": "reference.cn-operation-main-power",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a4e4dfda3feedffa658ea4d0c84559fd18c0bc5c7b0a6bfce5306c7acae6ae62",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      81.8792,
+                      1.1765,
+                      16.7785,
+                      11.7647
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      81.8792,
+                      14.1176,
+                      16.7785,
+                      9.4118
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      81.8792,
+                      25.8824,
+                      16.7785,
+                      11.7647
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      81.8792,
+                      38.8235,
+                      16.7785,
+                      9.4118
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      86.5772,
+                      50.5882,
+                      9.7315,
+                      10.5882
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "cn-operation-ac-output",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/ac_output",
+              "capture_following_lines": 4,
+              "web_replace_key": "reference.cn-operation-ac-output",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "8f6cf74342d5d4fd595190103c3dff98327a6274ce1a5d6b9f19780b1442769c",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      86.0544,
+                      1.3514,
+                      13.2653,
+                      6.7568
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      86.0544,
+                      8.7838,
+                      13.2653,
+                      5.4054
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      86.0544,
+                      15.5405,
+                      13.2653,
+                      6.7568
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      86.0544,
+                      22.973,
+                      13.2653,
+                      5.4054
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "cn-operation-dc-usb-output",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/dc_usb_output",
+              "capture_following_lines": 4,
+              "web_replace_key": "reference.cn-operation-dc-usb-output",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "e58ff4e828d13939a4b08273e5157a8f6aca97fab1e0d9759947b79eb6ce34e8",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      86.0544,
+                      0.6289,
+                      13.2653,
+                      6.2893
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      86.0544,
+                      7.5472,
+                      13.2653,
+                      5.0314
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      86.0544,
+                      13.8365,
+                      13.2653,
+                      6.2893
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      86.0544,
+                      20.7547,
+                      13.2653,
+                      5.0314
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "cn-operation-energy-saving",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/energy_saving",
+              "capture_following_lines": 4,
+              "web_replace_key": "reference.cn-operation-energy-saving",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "cbcb116fad01583c869ed10a99ab33ba2ed0a1605c56a1017faa6296f6192eb9",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      46.4789,
+                      56.9892,
+                      18.662,
+                      10.7527
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      74.6479,
+                      56.9892,
+                      22.8873,
+                      10.7527
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      65.1408,
+                      79.5699,
+                      19.3662,
+                      9.6774
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      65.1408,
+                      90.3226,
+                      20.7746,
+                      9.6774
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            },
+            {
+              "id": "cn-operation-led-light",
+              "source_patterns": [
+                "*05_operation_guide_placeholder"
+              ],
+              "image_key": "operation/led_light",
+              "capture_following_lines": 3,
+              "web_replace_key": "reference.cn-operation-led-light",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "a1dae34eabe7bc96364d4c9709a7fdae8da326d9d3c509647b12aa78df980238",
+                "panel_top": 0,
+                "panel_fill": "#ffffff",
+                "preserve_frame": true,
+                "mobile_labels": "overlay",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      73.4483,
+                      2.4691,
+                      25.5172,
+                      25.9259
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      73.4483,
+                      35.8025,
+                      25.5172,
+                      24.6914
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      73.4483,
+                      69.1358,
+                      25.5172,
+                      20.9877
+                    ]
+                  }
+                ]
+              },
+              "captions_embedded": false
+            }
+          ]
+        },
+        "app_download": {
+          "presentation": "qr-only",
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "image_key": "app/download"
+        },
+        "app_inline_controls": {
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "semantic_source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "add_device_paragraph_prefix": "2.1"
+        }
+      },
+      "figure_coverage": {
+        "policy_id": "je2000f-cn-live-charging-v1",
+        "locales": [
+          "zh"
+        ],
+        "required_slots": [
+          "reference.charging-solar-direct",
+          "reference.charging-solar-adapter",
+          "reference.charging-car",
+          "reference.cn-operation-main-power",
+          "reference.cn-operation-ac-output",
+          "reference.cn-operation-dc-usb-output",
+          "reference.cn-operation-energy-saving",
+          "reference.cn-operation-led-light"
+        ],
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ],
+        "slot_status_overrides": {
+          "reference.charging-solar-direct": [
+            "base-art-live-copy"
+          ],
+          "reference.charging-solar-adapter": [
+            "base-art-live-copy"
+          ],
+          "reference.charging-car": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-main-power": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-ac-output": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-dc-usb-output": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-energy-saving": [
+            "base-art-live-copy"
+          ],
+          "reference.cn-operation-led-light": [
+            "base-art-live-copy"
+          ]
+        }
+      }
+    },
+    {
+      "overlay_id": "ja-ad500a-sil-jp-ja-v1",
+      "target": {
+        "model": "JA-AD500A-SIL",
+        "region": "JP"
+      },
+      "skeleton_profile": "charger-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": [
+            "warranty_ja"
+          ],
+          "section_count": 6,
+          "period_years": []
+        }
+      }
     }
   ]
 }

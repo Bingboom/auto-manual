@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import replace
 import json
 import tempfile
 import unittest
@@ -8,6 +9,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from tools.idml import ir_projection
+from tools.idml.component_targets import ComponentTarget
 from tools.manual_ir import build_manual_ir
 from tools.render_contract import (
     layout_tokens_sha256,
@@ -47,6 +49,114 @@ class IdmlIRProjectionTests(unittest.TestCase):
             [row["signal_key"] for row in symbols.signals],
         )
         self.assertEqual(11, len(ir_projection.trouble_rows(self.ir, "en")))
+
+    def test_lcd_source_numbers_come_from_source_rows_only(self) -> None:
+        lcd = ir_projection.lcd_page_data(self.ir, "en", root=ROOT, data_root=DATA)
+        assert lcd is not None
+        # The figure file name is an asset key, not a row identity: row 21's
+        # art is 22_* and its source number stays the source's own value.
+        self.assertTrue(Path(lcd.rows[20]["figure"]).name.startswith("22_"))
+        self.assertEqual("㉑", lcd.rows[20]["source_no"])
+        self.assertEqual("①", lcd.rows[0]["source_no"])
+        self.assertTrue(all("row_height_pt" not in row for row in lcd.rows))
+
+    def _component_target(self, **plan: object) -> ComponentTarget:
+        return ComponentTarget(
+            model="JE-1000F",
+            region="US",
+            language="en",
+            status="pilot",
+            evidence="test",
+            plan_path="plan.json",
+            plan={"pages": [], **plan},
+            built_sources=frozenset(page.source_ref for page in self.ir.pages),
+        )
+
+    def test_governed_lcd_applies_only_an_active_target_profile(self) -> None:
+        plain = ir_projection.lcd_page_data(self.ir, "en", root=ROOT, data_root=DATA)
+        assert plain is not None
+        profile = {"row_presentation": [
+            {
+                "source_no": row["source_no"],
+                "display_no": row["source_no"],
+                "row_height_pt_by_language": {"en": 20.0},
+            }
+            for row in plain.rows
+        ]}
+        active = self._component_target(
+            idml_contract={"editable_components": {"lcd_icon_table": profile}},
+        )
+        governed = ir_projection.governed_lcd_page_data(
+            self.ir, "en", root=ROOT, data_root=DATA, component_target=active)
+        assert governed is not None
+        self.assertEqual(
+            ["20"] * len(plain.rows),
+            [row["row_height_pt"] for row in governed.rows],
+        )
+        for label, target, reference_plan in (
+            ("inert", replace(active, issues=("drift",)), None),
+            ("undeclared", None, None),
+            ("explicit plan", active, {"pages": []}),
+        ):
+            with self.subTest(label):
+                self.assertEqual(
+                    plain,
+                    ir_projection.governed_lcd_page_data(
+                        self.ir, "en", root=ROOT, data_root=DATA,
+                        reference_plan=reference_plan, component_target=target,
+                    ),
+                )
+
+    def test_native_overview_needs_approval_or_an_active_target(self) -> None:
+        source = "page/03_product_overview_placeholder.rst"
+        ir = replace(
+            self.ir,
+            pages=(
+                *self.ir.pages,
+                replace(self.ir.pages[0], source_ref=source, source_path=source),
+            ),
+        )
+        active = self._component_target()
+        overview = BUNDLE / source
+        other = BUNDLE / self.ir.pages[0].source_ref
+        self.assertTrue(ir_projection.uses_native_overview_page(
+            ir, other, BUNDLE, approved_reference=True))
+        self.assertFalse(ir_projection.uses_native_overview_page(
+            ir, overview, BUNDLE, approved_reference=False))
+        self.assertFalse(ir_projection.uses_native_overview_page(
+            ir, overview, BUNDLE, approved_reference=False,
+            component_target=replace(active, issues=("drift",))))
+        self.assertTrue(ir_projection.uses_native_overview_page(
+            ir, overview, BUNDLE, approved_reference=False, component_target=active))
+        self.assertFalse(ir_projection.uses_native_overview_page(
+            ir, other, BUNDLE, approved_reference=False, component_target=active))
+
+    def test_active_component_target_skips_the_measured_page_plan(self) -> None:
+        import contextlib
+        import io
+
+        active = self._component_target()
+        out = io.StringIO()
+        with patch.object(
+            ir_projection, "find_reference_pdf",
+            side_effect=AssertionError("measured plan consulted"),
+        ), contextlib.redirect_stdout(out):
+            self.assertIsNone(ir_projection.build_reference_page_plan(
+                self.ir, root=ROOT, bundle_root=BUNDLE, component_target=active))
+        self.assertIn("COMPONENT TARGET OK (pilot): JE-1000F/US/en", out.getvalue())
+        self.assertIn(
+            "PAGE PLAN SKIPPED (component target): JE-1000F/US/en", out.getvalue(),
+        )
+        out = io.StringIO()
+        with patch.object(
+            ir_projection, "find_reference_pdf", return_value=None,
+        ) as finder, contextlib.redirect_stdout(out):
+            self.assertIsNone(ir_projection.build_reference_page_plan(
+                self.ir, root=ROOT, bundle_root=BUNDLE,
+                component_target=replace(active, issues=("drift",))))
+        finder.assert_called_once_with(BUNDLE)
+        self.assertIn("COMPONENT TARGET INERT (pilot)", out.getvalue())
+        self.assertNotIn("PAGE PLAN SKIPPED", out.getvalue())
 
     def test_specifications_filename_alias_keeps_semantic_spec_page(self) -> None:
         with tempfile.TemporaryDirectory() as td:

@@ -90,22 +90,25 @@ def _lcd_rows(table: Tag, source_ref: str) -> tuple[list[Tag], list[Tag]]:
     rows = bodies[0].find_all("tr", recursive=False)
     if not rows:
         raise error_type(f"{source_ref}: LCD icon table requires data rows")
+    numbered = "lcd-unnumbered" not in table.get("class", [])
+    roles = table_profile("lcd").roles if numbered else table_profile("lcd").roles[1:]
     for index, row in enumerate(rows, start=1):
         cells = row.find_all(["th", "td"], recursive=False)
-        if len(cells) != 4 or any(
+        if len(cells) != len(roles) or any(
             str(cell.get(attr, "1")) != "1"
             for cell in cells
             for attr in ("rowspan", "colspan")
         ):
             raise error_type(
-                f"{source_ref}: LCD row {index} requires four unspanned cells"
+                f"{source_ref}: LCD row {index} requires {len(roles)} unspanned cells"
             )
-        icons = cells[1].find_all("img")
+        icon_cell = cells[1 if numbered else 0]
+        icons = icon_cell.find_all("img")
         if (
             not (len(icons) == 1 and str(icons[0].get("src", "")).strip()
                  or "lcd-text-only" in table.get("class", []) and not icons
-                 and not cells[1].get_text(" ", strip=True))
-            or not all(cells[i].get_text(" ", strip=True) for i in (0, 2, 3))
+                 and not icon_cell.get_text(" ", strip=True))
+            or not all(cell.get_text(" ", strip=True) for cell in cells if cell is not icon_cell)
         ):
             raise error_type(
                 f"{source_ref}: LCD row {index} requires number, icon, name and description"
@@ -159,15 +162,18 @@ def decode_table(
     headers, rows = (_lcd_rows if table_kind == "lcd" else _troubleshooting_rows)(
         table, source_ref
     )
+    roles = profile.roles
+    if table_kind == "lcd" and "lcd-unnumbered" in table.get("class", []):
+        roles = roles[1:]
     values = []
     for row in rows:
         cells = row.find_all(["th", "td"], recursive=False)
         record = {
             role: cell.get_text("\n", strip=True)
-            for role, cell in zip(profile.roles, cells, strict=True)
+            for role, cell in zip(roles, cells, strict=True)
         }
         if table_kind == "lcd":
-            image = cells[1].img
+            image = cells[roles.index("icon")].img
             record["icon"] = ({
                 "src": str(image["src"]),
                 "alt": str(image.get("alt", "")),

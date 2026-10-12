@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -14,7 +15,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.manual_ir import read_manual_ir
-from tools.web_document_ir import render_document_fragments
+from tools.web.document_ir import render_document_fragments
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -132,6 +133,19 @@ class Je1000hEuEnWebTests(unittest.TestCase):
                                sort_keys=True, separators=(",", ":")).encode()
         self.assertEqual(manifest["files_inventory_sha256"], hashlib.sha256(inventory).hexdigest())
 
+    def test_german_authored_blinkt_status_is_bold_without_rewriting_copy(self) -> None:
+        from tools.csv_pages.renderers_lcd_icons import _format_description_line, _status_labels
+
+        labels = _status_labels(
+            {"lcd_status_words_csv": str(FORMAL_DATA_ROOT / "Status_Words.csv")}, lang="de",
+        )
+        self.assertIn("Blinkt", labels)
+        self.assertIn("Blinken", labels)
+        self.assertEqual(
+            "**Blinkt:** Bereit für die WLAN-Verbindung.",
+            _format_description_line("Blinkt: Bereit für die WLAN-Verbindung.", status_labels=labels),
+        )
+
     def test_ac_total_output_and_footnote_match_released_pdf(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         labels = {cell.get_text("", strip=True): cell.parent
@@ -159,9 +173,17 @@ class Je1000hEuEnWebTests(unittest.TestCase):
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])
         self.assertEqual(21, len(soup.select(".manual-finished-illustration")))
         self.assertEqual(18, len(self.ir.pages))
-        lcd = soup.select_one("table.lcd-text-only")
+        lcd = soup.select_one('[data-component-id="HB-TABLE-LCD-ICON"]')
         self.assertIsNotNone(lcd)
         self.assertEqual(27, len(lcd.select("tbody > tr")))
+        self.assertEqual(27, len(lcd.select("img.hb-lcd-icon-art")))
+        self.assertEqual([], soup.select("table.lcd-text-only"))
+        self.assertEqual(
+            ["On:", "Blink:", "Off:"],
+            [n.get_text() for n in lcd.select("tr")[0].select(".line > strong")],
+        )
+        numbers = [n.get_text(strip=True) for n in lcd.select(".hb-lcd-number")]
+        self.assertEqual([str(i) for i in range(1, 24)] + ["23", "24", "25", "26"], numbers)
         self.assertIsNotNone(soup.select_one('[data-web-finished-panel-path$="/lcd_map.png"]'))
         self.assertEqual([], soup.select("#front-view > table"))
         self.assertEqual([], soup.select("#left-and-right-side-view > table"))
@@ -194,10 +216,23 @@ class Je1000hEuEnWebTests(unittest.TestCase):
             output["path"]: output["expected_sha256"]
             for asset in recipe["assets"] for output in asset["outputs"]
         }
+        app_panels = {"download_panel", "control_panel", "connect_result_panel"}
         for asset in recipe["assets"]:
+            if asset["asset_key"].rsplit("/", 1)[-1] in app_panels:
+                # App screens and the QR download panel stay quarantined under the
+                # App/QR/URL/localized-UI gate; the manifests are their only route.
+                self.assertFalse(asset["build_eligible"])
+                self.assertTrue(asset["visual_review_required"])
+                self.assertEqual("quarantine", asset["gate"]["status"])
+                self.assertIn("app-ui", asset["risk_tags"])
+                continue
             self.assertTrue(asset["build_eligible"])
             self.assertFalse(asset["visual_review_required"])
             self.assertEqual("approved", asset["gate"]["status"])
+        self.assertEqual(
+            len(app_panels) * len(MANUAL_LOCALES),
+            sum(asset["gate"]["status"] == "quarantine" for asset in recipe["assets"]),
+        )
         for illustration in manifest["illustrations"]:
             path = ILLUSTRATIONS.parent / illustration["path"]
             actual = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -265,6 +300,264 @@ class Je1000hEuEnWebTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "asset missing or changed"):
                 render_document_fragments(ir, package_root=copied)
 
+
+TRANSLATED_LOCALES = ("fr", "es", "de", "it", "uk")
+FIGURES = re.compile(r"\d+(?:[.,]\d+)?")
+
+
+class Je1000hEuTranslatedSpecCellTests(unittest.TestCase):
+    """fr–uk specification and storage cells follow each language block of the released PDF."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+            cls.rows = [row for row in csv.DictReader(handle)
+                        if row["Page"] in ("specifications", "storage")]
+
+    def test_every_cell_keeps_the_english_figures(self) -> None:
+        # 旧抽取按 y 聚类：⎓ 丢失、值被截断或串入邻格、脚注号粘进标签，只比数字的自检拦不住
+        self.assertEqual(25, len(self.rows))
+        for row in self.rows:
+            source = row["Value_source"]
+            for lang in TRANSLATED_LOCALES:
+                value = row[f"Value_{lang}"]
+                with self.subTest(row=row["spec_row_key"], lang=lang):
+                    self.assertEqual(FIGURES.findall(source.replace(",", ".")),
+                                     FIGURES.findall(value.replace(",", ".")))
+                    self.assertEqual(source.count("⎓"), value.count("⎓"))
+                    self.assertEqual(value.count("("), value.count(")"))
+                    self.assertNotRegex(value, "[ﬀ-ﬆ]")
+                    if row["Page"] == "specifications":
+                        label = row[f"Row_label_{lang}"]
+                        self.assertTrue(label)
+                        self.assertNotRegex(label, r"(?:[^\W\d_]|\s)[12]$")
+                    else:
+                        self.assertTrue(row[f"Param_{lang}"])
+
+    def test_cells_the_old_extraction_broke_match_the_print(self) -> None:
+        cells = {(row["Row_key"], row["Line_order"]): row for row in self.rows}
+        self.assertEqual(len(self.rows), len(cells))
+        expected = {
+            ("ac_total_output", "1", "Value_fr"): "1800 W nominal, 3600 W crête",
+            ("ac_output_bypass", "1", "Value_de"): "220 V-240 V~ 50 Hz, 7,83 A",
+            ("dc12_port", "1", "Value_uk"): "12 В⎓10 А макс.",
+            ("dc8020_ports", "1", "Value_fr"): "Voiture : 11 V-16 V⎓8 A max., double à 8 A max.",
+            ("capacity", "1", "Value_es"): "1024 Wh (20 Ah/51,2 V CC)",
+            ("ac_total_output", "1", "Row_label_it"): "Uscita totale CA",
+            ("charging_temperature", "1", "Row_label_de"): "Ladetemperatur",
+            ("ac_output_bypass", "1", "Row_label_uk"): "Вихід змінного струму у байпасному режимі",
+            ("ac_input", "2", "Param_fr"): "Mode dérivation",
+            ("storage_temperature", "1", "Param_es"): "1 mes",
+            ("storage_temperature", "3", "Value_de"): "0 °C bis 25 °C (0–60 % relative Luftfeuchtigkeit)",
+        }
+        for (key, line, column), value in expected.items():
+            with self.subTest(key=key, line=line, column=column):
+                self.assertEqual(value, cells[(key, line)][column])
+
+    def test_ukrainian_total_output_footnote_keeps_its_noun(self) -> None:
+        # 印刷稿漏印「струму」；操作者 2026-09-25 裁定与 JE-3000C 一并补上
+        with (FORMAL_DATA_ROOT / "Spec_Footnotes.csv").open(encoding="utf-8", newline="") as handle:
+            notes = {row["Footnote_id"]: row for row in csv.DictReader(handle)}
+        self.assertEqual("Вказує, що два або більше вихідних портів змінного струму працюють разом.",
+                         notes["ac_total_output"]["Text_uk"])
+
+    def test_trademark_note_has_no_german_conjunction_outside_german(self) -> None:
+        # 意/乌语块印刷把商标注记的连词印成德语 und；按跨型号已审定译法改为 e / та
+        with (FORMAL_DATA_ROOT / "Spec_Notes.csv").open(encoding="utf-8", newline="") as handle:
+            note, = [row for row in csv.DictReader(handle) if row["Note_id"] == "usb_type_c_trademark"]
+        self.assertEqual("※ USB Type-C® e USB-C® sono marchi registrati di USB Implementers Forum.",
+                         note["Text_it"])
+        self.assertEqual("※ USB Type-C® та USB-C® є зареєстрованими торговельними марками USB Implementers Forum.",
+                         note["Text_uk"])
+        for column, text in note.items():
+            if column.startswith("Text_") and column != "Text_de":
+                with self.subTest(column=column):
+                    self.assertNotRegex(text or "", r"\bund\b")
+
+
+OVERVIEW_VALUE_SLOTS = ("front.spec", "front.high.spec", "front.low.spec",
+                        "side.spec", "side.pv.spec", "side.car.spec")
+
+
+class Je1000hEuOverviewSlotTests(unittest.TestCase):
+    """fr–uk Product-overview callouts follow each block's printed overview.
+
+    The finished overview figures consume these callout tables and keep their
+    text as the image alt text (``covered_annotations``), so a damaged cell
+    reaches readers only through assistive technology.
+    """
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+            cls.rows = [row for row in csv.DictReader(handle) if row["Page"] == "Product overview"]
+        cls.cells = {(row["Row_key"], row["Slot_key"]): row for row in cls.rows}
+
+    def test_value_slots_keep_the_english_figures_and_symbols(self) -> None:
+        # 09-15 的抽取丢了 ⎓、截断了值（`1800 W nomi`、`12 В 10`）、吞了 PV/车充前缀并留下 ﬁ 连字
+        values = [row for row in self.rows if row["Slot_key"] in OVERVIEW_VALUE_SLOTS
+                  and row["Row_key"] != "total_output"]
+        self.assertEqual(8, len(values))
+        for row in values:
+            source = row["Value_source"]
+            for lang in TRANSLATED_LOCALES:
+                value = row[f"Value_{lang}"]
+                with self.subTest(row=row["spec_row_key"], lang=lang):
+                    self.assertEqual(FIGURES.findall(source.replace(",", ".")),
+                                     FIGURES.findall(value.replace(",", ".")))
+                    self.assertEqual(source.count("⎓"), value.count("⎓"))
+                    self.assertEqual(value.count("("), value.count(")"))
+                    self.assertNotRegex(value, "[ﬀ-ﬆ]")
+                    if row["Slot_key"] == "side.pv.spec":
+                        self.assertRegex(value, r"^(PV|FV|ФЕ)\s?:")
+                    if row["Slot_key"] == "side.car.spec":
+                        self.assertRegex(value, r"^(Voiture|Auto|Fahrzeug|Автомобіль)\s?:")
+
+    def test_cells_the_old_extraction_broke_match_the_print(self) -> None:
+        expected = {
+            ("dc12_port", "front.spec", "Value_uk"): "12 В⎓10 А макс.",
+            ("ac_output", "front.spec", "Value_fr"): "230 V~ 50 Hz, 7,83 A, 1800 W nominal",
+            ("ac_output", "front.spec", "Value_uk"): "230 В~ 50 Гц, 7,83 A, 1800 Вт ном. потужності",
+            ("dc_input", "side.car.spec", "Value_fr"): "Voiture : 11-16 V⎓8 A max., double à 8 A max.",
+            ("dc_input", "side.pv.spec", "Value_it"): "FV: 16-60 V⎓12 A, raddoppiabile fino a 21 A max./ 400 W max.",
+            ("dc_input", "side.pv.spec", "Value_uk"): "ФЕ: 16 В-60 В⎓12 A, подв. до 21 A макс. / 400 Вт макс.",
+            ("usb_c", "front.low.spec", "Value_es"): "30 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A",
+            # 德语印刷把 12 V 插座标成输出「按键」（Ausgangstaste）；插图照印，页面文字用跨型号审定译法
+            ("dc12_port", "front.label", "Value_de"): "12-V-DC-Anschluss",
+        }
+        for (key, slot, column), value in expected.items():
+            with self.subTest(key=key, slot=slot, column=column):
+                self.assertEqual(value, self.cells[(key, slot)][column])
+
+    def test_overview_figures_bind_the_current_callout_cells(self) -> None:
+        # 成品概览图吃掉标注表并把原文留作 alt；这里保证绑定文本与冻结源同步
+        english = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))["illustrations"]
+        english_symbols = {
+            Path(entry["path"]).name: "".join(b["text"] for b in entry["covered_annotations"]).count("⎓")
+            for entry in english if Path(entry["path"]).name.startswith("overview_")
+        }
+        for lang in TRANSLATED_LOCALES:
+            manifest = json.loads(
+                (ROOT / f"docs/renderers/web/je1000h_eu_{lang}_illustrations.json").read_text(encoding="utf-8")
+            )
+            bound = {
+                Path(entry["path"]).name: " ".join(b["text"] for b in entry["covered_annotations"])
+                for entry in manifest["illustrations"] if Path(entry["path"]).name.startswith("overview_")
+            }
+            self.assertEqual(set(english_symbols), set(bound), lang)
+            for name, text in bound.items():
+                with self.subTest(lang=lang, figure=name):
+                    self.assertEqual(english_symbols[name], text.count("⎓"))
+                    self.assertNotRegex(text, "[ﬀ-ﬆ]")
+            for row in self.rows:
+                value = " ".join(row[f"Value_{lang}"].split())
+                if not value:
+                    continue
+                figure = "overview_side.png" if row["Slot_key"].startswith("side.") else "overview_front.png"
+                with self.subTest(lang=lang, slot=(row["Row_key"], row["Slot_key"])):
+                    self.assertIn(value, bound[figure])
+        self.assertNotIn("DC-12V-Ausgangstaste",
+                         (ROOT / "docs/renderers/web/je1000h_eu_de_illustrations.json").read_text(encoding="utf-8"))
+
+
+DISPLAYED_SIGNALS = ("warning", "caution", "note", "tips")
+# 德/意语块印刷把温度小节标题印成英文（PDF 第 70/87 页），属印刷漏译；操作者 2026-09-27 裁定按审核译文翻译
+PRINTED_IN_ENGLISH: set[tuple[str, str]] = set()
+REVIEWED_HEADING = {"de": "UMGEBUNGSTEMPERATUR IM BETRIEB", "it": "TEMPERATURA OPERATIVA AMBIENTALE"}
+
+
+class Je1000hEuResidualCopyTests(unittest.TestCase):
+    """fr–uk signal labels and headings are never English or another block's language.
+
+    The uk symbols table prints the Italian ``AVVERTENZA`` (PDF page 91); the same
+    page prints the uk WARNING callout as ``ПОПЕРЕДЖЕННЯ``. The de/it blocks print the
+    temperature heading in English (PDF pages 70/87); the operator ruled on 2026-09-27
+    to use the reviewed translation, as JE-2000F prints it.
+    """
+
+    @staticmethod
+    def _rows(name: str) -> list[dict[str, str]]:
+        with (FORMAL_DATA_ROOT / name).open(encoding="utf-8", newline="") as handle:
+            return list(csv.DictReader(handle))
+
+    def test_signal_labels_and_headings_stay_in_their_block_language(self) -> None:
+        # 乌语符号表把 WARNING 印成意大利语 AVVERTENZA：同页安全须知印的是 ПОПЕРЕДЖЕННЯ
+        from tools.localized_copy import LocalizedCopyResolver
+
+        with self.subTest(signal="warning", lang="uk"):
+            copy = LocalizedCopyResolver.from_csv(FORMAL_DATA_ROOT / "Localized_Copy.csv")
+            self.assertEqual("ПОПЕРЕДЖЕННЯ", copy.resolve("symbols.signal.warning.label",
+                                                          lang="uk", model="JE-1000H", region="EU"))
+            warning, = [row for row in self._rows("symbols_blocks.csv") if row["symbol_key"] == "warning"]
+            self.assertEqual(("ПОПЕРЕДЖЕННЯ", "ПОПЕРЕДЖЕННЯ"), (warning["label_uk"], warning["aliases_uk"]))
+
+        titles = {row["title_en"]: row for row in self._rows("spec_titles.csv")}
+        section_copy = {row["text_en"]: row for row in self._rows("Localized_Copy.csv")
+                        if row["copy_type"] in ("page_title", "section_title")}
+        signals = {row["copy_key"]: row for row in self._rows("Localized_Copy.csv")
+                   if row["copy_type"] == "signal_label"}
+        blocks = {row["symbol_key"]: row for row in self._rows("symbols_blocks.csv")
+                  if row["block_type"] == "signal_row"}
+        for lang in TRANSLATED_LOCALES:
+            for english, row in titles.items():
+                with self.subTest(table="spec_titles", title=english, lang=lang):
+                    self.assertTrue(row[f"title_{lang}"])
+                    if (english, lang) not in PRINTED_IN_ENGLISH:
+                        self.assertNotEqual(english, row[f"title_{lang}"])
+            for english, row in section_copy.items():
+                with self.subTest(table="Localized_Copy", title=english, lang=lang):
+                    self.assertTrue(row[f"text_{lang}"])
+                    if (english, lang) not in PRINTED_IN_ENGLISH:
+                        self.assertNotEqual(english, row[f"text_{lang}"])
+            for key in DISPLAYED_SIGNALS:
+                label = signals[f"symbols.signal.{key}.label"][f"text_{lang}"]
+                with self.subTest(signal=key, lang=lang):
+                    self.assertTrue(label)
+                    self.assertEqual(label, blocks[key][f"label_{lang}"])
+                    self.assertEqual(label, blocks[key][f"aliases_{lang}"])
+                    if lang == "uk":
+                        self.assertRegex(label, r"^[А-ЯҐЄІЇ’ʼ -]+$")
+                    else:
+                        self.assertRegex(label, r"^[A-ZÀ-ÖØ-Þ -]+$")
+                    # es/it 都写 NOTA 是各自正确的译法；其余语种之间不得互相借用
+                    borrowed = {other for other in MANUAL_LOCALES if other != lang and label
+                                == signals[f"symbols.signal.{key}.label"][f"text_{other}"]}
+                    shared = {"es", "it"} - {lang} if key == "note" and lang in ("es", "it") else set()
+                    self.assertEqual(shared, borrowed)
+
+
+    def test_temperature_heading_uses_the_reviewed_translation(self) -> None:
+        titles = {row["title_en"]: row for row in self._rows("spec_titles.csv")}
+        copy = {row["copy_key"]: row for row in self._rows("Localized_Copy.csv")}
+        for lang, heading in REVIEWED_HEADING.items():
+            with self.subTest(lang=lang):
+                self.assertEqual(heading, titles["ENVIRONMENTAL OPERATING TEMPERATURE"][f"title_{lang}"])
+                self.assertEqual(heading, copy["spec.section.environmental_operating_temperature"][f"text_{lang}"])
+
+
+class Je1000hEuUsbCCautionTests(unittest.TestCase):
+    """JE-1000H's print rates the high-power USB-C port at 140 W (fr/es/de/it/uk PDF pages 29/46/63/80/97).
+
+    The shared EU operation carrier keeps the other models' 100 W text; JE-1000H gets its own
+    ``.. only:: model_je_1000h`` branch with the printed wattage and the added 28 V/5 A rating.
+    """
+
+    def test_je1000h_branch_carries_the_printed_rating_and_others_keep_100w(self) -> None:
+
+        for lang in ("fr", "es", "de", "it", "uk"):
+            text = (ROOT / f"docs/templates/page_eu-{lang}/05_operation_guide_placeholder.rst").read_text(encoding="utf-8")
+            je1000h = text.split(".. only:: model_je_1000h", 1)[1].split(".. only:: not model_je_1000h", 1)[0]
+            others = text.split(".. only:: not model_je_1000h", 1)[1]
+            with self.subTest(lang=lang):
+                usb_c = [line for line in je1000h.splitlines() if "PS3" in line]
+                self.assertEqual(1, len(usb_c))
+                self.assertIn("140", usb_c[0])
+                self.assertNotIn("100", usb_c[0])
+                self.assertRegex(je1000h, r"\(20\s?(V|В)[^)]*100\s?(W|Вт)\s?; 28\s?(V|В)[^)]*140\s?(W|Вт)\)")
+                other_usb_c = [line for line in others.splitlines() if "PS3" in line]
+                self.assertEqual(1, len(other_usb_c))
+                self.assertIn("100", other_usb_c[0])
+                self.assertNotRegex(others.split("PS3", 1)[1].split("\n\n", 1)[0], r"28\s?(V|В)")
 
 if __name__ == "__main__":
     unittest.main()

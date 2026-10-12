@@ -3,12 +3,9 @@
 
 from __future__ import annotations
 
-from collections import Counter, defaultdict
 import csv
 from dataclasses import dataclass
 from pathlib import Path
-import re
-from typing import cast
 
 
 @dataclass(frozen=True)

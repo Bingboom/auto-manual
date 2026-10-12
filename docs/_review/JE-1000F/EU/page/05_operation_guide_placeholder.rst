@@ -9,7 +9,7 @@ POWER ON/OFF
 ------------
 
 .. image:: _assets/templates/word_template/common_assets/operation/main_power.png
-   :alt: Power on/off operation placeholder.
+   :alt: Power on/off operation.
    :width: 360px
 
 | On: Press once.
@@ -26,7 +26,7 @@ AC OUTPUT ON/OFF
 **Prerequisite**: The product is powered on.
 
 .. image:: _assets/templates/word_template/common_assets/operation/ac_output.png
-   :alt: AC output on/off operation placeholder.
+   :alt: AC output on/off operation.
    :width: 360px
 
 
@@ -42,7 +42,7 @@ DC 12V/USB OUTPUT ON/OFF
 **Prerequisite**: The product is powered on.
 
 .. image:: _assets/templates/word_template/common_assets/operation/dc_usb_output.png
-   :alt: DC USB output on/off operation placeholder.
+   :alt: DC USB output on/off operation.
    :width: 360px
 
 
@@ -86,7 +86,7 @@ To disable the energy saving mode, press and hold both the AC power button and t
 When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.
 
 .. image:: asset:operation/energy_saving
-   :alt: Energy saving mode key operation placeholder.
+   :alt: Energy saving mode key operation.
    :width: 320px
 
 
@@ -106,7 +106,7 @@ LED LIGHT ON/OFF
 The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED light button to turn off the light.
 
 .. image:: asset:operation/led_light
-   :alt: LED light mode operation placeholder.
+   :alt: LED light mode operation.
    :width: 360px
 
 
@@ -124,7 +124,7 @@ LCD SCREEN
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="asset:operation/lcd_mode" alt="LCD display mode placeholder." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="LCD display mode." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Shortly On</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Turn on</td>

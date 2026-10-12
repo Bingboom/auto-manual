@@ -161,7 +161,7 @@ jobs:
       - name: Assemble frozen Web source under docs/publish
         shell: bash
         run: |
-          python tools/publish_branch_assembly.py \
+          python -m tools.publish_branch_assembly \
             --releases-root reports/releases \
             --output-dir "${{ steps.publish-tree.outputs.path }}/docs/publish"
 
@@ -272,7 +272,7 @@ jobs:
         shell: bash
         run: |
           cmd=(
-            python tools/write_web_publish_html_link.py
+            python -m tools.write_web_publish_html_link
             --config configs/config.us.yaml
             --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
             --pending

@@ -1,0 +1,22 @@
+{
+  "failed_rtd_build": 34916463,
+  "publication_commit": "b6e02187df6f3002a262d91a56935041fb90d00e",
+  "approved_engineering_source": "56d0e9fc740c7421d168970e0c8b30db4a1d7887",
+  "source_files": 6740,
+  "source_bytes": 686644486,
+  "old_source_cap": 671088640,
+  "new_source_cap": 805306368,
+  "old_cap_failure_reproduced": true,
+  "fixed_portal_build": "passed with -W --keep-going and tools.rtd.portal",
+  "source_sha256": "51b231e186d31464d4060d5190334fdf45812243d248210e35ac0c240ce6c132",
+  "output_files": 1928,
+  "output_bytes": 259063178,
+  "output_hash_inventory_verified": true,
+  "retained_limits": {
+    "served_and_network_bytes": 536870912,
+    "file_bytes": 33554432,
+    "files": 10000
+  },
+  "targeted_tests": 39,
+  "original_source_and_art_bytes": "unchanged"
+}

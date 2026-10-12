@@ -2,11 +2,16 @@
   "id": "auto-manual-control-layer",
   "name": "BlockClaw Auto Manual Operator",
   "description": "Runs as BlockClaw, the Auto-Manual content-block operator that dispatches manual review/build/publish workflows from OpenClaw and reports GitHub run status.",
+  "contracts": { "tools": ["manual_search", "manual_section"] },
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
     "required": ["githubToken", "repoOwner", "repoName"],
     "properties": {
+      "manualQueryBaseUrl": {
+        "type": "string",
+        "description": "HTTPS origin of the published manual site. Query tools verify its deployment receipt and read only EU publications."
+      },
       "githubToken": {
         "type": "string",
         "description": "GitHub token with Actions read/write permission for this repository."

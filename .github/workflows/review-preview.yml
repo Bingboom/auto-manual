@@ -69,7 +69,7 @@ jobs:
           python -m pip install -r requirements.lock
       - name: Build review preview smoke package
         run: >
-          python tools/process_docs/build_review_preview.py
+          python -m tools.process_docs.build_review_preview
           --from-ref "$FROM_REF"
           --to-ref "$TO_REF"
           --data-root tests/fixtures/phase2

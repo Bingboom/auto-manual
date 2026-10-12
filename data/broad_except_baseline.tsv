@@ -1,0 +1,5 @@
+# Per-file count of broad exception handlers (except Exception / BaseException)
+# in build.py, tools/, scripts/ and integrations/. No file may grow, unlisted
+# files may not add one, and a lower count must be written back. Regenerate
+# intentionally with:
+#   python tools/check_broad_except_ratchet.py update

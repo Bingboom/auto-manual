@@ -12,10 +12,14 @@ from tools import publication_withdrawal as actions
 from tools import publish_branch_assembly as assembly
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class PublicationWithdrawalTests(unittest.TestCase):
     _write_target = test_publish_branch_assembly.PublishBranchAssemblyTests._write_target
 
     def setUp(self):
+        isolate_shared_component_admission(self)
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)

@@ -1,0 +1,102 @@
+{
+  "help": {
+    "exit_code": 0,
+    "stdout": "usage: bitable_schema.py [-h]\n                         {export,apply,parity,seed-export,seed-import,promote}\n                         ...\n\nExport / apply Feishu Bitable schema for dev->prod tenant parity.\n\npositional arguments:\n  {export,apply,parity,seed-export,seed-import,promote}\n\noptions:\n  -h, --help            show this help message and exit\n",
+    "stderr": ""
+  },
+  "required-command": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py [-h]\n                         {export,apply,parity,seed-export,seed-import,promote}\n                         ...\nbitable_schema.py: error: the following arguments are required: command\n"
+  },
+  "export-help": {
+    "exit_code": 0,
+    "stdout": "usage: bitable_schema.py export [-h] [--base-token BASE_TOKEN]\n                                [--tables TABLES] --out OUT\n                                [--lark-cli LARK_CLI] [--profile PROFILE]\n                                [--identity {bot,user}]\n\nSnapshot a tenant base's table/field structure to a committed manifest (name-\nkeyed, no IDs).\n\noptions:\n  -h, --help            show this help message and exit\n  --base-token BASE_TOKEN\n                        source base token (default: $FEISHU_PHASE2_BASE_TOKEN)\n  --tables TABLES       comma-separated table names to export; omit for the\n                        whole base\n  --out OUT             manifest output path (committed)\n  --lark-cli LARK_CLI\n  --profile PROFILE     lark-cli config profile to route through (e.g. a\n                        separate prod-tenant login; dev's default profile is\n                        left untouched)\n  --identity {bot,user}\n                        lark-cli token identity (default: bot; cross-tenant\n                        writes usually need 'user', the base owner's token)\n",
+    "stderr": ""
+  },
+  "export-required": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py export [-h] [--base-token BASE_TOKEN]\n                                [--tables TABLES] --out OUT\n                                [--lark-cli LARK_CLI] [--profile PROFILE]\n                                [--identity {bot,user}]\nbitable_schema.py export: error: the following arguments are required: --out\n"
+  },
+  "apply-help": {
+    "exit_code": 0,
+    "stdout": "usage: bitable_schema.py apply [-h] --manifest MANIFEST --base-token\n                               BASE_TOKEN [--write] [--yes]\n                               [--lark-cli LARK_CLI] [--profile PROFILE]\n                               [--identity {bot,user}]\n\nIdempotently create missing tables/fields in a TARGET tenant from the\nmanifest. Dry-run unless --write.\n\noptions:\n  -h, --help            show this help message and exit\n  --manifest MANIFEST\n  --base-token BASE_TOKEN\n                        TARGET (e.g. prod) base token\n  --write               actually create missing tables/fields (else dry-run\n                        plan)\n  --yes                 confirm the TARGET base is correct; REQUIRED together\n                        with --write\n  --lark-cli LARK_CLI\n  --profile PROFILE     lark-cli config profile to route through (e.g. a\n                        separate prod-tenant login; dev's default profile is\n                        left untouched)\n  --identity {bot,user}\n                        lark-cli token identity (default: bot; cross-tenant\n                        writes usually need 'user', the base owner's token)\n",
+    "stderr": ""
+  },
+  "apply-required": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py apply [-h] --manifest MANIFEST --base-token\n                               BASE_TOKEN [--write] [--yes]\n                               [--lark-cli LARK_CLI] [--profile PROFILE]\n                               [--identity {bot,user}]\nbitable_schema.py apply: error: the following arguments are required: --manifest, --base-token\n"
+  },
+  "parity-help": {
+    "exit_code": 0,
+    "stdout": "usage: bitable_schema.py parity [-h] --source-base SOURCE_BASE --target-base\n                                TARGET_BASE [--tables TABLES]\n                                [--ignore-table-prefix PREFIX]\n                                [--ignore-table NAME]\n                                [--table-alias SOURCE=TARGET]\n                                [--ignore-field TABLE.FIELD]\n                                [--fail-on {any,missing}]\n                                [--lark-cli LARK_CLI] [--profile PROFILE]\n                                [--identity {bot,user}]\n\nRead-only: report structure differences between a SOURCE tenant (e.g. dev) and\na TARGET tenant (e.g. prod). Exit 1 if the target lags/diverges — usable as a\nCI parity gate.\n\noptions:\n  -h, --help            show this help message and exit\n  --source-base SOURCE_BASE\n                        reference tenant base token (e.g. dev)\n  --target-base TARGET_BASE\n                        tenant to check (e.g. prod)\n  --tables TABLES       comma-separated table names; omit for the whole base\n  --ignore-table-prefix PREFIX\n                        drop SOURCE tables whose name starts with PREFIX\n                        (repeatable; e.g. dev scratch '99_')\n  --ignore-table NAME   drop a SOURCE table by exact name (repeatable; e.g.\n                        'QC_Report')\n  --table-alias SOURCE=TARGET\n                        compare a SOURCE table against an intentionally\n                        renamed TARGET table (repeatable)\n  --ignore-field TABLE.FIELD\n                        ignore an explicitly retired/replaced SOURCE field\n                        (repeatable; exact TABLE.FIELD)\n  --fail-on {any,missing}\n                        exit 1 on 'any' divergence (default) or only on\n                        'missing' tables/fields (drift still reported but not\n                        failed — for a prod-lag alert where dev may carry\n                        extra/dirty options)\n  --lark-cli LARK_CLI\n  --profile PROFILE     lark-cli config profile to route through (e.g. a\n                        separate prod-tenant login; dev's default profile is\n                        left untouched)\n  --identity {bot,user}\n                        lark-cli token identity (default: bot; cross-tenant\n                        writes usually need 'user', the base owner's token)\n",
+    "stderr": ""
+  },
+  "parity-required": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py parity [-h] --source-base SOURCE_BASE --target-base\n                                TARGET_BASE [--tables TABLES]\n                                [--ignore-table-prefix PREFIX]\n                                [--ignore-table NAME]\n                                [--table-alias SOURCE=TARGET]\n                                [--ignore-field TABLE.FIELD]\n                                [--fail-on {any,missing}]\n                                [--lark-cli LARK_CLI] [--profile PROFILE]\n                                [--identity {bot,user}]\nbitable_schema.py parity: error: the following arguments are required: --source-base, --target-base\n"
+  },
+  "seed-export-help": {
+    "exit_code": 0,
+    "stdout": "usage: bitable_schema.py seed-export [-h] [--base-token BASE_TOKEN] --table\n                                     TABLE --out OUT [--lark-cli LARK_CLI]\n                                     [--profile PROFILE]\n                                     [--identity {bot,user}]\n\nSnapshot a reference table's rows to a committed seed CSV (simple fields\nonly).\n\noptions:\n  -h, --help            show this help message and exit\n  --base-token BASE_TOKEN\n                        source base token (default: $FEISHU_PHASE2_BASE_TOKEN)\n  --table TABLE         reference table name to export\n  --out OUT             seed CSV output path (committed; rides the code\n                        mirror)\n  --lark-cli LARK_CLI\n  --profile PROFILE     lark-cli config profile to route through (e.g. a\n                        separate prod-tenant login; dev's default profile is\n                        left untouched)\n  --identity {bot,user}\n                        lark-cli token identity (default: bot; cross-tenant\n                        writes usually need 'user', the base owner's token)\n",
+    "stderr": ""
+  },
+  "seed-export-required": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py seed-export [-h] [--base-token BASE_TOKEN] --table\n                                     TABLE --out OUT [--lark-cli LARK_CLI]\n                                     [--profile PROFILE]\n                                     [--identity {bot,user}]\nbitable_schema.py seed-export: error: the following arguments are required: --table, --out\n"
+  },
+  "seed-import-help": {
+    "exit_code": 0,
+    "stdout": "usage: bitable_schema.py seed-import [-h] --base-token BASE_TOKEN --table\n                                     TABLE --seed SEED --key KEY [--write]\n                                     [--yes] [--prune] [--lark-cli LARK_CLI]\n                                     [--profile PROFILE]\n                                     [--identity {bot,user}]\n\nIdempotently upsert a seed CSV into a TARGET table's rows, matched by --key.\nDry-run unless --write.\n\noptions:\n  -h, --help            show this help message and exit\n  --base-token BASE_TOKEN\n                        TARGET (e.g. prod) base token\n  --table TABLE         reference table name\n  --seed SEED           seed CSV path (e.g. bitable_schema/seed/<table>.csv)\n  --key KEY             business-key column(s) to match rows by; comma-\n                        separated for a composite key (e.g. 'Row_key,规格书字段')\n  --write               apply the upserts (else dry-run plan)\n  --yes                 confirm the TARGET base is correct; REQUIRED together\n                        with --write\n  --prune               also DELETE target rows whose key is absent from the\n                        seed (destructive)\n  --lark-cli LARK_CLI\n  --profile PROFILE     lark-cli config profile to route through (e.g. a\n                        separate prod-tenant login; dev's default profile is\n                        left untouched)\n  --identity {bot,user}\n                        lark-cli token identity (default: bot; cross-tenant\n                        writes usually need 'user', the base owner's token)\n",
+    "stderr": ""
+  },
+  "seed-import-required": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py seed-import [-h] --base-token BASE_TOKEN --table\n                                     TABLE --seed SEED --key KEY [--write]\n                                     [--yes] [--prune] [--lark-cli LARK_CLI]\n                                     [--profile PROFILE]\n                                     [--identity {bot,user}]\nbitable_schema.py seed-import: error: the following arguments are required: --base-token, --table, --seed, --key\n"
+  },
+  "promote-help": {
+    "exit_code": 0,
+    "stdout": "usage: bitable_schema.py promote [-h] --manifest MANIFEST [--seeds SEEDS]\n                                 --base-token BASE_TOKEN [--write] [--yes]\n                                 [--prune] [--lark-cli LARK_CLI]\n                                 [--profile PROFILE] [--identity {bot,user}]\n\nOne dev->prod step: apply structure + seed reference data + print the env\ndelta, self-gated by a re-check. Dry-run unless --write.\n\noptions:\n  -h, --help            show this help message and exit\n  --manifest MANIFEST   structure manifest (bitable_schema/manifest.json)\n  --seeds SEEDS         seed registry JSON listing reference tables/csv/key\n                        (default: bitable_schema/seeds.json)\n  --base-token BASE_TOKEN\n                        TARGET (e.g. prod) base token\n  --write               apply structure + seeds (else dry-run plan)\n  --yes                 confirm the TARGET base is correct; REQUIRED together\n                        with --write\n  --prune               seed-import: delete target rows whose key is absent\n                        from the seed (destructive)\n  --lark-cli LARK_CLI\n  --profile PROFILE     lark-cli config profile to route through (e.g. a\n                        separate prod-tenant login; dev's default profile is\n                        left untouched)\n  --identity {bot,user}\n                        lark-cli token identity (default: bot; cross-tenant\n                        writes usually need 'user', the base owner's token)\n",
+    "stderr": ""
+  },
+  "promote-required": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py promote [-h] --manifest MANIFEST [--seeds SEEDS]\n                                 --base-token BASE_TOKEN [--write] [--yes]\n                                 [--prune] [--lark-cli LARK_CLI]\n                                 [--profile PROFILE] [--identity {bot,user}]\nbitable_schema.py promote: error: the following arguments are required: --manifest, --base-token\n"
+  },
+  "export-missing-token": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "bitable-schema: --base-token or $FEISHU_PHASE2_BASE_TOKEN required\n"
+  },
+  "seed-export-missing-token": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "bitable-schema: --base-token or $FEISHU_PHASE2_BASE_TOKEN required\n"
+  },
+  "parity-invalid-alias": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "bitable-schema parity: invalid --table-alias 'invalid'; expected SOURCE=TARGET\n"
+  },
+  "apply-write-required": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py apply [-h] --manifest MANIFEST --base-token\n                               BASE_TOKEN [--write] [--yes]\n                               [--lark-cli LARK_CLI] [--profile PROFILE]\n                               [--identity {bot,user}]\nbitable_schema.py apply: error: the following arguments are required: --manifest, --base-token\n"
+  },
+  "seed-import-write-required": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py seed-import [-h] --base-token BASE_TOKEN --table\n                                     TABLE --seed SEED --key KEY [--write]\n                                     [--yes] [--prune] [--lark-cli LARK_CLI]\n                                     [--profile PROFILE]\n                                     [--identity {bot,user}]\nbitable_schema.py seed-import: error: the following arguments are required: --base-token, --table, --seed, --key\n"
+  },
+  "promote-write-required": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: bitable_schema.py promote [-h] --manifest MANIFEST [--seeds SEEDS]\n                                 --base-token BASE_TOKEN [--write] [--yes]\n                                 [--prune] [--lark-cli LARK_CLI]\n                                 [--profile PROFILE] [--identity {bot,user}]\nbitable_schema.py promote: error: the following arguments are required: --manifest, --base-token\n"
+  }
+}

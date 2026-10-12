@@ -89,7 +89,7 @@ jobs:
         id: verify
         shell: bash
         run: |
-          cmd=(python tools/verify_web_deployment_targets.py
+          cmd=(python -m tools.verify_web_deployment_targets
             --publish-root docs/publish
             --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
             --rps "${AUTO_MANUAL_RTD_VERIFY_RPS}"

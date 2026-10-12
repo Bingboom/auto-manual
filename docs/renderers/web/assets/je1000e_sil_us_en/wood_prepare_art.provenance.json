@@ -1,0 +1,37 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    3323.031005859375,
+    2102.90478515625,
+    3542.531005859375,
+    2240.90478515625
+  ],
+  "sha256": "047da5e3737625ada189066eac35143ed0c3186dba2c9a2db242ebeefe715fdf",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        6.303722060079727,
+        6.373308706974639,
+        40.42094960136674,
+        0
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        56.94883168422551,
+        27.59620555932971,
+        20.53622401765376,
+        0
+      ]
+    }
+  ],
+  "source_text": [
+    "Preparation before installation:",
+    "SOLD\nSEPARATELY"
+  ],
+  "policy": "All PDF annotation text extracted; retain original grey frames, dashed box, artwork and product engravings."
+}

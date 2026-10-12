@@ -1,0 +1,6 @@
+{
+  "source": "/tmp/je1000h-unittest.log",
+  "original_sha256": "2f93f9c2a86764d858a9dc9e99bd0df8ffe08a609202120311986fa020e6e7b3",
+  "normalization": "Trailing whitespace removed from copied log for git diff --check; original remains unchanged.",
+  "copy_sha256": "c0b9838607b791c8caddbaa46a542e613d8d00cd0389cd4ffc31c9c809fd8fda"
+}

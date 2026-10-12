@@ -17,17 +17,17 @@
       :widths: 33 33 34
 
       * - .. image:: asset:in_the_box/main_unit1
-             :alt: Заглушка зображення електростанції.
+             :alt: Зображення електростанції.
              :width: 120px
 
           |PRODUCT_NAME_BOLD|
         - .. image:: asset:in_the_box/ac_charging_cable
-             :alt: Заглушка зображення кабелю для заряджання AC.
+             :alt: Зображення кабелю для заряджання AC.
              :width: 120px
 
           **Кабель для заряджання AC**
         - .. image:: asset:in_the_box/manual_icon1
-             :alt: Заглушка зображення посібника користувача.
+             :alt: Зображення посібника користувача.
              :width: 120px
 
           Посібник користувача

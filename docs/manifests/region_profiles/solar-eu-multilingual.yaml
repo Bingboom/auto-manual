@@ -1,0 +1,15 @@
+schema_version: skeleton-region-profile/v1
+region: EU
+language_set:
+- fr
+- es
+- de
+- it
+- uk
+- pt
+- nl
+- pl
+primary_lang: fr
+terminal_slots: []
+slot_overrides: {}
+compliance: []

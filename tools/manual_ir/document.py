@@ -6,6 +6,8 @@ presentation hints during the migration.
 """
 from __future__ import annotations
 
+from typing import Any
+
 import re
 
 from bs4 import BeautifulSoup, Comment, NavigableString, Tag
@@ -28,7 +30,7 @@ CONTENT_TAGS = frozenset("section div span p h1 h2 h3 h4 h5 h6 table thead tbody
 
 
 def content_tree(markup: str) -> list[dict]:
-    def encode(node):
+    def encode(node: object) -> dict[str, Any]:
         if isinstance(node, Comment):
             return {"type": "comment", "text": str(node)}
         if isinstance(node, NavigableString):
@@ -95,7 +97,7 @@ def validate_document(ir: ManualIR) -> None:
         raise ValueError("document presentation bindings are missing")
     figure_coverage = ir.metadata.get("web_figure_coverage")
     if figure_coverage is not None:
-        from tools.web_figure_coverage import validate_web_figure_coverage
+        from tools.web.figure_coverage import validate_web_figure_coverage
 
         if not isinstance(figure_coverage, dict):
             raise ValueError("invalid Web figure coverage")
@@ -105,6 +107,16 @@ def validate_document(ir: ManualIR) -> None:
             or figure_coverage.get("region") != ir.region
         ):
             raise ValueError("Web figure coverage target does not match document")
+        for index, slot in enumerate(figure_coverage["slots"]):
+            # Base-art evidence must name the exact packaged asset; replay then
+            # checks those bytes against the same manifest entry.
+            if slot["status"] == "base-art-live-copy" and (
+                assets.get(slot["asset"]["path"]) != slot["asset"]["sha256"]
+            ):
+                raise ValueError(
+                    f"Web figure coverage slot {index} base-art evidence does not "
+                    "match the document asset manifest"
+                )
     declarations = ir.metadata.get("page_declarations")
     if not isinstance(declarations, dict) or set(declarations) - {p.page_id for p in ir.pages}:
         raise ValueError("invalid document page declarations")

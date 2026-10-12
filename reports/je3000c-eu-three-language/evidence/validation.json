@@ -1,0 +1,52 @@
+{
+  "base_commit": "a6cd745f3428bd5b9d430bc0b32cce426577e1ed",
+  "full_suite": {
+    "passed": true,
+    "tests": 4995,
+    "skipped": 22,
+    "before_final_regression": true
+  },
+  "final_frozen_targeted": {
+    "passed": true,
+    "tests": 20
+  },
+  "composed_app_targeted": {
+    "passed": true,
+    "tests": 23
+  },
+  "ruff": true,
+  "guardrails": true,
+  "doc_links": true,
+  "checks": [
+    "JE-1000F/US/en",
+    "JE-3000C/EU/en"
+  ],
+  "strict_sphinx": [
+    "pt",
+    "nl",
+    "pl"
+  ],
+  "visual_car_widths": [
+    390,
+    1280
+  ],
+  "release_eligible": [
+    "pt",
+    "pl"
+  ],
+  "source_decision_pending": [
+    "nl"
+  ],
+  "composed_lcd_native_reference": {
+    "passed": true,
+    "tests": 43
+  },
+  "composed_config_native_reference": {
+    "passed": true,
+    "tests": 36
+  },
+  "previous_head_ci": {
+    "head": "61c063286b49df4ecd73018e03d72f2bb88e6d9b",
+    "all_checks_passed": 18
+  }
+}

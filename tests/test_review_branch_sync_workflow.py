@@ -46,7 +46,7 @@ class ReviewBranchSyncWorkflowTests(unittest.TestCase):
         self.assertIn("git for-each-ref", self.commands)
         self.assertIn("while IFS= read -r review_ref", self.commands)
         self.assertIn("refs/heads/review/*:refs/remotes/origin/review/*", self.commands)
-        self.assertIn("tools/check_review_branch_sync.py", self.commands)
+        self.assertIn("tools.check_review_branch_sync", self.commands)
         self.assertIn('--base "${review_ref}"', self.commands)
         self.assertIn("--strict", self.commands)
         self.assertIn("review_sync_out.txt", self.commands)
@@ -61,7 +61,7 @@ class ReviewBranchSyncWorkflowTests(unittest.TestCase):
         self.assertIn("set +e", run)
         self.assertLess(
             run.index("set +e"),
-            run.index("tools/check_review_branch_sync.py"),
+            run.index("tools.check_review_branch_sync"),
             "set +e must precede the strict checker invocation",
         )
         self.assertIn('echo "drift=${drift}" >> "${GITHUB_OUTPUT}"', run)

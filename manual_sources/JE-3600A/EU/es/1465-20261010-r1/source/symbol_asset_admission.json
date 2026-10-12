@@ -1,0 +1,267 @@
+{
+  "schema_version": "auto-manual-symbol-asset-admission/v1",
+  "locales": {
+    "es": [
+      {
+        "asset_ref": "assets/symbol_warning_triangle.svg",
+        "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+        "shared_symbol_key": "warning/outline-triangle-tinted",
+        "physical_page": 43,
+        "drawing_indices": [
+          708,
+          709,
+          710
+        ],
+        "glyph_bbox": [
+          36.0,
+          47.0,
+          61.0,
+          69.0
+        ],
+        "caption_bbox": [
+          73.02439880371094,
+          47.41870880126953,
+          167.15640258789062,
+          68.63871002197266
+        ],
+        "row_bbox": [
+          35.75,
+          46.75,
+          167.40640258789062,
+          69.25
+        ],
+        "caption_text": "Precaución! El incumplimiento de los mensajes de advertencia puede provocar lesiones.",
+        "caption_sha256": "be009e7decffcc6148c1620a785b7267a164aaacc6efc09549052184334f7cc0"
+      },
+      {
+        "asset_ref": "assets/symbol_read_manual.svg",
+        "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+        "shared_symbol_key": "read-manual/book-information",
+        "physical_page": 43,
+        "drawing_indices": [
+          730,
+          731,
+          732
+        ],
+        "glyph_bbox": [
+          36.0,
+          79.0,
+          60.0,
+          97.0
+        ],
+        "caption_bbox": [
+          73.02439880371094,
+          84.60269927978516,
+          144.33755493164062,
+          91.82270050048828
+        ],
+        "row_bbox": [
+          35.75,
+          78.75,
+          144.58755493164062,
+          97.25
+        ],
+        "caption_text": "Lea el manual del operador",
+        "caption_sha256": "9782b98705215ab82c5e2491f44128b45af4fc3564a30fe1e23a2e715abfb166"
+      },
+      {
+        "asset_ref": "assets/symbol_do_not_dismantle.svg",
+        "asset_sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+        "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+        "physical_page": 43,
+        "drawing_indices": [
+          715,
+          716,
+          717
+        ],
+        "glyph_bbox": [
+          37.0,
+          106.0,
+          58.0,
+          127.0
+        ],
+        "caption_bbox": [
+          73.02439880371094,
+          112.88831329345703,
+          136.58041381835938,
+          120.10831451416016
+        ],
+        "row_bbox": [
+          36.75,
+          105.75,
+          136.83041381835938,
+          127.25
+        ],
+        "caption_text": "No desarme el producto.",
+        "caption_sha256": "ebbc01be7f31a815186354220eaea2b427b6d79ed71cc2fb48585458cdcde780"
+      },
+      {
+        "asset_ref": "assets/symbol_no_open_flame.svg",
+        "asset_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+        "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+        "physical_page": 43,
+        "drawing_indices": [
+          733,
+          734,
+          735,
+          736,
+          737,
+          738
+        ],
+        "glyph_bbox": [
+          37.0,
+          136.0,
+          59.0,
+          158.0
+        ],
+        "caption_bbox": [
+          73.02439880371094,
+          142.84271240234375,
+          159.88763427734375,
+          150.06271362304688
+        ],
+        "row_bbox": [
+          36.75,
+          135.75,
+          160.13763427734375,
+          158.25
+        ],
+        "caption_text": "No fumar ni hacer llamas abiertas",
+        "caption_sha256": "7239da89326c8f6c6b6347ab82aaa8331b3ab03fc33d179232297b95a9c78c75"
+      },
+      {
+        "asset_ref": "assets/symbol_keep_away_from_children.svg",
+        "asset_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+        "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+        "physical_page": 43,
+        "drawing_indices": [
+          739,
+          740,
+          741,
+          742
+        ],
+        "glyph_bbox": [
+          36.0,
+          167.0,
+          59.0,
+          190.0
+        ],
+        "caption_bbox": [
+          73.02339935302734,
+          174.92938232421875,
+          126.75589752197266,
+          182.14938354492188
+        ],
+        "row_bbox": [
+          35.75,
+          166.75,
+          127.00589752197266,
+          190.25
+        ],
+        "caption_text": "No se permiten niños",
+        "caption_sha256": "ca57b59fa72021cf58336da6a5eef7d9ae14accf09828210831789f4a3178869"
+      },
+      {
+        "asset_ref": "assets/symbol_li_ion.svg",
+        "asset_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+        "shared_symbol_key": "li-ion/recycle-li-ion",
+        "physical_page": 43,
+        "drawing_indices": [
+          718,
+          719,
+          720,
+          721,
+          722,
+          723,
+          724,
+          725,
+          726
+        ],
+        "glyph_bbox": [
+          37.0,
+          201.0,
+          59.0,
+          224.0
+        ],
+        "caption_bbox": [
+          73.02339935302734,
+          199.25576782226562,
+          170.42578125,
+          227.47576904296875
+        ],
+        "row_bbox": [
+          36.75,
+          199.00576782226562,
+          170.67578125,
+          227.72576904296875
+        ],
+        "caption_text": "Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.",
+        "caption_sha256": "b713c0b1ac624241abfdbf1905d89d18a5c94191e94dc54a83579f1f06ad7eec"
+      },
+      {
+        "asset_ref": "assets/symbol_battery_weee.png",
+        "asset_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+        "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
+        "physical_page": 43,
+        "drawing_indices": [
+          743,
+          744
+        ],
+        "glyph_bbox": [
+          192.0,
+          82.0,
+          217.0,
+          109.0
+        ],
+        "caption_bbox": [
+          226.83590698242188,
+          47.176490783691406,
+          338.3892517089844,
+          156.37249755859375
+        ],
+        "row_bbox": [
+          191.75,
+          46.926490783691406,
+          338.6392517089844,
+          156.62249755859375
+        ],
+        "caption_text": "Las baterías y acumuladores no deben desecharse junto con los residuos domésticos. Como consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independientemente de si contienen sustancias peligrosas. Devuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente.",
+        "caption_sha256": "3634378a26a4b29ada697e9e7a8dbfb88e62eda25c3ff1a5353c5019fe89e289",
+        "caption_linebreak_joins": [
+          "independiente-\nmente"
+        ]
+      },
+      {
+        "asset_ref": "assets/symbol_weee.png",
+        "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+        "shared_symbol_key": "weee/crossed-bin-bar",
+        "physical_page": 43,
+        "drawing_indices": [
+          727,
+          728,
+          729
+        ],
+        "glyph_bbox": [
+          197.0,
+          183.0,
+          216.0,
+          209.0
+        ],
+        "caption_bbox": [
+          226.83859252929688,
+          162.48617553710938,
+          337.72509765625,
+          230.89178466796875
+        ],
+        "row_bbox": [
+          196.75,
+          162.23617553710938,
+          337.97509765625,
+          231.14178466796875
+        ],
+        "caption_text": "Este símbolo indica que el producto no debe desecharse con los residuos domésticos. En su lugar, debe llevarse a un punto de recogida designado para su correcto reciclaje. El desecho y reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su autoridad local, el servicio de gestión de residuos o el distribuidor del producto.",
+        "caption_sha256": "ec7b5a6bba8b574487556f2757049b5c4036ce8bde6059ffeedd7a831a54461a"
+      }
+    ]
+  }
+}

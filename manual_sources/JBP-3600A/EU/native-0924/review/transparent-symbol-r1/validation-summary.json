@@ -1,0 +1,11 @@
+{
+  "checked_at_utc": "2026-10-03T10:47:18.815865+00:00",
+  "strict_build_and_final_cold_rebuild": "9/9 passed; identical HTML",
+  "browser": "9/9 targeted desktop 1440x1000 and mobile 390x844 passed",
+  "historical_files_preserved": 668,
+  "doc_links": "252 Markdown files;2233 links;0 broken;0 lifecycle violations",
+  "local_review_links": "3/3 documents passed",
+  "full_independent_review": "not repeated; previous 8/8 reports retained for their exact historical revisions",
+  "mutations": "local candidate files only; no push, merge, publication, source-table/queue/registry write",
+  "git_diff_check": "passed after normalizing trailing whitespace in new build logs; raw outputs preserved as .original.log.gz"
+}

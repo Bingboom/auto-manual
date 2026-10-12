@@ -6,6 +6,8 @@ build:
   # The base declares only JE-1000F; config_loader assigns lists wholesale,
   # so the inherited target has to be repeated here.
   targets:
+    - model: JE-100C
+      region: EU
     - model: JE-1000F
       region: EU
     - model: JE-1000H
@@ -22,9 +24,15 @@ build:
 
 paths:
   page_manifest: docs/manifests/manual_eu-single-fr.yaml
+  page_manifests:
+    JE-100C_EU: docs/manifests/manual_je100c_eu-fr.yaml
   web_illustration_manifests:
+    JE-100C_EU: docs/renderers/web/je100c_eu_fr_illustrations.json
     JE-1000H_EU: docs/renderers/web/je1000h_eu_fr_illustrations.json
     JE-2000F_EU: docs/renderers/web/je2000f_eu_fr_illustrations.json
+    JE-3000C_EU: docs/renderers/web/je3000c_eu_fr_illustrations.json
+    JE-2000E_EU: docs/renderers/web/je2000e_eu_fr_illustrations.json
+    JE-3600A_EU: docs/renderers/web/je3600a_eu_fr_illustrations.json
 checks:
   # JE-3600A 的加电包扩容页按设计引用配套电池包型号名；与 config.eu-en.yaml 同列。
   allowed_foreign_identity_literals:

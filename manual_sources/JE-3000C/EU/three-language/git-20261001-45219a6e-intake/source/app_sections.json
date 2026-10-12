@@ -1,0 +1,742 @@
+{
+  "locales": {
+    "pt": {
+      "blocks": {
+        "title": {
+          "physical_page": 118,
+          "bbox": [
+            25,
+            28,
+            345,
+            49
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "download_heading": {
+          "physical_page": 118,
+          "bbox": [
+            35,
+            49,
+            345,
+            66
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "download_store": {
+          "physical_page": 118,
+          "bbox": [
+            40,
+            122,
+            188,
+            159
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "download_qr": {
+          "physical_page": 118,
+          "bbox": [
+            193,
+            122,
+            343,
+            156
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "add_heading": {
+          "physical_page": 118,
+          "bbox": [
+            35,
+            157,
+            345,
+            171
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_1": {
+          "physical_page": 118,
+          "bbox": [
+            35,
+            170,
+            345,
+            182
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_2": {
+          "physical_page": 118,
+          "bbox": [
+            35,
+            182,
+            345,
+            218
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_3": {
+          "physical_page": 119,
+          "bbox": [
+            35,
+            23,
+            345,
+            41
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bound_note_label": {
+          "physical_page": 119,
+          "bbox": [
+            30,
+            41,
+            87,
+            83
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bound_note_body": {
+          "physical_page": 119,
+          "bbox": [
+            89,
+            40,
+            345,
+            83
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_4": {
+          "physical_page": 119,
+          "bbox": [
+            35,
+            85,
+            345,
+            100
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "wifi_note_label": {
+          "physical_page": 119,
+          "bbox": [
+            30,
+            100,
+            87,
+            122
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "wifi_note_body": {
+          "physical_page": 119,
+          "bbox": [
+            89,
+            100,
+            345,
+            122
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_5": {
+          "physical_page": 119,
+          "bbox": [
+            35,
+            123,
+            345,
+            145
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "screenshots_note": {
+          "physical_page": 119,
+          "bbox": [
+            40,
+            302,
+            345,
+            313
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bluetooth_caution_label": {
+          "physical_page": 119,
+          "bbox": [
+            30,
+            314,
+            86,
+            347
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bluetooth_caution_body": {
+          "physical_page": 119,
+          "bbox": [
+            87,
+            314,
+            345,
+            347
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "unbind": {
+          "physical_page": 119,
+          "bbox": [
+            35,
+            347,
+            345,
+            383
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "notes_heading": {
+          "physical_page": 119,
+          "bbox": [
+            35,
+            383,
+            345,
+            396
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "enable": {
+          "physical_page": 119,
+          "bbox": [
+            35,
+            396,
+            345,
+            441
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "disable": {
+          "physical_page": 119,
+          "bbox": [
+            35,
+            441,
+            345,
+            469
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "reset": {
+          "physical_page": 119,
+          "bbox": [
+            35,
+            469,
+            345,
+            504
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        }
+      }
+    },
+    "nl": {
+      "blocks": {
+        "title": {
+          "physical_page": 134,
+          "bbox": [
+            25,
+            28,
+            345,
+            49
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "download_heading": {
+          "physical_page": 134,
+          "bbox": [
+            35,
+            49,
+            345,
+            66
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "download_store": {
+          "physical_page": 134,
+          "bbox": [
+            40,
+            122,
+            188,
+            159
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "download_qr": {
+          "physical_page": 134,
+          "bbox": [
+            193,
+            122,
+            343,
+            156
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "add_heading": {
+          "physical_page": 134,
+          "bbox": [
+            35,
+            157,
+            345,
+            171
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_1": {
+          "physical_page": 134,
+          "bbox": [
+            35,
+            170,
+            345,
+            182
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_2": {
+          "physical_page": 134,
+          "bbox": [
+            35,
+            182,
+            345,
+            218
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_3": {
+          "physical_page": 135,
+          "bbox": [
+            35,
+            23,
+            345,
+            41
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bound_note_label": {
+          "physical_page": 135,
+          "bbox": [
+            30,
+            41,
+            87,
+            83
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bound_note_body": {
+          "physical_page": 135,
+          "bbox": [
+            89,
+            40,
+            345,
+            83
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_4": {
+          "physical_page": 135,
+          "bbox": [
+            35,
+            85,
+            345,
+            100
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "wifi_note_label": {
+          "physical_page": 135,
+          "bbox": [
+            30,
+            100,
+            87,
+            122
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "wifi_note_body": {
+          "physical_page": 135,
+          "bbox": [
+            89,
+            100,
+            345,
+            122
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_5": {
+          "physical_page": 135,
+          "bbox": [
+            35,
+            123,
+            345,
+            145
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "screenshots_note": {
+          "physical_page": 135,
+          "bbox": [
+            40,
+            302,
+            345,
+            313
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bluetooth_caution_label": {
+          "physical_page": 135,
+          "bbox": [
+            30,
+            314,
+            86,
+            347
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bluetooth_caution_body": {
+          "physical_page": 135,
+          "bbox": [
+            87,
+            314,
+            345,
+            347
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "unbind": {
+          "physical_page": 135,
+          "bbox": [
+            35,
+            347,
+            345,
+            383
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "notes_heading": {
+          "physical_page": 135,
+          "bbox": [
+            35,
+            383,
+            345,
+            396
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "enable": {
+          "physical_page": 135,
+          "bbox": [
+            35,
+            396,
+            345,
+            441
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "disable": {
+          "physical_page": 135,
+          "bbox": [
+            35,
+            441,
+            345,
+            469
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "reset": {
+          "physical_page": 135,
+          "bbox": [
+            35,
+            469,
+            345,
+            504
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        }
+      }
+    },
+    "pl": {
+      "blocks": {
+        "title": {
+          "physical_page": 150,
+          "bbox": [
+            25,
+            28,
+            345,
+            49
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "download_heading": {
+          "physical_page": 150,
+          "bbox": [
+            35,
+            49,
+            345,
+            66
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "download_store": {
+          "physical_page": 150,
+          "bbox": [
+            40,
+            122,
+            188,
+            159
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "download_qr": {
+          "physical_page": 150,
+          "bbox": [
+            193,
+            122,
+            343,
+            156
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "add_heading": {
+          "physical_page": 150,
+          "bbox": [
+            35,
+            157,
+            345,
+            171
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_1": {
+          "physical_page": 150,
+          "bbox": [
+            35,
+            170,
+            345,
+            182
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_2": {
+          "physical_page": 150,
+          "bbox": [
+            35,
+            182,
+            345,
+            218
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_3": {
+          "physical_page": 151,
+          "bbox": [
+            35,
+            23,
+            345,
+            41
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bound_note_label": {
+          "physical_page": 151,
+          "bbox": [
+            30,
+            41,
+            87,
+            83
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bound_note_body": {
+          "physical_page": 151,
+          "bbox": [
+            89,
+            40,
+            345,
+            83
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_4": {
+          "physical_page": 151,
+          "bbox": [
+            35,
+            85,
+            345,
+            100
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "wifi_note_label": {
+          "physical_page": 151,
+          "bbox": [
+            30,
+            100,
+            87,
+            122
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "wifi_note_body": {
+          "physical_page": 151,
+          "bbox": [
+            89,
+            100,
+            345,
+            122
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "step_2_5": {
+          "physical_page": 151,
+          "bbox": [
+            35,
+            123,
+            345,
+            145
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "screenshots_note": {
+          "physical_page": 151,
+          "bbox": [
+            40,
+            302,
+            345,
+            313
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bluetooth_caution_label": {
+          "physical_page": 151,
+          "bbox": [
+            30,
+            314,
+            86,
+            347
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "bluetooth_caution_body": {
+          "physical_page": 151,
+          "bbox": [
+            87,
+            314,
+            345,
+            347
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "unbind": {
+          "physical_page": 151,
+          "bbox": [
+            35,
+            347,
+            345,
+            383
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "notes_heading": {
+          "physical_page": 151,
+          "bbox": [
+            35,
+            383,
+            345,
+            396
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "enable": {
+          "physical_page": 151,
+          "bbox": [
+            35,
+            396,
+            345,
+            441
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "disable": {
+          "physical_page": 151,
+          "bbox": [
+            35,
+            441,
+            345,
+            469
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "reset": {
+          "physical_page": 151,
+          "bbox": [
+            35,
+            469,
+            345,
+            504
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        }
+      }
+    }
+  }
+}

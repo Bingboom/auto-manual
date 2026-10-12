@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest import mock
 
-from tools import queue_outputs
+from tools.build_queue import outputs as queue_outputs
 
 
 class QueueOutputsTests(unittest.TestCase):

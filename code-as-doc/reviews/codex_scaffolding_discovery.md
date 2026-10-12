@@ -1,5 +1,7 @@
 # Codex 脚手架与仓库架构审计
 
+Status: active
+
 更新时间：2026-07-10
 基线：`origin/main`（隔离 worktree：`refactor/codex-scaffolding`）
 

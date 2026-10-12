@@ -1,0 +1,40 @@
+{
+  "before": {
+    "above": 30.7109375,
+    "below": 27.5078125,
+    "headingMargin": "17.6px 0px 9.92px",
+    "imageMargin": "17.6px 0px 24px",
+    "loaded": true,
+    "overflow": false,
+    "width": 641
+  },
+  "after": [
+    {
+      "above": 12.796875,
+      "below": 7.9921875,
+      "headingMargin": "6.4px 0px 3.2px",
+      "imageMargin": "4.8px 0px 24px",
+      "loaded": true,
+      "overflow": false,
+      "width": 390
+    },
+    {
+      "above": 12.796875,
+      "below": 7.9921875,
+      "headingMargin": "6.4px 0px 3.2px",
+      "imageMargin": "4.8px 0px 24px",
+      "loaded": true,
+      "overflow": false,
+      "width": 1440
+    },
+    {
+      "above": 12.796875,
+      "below": 7.9921875,
+      "headingMargin": "6.4px 0px 3.2px",
+      "imageMargin": "4.8px 0px 24px",
+      "loaded": true,
+      "overflow": false,
+      "width": 320
+    }
+  ]
+}

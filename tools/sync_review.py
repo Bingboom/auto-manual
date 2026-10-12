@@ -7,7 +7,6 @@ import argparse
 import hashlib
 import json
 import re
-import sys
 from pathlib import Path
 
 try:
@@ -19,7 +18,7 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.asset_rewrites import restore_registry_asset_uris  # noqa: E402
 from tools.config_pages import CoverPdfPage, CsvPage, GeneratedPage, PdfInsertPage, RstIncludePage  # noqa: E402
-from tools.build_docs import build_root_for_target, load_config, resolve_build_targets  # noqa: E402
+from tools.build.docs import build_root_for_target, load_config, resolve_build_targets  # noqa: E402
 from tools.gen_index_bundle import bundle_dir_for_target, plan_materialized_pages  # noqa: E402
 from tools.review_bundle import resolve_docs_dir  # noqa: E402
 from tools.review_support import (  # noqa: E402
@@ -31,7 +30,10 @@ from tools.review_support import (  # noqa: E402
 )
 from tools.safe_copy import assert_source_tree_no_symlinks  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
-from tools.word_bundle_common import resolve_config_path  # noqa: E402
+from tools.word.bundle_common import resolve_config_path  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("sync-review", stream="stderr")
 
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
 WEB_LANGUAGE_PROJECTION_SCHEMA = "web-language-bundle/v1"
@@ -425,7 +427,7 @@ def main(argv: list[str] | None = None) -> int:
                 f"scope='{args.sync_scope}', files='{len(copied)}', path='{review_dir}'"
             )
     except RuntimeError as exc:
-        print(f"[sync-review] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[sync-review] ERROR: {exc}")
         return 1
 
     return 0

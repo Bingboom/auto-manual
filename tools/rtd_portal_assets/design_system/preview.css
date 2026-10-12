@@ -1,0 +1,19 @@
+/* Preview frames for the 设计系统 page. Only the frame chrome is set here: every
+   component rule comes from the live web_manual.css loaded before this file. */
+html, body { margin: 0; background: var(--hb-paper); }
+
+/* A preview is a slice of the page, not a sheet: drop the paper-card chrome and
+   keep the 58rem reading width so components keep their real proportions. */
+#furo-main-content.ds-stage {
+  box-sizing: border-box;
+  width: min(100%, var(--hb-reading-width));
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px 24px 12px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* The sheet preview shows the card itself on the page ground. */
+body.ds-preview-sheet { padding: 4px 0 0; background: var(--hb-surface); }

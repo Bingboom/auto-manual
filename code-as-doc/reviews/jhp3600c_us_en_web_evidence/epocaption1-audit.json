@@ -1,0 +1,41 @@
+[
+  {
+    "availability": 7,
+    "headings": 84,
+    "imageSource": "../../../../_static/manual-assets/_pool/73/73538543ce16f0a0fbce0da4f719b4c69163a881ba9f66e3376603b1047bc068.png",
+    "insideArtwork": true,
+    "labelCount": 1,
+    "loaded": true,
+    "overflow": false,
+    "position": "absolute",
+    "text": "EPO",
+    "userSelect": "auto",
+    "width": 1440
+  },
+  {
+    "availability": 7,
+    "headings": 84,
+    "imageSource": "../../../../_static/manual-assets/_pool/73/73538543ce16f0a0fbce0da4f719b4c69163a881ba9f66e3376603b1047bc068.png",
+    "insideArtwork": true,
+    "labelCount": 1,
+    "loaded": true,
+    "overflow": false,
+    "position": "absolute",
+    "text": "EPO",
+    "userSelect": "auto",
+    "width": 390
+  },
+  {
+    "availability": 7,
+    "headings": 84,
+    "imageSource": "../../../../_static/manual-assets/_pool/73/73538543ce16f0a0fbce0da4f719b4c69163a881ba9f66e3376603b1047bc068.png",
+    "insideArtwork": true,
+    "labelCount": 1,
+    "loaded": true,
+    "overflow": false,
+    "position": "absolute",
+    "text": "EPO",
+    "userSelect": "auto",
+    "width": 320
+  }
+]

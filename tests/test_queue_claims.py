@@ -5,9 +5,9 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from typing import Any, Callable
 
-from tools.queue_claims import acquire_verified_queue_claim
-from tools.queue_contract import RESULT_FIELD
-from tools.queue_transitions import QueueTransitionFields, build_running_transition
+from tools.build_queue.claims import acquire_verified_queue_claim
+from tools.build_queue.contract import RESULT_FIELD
+from tools.build_queue.transitions import QueueTransitionFields, build_running_transition
 
 
 @dataclass(frozen=True)

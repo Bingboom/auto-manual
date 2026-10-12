@@ -5,7 +5,7 @@
 
    Este produto suporta até 5 módulos de bateria para atender à necessidade de maior capacidade de energia. Para obter detalhes sobre como usá-lo, consulte o *Manual do Usuário do Jackery Battery Pack 2000*.
 
-   .. image:: asset:in_the_box/main_unit1
+   .. image:: renderers/web/assets/je2000e_eu_en/extra_battery.png
       :alt: Diagrama de conexão do módulo de bateria.
       :width: 360px
 

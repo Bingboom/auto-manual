@@ -1,0 +1,42 @@
+{
+  "model": "JA-AD600A",
+  "region": "EU",
+  "authority": {
+    "file": "JA-AD600A_修正版_竖版.pdf",
+    "sha256": "700122b00fe5227a7321051aa3c06c9005529e89e47589739da5bda1bdf5fab3",
+    "record": "AI修正汇总11份-1465/修改记录/必改译文待确认.md; AI确定性修正版-1465/修改与校验记录/specs/JA-AD600A.json"
+  },
+  "substitutions": [
+    {
+      "path": "source/es/faq_es.rst",
+      "old": "PREGUNTA #2 ¿",
+      "new": "PREGUNTA #2: ¿"
+    },
+    {
+      "path": "source/es/faq_es.rst",
+      "old": "PREGUNTA 7#:",
+      "new": "PREGUNTA #7:"
+    },
+    {
+      "path": "source/de/faq_de.rst",
+      "old": "Some older or specific vehicle models may have a lower system voltage that does not match the product's operating voltage. If the product's operating voltage is higher than the vehicle's system voltage (12 V/24 V) and the product fails to operate after being switched on, please contact Jackery customer service for assistance.",
+      "new": "Einige ältere oder bestimmte Fahrzeugmodelle haben möglicherweise eine niedrigere Systemspannung, die nicht mit der Betriebsspannung des Produkts übereinstimmt. Wenn die Betriebsspannung des Produkts höher als die Systemspannung des Fahrzeugs (12 V/24 V) ist und das Produkt nach dem Einschalten nicht funktioniert, wenden Sie sich bitte an den Jackery-Kundendienst."
+    },
+    {
+      "path": "source/it/product_overview_it.rst",
+      "old": "4. VISÃO GERAL DO PRODUTO",
+      "new": "4. PANORAMICA DEL PRODOTTO"
+    },
+    {
+      "path": "source/it/installation_it.rst",
+      "old": "7.1 INSTALLAZIONE DEL PRODOTTO",
+      "new": "7.1 Schema di installazione"
+    },
+    {
+      "path": "source/it/installation_it.rst",
+      "old": "7.6 Cavo ACC del veicolo\n",
+      "new": "7.6 Installazione del prodotto\n"
+    }
+  ],
+  "review_colors_applied": false
+}

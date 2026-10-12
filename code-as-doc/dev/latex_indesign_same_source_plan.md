@@ -7,7 +7,7 @@ rich-text/print/Word migration. The [bounded execution record](ir_document_close
 is the current acceptance ledger, including JBP-2000B JP finished PDF artwork.
 
 
-Status: implemented and verified on JE-1000F US
+Status: active · Recorded detail: implemented and verified on JE-1000F US
 
 Branch: `feat/latex-indesign-same-source`
 
@@ -535,8 +535,8 @@ Run in order for each phase:
 2. targeted contract/IR/IDML tests
 3. `python -m unittest`
 4. `python -m mypy tools/utils`
-5. `python tools/check_maintainability_guardrails.py`
-6. `python tools/check_doc_link_integrity.py`
+5. `python -m tools.check_maintainability_guardrails`
+6. `python -m tools.check_doc_link_integrity`
 7. JE-1000F US build and cross-renderer parity checks
 8. real InDesign preflight and exported-PDF comparison on the design host
 

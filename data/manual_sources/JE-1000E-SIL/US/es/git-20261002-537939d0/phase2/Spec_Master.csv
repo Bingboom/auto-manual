@@ -1,0 +1,16 @@
+document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Row_label_source,Line_order,Value_source,Model,Source_lang,page_title_source,Row_label_footnote_refs
+JE-1000E-SIL_US,US,TRUE,specifications,INFORMACIÓN GENERAL,1,1,product_name,Nombre del producto,1,Jackery FridgeGuard,JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,INFORMACIÓN GENERAL,1,2,model_no,Nº de modelo,1,JE-1000E-SIL,JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,INFORMACIÓN GENERAL,1,3,capacity,Capacidad,1,"20Ah/51,2V DC (1024Wh)",JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,INFORMACIÓN GENERAL,1,4,cell_chemistry,Química Celular,1,LiFePO₄,JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,INFORMACIÓN GENERAL,1,5,weight,Peso,1,"Aproximadamente 23,2 libras/10.5 kg",JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,INFORMACIÓN GENERAL,1,6,dimensions,Dimensiones,1,"23,6 × 12,8 × 2,6 pulgadas / 60 × 32,5 × 6,7 cm",JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,INFORMACIÓN GENERAL,1,7,cycle_life,Ciclo de vida,1,6000 ciclos de carga hasta 70 % + de capacidad,JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,PUERTOS DE ENTRADA,2,1,ac_input,Entrada CA,1,"100V-120V~ 60Hz, 15A max., 800W±50W Máx",JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,PUERTOS DE ENTRADA,2,2,dc_input,Entrada CC,1,"36,8V-56V⎓24A Máx, 500W Máx",JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,PUERTOS DE SALIDA,3,1,ac_output,Salidas CA,1,"120V~60Hz, 6,67A, 800W nominales, 1600 W pico de sobretensión (-4°F a 113°F/-20°C a 45°C)",JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,PUERTOS DE SALIDA,3,2,ac_bypass,Salida de CA en modo bypass,1,"100V-120V~60Hz, 800W Máx",JE-1000E-SIL,es,ESPECIFICACIONES,bypass
+JE-1000E-SIL_US,US,TRUE,specifications,PUERTOS DE SALIDA,3,3,dc_expansion,Puerto de expansión CC,1,"36,8V-56V⎓24A Máx",JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,PUERTOS DE SALIDA,3,4,short_circuit,Corriente máxima de cortocircuito y duración,1,1600A/1.25ms,JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,TEMPERATURA DE FUNCIONAMIENTO,4,1,charge_temperature,Temperatura de carga,1,-4°F a 113°F/-20°C a 45°C,JE-1000E-SIL,es,ESPECIFICACIONES,
+JE-1000E-SIL_US,US,TRUE,specifications,TEMPERATURA DE FUNCIONAMIENTO,4,2,discharge_temperature,Temperatura de descarga,1,-4°F a 113°F/-20°C a 45°C,JE-1000E-SIL,es,ESPECIFICACIONES,

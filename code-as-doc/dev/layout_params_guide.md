@@ -1,5 +1,7 @@
 # Layout Params Guide
 
+Status: active
+
 Updated: 2026-09-04
 
 This file explains how [`data/layout_params.csv`](../../data/layout_params.csv) is used today.
@@ -38,7 +40,7 @@ Word and HTML title styling also depend on:
 
 - RST template structure
 - [`docs/_static/hb_manual.css`](../../docs/_static/hb_manual.css)
-- [`tools/word_bundle_html.py`](../../tools/word_bundle_html.py)
+- [`tools/word/bundle_html.py`](../../tools/word/bundle_html.py)
 
 So if you change a PDF layout parameter and Word does not move with it, that is usually expected.
 
@@ -91,6 +93,22 @@ that way and are being migrated.
 A per-language row is legitimate **only** as font or text fitting — size,
 leading, horizontal scale, hyphenation — where a language's text genuinely does
 not fit the shared value. It is not the place for a panel height.
+
+A category value can also be a text token. Take
+`idml_symbols_signal_alert_icon` (`all` or `hazard`), which says which IDML
+signal badges carry the alert triangle:
+
+- The host-line books print it on every signal word, and the PDF and Web draw it
+  the same way (JE-1000F/US V2.0, p5).
+- The battery-pack books print it only on WARNING/CAUTION (JBP-2000B US
+  V2.0-2026-04-27, p4; JP V2.0-2026-05-28, p3), so
+  `layout_params.idml-compact.csv` sets `hazard`.
+- The renderer rejects any other value.
+
+The common file sets `all`, and the battery-pack overlay overrides it. That
+override is pinned in `tests/test_layout_token_override.py`. Adding the common
+row moved the approved JE-1000F/US plan's `layout_params_sha256`, so the plan
+was re-pinned in the same change with the operator's approval.
 
 ### 3.2 Overriding is visible, not forbidden
 

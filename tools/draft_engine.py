@@ -13,7 +13,7 @@ from tools.utils.spec_master import (
     resolve_spec_value_from_rows,
     resolve_template_substitutions_from_rows,
 )
-from tools.word_bundle_common import apply_rst_substitutions, resolve_config_path
+from tools.word.bundle_common import apply_rst_substitutions, resolve_config_path
 
 
 SNIPPET_TOKEN_PREFIX = "{{snippet:"

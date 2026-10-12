@@ -1,0 +1,4636 @@
+{
+  "language": "nl",
+  "source_start": 101,
+  "roles": [
+    {
+      "role": "heading:1.",
+      "physical_page": 101,
+      "rect": [
+        20,
+        54.219886779785156,
+        350,
+        73.88788604736328
+      ],
+      "text": "1. VRIJWARING",
+      "lines": [
+        {
+          "y": 55.219886779785156,
+          "text": "1. VRIJWARING"
+        }
+      ]
+    },
+    {
+      "role": "disclaimer-body",
+      "physical_page": 101,
+      "rect": [
+        20,
+        77.21988677978516,
+        350,
+        503
+      ],
+      "text": "Welkom! Bedankt voor het kiezen van de Jackery DC-DC-oplader. Deze handleiding is uw leidraad voor het veilig installeren en gebruiken van uw nieuwe product. Lees vóór gebruik alle instructies zorgvuldig door en bewaar deze handleiding voor toekomstig gebruik. Jackery behoudt zich het recht voor om dit document en alle bijbehorende productdocumenten definitief te interpreteren, in overeenstemming met de wettelijke en regelgevende vereisten. Raadpleeg voor eventuele updates, herzieningen of stopzettingen de meest recente officiële aankondigingen. Houd er rekening mee dat de volgende gevallen *niet* onder de garantie vallen: - Schade door natuurrampen zoals aardbevingen, branden, overstromingen, stormen of aardverschuivingen. - Schade die wordt veroorzaakt doordat het product niet onder de in deze handleiding vermelde voorwaarden wordt bewaard. - Schade die wordt veroorzaakt door nalatigheid, onjuist gebruik, het niet opvolgen van de instructies in de handleiding of opzettelijk misbruik. - Schade die wordt veroorzaakt door ongeautoriseerde demontage van het product, vervanging van onderdelen of wijziging van softwarecode. - Schade die wordt veroorzaakt door onjuist vervoer door de klant. - Schade of nadelige gevolgen door het aanpassen, wijzigen of verwijderen van labels in strijd met deze handleiding. - Schade of nadelige gevolgen doordat dit product is gebruikt om stroom te leveren aan draagbare powerstations die niet van Jackery zijn. - Gevallen van lichamelijk letsel, brand, defecte apparatuur of andere nadelige gevolgen die worden veroorzaakt door het gebruik van dit product in onder andere de kernenergie, de luchtvaart, de medische sector of andere veiligheidsgevoelige sectoren.",
+      "lines": [
+        {
+          "y": 79.85089111328125,
+          "text": "Welkom! Bedankt voor het kiezen van de Jackery DC-DC-oplader. Deze handleiding is uw leidraad"
+        },
+        {
+          "y": 88.25088500976562,
+          "text": "voor het veilig installeren en gebruiken van uw nieuwe product. Lees vóór gebruik alle instructies"
+        },
+        {
+          "y": 96.65087890625,
+          "text": "zorgvuldig door en bewaar deze handleiding voor toekomstig gebruik."
+        },
+        {
+          "y": 105.05087280273438,
+          "text": "Jackery behoudt zich het recht voor om dit document en alle bijbehorende productdocumenten"
+        },
+        {
+          "y": 113.45086669921875,
+          "text": "deﬁnitief te interpreteren, in overeenstemming met de wettelijke en regelgevende vereisten."
+        },
+        {
+          "y": 121.85086059570312,
+          "text": "Raadpleeg voor eventuele updates, herzieningen of stopzettingen de meest recente oﬃciële"
+        },
+        {
+          "y": 130.2508544921875,
+          "text": "aankondigingen."
+        },
+        {
+          "y": 144.37088012695312,
+          "text": "Houd er rekening mee dat de volgende gevallen *niet* onder de garantie vallen:"
+        },
+        {
+          "y": 152.7708740234375,
+          "text": "- Schade door natuurrampen zoals aardbevingen, branden, overstromingen, stormen of"
+        },
+        {
+          "y": 161.17086791992188,
+          "text": "aardverschuivingen."
+        },
+        {
+          "y": 169.57086181640625,
+          "text": "- Schade die wordt veroorzaakt doordat het product niet onder de in deze handleiding vermelde"
+        },
+        {
+          "y": 177.97085571289062,
+          "text": "voorwaarden wordt bewaard."
+        },
+        {
+          "y": 186.370849609375,
+          "text": "- Schade die wordt veroorzaakt door nalatigheid, onjuist gebruik, het niet opvolgen van de"
+        },
+        {
+          "y": 194.77084350585938,
+          "text": "instructies in de handleiding of opzettelijk misbruik."
+        },
+        {
+          "y": 203.17083740234375,
+          "text": "- Schade die wordt veroorzaakt door ongeautoriseerde demontage van het product, vervanging"
+        },
+        {
+          "y": 211.57083129882812,
+          "text": "van onderdelen of wijziging van softwarecode."
+        },
+        {
+          "y": 219.9708251953125,
+          "text": "- Schade die wordt veroorzaakt door onjuist vervoer door de klant."
+        },
+        {
+          "y": 228.37081909179688,
+          "text": "- Schade of nadelige gevolgen door het aanpassen, wijzigen of verwijderen van labels in strijd met"
+        },
+        {
+          "y": 236.77081298828125,
+          "text": "deze handleiding."
+        },
+        {
+          "y": 245.17080688476562,
+          "text": "- Schade of nadelige gevolgen doordat dit product is gebruikt om stroom te leveren aan"
+        },
+        {
+          "y": 253.57080078125,
+          "text": "draagbare powerstations die niet van Jackery zijn."
+        },
+        {
+          "y": 261.9707946777344,
+          "text": "- Gevallen van lichamelijk letsel, brand, defecte apparatuur of andere nadelige gevolgen die"
+        },
+        {
+          "y": 270.37078857421875,
+          "text": "worden veroorzaakt door het gebruik van dit product in onder andere de kernenergie, de"
+        },
+        {
+          "y": 278.7707824707031,
+          "text": "luchtvaart, de medische sector of andere veiligheidsgevoelige sectoren."
+        }
+      ]
+    },
+    {
+      "role": "heading:2.",
+      "physical_page": 102,
+      "rect": [
+        20,
+        25.732704162597656,
+        350,
+        45.40070343017578
+      ],
+      "text": "2. TECHNISCHE SPECIFICATIES",
+      "lines": [
+        {
+          "y": 26.732704162597656,
+          "text": "2. TECHNISCHE SPECIFICATIES"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-0",
+      "physical_page": 102,
+      "rect": [
+        20,
+        50.764610290527344,
+        174,
+        67.76461029052734
+      ],
+      "text": "Productnaam:",
+      "lines": [
+        {
+          "y": 55.764610290527344,
+          "text": "Productnaam:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-0",
+      "physical_page": 102,
+      "rect": [
+        174,
+        50.764610290527344,
+        350,
+        67.76461029052734
+      ],
+      "text": "Jackery DC-DC-oplader",
+      "lines": [
+        {
+          "y": 55.764610290527344,
+          "text": "Jackery DC-DC-oplader"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-1",
+      "physical_page": 102,
+      "rect": [
+        20,
+        67.76461029052734,
+        174,
+        83.76461029052734
+      ],
+      "text": "Model:",
+      "lines": [
+        {
+          "y": 71.76461029052734,
+          "text": "Model:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-1",
+      "physical_page": 102,
+      "rect": [
+        174,
+        67.76461029052734,
+        350,
+        83.76461029052734
+      ],
+      "text": "JA-AD600A",
+      "lines": [
+        {
+          "y": 71.76461029052734,
+          "text": "JA-AD600A"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-2",
+      "physical_page": 102,
+      "rect": [
+        20,
+        83.76461029052734,
+        174,
+        99.76461029052734
+      ],
+      "text": "DC-ingang:",
+      "lines": [
+        {
+          "y": 87.76461029052734,
+          "text": "DC-ingang:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-2",
+      "physical_page": 102,
+      "rect": [
+        174,
+        83.76461029052734,
+        350,
+        99.76461029052734
+      ],
+      "text": "⎓, 11,8 V - 32 V 60 A",
+      "lines": [
+        {
+          "y": 83.62061309814453,
+          "text": "⎓,"
+        },
+        {
+          "y": 87.93260955810547,
+          "text": "11,8 V - 32 V 60 A"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-3",
+      "physical_page": 102,
+      "rect": [
+        20,
+        99.76461029052734,
+        174,
+        115.76461029052734
+      ],
+      "text": "Uitgangsspanning:",
+      "lines": [
+        {
+          "y": 103.76461029052734,
+          "text": "Uitgangsspanning:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-3",
+      "physical_page": 102,
+      "rect": [
+        174,
+        99.76461029052734,
+        350,
+        115.76461029052734
+      ],
+      "text": "⎓ 50 V",
+      "lines": [
+        {
+          "y": 99.62061309814453,
+          "text": "⎓"
+        },
+        {
+          "y": 103.93260955810547,
+          "text": "50 V"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-4",
+      "physical_page": 102,
+      "rect": [
+        20,
+        115.76461029052734,
+        174,
+        131.7646141052246
+      ],
+      "text": "Uitgangsstroom:",
+      "lines": [
+        {
+          "y": 119.76461029052734,
+          "text": "Uitgangsstroom:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-4",
+      "physical_page": 102,
+      "rect": [
+        174,
+        115.76461029052734,
+        350,
+        131.7646141052246
+      ],
+      "text": "12 A Max",
+      "lines": [
+        {
+          "y": 119.76461029052734,
+          "text": "12 A Max"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-5",
+      "physical_page": 102,
+      "rect": [
+        20,
+        131.7646141052246,
+        174,
+        147.76461791992188
+      ],
+      "text": "Uitgangsvermogen",
+      "lines": [
+        {
+          "y": 135.76461791992188,
+          "text": "Uitgangsvermogen"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-5",
+      "physical_page": 102,
+      "rect": [
+        174,
+        131.7646141052246,
+        350,
+        147.76461791992188
+      ],
+      "text": "600W Max",
+      "lines": [
+        {
+          "y": 135.76461791992188,
+          "text": "600W Max"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-6",
+      "physical_page": 102,
+      "rect": [
+        20,
+        147.76461791992188,
+        174,
+        163.76461791992188
+      ],
+      "text": "Bedrijfstemperatuur:",
+      "lines": [
+        {
+          "y": 151.76461791992188,
+          "text": "Bedrijfstemperatuur:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-6",
+      "physical_page": 102,
+      "rect": [
+        174,
+        147.76461791992188,
+        350,
+        163.76461791992188
+      ],
+      "text": "-20 °C ~ 60 °C",
+      "lines": [
+        {
+          "y": 151.76461791992188,
+          "text": "-20 °C ~ 60 °C"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-7",
+      "physical_page": 102,
+      "rect": [
+        20,
+        163.76461791992188,
+        174,
+        179.76461791992188
+      ],
+      "text": "Bedrijfsvochtigheid:",
+      "lines": [
+        {
+          "y": 167.76461791992188,
+          "text": "Bedrijfsvochtigheid:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-7",
+      "physical_page": 102,
+      "rect": [
+        174,
+        163.76461791992188,
+        350,
+        179.76461791992188
+      ],
+      "text": "5% ~ 95%",
+      "lines": [
+        {
+          "y": 167.76461791992188,
+          "text": "5% ~ 95%"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-8",
+      "physical_page": 102,
+      "rect": [
+        20,
+        179.76461791992188,
+        174,
+        195.76461791992188
+      ],
+      "text": "Opslagtemperatuur:",
+      "lines": [
+        {
+          "y": 183.76461791992188,
+          "text": "Opslagtemperatuur:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-8",
+      "physical_page": 102,
+      "rect": [
+        174,
+        179.76461791992188,
+        350,
+        195.76461791992188
+      ],
+      "text": "-30℃ 80℃ ~",
+      "lines": [
+        {
+          "y": 179.45260620117188,
+          "text": "-30℃ 80℃"
+        },
+        {
+          "y": 183.76461791992188,
+          "text": "~"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-9",
+      "physical_page": 102,
+      "rect": [
+        20,
+        195.76461791992188,
+        174,
+        211.76461791992188
+      ],
+      "text": "Werkhoogte:",
+      "lines": [
+        {
+          "y": 199.76461791992188,
+          "text": "Werkhoogte:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-9",
+      "physical_page": 102,
+      "rect": [
+        174,
+        195.76461791992188,
+        350,
+        211.76461791992188
+      ],
+      "text": "≤3000 m",
+      "lines": [
+        {
+          "y": 199.76461791992188,
+          "text": "≤3000 m"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-10",
+      "physical_page": 102,
+      "rect": [
+        20,
+        211.76461791992188,
+        174,
+        227.76461791992188
+      ],
+      "text": "Beschermingsgraad:",
+      "lines": [
+        {
+          "y": 215.76461791992188,
+          "text": "Beschermingsgraad:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-10",
+      "physical_page": 102,
+      "rect": [
+        174,
+        211.76461791992188,
+        350,
+        227.76461791992188
+      ],
+      "text": "IP40",
+      "lines": [
+        {
+          "y": 215.76461791992188,
+          "text": "IP40"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-11",
+      "physical_page": 102,
+      "rect": [
+        20,
+        227.76461791992188,
+        174,
+        243.76461791992188
+      ],
+      "text": "Gewicht:",
+      "lines": [
+        {
+          "y": 231.76461791992188,
+          "text": "Gewicht:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-11",
+      "physical_page": 102,
+      "rect": [
+        174,
+        227.76461791992188,
+        350,
+        243.76461791992188
+      ],
+      "text": "Ongeveer 1,6 kg",
+      "lines": [
+        {
+          "y": 231.76461791992188,
+          "text": "Ongeveer 1,6 kg"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-12",
+      "physical_page": 102,
+      "rect": [
+        20,
+        243.76461791992188,
+        174,
+        260.7646179199219
+      ],
+      "text": "Afmetingen:",
+      "lines": [
+        {
+          "y": 247.76461791992188,
+          "text": "Afmetingen:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-12",
+      "physical_page": 102,
+      "rect": [
+        174,
+        243.76461791992188,
+        350,
+        260.7646179199219
+      ],
+      "text": "259×154,5×39,3 mm",
+      "lines": [
+        {
+          "y": 247.76461791992188,
+          "text": "259×154,5×39,3 mm"
+        }
+      ]
+    },
+    {
+      "role": "heading:3.",
+      "physical_page": 103,
+      "rect": [
+        20,
+        26.00611114501953,
+        350,
+        45.674110412597656
+      ],
+      "text": "3. WAT ZIT ER IN DE DOOS",
+      "lines": [
+        {
+          "y": 27.00611114501953,
+          "text": "3. WAT ZIT ER IN DE DOOS"
+        }
+      ]
+    },
+    {
+      "role": "inbox-A",
+      "physical_page": 103,
+      "rect": [
+        20,
+        115,
+        118,
+        148
+      ],
+      "text": "Jackery DC-DC-oplader",
+      "lines": [
+        {
+          "y": 126.99480438232422,
+          "text": "Jackery DC-DC-oplader"
+        }
+      ]
+    },
+    {
+      "role": "inbox-B",
+      "physical_page": 103,
+      "rect": [
+        20,
+        212,
+        111,
+        243
+      ],
+      "text": "6 m invoerkabel",
+      "lines": [
+        {
+          "y": 222.81881713867188,
+          "text": "6 m invoerkabel"
+        }
+      ]
+    },
+    {
+      "role": "inbox-connector-B",
+      "physical_page": 103,
+      "rect": [
+        20,
+        157,
+        111,
+        185
+      ],
+      "text": "Anderson-con nector",
+      "lines": [
+        {
+          "y": 159.9394989013672,
+          "text": "Anderson-con"
+        },
+        {
+          "y": 166.9399871826172,
+          "text": "nector"
+        }
+      ]
+    },
+    {
+      "role": "inbox-C",
+      "physical_page": 103,
+      "rect": [
+        111,
+        212,
+        172,
+        243
+      ],
+      "text": "Zekering",
+      "lines": [
+        {
+          "y": 221.69882202148438,
+          "text": "Zekering"
+        }
+      ]
+    },
+    {
+      "role": "inbox-connector-C",
+      "physical_page": 103,
+      "rect": [
+        111,
+        157,
+        172,
+        185
+      ],
+      "text": "OT-klem",
+      "lines": [
+        {
+          "y": 165.69200134277344,
+          "text": "OT-klem"
+        }
+      ]
+    },
+    {
+      "role": "inbox-D",
+      "physical_page": 103,
+      "rect": [
+        172,
+        212,
+        261,
+        243
+      ],
+      "text": "1,5 m uitvoerkabel",
+      "lines": [
+        {
+          "y": 221.69882202148438,
+          "text": "1,5 m uitvoerkabel"
+        }
+      ]
+    },
+    {
+      "role": "inbox-connector-D",
+      "physical_page": 103,
+      "rect": [
+        172,
+        157,
+        261,
+        185
+      ],
+      "text": "Anderson-con DC8020-aansl nector uiting",
+      "lines": [
+        {
+          "y": 160.89500427246094,
+          "text": "Anderson-con DC8020-aansl"
+        },
+        {
+          "y": 167.89549255371094,
+          "text": "nector uiting"
+        }
+      ]
+    },
+    {
+      "role": "inbox-E",
+      "physical_page": 103,
+      "rect": [
+        261,
+        212,
+        350,
+        243
+      ],
+      "text": "6 m ACC-kabel",
+      "lines": [
+        {
+          "y": 221.69882202148438,
+          "text": "6 m ACC-kabel"
+        }
+      ]
+    },
+    {
+      "role": "inbox-connector-E",
+      "physical_page": 103,
+      "rect": [
+        261,
+        157,
+        350,
+        185
+      ],
+      "text": "Anderson-connector",
+      "lines": [
+        {
+          "y": 164.9510040283203,
+          "text": "Anderson-connector"
+        }
+      ]
+    },
+    {
+      "role": "inbox-F",
+      "physical_page": 103,
+      "rect": [
+        20,
+        278,
+        110,
+        316
+      ],
+      "text": "ST5.5-schroef ×4",
+      "lines": [
+        {
+          "y": 292.1308288574219,
+          "text": "ST5.5-schroef ×4"
+        }
+      ]
+    },
+    {
+      "role": "inbox-G",
+      "physical_page": 103,
+      "rect": [
+        110,
+        278,
+        197,
+        316
+      ],
+      "text": "M6-bout ×4",
+      "lines": [
+        {
+          "y": 292.1308288574219,
+          "text": "M6-bout ×4"
+        }
+      ]
+    },
+    {
+      "role": "inbox-H",
+      "physical_page": 103,
+      "rect": [
+        197,
+        278,
+        282,
+        316
+      ],
+      "text": "M6-moer ×4",
+      "lines": [
+        {
+          "y": 292.1308288574219,
+          "text": "M6-moer ×4"
+        }
+      ]
+    },
+    {
+      "role": "inbox-I",
+      "physical_page": 103,
+      "rect": [
+        282,
+        278,
+        350,
+        316
+      ],
+      "text": "Gebruikershandleiding",
+      "lines": [
+        {
+          "y": 292.13128662109375,
+          "text": "Gebruikershandleiding"
+        }
+      ]
+    },
+    {
+      "role": "heading:4.",
+      "physical_page": 103,
+      "rect": [
+        20,
+        327.8880920410156,
+        350,
+        347.55609130859375
+      ],
+      "text": "4. PRODUCTOVERZICHT",
+      "lines": [
+        {
+          "y": 328.8880920410156,
+          "text": "4. PRODUCTOVERZICHT"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-0",
+      "physical_page": 103,
+      "rect": [
+        15,
+        350,
+        140,
+        413
+      ],
+      "text": "Montagegat",
+      "lines": [
+        {
+          "y": 382.3013916015625,
+          "text": "Montagegat"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-1",
+      "physical_page": 103,
+      "rect": [
+        270,
+        350,
+        356,
+        413
+      ],
+      "text": "Statusindicatorlamp",
+      "lines": [
+        {
+          "y": 379.5783996582031,
+          "text": "Statusindicat"
+        },
+        {
+          "y": 388.5804138183594,
+          "text": "orlamp"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-2",
+      "physical_page": 103,
+      "rect": [
+        15,
+        413,
+        140,
+        447
+      ],
+      "text": "Aan/Uit-knop",
+      "lines": [
+        {
+          "y": 437.4823913574219,
+          "text": "Aan/Uit-knop"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-3",
+      "physical_page": 103,
+      "rect": [
+        270,
+        413,
+        356,
+        447
+      ],
+      "text": "Ingangspoort",
+      "lines": [
+        {
+          "y": 437.4823913574219,
+          "text": "Ingangspoort"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-4",
+      "physical_page": 103,
+      "rect": [
+        15,
+        447,
+        140,
+        503
+      ],
+      "text": "ACC-poort",
+      "lines": [
+        {
+          "y": 461.32440185546875,
+          "text": "ACC-poort"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-5",
+      "physical_page": 103,
+      "rect": [
+        270,
+        447,
+        356,
+        503
+      ],
+      "text": "Uitgangspoort",
+      "lines": [
+        {
+          "y": 460.40740966796875,
+          "text": "Uitgangspoort"
+        }
+      ]
+    },
+    {
+      "role": "heading:5.",
+      "physical_page": 104,
+      "rect": [
+        20,
+        26.00568389892578,
+        350,
+        45.673683166503906
+      ],
+      "text": "5. BELANGRIJKE VEILIGHEIDSINSTRUCTIES",
+      "lines": [
+        {
+          "y": 27.00568389892578,
+          "text": "5. BELANGRIJKE VEILIGHEIDSINSTRUCTIES"
+        }
+      ]
+    },
+    {
+      "role": "driving-note",
+      "physical_page": 104,
+      "rect": [
+        20,
+        53.1,
+        350,
+        90.6
+      ],
+      "text": "Tijdens het gebruik van het voertuig gebruikt de DC-DC-oplader het overtollige vermogen van de generator om het draagbare powerstation op te laden. Het werkelijke oplaadvermogen varieert afhankelijk van de rijomstandigheden, voertuigmodel en algemene toestand.",
+      "lines": [
+        {
+          "y": 52.61821365356445,
+          "text": "Tijdens het gebruik van het voertuig gebruikt de DC-DC-oplader het overtollige"
+        },
+        {
+          "y": 62.21821975708008,
+          "text": "vermogen van de generator om het draagbare powerstation op te laden. Het"
+        },
+        {
+          "y": 71.81822204589844,
+          "text": "werkelijke oplaadvermogen varieert afhankelijk van de rijomstandigheden,"
+        },
+        {
+          "y": 81.41822814941406,
+          "text": "voertuigmodel en algemene toestand."
+        }
+      ]
+    },
+    {
+      "role": "safety-guidelines",
+      "physical_page": 104,
+      "rect": [
+        20,
+        91.6,
+        350,
+        174.948486328125
+      ],
+      "text": "Om veilig gebruik te garanderen, is het van cruciaal belang om de volgende richtlijnen in acht te nemen: • Bewaar deze handleiding voor toekomstig gebruik. • Gebruik of bewaar het product altijd onder de in deze handleiding gespecificeerde omstandigheden. • Lees alle instructies en waarschuwingen op dit product, de auto-accu en het Jackery-powerstation, evenals de bijbehorende gebruikershandleidingen. • Demonteer het product niet en vervang geen onderdelen zonder toestemming, omdat dit de garantie doet vervallen en het product kan beschadigen. Neem contact op met de klantenservice van Jackery voor het vervangen van onderdelen.",
+      "lines": [
+        {
+          "y": 94.83602905273438,
+          "text": "Om veilig gebruik te garanderen, is het van cruciaal belang om de volgende richtlijnen in"
+        },
+        {
+          "y": 103.23602294921875,
+          "text": "acht te nemen:"
+        },
+        {
+          "y": 110.68408203125,
+          "text": "• Bewaar deze handleiding voor toekomstig gebruik."
+        },
+        {
+          "y": 119.08407592773438,
+          "text": "• Gebruik of bewaar het product altijd onder de in deze handleiding gespeciﬁceerde"
+        },
+        {
+          "y": 127.48406982421875,
+          "text": "omstandigheden."
+        },
+        {
+          "y": 135.88406372070312,
+          "text": "• Lees alle instructies en waarschuwingen op dit product, de auto-accu en het"
+        },
+        {
+          "y": 144.2840576171875,
+          "text": "Jackery-powerstation, evenals de bijbehorende gebruikershandleidingen."
+        },
+        {
+          "y": 152.68405151367188,
+          "text": "• Demonteer het product niet en vervang geen onderdelen zonder toestemming, omdat dit de"
+        },
+        {
+          "y": 161.08404541015625,
+          "text": "garantie doet vervallen en het product kan beschadigen. Neem contact op met de klantenservice"
+        },
+        {
+          "y": 169.48403930664062,
+          "text": "van Jackery voor het vervangen van onderdelen."
+        }
+      ]
+    },
+    {
+      "role": "compatibility-heading",
+      "physical_page": 104,
+      "rect": [
+        20,
+        174.948486328125,
+        350,
+        189.3284912109375
+      ],
+      "text": "Productcompatibiliteit",
+      "lines": [
+        {
+          "y": 175.948486328125,
+          "text": "Productcompatibiliteit"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-warning",
+      "physical_page": 104,
+      "rect": [
+        56,
+        188.3284912109375,
+        350,
+        255.1
+      ],
+      "text": "Dit product is alleen compatibel met Jackery draagbare powerstations met een DC8020-ingangspoort. Het is gebruikers ten strengste verboden om dit product met adapters aan te sluiten op een DC7909- of USB-C-ingangspoort van een draagbaar powerstation. Een dergelijke aansluiting kan apparaatschade, brand of zelfs explosie veroorzaken, wat ernstige risico's voor de persoonlijke veiligheid met zich meebrengt.",
+      "lines": [
+        {
+          "y": 196.47509765625,
+          "text": "Dit product is alleen compatibel met Jackery draagbare powerstations met een"
+        },
+        {
+          "y": 205.47711181640625,
+          "text": "DC8020-ingangspoort."
+        },
+        {
+          "y": 214.4791259765625,
+          "text": "Het is gebruikers ten strengste verboden om dit product met adapters aan te sluiten"
+        },
+        {
+          "y": 223.48114013671875,
+          "text": "op een DC7909- of USB-C-ingangspoort van een draagbaar powerstation."
+        },
+        {
+          "y": 232.483154296875,
+          "text": "Een dergelijke aansluiting kan apparaatschade, brand of zelfs explosie veroorzaken,"
+        },
+        {
+          "y": 241.48516845703125,
+          "text": "wat ernstige risico's voor de persoonlijke veiligheid met zich meebrengt."
+        }
+      ]
+    },
+    {
+      "role": "battery-precautions",
+      "physical_page": 104,
+      "rect": [
+        20,
+        255.1,
+        350,
+        325.9
+      ],
+      "text": "• Dit product is uitsluitend compatibel met 12 V/24 V auto-accu's. Voordat u het product gebruikt, zorgt u ervoor dat de nominale spanning van uw voertuig 12 V of 24 V is. Volg tijdens het gebruik altijd de richtlijnen inzake elektrische veiligheid op. • Dit product is compatibel met Jackery draagbare powerstations die zijn uitgerust met een DC8020-ingangspoort. Raadpleeg de onderstaande tabel voor enkele compatibele modellen. Neem voor meer informatie contact op met de klantenservice of bezoek de officiële website van Jackery.",
+      "lines": [
+        {
+          "y": 260.9950256347656,
+          "text": "• Dit product is uitsluitend compatibel met 12 V/24 V auto-accu's. Voordat u het product gebruikt,"
+        },
+        {
+          "y": 269.39501953125,
+          "text": "zorgt u ervoor dat de nominale spanning van uw voertuig 12 V of 24 V is. Volg tijdens het gebruik"
+        },
+        {
+          "y": 277.7950134277344,
+          "text": "altijd de richtlijnen inzake elektrische veiligheid op."
+        },
+        {
+          "y": 286.19500732421875,
+          "text": "• Dit product is compatibel met Jackery draagbare powerstations die zijn uitgerust met een"
+        },
+        {
+          "y": 294.5950012207031,
+          "text": "DC8020-ingangspoort. Raadpleeg de onderstaande tabel voor enkele compatibele modellen."
+        },
+        {
+          "y": 302.9949951171875,
+          "text": "Neem voor meer informatie contact op met de klantenservice of bezoek de oﬃciële website van"
+        },
+        {
+          "y": 311.3949890136719,
+          "text": "Jackery."
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-0",
+      "physical_page": 104,
+      "rect": [
+        23,
+        325.9,
+        113,
+        345.9
+      ],
+      "text": "Draagbare powerstation",
+      "lines": [
+        {
+          "y": 330.07830810546875,
+          "text": "Draagbare powerstation"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-1",
+      "physical_page": 104,
+      "rect": [
+        113,
+        325.9,
+        158,
+        345.9
+      ],
+      "text": "Capaciteit",
+      "lines": [
+        {
+          "y": 329.38531494140625,
+          "text": "Capaciteit"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-2",
+      "physical_page": 104,
+      "rect": [
+        158,
+        325.9,
+        222,
+        345.9
+      ],
+      "text": "Oplaadspanning en -stroom",
+      "lines": [
+        {
+          "y": 326.3262939453125,
+          "text": "Oplaadspanning"
+        },
+        {
+          "y": 335.32830810546875,
+          "text": "en -stroom"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-3",
+      "physical_page": 104,
+      "rect": [
+        222,
+        325.9,
+        279,
+        345.9
+      ],
+      "text": "Oplaadvermo gen",
+      "lines": [
+        {
+          "y": 326.5643005371094,
+          "text": "Oplaadvermo"
+        },
+        {
+          "y": 335.5662841796875,
+          "text": "gen"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-4",
+      "physical_page": 104,
+      "rect": [
+        279,
+        325.9,
+        348,
+        345.9
+      ],
+      "text": "Oplaadtijd (0-100%)",
+      "lines": [
+        {
+          "y": 326.3262939453125,
+          "text": "Oplaadtijd"
+        },
+        {
+          "y": 335.32830810546875,
+          "text": "(0-100%)"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-0",
+      "physical_page": 104,
+      "rect": [
+        23,
+        345.9,
+        113,
+        362.1
+      ],
+      "text": "Explorer 1000 Plus",
+      "lines": [
+        {
+          "y": 350.0166015625,
+          "text": "Explorer 1000 Plus"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-1",
+      "physical_page": 104,
+      "rect": [
+        113,
+        345.9,
+        158,
+        362.1
+      ],
+      "text": "1265 Wh",
+      "lines": [
+        {
+          "y": 350.0166015625,
+          "text": "1265 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-2",
+      "physical_page": 104,
+      "rect": [
+        158,
+        345.9,
+        222,
+        362.1
+      ],
+      "text": "Ongeveer 50 V 8A",
+      "lines": [
+        {
+          "y": 350.0166015625,
+          "text": "Ongeveer 50 V 8A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-3",
+      "physical_page": 104,
+      "rect": [
+        222,
+        345.9,
+        279,
+        362.1
+      ],
+      "text": "Ongeveer 400W",
+      "lines": [
+        {
+          "y": 350.0166015625,
+          "text": "Ongeveer 400W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-4",
+      "physical_page": 104,
+      "rect": [
+        279,
+        345.9,
+        348,
+        362.1
+      ],
+      "text": "Ongeveer 3,5 uur",
+      "lines": [
+        {
+          "y": 350.0166015625,
+          "text": "Ongeveer 3,5 uur"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-0",
+      "physical_page": 104,
+      "rect": [
+        23,
+        362.1,
+        113,
+        378.2
+      ],
+      "text": "Explorer 1000 v2",
+      "lines": [
+        {
+          "y": 366.23419189453125,
+          "text": "Explorer 1000 v2"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-1",
+      "physical_page": 104,
+      "rect": [
+        113,
+        362.1,
+        158,
+        378.2
+      ],
+      "text": "1070 Wh",
+      "lines": [
+        {
+          "y": 366.2281799316406,
+          "text": "1070 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-2",
+      "physical_page": 104,
+      "rect": [
+        158,
+        362.1,
+        222,
+        378.2
+      ],
+      "text": "Ongeveer 50 V 8A",
+      "lines": [
+        {
+          "y": 366.2281799316406,
+          "text": "Ongeveer 50 V 8A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-3",
+      "physical_page": 104,
+      "rect": [
+        222,
+        362.1,
+        279,
+        378.2
+      ],
+      "text": "Ongeveer 400W",
+      "lines": [
+        {
+          "y": 366.2281799316406,
+          "text": "Ongeveer 400W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-4",
+      "physical_page": 104,
+      "rect": [
+        279,
+        362.1,
+        348,
+        378.2
+      ],
+      "text": "Ongeveer 3,0 uur",
+      "lines": [
+        {
+          "y": 366.22216796875,
+          "text": "Ongeveer 3,0 uur"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-0",
+      "physical_page": 104,
+      "rect": [
+        23,
+        378.2,
+        113,
+        394.4
+      ],
+      "text": "Explorer 2000 Plus",
+      "lines": [
+        {
+          "y": 382.440185546875,
+          "text": "Explorer 2000 Plus"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-1",
+      "physical_page": 104,
+      "rect": [
+        113,
+        378.2,
+        158,
+        394.4
+      ],
+      "text": "2042 Wh",
+      "lines": [
+        {
+          "y": 382.4341735839844,
+          "text": "2042 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-2",
+      "physical_page": 104,
+      "rect": [
+        158,
+        378.2,
+        222,
+        394.4
+      ],
+      "text": "Ongeveer 50 V 12A",
+      "lines": [
+        {
+          "y": 382.4341735839844,
+          "text": "Ongeveer 50 V 12A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-3",
+      "physical_page": 104,
+      "rect": [
+        222,
+        378.2,
+        279,
+        394.4
+      ],
+      "text": "Ongeveer 600W",
+      "lines": [
+        {
+          "y": 382.4341735839844,
+          "text": "Ongeveer 600W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-4",
+      "physical_page": 104,
+      "rect": [
+        279,
+        378.2,
+        348,
+        394.4
+      ],
+      "text": "Ongeveer 3,7 uur",
+      "lines": [
+        {
+          "y": 382.42816162109375,
+          "text": "Ongeveer 3,7 uur"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-0",
+      "physical_page": 104,
+      "rect": [
+        23,
+        394.4,
+        113,
+        410.6
+      ],
+      "text": "Explorer 2000 v2",
+      "lines": [
+        {
+          "y": 398.64617919921875,
+          "text": "Explorer 2000 v2"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-1",
+      "physical_page": 104,
+      "rect": [
+        113,
+        394.4,
+        158,
+        410.6
+      ],
+      "text": "2042 Wh",
+      "lines": [
+        {
+          "y": 398.6401672363281,
+          "text": "2042 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-2",
+      "physical_page": 104,
+      "rect": [
+        158,
+        394.4,
+        222,
+        410.6
+      ],
+      "text": "Ongeveer 50 V 8A",
+      "lines": [
+        {
+          "y": 398.6401672363281,
+          "text": "Ongeveer 50 V 8A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-3",
+      "physical_page": 104,
+      "rect": [
+        222,
+        394.4,
+        279,
+        410.6
+      ],
+      "text": "Ongeveer 400W",
+      "lines": [
+        {
+          "y": 398.6401672363281,
+          "text": "Ongeveer 400W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-4",
+      "physical_page": 104,
+      "rect": [
+        279,
+        394.4,
+        348,
+        410.6
+      ],
+      "text": "Ongeveer 5,6 uur",
+      "lines": [
+        {
+          "y": 398.6341857910156,
+          "text": "Ongeveer 5,6 uur"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-0",
+      "physical_page": 104,
+      "rect": [
+        23,
+        410.6,
+        113,
+        426.8
+      ],
+      "text": "Explorer 3000 Pro",
+      "lines": [
+        {
+          "y": 414.8521728515625,
+          "text": "Explorer 3000 Pro"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-1",
+      "physical_page": 104,
+      "rect": [
+        113,
+        410.6,
+        158,
+        426.8
+      ],
+      "text": "3024 Wh",
+      "lines": [
+        {
+          "y": 414.84619140625,
+          "text": "3024 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-2",
+      "physical_page": 104,
+      "rect": [
+        158,
+        410.6,
+        222,
+        426.8
+      ],
+      "text": "Ongeveer 50 V 12A",
+      "lines": [
+        {
+          "y": 414.84619140625,
+          "text": "Ongeveer 50 V 12A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-3",
+      "physical_page": 104,
+      "rect": [
+        222,
+        410.6,
+        279,
+        426.8
+      ],
+      "text": "Ongeveer 600W",
+      "lines": [
+        {
+          "y": 414.84619140625,
+          "text": "Ongeveer 600W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-4",
+      "physical_page": 104,
+      "rect": [
+        279,
+        410.6,
+        348,
+        426.8
+      ],
+      "text": "Ongeveer 5,5 uur",
+      "lines": [
+        {
+          "y": 414.8401794433594,
+          "text": "Ongeveer 5,5 uur"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-0",
+      "physical_page": 104,
+      "rect": [
+        23,
+        426.8,
+        113,
+        442.8
+      ],
+      "text": "Explorer 3000 v2",
+      "lines": [
+        {
+          "y": 431.05816650390625,
+          "text": "Explorer 3000 v2"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-1",
+      "physical_page": 104,
+      "rect": [
+        113,
+        426.8,
+        158,
+        442.8
+      ],
+      "text": "3072 Wh",
+      "lines": [
+        {
+          "y": 431.05218505859375,
+          "text": "3072 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-2",
+      "physical_page": 104,
+      "rect": [
+        158,
+        426.8,
+        222,
+        442.8
+      ],
+      "text": "Ongeveer 50 V 12A",
+      "lines": [
+        {
+          "y": 431.05218505859375,
+          "text": "Ongeveer 50 V 12A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-3",
+      "physical_page": 104,
+      "rect": [
+        222,
+        426.8,
+        279,
+        442.8
+      ],
+      "text": "Ongeveer 600W",
+      "lines": [
+        {
+          "y": 431.05218505859375,
+          "text": "Ongeveer 600W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-4",
+      "physical_page": 104,
+      "rect": [
+        279,
+        426.8,
+        348,
+        442.8
+      ],
+      "text": "Ongeveer 5,6 uur",
+      "lines": [
+        {
+          "y": 431.0461730957031,
+          "text": "Ongeveer 5,6 uur"
+        }
+      ]
+    },
+    {
+      "role": "test-note",
+      "physical_page": 104,
+      "rect": [
+        20,
+        442.8,
+        350,
+        503
+      ],
+      "text": "Opmerking: De informatie over de oplaadtijd van dit product is gebaseerd op gesimuleerde tests die zijn uitgevoerd bij een constante temperatuur van 25 °C. In de praktijk kan het oplaadvermogen variëren afhankelijk van rijomstandigheden, voertuigmodel en algemene toestand. Oplaadtijden kunnen ook worden beïnvloed door veranderingen in de omgevingstemperatuur. Standaard testomgeving: Constant 25°C Gegevensbron: Jackery Lab",
+      "lines": [
+        {
+          "y": 447.5166015625,
+          "text": "Opmerking: De informatie over de oplaadtijd van dit product is gebaseerd op gesimuleerde tests die zijn"
+        },
+        {
+          "y": 455.3166198730469,
+          "text": "uitgevoerd bij een constante temperatuur van 25 °C. In de praktijk kan het oplaadvermogen variëren"
+        },
+        {
+          "y": 463.1166076660156,
+          "text": "afhankelijk van rijomstandigheden, voertuigmodel en algemene toestand. Oplaadtijden kunnen ook worden"
+        },
+        {
+          "y": 470.9165954589844,
+          "text": "beïnvloed door veranderingen in de omgevingstemperatuur."
+        },
+        {
+          "y": 478.71661376953125,
+          "text": "Standaard testomgeving: Constant 25°C"
+        },
+        {
+          "y": 486.5166015625,
+          "text": "Gegevensbron: Jackery Lab"
+        }
+      ]
+    },
+    {
+      "role": "power-controls",
+      "physical_page": 105,
+      "rect": [
+        20,
+        155,
+        350,
+        303.5
+      ],
+      "text": "Het product inschakelen ① Druk kort op de aan/uit-knop: Wanneer er geen ACC-signaalingang is, kunt u het apparaat inschakelen door kort op de aan/uit-knop te drukken. ② Inschakelen via ACC-signaal: Indien de ACC-kabel is aangesloten, wordt het apparaat automatisch ingeschakeld zodra het een ACC-signaalingang detecteert (bijvoorbeeld nadat het voertuig is gestart). Stand-bymodus en uitschakelen Wanneer er geen ACC-signaalingang is of de spanning onder de startdrempelwaarde zakt, gaat het product in de stand-bymodus. Als de stand-bymodus langer dan 24 uur duurt of de spanning onder de beschermingsdrempelwaarde zakt, wordt het apparaat automatisch uitgeschakeld. Om het opnieuw te starten, volgt u dezelfde stappen als hierboven beschreven. In de stand-bymodus kunt u, als er geen ACC-signaalingang is, het apparaat ook handmatig uitschakelen door de aan/uit-knop 3 seconden ingedrukt te houden.",
+      "lines": [
+        {
+          "y": 178.2668914794922,
+          "text": "Het product inschakelen"
+        },
+        {
+          "y": 184.5458984375,
+          "text": "①"
+        },
+        {
+          "y": 187.68890380859375,
+          "text": "Druk kort op de aan/uit-knop: Wanneer er geen ACC-signaalingang is, kunt u het apparaat"
+        },
+        {
+          "y": 196.08889770507812,
+          "text": "inschakelen door kort op de aan/uit-knop te drukken."
+        },
+        {
+          "y": 201.34588623046875,
+          "text": "②"
+        },
+        {
+          "y": 204.4888916015625,
+          "text": "Inschakelen via ACC-signaal: Indien de ACC-kabel is aangesloten, wordt het apparaat"
+        },
+        {
+          "y": 212.88888549804688,
+          "text": "automatisch ingeschakeld zodra het een ACC-signaalingang detecteert (bijvoorbeeld nadat"
+        },
+        {
+          "y": 221.28887939453125,
+          "text": "het voertuig is gestart)."
+        },
+        {
+          "y": 234.58192443847656,
+          "text": "Stand-bymodus en uitschakelen"
+        },
+        {
+          "y": 243.65390014648438,
+          "text": "Wanneer er geen ACC-signaalingang is of de spanning onder de startdrempelwaarde zakt, gaat"
+        },
+        {
+          "y": 252.65591430664062,
+          "text": "het product in de stand-bymodus. Als de stand-bymodus langer dan 24 uur duurt of de spanning"
+        },
+        {
+          "y": 261.6579284667969,
+          "text": "onder de beschermingsdrempelwaarde zakt, wordt het apparaat automatisch uitgeschakeld. Om"
+        },
+        {
+          "y": 270.6599426269531,
+          "text": "het opnieuw te starten, volgt u dezelfde stappen als hierboven beschreven."
+        },
+        {
+          "y": 279.66192626953125,
+          "text": "In de stand-bymodus kunt u, als er geen ACC-signaalingang is, het apparaat ook handmatig"
+        },
+        {
+          "y": 288.6639099121094,
+          "text": "uitschakelen door de aan/uit-knop 3 seconden ingedrukt te houden."
+        }
+      ]
+    },
+    {
+      "role": "status-0-0",
+      "physical_page": 105,
+      "rect": [
+        23,
+        303.5,
+        68,
+        327.5
+      ],
+      "text": "Lampstatus",
+      "lines": [
+        {
+          "y": 311.8941955566406,
+          "text": "Lampstatus"
+        }
+      ]
+    },
+    {
+      "role": "status-0-1",
+      "physical_page": 105,
+      "rect": [
+        68,
+        303.5,
+        115,
+        327.5
+      ],
+      "text": "Lampkleur",
+      "lines": [
+        {
+          "y": 311.8941955566406,
+          "text": "Lampkleur"
+        }
+      ]
+    },
+    {
+      "role": "status-0-2",
+      "physical_page": 105,
+      "rect": [
+        115,
+        303.5,
+        171,
+        327.5
+      ],
+      "text": "Productstatus",
+      "lines": [
+        {
+          "y": 311.8941955566406,
+          "text": "Productstatus"
+        }
+      ]
+    },
+    {
+      "role": "status-0-3",
+      "physical_page": 105,
+      "rect": [
+        171,
+        303.5,
+        348,
+        327.5
+      ],
+      "text": "Opmerkingen",
+      "lines": [
+        {
+          "y": 311.8941955566406,
+          "text": "Opmerkingen"
+        }
+      ]
+    },
+    {
+      "role": "status-1-0",
+      "physical_page": 105,
+      "rect": [
+        23,
+        327.5,
+        68,
+        354.1
+      ],
+      "text": "Continu",
+      "lines": [
+        {
+          "y": 335.19036865234375,
+          "text": "Continu"
+        }
+      ]
+    },
+    {
+      "role": "status-1-1",
+      "physical_page": 105,
+      "rect": [
+        68,
+        327.5,
+        115,
+        354.1
+      ],
+      "text": "Groen",
+      "lines": [
+        {
+          "y": 330.4263916015625,
+          "text": "Groen"
+        }
+      ]
+    },
+    {
+      "role": "status-1-2",
+      "physical_page": 105,
+      "rect": [
+        115,
+        327.5,
+        171,
+        354.1
+      ],
+      "text": "Opladen",
+      "lines": [
+        {
+          "y": 335.19036865234375,
+          "text": "Opladen"
+        }
+      ]
+    },
+    {
+      "role": "status-1-3",
+      "physical_page": 105,
+      "rect": [
+        171,
+        327.5,
+        348,
+        354.1
+      ],
+      "text": "/",
+      "lines": [
+        {
+          "y": 335.1533203125,
+          "text": "/"
+        }
+      ]
+    },
+    {
+      "role": "status-2-0",
+      "physical_page": 105,
+      "rect": [
+        23,
+        354.1,
+        68,
+        381.6
+      ],
+      "text": "Continu",
+      "lines": [
+        {
+          "y": 364.1043701171875,
+          "text": "Continu"
+        }
+      ]
+    },
+    {
+      "role": "status-2-1",
+      "physical_page": 105,
+      "rect": [
+        68,
+        354.1,
+        115,
+        381.6
+      ],
+      "text": "RED",
+      "lines": [
+        {
+          "y": 359.4364013671875,
+          "text": "RED"
+        }
+      ]
+    },
+    {
+      "role": "status-2-2",
+      "physical_page": 105,
+      "rect": [
+        115,
+        354.1,
+        171,
+        381.6
+      ],
+      "text": "Afwijkend",
+      "lines": [
+        {
+          "y": 364.1043701171875,
+          "text": "Afwijkend"
+        }
+      ]
+    },
+    {
+      "role": "status-2-3",
+      "physical_page": 105,
+      "rect": [
+        171,
+        354.1,
+        348,
+        381.6
+      ],
+      "text": "Als er problemen worden geconstateerd, neem dan onmiddellijk contact op met de klantenservice van Jackery voor ondersteuning.",
+      "lines": [
+        {
+          "y": 354.7782897949219,
+          "text": "Als er problemen worden geconstateerd, neem dan"
+        },
+        {
+          "y": 361.978271484375,
+          "text": "onmiddellijk contact op met de klantenservice van Jackery"
+        },
+        {
+          "y": 369.17828369140625,
+          "text": "voor ondersteuning."
+        }
+      ]
+    },
+    {
+      "role": "status-3-0",
+      "physical_page": 105,
+      "rect": [
+        23,
+        381.6,
+        68,
+        461.7
+      ],
+      "text": "Knipperend",
+      "lines": [
+        {
+          "y": 420.64239501953125,
+          "text": "Knipperend"
+        }
+      ]
+    },
+    {
+      "role": "status-3-1",
+      "physical_page": 105,
+      "rect": [
+        68,
+        381.6,
+        115,
+        461.7
+      ],
+      "text": "Groen",
+      "lines": [
+        {
+          "y": 416.202392578125,
+          "text": "Groen"
+        }
+      ]
+    },
+    {
+      "role": "status-3-2",
+      "physical_page": 105,
+      "rect": [
+        115,
+        381.6,
+        171,
+        461.7
+      ],
+      "text": "Normale verbinding, in afwachting op het opladen.",
+      "lines": [
+        {
+          "y": 405.234375,
+          "text": "Normale"
+        },
+        {
+          "y": 414.234375,
+          "text": "verbinding, in"
+        },
+        {
+          "y": 423.234375,
+          "text": "afwachting op"
+        },
+        {
+          "y": 432.234375,
+          "text": "het opladen."
+        }
+      ]
+    },
+    {
+      "role": "status-3-3",
+      "physical_page": 105,
+      "rect": [
+        171,
+        381.6,
+        348,
+        461.7
+      ],
+      "text": "Als hetzelfde probleem optreedt na het aansluiten van het draagbare powerstation, kan dit mogelijke oorzaken hebben: 1. Onstabiele verbinding tussen de uitgangskabel en het draagbare powerstation. 2. Beschadigde kabel. 3. Het draagbare powerstation is volledig opgeladen. Als het probleem na het oplossen ervan aanhoudt, neem dan contact op met de klantenservice van Jackery voor ondersteuning.",
+      "lines": [
+        {
+          "y": 388.86126708984375,
+          "text": "Als hetzelfde probleem optreedt na het aansluiten van het"
+        },
+        {
+          "y": 396.061279296875,
+          "text": "draagbare powerstation, kan dit mogelijke oorzaken hebben:"
+        },
+        {
+          "y": 403.26129150390625,
+          "text": "1. Onstabiele verbinding tussen de uitgangskabel en het"
+        },
+        {
+          "y": 410.4612731933594,
+          "text": "draagbare powerstation."
+        },
+        {
+          "y": 417.6612548828125,
+          "text": "2. Beschadigde kabel."
+        },
+        {
+          "y": 424.86126708984375,
+          "text": "3. Het draagbare powerstation is volledig opgeladen."
+        },
+        {
+          "y": 432.061279296875,
+          "text": "Als het probleem na het oplossen ervan aanhoudt, neem"
+        },
+        {
+          "y": 439.2612609863281,
+          "text": "dan contact op met de klantenservice van Jackery voor"
+        },
+        {
+          "y": 446.46124267578125,
+          "text": "ondersteuning."
+        }
+      ]
+    },
+    {
+      "role": "status-4-0",
+      "physical_page": 105,
+      "rect": [
+        23,
+        461.7,
+        68,
+        495.5
+      ],
+      "text": "Geen licht",
+      "lines": [
+        {
+          "y": 474.7384033203125,
+          "text": "Geen licht"
+        }
+      ]
+    },
+    {
+      "role": "status-4-1",
+      "physical_page": 105,
+      "rect": [
+        68,
+        461.7,
+        115,
+        495.5
+      ],
+      "text": "Geen kleur",
+      "lines": [
+        {
+          "y": 471.1203918457031,
+          "text": "Geen kleur"
+        }
+      ]
+    },
+    {
+      "role": "status-4-2",
+      "physical_page": 105,
+      "rect": [
+        115,
+        461.7,
+        171,
+        495.5
+      ],
+      "text": "Het product is niet ingeschakeld.",
+      "lines": [
+        {
+          "y": 466.39837646484375,
+          "text": "Het product is"
+        },
+        {
+          "y": 474.3963928222656,
+          "text": "niet"
+        },
+        {
+          "y": 482.3943786621094,
+          "text": "ingeschakeld."
+        }
+      ]
+    },
+    {
+      "role": "status-4-3",
+      "physical_page": 105,
+      "rect": [
+        171,
+        461.7,
+        348,
+        495.5
+      ],
+      "text": "Als het probleem na het voltooien van de bedrading en het starten van het voertuig blijft bestaan, neem dan contact op met de klantenservice van Jackery.",
+      "lines": [
+        {
+          "y": 465.64324951171875,
+          "text": "Als het probleem na het voltooien van de bedrading en"
+        },
+        {
+          "y": 472.84326171875,
+          "text": "het starten van het voertuig blijft bestaan, neem dan"
+        },
+        {
+          "y": 480.04327392578125,
+          "text": "contact op met de klantenservice van Jackery."
+        }
+      ]
+    },
+    {
+      "role": "heading:6.",
+      "physical_page": 106,
+      "rect": [
+        20,
+        25.99878692626953,
+        350,
+        45.666786193847656
+      ],
+      "text": "6. VEELGESTELDE VRAGEN",
+      "lines": [
+        {
+          "y": 26.99878692626953,
+          "text": "6. VEELGESTELDE VRAGEN"
+        }
+      ]
+    },
+    {
+      "role": "faq-body",
+      "physical_page": 106,
+      "rect": [
+        20,
+        48.99878692626953,
+        350,
+        503
+      ],
+      "text": "Vraag 1: Is er voor de installatie van dit product een professional nodig? Antwoord: Om zeker te zijn van de veiligheid en een nette bekabeling, wordt aanbevolen om de installatie te laten uitvoeren door een gespecialiseerd onderhoudsbedrijf. Niet-professionals zouden niet moeten proberen het zelf te installeren. Vraag 2: Wat moet er worden gecontroleerd tijdens het maandelijkse onderhoud van het product? Antwoord: 1. Reinig het productoppervlak met een droge doek. Gebruik bij hardnekkige vlekken een verdund, neutraal schoonmaakmiddel. 2. Controleer de connectoren, bedrading, schroeven en zekeringen op schade of veroudering. Als u hulp nodig heeft, neem dan contact op met de klantenservice van Jackery. 3. Zorg ervoor dat het product stevig is geïnstalleerd en vermijd direct zonlicht en omgevingen met hoge temperaturen. Vraag 3: Zal dit product de accu van het voertuig leegtrekken? Antwoord: Om te voorkomen dat de startaccu van het voertuig of de huisaccu van de camper te ver ontlaadt, bewaakt het product de spanning over de accupolen. Als de spanning onder de startdrempelwaarde zakt, stopt het product automatisch met werken. Wanneer het voertuig niet draait, gaat het product in de stand-bymodus en wordt het na 24 uur automatisch uitgeschakeld. Vraag 4: Waarom werkt het product niet? Antwoord: Bij sommige oudere of specifieke voertuigmodellen is de spanning lager, waardoor die niet overeenkomt met de bedrijfsspanning van het product. Als de spanning van het product hoger is dan de systeemspanning van het voertuig (12 V/24 V) en het product na het inschakelen niet werkt, neem dan contact op met de klantenservice van Jackery voor assistentie. Vraag 5: Verhoogt dit product het brandstofverbruik? Antwoord: Nee. Het product maakt gebruik van het overtollige vermogen van de generator, waardoor het efficiënt, energiebesparend en milieuvriendelijk is. Vraag 6: Welke veiligheidsvoorzieningen heeft dit product? Antwoord: Dit product biedt bescherming tegen overspanning, onderspanning, overstroom, overbelasting, kortsluiting en hoge/lage temperaturen om veilig en betrouwbaar opladen te garanderen. Bovendien voorkomt de intelligente spanningsdetectie overmatige ontlading van de accu, zodat het voertuig normaal kan starten. Vraag 7: Waarom is het oplaadvermogen instabiel? Antwoord: Het oplaadvermogen past zich dynamisch aan op basis van de rij- en wegomstandigheden van het voertuig. Dit helpt de accu van het voertuig te beschermen en zorgt tegelijkertijd voor maximale laadefficiëntie. Het is normaal dat het vermogen verschilt. Vraag 8: Zal het geluid dat het product tijdens het gebruik maakt de slaap verstoren? Antwoord: Het product is ontworpen zonder ventilator en het geluidsniveau ligt onder 40 dB, wat voldoet aan de geluidsnormen voor een slaapomgeving.",
+      "lines": [
+        {
+          "y": 49.50628662109375,
+          "text": "Vraag 1: Is er voor de installatie van dit product een professional nodig?"
+        },
+        {
+          "y": 58.50830078125,
+          "text": "Antwoord: Om zeker te zijn van de veiligheid en een nette bekabeling, wordt aanbevolen om de"
+        },
+        {
+          "y": 67.51031494140625,
+          "text": "installatie te laten uitvoeren door een gespecialiseerd onderhoudsbedrijf. Niet-professionals"
+        },
+        {
+          "y": 76.5123291015625,
+          "text": "zouden niet moeten proberen het zelf te installeren."
+        },
+        {
+          "y": 94.50933837890625,
+          "text": "Vraag 2: Wat moet er worden gecontroleerd tijdens het maandelijkse onderhoud van het product?"
+        },
+        {
+          "y": 103.5113525390625,
+          "text": "Antwoord: 1. Reinig het productoppervlak met een droge doek. Gebruik bij hardnekkige vlekken een"
+        },
+        {
+          "y": 112.51336669921875,
+          "text": "verdund, neutraal schoonmaakmiddel."
+        },
+        {
+          "y": 121.515380859375,
+          "text": "2. Controleer de connectoren, bedrading, schroeven en zekeringen op schade of veroudering. Als u"
+        },
+        {
+          "y": 130.51739501953125,
+          "text": "hulp nodig heeft, neem dan contact op met de klantenservice van Jackery."
+        },
+        {
+          "y": 139.5194091796875,
+          "text": "3. Zorg ervoor dat het product stevig is geïnstalleerd en vermijd direct zonlicht en omgevingen met"
+        },
+        {
+          "y": 148.52142333984375,
+          "text": "hoge temperaturen."
+        },
+        {
+          "y": 166.5184326171875,
+          "text": "Vraag 3: Zal dit product de accu van het voertuig leegtrekken?"
+        },
+        {
+          "y": 175.52044677734375,
+          "text": "Antwoord: Om te voorkomen dat de startaccu van het voertuig of de huisaccu van de camper te ver"
+        },
+        {
+          "y": 184.5224609375,
+          "text": "ontlaadt, bewaakt het product de spanning over de accupolen. Als de spanning onder de"
+        },
+        {
+          "y": 193.52447509765625,
+          "text": "startdrempelwaarde zakt, stopt het product automatisch met werken. Wanneer het voertuig niet"
+        },
+        {
+          "y": 202.5264892578125,
+          "text": "draait, gaat het product in de stand-bymodus en wordt het na 24 uur automatisch uitgeschakeld."
+        },
+        {
+          "y": 220.52349853515625,
+          "text": "Vraag 4: Waarom werkt het product niet?"
+        },
+        {
+          "y": 229.5255126953125,
+          "text": "Antwoord: Bij sommige oudere of speciﬁeke voertuigmodellen is de spanning lager, waardoor die niet"
+        },
+        {
+          "y": 238.52752685546875,
+          "text": "overeenkomt met de bedrijfsspanning van het product. Als de spanning van het product hoger is"
+        },
+        {
+          "y": 247.529541015625,
+          "text": "dan de systeemspanning van het voertuig (12 V/24 V) en het product na het inschakelen niet werkt,"
+        },
+        {
+          "y": 256.53155517578125,
+          "text": "neem dan contact op met de klantenservice van Jackery voor assistentie."
+        },
+        {
+          "y": 274.528564453125,
+          "text": "Vraag 5: Verhoogt dit product het brandstofverbruik?"
+        },
+        {
+          "y": 283.5305480957031,
+          "text": "Antwoord: Nee. Het product maakt gebruik van het overtollige vermogen van de generator, waardoor"
+        },
+        {
+          "y": 292.5325622558594,
+          "text": "het eﬃciënt, energiebesparend en milieuvriendelijk is."
+        },
+        {
+          "y": 310.5295715332031,
+          "text": "Vraag 6: Welke veiligheidsvoorzieningen heeft dit product?"
+        },
+        {
+          "y": 319.5315856933594,
+          "text": "Antwoord: Dit product biedt bescherming tegen overspanning, onderspanning, overstroom,"
+        },
+        {
+          "y": 328.5335693359375,
+          "text": "overbelasting, kortsluiting en hoge/lage temperaturen om veilig en betrouwbaar opladen te"
+        },
+        {
+          "y": 337.5355529785156,
+          "text": "garanderen. Bovendien voorkomt de intelligente spanningsdetectie overmatige ontlading van de"
+        },
+        {
+          "y": 346.5375671386719,
+          "text": "accu, zodat het voertuig normaal kan starten."
+        },
+        {
+          "y": 364.5345764160156,
+          "text": "Vraag 7: Waarom is het oplaadvermogen instabiel?"
+        },
+        {
+          "y": 373.5365905761719,
+          "text": "Antwoord: Het oplaadvermogen past zich dynamisch aan op basis van de rij- en"
+        },
+        {
+          "y": 382.53857421875,
+          "text": "wegomstandigheden van het voertuig. Dit helpt de accu van het voertuig te beschermen en zorgt"
+        },
+        {
+          "y": 391.5405578613281,
+          "text": "tegelijkertijd voor maximale laadeﬃciëntie. Het is normaal dat het vermogen verschilt."
+        },
+        {
+          "y": 409.5375671386719,
+          "text": "Vraag 8: Zal het geluid dat het product tijdens het gebruik maakt de slaap verstoren?"
+        },
+        {
+          "y": 418.5395812988281,
+          "text": "Antwoord: Het product is ontworpen zonder ventilator en het geluidsniveau ligt onder 40 dB, wat"
+        },
+        {
+          "y": 427.54156494140625,
+          "text": "voldoet aan de geluidsnormen voor een slaapomgeving."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.",
+      "physical_page": 107,
+      "rect": [
+        20,
+        25.93000030517578,
+        350,
+        45.597999572753906
+      ],
+      "text": "7. INSTALLATIE VAN HET PRODUCT",
+      "lines": [
+        {
+          "y": 26.93000030517578,
+          "text": "7. INSTALLATIE VAN HET PRODUCT"
+        }
+      ]
+    },
+    {
+      "role": "heading:7.1",
+      "physical_page": 107,
+      "rect": [
+        20,
+        50.936309814453125,
+        350,
+        65.3163070678711
+      ],
+      "text": "7.1 Installatiediagram",
+      "lines": [
+        {
+          "y": 51.936309814453125,
+          "text": "7.1 Installatiediagram"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-0",
+      "physical_page": 107,
+      "rect": [
+        45,
+        130,
+        140,
+        175
+      ],
+      "text": "ACC van voertuig",
+      "lines": [
+        {
+          "y": 147.09910583496094,
+          "text": "ACC van voertuig"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-1",
+      "physical_page": 107,
+      "rect": [
+        20,
+        403,
+        142,
+        425
+      ],
+      "text": "DC-DC-oplader",
+      "lines": [
+        {
+          "y": 414.7493896484375,
+          "text": "DC-DC-oplader"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-2",
+      "physical_page": 107,
+      "rect": [
+        142,
+        403,
+        256,
+        425
+      ],
+      "text": "6 m invoerkabel",
+      "lines": [
+        {
+          "y": 414.7493896484375,
+          "text": "6 m invoerkabel"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-3",
+      "physical_page": 107,
+      "rect": [
+        256,
+        403,
+        356,
+        425
+      ],
+      "text": "Zekering",
+      "lines": [
+        {
+          "y": 414.7493896484375,
+          "text": "Zekering"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-4",
+      "physical_page": 107,
+      "rect": [
+        20,
+        425,
+        142,
+        465
+      ],
+      "text": "1,5 m uitvoerkabel",
+      "lines": [
+        {
+          "y": 437.08111572265625,
+          "text": "1,5 m uitvoerkabel"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-5",
+      "physical_page": 107,
+      "rect": [
+        142,
+        425,
+        256,
+        465
+      ],
+      "text": "6 m ACC-kabel",
+      "lines": [
+        {
+          "y": 437.08111572265625,
+          "text": "6 m ACC-kabel"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-6",
+      "physical_page": 107,
+      "rect": [
+        256,
+        425,
+        356,
+        465
+      ],
+      "text": "Jackery draagbare powerstation",
+      "lines": [
+        {
+          "y": 435.8970947265625,
+          "text": "Jackery draagbare"
+        },
+        {
+          "y": 445.8970947265625,
+          "text": "powerstation"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-7",
+      "physical_page": 107,
+      "rect": [
+        20,
+        465,
+        356,
+        503
+      ],
+      "text": "* De bedrading en het bundelen van kabels dienen te worden uitgevoerd op basis van de werkelijke omstandigheden van het voertuig.",
+      "lines": [
+        {
+          "y": 468.1700134277344,
+          "text": "* De bedrading en het bundelen van kabels dienen te worden uitgevoerd op basis van de werkelijke omstandigheden"
+        },
+        {
+          "y": 474.1700134277344,
+          "text": "van het voertuig."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.2",
+      "physical_page": 108,
+      "rect": [
+        20,
+        27.181396484375,
+        350,
+        41.561397552490234
+      ],
+      "text": "7.2 Belangrijke veiligheidsinstructies",
+      "lines": [
+        {
+          "y": 28.181396484375,
+          "text": "7.2 Belangrijke veiligheidsinstructies"
+        }
+      ]
+    },
+    {
+      "role": "installation-warning-intro",
+      "physical_page": 108,
+      "rect": [
+        20,
+        44.181396484375,
+        350,
+        93.181396484375
+      ],
+      "text": "Volg altijd deze basisvoorzorgsmaatregelen wanneer u dit product gebruikt. WAARSCHUWING",
+      "lines": [
+        {
+          "y": 63.1923828125,
+          "text": "Volg altijd deze basisvoorzorgsmaatregelen wanneer u dit product gebruikt."
+        },
+        {
+          "y": 72.91080474853516,
+          "text": "WAARSCHUWING"
+        }
+      ]
+    },
+    {
+      "role": "installation-safety",
+      "physical_page": 108,
+      "rect": [
+        20,
+        93.181396484375,
+        350,
+        272.0451965332031
+      ],
+      "text": "• Het wordt aanbevolen om de bedrading door een professional te laten uitvoeren. • Voordat u bedrading aansluit of verbindingen maakt, neemt u persoonlijke beschermingsmaatregelen, zoals het dragen van een veiligheidsbril en geïsoleerde handschoenen. Ook volgt u altijd de richtlijnen voor elektrische veiligheid op. • Schakel altijd het voertuig uit voordat u met elektrische werkzaamheden begint. • Houd het product droog tijdens gebruik. • Steek geen vreemde voorwerpen in de poorten van het product. • Gebruik het product niet als de bedrading, connectoren of het product zelf beschadigd zijn. • Plaats de kabels niet in de buurt van hoge temperaturen, scherpe voorwerpen of plaatsen waar wrijving kan optreden. • Bevestig de draden correct om mogelijke problemen als gevolg van slijtage of losse verbindingen te voorkomen. • Controleer voordat u het voertuig en het product start of de bedrading compleet is en alle schroeven en connectoren stevig zijn vastgedraaid. • Gebruik dit product niet om beschadigde of niet-oplaadbare draagbare powerstations of reservebatterijen op te laden. • Als het product niet goed functioneert na het starten van het voertuig, controleer dan de statusindicatielamp en raadpleeg de handleiding voor probleemoplossing. • Voordat u kabels aansluit, loskoppelt of wijzigt, dient u ervoor te zorgen dat het voertuig is uitgeschakeld, het product is uitgeschakeld en de verbinding is verbroken.",
+      "lines": [
+        {
+          "y": 94.29730224609375,
+          "text": "• Het wordt aanbevolen om de bedrading door een professional te laten uitvoeren."
+        },
+        {
+          "y": 102.69729614257812,
+          "text": "• Voordat u bedrading aansluit of verbindingen maakt, neemt u persoonlijke"
+        },
+        {
+          "y": 111.0972900390625,
+          "text": "beschermingsmaatregelen, zoals het dragen van een veiligheidsbril en geïsoleerde"
+        },
+        {
+          "y": 119.49728393554688,
+          "text": "handschoenen. Ook volgt u altijd de richtlijnen voor elektrische veiligheid op."
+        },
+        {
+          "y": 127.89727783203125,
+          "text": "• Schakel altijd het voertuig uit voordat u met elektrische werkzaamheden begint."
+        },
+        {
+          "y": 136.29727172851562,
+          "text": "• Houd het product droog tijdens gebruik."
+        },
+        {
+          "y": 144.697265625,
+          "text": "• Steek geen vreemde voorwerpen in de poorten van het product."
+        },
+        {
+          "y": 153.09725952148438,
+          "text": "• Gebruik het product niet als de bedrading, connectoren of het product zelf beschadigd zijn."
+        },
+        {
+          "y": 161.49725341796875,
+          "text": "• Plaats de kabels niet in de buurt van hoge temperaturen, scherpe voorwerpen of plaatsen waar"
+        },
+        {
+          "y": 169.89724731445312,
+          "text": "wrijving kan optreden."
+        },
+        {
+          "y": 178.2972412109375,
+          "text": "• Bevestig de draden correct om mogelijke problemen als gevolg van slijtage of losse verbindingen"
+        },
+        {
+          "y": 186.69723510742188,
+          "text": "te voorkomen."
+        },
+        {
+          "y": 195.09722900390625,
+          "text": "• Controleer voordat u het voertuig en het product start of de bedrading compleet is en alle"
+        },
+        {
+          "y": 203.49722290039062,
+          "text": "schroeven en connectoren stevig zijn vastgedraaid."
+        },
+        {
+          "y": 211.897216796875,
+          "text": "• Gebruik dit product niet om beschadigde of niet-oplaadbare draagbare powerstations of"
+        },
+        {
+          "y": 220.29721069335938,
+          "text": "reservebatterijen op te laden."
+        },
+        {
+          "y": 228.69720458984375,
+          "text": "• Als het product niet goed functioneert na het starten van het voertuig, controleer dan de"
+        },
+        {
+          "y": 237.09719848632812,
+          "text": "statusindicatielamp en raadpleeg de handleiding voor probleemoplossing."
+        },
+        {
+          "y": 245.4971923828125,
+          "text": "• Voordat u kabels aansluit, loskoppelt of wijzigt, dient u ervoor te zorgen dat het voertuig is"
+        },
+        {
+          "y": 253.89718627929688,
+          "text": "uitgeschakeld, het product is uitgeschakeld en de verbinding is verbroken."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.3",
+      "physical_page": 108,
+      "rect": [
+        20,
+        272.0451965332031,
+        350,
+        286.4252014160156
+      ],
+      "text": "7.3 In geval van nood",
+      "lines": [
+        {
+          "y": 273.0451965332031,
+          "text": "7.3 In geval van nood"
+        }
+      ]
+    },
+    {
+      "role": "emergency",
+      "physical_page": 108,
+      "rect": [
+        20,
+        289.0451965332031,
+        350,
+        503
+      ],
+      "text": "• Draag in geval van een noodgeval (zoals ernstige impactschade) geïsoleerde handschoenen en verplaats het product naar een open ruimte uit de buurt van brandbare materialen en mensen. Voer het product af volgens de lokale wet- en regelgeving. • Indien het product per ongeluk in het water valt, nat wordt door regen of zichtbaar vocht op het oppervlak vertoont, mag u het product of het water eromheen niet rechtstreeks aanraken. Neem de nodige veiligheidsmaatregelen tegen elektrische schokken en verplaats het product naar een veilige, droge en goed geventileerde ruimte. Gebruik of raak het product niet aan totdat het volledig is gedroogd. Als u hulp nodig heeft, neem dan onmiddellijk contact op met de klantenservice van Jackery. • Als het product vlam vat, gebruik dan de volgende blusmethoden in deze volgorde: water of waternevel, zand, branddeken, bluspoeder of een CO -brandblusser.",
+      "lines": [
+        {
+          "y": 291.8612976074219,
+          "text": "• Draag in geval van een noodgeval (zoals ernstige impactschade) geïsoleerde handschoenen en"
+        },
+        {
+          "y": 300.26129150390625,
+          "text": "verplaats het product naar een open ruimte uit de buurt van brandbare materialen en mensen."
+        },
+        {
+          "y": 308.6612854003906,
+          "text": "Voer het product af volgens de lokale wet- en regelgeving."
+        },
+        {
+          "y": 317.061279296875,
+          "text": "• Indien het product per ongeluk in het water valt, nat wordt door regen of zichtbaar vocht op het"
+        },
+        {
+          "y": 325.4612731933594,
+          "text": "oppervlak vertoont, mag u het product of het water eromheen niet rechtstreeks aanraken. Neem"
+        },
+        {
+          "y": 333.86126708984375,
+          "text": "de nodige veiligheidsmaatregelen tegen elektrische schokken en verplaats het product naar een"
+        },
+        {
+          "y": 342.2612609863281,
+          "text": "veilige, droge en goed geventileerde ruimte. Gebruik of raak het product niet aan totdat het"
+        },
+        {
+          "y": 350.6612548828125,
+          "text": "volledig is gedroogd. Als u hulp nodig heeft, neem dan onmiddellijk contact op met de"
+        },
+        {
+          "y": 359.0612487792969,
+          "text": "klantenservice van Jackery."
+        },
+        {
+          "y": 367.46124267578125,
+          "text": "• Als het product vlam vat, gebruik dan de volgende blusmethoden in deze volgorde: water of"
+        },
+        {
+          "y": 375.8612365722656,
+          "text": "waternevel, zand, branddeken, bluspoeder of een CO -brandblusser."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.4",
+      "physical_page": 109,
+      "rect": [
+        20,
+        27.181396484375,
+        350,
+        41.561397552490234
+      ],
+      "text": "7.4 Controles vóór installatie",
+      "lines": [
+        {
+          "y": 28.181396484375,
+          "text": "7.4 Controles vóór installatie"
+        }
+      ]
+    },
+    {
+      "role": "pre-checks-before-warning",
+      "physical_page": 109,
+      "rect": [
+        20,
+        44.181396484375,
+        350,
+        172.54718017578125
+      ],
+      "text": "1. Zorg ervoor dat het voertuig is uitgeschakeld voordat u met de installatie begint. 2. Controleer of de spanning van het voertuigsysteem 12 V of 24 V bedraagt. 3. Zorg ervoor dat de uitgangsspanning van het product overeenkomt met de DC-ingangsspanning van het draagbare powerstation. 4. Zoek de locatie van de accu van het voertuig en zorg voor voldoende ruimte om de ingangskabel door te laten lopen. 5. Kies een geschikte plaats voor de installatie. Het wordt aanbevolen om het product in de kofferbak te installeren met ten minste 20 cm vrije ruimte aan alle kanten, zodat oververhitting door langdurig gebruik kan worden voorkomen. * Het wordt aanbevolen om het product aan dezelfde kant als de accu te installeren. Als de accu zich bijvoorbeeld aan de linkerkant van het voertuig bevindt, installeer het product dan ook aan de linkerkant.",
+      "lines": [
+        {
+          "y": 48.4169921875,
+          "text": "1. Zorg ervoor dat het voertuig is uitgeschakeld voordat u met de installatie begint."
+        },
+        {
+          "y": 56.816986083984375,
+          "text": "2. Controleer of de spanning van het voertuigsysteem 12 V of 24 V bedraagt."
+        },
+        {
+          "y": 65.21697998046875,
+          "text": "3. Zorg ervoor dat de uitgangsspanning van het product overeenkomt met de DC-ingangsspanning"
+        },
+        {
+          "y": 73.61697387695312,
+          "text": "van het draagbare powerstation."
+        },
+        {
+          "y": 82.0169677734375,
+          "text": "4. Zoek de locatie van de accu van het voertuig en zorg voor voldoende ruimte om de ingangskabel"
+        },
+        {
+          "y": 90.41696166992188,
+          "text": "door te laten lopen."
+        },
+        {
+          "y": 98.81695556640625,
+          "text": "5. Kies een geschikte plaats voor de installatie. Het wordt aanbevolen om het product in de koﬀerbak"
+        },
+        {
+          "y": 107.21694946289062,
+          "text": "te installeren met ten minste 20 cm vrije ruimte aan alle kanten, zodat oververhitting door langdurig"
+        },
+        {
+          "y": 115.616943359375,
+          "text": "gebruik kan worden voorkomen."
+        },
+        {
+          "y": 124.01693725585938,
+          "text": "* Het wordt aanbevolen om het product aan dezelfde kant als de accu te installeren. Als de accu"
+        },
+        {
+          "y": 132.41693115234375,
+          "text": "zich bijvoorbeeld aan de linkerkant van het voertuig bevindt, installeer het product dan ook aan de"
+        },
+        {
+          "y": 140.81692504882812,
+          "text": "linkerkant."
+        }
+      ]
+    },
+    {
+      "role": "waterproof-warning",
+      "physical_page": 109,
+      "rect": [
+        20,
+        172.54718017578125,
+        350,
+        219.20718383789062
+      ],
+      "text": "De Jackery DC-DC-oplader is niet waterdicht. Om schade aan het apparaat te voorkomen, installeert u het in het voertuig en stelt u het niet bloot aan regen of vochtige omgevingen. WAARSCHUWING",
+      "lines": [
+        {
+          "y": 176.03610229492188,
+          "text": "De Jackery DC-DC-oplader is niet waterdicht. Om schade aan het"
+        },
+        {
+          "y": 184.43609619140625,
+          "text": "apparaat te voorkomen, installeert u het in het voertuig en stelt u het niet"
+        },
+        {
+          "y": 192.83609008789062,
+          "text": "bloot aan regen of vochtige omgevingen."
+        },
+        {
+          "y": 200.7187042236328,
+          "text": "WAARSCHUWING"
+        }
+      ]
+    },
+    {
+      "role": "pre-checks-after-warning",
+      "physical_page": 109,
+      "rect": [
+        20,
+        219.20718383789062,
+        350,
+        503
+      ],
+      "text": "6. Controleer de kabellengte: het product wordt geleverd met een ingangskabel van 6 meter. Zorg ervoor dat deze lengte voldoende is om de kabel van de accu van het voertuig naar de beoogde installatielocatie van de DC-DC-oplader te leiden. 7. Controleer de voertuigpanelen langs het verloop van de bedrading. Om een overzichtelijke bedradingsopstelling te behouden, kan het nodig zijn om tijdens het proces enkele voertuigpanelen te verwijderen en opnieuw te monteren. 8. Zorg ervoor dat het product volledig droog en onbeschadigd is voordat u de bedrading en installatie uitvoert. 9. Bereid het benodigde gereedschap voor, waaronder een Philips-schroevendraaier, inbussleutel, verstelbare moersleutel, gereedschap voor het verwijderen van paneelclips, draad, elektrische tape, kabelbinders, draadknipper en een spanningzoeker.",
+      "lines": [
+        {
+          "y": 229.57708740234375,
+          "text": "6. Controleer de kabellengte: het product wordt geleverd met een ingangskabel van 6 meter. Zorg"
+        },
+        {
+          "y": 237.97708129882812,
+          "text": "ervoor dat deze lengte voldoende is om de kabel van de accu van het voertuig naar de beoogde"
+        },
+        {
+          "y": 246.3770751953125,
+          "text": "installatielocatie van de DC-DC-oplader te leiden."
+        },
+        {
+          "y": 254.77706909179688,
+          "text": "7. Controleer de voertuigpanelen langs het verloop van de bedrading. Om een overzichtelijke"
+        },
+        {
+          "y": 263.17706298828125,
+          "text": "bedradingsopstelling te behouden, kan het nodig zijn om tijdens het proces enkele voertuigpanelen"
+        },
+        {
+          "y": 271.5770568847656,
+          "text": "te verwijderen en opnieuw te monteren."
+        },
+        {
+          "y": 279.97705078125,
+          "text": "8. Zorg ervoor dat het product volledig droog en onbeschadigd is voordat u de bedrading en"
+        },
+        {
+          "y": 288.3770446777344,
+          "text": "installatie uitvoert."
+        },
+        {
+          "y": 296.77703857421875,
+          "text": "9. Bereid het benodigde gereedschap voor, waaronder een Philips-schroevendraaier, inbussleutel,"
+        },
+        {
+          "y": 305.1770324707031,
+          "text": "verstelbare moersleutel, gereedschap voor het verwijderen van paneelclips, draad, elektrische tape,"
+        },
+        {
+          "y": 313.5770263671875,
+          "text": "kabelbinders, draadknipper en een spanningzoeker."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.5",
+      "physical_page": 110,
+      "rect": [
+        20,
+        26.298583984375,
+        350,
+        40.678585052490234
+      ],
+      "text": "7.5 Stappen voor de bedrading",
+      "lines": [
+        {
+          "y": 27.298583984375,
+          "text": "7.5 Stappen voor de bedrading"
+        }
+      ]
+    },
+    {
+      "role": "wiring-precautions",
+      "physical_page": 110,
+      "rect": [
+        20,
+        44,
+        350,
+        100
+      ],
+      "text": "Veiligheidsvoorschriften: • Zorg ervoor dat de draden stevig zijn bevestigd om hoge temperaturen of kortsluitingen door losse verbindingen te voorkomen. • Zorg bij het aansluiten van de OT-klem op de voertuigaccu voor een stevige verbinding om abnormale temperatuurstijgingen te voorkomen.",
+      "lines": [
+        {
+          "y": 45.61281204223633,
+          "text": "Veiligheidsvoorschriften:"
+        },
+        {
+          "y": 55.732810974121094,
+          "text": "• Zorg ervoor dat de draden stevig zijn bevestigd om hoge temperaturen of"
+        },
+        {
+          "y": 65.7328109741211,
+          "text": "kortsluitingen door losse verbindingen te voorkomen."
+        },
+        {
+          "y": 75.7328109741211,
+          "text": "• Zorg bij het aansluiten van de OT-klem op de voertuigaccu voor een stevige"
+        },
+        {
+          "y": 85.7328109741211,
+          "text": "verbinding om abnormale temperatuurstijgingen te voorkomen."
+        }
+      ]
+    },
+    {
+      "role": "fuse-label",
+      "physical_page": 110,
+      "rect": [
+        195,
+        101,
+        257,
+        156
+      ],
+      "text": "Zekering",
+      "lines": [
+        {
+          "y": 128.98239135742188,
+          "text": "Zekering"
+        }
+      ]
+    },
+    {
+      "role": "torque-label",
+      "physical_page": 110,
+      "rect": [
+        265,
+        101,
+        356,
+        156
+      ],
+      "text": "3~4 N·m",
+      "lines": [
+        {
+          "y": 128.98239135742188,
+          "text": "3~4 N·m"
+        }
+      ]
+    },
+    {
+      "role": "washer-label",
+      "physical_page": 110,
+      "rect": [
+        197,
+        240,
+        253,
+        275
+      ],
+      "text": "Ring",
+      "lines": [
+        {
+          "y": 243.97950744628906,
+          "text": "Ring"
+        }
+      ]
+    },
+    {
+      "role": "lock-washer-label",
+      "physical_page": 110,
+      "rect": [
+        253,
+        240,
+        305,
+        275
+      ],
+      "text": "Borgring",
+      "lines": [
+        {
+          "y": 243.57749938964844,
+          "text": "Borgring"
+        }
+      ]
+    },
+    {
+      "role": "nut-label",
+      "physical_page": 110,
+      "rect": [
+        305,
+        240,
+        356,
+        275
+      ],
+      "text": "Moer",
+      "lines": [
+        {
+          "y": 243.6794891357422,
+          "text": "Moer"
+        }
+      ]
+    },
+    {
+      "role": "cable-label",
+      "physical_page": 110,
+      "rect": [
+        202,
+        165,
+        255,
+        211
+      ],
+      "text": "6 m",
+      "lines": [
+        {
+          "y": 191.61727905273438,
+          "text": "6 m"
+        }
+      ]
+    },
+    {
+      "role": "terminal-note",
+      "physical_page": 110,
+      "rect": [
+        253,
+        199,
+        356,
+        241
+      ],
+      "text": "Opmerking: Draai de klemmen ① en ② vast met een aanhaalmoment van 3–4 N·m.",
+      "lines": [
+        {
+          "y": 215.81690979003906,
+          "text": "Opmerking: Draai de klemmen ① en"
+        },
+        {
+          "y": 222.0919189453125,
+          "text": "② vast met een aanhaalmoment"
+        },
+        {
+          "y": 227.81690979003906,
+          "text": "van 3–4 N·m."
+        }
+      ]
+    },
+    {
+      "role": "acc-label",
+      "physical_page": 110,
+      "rect": [
+        210,
+        425,
+        262,
+        460
+      ],
+      "text": "ACC-kabel",
+      "lines": [
+        {
+          "y": 432.0898132324219,
+          "text": "ACC-kabel"
+        }
+      ]
+    },
+    {
+      "role": "vehicle-acc-label",
+      "physical_page": 110,
+      "rect": [
+        284,
+        425,
+        349,
+        470
+      ],
+      "text": "ACC-kabel van voertuig",
+      "lines": [
+        {
+          "y": 430.38079833984375,
+          "text": "ACC-kabel"
+        },
+        {
+          "y": 438.3818054199219,
+          "text": "van voertuig"
+        }
+      ]
+    },
+    {
+      "role": "wiring-step-1",
+      "physical_page": 110,
+      "rect": [
+        20,
+        100,
+        193,
+        280
+      ],
+      "text": "• Zorg ervoor dat het voertuig is uitgeschakeld. 1 Sluit de OT-klem van de zekering aan op de pluspool van de 6 m ingangskabel (rood) met een aanhaalmoment van 3~4 N·m. Zorg ervoor dat de ronde klem, de ring, de borgring en de moer in de juiste volgorde worden aangebracht en draai de moer vast met het vereiste aanhaalmoment. Een onvoldoende aanhaalmoment kan een losse verbinding veroorzaken, wat kan leiden tot smelten van de draad, terwijl een aanhaalmoment van meer dan 6 N·m de zekering kan breken. Tijdens de installatie dient u te controleren dat beide uiteinden van de zekeringaansluitingen ① en ② stevig zijn vastgedraaid. Het wordt aanbevolen om ze handmatig vast te draaien totdat ze niet meer kunnen worden gedraaid. (Als u een elektrische schroevendraaier gebruikt, stel dan het aanhaalmoment in op 4 N·m voordat u vastdraait.)",
+      "lines": [
+        {
+          "y": 95.7328109741211,
+          "text": "• Zorg ervoor dat het voertuig is uitgeschakeld."
+        },
+        {
+          "y": 117.10993194580078,
+          "text": "1 Sluit de OT-klem van de zekering aan op de"
+        },
+        {
+          "y": 125.39469909667969,
+          "text": "pluspool van de 6 m ingangskabel (rood) met een"
+        },
+        {
+          "y": 132.59458923339844,
+          "text": "aanhaalmoment van 3~4 N·m."
+        },
+        {
+          "y": 139.7944793701172,
+          "text": "Zorg ervoor dat de ronde klem, de ring, de borgring"
+        },
+        {
+          "y": 146.99436950683594,
+          "text": "en de moer in de juiste volgorde worden"
+        },
+        {
+          "y": 154.1942596435547,
+          "text": "aangebracht en draai de moer vast met het vereiste"
+        },
+        {
+          "y": 161.39414978027344,
+          "text": "aanhaalmoment."
+        },
+        {
+          "y": 168.5940399169922,
+          "text": "Een onvoldoende aanhaalmoment kan een losse"
+        },
+        {
+          "y": 175.79393005371094,
+          "text": "verbinding veroorzaken, wat kan leiden tot smelten"
+        },
+        {
+          "y": 182.9938201904297,
+          "text": "van de draad, terwijl een aanhaalmoment van meer"
+        },
+        {
+          "y": 190.19371032714844,
+          "text": "dan 6 N·m de zekering kan breken."
+        },
+        {
+          "y": 197.3936004638672,
+          "text": "Tijdens de installatie dient u te controleren dat beide"
+        },
+        {
+          "y": 204.59349060058594,
+          "text": "uiteinden van de zekeringaansluitingen ① en ②"
+        },
+        {
+          "y": 211.7933807373047,
+          "text": "stevig zijn vastgedraaid. Het wordt aanbevolen om"
+        },
+        {
+          "y": 218.99327087402344,
+          "text": "ze handmatig vast te draaien totdat ze niet meer"
+        },
+        {
+          "y": 226.1931610107422,
+          "text": "kunnen worden gedraaid. (Als u een elektrische"
+        },
+        {
+          "y": 233.39305114746094,
+          "text": "schroevendraaier gebruikt, stel dan het"
+        },
+        {
+          "y": 240.5929412841797,
+          "text": "aanhaalmoment in op 4 N·m voordat u vastdraait.)"
+        }
+      ]
+    },
+    {
+      "role": "wiring-step-2",
+      "physical_page": 110,
+      "rect": [
+        20,
+        280,
+        193,
+        390
+      ],
+      "text": "2 Sluit de OT-klemmen van de ingangskabel aan op de plus- en minpool van de voertuigaccu. Zorg ervoor dat de rode draad is aangesloten op de pluspool en de zwarte draad op de minpool.",
+      "lines": [
+        {
+          "y": 291.7203063964844,
+          "text": "2 Sluit de OT-klemmen van de ingangskabel aan"
+        },
+        {
+          "y": 300.4953918457031,
+          "text": "op de plus- en minpool van de voertuigaccu."
+        },
+        {
+          "y": 307.69537353515625,
+          "text": "Zorg ervoor dat de rode draad is aangesloten"
+        },
+        {
+          "y": 314.8953857421875,
+          "text": "op de pluspool en de zwarte draad op de"
+        },
+        {
+          "y": 322.09539794921875,
+          "text": "minpool."
+        }
+      ]
+    },
+    {
+      "role": "wiring-step-3",
+      "physical_page": 110,
+      "rect": [
+        20,
+        390,
+        193,
+        503
+      ],
+      "text": "3 Knip het uiteinde zonder connector van de ACC-kabel af om de koperdraad bloot te leggen en sluit deze aan op de ACC-lijn van het voertuig. ※ Bij het aansluiten van de ACC-draad: als u niet zeker weet waar de draad moet worden aangesloten of hoe de aansluiting moet worden gemaakt, neem dan contact op met de voertuigfabrikant voordat u verdergaat.",
+      "lines": [
+        {
+          "y": 404.6636047363281,
+          "text": "3 Knip het uiteinde zonder connector van de"
+        },
+        {
+          "y": 413.43829345703125,
+          "text": "ACC-kabel af om de koperdraad bloot te leggen"
+        },
+        {
+          "y": 420.6382751464844,
+          "text": "en sluit deze aan op de ACC-lijn van het"
+        },
+        {
+          "y": 427.8382873535156,
+          "text": "voertuig."
+        },
+        {
+          "y": 438.8260803222656,
+          "text": "※ Bij het aansluiten van de ACC-draad: als"
+        },
+        {
+          "y": 446.82708740234375,
+          "text": "u niet zeker weet waar de draad moet"
+        },
+        {
+          "y": 454.8280944824219,
+          "text": "worden aangesloten of hoe de"
+        },
+        {
+          "y": 462.8291015625,
+          "text": "aansluiting moet worden gemaakt,"
+        },
+        {
+          "y": 470.8301086425781,
+          "text": "neem dan contact op met de"
+        },
+        {
+          "y": 478.8310852050781,
+          "text": "voertuigfabrikant voordat u verdergaat."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.6",
+      "physical_page": 111,
+      "rect": [
+        20,
+        26.305908203125,
+        350,
+        40.685909271240234
+      ],
+      "text": "7.6 Installatie van het product",
+      "lines": [
+        {
+          "y": 27.305908203125,
+          "text": "7.6 Installatie van het product"
+        }
+      ]
+    },
+    {
+      "role": "drilling-note",
+      "physical_page": 111,
+      "rect": [
+        20,
+        42,
+        350,
+        67
+      ],
+      "text": "* Voordat u gaten boort of de DC-DC-oplader bevestigt, inspecteert u het gebied achter de beoogde montageplaats om schade aan kabelbomen of andere interne onderdelen te voorkomen.",
+      "lines": [
+        {
+          "y": 44.77831268310547,
+          "text": "* Voordat u gaten boort of de DC-DC-oplader bevestigt, inspecteert u het gebied achter de beoogde"
+        },
+        {
+          "y": 52.779808044433594,
+          "text": "montageplaats om schade aan kabelbomen of andere interne onderdelen te voorkomen."
+        }
+      ]
+    },
+    {
+      "role": "method-one",
+      "physical_page": 111,
+      "rect": [
+        20,
+        67,
+        350,
+        82
+      ],
+      "text": "Methode 1: Bevestig het product aan de carrosserie van het voertuig.",
+      "lines": [
+        {
+          "y": 67.50688171386719,
+          "text": "Methode 1: Bevestig het product aan de carrosserie van het voertuig."
+        }
+      ]
+    },
+    {
+      "role": "body-step-1",
+      "physical_page": 111,
+      "rect": [
+        20,
+        81.10602569580078,
+        192,
+        166.72568893432617
+      ],
+      "text": "1 Zorg ervoor dat er rondom het product ten minste 20 cm vrije ruimte is (boven, onder, links en rechts).",
+      "lines": [
+        {
+          "y": 83.10602569580078,
+          "text": "1 Zorg ervoor dat er rondom het"
+        },
+        {
+          "y": 92.97128295898438,
+          "text": "product ten minste 20 cm vrije ruimte"
+        },
+        {
+          "y": 101.37127685546875,
+          "text": "is (boven, onder, links en rechts)."
+        }
+      ]
+    },
+    {
+      "role": "body-step-2",
+      "physical_page": 111,
+      "rect": [
+        20,
+        166.72568893432617,
+        192,
+        274.3375473022461
+      ],
+      "text": "2 Markeer de boorposities.",
+      "lines": [
+        {
+          "y": 190.34535217285156,
+          "text": "2 Markeer de boorposities."
+        }
+      ]
+    },
+    {
+      "role": "body-step-3",
+      "physical_page": 111,
+      "rect": [
+        20,
+        274.3375473022461,
+        192,
+        380.1744384765625
+      ],
+      "text": "3 Boor gaten op de gemarkeerde posities.",
+      "lines": [
+        {
+          "y": 298.3297424316406,
+          "text": "3 Boor gaten op de gemarkeerde"
+        },
+        {
+          "y": 309.06158447265625,
+          "text": "posities."
+        }
+      ]
+    },
+    {
+      "role": "body-step-4",
+      "physical_page": 111,
+      "rect": [
+        20,
+        380.1744384765625,
+        192,
+        503
+      ],
+      "text": "4 Bevestig het product met zelftappende schroeven.",
+      "lines": [
+        {
+          "y": 402.0191345214844,
+          "text": "4 Bevestig het product met"
+        },
+        {
+          "y": 412.7510070800781,
+          "text": "zelftappende schroeven."
+        }
+      ]
+    },
+    {
+      "role": "method-two",
+      "physical_page": 112,
+      "rect": [
+        20,
+        26,
+        350,
+        49
+      ],
+      "text": "Methode 2: Bevestig het product aan een modificatiepaneel.",
+      "lines": [
+        {
+          "y": 28.490283966064453,
+          "text": "Methode 2: Bevestig het product aan een modiﬁcatiepaneel."
+        }
+      ]
+    },
+    {
+      "role": "panel-step-1",
+      "physical_page": 112,
+      "rect": [
+        20,
+        49,
+        193,
+        145.22274589538574
+      ],
+      "text": "1 Markeer de boorposities op het modificatiepaneel.",
+      "lines": [
+        {
+          "y": 51.42344284057617,
+          "text": "1 Markeer de boorposities op het"
+        },
+        {
+          "y": 61.289093017578125,
+          "text": "modiﬁcatiepaneel."
+        }
+      ]
+    },
+    {
+      "role": "panel-step-2",
+      "physical_page": 112,
+      "rect": [
+        20,
+        145.22274589538574,
+        193,
+        263.68367767333984
+      ],
+      "text": "2 Boor gaten op de gemarkeerde posities.",
+      "lines": [
+        {
+          "y": 169.0220489501953,
+          "text": "2 Boor gaten op de gemarkeerde"
+        },
+        {
+          "y": 179.75299072265625,
+          "text": "posities."
+        }
+      ]
+    },
+    {
+      "role": "panel-step-3",
+      "physical_page": 112,
+      "rect": [
+        20,
+        263.68367767333984,
+        193,
+        417.722412109375
+      ],
+      "text": "3 Steek M6-bouten door het product in de gaten en draai de M6-moeren aan.",
+      "lines": [
+        {
+          "y": 288.3453063964844,
+          "text": "3 Steek M6-bouten door het product in"
+        },
+        {
+          "y": 299.0757751464844,
+          "text": "de gaten en draai de M6-moeren aan."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.7",
+      "physical_page": 112,
+      "rect": [
+        20,
+        416.722412109375,
+        350,
+        431.1024169921875
+      ],
+      "text": "7.7 Het product aansluiten op een draagbaar powerstation",
+      "lines": [
+        {
+          "y": 417.722412109375,
+          "text": "7.7 Het product aansluiten op een draagbaar powerstation"
+        }
+      ]
+    },
+    {
+      "role": "connection-steps",
+      "physical_page": 112,
+      "rect": [
+        20,
+        433.722412109375,
+        350,
+        503
+      ],
+      "text": "1. Sluit de Anderson-connector van de ingangskabel aan op de ingangspoort van het product. 2. Sluit de Anderson-connector van de ACC-kabel aan op de ACC-poort van het product. 3. Sluit de Anderson-connector van de uitgangskabel aan op de uitgangspoort van het product. 4. Sluit de DC8020-connector van de uitgangskabel aan op het draagbare powerstation.",
+      "lines": [
+        {
+          "y": 434.6200866699219,
+          "text": "1. Sluit de Anderson-connector van de ingangskabel aan op de ingangspoort van het product."
+        },
+        {
+          "y": 443.0201110839844,
+          "text": "2. Sluit de Anderson-connector van de ACC-kabel aan op de ACC-poort van het product."
+        },
+        {
+          "y": 451.42010498046875,
+          "text": "3. Sluit de Anderson-connector van de uitgangskabel aan op de uitgangspoort van het product."
+        },
+        {
+          "y": 459.8200988769531,
+          "text": "4. Sluit de DC8020-connector van de uitgangskabel aan op het draagbare powerstation."
+        }
+      ]
+    },
+    {
+      "role": "connection-acc",
+      "physical_page": 113,
+      "rect": [
+        40,
+        130,
+        121,
+        189.59060668945312
+      ],
+      "text": "ACC-kabel",
+      "lines": [
+        {
+          "y": 148.30130004882812,
+          "text": "ACC-kabel"
+        }
+      ]
+    },
+    {
+      "role": "connection-output",
+      "physical_page": 113,
+      "rect": [
+        121,
+        150,
+        206,
+        189.59060668945312
+      ],
+      "text": "Uitgangskabel",
+      "lines": [
+        {
+          "y": 166.7742919921875,
+          "text": "Uitgangskabel"
+        }
+      ]
+    },
+    {
+      "role": "connection-input",
+      "physical_page": 113,
+      "rect": [
+        206,
+        150,
+        356,
+        189.59060668945312
+      ],
+      "text": "Ingangskabel met zekering",
+      "lines": [
+        {
+          "y": 169.21728515625,
+          "text": "Ingangskabel met zekering"
+        }
+      ]
+    },
+    {
+      "role": "heading:7.8",
+      "physical_page": 113,
+      "rect": [
+        20,
+        189.59060668945312,
+        350,
+        203.97061157226562
+      ],
+      "text": "7.8 Controles na installatie",
+      "lines": [
+        {
+          "y": 190.59060668945312,
+          "text": "7.8 Controles na installatie"
+        }
+      ]
+    },
+    {
+      "role": "post-checks",
+      "physical_page": 113,
+      "rect": [
+        20,
+        206.59060668945312,
+        350,
+        286.1242980957031
+      ],
+      "text": "1. Controleer of alle schroeven in het bedradingssysteem stevig zijn aangedraaid. 2. Inspecteer en zet alle bedrading vast om slijtage of losraken door beweging van het voertuig te voorkomen. 3. Voordat u het voertuig start, moet u ervoor zorgen dat alle bedrading compleet is en dat schroeven en kabels in goede staat verkeren. 4. Na het starten van het voertuig drukt u kort op de aan/uit-knop om het product in te schakelen. Als het indicatielampje continu groen brandt, is de installatie geslaagd.",
+      "lines": [
+        {
+          "y": 210.21578979492188,
+          "text": "1. Controleer of alle schroeven in het bedradingssysteem stevig zijn aangedraaid."
+        },
+        {
+          "y": 218.61578369140625,
+          "text": "2. Inspecteer en zet alle bedrading vast om slijtage of losraken door beweging van het voertuig te"
+        },
+        {
+          "y": 227.01577758789062,
+          "text": "voorkomen."
+        },
+        {
+          "y": 235.415771484375,
+          "text": "3. Voordat u het voertuig start, moet u ervoor zorgen dat alle bedrading compleet is en dat"
+        },
+        {
+          "y": 243.81576538085938,
+          "text": "schroeven en kabels in goede staat verkeren."
+        },
+        {
+          "y": 252.21575927734375,
+          "text": "4. Na het starten van het voertuig drukt u kort op de aan/uit-knop om het product in te schakelen."
+        },
+        {
+          "y": 260.6157531738281,
+          "text": "Als het indicatielampje continu groen brandt, is de installatie geslaagd."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.9",
+      "physical_page": 113,
+      "rect": [
+        20,
+        285.1242980957031,
+        350,
+        299.5043029785156
+      ],
+      "text": "7.9 Voorschriften bij dagelijks gebruik",
+      "lines": [
+        {
+          "y": 286.1242980957031,
+          "text": "7.9 Voorschriften bij dagelijks gebruik"
+        }
+      ]
+    },
+    {
+      "role": "fcc-heading",
+      "physical_page": 113,
+      "rect": [
+        48,
+        437.8960876464844,
+        350,
+        450.8960876464844
+      ],
+      "text": "FCC-conformiteitsverklaring",
+      "lines": [
+        {
+          "y": 438.8960876464844,
+          "text": "FCC-conformiteitsverklaring"
+        }
+      ]
+    },
+    {
+      "role": "fcc-body",
+      "physical_page": 113,
+      "rect": [
+        48,
+        450.8960876464844,
+        350,
+        503
+      ],
+      "text": "Dit apparaat voldoet aan deel 15 van de FCC-regels. Voor het gebruik gelden de volgende twee voorwaarden: (1) Dit apparaat mag geen schadelijke storing veroorzaken, en (2) dit apparaat moet alle ontvangen storing accepteren, inclusief storing die ongewenste werking kan veroorzaken.",
+      "lines": [
+        {
+          "y": 447.29608154296875,
+          "text": "Dit apparaat voldoet aan deel 15 van de FCC-regels. Voor het gebruik gelden de volgende"
+        },
+        {
+          "y": 455.69610595703125,
+          "text": "twee voorwaarden: (1) Dit apparaat mag geen schadelijke storing veroorzaken, en (2) dit"
+        },
+        {
+          "y": 464.0960998535156,
+          "text": "apparaat moet alle ontvangen storing accepteren, inclusief storing die ongewenste werking"
+        },
+        {
+          "y": 472.49609375,
+          "text": "kan veroorzaken."
+        }
+      ]
+    },
+    {
+      "role": "daily-precautions",
+      "physical_page": 113,
+      "rect": [
+        20,
+        302.1242980957031,
+        350,
+        437.8960876464844
+      ],
+      "text": "• Trek niet hard aan de bedrading bij het loskoppelen van het product om schade te voorkomen. • Bij langdurig gebruik kan de behuizing van het product opwarmen. Vermijd direct contact om brandwonden te voorkomen. • Controleer de bedrading elke maand om ervoor te zorgen dat de OT-klemmen stevig zijn aangesloten en dat de draden geen scheuren, slijtage of corrosie vertonen. • Gebruik een droge, zachte doek of tissue om het product schoon te maken. Was het product niet direct met water. • Wanneer u het product gebruikt, dient u ervoor te zorgen dat er in geen enkele richting voorwerpen binnen een afstand van 20 cm van het product worden geplaatst. Dit voorkomt dat de warmte de omliggende voorwerpen beïnvloedt. • Als veroudering, schade of andere problemen worden gevonden aan het product of de kabels, stop dan onmiddellijk met het gebruik en laat het product repareren of vervangen. • Schakel de stroom uit wanneer het product niet wordt gebruikt.",
+      "lines": [
+        {
+          "y": 304.216796875,
+          "text": "• Trek niet hard aan de bedrading bij het loskoppelen van het product om schade te voorkomen."
+        },
+        {
+          "y": 312.6167907714844,
+          "text": "• Bij langdurig gebruik kan de behuizing van het product opwarmen. Vermijd direct contact om"
+        },
+        {
+          "y": 321.01678466796875,
+          "text": "brandwonden te voorkomen."
+        },
+        {
+          "y": 329.4167785644531,
+          "text": "• Controleer de bedrading elke maand om ervoor te zorgen dat de OT-klemmen stevig zijn"
+        },
+        {
+          "y": 337.8167724609375,
+          "text": "aangesloten en dat de draden geen scheuren, slijtage of corrosie vertonen."
+        },
+        {
+          "y": 346.2167663574219,
+          "text": "• Gebruik een droge, zachte doek of tissue om het product schoon te maken. Was het product niet"
+        },
+        {
+          "y": 354.61676025390625,
+          "text": "direct met water."
+        },
+        {
+          "y": 363.0167541503906,
+          "text": "• Wanneer u het product gebruikt, dient u ervoor te zorgen dat er in geen enkele richting voorwerpen"
+        },
+        {
+          "y": 371.416748046875,
+          "text": "binnen een afstand van 20 cm van het product worden geplaatst. Dit voorkomt dat de warmte de"
+        },
+        {
+          "y": 379.8167419433594,
+          "text": "omliggende voorwerpen beïnvloedt."
+        },
+        {
+          "y": 388.21673583984375,
+          "text": "• Als veroudering, schade of andere problemen worden gevonden aan het product of de kabels, stop"
+        },
+        {
+          "y": 396.6167297363281,
+          "text": "dan onmiddellijk met het gebruik en laat het product repareren of vervangen."
+        },
+        {
+          "y": 405.0167541503906,
+          "text": "• Schakel de stroom uit wanneer het product niet wordt gebruikt."
+        }
+      ]
+    },
+    {
+      "role": "heading:8.",
+      "physical_page": 114,
+      "rect": [
+        20,
+        25.722999572753906,
+        350,
+        45.39099884033203
+      ],
+      "text": "8. GARANTIE",
+      "lines": [
+        {
+          "y": 26.722999572753906,
+          "text": "8. GARANTIE"
+        }
+      ]
+    },
+    {
+      "role": "warranty-intro",
+      "physical_page": 114,
+      "rect": [
+        20,
+        49,
+        350,
+        77
+      ],
+      "text": "We bieden onze garantie alleen aan klanten die aankopen bij de officiële Jackery-website, Jackery-merkplatformen van derden of lokale erkende dealers.",
+      "lines": [
+        {
+          "y": 53.6045036315918,
+          "text": "We bieden onze garantie alleen aan klanten die aankopen bij de officiële Jackery-website,"
+        },
+        {
+          "y": 62.00449752807617,
+          "text": "Jackery-merkplatformen van derden of lokale erkende dealers."
+        }
+      ]
+    },
+    {
+      "role": "warranty-local-law-note",
+      "physical_page": 114,
+      "rect": [
+        20,
+        77,
+        350,
+        98.03988647460938
+      ],
+      "text": "*De garantieperiode en details kunnen variëren volgens lokale wetten, voorschriften en erkende dealers.",
+      "lines": [
+        {
+          "y": 79.84048461914062,
+          "text": "*De garantieperiode en details kunnen variëren volgens lokale wetten, voorschriften en erkende"
+        },
+        {
+          "y": 88.240478515625,
+          "text": "dealers."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-0",
+      "physical_page": 114,
+      "rect": [
+        20,
+        97.03988647460938,
+        350,
+        111.41988372802734
+      ],
+      "text": "Beperkte garantie",
+      "lines": [
+        {
+          "y": 98.03988647460938,
+          "text": "Beperkte garantie"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-0",
+      "physical_page": 114,
+      "rect": [
+        20,
+        111.41988372802734,
+        350,
+        183.55068969726562
+      ],
+      "text": "Jackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en materiaalfouten bij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de sectie 'Garantieperiode' hieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen. In deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij aanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere aansprakelijkheid te aanvaarden in verband met de verkoop van onze producten.",
+      "lines": [
+        {
+          "y": 112.09646606445312,
+          "text": "Jackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van"
+        },
+        {
+          "y": 120.4964599609375,
+          "text": "fabricage- en materiaalfouten bij normaal consumentengebruik gedurende de toepasselijke"
+        },
+        {
+          "y": 128.89645385742188,
+          "text": "garantieperiode, zoals vermeld in de sectie 'Garantieperiode' hieronder, onder voorbehoud van de"
+        },
+        {
+          "y": 137.29644775390625,
+          "text": "hieronder uiteengezette uitsluitingen."
+        },
+        {
+          "y": 145.69644165039062,
+          "text": "In deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery"
+        },
+        {
+          "y": 154.096435546875,
+          "text": "uiteengezet. Wij aanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om"
+        },
+        {
+          "y": 162.49642944335938,
+          "text": "namens ons enige andere aansprakelijkheid te aanvaarden in verband met de verkoop van onze"
+        },
+        {
+          "y": 170.89642333984375,
+          "text": "producten."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-1",
+      "physical_page": 114,
+      "rect": [
+        20,
+        183.55068969726562,
+        350,
+        197.93069458007812
+      ],
+      "text": "Garantieperiode",
+      "lines": [
+        {
+          "y": 184.55068969726562,
+          "text": "Garantieperiode"
+        }
+      ]
+    },
+    {
+      "role": "warranty-badge",
+      "physical_page": 114,
+      "rect": [
+        20,
+        197.93069458007812,
+        111,
+        274.639892578125
+      ],
+      "text": "2 JAAR Standaardgarantie",
+      "lines": [
+        {
+          "y": 200.5380096435547,
+          "text": "2"
+        },
+        {
+          "y": 240.92010498046875,
+          "text": "JAAR"
+        },
+        {
+          "y": 256.5268859863281,
+          "text": "Standaardgarantie"
+        }
+      ]
+    },
+    {
+      "role": "warranty-period",
+      "physical_page": 114,
+      "rect": [
+        111,
+        197.93069458007812,
+        350,
+        274.639892578125
+      ],
+      "text": "De standaard garantieperiode voor de Jackery DC-DC-oplader is 24 maanden. In alle gevallen gaat de garantieperiode in op de datum van aankoop door de oorspronkelijke consument-koper. Om de startdatum van de garantieperiode te bepalen, is de aankoopbon van de eerste consumentenaankoop of ander redelijk bewijsstuk vereist.",
+      "lines": [
+        {
+          "y": 201.62643432617188,
+          "text": "De standaard garantieperiode voor de Jackery DC-DC-oplader is 24"
+        },
+        {
+          "y": 210.02642822265625,
+          "text": "maanden. In alle gevallen gaat de garantieperiode in op de datum"
+        },
+        {
+          "y": 218.42642211914062,
+          "text": "van aankoop door de oorspronkelijke consument-koper. Om de"
+        },
+        {
+          "y": 226.826416015625,
+          "text": "startdatum van de garantieperiode te bepalen, is de aankoopbon van"
+        },
+        {
+          "y": 235.22640991210938,
+          "text": "de eerste consumentenaankoop of ander redelijk bewijsstuk vereist."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-2",
+      "physical_page": 114,
+      "rect": [
+        20,
+        274.639892578125,
+        350,
+        289.0198974609375
+      ],
+      "text": "Garantieservice",
+      "lines": [
+        {
+          "y": 275.639892578125,
+          "text": "Garantieservice"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-2",
+      "physical_page": 114,
+      "rect": [
+        20,
+        289.0198974609375,
+        350,
+        354.3934020996094
+      ],
+      "text": "Als een Jackery-product tijdens de toepasselijke garantieperiode niet naar behoren functioneert door een fabricage- of materiaalfout, zal Jackery op eigen kosten de garantieservice verlenen, in overeenstemming met de toepasselijke lokale wetgeving en het regionale beleid van Jackery inzake service na verkoop. De garantieservice kan bestaan uit reparatie, vervanging of omruiling van het product. Een gerepareerd, vervangen of geruild product blijft gedekt gedurende de resterende garantieperiode van het oorspronkelijke product.",
+      "lines": [
+        {
+          "y": 290.1835021972656,
+          "text": "Als een Jackery-product tijdens de toepasselijke garantieperiode niet naar behoren functioneert"
+        },
+        {
+          "y": 298.5834655761719,
+          "text": "door een fabricage- of materiaalfout, zal Jackery op eigen kosten de garantieservice verlenen, in"
+        },
+        {
+          "y": 306.9834899902344,
+          "text": "overeenstemming met de toepasselijke lokale wetgeving en het regionale beleid van Jackery"
+        },
+        {
+          "y": 315.3834533691406,
+          "text": "inzake service na verkoop. De garantieservice kan bestaan uit reparatie, vervanging of omruiling"
+        },
+        {
+          "y": 323.7834777832031,
+          "text": "van het product."
+        },
+        {
+          "y": 332.1834411621094,
+          "text": "Een gerepareerd, vervangen of geruild product blijft gedekt gedurende de resterende"
+        },
+        {
+          "y": 340.5834655761719,
+          "text": "garantieperiode van het oorspronkelijke product."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-3",
+      "physical_page": 114,
+      "rect": [
+        20,
+        354.3934020996094,
+        350,
+        368.7734069824219
+      ],
+      "text": "Beperkt tot de oorspronkelijke koper",
+      "lines": [
+        {
+          "y": 355.3934020996094,
+          "text": "Beperkt tot de oorspronkelijke koper"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-3",
+      "physical_page": 114,
+      "rect": [
+        20,
+        368.7734069824219,
+        350,
+        395.59649658203125
+      ],
+      "text": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet overdraagbaar aan een volgende eigenaar.",
+      "lines": [
+        {
+          "y": 369.3365173339844,
+          "text": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet"
+        },
+        {
+          "y": 377.7364807128906,
+          "text": "overdraagbaar aan een volgende eigenaar."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-4",
+      "physical_page": 114,
+      "rect": [
+        20,
+        395.59649658203125,
+        350,
+        409.97650146484375
+      ],
+      "text": "Uitsluitingen",
+      "lines": [
+        {
+          "y": 396.59649658203125,
+          "text": "Uitsluitingen"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-4",
+      "physical_page": 114,
+      "rect": [
+        20,
+        409.97650146484375,
+        350,
+        466.6307067871094
+      ],
+      "text": "De garantie van Jackery is niet van toepassing op: Onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal consumentengebruik, zoals toegestaan in de huidige productliteratuur van Jackery. Een poging tot reparatie door iemand anders dan een erkend servicecentrum. Elk product dat via een online veilinghuis is gekocht.",
+      "lines": [
+        {
+          "y": 410.1020812988281,
+          "text": "De garantie van Jackery is niet van toepassing op:"
+        },
+        {
+          "y": 418.5021057128906,
+          "text": "Onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal"
+        },
+        {
+          "y": 426.902099609375,
+          "text": "consumentengebruik, zoals toegestaan in de huidige productliteratuur van Jackery."
+        },
+        {
+          "y": 435.3020935058594,
+          "text": "Een poging tot reparatie door iemand anders dan een erkend servicecentrum."
+        },
+        {
+          "y": 443.7021179199219,
+          "text": "Elk product dat via een online veilinghuis is gekocht."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-5",
+      "physical_page": 114,
+      "rect": [
+        20,
+        466.6307067871094,
+        350,
+        481.0107116699219
+      ],
+      "text": "Interpretatierechten",
+      "lines": [
+        {
+          "y": 467.6307067871094,
+          "text": "Interpretatierechten"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-5",
+      "physical_page": 114,
+      "rect": [
+        20,
+        481.0107116699219,
+        350,
+        504
+      ],
+      "text": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet overdraagbaar aan een volgende eigenaar.",
+      "lines": [
+        {
+          "y": 483.2182922363281,
+          "text": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet"
+        },
+        {
+          "y": 491.6182861328125,
+          "text": "overdraagbaar aan een volgende eigenaar."
+        }
+      ]
+    }
+  ],
+  "unassigned": [
+    {
+      "page": 101,
+      "bbox": [
+        29.00779914855957,
+        27.17922592163086,
+        45.38808822631836,
+        44.721439361572266
+      ],
+      "text": "NL"
+    },
+    {
+      "page": 101,
+      "bbox": [
+        238.14990234375,
+        28.456565856933594,
+        273.60845947265625,
+        42.43234634399414
+      ],
+      "text": "Model:"
+    },
+    {
+      "page": 101,
+      "bbox": [
+        276.4606628417969,
+        28.456565856933594,
+        338.6260986328125,
+        42.43234634399414
+      ],
+      "text": "JA-AD600A"
+    },
+    {
+      "page": 101,
+      "bbox": [
+        51.186500549316406,
+        34.816017150878906,
+        85.74942016601562,
+        42.75965118408203
+      ],
+      "text": "Nederlands"
+    },
+    {
+      "page": 102,
+      "bbox": [
+        176.1143035888672,
+        421.88519287109375,
+        187.0343017578125,
+        430.2851867675781
+      ],
+      "text": "259"
+    },
+    {
+      "page": 102,
+      "bbox": [
+        188.7843017578125,
+        421.88519287109375,
+        200.65631103515625,
+        430.2851867675781
+      ],
+      "text": "mm"
+    },
+    {
+      "page": 102,
+      "bbox": [
+        73.92939758300781,
+        328.5574035644531,
+        82.32939910888672,
+        344.2373962402344
+      ],
+      "text": "154,5"
+    },
+    {
+      "page": 102,
+      "bbox": [
+        73.92939758300781,
+        345.9873962402344,
+        82.32939910888672,
+        357.8594055175781
+      ],
+      "text": "mm"
+    },
+    {
+      "page": 102,
+      "bbox": [
+        73.92939758300781,
+        443.5325012207031,
+        82.32939910888672,
+        455.29248046875
+      ],
+      "text": "39,3"
+    },
+    {
+      "page": 102,
+      "bbox": [
+        73.92939758300781,
+        457.04248046875,
+        82.32939910888672,
+        468.91448974609375
+      ],
+      "text": "mm"
+    },
+    {
+      "page": 102,
+      "bbox": [
+        176.0272979736328,
+        408.2944030761719,
+        187.12229919433594,
+        416.69439697265625
+      ],
+      "text": "225"
+    },
+    {
+      "page": 102,
+      "bbox": [
+        188.87229919433594,
+        408.2944030761719,
+        200.7443084716797,
+        416.69439697265625
+      ],
+      "text": "mm"
+    },
+    {
+      "page": 103,
+      "bbox": [
+        64.80470275878906,
+        58.176212310791016,
+        70.67670440673828,
+        67.33621215820312
+      ],
+      "text": "A"
+    },
+    {
+      "page": 103,
+      "bbox": [
+        65.26270294189453,
+        148.0908203125,
+        70.22270202636719,
+        157.69081115722656
+      ],
+      "text": "B"
+    },
+    {
+      "page": 103,
+      "bbox": [
+        135.6273956298828,
+        148.0908203125,
+        141.58740234375,
+        157.69081115722656
+      ],
+      "text": "C"
+    },
+    {
+      "page": 103,
+      "bbox": [
+        212.08059692382812,
+        148.0908203125,
+        217.84059143066406,
+        157.69081115722656
+      ],
+      "text": "D"
+    },
+    {
+      "page": 103,
+      "bbox": [
+        312.5111999511719,
+        148.0908203125,
+        316.7511901855469,
+        157.69081115722656
+      ],
+      "text": "E"
+    },
+    {
+      "page": 103,
+      "bbox": [
+        65.68260192871094,
+        246.6492919921875,
+        69.80260467529297,
+        256.2492980957031
+      ],
+      "text": "F"
+    },
+    {
+      "page": 103,
+      "bbox": [
+        135.4521026611328,
+        246.6492919921875,
+        141.76409912109375,
+        256.2492980957031
+      ],
+      "text": "G"
+    },
+    {
+      "page": 103,
+      "bbox": [
+        212.24020385742188,
+        246.6492919921875,
+        217.68020629882812,
+        256.2492980957031
+      ],
+      "text": "H"
+    },
+    {
+      "page": 103,
+      "bbox": [
+        313.7074890136719,
+        246.6492919921875,
+        315.5474853515625,
+        256.2492980957031
+      ],
+      "text": "I"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        55.666500091552734,
+        290.0601501464844,
+        59.763980865478516,
+        296.4519958496094
+      ],
+      "text": "A"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        85.49800109863281,
+        284.64605712890625,
+        89.55640411376953,
+        291.03790283203125
+      ],
+      "text": "E"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        79.32469940185547,
+        326.4537658691406,
+        83.7068862915039,
+        332.8456115722656
+      ],
+      "text": "D"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        330.26458740234375,
+        275.09625244140625,
+        334.6914367675781,
+        281.48809814453125
+      ],
+      "text": "C"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        96.98829650878906,
+        296.56304931640625,
+        100.71733856201172,
+        302.95489501953125
+      ],
+      "text": "F"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        149.54299926757812,
+        311.4947509765625,
+        153.60140991210938,
+        317.8865966796875
+      ],
+      "text": "B"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        31.650400161743164,
+        414.57708740234375,
+        36.690399169921875,
+        424.1770935058594
+      ],
+      "text": "A"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        152.37399291992188,
+        414.57708740234375,
+        157.33399963378906,
+        424.1770935058594
+      ],
+      "text": "B"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        262.7705078125,
+        414.57708740234375,
+        268.7304992675781,
+        424.1770935058594
+      ],
+      "text": "C"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        31.29050064086914,
+        436.91009521484375,
+        37.050498962402344,
+        446.5101013183594
+      ],
+      "text": "D"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        152.73390197753906,
+        436.91009521484375,
+        156.97390747070312,
+        446.5101013183594
+      ],
+      "text": "E"
+    },
+    {
+      "page": 107,
+      "bbox": [
+        263.6903991699219,
+        436.91009521484375,
+        267.8103942871094,
+        446.5101013183594
+      ],
+      "text": "F"
+    },
+    {
+      "page": 111,
+      "bbox": [
+        258.35400390625,
+        106.63795471191406,
+        274.6737365722656,
+        115.55389404296875
+      ],
+      "text": "＞20"
+    },
+    {
+      "page": 111,
+      "bbox": [
+        276.2001953125,
+        106.3840560913086,
+        287.08355712890625,
+        115.18878173828125
+      ],
+      "text": "cm"
+    }
+  ]
+}

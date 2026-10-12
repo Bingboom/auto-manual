@@ -269,6 +269,7 @@ class OperationStorySpacing:
             baseline_panel_height=self.text_measure * 0.545 + 2.0,
             params=self.writer.params,
             first_operation_h2=(is_h2 and not self.h2_seen),
+            inter_section_only=self.writer.registered_components,
         )
         if is_h2:
             self.h2_seen = True

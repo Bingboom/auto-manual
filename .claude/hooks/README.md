@@ -6,7 +6,7 @@ Active hooks must be declared in `.claude/settings.json`; files in this director
 
 | Hook | Event / matcher | Script | Purpose |
 | --- | --- | --- | --- |
-| derived-surface-guard | `PostToolUse` / `Bash` | `derived_surface_guard.py` | After `build.py check\|sync-review\|publish`, warn (exit 2, stderr → agent) when tracked derived surfaces (`docs/_build`, `docs/index.rst`, `docs/_review`) got dirtied, so verification side-effects are restored instead of leaking into unrelated PRs (AGENTS.md §6). Silent (exit 0) otherwise; never blocks — the command already ran. |
+| derived-surface-guard | `PostToolUse` / `Bash` | `derived_surface_guard.py` | After `build.py check\|sync-review\|publish`, warn (exit 2, stderr → agent) when tracked derived surfaces (`docs/_build`, `docs/index.rst`, `docs/_review`) got dirtied, so verification side-effects are restored instead of leaking into unrelated PRs (AGENTS.md §6). It checks the checkout the build ran in (following `cd` steps and the `build.py` path), not the shared project directory, names that checkout in the warning, and asks to restore only what the build changed. Silent (exit 0) otherwise; never blocks, because the command already ran. Tests: `tests/test_derived_surface_guard.py`. |
 
 This hook only fires inside Claude Code. Its **git-layer counterpart** —
 `scripts/derived_surface_push_check.py`, wired into `.githooks/pre-push` (all

@@ -1,6 +1,6 @@
 # Code Style Guide
 
-Updated: 2026-03-17
+Updated: 2026-09-30
 
 ## 1. Role
 
@@ -22,7 +22,7 @@ Use these docs for those topics:
 ### 2.1 Entrypoint and Orchestration
 
 - [`../build.py`](../build.py)
-- [`../tools/build_docs.py`](../tools/build_docs.py)
+- [`../tools/build/docs.py`](../tools/build/docs.py)
 
 Responsibilities:
 
@@ -78,7 +78,7 @@ Responsibilities:
 
 - [`../tools/validate_config.py`](../tools/validate_config.py)
 - [`../tools/validate_layout_params.py`](../tools/validate_layout_params.py)
-- [`../tools/check_docs.py`](../tools/check_docs.py)
+- [`../tools/check/docs.py`](../tools/check/docs.py)
 - [`../tools/check_identity_drift.py`](../tools/check_identity_drift.py)
 - [`../tools/page_contracts.py`](../tools/page_contracts.py)
 
@@ -91,7 +91,7 @@ Responsibilities:
 
 ### 2.7 Export, Reporting, and Release
 
-- [`../tools/word_bundle*.py`](../tools)
+- [`../tools/word/`](../tools/word) (`bundle*.py`)
 - [`../tools/diff_report.py`](../tools/diff_report.py)
 - [`../tools/release_manifest.py`](../tools/release_manifest.py)
 
@@ -100,6 +100,102 @@ Responsibilities:
 - format-specific export
 - revision reporting
 - release traceability
+
+### 2.8 Build Queue and Delivery
+
+- [`../tools/build_queue/`](../tools/build_queue) (since CQ-1.4: `process_build_queue*.py`, `process_review_start_queue*.py`, and the `queue_*.py` family without its prefix)
+- [`../tools/dingtalk/`](../tools/dingtalk) (the `listen_*` / `message_*` modules moved into `tools/build_queue/`)
+
+Responsibilities:
+
+- turn Feishu queue rows into build, review-start, and publish runs
+- own queue state transitions, row write-back, and delivery mirrors
+- details: [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md) §5 and [`dev/queue_state_model.md`](dev/queue_state_model.md)
+
+### 2.9 Cloud-Doc Backport
+
+- [`../tools/backport/`](../tools/backport) (the `cloud_doc_backport*` family since CQ-1.3, and the `backport_*` tools without their prefix)
+
+Responsibilities:
+
+- diff a reviewed cloud doc against its review pages and route each delta to the surface that owns it
+- write only through the gated review, template-sync, and source-table paths
+- details: [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md) §6
+
+### 2.10 Source Intake and Data Sync
+
+- `sync_data*.py`, `source_*.py`, `data_*.py`, [`../tools/utils/`](../tools/utils) `spec_master*.py`
+
+Responsibilities:
+
+- export Feishu source tables into phase2 snapshots and keep their contracts
+- structured spec-sheet intake into the source tables
+- details: [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md) §7 and [`spec_master_user_guide.md`](spec_master_user_guide.md)
+
+### 2.11 Web, Manual IR, and Components
+
+- `web_*.py`, `document_*.py`, `frozen_ai_*.py`, `frozen_pdf_*.py`
+- [`../tools/manual_ir/`](../tools/manual_ir), [`../tools/component_specs/`](../tools/component_specs), [`../tools/page_plan/`](../tools/page_plan)
+
+Responsibilities:
+
+- whole-document Web source → `manual-ir` → registered ComponentSpecs → the one shared Web renderer
+- frozen AI/PDF intake adapters that feed the same IR, never a second renderer
+- details: the "Whole-document Web boundary" in [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md) and [`dev/web_publish_pipeline.md`](dev/web_publish_pipeline.md)
+
+### 2.12 IDML / InDesign
+
+- [`../tools/idml/`](../tools/idml), [`../tools/export_idml.py`](../tools/export_idml.py), `idml_rst_*.py`
+- details: [`dev/idml_module_map.md`](dev/idml_module_map.md)
+
+### 2.13 Read the Docs Portal
+
+- `rtd_*.py`, [`../tools/rtd_portal_assets/`](../tools/rtd_portal_assets)
+- details: [`dev/rtd_manual_portal.md`](dev/rtd_manual_portal.md)
+
+### 2.14 Assets
+
+- `asset_*.py`, `bundle_asset_*.py`, [`../tools/asset_pipeline/`](../tools/asset_pipeline)
+- details: [`dev/asset_ai_master_intake_plan.md`](dev/asset_ai_master_intake_plan.md)
+
+### 2.15 Maintainability Guardrails
+
+- [`../tools/check_maintainability_guardrails.py`](../tools/check_maintainability_guardrails.py): hotspot line caps plus the language-literal and per-function complexity ratchets
+- [`../tools/check_doc_link_integrity.py`](../tools/check_doc_link_integrity.py): relative doc links plus the plan/review lifecycle `Status:` rule
+- [`../tools/env_preflight.py`](../tools/env_preflight.py): advisory drift against the pinned runtime and `requirements.lock`
+
+Responsibilities:
+
+- block new debt; existing debt lives in reviewed baselines under `data/` that may only shrink
+- a baseline change is part of the PR that causes it and is explained in the PR description
+
+### 2.16 Target Subpackages (proposed)
+
+`tools/` is still mostly flat: a prefix names the domain. Workstream Y
+([`dev/code_quality_iterability_plan.md`](dev/code_quality_iterability_plan.md) CQ-1)
+moves each family into a real subpackage. The names below are proposals.
+
+| Domain | Today | Proposed package |
+| --- | --- | --- |
+| Build orchestration | `build_*.py`, `build_docs_*.py` | `tools/build/` (`build_docs*` moved 2026-10-03) |
+| Quality gates | `check_*.py`, `validate_*.py`, `content_lint*.py` | `tools/check/` (`check_docs*` moved 2026-10-03) |
+| Build queue and delivery | `process_*queue*.py`, `queue_*.py`, `listen_*.py`, `message_*.py` | `tools/build_queue/` (not `tools/queue/`: a `queue` package would shadow the stdlib module whenever `tools/` is on `sys.path`; `process_*queue*`/`queue_*`/`listen_*`/`message_*` moved 2026-10-03) |
+| Cloud-doc backport | `cloud_doc_backport*.py`, `backport_*.py` | `tools/backport/` (CQ-1.3 pilot, `cloud_doc_backport*` moved 2026-10-03) |
+| Web delivery | `web_*.py`, `document_*.py`, `frozen_*.py` | `tools/web/` (`web_*` moved without its prefix; `frozen_*`/`document_*` keep theirs; 2026-10-03) |
+| Read the Docs portal | `rtd_*.py` | `tools/rtd/` (moved 2026-10-03) |
+| Word export | `word_bundle*.py` | `tools/word/` (moved 2026-10-03) |
+| IDML | `export_idml.py`, `idml_rst_*.py` | existing `tools/idml/` |
+| Source intake and sync | `sync_data*.py`, `source_*.py`, `data_*.py` | `tools/data/` (moved 2026-10-03; `data_` prefix dropped) |
+
+`tools/manual_ir/`, `tools/component_specs/`, `tools/csv_pages/`, and
+`tools/utils/` are already packages and stay where they are.
+
+Rules for the migration:
+
+- one family per PR, with a thin re-export shim at each old module path until no caller or test uses it (CQ-1.4's shims were removed in CQ-1.5)
+- run modules with `python -m tools.<pkg>.<module>` from the repo root; package modules carry no script bootstrap code, and only true script entry points keep it
+- moving a hotspot module needs operator confirmation first ([`../AGENTS.md`](../AGENTS.md) §8.4)
+- until its family has moved, a new module keeps the family prefix at the top of `tools/`
 
 ## 3. Change Placement Rules
 

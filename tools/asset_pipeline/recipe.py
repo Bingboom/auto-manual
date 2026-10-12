@@ -32,7 +32,7 @@ SHA256_RE = re.compile(r"^[0-9a-fA-F]{64}$")
 SOURCE_KEY_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._/-]*$")
 SAFE_PATH_RE = re.compile(r"^[A-Za-z0-9._/-]+$")
 LOCALE_RE = re.compile(r"^(?:[a-z]{2,3}(?:-[A-Z]{2})?|mul|und)$")
-ALLOWED_OUTPUT_FORMATS = frozenset({"pdf", "png"})
+ALLOWED_OUTPUT_FORMATS = frozenset({"pdf", "png", "svg"})
 ALLOWED_GRAPHICS_MODES = frozenset({"preserve", "remove_if_touched"})
 SENSITIVE_TOKENS = frozenset(
     {
@@ -406,6 +406,26 @@ def _transform(value: Any, location: str) -> TransformSpec:
         if first[0] < second[2] and second[0] < first[2] and first[1] < second[3] and second[1] < first[3]:
             raise _fail(location, "swapped PDF regions must not overlap")
         return TransformSpec(op=op, bbox_pt=first, other_bbox_pt=second)
+    if op == "copy_pdf_region":
+        # One-way native copy: bbox_pt is repainted with the source page's own
+        # content from other_bbox_pt (for example a same-font glyph that
+        # re-sets a mis-printed character after redact_text_region removed it).
+        _keys(data, location=location, required={"op", "bbox_pt", "other_bbox_pt"})
+        destination = _bbox(data["bbox_pt"], f"{location}.bbox_pt")
+        origin = _bbox(data["other_bbox_pt"], f"{location}.other_bbox_pt")
+        if any(
+            abs((destination[i + 2] - destination[i]) - (origin[i + 2] - origin[i])) > 0.001
+            for i in (0, 1)
+        ):
+            raise _fail(location, "copied PDF regions must have equal dimensions")
+        if (
+            destination[0] < origin[2]
+            and origin[0] < destination[2]
+            and destination[1] < origin[3]
+            and origin[1] < destination[3]
+        ):
+            raise _fail(location, "copied PDF regions must not overlap")
+        return TransformSpec(op=op, bbox_pt=destination, other_bbox_pt=origin)
     if op in {"crop", "whiteout"}:
         _keys(data, location=location, required={"op", "bbox_pt"})
         return TransformSpec(op=op, bbox_pt=_bbox(data["bbox_pt"], f"{location}.bbox_pt"))
@@ -609,6 +629,14 @@ def _scope(value: Any, location: str) -> ScopeSpec:
     return ScopeSpec(models=models, regions=regions, locales=locales)
 
 
+def _validate_svg_outputs(outputs, transforms, location):
+    if not any(output.format == "svg" for output in outputs):
+        return
+    retained = next((t for t in transforms if t.op == "retain_vector_drawings"), None)
+    if retained is None or retained.fill_rgb_overrides or retained.stroke_suppressed_indices:
+        raise _fail(f"{location}.outputs", "SVG requires unchanged retain_vector_drawings")
+
+
 def _assets(value: Any, *, source: SourceSpec) -> tuple[AssetSpec, ...]:
     assets: list[AssetSpec] = []
     output_paths: set[str] = set()
@@ -665,6 +693,7 @@ def _assets(value: Any, *, source: SourceSpec) -> tuple[AssetSpec, ...]:
             _output(item, f"{location}.outputs[{item_index}]")
             for item_index, item in enumerate(_list(data["outputs"], f"{location}.outputs"))
         )
+        _validate_svg_outputs(outputs, transforms, location)
         if not outputs:
             raise _fail(f"{location}.outputs", "must contain at least one output")
         if sum(output.format == "pdf" for output in outputs) > 1:

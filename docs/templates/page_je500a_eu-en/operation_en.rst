@@ -54,6 +54,7 @@ LCD SCREEN ON/OFF
    :width: 42%
 
 .. list-table::
+   :class: hb-source-lcd-actions
    :header-rows: 1
    :widths: 25 18 57
 

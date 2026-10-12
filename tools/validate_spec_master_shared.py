@@ -7,18 +7,15 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-try:
-    from tools.script_bootstrap import bootstrap_repo_root
-except ImportError:  # pragma: no cover - direct script execution fallback
-    from script_bootstrap import bootstrap_repo_root
 
-ROOT = bootstrap_repo_root(__file__, parent_count=1)
+ROOT = Path(__file__).resolve().parents[1]
 
-from tools.build_docs import BuildTarget, load_config, resolve_build_targets  # noqa: E402
+from tools.build.docs import BuildTarget, load_config as load_config, resolve_build_targets  # noqa: E402
 from tools.config_pages import GeneratedPage  # noqa: E402
-from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
+from tools.data.snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.draft_engine import load_draft_recipe  # noqa: E402
 from tools.page_manifest import resolve_config_pages_or_raise  # noqa: E402
+from tools.lang_registry import canonical_language  # noqa: E402
 from tools.utils.path_utils import Paths  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
     canonicalize_model_token,
@@ -28,7 +25,12 @@ from tools.utils.spec_master import (  # noqa: E402
     region_value_matches_target,
     source_language_for_row,
 )
-from tools.word_bundle_common import resolve_config_path  # noqa: E402
+from tools.word.bundle_common import resolve_config_path  # noqa: E402
+
+
+def _supported_source_language(value: str) -> bool:
+    """Validate registered output languages without changing legacy read precedence."""
+    return bool(canonical_language(value) or normalize_source_lang(value))
 
 
 @dataclass(frozen=True)

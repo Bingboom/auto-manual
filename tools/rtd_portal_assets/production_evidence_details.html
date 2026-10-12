@@ -1,0 +1,24 @@
+{% from 'production_metric_macros.html' import metric_details with context %}
+<section class="sw-section pe-section" id="activity">
+  <header class="pe-header"><div><span class="wb-kicker">PRODUCTION ACTIVITY · 周期活动</span><h2>最近实际发生了什么</h2></div></header>
+  <p class="pe-intro">{{ production.history_reason|e }}</p>
+  <div class="pe-windows">{% for window in production.windows %}<details class="pe-details"><summary>最近 {{ window.days }} 天 · {{ window.start|e }} 至 {{ window.end|e }} UTC</summary>
+    <p>半开区间 [{{ window.start|e }} 00:00, {{ window.end|e }} 00:00)，结束日不包含。计数单位应为去重事件；构建尝试、重试、成功与首次/重复发布分别统计。</p>
+    <ul class="pe-status-list">{% for label in window.metrics %}<li><span>{{ label|e }}</span><b>Not tracked yet</b></li>{% endfor %}</ul>
+    <p>来源：现有 Publish Manifest、交付和语料快照缺少完整事件历史；REV 台账不是生产事件账本。新增、更新、删除与净增长不互相替代。<a href="{{ production.guide|e }}">来源核查与口径 ↗</a></p>
+  </details>{% endfor %}</div>
+</section>
+<section class="sw-section pe-section" id="asset-growth">
+  <header class="pe-header"><div><span class="wb-kicker">ASSET GROWTH · 资产存量</span><h2>资产积累与使用证据</h2></div></header>
+  <p class="pe-intro">各类资产保留各自单位；登记、引用和实际消费分别标注。新增量需要事件历史，不能用文件数量、复制或月度净变化代替。窄屏可左右滑动表格。</p>
+  <div class="pe-table-wrap" role="region" aria-label="资产总览，可横向滚动" tabindex="0"><table class="pe-table"><thead><tr><th>Asset / Current Total</th><th>Added This Period<br>7 / 30 天</th><th>Consuming Targets</th><th>Consumption Evidence</th></tr></thead><tbody>
+  {% for item in production.assets %}<tr><td><b>{{ item.label|e }}</b><p>{{ item.display|e }} · {{ item.unit|e }}</p>{{ metric_details(item) }}</td><td>Not tracked yet</td><td>Not tracked yet{% if item.references %}<p>配置引用目标：{{ item.references.display|e }}</p>{% endif %}</td><td>{% if item.references %}<a href="#reuse">查看引用证据 ↑</a>{% else %}尚未建立可核验消费关系{% endif %}</td></tr>{% endfor %}
+  </tbody></table></div>
+</section>
+<section class="sw-section pe-section" id="agent-results">
+  <header class="pe-header"><div><span class="wb-kicker">AGENT RESULTS</span><h2>任务结果与人工介入</h2></div></header>
+  <details class="pe-details"><summary>执行结果尚未形成可靠统计 · Not tracked yet</summary>
+  <ul class="pe-status-list">{% for label in production.agents %}<li><span>{{ label|e }}</span><b>Not tracked yet</b></li>{% endfor %}</ul>
+  <p>范围：上述 7 / 30 天 UTC 窗口。缺少稳定任务 ID、执行 attempt ID、结束状态及人工介入记录，无法去重成功任务；取消、失败、进行中与重试也无法可靠分离。自动完成率与人工交接率不计算。<a href="{{ production.guide|e }}">统计契约 ↗</a></p></details>
+</section>
+<div class="pe-legend"><b>如何读这些状态</b><span><b>0</b> 有效范围内已核实为空</span><span><b>Not tracked yet</b> 尚无可靠记录或口径</span><span><b>Unavailable</b> 来源读取或计算失败</span><span><b>Not applicable</b> 不适用（例如数量指标的分母）</span></div>

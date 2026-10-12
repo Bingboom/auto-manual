@@ -11,7 +11,7 @@ ifeq ($(NO_CLEAN),1)
 NO_CLEAN_FLAG := --no-clean
 endif
 
-.PHONY: validate rst word html pdf all clean
+.PHONY: validate rst word html pdf all clean test test-fast
 
 validate:
 	$(PY) build.py validate --config $(CONFIG)
@@ -34,3 +34,9 @@ all:
 clean:
 	$(PY) build.py clean --config $(CONFIG)
 
+
+test:
+	$(PY) -m unittest
+
+test-fast:
+	$(PY) -m tests.run_fast

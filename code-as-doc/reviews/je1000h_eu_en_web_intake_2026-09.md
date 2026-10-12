@@ -1,5 +1,7 @@
 # JE-1000H EU/en Web intake — 2026-09
 
+Status: active
+
 ## Scope
 
 - Target: `JE-1000H / EU / en`
@@ -79,3 +81,273 @@ PR #1120 is merged at `fcfe46a6419a92eb751d4eed840c11e27e3538fc`; this
 candidate is rebased onto it. Its target-data regression now explicitly checks
 the source-authored parent/parameter representation and ordered power labels,
 while the generic distinct-label preservation regression remains unchanged.
+
+## 2026-09-25 App panels quarantined under the recipe gate
+
+The 18 App panels of this source (`download_panel`, `control_panel` and `connect_result_panel` for en/fr/es/de/it/uk) were recipe-approved only because neither their keys nor their risk tags
+carried a gate token (`app`, `qr`, `screenshot`, …). They are now quarantined
+with `app-ui`/`screenshot`/`localized-ui` risk tags (plus `qr` for the download
+panels); keys, outputs and hashes are unchanged, so the pages are unchanged.
+`source_manifest.json` rebinds `asset_recipe`. The operator approved the fix on
+2026-09-25.
+
+## 2026-09-25 fr–uk specification cells rebuilt from the print
+
+The live fr/es/de/it/uk specification tables showed 16–18 damaged rows out of 22
+per language. Examples: `3600 W crêt`, `7,83 A Sort` and `12 В 10`, a lost `⎓`,
+`Sortie totale CA 2` with the footnote number glued on, and English
+`Product Name`/`Charge Mode`/`1 month`. The 2026-09-15 extraction had clustered
+spans by baseline: the raised SegoeUISymbol `⎓` and cell ends fell out of their
+lines. Its self-check compared digit sequences only, so none of this failed it.
+
+The 25 specification and storage rows are now rebuilt from each block's table
+cells, split by the page's ruling lines (PDF pages 36/53/70/87/104, storage
+35/52/69/86/103). The rules, confirmed by the operator:
+
+- Wording comes from the print.
+- The house format of the reviewed frozen sources is applied: unit spacing,
+  `V~ 50 Hz`, `max.`/`máx.`, fr/es `V CC`, `-10 °C`, `1 ×`, no `ﬁ` ligature,
+  Cyrillic `В` and `мм` in Ukrainian, and French colon spacing.
+- A cell whose current text already equals the print keeps its text.
+
+Deviations from the print:
+
+- **Print defects kept on reviewed cross-model wording:**
+  - The de/it USB-C label is printed in French (`2 × Sortie USB-C`), so it reads
+    `2 × USB-C-Ausgang` / `2 × Uscita USB-C`.
+  - The German 12 V port is printed as `DC-12V-Ausgangstaste` (an output
+    button), so it reads `1 × DC 12 V-Anschluss`.
+  - Ukrainian prints the two USB-C ports as separate label rows, so they share
+    the label `2 виходи USB-C` with the port names as parameters. Superseded on
+    2026-09-27: the rows follow the print (below).
+- **Newly substituted** (both superseded on 2026-09-27; the cells follow the
+  print, below):
+  - The Italian bypass parameter is printed with the English `AC modalità
+    bypass`, so it reads `Modalità bypass`.
+  - The charge-mode parameter is not printed in fr/es/de/it, so it reads
+    `Mode de charge`, `Modo de carga`, `Lademodus` and `Modalità di ricarica`.
+    Ukrainian prints its own `Режим заряджання`.
+- **Print typos fixed:** French `Oiture:` becomes `Voiture :`; Ukrainian
+  `у байпасному режим` becomes `у байпасному режимі`.
+- **Kept as printed although it differs from English:**
+  - The German `3 × AC-Ausgang` value omits "rated".
+  - The Ukrainian DC8020 lines omit the car/PV prefixes.
+  - The de/it storage wording (`relative Luftfeuchtigkeit`, `tra … e …`)
+    replaces earlier cross-model text.
+  - Printed labels replace glossary labels, e.g. German `Ladetemperatur`. The
+    reviewed JE-2000E/JE-2000F `Ladtemperatur` is itself a typo.
+
+Verification:
+
+- **Cells changed:** 167 in 25 rows (fr 31, es 30, de 35, it 37, uk 34). No
+  source or English column is touched.
+- **Independent print check:** 249 cells, each found in the plain PDF page
+  text after canonicalisation. Only the listed substitutions are exempt.
+- **Figures:** every value keeps the English digit sequence and `⎓` count.
+- **Mapping control:** the English control lands 22/22 rows on their print
+  cells.
+- **Regression tests:** `Je1000hEuTranslatedSpecCellTests` fails 80 subtests
+  on the previous file.
+- **Trial Web build:** only the specification tables, the storage lines and the
+  one safety sentence that quotes the temperature range change.
+
+Remaining: the `Product overview` slot rows carry the same extraction damage into
+the finished overview images' alt text, through `covered_annotations`. Fixing them
+needs the five illustration manifests re-bound and is left as a follow-up.
+
+## 2026-09-25 Ukrainian footnote ② completed
+
+The Ukrainian footnote ② for the total AC output was printed without "струму"
+("…вихідних портів змінного працюють разом"). The operator ruled to add the noun
+in both JE-1000H and JE-3000C. One cell changes: `Spec_Footnotes.csv` `Text_uk`
+for `ac_total_output`. The file is re-locked in `source_manifest.json`.
+
+## 2026-09-26 Product-overview callouts and trademark note
+
+This closes the follow-up left open on 2026-09-25. The finished fr–uk overview
+figures consume their callout tables and keep the text as the image alt text
+(`covered_annotations`). That alt text carried the 2026-09-15 extraction damage:
+a lost `⎓`, truncated values (`1800 W nomi`, `12 В 10`, `…/400`), the PV/car
+prefixes dropped, the `ﬁ` ligature and `~50 Hz` spacing. It also carried the
+German print defect `DC-12V-Ausgangstaste`, which labels the 12 V socket as an
+output button.
+
+**What changed.** 41 `Spec_Master.csv` cells: the eight `Product overview` value
+slots (DC 12 V, USB-C 140 W / 30 W, USB-A, AC output, AC input, PV, car) in each
+of fr/es/de/it/uk, plus the German 12 V port label. Each value comes from its
+block's printed overview (PDF pages 25/42/59/76/93). Callouts are grouped by font
+(bold label, regular value lines) and located by column and position, which
+all six blocks share. The rules are the same as for the specification cells:
+
+- Wording comes from the print, in the house format of the reviewed frozen
+  sources. JE-3000C's print-derived overview cells are the reference.
+- Print defects use reviewed cross-model wording.
+
+The five `je1000h_eu_<lang>_illustrations.json` overview bindings are re-bound
+to the corrected tables, with the selectors unchanged. The other labels, the
+controls and the total-output row are unchanged; total output is not printed
+on this overview.
+
+**Deviations from the print:**
+
+- **German:** the 12 V port reads `12-V-DC-Anschluss`, as on JE-1000F, JE-2000E,
+  JE-2000F and JE-3000C. The figure itself stays as printed.
+- **French:** `Oiture:` becomes `Voiture :`; the truncated `1800 W nomina`
+  becomes `1800 W nominal`, as in this model's specification table.
+- **Spanish:** split decimals (`1, 5 A`) are joined.
+- **Ukrainian:** the Latin `9V` becomes `9 В`.
+
+**Trademark note.** The it and uk blocks print the German conjunction in
+`※ USB Type-C® und USB-C® …`. `Spec_Notes.csv` now uses the reviewed `e`
+(it) and `та` (uk) of the JE-1000F/JE-2000E/JE-2000F/JE-3000C EU rows. The live
+notes table has no JE-1000H row, so there is nothing to write back.
+
+**Verification:**
+
+- **Independent print check:** every changed value, canonicalised, equals a run
+  of whole lines in its overview page's plain `get_text("text")`. This is a
+  different extraction path from the span extractor that built the cells, and
+  it also catches truncation. Only the listed substitutions are exempt. The
+  pre-change file fails 36 of the 41 cells.
+- **Figures:** every value keeps the English digit sequence and `⎓` count.
+- **English control:** 8 of 8 value slots land on their printed callout
+  digits.
+- **Regression tests:** `Je1000hEuOverviewSlotTests` also checks that every
+  overview cell appears in its figure's binding. It and the trademark-note test
+  fail 50 subtests on the previous files.
+- **Trial Web build:** against the origin/main build, only the two overview
+  `alt` attributes change on each fr–uk route, plus the trademark line on it and
+  uk. English is unchanged. Against the live pages, the only other difference
+  is the callout label-sizer spans that main already carries (#1288).
+- **Live tables:** no `JE-1000H_EU` rows exist in 规格参数明细 or 页面占位参数
+  (only AU/KR rows), so the frozen source is the only place to fix.
+
+## 2026-09-27 Ukrainian warning label
+
+The 2026-09-15 intake entered the uk symbols-table label as printed. The print
+sets the Italian `AVVERTENZA` there (PDF page 91, printed 86). The same page
+prints the uk WARNING callout as `ПОПЕРЕДЖЕННЯ`, and every other EU frozen
+source uses that label.
+
+**What changed.** Three cells in two files:
+
+| File | Row | Columns | Before | After |
+| --- | --- | --- | --- | --- |
+| `Localized_Copy.csv` | `symbols.signal.warning.label` | `text_uk` | `AVVERTENZA` | `ПОПЕРЕДЖЕННЯ` |
+| `symbols_blocks.csv` | `warning` | `label_uk`, `aliases_uk` | `AVVERTENZA` | `ПОПЕРЕДЖЕННЯ` |
+
+**Verification:**
+
+- **Trial Web build:** all six languages, compared with the live pages
+  (`2.0-20260926`). Only the uk symbols-table row changes: its badge
+  `aria-label` and its visible label. The other five languages have no line
+  changes.
+- **Regression test:** `Je1000hEuResidualCopyTests` resolves the uk label
+  through the localized-copy loader. It also checks every fr–uk displayed signal
+  label and heading: none may be empty, English or another block's word. The
+  one exception is the heading the print sets in English (below). The test fails
+  3 subtests on the previous files.
+- **Live tables:** there is nothing to write back.
+  - The approved Translation_Memory row `recvllSNnTchQq` (`WARNING`) has uk
+    `ПОПЕРЕДЖЕННЯ`.
+  - So does the shared 内容源_Symbols row `recviwLdx0HcdN`.
+
+**Resolved 2026-09-27: the de/it temperature heading.** The operator ruled to use
+the reviewed translation (「按审核译文翻译」); the frozen source now carries it. The de and
+it blocks print `ENVIRONMENTAL OPERATING TEMPERATURE` in English (PDF page 70,
+printed 65; page 87, printed 82). Under 以 PDF 为准 the frozen source keeps it
+as printed; the reviewed wording now used is:
+
+- de `UMGEBUNGSTEMPERATUR IM BETRIEB` and it `TEMPERATURA OPERATIVA AMBIENTALE`;
+- the JE-2000F EU print sets this wording (PDF pages 66/82);
+- the approved Translation_Memory row `recvgEwErzHV3h` holds it;
+- the JE-2000E, JE-2000F, JE-3000C and JE-3600A sources carry it.
+
+The JE-3600A EU print and the JE-3000C EU print (V2.0-2026-09-15) set the same
+English heading, while their sources translate it.
+
+**Resolved 2026-09-27: the USB-C caution wattage.** Every block of the print rates the
+high-power USB-C port at 140 W and lists the cable at `20 V/5 A, 100 W; 28 V/5 A, 140 W`
+(fr/es/de/it/uk PDF pages 29/46/63/80/97), while the shared EU operation templates say
+100 W. The operator ruled to fix it in this batch (「加进这一批一起修」). Each
+`docs/templates/page_eu-<lang>/05_operation_guide_placeholder.rst` now has a
+`.. only:: model_je_1000h` branch with the printed wattage and the added rating; every other
+model keeps the unchanged 100 W text in the `.. only:: not model_je_1000h` branch.
+
+**Still open.** These are the same kind of defect, but the print gives no
+correct text in the block, or the text comes from a shared template:
+
+- **LCD row 4:** the de/it description falls back to English. Both blocks print
+  it in French (PDF pages 60/77). The German name prints as `Ladeplan Plan`.
+- **Italian LCD rows 11–13:** PDF page 78 prints the German `Verbleibende
+  Aufladezeit` and `Autoladeanzeige`. It also shifts the car and solar texts up
+  one row. The source copies all of this.
+- **Shared EU templates:** the fr–uk operation caution says `USB-C 100 W` and
+  omits the `28 V/5 A, 140 W` cable rating. The print says 140 W in every block
+  (PDF pages 12/29/46/63/80/97). The it heading `LUCE LED ON/OFF` prints as
+  `LUCE LED ACCENSIONE/SPEGNIMENTO` (PDF page 80).
+
+## 2026-09-27 Specification tables follow the print
+
+A read-only audit compared the six Web specification sections with the print's
+specification pages (PDF pages 19/36/53/70/87/104, printed 14/31/48/65/82/99).
+It found no value differences. The operator ruled that values, structure and
+labels follow the print, formatting keeps the house rules, and where the print
+itself is wrong the reviewed wording stays.
+
+**What changed.** 14 cells of `Spec_Master.csv`, plus one appended column:
+
+| Row | Column | Before | After | Print |
+| --- | --- | --- | --- | --- |
+| `ac_input` line 1 | `Param_source` | `Charge Mode` | empty | p19 |
+| `ac_input` line 1 | `Param_fr`, `_es`, `_de`, `_it` | `Mode de charge`, `Modo de carga`, `Lademodus`, `Modalità di ricarica` | empty | p36/53/70/87 |
+| `ac_input` line 2 | `Param_it` | `Modalità bypass` | `AC modalità bypass` | p87 |
+| `dc_expansion_input` | `Row_label_source` | `1 × DC Expansion Input` | `1 × DC Expansion Port` | p19 |
+| `dc_expansion_output` | `Row_label_source` | `1 × DC Expansion Output` | `1 × DC Expansion Port` | p19 |
+| `usb_c` 30W, 140W | `Row_label_uk` | `2 виходи USB-C` | `виходи USB-C 30W`, `виходи USB-C 140W` | p104 |
+| `usb_c` 30W, 140W | `Param_uk` | `USB-C 30W`, `USB-C 140W` | empty | p104 |
+| `usb_c` 30W, 140W | `line_text_uk` (new) | — | the row's `Value_uk` | p104 |
+
+Only the uk block prints the charge-mode label, so `Param_uk` keeps
+`Режим заряджання`. The uk labels keep the print's wording and case.
+
+**Why `line_text_uk`.** The spec reader falls back from an empty `Param_uk` to
+the English `Param_source` (`USB-C 30W`). The printed value-only line therefore
+uses Spec_Master's documented `line_text_*` field, the rendered line text that
+bypasses `Param_* + Value_*` (see
+[spec_master_user_guide.md](../spec_master_user_guide.md) §3.7). The column is
+appended last, is filled on the two uk USB-C rows only, and repeats `Value_uk`
+verbatim. No reader or renderer changes, and the other languages do not read
+the column.
+
+**Not changed here:**
+
+- **Notes order:** the print sets the numbered footnotes before the ※ trademark
+  note; all six routes set the note first. The order comes from the shared
+  `docs/templates/spec_template.rst`, which a separate change owns.
+- **Print defects** keep the reviewed wording recorded above: French `Oiture:`,
+  Ukrainian `у байпасному режим` and footnote ②, the de/it USB-C label printed in
+  French, the German `DC-12V-Ausgangstaste`, the it/uk trademark `und`, and the
+  de/it temperature heading printed in English.
+- **Formatting** keeps the house rules: unit spacing, `max.`/`máx.`, fr/es
+  `V CC`, the `①`/`②` markers, Cyrillic `мм`.
+- **IDML:** `tools/idml/loaders.py` does not read `line_text_*`. An IDML build
+  of this source would still fall back to `USB-C 30W:` / `USB-C 140W:` on the two
+  uk lines.
+
+**Verification:**
+
+- **Trial Web build:** all six languages from the frozen data root, compared
+  with the live pages (Hello-Docs `4a7526b0`; the routes as released in
+  `ea5f0e9f`), with `src` normalized to the content hash. A build of the base
+  commit reproduces all six live pages exactly. The trial changes only the fixed
+  cells: en the AC input cell and both DC expansion labels; fr/es/de/it the AC
+  input cell (for it, also the bypass line); uk the USB-C row, which becomes two
+  rows. Nothing else changes in any route.
+- **Regression tests:** `tests/test_je1000h_eu_spec_print.py` renders the six
+  tables through the spec reader, assembled as the build assembles them. Five of
+  its seven tests fail on the previous file. The other two guard the unchanged
+  en–it USB-C rows and the print-defect wording.
+- **Live tables:** none was read or written. The 2026-09-26 check found no
+  `JE-1000H_EU` rows in 规格参数明细, so the frozen source is the only place to
+  fix.

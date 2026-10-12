@@ -1,0 +1,68 @@
+[
+  {
+    "language": "fr",
+    "base_asset": "assets/power.svg",
+    "base_sha256": "adaab00db42c0fcc31dcc89382b80b4096c58740c7a93d25d4dc53955b383cbe",
+    "asset_ref": "assets/power-fr.svg",
+    "asset_sha256": "ee5038a0fb7b80d03b55971dbd9367131758f2233731acc8b2a0c303604b22d6",
+    "native_physical_page": 34,
+    "native_drawing_indices": [
+      1495,
+      1496
+    ],
+    "native_clock_bbox": [
+      267.0557861328125,
+      178.59620666503906,
+      277.5097961425781,
+      189.0502166748047
+    ],
+    "native_figure_bbox": [
+      27.5,
+      109.2,
+      341.5,
+      266.7
+    ],
+    "base_drawing_indices": [
+      754,
+      755
+    ],
+    "translation_in_base_points": [
+      0.0,
+      8.522900390625011
+    ],
+    "operation": "reuse every original path; translate only two clock paths"
+  },
+  {
+    "language": "es",
+    "base_asset": "assets/power.svg",
+    "base_sha256": "adaab00db42c0fcc31dcc89382b80b4096c58740c7a93d25d4dc53955b383cbe",
+    "asset_ref": "assets/power-es.svg",
+    "asset_sha256": "0a8aae1f356be47c4730ffad91db9a661a0bc4a581886119e25f0bdccad58c21",
+    "native_physical_page": 58,
+    "native_drawing_indices": [
+      1495,
+      1496
+    ],
+    "native_clock_bbox": [
+      267.0557861328125,
+      178.3267059326172,
+      277.5097961425781,
+      188.7807159423828
+    ],
+    "native_figure_bbox": [
+      27.5,
+      111.0,
+      341.5,
+      266.7
+    ],
+    "base_drawing_indices": [
+      754,
+      755
+    ],
+    "translation_in_base_points": [
+      0.0,
+      7.231743079389446
+    ],
+    "operation": "reuse every original path; translate only two clock paths"
+  }
+]

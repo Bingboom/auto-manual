@@ -5,7 +5,7 @@
 
    Ce produit peut prendre en charge jusqu'à 5 packs batterie pour répondre aux besoins d'une grande capacité énergétique. Pour les détails sur son utilisation, veuillez vous référer au *manuel d'utilisation du Jackery Battery Pack 2000*.
 
-   .. image:: asset:in_the_box/main_unit1
+   .. image:: renderers/web/assets/je2000e_eu_fr/extra_battery.png
       :alt: Schéma de connexion du pack batterie.
       :width: 360px
 
@@ -46,13 +46,9 @@
 
    .. only:: region_eu
 
-      .. list-table::
-         :header-rows: 0
-         :widths: 34 33 33
-
-         * - **Jackery Battery Pack 2000**
-           - **Câble de rallonge**
-           - **Manuel d’utilisation**
+      .. image:: renderers/web/assets/je2000e_eu_fr/battery_pack_kit.png
+         :alt: Jackery Battery Pack 2000, Câble de rallonge, Manuel d’utilisation (vendu séparément)
+         :width: 360px
 
 CHARGE
 ======
@@ -88,8 +84,10 @@ Connectez le câble de charge CA au port d'entrée CA de l'appareil et à une pr
    * - **ATTENTION**
      - Assurez-vous que le câble de charge CA est entièrement et solidement inséré dans le port d’entrée CA. Une connexion incomplète peut entraîner un courant instable, une surchauffe, un mauvais contact ou un dysfonctionnement de l'appareil.
 
+.. hb-capability-begin: 应急快充模式
 
 **Mode de charge d'urgence**
 
 | Dans ce mode, vous pouvez recharger rapidement la station d’énergie portable en utilisant la méthode de charge CA. Cette fonction de charge d'urgence peut être activée ou désactivée via l'application Jackery. En mode de charge d'urgence, la lumière circulaire indiquant l'état de charge (SOC) clignote plus rapidement.
 | \*Pour prolonger au maximum la durée de vie de la batterie, il est préférable de charger à la vitesse standard. La charge d'urgence doit être utilisée uniquement pour des situations nécessitant un boost rapide en énergie et n'est pas recommandée pour un usage régulier sur le long terme.
+.. hb-capability-end:

@@ -1,0 +1,4645 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/je2000e-eu-native-candidate",
+    "expected_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
+    "expected_page_count": 179
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 179
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.25,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "native_source_001",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "native_source_002",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "native_source_003",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "native_source_004",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "native_source_005",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "native_source_006",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "native_source_007",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "native_source_008",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "native_source_009",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "native_source_010",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "native_source_011",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "native_source_012",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "native_source_013",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "native_source_014",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "native_source_015",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "native_source_016",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "native_source_017",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "native_source_018",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "native_source_019",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "native_source_020",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "native_source_021",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 22,
+      "page_key": "native_source_022",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 23,
+      "page_key": "native_source_023",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "native_source_024",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "native_source_025",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "native_source_026",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "native_source_027",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "native_source_028",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 29,
+      "page_key": "native_source_029",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 30,
+      "page_key": "native_source_030",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 31,
+      "page_key": "native_source_031",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 32,
+      "page_key": "native_source_032",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 33,
+      "page_key": "native_source_033",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 34,
+      "page_key": "native_source_034",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 35,
+      "page_key": "native_source_035",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 36,
+      "page_key": "native_source_036",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 37,
+      "page_key": "native_source_037",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 38,
+      "page_key": "native_source_038",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 39,
+      "page_key": "native_source_039",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 40,
+      "page_key": "native_source_040",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 41,
+      "page_key": "native_source_041",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 42,
+      "page_key": "native_source_042",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 43,
+      "page_key": "native_source_043",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 44,
+      "page_key": "native_source_044",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 45,
+      "page_key": "native_source_045",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 46,
+      "page_key": "native_source_046",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 47,
+      "page_key": "native_source_047",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 48,
+      "page_key": "native_source_048",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 49,
+      "page_key": "native_source_049",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 50,
+      "page_key": "native_source_050",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 51,
+      "page_key": "native_source_051",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 52,
+      "page_key": "native_source_052",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 53,
+      "page_key": "native_source_053",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 54,
+      "page_key": "native_source_054",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 55,
+      "page_key": "native_source_055",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 56,
+      "page_key": "native_source_056",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 57,
+      "page_key": "native_source_057",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 58,
+      "page_key": "native_source_058",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 59,
+      "page_key": "native_source_059",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 60,
+      "page_key": "native_source_060",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 61,
+      "page_key": "native_source_061",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 62,
+      "page_key": "native_source_062",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 63,
+      "page_key": "native_source_063",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 64,
+      "page_key": "native_source_064",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 65,
+      "page_key": "native_source_065",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 66,
+      "page_key": "native_source_066",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 67,
+      "page_key": "native_source_067",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 68,
+      "page_key": "native_source_068",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 69,
+      "page_key": "native_source_069",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 70,
+      "page_key": "native_source_070",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 71,
+      "page_key": "native_source_071",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 72,
+      "page_key": "native_source_072",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 73,
+      "page_key": "native_source_073",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 74,
+      "page_key": "native_source_074",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 75,
+      "page_key": "native_source_075",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 76,
+      "page_key": "native_source_076",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 77,
+      "page_key": "native_source_077",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 78,
+      "page_key": "native_source_078",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 79,
+      "page_key": "native_source_079",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 80,
+      "page_key": "native_source_080",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 81,
+      "page_key": "native_source_081",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 82,
+      "page_key": "native_source_082",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 83,
+      "page_key": "native_source_083",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 84,
+      "page_key": "native_source_084",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 85,
+      "page_key": "native_source_085",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 86,
+      "page_key": "native_source_086",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 87,
+      "page_key": "native_source_087",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 88,
+      "page_key": "native_source_088",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 89,
+      "page_key": "native_source_089",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 90,
+      "page_key": "native_source_090",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 91,
+      "page_key": "native_source_091",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 92,
+      "page_key": "native_source_092",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 93,
+      "page_key": "native_source_093",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 94,
+      "page_key": "native_source_094",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 95,
+      "page_key": "native_source_095",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 96,
+      "page_key": "native_source_096",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 97,
+      "page_key": "native_source_097",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 98,
+      "page_key": "native_source_098",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 99,
+      "page_key": "native_source_099",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 100,
+      "page_key": "native_source_100",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 101,
+      "page_key": "native_source_101",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 102,
+      "page_key": "native_source_102",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 103,
+      "page_key": "native_source_103",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 104,
+      "page_key": "native_source_104",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 105,
+      "page_key": "native_source_105",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 106,
+      "page_key": "native_source_106",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 107,
+      "page_key": "native_source_107",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 108,
+      "page_key": "native_source_108",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 109,
+      "page_key": "native_source_109",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 110,
+      "page_key": "native_source_110",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 111,
+      "page_key": "native_source_111",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 112,
+      "page_key": "native_source_112",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 113,
+      "page_key": "native_source_113",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 114,
+      "page_key": "native_source_114",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 115,
+      "page_key": "native_source_115",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 116,
+      "page_key": "native_source_116",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 117,
+      "page_key": "native_source_117",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 118,
+      "page_key": "native_source_118",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 119,
+      "page_key": "native_source_119",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 120,
+      "page_key": "native_source_120",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 121,
+      "page_key": "native_source_121",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 122,
+      "page_key": "native_source_122",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 123,
+      "page_key": "native_source_123",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 124,
+      "page_key": "native_source_124",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 125,
+      "page_key": "native_source_125",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 126,
+      "page_key": "native_source_126",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 127,
+      "page_key": "native_source_127",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 128,
+      "page_key": "native_source_128",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 129,
+      "page_key": "native_source_129",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 130,
+      "page_key": "native_source_130",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 131,
+      "page_key": "native_source_131",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 132,
+      "page_key": "native_source_132",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 133,
+      "page_key": "native_source_133",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 134,
+      "page_key": "native_source_134",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 135,
+      "page_key": "native_source_135",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 136,
+      "page_key": "native_source_136",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 137,
+      "page_key": "native_source_137",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 138,
+      "page_key": "native_source_138",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 139,
+      "page_key": "native_source_139",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 140,
+      "page_key": "native_source_140",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 141,
+      "page_key": "native_source_141",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 142,
+      "page_key": "native_source_142",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 143,
+      "page_key": "native_source_143",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 144,
+      "page_key": "native_source_144",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 145,
+      "page_key": "native_source_145",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 146,
+      "page_key": "native_source_146",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 147,
+      "page_key": "native_source_147",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 148,
+      "page_key": "native_source_148",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 149,
+      "page_key": "native_source_149",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 150,
+      "page_key": "native_source_150",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 151,
+      "page_key": "native_source_151",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 152,
+      "page_key": "native_source_152",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 153,
+      "page_key": "native_source_153",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 154,
+      "page_key": "native_source_154",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 155,
+      "page_key": "native_source_155",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 156,
+      "page_key": "native_source_156",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 157,
+      "page_key": "native_source_157",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 158,
+      "page_key": "native_source_158",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 159,
+      "page_key": "native_source_159",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 160,
+      "page_key": "native_source_160",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 161,
+      "page_key": "native_source_161",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 162,
+      "page_key": "native_source_162",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 163,
+      "page_key": "native_source_163",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 164,
+      "page_key": "native_source_164",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 165,
+      "page_key": "native_source_165",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 166,
+      "page_key": "native_source_166",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 167,
+      "page_key": "native_source_167",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 168,
+      "page_key": "native_source_168",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 169,
+      "page_key": "native_source_169",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 170,
+      "page_key": "native_source_170",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 171,
+      "page_key": "native_source_171",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 172,
+      "page_key": "native_source_172",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 173,
+      "page_key": "native_source_173",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 174,
+      "page_key": "native_source_174",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 175,
+      "page_key": "native_source_175",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 176,
+      "page_key": "native_source_176",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 177,
+      "page_key": "native_source_177",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 178,
+      "page_key": "native_source_178",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 179,
+      "page_key": "native_source_179",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "inbox.main",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            48,
+            314,
+            128,
+            402
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/inbox-main.pdf",
+          "expected_sha256": "14afb81fd90759814510e149b02f41582b44b372f104c89b1391d63fffb831bf"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/inbox-main.png",
+          "scale": 3,
+          "expected_sha256": "618923f97bd0a64e1f0189902a6f4489b476c9874f9732a90e55a89ab5962133"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "inbox.cable",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            171,
+            313,
+            231,
+            402
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/inbox-cable.pdf",
+          "expected_sha256": "08bf5ccf9dd9abfae25a259539932a0d483537dd41722dd03ea356ba85f9a725"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/inbox-cable.png",
+          "scale": 3,
+          "expected_sha256": "baac6a3367f203fd81ecfde9810380575b1895248aed75553b2c2fcfa49b895f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "inbox.manual",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            266,
+            313,
+            322,
+            402
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/inbox-manual.pdf",
+          "expected_sha256": "2368857aa57484cfaa1c20e6a4998b5eb68a6113f44be02a68094225f0d893fc"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/inbox-manual.png",
+          "scale": 3,
+          "expected_sha256": "4082bcb277e912973d55548af98602a5a942e274858d14fbbdad6ecf35f77f45"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "lcd.map",
+      "page": 125,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            51,
+            337,
+            233
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/lcd-map.pdf",
+          "expected_sha256": "8e0de1c5d233972f056d2c3e810e3e13441a3c72146fed4d8ab6d5e32f6e1828"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/lcd-map.png",
+          "scale": 3,
+          "expected_sha256": "399ae84d364ceb20668ddbd7bcd5ca4c8e397f793cf1ec926211fd1ef5ab64b8"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "lcd.mode",
+      "page": 131,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            33,
+            75,
+            143,
+            211
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/lcd-mode.pdf",
+          "expected_sha256": "b9ca00bf496c0eccce25e64223f43f985ad860d5f2858399c6edf51865dfcb31"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/lcd-mode.png",
+          "scale": 3,
+          "expected_sha256": "2b5aeec0b8c542692dabc8ff6fb0a7a8389e408edb4e1a06e703130cffe58693"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "overview.front",
+      "page": 124,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            74,
+            346,
+            240
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/overview-front.pdf",
+          "expected_sha256": "4ed5dbce75e444b35f4921bb87b3e89b3b771ef5cc8e6efd77d8742a756c5ba2"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/overview-front.png",
+          "scale": 3,
+          "expected_sha256": "9d1f5981fe486b57bdbeab7d7d3afbda8b45c8a4ad1d852e7462355fbfc79d57"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "overview.right",
+      "page": 124,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            390,
+            346,
+            490
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/overview-right.pdf",
+          "expected_sha256": "a57e385f868eb5acec270d53a1de9fa3f20255868ba7ab1232ca4be80190ed7a"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/overview-right.png",
+          "scale": 3,
+          "expected_sha256": "da916c6c90ad9b40033dfb69c5e225e3fe3c3417f0239e8fab5efd41b253d6ee"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "overview.finished.front",
+      "page": 124,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            74,
+            346,
+            240
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/overview-finished-front.pdf",
+          "expected_sha256": "3b839d29b606c70ad3febcd0a39009f888cb1e273d24fbc36fd38665f234832a"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/overview-finished-front.png",
+          "scale": 3,
+          "expected_sha256": "f092fbde248d3ba6f098db906083c9d223f6832eefb2e641501b77bd7fe60a6e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "overview.finished.right",
+      "page": 124,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            390,
+            346,
+            490
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/overview-finished-right.pdf",
+          "expected_sha256": "4ebdfbb933df581ec23b8a3c8a55036b0fd51218c8cbd3bc2fd9a7a352c92190"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/overview-finished-right.png",
+          "scale": 3,
+          "expected_sha256": "87848ec55f629149fa12143a8fd6cccf3f827810911b002738d5fc1a260fa288"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "overview.left",
+      "page": 124,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            265,
+            344,
+            355
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/overview-left.pdf",
+          "expected_sha256": "20ea9812c5a1a2ca778cb2721b552da01cccff168d4263cb0121c8bc9abbd458"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/overview-left.png",
+          "scale": 3,
+          "expected_sha256": "ca51c943b8c51775eb9cca0747195dda81ebb27fbc0f4d59576b65e0b71af252"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "operation.main-power",
+      "page": 128,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            79,
+            341,
+            203
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            175,
+            180,
+            176,
+            181
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            182,
+            160,
+            183,
+            161
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/operation-main-power.pdf",
+          "expected_sha256": "5026c149045208083c11d8b29a34036c9c1032bfaacd1054ba527aac50a3c3e6"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/operation-main-power.png",
+          "scale": 3,
+          "expected_sha256": "dcca0a9897595b019e29a4799ea453af44c7c419fa424a3910a244b7d68fa1de"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "operation.ac-output",
+      "page": 128,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            281,
+            341,
+            495
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/operation-ac-output.pdf",
+          "expected_sha256": "01f369bfee5a92f4f6dad3e8b93211056fa26286f48f17fc31e3e8f148369d34"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/operation-ac-output.png",
+          "scale": 3,
+          "expected_sha256": "abe04f7b830e871e7e5b99662ca001a94e5e49679bf550f18e6e84d31da2342e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "operation.dc-usb-output",
+      "page": 129,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            48,
+            341,
+            273
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/operation-dc-usb-output.pdf",
+          "expected_sha256": "c7640f97d8276981af8b859ec9943b6b4f4178ffa54cbad40cc895671169d0ac"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/operation-dc-usb-output.png",
+          "scale": 3,
+          "expected_sha256": "297101f06409904a64bd2d2b6118c4b0d67fdb0f46bd919fd2bd40616e5b34aa"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "operation.energy-saving",
+      "page": 130,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            44,
+            122,
+            328,
+            203
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/operation-energy-saving.pdf",
+          "expected_sha256": "491d5345a6a325a3ffd5ceaba540331fe97d904f4864a5a45f7d0052298ff191"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/operation-energy-saving.png",
+          "scale": 3,
+          "expected_sha256": "da87998c3c92fa517878f21f9812b717731ff62771b9cf684a0a8f7eb267fd4f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "operation.led-light",
+      "page": 130,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            40,
+            398,
+            252,
+            484
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/operation-led-light.pdf",
+          "expected_sha256": "5fa616669ecc4c10cb30ae748550520a7bc8839c871c0e01e13fc830fff95e96"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/operation-led-light.png",
+          "scale": 3,
+          "expected_sha256": "3c2df830b1bd473eaf58f2262d4f888780c95dc37c4791f80de01094eca40c5f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "app.download",
+      "page": 139,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            44,
+            66,
+            300,
+            118
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/app-download.pdf",
+          "expected_sha256": "bfb4d2dc7c2bef764367ff4b816a0e3d76b1b8179de130e0a5a54db20ec1c4aa"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/app-download.png",
+          "scale": 3,
+          "expected_sha256": "f5633d528aed56418bf46d5e2b083267eb8859f6e87fd68b24fba70f604b9295"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "app.store",
+      "page": 139,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            45,
+            67,
+            184,
+            115
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/app-store.pdf",
+          "expected_sha256": "2658b3ee5dd76e1bdbb1f9c80c6d9f43cf229b3e88a82ba498f1b057ab79f5ed"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/app-store.png",
+          "scale": 3,
+          "expected_sha256": "19d3221fcf9ed97b62d47b186ebd787eda8b391e614b5eee4e3ab2a1a49eeb07"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "app.qr",
+      "page": 139,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            199,
+            67,
+            250,
+            119
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/app-qr.pdf",
+          "expected_sha256": "03e833ce09e3d0434ae51ef1bba7a27c2dd0617643a3d7989993ac6787476871"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/app-qr.png",
+          "scale": 3,
+          "expected_sha256": "d5d1235f85bcf70ffb2d173ec18fd6bd690781f5c5cd93a7ee05e99c7f879497"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "app.phone",
+      "page": 139,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            110,
+            209,
+            251,
+            339
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/app-phone.pdf",
+          "expected_sha256": "f1558a58428ecd9f11cebf66b3547829c8f6174a727192176cef684c2c2ca38f"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/app-phone.png",
+          "scale": 3,
+          "expected_sha256": "d8696c2f9c093f816f46303f7d23e1440a16877b19be383d6a413e1784f6328b"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "app.control",
+      "page": 139,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            350,
+            341,
+            433
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/app-control.pdf",
+          "expected_sha256": "5e5d8dddc2b34c392fe38fa2046fc0119b127d964551155fa58fecf5bfe33275"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/app-control.png",
+          "scale": 3,
+          "expected_sha256": "cff34fcbbee48b6ff880afdc6cf7348b5392d2b66e8740002f2349f33f34425f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "app.result",
+      "page": 140,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            44,
+            80,
+            320,
+            238
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/app-result.pdf",
+          "expected_sha256": "8c1ab4df57720aaee636645235a0bcda318264ceec80b4f3041ac5e95af2292b"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/app-result.png",
+          "scale": 3,
+          "expected_sha256": "7566436d6a8aa1066cb72299c7c109a9344b6c2fbffec4a21086e02de94ff877"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "reference.ups_connection",
+      "page": 132,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            210,
+            342,
+            337
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-ups_connection.pdf",
+          "expected_sha256": "92ecbc08cc498aff64e8f3e49bba2079225faa3067c42bbb11eee8f6317dde8e"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/reference-ups_connection.png",
+          "scale": 3,
+          "expected_sha256": "c847c062692dcc72e112340d8f2ba1ba0cb4833a5321a4ba935fb376c4a17385"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "reference.ac_wall_charging",
+      "page": 134,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30,
+            199,
+            343,
+            296
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-ac_wall_charging.pdf",
+          "expected_sha256": "64793d799715da4e813882e99c3cf933e2ead5ecfb150c99d2068ca520ed9afc"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/reference-ac_wall_charging.png",
+          "scale": 3,
+          "expected_sha256": "7504df77a75da343d5741e99ea2d3b85bcec3ff30f76c3a36ba37823709c500f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "reference.solar_four",
+      "page": 135,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            25,
+            342,
+            166
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-solar_four.pdf",
+          "expected_sha256": "44c3eef5246f056536e23da1603fd14d2b3057ab83f2a7d46f1c6011fd4f2848"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/reference-solar_four.png",
+          "scale": 3,
+          "expected_sha256": "8bdee882c1191358fa004a6476ca5aca5301bc78bd561baf076d8597a0e1bfda"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "reference.car_charging",
+      "page": 135,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            306,
+            341,
+            435
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-car_charging.pdf",
+          "expected_sha256": "f42c4f2c322a11dced22acc716fcab90ee5f5455bc11a0bb7fe30a911afdb858"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/reference-car_charging.png",
+          "scale": 3,
+          "expected_sha256": "1615ae8869ae7c1cc829cc8d9333e817eef90df6abc3c4163d24e1f5f101275d"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "reference.battery_connection",
+      "page": 133,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            99,
+            344,
+            305
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-battery_connection.pdf",
+          "expected_sha256": "cf022147b90b0151c3a8aabaabb9c86dc9e8db1875d24b74719d8e3192f13ab4"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/reference-battery_connection.png",
+          "scale": 3,
+          "expected_sha256": "e9548f1832012c7836e0caa06dc4c3af58b3f5bb06d9cc3bb7a6e4e0c8877466"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "reference.battery_kit",
+      "page": 133,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            424,
+            344,
+            498
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-battery_kit.pdf",
+          "expected_sha256": "5f24cc867a9d891c58f3fc1a78045dba1f0a5c789586f3c6a5dfef31f1a5c6a1"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/reference-battery_kit.png",
+          "scale": 3,
+          "expected_sha256": "c43748f6323916664b9174dcedc21e13bb6bd0112bfd93e74198c93d4dfe32d3"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "reference.overview_front",
+      "page": 124,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            74,
+            346,
+            240
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-overview_front.pdf",
+          "expected_sha256": "3b839d29b606c70ad3febcd0a39009f888cb1e273d24fbc36fd38665f234832a"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/reference-overview_front.png",
+          "scale": 3,
+          "expected_sha256": "f092fbde248d3ba6f098db906083c9d223f6832eefb2e641501b77bd7fe60a6e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "reference.overview_left",
+      "page": 124,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            265,
+            344,
+            371
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-overview_left.pdf",
+          "expected_sha256": "54d38e762487b7b9424871dc76184594fb7bff22ed4639a2bd620d005715f136"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/reference-overview_left.png",
+          "scale": 3,
+          "expected_sha256": "17204e0cef8c915a5414634eb23e356fe8e6a28cb113f502ab4c2f8c2cc97b6b"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "reference.overview_right",
+      "page": 124,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            390,
+            346,
+            499
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-overview_right.pdf",
+          "expected_sha256": "8b8a3b98f09426f4174a5b309282ea70277b23f89d50ab1b4f054203fa83b1a2"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/reference-overview_right.png",
+          "scale": 3,
+          "expected_sha256": "a1129074b99ba60863bea2fcbed0ff606b84ad2e08e1354064afe934815c0236"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "symbol.general_warning",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            31,
+            47,
+            68,
+            71
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/symbol-general_warning.pdf",
+          "expected_sha256": "27241e7d6599acbd786edd0d7ed093a5affbb1007402b3b1c20b6a3c9c540b12"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/symbol-general_warning.png",
+          "scale": 3,
+          "expected_sha256": "8f4bc216841c635563dde0f7259d743458bc7c5585ecfb9b40651cfa3f984ffb"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "symbol.read_manual",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32,
+            81,
+            66,
+            97
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/symbol-read_manual.pdf",
+          "expected_sha256": "247c7000e16f397fdfca95ddf3d9c09ea181d06e3c5aff3f1210f87471e6c278"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/symbol-read_manual.png",
+          "scale": 3,
+          "expected_sha256": "5b6084824bd34ea9360e609b9b42c2624e7c86bc420a3a5485027ba065e6eac0"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "symbol.do_not_dismantle",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32,
+            107,
+            66,
+            127
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/symbol-do_not_dismantle.pdf",
+          "expected_sha256": "74e8916d66e79830b0cb81463c1eb4e87b921bef8e7099a182ccf74ac1c2d142"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/symbol-do_not_dismantle.png",
+          "scale": 3,
+          "expected_sha256": "1052d4ed2fd9d6e5c751f97693053e136d804eee6d2d3d0df40fc1ad9a42be5f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "symbol.no_open_flame",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32,
+            136,
+            66,
+            154
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/symbol-no_open_flame.pdf",
+          "expected_sha256": "d670a7ecd685188155ae5c4028af21c1a2657bfe82534d0d9386b7c58811ea96"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/symbol-no_open_flame.png",
+          "scale": 3,
+          "expected_sha256": "f99a124f94361fa18dbc7b987bc71041ab80df619e75636a90c5fe3ddb7eb60a"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "symbol.keep_away_from_children",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32,
+            160,
+            66,
+            181
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/symbol-keep_away_from_children.pdf",
+          "expected_sha256": "78757ddb45d7898d7661b7c576d344cfa98cf7a459784d40d67513b5fadfa957"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/symbol-keep_away_from_children.png",
+          "scale": 3,
+          "expected_sha256": "af2528e787e5eb5bce483a91f35b6cb621dcd8976b2632815b291852a7631380"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "symbol.li_ion",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32,
+            185,
+            66,
+            206
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/symbol-li_ion.pdf",
+          "expected_sha256": "cd0075effa7626f757d42b02569c98d0439e51a50fe9cd2739b078001df69ac1"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/symbol-li_ion.png",
+          "scale": 3,
+          "expected_sha256": "fb7212443b32b67eff3509aabdb23a128dc720541322d2116cccfdb8036d09bd"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "symbol.battery_disposal",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            188,
+            60,
+            224,
+            133
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/symbol-battery_disposal.pdf",
+          "expected_sha256": "f3c4d903128da73b3e8e13ae47373da883f64c24076ff3f266ce2a187f2ddbb8"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/symbol-battery_disposal.png",
+          "scale": 3,
+          "expected_sha256": "78cd3fc6474421208580670ee023eafa686f499eb62fca056ad216b45e096618"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "symbol.weee",
+      "page": 123,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            188,
+            155,
+            224,
+            196
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/symbol-weee.pdf",
+          "expected_sha256": "a920ccc25ecc979066287800a4ca527798f2613d3738439577b3d68e62a67db5"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pt/symbol-weee.png",
+          "scale": 3,
+          "expected_sha256": "12c2fb83fc20fa684577b593e9fb547706eec5511b9d8b679b2f046da7c36158"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "candidate source-local artwork; visual approval pending; no registry promotion"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    }
+  ]
+}

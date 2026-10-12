@@ -1,0 +1,2021 @@
+{
+  "language": "nl",
+  "source": {
+    "file": "HTE162-EU-9国语言-0928(1).ai",
+    "sha256": "04d5a4075fc9fc5ad630416dca8e138576e9159fcfd4ce9a06328b8aa1a39cb5",
+    "pages": [
+      89,
+      100
+    ]
+  },
+  "fields": {
+    "signal_label_70.98281860351562": {
+      "page": 90,
+      "bbox": [
+        20,
+        70.98281860351562,
+        76,
+        85.98281860351562
+      ],
+      "lines": [
+        "WAARSCHUWING"
+      ]
+    },
+    "signal_body_70.98281860351562": {
+      "page": 90,
+      "bbox": [
+        76,
+        70.98281860351562,
+        239,
+        85.98281860351562
+      ],
+      "lines": [
+        "Gevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of",
+        "materiële schade."
+      ]
+    },
+    "signal_label_85.98281860351562": {
+      "page": 90,
+      "bbox": [
+        20,
+        85.98281860351562,
+        76,
+        100.98281860351562
+      ],
+      "lines": [
+        "OPGELET"
+      ]
+    },
+    "signal_body_85.98281860351562": {
+      "page": 90,
+      "bbox": [
+        76,
+        85.98281860351562,
+        239,
+        100.98281860351562
+      ],
+      "lines": [
+        "Gevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade",
+        "aan eigendommen."
+      ]
+    },
+    "signal_label_100.98281860351562": {
+      "page": 90,
+      "bbox": [
+        20,
+        100.98281860351562,
+        76,
+        115.98281860351562
+      ],
+      "lines": [
+        "OPMERKING"
+      ]
+    },
+    "signal_body_100.98281860351562": {
+      "page": 90,
+      "bbox": [
+        76,
+        100.98281860351562,
+        239,
+        115.98281860351562
+      ],
+      "lines": [
+        "Gevaarlijke praktijken die kunnen leiden tot schade aan apparatuur,",
+        "gegevensverlies, slechtere prestaties of onverwachte resultaten."
+      ]
+    },
+    "signal_label_115.98281860351562": {
+      "page": 90,
+      "bbox": [
+        20,
+        115.98281860351562,
+        76,
+        131.98281860351562
+      ],
+      "lines": [
+        "TIP"
+      ]
+    },
+    "signal_body_115.98281860351562": {
+      "page": 90,
+      "bbox": [
+        76,
+        115.98281860351562,
+        239,
+        131.98281860351562
+      ],
+      "lines": [
+        "Vult de belangrijke informatie of bedieningstips in de tekst aan."
+      ]
+    },
+    "symbol_header": {
+      "page": 90,
+      "bbox": [
+        20,
+        62.982818603515625,
+        76,
+        71.98281860351562
+      ],
+      "lines": [
+        "Symbool"
+      ]
+    },
+    "meaning_header": {
+      "page": 90,
+      "bbox": [
+        76,
+        62.982818603515625,
+        239,
+        71.98281860351562
+      ],
+      "lines": [
+        "Betekenis"
+      ]
+    },
+    "safety_title": {
+      "page": 89,
+      "bbox": [
+        18,
+        15,
+        240,
+        39
+      ],
+      "lines": [
+        "BELANGRIJKE VEILIGHEIDSINFORMATIE"
+      ]
+    },
+    "safety_strip": {
+      "page": 89,
+      "bbox": [
+        40,
+        40,
+        240,
+        67
+      ],
+      "lines": [
+        "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND,",
+        "EEN ELEKTRISCHE SCHOK OF LETSEL AAN PERSONEN"
+      ]
+    },
+    "safety_warning": {
+      "page": 89,
+      "bbox": [
+        45,
+        67,
+        240,
+        81
+      ],
+      "lines": [
+        "Waarschuwing:"
+      ]
+    },
+    "safety_intro": {
+      "page": 89,
+      "bbox": [
+        45,
+        81,
+        240,
+        98
+      ],
+      "lines": [
+        "Volg altijd deze basisvoorzorgsmaatregelen wanneer u dit",
+        "product gebruikt."
+      ]
+    },
+    "safety_bullets": {
+      "page": 89,
+      "bbox": [
+        18,
+        98,
+        240,
+        275.3369140625
+      ],
+      "lines": [
+        "a) Lees alle instructies voordat u het product gebruikt.",
+        "b) Om het risico op letsel te verminderen, is nauwlettend toezicht noodzakelijk wanneer het",
+        "product in de buurt van kinderen wordt gebruikt.",
+        "c) Steek geen vingers of handen in het product.",
+        "d) Stel de powerbank niet bloot aan regen of sneeuw.",
+        "e) Stel de powerbank niet bloot aan hitte of vuur. Bewaar de powerbank niet in direct zonlicht of in",
+        "een voertuig.",
+        "f) Het gebruik van een stroomvoorziening of oplader die niet door de fabrikant van de powerbank",
+        "wordt aanbevolen of verkocht, kan leiden tot brand of letsel.",
+        "g) Gebruik de powerbank niet boven het nominale uitgangsvermogen. Overbelasting van de",
+        "uitgangen boven het nominale vermogen kan leiden tot brand of letsel.",
+        "h) Gebruik geen powerbank die beschadigd of gemodificeerd is. Beschadigde of gemodificeerde",
+        "batterijen kunnen onvoorspelbaar gedrag vertonen, wat kan leiden tot brand, explosie of letsel.",
+        "i) Haal de powerbank niet uit elkaar. naar een gekwalificeerde servicemonteur wanneer",
+        "onderhoud of reparatie nodig is. Onjuiste hermontage kan leiden tot brand of letsel.",
+        "j) Stel de powerbank niet bloot aan vuur of overmatige hitte. Blootstelling aan vuur of",
+        "temperaturen boven 60°C kan een explosie veroorzaken.",
+        "k) Laat onderhoud uitvoeren door een gekwalificeerde servicemonteur die uitsluitend identieke",
+        "vervangingsonderdelen gebruikt. Dit zorgt ervoor dat de veiligheid van het product behouden",
+        "blijft.",
+        "l) Schakel de powerbank uit wanneer deze niet wordt gebruikt."
+      ]
+    },
+    "safety_caution_label": {
+      "page": 89,
+      "bbox": [
+        20,
+        290.0029296875,
+        66,
+        307
+      ],
+      "lines": [
+        "OPGELET"
+      ]
+    },
+    "safety_caution": {
+      "page": 89,
+      "bbox": [
+        66,
+        290.0029296875,
+        240,
+        307
+      ],
+      "lines": [
+        "Risico op brand en brandwonden. Niet openen, niet pletten, niet",
+        "verhitten boven (60°C) en niet verbranden. Volg de instructies van de",
+        "fabrikant."
+      ]
+    },
+    "safety_disposal": {
+      "page": 89,
+      "bbox": [
+        18,
+        307,
+        240,
+        351
+      ],
+      "lines": [
+        "Het weggooien van een batterij in vuur of een hete oven, of het mechanisch pletten of",
+        "doorsnijden van een batterij, kan leiden tot een explosie;",
+        "Het achterlaten van een batterij in een omgeving met extreem hoge temperatuur kan leiden tot",
+        "een explosie of het lekken van brandbare vloeistof of gas. Een batterij die is blootgesteld aan",
+        "extreem lage luchtdruk kan leiden tot een explosie of het lekken van brandbare vloeistof of gas."
+      ]
+    },
+    "maintenance_title": {
+      "page": 90,
+      "bbox": [
+        18,
+        15,
+        240,
+        30
+      ],
+      "lines": [
+        "INSTRUCTIES VOOR GEBRUIKERSONDERHOUD"
+      ]
+    },
+    "maintenance_body": {
+      "page": 90,
+      "bbox": [
+        18,
+        30,
+        240,
+        49.982818603515625
+      ],
+      "lines": [
+        "Tijdens de levensduur van energieopslagproducten kunt u rekening houden met een zekere mate van capaciteits- en",
+        "energieverlies. Naarmate het aantal laad- en ontlaadcycli toeneemt en de opslagduur langer wordt, zal deze",
+        "achteruitgang geleidelijk toenemen; dit is een normaal verschijnsel dat samenhangt met de natuurlijke veroudering",
+        "van batterijcellen."
+      ]
+    },
+    "symbol_warning": {
+      "page": 90,
+      "bbox": [
+        48,
+        144.6170196533203,
+        126,
+        161.0985107421875
+      ],
+      "lines": [
+        "Waarschuwings- en voorzorgssymbolen. Moet",
+        "worden gelezen om personen te waarschuwen",
+        "voor mogelijke gevaren of risico's."
+      ]
+    },
+    "symbol_dismantle": {
+      "page": 90,
+      "bbox": [
+        159,
+        144.6170196533203,
+        239,
+        161.0985107421875
+      ],
+      "lines": [
+        "Demonteer het product niet."
+      ]
+    },
+    "symbol_manual": {
+      "page": 90,
+      "bbox": [
+        48,
+        161.0985107421875,
+        126,
+        175.2205047607422
+      ],
+      "lines": [
+        "Lees de gebruikershandleiding voor gebruik."
+      ]
+    },
+    "symbol_fire": {
+      "page": 90,
+      "bbox": [
+        159,
+        161.0985107421875,
+        239,
+        177.58091735839844
+      ],
+      "lines": [
+        "Houd het product uit de buurt van vuur."
+      ]
+    },
+    "symbol_weee": {
+      "page": 90,
+      "bbox": [
+        48,
+        175.2205047607422,
+        126,
+        226.87771606445312
+      ],
+      "lines": [
+        "Dit symbool geeft aan dat het product niet",
+        "als huishoudelijk afval mag worden",
+        "weggegooid en naar een aangewezen",
+        "inzamelingspunt voor recycling moet worden",
+        "gebracht.",
+        "Een juiste afvalverwerking en recycling",
+        "dragen bij aan een beter milieu. Voor meer",
+        "informatie over de verwijdering en recycling",
+        "van dit product, neem contact op met uw",
+        "gemeente, afvalverwerkingsdienst of",
+        "leverancier."
+      ]
+    },
+    "symbol_children": {
+      "page": 90,
+      "bbox": [
+        159,
+        177.58091735839844,
+        239,
+        194.06231689453125
+      ],
+      "lines": [
+        "Houd het product buiten het bereik van",
+        "kinderen."
+      ]
+    },
+    "symbol_li_ion": {
+      "page": 90,
+      "bbox": [
+        159,
+        194.06231689453125,
+        239,
+        226.6258087158203
+      ],
+      "lines": [
+        "Dit symbool geeft aan dat zich een",
+        "lithium-ion (Li-ion) batterij in het product",
+        "bevindt en dat deze op de juiste manier",
+        "moet worden afgevoerd of gerecycled."
+      ]
+    },
+    "inbox_label_0": {
+      "page": 91,
+      "bbox": [
+        18,
+        118,
+        90,
+        135
+      ],
+      "lines": [
+        "Jackery Explorer 100D"
+      ]
+    },
+    "inbox_label_1": {
+      "page": 91,
+      "bbox": [
+        91,
+        118,
+        163,
+        135
+      ],
+      "lines": [
+        "USB-C-kabel"
+      ]
+    },
+    "inbox_label_2": {
+      "page": 91,
+      "bbox": [
+        164,
+        118,
+        236,
+        135
+      ],
+      "lines": [
+        "Gebruikershandleiding"
+      ]
+    },
+    "inbox_title": {
+      "page": 91,
+      "bbox": [
+        18,
+        15,
+        240,
+        40
+      ],
+      "lines": [
+        "WAT ZIT ER IN DE DOOS"
+      ]
+    },
+    "overview_title": {
+      "page": 91,
+      "bbox": [
+        18,
+        140,
+        240,
+        163
+      ],
+      "lines": [
+        "PRODUCTOVERZICHT"
+      ]
+    },
+    "strap_notice": {
+      "page": 91,
+      "bbox": [
+        28,
+        324,
+        240,
+        346
+      ],
+      "lines": [
+        "Extra riemen kunnen worden gekocht en aan de zijkanten van het product worden bevestigd."
+      ]
+    },
+    "lcd_title": {
+      "page": 92,
+      "bbox": [
+        18,
+        15,
+        240,
+        36
+      ],
+      "lines": [
+        "LCD-SCHERM"
+      ]
+    },
+    "interface1": {
+      "page": 92,
+      "bbox": [
+        18,
+        36,
+        240,
+        48
+      ],
+      "lines": [
+        "INTERFACE 1"
+      ]
+    },
+    "lcd_name_input": {
+      "page": 92,
+      "bbox": [
+        58,
+        125.55711364746094,
+        108,
+        143.08091735839844
+      ],
+      "lines": [
+        "Invoervermogen"
+      ]
+    },
+    "lcd_body_input": {
+      "page": 92,
+      "bbox": [
+        108,
+        125.55711364746094,
+        239,
+        143.08091735839844
+      ],
+      "lines": [
+        "Toont het ingangsvermogen in watt."
+      ]
+    },
+    "lcd_name_charge_time": {
+      "page": 92,
+      "bbox": [
+        58,
+        143.08091735839844,
+        108,
+        160.63650512695312
+      ],
+      "lines": [
+        "Resterende",
+        "oplaadtijd"
+      ]
+    },
+    "lcd_body_charge_time": {
+      "page": 92,
+      "bbox": [
+        108,
+        143.08091735839844,
+        239,
+        160.63650512695312
+      ],
+      "lines": [
+        "Toont de resterende oplaadtijd."
+      ]
+    },
+    "lcd_name_steady": {
+      "page": 92,
+      "bbox": [
+        58,
+        160.63650512695312,
+        108,
+        178.1922149658203
+      ],
+      "lines": [
+        "Continu-aan-mo",
+        "dus"
+      ]
+    },
+    "lcd_body_steady": {
+      "page": 92,
+      "bbox": [
+        108,
+        160.63650512695312,
+        239,
+        178.1922149658203
+      ],
+      "lines": [
+        "Aan: De Continu-aan-modus is ingeschakeld.",
+        "Uit: De Continu-uit-modus is ingeschakeld."
+      ]
+    },
+    "lcd_name_thermal": {
+      "page": 92,
+      "bbox": [
+        58,
+        178.1922149658203,
+        108,
+        203.40020751953125
+      ],
+      "lines": [
+        "Thermische",
+        "vermogensbep",
+        "erking"
+      ]
+    },
+    "lcd_body_thermal": {
+      "page": 92,
+      "bbox": [
+        108,
+        178.1922149658203,
+        239,
+        203.40020751953125
+      ],
+      "lines": [
+        "Aan: De batterijtemperatuur is hoog. Het",
+        "maximale ontladingsvermogen is ingeschakeld.",
+        "Uit: Het maximale ontladingsvermogen is",
+        "uitgeschakeld."
+      ]
+    },
+    "lcd_name_energy": {
+      "page": 92,
+      "bbox": [
+        58,
+        203.40020751953125,
+        108,
+        222.62191772460938
+      ],
+      "lines": [
+        "Energiebesp",
+        "aringsmodus"
+      ]
+    },
+    "lcd_body_energy": {
+      "page": 92,
+      "bbox": [
+        108,
+        203.40020751953125,
+        239,
+        222.62191772460938
+      ],
+      "lines": [
+        "Aan: De Energiebesparingsmodus is ingeschakeld.",
+        "Uit: De Energiebesparingsmodus is uitgeschakeld."
+      ]
+    },
+    "lcd_name_ring": {
+      "page": 92,
+      "bbox": [
+        58,
+        222.62191772460938,
+        108,
+        250.2508087158203
+      ],
+      "lines": [
+        "Batterijstroom-in",
+        "dicator"
+      ]
+    },
+    "lcd_body_ring": {
+      "page": 92,
+      "bbox": [
+        108,
+        222.62191772460938,
+        239,
+        250.2508087158203
+      ],
+      "lines": [
+        "Wanneer het product wordt opgeladen, licht de",
+        "oranje cirkel rond het batterijpercentage",
+        "geleidelijk op. Wanneer u andere apparaten van",
+        "stroom voorziet, blijft de oranje cirkel branden."
+      ]
+    },
+    "lcd_name_low_battery": {
+      "page": 92,
+      "bbox": [
+        58,
+        250.2508087158203,
+        108,
+        271.0447082519531
+      ],
+      "lines": [
+        "Batterijstroom-in",
+        "dicator"
+      ]
+    },
+    "lcd_body_low_battery": {
+      "page": 92,
+      "bbox": [
+        108,
+        250.2508087158203,
+        239,
+        271.0447082519531
+      ],
+      "lines": [
+        "Aan: Het batterijniveau is lager dan 20%.",
+        "Knipperend: Het batterijniveau is lager dan 5%.",
+        "Uit: Het batterijniveau is niet lager dan 20% of het",
+        "product wordt opgeladen."
+      ]
+    },
+    "lcd_name_percentage": {
+      "page": 92,
+      "bbox": [
+        58,
+        271.0447082519531,
+        108,
+        291.8387145996094
+      ],
+      "lines": [
+        "Resterend",
+        "batterijpercentage"
+      ]
+    },
+    "lcd_body_percentage": {
+      "page": 92,
+      "bbox": [
+        108,
+        271.0447082519531,
+        239,
+        291.8387145996094
+      ],
+      "lines": [
+        "Geeft het resterende batterijpercentage weer."
+      ]
+    },
+    "lcd_name_discharge_time": {
+      "page": 92,
+      "bbox": [
+        58,
+        291.8387145996094,
+        108,
+        312.6325988769531
+      ],
+      "lines": [
+        "Resterende",
+        "ontlaadtijd"
+      ]
+    },
+    "lcd_body_discharge_time": {
+      "page": 92,
+      "bbox": [
+        108,
+        291.8387145996094,
+        239,
+        312.6325988769531
+      ],
+      "lines": [
+        "Geeft de resterende ontlaadtijd weer."
+      ]
+    },
+    "lcd_name_output": {
+      "page": 92,
+      "bbox": [
+        58,
+        312.6325988769531,
+        108,
+        334.0721130371094
+      ],
+      "lines": [
+        "Uitgangsvermogen"
+      ]
+    },
+    "lcd_body_output": {
+      "page": 92,
+      "bbox": [
+        108,
+        312.6325988769531,
+        239,
+        334.0721130371094
+      ],
+      "lines": [
+        "Geeft het uitgangsvermogen in watt weer."
+      ]
+    },
+    "lcd_name_fault": {
+      "page": 93,
+      "bbox": [
+        59,
+        19.50872039794922,
+        103,
+        42.446197509765625
+      ],
+      "lines": [
+        "Foutcode"
+      ]
+    },
+    "lcd_body_fault": {
+      "page": 93,
+      "bbox": [
+        103,
+        19.50872039794922,
+        239,
+        42.446197509765625
+      ],
+      "lines": [
+        "Verwijder de belasting of koppel de oplaadstekker",
+        "los. Als het probleem niet kan worden opgelost, neem",
+        "dan contact op met de klantenservice van Jackery."
+      ]
+    },
+    "lcd_name_high_temperature": {
+      "page": 93,
+      "bbox": [
+        59,
+        42.446197509765625,
+        103,
+        63.240203857421875
+      ],
+      "lines": [
+        "Indicator voor",
+        "hoge",
+        "temperatuur"
+      ]
+    },
+    "lcd_body_high_temperature": {
+      "page": 93,
+      "bbox": [
+        103,
+        42.446197509765625,
+        239,
+        63.240203857421875
+      ],
+      "lines": [
+        "De beveiliging tegen hoge temperaturen is geactiveerd.",
+        "Het product kan stoppen met werken totdat de",
+        "temperatuur weer binnen het normale bedrijfsbereik is."
+      ]
+    },
+    "lcd_name_low_temperature": {
+      "page": 93,
+      "bbox": [
+        59,
+        63.240203857421875,
+        103,
+        83.29971313476562
+      ],
+      "lines": [
+        "Indicator voor",
+        "lage",
+        "temperatuur"
+      ]
+    },
+    "lcd_body_low_temperature": {
+      "page": 93,
+      "bbox": [
+        103,
+        63.240203857421875,
+        239,
+        83.29971313476562
+      ],
+      "lines": [
+        "De beveiliging tegen lege temperaturen is geactiveerd.",
+        "Het product kan stoppen met werken totdat de",
+        "temperatuur weer binnen het normale bedrijfsbereik is."
+      ]
+    },
+    "lcd_name_discharging": {
+      "page": 93,
+      "bbox": [
+        61,
+        185.180419921875,
+        121,
+        203.82711791992188
+      ],
+      "lines": [
+        "Ontlaadindicator"
+      ]
+    },
+    "lcd_body_discharging": {
+      "page": 93,
+      "bbox": [
+        121,
+        185.180419921875,
+        239,
+        203.82711791992188
+      ],
+      "lines": [
+        "Deze USB-poort is aan het ontladen."
+      ]
+    },
+    "lcd_name_charging": {
+      "page": 93,
+      "bbox": [
+        61,
+        203.82711791992188,
+        121,
+        220.82711791992188
+      ],
+      "lines": [
+        "Laadindicator"
+      ]
+    },
+    "lcd_body_charging": {
+      "page": 93,
+      "bbox": [
+        121,
+        203.82711791992188,
+        239,
+        220.82711791992188
+      ],
+      "lines": [
+        "Deze USB-poort is aan het laden."
+      ]
+    },
+    "lcd_name_watts": {
+      "page": 93,
+      "bbox": [
+        61,
+        220.82711791992188,
+        121,
+        237.81541442871094
+      ],
+      "lines": [
+        "Laad- of",
+        "ontlaadvermogen"
+      ]
+    },
+    "lcd_body_watts": {
+      "page": 93,
+      "bbox": [
+        121,
+        220.82711791992188,
+        239,
+        237.81541442871094
+      ],
+      "lines": [
+        "Toont het laad- of ontlaadvermogen van de",
+        "betreffende poort."
+      ]
+    },
+    "lcd_name_health": {
+      "page": 94,
+      "bbox": [
+        59,
+        19.39342498779297,
+        116,
+        58.788909912109375
+      ],
+      "lines": [
+        "Batterijgezondheid",
+        "en aantal laadcycli"
+      ]
+    },
+    "lcd_body_health": {
+      "page": 94,
+      "bbox": [
+        116,
+        19.39342498779297,
+        239,
+        58.788909912109375
+      ],
+      "lines": [
+        "Toont het huidige",
+        "batterijgezondheidspercentage en het",
+        "aantal oplaad-/ontlaadcycli.",
+        "• Groen: de batterijgezondheid is hoog.",
+        "• Geel: de batterijgezondheid is matig.",
+        "• Rood: de batterijgezondheid is laag."
+      ]
+    },
+    "lcd_name_temperature": {
+      "page": 94,
+      "bbox": [
+        59,
+        58.788909912109375,
+        116,
+        82.0604248046875
+      ],
+      "lines": [
+        "Batterijtemperatuur"
+      ]
+    },
+    "lcd_body_temperature": {
+      "page": 94,
+      "bbox": [
+        116,
+        58.788909912109375,
+        239,
+        82.0604248046875
+      ],
+      "lines": [
+        "Toont de huidige batterijtemperatuur."
+      ]
+    },
+    "output_connect": {
+      "page": 94,
+      "bbox": [
+        27,
+        123.8423080444336,
+        239,
+        153.8423080444336
+      ],
+      "lines": [
+        "• Sluit een belasting aan om de uitgang te starten."
+      ]
+    },
+    "output_notice": {
+      "page": 94,
+      "bbox": [
+        18,
+        218,
+        239,
+        340
+      ],
+      "lines": [
+        "• USB-C 140W MAX is een USB-PD Power Source 3 (PS3)-uitgangspoort met hoog",
+        "vermogen. Als het aangesloten apparaat of accessoire niet aan de",
+        "veiligheidsvereisten voldoet, kan er brandgevaar ontstaan. Controleer voordat u",
+        "deze poorten gebruikt of het aangesloten apparaat of accessoire beschikt over",
+        "brandbeveiliging.",
+        "OPGELET",
+        "• Sluit de 100D alleen aan op apparaten of accessoires die voldoen aan clausules 6.3,",
+        "6.4 en 6.5 van IEC/EN/UL 62368-1 (of andere gelijkwaardige normen).",
+        "• Gebruik voor maximaal uitgangsvermogen de USB-C naar USB-C 5A-kabel (20 V",
+        "DC/5A, 100W; 28 V DC/5A, 140 W)."
+      ]
+    },
+    "energy_title": {
+      "page": 95,
+      "bbox": [
+        18,
+        12,
+        240,
+        28
+      ],
+      "lines": [
+        "ENERGIEBESPARINGSMODUS"
+      ]
+    },
+    "energy_body": {
+      "page": 95,
+      "bbox": [
+        20,
+        28,
+        240,
+        76
+      ],
+      "lines": [
+        "De Energiebesparingsmodus is standaard uitgeschakeld. Om onnodig batterijverbruik te",
+        "voorkomen, bijvoorbeeld doordat u bent vergeten de uitgang uit te schakelen, houdt u de",
+        "WEERGAVE-knop ingedrukt om de Energiebesparingsmodus in te schakelen.",
+        "Als er gedurende 2 uur geen apparaat is aangesloten of het stroomverbruik van het aangesloten",
+        "apparaat lager is dan 2W, schakelt het product automatisch de uitgangen uit.",
+        "Wanneer de uitgang is ingeschakeld, verschijnt het pictogram \"2H\" op het scherm."
+      ]
+    },
+    "energy_action": {
+      "page": 95,
+      "bbox": [
+        174,
+        77,
+        239,
+        143
+      ],
+      "lines": [
+        "Houd 3 seconden",
+        "ingedrukt om de",
+        "Energiebesparings",
+        "modus in of uit te",
+        "schakelen."
+      ]
+    },
+    "energy_note": {
+      "page": 95,
+      "bbox": [
+        18,
+        147,
+        239,
+        179
+      ],
+      "lines": [
+        "De Energiebesparingsmodus hervat de vorige status na het inschakelen.",
+        "OPMERKING",
+        "Voor het wijzigen van de modus is handmatig schakelen vereist."
+      ]
+    },
+    "screen_title": {
+      "page": 95,
+      "bbox": [
+        18,
+        179,
+        240,
+        191
+      ],
+      "lines": [
+        "LCD-SCHERM"
+      ]
+    },
+    "screen_function_191.4228057861328": {
+      "page": 95,
+      "bbox": [
+        103,
+        191.4228057861328,
+        148,
+        207.97750854492188
+      ],
+      "lines": [
+        "Functie"
+      ]
+    },
+    "screen_description_191.4228057861328": {
+      "page": 95,
+      "bbox": [
+        148,
+        191.4228057861328,
+        239,
+        207.97750854492188
+      ],
+      "lines": [
+        "Beschrijving"
+      ]
+    },
+    "screen_function_207.97750854492188": {
+      "page": 95,
+      "bbox": [
+        103,
+        207.97750854492188,
+        148,
+        235.31341552734375
+      ],
+      "lines": [
+        "Scherm wekken"
+      ]
+    },
+    "screen_description_207.97750854492188": {
+      "page": 95,
+      "bbox": [
+        148,
+        207.97750854492188,
+        239,
+        235.31341552734375
+      ],
+      "lines": [
+        "Het scherm licht op na een korte",
+        "druk op de WEERGAVE-knop of licht",
+        "automatisch op tijdens het laden of",
+        "ontladen."
+      ]
+    },
+    "screen_function_235.31341552734375": {
+      "page": 95,
+      "bbox": [
+        103,
+        235.31341552734375,
+        148,
+        262.6484069824219
+      ],
+      "lines": [
+        "Scherm altijd",
+        "aan"
+      ]
+    },
+    "screen_description_235.31341552734375": {
+      "page": 95,
+      "bbox": [
+        148,
+        235.31341552734375,
+        239,
+        262.6484069824219
+      ],
+      "lines": [
+        "Druk tweemaal op de",
+        "WEERGAVE-knop terwijl het scherm",
+        "brandt."
+      ]
+    },
+    "screen_function_262.6484069824219": {
+      "page": 95,
+      "bbox": [
+        103,
+        262.6484069824219,
+        148,
+        289.98431396484375
+      ],
+      "lines": [
+        "Van scherm",
+        "wisselen"
+      ]
+    },
+    "screen_description_262.6484069824219": {
+      "page": 95,
+      "bbox": [
+        148,
+        262.6484069824219,
+        239,
+        289.98431396484375
+      ],
+      "lines": [
+        "Druk na het oplichten van het",
+        "scherm kort op de WEERGAVE-knop",
+        "om van pagina te wisselen."
+      ]
+    },
+    "screen_function_289.98431396484375": {
+      "page": 95,
+      "bbox": [
+        103,
+        289.98431396484375,
+        148,
+        317.3202209472656
+      ],
+      "lines": [
+        "Scherm",
+        "altijd-aan",
+        "uitschakelen"
+      ]
+    },
+    "screen_description_289.98431396484375": {
+      "page": 95,
+      "bbox": [
+        148,
+        289.98431396484375,
+        239,
+        317.3202209472656
+      ],
+      "lines": [
+        "Druk nogmaals tweemaal op de",
+        "WEERGAVE-knop."
+      ]
+    },
+    "screen_function_317.3202209472656": {
+      "page": 95,
+      "bbox": [
+        103,
+        317.3202209472656,
+        148,
+        345.0898132324219
+      ],
+      "lines": [
+        "Scherm",
+        "automatisch",
+        "uitschakelen"
+      ]
+    },
+    "screen_description_317.3202209472656": {
+      "page": 95,
+      "bbox": [
+        148,
+        317.3202209472656,
+        239,
+        345.0898132324219
+      ],
+      "lines": [
+        "10 seconden na het oplichten",
+        "zonder gebruik of 2 uur na het",
+        "activeren van de altijd-aan-modus."
+      ]
+    },
+    "charging_title": {
+      "page": 96,
+      "bbox": [
+        18,
+        12,
+        239,
+        30
+      ],
+      "lines": [
+        "OPLADEN"
+      ]
+    },
+    "charging_intro": {
+      "page": 96,
+      "bbox": [
+        18,
+        30,
+        239,
+        42
+      ],
+      "lines": [
+        "Laad het product voor het eerste gebruik volledig op."
+      ]
+    },
+    "charging_notice": {
+      "page": 96,
+      "bbox": [
+        18,
+        42,
+        239,
+        92
+      ],
+      "lines": [
+        "• De aanbevolen oplaadtemperatuur voor het product ligt tussen 0°C",
+        "en 45°C, en de ontlaadtemperatuur tussen -20°C en 45°C. Het",
+        "gebruik van het product buiten dit temperatuurbereik kan de laad-",
+        "en ontlaadmogelijkheden beperken of zelfs voorkomen dat het",
+        "OPGELET",
+        "product kan opladen of ontladen.",
+        "• Het oplaadvermogen en de batterijcapaciteit van het product",
+        "kunnen variëren als gevolg van verschillende temperaturen."
+      ]
+    },
+    "ac_title": {
+      "page": 96,
+      "bbox": [
+        18,
+        92,
+        239,
+        105
+      ],
+      "lines": [
+        "OPLADEN VIA AC-LAADKABEL"
+      ]
+    },
+    "ac_notice": {
+      "page": 96,
+      "bbox": [
+        18,
+        182,
+        239,
+        220
+      ],
+      "lines": [
+        "• Koop de AC-oplaadkabel apart.",
+        "• Zorg ervoor dat de AC-oplaadkabel volledig en correct in de",
+        "OPGELET",
+        "AC-ingangspoort is gestoken. Een onvolledige verbinding kan instabiele",
+        "stroom, oververhitting, slecht contact of apparaatstoringen veroorzaken."
+      ]
+    },
+    "solar_intro": {
+      "page": 96,
+      "bbox": [
+        18,
+        227.9813232421875,
+        239,
+        246.34681701660156
+      ],
+      "lines": [
+        "Dit product ondersteunt een maximaal oplaadvermogen via zonne-energie van 100W en",
+        "kan worden gebruikt met de zonnepanelen uit de Jackery SolarSaga-serie."
+      ]
+    },
+    "solar_panel_charge": {
+      "page": 96,
+      "bbox": [
+        18,
+        246.34681701660156,
+        239,
+        253.8490234375
+      ],
+      "lines": [
+        "Opgeladen via een zonnepaneel van 40W of 100W:"
+      ]
+    },
+    "solar_purchase": {
+      "page": 97,
+      "bbox": [
+        29,
+        15,
+        239,
+        30
+      ],
+      "lines": [
+        "De DC8020-naar-USB-C-kabel wordt apart verkocht."
+      ]
+    },
+    "solar_recommendation": {
+      "page": 97,
+      "bbox": [
+        18,
+        30,
+        239,
+        68
+      ],
+      "lines": [
+        "Het wordt aanbevolen om het product op te laden met het Jackery-zonnepaneel. Zorg ervoor",
+        "dat de openklemspanning (Voc) van het zonnepaneel binnen het DC-ingangsbereik (10 V-30",
+        "V) van de 100D ligt. Jackery is niet verantwoordelijk voor schade of verlies als gevolg van het",
+        "gebruik van zonnepanelen van derden."
+      ]
+    },
+    "car_title": {
+      "page": 97,
+      "bbox": [
+        18,
+        68,
+        239,
+        78
+      ],
+      "lines": [
+        "OPLADEN VIA EEN AUTO-OPLADER (AFZONDERLIJK VERKRIJGBAAR)"
+      ]
+    },
+    "car_intro": {
+      "page": 97,
+      "bbox": [
+        18,
+        78,
+        239,
+        99
+      ],
+      "lines": [
+        "Dit product kan worden opgeladen met zowel 12 V- als 24 V-autoladers. Zorg ervoor dat",
+        "de autolader en de aansluiting in de auto (sigarettenaansteker) goed zijn aangesloten."
+      ]
+    },
+    "car_purchase": {
+      "page": 97,
+      "bbox": [
+        28,
+        209,
+        239,
+        229
+      ],
+      "lines": [
+        "De oplaadkabel voor de auto en de DC8020-naar-USB-C-kabel zijn apart",
+        "verkrijgbaar."
+      ]
+    },
+    "car_notice": {
+      "page": 97,
+      "bbox": [
+        18,
+        229,
+        239,
+        340
+      ],
+      "lines": [
+        "• Start het voertuig voordat u uw powerbank oplaadt.",
+        "• Als u met uw voertuig op oneffen wegen rijdt, is het verboden de",
+        "OPGELET",
+        "autolader te gebruiken om niet-standaard werking te voorkomen. Het",
+        "bedrijf is niet aansprakelijk voor enig verlies of schade als gevolg van",
+        "niet-standaard gebruik."
+      ]
+    },
+    "storage_title": {
+      "page": 98,
+      "bbox": [
+        18,
+        14,
+        239,
+        35
+      ],
+      "lines": [
+        "OPSLAG"
+      ]
+    },
+    "spec_title": {
+      "page": 99,
+      "bbox": [
+        18,
+        12,
+        239,
+        32
+      ],
+      "lines": [
+        "SPECIFICATIES"
+      ]
+    },
+    "spec_section_32": {
+      "page": 99,
+      "bbox": [
+        18,
+        32,
+        239,
+        45
+      ],
+      "lines": [
+        "ALGEMENE INFORMATIE"
+      ]
+    },
+    "spec_label_46": {
+      "page": 99,
+      "bbox": [
+        18,
+        46,
+        100,
+        60
+      ],
+      "lines": [
+        "Productnaam"
+      ]
+    },
+    "spec_value_46": {
+      "page": 99,
+      "bbox": [
+        100,
+        46,
+        239,
+        60
+      ],
+      "lines": [
+        "Jackery Explorer 100D"
+      ]
+    },
+    "spec_label_60": {
+      "page": 99,
+      "bbox": [
+        18,
+        60,
+        100,
+        73
+      ],
+      "lines": [
+        "Modelnummer"
+      ]
+    },
+    "spec_value_60": {
+      "page": 99,
+      "bbox": [
+        100,
+        60,
+        239,
+        73
+      ],
+      "lines": [
+        "JE-100C"
+      ]
+    },
+    "spec_label_73": {
+      "page": 99,
+      "bbox": [
+        18,
+        73,
+        100,
+        86
+      ],
+      "lines": [
+        "Capaciteit"
+      ]
+    },
+    "spec_value_73": {
+      "page": 99,
+      "bbox": [
+        100,
+        73,
+        239,
+        86
+      ],
+      "lines": [
+        "96 Wh (5 Ah/19,2 V DC)"
+      ]
+    },
+    "spec_label_86": {
+      "page": 99,
+      "bbox": [
+        18,
+        86,
+        100,
+        100
+      ],
+      "lines": [
+        "Celchemie"
+      ]
+    },
+    "spec_value_86": {
+      "page": 99,
+      "bbox": [
+        100,
+        86,
+        239,
+        100
+      ],
+      "lines": [
+        "LiFePO4"
+      ]
+    },
+    "spec_label_100": {
+      "page": 99,
+      "bbox": [
+        18,
+        100,
+        100,
+        112
+      ],
+      "lines": [
+        "Gewicht"
+      ]
+    },
+    "spec_value_100": {
+      "page": 99,
+      "bbox": [
+        100,
+        100,
+        239,
+        112
+      ],
+      "lines": [
+        "855 g ± 10 g"
+      ]
+    },
+    "spec_label_112": {
+      "page": 99,
+      "bbox": [
+        18,
+        112,
+        100,
+        125
+      ],
+      "lines": [
+        "Afmetingen"
+      ]
+    },
+    "spec_value_112": {
+      "page": 99,
+      "bbox": [
+        100,
+        112,
+        239,
+        125
+      ],
+      "lines": [
+        "(118,7 ± 1) × (82,6 ± 0,5) × (85,68 ± 0,8) mm"
+      ]
+    },
+    "spec_section_126": {
+      "page": 99,
+      "bbox": [
+        18,
+        126,
+        239,
+        139
+      ],
+      "lines": [
+        "Ingangspoorten"
+      ]
+    },
+    "spec_label_139": {
+      "page": 99,
+      "bbox": [
+        18,
+        139,
+        100,
+        189
+      ],
+      "lines": [
+        "USB-C1"
+      ]
+    },
+    "spec_value_139": {
+      "page": 99,
+      "bbox": [
+        100,
+        139,
+        239,
+        189
+      ],
+      "lines": [
+        "5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A,",
+        "20 V⎓5 A, 28 V⎓5A, 140W Max",
+        "Voertuig: 12 V⎓5 A Max, 24 V⎓5 A Max",
+        "PV: 10 V-30 V⎓, 5A Max, 100W Max"
+      ]
+    },
+    "spec_input_part_0": {
+      "page": 99,
+      "bbox": [
+        100,
+        139,
+        239,
+        161.9158172607422
+      ],
+      "lines": [
+        "5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A,",
+        "20 V⎓5 A, 28 V⎓5A, 140W Max"
+      ]
+    },
+    "spec_input_part_1": {
+      "page": 99,
+      "bbox": [
+        100,
+        161.9158172607422,
+        239,
+        175.06820678710938
+      ],
+      "lines": [
+        "Voertuig: 12 V⎓5 A Max, 24 V⎓5 A Max"
+      ]
+    },
+    "spec_input_part_2": {
+      "page": 99,
+      "bbox": [
+        100,
+        175.06820678710938,
+        239,
+        189
+      ],
+      "lines": [
+        "PV: 10 V-30 V⎓, 5A Max, 100W Max"
+      ]
+    },
+    "spec_section_189": {
+      "page": 99,
+      "bbox": [
+        18,
+        189,
+        239,
+        200
+      ],
+      "lines": [
+        "Uitgangspoorten"
+      ]
+    },
+    "spec_label_200": {
+      "page": 99,
+      "bbox": [
+        18,
+        200,
+        100,
+        215
+      ],
+      "lines": [
+        "USB-A"
+      ]
+    },
+    "spec_value_200": {
+      "page": 99,
+      "bbox": [
+        100,
+        200,
+        239,
+        215
+      ],
+      "lines": [
+        "5 V⎓2 A, 9 V⎓2 A, 12 V⎓1,5 A, 18 W Max"
+      ]
+    },
+    "spec_label_215": {
+      "page": 99,
+      "bbox": [
+        18,
+        215,
+        100,
+        237
+      ],
+      "lines": [
+        "USB-C1 / USB-C2"
+      ]
+    },
+    "spec_value_215": {
+      "page": 99,
+      "bbox": [
+        100,
+        215,
+        239,
+        237
+      ],
+      "lines": [
+        "5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A,",
+        "20 V⎓5 A, 28 V⎓5 A, 140 W Max"
+      ]
+    },
+    "spec_section_237": {
+      "page": 99,
+      "bbox": [
+        18,
+        237,
+        239,
+        249
+      ],
+      "lines": [
+        "Totaal uitgangsvermogen"
+      ]
+    },
+    "spec_label_249": {
+      "page": 99,
+      "bbox": [
+        18,
+        249,
+        100,
+        263.9
+      ],
+      "lines": [
+        "USB-C1 + USB-C2"
+      ]
+    },
+    "spec_value_249": {
+      "page": 99,
+      "bbox": [
+        100,
+        249,
+        239,
+        263.9
+      ],
+      "lines": [
+        "( 70W + 70W ) Max"
+      ]
+    },
+    "spec_label_263.9": {
+      "page": 99,
+      "bbox": [
+        18,
+        263.9,
+        100,
+        277
+      ],
+      "lines": [
+        "Omgevingstemperatuur",
+        "USB-C1 + USB-A / USB-C2 + USB-A"
+      ]
+    },
+    "spec_value_263.9": {
+      "page": 99,
+      "bbox": [
+        100,
+        263.9,
+        239,
+        277
+      ],
+      "lines": [
+        "( 140W + 18W ) Max"
+      ]
+    },
+    "spec_label_277": {
+      "page": 99,
+      "bbox": [
+        18,
+        277,
+        100,
+        289.5
+      ],
+      "lines": [
+        "USB-C1 + USB-C2 + USB-A"
+      ]
+    },
+    "spec_value_277": {
+      "page": 99,
+      "bbox": [
+        100,
+        277,
+        239,
+        289.5
+      ],
+      "lines": [
+        "( 70W + 70W + 18W ) Max"
+      ]
+    },
+    "spec_section_289.5": {
+      "page": 99,
+      "bbox": [
+        18,
+        289.5,
+        239,
+        306
+      ],
+      "lines": [
+        "BEDRIJFSTEMPERATUUR"
+      ]
+    },
+    "spec_label_306": {
+      "page": 99,
+      "bbox": [
+        18,
+        306,
+        100,
+        322
+      ],
+      "lines": [
+        "Oplaadtemperatuur"
+      ]
+    },
+    "spec_value_306": {
+      "page": 99,
+      "bbox": [
+        100,
+        306,
+        239,
+        322
+      ],
+      "lines": [
+        "0°C tot 45°C"
+      ]
+    },
+    "spec_label_322": {
+      "page": 99,
+      "bbox": [
+        18,
+        322,
+        100,
+        336
+      ],
+      "lines": [
+        "Ontlaadtemperatuur"
+      ]
+    },
+    "spec_value_322": {
+      "page": 99,
+      "bbox": [
+        100,
+        322,
+        239,
+        336
+      ],
+      "lines": [
+        "-20°C tot 45°C"
+      ]
+    },
+    "spec_footnote": {
+      "page": 99,
+      "bbox": [
+        18,
+        336,
+        239,
+        350
+      ],
+      "lines": [
+        "※ USB Type-C®   en USB-C®   zijn geregistreerde handelsmerken van USB Implementers Forum."
+      ]
+    },
+    "warranty_title": {
+      "page": 100,
+      "bbox": [
+        18,
+        12,
+        240,
+        32
+      ],
+      "lines": [
+        "GARANTIE"
+      ]
+    },
+    "contact_title": {
+      "page": 100,
+      "bbox": [
+        20,
+        37,
+        239,
+        52
+      ],
+      "lines": [
+        "NEEM CONTACT",
+        "MET ONS OP"
+      ]
+    },
+    "contact_body": {
+      "page": 100,
+      "bbox": [
+        20,
+        52,
+        239,
+        89
+      ],
+      "lines": [
+        "Stuur uw vragen of opmerkingen over onze producten naar hello.eu@jackery.com, we",
+        "zullen u zo snel mogelijk beantwoorden. Als er sprake is van een kwaliteitsprobleem met",
+        "het product, kunt u een vervangend product of terugbetaling aanvragen door een",
+        "aanvraagformulier in te vullen op www.jackery.com."
+      ]
+    },
+    "customer_title": {
+      "page": 100,
+      "bbox": [
+        20,
+        90,
+        239,
+        103
+      ],
+      "lines": [
+        "KLANTENSERVICE"
+      ]
+    }
+  },
+  "assets": [
+    {
+      "key": "overview",
+      "path": "docs/renderers/web/assets/je100c_eu_nl/overview.svg",
+      "source_page": 91,
+      "bbox_pt": [
+        16,
+        164,
+        240,
+        323
+      ],
+      "removed_layout_paths": [],
+      "sha256": "e967a9232861e58521bc5ab8337cd7e690d7d8af5b255f666706a2c07d47552d"
+    },
+    {
+      "key": "lcd1",
+      "path": "docs/renderers/web/assets/je100c_eu_nl/lcd1.svg",
+      "source_page": 92,
+      "bbox_pt": [
+        37,
+        48,
+        213,
+        123
+      ],
+      "removed_layout_paths": [],
+      "sha256": "f4afab38d9fe606ce2058f1cfba7720154144029f6212a1a1be177780ad9866d"
+    },
+    {
+      "key": "lcd2",
+      "path": "docs/renderers/web/assets/je100c_eu_nl/lcd2.svg",
+      "source_page": 93,
+      "bbox_pt": [
+        18,
+        101.63660430908203,
+        238,
+        181.180419921875
+      ],
+      "removed_layout_paths": [],
+      "sha256": "140612c533e8615caf48b834e049ad92a100a02d338a6396d1e20fb0ca5495b2"
+    },
+    {
+      "key": "lcd3",
+      "path": "docs/renderers/web/assets/je100c_eu_nl/lcd3.svg",
+      "source_page": 93,
+      "bbox_pt": [
+        43,
+        261.5555114746094,
+        207,
+        339
+      ],
+      "removed_layout_paths": [],
+      "sha256": "fd4dccae5ca9bfb5593c296a2b958882d6bb3f28b83a6148d15ace3835042335"
+    },
+    {
+      "key": "lcd_icon_health",
+      "path": "docs/renderers/web/assets/je100c_eu_nl/lcd_icon_health.svg",
+      "source_page": 94,
+      "bbox_pt": [
+        32.2,
+        33.5,
+        57.65,
+        47
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,116.0198,82.429508)",
+          "d": "M0 0H-96.93C-97.97 0-98.821 .851-98.821 1.891V60.389C-98.821 61.646-97.801 62.666-96.543 62.666H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "sha256": "7bdb70eedd4ea49e6bffca4225233af2c906a2a0cc9354b01a544ef631189da7"
+    },
+    {
+      "key": "charging_solar",
+      "path": "docs/renderers/web/assets/je100c_eu_nl/charging_solar.svg",
+      "source_page": 96,
+      "bbox_pt": [
+        18.211587524414064,
+        253.8490234375,
+        235.52059020996094,
+        335.1490234375
+      ],
+      "removed_layout_paths": [],
+      "sha256": "1cab09f227375c1043606fea5cccdab91fca52847ce8c97a1929f9b5529ded95"
+    },
+    {
+      "key": "charging_car",
+      "path": "docs/renderers/web/assets/je100c_eu_nl/charging_car.svg",
+      "source_page": 97,
+      "bbox_pt": [
+        17.618203735351564,
+        99.1444107055664,
+        234.92720642089844,
+        205.46240844726563
+      ],
+      "removed_layout_paths": [],
+      "sha256": "d98e8df438a7e47070c9cc8b018b4ad6ae443a9219f88c2f46d37bf62843a964"
+    }
+  ],
+  "status": "local-source-intake-candidate"
+}

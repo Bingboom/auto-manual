@@ -27,8 +27,8 @@
   "approval": {
     "status": "approved",
     "approved_by": "夏冰",
-    "approved_at": "2026-08-29T14:11:49Z",
-    "method": "operator directive 2026-08-29: restore final assembly 3/3; exact Hello-Docs review e06def5e; editable IDML semantic projection; 52-source/58-page composition unchanged"
+    "approved_at": "2026-09-23T14:40:20Z",
+    "method": "对话确认（Claude Code 会话）：JE-1000F/US review 页刷新为发布队列同步后的状态，symbols 与 troubleshooting 页 EN/FR/ES 内容变更（符号行变体参数、F9 改为 DC/USB）；排版图不变"
   },
   "render_contract": {
     "dpi": 300,
@@ -445,7 +445,7 @@
     },
     {
       "source_ref": "page/symbols_en.rst",
-      "source_sha256": "e0ef55116742cc9ee4af35c693f9a311c1de219974ea9b98367b18cbc92f0864",
+      "source_sha256": "2e3cf36d2cbc666537f230a436cd669882d56c8708317a5305be9dc06b376998",
       "language": "en",
       "composition_id": "en_maintenance_symbols",
       "start_page": 5,
@@ -485,7 +485,7 @@
     },
     {
       "source_ref": "page/05_operation_guide_placeholder.rst",
-      "source_sha256": "a5da816934e5325b8a238502a69e30c503f9ff273ec27caf862f638bb29bacfc",
+      "source_sha256": "eb5545a6a4b37bd654202b8b86ccc16ddcf59e7dba71c537d934b3eeacca1da5",
       "language": "en",
       "composition_id": "en_operation",
       "start_page": 10,
@@ -530,7 +530,7 @@
     },
     {
       "source_ref": "page/troubleshooting_en.rst",
-      "source_sha256": "c4e01d369e76ca74dd6988ac53d047d0227e08cf1b18d90f3cffcc763fe21e3b",
+      "source_sha256": "412dd5952e8747700f6e493895aaa004e9febe0ed45435fea713e2b76293789e",
       "language": "en",
       "composition_id": "en_storage_troubleshooting",
       "start_page": 17,
@@ -578,7 +578,7 @@
     },
     {
       "source_ref": "page/symbols_fr.rst",
-      "source_sha256": "a86450c8d3fb9d113201f559b92e93e54ec7e09c7dc6c0b326d9c57ff59275f0",
+      "source_sha256": "ca6537cc51b36eb13fea83ac6a879353b645599ad5b709be3762c06fea419153",
       "language": "fr",
       "composition_id": "fr_maintenance_symbols",
       "start_page": 23,
@@ -618,7 +618,7 @@
     },
     {
       "source_ref": "page/p26_05_operation_guide_placeholder.rst",
-      "source_sha256": "16f62755bd4876a043534031d54a15dcee8cb2ac973214cd71903f043ab4f1c2",
+      "source_sha256": "fc3b66bdd3bd5eac7537314ce5cbf7dabe424fa60ed52abd320546e01ebc7c62",
       "language": "fr",
       "composition_id": "fr_operation",
       "start_page": 28,
@@ -663,7 +663,7 @@
     },
     {
       "source_ref": "page/troubleshooting_fr.rst",
-      "source_sha256": "1ae2e53892f881adf47a5ab9d5be956f237ee568dd074041b5e28c0ea2c4e8cc",
+      "source_sha256": "9a892d29d38d81caff4de49eae380fb3eed287ae1c54f2383d4d0856ea7f97ad",
       "language": "fr",
       "composition_id": "fr_storage_troubleshooting",
       "start_page": 35,
@@ -711,7 +711,7 @@
     },
     {
       "source_ref": "page/symbols_es.rst",
-      "source_sha256": "c8b277b32a7d27fa648ea1d2b1c5a5124ab1afea2ad6beb107704084420d295a",
+      "source_sha256": "43ae895093801c3b273b8f620ee31c34a6d5f339359cbe35ac787e2754daffc8",
       "language": "es",
       "composition_id": "es_maintenance_symbols",
       "start_page": 41,
@@ -751,7 +751,7 @@
     },
     {
       "source_ref": "page/p42_05_operation_guide_placeholder.rst",
-      "source_sha256": "6e3ee5839ea0df11dfc979fac03be37e33d5e5b761cb8fde9ff1ce190f8f6564",
+      "source_sha256": "8c3194aba5aefbbd3b3fadbd15fd7548da46504ec85013fac4e035b8ca7513cf",
       "language": "es",
       "composition_id": "es_operation",
       "start_page": 46,
@@ -796,7 +796,7 @@
     },
     {
       "source_ref": "page/troubleshooting_es.rst",
-      "source_sha256": "e2bc0a75af995c58b1bf24be4b41f352e0855cf9eee99846c845f80324c28c71",
+      "source_sha256": "7d359a9c9702048614ffc9ee066419532377479aa21f7c9ea2848916424157a3",
       "language": "es",
       "composition_id": "es_storage_troubleshooting",
       "start_page": 53,
@@ -838,17 +838,17 @@
   "identity": {
     "content": {
       "manual_ir_schema_version": "manual-ir/v1",
-      "manual_content_sha256": "b46905f6953e4c4684623f204890a55ad5826e0fbbc610119738a4c53929590a"
+      "manual_content_sha256": "46319119142e5824202d3f12297557ed46b67fb89bcbde363b852802980bc678"
     },
     "assembly": {
       "sha256": "c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57"
     },
     "style": {
-      "style_contract_sha256": "cdf3b81f7b002bca4596565418c52c0a852666454b7fb77206ae71d1ab9ae420",
-      "layout_params_sha256": "2a7e0ea1b75180acc52ff0f169f42322416bc881de860255f1ca778ce2858d82"
+      "style_contract_sha256": "29d27cc71e5387a8c0ebf7a76584f63806350aaa5f8f3cbc51ad669a33697145",
+      "layout_params_sha256": "9781ef9eec94bd356fd862b231e57d04d2e56f0cd03016d78d85412e7312515b"
     },
     "provenance": {
-      "snapshot_sha256": "84f40ec342616456d8756fad1df551d791ba1925420edee07f1553684ff91c28"
+      "snapshot_sha256": "4c7b267672c8be081977c5644b444a6eb0059cacbd81de0a995ac6f58a859a2e"
     }
   }
 }

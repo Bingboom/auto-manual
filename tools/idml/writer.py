@@ -30,6 +30,7 @@ class IdmlWriter:
         language: str | None = None,
         strict_component_assets: bool = False,
         native_structure_markers: bool = False,
+        registered_components: bool = False,
     ):
         self.params = params
         self.model = model
@@ -37,6 +38,9 @@ class IdmlWriter:
         self.language = language
         self.strict_component_assets = strict_component_assets
         self.native_structure_markers = native_structure_markers
+        # An active component target composes its registered components
+        # (tools/idml/component_targets.py); every other build keeps False.
+        self.registered_components = registered_components
         self.page_w = param_pt(params, "page_paperwidth", 368.79)
         self.page_h = param_pt(params, "page_paperheight", 524.69)
         self.m_l = param_pt(params, "page_margin_left", 28.35)
@@ -170,6 +174,7 @@ class IdmlWriter:
             inline_origin_shift=inline_origin_shift,
             strict_component_assets=self.strict_component_assets,
             native_structure_markers=self.native_structure_markers,
+            registered_components=self.registered_components,
             add_story=self._add_story_parts)
 
     def add_prose_story(self, sid: str, title: str,
@@ -181,7 +186,8 @@ class IdmlWriter:
                         image_callouts: tuple[tuple[dict, ...], ...] = (),
                         disable_hyphenation: bool = False,
                         first_h1_space_after: float | None = None,
-                        semantic_page_role: str | None = None) -> tuple[str, float]:
+                        semantic_page_role: str | None = None,
+                        figure_frame_height: float | None = None) -> tuple[str, float]:
         return _stories.add_prose_story(
             self,
             sid,
@@ -195,6 +201,7 @@ class IdmlWriter:
             disable_hyphenation=disable_hyphenation,
             first_h1_space_after=first_h1_space_after,
             semantic_page_role=semantic_page_role,
+            figure_frame_height=figure_frame_height,
         )
 
     def add_lcd_story(self, rows: list[dict], data_root: Path, **kw) -> str:

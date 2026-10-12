@@ -1,5 +1,7 @@
 # Translation Corpus Governance (句对库 + 术语库)
 
+Status: active
+
 Updated: 2026-06-01
 
 This is the operating contract for the two CAT tables that live in the Feishu Base

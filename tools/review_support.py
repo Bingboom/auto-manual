@@ -164,7 +164,7 @@ def _target_config_path_for_review_mapping(
     lang: str,
 ) -> Path | None:
     from tools.config_loader import load_config_mapping
-    from tools.queue_config_resolution import resolve_config_path_for_task
+    from tools.build_queue.config_resolution import resolve_config_path_for_task
 
     normalized_region = (region or "").strip().upper()
     normalized_lang = lang.strip().lower()
@@ -223,7 +223,7 @@ def _shared_review_page_path_pairs(
         target_name = _normalized_materialized_page_name(planned.file_name)
         target_source = _source_file(planned)
         shared_name = _claim(
-            lambda record: record["lang"] == target_lang and record["name"] == target_name
+            lambda record: record["lang"] == target_lang and record["name"] == target_name  # noqa: B023 -- invoked before the loop advances
         )
         if shared_name is None and target_source:
             # A shared page (e.g. the trilingual preface) is declared once in
@@ -232,7 +232,7 @@ def _shared_review_page_path_pairs(
             # language. Pair them by identical source file + page name so the
             # review overlay still maps the shared review copy.
             shared_name = _claim(
-                lambda record: record["source"] == target_source and record["name"] == target_name
+                lambda record: record["source"] == target_source and record["name"] == target_name  # noqa: B023 -- invoked before the loop advances
             )
         if shared_name is None:
             continue
@@ -603,7 +603,7 @@ def _render_placeholder_values(template_line: str, values: tuple[str, ...]) -> s
 
     rendered_parts: list[str] = []
     last = 0
-    for value, match in zip(values, matches):
+    for value, match in zip(values, matches, strict=True):
         rendered_parts.append(template_line[last:match.start()])
         rendered_parts.append(value)
         last = match.end()

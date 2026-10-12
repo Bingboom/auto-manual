@@ -142,7 +142,7 @@ class ManualOperationsHealthTests(unittest.TestCase):
             html = root / "reports" / "releases" / "M" / "EU" / "en" / "versions" / "1" / "web" / "html"; html.mkdir(parents=True)
             (html / "index.html").write_text('<img src="gone.png">', encoding="utf-8")
             output = root / "out.json"
-            proc = subprocess.run([sys.executable, "-m", "tools.manual_operations_health", "--repo-root", str(root), "--releases-root", str(root / "reports" / "releases"), "--output", str(output)], capture_output=True, text=True)
+            proc = subprocess.run([sys.executable, "-m", "tools.manual_operations_health", "--repo-root", str(root), "--releases-root", str(root / "reports" / "releases"), "--output", str(output)], capture_output=True, text=True, check=False)
             self.assertEqual(1, proc.returncode)
             self.assertIn('"failure_count": 1', proc.stdout)
             self.assertEqual("failed", json.loads(output.read_text())["status"])

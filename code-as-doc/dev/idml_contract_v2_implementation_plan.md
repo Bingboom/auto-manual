@@ -1,5 +1,7 @@
 # IDML approved-layout contract v2 implementation plan
 
+Status: done
+
 Date: 2026-08-05
 
 Discovery evidence:
@@ -77,9 +79,9 @@ Commands, cheapest first:
 2. targeted unittest modules.
 3. `python3 -m unittest`.
 4. `python3 -m ruff check build.py integrations tools tests scripts`.
-5. `python3 tools/check_maintainability_guardrails.py`.
-6. `python3 tools/check_reference_layout_pins.py`.
-7. `python3 tools/check_doc_link_integrity.py`.
+5. `python3 -m tools.check_maintainability_guardrails`.
+6. `python3 -m tools.check_reference_layout_pins`.
+7. `python3 -m tools.check_doc_link_integrity`.
 8. production `build.py idml` for JE-1000F US using `review-asis`.
 
 Build outputs and local ignored phase2 snapshots remain outside Git.

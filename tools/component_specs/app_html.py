@@ -1,8 +1,9 @@
 """Structure-first HTML source adapters for App ComponentSpecs."""
 from __future__ import annotations
 
+import json
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Iterator, Mapping, cast
 
 from bs4 import BeautifulSoup, Tag
 
@@ -12,6 +13,11 @@ from tools.component_specs.app import (
     app_inline_control_component_spec,
     resolve_app_control_label_roles,
 )
+from tools.component_specs.app_label_source import (
+    app_display_metadata, app_interstitial_note, app_label_boundaries,
+)
+from tools.component_specs.app_qr_source import parse_app_qr_download_html
+from tools.component_specs.model import ComponentSpec
 from tools.manual_ir.web_app_download import load_web_download_source
 from tools.utils.path_utils import repo_root
 
@@ -45,8 +51,13 @@ def parse_app_download_html(
     language: str,
     model: str,
     region: str,
-) -> tuple[object, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]:
+) -> tuple[ComponentSpec, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]:
     """Parse the established two-column source contract without mutating it."""
+
+    if config.get("presentation") == "qr-only":
+        return parse_app_qr_download_html(
+            soup, config=config, source_path=source_path, language=language,
+        )
 
     source = load_web_download_source(
         str(soup),
@@ -92,13 +103,28 @@ def parse_app_download_html(
     )
 
 
+def parse_declared_app_downloads(
+    soup: BeautifulSoup, *, source_path: Path, language: str,
+) -> Iterator[tuple[ComponentSpec, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]]:
+    """Bind authored artwork choices to the existing full download component."""
+    for image in soup.select("img.hb-source-app-download"):
+        config = json.loads(str(image.get("data-app-download") or "{}"))
+        if not isinstance(config, dict) or set(config) != {"artwork"}:
+            raise ValueError(f"{source_path}: declared App download requires artwork bindings")
+        config["image_key"] = str(image.get("src") or "")
+        yield parse_app_download_html(
+            soup, source_path=source_path, config=config,
+            language=language, model="", region="",
+        )
+
+
 def parse_app_inline_control_html(
     soup: BeautifulSoup,
     *,
     source_path: Path,
     config: Mapping[str, Any],
     language: str,
-) -> tuple[object, tuple[Tag, ...]]:
+) -> tuple[ComponentSpec, tuple[Tag, ...]]:
     """Parse one numbered rich paragraph and its localized visible label."""
 
     prefix = str(config.get("add_device_paragraph_prefix") or "").strip()
@@ -140,7 +166,7 @@ def parse_app_add_device_html(
     source_path: Path,
     config: Mapping[str, Any],
     language: str,
-) -> tuple[object, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]:
+) -> tuple[ComponentSpec, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]:
     """Parse shared text-free App art plus ordered live localized labels."""
 
     image_key = str(config.get("image_key") or "").strip()
@@ -153,11 +179,13 @@ def parse_app_add_device_html(
             f"found {len(images)}"
         )
     image = images[0]
-    label_block = _next_tag(image)
+    owned_nodes: tuple[Tag | None, ...]
+    label_block, owned_nodes = app_label_boundaries(soup, image, config)
     if not isinstance(label_block, Tag) or "line-block" not in label_block.get(
         "class", []
     ):
         raise ValueError(f"{source_path}: App add-device image requires live labels")
+    owned_nodes = cast(tuple[Tag, ...], owned_nodes)
     lines = [
         line
         for line in label_block.find_all(class_="line", recursive=False)
@@ -188,11 +216,13 @@ def parse_app_add_device_html(
         control_art_ref=str(config.get("control_artwork") or ""),
         source_ref=f"{source_path}#app-add-device",
         language=language,
-        metadata={"captions_embedded": bool(config.get("captions_embedded"))},
+        step_captions=config.get("step_captions"),
+        interstitial_note=app_interstitial_note(owned_nodes),
+        metadata=app_display_metadata(config),
     )
     return (
         spec,
-        (image, label_block),
+        owned_nodes,
         (("source_art", image),),
         (
             (

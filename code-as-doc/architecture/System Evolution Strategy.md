@@ -1,6 +1,6 @@
 # System Evolution Strategy
 
-Updated: 2026-09-17
+Updated: 2026-10-07
 
 ## 1. Role
 
@@ -176,6 +176,49 @@ applies these boundaries to stock-manual delivery:
 Current repository/Base ownership stays in the
 [two-plane map](../../user-guide/two_plane_map.md); hosting choices and task dates
 belong in the operating contract and roadmap, not in these stable invariants.
+
+### 4.7 Human, Agent and Enterprise Access
+
+Access layers connect people, AI clients and enterprise systems to the same
+content infrastructure; they do not add production engines or content authorities.
+The shared platform includes governed content, reuse, professional file processing
+and content queries. Document production is one capability path within this platform,
+not the boundary of the platform itself.
+
+- Human access uses Portal, Workspace and existing Bot workflows to read,
+  submit work and review. Agent skills and bounded manual-query interfaces
+  already exist, including file pretranslation, PDF-compatible AI diagnosis and
+  page-number modification, PDF QC annotations, review backport and builds.
+  Their coverage and approval rules remain capability-specific.
+- Planned enterprise integration references PLM/ERP product, SKU, BOM, material
+  and lifecycle records through synchronization and field mapping into the
+  existing business tables. These tables support product information, content
+  modules, specifications, multilingual content and business maintenance/review;
+  validation, normalization and traceable snapshots connect them to production.
+  Content Authority continues to resolve facts from tables, Git-native originals
+  and approved assets before Assembly, Renderers and Publish.
+  Enterprise systems remain authoritative for their records;
+  document production must not maintain a competing copy of enterprise master data.
+- Planned MCP access is a thin protocol adapter:
+  `AI Client → MCP → Capability Interface → Core / Domain Services`.
+  Translation, artwork processing and manual builds remain independent of MCP.
+  Initial exposure candidates are TM lookup, terminology, pretranslation,
+  translation QA and manual context. Later exposure of existing artwork/PDF/build skills requires its
+  own scope and acceptance; a candidate capability is not a maturity claim.
+- Formal artwork changes retain `Inspect → Compare → Propose Patch → Human
+  Approval → Apply → Verify`. AI suggestions do not become business facts or
+  bypass approval, and approval does not replace verification.
+- Human and machine surfaces derive from governed production. Current machine
+  corpus uses published HTML compatibility; further shared-IR consumption is a
+  future extension, not a claim that all manuals are IR-first.
+- Product Knowledge and Market Policy are reading/application surfaces with
+  explicit source and verification boundaries, not universal SSOT. Knowledge
+  feedback returns through human review and the declared editing surface.
+
+Current/planned access and the undated next directions are presented from the
+existing [history summary](system_evolution_history.md#7-rtd-同源展示摘要).
+Adding a diagram or planned adapter does not authorize implementation, enterprise
+data writes or formal file modification.
 
 ## 5. Evolution Stages
 

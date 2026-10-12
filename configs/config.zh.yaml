@@ -8,6 +8,8 @@ build:
   targets:
     - model: JE-2000E
       region: CN
+    - model: JE-2000F
+      region: CN
   main_tex: manual_demo.tex
   output_pdf: manual_{model_slug}_{region_slug}.pdf
   xelatex_runs: 3

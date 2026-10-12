@@ -1,5 +1,7 @@
 # Development Log
 
+Status: archived
+
 Updated: 2026-03-30
 
 This file is an archive summary of earlier development phases.

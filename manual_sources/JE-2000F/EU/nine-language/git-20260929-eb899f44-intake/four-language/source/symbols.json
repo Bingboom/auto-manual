@@ -1,0 +1,678 @@
+{
+  "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "method": "native AI PDF-compatible text and source-local geometry; no OCR",
+  "locales": {
+    "pl": {
+      "physical_page": 152,
+      "rows": [
+        {
+          "label": "OSTRZEŻENIE",
+          "meaning": "Niebezpieczne praktyki, które mogą prowadzić do poważnych obrażeń, śmierci i/lub szkód materialnych."
+        },
+        {
+          "label": "PRZESTROGA",
+          "meaning": "Niebezpieczne praktyki, które mogą skutkować obrażeniami ciała i/lub szkodami materialnymi."
+        },
+        {
+          "label": "Uwaga",
+          "meaning": "Niebezpieczne praktyki, które mogą prowadzić do uszkodzenia sprzętu, utraty danych, pogorszenia wydajności lub nieprzewidzianych wyników."
+        },
+        {
+          "label": "WSKAZÓWKA",
+          "meaning": "Uzupełnia ważne informacje lub wskazówki dotyczące obsługi zawarte w tekście."
+        }
+      ],
+      "pictogram_page": 153,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning_bbox": [
+            72,
+            43,
+            181,
+            78
+          ],
+          "icon_bbox": [
+            34,
+            43,
+            66,
+            78
+          ],
+          "meaning": "Symbole ostrzeżeń i środków ostrożności. Zwraca uwagę użytkowników na informacje, które należy przeczytać, aby uniknąć potencjalnych zagrożeń lub ryzyka.",
+          "icon_path": "figures/pl/p153_icon_general_warning.png",
+          "icon_sha256": "3f50d2801d4d5bd23d77f60413c5b8edcf283843bd337717d41aea33a9f2a404"
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning_bbox": [
+            72,
+            79,
+            181,
+            106
+          ],
+          "icon_bbox": [
+            34,
+            79,
+            66,
+            106
+          ],
+          "meaning": "Przed przystąpieniem do użytkowania przeczytaj instrukcję obsługi.",
+          "icon_path": "figures/pl/p153_icon_read_manual.png",
+          "icon_sha256": "4f456f8557cc2f2c1b8b4d8ef9d5584476b9d6b5dcfbcdc9a172f83fbc2b7daf"
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning_bbox": [
+            72,
+            108,
+            181,
+            133
+          ],
+          "icon_bbox": [
+            34,
+            108,
+            66,
+            133
+          ],
+          "meaning": "Nie rozmontowuj produktu.",
+          "icon_path": "figures/pl/p153_icon_do_not_disassemble.png",
+          "icon_sha256": "33bab169ee56c8b5aa7598efb8f47fbadaf15df9f26a9ff9151fa470582511fd"
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning_bbox": [
+            72,
+            134,
+            181,
+            164
+          ],
+          "icon_bbox": [
+            34,
+            134,
+            66,
+            164
+          ],
+          "meaning": "Trzymaj produkt z dala od ognia.",
+          "icon_path": "figures/pl/p153_icon_keep_away_from_fire.png",
+          "icon_sha256": "83ef3b52427b25fd808e18185984b35b8ddfce514cd10f3539bbf25092a99caa"
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning_bbox": [
+            72,
+            165,
+            181,
+            196
+          ],
+          "icon_bbox": [
+            34,
+            165,
+            66,
+            196
+          ],
+          "meaning": "Przechowuj w miejscu niedostępnym dla dzieci.",
+          "icon_path": "figures/pl/p153_icon_keep_away_from_children.png",
+          "icon_sha256": "f89ac24168f2cce873376856863c97dcd5595b9863779ae537dc62537724e84f"
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning_bbox": [
+            72,
+            196,
+            181,
+            230
+          ],
+          "icon_bbox": [
+            34,
+            196,
+            66,
+            230
+          ],
+          "meaning": "Ten symbol oznacza, że wewnątrz produktu znajduje się bateria litowo-jonowa (Li-ion), którą należy prawidłowo utylizować lub poddać recyklingowi.",
+          "icon_path": "figures/pl/p153_icon_lithium_battery.png",
+          "icon_sha256": "2b4bece231166d22e77870618174129fe77bade5dab08143c4e788e072d5b92c"
+        },
+        {
+          "icon_id": "battery_separate_collection",
+          "meaning_bbox": [
+            225,
+            43,
+            345,
+            143
+          ],
+          "icon_bbox": [
+            187,
+            43,
+            220,
+            143
+          ],
+          "meaning": "Baterii i akumulatorów nie wolno wyrzucać razem z odpadami domowymi. Jako konsument masz prawny obowiązek oddawania wszystkich baterii i akumulatorów do wyznaczonych punktów zbiórki, niezależnie od tego, czy zawierają substancje niebezpieczne. Zużyte baterie i akumulatory należy przekazać do lokalnego punktu zbiórki, centrum recyklingu lub do sprzedawcy, u którego zostały zakupione. Prawidłowa utylizacja zapewnia recykling przyjazny dla środowiska i zapobiega potencjalnym szkodom dla zdrowia ludzi i środowiska.",
+          "icon_path": "figures/pl/p153_icon_battery_separate_collection.png",
+          "icon_sha256": "a22cf81191ebd25a132aa496a37c2793718155e7a714b6f76339ca8f9f29cdfc"
+        },
+        {
+          "icon_id": "weee",
+          "meaning_bbox": [
+            225,
+            149,
+            345,
+            230
+          ],
+          "icon_bbox": [
+            187,
+            149,
+            220,
+            230
+          ],
+          "meaning": "Ten symbol oznacza, że produktu nie wolno wyrzucać razem z odpadami domowymi i należy go dostarczyć do wyznaczonego punktu zbiórki w celu recyklingu. Prawidłowa utylizacja i recykling przyczynią się do ochrony środowiska. Aby uzyskać więcej informacji na temat utylizacji i recyklingu tego produktu, skontaktuj się z lokalną gminą, firmą zajmującą się utylizacją lub sprzedawcą.",
+          "icon_path": "figures/pl/p153_icon_weee.png",
+          "icon_sha256": "5d08825cb9c5f27afddcd8e30c4b874d8372f4425163aaf992b41452c1e9b0c1"
+        }
+      ]
+    },
+    "pt": {
+      "physical_page": 116,
+      "rows": [
+        {
+          "label": "AVISO",
+          "meaning": "Práticas perigosas que podem resultar em lesões graves, morte e/ou danos materiais."
+        },
+        {
+          "label": "CUIDADO",
+          "meaning": "Práticas perigosas que podem resultar em lesões pessoais e/ou danos materiais."
+        },
+        {
+          "label": "NOTA",
+          "meaning": "Práticas perigosas que podem resultar em danos ao equipamento, perda de dados, deterioração do desempenho ou resultados imprevistos."
+        },
+        {
+          "label": "DICA",
+          "meaning": "Complementa informações importantes ou dicas de operação no texto."
+        }
+      ],
+      "pictogram_page": 117,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning_bbox": [
+            72,
+            43,
+            181,
+            78
+          ],
+          "icon_bbox": [
+            34,
+            43,
+            66,
+            78
+          ],
+          "meaning": "Símbolos de Advertência e Cuidado. Deve ser lido para alertar sobre potenciais perigos ou riscos.",
+          "icon_path": "figures/pt/p117_icon_general_warning.png",
+          "icon_sha256": "3f50d2801d4d5bd23d77f60413c5b8edcf283843bd337717d41aea33a9f2a404"
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning_bbox": [
+            72,
+            79,
+            181,
+            106
+          ],
+          "icon_bbox": [
+            34,
+            79,
+            66,
+            106
+          ],
+          "meaning": "Leia o manual do usuário antes de operar.",
+          "icon_path": "figures/pt/p117_icon_read_manual.png",
+          "icon_sha256": "f0c000b88939260861822721491a527bf882a66ff0c7678b1227f554421564dd"
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning_bbox": [
+            72,
+            108,
+            181,
+            133
+          ],
+          "icon_bbox": [
+            34,
+            108,
+            66,
+            133
+          ],
+          "meaning": "Não desmonte o produto.",
+          "icon_path": "figures/pt/p117_icon_do_not_disassemble.png",
+          "icon_sha256": "9c94c192823af8425c0e28796c4775221bddf73c12bb28a41095546f4ab59775"
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning_bbox": [
+            72,
+            134,
+            181,
+            164
+          ],
+          "icon_bbox": [
+            34,
+            134,
+            66,
+            164
+          ],
+          "meaning": "Mantenha o produto longe de fogo.",
+          "icon_path": "figures/pt/p117_icon_keep_away_from_fire.png",
+          "icon_sha256": "154fa51464240ebaf7145a014b8e919200077b19ac332738cac22f39424089b9"
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning_bbox": [
+            72,
+            165,
+            181,
+            196
+          ],
+          "icon_bbox": [
+            34,
+            165,
+            66,
+            196
+          ],
+          "meaning": "Mantenha fora do alcance de crianças.",
+          "icon_path": "figures/pt/p117_icon_keep_away_from_children.png",
+          "icon_sha256": "8723e05868bd80c91d80d74898c0731992bf7cbdfc245087f5f73ab75291c28a"
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning_bbox": [
+            72,
+            196,
+            181,
+            230
+          ],
+          "icon_bbox": [
+            34,
+            196,
+            66,
+            230
+          ],
+          "meaning": "Este símbolo indica que há uma bateria de íons de lítio (Li-ion) dentro do produto e que ela deve ser descartada ou reciclada corretamente.",
+          "icon_path": "figures/pt/p117_icon_lithium_battery.png",
+          "icon_sha256": "7f9bb2a192cc408e2de205260635f5abc37f626c3df23403de3258a62dfce661"
+        },
+        {
+          "icon_id": "battery_separate_collection",
+          "meaning_bbox": [
+            225,
+            43,
+            345,
+            143
+          ],
+          "icon_bbox": [
+            187,
+            43,
+            220,
+            143
+          ],
+          "meaning": "As baterias e os acumuladores não devem ser descartados junto com o lixo doméstico. Como consumidor, você é legalmente obrigado a descartar todas as baterias e acumuladores em pontos de coleta designados, independentemente de conterem substâncias perigosas. Devolva as baterias e acumuladores usados a um ponto de coleta local, centro de reciclagem ou ao revendedor onde foram comprados. O descarte adequado garante a reciclagem ambientalmente responsável e evita danos potenciais à saúde humana e ao meio ambiente.",
+          "icon_path": "figures/pt/p117_icon_battery_separate_collection.png",
+          "icon_sha256": "a99e1d7e90611ffa2a88d77020b2a1eebda8675c99f99ee4f95dbbb704903dcc"
+        },
+        {
+          "icon_id": "weee",
+          "meaning_bbox": [
+            225,
+            149,
+            345,
+            230
+          ],
+          "icon_bbox": [
+            187,
+            149,
+            220,
+            230
+          ],
+          "meaning": "Este símbolo indica que o produto não deve ser descartado como lixo doméstico e deve ser encaminhado a um ponto de coleta designado para reciclagem. O descarte e a reciclagem adequados podem ajudar a proteger o meio ambiente. Para obter mais informações sobre o descarte e a reciclagem deste produto, entre em contato com a autoridade local, o serviço de coleta ou o revendedor.",
+          "icon_path": "figures/pt/p117_icon_weee.png",
+          "icon_sha256": "48d684083df7665073625e6f2dfe33a11d82ea7c06efe5b23c261ee1a9eeb1a3"
+        }
+      ]
+    },
+    "nl": {
+      "physical_page": 134,
+      "rows": [
+        {
+          "label": "WAARSCHUWING",
+          "meaning": "Gevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of materiële schade."
+        },
+        {
+          "label": "OPGELET",
+          "meaning": "Gevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade aan eigendommen."
+        },
+        {
+          "label": "OPMERKING",
+          "meaning": "Gevaarlijke praktijken die kunnen leiden tot schade aan apparatuur, gegevensverlies, slechtere prestaties of onverwachte resultaten."
+        },
+        {
+          "label": "TIP",
+          "meaning": "Vult de belangrijke informatie of bedieningstips in de tekst aan."
+        }
+      ],
+      "pictogram_page": 135,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning_bbox": [
+            72,
+            43,
+            181,
+            78
+          ],
+          "icon_bbox": [
+            34,
+            43,
+            66,
+            78
+          ],
+          "meaning": "Waarschuwings- en voorzorgssymbolen. Waarschuwt personen voor informatie die moet worden gelezen om mogelijke gevaren of risico’s te voorkomen.",
+          "icon_path": "figures/nl/p135_icon_general_warning.png",
+          "icon_sha256": "c712a83e99164c87b447d93c8c53c8186f16d3282eb871c8a7acd078668d6b87"
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning_bbox": [
+            72,
+            79,
+            181,
+            106
+          ],
+          "icon_bbox": [
+            34,
+            79,
+            66,
+            106
+          ],
+          "meaning": "Lees de gebruikershandleiding voor gebruik.",
+          "icon_path": "figures/nl/p135_icon_read_manual.png",
+          "icon_sha256": "1f8f9d62ad6122a8e2187017bee14f71c4d788e44b3e1b78c73814c04a891121"
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning_bbox": [
+            72,
+            108,
+            181,
+            133
+          ],
+          "icon_bbox": [
+            34,
+            108,
+            66,
+            133
+          ],
+          "meaning": "Demonteer het product niet.",
+          "icon_path": "figures/nl/p135_icon_do_not_disassemble.png",
+          "icon_sha256": "a38f2af0abcaa0d7f73807116868a416e501e42eb9704aa3fcf1ee7ee803d937"
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning_bbox": [
+            72,
+            134,
+            181,
+            164
+          ],
+          "icon_bbox": [
+            34,
+            134,
+            66,
+            164
+          ],
+          "meaning": "Houd het product uit de buurt van vuur.",
+          "icon_path": "figures/nl/p135_icon_keep_away_from_fire.png",
+          "icon_sha256": "670912d41666c156122ed0addb4c34a3d676df7ed0c5c5d48475bdc9ae5629a3"
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning_bbox": [
+            72,
+            165,
+            181,
+            196
+          ],
+          "icon_bbox": [
+            34,
+            165,
+            66,
+            196
+          ],
+          "meaning": "Houd het product buiten het bereik van kinderen.",
+          "icon_path": "figures/nl/p135_icon_keep_away_from_children.png",
+          "icon_sha256": "6fe077fcf050e4f559921b456aab6296966a170d36056df7e87d303be68a8c44"
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning_bbox": [
+            72,
+            196,
+            181,
+            230
+          ],
+          "icon_bbox": [
+            34,
+            196,
+            66,
+            230
+          ],
+          "meaning": "Dit symbool geeft aan dat zich een lithium-ion (Li-ion) batterij in het product bevindt en dat deze op de juiste manier moet worden afgevoerd of gerecycled.",
+          "icon_path": "figures/nl/p135_icon_lithium_battery.png",
+          "icon_sha256": "358b64c145cc789922a648fc47b1c04832a2b284119dcbce10a0106e153ea345"
+        },
+        {
+          "icon_id": "battery_separate_collection",
+          "meaning_bbox": [
+            225,
+            43,
+            345,
+            143
+          ],
+          "icon_bbox": [
+            187,
+            43,
+            220,
+            143
+          ],
+          "meaning": "Batterijen en accu's mogen niet bij het huishoudelijk afval worden weggegooid. Als consument bent u wettelijk verplicht om alle batterijen en accu's in te leveren bij daarvoor aangewezen inzamelpunten, ongeacht of ze gevaarlijke stoffen bevatten. Lever gebruikte batterijen en accu's in bij een plaatselijk inleverpunt, recyclingcentrum of bij de winkel waar u ze heeft gekocht. Een juiste afvalverwerking verzekert dat recycling op een milieuvriendelijke manier gebeurt en voorkomt mogelijke schade aan de menselijke gezondheid en het milieu.",
+          "icon_path": "figures/nl/p135_icon_battery_separate_collection.png",
+          "icon_sha256": "0a954e6f71c888007fd66b60f1aafb4687217dc32010abb03fdba4c848b9a5b9"
+        },
+        {
+          "icon_id": "weee",
+          "meaning_bbox": [
+            225,
+            149,
+            345,
+            230
+          ],
+          "icon_bbox": [
+            187,
+            149,
+            220,
+            230
+          ],
+          "meaning": "Dit symbool geeft aan dat het product niet als huishoudelijk afval mag worden weggegooid en naar een aangewezen inzamelingspunt voor recycling moet worden gebracht. Een juiste afvalverwerking en recycling dragen bij aan een beter milieu. Voor meer informatie over de verwijdering en recycling van dit product, neem contact op met uw gemeente, afvalverwerkingsdienst of leverancier.",
+          "icon_path": "figures/nl/p135_icon_weee.png",
+          "icon_sha256": "ca3bb2b4edc1051b8eb5cc12df9b7237ad07a775b50d329d5a5721b452a92bed"
+        }
+      ]
+    },
+    "uk": {
+      "physical_page": 98,
+      "rows": [
+        {
+          "label": "ПОПЕРЕДЖЕН",
+          "meaning": "Небезпечні дії, які можуть призвести до тяжких травм, смерті та/або пошкодження майна. ННЯ"
+        },
+        {
+          "label": "УВАГА",
+          "meaning": "Небезпечні дії, які можуть призвести до травмування людей та/або пошкодження майна."
+        },
+        {
+          "label": "ПРИМІТКА",
+          "meaning": "Дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або неочікуваних результатів. А"
+        },
+        {
+          "label": "ПОРАДА",
+          "meaning": "Доповнює важливу інформацію або поради з експлуатації в тексті."
+        }
+      ],
+      "pictogram_page": 99,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning_bbox": [
+            72,
+            43,
+            181,
+            78
+          ],
+          "icon_bbox": [
+            34,
+            43,
+            66,
+            78
+          ],
+          "meaning": "Попереджувальні та застережні символи. Повідомляють користувачам про інформацію, яку необхідно прочитати, щоб уникнути потенційних небезпек або ризиків.",
+          "icon_path": "figures/uk/p099_icon_general_warning.png",
+          "icon_sha256": "063d8ac0758d3e36d836c494e8d160e1a5bc29bdd42a5e3750d40bee09e0a61d"
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning_bbox": [
+            72,
+            79,
+            181,
+            106
+          ],
+          "icon_bbox": [
+            34,
+            79,
+            66,
+            106
+          ],
+          "meaning": "Перед використанням прочитайте посібник користувача.",
+          "icon_path": "figures/uk/p099_icon_read_manual.png",
+          "icon_sha256": "971d50b6e6c81560289e7d69ccd638ad8b2462ec70cc89c091cad24e0f3bbfe1"
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning_bbox": [
+            72,
+            108,
+            181,
+            133
+          ],
+          "icon_bbox": [
+            34,
+            108,
+            66,
+            133
+          ],
+          "meaning": "Не розбирайте продукт.",
+          "icon_path": "figures/uk/p099_icon_do_not_disassemble.png",
+          "icon_sha256": "4681176788cc7e5d4ae14622b40ba74dbf2fd5a4da444d450b4416659ff4fed7"
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning_bbox": [
+            72,
+            134,
+            181,
+            164
+          ],
+          "icon_bbox": [
+            34,
+            134,
+            66,
+            164
+          ],
+          "meaning": "Тримайте продукт подалі від вогню.",
+          "icon_path": "figures/uk/p099_icon_keep_away_from_fire.png",
+          "icon_sha256": "95949b64bd2497cc2bdda3fa3a98c1a059f7e7917c5ed8d5be35862ef82626b0"
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning_bbox": [
+            72,
+            165,
+            181,
+            196
+          ],
+          "icon_bbox": [
+            34,
+            165,
+            66,
+            196
+          ],
+          "meaning": "Тримайте подалі від дітей.",
+          "icon_path": "figures/uk/p099_icon_keep_away_from_children.png",
+          "icon_sha256": "d3950a8da537b699fe9b2e387daaafc713d7b68a7a5640b94de8d38778f026c5"
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning_bbox": [
+            72,
+            196,
+            181,
+            230
+          ],
+          "icon_bbox": [
+            34,
+            196,
+            66,
+            230
+          ],
+          "meaning": "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином.",
+          "icon_path": "figures/uk/p099_icon_lithium_battery.png",
+          "icon_sha256": "357d977e250d506a79c689d574b12e1f315bf810ea4ef2bfe69669b8fd1fae22"
+        },
+        {
+          "icon_id": "battery_separate_collection",
+          "meaning_bbox": [
+            225,
+            43,
+            345,
+            143
+          ],
+          "icon_bbox": [
+            187,
+            43,
+            220,
+            143
+          ],
+          "meaning": "Батарейки та акумулятори не можна викидати разом із побутовими відходами. Як споживач ви юридично зобов’язані здавати всі батарейки та акумулятори у визначені пункти збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля.",
+          "icon_path": "figures/uk/p099_icon_battery_separate_collection.png",
+          "icon_sha256": "a6e524f802b9a0dcb587c01a18cf6d49bf3a6a4f081785c8b2c6ddc4ab95b8a0"
+        },
+        {
+          "icon_id": "weee",
+          "meaning_bbox": [
+            225,
+            149,
+            345,
+            230
+          ],
+          "icon_bbox": [
+            187,
+            149,
+            220,
+            230
+          ],
+          "meaning": "Цей символ вказує, що продукт не можна утилізувати разом із побутовими відходами, і його слід передати до спеціалізованого пункту збору для переробки. Правильна утилізація та переробка допомагають захистити довкілля. Для отримання додаткової інформації щодо утилізації та переробки цього продукту зверніться до місцевої громади, служби утилізації або дилера. людей і довкілля.",
+          "icon_path": "figures/uk/p099_icon_weee.png",
+          "icon_sha256": "986c7884e73a98a75c66979e9f9c2b71c8699ed934643956a922361c1bff355d"
+        }
+      ]
+    }
+  }
+}

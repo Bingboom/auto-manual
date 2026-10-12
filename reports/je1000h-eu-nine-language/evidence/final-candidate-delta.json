@@ -1,0 +1,9 @@
+{
+  "previous": "candidate-08",
+  "final": "candidate-09",
+  "each_locale_identical_except_battery_stack_asset_src": true,
+  "old_asset": "22ca94c790f5_reference-battery_stack.png",
+  "new_asset": "f51f8b046c1c_reference-battery_stack.png",
+  "verification": "Compared complete Markdown bytes after replacing only the old src with the new src; all three locales match. Shared CSS is byte-identical.",
+  "reason": "Remove neighboring accessories panel border at the bottom of the stack crop."
+}

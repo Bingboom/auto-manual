@@ -1,6 +1,6 @@
 # JS-40C EU English Web target — implementation and acceptance
 
-Status: engineering implementation complete; frozen-source Web package accepted
+Status: done · Recorded detail: engineering implementation complete; frozen-source Web package accepted
 locally and ready for pull-request review. No online Base write, queue dispatch,
 OSS upload, or formal Web publication is part of this change.
 
@@ -60,7 +60,7 @@ python build.py md \
   --model JS-40C --region EU --lang en \
   --data-root data/manual_sources/JS-40C/EU/en/2026-08-30/phase2
 
-python tools/readthedocs_source.py \
+python -m tools.readthedocs_source \
   --build-root docs/_build \
   --output-dir docs/_build/rtd-js40c \
   --title "JS-40C EU English Web Acceptance"

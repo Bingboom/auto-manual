@@ -1,6 +1,6 @@
 # Manual Operations Acceptance Checklist
 
-Status: **Scope accepted with explicit remaining-resource verification deferral; final PR gates required before merge**. Updated: 2026-09-13.
+Status: done · Recorded detail: **Scope accepted with explicit remaining-resource verification deferral; final PR gates required before merge**. Updated: 2026-09-13.
 
 Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
 Current facts: [accepted closeout and evidence](manual_operations_closeout_20260913.md).

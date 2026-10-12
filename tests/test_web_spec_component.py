@@ -6,7 +6,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from tools.web_presentation import (
+from tools.web.presentation import (
     WebPresentationError,
     is_web_entry_page,
     load_web_manual_contract,

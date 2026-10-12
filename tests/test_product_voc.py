@@ -13,7 +13,7 @@ from unittest.mock import Mock, patch
 from integrations.product_voc.intake import BotWriter, Intake, IntakeError, validate
 from integrations.product_voc.server import MAX_BODY, make_handler
 from tests import test_rtd_feedback as feedback_fixture
-from tools.rtd_product_voc import normalize_endpoint, page_markup, suggestion_markup
+from tools.rtd.product_voc import normalize_endpoint, page_markup, suggestion_markup
 
 
 def payload(**updates):
@@ -22,7 +22,13 @@ def payload(**updates):
             "website": "", **updates}
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class ProductVocTests(unittest.TestCase):
+    def setUp(self):
+        isolate_shared_component_admission(self)
+
     def test_endpoint_is_opt_in_and_https_only(self):
         self.assertEqual("", normalize_endpoint(None))
         self.assertEqual("", normalize_endpoint(""))

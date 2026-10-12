@@ -1,0 +1,584 @@
+[
+  {
+    "name": "unfold_1",
+    "source_page": 7,
+    "bbox_pt": [
+      35,
+      80,
+      335,
+      169
+    ],
+    "path": "assets/js100i_eu_shared/unfold_1.png",
+    "recipe_pdf_sha256": "8c902b4d4670ac3748c02b73dde4b6ff9bb42375612bf2d5eb1bb47bec5ec942",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "28a05130c53bfddfbe8b58c8ec83ee1135b9d462ac1151432248da8983cd0980",
+    "removed_backdrop_paths": [],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "401a4aed8b6e8e2a9b4fa0270f3694c9db7cee1ed78f0cd3834a67a45d642460",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "unfold_2",
+    "source_page": 7,
+    "bbox_pt": [
+      35,
+      198,
+      335,
+      356
+    ],
+    "path": "assets/js100i_eu_shared/unfold_2.png",
+    "recipe_pdf_sha256": "f0fe64f46ed96c37e3ed84865569e51709855978b1b9b5f1efcff6f47097ce91",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "060a6b92fcacec5299d15e3079038c14da22affbb5760f9286d2616b16ba42f3",
+    "removed_backdrop_paths": [],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "95df14639a15683e1f5c090cce932974689c2ab8c68db78a6a39167bd5b061b2",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "unfold_3",
+    "source_page": 7,
+    "bbox_pt": [
+      35,
+      387,
+      335,
+      487
+    ],
+    "path": "assets/js100i_eu_shared/unfold_3.png",
+    "recipe_pdf_sha256": "36113804cbca163c3109bad2e17d8ad80db08002886c54b1b0f775947caf753d",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "529ab2fe4e3227f676fea7f0d97a2add7e8bb1ff7effb3d9493273928e5e1886",
+    "removed_backdrop_paths": [],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "a697833ed68f7079e7a170d7b3c0b283ea70ffd4d52b307ec0dc85d87232cbc8",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "unfold_4",
+    "source_page": 8,
+    "bbox_pt": [
+      34,
+      49,
+      334,
+      134
+    ],
+    "path": "assets/js100i_eu_shared/unfold_4.png",
+    "recipe_pdf_sha256": "0a43846ed1e1438dae7c9efc3889ad5561148d327882b57cdd72a4628be075d5",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "b733e0247b0bd53700c61030e41610ac27ab464e41a43305a67d94f5b31957f1",
+    "removed_backdrop_paths": [],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "1c25f75766252deb69985184c42c3af7462a959b588ee3556e34d5e2f979ee43",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "fold_1",
+    "source_page": 8,
+    "bbox_pt": [
+      34,
+      198,
+      334,
+      267
+    ],
+    "path": "assets/js100i_eu_shared/fold_1.png",
+    "recipe_pdf_sha256": "65b3cb57d870c403f19ea518e85435baa217d025dbff78e370a25a7b33350391",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "725f96b29b54ff9d8cd6cae50a6cbd1fa503685ac06c6d1f8606c0a960f96f4c",
+    "removed_backdrop_paths": [],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "a8d513b1f34f4da33e8e69cf448de72e858ca6fa1b82f72f1d4b10379810ae4b",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "fold_2",
+    "source_page": 8,
+    "bbox_pt": [
+      34,
+      295,
+      334,
+      380
+    ],
+    "path": "assets/js100i_eu_shared/fold_2.png",
+    "recipe_pdf_sha256": "bf230885bc5140d38cf86214088595bb62318de36df70e63dc08b6f0026a1ac4",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "000bc92f5de6ba132ab73753f1aacd7a62beca17e6a97a2a14c3720a35b22d6a",
+    "removed_backdrop_paths": [],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "816b24b43a0d59ca1dad4ea8aaa21e6f322ee6ed42e9ec66e33666a1c9f48d03",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "fold_3",
+    "source_page": 8,
+    "bbox_pt": [
+      34,
+      411,
+      334,
+      484
+    ],
+    "path": "assets/js100i_eu_shared/fold_3.png",
+    "recipe_pdf_sha256": "38791579f7a69f53a9001f19b3fa1e83add14831a3e2f6ec8dd229f63f541f69",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "bd1c2de7fba3f8d99ba4ee3e1ee2970fdb55faf1cf5af5d8c07c41f4ef110d2b",
+    "removed_backdrop_paths": [],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "3856b5bee5f1f51b0f6c6a6389c44676dcdfc97456c9d1f152d50c185b727c65",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "dc8020",
+    "source_page": 9,
+    "bbox_pt": [
+      28,
+      94,
+      341,
+      247
+    ],
+    "path": "assets/js100i_eu_shared/dc8020.png",
+    "recipe_pdf_sha256": "527965301ab8b11365daeae2d033a05945607efe7650f20fc8043c080187c03b",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "9fb40ed4b3c769293fe0be7ecfb8f28137f2d7ba04f17af8489026c11a8e09cf",
+    "removed_backdrop_paths": [
+      {
+        "transform": "matrix(1,0,0,-1,304.2982,152.42288)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.883-304.062 8.674V146.115C-304.062 150.906-300.178 154.79-295.387 154.79H0C4.791 154.79 8.674 150.906 8.674 146.115V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,304.2982,343.1007)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.884-304.062 8.674V125.626C-304.062 130.417-300.178 134.3-295.387 134.3H0C4.791 134.3 8.674 130.417 8.674 125.626V8.674C8.674 3.884 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      }
+    ],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "bfe7cd701d5dbd71ef8f5b5bc4d07c3a86660045a50d2ed06e468e4b418cdfa1",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "dc7909",
+    "source_page": 9,
+    "bbox_pt": [
+      28,
+      303,
+      341,
+      438
+    ],
+    "path": "assets/js100i_eu_shared/dc7909.png",
+    "recipe_pdf_sha256": "0a710663acb6cb9ec630e1c57cfbac02ea34f904bb23274d2e69cee8bcf558d6",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "8efcde076fed3dc2ac19be418fd003dfd581aad9ca49b3af046475bdf290e347",
+    "removed_backdrop_paths": [
+      {
+        "transform": "matrix(1,0,0,-1,304.2982,-56.577119)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.883-304.062 8.674V146.115C-304.062 150.906-300.178 154.79-295.387 154.79H0C4.791 154.79 8.674 150.906 8.674 146.115V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,304.2982,134.10071)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.884-304.062 8.674V125.626C-304.062 130.417-300.178 134.3-295.387 134.3H0C4.791 134.3 8.674 130.417 8.674 125.626V8.674C8.674 3.884 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      }
+    ],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "09b1f0cdd01669a2e08fff0728df14a5e331ce4b02bf62396f099dc216937f68",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "usbc",
+    "source_page": 10,
+    "bbox_pt": [
+      28,
+      56,
+      341,
+      192
+    ],
+    "path": "assets/js100i_eu_shared/usbc.png",
+    "recipe_pdf_sha256": "257630bb1a97c7a879965360c6b8dbc438d9a40b2680ce0366189ee16ea37876",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "9680d8c74c448c354bac005e2cf4f1976f3f9cc20ffa854c1d1a6273a72f6967",
+    "removed_backdrop_paths": [
+      {
+        "transform": "matrix(1,0,0,-1,303.9839,375.5709)",
+        "d": "M0 0H-295.387C-300.178 0-304.061 3.883-304.061 8.674V145.383C-304.061 150.173-300.178 154.057-295.387 154.057H0C4.791 154.057 8.674 150.173 8.674 145.383V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,304.1802,134.77149)",
+        "d": "M0 0H-295.387C-300.177 0-304.061 3.883-304.061 8.674V126.784C-304.061 131.574-300.177 135.458-295.387 135.458H0C4.791 135.458 8.674 131.574 8.674 126.784V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      }
+    ],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "24a3a80c74d3d59d5bc50b92e42cbc88481079f78ac3dfaf8d10ab9ea875ffce",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "parallel",
+    "source_page": 10,
+    "bbox_pt": [
+      28,
+      278,
+      341,
+      432
+    ],
+    "path": "assets/js100i_eu_shared/parallel.png",
+    "recipe_pdf_sha256": "5573e9a3fe69da3a96d6c867408bad9b127d690d8ce55f7544d0805e848cfc0f",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "8abdc4120ae7c8295b0614fc4ccb2c9606a5339addd4aa6b7fb14191bc3c4899",
+    "removed_backdrop_paths": [
+      {
+        "transform": "matrix(1,0,0,-1,303.9839,153.57089)",
+        "d": "M0 0H-295.387C-300.178 0-304.061 3.883-304.061 8.674V145.383C-304.061 150.173-300.178 154.057-295.387 154.057H0C4.791 154.057 8.674 150.173 8.674 145.383V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,304.1802,-87.228519)",
+        "d": "M0 0H-295.387C-300.177 0-304.061 3.883-304.061 8.674V126.784C-304.061 131.574-300.177 135.458-295.387 135.458H0C4.791 135.458 8.674 131.574 8.674 126.784V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      }
+    ],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "08c31f28017b8889e000b6d866a9ff1bd59c6f47a413b3db63143079c56f7a43",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "angle",
+    "source_page": 11,
+    "bbox_pt": [
+      28,
+      68,
+      341,
+      184
+    ],
+    "path": "assets/js100i_eu_shared/angle.png",
+    "recipe_pdf_sha256": "8973ee3b3d400ea46e4500857a0e9c4cb5b8ecb61de10fdfa7d85c7f1fbeb596",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "280dbb0b240f8a6080ab0f7897da46d6d524aede382f89afbd6d4d0142179c31",
+    "removed_backdrop_paths": [
+      {
+        "transform": "matrix(1,0,0,-1,304.347,115.19641)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.883-304.062 8.674V106.482C-304.062 111.273-300.178 115.156-295.387 115.156H0C4.791 115.156 8.674 111.273 8.674 106.482V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,304.347,413.35499)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.884-304.062 8.674V132.464C-304.062 137.254-300.178 141.138-295.387 141.138H0C4.791 141.138 8.674 137.254 8.674 132.464V8.674C8.674 3.884 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,144.5774,199.1109)",
+        "d": "M0 0H-136.748C-140.865 0-144.202 3.337-144.202 7.455V42.109C-144.202 46.226-140.865 49.563-136.748 49.563H0C4.117 49.563 7.454 46.226 7.454 42.109V7.455C7.454 3.337 4.117 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,48.6243,197.1846)",
+        "d": "M0 0H-40.001C-43.602 0-46.521 2.919-46.521 6.52V39.258C-46.521 42.858-43.602 45.777-40.001 45.777H0Z",
+        "fill": "#ffffff"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,304.0974,199.1109)",
+        "d": "M0 0H-139.398C-143.516 0-146.853 3.337-146.853 7.455V42.109C-146.853 46.226-143.516 49.563-139.398 49.563H0C4.117 49.563 7.454 46.226 7.454 42.109V7.455C7.454 3.337 4.117 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,205.4939,197.1846)",
+        "d": "M0 0H-40.001C-43.602 0-46.521 2.919-46.521 6.52V39.258C-46.521 42.858-43.602 45.777-40.001 45.777H0Z",
+        "fill": "#ffffff"
+      }
+    ],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "437eb84725e6d86c951e9c31dc62e7062754047ff0563f1fa36fe0eb67074663",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "angle_choice_1",
+    "source_page": 11,
+    "bbox_pt": [
+      36,
+      223,
+      116,
+      267
+    ],
+    "path": "assets/js100i_eu_shared/angle_choice_1.png",
+    "recipe_pdf_sha256": "4e1fb088fad3ea7992d4195f866e5e324e6c93dd2cca3aa068e2e62990b32fae",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "3fcbaa21f51f6e0cb9aa79d3205a6ae6e182ee1c28f84c7e36554d766ccce639",
+    "removed_backdrop_paths": [
+      {
+        "transform": "matrix(1,0,0,-1,296.347,-39.80359)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.883-304.062 8.674V106.482C-304.062 111.273-300.178 115.156-295.387 115.156H0C4.791 115.156 8.674 111.273 8.674 106.482V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,296.347,258.35499)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.884-304.062 8.674V132.464C-304.062 137.254-300.178 141.138-295.387 141.138H0C4.791 141.138 8.674 137.254 8.674 132.464V8.674C8.674 3.884 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,136.5774,44.1109)",
+        "d": "M0 0H-136.748C-140.865 0-144.202 3.337-144.202 7.455V42.109C-144.202 46.226-140.865 49.563-136.748 49.563H0C4.117 49.563 7.454 46.226 7.454 42.109V7.455C7.454 3.337 4.117 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,40.6243,42.1846)",
+        "d": "M0 0H-40.001C-43.602 0-46.521 2.919-46.521 6.52V39.258C-46.521 42.858-43.602 45.777-40.001 45.777H0Z",
+        "fill": "#ffffff"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,296.0974,44.1109)",
+        "d": "M0 0H-139.398C-143.516 0-146.853 3.337-146.853 7.455V42.109C-146.853 46.226-143.516 49.563-139.398 49.563H0C4.117 49.563 7.454 46.226 7.454 42.109V7.455C7.454 3.337 4.117 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,197.4939,42.1846)",
+        "d": "M0 0H-40.001C-43.602 0-46.521 2.919-46.521 6.52V39.258C-46.521 42.858-43.602 45.777-40.001 45.777H0Z",
+        "fill": "#ffffff"
+      }
+    ],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "ea9307d45f0616cd0de6bd14243799c9675c03cc17219ced4a5d7cfd07fa9f11",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "angle_choice_2",
+    "source_page": 11,
+    "bbox_pt": [
+      193,
+      223,
+      272,
+      267
+    ],
+    "path": "assets/js100i_eu_shared/angle_choice_2.png",
+    "recipe_pdf_sha256": "502d57492070e6e403d4cd47c278e92cfa12eb1c66f3a0b5f1afcb914307fbcd",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "288accb6a35c6a30372fa679125b19c53279de6e619203b580c1464dea933205",
+    "removed_backdrop_paths": [
+      {
+        "transform": "matrix(1,0,0,-1,139.34699,-39.80359)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.883-304.062 8.674V106.482C-304.062 111.273-300.178 115.156-295.387 115.156H0C4.791 115.156 8.674 111.273 8.674 106.482V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,139.34699,258.35499)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.884-304.062 8.674V132.464C-304.062 137.254-300.178 141.138-295.387 141.138H0C4.791 141.138 8.674 137.254 8.674 132.464V8.674C8.674 3.884 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,-20.422608,44.1109)",
+        "d": "M0 0H-136.748C-140.865 0-144.202 3.337-144.202 7.455V42.109C-144.202 46.226-140.865 49.563-136.748 49.563H0C4.117 49.563 7.454 46.226 7.454 42.109V7.455C7.454 3.337 4.117 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,-116.3757,42.1846)",
+        "d": "M0 0H-40.001C-43.602 0-46.521 2.919-46.521 6.52V39.258C-46.521 42.858-43.602 45.777-40.001 45.777H0Z",
+        "fill": "#ffffff"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,139.09741,44.1109)",
+        "d": "M0 0H-139.398C-143.516 0-146.853 3.337-146.853 7.455V42.109C-146.853 46.226-143.516 49.563-139.398 49.563H0C4.117 49.563 7.454 46.226 7.454 42.109V7.455C7.454 3.337 4.117 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,40.493898,42.1846)",
+        "d": "M0 0H-40.001C-43.602 0-46.521 2.919-46.521 6.52V39.258C-46.521 42.858-43.602 45.777-40.001 45.777H0Z",
+        "fill": "#ffffff"
+      }
+    ],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "fcec905512471cea168c085300b11b806e34a19f5cc1fb4b4f2a2889dcf59bb8",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "device",
+    "source_page": 11,
+    "bbox_pt": [
+      28,
+      340,
+      341,
+      482
+    ],
+    "path": "assets/js100i_eu_shared/device.png",
+    "recipe_pdf_sha256": "60a6efaeeee3dfa791a1315161d7eac36af327fff94fb13f9ef3110a65567595",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "153704812c9e7e7852ffefb8498ca8bc1889320e0d614877b30693724e33ca66",
+    "removed_backdrop_paths": [
+      {
+        "transform": "matrix(1,0,0,-1,304.347,-156.80359)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.883-304.062 8.674V106.482C-304.062 111.273-300.178 115.156-295.387 115.156H0C4.791 115.156 8.674 111.273 8.674 106.482V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,304.347,141.355)",
+        "d": "M0 0H-295.387C-300.178 0-304.062 3.884-304.062 8.674V132.464C-304.062 137.254-300.178 141.138-295.387 141.138H0C4.791 141.138 8.674 137.254 8.674 132.464V8.674C8.674 3.884 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,144.5774,-72.8891)",
+        "d": "M0 0H-136.748C-140.865 0-144.202 3.337-144.202 7.455V42.109C-144.202 46.226-140.865 49.563-136.748 49.563H0C4.117 49.563 7.454 46.226 7.454 42.109V7.455C7.454 3.337 4.117 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,48.6243,-74.8154)",
+        "d": "M0 0H-40.001C-43.602 0-46.521 2.919-46.521 6.52V39.258C-46.521 42.858-43.602 45.777-40.001 45.777H0Z",
+        "fill": "#ffffff"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,304.0974,-72.8891)",
+        "d": "M0 0H-139.398C-143.516 0-146.853 3.337-146.853 7.455V42.109C-146.853 46.226-143.516 49.563-139.398 49.563H0C4.117 49.563 7.454 46.226 7.454 42.109V7.455C7.454 3.337 4.117 0 0 0",
+        "fill": "#f2f2f3"
+      },
+      {
+        "transform": "matrix(1,0,0,-1,205.4939,-74.8154)",
+        "d": "M0 0H-40.001C-43.602 0-46.521 2.919-46.521 6.52V39.258C-46.521 42.858-43.602 45.777-40.001 45.777H0Z",
+        "fill": "#ffffff"
+      }
+    ],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "54554bf005c5e2483e82a0ff495a5263cb7aee492174928153a85028bcc1d449",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "dust",
+    "source_page": 12,
+    "bbox_pt": [
+      28,
+      29,
+      340,
+      120
+    ],
+    "path": "assets/js100i_eu_shared/dust.png",
+    "recipe_pdf_sha256": "03b7410f5cf9333deb5a7ca16fb1ee7b57a22d1b8befb9819957d8516b868624",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "svg_sha256": "7b45f15c635eb689f7118ca17cf312cec4ee689d94c223cbed127b830d025ce2",
+    "removed_backdrop_paths": [
+      {
+        "transform": "matrix(1,0,0,-1,302.3144,90.391208)",
+        "d": "M0 0H-293.222C-298.013 0-301.896 3.883-301.896 8.674V82.121C-301.896 86.912-298.013 90.795-293.222 90.795H0C4.791 90.795 8.674 86.912 8.674 82.121V8.674C8.674 3.883 4.791 0 0 0",
+        "fill": "#f2f2f3"
+      }
+    ],
+    "export_engine": "Chromium SVG rasterization; native clip paths preserved",
+    "png_sha256": "1e26a0f690a8de068b5ab04d92371332099c0241eddf9425645cc6b02dedc70b",
+    "browser_version": "151.0.7922.34"
+  },
+  {
+    "name": "views_fr",
+    "source_page": 15,
+    "bbox_pt": [
+      30,
+      57,
+      344,
+      405
+    ],
+    "path": "assets/js100i_eu_added/views_fr.png",
+    "recipe_pdf_sha256": "f91da25a66a8105552c948ee473216129192d6a14a30939764b11dd4daabbd67",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "png_sha256": "7e16e1c7dce29d68d411ba8b8fba0b22225901e6a2325982fcf986970cd2039a",
+    "export_engine": "PyMuPDF native page clip, 4x alpha"
+  },
+  {
+    "name": "views_es",
+    "source_page": 24,
+    "bbox_pt": [
+      30,
+      57,
+      344,
+      405
+    ],
+    "path": "assets/js100i_eu_added/views_es.png",
+    "recipe_pdf_sha256": "5ccdada4ac0a547ce425616ef5bf2d97e8074964f48e711385c517af4a792a4a",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "png_sha256": "3475b4299ed646bec37492a68b58734c79cfaa081527f93fb2e4024fe058a2fc",
+    "export_engine": "PyMuPDF native page clip, 4x alpha"
+  },
+  {
+    "name": "views_de",
+    "source_page": 33,
+    "bbox_pt": [
+      30,
+      57,
+      344,
+      405
+    ],
+    "path": "assets/js100i_eu_added/views_de.png",
+    "recipe_pdf_sha256": "a4c84a740c97c02506bd3c842416dc1b9ce7b9f1acc2925de091845989f97692",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "png_sha256": "71e6346c29ca5ec9c1927771ad6bef66787bcc787427880449c1739670a6b32b",
+    "export_engine": "PyMuPDF native page clip, 4x alpha"
+  },
+  {
+    "name": "views_it",
+    "source_page": 43,
+    "bbox_pt": [
+      30,
+      57,
+      344,
+      405
+    ],
+    "path": "assets/js100i_eu_added/views_it.png",
+    "recipe_pdf_sha256": "073abc2280412969df2f905b641a15eb38f671ee011cba149f03a780aa05e251",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "png_sha256": "25a7fedc2a63f939ffcdaab2db5ca1c5e70e22979a42ae76098619a952732ada",
+    "export_engine": "PyMuPDF native page clip, 4x alpha"
+  },
+  {
+    "name": "views_uk",
+    "source_page": 52,
+    "bbox_pt": [
+      30,
+      57,
+      344,
+      405
+    ],
+    "path": "assets/js100i_eu_added/views_uk.png",
+    "recipe_pdf_sha256": "0280e192326f91a5b986b4ae965a235988358d81c5ee5bcf053e63ffb9170993",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "png_sha256": "d1df67a6aff38899ff129b42ce370d2b0cd561faf73d95572519977e1b9874a4",
+    "export_engine": "PyMuPDF native page clip, 4x alpha"
+  },
+  {
+    "name": "views_pt",
+    "source_page": 61,
+    "bbox_pt": [
+      30,
+      57,
+      344,
+      405
+    ],
+    "path": "assets/js100i_eu_added/views_pt.png",
+    "recipe_pdf_sha256": "a085b4894b89c78f1a3c6d91abc05e834f0a53189d6fc67411ab6b804954df9c",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "png_sha256": "74ea726beff3b57923050a86d877c69c91aa5d2d7a395f8b4da2670a9a2d6ba9",
+    "export_engine": "PyMuPDF native page clip, 4x alpha"
+  },
+  {
+    "name": "views_nl",
+    "source_page": 70,
+    "bbox_pt": [
+      30,
+      57,
+      344,
+      405
+    ],
+    "path": "assets/js100i_eu_added/views_nl.png",
+    "recipe_pdf_sha256": "a32e00f5673be051e674609b918861dc48f288746e2f8b5101b6e8f3088ab8ea",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "png_sha256": "158d0bfd00164141785061e8e1d424d59633dd78662bfcd0874ecf9187d8d90a",
+    "export_engine": "PyMuPDF native page clip, 4x alpha"
+  },
+  {
+    "name": "views_pl",
+    "source_page": 79,
+    "bbox_pt": [
+      30,
+      57,
+      344,
+      405
+    ],
+    "path": "assets/js100i_eu_added/views_pl.png",
+    "recipe_pdf_sha256": "867cbb394d2048838390941244a379a7d72a3213921181c2ab937b1386e082eb",
+    "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+    "png_sha256": "685fbf1fc87d544d43b73ead4ba8d3b2bb99f0bdc2bb5c3896c881b402be6135",
+    "export_engine": "PyMuPDF native page clip, 4x alpha"
+  }
+]

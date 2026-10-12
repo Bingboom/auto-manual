@@ -40,7 +40,7 @@ python build.py idml \
   --data-root tests/fixtures/phase2 \
   --idml-mode production
 
-python tools/export_idml.py \
+python -m tools.export_idml \
   --check docs/_build/JE-1000F/JP/idml/manual_je1000f_jp.idml
 ```
 

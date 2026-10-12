@@ -1,0 +1,79 @@
+{
+  "schema_version": "je100c-copy-alignment/v1",
+  "language": "nl",
+  "authorization": "Operator selected: 以新版英文为准，校正这 4 语的差异译文",
+  "authority": {
+    "file": "16-0102-000467 HTE162100A-EUUK-JAK 说明书 RoHS REACH A0(1).pdf",
+    "sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+    "english_pages": [
+      4,
+      15
+    ]
+  },
+  "tm_base": "Ji1hb5ub1aUbewsTljGccvx5nhc",
+  "tm_table": "tblqtvNbgjDwR4ya",
+  "tm_fallback": {
+    "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/source/symbols.json",
+    "sha256": "74082793652dae76e3876e535031b274784b0531b7a8ad30f281b680ed9de9bc",
+    "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+  },
+  "changes": [
+    {
+      "file": "charging_nl.rst",
+      "before": "OPLADEN VIA AC-LAADKABEL\n------------------------\n\n.. image:: renderers/web/assets/je100c_eu_shared/charging_ac.svg\n   :alt: OPLADEN VIA AC-LAADKABEL\n\n.. admonition:: OPGELET\n   :class: caution\n\n   - Koop de AC-oplaadkabel apart.\n\n   - Zorg ervoor dat de AC-oplaadkabel volledig en correct in de AC-ingangspoort is gestoken. Een onvolledige verbinding kan instabiele stroom, oververhitting, slecht contact of apparaatstoringen veroorzaken.\n\n",
+      "after": "OPLADEN VIA EEN USB-C-OPLADER\n-----------------------------\n\n.. image:: renderers/web/assets/je100c_eu_shared/charging_ac.svg\n   :alt: OPLADEN VIA EEN USB-C-OPLADER\n\n.. container:: hb-source-purchase\n\n   .. image:: renderers/web/assets/je100c_eu_shared/symbol_purchase.png\n      :alt: USB-C-oplader apart verkrijgbaar.\n\n   **USB-C-oplader apart verkrijgbaar.**\n\n",
+      "english_source": "CHARGING VIA A USB-C CHARGER / USB-C charger sold separately.",
+      "method": "new translation authorized by operator; no exact live TM match"
+    },
+    {
+      "file": "charging_nl.rst",
+      "before": "   - Als u met uw voertuig op oneffen wegen rijdt, is het verboden de autolader te gebruiken om niet-standaard werking te voorkomen. Het bedrijf is niet aansprakelijk voor enig verlies of schade als gevolg van niet-standaard gebruik.",
+      "after": "   - Als het voertuig over een hobbelige weg rijdt, mag de auto-oplader niet worden gebruikt om oververhitting door een slechte verbinding te voorkomen. Het bedrijf is niet aansprakelijk voor verliezen die worden veroorzaakt door onjuist gebruik.",
+      "english_source": "If the vehicle is running on bumpy roads, it is forbidden to use the car charger to avoid overheating caused by poor connection. The Company will not be responsible for any loss caused by non-standard operation.",
+      "method": "new translation of the newer-English missing hazard condition"
+    },
+    {
+      "file": "spec_nl.rst",
+      "before": "     - LiFePO4",
+      "after": "     - Li-ion LFP",
+      "english_source": "Li-ion LFP",
+      "method": "updated source terminology; same chemistry"
+    },
+    {
+      "file": "spec_nl.rst",
+      "before": "Ingangspoorten\n--------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1\n     - 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A, 28 V⎓5A, 140W Max\n\n       Voertuig: 12 V⎓5 A Max, 24 V⎓5 A Max\n\n       PV: 10 V-30 V⎓, 5A Max, 100W Max\n\nUitgangspoorten\n---------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-A\n     - 5 V⎓2 A, 9 V⎓2 A, 12 V⎓1,5 A, 18 W Max\n   * - USB-C1 / USB-C2\n     - 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A, 28 V⎓5 A, 140 W Max\n\nTotaal uitgangsvermogen\n-----------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1 + USB-C2\n     - ( 70W + 70W ) Max\n   * - Omgevingstemperatuur USB-C1 + USB-A / USB-C2 + USB-A\n     - ( 140W + 18W ) Max\n   * - USB-C1 + USB-C2 + USB-A\n     - ( 70W + 70W + 18W ) Max\n\nBEDRIJFSTEMPERATUUR\n-------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - Oplaadtemperatuur\n     - 0°C tot 45°C\n   * - Ontlaadtemperatuur\n     - -20°C tot 45°C\n\n※ USB Type-C®   en USB-C®   zijn geregistreerde handelsmerken van USB Implementers Forum.\n",
+      "after": "   * - Levensduur\n     - 3000 cycli tot 80% of meer van de capaciteit\n\nIngangspoorten\n--------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1\n     - 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A, 28 V⎓5A, 140W Max\n\n       Voertuig: 12 V⎓5 A Max, 24 V⎓5 A Max\n\n       PV: 10 V-30 V⎓, 5A Max, 100W Max\n\nUitgangspoorten\n---------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-A\n     - 5 V⎓2 A, 9 V⎓2 A, 12 V⎓1,5 A, 18 W Max\n   * - USB-C1 / USB-C2\n     - 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A, 28 V⎓5 A, 140 W Max\n\nTotaal uitgangsvermogen\n-----------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1 + USB-C2\n     - ( 70W + 70W ) Max\n   * - USB-C1 + USB-A / USB-C2 + USB-A\n     - ( 140W + 18W ) Max\n   * - USB-C1 + USB-C2 + USB-A\n     - ( 70W + 70W + 18W ) Max\n\nBEDRIJFSTEMPERATUUR\n-------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - Oplaadtemperatuur\n     - 0°C tot 45°C\n   * - Ontlaadtemperatuur\n     - -20°C tot 45°C\n\n※ USB Type-C®   en USB-C®   zijn geregistreerde handelsmerken van USB Implementers Forum.\n",
+      "english_source": "Cycle Life / 3000 cycles to 80%+ capacity",
+      "method": "uk: TM recvgEwErzPJY3 parameter reuse; others: operator-authorized translation"
+    },
+    {
+      "file": "symbol_meaning_nl.rst",
+      "before": "   * - \n     - \n",
+      "after": "   * - .. image:: renderers/web/assets/je100c_eu_shared/symbol_battery_weee.png\n          :alt: battery_weee\n     - Batterijen en accu's mogen niet bij het huishoudelijk afval worden weggegooid. Als consument bent u wettelijk verplicht om alle batterijen en accu's in te leveren bij daarvoor aangewezen inzamelpunten, ongeacht of ze gevaarlijke stoffen bevatten. Lever gebruikte batterijen en accu's in bij een plaatselijk inleverpunt, recyclingcentrum of bij de winkel waar u ze heeft gekocht. Een juiste afvalverwerking verzekert dat recycling op een milieuvriendelijke manier gebeurt en voorkomt mogelijke schade aan de menselijke gezondheid en het milieu.\n",
+      "english_source": "Batteries and accumulators must not be disposed of with household waste. As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances. Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "method": "uk: exact live TM records recvgEwErzbPK6, recvgEwErz2Qox, recvgEwErzzwm8, recvgEwErzj960; pt/nl/pl: identical generic source paragraph in frozen JE-2000F source"
+    },
+    {
+      "file": "safety_nl.rst",
+      "before": "Haal de powerbank niet uit elkaar. naar een gekwalificeerde servicemonteur",
+      "after": "Haal de powerbank niet uit elkaar. Breng deze naar een gekwalificeerde servicemonteur",
+      "english_source": "Do not disassemble the power bank. Take it to a qualified service person",
+      "method": "restore missing verb from English authority"
+    },
+    {
+      "file": "lcd_display_nl.rst",
+      "before": "Uit: De Continu-uit-modus is ingeschakeld.",
+      "after": "Uit: De Continu-aan-modus is uitgeschakeld.",
+      "english_source": "Off: Steady-on mode disabled.",
+      "method": "correct inverted state meaning against newer English"
+    },
+    {
+      "file": "spec_nl.rst",
+      "before": "Omgevingstemperatuur USB-C1 + USB-A / USB-C2 + USB-A",
+      "after": "USB-C1 + USB-A / USB-C2 + USB-A",
+      "english_source": "USB-C1 + USB-A / USB-C2 + USB-A",
+      "method": "exclude invisible covered source text; confirmed against rendered AI page 99 and newer English"
+    }
+  ],
+  "review_status": "local-aligned-candidate-not-published"
+}

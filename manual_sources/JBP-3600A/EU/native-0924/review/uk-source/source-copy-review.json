@@ -1,0 +1,73 @@
+{
+  "status": "producer-native-source-review-only",
+  "language": "uk",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "copy_map_sha256": "2c6a03f3a441bb8508e33a996c55cffb22a2f06a41bead912f67381dd641b84d",
+  "explicit_mappings": 169,
+  "viewed_pages": [
+    3,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54
+  ],
+  "shared_legal_page": 79,
+  "critical_checks": [
+    "10 safety bullets retained; bullet glyphs represented by HTML list, not duplicated",
+    "Native signal labels, symbol meanings and icon identities checked",
+    "Two LCD rows and native power instructions retained",
+    "Native 3second hold,2hour shutdown,5battery limit,3stack limit and clearance values retained",
+    "F0-F9/FA/FC/FE/FF actions mapped without dropping code groups",
+    "Complete 8 general specification rows,2port rows,2temperature rows retained",
+    "Storage temperature/humidity and3month/6-12month maintenance intervals retained",
+    "3+2year badges,36months,7day/6month battery exclusion retained",
+    "Company/customer-support identity and mailto retained",
+    "Three native label-bearing panel decisions still await Web candidate review",
+    "Inline x5 glyph location verified; existing candidate bytes selected for reuse"
+  ],
+  "native_exceptions": [],
+  "browser_acceptance": false,
+  "publication_eligible": false,
+  "files": [
+    {
+      "path": "pages/uk-3.png",
+      "sha256": "6b9bc88d02f9f43644f8863339ad4ed869d57b1fff529d2bfb1fe37604faea98"
+    },
+    {
+      "path": "pages/uk-47.png",
+      "sha256": "b601b537d654b0c69e07f6dbdb434de11f77dc0670b9110d4ecbc2f5e7cccf94"
+    },
+    {
+      "path": "pages/uk-48.png",
+      "sha256": "56e9e15157176b98fecce21c3b14e09b69c2c31068b4c4b80c6941885adab3f0"
+    },
+    {
+      "path": "pages/uk-49.png",
+      "sha256": "b42efbf5a83eed2ed0286608fe75c173fdac5197ba5dc250d04eb09501e27a94"
+    },
+    {
+      "path": "pages/uk-50.png",
+      "sha256": "80cf7aaa8225932923d6e5ca94cae5f41c1a3bc1c4c0eaec0227368f02209600"
+    },
+    {
+      "path": "pages/uk-51.png",
+      "sha256": "3c041c823df8341024a1b1f1e9ebba56993ffdd9df5e33e1bc51dd1f2b1fcea3"
+    },
+    {
+      "path": "pages/uk-52.png",
+      "sha256": "1f9af9d36d0213c44678388347a9f3950f8db85d16d7289d3dadd70ec7ad4155"
+    },
+    {
+      "path": "pages/uk-53.png",
+      "sha256": "dcd44ad0346fb020e073eb7a0d73adfe988da288f90fe3171c4b4ebebc718e8d"
+    },
+    {
+      "path": "pages/uk-54.png",
+      "sha256": "c6b70e30b7ece7607d3fceff2812b3394609437852174788e7704d4b3e915633"
+    }
+  ]
+}

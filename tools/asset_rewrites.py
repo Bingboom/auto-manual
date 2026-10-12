@@ -113,7 +113,7 @@ def restore_registry_asset_uris(
 
         def restore(raw_value: str) -> str:
             nonlocal restored
-            queue = queues.get(raw_value)
+            queue = queues.get(raw_value)  # noqa: B023 -- invoked before the loop advances
             if not queue:
                 return raw_value
             row = queue.popleft()
@@ -129,6 +129,8 @@ def restore_registry_asset_uris(
             transform=restore,
             latex_app_transform=restore,
             latex_lcd_mode_transform=restore,
+            latex_inbox_transform=restore,
+            latex_graphics_transform=restore,
         )
         if strict:
             missing = [

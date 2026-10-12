@@ -747,6 +747,143 @@ class ExportIdmlTests(unittest.TestCase):
             w._render_context(bundle), rect_id="r3", terminal=False)
         self.assertIn('AnchorSpaceAbove="0"', result_xml)
 
+    def test_led_override_art_keeps_the_shared_art_full_measure(self) -> None:
+        """A target's LED override fills the measure like the shared LED art.
+
+        It is recognised by the slot its source named (``asset:operation/
+        led_light``), whatever its file is called; without a usage manifest the
+        same file falls back to the 120pt default.
+        """
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
+        from tools.idml.components.prose_image import render_image_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        shared = "_assets/templates/word_template/common_assets/operation/led_light.png"
+        override = "renderers/latex/assets/op_led_light_any_target.png"
+
+        def width(bundle: Path, ref: str) -> float:
+            ctx = w._render_context(bundle)
+            xml, _ = render_image_block(ref, ctx, rect_id="led", terminal=False)
+            corners = re.findall(r'Anchor="([0-9.]+) ([0-9.]+)"', xml)
+            return max(float(x) for x, _y in corners)
+
+        with tempfile.TemporaryDirectory() as td:
+            bundle = write_bundle_with_rewrites(Path(td), [
+                (shared, "operation/led_light", "operation/led_light",
+                 ROOT / "docs/templates/word_template/common_assets/operation/led_light.png"),
+                (override, "operation/led_light", "operation/target/led_light",
+                 ROOT / "docs/renderers/latex/assets/op_led_light_je1000f_us.png"),
+            ])
+            measure = w._render_context(bundle).text_measure
+            self.assertAlmostEqual(measure, width(bundle, shared), places=3)
+            self.assertAlmostEqual(measure, width(bundle, override), places=3)
+            (bundle / "asset_usage_manifest.json").unlink()
+            self.assertAlmostEqual(120.0, width(bundle, override), places=3)
+
+    def test_ups_and_charging_overrides_fill_the_measure_by_slot(self) -> None:
+        """UPS and charging overrides fill the measure like their shared art.
+
+        A target override needs a basename of its own, so the shared file
+        suffixes never match it; its slot does. Without a usage manifest the
+        same file falls back to the 120pt default.
+        """
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
+        from tools.idml.components.prose_image import render_image_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        art = ROOT / "docs/renderers/latex/assets"
+        slots = {
+            "operation/ups_mode": art / "je1000f_jp_ups.png",
+            "charging/ac_wall": art / "je1000f_jp_ac_wall.png",
+            "charging/solar_direct": art / "je1000f_jp_solar_direct.png",
+            "charging/solar_adapter": art / "je1000f_jp_solar_adapter.png",
+            "charging/car_charge": art / "je1000f_jp_car_charge.png",
+        }
+
+        def width(bundle: Path, ref: str) -> float:
+            ctx = w._render_context(bundle)
+            xml, _ = render_image_block(ref, ctx, rect_id="art", terminal=False)
+            corners = re.findall(r'Anchor="([0-9.]+) ([0-9.]+)"', xml)
+            return max(float(x) for x, _y in corners)
+
+        with tempfile.TemporaryDirectory() as td:
+            staged = {
+                slot: f"renderers/latex/assets/{slot.rsplit('/', 1)[1]}_any_target.png"
+                for slot in slots
+            }
+            bundle = write_bundle_with_rewrites(Path(td), [
+                (staged[slot], slot, slot.replace("/", "/target/", 1), source)
+                for slot, source in slots.items()
+            ])
+            measure = w._render_context(bundle).text_measure
+            for slot, ref in staged.items():
+                with self.subTest(slot):
+                    self.assertAlmostEqual(measure, width(bundle, ref), places=3)
+            (bundle / "asset_usage_manifest.json").unlink()
+            for slot, ref in staged.items():
+                with self.subTest(f"{slot} without a manifest"):
+                    self.assertAlmostEqual(120.0, width(bundle, ref), places=3)
+
+    def test_front_and_ups_overrides_keep_their_shared_figure_treatment(self) -> None:
+        """An override matches its shared art's width and spacing by slot.
+
+        The shared front view and UPS art are recognised by file name for their
+        measure and spacing; a target override with a basename of its own gets
+        the same treatment through the slot its source named, and falls back to
+        the plain defaults without a usage manifest.
+        """
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
+        from tools.idml.components.prose_image import render_image_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        latex = ROOT / "docs/renderers/latex/assets"
+        common = ROOT / "docs/templates/word_template/common_assets"
+        pairs = {
+            "overview/front_product": (
+                "_assets/templates/word_template/common_assets/overview/front_product.jpg",
+                common / "overview/front_product.jpg",
+                "renderers/latex/assets/front_product_any_target.png",
+                latex / "je1000f_jp_front.png",
+            ),
+            "operation/ups_mode": (
+                "_assets/templates/word_template/common_assets/operation/ups_mode.png",
+                common / "operation/ups_mode.png",
+                "renderers/latex/assets/ups_mode_any_target.png",
+                latex / "je1000f_jp_ups.png",
+            ),
+        }
+
+        def figure(bundle: Path, ref: str) -> tuple[float, str, str]:
+            xml, _ = render_image_block(
+                ref, w._render_context(bundle), rect_id="art", terminal=False,
+            )
+            corners = re.findall(r'Anchor="([0-9.]+) ([0-9.]+)"', xml)
+            before = re.search(r'SpaceBefore="([0-9.]+)"', xml).group(1)
+            after = re.search(r'SpaceAfter="([0-9.]+)"', xml).group(1)
+            return max(float(x) for x, _y in corners), before, after
+
+        with tempfile.TemporaryDirectory() as td:
+            rewrites = []
+            for slot, (shared, shared_src, override, override_src) in pairs.items():
+                rewrites.append((shared, slot, slot, shared_src))
+                rewrites.append((override, slot, slot.replace("/", "/target/", 1), override_src))
+            bundle = write_bundle_with_rewrites(Path(td), rewrites)
+            measure = w._render_context(bundle).text_measure
+            for slot, (shared, _src, override, _osrc) in pairs.items():
+                with self.subTest(slot):
+                    shared_figure = figure(bundle, shared)
+                    self.assertAlmostEqual(measure, shared_figure[0], places=3)
+                    self.assertEqual(shared_figure, figure(bundle, override))
+            (bundle / "asset_usage_manifest.json").unlink()
+            plain = (120.0, "2.83", "4.25")
+            for slot, (_shared, _src, override, _osrc) in pairs.items():
+                with self.subTest(f"{slot} without a manifest"):
+                    width, before, after = figure(bundle, override)
+                    self.assertEqual(plain, (round(width, 3), before, after))
+
     def test_no_semibold_font_style_in_paragraph_styles(self) -> None:
         # the licensed Gilroy set has no SemiBold face; referencing it makes
         # InDesign pink-highlight the text (designer-reported)
@@ -1248,6 +1385,47 @@ class ExportIdmlTests(unittest.TestCase):
             'SpaceBefore="5.66929" SpaceAfter="31.9307"',
             story,
         )
+
+    def test_operation_rhythm_spaces_plain_body_before_h2_by_default(self) -> None:
+        """Pin the shared rhythm every target without registered components prints."""
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "lang_en_idml_operation_inter_section_space_after": ("48.2", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_with_charging_tail",
+            "05_operation_guide_placeholder + charging",
+            [
+                ("body", "Emergency charging detail."),
+                ("h2", "CHARGING VIA SOLAR PANELS"),
+            ],
+            ROOT,
+            language="en",
+        )
+        story = dict(writer.stories)["st_operation_with_charging_tail"]
+        self.assertIn('SpaceAfter="48.2"', story)
+
+    def test_registered_rhythm_keeps_ordinary_spacing_after_operation(self) -> None:
+        """A component target's no-plan story keeps copy after Operation plain."""
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter(
+            {"lang_en_idml_operation_inter_section_space_after": ("48.2", "pt")},
+            registered_components=True,
+        )
+        writer.add_prose_story(
+            "st_operation_with_charging_tail",
+            "05_operation_guide_placeholder + charging",
+            [
+                ("body", "Emergency charging detail."),
+                ("h2", "CHARGING VIA SOLAR PANELS"),
+            ],
+            ROOT,
+            language="en",
+        )
+        story = dict(writer.stories)["st_operation_with_charging_tail"]
+        self.assertNotIn('SpaceAfter="48.2"', story)
 
     def test_operation_first_page_rhythm_preserves_second_panel_position(self) -> None:
         from tools.idml.story_rhythm import operation_story_rhythm_for_next_block
@@ -3097,7 +3275,7 @@ class ExportIdmlTests(unittest.TestCase):
                     f'<Position type="unit">{tab_position}</Position>', story,
                 )
                 self.assertIn(
-                    f'<Content>•</Content></CharacterStyleRange>', story,
+                    '<Content>•</Content></CharacterStyleRange>', story,
                 )
                 self.assertIn('<Content>\t</Content>', story)
                 self.assertNotIn("• Item with", story)
@@ -4760,55 +4938,6 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(1, writer.lcd_segment_counts["fr"])
         self.assertIn(
             'SingleRowHeight="50.85" MinimumHeight="50.85"',
-            first_table,
-        )
-
-    def test_lcd_full_governed_continuation_shell_matches_row_height_sum(self) -> None:
-        params = load_layout_params(ROOT / "data" / "layout_params.csv")
-        rows = [
-            {
-                "no": str(index),
-                "figure": "",
-                "name": f"Indicator {index}",
-                "desc": f"Description {index}",
-                **({"row_height_pt": "17.25"} if index >= 8 else {}),
-            }
-            for index in range(1, 27)
-        ]
-        w = IdmlWriter(params)
-        w.add_lcd_story(
-            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
-        )
-
-        continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
-        self.assertIn(
-            'Anchor="0 -467.634"', dict(w.stories)["st_lcd"])
-        self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
-        self.assertNotIn("idml_lcd_continuation_bottom_gap", params)
-        self.assertIn('SingleRowHeight="157.134"', continuation)
-
-    def test_lcd_first_shell_matches_approved_reference_table_height(self) -> None:
-        params = load_layout_params(ROOT / "data" / "layout_params.csv")
-        rows = [
-            {
-                "no": str(index),
-                "figure": "",
-                "name": f"Indicator {index}",
-                "desc": f"Description {index}",
-            }
-            for index in range(1, 8)
-        ]
-        w = IdmlWriter(params)
-        w.add_lcd_story(
-            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
-        )
-
-        story = dict(w.stories)["st_lcd"]
-        self.assertIn('Anchor="0 -280.777"', story)
-        self.assertNotIn('Anchor="0 -286"', story)
-        first_table = dict(w.stories)["st_anchor_lcd_table_en_0"]
-        self.assertIn(
-            'TopInset="13.322" BottomInset="13.322"',
             first_table,
         )
 

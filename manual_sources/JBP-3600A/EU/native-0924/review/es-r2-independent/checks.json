@@ -1,0 +1,12 @@
+{
+  "package-manifest.json": {
+    "count": 29,
+    "mismatches": []
+  },
+  "html-manifest.json": {
+    "count": 60,
+    "mismatches": []
+  },
+  "image_bytes_unchanged_from_r1": true,
+  "markdown_unchanged_from_r1": true
+}

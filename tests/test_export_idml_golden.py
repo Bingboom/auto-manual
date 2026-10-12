@@ -197,7 +197,7 @@ def _build_package(
         "--bundle-root", str(bundle_root),
         "--out", str(out_path),
     ]
-    return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
+    return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, check=False)
 
 
 def _normalized_parts(idml_path: Path) -> dict[str, bytes]:

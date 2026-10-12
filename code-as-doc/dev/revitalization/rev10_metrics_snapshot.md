@@ -1,5 +1,7 @@
 # REV-10 · M5 统计口径快照 v1（第一期：模板 + 实例）
 
+Status: done
+
 - 口径版本：**metrics-caliber v1**；本文件是「每期一份」序列的第一期，同时定义模板结构。
 - 生成（UTC）：2026-09-19T03:36Z；生成方式：只读（git show / lark-cli 只读 / 公网 GET），未运行 CWA 查询（凭据在环境外，本轮不触碰）。
 - M5 定义（方案原文，`code-as-doc/manual_production_revitalization_plan.md:172`）：「**每期保存窗口、来源、过滤和路径归类规则、采样情况及目录快照**」。

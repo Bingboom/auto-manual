@@ -1,0 +1,28 @@
+{
+  "languages": {
+    "pt": {
+      "strict_build": true,
+      "chapter_count": 16,
+      "body_identical_except_two_app_figures": true,
+      "css_identical": true,
+      "reused_app_result_sha256": "5a5a8acac5dfab8922c6bec40cdbfcdc2c380c24ee29f824980badd114df84a7"
+    },
+    "nl": {
+      "strict_build": true,
+      "chapter_count": 16,
+      "body_identical_except_two_app_figures": true,
+      "css_identical": true,
+      "reused_app_result_sha256": "5a5a8acac5dfab8922c6bec40cdbfcdc2c380c24ee29f824980badd114df84a7"
+    },
+    "pl": {
+      "strict_build": true,
+      "chapter_count": 16,
+      "body_identical_except_two_app_figures": true,
+      "css_identical": true,
+      "reused_app_result_sha256": "5a5a8acac5dfab8922c6bec40cdbfcdc2c380c24ee29f824980badd114df84a7"
+    }
+  },
+  "unique_bound_assets": 78,
+  "native_pdf_hashes_verified": 60,
+  "existing_six_language_files_unchanged": 46
+}

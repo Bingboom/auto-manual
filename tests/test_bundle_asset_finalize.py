@@ -733,6 +733,136 @@ class TestBundleAssetFinalize(unittest.TestCase):
                 )
                 self.assertEqual(usage, second_usage)
 
+    def test_raw_latex_inbox_and_graphics_take_the_page_language_override(self) -> None:
+        """In-box card images and includegraphics resolve asset URIs per page language.
+
+        Labels and legacy basenames stay verbatim, and a second finalization
+        restores the URIs before resolving them again.
+        """
+        cases = (
+            ("en", "main_unit1_block_en.png", "lcd_mode.png", "operation/lcd_mode"),
+            ("fr", "main_unit1_block.png", "op_lcd_mode_block.png", "operation/block/lcd_mode"),
+        )
+        for language, inbox_name, lcd_name, lcd_key in cases:
+            with self.subTest(language=language), tempfile.TemporaryDirectory() as td:
+                repo_root, docs_dir, bundle_dir = self._workspace(Path(td))
+                generic_dir = repo_root / "docs" / "assets" / "generic"
+                target_dir = repo_root / "docs" / "renderers" / "latex" / "assets"
+                generic_dir.mkdir(parents=True)
+                target_dir.mkdir(parents=True)
+                files = {
+                    "main_unit1.png": generic_dir / "main_unit1.png",
+                    "lcd_mode.png": generic_dir / "lcd_mode.png",
+                    "main_unit1_block_en.png": target_dir / "main_unit1_block_en.png",
+                    "main_unit1_block.png": target_dir / "main_unit1_block.png",
+                    "op_lcd_mode_block.png": target_dir / "op_lcd_mode_block.png",
+                }
+                digests = {}
+                for name, path in files.items():
+                    path.write_bytes(f"{name} bytes".encode())
+                    digests[name] = hashlib.sha256(path.read_bytes()).hexdigest()
+                (repo_root / "data" / "asset_registry.csv").write_text(
+                    self._REGISTRY_HEADER
+                    + "in_the_box/main_unit1,,插图,中立,✅成品,FALSE,ALL,ALL,docs/assets/generic,,"
+                    + f"png:{digests['main_unit1.png']},fixture\n"
+                    + "in_the_box/block/main_unit1_en,in_the_box/main_unit1,插图,按语言,✅成品,"
+                    + "FALSE,M1,EU,docs/renderers/latex/assets,en,"
+                    + f"main_unit1_block_en.png:{digests['main_unit1_block_en.png']},fixture\n"
+                    + "in_the_box/block/main_unit1,in_the_box/main_unit1,插图,按语言,✅成品,"
+                    + 'FALSE,M1,EU,docs/renderers/latex/assets,"fr,es",'
+                    + f"main_unit1_block.png:{digests['main_unit1_block.png']},fixture\n"
+                    + "operation/lcd_mode,,插图,中立,✅成品,FALSE,ALL,ALL,docs/assets/generic,,"
+                    + f"png:{digests['lcd_mode.png']},fixture\n"
+                    + "operation/block/lcd_mode,operation/lcd_mode,插图,按语言,✅成品,"
+                    + 'FALSE,M1,EU,docs/renderers/latex/assets,"fr,es",'
+                    + f"op_lcd_mode_block.png:{digests['op_lcd_mode_block.png']},fixture\n",
+                    encoding="utf-8",
+                )
+                page_dir = bundle_dir / "page"
+                page_dir.mkdir()
+                page = page_dir / f"box_{language}.rst"
+                page.write_text(
+                    ".. raw:: latex\n\n"
+                    "   \\HBInBoxThree{asset:in_the_box/main_unit1}{Explorer {1000}}"
+                    "{cable.png}{Cable}{manual.png}{Manual}\n"
+                    "   \\HBInBoxThree{asset:in_the_box/main_unit1}{Explorer 1000}"
+                    "{cable.png}{Cable}{manual.png}{Manual}\n"
+                    "   \\includegraphics[width=0.20\\linewidth]{asset:operation/lcd_mode}\n"
+                    "   \\includegraphics{legacy.png}\n",
+                    encoding="utf-8",
+                )
+                (bundle_dir / "index.rst").write_text(
+                    f".. include:: page/{page.name}\n",
+                    encoding="utf-8",
+                )
+                stale = page_dir / "stale.rst"
+                stale.write_text("Stale\n", encoding="utf-8")
+                bundle = replace(
+                    self._materialized_bundle(
+                        docs_dir=docs_dir,
+                        bundle_dir=bundle_dir,
+                        stale_page=stale,
+                        lang=language,
+                    ),
+                    region="EU",
+                )
+
+                finalized = finalize_materialized_bundle(
+                    bundle,
+                    cfg={"build": {"languages": [language]}},
+                    docs_dir=docs_dir,
+                    repo_root=repo_root,
+                )
+
+                text = page.read_text(encoding="utf-8")
+                # A label with nested braces leaves that call untouched.
+                self.assertIn(
+                    "\\HBInBoxThree{asset:in_the_box/main_unit1}{Explorer {1000}}", text
+                )
+                self.assertIn(
+                    f"\\HBInBoxThree{{{inbox_name}}}{{Explorer 1000}}"
+                    "{cable.png}{Cable}{manual.png}{Manual}",
+                    text,
+                )
+                self.assertIn(
+                    f"\\includegraphics[width=0.20\\linewidth]{{{lcd_name}}}", text
+                )
+                self.assertIn("\\includegraphics{legacy.png}", text)
+                usage = json.loads(
+                    finalized.asset_usage_manifest_path.read_text(encoding="utf-8")
+                )
+                rows = {row["asset_key"]: row for row in usage["assets"]}
+                inbox_key = (
+                    "in_the_box/block/main_unit1_en"
+                    if language == "en"
+                    else "in_the_box/block/main_unit1"
+                )
+                self.assertEqual({inbox_key, lcd_key}, set(rows))
+                self.assertEqual(digests[inbox_name], rows[inbox_key]["sha256"])
+                self.assertEqual(digests[lcd_name], rows[lcd_key]["sha256"])
+                self.assertEqual(
+                    [
+                        ("asset:in_the_box/main_unit1", inbox_name),
+                        ("asset:operation/lcd_mode", lcd_name),
+                    ],
+                    [
+                        (row["original_value"], row["rendered_value"])
+                        for row in usage["rewrites"]
+                    ],
+                )
+
+                second = finalize_materialized_bundle(
+                    finalized,
+                    cfg={"build": {"languages": [language]}},
+                    docs_dir=docs_dir,
+                    repo_root=repo_root,
+                )
+                self.assertEqual(
+                    usage,
+                    json.loads(second.asset_usage_manifest_path.read_text(encoding="utf-8")),
+                )
+                self.assertEqual(text, page.read_text(encoding="utf-8"))
+
     def test_support_tree_rejects_symlink_aliases(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             repo_root, docs_dir, bundle_dir = self._workspace(Path(td))

@@ -17,7 +17,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from tools import build_dispatch
-from tools.build_docs_theme import normalize_sphinx_tag_value, sphinx_tag_args
+from tools.build.docs_theme import normalize_sphinx_tag_value, sphinx_tag_args
 from tools.manual_ir import build_manual_ir
 from tools.page_contracts import DEFAULT_CATEGORY, resolve_category
 

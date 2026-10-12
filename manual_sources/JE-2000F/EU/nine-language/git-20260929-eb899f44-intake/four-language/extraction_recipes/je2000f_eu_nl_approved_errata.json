@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "approved/errata/nl-p136",
+    "expected_sha256": "a7153178bf7745c88ae287494342278c5b0ec5a3806178050762e98ec540b6b9",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.25,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "native_source_001",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "overview.right",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            20,
+            332,
+            350,
+            497
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/nl/overview-right-approved.pdf",
+          "expected_sha256": "681fe84703280fb35bd66268b67b593c49c7d06c3c32194b18f1486c54a77cd1"
+        },
+        {
+          "format": "png",
+          "path": "artwork/nl/overview-right-approved.png",
+          "scale": 3,
+          "expected_sha256": "ca42758ae993299999c3a96329ebb6845f0a403451cd6941f77eb9ef28d6ef67"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Errata approved; source-package publication and final visual gate remain separate"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    },
+    {
+      "asset_key": "overview.front",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            20,
+            85,
+            350,
+            312
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/nl/overview-front-approved.pdf",
+          "expected_sha256": "d60468df17a2bc8d068f55f68734e2c145032cfadf81729915291b62c74c39a4"
+        },
+        {
+          "format": "png",
+          "path": "artwork/nl/overview-front-approved.png",
+          "scale": 3,
+          "expected_sha256": "6f70257f7fd336c847393165d7f86a2096404c47e9b9095819890e228bd8e4e8"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Errata approved; source-package publication and final visual gate remain separate"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    }
+  ]
+}

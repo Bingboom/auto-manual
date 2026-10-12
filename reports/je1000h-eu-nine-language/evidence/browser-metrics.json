@@ -1,0 +1,618 @@
+{
+  "finalCandidate": "candidate-09",
+  "viewports": {
+    "desktop": [
+      1280,
+      720
+    ],
+    "mobile": [
+      390,
+      844
+    ]
+  },
+  "candidate08Frames": [
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "energy",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 24.203125,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "overview",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.828125,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "lcd",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 24.828125,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 24.015625,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "charging",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 24.09375,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "app",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.8515625,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "spec",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 22.8046875,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "overview",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 22.984375,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "lcd",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.984375,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 24.328125,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "energy",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 24.4453125,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "charging",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.875,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "app",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.9375,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "spec",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 24.15625,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "overview",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 23.7890625,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "lcd",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.21875,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.203125,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "energy",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.2265625,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "charging",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.0859375,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "app",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.1171875,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "spec",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 23.796875,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "overview",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.2890625,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "lcd",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.21875,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 23.828125,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "energy",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 23.90625,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "charging",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.2265625,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "app",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.0859375,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "spec",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.2421875,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "overview",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.125,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "lcd",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.0546875,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 23.8828125,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "energy",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 23.7578125,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "charging",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.0078125,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "app",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.046875,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "spec",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.203125,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "section": "overview",
+      "scrollWidth": 390,
+      "top": 24.1171875,
+      "width": 390
+    },
+    {
+      "lang": "pl",
+      "section": "lcd",
+      "scrollWidth": 390,
+      "top": 24.1171875,
+      "width": 390
+    },
+    {
+      "lang": "pl",
+      "section": "operations",
+      "scrollWidth": 390,
+      "top": 23.9140625,
+      "width": 390
+    },
+    {
+      "lang": "pl",
+      "section": "energy",
+      "scrollWidth": 390,
+      "top": 23.7890625,
+      "width": 390
+    },
+    {
+      "lang": "pl",
+      "section": "charging",
+      "scrollWidth": 390,
+      "top": 23.9765625,
+      "width": 390
+    },
+    {
+      "lang": "pl",
+      "section": "spec",
+      "scrollWidth": 390,
+      "top": 23.828125,
+      "width": 390
+    }
+  ],
+  "candidate09Frames": [
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "energy",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 23.7578125,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "main",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.1640625,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "led",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.1875,
+      "width": 1280
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "section": "battery",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.1328125,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.203125,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "main",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 23.984375,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "led",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24,
+      "width": 1280
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "section": "battery",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.0234375,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 23.828125,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "main",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.109375,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "led",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.1796875,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "section": "battery",
+      "failedImages": [],
+      "scrollWidth": 1280,
+      "top": 24.234375,
+      "width": 1280
+    },
+    {
+      "lang": "pl",
+      "mode": "mobile",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.9140625,
+      "width": 390
+    },
+    {
+      "lang": "pl",
+      "mode": "mobile",
+      "section": "main",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.7109375,
+      "width": 390
+    },
+    {
+      "lang": "pl",
+      "mode": "mobile",
+      "section": "led",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.796875,
+      "width": 390
+    },
+    {
+      "lang": "pl",
+      "mode": "mobile",
+      "section": "battery",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.78125,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 22.828125,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "main",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 22.453125,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "led",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.859375,
+      "width": 390
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "section": "battery",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.7578125,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "operations",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 23.015625,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "main",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 22.84375,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "led",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 24.2109375,
+      "width": 390
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "section": "battery",
+      "failedImages": [],
+      "scrollWidth": 390,
+      "top": 24.015625,
+      "width": 390
+    }
+  ],
+  "finalLabelMetrics": {
+    "pl": {
+      "failedImages": [],
+      "labelOverflow": [],
+      "overlayPills": 0,
+      "pendingLazyImages": 3,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    "nl": {
+      "failedImages": [],
+      "labelOverflow": [],
+      "overlayPills": 0,
+      "pendingLazyImages": 3,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    "pt": {
+      "failedImages": [],
+      "labelOverflow": [],
+      "overlayPills": 0,
+      "pendingLazyImages": 3,
+      "scrollWidth": 390,
+      "width": 390
+    }
+  },
+  "deltaBoundary": "All three candidate-08/09 Markdown files are byte-identical after replacing only battery-stack asset src. Final battery and operation labels were rechecked in candidate-09. Existing overview/LCD/energy/charging/App/spec screenshots from candidate-08 remain applicable.",
+  "imagesBoundary": "failedImages excludes pending lazy images; all bound image files separately hash-verified."
+}

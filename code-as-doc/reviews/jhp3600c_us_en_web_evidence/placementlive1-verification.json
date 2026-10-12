@@ -1,0 +1,52 @@
+{
+  "left-product-cable": {
+    "bbox": [
+      40,
+      330,
+      171,
+      406
+    ],
+    "scale": 12,
+    "pixel_identical": true
+  },
+  "right-stack-cable": {
+    "bbox": [
+      220,
+      314,
+      308,
+      421
+    ],
+    "scale": 12,
+    "pixel_identical": true
+  },
+  "distance-leaders": {
+    "bbox": [
+      105,
+      405,
+      168,
+      409
+    ],
+    "scale": 12,
+    "pixel_identical": true
+  },
+  "removed_caption_drawings": [
+    11611,
+    11612
+  ],
+  "removed_outer_frames": [
+    20,
+    21
+  ],
+  "crop": [
+    26,
+    287,
+    342,
+    434
+  ],
+  "bare_art_review": "No caption frames or external wording remain; native product/cable/distance leaders preserved.",
+  "source_sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+  "asset_sha256": "2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4",
+  "source_commit": "872c42ae44892d76c65d2b68b80da7abc12cf34b",
+  "native_pdf_external_text_remaining": "none",
+  "comparison_note": "Direct native transform at12x is pixel-identical in retained product/cable/leader regions; crop packaging can introduce antialias rounding, without geometry replay."
+}

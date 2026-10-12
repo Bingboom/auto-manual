@@ -1,0 +1,49 @@
+{
+  "source_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
+  "locales": {
+    "pt": {
+      "preface": {
+        "physical_page": 4,
+        "bbox": [
+          25,
+          26,
+          345,
+          158
+        ]
+      },
+      "toc_page": 7
+    },
+    "nl": {
+      "preface": {
+        "physical_page": 4,
+        "bbox": [
+          25,
+          170,
+          345,
+          293
+        ]
+      },
+      "toc_page": 7
+    },
+    "pl": {
+      "preface": {
+        "physical_page": 4,
+        "bbox": [
+          25,
+          312,
+          345,
+          453
+        ]
+      },
+      "toc_page": 7
+    }
+  },
+  "shared": {
+    "cover": {
+      "physical_page": 1
+    },
+    "eu_declaration": {
+      "physical_page": 161
+    }
+  }
+}

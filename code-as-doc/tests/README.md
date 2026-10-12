@@ -1,6 +1,6 @@
 # Tests Guide
 
-Updated: 2026-07-31
+Updated: 2026-09-30
 
 This file describes the current test entrypoints and recommended smoke checks.
 
@@ -9,6 +9,20 @@ This file describes the current test entrypoints and recommended smoke checks.
 ```powershell
 python -m unittest
 ```
+
+This single-process run is what CI and pre-PR validation use (about 15 minutes).
+For local iteration there is a parallel fast tier:
+
+```powershell
+python -m tests.run_fast          # or: make test-fast; about 3 minutes on 4 CPUs
+python -m tests.run_fast --all    # every module, still in parallel
+```
+
+It runs each batch of test modules in its own process and skips the modules in
+[`../../tests/slow_modules.txt`](../../tests/slow_modules.txt) (real Sphinx builds,
+IDML golden exports, frozen-AI replays), which lists each one's measured slow-test
+time. Refresh the list from `python -m unittest --durations 400` on Python 3.12 +
+`requirements.lock`; a test fails if it names a module that no longer exists.
 
 Current test coverage includes:
 

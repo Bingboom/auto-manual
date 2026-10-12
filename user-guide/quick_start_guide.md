@@ -9,6 +9,10 @@ Updated: 2026-08-17
 - Start Review 看 `Review Init`；Build Draft Package 看 PR 分支里的 [`docs/_review/`](../docs/_review)
 - Publish 默认看 `Document_link.Git_ref` 指向的 review / PR 分支；只有 `Git_ref` 为空时，才会退回当前 queue worker 所在分支（远端通常是 `main`）
 
+查询已发布欧规产品信息：现有钉钉 BlockClaw 启用后可问“JE-2000F 欧规 USB-C
+输出功率是多少？”，或用 `/manual-query JE-2000F USB-C输出` 查原文章节。
+首次启用见[欧规说明书查询](../code-as-doc/dev/eu_manual_query.md#activation-on-the-existing-gateway)。
+
 ## 1. 先分清三张表各自负责什么
 
 ### 1.1 phase2 源表
@@ -45,10 +49,10 @@ python3 build.py spec-master-rebuild --config configs/config.ja.yaml --expect-sp
 如果原始输入是一份规格书、Word 说明书转出的结构化 Markdown，或飞书云文档里的规格/文案表，先用 source intake 做候选沉淀：
 
 ```bash
-python3 tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2 --out reports/source_intake/<run-id>
-python3 tools/source_intake.py approve --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approve <delta_hash> --out reports/source_intake/<run-id>
-python3 tools/source_intake.py apply --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --out reports/source_intake/<run-id>
-python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id>/source_intake_candidates.json --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --apply-report reports/source_intake/<run-id>/source_intake_apply.json --check-command "sync-data=python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master" --check-command "build=python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US" --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2 --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake approve --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approve <delta_hash> --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake apply --report reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake verify --candidates reports/source_intake/<run-id>/source_intake_candidates.json --change-request reports/source_intake/<run-id>/source_intake_source_table_change_request.json --approval reports/source_intake/<run-id>/source_intake_approval.json --apply-report reports/source_intake/<run-id>/source_intake_apply.json --check-command "sync-data=python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master" --check-command "build=python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US" --out reports/source_intake/<run-id>
 ```
 
 `apply` 默认只做 dry-run 计划；只有人工确认后显式加 `--write --table-binding TABLE=BASE:TABLE_ID`，才会写线上 Feishu 源表。新增行仍先停在候选/人审层，不自动创建线上记录。
@@ -56,8 +60,8 @@ python3 tools/source_intake.py verify --candidates reports/source_intake/<run-id
 如果输入是产品规格书，而且已经有同产品或同区域 sibling，默认走重复入库快速通道，不再手工组装几十行：
 
 ```bash
-python3 tools/source_intake.py spec-extract --input <spec.pdf> --rules <rules.json> --document-key <MODEL_REGION> --region <REGION> --reference <sibling-spec.json> --out reports/source_intake/<run-id>
-python3 tools/source_intake.py stage-plan --spec-candidates reports/source_intake/<run-id>/spec_intake_candidates.json --spec-sibling <sibling-spec.json> --placeholder-sibling <sibling-placeholders.json> --overrides <target-differences.json> --document-key <MODEL_REGION> --localized-lang <lang> --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake spec-extract --input <spec.pdf> --rules <rules.json> --document-key <MODEL_REGION> --region <REGION> --reference <sibling-spec.json> --out reports/source_intake/<run-id>
+python3 -m tools.data.source_intake stage-plan --spec-candidates reports/source_intake/<run-id>/spec_intake_candidates.json --spec-sibling <sibling-spec.json> --placeholder-sibling <sibling-placeholders.json> --overrides <target-differences.json> --document-key <MODEL_REGION> --localized-lang <lang> --out reports/source_intake/<run-id>
 ```
 
 `stage-plan` 只克隆 sibling 结构并应用目标差异，输出评审文件和一个 `create_records` 批量 payload，不写飞书。它会拒绝模糊规则匹配、sibling 结构缺行以及未配对的本地化值。输入就绪后，机械步骤目标是 3–5 分钟；后续暂存表回读、人工确认和正式源表写入仍是硬门禁。
@@ -252,7 +256,7 @@ Publish 的原料是：
    - 这种模式走的是 `lark-cli event +subscribe` 的长连接；飞书应用里要先把 `im.message.receive_v1` 事件加上并发布
    - 如果同一台机器还要保留旧 app 的本地 `lark-cli` 配置，先设置 `FEISHU_IM_LARK_CLI_HOME=单独目录`，再在那个目录下初始化新 app 的 `lark-cli` 配置
    - 它仍然只处理这套文档控制层支持的动作、状态和只读发布文档管理查询，例如 `开始 review ...`、`帮我生成 ... 草稿`、`发布 ...`、`为什么 ... 构建失败`、`查 JE-2000F 的说明书链接`、`获取说明书总览信息`
-   - 云文档 backport **不是**飞书 IM / BlockClaw 的能力（LLM 对目标分支的判断不够确定）；已接受修订的回写请在 Claude Code / Codex / 终端里跑 `python tools/cloud_doc_backport.py run-review-branch ...`（见 AGENTS.md §3）
+   - 云文档 backport **不是**飞书 IM / BlockClaw 的能力（LLM 对目标分支的判断不够确定）；已接受修订的回写请在 Claude Code / Codex / 终端里跑 `python -m tools.backport.cloud_doc run-review-branch ...`（见 AGENTS.md §3）
    - 如果你要的是公网 callback / 多实例 / 长期托管，再改用下面的 webhook adapter
    - 启动 `node integrations/openclaw/feishu-im-webhook-adapter/server.mjs`
    - 如果部署在长期运行的 ECS 上，改用 [`../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/`](../integrations/openclaw/feishu-im-webhook-adapter/deploy/systemd/) 里的 wrapper 和 `systemd` unit 模板，不要长期靠手工 `nohup`
@@ -449,7 +453,7 @@ Phase 2 控制层使用阶段化交付契约：
 - 配好后每次成功 Publish 会在 `<root>/<job_id>/` 落一份产物（PDF / handoff zip / DOCX / Markdown）加一个 `delivery_manifest.json`，交给交付 agent 消费；`latex/`、`html/` 渲染目录不进 outbox
 - `构建结果` 会多一条注记：`delivery_outbox=ok`（附 `delivery_outbox_job=<job id>`）、`delivery_outbox=skipped`（该目标没在 [`../data/dingtalk_delivery_map.csv`](../data/dingtalk_delivery_map.csv) 里，属正常状态）、或 `delivery_outbox=failed`（附原因）。投递侧出问题不会把已经上传成功的构建行判失败
 - 哪些目标会投递看那张映射表：按 `(型号, 区域)` 一行，对应钉钉的项目代码 + 安规 + 该区域整本覆盖的文案语言集合。Publish 行的 `Lang` 必须留空、产出的是一本多语合订本，所以映射按区域而不是按语言
-- 验收单个 drop：`python tools/delivery_outbox.py --manifest <root>/<job_id>/delivery_manifest.json`
+- 验收单个 drop：`python -m tools.delivery_outbox --manifest <root>/<job_id>/delivery_manifest.json`
 - 已消费的 job 目录不会自动回收（里面是完整 PDF 和 zip），要定期清理；同一目标同一版本同一秒内重复 Publish 会被拒绝而不是覆盖
 
 Publish 不直接复用旧 Build Draft Package 产物，但为了保证正式文档与当前评审内容一致，应继续沿用同一条 review / PR 分支的 `Git_ref`；正式回写给业务侧的主链接是 PDF，DOCX 只保留在 release 目录里做留档。
@@ -626,7 +630,7 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
 4. 在装有 InDesign 的设计 Mac 上关闭旧 INDD，再运行：
 
    ```bash
-   python3 tools/indesign_finalize.py \
+   python3 -m tools.indesign_finalize \
      --idml docs/_build/JE-1000F/US/idml/manual_je1000f_us.idml \
      --indd output/indesign/JE-1000F_US_same_source.indd \
      --pdf output/pdf/JE-1000F_US_indesign.pdf \
@@ -641,7 +645,7 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
    必须是获批参考 PDF，不是本次新生成的 LaTeX PDF：
 
    ```bash
-   python3 tools/idml_pdf_parity.py \
+   python3 -m tools.idml_pdf_parity \
      --latex-pdf <approved-reference.pdf> \
      --indesign-pdf output/pdf/JE-1000F_US_indesign.pdf \
      --preflight output/indesign/JE-1000F_US_preflight.json \
@@ -775,7 +779,7 @@ AUTO_MANUAL_PRESENTATION_PROFILE=web python3 build.py check \
 
 ```bash
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.bp-jp.yaml --model JBP-2000B --region JP --source runtime --data-root tests/fixtures/phase2 --staging-root .tmp/bp-web --no-clean --skip-root-index
-python tools/readthedocs_source.py --build-root .tmp/bp-web/docs/_build --output-dir .tmp/bp-web/docs/_build/rtd
+python -m tools.readthedocs_source --build-root .tmp/bp-web/docs/_build --output-dir .tmp/bp-web/docs/_build/rtd
 python -m sphinx -b html .tmp/bp-web/docs/_build/rtd .tmp/bp-web/html
 ```
 
@@ -793,7 +797,7 @@ AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
   --model JS-100I --region EU --lang en \
   --data-root tests/fixtures/js100i_eu_en_phase2 \
   --staging-root .tmp/js100i-web
-python tools/readthedocs_source.py \
+python -m tools.readthedocs_source \
   --build-root .tmp/js100i-web/docs/_build \
   --output-dir .tmp/js100i-web/docs/_build/rtd \
   --title "JS-100I Web Acceptance"
@@ -804,6 +808,25 @@ python -m sphinx -b html \
 这只是本地 Web 验收。正式发布仍由 `Workflow_action=Web Publish` 冻结审核通过的
 线上快照并创建 Hello-Docs `docs/publish/**` PR；不要把 fixture 当成线上源表，也
 不要直接修改业务镜像工程树。
+
+### SolarSaga 100 Air 欧规新增语言候选
+
+八语候选 `fr/es/de/it/uk/pt/nl/pl` 共用一个配置，但每次使用匹配语言的结构源：
+
+```bash
+AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
+  --config configs/config.solar-eu-multilingual.yaml \
+  --model JS-100I --region EU --lang fr \
+  --data-root data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/fr \
+  --staging-root .tmp/js100i-locales
+```
+
+将两处 `fr` 一起替换为目标语言；`Source_lang` 不负责在混合 CSV 中筛选行。
+随后按上方示例用 `readthedocs_source.py` 和 Sphinx 组装预览，将目录改成
+`.tmp/js100i-locales`。英语正式 Git 源使用
+`data/manual_sources/JS-100I/EU/en/2.0/phase2` 和原英语配置。
+本轮保留原稿技术事实与制造商名称，勘误和待确认项见
+[九语候选验收记录](../code-as-doc/reviews/js100i_eu_nine_language_2026-09.md)。
 
 ### SolarSaga 40 Air 欧规英语 Web 本地验收
 
@@ -822,3 +845,37 @@ python build.py html \
 
 JBP-2000B 欧规英文单语的可执行示例见
 [版本化结构源](../manual_sources/JBP-2000B/EU/en/2.0/README.md)。
+
+
+JE-100C/EU 九语 Web 的本地示例见[构建指南](../code-as-doc/build_doc_guide/web-target-notes.md#je-100ceu-nine-language-web-source)：
+`--config configs/config.eu-fr.yaml --model JE-100C --region EU --lang fr`，
+并显式指定 `--data-root manual_sources/JE-100C/EU/en/2.0/phase2`。
+其余可用语言为 `en/es/de/it/uk/pt/nl/pl`，配置文件后缀与 `--lang` 同步替换。
+这些产物是本地候选，未修改线上构建表或发布链接。
+
+For English/native Web intake, start with the [source-copy work packet and shared-art review](../code-as-doc/dev/manual_intake_assistance.md) before assembling a candidate.
+
+### FridgeGuard Git-only 示例
+
+JE-1000E-SIL / US / en 的完整构建示例与源文件哈希见
+[录入记录](../code-as-doc/reviews/je1000e_sil_us_en_web_intake.md)。
+必须使用记录中的冻结数据根目录；不要用其他型号的 phase2 快照代替。
+
+### FridgeGuard US native FR/ES local candidate
+
+French and Spanish use `configs/config.us-fr.yaml` / `configs/config.us-es.yaml`, target `JE-1000E-SIL`, region `US`. Their Git-only data roots are `data/manual_sources/JE-1000E-SIL/US/<lang>/git-20261002-537939d0/phase2`; edit the corresponding `docs/templates/page_fridgeguard/<lang>/` source. Build with `build.py md --lang <lang> --data-root <data-root> --staging-root <isolated-output> --skip-root-index`. Native source discrepancies and asset reuse are recorded in [the intake review](../code-as-doc/reviews/je1000e_sil_us_fr_es_web_intake.md). Publication resumed under the operator’s 2026-10-03 “推上去 发布” authorization; release acceptance is tracked in the intake review.
+
+
+### SlimPower H1 日规日文 Git-only 回放
+
+使用[批准的冻结源](../manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/README.md)；先核对其 `approval.json` 与 MA-274。
+输出目录必须新建，旧候选和历史验证记录保留。
+
+```sh
+PKG=manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 "$PKG/rebuild.py" --output /tmp/h1-reviewed-new
+python3 -m sphinx -W --keep-going -b html /tmp/h1-reviewed-new /tmp/h1-reviewed-html-new
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python3 "$PKG/verify.py" --html /tmp/h1-reviewed-html-new/manual.html
+```
+
+本地回放不等于上线；继续使用现有 Git-only 发布出口，无线上表或队列操作。

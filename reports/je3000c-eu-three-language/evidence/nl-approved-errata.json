@@ -1,0 +1,22 @@
+{
+  "source_sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+  "approved_errata": 2,
+  "native_field_bindings": 14,
+  "publication_eligible": true,
+  "pending_source_review": [],
+  "cold_replay": "byte-identical without PDF access",
+  "targeted_tests": 13,
+  "strict_sphinx": "passed",
+  "browser": {
+    "desktop": {
+      "broken_images": 0,
+      "horizontal_overflow": false
+    },
+    "mobile_390": {
+      "broken_images": 0,
+      "horizontal_overflow": false,
+      "app_ac_label": "Aan/uit-knop voor AC"
+    }
+  },
+  "old_source_paths_changed": []
+}

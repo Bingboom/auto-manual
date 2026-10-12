@@ -13,3 +13,4 @@ JA-CA3SA_EU,CHARGER accessory Git-only Web input contains only port functions an
 JA-CC30A_EU,CHARGER accessory Git-only Web input has no power-station capability-gated slots; LCD UPS and App chapters are not applicable.
 JS-200E_EU,Solar@INTL has no portable-power capability-gated slots; this Web target intentionally omits LCD UPS troubleshooting and App chapters.
 JE-300D_EU,Operator-designated Git-frozen manual has no AC output UPS App or battery-expansion chapters; the target-local manifest intentionally omits them without a live capability row.
+JE-1000E-SIL_US,Git-only source has no live capability row; target manifest explicitly includes UPS battery connection TOU LCD and App content from English body pages 01-20.

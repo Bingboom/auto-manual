@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools import build_docs
+from tools.build import docs as build_docs
 from tools.utils.korean_josa import (
     JOSA_PAIRS,
     has_batchim,
@@ -11,7 +11,7 @@ from tools.utils.korean_josa import (
     select_josa,
     with_josa_substitutions,
 )
-from tools.word_bundle_common import apply_rst_substitutions
+from tools.word.bundle_common import apply_rst_substitutions
 
 
 class KoreanJosaSelectionTests(unittest.TestCase):

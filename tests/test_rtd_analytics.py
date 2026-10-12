@@ -6,13 +6,19 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from tests.test_rtd_feedback import RtdFeedbackTests
-from tools.rtd_analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
+from tools.rtd.analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
 
 # Doubled halves keep this obviously fake value out of secret-scan shapes.
 _FAKE_BEACON = "0123456789abcdef" * 2
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class RtdAnalyticsTests(unittest.TestCase):
+    def setUp(self):
+        isolate_shared_component_admission(self)
+
     def test_missing_or_blank_token_disables_analytics(self) -> None:
         self.assertEqual("", normalize_beacon_token(None))
         self.assertEqual("", normalize_beacon_token(""))

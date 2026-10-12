@@ -18,6 +18,8 @@ _EXPECTED = {
 
 def _require(spec: ComponentSpec, renderer: str) -> Mapping[str, Any]:
     binding = adapter_binding(spec, renderer)
+    if binding.get("capability") == "not-applicable":
+        raise ComponentSpecError(f"{spec.component_id}/{spec.variant}: {renderer} not applicable")
     if binding.get("key") != _EXPECTED[renderer]:
         raise ComponentSpecError(
             f"{spec.component_id}: expected {renderer} adapter {_EXPECTED[renderer]!r}"

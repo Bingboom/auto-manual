@@ -1,0 +1,46 @@
+{
+  "candidate": "12",
+  "strict_sphinx": true,
+  "source_free_replay_exact": true,
+  "body_text_unchanged": true,
+  "six_assets_unchanged": true,
+  "rect_percent": [
+    57,
+    83.5,
+    40,
+    4
+  ],
+  "desktop": {
+    "viewport": [
+      1440,
+      1000
+    ],
+    "previous_pill": [
+      262.3828125,
+      83.578125
+    ],
+    "pill": [
+      337.125,
+      28.140625
+    ],
+    "text_height": 18.0234375,
+    "line_height": 18.0299,
+    "lines": 1,
+    "horizontal_overflow": false
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "pill": [
+      143.1953125,
+      19.34375
+    ],
+    "text_height": 17.203125,
+    "line_height": 8.6,
+    "lines": 2,
+    "horizontal_overflow": false
+  },
+  "shared_css_changed": false
+}

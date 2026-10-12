@@ -1,0 +1,14 @@
+{#- Workbench summary: key numbers, data freshness and alerts above the page tabs. -#}
+{% set kpi_names = {'manuals': ('网页说明书', '本'), 'variants': ('语言版本', '个'), 'word': ('Word 云文档', '个'), 'print': ('印刷交付包', '个')} %}
+<details class="page-meta"><summary>数据更新时间</summary>
+<p>按型号 × 区域计本数，显示当前存量，不代表本周新增。</p>
+<div class="ws-update"><span>页面构建：{{ page_built_at|e }}</span><a href="https://github.com/Bingboom/Hello-Docs/actions" target="_blank" rel="noopener">查看更新记录 ↗</a></div>
+<div class="ws-update" aria-label="数据新鲜度">{% for item in freshness %}<span data-workspace-source="{{ item.kind|e }}" data-snapshot-sha256="{{ item.hash|e }}">{{ item.label|e }}：{{ item.date|e }} · <b>{{ item.state|e }}</b></span>{% endfor %}</div>
+<p>待更新表示需要重新确认，仍展示上次有效数据。页面构建不代表业务来源已刷新。</p>{% for item in freshness %}<p>{{ item.label|e }} · SHA256 <code>{{ item.hash|default('Unavailable', true)|e }}</code>{% if item.execution.startswith('https://github.com/') %} · <a href="{{ item.execution|e }}" target="_blank" rel="noopener">执行记录 ↗</a>{% endif %}</p>{% endfor %}
+</details>
+<div class="kpi-row" aria-label="交付规模">
+  {%- for item in production.overview if item.id in kpi_names %}
+  <a class="kpi" href="#deliverables"><span>{{ kpi_names[item.id][0] }}</span><strong>{% if item.value is none %}—{% else %}{{ item.display|e }}<small>{{ kpi_names[item.id][1] }}</small>{% endif %}</strong>{% if item.value is none %}<em>暂时无法读取</em>{% endif %}</a>
+  {%- endfor %}
+</div>
+{% if production.alerts %}<details class="ws-alert"><summary>有 {{ production.alerts|length }} 项数据需要复核</summary><ul>{% for alert in production.alerts %}<li>{{ alert|e }}</li>{% endfor %}</ul></details>{% endif %}

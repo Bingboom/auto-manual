@@ -115,7 +115,7 @@ def _diff_values(base: Any, target: Any, path: tuple[str, ...]) -> list[dict[str
         if len(base) != len(target):
             return [{"op": "replace", "path": _pointer(path), "value": target}]
         operations: list[dict[str, Any]] = []
-        for index, (old, new) in enumerate(zip(base, target)):
+        for index, (old, new) in enumerate(zip(base, target, strict=True)):
             operations.extend(_diff_values(old, new, (*path, str(index))))
         return operations
 

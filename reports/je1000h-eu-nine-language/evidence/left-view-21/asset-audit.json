@@ -1,0 +1,110 @@
+[
+  {
+    "language": "pt",
+    "physical_page": 112,
+    "old_crop": [
+      25,
+      269,
+      344,
+      368
+    ],
+    "new_crop": [
+      25,
+      266,
+      344,
+      368
+    ],
+    "old_size": [
+      1276,
+      396
+    ],
+    "new_size": [
+      1276,
+      408
+    ],
+    "recovered_top_rows_px": 12,
+    "retained_region_changed_pixels": 4,
+    "retained_region_max_channel_delta": 2,
+    "alpha_bounds": [
+      14,
+      2,
+      847,
+      401
+    ],
+    "top_and_bottom_clear_margin": true,
+    "new_pdf_sha256": "f21d7997f2307c8dba7ee156650e76be446e6505440e86511bc42ba896a643f1",
+    "new_png_sha256": "382841bfeb21f284a4b8f9f5aaa17f94cde0fa99f963e65d5d9b4480fc91503f"
+  },
+  {
+    "language": "nl",
+    "physical_page": 129,
+    "old_crop": [
+      25,
+      269,
+      344,
+      368
+    ],
+    "new_crop": [
+      25,
+      266,
+      344,
+      368
+    ],
+    "old_size": [
+      1276,
+      396
+    ],
+    "new_size": [
+      1276,
+      408
+    ],
+    "recovered_top_rows_px": 12,
+    "retained_region_changed_pixels": 5,
+    "retained_region_max_channel_delta": 3,
+    "alpha_bounds": [
+      14,
+      2,
+      847,
+      401
+    ],
+    "top_and_bottom_clear_margin": true,
+    "new_pdf_sha256": "e94d9fb18a9213ea848b2a87c99bad1d3a05e354418894d51531edf3efcf06e0",
+    "new_png_sha256": "b851b78eca55a3f7e38c99ff121ac51520548b104c9ef401c255068594e74e91"
+  },
+  {
+    "language": "pl",
+    "physical_page": 146,
+    "old_crop": [
+      25,
+      269,
+      344,
+      368
+    ],
+    "new_crop": [
+      25,
+      266,
+      344,
+      368
+    ],
+    "old_size": [
+      1276,
+      396
+    ],
+    "new_size": [
+      1276,
+      408
+    ],
+    "recovered_top_rows_px": 12,
+    "retained_region_changed_pixels": 4,
+    "retained_region_max_channel_delta": 2,
+    "alpha_bounds": [
+      14,
+      2,
+      847,
+      401
+    ],
+    "top_and_bottom_clear_margin": true,
+    "new_pdf_sha256": "a132aa14bf9831914dd09678dd8aa8f4cc3d3c53c7ad0fb545e9cec87c5f732a",
+    "new_png_sha256": "f31407026859d2e465e2b4a8ad2d39991e9d8bc5d0d1d09a009670f3ddd9bc12"
+  }
+]

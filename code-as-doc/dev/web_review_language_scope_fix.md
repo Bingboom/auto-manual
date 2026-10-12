@@ -1,5 +1,7 @@
 # Review bundle language-scope closeout
 
+Status: active
+
 Date: 2026-09-06
 
 ## Discovery

@@ -1,5 +1,7 @@
 # IDML Component Boundary Audit — 2026-08-25
 
+Status: active
+
 ## Goal
 
 Extend the `SymbolsPanel` ownership rule to other reusable IDML visual

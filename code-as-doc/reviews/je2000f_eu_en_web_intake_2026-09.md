@@ -6,7 +6,7 @@ Implementation baseline: `d1b12bf8686941b5e79d9b507d7cc991da3427b9`
 
 Target: `JE-2000F / EU / en` (`HTE154`, Jackery Explorer 2000)
 
-Status: implementation complete and ready for engineering review. Repository,
+Status: active · Recorded detail: implementation complete and ready for engineering review. Repository,
 target-build, semantic-IR, asset-provenance, image-reference, strict-Sphinx, and
 localhost desktop-browser checks pass. The operator approved all eleven
 corrective full-frame crops at 12x. Mobile layout remains a publication-stage
@@ -155,6 +155,17 @@ the aggregate as well as individual file hashes. Eight target tests pass,
 including native HTML AC output and unchanged input-current assertions.
 Full build/regression and independent release acceptance remain separate gates.
 
+## 2026-09-24 App connect-result panel
+
+The App setup row above lists the result panel from PDF page 21, but the
+intake bound only the add-device control panel, so every language kept the
+shared JP-market `connect_result.png`. One panel cut from the EN block (p21,
+bbox 49 137.5 321 298 at 4x) now replaces it in all six language manifests,
+because the other five blocks place the same five bitmaps. As App UI, its
+recipe `manual_je2000f_eu_web_app.json` stays quarantined, and the source
+manifest binds it as `app_asset_recipe`. The operator confirmed the crop on
+2026-09-24.
+
 ## Non-goals
 
 - No live Bitable write, queue-row mutation, review reseed, OSS upload, or
@@ -163,3 +174,182 @@ Full build/regression and independent release acceptance remain separate gates.
   publish-branch mutation, or PR merge.
 - No whole-page screenshot rendering. Source panels remain illustrations inside
   shared semantic sections and components.
+
+## 2026-09-24 App add-device figure with this model's control panel
+
+The fr/es/de/it/uk routes composed generic App screens with the JE-1000F/US control-panel drawing, and the English route bound a crop of the control-panel box alone (`app_control_panel`, no screens). Each language block prints the 2.1/2.2 screens and this model's own
+control-panel box, with the block's button labels, as one region. All six routes now
+bind a 12x crop of that region from their own block (quarantined App recipe
+entries `web/je2000f/eu/<lang>/app_add_device_panel`, PDF pages 20/36/52/68/84/100). Each
+crop ends in the white gap before the next paragraph and has pure-white edges.
+The page's button-label lines become covered annotations, kept as the figure's
+alt text. The operator approved the crops on 2026-09-24.
+
+## 2026-09-27 Specification tables follow the print
+
+A read-only audit compared the six Web specification tables with the print
+(PDF pages 18/34/50/66/82/98, printed 13/29/45/61/77/93). The intake and the
+2026-09-13 note above corrected only the English cells, so the other five
+languages still had the review branch's values. The operator ruled on
+2026-09-27:
+
+- values, structure and labels follow the print;
+- formatting keeps the house rules;
+- where the print itself is wrong, the reviewed wording is used.
+
+Each fix is a cell of the frozen phase2 source. The house rules stay as they
+are: unit spacing, `⎓` for DC, one line per value and `x` in dimensions.
+
+| Fix | Old → new | Print (PDF page) | Source cell |
+| --- | --- | --- | --- |
+| Cycle life, fr/es/de/it/uk | `6000` → `4000` cycles | 34/50/66/82/98 | `Spec_Master.csv` line 32, `Value_<lang>` |
+| 3 × AC outputs, fr/es/de/it/uk | `10 A max.` (`máx.`, `10 А макс.`) removed | 34/50/66/82/98 | line 37, `Value_<lang>` |
+| Bypass output, fr/es/de/it/uk | `10 A max.` → `2200 W max.` (`máx.`, `2200 Вт макс.`) | 34/50/66/82/98 | line 38, `Value_<lang>` |
+| it capacity | `40 Ah / 51,2 V ⎓ (2048 Wh)` → `2048 Wh (40 Ah / 51,2 V ⎓)` | 82 | line 28, `Value_it` |
+| en DC8020 car line | `Vehicle:` → `Car:` | 18; overview 8 | line 35, `Value_source` |
+| fr model label | `N° de modèle` → `N° modèle` | 34 | line 27, `Row_label_fr` |
+| fr AC output label | `3 × Sorties CA` → `3 × Sortie CA` | 34 | line 37, `Row_label_fr` |
+| de charging label (print defect) | `Ladtemperatur` → `Ladetemperatur` | 66; charging note 63 | line 43, `Row_label_de` |
+| it discharging label (print defect) | `Temperatura di scarico` → `Temperatura di scarica` | 82; charging note 79 | line 44, `Row_label_it` |
+| de port headings (print defect) | `EINGANGSPORTS` / `AUSGANGSPORTE` → `EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE` | 66 | `spec_titles.csv` lines 3-4, `title_de`; `Localized_Copy.csv` lines 13-14, `text_de` |
+
+Sources for the reviewed wording:
+
+- de `Ladetemperatur` and it `scarica` are what this print's own charging
+  notes say (PDF pages 63 and 79). The JE-1000H and JE-3600A EU prints use the
+  same labels in their specification tables (PDF pages 70 and 87 of each).
+- The de headings mix two nouns on one page. The JE-1000H EU print
+  (V2.0-2026-08-03) and the JE-3600A EU print (2026-05-25) set
+  `EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE` (PDF page 70 of each); both are
+  the prints their frozen sources lock. The same table already says
+  `DC8020-Anschlüsse` and `DC 12 V-Anschluss`, and the JE-1000H frozen source
+  uses the same pair.
+- The `Localized_Copy.csv` rows do not render on the Web; they now hold the same
+  headings as `spec_titles.csv`.
+
+Kept as reviewed:
+
+- en `Dimensions` stays plural. The print's `Dimension` (PDF page 18) is a
+  typo; the other five blocks use the plural.
+- fr `-10 °C à 45 °C` stays. The print detaches the minus sign (`- 10 °C`,
+  PDF page 34), and its charging note prints `-10 °C` (PDF page 31).
+
+Not changed here:
+
+- The product-overview figure's alt text still says `10 A max.` for the AC
+  output in all six languages (`Spec_Master.csv` line 20). No block of the
+  print overview (PDF pages 8/24/40/56/72/88) gives the AC output a current;
+  en prints `230 V~ 50 Hz, 2200 W Rated`. The alt text is the covered
+  annotation that `docs/renderers/web/je2000f_eu_<lang>_illustrations.json`
+  binds by its exact text. A trial build with only line 20 changed fails with
+  `covered illustration annotation changed or ambiguous`. The fix must change
+  line 20 and the six illustration manifests together, and re-lock the English
+  manifest's hash, so it is a separate change.
+- The print puts the ① footnote before the ※ note. The order comes from the
+  shared `docs/templates/spec_template.rst`, which a separate change handles.
+- The print has three more defects. The ruling does not list them, and the Web
+  copies them as printed:
+  - the spec pages' `PV: 16 V-60 V⎓12 A` has no `max.`, while the overview has
+    `12 A max.`;
+  - fr `Mode de charge:` has no space before the colon;
+  - the count prefixes are mixed (`1 ×`, `2 porte`, `1 вхід`).
+- Formatting-only differences stay as they are, because they follow the house
+  rules: unit spacing, `⎓` where the print has `DC`, `x` where it has `×`, es
+  `N°` where it has `Nº`, and the de/uk page-title case in the Markdown text.
+- The shared CI fixture `tests/fixtures/phase2/Spec_Master.csv` still has the
+  earlier JE-2000F EU rows. It was already out of date after the 2026-09-13
+  English fix. The Web builds from this frozen source only.
+
+Evidence:
+
+- Before the edit, trial Web builds of all six languages matched the live
+  Hello-Docs route pages line for line. The builds used `build.py md`, the web
+  profile and this data root. The route pages were from Hello-Docs main
+  `4a7526b0`, version 2.3, git ref `54a4cd24`. The comparison reduced each
+  `src` attribute to the image hash.
+- After the edit, only the 25 table lines above change: en 1, fr 5, es 3, de 8,
+  it 5, uk 3. Each de heading changes both the `##` heading and the table's
+  `aria-label`.
+- `tests/test_je2000f_eu_spec_print.py` pins the printed cells, the rendered
+  tables of all six languages, the de headings and the kept wording. Against the
+  CSVs from before the edit, every check fails except the kept-wording test.
+- `source_manifest.json` re-locks `Spec_Master.csv`, `spec_titles.csv`,
+  `Localized_Copy.csv` and the canonical inventory digest.
+
+## 2026-09-27 Product-overview alt text follows the print
+
+The front-view figure of each route (`overview_front.png`) keeps the copy of
+the product-overview table as its alt text. Its AC output line still had the
+specification-table text: `10 A max.`, the in-total rating and the surge peak.
+The front view of every print block gives the AC output only its voltage,
+frequency and rating. The surge peak is in the separate Total Output callout,
+whose alt text already follows the print. Under the same ruling of 2026-09-27
+(the print decides the content, and formatting keeps the house rules), line 20
+of `Spec_Master.csv` (`…__ac_output__front.spec__l01`) now holds the printed
+callout:
+
+| Route | Old → new | Print (PDF page / printed) | Source cell |
+| --- | --- | --- | --- |
+| en | `230 V~ 50 Hz, 10 A max., 2200 W rated in total, 4400 W surge peak` → `230 V~ 50 Hz, 2200 W Rated` | 8 / 3 | `Value_source` |
+| fr | `230 V~ 50 Hz, 10 A max., 2200 W nominal au total, 4400 W pointe de surtension` → `230 V~ 50 Hz, 2200 W Nominal` | 24 / 19 | `Value_fr` |
+| es | `230 V~ 50 Hz, 10 A máx., 2200 W Nominal en Total, 4400 W Pico de sobrecarga` → `230 V~ 50 Hz, 2200 W Nominal` | 40 / 35 | `Value_es` |
+| de | `230 V~ 50 Hz, 10 A max., 2200 W Nennleistung insgesamt, 4400 W Spitzenleistung` → `230 V~ 50 Hz, 2200 W Nennleistung` | 56 / 51 | `Value_de` |
+| it | `230 V~ 50 Hz, 10 A max., 2200 W nominali totali, 4400 W di picco` → `230 V~ 50 Hz, 2200 W nominali` | 72 / 67 | `Value_it` |
+| uk | `230 В~ 50 Гц, 10 А макс., номінальна потужність 2200 Вт загалом, пікова потужність 4400 Вт` → `230 В~ 50 Гц, 2200 Вт ном. потужності` | 88 / 83 | `Value_uk` |
+
+The print's case (`Rated`, `Nominal`) and the uk abbreviation `ном.` are kept,
+as the Total Output alt text keeps the print's `2200 W Rated, 4400 W Surge
+Peak`. The print already sets these callouts with the house unit spacing.
+
+How the text is bound and locked:
+
+- `_consume_covered_annotations` in `tools/web_document_source.py` reads each
+  `covered_annotations` entry of the route's illustration manifest. It finds
+  the one node under the entry's `selector` whose whitespace-normalized text
+  equals the entry's `text`, removes that node, and writes the texts, joined by
+  `；`, into the finished image's `alt`. No match or two matches stop the build
+  with `covered illustration annotation changed or ambiguous`.
+- The front-view entry (`replaces: front_product.jpg`) of each
+  `docs/renderers/web/je2000f_eu_<lang>_illustrations.json` binds the
+  front-view table twice. The first binding ends with the AC output line, so its
+  `text` changes with line 20 in all six manifests. The second (Total Output)
+  does not change.
+- `source_manifest.json` locks the English manifest
+  (`web_illustration_manifest.sha256`), `phase2/Spec_Master.csv` (`size`,
+  `sha256`) and the canonical inventory digest (`files_inventory_sha256`); all
+  three are re-locked. The fr–uk manifests have no hash lock; the new tests pin
+  their bindings. `tests/test_je2000f_eu_en_web.py` checks the locks.
+- No image changes. The panel hashes in the manifests and the recipes stay the
+  same.
+
+Kept:
+
+- The en right-side drawing (PDF page 8) labels the AC inlet
+  `AC 100V-120V 15A MAX`, a US rating; the other five blocks print
+  `AC 220V-240V 10A MAX`. The figure stays as printed. No Web alt text on the six
+  routes repeats the US rating: the en right-side alt text is the callout copy,
+  `AC Input 220 V-240 V~ 50 Hz, 10 A max.`.
+- `Value_br` of line 20 does not change. `br` is not a route of this target and
+  the print has no Portuguese block; the table fix left `br` alone in the same
+  way.
+- The shared CI fixture `tests/fixtures/phase2/Spec_Master.csv` does not
+  change, as for the table fix.
+
+Other figure text: on the six routes, no alt text or `aria-label` repeats a value
+that the table fix corrected. No `6000` appears. `10 A` appears in figure text
+only for the DC 12 V port (`12 V⎓10 A max.`, front view) and the AC input
+(`220 V-240 V~ 50 Hz, 10 A max.`, right side view), as printed. No figure gives
+the bypass output a value.
+
+Evidence:
+
+- Before the edit, trial Web builds of all six routes (`build.py md`, the web
+  profile and this data root) matched the live route pages line for line. The
+  pages were from Hello-Docs main `2c259771`, version 2.4, git ref `424983ad`,
+  with each `src` attribute reduced to the image hash.
+- After the edit, one line changes per route: the front-view image's `alt`, and
+  nothing else on that line (en line 71; fr, es, de, it and uk line 62).
+- `tests/test_je2000f_eu_overview_alt.py` pins the six cells, the six manifest
+  bindings, the rendered alt text of all six routes and the figure-text check
+  above. Against the tree from before the edit, all five tests fail in all six
+  languages.

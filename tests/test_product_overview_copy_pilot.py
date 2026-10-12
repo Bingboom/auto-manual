@@ -5,7 +5,7 @@ import re
 import unittest
 from pathlib import Path
 
-from tools.word_bundle_common import apply_rst_substitutions
+from tools.word.bundle_common import apply_rst_substitutions
 
 
 ROOT = Path(__file__).resolve().parents[1]

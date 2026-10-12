@@ -1,0 +1,5 @@
+{
+  "changed_value": "500W -> 600W",
+  "rejected": true,
+  "error": "frozen source changed: source/page/product_overview_ja.rst"
+}

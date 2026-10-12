@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+from typing import cast
 
 from .renderers_common import (
     _enabled,
@@ -89,7 +90,8 @@ def collect_safety_content(
                 continue
             try:
                 meta = json.loads(r["meta"] or "{}")
-            except Exception as exc:
+            except (ValueError, RecursionError) as exc:
+                # Include integer/depth limits as well as JSON syntax failures.
                 block_id = (r.get("block_id") or "").strip() or "?"
                 line = (r.get("line") or "").strip() or "?"
                 raise ValueError(
@@ -125,8 +127,8 @@ def render_safety_page(
     title_operating = str(data["title_operating"])
     lead_top = str(data["lead_top"])
     save_title = str(data["save_title"])
-    top_rows = [{"text": str(item)} for item in data["top_items"]]
-    bottom_rows = [{"text": str(item)} for item in data["bottom_items"]]
+    top_rows = [{"text": str(item)} for item in cast(list[object], data["top_items"])]
+    bottom_rows = [{"text": str(item)} for item in cast(list[object], data["bottom_items"])]
 
     title_main_line = rf"\section{{{latex_arg_escape(title_main)}}}"
     warning_line = rf"\safetywarning{{{latex_arg_escape(warning_title)}}}"

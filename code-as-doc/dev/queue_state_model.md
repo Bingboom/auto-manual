@@ -1,5 +1,7 @@
 # Queue State Model
 
+Status: active
+
 Updated: 2026-08-13
 
 This file records the supported queue status model for `Document_link` build
@@ -139,11 +141,11 @@ Operationally:
 
 Current transition payload assembly lives in:
 
-- [`tools/queue_transitions.py`](../../tools/queue_transitions.py)
-- [`tools/queue_claims.py`](../../tools/queue_claims.py)
-- [`tools/queue_writeback.py`](../../tools/queue_writeback.py)
-- [`tools/queue_group_processing.py`](../../tools/queue_group_processing.py)
-- [`tools/process_build_queue.py`](../../tools/process_build_queue.py)
+- [`tools/build_queue/transitions.py`](../../tools/build_queue/transitions.py)
+- [`tools/build_queue/claims.py`](../../tools/build_queue/claims.py)
+- [`tools/build_queue/writeback.py`](../../tools/build_queue/writeback.py)
+- [`tools/build_queue/group_processing.py`](../../tools/build_queue/group_processing.py)
+- [`tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py)
 
 Start/success/failure payload construction and trigger-clearing rules now flow
 through the explicit transition layer. Future queue work should keep transport

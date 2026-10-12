@@ -1,0 +1,68 @@
+{
+  "status": "producer-native-source-review-only",
+  "language": "es",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "copy_map_sha256": "d683c84689d5a649909039c381ab7fa3fc61b4c296f66e6e19f40595a5176ccf",
+  "explicit_mappings": 169,
+  "viewed_pages": [
+    2,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "shared_legal_page": 79,
+  "critical_checks": [
+    "Native safety,signal/symbol descriptions,operation and caution wording checked",
+    "Native specifications and units checked without English-value substitution",
+    "Troubleshooting actions and codes checked",
+    "Native storage/recharge maintenance intervals checked",
+    "Native warranty terms,exclusions,3+2year badges and contact identity checked",
+    "Inline x5 position verified and existing candidate bytes selected for reuse"
+  ],
+  "native_exceptions": [],
+  "browser_acceptance": false,
+  "publication_eligible": false,
+  "files": [
+    {
+      "path": "pages/es-2.png",
+      "sha256": "a2e5d4a7a08ae4d3b2ab5e0657daa64a66ce62bbfb87117cb3809f390a512400"
+    },
+    {
+      "path": "pages/es-23.png",
+      "sha256": "cda586529fe4796f10603b61ea6072bf07a69af9e94f90562833b2df8ddff1c2"
+    },
+    {
+      "path": "pages/es-24.png",
+      "sha256": "cfef649134cdd9c5250e78bf31389a7d2aef3d583e1b47c467183d26f44787c4"
+    },
+    {
+      "path": "pages/es-25.png",
+      "sha256": "48629de2079f7eebaf487238bbfc843088170d87f6e223a097be11b5daf5f449"
+    },
+    {
+      "path": "pages/es-26.png",
+      "sha256": "feb6e0abc7c41ed249277c9f6abf9f1df91c3d4523218dcb5460f750c7ad9300"
+    },
+    {
+      "path": "pages/es-27.png",
+      "sha256": "6a88b9c233a3d409e368675f82b2849c32b8fc512bd798343a6bb311fa9a8a54"
+    },
+    {
+      "path": "pages/es-28.png",
+      "sha256": "f4548fee10b41f83de0342980cf98434ee48e17e5af3c9bb0aeae218a1cd5202"
+    },
+    {
+      "path": "pages/es-29.png",
+      "sha256": "ecf3c3196c19de51613d6b87ce27bfe45163c2650b3687b5d54aaa448cfa2e44"
+    },
+    {
+      "path": "pages/es-30.png",
+      "sha256": "4393d3fcc9d20c992ccf29624de8587f8b68971195d2d0afe20c0bd784641fa7"
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "url": "http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html#ess",
+  "snapshots": [
+    {
+      "ess": {
+        "art": {
+          "loaded": true,
+          "src": "../../../../_static/manual-assets/_pool/40/4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616.png"
+        },
+        "brokenImages": [],
+        "documentWidth": 320,
+        "labels": [
+          {
+            "font": "8px",
+            "inside": true,
+            "overflow": false,
+            "rect": {
+              "bottom": -679.7265625,
+              "height": 27.8203125,
+              "left": 216.2109375,
+              "right": 292.09375,
+              "top": -707.546875,
+              "width": 75.8828125
+            },
+            "text": "Power input/output cable in the ATS package"
+          },
+          {
+            "font": "8px",
+            "inside": true,
+            "overflow": false,
+            "rect": {
+              "bottom": -629.3046875,
+              "height": 27.8203125,
+              "left": 224.453125,
+              "right": 292.1328125,
+              "top": -657.125,
+              "width": 67.6796875
+            },
+            "text": "Expansion cable in the battery pack package"
+          },
+          {
+            "font": "8px",
+            "inside": true,
+            "overflow": false,
+            "rect": {
+              "bottom": -547.9765625,
+              "height": 27.8203125,
+              "left": 26.046875,
+              "right": 186.9453125,
+              "top": -575.796875,
+              "width": 160.8984375
+            },
+            "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
+          }
+        ],
+        "modelStrips": [
+          {
+            "inside": true,
+            "modelRect": {
+              "bottom": -1322.6328125,
+              "height": 14.28125,
+              "left": 159.4296875,
+              "right": 291.5234375,
+              "top": -1336.9140625,
+              "width": 132.09375
+            },
+            "modelWeight": "700",
+            "rect": {
+              "bottom": -1312.3984375,
+              "height": 88.765625,
+              "left": 16,
+              "right": 304,
+              "top": -1401.1640625,
+              "width": 288
+            },
+            "text": "SMART HOME BACKUP SYSTEM (AC ESS) Model: HB3600C-TS05A¶"
+          },
+          {
+            "inside": true,
+            "modelRect": {
+              "bottom": 123.8046875,
+              "height": 14.28125,
+              "left": 186.8671875,
+              "right": 291.5234375,
+              "top": 109.5234375,
+              "width": 104.65625
+            },
+            "modelWeight": "700",
+            "rect": {
+              "bottom": 137.84375,
+              "height": 43,
+              "left": 16,
+              "right": 304,
+              "top": 94.84375,
+              "width": 288
+            },
+            "text": "SPECIFICATIONS Model: JHP-3600C¶"
+          }
+        ],
+        "panel": {
+          "bottom": -544.65625,
+          "height": 239.5390625,
+          "left": 16,
+          "right": 304,
+          "top": -784.1953125,
+          "width": 288
+        },
+        "viewport": [
+          320,
+          844
+        ],
+        "warning": {
+          "bodyFill": "rgb(255, 255, 255)",
+          "bodyWeight": "700",
+          "border": "rgb(52, 48, 49)",
+          "fill": "rgb(255, 255, 255)",
+          "iconLoaded": true,
+          "rect": {
+            "bottom": -1070.3515625,
+            "height": 222.046875,
+            "left": 16,
+            "right": 304,
+            "top": -1292.3984375,
+            "width": 288
+          }
+        }
+      },
+      "regression": {
+        "headingFailures": [],
+        "headingCount": 84,
+        "lcdCount": 28,
+        "lcdBold": true,
+        "soldBadges": 7,
+        "keyLoaded": true
+      }
+    },
+    {
+      "ess": {
+        "art": {
+          "loaded": true,
+          "src": "../../../../_static/manual-assets/_pool/40/4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616.png"
+        },
+        "brokenImages": [],
+        "documentWidth": 390,
+        "labels": [
+          {
+            "font": "8px",
+            "inside": true,
+            "overflow": false,
+            "rect": {
+              "bottom": 176.796875,
+              "height": 25.0078125,
+              "left": 264.875,
+              "right": 359.203125,
+              "top": 151.7890625,
+              "width": 94.328125
+            },
+            "text": "Power input/output cable in the ATS package"
+          },
+          {
+            "font": "8px",
+            "inside": true,
+            "overflow": false,
+            "rect": {
+              "bottom": 240.6015625,
+              "height": 26.140625,
+              "left": 275.1171875,
+              "right": 359.2421875,
+              "top": 214.4609375,
+              "width": 84.125
+            },
+            "text": "Expansion cable in the battery pack package"
+          },
+          {
+            "font": "8px",
+            "inside": true,
+            "overflow": false,
+            "rect": {
+              "bottom": 339.4296875,
+              "height": 23.875,
+              "left": 28.4921875,
+              "right": 228.5,
+              "top": 315.5546875,
+              "width": 200.0078125
+            },
+            "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
+          }
+        ],
+        "modelStrips": [
+          {
+            "inside": true,
+            "modelRect": {
+              "bottom": -408.5390625,
+              "height": 15.9453125,
+              "left": 214,
+              "right": 361.5234375,
+              "top": -424.484375,
+              "width": 147.5234375
+            },
+            "modelWeight": "700",
+            "rect": {
+              "bottom": -398.3046875,
+              "height": 95.5234375,
+              "left": 16,
+              "right": 374,
+              "top": -493.828125,
+              "width": 358
+            },
+            "text": "SMART HOME BACKUP SYSTEM (AC ESS) Model: HB3600C-TS05A¶"
+          },
+          {
+            "inside": true,
+            "modelRect": {
+              "bottom": 951.9375,
+              "height": 15.9453125,
+              "left": 244.6484375,
+              "right": 361.5234375,
+              "top": 935.9921875,
+              "width": 116.875
+            },
+            "modelWeight": "700",
+            "rect": {
+              "bottom": 966.421875,
+              "height": 45.546875,
+              "left": 16,
+              "right": 374,
+              "top": 920.875,
+              "width": 358
+            },
+            "text": "SPECIFICATIONS Model: JHP-3600C¶"
+          }
+        ],
+        "panel": {
+          "bottom": 354.265625,
+          "height": 297.7578125,
+          "left": 16,
+          "right": 374,
+          "top": 56.5078125,
+          "width": 358
+        },
+        "viewport": [
+          390,
+          844
+        ],
+        "warning": {
+          "bodyFill": "rgb(255, 255, 255)",
+          "bodyWeight": "700",
+          "border": "rgb(52, 48, 49)",
+          "fill": "rgb(255, 255, 255)",
+          "iconLoaded": true,
+          "rect": {
+            "bottom": -181.0546875,
+            "height": 197.25,
+            "left": 16,
+            "right": 374,
+            "top": -378.3046875,
+            "width": 358
+          }
+        }
+      },
+      "regression": {
+        "headingFailures": [],
+        "headingCount": 84,
+        "lcdCount": 28,
+        "lcdBold": true,
+        "soldBadges": 7,
+        "keyLoaded": true
+      }
+    },
+    {
+      "ess": {
+        "art": {
+          "loaded": true,
+          "src": "../../../../_static/manual-assets/_pool/40/4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616.png"
+        },
+        "brokenImages": [],
+        "documentWidth": 1440,
+        "labels": [
+          {
+            "font": "16.2589px",
+            "inside": true,
+            "overflow": false,
+            "rect": {
+              "bottom": -716.0078125,
+              "height": 57.078125,
+              "left": 882.59375,
+              "right": 1097.875,
+              "top": -773.0859375,
+              "width": 215.28125
+            },
+            "text": "Power input/output cable\nin the ATS package"
+          },
+          {
+            "font": "16.2589px",
+            "inside": true,
+            "overflow": false,
+            "rect": {
+              "bottom": -599.3203125,
+              "height": 59.6640625,
+              "left": 905.9609375,
+              "right": 1097.9609375,
+              "top": -658.984375,
+              "width": 192
+            },
+            "text": "Expansion cable in the\nbattery pack package"
+          },
+          {
+            "font": "16.2589px",
+            "inside": true,
+            "overflow": false,
+            "rect": {
+              "bottom": -358.078125,
+              "height": 54.5,
+              "left": 343.1015625,
+              "right": 799.5703125,
+              "top": -412.578125,
+              "width": 456.46875
+            },
+            "text": "For detailed installation and connection instructions, refer to the user manuals for the ATS and battery pack."
+          }
+        ],
+        "modelStrips": [
+          {
+            "inside": true,
+            "modelRect": {
+              "bottom": -1281.4375,
+              "height": 18.8046875,
+              "left": 941.6875,
+              "right": 1115.625,
+              "top": -1300.2421875,
+              "width": 173.9375
+            },
+            "modelWeight": "700",
+            "rect": {
+              "bottom": -1265.5546875,
+              "height": 51.2109375,
+              "left": 314.59375,
+              "right": 1131.625,
+              "top": -1316.765625,
+              "width": 817.03125
+            },
+            "text": "SMART HOME BACKUP SYSTEM (AC ESS) Model: HB3600C-TS05A¶"
+          },
+          {
+            "inside": true,
+            "modelRect": {
+              "bottom": 75.4609375,
+              "height": 18.8046875,
+              "left": 977.8203125,
+              "right": 1115.625,
+              "top": 56.65625,
+              "width": 137.8046875
+            },
+            "modelWeight": "700",
+            "rect": {
+              "bottom": 91.34375,
+              "height": 51.2109375,
+              "left": 314.59375,
+              "right": 1131.625,
+              "top": 40.1328125,
+              "width": 817.03125
+            },
+            "text": "SPECIFICATIONS Model: JHP-3600C¶"
+          }
+        ],
+        "panel": {
+          "bottom": -339.9296875,
+          "height": 679.5625,
+          "left": 314.59375,
+          "right": 1131.625,
+          "top": -1019.4921875,
+          "width": 817.03125
+        },
+        "viewport": [
+          1440,
+          1000
+        ],
+        "warning": {
+          "bodyFill": "rgb(255, 255, 255)",
+          "bodyWeight": "700",
+          "border": "rgb(52, 48, 49)",
+          "fill": "rgb(255, 255, 255)",
+          "iconLoaded": true,
+          "rect": {
+            "bottom": -1163.7734375,
+            "height": 81.78125,
+            "left": 314.59375,
+            "right": 1131.625,
+            "top": -1245.5546875,
+            "width": 817.03125
+          }
+        }
+      },
+      "regression": {
+        "headingFailures": [],
+        "headingCount": 84,
+        "lcdCount": 28,
+        "lcdBold": true,
+        "soldBadges": 7,
+        "keyLoaded": true
+      }
+    }
+  ],
+  "checks": "passed"
+}

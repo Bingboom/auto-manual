@@ -9,7 +9,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from tools.export_idml import IdmlWriter, load_layout_params
-from tools.idml import page03, shared_page, symbols_page
+from tools.idml import shared_page, symbols_page
 from tools.idml.components.symbols_panel import SymbolsPanel, SymbolsPanelData
 from tools.idml.components.symbol_sections import SignalWordsPanel, SymbolIconsPanel
 from tools.idml.components.symbols_panel_metrics import distribute_compact_row_slack
@@ -187,10 +187,31 @@ def _split_section_snapshot() -> dict[str, object]:
     }
 
 
+
+GOLDEN_FLOAT_PLACES = 6
+
+
+def _round_floats(value, places: int = GOLDEN_FLOAT_PLACES):
+    """Round every float so golden geometry compares across Python versions.
+
+    Python 3.12 made ``sum()`` of floats compensated, so the same layout can
+    come out as ``117.9`` on 3.12 and ``117.89999999999999`` on 3.11. Six
+    decimal places keep sub-micro-point precision while dropping that noise.
+    """
+
+    if isinstance(value, float):
+        return round(value, places)
+    if isinstance(value, dict):
+        return {key: _round_floats(item, places) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_round_floats(item, places) for item in value]
+    return value
+
 class SymbolsPanelTests(unittest.TestCase):
     def test_split_symbol_panels_match_japanese_golden(self) -> None:
         expected = json.loads(SECTION_GOLDEN.read_text(encoding="utf-8"))
-        self.assertEqual(expected, _split_section_snapshot())
+        actual = json.loads(json.dumps(_split_section_snapshot()))
+        self.assertEqual(_round_floats(expected), _round_floats(actual))
 
     def test_eu_signal_badges_fit_the_shared_fixed_width(self) -> None:
         params = load_layout_params(
@@ -242,6 +263,43 @@ class SymbolsPanelTests(unittest.TestCase):
                         for element in visible
                     ))
 
+    def test_alert_triangle_scope_follows_the_product_line(self) -> None:
+        # Host-line books print the alert triangle on every signal word; the
+        # battery-pack books only on the hazard words, through their overlay.
+        host = load_layout_params(ROOT / "data" / "layout_params.csv")
+        battery_pack = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+
+        def draws_triangle(params: dict[str, tuple[str, str]], signal_key: str) -> bool:
+            xml = IdmlWriter(params)._symbol_signal_bar(
+                "sig", "NOTE", ROOT, "en", signal_key=signal_key,
+            )
+            return "warning_triangle_white.svg" in xml
+
+        for signal_key in ("warning", "caution", "note", "tips", ""):
+            with self.subTest(line="host", signal_key=signal_key):
+                self.assertTrue(draws_triangle(host, signal_key))
+        for signal_key, expected in (
+            ("warning", True),
+            ("danger", True),
+            ("caution", True),
+            ("note", False),
+            ("tips", False),
+            # A row without a semantic key cannot be told apart.
+            ("", True),
+        ):
+            with self.subTest(line="battery-pack", signal_key=signal_key):
+                self.assertEqual(expected, draws_triangle(battery_pack, signal_key))
+
+        misspelled = {
+            **host,
+            symbols_page.SIGNAL_ALERT_ICON_TOKEN: ("hazards", "none"),
+        }
+        with self.assertRaisesRegex(ValueError, symbols_page.SIGNAL_ALERT_ICON_TOKEN):
+            draws_triangle(misspelled, "note")
+
     def test_two_long_right_rows_share_compact_column_slack(self) -> None:
         heights = distribute_compact_row_slack(
             [{"text": "Long disposal copy " * 8}, {"text": "Long battery copy " * 14}],
@@ -264,7 +322,7 @@ class SymbolsPanelTests(unittest.TestCase):
             for density in ("standard", "compact")
         }))
 
-        self.assertEqual(expected, actual)
+        self.assertEqual(_round_floats(expected), _round_floats(actual))
 
     def test_compact_panel_uses_shared_column_fill_and_absorbs_carrier(self) -> None:
         params = load_layout_params(

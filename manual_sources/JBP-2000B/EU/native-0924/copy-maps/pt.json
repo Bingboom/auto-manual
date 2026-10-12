@@ -1,0 +1,1756 @@
+{
+  "language": "pt",
+  "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+  "physical_pages": [
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "frontmatter_page": 4,
+  "copy_by_page": {
+    "preface_important_en.rst": {
+      "IMPORTANT": "IMPORTANTE",
+      "Congratulations on your new Jackery Battery Pack 2000. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.": "Parabéns pela sua nova Jackery Battery Pack 2000. Leia este manual atentamente antes de usar o produto, especialmente as precauções relevantes, para garantir o uso adequado. Mantenha este manual em um local acessível para consulta frequente.",
+      "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery assumes no responsibility for any errors that may appear.": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora tenham sido envidados todos os esforços para garantir a precisão deste manual, a Jackery não assume nenhuma responsabilidade por quaisquer erros que possam ocorrer.",
+      "Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com.": "Observe que não serão enviadas novas notificações em caso de atualização, revisão ou encerramento. Para obter a versão mais recente dos manuais do produto, visite support.jackery.com.",
+      "* The images are for reference purposes only. Please refer to the actual product.": "* As imagens são apenas para referência. Consulte o produto real.",
+      "NOTE": "NOTA",
+      "This battery pack is compatible with both the Jackery E1000 Plus V2 and the Jackery E2000 Plus V2. Throughout this manual, \"the portable power station\" refers to either model unless otherwise specified.": "Esta bateria externa é compatível com o Jackery E1000 Plus V2 e o Jackery E2000 Plus V2. Neste manual, “a estação de energia portátil” refere-se a qualquer um dos modelos, salvo indicação em contrário."
+    },
+    "toc.rst": {},
+    "safety_info_en.rst": {
+      "IMPORTANT SAFETY INFORMATION": "INFORMAÇÕES IMPORTANTES DE SEGURANÇA",
+      "The basic safety precautions should be followed when using this product, including:": "Ao usar este produto, devem ser seguidas as precauções básicas de segurança, incluindo:",
+      "Please read all instructions before using this product.": "Leia todas as instruções antes de usar este produto.",
+      "Close supervision is required when using this product near children to reduce the risk.": "É necessária supervisão rigorosa ao usar este produto perto de crianças para reduzir o risco.",
+      "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.": "Há risco de choque elétrico ao usar acessórios recomendados ou vendidos por fabricantes não profissionais.",
+      "When the product is not in use, please unplug the power plug from the product's socket.": "Quando o produto não estiver em uso, desconecte o plugue de alimentação da tomada do produto.",
+      "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.": "Não desmonte o produto, pois isso pode levar a riscos imprevisíveis, como incêndio, explosão ou choque elétrico.",
+      "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.": "Não use o produto com cabos ou plugues danificados, nem com cabos de saída danificados, pois isso pode causar choque elétrico.",
+      "Charge the product in a well-ventilated area and do not restrict ventilation in any way.": "Carregue o produto em uma área bem ventilada e não restrinja a ventilação de nenhuma forma.",
+      "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.": "Guarde o produto em um local ventilado e seco para evitar choque elétrico causado por chuva ou água.",
+      "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.": "Não exponha o produto ao fogo ou a altas temperaturas (sob luz solar direta ou em veículo sob calor intenso), o que pode causar acidentes como incêndio ou explosão.",
+      "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.": "Se este produto for armazenado por um longo período (3 meses - 6 meses) com a bateria descarregada, ele pode não voltar a carregar."
+    },
+    "symbol_meaning_en.rst": {
+      "MEANING OF SYMBOLS": "SIGNIFICADO DOS SÍMBOLOS",
+      "Symbol": "Símbolo",
+      "Meaning": "Significado",
+      "Symbol / Meaning": "Símbolo / Significado",
+      "WARNING": "AVISO",
+      "Hazardous practices that may result in severe injury, death, and/or property damage.": "Práticas perigosas que podem resultar em lesões graves, morte e/ou danos materiais.",
+      "CAUTION": "CUIDADO",
+      "Hazardous practices that may result in personal injury and/or property damage.": "Práticas perigosas que podem resultar em lesões pessoais e/ou danos materiais.",
+      "NOTE": "NOTA",
+      "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.": "Práticas perigosas que podem resultar em danos ao equipamento, perda de dados, deterioração do desempenho ou resultados imprevistos.",
+      "TIP": "DICA",
+      "Supplements the important information or operation tips in the text.": "Complementa informações importantes ou dicas de operação no texto.",
+      "Warning and Caution Symbols. Alerts individuals to information that must be read to avoid potential hazards or risks.": "Símbolos de Advertência e Cuidado. Deve ser lido para alertar sobre potenciais perigos ou riscos.",
+      "Keep away from children.": "Mantenha fora do alcance de crianças.",
+      "Read the user manual before operation.": "Leia o manual do usuário antes de operar.",
+      "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.": "Este símbolo indica que há uma bateria de íons de lítio (Li-ion) dentro do produto e que ela deve ser descartada ou reciclada corretamente.",
+      "Do not dismantle the product.": "Não desmonte o produto.",
+      "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.": "Este símbolo indica que o produto não deve ser descartado como lixo doméstico e deve ser encaminhado a um ponto de coleta designado para reciclagem. O descarte e a reciclagem adequados podem ajudar a proteger o meio ambiente. Para obter mais informações sobre o descarte e a reciclagem deste produto, entre em contato com a autoridade local, o serviço de coleta ou o revendedor.",
+      "Keep the product away from fire.": "Mantenha o produto longe de fogo.",
+      "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.": "As baterias e os acumuladores não devem ser descartados junto com o lixo doméstico. Como consumidor, você é legalmente obrigado a descartar todas as baterias e acumuladores em pontos de coleta designados, independentemente de conterem substâncias perigosas. Devolva as baterias e acumuladores usados a um ponto de coleta local, centro de reciclagem ou ao revendedor onde foram comprados. O descarte adequado garante a reciclagem ambientalmente responsável e evita danos potenciais à saúde humana e ao meio ambiente."
+    },
+    "box_contents_en.rst": {
+      "WHAT'S IN THE BOX": "CONTEÚDO DA EMBALAGEM",
+      "Jackery Battery Pack 2000.": "Jackery Battery Pack 2000",
+      "Jackery Battery Pack 2000": "Jackery Battery Pack 2000",
+      "Expansion Cable.": "Cabo de expansão",
+      "Expansion Cable": "Cabo de expansão",
+      "User Manual.": "Manual do usuário",
+      "User Manual": "Manual do usuário"
+    },
+    "product_overview_en.rst": {
+      "PRODUCT OVERVIEW": "VISÃO GERAL DO PRODUTO",
+      "POWER button LCD；Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)；FRONT VIEW；LEFT SIDE VIEW": "Alça VISTA FRONTAL VISTA DO LADO ESQUERDO DISPLAY LCD Porta de expansão CC B Porta de expansão CC A (Conecte ao terminal A do cabo de expansão) Botão POWER"
+    },
+    "lcd_display_en.rst": {
+      "LCD DISPLAY": "DISPLAY LCD",
+      "Power Percentage/Fault Code": "Porcentagem de Energia/Código de Falha",
+      "The display shows the current power percentage.": "O visor mostra a porcentagem atual de energia.",
+      "When the system fails, it will be displayed as the corresponding fault code F0-FF.": "Quando o sistema falhar, o código de falha correspondente F0-FF será exibido.",
+      "Charging Indicator": "Indicador de Carregamento",
+      "The indicator is displayed when charging and disappears when it is fully charged.": "O indicador acende durante o carregamento e apaga quando a carga está completa."
+    },
+    "operation_en.rst": {
+      "OPERATIONS": "OPERAÇÕES",
+      "POWER ON/OFF": "LIGAR/DESLIGAR",
+      "LCD DISPLAY ON/OFF": "LIGA/DESLIGA DO VISOR LCD",
+      "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.": "Ao pressionar o botão POWER principal ou ao carregar o produto, o visor LCD fica iluminado. Ao pressioná-lo novamente, o visor LCD será desligado.",
+      "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.": "O produto será desligado automaticamente se não for carregado ou se nenhuma carga estiver conectada por 2 horas.",
+      "NOTE": "NOTA",
+      "When using with the portable power station, you can control the power status (on or off) of Jackery Battery Pack 2000 through the main POWER button of the portable power station.": "Quando o Jackery Battery Pack 2000 é usado com a estação de energia portátil, você pode controlar o estado de energia (ligado ou desligado) do Battery Pack 2000 por meio do botão POWER principal da estação de energia portátil.",
+      "On Press once Off Press and hold for 3s": "ON Pressione uma vez Apagado Pressione e segure por 3 s",
+      "Jackery Battery Pack 2000 LCD display operation.": "LIGA/DESLIGA DO VISOR LCD — Jackery Battery Pack 2000",
+      "When using with the portable power station, you can control the power status (on or off) of Jackery Battery Pack 2000 through the main POWER button of the portable power station.\nThe product will automatically shut down if it is not charged or no loads are connected for 2 hours.": "Quando o Jackery Battery Pack 2000 é usado com a estação de energia portátil, você pode controlar o estado de energia (ligado ou desligado) do Battery Pack 2000 por meio do botão POWER principal da estação de energia portátil.\nO produto será desligado automaticamente se não for carregado ou se nenhuma carga estiver conectada por 2 horas."
+    },
+    "connections_en.rst": {
+      "CONNECTIONS": "CONEXÕES",
+      "Up to five battery packs can be used with the portable power station to provide additional capacity.": "Até 5 conjuntos desses produtos podem ser usados com a estação de energia portátil para atender à necessidade de maior capacidade.",
+      "CAUTION": "CUIDADO",
+      "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.": "Certifique-se de que todos os produtos estejam desligados antes de conectar a estação de energia portátil ao Jackery Battery Pack 2000.",
+      "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.": "Para garantir o funcionamento adequado do produto, certifique-se de que as entradas e saídas de ar em ambos os lados estejam desobstruídas. Deixe um espaço de pelo menos 200 mm entre as aberturas de ventilação e quaisquer objetos para permitir uma dissipação adequada do calor.",
+      "NOTES": "Notas",
+      "The display of the connection icon on the LCD screen (the portable power station) signifies a successful connection between the battery pack and the portable power station.": "A exibição do ícone na tela LCD (a estação de energia portátil) indica uma conexão bem-sucedida entre a bateria externa e a estação de energia portátil.",
+      "Please do not stack the product on the top of the portable power station.": "Por favor, não empilhe o produto sobre a estação de energia portátil.",
+      "Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.": "Coloque as baterias externas em uma superfície plana e estável com capacidade de carga suficiente. O número máximo padrão de baterias externas que podem ser empilhadas é 3.",
+      "If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.": "Se for necessário empilhar 4 ou mais baterias externas, o produto deve ser colocado em uma área estável, encostado a uma parede, protegido contra impactos externos, além de serem tomadas as medidas necessárias para evitar que tombe.",
+      "Battery Pack connection, stacking, and clearance diagram.": "CONEXÕES — Jackery Battery Pack 2000",
+      "Correct connection order and expansion-cable locking and unlocking steps.": "CONEXÕES — Jackery Battery Pack 2000",
+      "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.\nTo ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.": "Certifique-se de que todos os produtos estejam desligados antes de conectar a estação de energia portátil ao Jackery Battery Pack 2000.\nPara garantir o funcionamento adequado do produto, certifique-se de que as entradas e saídas de ar em ambos os lados estejam desobstruídas. Deixe um espaço de pelo menos 200 mm entre as aberturas de ventilação e quaisquer objetos para permitir uma dissipação adequada do calor.",
+      "The display of the connection icon on the LCD screen (the portable power station) signifies a successful connection between the battery pack and the portable power station.\nPlease do not stack the product on the top of the portable power station.\nPlace the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.\nIf 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.": "A exibição do ícone na tela LCD (a estação de energia portátil) indica uma conexão bem-sucedida entre a bateria externa e a estação de energia portátil.\nPor favor, não empilhe o produto sobre a estação de energia portátil.\nColoque as baterias externas em uma superfície plana e estável com capacidade de carga suficiente. O número máximo padrão de baterias externas que podem ser empilhadas é 3.\nSe for necessário empilhar 4 ou mais baterias externas, o produto deve ser colocado em uma área estável, encostado a uma parede, protegido contra impactos externos, além de serem tomadas as medidas necessárias para evitar que tombe."
+    },
+    "troubleshooting_en.rst": {
+      "TROUBLESHOOTING": "SOLUÇÃO DE PROBLEMAS",
+      "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.": "Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o problema. Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.",
+      "Error Code": "Código de erro",
+      "Corrective Measures": "Medidas corretivas",
+      "Restart the product.": "Reinicie o produto.",
+      "Connect the product to loads to discharge its battery until the fault disappears.": "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.",
+      "Charge the product via solar panels or AC wall outlet until the fault disappears.": "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.",
+      "Contact Jackery Customer Support.": "Entre em contato com o Suporte ao Cliente da Jackery.",
+      "Place the product in an environment with a proper temperature and wait till the fault disappears.": "Coloque o produto em um ambiente com temperatura adequada e aguarde até que a falha desapareça."
+    },
+    "charging_en.rst": {
+      "CHARGING": "CARREGANDO",
+      "CHARGING VIA AC WALL OUTLET": "CARREGAMENTO POR MEIO DE TOMADA CA",
+      "To charge the battery pack from an AC wall outlet, connect it to the portable power station.": "Ao carregar pela tomada, este produto deve ser usado com a estação de energia portátil.",
+      "WARNING": "AVISO",
+      "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.": "Certifique-se de que todos os produtos estejam desligados antes de conectar a estação de energia portátil ao Jackery Battery Pack 2000.",
+      "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)": "CARREGAMENTO VIA PAINÉIS SOLARES (VENDIDO SEPARADAMENTE)",
+      "Charge the battery pack using solar panels and the portable power station, as shown in the figure below. For more information, refer to the user manual for the portable power station.": "Carregue seu produto com painéis solares e a estação de energia portátil conforme mostrado na figura abaixo. Consulte o manual do usuário da estação de energia portátil para obter mais informações.",
+      "AC wall charging connection through the portable power station.": "CARREGANDO — Jackery Battery Pack 2000",
+      "Solar charging connection through the portable power station.": "CARREGANDO — Jackery Battery Pack 2000"
+    },
+    "storage_en.rst": {
+      "STORAGE": "Armazenamento",
+      "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:": "Armazene o produto em local limpo, seco e com ventilação adequada. Temperatura e umidade de armazenamento:",
+      "1 month: -20°C to 45°C (0-60%RH)": "1 mês: -20°C a 45°C (0-60%UR)",
+      "3 months: 0°C to 45°C (0-60%RH)": "3 meses: 0°C a 45°C (0-60%UR)",
+      "12 months: 0°C to 25°C (0-60%RH)": "12 meses: 0°C a 25°C (0-60%UR)",
+      "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.": "Se este produto for armazenado por um longo período (3 meses - 6 meses) com a bateria descarregada, ele pode não voltar a carregar. Para evitar isso e manter a saúde da bateria, recomenda-se verificar e recarregar o produto a cada três meses e realizar um ciclo completo de carga e descarga pelo menos uma vez a cada 6 a 12 meses."
+    },
+    "specifications_en.rst": {
+      "SPECIFICATIONS": "ESPECIFICAÇÕES",
+      "GENERAL INFO": "INFORMAÇÕES GERAIS",
+      "Product Name": "Nome do produto",
+      "Jackery Battery Pack 2000": "Jackery Battery Pack 2000",
+      "Model No.": "Nº do modelo",
+      "JBP-2000B": "JBP-2000B",
+      "Capacity": "Capacidade",
+      "2048 Wh (40 Ah/51.2 V ⎓)": "2048 Wh (40 Ah/51,2 V ⎓)",
+      "Cell Chemistry": "Química da célula",
+      "LiFePO₄": "LiFePO4",
+      "Weight": "Peso",
+      "About 14.8 kg": "Aproximadamente 14,8 kg",
+      "Dimensions": "Dimensões",
+      "36.5 × 25.5 × 19.1 cm": "36,5 × 25,5 × 19,1 cm",
+      "Cycle Life": "Vida útil de ciclos",
+      "6000 cycles to 70%+ capacity": "6000 ciclos até 70%+ de capacidade",
+      "INPUT/OUTPUT PORTS": "PORTAS DE ENTRADA/SAÍDA",
+      "DC Expansion Port (Input)": "Porta de expansão CC (entrada)",
+      "36.8V-57.6V⎓75A Max": "36,8 V-57,6 V⎓75 A máx.",
+      "DC Expansion Port (Output)": "Porta de expansão CC (Saída)",
+      "ENVIRONMENTAL OPERATING TEMPERATURE": "TEMPERATURA AMBIENTE DE OPERAÇÃO",
+      "Charge Temperature": "Temperatura de carregamento",
+      "Discharge Temperature": "Temperatura de descarga",
+      "-10°C to 45°C": "-10°C a 45°C"
+    },
+    "warranty_en.rst": {
+      "WARRANTY": "GARANTIA",
+      "This warranty applies only to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.": "Esta garantia aplica-se somente a clientes que compram no site oficial da Jackery, em plataformas de terceiros da marca Jackery ou com revendedores locais autorizados.",
+      "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.": "*O período e os detalhes da garantia podem variar de acordo com as leis, regulamentações locais e revendedores autorizados.",
+      "Limited Warranty": "Garantia Limitada",
+      "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.": "A Jackery garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de fabricação e material sob uso normal do consumidor durante o período de garantia aplicável identificado na seção \"Período de Garantia\" abaixo, sujeito às exclusões estabelecidas abaixo.",
+      "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.": "Esta declaração de garantia estabelece a obrigação de garantia total e exclusiva da Jackery. Não assumiremos, nem autorizaremos qualquer pessoa a assumir em nosso nome, qualquer outra responsabilidade relacionada à venda de nossos produtos.",
+      "Warranty Period": "Período de Garantia",
+      "The standard warranty period for Jackery Battery Pack 2000 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.": "O período de garantia padrão do Jackery Battery Pack 2000 é de 36 meses. Em todos os casos, o período de garantia é contado a partir da data de compra pelo comprador consumidor original. O recibo da primeira compra do consumidor, ou outro comprovante documental razoável, é necessário para estabelecer a data de início do período de garantia.",
+      "Exchange": "Troca",
+      "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.": "A Jackery substituirá, às suas próprias custas, qualquer produto Jackery que apresente falha de funcionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. Um produto substituto assume a garantia restante do produto original.",
+      "Limited to Original Consumer Buyer": "Limitado ao comprador consumidor original",
+      "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.": "A garantia dos produtos Jackery é limitada ao comprador consumidor original e não é transferível a qualquer proprietário subsequente.",
+      "Exclusions": "Exclusões",
+      "Interpretation Rights": "Direitos de interpretação",
+      "Jackery reserves the right to final interpretation of the above customer after-sales policy.": "A Jackery reserva-se o direito de interpretação final da política de pós-venda ao cliente acima.",
+      "3 YEARS": "3 ANOS",
+      "Standard Warranty": "Garantia Padrão",
+      "2 YEARS": "2 ANOS",
+      "Extended Warranty": "Garantia Estendida",
+      "YEARS": "ANOS",
+      "To activate the Warranty Extension, you must register your product online or contact our customer service team at": "Para ativar a extensão da garantia, você deve registrar seu produto online ou entrar em contato com nossa equipe de atendimento ao cliente em",
+      "to extend the standard warranty period.": "para estender o período de garantia padrão.",
+      "Jackery's warranty does not apply to:": "A garantia da Jackery não se aplica a:",
+      "Any product that has been misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.": "Qualquer produto que tenha sido utilizado de forma inadequada, submetido a uso abusivo, modificado, danificado acidentalmente ou usado para qualquer finalidade que não seja o uso normal do consumidor, conforme autorizado na documentação atual do produto da Jackery.",
+      "Attempted repair by anyone other than an authorized facility.": "Tentativa de reparo por qualquer pessoa que não seja uma assistência autorizada.",
+      "Any product purchased through an online auction house.": "Qualquer produto adquirido por meio de leilão online.",
+      "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.": "A garantia da Jackery não se aplica à célula da bateria, a menos que ela seja totalmente carregada por você dentro de sete dias após a compra do produto e, posteriormente, pelo menos uma vez a cada 6 meses.",
+      "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello.eu@jackery.com to extend the standard warranty period.": "Para ativar a extensão da garantia, você deve registrar seu produto online ou entrar em contato com nossa equipe de atendimento ao cliente em hello.eu@jackery.com para estender o período de garantia padrão."
+    },
+    "regulatory_compliance.rst": {
+      "EU REGULATIONS": "EU REGULATIONS",
+      "RED DECLARATION OF CONFORMITY": "RED DECLARATION OF CONFORMITY",
+      "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 2000 with Bluetooth and Wi-Fi JBP-2000B is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 2000 with Bluetooth and Wi-Fi JBP-2000B is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "https://de.jackery.com/pages/user-guides": "https://de.jackery.com/pages/user-guides",
+      "MANUFACTURER": "MANUFACTURER",
+      "SHENZHEN HELLO TECH ENERGY CO., LTD.": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "+86 400 668 9293": "+86 400 668 9293",
+      "sales@hello-tech.com": "sales@hello-tech.com",
+      "www.hello-tech.com": "www.hello-tech.com"
+    }
+  },
+  "evidence": [
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "IMPORTANT",
+      "native": "IMPORTANTE",
+      "physical_page": 4,
+      "selection": {
+        "method": "source frontmatter heading"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Congratulations on your new Jackery Battery Pack 2000. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.",
+      "native": "Parabéns pela sua nova Jackery Battery Pack 2000. Leia este manual atentamente antes de usar o produto, especialmente as precauções relevantes, para garantir o uso adequado. Mantenha este manual em um local acessível para consulta frequente.",
+      "physical_page": 4,
+      "selection": {
+        "method": "source frontmatter paragraph"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery assumes no responsibility for any errors that may appear.",
+      "native": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora tenham sido envidados todos os esforços para garantir a precisão deste manual, a Jackery não assume nenhuma responsabilidade por quaisquer erros que possam ocorrer.",
+      "physical_page": 4,
+      "selection": {
+        "method": "source frontmatter paragraph"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com.",
+      "native": "Observe que não serão enviadas novas notificações em caso de atualização, revisão ou encerramento. Para obter a versão mais recente dos manuais do produto, visite support.jackery.com.",
+      "physical_page": 4,
+      "selection": {
+        "method": "source frontmatter paragraph"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "* The images are for reference purposes only. Please refer to the actual product.",
+      "native": "* As imagens são apenas para referência. Consulte o produto real.",
+      "physical_page": 4,
+      "selection": {
+        "method": "source illustration disclaimer"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "NOTE",
+      "native": "NOTA",
+      "physical_page": 4,
+      "selection": {
+        "method": "source compatibility note label"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "This battery pack is compatible with both the Jackery E1000 Plus V2 and the Jackery E2000 Plus V2. Throughout this manual, \"the portable power station\" refers to either model unless otherwise specified.",
+      "native": "Esta bateria externa é compatível com o Jackery E1000 Plus V2 e o Jackery E2000 Plus V2. Neste manual, “a estação de energia portátil” refere-se a qualquer um dos modelos, salvo indicação em contrário.",
+      "physical_page": 4,
+      "selection": {
+        "method": "source compatibility note"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "IMPORTANT SAFETY INFORMATION",
+      "native": "INFORMAÇÕES IMPORTANTES DE SEGURANÇA",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "The basic safety precautions should be followed when using this product, including:",
+      "native": "Ao usar este produto, devem ser seguidas as precauções básicas de segurança, incluindo:",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please read all instructions before using this product.",
+      "native": "Leia todas as instruções antes de usar este produto.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Close supervision is required when using this product near children to reduce the risk.",
+      "native": "É necessária supervisão rigorosa ao usar este produto perto de crianças para reduzir o risco.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.",
+      "native": "Há risco de choque elétrico ao usar acessórios recomendados ou vendidos por fabricantes não profissionais.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "When the product is not in use, please unplug the power plug from the product's socket.",
+      "native": "Quando o produto não estiver em uso, desconecte o plugue de alimentação da tomada do produto.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.",
+      "native": "Não desmonte o produto, pois isso pode levar a riscos imprevisíveis, como incêndio, explosão ou choque elétrico.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.",
+      "native": "Não use o produto com cabos ou plugues danificados, nem com cabos de saída danificados, pois isso pode causar choque elétrico.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Charge the product in a well-ventilated area and do not restrict ventilation in any way.",
+      "native": "Carregue o produto em uma área bem ventilada e não restrinja a ventilação de nenhuma forma.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.",
+      "native": "Guarde o produto em um local ventilado e seco para evitar choque elétrico causado por chuva ou água.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.",
+      "native": "Não exponha o produto ao fogo ou a altas temperaturas (sob luz solar direta ou em veículo sob calor intenso), o que pode causar acidentes como incêndio ou explosão.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.",
+      "native": "Se este produto for armazenado por um longo período (3 meses - 6 meses) com a bateria descarregada, ele pode não voltar a carregar.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "MEANING OF SYMBOLS",
+      "native": "SIGNIFICADO DOS SÍMBOLOS",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol",
+      "native": "Símbolo",
+      "physical_page": 56,
+      "selection": {
+        "method": "source symbol table header"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Meaning",
+      "native": "Significado",
+      "physical_page": 56,
+      "selection": {
+        "method": "source symbol table header"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol / Meaning",
+      "native": "Símbolo / Significado",
+      "physical_page": 56,
+      "selection": {
+        "method": "source symbol table header"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "WARNING",
+      "native": "AVISO",
+      "physical_page": 56,
+      "selection": {
+        "method": "source signal word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+      "native": "Práticas perigosas que podem resultar em lesões graves, morte e/ou danos materiais.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source signal definition excluding word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "CAUTION",
+      "native": "CUIDADO",
+      "physical_page": 56,
+      "selection": {
+        "method": "source signal word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in personal injury and/or property damage.",
+      "native": "Práticas perigosas que podem resultar em lesões pessoais e/ou danos materiais.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source signal definition excluding word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "NOTE",
+      "native": "NOTA",
+      "physical_page": 56,
+      "selection": {
+        "method": "source signal word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+      "native": "Práticas perigosas que podem resultar em danos ao equipamento, perda de dados, deterioração do desempenho ou resultados imprevistos.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source signal definition excluding word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "TIP",
+      "native": "DICA",
+      "physical_page": 56,
+      "selection": {
+        "method": "source signal word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Supplements the important information or operation tips in the text.",
+      "native": "Complementa informações importantes ou dicas de operação no texto.",
+      "physical_page": 56,
+      "selection": {
+        "method": "source signal definition excluding word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Warning and Caution Symbols. Alerts individuals to information that must be read to avoid potential hazards or risks.",
+      "native": "Símbolos de Advertência e Cuidado. Deve ser lido para alertar sobre potenciais perigos ou riscos.",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep away from children.",
+      "native": "Mantenha fora do alcance de crianças.",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Read the user manual before operation.",
+      "native": "Leia o manual do usuário antes de operar.",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+      "native": "Este símbolo indica que há uma bateria de íons de lítio (Li-ion) dentro do produto e que ela deve ser descartada ou reciclada corretamente.",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 18
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Do not dismantle the product.",
+      "native": "Não desmonte o produto.",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+      "native": "Este símbolo indica que o produto não deve ser descartado como lixo doméstico e deve ser encaminhado a um ponto de coleta designado para reciclagem. O descarte e a reciclagem adequados podem ajudar a proteger o meio ambiente. Para obter mais informações sobre o descarte e a reciclagem deste produto, entre em contato com a autoridade local, o serviço de coleta ou o revendedor.",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 17
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep the product away from fire.",
+      "native": "Mantenha o produto longe de fogo.",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "native": "As baterias e os acumuladores não devem ser descartados junto com o lixo doméstico. Como consumidor, você é legalmente obrigado a descartar todas as baterias e acumuladores em pontos de coleta designados, independentemente de conterem substâncias perigosas. Devolva as baterias e acumuladores usados a um ponto de coleta local, centro de reciclagem ou ao revendedor onde foram comprados. O descarte adequado garante a reciclagem ambientalmente responsável e evita danos potenciais à saúde humana e ao meio ambiente.",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "WHAT'S IN THE BOX",
+      "native": "CONTEÚDO DA EMBALAGEM",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 2000.",
+      "native": "Jackery Battery Pack 2000",
+      "physical_page": 57,
+      "selection": {
+        "bbox_pt": [
+          27,
+          148,
+          130,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 2000",
+      "native": "Jackery Battery Pack 2000",
+      "physical_page": 57,
+      "selection": {
+        "bbox_pt": [
+          27,
+          148,
+          130,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable.",
+      "native": "Cabo de expansão",
+      "physical_page": 57,
+      "selection": {
+        "bbox_pt": [
+          135,
+          148,
+          240,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable",
+      "native": "Cabo de expansão",
+      "physical_page": 57,
+      "selection": {
+        "bbox_pt": [
+          135,
+          148,
+          240,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual.",
+      "native": "Manual do usuário",
+      "physical_page": 57,
+      "selection": {
+        "bbox_pt": [
+          246,
+          148,
+          345,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual",
+      "native": "Manual do usuário",
+      "physical_page": 57,
+      "selection": {
+        "bbox_pt": [
+          246,
+          148,
+          345,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "PRODUCT OVERVIEW",
+      "native": "VISÃO GERAL DO PRODUTO",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 8
+      }
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "POWER button LCD；Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)；FRONT VIEW；LEFT SIDE VIEW",
+      "native": "Alça VISTA FRONTAL VISTA DO LADO ESQUERDO DISPLAY LCD Porta de expansão CC B Porta de expansão CC A (Conecte ao terminal A do cabo de expansão) Botão POWER",
+      "physical_page": 57,
+      "selection": {
+        "method": "native overview labels for accessible image"
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "LCD DISPLAY",
+      "native": "DISPLAY LCD",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Power Percentage/Fault Code",
+      "native": "Porcentagem de Energia/Código de Falha",
+      "physical_page": 58,
+      "selection": {
+        "bbox_pt": [
+          30,
+          116,
+          104,
+          150
+        ]
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The display shows the current power percentage.",
+      "native": "O visor mostra a porcentagem atual de energia.",
+      "physical_page": 58,
+      "selection": {
+        "method": "source first LCD explanation"
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "When the system fails, it will be displayed as the corresponding fault code F0-FF.",
+      "native": "Quando o sistema falhar, o código de falha correspondente F0-FF será exibido.",
+      "physical_page": 58,
+      "selection": {
+        "method": "source fault-code LCD explanation"
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Charging Indicator",
+      "native": "Indicador de Carregamento",
+      "physical_page": 58,
+      "selection": {
+        "bbox_pt": [
+          30,
+          150,
+          104,
+          175
+        ]
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The indicator is displayed when charging and disappears when it is fully charged.",
+      "native": "O indicador acende durante o carregamento e apaga quando a carga está completa.",
+      "physical_page": 58,
+      "selection": {
+        "bbox_pt": [
+          105,
+          150,
+          342,
+          175
+        ]
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "OPERATIONS",
+      "native": "OPERAÇÕES",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "POWER ON/OFF",
+      "native": "LIGAR/DESLIGAR",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When using with the portable power station, you can control the power status (on or off) of Jackery Battery Pack 2000 through the main POWER button of the portable power station.",
+      "native": "Quando o Jackery Battery Pack 2000 é usado com a estação de energia portátil, você pode controlar o estado de energia (ligado ou desligado) do Battery Pack 2000 por meio do botão POWER principal da estação de energia portátil.",
+      "physical_page": 58,
+      "selection": {
+        "method": "source operation note bullet"
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "LCD DISPLAY ON/OFF",
+      "native": "LIGA/DESLIGA DO VISOR LCD",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.",
+      "native": "Ao pressionar o botão POWER principal ou ao carregar o produto, o visor LCD fica iluminado. Ao pressioná-lo novamente, o visor LCD será desligado.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+      "native": "O produto será desligado automaticamente se não for carregado ou se nenhuma carga estiver conectada por 2 horas.",
+      "physical_page": 58,
+      "selection": {
+        "method": "source operation note bullet"
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "NOTE",
+      "native": "NOTA",
+      "physical_page": 58,
+      "selection": {
+        "method": "source note signal"
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "On Press once Off Press and hold for 3s",
+      "native": "ON Pressione uma vez Apagado Pressione e segure por 3 s",
+      "physical_page": 58,
+      "selection": {
+        "method": "native power instruction accessibility"
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 2000 LCD display operation.",
+      "native": "LIGA/DESLIGA DO VISOR LCD — Jackery Battery Pack 2000",
+      "physical_page": 58,
+      "selection": {
+        "method": "native LCD operation accessibility"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CONNECTIONS",
+      "native": "CONEXÕES",
+      "physical_page": 59,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Up to five battery packs can be used with the portable power station to provide additional capacity.",
+      "native": "Até 5 conjuntos desses produtos podem ser usados com a estação de energia portátil para atender à necessidade de maior capacidade.",
+      "physical_page": 59,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CAUTION",
+      "native": "CUIDADO",
+      "physical_page": 59,
+      "selection": {
+        "method": "source caution signal"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.",
+      "native": "Certifique-se de que todos os produtos estejam desligados antes de conectar a estação de energia portátil ao Jackery Battery Pack 2000.",
+      "physical_page": 59,
+      "selection": {
+        "method": "source caution bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.",
+      "native": "Para garantir o funcionamento adequado do produto, certifique-se de que as entradas e saídas de ar em ambos os lados estejam desobstruídas. Deixe um espaço de pelo menos 200 mm entre as aberturas de ventilação e quaisquer objetos para permitir uma dissipação adequada do calor.",
+      "physical_page": 59,
+      "selection": {
+        "method": "source caution bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "NOTES",
+      "native": "Notas",
+      "physical_page": 59,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "The display of the connection icon on the LCD screen (the portable power station) signifies a successful connection between the battery pack and the portable power station.",
+      "native": "A exibição do ícone na tela LCD (a estação de energia portátil) indica uma conexão bem-sucedida entre a bateria externa e a estação de energia portátil.",
+      "physical_page": 59,
+      "selection": {
+        "method": "source connection note bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Please do not stack the product on the top of the portable power station.",
+      "native": "Por favor, não empilhe o produto sobre a estação de energia portátil.",
+      "physical_page": 59,
+      "selection": {
+        "method": "source connection note bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.",
+      "native": "Coloque as baterias externas em uma superfície plana e estável com capacidade de carga suficiente. O número máximo padrão de baterias externas que podem ser empilhadas é 3.",
+      "physical_page": 59,
+      "selection": {
+        "method": "source connection note bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.",
+      "native": "Se for necessário empilhar 4 ou mais baterias externas, o produto deve ser colocado em uma área estável, encostado a uma parede, protegido contra impactos externos, além de serem tomadas as medidas necessárias para evitar que tombe.",
+      "physical_page": 59,
+      "selection": {
+        "method": "source connection note bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery Pack connection, stacking, and clearance diagram.",
+      "native": "CONEXÕES — Jackery Battery Pack 2000",
+      "physical_page": 59,
+      "selection": {
+        "method": "native diagram accessibility"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Correct connection order and expansion-cable locking and unlocking steps.",
+      "native": "CONEXÕES — Jackery Battery Pack 2000",
+      "physical_page": 59,
+      "selection": {
+        "method": "native diagram accessibility"
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "TROUBLESHOOTING",
+      "native": "SOLUÇÃO DE PROBLEMAS",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.",
+      "native": "Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o problema. Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Error Code",
+      "native": "Código de erro",
+      "physical_page": 60,
+      "selection": {
+        "bbox_pt": [
+          27,
+          362.3204772949219,
+          70,
+          370.88063354492186
+        ]
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Corrective Measures",
+      "native": "Medidas corretivas",
+      "physical_page": 60,
+      "selection": {
+        "bbox_pt": [
+          70,
+          362.3204772949219,
+          345,
+          370.88063354492186
+        ]
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Restart the product.",
+      "native": "Reinicie o produto.",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Connect the product to loads to discharge its battery until the fault disappears.",
+      "native": "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Charge the product via solar panels or AC wall outlet until the fault disappears.",
+      "native": "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Contact Jackery Customer Support.",
+      "native": "Entre em contato com o Suporte ao Cliente da Jackery.",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Place the product in an environment with a proper temperature and wait till the fault disappears.",
+      "native": "Coloque o produto em um ambiente com temperatura adequada e aguarde até que a falha desapareça.",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 21
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING",
+      "native": "CARREGANDO",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA AC WALL OUTLET",
+      "native": "CARREGAMENTO POR MEIO DE TOMADA CA",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "To charge the battery pack from an AC wall outlet, connect it to the portable power station.",
+      "native": "Ao carregar pela tomada, este produto deve ser usado com a estação de energia portátil.",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "WARNING",
+      "native": "AVISO",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.",
+      "native": "Certifique-se de que todos os produtos estejam desligados antes de conectar a estação de energia portátil ao Jackery Battery Pack 2000.",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 4
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+      "native": "CARREGAMENTO VIA PAINÉIS SOLARES (VENDIDO SEPARADAMENTE)",
+      "physical_page": 61,
+      "selection": {
+        "method": "source solar heading and separately sold qualifier"
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Charge the battery pack using solar panels and the portable power station, as shown in the figure below. For more information, refer to the user manual for the portable power station.",
+      "native": "Carregue seu produto com painéis solares e a estação de energia portátil conforme mostrado na figura abaixo. Consulte o manual do usuário da estação de energia portátil para obter mais informações.",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 8
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "AC wall charging connection through the portable power station.",
+      "native": "CARREGANDO — Jackery Battery Pack 2000",
+      "physical_page": 61,
+      "selection": {
+        "method": "native charging accessibility"
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Solar charging connection through the portable power station.",
+      "native": "CARREGANDO — Jackery Battery Pack 2000",
+      "physical_page": 61,
+      "selection": {
+        "method": "native charging accessibility"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "STORAGE",
+      "native": "Armazenamento",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+      "native": "Armazene o produto em local limpo, seco e com ventilação adequada. Temperatura e umidade de armazenamento:",
+      "physical_page": 62,
+      "selection": {
+        "method": "source storage block segment"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "1 month: -20°C to 45°C (0-60%RH)",
+      "native": "1 mês: -20°C a 45°C (0-60%UR)",
+      "physical_page": 62,
+      "selection": {
+        "method": "source storage block segment"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "3 months: 0°C to 45°C (0-60%RH)",
+      "native": "3 meses: 0°C a 45°C (0-60%UR)",
+      "physical_page": 62,
+      "selection": {
+        "method": "source storage block segment"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "12 months: 0°C to 25°C (0-60%RH)",
+      "native": "12 meses: 0°C a 25°C (0-60%UR)",
+      "physical_page": 62,
+      "selection": {
+        "method": "source storage block segment"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+      "native": "Se este produto for armazenado por um longo período (3 meses - 6 meses) com a bateria descarregada, ele pode não voltar a carregar. Para evitar isso e manter a saúde da bateria, recomenda-se verificar e recarregar o produto a cada três meses e realizar um ciclo completo de carga e descarga pelo menos uma vez a cada 6 a 12 meses.",
+      "physical_page": 62,
+      "selection": {
+        "method": "source storage block segment"
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "SPECIFICATIONS",
+      "native": "ESPECIFICAÇÕES",
+      "physical_page": 62,
+      "selection": {
+        "bbox_pt": [
+          27,
+          149,
+          345,
+          169
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "GENERAL INFO",
+      "native": "INFORMAÇÕES GERAIS",
+      "physical_page": 62,
+      "selection": {
+        "bbox_pt": [
+          27,
+          175,
+          345,
+          190
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Product Name",
+      "native": "Nome do produto",
+      "physical_page": 62,
+      "selection": {
+        "method": "source product-name cell"
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Jackery Battery Pack 2000",
+      "native": "Jackery Battery Pack 2000",
+      "physical_page": 62,
+      "selection": {
+        "method": "source product-name value"
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Model No.",
+      "native": "Nº do modelo",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "JBP-2000B",
+      "native": "JBP-2000B",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 5
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Capacity",
+      "native": "Capacidade",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "2048 Wh (40 Ah/51.2 V ⎓)",
+      "native": "2048 Wh (40 Ah/51,2 V ⎓)",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 8
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cell Chemistry",
+      "native": "Química da célula",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "LiFePO₄",
+      "native": "LiFePO4",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 9
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Weight",
+      "native": "Peso",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "About 14.8 kg",
+      "native": "Aproximadamente 14,8 kg",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Dimensions",
+      "native": "Dimensões",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.5 × 25.5 × 19.1 cm",
+      "native": "36,5 × 25,5 × 19,1 cm",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cycle Life",
+      "native": "Vida útil de ciclos",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "6000 cycles to 70%+ capacity",
+      "native": "6000 ciclos até 70%+ de capacidade",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "INPUT/OUTPUT PORTS",
+      "native": "PORTAS DE ENTRADA/SAÍDA",
+      "physical_page": 62,
+      "selection": {
+        "bbox_pt": [
+          27,
+          281,
+          345,
+          296
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Input)",
+      "native": "Porta de expansão CC (entrada)",
+      "physical_page": 62,
+      "selection": {
+        "method": "source DC input label"
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.8V-57.6V⎓75A Max",
+      "native": "36,8 V-57,6 V⎓75 A máx.",
+      "physical_page": 62,
+      "selection": {
+        "method": "source DC input value"
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Output)",
+      "native": "Porta de expansão CC (Saída)",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 19
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "native": "TEMPERATURA AMBIENTE DE OPERAÇÃO",
+      "physical_page": 62,
+      "selection": {
+        "bbox_pt": [
+          27,
+          338,
+          345,
+          352
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Charge Temperature",
+      "native": "Temperatura de carregamento",
+      "physical_page": 62,
+      "selection": {
+        "bbox_pt": [
+          27,
+          358,
+          179,
+          370
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Discharge Temperature",
+      "native": "Temperatura de descarga",
+      "physical_page": 62,
+      "selection": {
+        "bbox_pt": [
+          27,
+          370,
+          179,
+          382
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "-10°C to 45°C",
+      "native": "-10°C a 45°C",
+      "physical_page": 62,
+      "selection": {
+        "bbox_pt": [
+          180,
+          358,
+          345,
+          370
+        ]
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "WARRANTY",
+      "native": "GARANTIA",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "This warranty applies only to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.",
+      "native": "Esta garantia aplica-se somente a clientes que compram no site oficial da Jackery, em plataformas de terceiros da marca Jackery ou com revendedores locais autorizados.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "native": "*O período e os detalhes da garantia podem variar de acordo com as leis, regulamentações locais e revendedores autorizados.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited Warranty",
+      "native": "Garantia Limitada",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.",
+      "native": "A Jackery garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de fabricação e material sob uso normal do consumidor durante o período de garantia aplicável identificado na seção \"Período de Garantia\" abaixo, sujeito às exclusões estabelecidas abaixo.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 4
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.",
+      "native": "Esta declaração de garantia estabelece a obrigação de garantia total e exclusiva da Jackery. Não assumiremos, nem autorizaremos qualquer pessoa a assumir em nosso nome, qualquer outra responsabilidade relacionada à venda de nossos produtos.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 5
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Warranty Period",
+      "native": "Período de Garantia",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The standard warranty period for Jackery Battery Pack 2000 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+      "native": "O período de garantia padrão do Jackery Battery Pack 2000 é de 36 meses. Em todos os casos, o período de garantia é contado a partir da data de compra pelo comprador consumidor original. O recibo da primeira compra do consumidor, ou outro comprovante documental razoável, é necessário para estabelecer a data de início do período de garantia.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 9
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Exchange",
+      "native": "Troca",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.",
+      "native": "A Jackery substituirá, às suas próprias custas, qualquer produto Jackery que apresente falha de funcionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. Um produto substituto assume a garantia restante do produto original.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited to Original Consumer Buyer",
+      "native": "Limitado ao comprador consumidor original",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.",
+      "native": "A garantia dos produtos Jackery é limitada ao comprador consumidor original e não é transferível a qualquer proprietário subsequente.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Exclusions",
+      "native": "Exclusões",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Interpretation Rights",
+      "native": "Direitos de interpretação",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery reserves the right to final interpretation of the above customer after-sales policy.",
+      "native": "A Jackery reserva-se o direito de interpretação final da política de pós-venda ao cliente acima.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 17
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "3 YEARS",
+      "native": "3 ANOS",
+      "physical_page": 63,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Standard Warranty",
+      "native": "Garantia Padrão",
+      "physical_page": 63,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "2 YEARS",
+      "native": "2 ANOS",
+      "physical_page": 63,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Extended Warranty",
+      "native": "Garantia Estendida",
+      "physical_page": 63,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "YEARS",
+      "native": "ANOS",
+      "physical_page": 63,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "To activate the Warranty Extension, you must register your product online or contact our customer service team at",
+      "native": "Para ativar a extensão da garantia, você deve registrar seu produto online ou entrar em contato com nossa equipe de atendimento ao cliente em",
+      "physical_page": 63,
+      "selection": {
+        "method": "source extension paragraph surrounding mail link"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "to extend the standard warranty period.",
+      "native": "para estender o período de garantia padrão.",
+      "physical_page": 63,
+      "selection": {
+        "method": "source extension paragraph surrounding mail link"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to:",
+      "native": "A garantia da Jackery não se aplica a:",
+      "physical_page": 63,
+      "selection": {
+        "method": "source exclusion clause"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Any product that has been misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.",
+      "native": "Qualquer produto que tenha sido utilizado de forma inadequada, submetido a uso abusivo, modificado, danificado acidentalmente ou usado para qualquer finalidade que não seja o uso normal do consumidor, conforme autorizado na documentação atual do produto da Jackery.",
+      "physical_page": 63,
+      "selection": {
+        "method": "source exclusion clause"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Attempted repair by anyone other than an authorized facility.",
+      "native": "Tentativa de reparo por qualquer pessoa que não seja uma assistência autorizada.",
+      "physical_page": 63,
+      "selection": {
+        "method": "source exclusion clause"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Any product purchased through an online auction house.",
+      "native": "Qualquer produto adquirido por meio de leilão online.",
+      "physical_page": 63,
+      "selection": {
+        "method": "source exclusion clause"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.",
+      "native": "A garantia da Jackery não se aplica à célula da bateria, a menos que ela seja totalmente carregada por você dentro de sete dias após a compra do produto e, posteriormente, pelo menos uma vez a cada 6 meses.",
+      "physical_page": 63,
+      "selection": {
+        "method": "source exclusion clause"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "EU REGULATIONS",
+      "native": "EU REGULATIONS",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "RED DECLARATION OF CONFORMITY",
+      "native": "RED DECLARATION OF CONFORMITY",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 2000 with Bluetooth and Wi-Fi JBP-2000B is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "native": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 2000 with Bluetooth and Wi-Fi JBP-2000B is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "https://de.jackery.com/pages/user-guides",
+      "native": "https://de.jackery.com/pages/user-guides",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "MANUFACTURER",
+      "native": "MANUFACTURER",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "native": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "native": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "+86 400 668 9293",
+      "native": "+86 400 668 9293",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "sales@hello-tech.com",
+      "native": "sales@hello-tech.com",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "www.hello-tech.com",
+      "native": "www.hello-tech.com",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    }
+  ],
+  "native_exceptions": [
+    "Native power state labels ON and Apagado retained."
+  ],
+  "power_steps": [
+    "ON",
+    "Pressione uma vez",
+    "Apagado",
+    "Pressione e segure por 3 s"
+  ],
+  "inline_connection_marker": "A exibição do ícone",
+  "locking_labels": [
+    "Bloquear",
+    "Desbloquear"
+  ]
+}

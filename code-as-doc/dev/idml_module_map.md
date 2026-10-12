@@ -1,5 +1,7 @@
 # IDML Exporter Module Map
 
+Status: active
+
 Result of the componentization plan (`reports/idml_componentization/20260705-01`,
 P0–P4, 2026-07-05). The exporter went from a 2001-line single file to a layered
 package with the emitted `.idml` **bit-identical** throughout (enforced by a
@@ -8,13 +10,22 @@ golden byte-comparison test at every phase).
 ## Layers (imports point downward only)
 
 ```
-tools/export_idml.py          façade + CLI: main()'s page-composition state machine,
-                              IdmlWriter (state: params/geometry + stories/spreads sinks;
-                              every method is a thin delegate), full re-export surface
+tools/export_idml.py          façade + CLI: main() parses and dispatches to _cmd_check /
+                              _cmd_flow / _cmd_reference; _cmd_reference prepares the
+                              same-source IR and page plan
+tools/idml/reference_export.py
+                              ReferenceExport: the production page-composition pass
+                              (cursor, pending prose/FCC/safety prefix, emitted pages
+                              as instance state; one method per page kind), then
+                              TOC/folio/package/self-check in finish()
 tools/bundle_asset_manifest.py
                               fail-closed renderer boundary for semantic bundle assets:
-                              schema/target/consumer/format/path/hash validation
+                              schema/target/consumer/format/path/hash validation;
+                              manifest_asset_slot maps a staged file back to the slot
+                              its source named
 tools/idml/
+  asset_slots.py              recognise governed art by asset slot, not file name
+                              (bundle_asset_slots lookup; RenderContext.asset_slot)
   asset_contracts.py          approved-contract component/page ownership plus hidden
                               native-IDML asset requirements shared by bundle
                               finalization and component promotion; no target-named
@@ -43,6 +54,11 @@ tools/idml/
                               App display-variant binding, and exact duplicate guard
   reference_layout_plan.py    registry lookup + approved-plan validation; exact-target
                               approved files missing from the registry fail closed
+  component_targets.py        per-language registry `component_targets`: a single-language
+                              build composes registered components only while every
+                              source matches its approved-plan pin; else inert + warning
+  registered_component_plan.py one-page registered compositions (Storage+Troubleshooting,
+                              Charging, Warranty) for an active component target
   reference_layout_rebind.py  complete Manual-IR identity/page-binding refresh with
                               unchanged-composition validation and atomic replacement
   reference_layout_scaffold.py review-only draft generator: refreshes Manual-IR
@@ -56,7 +72,8 @@ tools/idml/
                               source page has no explicit HBFccBlock
   notice_labels.py            localized NOTE/TIP/CAUTION/WARNING/DANGER label mapping
                               for notice-style list-table extraction
-  stories.py                  story builders: prose (block-stream dispatch), lcd, symbols,
+  stories.py                  story builders: prose (block-stream dispatch; under a measured
+                              plan story_estimates.StoryHeight counts figure breaks), lcd, symbols,
                               trouble, spec, text; delegates localized operation rhythm
   package.py                  zip contract (mimetype first + STORED), designmap wiring,
                               linked spread chain, height estimation
@@ -110,6 +127,9 @@ tools/idml_rst_extract.py     prepared-bundle RST -> block stream; owns componen
                               test-enforced)
 tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by the
                               extractor
+tools/idml_rst_line_blocks.py line-structure steps of the extractor's scanner (comments,
+                              titles, grid tables, line blocks, lists, paragraphs);
+                              directives stay in idml_rst_extract.py
 tools/reference_layout_rebind.py
                               dry-run-by-default maintainer CLI for the atomic approved-
                               contract source rebind; never edits composition geometry
@@ -242,13 +262,13 @@ tools/reference_layout_scaffold.py
 - `python build.py idml --idml-mode both --model M --region R [--lang L]`
   writes the production IDML, the flow artifacts, and the design handoff package
   in one run
-- `python tools/export_idml.py …` (direct CLI; `--check <file.idml>` validates)
-- `python tools/reference_layout_rebind.py --plan <approved.json> --manual-ir
+- `python -m tools.export_idml …` (direct CLI; `--check <file.idml>` validates)
+- `python -m tools.reference_layout_rebind --plan <approved.json> --manual-ir
   <manual.ir.json> [--write]` (complete source rebind; dry-run by default)
-- `python tools/reference_layout_scaffold.py --seed-plan <approved.json>
+- `python -m tools.reference_layout_scaffold --seed-plan <approved.json>
   --manual-ir <manual.ir.json> --output <draft.json>` (composition-preserving,
   non-activating draft)
-- `python tools/indesign_finalize.py --jobs <manifest.json>` (design-host batch
+- `python -m tools.indesign_finalize --jobs <manifest.json>` (design-host batch
   orchestration: explicit print contract per job, one JSX outer loop per
   InDesign application group, isolated per-document finalize reports, and
   incomplete InDesign-package inventory)

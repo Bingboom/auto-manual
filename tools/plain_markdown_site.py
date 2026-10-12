@@ -218,7 +218,7 @@ def download_remote_images(
             staged = fetch(url)
             if not staged:
                 return match.group(0)
-            return f"{prefix}{posixpath.relpath(staged, start=start)}"
+            return f"{prefix}{posixpath.relpath(staged, start=start)}"  # noqa: B023 -- invoked before the loop advances
 
         rewritten = _MD_IMAGE_RE.sub(replace, text)
         rewritten = _HTML_IMAGE_RE.sub(replace, rewritten)
@@ -264,7 +264,7 @@ def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
             if "://" in ref or ref.startswith(("data:", "/", "#")):
                 return None
             decoded = unquote(ref)
-            candidate = (markdown_path.parent / decoded).resolve(strict=False)
+            candidate = (markdown_path.parent / decoded).resolve(strict=False)  # noqa: B023 -- invoked before the loop advances
             if candidate.is_file():
                 try:
                     return candidate.relative_to(staged_dir.resolve(strict=False))
@@ -280,7 +280,7 @@ def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
                 return match.group(0)
             if not _is_ascii_path(target.as_posix()):
                 target = _ascii_asset_copy(staged_dir, target)
-            repointed = posixpath.relpath(target.as_posix(), start=start)
+            repointed = posixpath.relpath(target.as_posix(), start=start)  # noqa: B023 -- invoked before the loop advances
             if repointed == ref:
                 return match.group(0)
             rewrites += 1
@@ -291,13 +291,13 @@ def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
             prefix, ref = match.group(1), match.group(2)
             if "://" in ref or ref.startswith(("data:", "/", "#")):
                 return match.group(0)
-            if (markdown_path.parent / unquote(ref)).resolve(strict=False).is_file():
+            if (markdown_path.parent / unquote(ref)).resolve(strict=False).is_file():  # noqa: B023 -- invoked before the loop advances
                 return match.group(0)
             target = index.get(Path(unquote(ref)).name)
             if target is None:
                 return match.group(0)
             rewrites += 1
-            return f"{prefix}{posixpath.relpath(target.as_posix(), start=start)}"
+            return f"{prefix}{posixpath.relpath(target.as_posix(), start=start)}"  # noqa: B023 -- invoked before the loop advances
 
         rewritten = _MD_IMAGE_RE.sub(replace_markdown, text)
         rewritten = _HTML_IMAGE_RE.sub(replace_html, rewritten)
@@ -831,11 +831,11 @@ def resolve_stylesheet(staged_dir: Path, *, explicit: Path | None = None) -> tup
         return destination, f"explicit ({explicit})"
 
     try:
-        from tools.web_stylesheets import copy_web_stylesheet
+        from tools.web.stylesheets import copy_web_stylesheet
     except ImportError:
         pass
     else:
-        return copy_web_stylesheet(staged_dir), "repo contract (tools/web_stylesheets.py)"
+        return copy_web_stylesheet(staged_dir), "repo contract (tools/web/stylesheets.py)"
 
     if _BUNDLED_STYLESHEET.is_file():
         static_dir.mkdir(parents=True, exist_ok=True)
@@ -880,11 +880,14 @@ def stage_component_extension(staged_dir: Path) -> bool:
     """
     source = _SCRIPT_DIR / f"{_EXTENSION_MODULE}.py"
     component_specs = _SCRIPT_DIR / "component_specs"
-    troubleshooting = _SCRIPT_DIR / "web_troubleshooting_component.py"
-    lcd = _SCRIPT_DIR / "web_lcd_component.py"
     rst_inline = _SCRIPT_DIR / "rst_inline.py"
     path_utils = _SCRIPT_DIR / "utils" / "path_utils.py"
-    table_runtime = ("web_table_ir.py", "web_spec_component.py", "web_callout_ir.py", "lang_registry.py")
+    lang_registry = _SCRIPT_DIR / "lang_registry.py"
+    web_runtime = (
+        "__init__.py", "troubleshooting_component.py", "lcd_component.py",
+        "table_ir.py", "spec_component.py", "callout_ir.py",
+    )
+    web_sources = tuple(_SCRIPT_DIR / "web" / name for name in web_runtime)
     ir_runtime = ("__init__.py", "builder.py", "hashing.py", "model.py", "serialize.py",
                   "source.py", "validate.py", "web_source.py", "web_tables.py", "web_specs.py", "web_callouts.py")
     ir_sources = tuple(_SCRIPT_DIR / "manual_ir" / name for name in ir_runtime)
@@ -899,9 +902,8 @@ def stage_component_extension(staged_dir: Path) -> bool:
     table_style = registry.with_name("web_manual.css")
     if not all(
         path.is_file()
-        for path in (source, troubleshooting, lcd, rst_inline, path_utils, registry, theme, table_style,
-                     _SCRIPT_DIR / "__init__.py", *ir_sources,
-                     *(_SCRIPT_DIR / name for name in table_runtime))
+        for path in (source, rst_inline, path_utils, lang_registry, registry, theme, table_style,
+                     _SCRIPT_DIR / "__init__.py", *ir_sources, *web_sources)
     ) or not component_specs.is_dir():
         return False
     target_dir = staged_dir / _EXTENSION_DIRNAME
@@ -909,11 +911,12 @@ def stage_component_extension(staged_dir: Path) -> bool:
     shutil.copyfile(source, target_dir / f"{_EXTENSION_MODULE}.py")
     staged_tools = target_dir / "tools"
     staged_tools.mkdir()
-    shutil.copyfile(troubleshooting, staged_tools / troubleshooting.name)
-    shutil.copyfile(lcd, staged_tools / lcd.name)
     shutil.copyfile(rst_inline, staged_tools / rst_inline.name)
-    for name in table_runtime:
-        shutil.copyfile(_SCRIPT_DIR / name, staged_tools / name)
+    shutil.copyfile(lang_registry, staged_tools / lang_registry.name)
+    staged_web = staged_tools / "web"
+    staged_web.mkdir()
+    for path in web_sources:
+        shutil.copyfile(path, staged_web / path.name)
     staged_ir = staged_tools / "manual_ir"
     staged_ir.mkdir()
     for path in ir_sources:
@@ -1014,7 +1017,7 @@ def _require_sphinx() -> None:
 
 def _sphinx_cmd() -> list[str]:
     try:
-        from tools.build_docs_sphinx import resolve_sphinx_build_cmd
+        from tools.build.docs_sphinx import resolve_sphinx_build_cmd
         from tools.utils.process_utils import find_exe
     except ImportError:
         sphinx_build = shutil.which("sphinx-build")

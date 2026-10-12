@@ -1,0 +1,176 @@
+{
+  "desktop": {
+    "bar": {
+      "background": "rgb(52, 48, 49)",
+      "beforeDisplay": "none",
+      "color": "rgb(255, 255, 255)",
+      "radius": "0px 0px 9.92px 9.92px",
+      "rect": {
+        "bottom": 178.5390625,
+        "height": 51.7109375,
+        "left": 314.59375,
+        "right": 1131.625,
+        "top": 126.828125,
+        "width": 817.03125,
+        "x": 314.59375,
+        "y": 126.828125
+      }
+    },
+    "documentWidth": 1440,
+    "fccHeading": "none",
+    "images": [
+      {
+        "loaded": true,
+        "rect": {
+          "bottom": 710.171875,
+          "height": 476.3828125,
+          "left": 314.59375,
+          "right": 1131.625,
+          "top": 233.7890625,
+          "width": 817.03125,
+          "x": 314.59375,
+          "y": 233.7890625
+        },
+        "src": "../../../../_static/manual-assets/_pool/25/2537a7f9e24aa1fb50fc31a040fbe5c2099d41532e30460ccc5e2349b1c8549a.png"
+      },
+      {
+        "loaded": true,
+        "rect": {
+          "bottom": 1286.6328125,
+          "height": 514.8046875,
+          "left": 314.59375,
+          "right": 1131.625,
+          "top": 771.828125,
+          "width": 817.03125,
+          "x": 314.59375,
+          "y": 771.828125
+        },
+        "src": "../../../../_static/manual-assets/_pool/f2/f2417a55844d72eb3bcad857a0a2e9ace04db5f89cb4c1f62dae22f7459ae5a4.png"
+      }
+    ],
+    "section": {
+      "bottom": 1286.6328125,
+      "height": 1159.8046875,
+      "left": 314.59375,
+      "right": 1131.625,
+      "top": 126.828125,
+      "width": 817.03125,
+      "x": 314.59375,
+      "y": 126.828125
+    },
+    "viewport": 1440,
+    "views": [
+      {
+        "markerMargin": "0px",
+        "markerWidth": "11.5156px",
+        "padding": "0px",
+        "rect": {
+          "bottom": 216.1953125,
+          "height": 20.0625,
+          "left": 314.59375,
+          "right": 1131.625,
+          "top": 196.1328125,
+          "width": 817.03125,
+          "x": 314.59375,
+          "y": 196.1328125
+        },
+        "text": "FRONT VIEW¶"
+      },
+      {
+        "markerMargin": "0px",
+        "markerWidth": "11.5156px",
+        "padding": "0px",
+        "rect": {
+          "bottom": 754.234375,
+          "height": 20.0625,
+          "left": 314.59375,
+          "right": 1131.625,
+          "top": 734.171875,
+          "width": 817.03125,
+          "x": 314.59375,
+          "y": 734.171875
+        },
+        "text": "RIGHT SIDE VIEW¶"
+      }
+    ]
+  },
+  "mobile": {
+    "bar": {
+      "background": "rgb(52, 48, 49)",
+      "beforeDisplay": "none",
+      "color": "rgb(255, 255, 255)",
+      "rect": {
+        "bottom": 3469.390625,
+        "height": 46.046875,
+        "left": 16,
+        "right": 374,
+        "top": 3423.34375,
+        "width": 358,
+        "x": 16,
+        "y": 3423.34375
+      }
+    },
+    "documentWidth": 390,
+    "images": [
+      {
+        "loaded": true,
+        "rect": {
+          "bottom": 3733.375,
+          "height": 208.734375,
+          "left": 16,
+          "right": 374,
+          "top": 3524.640625,
+          "width": 358,
+          "x": 16,
+          "y": 3524.640625
+        }
+      },
+      {
+        "loaded": true,
+        "rect": {
+          "bottom": 4020.6015625,
+          "height": 225.5703125,
+          "left": 16,
+          "right": 374,
+          "top": 3795.03125,
+          "width": 358,
+          "x": 16,
+          "y": 3795.03125
+        }
+      }
+    ],
+    "viewport": 390,
+    "views": [
+      {
+        "markerWidth": "11.5156px",
+        "padding": "0px",
+        "rect": {
+          "bottom": 3507.046875,
+          "height": 20.0625,
+          "left": 16,
+          "right": 374,
+          "top": 3486.984375,
+          "width": 358,
+          "x": 16,
+          "y": 3486.984375
+        },
+        "text": "FRONT VIEW¶"
+      },
+      {
+        "markerWidth": "11.5156px",
+        "padding": "0px",
+        "rect": {
+          "bottom": 3777.4375,
+          "height": 20.0625,
+          "left": 16,
+          "right": 374,
+          "top": 3757.375,
+          "width": 358,
+          "x": 16,
+          "y": 3757.375
+        },
+        "text": "RIGHT SIDE VIEW¶"
+      }
+    ]
+  }
+}

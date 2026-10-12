@@ -7,7 +7,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from copy import deepcopy
 from pathlib import Path
-from typing import Any, Iterator, Mapping
+from typing import Any, Iterator, Mapping, cast
 
 try:
     import yaml
@@ -25,12 +25,15 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     "web": frozenset(
         {
             "manual_callout_table",
+            "web_reference_table",
             "hb_spec_table",
             "hb_fcc",
             "hb_inbox",
             "hb_overview",
             "hb_operation",
             "hb_lcd_mode",
+            "hb_auto_resume",
+            "hb_key_combinations",
             "hb_lcd_icon",
             "hb_troubleshooting",
             "hb_symbol_signal",
@@ -45,12 +48,15 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     "latex": frozenset(
         {
             "hb_latex_callout",
+            "latex_reference_table",
             "hb_latex_spec_table",
             "hb_latex_fcc",
             "hb_latex_inbox",
             "hb_latex_overview",
             "hb_latex_operation",
             "hb_latex_lcd_mode",
+            "hb_latex_auto_resume",
+            "hb_latex_key_combinations",
             "hb_latex_lcd_icon",
             "hb_latex_troubleshooting",
             "hb_latex_symbol_signal",
@@ -65,12 +71,15 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     "idml": frozenset(
         {
             "idml_notice",
+            "idml_reference_table",
             "idml_spec_table",
             "idml_fcc",
             "idml_inbox",
             "idml_overview",
             "idml_operation",
             "idml_lcd_mode",
+            "idml_auto_resume",
+            "idml_key_combinations",
             "idml_lcd_icon",
             "idml_troubleshooting",
             "idml_symbol_signal",
@@ -85,12 +94,15 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     "word": frozenset(
         {
             "word_manual_callout_table",
+            "word_reference_table",
             "word_spec_table",
             "word_fcc",
             "word_inbox",
             "word_overview",
             "word_operation",
             "word_lcd_mode",
+            "word_auto_resume",
+            "word_key_combinations",
             "word_lcd_icon",
             "word_troubleshooting",
             "word_symbol_signal",
@@ -157,6 +169,107 @@ def _validate_structured_rows(value: Any, *, prefix: str) -> list[str]:
     return issues
 
 
+def _slot_issues(prefix: str, slots: Mapping[Any, Any]) -> list[str]:
+    issues: list[str] = []
+    for role, raw_slot in slots.items():
+        slot_prefix = f"{prefix}.slots.{role}"
+        if not isinstance(role, str) or not role.strip():
+            issues.append(f"{slot_prefix}: role must be a non-empty string")
+        if not isinstance(raw_slot, Mapping):
+            issues.append(f"{slot_prefix} must be a mapping")
+            continue
+        if not isinstance(raw_slot.get("required"), bool):
+            issues.append(f"{slot_prefix}.required must be boolean")
+        if not _non_empty_strings(raw_slot.get("content_kinds")):
+            issues.append(
+                f"{slot_prefix}.content_kinds must be a unique non-empty string list"
+            )
+    return issues
+
+
+def _asset_role_issues(prefix: str, assets: Mapping[Any, Any]) -> list[str]:
+    issues: list[str] = []
+    for role, raw_asset in assets.items():
+        asset_prefix = f"{prefix}.asset_roles.{role}"
+        if not isinstance(role, str) or not role.strip():
+            issues.append(f"{asset_prefix}: role must be a non-empty string")
+        if not isinstance(raw_asset, Mapping):
+            issues.append(f"{asset_prefix} must be a mapping")
+            continue
+        if not set(raw_asset).issubset(
+            {"required", "locale_policies", "multiple"}
+        ) or not {"required", "locale_policies"}.issubset(raw_asset):
+            issues.append(f"{asset_prefix} has an invalid asset-role shape")
+        if not isinstance(raw_asset.get("required"), bool):
+            issues.append(f"{asset_prefix}.required must be boolean")
+        if "multiple" in raw_asset and not isinstance(
+            raw_asset.get("multiple"), bool
+        ):
+            issues.append(f"{asset_prefix}.multiple must be boolean")
+        policies = raw_asset.get("locale_policies")
+        if not _non_empty_strings(policies) or not set(cast(list[str], policies)).issubset(
+            LOCALE_POLICIES
+        ):
+            issues.append(
+                f"{asset_prefix}.locale_policies must use registered policies"
+            )
+    return issues
+
+
+def _adapter_issues(prefix: str, adapters: Mapping[Any, Any]) -> list[str]:
+    issues: list[str] = []
+    for renderer in set(adapters) - set(RENDERERS):
+        issues.append(f"{prefix}.adapters has unknown renderer {renderer!r}")
+    for renderer in RENDERERS:
+        adapter_prefix = f"{prefix}.adapters.{renderer}"
+        binding = adapters.get(renderer)
+        if not isinstance(binding, Mapping):
+            issues.append(f"{adapter_prefix} must be a mapping")
+            continue
+        capability = binding.get("capability")
+        if capability not in CAPABILITIES:
+            issues.append(f"{adapter_prefix}.capability is invalid: {capability!r}")
+        key = binding.get("key")
+        if key not in REGISTERED_ADAPTER_KEYS[renderer]:
+            issues.append(f"{adapter_prefix}.key is unregistered: {key!r}")
+    return issues
+
+
+def _variant_adapter_issues(
+    prefix: str, variants: Any, variant_adapters: Mapping[Any, Any]
+) -> list[str]:
+    issues: list[str] = []
+    for variant, raw_bindings in variant_adapters.items():
+        variant_prefix = f"{prefix}.variant_adapters.{variant}"
+        if variant not in (variants or []):
+            issues.append(f"{variant_prefix}: variant is not registered")
+        if not isinstance(raw_bindings, Mapping):
+            issues.append(f"{variant_prefix} must be a mapping")
+            continue
+        unknown_renderers = set(raw_bindings) - set(RENDERERS)
+        if unknown_renderers:
+            issues.append(
+                f"{variant_prefix} has unknown renderers {sorted(unknown_renderers)!r}"
+            )
+        if set(raw_bindings) != set(RENDERERS):
+            issues.append(f"{variant_prefix} must declare every renderer")
+        for renderer in RENDERERS:
+            binding = raw_bindings.get(renderer)
+            binding_prefix = f"{variant_prefix}.{renderer}"
+            if not isinstance(binding, Mapping):
+                issues.append(f"{binding_prefix} must be a mapping")
+                continue
+            capability = binding.get("capability")
+            if capability not in CAPABILITIES:
+                issues.append(
+                    f"{binding_prefix}.capability is invalid: {capability!r}"
+                )
+            key = binding.get("key")
+            if key not in REGISTERED_ADAPTER_KEYS[renderer]:
+                issues.append(f"{binding_prefix}.key is unregistered: {key!r}")
+    return issues
+
+
 def validate_component_registry(registry: Mapping[str, Any]) -> list[str]:
     issues: list[str] = []
     if registry.get("schema_version") != REGISTRY_SCHEMA_VERSION:
@@ -188,97 +301,22 @@ def validate_component_registry(registry: Mapping[str, Any]) -> list[str]:
         if not isinstance(slots, Mapping) or not slots:
             issues.append(f"{prefix}.slots must be a non-empty mapping")
         else:
-            for role, raw_slot in slots.items():
-                slot_prefix = f"{prefix}.slots.{role}"
-                if not isinstance(role, str) or not role.strip():
-                    issues.append(f"{slot_prefix}: role must be a non-empty string")
-                if not isinstance(raw_slot, Mapping):
-                    issues.append(f"{slot_prefix} must be a mapping")
-                    continue
-                if not isinstance(raw_slot.get("required"), bool):
-                    issues.append(f"{slot_prefix}.required must be boolean")
-                if not _non_empty_strings(raw_slot.get("content_kinds")):
-                    issues.append(
-                        f"{slot_prefix}.content_kinds must be a unique non-empty string list"
-                    )
+            issues.extend(_slot_issues(prefix, slots))
         assets = raw_component.get("asset_roles")
         if not isinstance(assets, Mapping):
             issues.append(f"{prefix}.asset_roles must be a mapping")
         else:
-            for role, raw_asset in assets.items():
-                asset_prefix = f"{prefix}.asset_roles.{role}"
-                if not isinstance(role, str) or not role.strip():
-                    issues.append(f"{asset_prefix}: role must be a non-empty string")
-                if not isinstance(raw_asset, Mapping):
-                    issues.append(f"{asset_prefix} must be a mapping")
-                    continue
-                if not set(raw_asset).issubset(
-                    {"required", "locale_policies", "multiple"}
-                ) or not {"required", "locale_policies"}.issubset(raw_asset):
-                    issues.append(f"{asset_prefix} has an invalid asset-role shape")
-                if not isinstance(raw_asset.get("required"), bool):
-                    issues.append(f"{asset_prefix}.required must be boolean")
-                if "multiple" in raw_asset and not isinstance(
-                    raw_asset.get("multiple"), bool
-                ):
-                    issues.append(f"{asset_prefix}.multiple must be boolean")
-                policies = raw_asset.get("locale_policies")
-                if not _non_empty_strings(policies) or not set(policies).issubset(
-                    LOCALE_POLICIES
-                ):
-                    issues.append(
-                        f"{asset_prefix}.locale_policies must use registered policies"
-                    )
+            issues.extend(_asset_role_issues(prefix, assets))
         adapters = raw_component.get("adapters")
         if not isinstance(adapters, Mapping):
             issues.append(f"{prefix}.adapters must be a mapping")
             continue
-        for renderer in set(adapters) - set(RENDERERS):
-            issues.append(f"{prefix}.adapters has unknown renderer {renderer!r}")
-        for renderer in RENDERERS:
-            adapter_prefix = f"{prefix}.adapters.{renderer}"
-            binding = adapters.get(renderer)
-            if not isinstance(binding, Mapping):
-                issues.append(f"{adapter_prefix} must be a mapping")
-                continue
-            capability = binding.get("capability")
-            if capability not in CAPABILITIES:
-                issues.append(f"{adapter_prefix}.capability is invalid: {capability!r}")
-            key = binding.get("key")
-            if key not in REGISTERED_ADAPTER_KEYS[renderer]:
-                issues.append(f"{adapter_prefix}.key is unregistered: {key!r}")
+        issues.extend(_adapter_issues(prefix, adapters))
         variant_adapters = raw_component.get("variant_adapters", {})
         if not isinstance(variant_adapters, Mapping):
             issues.append(f"{prefix}.variant_adapters must be a mapping")
             continue
-        for variant, raw_bindings in variant_adapters.items():
-            variant_prefix = f"{prefix}.variant_adapters.{variant}"
-            if variant not in (variants or []):
-                issues.append(f"{variant_prefix}: variant is not registered")
-            if not isinstance(raw_bindings, Mapping):
-                issues.append(f"{variant_prefix} must be a mapping")
-                continue
-            unknown_renderers = set(raw_bindings) - set(RENDERERS)
-            if unknown_renderers:
-                issues.append(
-                    f"{variant_prefix} has unknown renderers {sorted(unknown_renderers)!r}"
-                )
-            if set(raw_bindings) != set(RENDERERS):
-                issues.append(f"{variant_prefix} must declare every renderer")
-            for renderer in RENDERERS:
-                binding = raw_bindings.get(renderer)
-                binding_prefix = f"{variant_prefix}.{renderer}"
-                if not isinstance(binding, Mapping):
-                    issues.append(f"{binding_prefix} must be a mapping")
-                    continue
-                capability = binding.get("capability")
-                if capability not in CAPABILITIES:
-                    issues.append(
-                        f"{binding_prefix}.capability is invalid: {capability!r}"
-                    )
-                key = binding.get("key")
-                if key not in REGISTERED_ADAPTER_KEYS[renderer]:
-                    issues.append(f"{binding_prefix}.key is unregistered: {key!r}")
+        issues.extend(_variant_adapter_issues(prefix, variants, variant_adapters))
     return issues
 
 

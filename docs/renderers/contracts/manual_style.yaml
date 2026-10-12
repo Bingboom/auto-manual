@@ -231,6 +231,22 @@ styles:
     constraints: []
     approved_variants: []
 
+  HB-TABLE-REFERENCE:
+    role: Authored text reference table
+    semantic_source_kinds: [table_reference]
+    token_refs: [type_data_table_header_font_size, type_data_table_header_font_leading, comp_table_outer_arc]
+    latex: {owner: tools/component_specs/reference_table.py, entrypoints: [reference_table_projection]}
+    indesign: {renderer: tools.component_specs.reference_table.reference_table_projection, table_style: 正文表格}
+    theme_token_roles: [component.table.reference]
+    web: {capability: rendered, selectors: [.hb-reference-composition], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText], table_styles: [TableGrid], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints:
+      - reason: LaTeX, IDML and Word bindings expose semantic projections only. Text-only references never manufacture icon assets or callout numbers.
+        owner: renderer-contract-maintainers
+        scope: [web, latex, idml, word]
+        evidence: [tools/component_specs/reference_table.py, docs/renderers/contracts/component_registry.yaml]
+    approved_variants: []
   HB-TABLE-LCD-ICON:
     role: LCD icon table
     semantic_source_kinds: [table_lcd_icon]

@@ -1,0 +1,725 @@
+{
+  "delivery": "Local formal build.py md -> readthedocs_source -> Sphinx -> Chromium; no remote/CDN claim",
+  "viewports": [
+    {
+      "lang": "en",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 1440,
+      "tables": [
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 16,
+      "headings": [
+        "SAFETY TIPS",
+        "WHAT’S IN THE BOX",
+        "HOW TO USE",
+        "UNFOLDING THE SOLAR PANEL",
+        "FOLDING THE SOLAR PANEL",
+        "CHARGING JACKERY PORTABLE POWER STATION",
+        "SUN ANGLE INDICATOR",
+        "TECHNICAL PARAMETERS",
+        "WARRANTY"
+      ]
+    },
+    {
+      "lang": "en",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 390,
+      "tables": [
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 16,
+      "headings": [
+        "SAFETY TIPS",
+        "WHAT’S IN THE BOX",
+        "HOW TO USE",
+        "UNFOLDING THE SOLAR PANEL",
+        "FOLDING THE SOLAR PANEL",
+        "CHARGING JACKERY PORTABLE POWER STATION",
+        "SUN ANGLE INDICATOR",
+        "TECHNICAL PARAMETERS",
+        "WARRANTY"
+      ]
+    },
+    {
+      "lang": "fr",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 1440,
+      "tables": [
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "CONSEILS DE SÉCURITÉ",
+        "CONTENU DE LA BOÎTE",
+        "CONSEILS D’UTILISATION",
+        "DÉPLIAGE DU PANNEAU SOLAIRE",
+        "PLIAGE DU PANNEAU SOLAIRE",
+        "CHARGEMENT DE LA STATION D’ÉNERGIE PORTABLE JACKERY",
+        "INDICATEUR D’ORIENTATION",
+        "CARACTÉRISTIQUES TECHNIQUES",
+        "GARANTIE"
+      ]
+    },
+    {
+      "lang": "fr",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 390,
+      "tables": [
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "CONSEILS DE SÉCURITÉ",
+        "CONTENU DE LA BOÎTE",
+        "CONSEILS D’UTILISATION",
+        "DÉPLIAGE DU PANNEAU SOLAIRE",
+        "PLIAGE DU PANNEAU SOLAIRE",
+        "CHARGEMENT DE LA STATION D’ÉNERGIE PORTABLE JACKERY",
+        "INDICATEUR D’ORIENTATION",
+        "CARACTÉRISTIQUES TECHNIQUES",
+        "GARANTIE"
+      ]
+    },
+    {
+      "lang": "es",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 1440,
+      "tables": [
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "RECOMENDACIONES DE SEGURIDAD",
+        "CONTENIDO DEL PAQUETE",
+        "MODO DE EMPLEO",
+        "DESPLIEGUE DEL PANEL SOLAR",
+        "PLEGADO DEL PANEL SOLAR",
+        "CARGA DE LA ESTACIÓN DE ENERGÍA PORTÁTIL JACKERY",
+        "INDICADOR DEL ÁNGULO SOLAR",
+        "PARÁMETROS TÉCNICOS",
+        "GARANTÍA"
+      ]
+    },
+    {
+      "lang": "es",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 390,
+      "tables": [
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "RECOMENDACIONES DE SEGURIDAD",
+        "CONTENIDO DEL PAQUETE",
+        "MODO DE EMPLEO",
+        "DESPLIEGUE DEL PANEL SOLAR",
+        "PLEGADO DEL PANEL SOLAR",
+        "CARGA DE LA ESTACIÓN DE ENERGÍA PORTÁTIL JACKERY",
+        "INDICADOR DEL ÁNGULO SOLAR",
+        "PARÁMETROS TÉCNICOS",
+        "GARANTÍA"
+      ]
+    },
+    {
+      "lang": "de",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 1440,
+      "tables": [
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "SICHERHEITSTIPPS",
+        "LIEFERUMFANG",
+        "NUTZUNGSHINWEISE",
+        "AUFKLAPPEN DES SOLARMODULS",
+        "ZUSAMMENKLAPPEN DES SOLARMODULS",
+        "AUFLADEN EINER TRAGBAREN JACKERY-POWERSTATION",
+        "SONNENWINKELANZEIGE",
+        "TECHNISCHE PARAMETER",
+        "GARANTIE"
+      ]
+    },
+    {
+      "lang": "de",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 390,
+      "tables": [
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "SICHERHEITSTIPPS",
+        "LIEFERUMFANG",
+        "NUTZUNGSHINWEISE",
+        "AUFKLAPPEN DES SOLARMODULS",
+        "ZUSAMMENKLAPPEN DES SOLARMODULS",
+        "AUFLADEN EINER TRAGBAREN JACKERY-POWERSTATION",
+        "SONNENWINKELANZEIGE",
+        "TECHNISCHE PARAMETER",
+        "GARANTIE"
+      ]
+    },
+    {
+      "lang": "it",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 1440,
+      "tables": [
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "CONSIGLI PER LA SICUREZZA",
+        "CONTENUTO DELLA CONFEZIONE",
+        "COME USARLO",
+        "APERTURA DEL PANNELLO SOLARE",
+        "PIEGATURA DEL PANNELLO SOLARE",
+        "RICARICA DELLA CENTRALE ELETTRICA PORTATILE JACKERY",
+        "INDICATORE DELL’ANGOLO SOLARE",
+        "PARAMETRI TECNICI",
+        "GARANZIA"
+      ]
+    },
+    {
+      "lang": "it",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 390,
+      "tables": [
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "CONSIGLI PER LA SICUREZZA",
+        "CONTENUTO DELLA CONFEZIONE",
+        "COME USARLO",
+        "APERTURA DEL PANNELLO SOLARE",
+        "PIEGATURA DEL PANNELLO SOLARE",
+        "RICARICA DELLA CENTRALE ELETTRICA PORTATILE JACKERY",
+        "INDICATORE DELL’ANGOLO SOLARE",
+        "PARAMETRI TECNICI",
+        "GARANZIA"
+      ]
+    },
+    {
+      "lang": "uk",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 1440,
+      "tables": [
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "ПОРАДИ З БЕЗПЕКИ",
+        "КОМПЛЕКТАЦІЯ",
+        "ЯК КОРИСТУВАТИСЯ",
+        "РОЗКЛАДАННЯ СОНЯЧНОЇ ПАНЕЛІ",
+        "СКЛАДАННЯ СОНЯЧНОЇ ПАНЕЛІ",
+        "ЗАРЯДЖАННЯ ПОРТАТИВНОЇ ЗАРЯДНОЇ СТАНЦІЇ JACKERY",
+        "ІНДИКАТОР КУТА СОНЦЯ",
+        "ТЕХНІЧНІ ПАРАМЕТРИ",
+        "ГАРАНТІЯ"
+      ]
+    },
+    {
+      "lang": "uk",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 390,
+      "tables": [
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "ПОРАДИ З БЕЗПЕКИ",
+        "КОМПЛЕКТАЦІЯ",
+        "ЯК КОРИСТУВАТИСЯ",
+        "РОЗКЛАДАННЯ СОНЯЧНОЇ ПАНЕЛІ",
+        "СКЛАДАННЯ СОНЯЧНОЇ ПАНЕЛІ",
+        "ЗАРЯДЖАННЯ ПОРТАТИВНОЇ ЗАРЯДНОЇ СТАНЦІЇ JACKERY",
+        "ІНДИКАТОР КУТА СОНЦЯ",
+        "ТЕХНІЧНІ ПАРАМЕТРИ",
+        "ГАРАНТІЯ"
+      ]
+    },
+    {
+      "lang": "pt",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 1440,
+      "tables": [
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "DICAS DE SEGURANÇA",
+        "CONTEÚDO DA EMBALAGEM",
+        "COMO USAR",
+        "DESDOBRANDO O PAINEL SOLAR",
+        "DOBRANDO O PAINEL SOLAR",
+        "CARREGAMENTO DA ESTAÇÃO DE ENERGIA PORTÁTIL JACKERY",
+        "INDICADOR DE ÂNGULO SOLAR",
+        "PARÂMETROS TÉCNICOS",
+        "GARANTIA"
+      ]
+    },
+    {
+      "lang": "pt",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 390,
+      "tables": [
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "DICAS DE SEGURANÇA",
+        "CONTEÚDO DA EMBALAGEM",
+        "COMO USAR",
+        "DESDOBRANDO O PAINEL SOLAR",
+        "DOBRANDO O PAINEL SOLAR",
+        "CARREGAMENTO DA ESTAÇÃO DE ENERGIA PORTÁTIL JACKERY",
+        "INDICADOR DE ÂNGULO SOLAR",
+        "PARÂMETROS TÉCNICOS",
+        "GARANTIA"
+      ]
+    },
+    {
+      "lang": "nl",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 1440,
+      "tables": [
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "VEILIGHEIDSTIPS",
+        "WAT ZIT ER IN DE DOOS",
+        "HOE TE GEBRUIKEN",
+        "HET ZONNEPANEEL UITVOUWEN",
+        "HET ZONNEPANEEL OPVOUWEN",
+        "JACKERY DRAAGBARE POWERSTATION OPLADEN",
+        "ZONHOEKINDICATOR",
+        "TECHNISCHE PARAMETERS",
+        "GARANTIE"
+      ]
+    },
+    {
+      "lang": "nl",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 390,
+      "tables": [
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "VEILIGHEIDSTIPS",
+        "WAT ZIT ER IN DE DOOS",
+        "HOE TE GEBRUIKEN",
+        "HET ZONNEPANEEL UITVOUWEN",
+        "HET ZONNEPANEEL OPVOUWEN",
+        "JACKERY DRAAGBARE POWERSTATION OPLADEN",
+        "ZONHOEKINDICATOR",
+        "TECHNISCHE PARAMETERS",
+        "GARANTIE"
+      ]
+    },
+    {
+      "lang": "pl",
+      "mode": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 1440,
+      "tables": [
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        },
+        {
+          "width": 838.8125,
+          "container": 839,
+          "scrollWidth": 839
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "WSKAZÓWKI DOTYCZĄCE BEZPIECZEŃSTWA",
+        "ZAWARTOŚĆ OPAKOWANIA",
+        "SPOSÓB UŻYCIA",
+        "ROZKŁADANIE PANELU SŁONECZNEGO",
+        "SKŁADANIE PANELU SŁONECZNEGO",
+        "ŁADOWANIE PRZENOŚNEJ STACJI ZASILAJĄCEJ JACKERY",
+        "WSKAŹNIK KĄTA PADANIA SŁOŃCA",
+        "PARAMETRY TECHNICZNE",
+        "GWARANCJA"
+      ]
+    },
+    {
+      "lang": "pl",
+      "mode": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "errors": [],
+      "scrollWidth": 390,
+      "tables": [
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        },
+        {
+          "width": 354,
+          "container": 354,
+          "scrollWidth": 354
+        }
+      ],
+      "images": 22,
+      "broken_images": 0,
+      "figure_captions": 17,
+      "headings": [
+        "WSKAZÓWKI DOTYCZĄCE BEZPIECZEŃSTWA",
+        "ZAWARTOŚĆ OPAKOWANIA",
+        "SPOSÓB UŻYCIA",
+        "ROZKŁADANIE PANELU SŁONECZNEGO",
+        "SKŁADANIE PANELU SŁONECZNEGO",
+        "ŁADOWANIE PRZENOŚNEJ STACJI ZASILAJĄCEJ JACKERY",
+        "WSKAŹNIK KĄTA PADANIA SŁOŃCA",
+        "PARAMETRY TECHNICZNE",
+        "GWARANCJA"
+      ]
+    }
+  ]
+}

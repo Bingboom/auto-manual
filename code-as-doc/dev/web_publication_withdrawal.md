@@ -1,5 +1,7 @@
 # Explicit Git-only publication withdrawal and restoration
 
+Status: active
+
 ## Discovery and plan
 
 Baseline: engineering main `af3d6d12c19a2b5e2de8febb65cdb53ec791501b`.

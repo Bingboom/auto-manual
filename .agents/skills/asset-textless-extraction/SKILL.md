@@ -13,10 +13,55 @@ recipe can violate an immutable promotion contract. This skill encodes the
 judgment; `references/operator-playbook.md` holds the full decision tree,
 traps, and closing checklist — keep it open.
 
+## Reuse before extraction
+
+Follow the shared [Web artwork selection contract](../../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)
+before choosing any transform. Inventory target assets, same-model/region
+assets in other languages, then shared/template assets. Open candidate images
+and verify identity, content, language and quality. Record the candidates,
+decision, source/hash and background policy in the target's existing review
+record using the contract's table. A new language, PDF or page number alone
+does not justify another extraction.
+
+If a matching asset exists, reuse it unchanged and stop extraction work.
+Frozen-package copies must remain byte-identical with source path/hash recorded.
+If only external labels change, reuse the artwork and update native labels.
+Extract only after documenting a missing suitable asset, insufficient quality,
+or a concrete target difference. Do not invent a new registry/schema for this
+review record or treat the record as an implemented build gate.
+
+## Classify the artwork before removing backgrounds
+
+- **Small standalone icons (LCD/status icons and individual button symbols):** remove identified page/cell
+  backdrops and export real transparency. Preserve product shading, button
+  faces and markings. White fill or CSS blending is not transparency.
+- **Complete panels, including text-free App control panels:** preserve native
+  gray backgrounds, structural panel borders and complete leader geometry.
+  **Independent caption boxes, pills and speech bubbles must be removed together
+  with their text; all empty text frames are forbidden in acquired/reused base
+  art and must be drawn with shared CSS.** White product surfaces and screenshot
+  UI remain artwork. Inspect bare art before adding live text; keeping the panel
+  is not permission to keep an empty caption frame.
+- **App screenshots:** prefer matching existing screenshots; preserve all phone
+  edges, corners, status bars and bottom UI. Do not crop to interior content.
+- Never delete gray/white objects by color alone. Compare any new extraction
+  with all four source edges at 12x, then verify the target Web component on
+  desktop and mobile. Transparency checks apply only to these small icons. Classify by semantic role,
+  not display size: shrinking a complete diagram does not turn it into an icon.
+
+Fresh frozen-Web sealing checks actual pixels in declared ReferenceFigure CSS
+caption rectangles through `tools/web/caption_frame_admission.py`. A contrasting
+filled capsule still baked into the art fails admission, even if the renderer
+adds CSS on top. Same-tone/outline-only frames and undeclared boxes still need
+bare-art review. Rejected old assets remain traceable but are marked
+`superseded-do-not-reuse` in their existing asset decision record.
+
 ## Core rules
 
 1. **Choose the operator from the drawing's structure, not from habit.**
-   Default is pure text stripping (`redact_text`, graphics preserved). Escalate
+   After the reuse check and classification, default for needed text stripping
+   is `redact_text`, graphics preserved. Complete finished panels use crop only.
+   Escalate
    to `remove_if_touched` only when leader lines touch label text; to
    `drop_leader_strokes` only for paired halo+stroke leaders drawn over
    artwork; and **leave the asset alone when evidence says the structure

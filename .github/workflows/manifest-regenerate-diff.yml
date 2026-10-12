@@ -28,8 +28,8 @@ jobs:
           python -m pip install -r requirements.lock
       - name: Regenerate manifest carriers and fail on drift
         run: >-
-          python tools/manifest_family.py fold
+          python -m tools.manifest_family fold
           --root "$GITHUB_WORKSPACE"
           --index docs/manifests/family/index.yaml
       - name: Run report-only manifest inventory
-        run: python tools/manifest_lint.py --json
+        run: python -m tools.manifest_lint --json

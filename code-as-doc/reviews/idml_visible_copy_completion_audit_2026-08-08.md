@@ -1,5 +1,7 @@
 # IDML 可见文案补全审计（2026-08-08）
 
+Status: done
+
 ## 结论
 
 IDML 正文 renderer 只能消费和排版源文案，不能根据 reference PDF、组件类型、语言包或

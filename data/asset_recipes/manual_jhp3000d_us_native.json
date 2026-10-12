@@ -1,0 +1,1599 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/manual_jhp3000d_us_native",
+    "expected_sha256": "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27",
+    "expected_page_count": 58
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 58
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.25,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "page_0001",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "page_0002",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "page_0003",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "page_0004",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "page_0005",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "page_0006",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "page_0007",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "page_0008",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "page_0009",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "page_0010",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "page_0011",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "page_0012",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "page_0013",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "page_0014",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "page_0015",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "page_0016",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "page_0017",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "page_0018",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "page_0019",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "page_0020",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "page_0021",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 22,
+      "page_key": "page_0022",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 23,
+      "page_key": "page_0023",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "page_0024",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "page_0025",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "page_0026",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "page_0027",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "page_0028",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 29,
+      "page_key": "page_0029",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 30,
+      "page_key": "page_0030",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 31,
+      "page_key": "page_0031",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 32,
+      "page_key": "page_0032",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 33,
+      "page_key": "page_0033",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 34,
+      "page_key": "page_0034",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 35,
+      "page_key": "page_0035",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 36,
+      "page_key": "page_0036",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 37,
+      "page_key": "page_0037",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 38,
+      "page_key": "page_0038",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 39,
+      "page_key": "page_0039",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 40,
+      "page_key": "page_0040",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 41,
+      "page_key": "page_0041",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 42,
+      "page_key": "page_0042",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 43,
+      "page_key": "page_0043",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 44,
+      "page_key": "page_0044",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 45,
+      "page_key": "page_0045",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 46,
+      "page_key": "page_0046",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 47,
+      "page_key": "page_0047",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 48,
+      "page_key": "page_0048",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 49,
+      "page_key": "page_0049",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 50,
+      "page_key": "page_0050",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 51,
+      "page_key": "page_0051",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 52,
+      "page_key": "page_0052",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 53,
+      "page_key": "page_0053",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 54,
+      "page_key": "page_0054",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 55,
+      "page_key": "page_0055",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 56,
+      "page_key": "page_0056",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 57,
+      "page_key": "page_0057",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 58,
+      "page_key": "page_0058",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/jhp3000d/us/inbox-main",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            43,
+            308,
+            130,
+            381
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/inbox-main.png",
+          "scale": 3,
+          "expected_sha256": "8e0fabae95cb06cad0b9f00979715d9fd51b07cb874f3353b843666083985908"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/inbox-main.pdf",
+          "expected_sha256": "315b45c8b8b0831b959bd879bbcf9b0e6cff8aab5cc5b89f99eefdc48a41241a"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/overview",
+      "page": 7,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            89,
+            343,
+            438
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/overview.png",
+          "scale": 3,
+          "expected_sha256": "2de3b881026ba8c06d496dcb5a8b5432aea9db2f58ad41d6e64396c0360f8d17"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/overview.pdf",
+          "expected_sha256": "3a8c4c13d0dfe68e040be39139c563d5f93cdb6c61c23b6c369739c488f3fe4e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/lcd-map",
+      "page": 8,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            40,
+            52,
+            325,
+            196
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/lcd-map.png",
+          "scale": 3,
+          "expected_sha256": "28877312e07513efbb9be585458e19b82901c8a8cef1e583479bc11882984734"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/lcd-map.pdf",
+          "expected_sha256": "fff3eb1806a257a7d99252f27136a537dc1ef9e18ef693683c5c63b9ba23fc51"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/power",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            72,
+            342,
+            240
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            320,
+            169,
+            321,
+            170
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            320,
+            211,
+            321,
+            212
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            178,
+            143,
+            179,
+            144
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/power.png",
+          "scale": 3,
+          "expected_sha256": "59cca657bbcf30cc78e06b4e7e0e585aa75fde7d61995f9f89ac0903bd289182"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/power.pdf",
+          "expected_sha256": "c8c294b407dfdc79e1f7d60affcb14b881f7e527bc0115d7488e40dc8e8b11dc"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/ac-output",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            268,
+            342,
+            480
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            158,
+            280,
+            159,
+            281
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            325,
+            455,
+            326,
+            456
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/ac-output.png",
+          "scale": 3,
+          "expected_sha256": "ab5d4381df493f43b1b6e60d57bc068718873df6705d566044cdcf69472f5720"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/ac-output.pdf",
+          "expected_sha256": "d590e3f93ecf143df89dca5fbcd978e07e33db5c120f9f421e15239c2f3e80fa"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/dc-output",
+      "page": 11,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            43,
+            342,
+            201
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            160,
+            55,
+            161,
+            56
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/dc-output.png",
+          "scale": 3,
+          "expected_sha256": "1f22b5078f1edf67a21a0a3ec67b2fea85804e890525ae7257ccb208a0d22118"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/dc-output.pdf",
+          "expected_sha256": "2a6c0cab0c3cc81417de77cbbaa1997e66a3a3e0aaedf29e543baba9314eaf6a"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/energy",
+      "page": 12,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            124,
+            342,
+            222
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/energy.png",
+          "scale": 3,
+          "expected_sha256": "d9e40091dcbf6c415d433c855661a388622bba4f39330b0a28447f2a2f4ca872"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/energy.pdf",
+          "expected_sha256": "33cd530dd58ff28411c6d167dcfeb110541561b50e144878507bae1307f1f99e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/lcd-button",
+      "page": 12,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            48,
+            289,
+            294,
+            370
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/lcd-button.png",
+          "scale": 3,
+          "expected_sha256": "e6af6bea23680ef6ac40dda408047dda898c7e5a87ad81cea77fd57bfa4e0579"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/lcd-button.pdf",
+          "expected_sha256": "4aa13826261d44487f50ced0c54ef2d9141662079719b81cfaae9ba707ae605e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/ups",
+      "page": 13,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            301,
+            342,
+            427
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/ups.png",
+          "scale": 3,
+          "expected_sha256": "47a76229065765586fb7151bf69db95071f1f9a1e67d57cc54118c40b8235360"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/ups.pdf",
+          "expected_sha256": "6506f718e6681b48021280ac3b0affd6abf2b915423490dae85f5422598dd996"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/ac-charge",
+      "page": 14,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            235,
+            342,
+            367
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/ac-charge.png",
+          "scale": 3,
+          "expected_sha256": "01edaf51e54a6f387a2499cb9ed6b33e74e5a4d1e07b8fdd824316db42bab656"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/ac-charge.pdf",
+          "expected_sha256": "9cd0d073f11e7e654a08a81ccf5aeda5203bb53dc6c942430fd97b781c62a054"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/solar",
+      "page": 15,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            77,
+            342,
+            254
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/solar.png",
+          "scale": 3,
+          "expected_sha256": "d70be392889fc00bc6bc1d5687d596a5be6557f51649d04433690ccc4f7a864e"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/solar.pdf",
+          "expected_sha256": "f8170e6a4c685149531313fdaf28fb937d1c9af67680ce1a8a4f49b48211da00"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/car",
+      "page": 16,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            62,
+            342,
+            210
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            328,
+            190,
+            329,
+            191
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/car.png",
+          "scale": 3,
+          "expected_sha256": "95a05bdf982e57b759d589ecba2daee3240da95eb28edbdc2432f7020fcc1756"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/car.pdf",
+          "expected_sha256": "e609784ea9d55e0b73b10d05821c7a4450e120dd0a2ddb4685d6fa3a7b16da9b"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/app-control",
+      "page": 20,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            33,
+            383,
+            336,
+            452
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/previews/app-control.png",
+          "scale": 3,
+          "expected_sha256": "134f40abbad0435b6c0a07ac714fcb255ad1702fe14b399035ec797518b9bbf7"
+        },
+        {
+          "format": "pdf",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/source/art/app-control.pdf",
+          "expected_sha256": "c163cc3d3fdeb2bbfa3cf4029ed38b90297eef87fcc65d35b20829ee6d3729af"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/jhp3000d/us/read-manual-native",
+      "page": 5,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JHP-3000D"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            39.1083984375,
+            366.3433837890625,
+            58.26740264892578,
+            385.4894104003906
+          ]
+        },
+        {
+          "op": "retain_vector_drawings",
+          "drawing_indices": [
+            53,
+            54,
+            55,
+            56,
+            57
+          ],
+          "fill_rgb_overrides": {},
+          "stroke_suppressed_indices": []
+        }
+      ],
+      "outputs": [
+        {
+          "format": "svg",
+          "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/symbol_read_manual_person.svg",
+          "expected_sha256": "b925552372b168a3e354081d97e43ccd08eb74803f685fc32223e49a27d0c0e5"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only target source; labels editable; CSS caption frames; no registry promotion."
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}

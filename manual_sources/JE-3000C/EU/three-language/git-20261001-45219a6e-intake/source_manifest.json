@@ -1,0 +1,91 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-3000C",
+    "region": "EU",
+    "languages": [
+      "pt",
+      "nl",
+      "pl"
+    ],
+    "technical_version": "git-20261001-45219a6e-intake"
+  },
+  "original_source": {
+    "filename": "HTE156-EU-9国语言-0923.ai",
+    "sha256": "45219a6e488358c4a76b847cd0288f5a865fd8ab899d8ceb9e154a5696816574",
+    "size_bytes": 41700602,
+    "physical_page_count": 152
+  },
+  "inputs": [
+    {
+      "path": "source/app_sections.json",
+      "size": 17050,
+      "sha256": "31e5976929478364c0ace72361a42a06086f5e29197a13c799f38eb59cf1d12f"
+    },
+    {
+      "path": "source/errata.json",
+      "size": 97,
+      "sha256": "d93b3a361fb1a63a80741334a90b34724e6846eb3442429513fcf32f1c4c4c59"
+    },
+    {
+      "path": "source/front_back_source.json",
+      "size": 774,
+      "sha256": "10537246f2257a6293254039bce35e8c9a010e572c2e2d3c9ca4ea1288204a1d"
+    },
+    {
+      "path": "source/lcd_indicators.json",
+      "size": 26206,
+      "sha256": "2569d0038817667e2092dc82e4cae30075c1571d9f45954993c0e07e3be4b30c"
+    },
+    {
+      "path": "source/nl_direct_source.json",
+      "size": 2508,
+      "sha256": "c658df44f54cf96e8712a8883ad555a3ac6ef16231ae3a437b3b8a53e95b5c22"
+    },
+    {
+      "path": "source/nl_figure_manifest.json",
+      "size": 1339,
+      "sha256": "5401c20d9aebc24ebc1aaa93351568838bcea65352110c7c065b31b501d67171"
+    },
+    {
+      "path": "source/operation_tables.json",
+      "size": 41134,
+      "sha256": "2418b0c0c26106addb46c3f703ce115fdd0227aaf8fb7c0f8da4e6647f809ece"
+    },
+    {
+      "path": "source/pl_direct_source.json",
+      "size": 2508,
+      "sha256": "2f402064d02eab71c00d1aaec42ef753b369b4dc8947a0a2b94c769ded184730"
+    },
+    {
+      "path": "source/pl_figure_manifest.json",
+      "size": 1339,
+      "sha256": "d6443abc81e053b49ade2cff9aca2255d129de996a49461f887b8b1d5b6f5284"
+    },
+    {
+      "path": "source/pt_direct_source.json",
+      "size": 2508,
+      "sha256": "f7d639970ae45f0c00ba5445c9c1cec0612c8b72a5822f439a87bbe79def0fb8"
+    },
+    {
+      "path": "source/pt_figure_manifest.json",
+      "size": 1339,
+      "sha256": "407cb5a06327da115c56afb7214e63c56f1c1b16ef8ff27e4222f063d1dc3a3a"
+    },
+    {
+      "path": "source/symbols.json",
+      "size": 6781,
+      "sha256": "996619ebbde2d48247e42d723123d2334cbb7045a427d8047529416e507351d6"
+    },
+    {
+      "path": "source/target_layout.json",
+      "size": 92458,
+      "sha256": "7d7734e50fa168093cc700a6e2e2d29592339d3d2174bca35b3029e036f7789a"
+    },
+    {
+      "path": "source/warranty_columns.json",
+      "size": 14194,
+      "sha256": "7c9b76eebc83ff26a72a291603a6f5d1c904f3ac70e39037fb62587a790db2d8"
+    }
+  ]
+}

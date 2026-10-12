@@ -1,0 +1,14 @@
+{
+  "fresh_prepared_assembly": "passed; actual public components rediscovered and asset/slot validation applied",
+  "region_admission": "JP normal admission applies; EU/UK policy remains out of region",
+  "html_byte_parity": "3415d087c55e55c60b08717296065786e9de735303347f48f09bd108b4d088a1",
+  "markdown_byte_parity": "3c5f07767ca49687a9ba3ce11c8befe1d0ae673c33ed79463edfae79bdb5748f",
+  "all_native_source_and_artwork_bytes_unchanged": true,
+  "source_text": "168 primary source lines and LED cells retain prior verified parity; final HTML byte-identical",
+  "cold_source_free_replay": "passed",
+  "changed_solar_bytes_rejected": "document asset missing or changed: assets/ir/434a3768abbb54d3f148e55fbe2475ce1a38906a18518ce96f266538e72080d8/solar.png",
+  "strict_sphinx": "passed",
+  "browser": "unchanged HTML retains accepted 1280px and 390px browser presentation",
+  "publication_eligible": true,
+  "authorization": "MA-272"
+}

@@ -5,7 +5,7 @@ HAUPTSTROMVERSORGUNG EIN/AUS
 ----------------------------
 
 .. image:: asset:operation/main_power
-   :alt: Platzhalter für Ein-/Ausschalten.
+   :alt: Ein-/Ausschalten.
    :width: 360px
 
 | Ein: Einmal drücken.
@@ -22,7 +22,7 @@ AC-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: asset:operation/ac_output
-   :alt: Platzhalter für AC-Ausgang Ein/Aus.
+   :alt: AC-Ausgang Ein/Aus.
    :width: 360px
 
 | 
@@ -38,7 +38,7 @@ DC 12V/USB-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: asset:operation/dc_usb_output
-   :alt: Platzhalter für DC/USB-Ausgang Ein/Aus.
+   :alt: DC/USB-Ausgang Ein/Aus.
    :width: 360px
 
 | 
@@ -67,19 +67,19 @@ DC 12V/USB-AUSGANG EIN/AUS
 
    * - **VORSICHT**
      -
-       - Der DC-12-V-Anschluss ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
-       - Starten Sie das Fahrzeug nicht, während das Produkt die Fahrzeugbatterie über den 12-V-DC-Ausgang lädt, da dies das Produkt beschädigen kann.
-       - Diese Funktion ist nur für den Notfall vorgesehen und kann eine leere oder beschädigte Fahrzeugbatterie nicht aufladen.
+       - Der Zigarettenanzünderanschluss ist nur mit 12V-Autobatterien kompatibel und nicht für 24V-Systeme geeignet.
+       - Starten Sie das Fahrzeug nicht, während das Gerät die Autobatterie über den 12V-DC-Ausgang (Zigarettenanzünderanschluss) lädt, da dies das Gerät beschädigen kann.
+       - Diese Funktion ist ausschließlich für den Notfall vorgesehen und kann eine vollständig entladene oder defekte Autobatterie nicht aufladen.
 
 ENERGIESPARMODUS
 ----------------
 
-Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Einschalttaste als auch die Haupt-POWER-Taste länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder DC/USB-Ausgang nicht mehr automatisch aus.
+Um unnötigen Batterieverbrauch durch das Vergessen des Ausschaltens des Ausgangs zu verhindern, ist der Energiesparmodus standardmäßig aktiviert. Wenn kein Gerät angeschlossen ist oder der Stromverbrauch des angeschlossenen Geräts unter einem bestimmten Schwellenwert liegt (AC-Ausgang ≤ |ENERGY_SAVING_AC_THRESHOLD| oder USB-Ausgang ≤ |ENERGY_SAVING_DC_THRESHOLD|), werden alle Ausgänge nach |ENERGY_SAVING_AUTO_OFF_DURATION| automatisch abgeschaltet.
 
-Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_THRESHOLD| oder DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird.
+Um den Energiesparmodus zu deaktivieren, halten Sie die AC-Stromtaste und die POWER-Taste gleichzeitig länger als 3 Sekunden gedrückt. Das Gerät schaltet den AC- oder DC-Ausgang nicht automatisch ab.
 
 .. image:: asset:operation/energy_saving
-   :alt: Platzhalter für die Tastenbedienung des Energiesparmodus.
+   :alt: Tastenbedienung des Energiesparmodus.
    :width: 320px
 
 
@@ -92,27 +92,14 @@ Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_
    * - **HINWEIS**
      - Der Energiesparmodus kehrt nach dem Einschalten in seinen vorherigen Zustand zurück. Für einen Moduswechsel ist ein manuelles Umschalten erforderlich.
 
+.. only:: not latex
 
-.. hb-capability-begin: AC/DC输出记忆恢复
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
 
-Wiederaufnahmefunktion für AC- und DC-Ausgänge
-----------------------------------------------
-
-Die Wiederaufnahmefunktion für AC- und DC-Ausgänge ist standardmäßig deaktiviert. Aktivieren Sie diese Funktion in der Jackery-App, damit das Gerät den Status der AC- und DC-Ausgänge speichert und die AC- und DC-Ausgänge unter festgelegten Bedingungen automatisch wiederherstellt.
-
-+-------------------------------------------------------------------+-------------------------------------------------------------+
-| Bedingungen für automatische Wiederherstellung                    | Bedingungen ohne automatische Wiederherstellung             |
-+===================================================================+=============================================================+
-| Einschalten/Neustart nach Abschalten oder Neustart                | Manuelles Ausschalten der Ausgänge (Taste/App)              |
-+-------------------------------------------------------------------+-------------------------------------------------------------+
-| Batterie-SOC ≥ Entladegrenze +10% nach Erreichen der Grenze       | Ausgang im Energiesparmodus deaktiviert                     |
-|                                                                   +-------------------------------------------------------------+
-|                                                                   | Schutzbedingter Ausgang deaktiviert                         |
-+-------------------------------------------------------------------+-------------------------------------------------------------+
-| OTA-Update abgeschlossen                                          | Durch Entlade-Timer gesteuerter Ausgang deaktiviert         |
-+-------------------------------------------------------------------+-------------------------------------------------------------+
-
-.. hb-capability-end:
+      * - **WARNUNG**
+        - Wenn der Energiesparmodus aktiviert ist, schaltet das Produkt den AC-Ausgang automatisch ab, wenn die Leistungsaufnahme des angeschlossenen Geräts über den eingestellten Zeitraum hinweg niedrig bleibt. Bei der Stromversorgung von Geräten, die eine kontinuierliche Stromversorgung benötigen, z. B. Kühlschränken, Routern, Überwachungskameras oder Aquarium-Luftpumpen, wird empfohlen, den Energiesparmodus auszuschalten, damit der Betrieb der Geräte nicht durch eine unerwartete Stromunterbrechung beeinträchtigt wird.
 
 
 LCD-ANZEIGE
@@ -125,7 +112,7 @@ LCD-ANZEIGE
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="asset:operation/lcd_mode" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Kurzzeitig an</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>
@@ -164,6 +151,27 @@ LCD-ANZEIGE
       \end{HBLcdModeTable}
 
 Sie können den Bildschirm-Anzeigemodus auch in der Jackery-App einstellen.
+
+.. hb-capability-begin: AC/DC输出记忆恢复
+
+Wiederaufnahmefunktion für AC- und DC-Ausgänge
+----------------------------------------------
+
+Diese Funktion speichert den Ausgangszustand und stellt die AC- und DC-Ausgänge unter bestimmten Bedingungen automatisch wieder her.
+
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| Bedingungen für automatische Wiederherstellung                    | Bedingungen ohne automatische Wiederherstellung             |
++===================================================================+=============================================================+
+| Einschalten/Neustart nach Abschalten oder Neustart                | Manuelles Ausschalten der Ausgänge (Taste/App)              |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| Batterie-SOC ≥ Entladegrenze +10% nach Erreichen der Grenze       | Ausgang im Energiesparmodus deaktiviert                     |
+|                                                                   +-------------------------------------------------------------+
+|                                                                   | Schutzbedingter Ausgang deaktiviert                         |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| OTA-Update abgeschlossen                                          | Durch Entlade-Timer gesteuerter Ausgang deaktiviert         |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+
+.. hb-capability-end:
 
 TASTENKOMBINATION
 -----------------

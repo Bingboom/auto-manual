@@ -1,0 +1,32 @@
+{
+  "asset_key": "lcd.icon.connected-batteries",
+  "physical_page": 114,
+  "source_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
+  "old_png_sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7",
+  "old_size": [
+    43,
+    34
+  ],
+  "old_mode": "RGB",
+  "new_png_sha256": "8d7e2187cdbcdae4f2fef1f18428e54450cdfd27731061bc93499946613ab188",
+  "new_pdf_sha256": "2e775a6ff659ba794abdddeec3e0b2e11455e4c444602c976df0a1e07754e6d9",
+  "new_size": [
+    261,
+    142
+  ],
+  "new_mode": "RGBA",
+  "transparent_corners": true,
+  "alpha_bounds": [
+    7,
+    8,
+    252,
+    134
+  ],
+  "native_form": "battery outline with inner opening and x8; current nine-language master",
+  "old_six_language_sources_changed": false,
+  "scope": [
+    "pt",
+    "nl",
+    "pl"
+  ]
+}

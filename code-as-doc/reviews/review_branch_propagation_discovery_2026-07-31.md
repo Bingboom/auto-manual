@@ -1,5 +1,7 @@
 # Review-Branch Propagation Discovery — 2026-07-31
 
+Status: done
+
 ## Scope
 
 This discovery supports Workstream V / K15 and Workstream W Stage 5 item 14.

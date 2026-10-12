@@ -1,0 +1,58 @@
+[
+  {
+    "language": "fr",
+    "page": 20,
+    "issue": "Malformed native safety sentence ends: des câbles de sortie d’éviter que la pluie et l’eau ne provoquent un choc électrique. Native spelling Mlise en garde is also retained."
+  },
+  {
+    "language": "fr",
+    "page": 27,
+    "issue": "English preparation heading and Spanish wooden-wall step 4."
+  },
+  {
+    "language": "fr",
+    "page": 30,
+    "issue": "Concrete-wall step 4 mentions montant de bois; retained as printed."
+  },
+  {
+    "language": "fr",
+    "page": 33,
+    "issue": "2 mois instead of EN/ES 12 months; Vehícule spelling; car note mentions cable only."
+  },
+  {
+    "language": "es",
+    "page": 41,
+    "issue": "Positioning prose repeats Jackery FridgeGuard where EN names Battery Pack."
+  },
+  {
+    "language": "es",
+    "page": 42,
+    "issue": "Vertical step 1 remains English."
+  },
+  {
+    "language": "es",
+    "page": 47,
+    "issue": "Connections lead names Paquete de Baterías Jackery FridgeGuard."
+  },
+  {
+    "language": "es",
+    "page": 51,
+    "issue": "Interpretation-rights copy repeats the original-buyer restriction; native warranty typos retained."
+  },
+  {
+    "language": "fr/es",
+    "page": [
+      32,
+      48
+    ],
+    "issue": "Solar-module sold-separately notice is included in prose; there is no separate footnote as in EN."
+  },
+  {
+    "language": "fr/es",
+    "page": [
+      20,
+      36
+    ],
+    "issue": "All four signal badges include triangle glyphs, unlike English NOTE/TIP."
+  }
+]

@@ -14,7 +14,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.manual_ir import read_manual_ir
-from tools.web_document_ir import render_document_fragments
+from tools.web.document_ir import render_document_fragments
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +25,8 @@ SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 ILLUSTRATIONS = (
     ROOT / "docs" / "renderers" / "web" / "je2000f_eu_en_illustrations.json"
 )
+APP_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je2000f_eu_web_app.json"
+LANGUAGES = ("en", "fr", "es", "de", "it", "uk")
 
 
 class Je2000fEuEnWebTests(unittest.TestCase):
@@ -159,6 +161,7 @@ class Je2000fEuEnWebTests(unittest.TestCase):
         for binding in (
             "asset_recipe",
             "corrective_asset_recipe",
+            "app_asset_recipe",
             "web_illustration_manifest",
         ):
             bound = manifest[binding]
@@ -222,7 +225,7 @@ class Je2000fEuEnWebTests(unittest.TestCase):
         self.assertIsNotNone(app_add_device)
         self.assertTrue(
             str(app_add_device["data-web-finished-panel-path"]).endswith(
-                "/app_control_panel.png"
+                "/app_add_device_panel.png"
             )
         )
         self.assertEqual(
@@ -230,6 +233,26 @@ class Je2000fEuEnWebTests(unittest.TestCase):
             app_add_device.get("alt"),
         )
         self.assertEqual([], soup.select(".hb-app-add-device-live-label"))
+        # The print's own App screens replace the shared JP-market screenshot;
+        # the "for reference only" sentence stays live text below the panel.
+        app_connect = soup.select_one(
+            'img.manual-finished-illustration[data-reference-id="app-connect-result"]'
+        )
+        self.assertIsNotNone(app_connect)
+        self.assertTrue(
+            str(app_connect["data-web-finished-panel-path"]).endswith(
+                "/app_connect_result.png"
+            )
+        )
+        self.assertEqual(
+            [],
+            [
+                image["src"]
+                for image in soup.find_all("img")
+                if str(image.get("src", "")).endswith("/connect_result.png")
+            ],
+        )
+        self.assertIn("The above screenshots are for reference only.", self.html)
         coverage = self.ir.metadata["web_figure_coverage"]
         self.assertEqual(12, coverage["summary"]["total"])
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])
@@ -243,7 +266,11 @@ class Je2000fEuEnWebTests(unittest.TestCase):
                 if slot["status"] == "editable-fallback"
             ],
         )
-        self.assertEqual(14, len(soup.select(".manual-finished-illustration")))
+        self.assertEqual(16, len(soup.select(".manual-finished-illustration")))
+        lcd_art = soup.select_one(".hb-lcd-mode-composition img.manual-finished-illustration")
+        self.assertEqual("assets/je2000f_eu_en/operation_lcd.png", lcd_art["data-web-finished-panel-path"])
+        self.assertEqual(hashlib.sha256((ROOT / "docs/renderers/web" / lcd_art["data-web-finished-panel-path"]).read_bytes()).hexdigest(),
+                         lcd_art["data-web-finished-panel-sha256"])
         self.assertEqual(17, len(self.ir.pages))
         for expected in (
             "4000 cycles to 70%+ capacity",
@@ -327,7 +354,7 @@ class Je2000fEuEnWebTests(unittest.TestCase):
             "operation_energy.png",
             "operation_led.png",
             "charging_car.png",
-            "app_control_panel.png",
+            "app_add_device_panel.png",
         ):
             image = soup.select_one(
                 f'[data-web-finished-panel-path$="/{path}"]'
@@ -354,18 +381,32 @@ class Je2000fEuEnWebTests(unittest.TestCase):
                 (ROOT / manifest["correction_recipe"]).read_bytes()
             ).hexdigest(),
         )
-        self.assertEqual(15, len(manifest["illustrations"]))
+        self.assertEqual(
+            "5de57e2ac1efe413f3ee833dc9f3d6b27eedb1a515e2103e7688afc7e149f7ff",
+            hashlib.sha256(APP_RECIPE.read_bytes()).hexdigest(),
+        )
+        app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))
+        self.assertEqual(16, len(manifest["illustrations"]))
         self.assertEqual(14, len(original_recipe["assets"]))
         self.assertEqual(11, len(correction_recipe["assets"]))
+        self.assertEqual(7, len(app_recipe["assets"]))
         for asset in original_recipe["assets"] + correction_recipe["assets"]:
             self.assertTrue(asset["build_eligible"])
             self.assertFalse(asset["visual_review_required"])
             self.assertEqual("approved", asset["gate"]["status"])
         for asset in correction_recipe["assets"]:
             self.assertEqual([12], [output["scale"] for output in asset["outputs"]])
+        # App screenshots stay quarantined in their recipe (the App/QR/URL/
+        # localized-UI gate); the illustration manifests are their only
+        # route onto the page.
+        for asset in app_recipe["assets"]:
+            self.assertFalse(asset["build_eligible"])
+            self.assertTrue(asset["visual_review_required"])
+            self.assertEqual("quarantine", asset["gate"]["status"])
+            self.assertIn("app-ui", asset["risk_tags"])
         output_hashes = {
             output["path"]: output["expected_sha256"]
-            for recipe in (original_recipe, correction_recipe)
+            for recipe in (original_recipe, correction_recipe, app_recipe)
             for asset in recipe["assets"]
             for output in asset["outputs"]
         }
@@ -377,6 +418,82 @@ class Je2000fEuEnWebTests(unittest.TestCase):
             self.assertEqual(
                 illustration["sha256"],
                 output_hashes[path.relative_to(ROOT).as_posix()],
+            )
+
+    def test_every_language_binds_the_one_shared_app_connect_panel(self) -> None:
+        """The six language blocks of the print place the same five bitmaps."""
+        app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))
+        (asset,) = [
+            item
+            for item in app_recipe["assets"]
+            if item["asset_key"] == "web/je2000f/eu/shared/app_connect_result"
+        ]
+        (output,) = asset["outputs"]
+        self.assertEqual(list(LANGUAGES), asset["scope"]["locales"])
+        for lang in LANGUAGES:
+            manifest = json.loads(
+                (
+                    ILLUSTRATIONS.parent / f"je2000f_eu_{lang}_illustrations.json"
+                ).read_text(encoding="utf-8")
+            )
+            bound = [
+                item
+                for item in manifest["illustrations"]
+                if "connect_result.png" in item["replaces"]
+            ]
+            self.assertEqual(1, len(bound), lang)
+            (item,) = bound
+            path = ILLUSTRATIONS.parent / item["path"]
+            self.assertEqual(output["path"], path.relative_to(ROOT).as_posix(), lang)
+            self.assertEqual(output["expected_sha256"], item["sha256"], lang)
+            self.assertEqual(
+                item["sha256"], hashlib.sha256(path.read_bytes()).hexdigest(), lang
+            )
+            self.assertEqual(asset["page"], item["source_page"], lang)
+            self.assertEqual(asset["transforms"][0]["bbox_pt"], item["bbox_pt"], lang)
+            self.assertEqual(APP_RECIPE.relative_to(ROOT).as_posix(), item["recipe"], lang)
+            self.assertTrue(item["consume_before_presentation"], lang)
+            self.assertEqual("app-connect-result", item["reference_id"], lang)
+
+    def test_every_language_binds_its_own_add_device_panel(self) -> None:
+        """Each block prints the App screens with this model's control panel."""
+        covered = {
+            "en": "Main POWER Button AC Power Button DC / USB Power Button",
+            "fr": "Bouton POWER principal Bouton CC / USB Bouton CA",
+            "es": "Botón POWER principal Botón CC/USB Botón CA",
+            "de": "Haupt-POWER-Taste AC-Einschalttaste DC/USB-Einschalttaste",
+            "it": "Pulsante POWER principale Pulsante CA Pulsante DC / USB",
+            "uk": "Головна кнопка POWER Кнопка AC Кнопка DC / USB",
+        }
+        assets = {
+            item["asset_key"]: item
+            for item in json.loads(APP_RECIPE.read_text(encoding="utf-8"))["assets"]
+        }
+        for lang in LANGUAGES:
+            asset = assets[f"web/je2000f/eu/{lang}/app_add_device_panel"]
+            (output,) = asset["outputs"]
+            self.assertEqual("quarantine", asset["gate"]["status"], lang)
+            self.assertEqual([lang], asset["scope"]["locales"], lang)
+            self.assertEqual(12, output["scale"], lang)
+            manifest = json.loads(
+                (
+                    ILLUSTRATIONS.parent / f"je2000f_eu_{lang}_illustrations.json"
+                ).read_text(encoding="utf-8")
+            )
+            (item,) = [
+                entry for entry in manifest["illustrations"] if entry["replaces"] == ["add_device.png"]
+            ]
+            path = ILLUSTRATIONS.parent / item["path"]
+            self.assertEqual(output["path"], path.relative_to(ROOT).as_posix(), lang)
+            self.assertEqual(output["expected_sha256"], item["sha256"], lang)
+            self.assertEqual(item["sha256"], hashlib.sha256(path.read_bytes()).hexdigest(), lang)
+            self.assertEqual(asset["page"], item["source_page"], lang)
+            self.assertEqual(asset["transforms"][0]["bbox_pt"], item["bbox_pt"], lang)
+            self.assertEqual(APP_RECIPE.relative_to(ROOT).as_posix(), item["recipe"], lang)
+            self.assertTrue(item["consume_before_presentation"], lang)
+            self.assertEqual("app-add-device", item["reference_id"], lang)
+            self.assertEqual(
+                [{"selector": ".line-block", "text": covered[lang]}], item["covered_annotations"], lang
             )
 
     def test_public_ir_replay_and_tamper_detection(self) -> None:

@@ -1,0 +1,68 @@
+{
+  "base_manifest_id": "manual_je100c_eu_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_je100c_kr_ko"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_je100c_kr-ko/01_safety.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je100c_kr-ko/02_symbols.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je100c_kr-ko/02_whats_in_the_box.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je100c_kr-ko/04_overview.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je100c_kr-ko/05_lcd.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je100c_kr-ko/06_operations.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je100c_kr-ko/07_charging.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je100c_kr-ko/08_storage.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je100c_kr-ko/09_specifications.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je100c_kr-ko/10_warranty.rst",
+          "lang": "ko",
+          "type": "rst_include"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_je100c_kr_ko"
+}

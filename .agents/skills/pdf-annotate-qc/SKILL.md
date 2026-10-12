@@ -19,14 +19,14 @@ and where the source lives.
 1. Produce findings (or accept an existing findings.json):
 
    ```bash
-   python tools/content_lint.py --data-root data/phase2 --json --write-report
+   python -m tools.content_lint --data-root data/phase2 --json --write-report
    # -> reports/content_qc/<run-id>/findings.json
    ```
 
 2. Render them onto the built PDF:
 
    ```bash
-   python tools/pdf_annotate.py \
+   python -m tools.pdf_annotate \
      --pdf docs/_build/<model>/<region>/pdf/<manual>.pdf \
      --findings reports/content_qc/<run-id>/findings.json
    # -> <manual>_annotated.pdf next to the input (or --out <path>)

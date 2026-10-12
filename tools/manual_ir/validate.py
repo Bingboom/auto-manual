@@ -87,7 +87,7 @@ def _structure_issues(raw: Any) -> list[str]:
         for field in ("page_count", "block_count", "skipped_raw"):
             if field in metadata:
                 count(metadata[field], f"metadata.{field}")
-    pages = raw.get("pages")
+    pages: Any = raw.get("pages")
     if not sequence(pages, "pages"):
         return issues
     for index, page in enumerate(pages):
@@ -100,7 +100,7 @@ def _structure_issues(raw: Any) -> list[str]:
         text(page.get("language"), f"{loc}.language", empty=True)
         digest(page.get("source_sha256"), f"{loc}.source_sha256")
         count(page.get("skipped_raw", 0), f"{loc}.skipped_raw")
-        blocks = page.get("blocks")
+        blocks: Any = page.get("blocks")
         if not sequence(blocks, f"{loc}.blocks"):
             continue
         for block_index, block in enumerate(blocks):
@@ -121,6 +121,12 @@ def _structure_issues(raw: Any) -> list[str]:
 
 def unknown_language_issues(ir: ManualIR) -> list[str]:
     """Return unregistered Manual IR language tokens with their source location."""
+
+    from .external_languages import frozen_language_issues
+
+    external_issues = frozen_language_issues(ir)
+    if external_issues is not None:
+        return external_issues
 
     issues: list[str] = []
     manual_language = str(ir.language or "").strip()
@@ -170,13 +176,10 @@ def validate_manual_ir(
     return issues
 
 
-def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list[str]:
-    issues = _structure_issues(raw)
-    if issues:
-        return issues
-    # All shapes/types below have been checked; no coercion or repair occurs.
+def _validate_embedded_registry(
+    metadata: dict[str, Any], issues: list[str],
+) -> tuple[dict[str, Any] | None, bool]:
     component_registry = None
-    metadata = raw.get("metadata", {})
     embedded_registry = metadata.get("component_registry")
     embedded_registry_sha256 = metadata.get("component_registry_sha256")
     requires_embedded_registry = (
@@ -213,6 +216,13 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
             "whole-document-components/v1 source-normalized IR requires a frozen "
             "component registry"
         )
+    return component_registry, requires_embedded_registry
+
+
+def _validate_embedded_theme(
+    metadata: dict[str, Any], component_registry: dict[str, Any] | None,
+    requires_embedded_registry: bool, issues: list[str],
+) -> None:
     embedded_theme = metadata.get("manual_theme")
     embedded_theme_sha256 = metadata.get("manual_theme_sha256")
     if embedded_theme is not None or embedded_theme_sha256 is not None:
@@ -247,6 +257,12 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
             "whole-document-components/v1 source-normalized IR requires a frozen "
             "manual theme"
         )
+
+
+def _validate_embedded_overview(
+    raw: dict[str, Any], metadata: dict[str, Any],
+    requires_embedded_registry: bool, issues: list[str],
+) -> None:
     embedded_overview = metadata.get("overview_instance")
     embedded_overview_sha256 = metadata.get("overview_instance_sha256")
     if embedded_overview is not None or embedded_overview_sha256 is not None:
@@ -321,6 +337,12 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
             "whole-document-components/v1 source-normalized figure IR requires "
             "a frozen Overview instance"
         )
+
+
+def _validate_payload_pages(
+    raw: dict[str, Any], component_registry: dict[str, Any] | None,
+    require_zero_skipped_raw: bool, issues: list[str],
+) -> list[str]:
     pages = raw["pages"]
     if raw["schema_version"] not in SUPPORTED_SCHEMA_VERSIONS:
         issues.append(
@@ -391,3 +413,15 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
     if tuple(raw.get("asset_refs", ())) != expected_assets:
         issues.append("manual asset_refs do not match block asset refs")
     return issues
+
+
+def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list[str]:
+    issues = _structure_issues(raw)
+    if issues:
+        return issues
+    # All shapes/types below have been checked; no coercion or repair occurs.
+    metadata = raw.get("metadata", {})
+    component_registry, requires_embedded_registry = _validate_embedded_registry(metadata, issues)
+    _validate_embedded_theme(metadata, component_registry, requires_embedded_registry, issues)
+    _validate_embedded_overview(raw, metadata, requires_embedded_registry, issues)
+    return _validate_payload_pages(raw, component_registry, require_zero_skipped_raw, issues)

@@ -1,0 +1,258 @@
+"""Figure labels must stay live, occur once, and remain bound to their artwork."""
+from copy import deepcopy
+from pathlib import Path
+import shutil
+from tempfile import TemporaryDirectory
+from types import SimpleNamespace
+import unittest
+from unittest.mock import patch
+
+from bs4 import BeautifulSoup
+
+from tools.web.frozen_ai_web import replay_package
+from tools.web.frozen_pdf_source import PdfBook
+from tools.web.frozen_pdf_reference import (
+    bind_reference_labels, labeled_artwork_node, reference_label_regions,
+)
+from tools.manual_ir.flow import flow_nodes_to_html
+from tools.manual_ir.components import component_specs_in_flow
+from tools.web.embedded_components import render_embedded_web_component
+
+
+def fixture():
+    figure = {'slug': 'solar', 'asset_key': 'diagram', 'physical_page': 5,
+              'section_id': 'charging', 'clip_points': [20, 30, 340, 190]}
+    block = {'bbox': [245, 165, 310, 172], 'text': 'SolarSaga 100 Air × 4\n'}
+    book = SimpleNamespace(
+        figures=[figure], language='pl', assets={'diagram': {'sha256': 'a' * 64}}, correct=lambda s: s,
+        source={'pages': [{'physical_page': 5, 'blocks_visual_order': [
+            block, {'bbox': [20, 200, 340, 220], 'text': 'Keep adjacent charging instructions.'},
+        ]}]},
+    )
+    binding = {'solar': {'live_labels': ['SolarSaga 100 Air × 4'], 'base_art_layout': {
+        'art_sha256': 'a' * 64, 'panel_top': 0, 'panel_fill': '#f2f3f3',
+        'labels': [{'line': 0, 'rect': [70, 89, 28, 6]}],
+    }}}
+    return book, binding
+
+
+class FrozenPdfReferenceTests(unittest.TestCase):
+    def test_je3000c_caption_box_is_css_without_empty_box_in_shared_raster(self):
+        from PIL import Image
+        import hashlib
+        from urllib.parse import unquote, urlsplit
+
+        source = (Path(__file__).resolve().parents[1] / 'manual_sources/JE-3000C/EU/'
+                  'three-language/git-20261001-45219a6e-native-web/web')
+        image_hashes = set()
+        with TemporaryDirectory() as directory:
+            for language in ('pt', 'nl', 'pl'):
+                target = Path(directory) / language
+                shutil.copytree(source / language, target)
+                soup = BeautifulSoup(''.join(replay_package(target)), 'html.parser')
+                panel = soup.select_one('[data-reference-id="car_charging"]')
+                self.assertEqual(1, len(panel.select('.hb-reference-live-pill')))
+                self.assertTrue(panel.select_one('.hb-reference-live-pill').get_text(strip=True))
+                self.assertEqual(2, len(panel.select('.hb-reference-live-label')))
+                image_path = Path(unquote(urlsplit(panel.img['src']).path))
+                if not image_path.is_absolute():
+                    image_path = target / image_path
+                image = Image.open(image_path).convert('RGB')
+                # This used to contain the empty white source capsule. Its
+                # textless art is now uniformly the native gray panel tone.
+                pixels = list(image.crop((634, 448, 1180, 497)).getdata())
+                # zip(strict=False): pixels may carry an alpha channel the reference colour lacks
+                self.assertTrue(all(max(abs(c - expected) for c, expected in
+                                        zip(pixel, (242, 243, 243), strict=False)) <= 1 for pixel in pixels))
+                image_hashes.add(hashlib.sha256(image_path.read_bytes()).hexdigest())
+        self.assertEqual(1, len(image_hashes))
+
+    def test_native_geometry_splits_merged_labels_and_rejects_wrong_provenance(self):
+        book, bindings = fixture()
+        book.source['pages'][0]['blocks_visual_order'][0]['text'] = 'Main button\nAC button'
+        book.records = {'reference_captions': {'solar': {
+            'physical_page': 5, 'labels': [
+                {'text': 'Main button', 'bbox': [220, 160, 270, 174]},
+                {'text': 'AC button', 'bbox': [280, 160, 330, 174]},
+            ],
+        }}}
+        bindings['solar'].pop('live_labels')
+        bindings['solar']['native_captions'] = True
+        bindings['solar']['base_art_layout']['labels'] = [
+            {'line': 0, 'rect': [60, 80, 18, 10]},
+            {'line': 1, 'rect': [80, 80, 18, 10]},
+        ]
+        original = deepcopy(book.records)
+        bind_reference_labels(book, bindings)
+        self.assertEqual(original, book.records)
+        self.assertEqual(['Main button', 'AC button'],
+                         [item['text'] for item in book.figures[0]['live_captions']])
+        self.assertEqual(2, len(reference_label_regions(book.figures)))
+        spec, = component_specs_in_flow((labeled_artwork_node(book.figures[0], 'assets/a.png', 'pl'),))
+        self.assertEqual(2, len(spec.slot('captions').content))
+        for mode in ('wrong-page', 'outside', 'duplicate', 'empty', 'mixed'):
+            with self.subTest(mode=mode):
+                changed, binding = deepcopy(book), deepcopy(bindings)
+                record = changed.records['reference_captions']['solar']
+                if mode == 'wrong-page':
+                    record['physical_page'] = 6
+                elif mode == 'outside':
+                    record['labels'][1]['bbox'][2] = 341
+                elif mode == 'duplicate':
+                    record['labels'][1] = deepcopy(record['labels'][0])
+                elif mode == 'empty':
+                    record['labels'][1]['text'] = ' '
+                else:
+                    binding['solar']['live_labels'] = ['Other']
+                with self.assertRaises(ValueError):
+                    bind_reference_labels(changed, binding)
+
+    def test_finished_caption_panel_keeps_native_copy_without_duplicate_caption_row(self):
+        book = object.__new__(PdfBook)
+        book.language = 'pt'
+        asset = {'asset_ref': 'assets/items.png', 'content_mode': 'source-finished-panel',
+                 'language': 'pt', 'physical_page': 5, 'captions_embedded': True}
+        book.assets = {'items': asset}
+        labels = ['Battery Pack', 'Cabo de expansão', 'Documentos', 'Vendido separadamente']
+        book.records = {'reference_captions': {'items': {
+            'physical_page': 5, 'labels': [{'text': label} for label in labels]}}}
+        figure = {'asset_key': 'items', 'slug': 'items',
+                  'section_id': 'battery_expansion', 'physical_page': 5}
+        native_records = deepcopy(book.records)
+        value = book.figure(figure)
+        html = flow_nodes_to_html((value,), component_renderer=lambda component:
+            render_embedded_web_component(
+                component, source_path=Path('battery.rst'), model='JE-1000H',
+                region='EU', language='pt', composite_manifest=None, contract={}))
+        soup = BeautifulSoup(html, 'html.parser')
+        self.assertEqual('assets/items.png', soup.img['src'])
+        self.assertFalse(soup.select('figcaption, .line-block'))
+        for label in labels:
+            self.assertEqual(1, soup.get_text().count(label))
+        self.assertIn('clip-path:inset(50%)', soup.p['style'])
+        self.assertEqual(native_records, book.records)
+        for key, wrong in [('language', 'nl'), ('physical_page', 6)]:
+            original = asset[key]
+            asset[key] = wrong
+            with self.assertRaisesRegex(ValueError, 'locale/page mismatch'):
+                book.figure(figure)
+            asset[key] = original
+        asset.pop('captions_embedded')
+        spec, = component_specs_in_flow((book.figure(figure),))
+        self.assertEqual(4, len(spec.slot('captions').content))
+
+    def test_overview_semantic_copy_applies_approved_erratum_without_mutating_native_source(self):
+        book = object.__new__(PdfBook)
+        book.language = 'nl'
+        book.assets = {'front': {'asset_ref': 'assets/front.png'}}
+        book.target_layout = {'media': {'overview': {'presentation': 'reference-figures'}}}
+        book.records = {'media': {'overview': {'views': {'front': {
+            'caption': 'Vooraanzicht', 'callouts': {
+                'dc_button': {'text': 'Aan/uit-knop voor DC'},
+                'handle': {'text': 'Handgreep'},
+            },
+        }}}}}
+        native_records = deepcopy(book.records)
+        book.correct = lambda value: value.replace('Aan/uit-knop voor DC', 'Aan/uit-knop voor AC')
+        figure = {'asset_key': 'front', 'slug': 'overview_front_view',
+                  'section_id': 'product_overview', 'physical_page': 4}
+
+        node = book.figure(figure)
+        spec, = component_specs_in_flow((node,))
+        adjacent = next(slot for slot in spec.slots if slot.role == 'adjacent_copy')
+        self.assertEqual('Vooraanzicht Aan/uit-knop voor AC Handgreep', adjacent.content['text'])
+        html = flow_nodes_to_html((node,), component_renderer=lambda component:
+            render_embedded_web_component(
+                component, source_path=Path('overview.rst'), model='JE-2000E',
+                region='EU', language='nl', composite_manifest=None, contract={}))
+        soup = BeautifulSoup(html, 'html.parser')
+        self.assertEqual(1, soup.get_text().count('Aan/uit-knop voor AC'))
+        self.assertNotIn('Aan/uit-knop voor DC', html)
+        self.assertNotIn('dc_button', html)
+        self.assertEqual(native_records, book.records)
+
+    def test_four_committed_books_replay_labels_without_reopening_pdf(self):
+        source = (Path(__file__).resolve().parents[1] / 'manual_sources' / 'JE-1000F' /
+                  'EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web')
+        with TemporaryDirectory() as directory, patch('fitz.open', side_effect=AssertionError('PDF reopened')):
+            for language in ('uk', 'pt', 'nl', 'pl'):
+                with self.subTest(language=language):
+                    target = Path(directory) / language
+                    shutil.copytree(source / language, target)
+                    soup = BeautifulSoup(''.join(replay_package(target)), 'html.parser')
+                    for label in ('SolarSaga 200 × 2', 'SolarSaga 100 Air × 4'):
+                        self.assertEqual(1, soup.get_text().count(label))
+                        element = next(item for item in soup.select('.hb-reference-live-label')
+                                       if item.text == label)
+                        self.assertIn('hb-reference-art-panel', element.parent['class'])
+                        self.assertIsNotNone(element.parent.img)
+                    vehicle = {'uk': 'Автомобіль', 'pt': 'Veículo', 'nl': 'Voertuig', 'pl': 'Pojazd'}[language]
+                    car = soup.select_one('figure[data-reference-id="car_charging"]')
+                    self.assertEqual(vehicle, car.select_one('.hb-reference-live-label').text)
+                    self.assertFalse(any(p.get_text(' ', strip=True) == vehicle for p in soup.find_all('p')))
+
+    def test_public_shared_renderer_keeps_text_inside_same_panel_exactly_once(self):
+        book, bindings = fixture()
+        original = deepcopy(book.source)
+        bind_reference_labels(book, bindings)
+        value = labeled_artwork_node(book.figures[0], 'assets/solar.png', 'pl')
+        html = flow_nodes_to_html((value,), component_renderer=lambda component:
+            render_embedded_web_component(
+                component, source_path=Path('charging.rst'), model='JE-1000F',
+                region='EU', language='pl', composite_manifest=None, contract={}))
+        soup = BeautifulSoup(html, 'html.parser')
+        panel = soup.select_one('.hb-reference-art-panel')
+        self.assertIsNotNone(panel)
+        self.assertEqual('assets/solar.png', panel.img['src'])
+        self.assertEqual('SolarSaga 100 Air × 4', panel.select_one('.hb-reference-live-label').text)
+        self.assertEqual(1, soup.get_text().count('SolarSaga 100 Air × 4'))
+        self.assertFalse(soup.select('p, .line-block'))
+        self.assertEqual(original, book.source)
+        self.assertEqual([{'physical_page': 5, 'section': 'charging',
+                           'consume_bbox': [245, 165, 310, 172]}],
+                         reference_label_regions(book.figures))
+
+    def test_missing_duplicate_or_outside_figure_text_fails_closed(self):
+        for mode in ('missing', 'duplicate', 'outside', 'repeated-declaration'):
+            with self.subTest(mode=mode):
+                book, binding = fixture()
+                blocks = book.source['pages'][0]['blocks_visual_order']
+                if mode == 'missing':
+                    blocks.pop(0)
+                elif mode == 'duplicate':
+                    blocks.insert(0, deepcopy(blocks[0]))
+                elif mode == 'outside':
+                    blocks[0]['bbox'] = [245, 195, 310, 202]
+                else:
+                    binding['solar']['live_labels'] *= 2
+                    binding['solar']['base_art_layout']['labels'].append(
+                        {'line': 1, 'rect': [70, 80, 28, 6]})
+                with self.assertRaisesRegex(ValueError, 'match exactly once'):
+                    bind_reference_labels(book, binding)
+
+    def test_changed_art_or_unplaced_label_is_rejected(self):
+        book, bindings = fixture()
+        book.assets['diagram']['sha256'] = 'b' * 64
+        with self.assertRaisesRegex(ValueError, 'SHA-256 mismatch'):
+            bind_reference_labels(book, bindings)
+        book, bindings = fixture()
+        bindings['solar']['base_art_layout']['labels'] = []
+        with self.assertRaises(ValueError):
+            bind_reference_labels(book, bindings)
+
+    def test_unlabeled_historical_art_remains_unchanged(self):
+        book, _ = fixture()
+        original = deepcopy(book.figures)
+        bind_reference_labels(book, {'solar': {}})
+        self.assertEqual(original, book.figures)
+        self.assertEqual([], reference_label_regions(book.figures))
+
+    def test_language_specific_labels_never_fall_back_to_another_language(self):
+        book, bindings = fixture()
+        book.source['pages'][0]['blocks_visual_order'][0]['text'] = 'Pojazd'
+        bindings['solar']['live_labels'] = {'pl': ['Pojazd'], 'nl': ['Voertuig']}
+        bind_reference_labels(book, bindings)
+        self.assertEqual('Pojazd', book.figures[0]['live_captions'][0]['text'])
+        book.language = 'uk'
+        with self.assertRaisesRegex(ValueError, 'live_labels'):
+            bind_reference_labels(book, bindings)

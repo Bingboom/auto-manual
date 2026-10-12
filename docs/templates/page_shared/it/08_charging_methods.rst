@@ -4,13 +4,13 @@ RICARICA TRAMITE PANNELLI SOLARI (VENDUTI SEPARATAMENTE)
 |PRODUCT_NAME| dispone di due porte di ingresso |DC_INPUT_CONNECTOR| ed è compatibile con i pannelli solari Jackery.
 
 .. image:: asset:charging/solar_direct
-   :alt: Segnaposto diagramma di collegamento per la ricarica solare 1.
+   :alt: Diagramma di collegamento per la ricarica solare (1).
    :width: 360px
 
 Se una porta di ingresso |DC_INPUT_CONNECTOR| deve collegare contemporaneamente due pannelli solari, fare riferimento alla figura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso di serie).
 
 .. image:: asset:charging/solar_adapter
-   :alt: Segnaposto diagramma di collegamento per la ricarica solare 2.
+   :alt: Diagramma di collegamento per la ricarica solare (2).
    :width: 360px
 
 .. list-table::
@@ -38,7 +38,7 @@ RICARICA TRAMITE CARICATORE PER AUTO (VENDUTI SEPARATAMENTE)
 Questo prodotto può essere caricato con un caricabatterie per auto da 12 V. Assicurarsi che il caricabatterie e l'accendisigari dell'auto siano ben collegati.
 
 .. image:: asset:charging/car_charge
-   :alt: Segnaposto diagramma di collegamento per la ricarica in auto.
+   :alt: Diagramma di collegamento per la ricarica in auto.
    :width: 360px
 
 | Veicolo

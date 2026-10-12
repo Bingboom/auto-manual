@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.source_intake_completeness import (  # noqa: E402
+from tools.data.source_intake_completeness import (  # noqa: E402
     IDENTITY_FIELDS, check_completeness, logical_key,
 )
 
@@ -84,7 +84,7 @@ class SpecExtractGateDefaultTests(unittest.TestCase):
         import io
         import tempfile
 
-        from tools import source_intake
+        from tools.data import source_intake
 
         with tempfile.TemporaryDirectory() as raw:
             td = Path(raw)
@@ -103,7 +103,7 @@ class SpecExtractGateDefaultTests(unittest.TestCase):
     def test_explicit_skip_flag_runs_without_gate(self):
         import tempfile
 
-        from tools import source_intake
+        from tools.data import source_intake
 
         with tempfile.TemporaryDirectory() as raw:
             td = Path(raw)
@@ -121,7 +121,7 @@ class SpecExtractGateDefaultTests(unittest.TestCase):
         import json
         import tempfile
 
-        from tools import source_intake
+        from tools.data import source_intake
 
         with tempfile.TemporaryDirectory() as raw:
             td = Path(raw)

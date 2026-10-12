@@ -1,0 +1,613 @@
+{
+  "locales": {
+    "pt": {
+      "physical_page": 117,
+      "blocks": {
+        "title": {
+          "physical_page": 117,
+          "bbox": [
+            25,
+            28,
+            344,
+            49
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "scope": {
+          "physical_page": 117,
+          "bbox": [
+            25,
+            51,
+            344,
+            81
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "local_law_note": {
+          "physical_page": 117,
+          "bbox": [
+            25,
+            81,
+            344,
+            99
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "limited_heading": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            99,
+            344,
+            112
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "limited_body": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            112,
+            344,
+            163
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "period_heading": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            166,
+            344,
+            182
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "standard_heading": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            182,
+            213,
+            213
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "box"
+        },
+        "extension_heading": {
+          "physical_page": 117,
+          "bbox": [
+            214,
+            182,
+            344,
+            213
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "box"
+        },
+        "standard_body": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            213,
+            213,
+            263
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "extension_body": {
+          "physical_page": 117,
+          "bbox": [
+            214,
+            213,
+            344,
+            263
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exchange_heading": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            265,
+            344,
+            282
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exchange_body": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            282,
+            344,
+            313
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "buyer_heading": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            316,
+            344,
+            333
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "buyer_body": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            333,
+            344,
+            358
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exclusions_heading": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            360,
+            344,
+            377
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exclusions_body": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            377,
+            344,
+            451
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "interpretation_heading": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            451,
+            344,
+            470
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "interpretation_body": {
+          "physical_page": 117,
+          "bbox": [
+            30,
+            470,
+            344,
+            497
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        }
+      }
+    },
+    "nl": {
+      "physical_page": 133,
+      "blocks": {
+        "title": {
+          "physical_page": 133,
+          "bbox": [
+            25,
+            28,
+            344,
+            49
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "scope": {
+          "physical_page": 133,
+          "bbox": [
+            25,
+            51,
+            344,
+            81
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "local_law_note": {
+          "physical_page": 133,
+          "bbox": [
+            25,
+            81,
+            344,
+            99
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "limited_heading": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            99,
+            344,
+            112
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "limited_body": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            112,
+            344,
+            163
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "period_heading": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            166,
+            344,
+            182
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "standard_heading": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            182,
+            213,
+            213
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "box"
+        },
+        "extension_heading": {
+          "physical_page": 133,
+          "bbox": [
+            214,
+            182,
+            344,
+            213
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "box"
+        },
+        "standard_body": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            213,
+            213,
+            263
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "extension_body": {
+          "physical_page": 133,
+          "bbox": [
+            214,
+            213,
+            344,
+            263
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exchange_heading": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            265,
+            344,
+            282
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exchange_body": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            282,
+            344,
+            313
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "buyer_heading": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            316,
+            344,
+            333
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "buyer_body": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            333,
+            344,
+            358
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exclusions_heading": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            360,
+            344,
+            377
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exclusions_body": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            377,
+            344,
+            451
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "interpretation_heading": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            451,
+            344,
+            470
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "interpretation_body": {
+          "physical_page": 133,
+          "bbox": [
+            30,
+            470,
+            344,
+            497
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        }
+      }
+    },
+    "pl": {
+      "physical_page": 149,
+      "blocks": {
+        "title": {
+          "physical_page": 149,
+          "bbox": [
+            25,
+            28,
+            344,
+            49
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "scope": {
+          "physical_page": 149,
+          "bbox": [
+            25,
+            51,
+            344,
+            81
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "local_law_note": {
+          "physical_page": 149,
+          "bbox": [
+            25,
+            81,
+            344,
+            99
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "limited_heading": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            99,
+            344,
+            112
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "limited_body": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            112,
+            344,
+            163
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "period_heading": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            166,
+            344,
+            182
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "standard_heading": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            182,
+            213,
+            213
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "box"
+        },
+        "extension_heading": {
+          "physical_page": 149,
+          "bbox": [
+            214,
+            182,
+            344,
+            213
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "box"
+        },
+        "standard_body": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            213,
+            213,
+            263
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "extension_body": {
+          "physical_page": 149,
+          "bbox": [
+            214,
+            213,
+            344,
+            263
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exchange_heading": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            265,
+            344,
+            282
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exchange_body": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            282,
+            344,
+            313
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "buyer_heading": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            316,
+            344,
+            333
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "buyer_body": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            333,
+            344,
+            358
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exclusions_heading": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            360,
+            344,
+            377
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "exclusions_body": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            377,
+            344,
+            451
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "interpretation_heading": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            451,
+            344,
+            470
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "interpretation_body": {
+          "physical_page": 149,
+          "bbox": [
+            30,
+            470,
+            344,
+            497
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        }
+      }
+    }
+  }
+}

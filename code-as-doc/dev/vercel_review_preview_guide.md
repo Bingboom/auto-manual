@@ -1,5 +1,7 @@
 # Vercel Latest Publish HTML Guide
 
+Status: active
+
 Updated: 2026-04-04
 
 This guide defines the current Vercel publishing flow.

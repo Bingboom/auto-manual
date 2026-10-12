@@ -6,14 +6,52 @@ the literal `transforms[].op` values accepted by
 `data/asset_recipes/asset-extraction-recipe-v1.schema.json` and implemented in
 `tools/asset_pipeline/extract.py` — verify against the code when in doubt.
 
+## Reuse and classification before text removal
+
+Complete the selection table in the shared
+[Web artwork contract](../../../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)
+first: record searched manifests/candidates, identity/content checks, reuse or
+extraction decision, concrete reason for new extraction, source/hash and
+background policy. Reuse a matching asset unchanged; changing the manual's
+language or receiving a new PDF does not justify recropping.
+
+Only small standalone icons, such as LCD/status icons and individual button
+symbols, use transparency. Classify by semantic role, not rendered pixel size;
+a reduced full diagram is still a full diagram. Inspect vector
+paths to distinguish peripheral page/cell backdrops from product material,
+button faces, shadows and screen/App content. Complete panels retain gray
+backgrounds, structural borders and leader geometry. Independent caption
+boxes, capsules and bubbles are removed with their text and redrawn with shared
+CSS; acquiring or reusing base art with empty text frames is prohibited. White
+product surfaces and App UI are preserved, identified by role rather than color. App screenshots retain complete phone
+frames, status bars and bottom UI; reuse matching screenshots before extraction.
+
+Do not remove every gray/white path by color, paint the backdrop white, or rely
+on CSS blending to disguise it. This rule does not introduce a new pipeline
+operator: tune the supported extraction/export in the scratchpad, preserve any
+pinned approved recipe, and record which objects were retained or excluded.
+For new extractions, compare all four edges with the source at 12x; for these small
+icons also verify SVG transparency/PNG alpha on white and checkerboard surfaces.
+
+Before accepting or reusing a base-art file, inspect it without live labels.
+Record each removed independent text frame and the matching CSS rectangle; mark
+obsolete empty-frame assets `superseded-do-not-reuse` in the existing review
+record. Fresh frozen-Web sealing rejects contrasting filled caption frames in
+declared ReferenceFigure rectangles. This bounded pixel check is not OCR and
+does not certify undeclared or outline-only boxes. Compare all four source
+edges and the complete product silhouette; never whiteout a gray panel.
+
 ## 1. Operator decision tree
 
-Work top-down; stop at the first fit. Every escalation needs evidence from
+Use this tree only after reuse has been ruled out and text removal is needed;
+complete finished panels use crop only. Work top-down; stop at the first fit.
+Every escalation needs evidence from
 the drawing's actual structure (`page.get_drawings()`, span dumps), never
 habit.
 
 | # | Structure observed | Operator | Why / real case |
 | --- | --- | --- | --- |
+| 0 | Independent caption frame with separately identifiable native PDF paths | `crop` + reviewed `retain_vector_drawings`, SVG export | Omit the caption-frame path and source text; retain original source clip groups, transforms and opacity. Do not replay intersecting paths into a new un-clipped drawing or delete white product surfaces. Verify the bare SVG in the browser at 12x; the caption comes back only through shared CSS. |
 | 1 | Plain burned labels; graphics must survive | `redact_text` (graphics `preserve` → `PDF_REDACT_LINE_ART_NONE`) | The proven default. Six rounds of graphic-level deletion attempts (2026-07-15) all regressed and were rolled back to this. |
 | 2 | Callout leader lines that TOUCH label text bboxes | `redact_text` with graphics `remove_if_touched` | The cascade-kill becomes the weapon: leaders die with the labels they touch (led_light / right_side_ports / front_controls, 2026-07-16). |
 | 3 | Paired leaders drawn OVER artwork: white halo (≈1.8pt) + black stroke (≈0.3pt), axis-aligned | `drop_leader_strokes` (`tools/asset_pipeline/leaders.py`) | The halo already erased the art it crossed, so any patching shows; flipping the strokes' paint operator to `n` leaves geometry bytes intact and the art beneath shows through (PR #734). Identification is STRUCTURAL (paired widths, axis-aligned) — never hardcoded coordinates; a suppression-count mismatch must raise, not pass. |
@@ -36,7 +74,7 @@ Precision facts that decide between rows:
   pipeline semantics (open the archived page PDF, apply the candidate
   transform, render). A full intake run (~1.5 min) is for final packaging,
   not parameter search.
-- Final packaging: `python tools/asset_intake.py --asset-source-key <key>
+- Final packaging: `python -m tools.asset_intake --asset-source-key <key>
   --asset-source-file <master> --asset-recipe data/asset_recipes/<r>.json
   --asset-output-root <out>` — intake is **package-only and never edits the
   worktree**; promotion into the repo is a separate, deliberate step.
@@ -75,6 +113,15 @@ Precision facts that decide between rows:
 
 ## 5. Closing checklist (a round is not done until all boxes tick)
 
+- [ ] **Reuse decision recorded**: searched candidates and specific reason for
+      extraction are recorded; reused assets keep original bytes/source hashes.
+- [ ] **Background and boundaries match the declared type**: small LCD/status/button icons
+      have true transparency; complete panels keep their gray background and
+      frames; App screenshots keep phone tops/status bars and all four edges.
+      Product shading, markings and leaders are intact; new crops have source
+      comparisons at 12x and do not include neighboring panels.
+- [ ] **Web verification**: desktop/mobile show the selected asset with complete
+      bounds, correctly anchored labels and no duplicated captions/step numbers.
 - [ ] **Hash three-place sync**: recipe `expected_sha256` · registry 内容哈希
       12-hex prefix (`data/asset_registry.csv`) · pinned test censuses
       (`tests/test_asset_registry.py` ×2, `tests/test_asset_recipe.py`

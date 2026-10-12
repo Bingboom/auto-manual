@@ -1,0 +1,282 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-100C",
+  "region": "EU",
+  "language": "de",
+  "source_pdf_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+  "source_pdf_name": "16-0102-000467 HTE162100A-EUUK-JAK 说明书 RoHS REACH A0(1).pdf",
+  "illustrations": [
+    {
+      "replaces": [
+        "inbox_unit.png"
+      ],
+      "path": "assets/je100c_eu_en/inbox_unit.png",
+      "sha256": "9e8cfb5917ef0d87bda25b46850c3d566b22b48d52fc7d01f875a220f7b37bed",
+      "source_page": 6,
+      "bbox_pt": [
+        25,
+        62,
+        84,
+        116
+      ],
+      "source_sha256": "012465a75b3af63e66be5b16d553f3a0aa014256ac4cc0502a0f85dd3419bc1c"
+    },
+    {
+      "replaces": [
+        "inbox_cable.png"
+      ],
+      "path": "assets/je100c_eu_en/inbox_cable.png",
+      "sha256": "440667657c702a6cb0c99f574430f9303253b3ada6a32aa8609cf562306d2a6e",
+      "source_page": 6,
+      "bbox_pt": [
+        104,
+        61,
+        151,
+        116
+      ],
+      "source_sha256": "012465a75b3af63e66be5b16d553f3a0aa014256ac4cc0502a0f85dd3419bc1c"
+    },
+    {
+      "replaces": [
+        "inbox_manual.png"
+      ],
+      "path": "assets/je100c_eu_en/inbox_manual.png",
+      "sha256": "4320efcbbc0506ca4cabe0cd0b4c268357fc87a224b3a76cf69cffd2f8771075",
+      "source_page": 6,
+      "bbox_pt": [
+        178,
+        61,
+        222,
+        116
+      ],
+      "source_sha256": "012465a75b3af63e66be5b16d553f3a0aa014256ac4cc0502a0f85dd3419bc1c"
+    },
+    {
+      "replaces": [
+        "operation_output.svg"
+      ],
+      "path": "assets/je100c_eu_shared/operation_output.svg",
+      "sha256": "c25182d0e50c8a44830818e968d34ebdac362c9c3cc790bea11fbd35394411cc",
+      "source_page": 10,
+      "bbox_pt": [
+        35,
+        148,
+        212,
+        210
+      ],
+      "source_sha256": "04d5a4075fc9fc5ad630416dca8e138576e9159fcfd4ce9a06328b8aa1a39cb5",
+      "previous_binding": {
+        "path": "assets/je100c_eu_en/operation_output.png",
+        "sha256": "dc99870298b82c1a04fd29c4560af6e8d3dea92ea6c8aa5f44f06cb3e1d754f3",
+        "source_page": 9,
+        "bbox_pt": [
+          17.5,
+          124,
+          235,
+          216
+        ]
+      },
+      "derived_provenance": "manual_sources/JE-100C/EU/en/2.0/web_svg_derivatives.json"
+    },
+    {
+      "replaces": [
+        "operation_energy.svg"
+      ],
+      "path": "assets/je100c_eu_shared/operation_energy.svg",
+      "sha256": "c582c9d79e57ac0e4eebac1b9390198382eecb59a466a4c3fccf5da988337641",
+      "source_page": 11,
+      "bbox_pt": [
+        37,
+        75,
+        174,
+        142
+      ],
+      "source_sha256": "04d5a4075fc9fc5ad630416dca8e138576e9159fcfd4ce9a06328b8aa1a39cb5",
+      "previous_binding": {
+        "path": "assets/je100c_eu_en/operation_energy.png",
+        "sha256": "4c1df5c3334b08628ba40fca2dc13be19a75aa34312da0c0f87ba8621068dbcc",
+        "source_page": 10,
+        "bbox_pt": [
+          18.5,
+          26.3,
+          236,
+          146.3
+        ]
+      },
+      "derived_provenance": "manual_sources/JE-100C/EU/en/2.0/web_svg_derivatives.json"
+    },
+    {
+      "replaces": [
+        "operation_lcd.png"
+      ],
+      "path": "assets/je100c_eu_shared/operation_lcd.png",
+      "sha256": "3bfea24fa9b667706e1b505020bcce2ea4df4f7b59702f9491466c992209c6ac",
+      "source_page": 10,
+      "bbox_pt": [
+        33,
+        223,
+        87,
+        320
+      ],
+      "previous_binding": {
+        "path": "assets/je100c_eu_en/operation_lcd.png",
+        "sha256": "d33d3830b8f36e02a0a32f6ffa57d3d6dfbeab7980c1285e77316089590dd957",
+        "source_page": 10,
+        "bbox_pt": [
+          18,
+          191,
+          100,
+          345
+        ]
+      },
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "derived_provenance": "manual_sources/JE-100C/EU/en/2.0/web_source_corrections.json"
+    },
+    {
+      "replaces": [
+        "charging_ac.svg"
+      ],
+      "path": "assets/je100c_eu_shared/charging_ac.svg",
+      "sha256": "6bff228a0b7875ef8050494728e7508021d5b000c1be40215f71b344964bd132",
+      "source_page": 11,
+      "bbox_pt": [
+        18.3,
+        106,
+        235.9,
+        182.1
+      ],
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "previous_binding": {
+        "path": "assets/je100c_eu_en/charging_ac.png",
+        "sha256": "6b4866ef484b9ca9a5ff10dd4cf3fb1f9a18146e02bb38aa27a4c1697c7b5d22",
+        "source_page": 11,
+        "bbox_pt": [
+          18.5,
+          106,
+          235.5,
+          182
+        ]
+      },
+      "derived_provenance": "manual_sources/JE-100C/EU/en/2.0/web_svg_derivatives.json"
+    },
+    {
+      "replaces": [
+        "symbol_purchase.png"
+      ],
+      "path": "assets/je100c_eu_shared/symbol_purchase.png",
+      "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3",
+      "source_page": 6,
+      "bbox_pt": [
+        18.6,
+        329,
+        27.5,
+        337.4
+      ],
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "derived_provenance": "manual_sources/JE-100C/EU/en/2.0/web_source_corrections.json",
+      "allow_reuse": true
+    },
+    {
+      "path": "assets/je100c_eu_de/overview.svg",
+      "source_page": 42,
+      "bbox_pt": [
+        16,
+        164,
+        240,
+        323
+      ],
+      "removed_layout_paths": [],
+      "sha256": "fdff5977556206060407a87ede8796236edd6ecc8132146d0307dbdbb5e4b340",
+      "replaces": [
+        "overview.svg"
+      ],
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "derived_provenance": "manual_sources/JE-100C/EU/de/2.0/native_source_intake.json"
+    },
+    {
+      "path": "assets/je100c_eu_de/lcd1.svg",
+      "source_page": 43,
+      "bbox_pt": [
+        37,
+        48,
+        213,
+        123
+      ],
+      "removed_layout_paths": [],
+      "sha256": "6bc687315dee23e5c8fd8d0333f6ee79b00407e5d35245c7abc57322fe06592f",
+      "replaces": [
+        "lcd1.svg"
+      ],
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "derived_provenance": "manual_sources/JE-100C/EU/de/2.0/native_source_intake.json"
+    },
+    {
+      "path": "assets/je100c_eu_de/lcd2.svg",
+      "source_page": 44,
+      "bbox_pt": [
+        18,
+        104.97452545166016,
+        238,
+        184.51751708984375
+      ],
+      "removed_layout_paths": [],
+      "sha256": "c4cbc02ccb12c47b3caac8340b34c2557a2383cd5274bd37656d8c2d5d01d9f1",
+      "replaces": [
+        "lcd2.svg"
+      ],
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "derived_provenance": "manual_sources/JE-100C/EU/de/2.0/native_source_intake.json"
+    },
+    {
+      "path": "assets/je100c_eu_de/lcd3.svg",
+      "source_page": 44,
+      "bbox_pt": [
+        43,
+        264.8924865722656,
+        207,
+        339
+      ],
+      "removed_layout_paths": [],
+      "sha256": "2ee708e432c63a624f7217deaa6ad9fccc996bee262d51bb172e6a28fe0b64d8",
+      "replaces": [
+        "lcd3.svg"
+      ],
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "derived_provenance": "manual_sources/JE-100C/EU/de/2.0/native_source_intake.json"
+    },
+    {
+      "path": "assets/je100c_eu_de/charging_solar.svg",
+      "source_page": 47,
+      "bbox_pt": [
+        18.32239685058594,
+        240.93731079101562,
+        235.63139953613282,
+        322.0793212890625
+      ],
+      "removed_layout_paths": [],
+      "sha256": "505b44399e96d7cffdaa870f385fb6cfa4372a9dd4e6dc27853c64b87f003ef9",
+      "replaces": [
+        "charging_solar.svg"
+      ],
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "derived_provenance": "manual_sources/JE-100C/EU/de/2.0/native_source_intake.json"
+    },
+    {
+      "path": "assets/je100c_eu_de/charging_car.svg",
+      "source_page": 48,
+      "bbox_pt": [
+        18.23810729980469,
+        97.53412017822265,
+        235.54610290527344,
+        203.85211791992188
+      ],
+      "removed_layout_paths": [],
+      "sha256": "ac6766b5f5a2ac53fa903630bae72cc93352ff113fb743a4447116984e3b016e",
+      "replaces": [
+        "charging_car.svg"
+      ],
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "derived_provenance": "manual_sources/JE-100C/EU/de/2.0/native_source_intake.json"
+    }
+  ]
+}

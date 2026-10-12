@@ -11,9 +11,10 @@ from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from tools import rtd_portal
-from tools.rtd_alias_entry import alias_head_markup, forward_markers
+from tools.rtd import portal as rtd_portal
+from tools.rtd.alias_entry import alias_head_markup, forward_markers
 from tools.readthedocs_source import assemble_rtd_source
+from tools.rtd.design_system_css import live_stylesheet_text
 
 
 class RtdPortalTests(unittest.TestCase):
@@ -43,9 +44,11 @@ class RtdPortalTests(unittest.TestCase):
 
     def test_default_and_shared_binding(self):
         self.assertEqual(self.settings["default_region"], "EU")
-        self.assertEqual(list(self.settings["regions"]), ["US", "EU", "UK"])
+        self.assertEqual(list(self.settings["regions"]), ["US", "EU", "UK", "CN", "JP", "KR", "TW"])
         self.assertEqual(self.settings["regions"]["EU"], self.settings["regions"]["UK"])
-        self.assertEqual(len(self.settings["languages"]), 12)
+        self.assertEqual(len(self.settings["languages"]), 16)
+        self.assertEqual(self.settings["language_labels"]["ko"], "한국어")
+        self.assertEqual(self.settings["language_labels"]["zh-TW"], "繁體中文")
 
     def test_catalog_uses_frozen_links_and_local_product_images(self):
         root = self.assemble()
@@ -109,16 +112,17 @@ class RtdPortalTests(unittest.TestCase):
         (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
         (share / "配图" / "00-概览.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
         with (root / "conf.py").open("a") as conf:
-            conf.write(f"\nfrom pathlib import Path\nfrom tools import rtd_portal as portal\nportal.ASSETS = Path({str(assets)!r})\n")
+            conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
             conf.write(f"rtd_knowledge_dir = {str(knowledge)!r}\n")
         before = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in root.rglob("*") if p.is_file()}
         # Compare manual content with the same site branding on both builds.
         for name, flags in (("before", ["-D", "html_title=Manual Center"]),
-                            ("after", ["-D", "extensions=myst_parser,tools.rtd_portal"])):
+                            ("after", ["-D", "extensions=myst_parser,tools.rtd.portal"])):
             result = subprocess.run(
                 [sys.executable, "-m", "sphinx", "-q", "-b", "html", *flags, str(root), str(self.root / name)],
                 cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True,
+                check=False,
             )
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         after = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
@@ -151,7 +155,7 @@ class RtdPortalTests(unittest.TestCase):
                     if beacon_token:
                         instant = forward_markers(target, delayed=False)
                         delayed = forward_markers(target, delayed=True)
-                        for wanted, original in zip(delayed, instant):
+                        for wanted, original in zip(delayed, instant, strict=True):
                             self.assertIn(wanted, after_text, path)
                             after_text = after_text.replace(wanted, original, 1)
                 self.assertEqual(without_beacon(before_bytes).decode("utf-8"), after_text, path)
@@ -159,12 +163,18 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('data-default-region="EU"', page)
         self.assertIn('value="EU" data-binding="EU" selected', page)
         self.assertIn('value="UK" data-binding="EU"', page)
+        self.assertIn('value="CN" data-binding="CN"', page)
+        self.assertIn('value="JP" data-binding="JP"', page)
+        self.assertIn('US · EU · UK · CN · JP', page)
         self.assertIn('id="ethical-ad-placement"', page)
         self.assertIn("按目录查看全部说明书", page)
         self.assertIn("说明书资料库", page)
         self.assertNotIn('class="brand" href="#" aria-label="Jackery', page)
-        self.assertIn('href="workspace/index.html">知识库</a>', page)
-        self.assertIn('class="selected" href="#">工作资料</a>', page)
+        for internal_path in ("workspace/", "products/knowledge.html", "market/policy.html", "ai-share/"):
+            self.assertNotIn(f'href="{internal_path}', page)
+        self.assertNotIn("workspace/design", page)
+        self.assertNotIn("先学最少必要的产品知识", page)
+        self.assertNotIn('class="app-switch"', page)
         self.assertIn('JE-TEST/JP/md/manual_JP.html', page)
         self.assertTrue((self.root / "after" / "_static" / "portal.css").is_file())
         self.assertNotIn("LOCAL DESIGN PREVIEW", page)
@@ -174,11 +184,42 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("知识库", workspace)
         self.assertNotIn("我的知识库", workspace)
         self.assertIn("分享资料", workspace)
+        self.assertIn('href="../products/knowledge.html"', workspace)
+        self.assertIn('href="../market/policy.html"', workspace)
         self.assertIn(">知识库</a>", workspace)
         self.assertIn(">工作资料</a>", workspace)
         self.assertNotIn("内部版", workspace)
         self.assertNotIn("对外版", workspace)
         self.assertNotIn("Jackery", workspace)
+        self.assertIn('href="design/index.html"', workspace)
+        design_root = self.root / "after" / "workspace" / "design"
+        design = (design_root / "index.html").read_text()
+        for tab in ("overview", "colors", "type", "components", "assets", "print"):
+            self.assertIn(f'data-tab="{tab}"', design)
+        self.assertIn('aria-current="page"><i aria-hidden="true">◐</i><span>设计系统</span>', design)
+        self.assertIn('src="previews/title-l1.html"', design)
+        self.assertIn('src="assets/symbols/symbol_warning_triangle.svg"', design)
+        self.assertIn('src="print/page.html"', design)
+        # Versions are a line of small text under the counts, not KPI tiles.
+        self.assertIn('class="ds-versions"', design)
+        self.assertEqual(design.split('class="ds-versions"', 1)[0].count('class="kpi"'), 4)
+        self.assertNotIn("Jackery", design)
+        self.assertEqual((design_root / "web_manual.css").read_text(), live_stylesheet_text())
+        self.assertIn('href="../web_manual.css"', (design_root / "previews" / "title-l1.html").read_text())
+        self.assertIn("--page_paperwidth:", (design_root / "print" / "tokens.css").read_text())
+        self.assertTrue((design_root / "assets" / "symbols" / "symbol_warning_triangle.svg").is_file())
+        self.assertIn('href="data/index.html"', workspace)
+        self.assertIn('href="../data/index.html"', design)
+        data_page = (self.root / "after" / "workspace" / "data" / "index.html").read_text()
+        self.assertIn('aria-current="page"><i aria-hidden="true">▥</i><span>系统数据</span>', data_page)
+        self.assertIn('<script type="application/json" id="system-data-json">', data_page)
+        # This tree has no publish manifest: only the publication cards are empty.
+        self.assertIn("无数据：本次构建没有可读的发布清单", data_page)
+        self.assertNotIn("Jackery", data_page)
+        self.assertTrue((self.root / "after" / "_static" / "system-data.js").is_file())
+        knowledge_page = (self.root / "after" / "products" / "knowledge.html").read_text()
+        self.assertIn('href="../index.html"', knowledge_page)
+        self.assertIn("返回说明书资料库", knowledge_page)
         self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
         self.assertIn('href="../index.html"', workspace)
         self.assertTrue(
@@ -191,6 +232,13 @@ class RtdPortalTests(unittest.TestCase):
             (self.root / "after" / "ai-share" / "00_打开分享.html").read_bytes(),
             (share / "00_打开分享.html").read_bytes(),
         )
+        search_page = (self.root / "after" / "search.html").read_text()
+        self.assertIn('id="manual-search-title">Search all manuals</h1>', search_page)
+        self.assertIn('id="manual-search-query" name="q" type="search"', search_page)
+        self.assertIn('id="search-results"', search_page)
+        self.assertIn('manual-search.css', search_page)
+        self.assertTrue((self.root / "after" / "_static" / "manual-search.css").is_file())
+        self.assertNotIn("manual-search-title", (self.root / "before" / "search.html").read_text())
 
 
 if __name__ == "__main__":

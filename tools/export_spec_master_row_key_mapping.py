@@ -19,7 +19,7 @@ from tools.utils.spec_master import (  # noqa: E402
     build_row_label_row_key_mapping_rows,
     read_spec_master_rows,
 )
-from tools.data_snapshot import (
+from tools.data.snapshot import (
     ROW_KEY_MAPPING_FILE,
     SPEC_MASTER_FILE,
     STRUCTURED_DATA_DEFAULT_DIR,

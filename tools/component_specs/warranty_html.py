@@ -6,6 +6,7 @@ import re
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.warranty import (
     warranty_lead_component_spec,
     warranty_section_component_spec,
@@ -53,7 +54,7 @@ def _period(cell: Tag, *, source_path: Path) -> dict[str, str]:
 def _blocks(nodes: list[Tag], *, source_path: Path) -> list[dict[str, object]]:
     blocks: list[dict[str, object]] = []
     for node in nodes:
-        if node.name == "p":
+        if node.name == "p" or (node.name == "div" and "line-block" in node.get("class", [])):
             blocks.append(
                 {
                     "kind": "paragraph",
@@ -76,14 +77,7 @@ def _blocks(nodes: list[Tag], *, source_path: Path) -> list[dict[str, object]]:
     return blocks
 
 
-def parse_warranty_html(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    expected_sections: int,
-    expected_years: list[str],
-    language: str,
-) -> tuple[tuple[object, tuple[Tag, ...]], ...]:
+def _lead_nodes(soup: BeautifulSoup, source_path: Path) -> tuple[Tag, list[Tag], list[Tag]]:
     heading = soup.find("h1", recursive=False)
     paragraphs = [
         node for node in soup.find_all("p", recursive=False) if isinstance(node, Tag)
@@ -91,23 +85,40 @@ def parse_warranty_html(
     sections = [
         node for node in soup.find_all("section", recursive=False) if isinstance(node, Tag)
     ]
-    if not isinstance(heading, Tag) or len(paragraphs) != 2:
+    if not isinstance(heading, Tag) or len(paragraphs) < 2:
         raise ValueError(f"{source_path}: warranty lead structure changed")
+    root_nodes = [node for node in soup.children if isinstance(node, Tag)]
+    # A lead can contain several authored paragraphs. Only the contiguous
+    # prefix between H1 and the sections belongs to it; the last is the note.
+    if root_nodes != [heading, *paragraphs, *sections]:
+        raise ValueError(f"{source_path}: warranty lead paragraphs must precede sections")
+    return heading, paragraphs, sections
+
+
+def parse_warranty_html(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    expected_sections: int,
+    expected_years: list[str],
+    language: str,
+) -> tuple[tuple[ComponentSpec, tuple[Tag, ...]], ...]:
+    heading, paragraphs, sections = _lead_nodes(soup, source_path)
     if len(sections) != expected_sections:
         raise ValueError(
             f"{source_path}: expected {expected_sections} warranty sections; "
             f"found {len(sections)}"
         )
-    claims: list[tuple[object, tuple[Tag, ...]]] = [
+    claims: list[tuple[ComponentSpec, tuple[Tag, ...]]] = [
         (
             warranty_lead_component_spec(
                 accessibility_label=heading.get_text(" ", strip=True),
-                lead_html=str(paragraphs[0]),
-                local_note_html=str(paragraphs[1]),
+                lead_html="\n".join(str(node) for node in paragraphs[:-1]),
+                local_note_html=str(paragraphs[-1]),
                 source_ref=f"{source_path}#warranty-lead",
                 language=language,
             ),
-            (paragraphs[0], paragraphs[1]),
+            tuple(paragraphs),
         )
     ]
     period_count = 0
@@ -156,8 +167,9 @@ def parse_warranty_html(
                 tuple(content),
             )
         )
-    if period_count != 1:
-        raise ValueError(f"{source_path}: expected one warranty years component")
+    expected_period_count = int(bool(expected_years))
+    if period_count != expected_period_count:
+        raise ValueError(f"{source_path}: expected {expected_period_count} warranty years component(s)")
     return tuple(claims)
 
 

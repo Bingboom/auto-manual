@@ -16,7 +16,7 @@
           "type": "cover_pdf"
         },
         {
-          "file": "templates/page_bp/intl/00_preface_six_language.rst",
+          "file": "templates/page_bp/en/00_preface.rst",
           "lang": "en",
           "lang_blocks": true,
           "slot_id": "preface_important",

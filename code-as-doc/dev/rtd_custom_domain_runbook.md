@@ -1,5 +1,7 @@
 # RTD 自有域名绑定 runbook
 
+Status: active
+
 状态：**暂缓执行（2026-09-15）**。域名已定 `manuals.jackery.com`，但 `jackery.com`
 的 DNS 权限不在操作者手里，绑定需要跨团队交接；操作者裁决先按 RTD 默认域名
 跑 D1 统计，本 runbook 挂起，待 DNS 交接可行时再执行。依据：运营规划第 0 步决策 D3（绑定，2026-09-15），见

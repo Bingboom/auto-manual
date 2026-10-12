@@ -2,6 +2,7 @@ MEANING OF SYMBOLS
 ==================
 
 .. list-table::
+   :class: hb-source-signals
    :header-rows: 1
    :widths: 20 80
 

@@ -140,7 +140,7 @@ PANTALLA LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Modo de pantalla LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Modo de pantalla LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encendido breve</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Encender</td>
@@ -178,7 +178,7 @@ PANTALLA LCD
       \setlength{\tabcolsep}{6pt}
       \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
       \hline
-      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{asset:operation/lcd_mode}}}
       & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Encendido breve}} & Encender & Presione el botón POWER principal o cuando el producto se esté cargando. \\ \cline{3-4}
       & & Apagar & Presione el botón POWER principal. \\ \cline{3-4}
       & & Apagado automático & La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad. \\ \cline{2-4}

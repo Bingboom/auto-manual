@@ -1,5 +1,7 @@
 # macOS product VOC receiver
 
+Status: active
+
 This runbook manages the existing `integrations.product_voc.server` receiver on
 the designated Mac. It is an explicit operator action: the repository does not
 install a daemon, start it at login, keep the Mac awake, configure OpenClaw or

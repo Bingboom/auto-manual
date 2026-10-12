@@ -1,0 +1,21 @@
+[env-preflight] WARN env.python: Python 3.13 differs from the pinned 3.12; tests and builds may fail for environment reasons
+[env-preflight] WARN env.lock: 4 pinned package(s) not installed: aliyun-python-sdk-core, aliyun-python-sdk-kms, crcmod, oss2
+[env-preflight] WARN env.lock: 5 package(s) differ from requirements.lock: certifi 2026.7.22 (lock 2026.6.17), cffi 2.1.1 (lock 2.1.0), charset-normalizer 3.5.1 (lock 3.4.8), idna 3.20 (lock 3.18), packaging 26.3 (lock 26.2)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+test_acceptance_cannot_cover_resealed_changed_source (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_acceptance_cannot_cover_resealed_changed_source) ... ok
+test_artwork_is_the_approved_artwork_except_the_inbox_manual_recrop (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_artwork_is_the_approved_artwork_except_the_inbox_manual_recrop) ... ok
+test_candidate_cannot_carry_or_claim_acceptance (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_candidate_cannot_carry_or_claim_acceptance) ... skipped 'edition already accepted'
+test_changed_or_unlisted_inputs_are_rejected_before_output (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_changed_or_unlisted_inputs_are_rejected_before_output) ... ok
+test_cold_render_matches_committed_web (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_cold_render_matches_committed_web) ... ok
+test_derivation_is_reproducible (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_derivation_is_reproducible) ... {"package": "git-20261009-ac3a1f82-web-layout", "inputs": 22}
+ok
+test_identity_and_candidate_status (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_identity_and_candidate_status) ... ok
+test_navigation_is_the_print_chapters_without_cover (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_navigation_is_the_print_chapters_without_cover) ... ok
+test_release_manifest_inventories_every_package_file (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_release_manifest_inventories_every_package_file) ... ok
+test_visible_copy_is_the_approved_copy_without_cover (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_visible_copy_is_the_approved_copy_without_cover) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 10.756s
+
+OK (skipped=1)
+exit=0

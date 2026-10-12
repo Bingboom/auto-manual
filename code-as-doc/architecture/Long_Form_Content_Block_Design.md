@@ -172,7 +172,7 @@ source row, so a reviewer's change lands in the right place deterministically.
    `source_ref` pointing at the block row (extends Workstream I).
 4. **Reviewer loop.** The reviewer edits the built `.docx` or the Feishu doc;
    [`Feishu_Cloud_Doc_Backport_Design.md`](Feishu_Cloud_Doc_Backport_Design.md)
-   (`tools/cloud_doc_backport.py`) diffs the accepted doc, maps each change to a
+   (`tools/backport/cloud_doc.py`) diffs the accepted doc, maps each change to a
    block row or block template, and opens a draft PR. No transcription, no
    standing agent.
 5. **Parity gate.** Before a page's pilot switch flips, an assembly-vs-RST parity

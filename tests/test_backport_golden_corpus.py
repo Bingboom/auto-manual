@@ -28,7 +28,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.cloud_doc_backport import build_report
+from tools.backport.cloud_doc import build_report
 from tools.token_resolution_map import build_value_index
 
 # A neutral one-word prose edit per review language. Each must stay plain prose:

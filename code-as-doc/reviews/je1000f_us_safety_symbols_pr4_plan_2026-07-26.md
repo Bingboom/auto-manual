@@ -1,5 +1,7 @@
 # JE-1000F US PR4: safety and symbols parity
 
+Status: done
+
 ## Scope
 
 PR4 aligns the repeated safety and meaning-of-symbols compositions on physical

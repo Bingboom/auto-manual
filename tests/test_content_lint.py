@@ -79,6 +79,21 @@ class ContentLintTest(unittest.TestCase):
             findings = check_english_residue(root, LANGS)
             self.assertTrue(any(f["lang"] == "it" and f["token"] == "On:" for f in findings))
 
+    def test_offline_languages_check_local_columns_without_live_schema_fields(self) -> None:
+        for lang in ("pt", "nl", "pl"):
+            with self.subTest(language=lang), tempfile.TemporaryDirectory() as td:
+                root = Path(td)
+                # Missing local tables are empty observations, never KeyErrors.
+                self.assertEqual(check_status_word_consistency(root, (lang,)), [])
+                self.assertEqual(check_english_residue(root, (lang,)), [])
+                column = f"icon_desc_{lang}"
+                _write(root, "lcd_icons_blocks.csv", ["icon_en", column],
+                       [{"icon_en": "Wi-Fi", column: "On: example residue."}])
+                findings = check_english_residue(root, (lang,))
+                self.assertEqual([(row["lang"], row["field"]) for row in findings],
+                                 [(lang, column)])
+                self.assertTrue(check_status_word_consistency(root, (lang,)))
+
     def test_slot_key_collision_flags_duplicate_key(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

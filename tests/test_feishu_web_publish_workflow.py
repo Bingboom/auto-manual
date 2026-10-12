@@ -39,7 +39,7 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertIn("merge --no-edit --no-ff -s ours", prepare)
         self.assertIn("read-tree --reset -u", prepare)
         self.assertIn("docs/publish", prepare)
-        self.assertIn("tools/publish_branch_assembly.py", assemble)
+        self.assertIn("tools.publish_branch_assembly", assemble)
         self.assertIn("--output-dir", assemble)
         self.assertIn("HEAD:refs/heads/publish", push)
         self.assertNotIn("--force", push)
@@ -76,7 +76,7 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertIn("review/*", pr_command)
 
         pending = str(self.steps[pending_index]["run"])
-        self.assertIn("tools/write_web_publish_html_link.py", pending)
+        self.assertIn("tools.write_web_publish_html_link", pending)
         self.assertIn("--pending", pending)
         self.assertIn("AUTO_MANUAL_RTD_BASE_URL", pending)
         rtd_base_url = str(self.job["env"]["AUTO_MANUAL_RTD_BASE_URL"])
@@ -90,7 +90,7 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertNotIn("Write RTD HTML_link back to Document_link", text)
         for step in self.steps:
             run = str(step.get("run") or "")
-            if "tools/write_web_publish_html_link.py" in run:
+            if "tools.write_web_publish_html_link" in run:
                 self.assertIn("--pending", run)
 
     def test_failure_sentinel_is_the_last_step(self) -> None:

@@ -19,7 +19,7 @@
     "config": "configs/config.solar-eu-en.yaml",
     "structured_copy": "docs/templates/page_solar/en",
     "data_root": "data/manual_sources/JS-100I/EU/en/2.0/phase2",
-    "snapshot_sha256": "231232f4d334a5c9bfe3d41117cfe97020d892b838b7d02d654713ae94a39fcd",
+    "snapshot_sha256": "0b9bfa9cc6813792ae04d0acfa935297938cd289986b3d59b7053ef0cdc80481",
     "snapshot_hash_algorithm": "sha256 of the LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the five CSV files"
   },
   "files": [
@@ -29,7 +29,7 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "sha256": "d3b143510a602a23ac120a21fb5a362639dc68b25c719a5135fe4e71e3690a76"
+      "sha256": "4afbbe6fd1e8240bc579ec42aa2de57c305b17421b8e0d699f92ee2e6dc68f59"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -45,12 +45,15 @@
     }
   ],
   "assets": {
-    "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
-    "recipe_sha256": "45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
+    "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json",
+    "recipe_sha256": "da990417982853677b85a24212a9761f507c72e06cfdf36793c4291fe33fa39a",
+    "legacy_recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
+    "legacy_recipe_sha256": "45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
     "illustration_manifest": "docs/renderers/web/js100i_eu_en_illustrations.json",
-    "illustration_manifest_sha256": "d2d63eac57d98272c6367a133b82a22d7831ce0d263867e458b79b039f700e52",
-    "semantic_asset_count": 13,
-    "text_policy": "localized-full-image"
+    "illustration_manifest_sha256": "67d7dc6d55edd7bb1eca78f81dc4bcdcef405085fe1be06ac1ce4aa933a10227",
+    "semantic_asset_count": 22,
+    "text_policy": "selectable operation copy with native shared drawings; legacy labelled product view",
+    "source_note": "English structured facts and prose retain published authority; operation layout and figures use the pinned nine-language native master."
   },
   "online_dependencies": {
     "bitable_read_required": false,

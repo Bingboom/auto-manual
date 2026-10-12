@@ -1,0 +1,190 @@
+{
+  "fr": {
+    "box": "CONTENU DE LA BOÎTE",
+    "manual": "Manuel d’utilisation",
+    "overview": "APERÇU DU PRODUIT",
+    "labels": [
+      "Entrée CC",
+      "2×Ports DC8020:",
+      "Oiture: 11–16 V⎓8 A max.",
+      "PV: 16–60 V⎓13 A Max, Double to 24 A max. / 500W max.",
+      "Lumière LED",
+      "Prise"
+    ],
+    "led": [
+      "État du voyant DEL",
+      "Couleur",
+      "État du produit",
+      "Clignotant",
+      "Vert",
+      "Charge en cours",
+      "Fixe",
+      "Rouge",
+      "Condition anormale",
+      "Connecté avec succès et prêt à charger",
+      "Éteint",
+      "Aucun"
+    ],
+    "charging": "CHARGE",
+    "solar_title": "CHARGEMENT PAR PANNEAUX SOLAIRES (VENDU SÉPARÉMENT)",
+    "solar_intro": "Rechargez votre dispositif à l’aide de panneaux solaires et du Jackery DC Input Module, comme indiqué dans la figure ci-dessous.",
+    "caution": "ATTENTION",
+    "solar_one": "Un port d’entrée DC8020 peut être connecté à un maximum de deux panneaux solaires.",
+    "solar_same": "Assurez-vous que la tension d’entrée pour les deux ports d’entrée CC est la même. Sinon, le produit pourrait être endommagé. Par exemple:",
+    "solar_examples": [
+      "Utiliser le même modèle de panneaux solaires Jackery et le même nombre de panneaux lors de la connexion des panneaux solaires aux deux ports d’entrée DC8020.",
+      "Ne chargez pas le produit à la fois avec un chargeur de voiture et un panneau solaire simultanément. Cela pourrait faire sauter le fusible de la voiture ou entraîner un échec de la charge."
+    ],
+    "solar_voc": "Il est recommandé d’utiliser le panneau solaire Jackery pour charger le Jackery FridgeGuard et Jackery Battery Pack. Assurez-vous que la tension en circuit ouvert (Voc) du panneau solaire se situe dans la plage d’entrée CC (36.8 V–56 V) du Jackery FridgeGuard ou dans la plage d’entrée CC (40 V–57.6 V) du Jackery Battery Pack. Jackery décline toute responsabilité en cas de pertes causées par l’utilisation de panneaux solaires d’autres marques.",
+    "car_title": "CHARGEMENT PAR PRISE DE VOITURE (VENDU SÉPARÉMENT)",
+    "car_intro": "Chargez votre produit avec le chargeur de voiture et le Jackery DC Input Module comme illustré dans la figure ci-dessous. Assurez-vous que le chargeur allume-cigare et l’allume-cigare de la voiture sont bien branchés.",
+    "car_labels": [
+      "Véhicule",
+      "DC8020",
+      "※ Le câble de chargement de voiture est vendu séparément."
+    ],
+    "car_warnings": [
+      "Veuillez démarrer le véhicule avant de charger votre station d’alimentation.",
+      "Si le véhicule roule sur des routes accidentées, il est interdit d’utiliser le chargeur de voiture afin d’éviter tout risque de surchauffe dû à une mauvaise connexion. La société ne sera pas responsable des pertes causées par une utilisation non conforme.",
+      "La charge par véhicule est uniquement applicable aux véhicules en 12 V CC, pas en 24 V CC. Veuillez ne pas charger ce produit dans un véhicule 24 V afin d’éviter tout risque de blessure ou de dommage matériel."
+    ],
+    "spec": "SPÉCIFICATIONS",
+    "general": "INFORMATIONS GÉNÉRALES",
+    "ports": "PORTS D’ENTRÉE/SORTIE",
+    "spec_labels": [
+      "Nom du produit",
+      "N° modèle",
+      "Poids",
+      "Dimensions",
+      "Sortie CC",
+      "Entrée CC"
+    ],
+    "spec_values": [
+      "Jackery DC Input Module",
+      "JA-AD500A-SIL",
+      "Environ 1,1 lbs/0,5kg",
+      "6,7 × 3,5 × 2,1 po/17 × 9 × 5,2 cm",
+      "11 V–16 V⎓8 A max.",
+      "16 V–60 V⎓13 A max., double à 24 A max./500 W max.",
+      "42V–58V⎓10,7A max."
+    ],
+    "warranty": "GARANTIE",
+    "lead": "Nous ne fournissons notre garantie qu’aux clients qui achètent sur le site officiel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux.",
+    "note": "La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux.",
+    "limited_title": "Garantie limitée",
+    "limited": "Jackery Inc. garantit à l’acheteur et consommateur d’origine que le produit de Jackery sera exempt de tout défaut de fabrication et de matériaux dans le cadre d’une utilisation normale pendant toute la durée de la période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve des exceptions énoncées ci-dessous.",
+    "obligation": "Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous n’assumerons pas et nous n’autorisons personne à assumer pour nous toute autre responsabilité en lien avec la vente de nos produits.",
+    "period_title": "Période de garantie",
+    "unit": "AN",
+    "standard": "Garantie standard",
+    "period": "La période de garantie standard du Jackery DC Input Module est de 12 mois. Dans tous les cas, la période de garantie commence à compter de la date d’achat par l’acheteur et consommateur d’origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d’établir la date de début de la période de garantie.",
+    "repair_title": "Réparation ou remplacement",
+    "repair": "Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d’un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d’achat d’origine.",
+    "buyer_title": "Limitée à l’acheteur et consommateur d’origine",
+    "buyer": "La garantie d’un produit Jackery est limitée à l’acheteur et consommateur d’origine, elle ne peut pas être transférée à un autre propriétaire.",
+    "exclusions_title": "Exclusions",
+    "exclusions_intro": "La garantie de Jackery ne s’applique pas à :",
+    "exclusions": [
+      "Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre utilisation qui n’est pas une utilisation normale de produit et autorisée par la documentation actuelle du produit de Jackery.",
+      "À une réparation tentée par quelqu’un d’autre qu’un établissement agréé.",
+      "Tout autre produit acheté par l’intermédiaire d’une vente aux enchères en ligne.",
+      "La garantie de Jackery ne s’applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé les cellules de la batterie dans les sept jours suivant l’achat du produit et au moins une fois tous les 6 mois par la suite."
+    ],
+    "interpretation_title": "Droits d’interprétation",
+    "interpretation": "Jackery Inc. se réserve le droit d’interpréter de manière définitive la politique après-vente des clients ci-dessus."
+  },
+  "es": {
+    "box": "CONTENIDO DE LA CAJA",
+    "manual": "Manual de usuario",
+    "overview": "DESCRIPCIÓN GENERAL DEL PRODUCTO",
+    "labels": [
+      "Entrada de CC",
+      "2 x Puertos DC8020:",
+      "Auto: 11–16 V⎓8 A Máx",
+      "PV: 16–60 V⎓13 A Máx, Doble a 24 A Máx / 500 W Máx",
+      "Luz LED",
+      "Conectar"
+    ],
+    "led": [
+      "Estado de la luz LED",
+      "Color de la luz",
+      "Estado del producto",
+      "Parpadeando",
+      "Verde",
+      "Carga en progreso",
+      "Fijo",
+      "Rojo",
+      "Condición anormal",
+      "Conectado correctamente y listo para carga",
+      "Apagado",
+      "Ninguno"
+    ],
+    "charging": "CARGANDO",
+    "solar_title": "CARGA MEDIANTE PANELES SOLARES (SE VENDE POR SEPARADO)",
+    "solar_intro": "Cargue su producto con paneles solares y el Jackery DC Input Module como se muestra en la siguiente figura.",
+    "caution": "PRECAUCIÓN",
+    "solar_one": "Un puerto de entrada DC8020 puede conectarse a un máximo de dos paneles solares.",
+    "solar_same": "Asegúrese de que el voltaje de entrada para ambos puertos de entrada CC sea el mismo. De lo contrario, podría dañar el producto. Por ejemplo:",
+    "solar_examples": [
+      "Utilizar paneles solares Jackery del mismo modelo y la misma cantidad de paneles al conectar paneles solares a ambos puertos de entrada DC8020.",
+      "No cargue el producto utilizando simultáneamente un cargador de automóvil y un panel solar. Hacerlo podría quemar el fusible del coche o resultar en un fallo de carga."
+    ],
+    "solar_voc": "Se recomienda usar el panel solar Jackery para cargar el Jackery Battery Pack y Jackery FridgeGuard. Asegúrese de que el voltaje de circuito abierto (Voc) del panel solar esté dentro del rango de entrada de CC (36.8 V–56 V) del Jackery FridgeGuard o del rango de entrada de CC (40 V–57.6 V) del Jackery Battery Pack. Jackery no se hace responsable de pérdidas causadas por el uso de paneles solares de otras marcas.",
+    "car_title": "CARGA CON UN CARGADOR DE EN EL VEHÍCULO (SE VENDE POR SEPARADO)",
+    "car_intro": "Cargue su producto con el cargador de automóvil y el módulo de entrada de CC Jackery como se muestra en la figura a continuación. Asegúrese de que el cargador de coche y el encendedor de coche ofrecen una buena conexión.",
+    "car_labels": [
+      "Vehículo",
+      "DC8020",
+      "※ El cable de carga para auto se vende por separado."
+    ],
+    "car_warnings": [
+      "Por favor, encienda el vehículo antes de cargar su estación de energía.",
+      "Si el vehículo circula por caminos accidentados, está prohibido usar el cargador de coche para evitar que se queme debido a una mala conexión. La empresa no se responsabiliza por pérdidas causadas por un uso incorrecto.",
+      "La carga en vehículo solo es aplicable a vehículos con 12 V CC, no a 24 V CC. Por favor, no cargue este producto en vehículos de 24 V para evitar lesiones personales y daños materiales."
+    ],
+    "spec": "ESPECIFICACIONES",
+    "general": "INFORMACIÓN GENERAL",
+    "ports": "PUERTOS DE ENTRADA/SALIDA",
+    "spec_labels": [
+      "Nombre del producto",
+      "N° de modelo",
+      "Peso",
+      "Dimensiones",
+      "Entrada de CC",
+      "Salidas de CC"
+    ],
+    "spec_values": [
+      "Jackery DC Input Module",
+      "JA-AD500A-SIL",
+      "Aproximadamente 1,1 libras/0,5 kg",
+      "6,7 × 3,5 × 2,1 pulgadas/17 × 9 × 5,2 cm",
+      "11V–16V⎓8A Máx",
+      "16V–60V⎓13A Máx, Double to 24AMáx / 500W Máx",
+      "42V–58V⎓10,7A Máx"
+    ],
+    "warranty": "GARANTÍA",
+    "lead": "Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery, plataformas de terceros con la marca Jackery o distribuidores autorizados locales.",
+    "note": "El periodo de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.",
+    "limited_title": "GARANTÍA LIMITADA",
+    "limited": "Jackery Inc. garantiza al consumidor original que el producto de Jackery estará libre de defectos relativos al acabado y a los materiales en condiciones normales de uso por parte del consumidor durante el período de garantía aplicable identificado en la sección \"Período de garantía\" que figura a continuación, sujeto a las exclusiones que se establecen a continuación.",
+    "obligation": "Esta declaración de garantía establece la obligación de garantía total y exclusiva de Jackery. No asumimos ni autorizaremos que ninguna persona asuma por nosotros ninguna otra responsabilidad en relación con la venta de nuestros productos.",
+    "period_title": "PERÍODO DE GARANTÍA",
+    "unit": "AÑO",
+    "standard": "Garantía estándar",
+    "period": "El período de garantía estándar de Jackery DC Input Module es de 12 meses. En cada caso, el período de garantía se mide a partir de la fecha de compra por parte del comprador consumidor original. Para establecer la fecha de inicio del período de garantía, se necesita el recibo de venta de la primera compra del consumidor u otra prueba documental razonable.",
+    "repair_title": "REPARACIÓN O REEMPLAZO",
+    "repair": "Jackery reparará o reemplazará (a cargo de Jackery) cualquier producto Jackery que no funcione durante el período de garantía aplicable debido a defectos en la mano de obra o el material. El producto reparado o reemplazado asumirá el período restante de la garantía desde la fecha original de compra.",
+    "buyer_title": "LIMITADO AL COMPRADOR CONSUMIDOR ORIGINAL",
+    "buyer": "La garantía del producto de Jackery se limita al consumidor original y no es transferible a ningún propietario posterior.",
+    "exclusions_title": "EXCLUSIONES",
+    "exclusions_intro": "La garantía de Jackery no se aplica a:",
+    "exclusions": [
+      "Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal del consumidor según lo autorizado en los folletos actuales del producto de Jackery.",
+      "Intento de reparación por parte de alguien que no sea un centro autorizado.",
+      "Cualquier producto adquirido a través de una casa de subastas en línea.",
+      "La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completamente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez cada 6 meses."
+    ],
+    "interpretation_title": "DERECHOS DE INTERPRETACIÓN",
+    "interpretation": "La garantía del producto de Jackery se limita al consumidor original y no es transferible a ningún propietario posterior."
+  }
+}

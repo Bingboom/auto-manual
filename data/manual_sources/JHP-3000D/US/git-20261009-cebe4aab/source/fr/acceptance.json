@@ -1,0 +1,435 @@
+{
+  "target": {
+    "model": "JHP-3000D",
+    "region": "US",
+    "language": "fr"
+  },
+  "original_source_sha256": "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27",
+  "accepted_at": "2026-10-09T13:25:20.370573+00:00",
+  "visible_copy_and_structure": {
+    "language": "fr",
+    "visible_native_lines": 763,
+    "chapters": 16,
+    "figures": 13,
+    "live_figure_labels": 61,
+    "lcd_entries": 26,
+    "spec_rows": [
+      7,
+      2,
+      7,
+      2
+    ],
+    "unmapped_words": 0,
+    "failures": []
+  },
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol_warning_triangle.svg",
+      "physical_page": 23,
+      "max_mean_channel_error": 0.012956
+    },
+    {
+      "asset_ref": "assets/symbol_read_manual_person.svg",
+      "physical_page": 23,
+      "max_mean_channel_error": 0.008776
+    },
+    {
+      "asset_ref": "assets/symbol_keep_away_from_children_gray_jp.svg",
+      "physical_page": 23,
+      "max_mean_channel_error": 0.013878
+    },
+    {
+      "asset_ref": "assets/symbol_li_ion.svg",
+      "physical_page": 23,
+      "max_mean_channel_error": 0.013967
+    },
+    {
+      "asset_ref": "assets/symbol_do_not_dismantle.svg",
+      "physical_page": 23,
+      "max_mean_channel_error": 0.010516
+    },
+    {
+      "asset_ref": "assets/symbol_no_open_flame_gray_jp.svg",
+      "physical_page": 23,
+      "max_mean_channel_error": 0.010869
+    },
+    {
+      "asset_ref": "assets/symbol_weee.png",
+      "physical_page": 23,
+      "max_mean_channel_error": 0.018241
+    }
+  ],
+  "caption_frame_admission": [
+    {
+      "source_ref": "native-pdf/page-10/power",
+      "asset_ref": "assets/power.svg",
+      "labels": [
+        {
+          "line": 3,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        },
+        {
+          "line": 4,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-10/ac-output",
+      "asset_ref": "assets/ac-output.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        },
+        {
+          "line": 3,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-11/dc-output",
+      "asset_ref": "assets/dc-output.svg",
+      "labels": [
+        {
+          "line": 0,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "source_ref": "native-pdf/page-16/car",
+      "asset_ref": "assets/car.svg",
+      "labels": [
+        {
+          "line": 1,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    }
+  ],
+  "browser": [
+    {
+      "width": 1280,
+      "height": 900,
+      "pageWidth": 1280,
+      "imageCount": 60,
+      "liveLabels": 61,
+      "broken": [],
+      "outside": [],
+      "overlaps": [],
+      "clippedCards": [],
+      "errors": [],
+      "figures": [
+        {
+          "id": "overview",
+          "width": 657.21875,
+          "height": 725.84375
+        },
+        {
+          "id": "lcd-map",
+          "width": 640,
+          "height": 323.359375
+        },
+        {
+          "id": "power",
+          "width": 653.21875,
+          "height": 348.375
+        },
+        {
+          "id": "ac-output",
+          "width": 653.21875,
+          "height": 439.625
+        },
+        {
+          "id": "dc-output",
+          "width": 629.21875,
+          "height": 316.609375
+        },
+        {
+          "id": "energy",
+          "width": 657.21875,
+          "height": 205.109375
+        },
+        {
+          "id": "ups",
+          "width": 657.21875,
+          "height": 262.875
+        },
+        {
+          "id": "ac-charge",
+          "width": 657.21875,
+          "height": 275.390625
+        },
+        {
+          "id": "solar",
+          "width": 657.21875,
+          "height": 369.28125
+        },
+        {
+          "id": "car",
+          "width": 657.21875,
+          "height": 309.765625
+        },
+        {
+          "id": "app_add",
+          "width": 430,
+          "height": 427.359375
+        },
+        {
+          "id": "app-control",
+          "width": 657.21875,
+          "height": 149.65625
+        },
+        {
+          "id": "app_connect_result_steps",
+          "width": 657.21875,
+          "height": 379.859375
+        }
+      ],
+      "scrollSurfaces": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "pageWidth": 768,
+      "imageCount": 60,
+      "liveLabels": 61,
+      "broken": [],
+      "outside": [],
+      "overlaps": [],
+      "clippedCards": [],
+      "errors": [],
+      "figures": [
+        {
+          "id": "overview",
+          "width": 687.9375,
+          "height": 759.765625
+        },
+        {
+          "id": "lcd-map",
+          "width": 640,
+          "height": 323.359375
+        },
+        {
+          "id": "power",
+          "width": 683.9375,
+          "height": 364.765625
+        },
+        {
+          "id": "ac-output",
+          "width": 683.9375,
+          "height": 460.296875
+        },
+        {
+          "id": "dc-output",
+          "width": 659.9375,
+          "height": 332.0625
+        },
+        {
+          "id": "energy",
+          "width": 687.9375,
+          "height": 214.703125
+        },
+        {
+          "id": "ups",
+          "width": 687.9375,
+          "height": 275.171875
+        },
+        {
+          "id": "ac-charge",
+          "width": 687.9375,
+          "height": 288.265625
+        },
+        {
+          "id": "solar",
+          "width": 687.9375,
+          "height": 386.546875
+        },
+        {
+          "id": "car",
+          "width": 687.9375,
+          "height": 324.25
+        },
+        {
+          "id": "app_add",
+          "width": 430,
+          "height": 427.359375
+        },
+        {
+          "id": "app-control",
+          "width": 687.9375,
+          "height": 156.65625
+        },
+        {
+          "id": "app_connect_result_steps",
+          "width": 660,
+          "height": 381.453125
+        }
+      ],
+      "scrollSurfaces": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "pageWidth": 390,
+      "imageCount": 60,
+      "liveLabels": 61,
+      "broken": [],
+      "outside": [],
+      "overlaps": [],
+      "clippedCards": [],
+      "errors": [],
+      "figures": [
+        {
+          "id": "overview",
+          "width": 660,
+          "height": 728.921875
+        },
+        {
+          "id": "lcd-map",
+          "width": 530,
+          "height": 267.78125
+        },
+        {
+          "id": "power",
+          "width": 660,
+          "height": 352
+        },
+        {
+          "id": "ac-output",
+          "width": 660,
+          "height": 444.1875
+        },
+        {
+          "id": "dc-output",
+          "width": 660,
+          "height": 332.09375
+        },
+        {
+          "id": "energy",
+          "width": 660,
+          "height": 205.984375
+        },
+        {
+          "id": "ups",
+          "width": 358,
+          "height": 143.1875
+        },
+        {
+          "id": "ac-charge",
+          "width": 358,
+          "height": 150.015625
+        },
+        {
+          "id": "solar",
+          "width": 358,
+          "height": 201.15625
+        },
+        {
+          "id": "car",
+          "width": 358,
+          "height": 168.734375
+        },
+        {
+          "id": "app_add",
+          "width": 358,
+          "height": 355.796875
+        },
+        {
+          "id": "app-control",
+          "width": 570,
+          "height": 129.796875
+        },
+        {
+          "id": "app_connect_result_steps",
+          "width": 358,
+          "height": 206.90625
+        }
+      ],
+      "scrollSurfaces": [
+        "native-figure native-overview native-dense",
+        "native-figure native-lcd-map native-lcd",
+        "native-figure native-power native-dense",
+        "native-figure native-ac-output native-dense",
+        "native-figure native-dc-output native-dense",
+        "native-figure native-energy native-dense",
+        "native-figure native-app-control native-controls"
+      ]
+    }
+  ],
+  "visual_review": {
+    "result": "accepted",
+    "reference": "Original native PDF and Chromium screenshots",
+    "reviewed": "source headings, native symbol glyphs, complete panel edges and zoom-circle clips, overview, power/AC/DC, energy, LCD modes, car caption, specifications, warranty and complete App frames",
+    "bare_art": "No independent blank caption capsules/tails; CSS owns these frames",
+    "edge_comparisons": 52,
+    "edge_scale": 12,
+    "worst_pdf_chromium_edge_error": 0.0016157033016177802,
+    "svg_reader_limitation": "MuPDF SVG ignores nested transformed zoom-circle clips; original PDF/PNG and Chromium agree."
+  },
+  "frozen_assets": {
+    "ac-charge.svg": "73e47cbd6f8f8dd02b8be679fe07bc65de78489d112d19ef04d072f2efb11f1a",
+    "ac-output.svg": "20d2bb74dffe1cb42a4429dbb830412ed6b32cba48f32794aa9bc6217302cb3e",
+    "ac.svg": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+    "app-control.svg": "0984323f428bdceabe126955738b46ca71856bc36adcd419cfe663928d61c4fa",
+    "app_add.png": "7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7",
+    "app_connect_result_steps.png": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3",
+    "app_download_qr.png": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+    "app_store_badges.png": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+    "car.svg": "29a8c72e587c3e4f0192f384710682687a48ce40666e8f6a87c528471efb0a57",
+    "dc-output.svg": "4fbb0e3fbece7f53f02ab7f6dbb4c1554f63738c0dee38ac6aecf44b1254fbc7",
+    "dc_usb.svg": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+    "energy.svg": "430f615f40588f62aa0ed9bdf8ec401cea95f754ee3c46bcf17a3fd07d1b79e2",
+    "fcc-mark.svg": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "inbox-cable.png": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef",
+    "inbox-main.svg": "35cec3a529f6655b0e93a2085a0ef82d0ac8e7ad54f4e3e7233c2ec8a59170aa",
+    "inbox-manual.png": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
+    "lcd-01.png": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "lcd-02.png": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "lcd-03.png": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "lcd-04.png": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "lcd-05.png": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "lcd-06.png": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+    "lcd-07.png": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "lcd-08.png": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+    "lcd-09.png": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "lcd-10.png": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "lcd-11.png": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "lcd-12.png": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "lcd-13.png": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "lcd-14.png": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "lcd-15.png": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "lcd-16.png": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "lcd-17.png": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "lcd-18.png": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "lcd-19.png": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+    "lcd-20.png": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "lcd-21.png": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "lcd-22.png": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "lcd-23.png": "7b251bff4004f01b3fbb6e383230d0c27f6ea17654502eca64240888ebe510a0",
+    "lcd-24.png": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "lcd-25.png": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "lcd-26.png": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "lcd-button.svg": "1f4f46895de14c782dc8fa17c4c22f6d7752de5124254bfd79f5d02a249fe179",
+    "lcd-map.svg": "c1d7bae1f750ef71cd2c20ed30254a3467a4b0a0bc185ae4a38404eb477bd402",
+    "overview.svg": "9b244f4f6ceb3a2c9e0210cf7247f808e8d2af00e23ec0a46544284e00e4124d",
+    "power.svg": "6ebb0b28a8fc426f4d892a76837c420c471dc5af7dccf03eabb388b84f9bcba9",
+    "solar.svg": "190e8e1a3ecba4eafa647c8191f4b17c1dad17888f0ac2b817272a5cb52a0e91",
+    "symbol_do_not_dismantle.svg": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+    "symbol_keep_away_from_children_gray_jp.svg": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+    "symbol_li_ion.svg": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+    "symbol_no_open_flame_gray_jp.svg": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+    "symbol_read_manual_person.svg": "b925552372b168a3e354081d97e43ccd08eb74803f685fc32223e49a27d0c0e5",
+    "symbol_warning_triangle.svg": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "ups.svg": "87f8ac97678da34f07718a44549ecc46dfa3fb96c78a6dbba04732df5d774edf"
+  }
+}

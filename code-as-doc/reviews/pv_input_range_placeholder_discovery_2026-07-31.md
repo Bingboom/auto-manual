@@ -1,5 +1,7 @@
 # PV Input Range Placeholder Discovery
 
+Status: done
+
 Date: 2026-07-31
 
 Scope: Workstream W / Stage 5 item 4(a)

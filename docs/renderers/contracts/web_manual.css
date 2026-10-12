@@ -84,6 +84,14 @@ body {
   max-width: var(--hb-copy-width);
 }
 
+/* The manual stays on white paper even when the surrounding Furo UI is dark.
+ * Pair quote foreground/background explicitly instead of mixing both themes. */
+#furo-main-content blockquote {
+  background: var(--hb-surface);
+  color: var(--hb-text);
+  border-left-color: var(--hb-line);
+}
+
 #furo-main-content p {
   margin: 0 0 0.82rem;
 }
@@ -107,11 +115,18 @@ body {
 #furo-main-content > section,
 #furo-main-content > section > section {
   margin-top: 2.8rem;
-  scroll-margin-top: 1.5rem;
+  scroll-margin-top: 4rem;
 }
 
 #furo-main-content > section:first-child {
   margin-top: 0;
+}
+
+/* Match Furo's navigation-collapse breakpoint; clear the header and back-to-top. */
+@media (max-width: 63em) {
+  #furo-main-content :is(section[id], :target) {
+    scroll-margin-top: calc(var(--header-height, 3rem) + 3rem);
+  }
 }
 
 /* All full-width manual components share one outer-width and box-model contract. */
@@ -337,7 +352,8 @@ body {
   border: 0 !important;
   border-collapse: separate !important;
   border-spacing: 0;
-  table-layout: fixed;
+  /* Content-sized columns: a heading such as "Symbole" never breaks mid-word. */
+  table-layout: auto;
   background: var(--hb-paper);
   color: var(--hb-text);
   font-size: clamp(0.82rem, 1.35vw, 0.96rem);
@@ -359,6 +375,7 @@ body {
   border: 0 !important;
   background: var(--hb-paper);
   vertical-align: middle !important;
+  overflow-wrap: break-word;
 }
 
 #furo-main-content table.hb-symbol-panel-table thead th {
@@ -418,7 +435,8 @@ body {
 
 #furo-main-content table.hb-troubleshooting-table {
   width: 100% !important;
-  min-width: 42rem;
+  /* 40rem fits the desktop reading column; narrower screens scroll. */
+  min-width: 40rem;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;
@@ -466,9 +484,9 @@ body {
   text-align: center;
 }
 
+/* The header wraps at spaces, so es "Código de fallo" stays inside the compact code column. */
 #furo-main-content table.hb-troubleshooting-table thead .hb-troubleshooting-code {
   font-size: 0.9rem;
-  white-space: nowrap;
 }
 
 #furo-main-content table.hb-troubleshooting-table .hb-troubleshooting-measures {
@@ -580,7 +598,8 @@ body {
   color: var(--hb-text);
 }
 
-.hb-warranty-intro-panel {
+.hb-warranty-intro-panel,
+.hb-text-panel {
   box-sizing: border-box;
   padding: 0.9rem 1.05rem;
   border-radius: 0.88rem;
@@ -637,6 +656,12 @@ body {
 #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child::before,
 #furo-main-content section:has(> figure.hb-warranty-period-card) > h2:first-child::before {
   display: none;
+}
+
+/* Target highlighting must not remove the white-text title's dark fill. */
+#furo-main-content section:target:has(> figure.hb-warranty-card) > h2:first-child,
+#furo-main-content section:target:has(> figure.hb-warranty-period-card) > h2:first-child {
+  background: var(--hb-brand-dark) !important;
 }
 
 #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child .headerlink,
@@ -735,7 +760,11 @@ body {
   line-height: 1.3;
 }
 
-/* Every WARNING/DANGER/CAUTION/NOTE uses the same light IDML callout treatment. */
+/* Every WARNING/DANGER/CAUTION/NOTE uses the same light IDML callout treatment.
+ * The label column sizes to content so a long localized label never breaks
+ * mid-word; every label cell carries the page's labels as invisible width
+ * references (tools/web_callout_alignment.py), which keeps one first-column
+ * boundary across the page in the reader's own font. */
 #furo-main-content table.manual-callout-table {
   width: 100% !important;
   margin: 1rem 0 1.35rem !important;
@@ -746,7 +775,7 @@ body {
   border-spacing: 0;
   background: var(--hb-surface);
   color: var(--hb-text);
-  table-layout: fixed !important;
+  table-layout: auto !important;
 }
 
 #furo-main-content .manual-callout-label {
@@ -759,6 +788,18 @@ body {
   font-weight: 700;
   text-align: center;
   vertical-align: middle !important;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+#furo-main-content .manual-callout-label-sizer {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
 }
 
 #furo-main-content .manual-callout-body {
@@ -773,6 +814,16 @@ body {
 #furo-main-content .manual-callout-label p,
 #furo-main-content .manual-callout-body p {
   margin-bottom: 0;
+}
+
+/* Opt-in source treatment for a shaded label and white notice body. */
+#furo-main-content .hb-callout-label-shaded .manual-callout-label {
+  width: auto !important;
+  background: var(--hb-surface-strong) !important;
+}
+
+#furo-main-content .hb-callout-label-shaded .manual-callout-body {
+  background: var(--hb-paper) !important;
 }
 
 /* Preserve the searchable four-column LCD grid and explicit RST status lines. */
@@ -790,12 +841,14 @@ body {
 
 #furo-main-content table.hb-lcd-icon-table {
   width: 100% !important;
-  min-width: 42rem;
+  /* 40rem fits the desktop reading column; narrower screens scroll. */
+  min-width: 40rem;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;
   border-spacing: 0;
-  table-layout: fixed;
+  /* Content-sized columns: long German compounds widen the name column instead of splitting. */
+  table-layout: auto;
   background: var(--hb-paper);
   font-size: 0.9rem;
   line-height: 1.23;
@@ -824,14 +877,14 @@ body {
   border-right: 1px solid var(--hb-line) !important;
   border-bottom: 1px solid var(--hb-line) !important;
   vertical-align: middle !important;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 #furo-main-content table.hb-lcd-icon-table tr:last-child > td {
   border-bottom: 0 !important;
 }
 
-#furo-main-content table.hb-lcd-icon-table td:last-child {
+#furo-main-content table.hb-lcd-icon-table td.hb-lcd-description {
   border-right: 0 !important;
 }
 
@@ -906,7 +959,8 @@ body {
 
 #furo-main-content table:is(.hb-auto-resume-table, .hb-key-combination-table) {
   width: 100% !important;
-  min-width: 42rem;
+  /* 40rem fits the desktop reading column; narrower screens scroll. */
+  min-width: 40rem;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;
@@ -983,6 +1037,33 @@ body {
   min-width: 0;
 }
 
+/* Tall device artwork leaves most of the row for its operation matrix. */
+.hb-lcd-mode-composition.hb-lcd-mode-portrait {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-art {
+  max-height: 25rem;
+  object-fit: contain;
+}
+
+.hb-lcd-mode-portrait .hb-lcd-mode-table-panel {
+  align-self: stretch;
+}
+
+#furo-main-content .hb-lcd-mode-portrait table.hb-lcd-mode-table {
+  height: 100%;
+  font-size: 0.9rem;
+  line-height: 1.23;
+}
+
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-action {
+  font-weight: 400;
+}
+
 #furo-main-content .hb-lcd-mode-art {
   display: block;
   width: min(100%, 29rem) !important;
@@ -1001,12 +1082,12 @@ body {
 
 #furo-main-content table.hb-lcd-mode-table {
   width: 100% !important;
-  min-width: 25rem;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;
   border-spacing: 0;
-  table-layout: fixed;
+  /* Content-sized columns: fr "automatique" or uk "Автовимкнення" stays whole. */
+  table-layout: auto;
   color: var(--hb-text);
   font-size: 0.82rem;
   line-height: 1.17;
@@ -1032,7 +1113,7 @@ body {
   border-bottom: 1px solid var(--hb-brand-dark) !important;
   vertical-align: middle !important;
   text-align: left;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 #furo-main-content .hb-lcd-mode-state,
@@ -1086,7 +1167,12 @@ body {
   margin-inline: auto;
 }
 
-#furo-main-content #dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"] {
+#furo-main-content #dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_fr/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_es/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_de/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_it/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_uk/operation_dc.png"] {
   box-sizing: border-box; border: 2px solid var(--hb-line-soft);
   border-radius: 0.82rem; background: var(--hb-paper);
 }
@@ -1151,6 +1237,15 @@ body {
   object-fit: contain;
 }
 
+/* The source image keeps its RST ``:width:`` as an inline 360px, which beat the
+   rule above: a figure still waiting for its finished panel showed its art at
+   half the figure width. Like operation art, reference art fills its figure. */
+.hb-reference-figure .hb-reference-art {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
 .hb-reference-caption-grid {
   display: grid;
   grid-template-columns: repeat(var(--hb-caption-count, 1), minmax(0, 1fr));
@@ -1184,13 +1279,13 @@ body {
 .hb-app-download-composition {
   width: 100%;
   max-width: var(--hb-reading-width);
-  margin: 1rem auto 2rem;
+  margin: 0.6rem auto 1.1rem;
 }
 
 .hb-app-download-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2.5rem, 9vw, 7rem);
+  gap: clamp(1.2rem, 5vw, 3rem);
 }
 
 .hb-app-download-column {
@@ -1201,7 +1296,7 @@ body {
 
 .hb-app-download-art-frame {
   display: grid;
-  min-height: clamp(8rem, 18vw, 14rem);
+  min-height: clamp(7rem, 14vw, 9rem);
   place-items: center;
 }
 
@@ -1214,12 +1309,12 @@ body {
 
 #furo-main-content .hb-app-download-art-store {
   width: 60% !important;
-  max-width: 19rem !important;
+  max-width: 10rem !important;
 }
 
 #furo-main-content .hb-app-download-art-qr {
   width: 44% !important;
-  max-width: 15rem !important;
+  max-width: 7.25rem !important;
 }
 
 .hb-app-download-copy {
@@ -1448,6 +1543,12 @@ body {
     overflow-wrap: anywhere;
   }
 
+  /* Table cells keep words whole: inheriting anywhere would let content-sized columns
+     shrink below a word (es "automático") even where the table has room. */
+  #furo-main-content :is(td, th) {
+    overflow-wrap: break-word;
+  }
+
   #furo-main-content > section,
   #furo-main-content > section > section {
     margin-top: 2.2rem;
@@ -1500,6 +1601,10 @@ body {
     border-radius: 0.9rem;
   }
 
+  .hb-lcd-mode-composition.hb-lcd-mode-portrait {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   #furo-main-content .hb-lcd-mode-art {
     width: min(92%, 26rem) !important;
   }
@@ -1513,13 +1618,20 @@ body {
     margin-top: 2rem;
     padding: 1.05rem 0.75rem 0.72rem;
     border-radius: 0.7rem;
+    /* The title sits above the border; keep it clear when this card is targeted. */
+    scroll-margin-top: calc(var(--header-height, 3rem) + 4rem);
   }
 
   #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child,
   #furo-main-content section:has(> figure.hb-warranty-period-card) > h2:first-child {
-    top: -0.78rem;
-    left: 0.72rem;
-    max-width: calc(100% - 1.44rem);
+    /* Native headings may wrap; their full height must reserve body space. */
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: -1.83rem 0 0.3rem;
     padding: 0.3rem 0.58rem 0.28rem;
     font-size: 0.92rem;
   }
@@ -1626,6 +1738,12 @@ body {
 }
 
 @media (max-width: 520px) {
+  /* A raw HTML table sits in no scroll box; on the narrowest phones it may split a word
+     rather than run past the page edge, which .content clips. */
+  #furo-main-content section > table :is(td, th) {
+    overflow-wrap: anywhere;
+  }
+
   #furo-main-content table.manual-callout-table,
   #furo-main-content table.manual-callout-table tbody,
   #furo-main-content table.manual-callout-table tr,
@@ -1656,8 +1774,8 @@ body {
   }
 
   .hb-app-download-copy {
-    font-size: 0.76rem;
-    line-height: 1.28;
+    font-size: 0.875rem;
+    line-height: 1.35;
   }
 
   .hb-annotated-stage,
@@ -1697,3 +1815,79 @@ body {
 }
 #furo-main-content table.lcd-text-only col:nth-child(3) { width: 35% !important; }
 #furo-main-content table.lcd-text-only col:nth-child(4) { width: 65% !important; }
+
+/* Source-authored text references share the same manual table tokens. */
+.hb-reference-composition {
+  max-width: var(--hb-component-band-max);
+  margin: 1rem 0 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--hb-line);
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-paper);
+}
+.hb-reference-composition .hb-reference-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: var(--hb-text);
+}
+.hb-reference-table th,
+.hb-reference-table td {
+  padding: 0.7rem 0.85rem;
+  vertical-align: top;
+  border: 1px solid var(--hb-line-soft);
+  overflow-wrap: anywhere;
+}
+.hb-reference-table thead th {
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  text-align: left;
+  font-weight: 700;
+}
+.hb-reference-table p:last-child { margin-bottom: 0; }
+.hb-reference-lcd-legend td:first-child,
+.hb-reference-lcd-legend th:first-child { width: 9%; text-align: center; }
+.hb-reference-lcd-legend td:nth-child(2),
+.hb-reference-lcd-legend th:nth-child(2) { width: 27%; }
+.hb-reference-lcd-actions td:first-child,
+.hb-reference-lcd-actions th:first-child { width: 27%; }
+.hb-reference-lcd-actions td:nth-child(2),
+.hb-reference-lcd-actions th:nth-child(2) { width: 18%; }
+.hb-reference-symbol-meanings td { width: 50%; }
+.hb-reference-lcd-descriptions td:first-child { width: 35%; }
+.hb-reference-lcd-descriptions td:last-child { width: 65%; }
+@media (max-width: 42rem) {
+  .hb-reference-table th, .hb-reference-table td { padding: 0.5rem; }
+}
+
+/* Native single-step figures keep instructions beside their own artwork. */
+#furo-main-content figure.manual-step-figure {
+  max-width: 40rem;
+  margin: 1.2rem auto 1.8rem;
+}
+#furo-main-content figure.manual-step-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#furo-main-content figure.manual-detail-figure { max-width: 16rem; }
+#furo-main-content figure.manual-step-figure figcaption {
+  margin-top: 0.7rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  font-style: normal;
+}
+@media (max-width: 48rem) {
+  /* Two-column label/value tables can wrap within a phone viewport. Wider
+     comparison tables keep the existing horizontal scrolling behavior. */
+  #furo-main-content table.hb-spec-table:has(colgroup > col:nth-child(2):last-child) {
+    min-width: 0;
+  }
+  #furo-main-content table.hb-spec-table:has(colgroup > col:nth-child(2):last-child) .hb-spec-col-label {
+    width: 44%;
+  }
+  #furo-main-content table.hb-spec-table:has(colgroup > col:nth-child(2):last-child) .hb-spec-col-value {
+    width: 56%;
+  }
+}

@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.data_snapshot_fixture_refresh import (
+from tools.data.snapshot_fixture_refresh import (
     refresh_fixture_by_document_key,
     row_matches_document_key,
 )

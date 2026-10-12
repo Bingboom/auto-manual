@@ -222,13 +222,13 @@ def collect_field_diff_rows(
 
         def append_pair(old_index: int | None, new_index: int | None) -> None:
             if old_index is not None:
-                matched_old.add(old_index)
+                matched_old.add(old_index)  # noqa: B023 -- invoked before the loop advances
             if new_index is not None:
-                matched_new.add(new_index)
+                matched_new.add(new_index)  # noqa: B023 -- invoked before the loop advances
             row = _build_field_diff_row(
-                file_row=file_row,
-                old_entry=old_entries[old_index] if old_index is not None else None,
-                new_entry=new_entries[new_index] if new_index is not None else None,
+                file_row=file_row,  # noqa: B023 -- invoked before the loop advances
+                old_entry=old_entries[old_index] if old_index is not None else None,  # noqa: B023 -- invoked before the loop advances
+                new_entry=new_entries[new_index] if new_index is not None else None,  # noqa: B023 -- invoked before the loop advances
             )
             if row is not None:
                 rows.append(row)
@@ -288,7 +288,7 @@ def collect_field_diff_rows(
             ]
             if not old_indexes or len(old_indexes) != len(new_indexes):
                 continue
-            for old_index, new_index in zip(old_indexes, new_indexes):
+            for old_index, new_index in zip(old_indexes, new_indexes, strict=True):
                 append_pair(old_index, new_index)
 
         for index, _entry in enumerate(old_entries):

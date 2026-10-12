@@ -1,0 +1,72 @@
+{
+  "checked_at_utc": "2026-10-03T10:41:14.835288+00:00",
+  "engineering_origin_main": "3d42c538b2620e09ec250eaae8c85daa2031ed9e",
+  "local_head_before_revision": "08226326c3ee2a506435db126c98ad37411c3d64",
+  "divergence_main_local": [
+    "14",
+    "9"
+  ],
+  "english_engineering": {
+    "headRefOid": "654bda677fd4134c367a9bf144410f87251d552a",
+    "mergeCommit": {
+      "oid": "565c52a2d450d2b353e0186b22d0b230a2fb13ee"
+    },
+    "mergedAt": "2026-10-03T01:14:52Z",
+    "number": 1404,
+    "reviewDecision": "",
+    "state": "MERGED",
+    "url": "https://github.com/Bingboom/auto-manual/pull/1404",
+    "checks_summary": {
+      "SUCCESS": 19
+    }
+  },
+  "english_publication": {
+    "headRefOid": "f55b9ac1f6b4e39e88434590712ccc8ff620b512",
+    "mergeCommit": {
+      "oid": "4dee7b55ba99a2fdfaad7a004a5bbf4e6a656e94"
+    },
+    "mergedAt": "2026-10-03T01:41:22Z",
+    "number": 170,
+    "reviewDecision": "",
+    "state": "MERGED",
+    "url": "https://github.com/Bingboom/Hello-Docs/pull/170",
+    "checks_summary": {
+      "SUCCESS": 17
+    }
+  },
+  "language_baseline_dependency": {
+    "headRefOid": "2edbda652c3ceb9ed26357ab6fb7004337127793",
+    "mergeCommit": null,
+    "mergedAt": null,
+    "number": 1409,
+    "reviewDecision": "",
+    "state": "OPEN",
+    "url": "https://github.com/Bingboom/auto-manual/pull/1409",
+    "checks_summary": {
+      "SUCCESS": 18
+    }
+  },
+  "shared_asset_reference": {
+    "headRefOid": "68582a14dfa728e2b69158d7393acb5e838fa60f",
+    "mergeCommit": null,
+    "mergedAt": null,
+    "number": 1416,
+    "reviewDecision": "",
+    "state": "OPEN",
+    "url": "https://github.com/Bingboom/auto-manual/pull/1416",
+    "checks_summary": {
+      "SUCCESS": 18
+    }
+  },
+  "native_branch_prs": [],
+  "MA_234_registry_row": "| MA-234 | 仅 auto-manual PR #1404（`codex/jbp3600a-en-native-intake`，含本登记）及随后 Hello-Docs `publish → main`、仅 `docs/publish/**` 的 JBP-3600A/EU/en 发布 PR。允许同步最新 main、处理本范围组合冲突、补齐验证，工程合入、镜像同步、封存本线程已核验的 HTP011 英语 Git 源并通过既有 Git-only 路径发布，核验 RTD 实际提交、规范网址、根别名、共用符号及 CSS 时钟的桌面/手机呈现。最终 head 全部检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge，并核验 main SHA。保留其它语言、其它目标、本地产物与 persistent publish 分支。不含线上表或 HTML_link 写入、资产注册表提升、workflow、依赖、公开 CLI 或 schema 变更。 | 「英语稿 合并并发布吧」2026-10-02（本会话） | 本次英语稿发布及线上验收完成，或操作者撤销 | 生效（推送后生效） |",
+  "MA_234_new_revision_coverage": false,
+  "current_main_gate_same_after_import_renames": true,
+  "current_main_component_policy_contract_unchanged": true,
+  "notes": [
+    "MA-234 scope names old PR1404 and its English publication; the release is already completed. Registry text does not grant multilingual approval.",
+    "PR1409 provides the desired baseline inheritance gate but is not imported by this candidate branch. Read-only trial results are not admission.",
+    "PR1416 is a shared-asset review reference, not a JBP build dependency or automatic registry promotion.",
+    "Current main moved Web modules to tools/web and removed old shims. Candidate branch needs current-main integration and corresponding validation before a PR can be ready. No main integration or merge performed in this task."
+  ]
+}

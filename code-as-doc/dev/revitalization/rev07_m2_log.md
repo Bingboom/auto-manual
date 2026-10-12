@@ -1,5 +1,7 @@
 # REV-07 / M2+M1 实跑日志 — ops_catalog_sync 首轮
 
+Status: done
+
 - 任务：REV-07（[台账](../manual_revitalization_execution.md#rev-07)，方案 §5.3 M1/M2）。工具=
   [`tools/ops_catalog_sync.py`](../../../tools/ops_catalog_sync.py)，契约=
   [`web_publish_pipeline.md`](../web_publish_pipeline.md) §2.3。

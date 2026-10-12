@@ -10,6 +10,7 @@ import tempfile
 from pathlib import Path, PurePosixPath
 from typing import Any, BinaryIO
 
+from tools.asset_pipeline.native_svg import native_art_svg
 from tools.asset_pipeline.leaders import (
     find_leader_geometries,
     suppress_leader_strokes,
@@ -339,6 +340,19 @@ def _prepare_asset_source(
                 for destination, origin in ((first, second), (second, first)):
                     page.draw_rect(destination, color=None, fill=(1, 1, 1), overlay=True)
                     page.show_pdf_page(destination, original, asset.page - 1, clip=origin, overlay=True)
+        elif transform.op == "copy_pdf_region":
+            # One-way copy of native PDF content from the immutable source.
+            # Unlike swap_pdf_regions nothing is painted first, so the copy
+            # lands on whatever art the destination keeps (a tinted panel
+            # after redact_text_region removed a mis-printed glyph there).
+            if transform.bbox_pt is None or transform.other_bbox_pt is None:
+                raise ArtifactValidationError("copy_pdf_region requires two rectangles")
+            destination = fitz.Rect(transform.bbox_pt)
+            origin = fitz.Rect(transform.other_bbox_pt)
+            if not crop.contains(destination) or not crop.contains(origin):
+                raise ArtifactValidationError("copied PDF regions must stay within crop")
+            with fitz.open(str(source_path)) as original:
+                page.show_pdf_page(destination, original, asset.page - 1, clip=origin, overlay=True)
         elif transform.op == "whiteout":
             if transform.bbox_pt is None:
                 raise ArtifactValidationError(f"asset {asset.asset_key!r} has invalid whiteout")
@@ -755,7 +769,8 @@ def _asset_artifacts(
             page = source.load_page(asset.page - 1)
             with tempfile.TemporaryDirectory(prefix="asset-vector-") as temp_dir:
                 retained_pdf = None
-                if _retained_vector_transform(asset) is not None:
+                if (_retained_vector_transform(asset) is not None
+                        and any(o.format != "svg" for o in asset.outputs)):
                     retained_pdf = Path(temp_dir) / "retained.pdf"
                     _save_retained_vector_pdf(
                         fitz, source, asset, clip, retained_pdf
@@ -767,6 +782,16 @@ def _asset_artifacts(
                             shutil.copyfile(retained_pdf, destination)
                         else:
                             _save_asset_pdf(fitz, source, asset, clip, destination)
+                    elif output.format == "svg":
+                        transform = _retained_vector_transform(asset)
+                        if transform is None:
+                            raise ArtifactValidationError("SVG requires retain_vector_drawings")
+                        try:
+                            destination.write_bytes(native_art_svg(
+                                page, list(transform.drawing_indices), list(clip),
+                            ))
+                        except ValueError as exc:
+                            raise ArtifactValidationError(str(exc)) from exc
                     elif output.format == "png":
                         if output.scale is None:
                             raise ArtifactValidationError(

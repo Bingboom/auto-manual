@@ -1,0 +1,26 @@
+[env-preflight] WARN env.lock: 7 package(s) differ from requirements.lock: certifi 2026.7.22 (lock 2026.6.17), cffi 2.1.1 (lock 2.1.0), charset-normalizer 3.5.1 (lock 3.4.8), cryptography 50.0.0 (lock 49.0.0), numpy 2.5.2 (lock 2.5.1), packaging 26.3 (lock 26.2), soupsieve 2.9.2 (lock 2.8.4)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+E
+======================================================================
+ERROR: test_actual_jp_page_is_complete_in_strict_public_ir (tests.test_idml_boxed_intro.BoxedIntroTests.test_actual_jp_page_is_complete_in_strict_public_ir)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_idml_boxed_intro.py", line 65, in test_actual_jp_page_is_complete_in_strict_public_ir
+    extracted = _parse_text(text, {"latex", "region_jp"})
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 260, in _parse_text
+    return extract_page(Path(tmp), tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 241, in extract_page
+    i = _consume_directive(lines, i, m.group(1), m.group(2).strip(), tags, result)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 224, in _consume_directive
+    _append_list_table(body, result)
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 194, in _append_list_table
+    raise ValueError(
+ValueError: known notice label cannot fall back to a generic table: '警告'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.081s
+
+FAILED (errors=1)

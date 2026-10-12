@@ -1,5 +1,7 @@
 # 样式契约欠账清算 — 执行状态
 
+Status: done
+
 > **历史记录（冻结）。** 本页只保存 2026-08-05 完成的上一轮样式债清算、批准
 > reference-layout 与 production 复建证据，不再承担当前欠账或 PR 进度账本。当前
 > Workstream X 的范围、串行 PR 1–9、Submitted/Complete checklist 和最终验收统一
@@ -112,9 +114,9 @@ v2 的 assembly hash 覆盖 source 顺序、语言、页面角色和 composition
 | `python3 -m ruff check build.py integrations tools tests scripts` | 通过 |
 | 直接改动覆盖的定向 unittest | 320 项通过，5 项跳过 |
 | `python3 -m unittest` | 2716 项通过，5 项跳过 |
-| `python3 tools/check_maintainability_guardrails.py` | 44 个热点全部通过；0 个新增语言常量 |
-| `python3 tools/check_doc_link_integrity.py` | 116 份 Markdown、1497 条链接、0 断链 |
-| `python3 tools/check_reference_layout_pins.py` | 1 份批准合同通过 |
+| `python3 -m tools.check_maintainability_guardrails` | 44 个热点全部通过；0 个新增语言常量 |
+| `python3 -m tools.check_doc_link_integrity` | 116 份 Markdown、1497 条链接、0 断链 |
+| `python3 -m tools.check_reference_layout_pins` | 1 份批准合同通过 |
 
 最终 production 入口使用 fixture snapshot 运行：
 

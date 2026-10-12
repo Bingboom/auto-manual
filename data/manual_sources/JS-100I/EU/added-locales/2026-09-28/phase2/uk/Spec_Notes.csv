@@ -1,0 +1,3 @@
+Note_id,Region,Model,Source_lang,Is_Latest,Page,Note_order,Text_uk,Enabled
+note1,EU,JS-100I,uk,TRUE,specifications,2,"* STC (Стандартні умови випробувань, 1000 Вт/м2, 25 °C, AM 1.5)",TRUE
+note2,EU,JS-100I,uk,TRUE,specifications,3,"* BNPI (Двостороння номінальна опроміненість, передня 1000 Вт/м2, задня 135 Вт/м2, 25 °C, AM 1.5) Розгорніть кронштейн і розмістіть його на рівній поверхні. Розрахункове навантаження становить 1600 Па, а коефіцієнт запасу міцності — 1,5.",TRUE

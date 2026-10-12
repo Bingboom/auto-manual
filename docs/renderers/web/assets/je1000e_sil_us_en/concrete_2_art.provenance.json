@@ -1,0 +1,27 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    4058.0380859375,
+    2189.59,
+    4373.0380859375,
+    2361.90478515625
+  ],
+  "sha256": "2e5c885fec9e09dfc2538fe6dbabb35e4024b9e634a71bd979ccf861e2ee06a7",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        41.157304067460316,
+        8.538430699538388,
+        55.18467881944444,
+        0.0
+      ]
+    }
+  ],
+  "source_text": [
+    "2. Securely attach the upper and lower mounting brackets to\nthe back of the product."
+  ],
+  "policy": "All PDF annotation text extracted; retain original grey frames, dashed box, artwork and product engravings."
+}

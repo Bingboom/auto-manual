@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""CI guard for the backport integration harness (tools/backport_harness.py, L5).
+"""CI guard for the backport integration harness (tools/backport/harness.py, L5).
 
 Runs every harness fixture through the full pipeline in CI so the end-to-end
 multi-edit coverage can only grow, and checks the harness self-detects a broken
@@ -15,7 +15,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.backport_harness import coverage_matrix, get_fixtures, main, run_fixture  # noqa: E402
+from tools.backport.harness import coverage_matrix, get_fixtures, main, run_fixture  # noqa: E402
 
 
 class BackportHarnessTests(unittest.TestCase):

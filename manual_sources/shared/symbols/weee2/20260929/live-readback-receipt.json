@@ -1,0 +1,41 @@
+{
+  "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+  "verified": [
+    {
+      "record_id": "recvuCHOujnTWI",
+      "field": "export_file",
+      "value": [
+        {
+          "name": "weee2.png",
+          "size": 19806,
+          "attachment_present": true,
+          "attachment_identifier_sha256": "18a2c510d12786ce71357c2e7024582e50f6c29fbfe85401ca6c5218a31a60d4"
+        }
+      ]
+    },
+    {
+      "record_id": "rec277z0GFV87J",
+      "field": "Figure",
+      "value": [
+        {
+          "name": "weee2.png",
+          "size": 19806,
+          "attachment_present": true,
+          "attachment_identifier_sha256": "c30edafa3add300a27aeb3a4a4d6da5ec97198bbdeeefb128f90940b4851af63"
+        }
+      ]
+    },
+    {
+      "record_id": "recvuCHHTVB8zL",
+      "field": "preview",
+      "value": [
+        {
+          "name": "weee2.png",
+          "size": 19806,
+          "attachment_present": true,
+          "attachment_identifier_sha256": "f0495f559783bbaecf979ec783508e725c49b678d3aa28c8f74d3140df8a22fa"
+        }
+      ]
+    }
+  ]
+}

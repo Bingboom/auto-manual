@@ -3,11 +3,28 @@ SUN ANGLE INDICATOR
 
 The product has a sun angle indicator. When sunlight hits its surface, a shadow will appear at its bottom.
 
+.. figure:: renderers/web/assets/js100i_eu_shared/angle.png
+   :alt: Sun Angle Indicator · Indicator point · Shadow
+   :figclass: manual-step-figure
+   :width: 100%
+
+   Sun Angle Indicator · Indicator point · Shadow
+
 If the shadow falls on the white inner circle at its bottom, it means that the solar panel is facing directly towards the sun and you can get optimal power generation; if not, it is suggested to adjust its angle until it does.
 
-.. image:: renderers/web/assets/js100i_eu_en/angle_and_device.png
-   :alt: English-labelled sun angle indicator guidance and device-powering connection diagram.
+.. figure:: renderers/web/assets/js100i_eu_shared/angle_choice_1.png
+   :alt: Shadow falls in the white inner circle
+   :figclass: manual-step-figure manual-detail-figure
    :width: 100%
+
+   Shadow falls in the white inner circle
+
+.. figure:: renderers/web/assets/js100i_eu_shared/angle_choice_2.png
+   :alt: Shadow does not fall in the white inner circle
+   :figclass: manual-step-figure manual-detail-figure
+   :width: 100%
+
+   Shadow does not fall in the white inner circle
 
 .. note::
 
@@ -18,8 +35,20 @@ POWER YOUR DEVICE
 
 Use the multifunctional adapter's USB-C, LED and USB-A interfaces to power a cell phone, power bank or tablet as shown.
 
-.. image:: renderers/web/assets/js100i_eu_en/multifunctional_adapter.png
-   :alt: Multifunctional adapter with English-labelled USB-A, USB-C and LED interfaces.
+.. figure:: renderers/web/assets/js100i_eu_shared/device.png
+   :alt: Jackery SolarSaga 100 Air and multifunctional adapter ports and device connections.
+   :figclass: manual-step-figure
    :width: 100%
 
-* Insert the rubber plug when USB ports are not in use to prevent dust.
+   Jackery SolarSaga 100 Air · Multifunctional Adapter
+
+   USB-C · LED · USB-A
+
+   Cell Phone · Power Bank · Tablet
+
+.. figure:: renderers/web/assets/js100i_eu_shared/dust.png
+   :alt: Insert the rubber plug when USB ports are not in use to prevent dust.
+   :figclass: manual-step-figure
+   :width: 100%
+
+   Insert the rubber plug when USB ports are not in use to prevent dust.

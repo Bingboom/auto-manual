@@ -4,6 +4,7 @@ TROUBLESHOOTING
 If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If the fault persists, please contact Jackery Customer Support.
 
 .. list-table::
+   :class: hb-troubleshooting-table
    :header-rows: 1
    :widths: 16 84
 

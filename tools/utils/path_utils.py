@@ -44,6 +44,9 @@ class PathSegments:
     IDML_PORTABLE_FONTS = "idml_portable"
     DOCUMENT_FONTS = "Document fonts"
     WEB_COMPOSITES = "web_composites"
+    KNOWLEDGE = "knowledge"
+    WORKSPACE_DATA = "workspace-data"
+    GOVERNANCE = "governance"
     PUBLISH = "publish"
     WEB = "web"
     SOURCE = "source"
@@ -56,6 +59,13 @@ class PathSegments:
     RELEASES = "releases"
     VERSIONS = "versions"
     MANIFESTS = "manifests"
+    SKELETONS = "skeletons"
+    AGENTS_DIR = ".agents"
+    CLAUDE_DIR = ".claude"
+    GITHOOKS_DIR = ".githooks"
+    SKILLS = "skills"
+    HOOKS = "hooks"
+    TESTS = "tests"
     LATEST = "latest"
     SNAPSHOT = "snapshot"
     RELEASE_SNAPSHOT_IDENTITY_JSON = "release_snapshot_identity.json"
@@ -67,6 +77,7 @@ class PathSegments:
     TM_HIT_RATE = "tm_hit_rate"
     PDF_ANNOTATE = "pdf_annotate"
     FLOW_DASHBOARD = "flow_dashboard"
+    KNOWLEDGE_OBSERVATIONS = "knowledge_observations"
 
     PARAMS_TEX = "params.tex"
     FONTS_TEX = "fonts.tex"
@@ -74,6 +85,7 @@ class PathSegments:
     MANUAL_STYLE_CONTRACT = "manual_style.yaml"
     MANUAL_THEME_CONTRACT = "manual_theme.yaml"
     COMPONENT_REGISTRY_CONTRACT = "component_registry.yaml"
+    WEB_PRESENTATION_CONTRACT = "web_manual.json"
     OVERVIEW_COMPONENT_INSTANCES_JSON = "overview_component_instances.json"
     MANUAL_IR_JSON = "manual.ir.json"
     LATEX_PAGE_PLAN_JSON = "latex_page_plan.json"
@@ -84,6 +96,13 @@ class PathSegments:
     TARGET_ASSEMBLY_PLAN_JSON = "target_assembly_plan.json"
     WEB_COMPOSITE_MANIFEST_JSON = "web_composite_manifest.json"
     PUBLISH_META_JSON = "publish_meta.json"
+    PUBLISH_MANIFEST_JSON = "publish_manifest.json"
+    SKELETON_BLUEPRINT_YAML = "blueprint.yaml"
+    SKILL_MD = "SKILL.md"
+    AGENTS_MD = "AGENTS.md"
+    README_MD = "README.md"
+    SETTINGS_JSON = "settings.json"
+    PRE_PUSH = "pre-push"
     OPS_CATALOG_RECONCILE_WHITELIST_JSON = "ops_catalog_reconcile_whitelist.json"
 
     DEFAULT_CONFIG_US = "config.us.yaml"
@@ -178,6 +197,31 @@ def docs_publish_web_of(docs_dir: Path) -> Path:
     return docs_publish_of(docs_dir) / PathSegments.WEB
 
 
+def skeletons_of(base_root: Path) -> Path:
+    """``docs/manifests/skeletons`` of a repo-shaped tree: one directory per skeleton cell."""
+    return base_root / PathSegments.DOCS / PathSegments.MANIFESTS / PathSegments.SKELETONS
+
+
+def codex_skills_of(base_root: Path) -> Path:
+    """``.agents/skills``: Codex/local skills, one directory per skill."""
+    return base_root / PathSegments.AGENTS_DIR / PathSegments.SKILLS
+
+
+def claude_skills_of(base_root: Path) -> Path:
+    """``.claude/skills``: Claude Code project skills, one directory per skill."""
+    return base_root / PathSegments.CLAUDE_DIR / PathSegments.SKILLS
+
+
+def claude_settings_of(base_root: Path) -> Path:
+    """``.claude/settings.json``: the committed Claude Code project settings, hooks included."""
+    return base_root / PathSegments.CLAUDE_DIR / PathSegments.SETTINGS_JSON
+
+
+def githooks_of(base_root: Path) -> Path:
+    """``.githooks``: the repo-managed git hooks (active once ``core.hooksPath`` points here)."""
+    return base_root / PathSegments.GITHOOKS_DIR
+
+
 def web_publish_release_dir_of(release_dir: Path) -> Path:
     return release_dir / PathSegments.WEB
 
@@ -240,6 +284,10 @@ def pdf_annotate_reports_of(base_root: Path) -> Path:
 
 def flow_dashboard_reports_of(base_root: Path) -> Path:
     return base_root / PathSegments.REPORTS / PathSegments.FLOW_DASHBOARD
+
+
+def knowledge_observation_reports_of(base_root: Path) -> Path:
+    return base_root / PathSegments.REPORTS / PathSegments.KNOWLEDGE_OBSERVATIONS
 
 
 @dataclass(frozen=True)

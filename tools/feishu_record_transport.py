@@ -2,11 +2,11 @@
 
 Queue, listener, spec-master, and schema callers use :func:`run_lark_cli_json`
 for the subprocess and Feishu response boundary. F6 / F8 transports continue to
-wrap the proven `tools/sync_data.LarkCliSource` record primitives.
+wrap the proven `tools.data.sync_data.LarkCliSource` record primitives.
 
 Construct an F6 transport with a live `LarkCliSource`, e.g.::
 
-    from tools.sync_data import LarkCliSource
+    from tools.data.sync_data import LarkCliSource
     source = LarkCliSource(cli_bin="lark-cli", identity="bot")
     f6 = SourceTableLarkTransport(source=source, binding_for=lambda t: (BASE, TABLE_IDS[t]))
     apply_change_requests(reqs, approved_hashes=approved, transport=f6, write=True)
@@ -139,12 +139,12 @@ def run_lark_cli_json(
         elif format_command is not None:
             print(f"[build-queue] {format_command(cmd)}")
         run_kwargs: dict[str, Any] = {
-            "cwd": str(repo_root), "check": False, "capture_output": True,
+            "cwd": str(repo_root), "capture_output": True,
             "text": True, "encoding": "utf-8",
         }
         if environment is not None:
             run_kwargs["env"] = dict(environment)
-        process = subprocess.run(cmd, **run_kwargs)
+        process = subprocess.run(cmd, check=False, **run_kwargs)
         stdout, stderr = process.stdout or "", process.stderr or ""
         rate_limited = _is_rate_limited(None, stdout, stderr)
         payload: dict[str, Any] | None = None

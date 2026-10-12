@@ -1,0 +1,238 @@
+[
+  {
+    "art": [
+      {
+        "loaded": true,
+        "src": "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png"
+      }
+    ],
+    "duration": [
+      {
+        "display": "block",
+        "text": "3s"
+      }
+    ],
+    "scrollWidth": 609,
+    "steps": 2,
+    "strong": [
+      {
+        "text": "On",
+        "weight": "700"
+      },
+      {
+        "text": "Off",
+        "weight": "700"
+      },
+      {
+        "text": "Default standby time:",
+        "weight": "700"
+      }
+    ],
+    "support": [
+      {
+        "scrollWidth": 580,
+        "text": "Default standby time: 2 hours",
+        "weight": "400",
+        "width": 580
+      },
+      {
+        "scrollWidth": 580,
+        "text": "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.",
+        "weight": "400",
+        "width": 580
+      },
+      {
+        "scrollWidth": 580,
+        "text": "*The standby time can be set in the Jackery App.",
+        "weight": "400",
+        "width": 580
+      },
+      {
+        "scrollWidth": 580,
+        "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+        "weight": "400",
+        "width": 580
+      }
+    ],
+    "text": "POWER ON/OFF\n3s\nOn\nPress once\nOff\nPress and hold for 3s\nDefault standby time: 2 hours\nThe product will automatically shut down after 2 hours of inactivity, with no charging or discharging.\n*The standby time can be set in the Jackery App.\nWhen Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+    "viewport": 641,
+    "width": 609
+  },
+  {
+    "art": [
+      {
+        "loaded": true,
+        "src": "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png"
+      }
+    ],
+    "duration": [
+      {
+        "display": "block",
+        "text": "3s"
+      }
+    ],
+    "scrollWidth": 817,
+    "steps": 2,
+    "strong": [
+      {
+        "text": "On",
+        "weight": "700"
+      },
+      {
+        "text": "Off",
+        "weight": "700"
+      },
+      {
+        "text": "Default standby time:",
+        "weight": "700"
+      }
+    ],
+    "support": [
+      {
+        "scrollWidth": 424,
+        "text": "Default standby time: 2 hours",
+        "weight": "400",
+        "width": 424
+      },
+      {
+        "scrollWidth": 424,
+        "text": "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.",
+        "weight": "400",
+        "width": 424
+      },
+      {
+        "scrollWidth": 424,
+        "text": "*The standby time can be set in the Jackery App.",
+        "weight": "400",
+        "width": 424
+      },
+      {
+        "scrollWidth": 743,
+        "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+        "weight": "400",
+        "width": 743
+      }
+    ],
+    "text": "POWER ON/OFF\n¶\n3s\nOn\nPress once\nOff\nPress and hold for 3s\nDefault standby time: 2 hours\nThe product will automatically shut down after 2 hours of inactivity, with no charging or discharging.\n*The standby time can be set in the Jackery App.\nWhen Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+    "viewport": 1440,
+    "width": 817
+  },
+  {
+    "art": [
+      {
+        "loaded": true,
+        "src": "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png"
+      }
+    ],
+    "duration": [
+      {
+        "display": "block",
+        "text": "3s"
+      }
+    ],
+    "scrollWidth": 358,
+    "steps": 2,
+    "strong": [
+      {
+        "text": "On",
+        "weight": "700"
+      },
+      {
+        "text": "Off",
+        "weight": "700"
+      },
+      {
+        "text": "Default standby time:",
+        "weight": "700"
+      }
+    ],
+    "support": [
+      {
+        "scrollWidth": 329,
+        "text": "Default standby time: 2 hours",
+        "weight": "400",
+        "width": 329
+      },
+      {
+        "scrollWidth": 329,
+        "text": "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.",
+        "weight": "400",
+        "width": 329
+      },
+      {
+        "scrollWidth": 329,
+        "text": "*The standby time can be set in the Jackery App.",
+        "weight": "400",
+        "width": 329
+      },
+      {
+        "scrollWidth": 329,
+        "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+        "weight": "400",
+        "width": 329
+      }
+    ],
+    "text": "POWER ON/OFF\n¶\n3s\nOn\nPress once\nOff\nPress and hold for 3s\nDefault standby time: 2 hours\nThe product will automatically shut down after 2 hours of inactivity, with no charging or discharging.\n*The standby time can be set in the Jackery App.\nWhen Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+    "viewport": 390,
+    "width": 358
+  },
+  {
+    "art": [
+      {
+        "loaded": true,
+        "src": "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png"
+      }
+    ],
+    "duration": [
+      {
+        "display": "block",
+        "text": "3s"
+      }
+    ],
+    "scrollWidth": 288,
+    "steps": 2,
+    "strong": [
+      {
+        "text": "On",
+        "weight": "700"
+      },
+      {
+        "text": "Off",
+        "weight": "700"
+      },
+      {
+        "text": "Default standby time:",
+        "weight": "700"
+      }
+    ],
+    "support": [
+      {
+        "scrollWidth": 259,
+        "text": "Default standby time: 2 hours",
+        "weight": "400",
+        "width": 259
+      },
+      {
+        "scrollWidth": 259,
+        "text": "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging.",
+        "weight": "400",
+        "width": 259
+      },
+      {
+        "scrollWidth": 259,
+        "text": "*The standby time can be set in the Jackery App.",
+        "weight": "400",
+        "width": 259
+      },
+      {
+        "scrollWidth": 259,
+        "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+        "weight": "400",
+        "width": 259
+      }
+    ],
+    "text": "POWER ON/OFF\n¶\n3s\nOn\nPress once\nOff\nPress and hold for 3s\nDefault standby time: 2 hours\nThe product will automatically shut down after 2 hours of inactivity, with no charging or discharging.\n*The standby time can be set in the Jackery App.\nWhen Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+    "viewport": 320,
+    "width": 288
+  }
+]

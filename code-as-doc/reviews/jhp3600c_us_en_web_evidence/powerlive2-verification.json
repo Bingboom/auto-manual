@@ -1,0 +1,63 @@
+{
+  "art_sha256": "6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24",
+  "native_geometry": [
+    {
+      "region": "product",
+      "native_bbox": [
+        45,
+        85,
+        145,
+        195
+      ],
+      "scale": 12,
+      "mean_absolute_rgb_difference": [
+        0.23477020202020202,
+        0.2360385101010101,
+        0.23922285353535352
+      ],
+      "export_note": "Direct crop/text-removal replay was pixel-identical. Packaged vector PDF translates the crop and introduces antialias rounding; compare the saved pairs visually."
+    },
+    {
+      "region": "button-hand",
+      "native_bbox": [
+        158,
+        83,
+        260,
+        156
+      ],
+      "scale": 12,
+      "mean_absolute_rgb_difference": [
+        0.6696044856298684,
+        0.6883710866386128,
+        0.6794802205509296
+      ],
+      "export_note": "Direct crop/text-removal replay was pixel-identical. Packaged vector PDF translates the crop and introduces antialias rounding; compare the saved pairs visually."
+    },
+    {
+      "region": "clock",
+      "native_bbox": [
+        263,
+        134,
+        274,
+        145
+      ],
+      "scale": 12,
+      "mean_absolute_rgb_difference": [
+        2.5922291092745637,
+        2.5795454545454546,
+        2.5785697887970613
+      ],
+      "export_note": "Direct crop/text-removal replay was pixel-identical. Packaged vector PDF translates the crop and introduces antialias rounding; compare the saved pairs visually."
+    }
+  ],
+  "frozen_files_byte_identical": 117,
+  "source_node_changes": [
+    [
+      "operations",
+      2
+    ]
+  ],
+  "shared_operation_tests": 15,
+  "source_coverage_unmatched": 0,
+  "vector_evidence_path": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/source/power_framefree.pdf"
+}

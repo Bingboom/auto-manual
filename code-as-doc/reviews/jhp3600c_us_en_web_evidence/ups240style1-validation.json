@@ -1,0 +1,28 @@
+{
+  "full_unittest": {
+    "command": "python3 -m unittest",
+    "tests": 5203,
+    "errors": 1,
+    "skipped": 35,
+    "seconds": 586.69,
+    "failed_test": "tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only",
+    "reason": "macOS /var vs /private/var temporary path resolution",
+    "implementation_unchanged_from": "09871197a"
+  },
+  "focused_path_recheck": {
+    "command": "TMPDIR=/private/tmp python3 -m unittest tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only",
+    "result": "passed"
+  },
+  "strict_standalone": "passed",
+  "strict_aggregate_targets": 106,
+  "frozen_replay_files_byte_identical": 116,
+  "baseline_files_byte_identical": 5609,
+  "native_unmatched": 0,
+  "audit_negative_control": "removed 9600W detected",
+  "responsive_widths": [
+    1440,
+    390,
+    320
+  ],
+  "scope": "local-only"
+}

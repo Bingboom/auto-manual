@@ -1,0 +1,29 @@
+[validate_config] OK
+[validate_layout_params] OK
+[build] validating config...
+[build] validating layout params...
+[build] target: model='JE-1000F', region='US', lang='en'
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs.py", line 858, in <module>
+    main()
+  File "/Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs.py", line 838, in main
+    _run_main_impl(
+  File "/Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs_main.py", line 26, in run_main
+    run_build(
+  File "/Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs_entry.py", line 85, in run_build
+    build_target(
+  File "/Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs.py", line 792, in build_target
+    return _build_target_impl(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs_export.py", line 302, in build_target
+    ensure_target_identity(
+  File "/Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs.py", line 714, in ensure_target_identity
+    return _ensure_target_identity_impl(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs_resolve.py", line 229, in ensure_target_identity
+    raise RuntimeError(
+RuntimeError: Failed to resolve Product Name from Spec_Master.csv for model='JE-1000F', region='US', lang='en'. Source: /Users/pika/.codex/worktrees/6985/auto-manual2/data/phase2/Spec_Master.csv
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 /Users/pika/.codex/worktrees/6985/auto-manual2/tools/validate_config.py --config /Users/pika/.codex/worktrees/6985/auto-manual2/configs/config.us-en.yaml
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 /Users/pika/.codex/worktrees/6985/auto-manual2/tools/validate_layout_params.py --csv /Users/pika/.codex/worktrees/6985/auto-manual2/data/layout_params.csv
+[build.py] Skipping Spec_Master content validation because the local phase2 snapshot is missing: /Users/pika/.codex/worktrees/6985/auto-manual2/data/phase2/Spec_Master.csv. Run `python build.py sync-data --config <config> --data-root data/phase2` or pass `--data-root <snapshot>` to validate a materialized snapshot.
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 /Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs.py --config /Users/pika/.codex/worktrees/6985/auto-manual2/configs/config.us-en.yaml --model JE-1000F --region US --source auto --prepare-only --clean --no-open

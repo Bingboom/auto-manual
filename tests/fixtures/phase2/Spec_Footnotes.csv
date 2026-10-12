@@ -9,3 +9,4 @@ ac_bypass,EU,JE-3000C,en,TRUE,specifications,1,The product can charge the batter
 ac_total,EU,JE-3000C,en,TRUE,specifications,2,Indicates that two or more AC output ports work together.,,,,,,,TRUE,
 ac_bypass,EU,JE-3600A,en,TRUE,specifications,1,The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.,,,,,,,TRUE,
 ac_total,EU,JE-3600A,en,TRUE,specifications,2,Indicates that two or more AC output ports work together.,,,,,,,TRUE,
+bypass,US,JE-1000E-SIL,en,TRUE,specifications,1,The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.,,,,,,,TRUE,

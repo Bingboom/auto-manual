@@ -8,13 +8,13 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 Jackery Explorer 1000 has two DC8020 input ports and is compatible with the Jackery solar panels.
 
 .. image:: asset:charging/solar_direct
-   :alt: Solar charging connection diagram placeholder 1.
+   :alt: Solar charging connection diagram (1).
    :width: 360px
 
 If one DC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging through the solar panel connector (sold separately, not included as standard).
 
 .. image:: asset:charging/solar_adapter
-   :alt: Solar charging connection diagram placeholder 2.
+   :alt: Solar charging connection diagram (2).
    :width: 360px
 
 .. list-table::
@@ -42,7 +42,7 @@ CHARGING VIA A CAR CHARGER (SOLD SEPARATELY)
 This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet (car cigarette lighter) provide a good connection.
 
 .. image:: asset:charging/car_charge
-   :alt: Car charging connection diagram placeholder.
+   :alt: Car charging connection diagram.
    :width: 360px
 
 | Vehicle

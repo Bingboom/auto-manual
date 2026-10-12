@@ -86,7 +86,9 @@ def load_manual_entries(repo_root: Path) -> dict[str, dict]:
     if not path.exists():
         return {}
     out: dict[str, dict] = {}
-    for row in csv.DictReader(path.open(encoding="utf-8")):
+    with path.open(encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh))
+    for row in rows:
         target = (row.get("target") or "").strip()
         if not target:
             continue
@@ -211,7 +213,7 @@ def check_liveness(rows: list[dict[str, str]], *, timeout: float = 10.0, printer
             if level == "DEAD":
                 failures += 1
             printer(f"[printed-urls] {level} {exc.code} {target}")
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - any network failure marks the URL dead
             failures += 1
             printer(f"[printed-urls] DEAD {target} ({exc})")
     printer(f"[printed-urls] liveness: {failures} failure(s)")

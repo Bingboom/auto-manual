@@ -38,7 +38,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from tools.check_docs_capability import load_capabilities
+from tools.check.docs_capability import load_capabilities
 
 SECTION_BEGIN_RE = re.compile(r"^\.\.[ \t]+hb-capability-begin:[ \t]*(?P<name>\S.*?)[ \t]*$")
 SECTION_END_RE = re.compile(r"^\.\.[ \t]+hb-capability-end:[ \t]*$")

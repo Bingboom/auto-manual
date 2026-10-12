@@ -36,6 +36,9 @@ class LanguageSpec:
     native_name: str
     template_directory: str
     separator: str
+    # Offline Git-source output languages do not imply a live table migration.
+    # Enable sync only when the corresponding source columns are onboarded.
+    sync_enabled: bool = True
 
     def columns_for_table(self, table_name: str) -> tuple[str, ...]:
         """Return the language columns for ``table_name``."""
@@ -108,6 +111,21 @@ LANGUAGE_REGISTRY = (
         native_name="中文",
         template_directory="page_zh",
         separator=": ",
+    ),
+    LanguageSpec(
+        code="zh-TW",
+        aliases=("zh-TW", "zh_tw", "zh-Hant"),
+        column_suffixes=("zh-TW",),
+        table_columns=(),
+        tm_column="zh-TW",
+        localized_copy_column="text_zh-TW",
+        status_word_column="zh-TW",
+        spec_title_column=None,
+        display_name="Chinese (Traditional, Taiwan)",
+        native_name="繁體中文",
+        template_directory="page_shared/zh-TW",
+        separator="：",
+        sync_enabled=False,
     ),
     LanguageSpec(
         code="ja",
@@ -290,6 +308,28 @@ LANGUAGE_REGISTRY = (
         template_directory="page_shared/ko",
         separator=": ",
     ),
+    *(
+        LanguageSpec(
+            code=code,
+            aliases=(code,),
+            column_suffixes=(code,),
+            table_columns=(),
+            tm_column=tm_column,
+            localized_copy_column=f"text_{code}",
+            status_word_column=tm_column,
+            spec_title_column=None,
+            display_name=display_name,
+            native_name=native_name,
+            template_directory=f"page_solar/{code}",
+            separator=": ",
+            sync_enabled=False,
+        )
+        for code, tm_column, display_name, native_name in (
+            ("pt", "eu-pt", "Portuguese", "Português"),
+            ("nl", "nl", "Dutch", "Nederlands"),
+            ("pl", "pl", "Polish", "Polski"),
+        )
+    ),
 )
 
 
@@ -393,12 +433,18 @@ TABLE_LANGUAGE_ORDER = {
 }
 
 
+def sync_language_specs() -> tuple[LanguageSpec, ...]:
+    """Languages whose columns are enabled for source-table synchronization."""
+
+    return tuple(spec for spec in LANGUAGE_REGISTRY if spec.sync_enabled)
+
+
 def _table_specs_in_schema_order(table_name: str) -> tuple[LanguageSpec, ...]:
     """Return registered languages in the target table's legacy order."""
 
     codes = TABLE_LANGUAGE_ORDER.get(table_name)
     if codes is None:
-        return LANGUAGE_REGISTRY
+        return sync_language_specs()
     # Preserve the historical order for languages already shipped, then append
     # any newly registered language automatically. A new registry row must not
     # require a second edit to this compatibility-order table.
@@ -409,7 +455,7 @@ def _table_specs_in_schema_order(table_name: str) -> tuple[LanguageSpec, ...]:
         if code in seen:
             continue
         spec = LANGUAGE_BY_CODE.get(code)
-        if spec is None:
+        if spec is None or not spec.sync_enabled:
             continue
         seen.add(code)
         ordered.append(spec)

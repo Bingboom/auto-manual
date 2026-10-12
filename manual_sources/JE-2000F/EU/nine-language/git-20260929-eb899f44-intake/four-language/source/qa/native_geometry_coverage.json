@@ -1,0 +1,49 @@
+{
+  "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "method": "PDF native line majority overlap; warranty covers all non-footer native lines. App excludes graphic UI/control captions handled by image/component bindings.",
+  "boundary": "This validates native text geometry only; it cannot prove vector-outline text completeness or final browser parity. UK is audit-only and excluded.",
+  "checks": [
+    {
+      "locale": "pl",
+      "recipe": "warranty_columns",
+      "native_lines_checked": 53,
+      "excluded_artwork_lines": 0,
+      "issues": []
+    },
+    {
+      "locale": "pt",
+      "recipe": "warranty_columns",
+      "native_lines_checked": 50,
+      "excluded_artwork_lines": 0,
+      "issues": []
+    },
+    {
+      "locale": "nl",
+      "recipe": "warranty_columns",
+      "native_lines_checked": 48,
+      "excluded_artwork_lines": 0,
+      "issues": []
+    },
+    {
+      "locale": "pl",
+      "recipe": "app_sections",
+      "native_lines_checked": 49,
+      "excluded_artwork_lines": 10,
+      "issues": []
+    },
+    {
+      "locale": "pt",
+      "recipe": "app_sections",
+      "native_lines_checked": 51,
+      "excluded_artwork_lines": 10,
+      "issues": []
+    },
+    {
+      "locale": "nl",
+      "recipe": "app_sections",
+      "native_lines_checked": 50,
+      "excluded_artwork_lines": 11,
+      "issues": []
+    }
+  ]
+}

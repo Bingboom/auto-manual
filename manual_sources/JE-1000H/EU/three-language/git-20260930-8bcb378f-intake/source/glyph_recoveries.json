@@ -1,0 +1,82 @@
+{
+  "schema_version": "frozen-pdf-glyph-recoveries/v1",
+  "target": {
+    "model": "JE-1000H",
+    "region": "EU"
+  },
+  "locales": {
+    "pt": [
+      {
+        "field": "pages/112/blocks_visual_order/4/text",
+        "before": "12 V\u000010 A máx.\nPorta CC 12 V\n",
+        "after": "12 V⎓10 A máx.\nPorta CC 12 V\n",
+        "physical_page": 112,
+        "bbox": [
+          29.639,
+          93.156,
+          73.465,
+          109.172
+        ],
+        "source_ai_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
+        "frame_id": "1332",
+        "native_frame_text": "12 V⎓10 A máx.",
+        "native_frame_bounds": [
+          2237.66579426084,
+          -4711.00384500682,
+          2272.89968097959,
+          -4716.67376688182
+        ],
+        "artboard_index": 111,
+        "artboard_bounds": [
+          2208.02650276668,
+          -4607.50101987205,
+          2576.94449346202,
+          -5132.32401987659
+        ],
+        "native_frame_page_bbox": [
+          29.6393,
+          103.5028,
+          64.8732,
+          109.1727
+        ]
+      },
+      {
+        "field": "media/overview/front/22",
+        "before": "12 V\u000010 A máx.",
+        "after": "12 V⎓10 A máx.",
+        "physical_page": 112,
+        "bbox": [
+          29.38920021057129,
+          102.85209655761719,
+          65.12420654296875,
+          109.4220962524414
+        ],
+        "source_ai_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
+        "frame_id": "1332",
+        "native_frame_text": "12 V⎓10 A máx.",
+        "native_frame_bounds": [
+          2237.66579426084,
+          -4711.00384500682,
+          2272.89968097959,
+          -4716.67376688182
+        ],
+        "artboard_index": 111,
+        "artboard_bounds": [
+          2208.02650276668,
+          -4607.50101987205,
+          2576.94449346202,
+          -5132.32401987659
+        ],
+        "native_frame_page_bbox": [
+          29.6393,
+          103.5028,
+          64.8732,
+          109.1727
+        ]
+      }
+    ],
+    "nl": [],
+    "pl": []
+  },
+  "evidence": "Read-only native Illustrator textFrames[1332].contents, same original AI and artboard; no source save."
+}

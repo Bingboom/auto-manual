@@ -1,5 +1,7 @@
 # Code Review Checklist
 
+Status: active
+
 Updated: 2026-03-15
 
 Use this checklist when reviewing changes to code, config, data, or review workflow.
@@ -13,7 +15,7 @@ Use this checklist when reviewing changes to code, config, data, or review workf
 ## 2. Build and Release Flow
 
 - [ ] Does the change preserve the current [`build.py`](../../build.py) entrypoint?
-- [ ] If command behavior changed, were [`README.md`](../../README.md), [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md), and the user guides under [`user-guide/`](../../user-guide) updated?
+- [ ] If command behavior changed, were the owning topic pages of [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md) and the user guides under [`user-guide/`](../../user-guide) updated (and [`README.md`](../../README.md) if a navigation pointer changed)?
 - [ ] If publish behavior changed, was `python build.py publish ...` kept or updated intentionally?
 - [ ] If diff-report behavior changed, were the report docs updated too?
 - [ ] If `preview`, `fast`, or `release-manifest` behavior changed, were their examples and output paths updated in docs?
@@ -60,6 +62,8 @@ config plane.
 ## 7. Tests and Verification
 
 - [ ] Was `python -m unittest` run if logic changed?
+- [ ] Do new or changed tests patch the module that looks the name up, not a re-export on a facade (`build_docs`, `process_build_queue`, `process_review_start_queue`, `backport.cloud_doc`)? The facade-patch ratchet (`data/facade_patch_baseline.tsv`) only lets the count fall.
+- [ ] Does new code live in a subpackage rather than at `tools/` top level, and run through `python -m` instead of new `script_bootstrap` / `sys.path.insert` code? The top-level ratchet (`data/top_level_module_baseline.tsv`) admits a new top-level module only with a recorded reason (`update --allow NAME=REASON`).
 - [ ] Was at least one relevant smoke build run for the affected family?
 - [ ] If JP review/publish flow changed, was `python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP` verified or explicitly deferred?
 - [ ] If release traceability changed, was `python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP` verified or explicitly deferred?

@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="系统建设：当前重点、已有能力、证据与阶段进度。">
+  <title>系统建设</title>
+  <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}?v={{ workspace_revision.revision|e }}">
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+<body class="app system-workspace">
+{%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
+{%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
+{%- macro evidence_links(rows) -%}
+{%- for ev in rows %}
+{%- if ev.href %}<a href="{{ ev.href|e }}" title="{{ ev.title|e }}" target="_blank" rel="noopener">{{ ev.label|e }}</a>
+{%- elif ev.label.startswith('操作者确认 ') %}
+{%- set confirmed_on = ev.label[-10:] %}
+<span title="{{ ev.title|replace(confirmed_on, confirmed_on[:7])|e }}">{{ ev.label[:-3]|e }}</span>
+{%- else %}<span title="{{ ev.title|e }}">{{ ev.label|e }}</span>
+{%- endif %}
+{%- endfor %}
+{%- endmacro -%}
+{%- macro lane_tags(tags, with_horizon) -%}{% if tags %}<div class="sw-tags">{% for tag in tags %}<span class="sw-tag is-{{ tag.horizon|e }}">{% if with_horizon %}{{ tag.horizon_label|e }} · {% endif %}{{ tag.title|e }}</span>{% endfor %}</div>{% endif %}{%- endmacro -%}
+{%- macro progress_bar(row) -%}<div class="sw-bar" role="img" aria-label="{{ row.label|e }}：完成 {{ row.done }} / {{ row.total }}"><span style="width:{{ row.percent }}%"></span></div>{%- endmacro -%}
+{%- macro capability_card(card) -%}
+        <article class="sw-card" id="cap-{{ card.id|e }}">
+          <header>
+            <div><h3>{{ card.title|e }}</h3><small>{{ card.en|e }}</small></div>
+            {{ badge(card.status, card.status_label) }}
+          </header>
+          {{ lane_tags(card.lanes, true) }}
+          <p class="sw-summary">{{ card.summary|e }}</p>
+          <ul class="sw-items">
+            {%- for entry in card.entries %}
+            <li>
+              <div class="sw-item-head"><span class="sw-dot is-{{ entry.status|e }}" aria-hidden="true"></span><b>{{ entry.label|e }}</b><span class="sw-state">{{ entry.status_label|e }}</span>{{ stale_mark(entry.stale) }}</div>
+              {%- if entry.note %}<p>{{ entry.note|e }}</p>{% endif %}
+            </li>
+            {%- endfor %}
+          </ul>
+          <details class="sw-evidence">
+            <summary>查看证据</summary>
+            <ul>
+              {%- for entry in card.entries %}
+              <li><span>{{ entry.label|e }}</span><span class="sw-refs">{{ evidence_links(entry.evidence) }}</span></li>
+              {%- endfor %}
+            </ul>
+          </details>
+        </article>
+{%- endmacro -%}
+{%- macro gate_card(gate) -%}
+        <div class="sw-gate is-{{ gate.state|e }}">
+          <div class="sw-gate-head"><b>{{ gate.id|e }}</b><span>{{ gate.label|e }}</span><em>{{ gate.done }} / {{ gate.total }}</em></div>
+          {{ progress_bar(gate) }}
+          <small>{{ gate.tally|e }}</small>
+          {{ lane_tags(gate.lanes, false) }}
+        </div>
+{%- endmacro -%}
+{{ site_sidebar('system', {'share': has_share, 'system': True, 'deliverables': deliverables_entry, 'design': design_entry, 'data': data_entry}) }}
+<div class="app-content">
+  {{ site_topbar('知识库', '系统建设') }}
+
+  <main id="top">
+    <section class="sw-hero page-head">
+      <h1>系统建设</h1>
+      <p class="sw-subtitle">{{ hero.subtitle|e }}</p>
+    </section>
+
+    <nav class="page-tabs" role="tablist" aria-label="系统建设分类">
+      <a role="tab" href="#tab-progress" data-tab="tab-progress" aria-selected="true">当前工作</a>
+      {% if evolution and evolution.architecture %}<a role="tab" href="#tab-architecture" data-tab="tab-architecture">系统架构</a>{% endif %}
+      <a role="tab" href="#tab-capabilities" data-tab="tab-capabilities">能力与流程</a>
+      {%- if corpus_enabled %}<a role="tab" href="#tab-corpus" data-tab="tab-corpus">语言资产</a>{% endif %}
+      {%- if tooling %}<a role="tab" href="#tab-tooling" data-tab="tab-tooling">技能与钩子</a>{% endif %}
+      {% if evolution %}<a role="tab" href="#tab-evolution" data-tab="tab-evolution">系统演变</a>{% endif %}
+      <a role="tab" href="#tab-sources" data-tab="tab-sources">入口与数据来源</a>
+    </nav>
+
+    <div class="tab-panel" id="tab-progress" role="tabpanel" aria-label="当前工作">
+
+    {%- if gates %}
+    <div class="kpi-row" aria-label="阶段进度">
+      {%- for gate in gates|rejectattr('fold') %}
+      <div class="kpi"><span>{{ gate.id|e }} · {{ gate.label|e }}</span><strong>{{ gate.done }}<small>/ {{ gate.total }}</small></strong><div class="kpi-bar" aria-hidden="true"><i style="width:{{ gate.percent }}%"></i></div><em>{{ gate.tally|e }}</em></div>
+      {%- endfor %}
+      {%- if corpus %}{% set pairs = corpus.tiles|first %}<div class="kpi"><span>语料{{ pairs.label|e }}</span><strong>{{ pairs.value|e }}</strong><em>翻译记忆库，按月快照</em></div>{% endif %}
+    </div>
+    {%- endif %}
+
+    {%- if focus %}
+    <section class="sw-section" id="focus">
+      <div class="section-header"><div>
+        <h2>当前重点</h2>
+        <p>{{ focus.note|e }}</p>
+      </div></div>
+      {%- for group in focus.groups %}
+      <div class="sw-focus-group is-{{ group.horizon|e }}">
+        <div class="sw-horizon">{{ group.label|e }}</div>
+        <div class="sw-lanes">
+          {%- for lane in group.lanes %}
+          <article class="sw-lane is-{{ lane.horizon|e }}" id="lane-{{ lane.id|e }}">
+            <header>
+              <h3>{{ lane.title|e }}</h3>
+              {%- if lane.card %}<a class="sw-lane-link" href="#cap-{{ lane.card|e }}">能力与证据 <b>↓</b></a>{% endif %}
+            </header>
+            {%- if lane.goal %}<p class="sw-lane-goal">{{ lane.goal|e }}</p>{% endif %}
+            <p class="sw-lane-action">{{ lane.action|e }}</p>
+            {%- if lane.metrics %}
+            <div class="sw-metrics">
+              {%- for metric in lane.metrics %}
+              <div class="sw-metric">
+                <small>{{ metric.label|e }}</small>
+                {%- if metric.no_data %}
+                <strong class="sw-nodata">无数据</strong>
+                {%- else %}
+                <strong>{{ metric.value|e }}{% if metric.unit %}<em>{{ metric.unit|e }}</em>{% endif %}</strong>
+                {%- if metric.sub %}<span>{{ metric.sub|e }}</span>{% endif %}
+                {%- if metric.delta %}<span class="sw-delta">{{ metric.delta|e }}</span>{% endif %}
+                {%- endif %}
+              </div>
+              {%- endfor %}
+            </div>
+            {%- endif %}
+            {%- if lane.entries %}
+            <ul class="sw-lane-items">
+              {%- for entry in lane.entries %}
+              <li><span class="sw-dot is-{{ entry.status|e }}" aria-hidden="true"></span><b>{{ entry.label|e }}</b><span class="sw-state">{{ entry.status_label|e }}</span>{{ stale_mark(entry.stale) }}</li>
+              {%- endfor %}
+            </ul>
+            {%- endif %}
+            <div class="sw-lane-progress">
+              {%- for row in lane.progress %}
+              <div class="sw-lane-row is-{{ row.state|e }}">
+                <div class="sw-lane-row-head"><b>{{ row.id|e }}</b><span>{{ row.label|e }}</span><em>{{ row.done }} / {{ row.total }}</em></div>
+                {{ progress_bar(row) }}
+                {%- if row.revs %}
+                <ul class="sw-revs">{% for rev in row.revs %}<li><a class="sw-rev is-{{ rev.status|e }}" href="{{ rev.href|e }}" title="{{ rev.rev|e }}：{{ rev.status_label|e }}" target="_blank" rel="noopener">{{ rev.rev|e }}</a></li>{% endfor %}</ul>
+                {%- endif %}
+              </div>
+              {%- endfor %}
+              {%- if lane.untracked %}<p class="sw-lane-empty">尚未入执行台账</p>{% endif %}
+              {%- if lane.ledger_missing %}<p class="sw-lane-empty">{{ fallbacks.ledger|e }}</p>{% endif %}
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+      {%- endfor %}
+      <div class="sw-focus-foot"><span>依据</span><span class="sw-refs">{{ evidence_links(focus.evidence) }}</span>{{ stale_mark(focus.stale) }}</div>
+    </section>
+    {%- endif %}
+
+    <section class="sw-section" id="now-next">
+      <div class="section-header"><div>
+        <h2>正在做与下一步</h2>
+        <p>阶段门与进度直接读取<a href="{{ ledger_url|e }}" target="_blank" rel="noopener">执行台账</a>；前一道门验收后才进入下一道，IDML 独立验收。</p>
+      </div></div>
+      {%- if gates %}
+      {%- set folded_gates = gates|selectattr('fold')|list %}
+      {%- if folded_gates %}
+      <details class="sw-more">
+        <summary>其他阶段门：{{ folded_gates|map(attribute='label')|join('、')|e }}</summary>
+        <div class="sw-gates">
+          {%- for gate in folded_gates %}
+{{ gate_card(gate) }}
+          {%- endfor %}
+        </div>
+      </details>
+      {%- endif %}
+      {%- if now %}
+      <ul class="sw-now" aria-label="当前在做">
+        {%- for row in now %}
+        <li><a href="{{ row.href|e }}" target="_blank" rel="noopener">{{ row.rev|e }}</a><span>{{ row.label|e }}</span><span class="sw-ledger is-{{ row.status|e }}">{{ row.status_label|e }}</span></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {%- else %}
+      <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.ledger|e }}。</p></div>
+      {%- endif %}
+    </section>
+    </div>
+
+    {%- if corpus_enabled %}
+    <div class="tab-panel" id="tab-corpus" role="tabpanel" aria-label="语言资产">
+    <section class="sw-section" id="language-assets">
+      <div class="section-header"><div>
+        <h2>语言资产</h2>
+        <p>翻译记忆库的规模与语料库句对覆盖，按月快照；不展示语料内容。</p>
+      </div></div>
+      {%- if corpus %}
+      <div class="sw-corpus-tiles">
+        {%- for tile in corpus.tiles %}
+        <div class="sw-tile"><small>{{ tile.label|e }}</small><strong>{{ tile.value|e }}</strong>{% if tile.delta %}<span class="sw-delta">{{ tile.delta|e }}</span>{% endif %}</div>
+        {%- endfor %}
+      </div>
+      <div class="sw-corpus">
+        <div class="sw-corpus-head"><span>语料库句对覆盖：各语言有译文的句对，占记忆库全部句对的比例</span><span>快照 {{ corpus.exported_at|e }}{% if corpus.previous %} · 上期 {{ corpus.previous|e }}{% else %} · 首份快照，下期起显示变化{% endif %}{{ stale_mark(corpus.stale) }}</span></div>
+        <ul class="sw-corpus-bars" aria-label="语料库句对覆盖：各语言有译文的句对数，及占记忆库全部句对的比例">
+          {%- for row in corpus.rows %}
+          <li title="{{ row.label|e }}：记忆库中 {{ row.count_text|e }} 条句对有该语言译文，占全部句对的 {{ row.percent }}%；不是说明书翻译完成率"><span class="sw-corpus-label">{{ row.label|e }}</span><span class="sw-corpus-track" aria-hidden="true"><span style="width:{{ row.percent }}%"></span></span><span class="sw-corpus-value">{{ row.count_text|e }}<em>{{ row.percent }}%</em></span></li>
+          {%- endfor %}
+        </ul>
+        <p class="sw-corpus-note">这是翻译记忆库里的语料覆盖，不是说明书的翻译完成率；说明书各语言的上线情况看“说明书网页化”。</p>
+      </div>
+      {%- else %}
+      <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.corpus|e }}。</p></div>
+      {%- endif %}
+    </section>
+    </div>
+    {%- endif %}
+
+    <div class="tab-panel" id="tab-capabilities" role="tabpanel" aria-label="能力与流程">
+    <section class="sw-section" id="capabilities">
+      <div class="section-header"><div>
+        <h2>能力地图</h2>
+        <p>每项状态都附证据；超过 {{ stale_after_days }} 天未复核或证据有变的，标为“待复核”。</p>
+      </div></div>
+      <ul class="sw-legend" aria-label="状态说明">
+        {%- for row in legend %}
+        <li>{{ badge(row.status, row.label) }}<span>{{ row.description|e }}</span></li>
+        {%- endfor %}
+      </ul>
+      {%- set folded_cards = cards|selectattr('fold')|list %}
+      <div class="sw-cards">
+        {%- for card in cards|rejectattr('fold') %}
+{{ capability_card(card) }}
+        {%- endfor %}
+      </div>
+      {%- if folded_cards %}
+      <details class="sw-more">
+        <summary>其他能力：{{ folded_cards|map(attribute='title')|join('、')|e }}</summary>
+        <div class="sw-cards">
+          {%- for card in folded_cards %}
+{{ capability_card(card) }}
+          {%- endfor %}
+        </div>
+      </details>
+      {%- endif %}
+    </section>
+
+    <section class="sw-section" id="flow">
+      <div class="section-header"><div>
+        <h2>生产流程与连接</h2>
+        <p>单项能力跑通不等于整条链路连通；“人工衔接”表示这一步仍要人来触发或搬运。</p>
+      </div></div>
+      <ol class="sw-flow">
+        {%- for link in flow %}
+        <li>
+          <div class="sw-link-path"><span>{{ link.source|e }}</span><i aria-hidden="true">→</i><span>{{ link.target|e }}</span></div>
+          <div class="sw-link-state">{{ badge(link.status, link.status_label) }}<span class="sw-mode is-{{ link.mode|e }}">{{ link.mode_label|e }}</span>{{ stale_mark(link.stale) }}</div>
+          <p>{{ link.note|e }}</p>
+          <div class="sw-refs">{{ evidence_links(link.evidence) }}</div>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+
+    </div>
+
+    {%- if tooling %}
+    <div class="tab-panel" id="tab-tooling" role="tabpanel" aria-label="技能与钩子">
+    <section class="sw-section" id="tooling">
+      <div class="section-header"><div>
+        <h2>技能与钩子</h2>
+        <p>{{ tooling.note|e }}</p>
+      </div></div>
+      <div class="sw-tooling-tiles">
+        {%- for tile in tooling.tiles %}
+        <div class="sw-tile"><small>{{ tile.label|e }}</small><strong>{{ tile.value|e }}</strong>{% if tile.sub %}<span class="sw-tile-sub">{{ tile.sub|e }}</span>{% endif %}</div>
+        {%- endfor %}
+      </div>
+      <div class="sw-skill-groups">
+        {%- for group in tooling.groups %}
+        <div class="sw-skill-group{% if not group.horizon %} is-rest{% endif %}">
+          <h3>{{ group.title|e }}{% if group.horizon_label %}<span class="sw-tag is-{{ group.horizon|e }}">{{ group.horizon_label|e }}</span>{% endif %}<em>{{ group.rows|length }}</em></h3>
+          {%- if group.rows %}
+          <ul class="sw-skills">
+            {%- for skill in group.rows %}
+            <li title="{{ skill.description|e }}">
+              <div class="sw-skill-head"><code>{{ skill.id|e }}</code>{% for agent in skill.agents %}<span class="sw-agent">{{ agent|e }}</span>{% endfor %}{% if skill.unregistered %}<span class="sw-stale" title="未登记：{{ skill.unregistered|join('、')|e }}">未登记</span>{% endif %}{% if skill.problems %}<span class="sw-stale" title="{{ skill.problems|join('；')|e }}">文件头有问题</span>{% endif %}</div>
+              <p>{{ skill.summary|e }}</p>
+            </li>
+            {%- endfor %}
+          </ul>
+          {%- else %}
+          <p class="sw-lane-empty">暂无对应技能</p>
+          {%- endif %}
+        </div>
+        {%- endfor %}
+      </div>
+      <div class="sw-hooks-wrap">
+        <table class="sw-hooks">
+          <thead><tr><th>层</th><th>触发</th><th>脚本</th><th>作用</th><th>方式</th><th>测试</th></tr></thead>
+          <tbody>
+            {%- for hook in tooling.hooks %}
+            <tr><td>{{ hook.layer|e }}</td><td>{{ hook.trigger|e }}</td><td><code>{{ hook.script|e }}</code></td><td>{{ hook.purpose|e }}</td><td>{{ hook.mode_label|e }}</td><td>{% if hook.tested %}<span class="sw-badge is-available">有</span>{% elif hook.exists %}<span class="sw-stale">没有测试</span>{% else %}<span class="sw-stale">脚本缺失</span>{% endif %}</td></tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="sw-hooks-note">git 钩子要在本机设置 <code>core.hooksPath</code> 才会运行；Claude Code 钩子随项目设置生效。</p>
+    </section>
+    </div>
+    {%- endif %}
+
+    {% if evolution and evolution.architecture %}
+    <div class="tab-panel" id="tab-architecture" role="tabpanel" aria-label="系统架构">
+      {% include "_system_architecture.html" %}
+    </div>
+    {% endif %}
+
+    {% if evolution %}
+    <div class="tab-panel" id="tab-evolution" role="tabpanel" aria-label="系统演变">
+      <section class="sw-section sw-evolution" id="evolution">
+        {% if evolution.problems %}
+        <div class="section-header"><div><h2>系统演变</h2><p>{{ evolution.problem|e }}</p></div></div>
+        {% else %}
+        <header class="evo-head">
+          <h2>{{ evolution.title|e }}</h2>
+          <p>{{ evolution.intro|e }}</p>
+        </header>
+
+        {% if evolution.timeline %}
+        <figure class="evo-chart" aria-labelledby="evo-chart-title">
+          <figcaption id="evo-chart-title">各项能力的时间跨度<span class="evo-legend"><i class="is-recorded"></i>已完成<i class="is-ongoing"></i>持续开展<i class="is-in_progress"></i>建设中<i class="is-planned"></i>未来方向 · 末端渐隐表示仍在进行</span></figcaption>
+          <div class="evo-chart-scroll"><div class="evo-chart-grid">
+            <div class="evo-axis" aria-hidden="true"><span></span><div class="evo-track">{% for tick in evolution.timeline.ticks %}<i style="left:{{ tick.left }}%">{{ tick.label }}</i>{% endfor %}<em class="evo-today" style="left:{{ evolution.timeline.today }}%">截至 {{ evolution.updated_on[:7]|e }}</em></div></div>
+            {% for chapter in evolution.chapters %}{% for stage in chapter.stages %}
+            <div class="evo-row is-{{ stage.status|e }}"><a href="#evolution-{{ stage.id|e }}" title="{{ stage.title|e }}">{{ stage.title|e }}</a><div class="evo-track">
+              <span class="evo-today-line" style="left:{{ evolution.timeline.today }}%" aria-hidden="true"></span>
+              {% if stage.bar %}<span class="evo-bar{% if stage.bar.open %} is-open{% endif %}" style="left:{{ stage.bar.left }}%;width:{{ stage.bar.width }}%" title="{{ stage.period|e }} · {{ stage.status_label|e }}"></span>
+              {% else %}<span class="evo-plan" style="left:{{ evolution.timeline.today }}%">{{ stage.status_label|e }}</span>{% endif %}
+            </div></div>
+            {% endfor %}{% endfor %}
+            {% for work in evolution.crosscutting %}{% if work.bar %}
+            <div class="evo-row is-crosscutting"><a href="#evolution-{{ work.id|e }}">{{ work.title|e }}</a><div class="evo-track"><span class="evo-today-line" style="left:{{ evolution.timeline.today }}%" aria-hidden="true"></span><span class="evo-band" style="left:{{ work.bar.left }}%;width:{{ work.bar.width }}%"></span></div></div>
+            {% endif %}{% endfor %}
+          </div></div>
+        </figure>
+        {% endif %}
+
+        {% macro feedback_loop() -%}
+          <figure class="sw-feedback">
+            <figcaption><h4>{{ evolution.feedback.title|e }}</h4><span>后半圈 · 未来建设方向</span></figcaption>
+            <div class="evo-loop">
+              <div class="evo-loop-lane"><b>已有基础</b><ol>{% for step in evolution.feedback.steps[:3] %}<li>{{ step|e }}</li>{% endfor %}</ol></div>
+              <div class="evo-loop-lane is-future"><b>后续规划</b><ol>{% for step in evolution.feedback.steps[3:] %}<li>{{ step|e }}</li>{% endfor %}</ol></div>
+              <span class="evo-loop-return" aria-hidden="true">↺ 回到编写</span>
+            </div>
+            <p>{{ evolution.feedback.note|e }}</p>
+          </figure>
+        {%- endmacro %}
+
+        {% macro stage_item(stage) -%}
+        <li class="sw-timeline-row is-{{ stage.status|e }}" id="evolution-{{ stage.id|e }}">
+          <article>
+            <header><span class="evo-period">{{ stage.period|e }}</span>{{ badge(stage.status, stage.status_label) }}</header>
+            <h4>{{ stage.title|e }}</h4>
+            <p class="sw-story">{{ stage.summary|e }}</p>
+            <ol class="sw-evolution-flow" aria-label="{{ stage.title|e }}的流程">{% for step in stage.flow %}<li>{{ step|e }}</li>{% endfor %}</ol>
+            <p class="evo-principle"><b>留下的原则</b>{{ stage.invariant|e }}</p>
+            <details class="sw-evolution-details">
+              <summary>经过与依据</summary>
+              <p>{{ stage.detail|e }}</p>
+              <div class="sw-refs">{{ evidence_links(stage.evidence) }}</div>
+            </details>
+          </article>
+        </li>
+        {%- endmacro %}
+
+        {% for chapter in evolution.chapters %}
+        {% if chapter.stages|selectattr('status', 'equalto', 'planned')|list|length == chapter.stages|length %}
+        <p class="evo-next">建设历程 ↑ <span>↓ 长期方向 · 试点和排期待确定</span></p>
+        {% endif %}
+        <section class="evo-chapter" aria-labelledby="evo-chapter-{{ loop.index }}">
+          <header class="evo-chapter-head"><span class="evo-chapter-no">{{ loop.index }}</span><div><h3 id="evo-chapter-{{ loop.index }}">{{ chapter.title|e }}</h3><p>{{ chapter.question|e }}</p></div></header>
+          <ol class="sw-timeline">{% for stage in chapter.stages %}{{ stage_item(stage) }}{% endfor %}</ol>
+          {% if loop.last %}
+          {{ feedback_loop() }}
+          {% endif %}
+        </section>
+        {% else %}
+        <ol class="sw-timeline">{% for stage in evolution.stages %}{{ stage_item(stage) }}{% endfor %}</ol>
+        {{ feedback_loop() }}
+        {% endfor %}
+
+        {% for work in evolution.crosscutting %}
+        <aside class="sw-crosscutting" id="evolution-{{ work.id|e }}" aria-labelledby="evolution-{{ work.id|e }}-title">
+          <header><span class="evo-period">{{ work.period|e }}</span>{{ badge(work.status, work.status_label) }}</header>
+          <h3 id="evolution-{{ work.id|e }}-title">支撑全程：{{ work.title|e }}</h3>
+          <p class="sw-story">{{ work.summary|e }}</p>
+          <ul class="sw-crosscutting-signposts" aria-label="{{ work.title|e }}的历次记录">{% for point in work.flow %}<li>{{ point|e }}</li>{% endfor %}</ul>
+          <p class="evo-principle"><b>留下的原则</b>{{ work.invariant|e }}</p>
+          <details class="sw-evolution-details">
+            <summary>经过与依据</summary>
+            <p>{{ work.detail|e }}</p>
+            <div class="sw-refs">{{ evidence_links(work.evidence) }}</div>
+          </details>
+        </aside>
+        {% endfor %}
+        {% endif %}
+      </section>
+    </div>
+    {% endif %}
+
+    <div class="tab-panel" id="tab-sources" role="tabpanel" aria-label="入口与数据来源">
+    <section class="sw-section" id="working">
+      <div class="section-header"><div>
+        <h2>现在就能用</h2>
+        <p>这些入口已经上线，可以直接打开。</p>
+      </div></div>
+      <div class="sw-open-grid">
+        {%- for row in working %}
+        {%- if row.docname %}
+        <a class="sw-open" href="{{ pathto(row.docname)|e }}">
+          <small>{{ row.meta|e }}</small><h3>{{ row.label|e }}</h3><p>{{ row.note|e }}</p><span>打开 <b>→</b></span>
+        </a>
+        {%- else %}
+        <div class="sw-open is-missing">
+          <small>无数据</small><h3>{{ row.label|e }}</h3><p>发布清单里没有找到这个入口。</p>
+        </div>
+        {%- endif %}
+        {%- endfor %}
+      </div>
+    </section>
+
+    <section class="sw-section" id="sources">
+      <div class="section-header"><div>
+        <h2>数据来源</h2>
+        <p>页面上每类数字和状态以哪里为准、怎么取、多久算过期、取不到时显示什么。登记在 source_registry.yaml，页面按它读取。</p>
+      </div></div>
+      <details class="page-meta"><summary>页面版本与更新</summary>
+        <div class="sw-update" data-revision="{{ workspace_revision.revision|e }}" data-built-at="{{ workspace_revision.built_at|e }}" data-version-url="{{ pathto('_static/system-workspace-revision.json', 1) }}">
+          <div><b>页面版本 <code>{{ workspace_revision.short_revision|e }}</code></b><span>构建于 {{ workspace_revision.built_at|e }} · 主线合入后，经同步和站点构建更新</span></div>
+          <p role="status" aria-live="polite" id="sw-update-status">检查已发布的新版本…</p>
+          <button type="button" id="sw-refresh" hidden>刷新到新版本 ↻</button>
+        </div>
+      </details>
+      <div class="sw-hooks-wrap">
+        <table class="sw-hooks sw-sources">
+          <thead><tr><th>数据</th><th>以哪里为准</th><th>怎么取</th><th>新鲜度</th><th>取不到时</th><th>用在</th></tr></thead>
+          <tbody>
+            {%- for row in sources %}
+            <tr id="source-{{ row.id|e }}"><td>{{ row.label|e }}</td><td><span class="sw-refs">{{ evidence_links(row.sources) }}</span></td><td>{{ row.how|e }}{% if row.refresh %}<code>{{ row.refresh|e }}</code>{% endif %}</td><td>{{ row.freshness|e }}{{ stale_mark(row.stale) }}</td><td>{{ row.fallback|e }}</td><td>{{ row.used_by|e }}</td></tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    </div>
+
+    <footer>
+      <span>快照 {{ build_date|e }}{% if last_published %} · 最近发布 {{ last_published|e }}{% endif %}</span>
+      <span>数据来源：发布清单 · 执行台账 · 语料快照 · 骨架定义 · 状态配置（复核于 {{ verified_on|e }}）</span>
+    </footer>
+  </main>
+</div>
+
+<script src="{{ pathto('_static/system-workspace.js', 1) }}?v={{ workspace_revision.revision|e }}" defer></script>
+{{ site_script() }}
+</body>
+</html>

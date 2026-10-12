@@ -1,5 +1,7 @@
 # IDML Page-Role Coverage Discovery — 2026-07-31
 
+Status: done
+
 ## Scope
 
 Workstream W / Stage 4a item 14 replaces implicit source-file routing in the

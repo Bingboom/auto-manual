@@ -1,0 +1,1221 @@
+{
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "language": "es",
+  "preface_title": "IMPORTANTE",
+  "records": [
+    {
+      "field": "preface",
+      "physical_page": 2,
+      "bbox_pt": [
+        34,
+        298,
+        344,
+        387
+      ],
+      "raw_text": "Felicidades por su nuevo Jackery Explorer 3600 Plus. Lea atentamente este manual antes de \nutilizar el producto, en particular las precauciones pertinentes para garantizar un uso \ncorrecto. Guarde este manual en un lugar accesible para consultarlo con frecuencia.\nEn cumplimiento de las leyes y reglamentos, el derecho de interpretación final de este \ndocumento y de todos los documentos relacionados con este producto corresponde a la \nEmpresa.\nTenga en cuenta que no se realizarán más notificaciones en caso de actualización, revisión \no finalización.",
+      "text": "Felicidades por su nuevo Jackery Explorer 3600 Plus. Lea atentamente este manual antes de utilizar el producto, en particular las precauciones pertinentes para garantizar un uso correcto. Guarde este manual en un lugar accesible para consultarlo con frecuencia. En cumplimiento de las leyes y reglamentos, el derecho de interpretación final de este documento y de todos los documentos relacionados con este producto corresponde a la Empresa. Tenga en cuenta que no se realizarán más notificaciones en caso de actualización, revisión o finalización.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "WHAT'S IN THE BOX",
+      "physical_page": 43,
+      "bbox_pt": [
+        25,
+        238,
+        344,
+        295
+      ],
+      "raw_text": "CONTENIDO DE LA CAJA",
+      "text": "CONTENIDO DE LA CAJA",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "MEANING OF SYMBOLS",
+      "physical_page": 42,
+      "bbox_pt": [
+        25,
+        339,
+        344,
+        371
+      ],
+      "raw_text": "SIGNIFICADO DE LOS SÍMBOLOS",
+      "text": "SIGNIFICADO DE LOS SÍMBOLOS",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "PRODUCT OVERVIEW",
+      "physical_page": 44,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        51
+      ],
+      "raw_text": "DESCRIPCIÓN GENERAL DEL PRODUCTO",
+      "text": "DESCRIPCIÓN GENERAL DEL PRODUCTO",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "LCD DISPLAY",
+      "physical_page": 45,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        51
+      ],
+      "raw_text": "AFFICHAGE LCD",
+      "text": "AFFICHAGE LCD",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "OPERATIONS",
+      "physical_page": 47,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        51
+      ],
+      "raw_text": "OPERACIONES",
+      "text": "OPERACIONES",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "physical_page": 50,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        51
+      ],
+      "raw_text": "FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)",
+      "text": "FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "CONNECTIONS",
+      "physical_page": 51,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        51
+      ],
+      "raw_text": "CONNEXIONS",
+      "text": "CONNEXIONS",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "CHARGING",
+      "physical_page": 52,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        51
+      ],
+      "raw_text": "CARGANDO",
+      "text": "CARGANDO",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "STORAGE",
+      "physical_page": 54,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        51
+      ],
+      "raw_text": "ALMACENAMIENTO",
+      "text": "ALMACENAMIENTO",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "TROUBLESHOOTING",
+      "physical_page": 54,
+      "bbox_pt": [
+        25,
+        162,
+        344,
+        204
+      ],
+      "raw_text": "RESOLUCIÓN DE PROBLEMAS",
+      "text": "RESOLUCIÓN DE PROBLEMAS",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "SPECIFICATIONS",
+      "physical_page": 55,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        51
+      ],
+      "raw_text": "ESPECIFICACIONES",
+      "text": "ESPECIFICACIONES",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "APP SETUP",
+      "physical_page": 57,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        51
+      ],
+      "raw_text": "CONFIGURACIÓN DE LA APLICACIÓN",
+      "text": "CONFIGURACIÓN DE LA APLICACIÓN",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "POWER ON/OFF",
+      "physical_page": 47,
+      "bbox_pt": [
+        25,
+        52,
+        344,
+        74
+      ],
+      "raw_text": "ENCENDIDO/APAGADO",
+      "text": "ENCENDIDO/APAGADO",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "USB OUTPUT ON/OFF",
+      "physical_page": 47,
+      "bbox_pt": [
+        25,
+        250,
+        344,
+        268
+      ],
+      "raw_text": "ENCENDER/APAGAR SALIDA USB",
+      "text": "ENCENDER/APAGAR SALIDA USB",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "AC OUTPUT ON/OFF",
+      "physical_page": 48,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        43
+      ],
+      "raw_text": "ENCENDER/APAGAR SALIDA CA",
+      "text": "ENCENDER/APAGAR SALIDA CA",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "ENERGY SAVING MODE",
+      "physical_page": 48,
+      "bbox_pt": [
+        25,
+        237,
+        344,
+        260
+      ],
+      "raw_text": "MODO DE AHORRO DE ENERGÍA",
+      "text": "MODO DE AHORRO DE ENERGÍA",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "LCD SCREEN",
+      "physical_page": 49,
+      "bbox_pt": [
+        25,
+        23,
+        344,
+        44
+      ],
+      "raw_text": "AFFICHAGE LCD",
+      "text": "AFFICHAGE LCD",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "KEY COMBINATION",
+      "physical_page": 49,
+      "bbox_pt": [
+        25,
+        256,
+        344,
+        280
+      ],
+      "raw_text": "COMBINACIONES DE TECLAS",
+      "text": "COMBINACIONES DE TECLAS",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "FRONT VIEW",
+      "physical_page": 44,
+      "bbox_pt": [
+        25,
+        52,
+        344,
+        70
+      ],
+      "raw_text": "VISTA FRONTAL",
+      "text": "VISTA FRONTAL",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "RIGHT SIDE VIEW",
+      "physical_page": 44,
+      "bbox_pt": [
+        25,
+        237,
+        344,
+        258
+      ],
+      "raw_text": "VISTA LATERAL DERECHA",
+      "text": "VISTA LATERAL DERECHA",
+      "method": "native-heading-font-and-region"
+    },
+    {
+      "field": "box-cable",
+      "physical_page": 43,
+      "bbox_pt": [
+        145,
+        400,
+        250,
+        430
+      ],
+      "raw_text": "Cable de carga de CA",
+      "text": "Cable de carga de CA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "box-manual",
+      "physical_page": 43,
+      "bbox_pt": [
+        250,
+        400,
+        344,
+        430
+      ],
+      "raw_text": "Manual del usuario",
+      "text": "Manual del usuario",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "kit-battery",
+      "physical_page": 51,
+      "bbox_pt": [
+        35,
+        440,
+        135,
+        462
+      ],
+      "raw_text": "Jackery Battery Pack 3600",
+      "text": "Jackery Battery Pack 3600",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "kit-cable",
+      "physical_page": 51,
+      "bbox_pt": [
+        135,
+        440,
+        200,
+        462
+      ],
+      "raw_text": "Cable de expansión",
+      "text": "Cable de expansión",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "kit-manual",
+      "physical_page": 51,
+      "bbox_pt": [
+        200,
+        440,
+        280,
+        462
+      ],
+      "raw_text": "Manual de usuario",
+      "text": "Manual de usuario",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "kit-sold-separately",
+      "physical_page": 51,
+      "bbox_pt": [
+        285,
+        405,
+        344,
+        439
+      ],
+      "raw_text": "Se vende por \nseparado",
+      "text": "Se vende por separado",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "main-on",
+      "physical_page": 47,
+      "bbox_pt": [
+        250,
+        81,
+        344,
+        98
+      ],
+      "raw_text": "Encendido",
+      "text": "Encendido",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "main-off",
+      "physical_page": 47,
+      "bbox_pt": [
+        250,
+        108,
+        344,
+        124
+      ],
+      "raw_text": "Apagado",
+      "text": "Apagado",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "main-press-once",
+      "physical_page": 47,
+      "bbox_pt": [
+        250,
+        98,
+        344,
+        109
+      ],
+      "raw_text": "Presione una vez",
+      "text": "Presione una vez",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "main-hold",
+      "physical_page": 47,
+      "bbox_pt": [
+        250,
+        124,
+        344,
+        141
+      ],
+      "raw_text": "Mantén presionado \ndurante 3 segundos",
+      "text": "Mantén presionado durante 3 segundos",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "energy-main-button",
+      "physical_page": 48,
+      "bbox_pt": [
+        160,
+        388,
+        240,
+        413
+      ],
+      "raw_text": "Botón principal de \nencendido",
+      "text": "Botón principal de encendido",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "energy-ac-button",
+      "physical_page": 48,
+      "bbox_pt": [
+        245,
+        388,
+        344,
+        413
+      ],
+      "raw_text": "Botón de energía \nCA",
+      "text": "Botón de energía CA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "energy-toggle",
+      "physical_page": 48,
+      "bbox_pt": [
+        160,
+        419,
+        344,
+        453
+      ],
+      "raw_text": "Encendido/Apagado\n3s\nMantenga pulsados ambos botones \ndurante 3 segundos",
+      "text": "Encendido/Apagado 3s Mantenga pulsados ambos botones durante 3 segundos",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "charging-ac-caption",
+      "physical_page": 52,
+      "bbox_pt": [
+        155,
+        245,
+        344,
+        281
+      ],
+      "raw_text": "Conecte el cable de carga de CA al puerto de entrada \nde CA del producto y a una toma de corriente.",
+      "text": "Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una toma de corriente.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "car-vehicle",
+      "physical_page": 53,
+      "bbox_pt": [
+        235,
+        200,
+        290,
+        218
+      ],
+      "raw_text": "Vehículo",
+      "text": "Vehículo",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "car-cable-note",
+      "physical_page": 53,
+      "bbox_pt": [
+        165,
+        296,
+        344,
+        314
+      ],
+      "raw_text": "※ El cable de carga para auto se vende por separado.",
+      "text": "※ El cable de carga para auto se vende por separado.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "app-power",
+      "physical_page": 57,
+      "bbox_pt": [
+        25,
+        392,
+        110,
+        426
+      ],
+      "raw_text": "Botón de \nencendido \nprincipal",
+      "text": "Botón de encendido principal",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "app-usb",
+      "physical_page": 57,
+      "bbox_pt": [
+        25,
+        426,
+        110,
+        463
+      ],
+      "raw_text": "Botón de \nenergía USB",
+      "text": "Botón de energía USB",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "app-ac",
+      "physical_page": 57,
+      "bbox_pt": [
+        270,
+        422,
+        344,
+        463
+      ],
+      "raw_text": "Botón de \nenergía CA",
+      "text": "Botón de energía CA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "add-device",
+      "physical_page": 57,
+      "bbox_pt": [
+        28.583999633789062,
+        158.85720825195312,
+        136.90402221679688,
+        171.23721313476562
+      ],
+      "raw_text": "2. Añadir un dispositivo",
+      "text": "2. Añadir un dispositivo",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "app-plus",
+      "physical_page": 57,
+      "bbox_pt": [
+        28.16990089416504,
+        174.410888671875,
+        171.9311065673828,
+        182.3308868408203
+      ],
+      "raw_text": "2.1 Haga clic en el botón Añadir dispositivo        ;",
+      "text": "2.1 Haga clic en el botón Añadir dispositivo ;",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "battery-heading",
+      "physical_page": 51,
+      "bbox_pt": [
+        35,
+        54,
+        280,
+        75
+      ],
+      "raw_text": " CONECTAR AL/LOS PAQUETE(S) DE BATERÍAS",
+      "text": "CONECTAR AL/LOS PAQUETE(S) DE BATERÍAS",
+      "method": "native-heading-size-separated-from-body-and-badge"
+    },
+    {
+      "field": "battery-heading-badge",
+      "physical_page": 51,
+      "bbox_pt": [
+        35,
+        54,
+        344,
+        75
+      ],
+      "raw_text": "SE VENDE POR SEPARADO\n CONECTAR AL/LOS PAQUETE(S) DE BATERÍAS",
+      "text": "SE VENDE POR SEPARADO CONECTAR AL/LOS PAQUETE(S) DE BATERÍAS",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "ac-heading",
+      "physical_page": 52,
+      "bbox_pt": [
+        35,
+        158,
+        344,
+        179
+      ],
+      "raw_text": "CARGA MEDIANTE UNA TOMA DE CORRIENTE DE PARED  ALTERNA",
+      "text": "CARGA MEDIANTE UNA TOMA DE CORRIENTE DE PARED ALTERNA",
+      "method": "native-heading-size-separated-from-body-and-badge"
+    },
+    {
+      "field": "solar-heading",
+      "physical_page": 52,
+      "bbox_pt": [
+        35,
+        304,
+        344,
+        333
+      ],
+      "raw_text": "CARGA MEDIANTE PANELES SOLARES",
+      "text": "CARGA MEDIANTE PANELES SOLARES",
+      "method": "native-heading-size-separated-from-body-and-badge"
+    },
+    {
+      "field": "car-heading",
+      "physical_page": 53,
+      "bbox_pt": [
+        35,
+        152,
+        344,
+        169
+      ],
+      "raw_text": "CARGA CON UN CARGADOR DE EN EL VEHÍCULO",
+      "text": "CARGA CON UN CARGADOR DE EN EL VEHÍCULO",
+      "method": "native-heading-size-separated-from-body-and-badge"
+    },
+    {
+      "field": "spec-trademarks",
+      "physical_page": 55,
+      "bbox_pt": [
+        25,
+        456,
+        344,
+        475
+      ],
+      "raw_text": "®\n®\n※ USB Type-C   y USB-C   son marcas registradas de USB Implementers Forum.",
+      "text": "® ® ※ USB Type-C y USB-C son marcas registradas de USB Implementers Forum.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-safety-lead",
+      "physical_page": 42,
+      "bbox_pt": [
+        25,
+        60,
+        125,
+        95
+      ],
+      "raw_text": "ADVERTENCIA",
+      "text": "ADVERTENCIA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-usb-caution",
+      "physical_page": 47,
+      "bbox_pt": [
+        25,
+        428,
+        80,
+        499
+      ],
+      "raw_text": "PRECAUCIÓN",
+      "text": "PRECAUCIÓN",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-energy-saving-memory",
+      "physical_page": 48,
+      "bbox_pt": [
+        25,
+        464,
+        80,
+        500
+      ],
+      "raw_text": "NOTA",
+      "text": "NOTA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-ups-caution",
+      "physical_page": 50,
+      "bbox_pt": [
+        25,
+        367,
+        80,
+        426
+      ],
+      "raw_text": "PRECAUCIÓN",
+      "text": "PRECAUCIÓN",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-battery-caution",
+      "physical_page": 51,
+      "bbox_pt": [
+        25,
+        313,
+        83,
+        374
+      ],
+      "raw_text": "PRECAUCIÓN",
+      "text": "PRECAUCIÓN",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-charging-temperature",
+      "physical_page": 52,
+      "bbox_pt": [
+        25,
+        107,
+        77,
+        160
+      ],
+      "raw_text": "Nota",
+      "text": "Nota",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-ac-caution",
+      "physical_page": 52,
+      "bbox_pt": [
+        25,
+        275,
+        80,
+        316
+      ],
+      "raw_text": "PRECAUCIÓN",
+      "text": "PRECAUCIÓN",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-solar-maximum",
+      "physical_page": 53,
+      "bbox_pt": [
+        25,
+        25,
+        82,
+        46
+      ],
+      "raw_text": "PRECAUCIÓN",
+      "text": "PRECAUCIÓN",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-solar-caution",
+      "physical_page": 53,
+      "bbox_pt": [
+        25,
+        46,
+        82,
+        113
+      ],
+      "raw_text": "PRECAUCIÓN",
+      "text": "PRECAUCIÓN",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-car-caution",
+      "physical_page": 53,
+      "bbox_pt": [
+        25,
+        332,
+        82,
+        405
+      ],
+      "raw_text": "Importante",
+      "text": "Importante",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-app-bound-lead",
+      "physical_page": 58,
+      "bbox_pt": [
+        25,
+        44,
+        80,
+        95
+      ],
+      "raw_text": "NOTA\n2.4 Una vez que el dispositivo se haya conectado correctamente, es necesario introducir el nombre y la ",
+      "text": "NOTA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-app-wifi-note",
+      "physical_page": 58,
+      "bbox_pt": [
+        25,
+        99,
+        80,
+        128
+      ],
+      "raw_text": "contraseña de la red Wi-Fi a la que se conectará el dispositivo. Una vez introducidos, el dispositivo se \nconectará automáticamente a la red Wi-Fi.\nNOTA",
+      "text": "NOTA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-app-bluetooth-caution",
+      "physical_page": 58,
+      "bbox_pt": [
+        25,
+        295,
+        80,
+        330
+      ],
+      "raw_text": "PRECAUCIÓN",
+      "text": "PRECAUCIÓN",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "badge-app-timeout",
+      "physical_page": 57,
+      "bbox_pt": [
+        25,
+        466,
+        80,
+        500
+      ],
+      "raw_text": "NOTA",
+      "text": "NOTA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-0-action",
+      "physical_page": 49,
+      "bbox_pt": [
+        197,
+        63.09458923339844,
+        244,
+        92.35528564453125
+      ],
+      "raw_text": "Encender",
+      "text": "Encender",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-0-description",
+      "physical_page": 49,
+      "bbox_pt": [
+        244,
+        63.09458923339844,
+        344,
+        92.35528564453125
+      ],
+      "raw_text": "Presione el botón de \nencendido principal o cuando \nel producto se esté cargando.",
+      "text": "Presione el botón de encendido principal o cuando el producto se esté cargando.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-1-action",
+      "physical_page": 49,
+      "bbox_pt": [
+        197,
+        92.35528564453125,
+        244,
+        113.552001953125
+      ],
+      "raw_text": "Apagar",
+      "text": "Apagar",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-1-description",
+      "physical_page": 49,
+      "bbox_pt": [
+        244,
+        92.35528564453125,
+        344,
+        113.552001953125
+      ],
+      "raw_text": "Presione el botón de \nencendido principal.",
+      "text": "Presione el botón de encendido principal.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-2-action",
+      "physical_page": 49,
+      "bbox_pt": [
+        197,
+        113.552001953125,
+        244,
+        144.19189453125
+      ],
+      "raw_text": "Apagado \nautomático",
+      "text": "Apagado automático",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-2-description",
+      "physical_page": 49,
+      "bbox_pt": [
+        244,
+        113.552001953125,
+        344,
+        144.19189453125
+      ],
+      "raw_text": "La pantalla LCD se apaga \nautomáticamente y entra en \nmodo de suspensión después \nde 2 minutos de inactividad.",
+      "text": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-3-action",
+      "physical_page": 49,
+      "bbox_pt": [
+        197,
+        144.19189453125,
+        244,
+        171.19549560546875
+      ],
+      "raw_text": "Encender",
+      "text": "Encender",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-3-description",
+      "physical_page": 49,
+      "bbox_pt": [
+        244,
+        144.19189453125,
+        344,
+        171.19549560546875
+      ],
+      "raw_text": "Presione dos veces el botón de \nencendido  principal cuando la \npantalla LCD esté encendida.",
+      "text": "Presione dos veces el botón de encendido principal cuando la pantalla LCD esté encendida.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-4-action",
+      "physical_page": 49,
+      "bbox_pt": [
+        197,
+        171.19549560546875,
+        244,
+        191.35079956054688
+      ],
+      "raw_text": "Apagar",
+      "text": "Apagar",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-4-description",
+      "physical_page": 49,
+      "bbox_pt": [
+        244,
+        171.19549560546875,
+        344,
+        191.35079956054688
+      ],
+      "raw_text": "Presione el botón de energía \nprincipal.",
+      "text": "Presione el botón de energía principal.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-5-action",
+      "physical_page": 49,
+      "bbox_pt": [
+        197,
+        191.35079956054688,
+        244,
+        219.58358764648438
+      ],
+      "raw_text": "Apagado \nautomático",
+      "text": "Apagado automático",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-mode-5-description",
+      "physical_page": 49,
+      "bbox_pt": [
+        244,
+        191.35079956054688,
+        344,
+        219.58358764648438
+      ],
+      "raw_text": "La pantalla LCD se apaga \nautomáticamente  después de \n2 horas de inactividad.",
+      "text": "La pantalla LCD se apaga automáticamente después de 2 horas de inactividad.",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-state-short",
+      "physical_page": 49,
+      "bbox_pt": [
+        150,
+        63.09458923339844,
+        197,
+        144.19189453125
+      ],
+      "raw_text": "En breve",
+      "text": "En breve",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "lcd-state-steady",
+      "physical_page": 49,
+      "bbox_pt": [
+        150,
+        144.19189453125,
+        197,
+        219.58358764648438
+      ],
+      "raw_text": "Estable en \n(durante el \nestado de \ncarga o \ndescarga)",
+      "text": "Estable en (durante el estado de carga o descarga)",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-header-buttons",
+      "physical_page": 49,
+      "bbox_pt": [
+        25,
+        281.9082946777344,
+        157,
+        296.618896484375
+      ],
+      "raw_text": "Botones",
+      "text": "Botones",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-header-operation",
+      "physical_page": 49,
+      "bbox_pt": [
+        157,
+        281.9082946777344,
+        248,
+        296.618896484375
+      ],
+      "raw_text": "Operación ",
+      "text": "Operación",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-header-function",
+      "physical_page": 49,
+      "bbox_pt": [
+        248,
+        281.9082946777344,
+        344,
+        296.618896484375
+      ],
+      "raw_text": "Función",
+      "text": "Función",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-0-left-button",
+      "physical_page": 49,
+      "bbox_pt": [
+        25,
+        296.618896484375,
+        90,
+        337.9927978515625
+      ],
+      "raw_text": "Botón de encendido \nprincipal",
+      "text": "Botón de encendido principal",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-0-right-button",
+      "physical_page": 49,
+      "bbox_pt": [
+        90,
+        296.618896484375,
+        157,
+        337.9927978515625
+      ],
+      "raw_text": "Botón de energía USB",
+      "text": "Botón de energía USB",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-0-instruction",
+      "physical_page": 49,
+      "bbox_pt": [
+        157,
+        296.618896484375,
+        248,
+        337.9927978515625
+      ],
+      "raw_text": "3s\nMantenga pulsados ambos \nbotones durante 3 segundos",
+      "text": "3s Mantenga pulsados ambos botones durante 3 segundos",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-0-function",
+      "physical_page": 49,
+      "bbox_pt": [
+        248,
+        296.618896484375,
+        344,
+        337.9927978515625
+      ],
+      "raw_text": "Restablecer Wi-Fi y Bluetooth",
+      "text": "Restablecer Wi-Fi y Bluetooth",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-1-left-button",
+      "physical_page": 49,
+      "bbox_pt": [
+        25,
+        337.9927978515625,
+        90,
+        379.36669921875
+      ],
+      "raw_text": "Botón de encendido \nprincipal",
+      "text": "Botón de encendido principal",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-1-right-button",
+      "physical_page": 49,
+      "bbox_pt": [
+        90,
+        337.9927978515625,
+        157,
+        379.36669921875
+      ],
+      "raw_text": "Botón de energía CA",
+      "text": "Botón de energía CA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-1-instruction",
+      "physical_page": 49,
+      "bbox_pt": [
+        157,
+        337.9927978515625,
+        248,
+        379.36669921875
+      ],
+      "raw_text": "3s\nMantenga pulsados ambos \nbotones durante 3 segundos",
+      "text": "3s Mantenga pulsados ambos botones durante 3 segundos",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-1-function",
+      "physical_page": 49,
+      "bbox_pt": [
+        248,
+        337.9927978515625,
+        344,
+        379.36669921875
+      ],
+      "raw_text": "Encender/apagar el modo \nde ahorro de energía",
+      "text": "Encender/apagar el modo de ahorro de energía",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-2-left-button",
+      "physical_page": 49,
+      "bbox_pt": [
+        25,
+        379.36669921875,
+        90,
+        423.39630126953125
+      ],
+      "raw_text": "Botón de energía USB",
+      "text": "Botón de energía USB",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-2-right-button",
+      "physical_page": 49,
+      "bbox_pt": [
+        90,
+        379.36669921875,
+        157,
+        423.39630126953125
+      ],
+      "raw_text": "Botón de energía CA",
+      "text": "Botón de energía CA",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-2-instruction",
+      "physical_page": 49,
+      "bbox_pt": [
+        157,
+        379.36669921875,
+        248,
+        423.39630126953125
+      ],
+      "raw_text": "1s\nMantenga pulsados ambos \nbotones durante 1 segundo",
+      "text": "1s Mantenga pulsados ambos botones durante 1 segundo",
+      "method": "native-complete-line-spans"
+    },
+    {
+      "field": "key-2-function",
+      "physical_page": 49,
+      "bbox_pt": [
+        248,
+        379.36669921875,
+        344,
+        423.39630126953125
+      ],
+      "raw_text": "Encender/apagar \nWi-Fi y Bluetooth",
+      "text": "Encender/apagar Wi-Fi y Bluetooth",
+      "method": "native-complete-line-spans"
+    }
+  ],
+  "app_image_object_identity": {
+    "57": [
+      {
+        "xref": 2802,
+        "sha256": "a330deb621bffa5827039dbb043b47c1444bf061609e2f404b880b90d9bead1b"
+      },
+      {
+        "xref": 2803,
+        "sha256": "fe00d8347180859f6d9074391af60884f38e8be00149fba2b341a8106770f8fe"
+      },
+      {
+        "xref": 2804,
+        "sha256": "8037f72bdbd2b1480e73261a22011e85eceb442e61217b8657764bf220e1f9c1"
+      }
+    ],
+    "58": [
+      {
+        "xref": 2808,
+        "sha256": "17b250197ee1d602c70f8498d4bdaee479653383399690676ff883ae679b6f4c"
+      },
+      {
+        "xref": 2809,
+        "sha256": "00f908a5bed92db798bd17e7d6bdcb75e95588ba847b9a1d3026098a9a48a98a"
+      },
+      {
+        "xref": 2810,
+        "sha256": "18d6ccc8d7d511cad163d38c2f5ce543a25140ada70b16d6de9d269e015aa381"
+      }
+    ]
+  },
+  "publication_eligible": false
+}

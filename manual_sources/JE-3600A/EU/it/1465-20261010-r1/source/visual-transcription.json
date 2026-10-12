@@ -1,0 +1,55 @@
+{
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "language": "it",
+  "reviewed_source_pages": [
+    81,
+    84,
+    85,
+    86,
+    87,
+    88,
+    90
+  ],
+  "fields": {
+    "usb-caution": [
+      "USB-C 100W è una porta di uscita ad alta potenza USB-PD Power Source 3 (PS3). Se il dispositivo o l'accessorio collegato non soddisfa i requisiti di sicurezza, potrebbe esserci un rischio di incendio. Prima di utilizzare queste porte, assicurarsi che il dispositivo o l'accessorio collegato sia dotato di protezione antincendio.",
+      "Collegare Jackery Explorer 3600 Plus solo a dispositivi o accessori conformi alle clausole 6.3, 6.4 e 6.5 della norma IEC/EN/UL 62368-1 (o altre norme equivalenti).",
+      "Per ottenere la massima potenza in uscita, utilizzare il cavo ufficiale Jackery USB-C to USB-C 5A (20V CC/5A, 100W)."
+    ],
+    "ups-caution": [
+      "Questo prodotto non supporta la commutazione a 0 ms. Non collegarlo a dispositivi che richiedono un'alimentazione ininterrotta, come server dati o workstation.",
+      "Prima dell'uso, testare più volte la compatibilità con il proprio dispositivo.",
+      "Non collegare carichi che superano la potenza di uscita massima del prodotto. In caso contrario, verrà attivata la protezione da sovraccarico."
+    ],
+    "battery-caution": [
+      "Assicurarsi che tutti i prodotti siano spenti prima di collegare l'Explorer 3600 Plus al Jackery Battery Pack 3600.",
+      "Per garantire il corretto funzionamento del prodotto, assicurarsi che le prese d'aria di aspirazione e bocchette di scarico su entrambi i lati non siano ostruite. Lasciare almeno 200 mm di spazio tra le prese d'aria e qualsiasi oggetto per consentire un'adeguata dissipazione del calore."
+    ],
+    "charging-temperature": [
+      "La temperatura consigliata per caricare il prodotto è compresa tra -20 °C e 45 °C, e la temperatura di scarica è anch’essa compresa tra -20 °C e 45 °C. Utilizzare il prodotto al di fuori di questo intervallo di temperatura può limitare le capacità di carica e scarica, o persino impedire la carica o la scarica.",
+      "La potenza di carica e la capacità della batteria del prodotto possono variare a causa delle fluttuazioni di temperatura."
+    ],
+    "solar-caution": [
+      "Assicurarsi che la tensione di ingresso per entrambe le porte di ingresso CC sia la stessa. In caso contrario, il prodotto potrebbe subire danni. Ad esempio:",
+      "Si consiglia di utilizzare pannelli solari Jackery dello stesso modello e dello stesso numero quando si collegano pannelli solari a entrambe le porte di ingresso CC8020.",
+      "Non caricare il prodotto utilizzando contemporaneamente un caricabatterie per auto e un pannello solare. Ciò potrebbe far saltare il fusibile dell'auto o causare un fallimento della carica."
+    ],
+    "car-caution": [
+      "Avviare il veicolo prima di caricare il prodotto.",
+      "Se il veicolo si trova su strade dissestate, è vietato utilizzare il caricabatterie per auto per evitare il rischio di surriscaldamento dovuto a un cattivo collegamento. L’ azienda non sarà responsabile per eventuali danni causati da un utilizzo non conforme.",
+      "La ricarica tramite veicolo è applicabile solo ai veicoli con alimentazione a 12V DC, non a 24V DC. Non caricare questo prodotto in un veicolo a 24V per evitare lesioni personali e danni materiali."
+    ],
+    "storage-intro": "Conservare il prodotto in un luogo pulito e asciutto, con una ventilazione adeguata. Temperatura e umidità di stoccaggio:",
+    "storage-rows": [
+      "1 mese: tra -20 °C e 45 °C (0-60% UR)",
+      "3 mesi: tra 0 °C e 45 °C (0-60% UR)",
+      "12 mesi: tra 0 °C e 25 °C (0-60% UR)"
+    ],
+    "storage-body": "Se il prodotto viene conservato a lungo termine (da 3 a 6 mesi) con la batteria scarica, potrebbe non essere più possibile ricaricarlo. Per evitarlo e mantenere la salute della batteria, si consiglia di controllare e ricaricare il prodotto ogni tre mesi e di eseguire almeno un ciclo completo di carica e scarica ogni 6–12 mesi.",
+    "warranty-exclusions": "La garanzia di Jackery non si applica a: • Uso improprio, abuso, modifica, danneggiamento accidentale o utilizzo diverso dal normale uso da parte del consumatore, come autorizzato nella documentazione di questo prodotto Jackery. • Tentativi di riparazione da parte di persone diverse da quelle autorizzate. • Qualsiasi prodotto acquistato tramite una casa d’aste online. • La garanzia di Jackery non si applica alla batteria, a meno che questa non venga caricata completamente dall'utente entro sette giorni dall'acquisto del prodotto, e successivamente almeno una volta ogni 6 mesi.",
+    "app-bound-steps": [
+      "Il proprietario del dispositivo condividerà questo dispositivo con altri utenti tramite l'app.",
+      "Premere e tenere premuto il pulsante POWER e il pulsante di alimentazione USB per 3 secondi per ripristinare il dispositivo, quindi riassociare il dispositivo."
+    ]
+  }
+}

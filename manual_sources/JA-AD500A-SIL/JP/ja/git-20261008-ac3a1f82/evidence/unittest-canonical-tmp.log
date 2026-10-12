@@ -1,0 +1,7 @@
+Command: TMPDIR=/private/tmp python3 -m unittest
+
+Ran 5217 tests in 3267.125s
+
+OK (skipped=35)
+
+Initial default macOS TMPDIR produced a /var versus /private/var error; exact failing test passed with this canonical temporary directory. No unrelated code fix. Existing dependency-lock warnings were retained; no dependency changes.

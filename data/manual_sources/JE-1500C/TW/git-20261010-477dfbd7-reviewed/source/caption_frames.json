@@ -1,0 +1,142 @@
+[
+  {
+    "figure": "power",
+    "physical_page": 8,
+    "removed_drawing_index": 5,
+    "bbox": [
+      158.45799255371094,
+      165.1729736328125,
+      330.5090026855469,
+      216.6309814453125
+    ],
+    "label_anchor": 5,
+    "pseudo": "before",
+    "role": "CSS external caption plate"
+  },
+  {
+    "figure": "power",
+    "physical_page": 8,
+    "removed_drawing_index": 6,
+    "bbox": [
+      166.1959991455078,
+      156.52650451660156,
+      182.39300537109375,
+      165.08950805664062
+    ],
+    "label_anchor": 5,
+    "pseudo": "after",
+    "role": "CSS external caption plate"
+  },
+  {
+    "figure": "power",
+    "physical_page": 8,
+    "removed_drawing_index": 56,
+    "bbox": [
+      35.36041259765625,
+      221.46408081054688,
+      332.32843017578125,
+      254.24008178710938
+    ],
+    "label_anchor": 10,
+    "pseudo": "before",
+    "role": "CSS external caption plate"
+  },
+  {
+    "figure": "ac-output",
+    "physical_page": 8,
+    "removed_drawing_index": 7,
+    "bbox": [
+      34.76739501953125,
+      308.0386047363281,
+      127.82339477539062,
+      322.974609375
+    ],
+    "label_anchor": 0,
+    "pseudo": "before",
+    "role": "CSS external caption plate"
+  },
+  {
+    "figure": "dc-usb",
+    "physical_page": 9,
+    "removed_drawing_index": 1,
+    "bbox": [
+      35.08470153808594,
+      52.35348892211914,
+      128.1407012939453,
+      67.28948974609375
+    ],
+    "label_anchor": 0,
+    "pseudo": "before",
+    "role": "CSS external caption plate"
+  },
+  {
+    "figure": "dc-usb",
+    "physical_page": 9,
+    "removed_drawing_index": 3,
+    "bbox": [
+      36.71051025390625,
+      421.1000061035156,
+      333.67852783203125,
+      473.20599365234375
+    ],
+    "label_anchor": 3,
+    "pseudo": "before",
+    "role": "CSS external caption plate"
+  },
+  {
+    "figure": "dc-usb",
+    "physical_page": 9,
+    "removed_drawing_index": 4,
+    "bbox": [
+      38.385498046875,
+      423.197021484375,
+      72.29949951171875,
+      471.1090087890625
+    ],
+    "label_anchor": 1,
+    "pseudo": "before",
+    "role": "CSS external caption plate"
+  },
+  {
+    "figure": "dc-usb",
+    "physical_page": 9,
+    "removed_drawing_index": 5,
+    "bbox": [
+      36.71051025390625,
+      314.3230895996094,
+      333.67852783203125,
+      389.25408935546875
+    ],
+    "label_anchor": 10,
+    "pseudo": "before",
+    "role": "CSS external caption plate"
+  },
+  {
+    "figure": "dc-usb",
+    "physical_page": 9,
+    "removed_drawing_index": 6,
+    "bbox": [
+      38.385498046875,
+      316.42010498046875,
+      72.29949951171875,
+      387.1571044921875
+    ],
+    "label_anchor": 2,
+    "pseudo": "before",
+    "role": "CSS external caption plate"
+  },
+  {
+    "figure": "car-charge",
+    "physical_page": 13,
+    "removed_drawing_index": 4360,
+    "bbox": [
+      203.34909057617188,
+      410.9247131347656,
+      295.6091003417969,
+      424.6177062988281
+    ],
+    "label_anchor": 1,
+    "pseudo": "before",
+    "role": "CSS external caption plate"
+  }
+]

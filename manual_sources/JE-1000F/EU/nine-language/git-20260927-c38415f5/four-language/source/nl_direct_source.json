@@ -1,0 +1,4010 @@
+{
+  "schema_version": "je1000f-eu-four-locale-direct-source/v1",
+  "locale": "nl",
+  "source_path": "/tmp/je1000f-nine-language-intake/HTE153-EU-9国语言-0923.ai",
+  "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+  "method": "PyMuPDF direct text objects from exact AI PDF-compatible layer; no OCR or translation",
+  "status": "direct source extracted; semantic flow and artwork require visual QA",
+  "sections": [
+    {
+      "id": "safety",
+      "physical_pages": [
+        127
+      ]
+    },
+    {
+      "id": "symbols",
+      "physical_pages": [
+        127,
+        128
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "physical_pages": [
+        128
+      ]
+    },
+    {
+      "id": "product_overview",
+      "physical_pages": [
+        129
+      ]
+    },
+    {
+      "id": "lcd_display",
+      "physical_pages": [
+        130,
+        131
+      ]
+    },
+    {
+      "id": "operations",
+      "physical_pages": [
+        132,
+        133,
+        134,
+        135
+      ]
+    },
+    {
+      "id": "ups",
+      "physical_pages": [
+        135,
+        136
+      ]
+    },
+    {
+      "id": "charging",
+      "physical_pages": [
+        136,
+        137,
+        138,
+        139
+      ]
+    },
+    {
+      "id": "storage",
+      "physical_pages": [
+        139
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "physical_pages": [
+        139
+      ]
+    },
+    {
+      "id": "specifications",
+      "physical_pages": [
+        140
+      ]
+    },
+    {
+      "id": "warranty",
+      "physical_pages": [
+        141
+      ]
+    },
+    {
+      "id": "app_setup",
+      "physical_pages": [
+        142,
+        143
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "physical_page": 127,
+      "relative_body_page": 1,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "120\nTijdens de levensduur van energieopslagproducten kunt u rekening houden met een zekere mate van \ncapaciteits- en energieverlies. Naarmate het aantal laad- en ontlaadcycli toeneemt en de opslagduur langer \nwordt, zal deze achteruitgang geleidelijk toenemen; dit is een normaal verschijnsel dat samenhangt met de \nnatuurlijke veroudering van batterijcellen.\nSymbool\nBetekenis\nGevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade \naan eigendommen.\n OPGELET\nGevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of \nmateriële schade.\nWAARSCHUWING \nGevaarlijke praktijken die kunnen leiden tot schade aan apparatuur, \ngegevensverlies, slechtere prestaties of onverwachte resultaten.\nOPMERKING\nVult de belangrijke informatie of bedieningstips in de tekst aan.\nTIP\nBETEKENIS VAN SYMBOLEN\n• Lees alle instructies voordat u het product gebruikt.\n• Kinderen mogen niet met het product spelen. Wanneer het product in de buurt van kinderen wordt gebruikt, is \nnauwlettend toezicht op de kinderen noodzakelijk.\n• Het gebruik van accessoires die niet worden aanbevolen of verkocht door professionele productfabrikanten kan \neen risico op elektrische schokken opleveren.\n• Haal de stekker uit de voedingsaansluiting van het product wanneer het product niet wordt gebruikt.\n• Demonteer het product niet, omdat dit kan leiden tot onvoorspelbare risico's zoals brand, explosie of elektrische \nschokken.\n• Gebruik het product niet met beschadigde snoeren, stekkers of uitgangskabels, omdat dit kan leiden tot een \nelektrische schok.\n• Houd de ventilatieopeningen van het product vrij om een goede luchtcirculatie te garanderen. De ruimte waar \nhet product wordt gebruikt, moet voldoende luchtstroom hebben en koel en droog zijn om oververhitting te \nvoorkomen.\nHet opladen in vochtige of slecht geventileerde ruimtes kan veiligheidsrisico's met zich meebrengen.\nWater kan kortsluiting of schade aan de oplader veroorzaken, wat kan leiden tot veiligheidsrisico's.\n• Stel het product niet bloot aan vuur, hoge temperaturen, direct zonlicht of omgevingen met grote hitte, zoals in \neen geparkeerd voertuig. Een dergelijke blootstelling kan leiden tot brand of een explosie.\nAANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE \nSCHOK OF LETSEL AAN PERSONEN\nVolg altijd deze basisvoorzorgsmaatregelen wanneer u dit product gebruikt. \nINSTRUCTIES VOOR GEBRUIKERSONDERHOUD\nBELANGRIJKE VEILIGHEIDSINFORMATIE\n",
+      "text_sha256": "0bae36213e174a7327bf105b2d9974fd7ff4ac8280f85dd9fef564a10ba93d18",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            34.556,
+            30.655,
+            250.76,
+            45.511
+          ],
+          "text": "BELANGRIJKE VEILIGHEIDSINFORMATIE\n"
+        },
+        {
+          "bbox": [
+            62.859,
+            60.925,
+            329.643,
+            81.229
+          ],
+          "text": "AANWIJZINGEN BETREFFENDE HET RISICO OP BRAND, EEN ELEKTRISCHE \nSCHOK OF LETSEL AAN PERSONEN\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            89.09,
+            263.07,
+            97.137
+          ],
+          "text": "Volg altijd deze basisvoorzorgsmaatregelen wanneer u dit product gebruikt. \n"
+        },
+        {
+          "bbox": [
+            31.975,
+            101.466,
+            173.422,
+            108.666
+          ],
+          "text": "• Lees alle instructies voordat u het product gebruikt.\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            111.468,
+            332.604,
+            126.666
+          ],
+          "text": "• Kinderen mogen niet met het product spelen. Wanneer het product in de buurt van kinderen wordt gebruikt, is \nnauwlettend toezicht op de kinderen noodzakelijk.\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            129.468,
+            336.5,
+            144.666
+          ],
+          "text": "• Het gebruik van accessoires die niet worden aanbevolen of verkocht door professionele productfabrikanten kan \neen risico op elektrische schokken opleveren.\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            147.468,
+            306.877,
+            154.668
+          ],
+          "text": "• Haal de stekker uit de voedingsaansluiting van het product wanneer het product niet wordt gebruikt.\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            157.47,
+            337.71,
+            172.668
+          ],
+          "text": "• Demonteer het product niet, omdat dit kan leiden tot onvoorspelbare risico's zoals brand, explosie of elektrische \nschokken.\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            175.47,
+            328.999,
+            190.668
+          ],
+          "text": "• Gebruik het product niet met beschadigde snoeren, stekkers of uitgangskabels, omdat dit kan leiden tot een \nelektrische schok.\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            193.47,
+            334.235,
+            216.666
+          ],
+          "text": "• Houd de ventilatieopeningen van het product vrij om een goede luchtcirculatie te garanderen. De ruimte waar \nhet product wordt gebruikt, moet voldoende luchtstroom hebben en koel en droog zijn om oververhitting te \nvoorkomen.\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            219.468,
+            300.315,
+            226.668
+          ],
+          "text": "Het opladen in vochtige of slecht geventileerde ruimtes kan veiligheidsrisico's met zich meebrengen.\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            229.47,
+            296.238,
+            236.67
+          ],
+          "text": "Water kan kortsluiting of schade aan de oplader veroorzaken, wat kan leiden tot veiligheidsrisico's.\n"
+        },
+        {
+          "bbox": [
+            31.975,
+            239.472,
+            334.294,
+            254.67
+          ],
+          "text": "• Stel het product niet bloot aan vuur, hoge temperaturen, direct zonlicht of omgevingen met grote hitte, zoals in \neen geparkeerd voertuig. Een dergelijke blootstelling kan leiden tot brand of een explosie.\n"
+        },
+        {
+          "bbox": [
+            34.317,
+            273.571,
+            203.565,
+            283.475
+          ],
+          "text": "INSTRUCTIES VOOR GEBRUIKERSONDERHOUD\n"
+        },
+        {
+          "bbox": [
+            29.454,
+            290.975,
+            331.738,
+            325.175
+          ],
+          "text": "Tijdens de levensduur van energieopslagproducten kunt u rekening houden met een zekere mate van \ncapaciteits- en energieverlies. Naarmate het aantal laad- en ontlaadcycli toeneemt en de opslagduur langer \nwordt, zal deze achteruitgang geleidelijk toenemen; dit is een normaal verschijnsel dat samenhangt met de \nnatuurlijke veroudering van batterijcellen.\n"
+        },
+        {
+          "bbox": [
+            34.771,
+            336.713,
+            184.339,
+            351.569
+          ],
+          "text": "BETEKENIS VAN SYMBOLEN\n"
+        },
+        {
+          "bbox": [
+            37.586,
+            365.169,
+            147.195,
+            375.073
+          ],
+          "text": "Symbool\nBetekenis\n"
+        },
+        {
+          "bbox": [
+            50.534,
+            383.191,
+            320.684,
+            398.389
+          ],
+          "text": "Gevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of \nmateriële schade.\nWAARSCHUWING \n"
+        },
+        {
+          "bbox": [
+            48.394,
+            409.523,
+            314.886,
+            424.721
+          ],
+          "text": "Gevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade \naan eigendommen.\n OPGELET\n"
+        },
+        {
+          "bbox": [
+            49.939,
+            434.633,
+            299.522,
+            449.831
+          ],
+          "text": "Gevaarlijke praktijken die kunnen leiden tot schade aan apparatuur, \ngegevensverlies, slechtere prestaties of onverwachte resultaten.\nOPMERKING\n"
+        },
+        {
+          "bbox": [
+            61.791,
+            461.487,
+            284.095,
+            473.684
+          ],
+          "text": "Vult de belangrijke informatie of bedieningstips in de tekst aan.\nTIP\n"
+        },
+        {
+          "bbox": [
+            26.931,
+            504.01,
+            35.841,
+            511.21
+          ],
+          "text": "120\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 128,
+      "relative_body_page": 2,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "121\nWAT ZIT ER IN DE DOOS\nJackery \nExplorer 1000\n1\n AC-oplaadkabel\n2\n3\nGebruikershandleiding\nTIPS\nDe oplaadkabel voor de auto is niet inbegrepen, maar is apart verkrijgbaar op \nonze website. Voor assistentie kunt u contact opnemen met de klantenservice \nvan Jackery.\nSymbool\nBetekenis\nWaarschuwings- en voorzorgssymbolen. \nMoet worden gelezen om personen te \nwaarschuwen voor mogelijke gevaren of \nrisico's.\nLees de gebruikershandleiding voor \ngebruik.\nHoud het product uit de buurt van vuur.\nDemonteer het product niet.\nSymbool Betekenis\nHoud het product buiten het bereik van \nkinderen.\nDit symbool geeft aan dat zich een \nlithium-ion (Li-ion) batterij in het product \nbevindt en dat deze op de juiste manier \nmoet worden afgevoerd of gerecycled.\nDit symbool geeft aan dat het product niet als \nhuishoudelijk afval mag worden weggegooid en \nnaar een aangewezen inzamelingspunt voor \nrecycling moet worden gebracht. \nEen juiste afvalverwerking en recycling dragen \nbij aan een beter milieu. Voor meer informatie \nover de verwijdering en recycling van dit \nproduct, neem contact op met uw gemeente, \nafvalverwerkingsdienst of leverancier.\n",
+      "text_sha256": "c9ce8425dcc342b765b211a4118c536d9f789e326c390f530d583ad758168bab",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            32.797,
+            31.425,
+            108.718,
+            41.329
+          ],
+          "text": "Symbool\nBetekenis\n"
+        },
+        {
+          "bbox": [
+            188.673,
+            31.425,
+            260.954,
+            41.329
+          ],
+          "text": "Symbool Betekenis\n"
+        },
+        {
+          "bbox": [
+            227.023,
+            53.477,
+            329.168,
+            67.197
+          ],
+          "text": "Houd het product buiten het bereik van \nkinderen.\n"
+        },
+        {
+          "bbox": [
+            72.9,
+            46.128,
+            177.294,
+            73.848
+          ],
+          "text": "Waarschuwings- en voorzorgssymbolen. \nMoet worden gelezen om personen te \nwaarschuwen voor mogelijke gevaren of \nrisico's.\n"
+        },
+        {
+          "bbox": [
+            72.9,
+            84.611,
+            164.899,
+            98.331
+          ],
+          "text": "Lees de gebruikershandleiding voor \ngebruik.\n"
+        },
+        {
+          "bbox": [
+            225.741,
+            76.353,
+            330.259,
+            104.073
+          ],
+          "text": "Dit symbool geeft aan dat zich een \nlithium-ion (Li-ion) batterij in het product \nbevindt en dat deze op de juiste manier \nmoet worden afgevoerd of gerecycled.\n"
+        },
+        {
+          "bbox": [
+            73.068,
+            117.208,
+            145.757,
+            123.928
+          ],
+          "text": "Demonteer het product niet.\n"
+        },
+        {
+          "bbox": [
+            73.505,
+            152.449,
+            174.155,
+            159.169
+          ],
+          "text": "Houd het product uit de buurt van vuur.\n"
+        },
+        {
+          "bbox": [
+            225.134,
+            109.383,
+            336.168,
+            169.783
+          ],
+          "text": "Dit symbool geeft aan dat het product niet als \nhuishoudelijk afval mag worden weggegooid en \nnaar een aangewezen inzamelingspunt voor \nrecycling moet worden gebracht. \nEen juiste afvalverwerking en recycling dragen \nbij aan een beter milieu. Voor meer informatie \nover de verwijdering en recycling van dit \nproduct, neem contact op met uw gemeente, \nafvalverwerkingsdienst of leverancier.\n"
+        },
+        {
+          "bbox": [
+            34.901,
+            240.847,
+            166.997,
+            255.703
+          ],
+          "text": "WAT ZIT ER IN DE DOOS\n"
+        },
+        {
+          "bbox": [
+            182.28,
+            287.154,
+            294.604,
+            300.39
+          ],
+          "text": "2\n3\n"
+        },
+        {
+          "bbox": [
+            74.884,
+            288.879,
+            78.769,
+            302.114
+          ],
+          "text": "1\n"
+        },
+        {
+          "bbox": [
+            259.839,
+            398.563,
+            323.434,
+            405.991
+          ],
+          "text": "Gebruikershandleiding\n"
+        },
+        {
+          "bbox": [
+            161.815,
+            399.068,
+            209.923,
+            406.496
+          ],
+          "text": " AC-oplaadkabel\n"
+        },
+        {
+          "bbox": [
+            60.367,
+            394.234,
+            98.305,
+            408.664
+          ],
+          "text": "Jackery \nExplorer 1000\n"
+        },
+        {
+          "bbox": [
+            47.967,
+            459.118,
+            337.135,
+            482.602
+          ],
+          "text": "TIPS\nDe oplaadkabel voor de auto is niet inbegrepen, maar is apart verkrijgbaar op \nonze website. Voor assistentie kunt u contact opnemen met de klantenservice \nvan Jackery.\n"
+        },
+        {
+          "bbox": [
+            337.538,
+            504.587,
+            344.768,
+            511.787
+          ],
+          "text": "121\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 129,
+      "relative_body_page": 3,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "VOORAANZICHT\nRECHTERZIJAANZICHT\nPRODUCTOVERZICHT\n122\n12 V⎓10 A Max\nAC-uitgang\nAan/uit-knop voor DC\nAan/uit-knop voor DC/USB\nUSB-C 30W-uitgang\nUSB-C 100W-uitgang\nUSB-A 18W-uitgang\nLCD\nLED-lampknop\nLED-lamp \nAan/Uit-knop\nDC 12 V-poort\n18 W Max, 5-6 V⎓3 A, \n6-9 V⎓2 A, 9-12 V⎓1,5 A\n100 W Max, 5 V⎓3 A, 9 V⎓3 A, \n12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n30 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 \nV⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A\n230 V~ 50 Hz, 6,5 A max., \n1500 W Nominaal\nTotaal uitgangsvermogen\n1500 W nominaal, 3000 W piekvermogen\nDC-ingang \n(2×DC8020-poorten)\nPV: 16-60 V⎓12A max, verdubbeld naar \n21A / 400W max\nAuto: 11-16 V⎓8A max, verdubbeld naar \n16A max\nAC-ingang\n220-240 V~ 50 Hz, 10 A max.\nHandvat\n",
+      "text_sha256": "52ad142401b4222a01962983fdd25bac71950976dda0c931d5d820d5af61958b",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            34.077,
+            30.773,
+            153.417,
+            45.629
+          ],
+          "text": "PRODUCTOVERZICHT\n"
+        },
+        {
+          "bbox": [
+            40.584,
+            68.432,
+            101.288,
+            78.336
+          ],
+          "text": "VOORAANZICHT\n"
+        },
+        {
+          "bbox": [
+            29.686,
+            104.989,
+            75.053,
+            113.655
+          ],
+          "text": "Aan/Uit-knop\n"
+        },
+        {
+          "bbox": [
+            326.318,
+            105.087,
+            339.415,
+            113.753
+          ],
+          "text": "LCD\n"
+        },
+        {
+          "bbox": [
+            292.648,
+            128.145,
+            340.976,
+            136.811
+          ],
+          "text": "LED-lampknop\n"
+        },
+        {
+          "bbox": [
+            29.686,
+            128.698,
+            75.515,
+            137.364
+          ],
+          "text": "DC 12 V-poort\n"
+        },
+        {
+          "bbox": [
+            30.18,
+            138.648,
+            63.26,
+            144.703
+          ],
+          "text": "12 V⎓10 A Max\n"
+        },
+        {
+          "bbox": [
+            308.678,
+            157.006,
+            342.502,
+            165.672
+          ],
+          "text": "LED-lamp \n"
+        },
+        {
+          "bbox": [
+            30.26,
+            157.048,
+            97.362,
+            165.714
+          ],
+          "text": "USB-C 30W-uitgang\n"
+        },
+        {
+          "bbox": [
+            30.62,
+            167.303,
+            103.275,
+            179.358
+          ],
+          "text": "30 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 \nV⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            268.484,
+            176.053,
+            341.291,
+            184.719
+          ],
+          "text": "Aan/uit-knop voor DC\n"
+        },
+        {
+          "bbox": [
+            29.693,
+            183.151,
+            100.099,
+            191.817
+          ],
+          "text": "USB-C 100W-uitgang\n"
+        },
+        {
+          "bbox": [
+            29.92,
+            192.788,
+            99.2,
+            204.843
+          ],
+          "text": "100 W Max, 5 V⎓3 A, 9 V⎓3 A, \n12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n"
+        },
+        {
+          "bbox": [
+            304.268,
+            204.032,
+            342.733,
+            212.698
+          ],
+          "text": "AC-uitgang\n"
+        },
+        {
+          "bbox": [
+            282.625,
+            215.398,
+            340.28,
+            227.598
+          ],
+          "text": "230 V~ 50 Hz, 6,5 A max., \n1500 W Nominaal\n"
+        },
+        {
+          "bbox": [
+            29.693,
+            221.784,
+            94.702,
+            230.45
+          ],
+          "text": "USB-A 18W-uitgang\n"
+        },
+        {
+          "bbox": [
+            29.92,
+            231.814,
+            84.02,
+            244.869
+          ],
+          "text": "18 W Max, 5-6 V⎓3 A, \n6-9 V⎓2 A, 9-12 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            255.639,
+            259.031,
+            338.974,
+            267.697
+          ],
+          "text": "Totaal uitgangsvermogen\n"
+        },
+        {
+          "bbox": [
+            30.372,
+            266.703,
+            119.692,
+            275.369
+          ],
+          "text": "Aan/uit-knop voor DC/USB\n"
+        },
+        {
+          "bbox": [
+            244.911,
+            269.773,
+            339.031,
+            275.773
+          ],
+          "text": "1500 W nominaal, 3000 W piekvermogen\n"
+        },
+        {
+          "bbox": [
+            40.584,
+            315.608,
+            123.256,
+            325.512
+          ],
+          "text": "RECHTERZIJAANZICHT\n"
+        },
+        {
+          "bbox": [
+            32.637,
+            339.03,
+            60.763,
+            347.696
+          ],
+          "text": "Handvat\n"
+        },
+        {
+          "bbox": [
+            33.346,
+            354.733,
+            100.728,
+            373.402
+          ],
+          "text": "DC-ingang \n(2×DC8020-poorten)\n"
+        },
+        {
+          "bbox": [
+            302.98,
+            380.471,
+            338.911,
+            389.137
+          ],
+          "text": "AC-ingang\n"
+        },
+        {
+          "bbox": [
+            274.052,
+            389.998,
+            338.807,
+            395.998
+          ],
+          "text": "220-240 V~ 50 Hz, 10 A max.\n"
+        },
+        {
+          "bbox": [
+            33.828,
+            374.423,
+            124.653,
+            399.023
+          ],
+          "text": "PV: 16-60 V⎓12A max, verdubbeld naar \n21A / 400W max\nAuto: 11-16 V⎓8A max, verdubbeld naar \n16A max\n"
+        },
+        {
+          "bbox": [
+            26.506,
+            504.587,
+            34.846,
+            511.787
+          ],
+          "text": "122\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 130,
+      "relative_body_page": 4,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "123\nLCD-SCHERM \n6\n1\n2\n3\n4\n5\nStille oplaadmodus\nZelfvoorzienende \nmodus\nOplaadplan\nWiﬁ\nBluetooth\nHiermee wordt de oplaadtijd van de Jackery Explorer 1000 aangepast. \nGeschikt voor situaties met fluctuerende elektriciteitsprijzen en maakt \nhet mogelijk om oplaadplannen te maken op basis van piek- en \ndaluren, waardoor de elektriciteitskosten worden verlaagd.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft \nbehouden wanneer het apparaat wordt uitgeschakeld.\nAan: Wifi is verbonden.\nKnipperend: Klaar om met wifi te verbinden.\nUit: Wifi is niet verbonden.\nAan: Bluetooth is verbonden.\nKnipperend: Klaar om met Bluetooth te verbinden.\nUit: Bluetooth is niet verbonden.\nAan: Het geluid tijdens het opladen wordt aanzienlijk verminderd, \nterwijl het oplaadvermogen wordt verlaagd en de oplaadsnelheid \nafneemt.\nUit: De stille oplaadmodus is uitgeschakeld.\nSchakel deze functie in of uit in de Jackery-app.\nDe instelling blijft behouden wanneer het apparaat wordt \nuitgeschakeld.\nMaximaliseert het gebruik van zonne-energie en vermindert de \nafhankelijkheid van het net door opgeslagen zonne-energie voorrang \nte geven, waardoor de elektriciteitskosten dalen. Het powerstation \nmoet tegelijkertijd op zowel zonnepanelen als op het net worden \naangesloten, waarbij het belastingsvermogen wordt beperkt door het \nbypass-vermogen.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft \nbehouden wanneer het apparaat wordt uitgeschakeld.\nAan: De TOU-modus is ingeschakeld (standaard back-up SOC: 60%). \nTijdens piekperiodes geeft het product prioriteit aan het ontladen van \nde batterij om piekstroomkosten te verlagen wanneer de opgeslagen \nenergie de back-up SOC overschrijdt. Tijdens dalperiodes laadt het \nproduct de batterij op vanuit het net om piekshaving en dalvulling te \nbereiken.\nUit: De TOU-modus is uitgeschakeld. Het product volgt de \ngebruiksduurstrategie (TOU) niet en werkt volgens de standaardlogica \nvoor stroomvoorziening en opladen.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft \nbehouden wanneer het apparaat wordt uitgeschakeld.\nTOU-modus\nAan: Het product werkt in de bypassmodus. De belastingen die zijn \naangesloten op de AC-poorten verbruiken stroom van het net in plaats \nvan van het powerstation. Als het net plotseling uitvalt, schakelt het \nproduct automatisch binnen 10 ms over op de batterijstroom. \nUit: Het product is niet in de bypassmodus. De belastingen die zijn \naangesloten op de AC-poorten worden gevoed door de interne \nbatterij van het powerstation.\n7\nUPS\n11\n13\n14\n12\n15\n16\n17\n18 19\n21\n22 23\n25\n24\n20\n1\n2\n3\n4\n10\n5\n6\n9\n7\n8\n",
+      "text_sha256": "c1a72084b0d0df8fab9bb1498b7a287f90f32138034a6d918810b7a54c8136d4",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            33.244,
+            31.327,
+            112.564,
+            46.183
+          ],
+          "text": "LCD-SCHERM \n"
+        },
+        {
+          "bbox": [
+            145.889,
+            55.282,
+            244.42,
+            63.461
+          ],
+          "text": "5\n6\n9\n7\n8\n"
+        },
+        {
+          "bbox": [
+            98.712,
+            55.282,
+            137.957,
+            63.553
+          ],
+          "text": "1\n2\n3\n4\n"
+        },
+        {
+          "bbox": [
+            300.908,
+            125.093,
+            307.898,
+            133.197
+          ],
+          "text": "24\n"
+        },
+        {
+          "bbox": [
+            53.532,
+            126.861,
+            60.348,
+            135.04
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            53.525,
+            141.682,
+            58.364,
+            149.861
+          ],
+          "text": "11\n"
+        },
+        {
+          "bbox": [
+            300.753,
+            142.556,
+            307.913,
+            150.661
+          ],
+          "text": "25\n"
+        },
+        {
+          "bbox": [
+            199.057,
+            200.325,
+            206.384,
+            208.504
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            97.335,
+            200.325,
+            263.367,
+            208.672
+          ],
+          "text": "13\n14\n12\n15\n16\n17\n18 19\n21\n22 23\n"
+        },
+        {
+          "bbox": [
+            37.558,
+            224.052,
+            39.921,
+            232.393
+          ],
+          "text": "1\n"
+        },
+        {
+          "bbox": [
+            87.234,
+            223.9,
+            99.715,
+            232.566
+          ],
+          "text": "Wiﬁ\n"
+        },
+        {
+          "bbox": [
+            168.67,
+            216.873,
+            267.856,
+            233.063
+          ],
+          "text": "Aan: Wifi is verbonden.\nKnipperend: Klaar om met wifi te verbinden.\nUit: Wifi is niet verbonden.\n"
+        },
+        {
+          "bbox": [
+            36.916,
+            244.167,
+            40.565,
+            252.508
+          ],
+          "text": "2\n"
+        },
+        {
+          "bbox": [
+            87.234,
+            244.655,
+            118.65,
+            253.321
+          ],
+          "text": "Bluetooth\n"
+        },
+        {
+          "bbox": [
+            168.67,
+            237.783,
+            283.356,
+            253.973
+          ],
+          "text": "Aan: Bluetooth is verbonden.\nKnipperend: Klaar om met Bluetooth te verbinden.\nUit: Bluetooth is niet verbonden.\n"
+        },
+        {
+          "bbox": [
+            87.234,
+            269.988,
+            150.039,
+            278.654
+          ],
+          "text": "Stille oplaadmodus\n"
+        },
+        {
+          "bbox": [
+            36.899,
+            270.787,
+            40.583,
+            279.128
+          ],
+          "text": "3\n"
+        },
+        {
+          "bbox": [
+            168.67,
+            259.438,
+            320.751,
+            295.513
+          ],
+          "text": "Aan: Het geluid tijdens het opladen wordt aanzienlijk verminderd, \nterwijl het oplaadvermogen wordt verlaagd en de oplaadsnelheid \nafneemt.\nUit: De stille oplaadmodus is uitgeschakeld.\nSchakel deze functie in of uit in de Jackery-app.\nDe instelling blijft behouden wanneer het apparaat wordt \nuitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            36.916,
+            315.435,
+            40.947,
+            323.775
+          ],
+          "text": "4\n"
+        },
+        {
+          "bbox": [
+            87.234,
+            315.95,
+            126.567,
+            324.616
+          ],
+          "text": "Oplaadplan\n"
+        },
+        {
+          "bbox": [
+            168.67,
+            301.143,
+            332.305,
+            332.143
+          ],
+          "text": "Hiermee wordt de oplaadtijd van de Jackery Explorer 1000 aangepast. \nGeschikt voor situaties met fluctuerende elektriciteitsprijzen en maakt \nhet mogelijk om oplaadplannen te maken op basis van piek- en \ndaluren, waardoor de elektriciteitskosten worden verlaagd.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft \nbehouden wanneer het apparaat wordt uitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            36.917,
+            359.401,
+            40.67,
+            367.742
+          ],
+          "text": "5\n"
+        },
+        {
+          "bbox": [
+            87.234,
+            353.428,
+            144.928,
+            369.591
+          ],
+          "text": "Zelfvoorzienende \nmodus\n"
+        },
+        {
+          "bbox": [
+            168.67,
+            339.288,
+            329.473,
+            380.288
+          ],
+          "text": "Maximaliseert het gebruik van zonne-energie en vermindert de \nafhankelijkheid van het net door opgeslagen zonne-energie voorrang \nte geven, waardoor de elektriciteitskosten dalen. Het powerstation \nmoet tegelijkertijd op zowel zonnepanelen als op het net worden \naangesloten, waarbij het belastingsvermogen wordt beperkt door het \nbypass-vermogen.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft \nbehouden wanneer het apparaat wordt uitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            87.688,
+            411.953,
+            126.573,
+            420.619
+          ],
+          "text": "TOU-modus\n"
+        },
+        {
+          "bbox": [
+            37.037,
+            412.349,
+            40.721,
+            420.69
+          ],
+          "text": "6\n"
+        },
+        {
+          "bbox": [
+            168.67,
+            386.118,
+            329.859,
+            447.193
+          ],
+          "text": "Aan: De TOU-modus is ingeschakeld (standaard back-up SOC: 60%). \nTijdens piekperiodes geeft het product prioriteit aan het ontladen van \nde batterij om piekstroomkosten te verlagen wanneer de opgeslagen \nenergie de back-up SOC overschrijdt. Tijdens dalperiodes laadt het \nproduct de batterij op vanuit het net om piekshaving en dalvulling te \nbereiken.\nUit: De TOU-modus is uitgeschakeld. Het product volgt de \ngebruiksduurstrategie (TOU) niet en werkt volgens de standaardlogica \nvoor stroomvoorziening en opladen.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft \nbehouden wanneer het apparaat wordt uitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            37.037,
+            468.85,
+            100.33,
+            477.586
+          ],
+          "text": "7\nUPS\n"
+        },
+        {
+          "bbox": [
+            169.757,
+            452.437,
+            333.231,
+            488.512
+          ],
+          "text": "Aan: Het product werkt in de bypassmodus. De belastingen die zijn \naangesloten op de AC-poorten verbruiken stroom van het net in plaats \nvan van het powerstation. Als het net plotseling uitvalt, schakelt het \nproduct automatisch binnen 10 ms over op de batterijstroom. \nUit: Het product is niet in de bypassmodus. De belastingen die zijn \naangesloten op de AC-poorten worden gevoed door de interne \nbatterij van het powerstation.\n"
+        },
+        {
+          "bbox": [
+            336.093,
+            504.009,
+            344.403,
+            511.209
+          ],
+          "text": "123\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 131,
+      "relative_body_page": 5,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "124\n13\nBatterijstroom\n-indicator \nWanneer het product wordt opgeladen, licht de oranje cirkel rond het \nbatterijpercentage geleidelijk op. Wanneer u andere apparaten van \nstroom voorziet, blijft de oranje cirkel branden.\nBatterijbespar\ningsmodus\nResterend \nbatterijpercentage\nEnergiebespa\nringsmodus\nFoutcode\nWanneer de AC- of DC-uitgang wordt ingeschakeld door op \nde Aan/uit-knop voor AC of DC/USB te drukken:\nAan: De Energiebesparingsmodus is ingeschakeld.\nUit: De Energiebesparingsmodus is uitgeschakeld.\nUitgangsvermogen\nResterende \nontlaadtijd \nIndicator voor \nhoge temperatuur\nIndicator voor \nlage temperatuur\n15\n14\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n10\n12\n8\n9\nIndicator voor \nAC-voeding\nInvoervermogen\nResterende \noplaadtijd\nIndicator voor opladen \nvia een AC-stopcontact\nIndicator voor \nopladen via de auto\nMaximale \nlaadvermogen\nZonne-energie-\noplaadindicator\nAan: Het maximale laadvermogen is ingeschakeld in de Jackery-app.\nUit: Het maximale laadvermogen is uitgeschakeld in de Jackery-app.\nDe instelling blijft behouden wanneer het apparaat wordt uitgeschakeld.\nDe AC-uitgang (zuivere sinusgolf) is ingeschakeld.\nToont het ingangsvermogen in watt.\nToont de resterende oplaadtijd.\nHet product wordt opgeladen via de AC-ingang met \nstroomnet.\nHet product wordt opgeladen via de DC-ingang (DC8020) \nmet DC 12 V (auto-opladen).\nHet product wordt opgeladen via de DC-ingang (DC8020) \nmet zonnepanelen.\nAan: De Batterijbesparingsmodus is ingeschakeld. Er worden laad- en \nontlaadlimieten toegepast om de levensduur van de batterij te verlengen.\nUit: De Batterijbesparingsmodus is uitgeschakeld.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft \nbehouden wanneer het apparaat wordt uitgeschakeld.\nWanneer deze functie is ingeschakeld, voert het product af en toe een \nvolledige laad- en ontlaadcyclus uit om de SOC te kalibreren.\nIndicator voor laag \nbatterijniveau\nAan: Het batterijniveau is lager dan 20%.\nKnipperend: Het batterijniveau is lager dan 5%.\nUit: Het batterijniveau is hoger dan 20% of het product wordt opgeladen.\nGeeft het resterende batterijpercentage weer.\nOntladingstimer\nAan: Er is een ontladingstimer ingesteld.\nUit: Er is geen ontladingstimer ingesteld.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft niet \nbehouden wanneer het apparaat wordt uitgeschakeld.\nEr is een productfout opgetreden. Raadpleeg voor details de \nsectie Probleemoplossing.\nDe beveiliging tegen hoge temperaturen is geactiveerd. Het \nproduct kan stoppen met werken totdat de temperatuur \nweer binnen het normale bedrijfsbereik is.\nDe beveiliging tegen lege temperaturen is geactiveerd. Het \nproduct kan stoppen met werken totdat de temperatuur weer \nbinnen het normale bedrijfsbereik is.\nGeeft de resterende ontlaadtijd weer.\nGeeft het uitgangsvermogen in watt weer.\nUitgangsspanning \nen -frequentie\n11\nGeeft de uitgangsspanning en -frequentie weer wanneer \nde AC-uitgang is ingeschakeld.\n",
+      "text_sha256": "a1c4694b2a4c03fb561cd83cac73a93b8af2c91859d123cea57d9abb95734a09",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            165.394,
+            36.961,
+            300.835,
+            44.161
+          ],
+          "text": "De AC-uitgang (zuivere sinusgolf) is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            36.167,
+            37.249,
+            39.975,
+            45.589
+          ],
+          "text": "8\n"
+        },
+        {
+          "bbox": [
+            91.367,
+            32.676,
+            138.526,
+            49.756
+          ],
+          "text": "Indicator voor \nAC-voeding\n"
+        },
+        {
+          "bbox": [
+            36.229,
+            57.566,
+            39.912,
+            65.906
+          ],
+          "text": "9\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            54.471,
+            324.004,
+            67.671
+          ],
+          "text": "Geeft de uitgangsspanning en -frequentie weer wanneer \nde AC-uitgang is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            52.88,
+            151.937,
+            69.96
+          ],
+          "text": "Uitgangsspanning \nen -frequentie\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            79.327,
+            264.28,
+            86.527
+          ],
+          "text": "Toont het ingangsvermogen in watt.\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            78.995,
+            143.833,
+            87.661
+          ],
+          "text": "Invoervermogen\n"
+        },
+        {
+          "bbox": [
+            34.881,
+            79.507,
+            41.831,
+            87.847
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            97.285,
+            252.065,
+            104.485
+          ],
+          "text": "Toont de resterende oplaadtijd.\n"
+        },
+        {
+          "bbox": [
+            34.984,
+            97.199,
+            39.78,
+            105.539
+          ],
+          "text": "11\n"
+        },
+        {
+          "bbox": [
+            90.933,
+            92.771,
+            129.363,
+            109.851
+          ],
+          "text": "Resterende \noplaadtijd\n"
+        },
+        {
+          "bbox": [
+            35.548,
+            114.267,
+            41.769,
+            122.608
+          ],
+          "text": "12\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            113.018,
+            152.083,
+            125.828
+          ],
+          "text": "Indicator voor opladen \nvia een AC-stopcontact\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            113.863,
+            312.081,
+            128.065
+          ],
+          "text": "Het product wordt opgeladen via de AC-ingang met \nstroomnet.\n"
+        },
+        {
+          "bbox": [
+            34.776,
+            133.773,
+            41.032,
+            142.114
+          ],
+          "text": "13\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            130.921,
+            327.819,
+            145.123
+          ],
+          "text": "Het product wordt opgeladen via de DC-ingang (DC8020) \nmet DC 12 V (auto-opladen).\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            129.939,
+            156.705,
+            146.102
+          ],
+          "text": "Indicator voor \nopladen via de auto\n"
+        },
+        {
+          "bbox": [
+            34.942,
+            151.28,
+            41.545,
+            159.621
+          ],
+          "text": "14\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            148.981,
+            327.819,
+            163.183
+          ],
+          "text": "Het product wordt opgeladen via de DC-ingang (DC8020) \nmet zonnepanelen.\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            147.922,
+            143.44,
+            164.085
+          ],
+          "text": "Zonne-energie-\noplaadindicator\n"
+        },
+        {
+          "bbox": [
+            34.942,
+            185.414,
+            41.267,
+            193.754
+          ],
+          "text": "15\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            181.83,
+            137.506,
+            198.91
+          ],
+          "text": "Batterijbespar\ningsmodus\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            166.893,
+            333.918,
+            208.968
+          ],
+          "text": "Aan: De Batterijbesparingsmodus is ingeschakeld. Er worden laad- en \nontlaadlimieten toegepast om de levensduur van de batterij te verlengen.\nUit: De Batterijbesparingsmodus is uitgeschakeld.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft \nbehouden wanneer het apparaat wordt uitgeschakeld.\nWanneer deze functie is ingeschakeld, voert het product af en toe een \nvolledige laad- en ontlaadcyclus uit om de SOC te kalibreren.\n"
+        },
+        {
+          "bbox": [
+            34.77,
+            222.53,
+            41.025,
+            230.871
+          ],
+          "text": "16\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            217.572,
+            138.546,
+            233.735
+          ],
+          "text": "Maximale \nlaadvermogen\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            215.867,
+            331.152,
+            234.942
+          ],
+          "text": "Aan: Het maximale laadvermogen is ingeschakeld in de Jackery-app.\nUit: Het maximale laadvermogen is uitgeschakeld in de Jackery-app.\nDe instelling blijft behouden wanneer het apparaat wordt uitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            34.908,
+            243.558,
+            40.886,
+            251.899
+          ],
+          "text": "17\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            239.588,
+            137.104,
+            256.668
+          ],
+          "text": "Batterijstroom\n-indicator \n"
+        },
+        {
+          "bbox": [
+            165.394,
+            238.769,
+            325.109,
+            258.769
+          ],
+          "text": "Wanneer het product wordt opgeladen, licht de oranje cirkel rond het \nbatterijpercentage geleidelijk op. Wanneer u andere apparaten van \nstroom voorziet, blijft de oranje cirkel branden.\n"
+        },
+        {
+          "bbox": [
+            34.943,
+            268.427,
+            41.324,
+            276.768
+          ],
+          "text": "18\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            264.421,
+            154.695,
+            281.501
+          ],
+          "text": "Indicator voor laag \nbatterijniveau\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            262.321,
+            331.819,
+            282.181
+          ],
+          "text": "Aan: Het batterijniveau is lager dan 20%.\nKnipperend: Het batterijniveau is lager dan 5%.\nUit: Het batterijniveau is hoger dan 20% of het product wordt opgeladen.\n"
+        },
+        {
+          "bbox": [
+            165.395,
+            290.75,
+            291.921,
+            297.951
+          ],
+          "text": "Geeft het resterende batterijpercentage weer.\n"
+        },
+        {
+          "bbox": [
+            35.082,
+            290.473,
+            41.337,
+            298.814
+          ],
+          "text": "19\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            286.851,
+            152.723,
+            303.931
+          ],
+          "text": "Resterend \nbatterijpercentage\n"
+        },
+        {
+          "bbox": [
+            34.587,
+            314.635,
+            42.462,
+            322.976
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            317.185,
+            143.755,
+            325.852
+          ],
+          "text": "Ontladingstimer\n"
+        },
+        {
+          "bbox": [
+            165.635,
+            307.669,
+            326.163,
+            331.744
+          ],
+          "text": "Aan: Er is een ontladingstimer ingesteld.\nUit: Er is geen ontladingstimer ingesteld.\nSchakel deze functie in of uit in de Jackery-app. De instelling blijft niet \nbehouden wanneer het apparaat wordt uitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            34.332,
+            347.039,
+            40.414,
+            355.379
+          ],
+          "text": "21\n"
+        },
+        {
+          "bbox": [
+            92.676,
+            344.727,
+            137.358,
+            361.807
+          ],
+          "text": "Energiebespa\nringsmodus\n"
+        },
+        {
+          "bbox": [
+            163.838,
+            337.035,
+            331.921,
+            364.647
+          ],
+          "text": "Wanneer de AC- of DC-uitgang wordt ingeschakeld door op \nde Aan/uit-knop voor AC of DC/USB te drukken:\nAan: De Energiebesparingsmodus is ingeschakeld.\nUit: De Energiebesparingsmodus is uitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            91.955,
+            370.924,
+            151.371,
+            387.087
+          ],
+          "text": "Indicator voor \nhoge temperatuur\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            369.982,
+            331.474,
+            391.186
+          ],
+          "text": "De beveiliging tegen hoge temperaturen is geactiveerd. Het \nproduct kan stoppen met werken totdat de temperatuur \nweer binnen het normale bedrijfsbereik is.\n"
+        },
+        {
+          "bbox": [
+            34.332,
+            388.09,
+            41.7,
+            396.43
+          ],
+          "text": "22\n"
+        },
+        {
+          "bbox": [
+            91.955,
+            396.033,
+            149.287,
+            412.196
+          ],
+          "text": "Indicator voor \nlage temperatuur\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            394.384,
+            336.194,
+            415.588
+          ],
+          "text": "De beveiliging tegen lege temperaturen is geactiveerd. Het \nproduct kan stoppen met werken totdat de temperatuur weer \nbinnen het normale bedrijfsbereik is.\n"
+        },
+        {
+          "bbox": [
+            91.156,
+            426.179,
+            122.019,
+            434.845
+          ],
+          "text": "Foutcode\n"
+        },
+        {
+          "bbox": [
+            36.098,
+            426.514,
+            43.43,
+            434.855
+          ],
+          "text": "23\n"
+        },
+        {
+          "bbox": [
+            166.181,
+            422.82,
+            335.742,
+            437.022
+          ],
+          "text": "Er is een productfout opgetreden. Raadpleeg voor details de \nsectie Probleemoplossing.\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            456.886,
+            281.193,
+            464.086
+          ],
+          "text": "Geeft het uitgangsvermogen in watt weer.\n"
+        },
+        {
+          "bbox": [
+            34.332,
+            455.89,
+            41.943,
+            464.231
+          ],
+          "text": "24\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            456.66,
+            152.778,
+            465.326
+          ],
+          "text": "Uitgangsvermogen\n"
+        },
+        {
+          "bbox": [
+            34.332,
+            478.44,
+            41.769,
+            486.781
+          ],
+          "text": "25\n"
+        },
+        {
+          "bbox": [
+            165.394,
+            481.372,
+            268.688,
+            488.572
+          ],
+          "text": "Geeft de resterende ontlaadtijd weer.\n"
+        },
+        {
+          "bbox": [
+            90.912,
+            476.183,
+            129.342,
+            491.933
+          ],
+          "text": "Resterende \nontlaadtijd \n"
+        },
+        {
+          "bbox": [
+            26.53,
+            504.009,
+            35.08,
+            511.209
+          ],
+          "text": "124\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 132,
+      "relative_body_page": 6,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "HANDELINGEN \n125\nIN-/UITSCHAKELEN \nAAN/UIT VOOR AC-UITGANG\nAan\nUit\nDruk één keer\nDruk één keer\nDruk één keer\nHoud 3 seconden ingedrukt.\n3s\nAan\nUit\nWanneer de Energiebesparingsmodus is ingeschakeld, wordt het product na 12 uur automatisch \nuitgeschakeld als de aan/uit-knop voor AC of DC/USB op AAN staat, maar het product niet wordt \nopgeladen of ontladen.\nStandaard stand-bymodustijd: 2 uur\nHet product wordt na 2 uur inactiviteit automatisch \nuitgeschakeld, zonder dat er wordt opgeladen of ontladen.\n*De stand-bymodustijd kan worden ingesteld in de \nJackery-app.\nVoorwaarde: Het product is ingeschakeld.\n",
+      "text_sha256": "b145c7e48769fc8b1e5fce84e205544b9155c02876843eaa000ddec366943b7e",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            29.64,
+            31.327,
+            112.572,
+            46.183
+          ],
+          "text": "HANDELINGEN \n"
+        },
+        {
+          "bbox": [
+            36.089,
+            57.153,
+            109.313,
+            67.057
+          ],
+          "text": "IN-/UITSCHAKELEN \n"
+        },
+        {
+          "bbox": [
+            261.674,
+            78.961,
+            280.384,
+            91.341
+          ],
+          "text": "Aan\n"
+        },
+        {
+          "bbox": [
+            262.004,
+            91.741,
+            299.732,
+            98.941
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            261.384,
+            105.091,
+            274.234,
+            117.471
+          ],
+          "text": "Uit\n"
+        },
+        {
+          "bbox": [
+            262.004,
+            117.241,
+            339.302,
+            124.441
+          ],
+          "text": "Houd 3 seconden ingedrukt.\n"
+        },
+        {
+          "bbox": [
+            275.204,
+            128.695,
+            282.092,
+            137.095
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            151.972,
+            147.215,
+            316.598,
+            186.635
+          ],
+          "text": "Standaard stand-bymodustijd: 2 uur\nHet product wordt na 2 uur inactiviteit automatisch \nuitgeschakeld, zonder dat er wordt opgeladen of ontladen.\n*De stand-bymodustijd kan worden ingesteld in de \nJackery-app.\n"
+        },
+        {
+          "bbox": [
+            26.059,
+            208.628,
+            324.901,
+            234.638
+          ],
+          "text": "Wanneer de Energiebesparingsmodus is ingeschakeld, wordt het product na 12 uur automatisch \nuitgeschakeld als de aan/uit-knop voor AC of DC/USB op AAN staat, maar het product niet wordt \nopgeladen of ontladen.\n"
+        },
+        {
+          "bbox": [
+            35.585,
+            258.817,
+            144.457,
+            268.721
+          ],
+          "text": "AAN/UIT VOOR AC-UITGANG\n"
+        },
+        {
+          "bbox": [
+            34.507,
+            284.323,
+            162.257,
+            292.493
+          ],
+          "text": "Voorwaarde: Het product is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            284.307,
+            326.275,
+            303.017,
+            338.655
+          ],
+          "text": "Aan\n"
+        },
+        {
+          "bbox": [
+            284.858,
+            337.177,
+            322.586,
+            344.377
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            284.017,
+            349.405,
+            296.867,
+            361.785
+          ],
+          "text": "Uit\n"
+        },
+        {
+          "bbox": [
+            284.03,
+            361.321,
+            321.758,
+            368.521
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            337.078,
+            504.009,
+            345.478,
+            511.209
+          ],
+          "text": "125\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 133,
+      "relative_body_page": 7,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "DC/USB-UITGANG AAN/UIT\nDruk één keer\nDruk één keer\nAan\nUit\n126\nENERGIEBESPARINGSMODUS\nOPGELET\n• De DC-12V-poort is alleen compatibel met 12V-autoaccu's en niet geschikt voor 24 V-systemen.\n• Start de auto niet terwijl het product via de 12 V-DC-uitgangspoort de autoaccu oplaadt, aangezien \ndit het product kan beschadigen.\n• Deze functie is uitsluitend bedoeld voor noodgevallen en kan een volledig ontladen of beschadigde \nautoaccu niet opladen.\nOPGELET\n• USB-C 100W is een USB-PD Power Source 3 (PS3)-uitgangspoort met hoog vermogen. Als het \naangesloten apparaat of accessoire niet aan de veiligheidsvereisten voldoet, kan er brandgevaar \nontstaan. Controleer voordat u deze poorten gebruikt of het aangesloten apparaat of accessoire beschikt \nover brandbeveiliging. \n• Sluit de Jackery Explorer 1000 alleen aan op apparaten of accessoires die voldoen aan clausules 6.3, 6.4 \nen 6.5 van IEC/EN/UL 62368-1 (of andere gelijkwaardige normen).\n• Gebruik de USB-C naar USB-C 5A-kabel (20 V DC/5A, 100 W) voor maximaal uitgangsvermogen.\nOm onnodig batterijverbruik te voorkomen wanneer u vergeet de uitgang uit te schakelen, schakelt het product standaard \nde energiebesparende modus in. Wanneer de AC- of DC/USB-uitgang wordt ingeschakeld, wordt het pictogram voor de \nEnergiebesparingsmodus op het LCD-scherm weergegeven. In deze modus wordt, als er geen apparaat is aangesloten of \nhet stroomverbruik van het aangesloten apparaat onder een bepaalde drempelwaarde ligt (25 W voor AC-uitgang of 2 W \nvoor DC/USB-uitgang), de betreffende uitgang na de ingestelde tijd automatisch uitgeschakeld. De standaardinstelling is 12 \nuur. De duur van de Energiebesparingsmodus kan in de Jackery-app worden ingesteld op 1H, 2H, 8H, 12H of 24H. Als dit is \ningesteld op 'Nooit uitschakelen', wordt de Energiebesparingsmodus uitgeschakeld.\nHet product kan uw auto-accu opladen met behulp van de Jackery 12 V-kabel voor het opladen van \nauto-accu's, die apart verkrijgbaar is op onze website. \nVoorwaarde: Het product is ingeschakeld.\nOm de Energiebesparingsmodus uit te schakelen, houdt u zowel de Aan/uit-knop voor AC als de hoofd AAN/UIT-knop \nlanger dan 3 seconden ingedrukt. Zodra de Energiebesparingsmodus is uitgeschakeld, verschijnt het pictogram niet \nlanger op het lcd-scherm en zal het product de AC- of USB-uitgang niet automatisch uitschakelen.\nWanneer u apparaten met een laag vermogen van stroom voorziet (AC ≤ 25 W of DC/USB ≤ 2 W), schakelt u de \nEnergiebesparingsmodus uit om te voorkomen dat de uitgang tijdens het gebruik automatisch wordt uitgeschakeld.\n",
+      "text_sha256": "156516c46771fb7156f98491cd79c78c9fc752e7ff0eeca763bf0bd337b81f95",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            44.489,
+            28.921,
+            147.873,
+            38.825
+          ],
+          "text": "DC/USB-UITGANG AAN/UIT\n"
+        },
+        {
+          "bbox": [
+            43.831,
+            52.96,
+            171.581,
+            61.131
+          ],
+          "text": "Voorwaarde: Het product is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            299.143,
+            76.498,
+            315.835,
+            87.543
+          ],
+          "text": "Aan\n"
+        },
+        {
+          "bbox": [
+            298.89,
+            86.154,
+            336.618,
+            93.354
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            298.875,
+            97.134,
+            310.339,
+            108.179
+          ],
+          "text": "Uit\n"
+        },
+        {
+          "bbox": [
+            298.89,
+            107.946,
+            336.618,
+            115.146
+          ],
+          "text": "Druk één keer\n"
+        },
+        {
+          "bbox": [
+            42.583,
+            264.886,
+            76.365,
+            274.738
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            94.378,
+            247.531,
+            341.226,
+            291.531
+          ],
+          "text": "• USB-C 100W is een USB-PD Power Source 3 (PS3)-uitgangspoort met hoog vermogen. Als het \naangesloten apparaat of accessoire niet aan de veiligheidsvereisten voldoet, kan er brandgevaar \nontstaan. Controleer voordat u deze poorten gebruikt of het aangesloten apparaat of accessoire beschikt \nover brandbeveiliging. \n• Sluit de Jackery Explorer 1000 alleen aan op apparaten of accessoires die voldoen aan clausules 6.3, 6.4 \nen 6.5 van IEC/EN/UL 62368-1 (of andere gelijkwaardige normen).\n• Gebruik de USB-C naar USB-C 5A-kabel (20 V DC/5A, 100 W) voor maximaal uitgangsvermogen.\n"
+        },
+        {
+          "bbox": [
+            31.746,
+            304.694,
+            309.617,
+            320.894
+          ],
+          "text": "Het product kan uw auto-accu opladen met behulp van de Jackery 12 V-kabel voor het opladen van \nauto-accu's, die apart verkrijgbaar is op onze website. \n"
+        },
+        {
+          "bbox": [
+            42.583,
+            346.888,
+            76.365,
+            356.74
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            94.378,
+            335.736,
+            329.132,
+            367.736
+          ],
+          "text": "• De DC-12V-poort is alleen compatibel met 12V-autoaccu's en niet geschikt voor 24 V-systemen.\n• Start de auto niet terwijl het product via de 12 V-DC-uitgangspoort de autoaccu oplaadt, aangezien \ndit het product kan beschadigen.\n• Deze functie is uitsluitend bedoeld voor noodgevallen en kan een volledig ontladen of beschadigde \nautoaccu niet opladen.\n"
+        },
+        {
+          "bbox": [
+            46.615,
+            387.487,
+            153.695,
+            397.391
+          ],
+          "text": "ENERGIEBESPARINGSMODUS\n"
+        },
+        {
+          "bbox": [
+            31.336,
+            400.414,
+            344.554,
+            449.023
+          ],
+          "text": "Om onnodig batterijverbruik te voorkomen wanneer u vergeet de uitgang uit te schakelen, schakelt het product standaard \nde energiebesparende modus in. Wanneer de AC- of DC/USB-uitgang wordt ingeschakeld, wordt het pictogram voor de \nEnergiebesparingsmodus op het LCD-scherm weergegeven. In deze modus wordt, als er geen apparaat is aangesloten of \nhet stroomverbruik van het aangesloten apparaat onder een bepaalde drempelwaarde ligt (25 W voor AC-uitgang of 2 W \nvoor DC/USB-uitgang), de betreffende uitgang na de ingestelde tijd automatisch uitgeschakeld. De standaardinstelling is 12 \nuur. De duur van de Energiebesparingsmodus kan in de Jackery-app worden ingesteld op 1H, 2H, 8H, 12H of 24H. Als dit is \ningesteld op 'Nooit uitschakelen', wordt de Energiebesparingsmodus uitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            31.747,
+            451.388,
+            329.598,
+            486.995
+          ],
+          "text": "Om de Energiebesparingsmodus uit te schakelen, houdt u zowel de Aan/uit-knop voor AC als de hoofd AAN/UIT-knop \nlanger dan 3 seconden ingedrukt. Zodra de Energiebesparingsmodus is uitgeschakeld, verschijnt het pictogram niet \nlanger op het lcd-scherm en zal het product de AC- of USB-uitgang niet automatisch uitschakelen.\nWanneer u apparaten met een laag vermogen van stroom voorziet (AC ≤ 25 W of DC/USB ≤ 2 W), schakelt u de \nEnergiebesparingsmodus uit om te voorkomen dat de uitgang tijdens het gebruik automatisch wordt uitgeschakeld.\n"
+        },
+        {
+          "bbox": [
+            24.261,
+            504.01,
+            32.511,
+            511.21
+          ],
+          "text": "126\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 134,
+      "relative_body_page": 8,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "LCD-SCHERM\nOPMERKING\n127\nKort \ninschakelen\nContinu \ninschakelen \n(bij laden of \nontladen)\nUitschakelen\nAutomatisch \nuitschakelen\nUitschakelen\nInschakelen\nAutomatisch \nuitschakelen\nInschakelen\nDe LED-lamp heeft twee modi: Lichtmodus en SOS-modus. Houd in elke modus de \nLED-lampknop ingedrukt om het licht uit te schakelen.\nLED-LAMP AAN/UITSCHAKELEN \nDruk één keer op de \nLED-lampknop om het licht \nin te schakelen.\nDruk nogmaals om naar de \nSOS-modus te schakelen.\nDruk een derde keer om \nhet licht uit te schakelen.\n1\n3\nLAMP\n2\nSOS\nU kunt de schermweergavemodus ook instellen in de Jackery-app.\nDe Energiebesparingsmodus hervat de vorige status na het inschakelen. Voor het wijzigen \nvan de modus is handmatig schakelen vereist.\n3s\nHoud beide knoppen langer \ndan 3 seconden ingedrukt.\nAan/Uit\nAC\nDruk op de AAN/UIT-knop of \nwanneer het product oplaadt.\nDruk op de AAN/UIT-knop.\nHet LCD-scherm schakelt \nautomatisch uit en gaat in \nslaapstand na 2 minuten \ninactiviteit.\nDruk tweemaal op de \nAAN/UIT-knop wanneer het \nproduct is ingeschakeld.\nDruk op de Aan/Uit-knop.\nHet LCD-scherm schakelt \nautomatisch uit na 2 uur \ninactiviteit.\n",
+      "text_sha256": "29882401aeccbc0ca9dbeca7bad06ab44eeb0220caa695214ba04338f524a6cc",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            287.388,
+            82.295,
+            291.883,
+            88.141
+          ],
+          "text": "AC\n"
+        },
+        {
+          "bbox": [
+            227.514,
+            115.722,
+            314.262,
+            140.574
+          ],
+          "text": "3s\nHoud beide knoppen langer \ndan 3 seconden ingedrukt.\nAan/Uit\n"
+        },
+        {
+          "bbox": [
+            34.027,
+            156.12,
+            79.245,
+            165.972
+          ],
+          "text": "OPMERKING\n"
+        },
+        {
+          "bbox": [
+            87.487,
+            153.727,
+            334.53,
+            168.925
+          ],
+          "text": "De Energiebesparingsmodus hervat de vorige status na het inschakelen. Voor het wijzigen \nvan de modus is handmatig schakelen vereist.\n"
+        },
+        {
+          "bbox": [
+            40.227,
+            189.805,
+            158.251,
+            199.709
+          ],
+          "text": "LED-LAMP AAN/UITSCHAKELEN \n"
+        },
+        {
+          "bbox": [
+            43.676,
+            217.936,
+            294.624,
+            226.107
+          ],
+          "text": "De LED-lamp heeft twee modi: Lichtmodus en SOS-modus. Houd in elke modus de \n"
+        },
+        {
+          "bbox": [
+            43.676,
+            228.034,
+            206.649,
+            235.954
+          ],
+          "text": "LED-lampknop ingedrukt om het licht uit te schakelen.\n"
+        },
+        {
+          "bbox": [
+            216.51,
+            268.962,
+            219.606,
+            278.866
+          ],
+          "text": "1\n"
+        },
+        {
+          "bbox": [
+            253.175,
+            264.067,
+            329.573,
+            285.271
+          ],
+          "text": "Druk één keer op de \nLED-lampknop om het licht \nin te schakelen.\n"
+        },
+        {
+          "bbox": [
+            155.895,
+            287.293,
+            173.765,
+            295.807
+          ],
+          "text": "LAMP\n"
+        },
+        {
+          "bbox": [
+            216.51,
+            292.708,
+            243.586,
+            302.612
+          ],
+          "text": "2\nSOS\n"
+        },
+        {
+          "bbox": [
+            253.175,
+            290.107,
+            329.579,
+            306.307
+          ],
+          "text": "Druk nogmaals om naar de \nSOS-modus te schakelen.\n"
+        },
+        {
+          "bbox": [
+            216.51,
+            317.747,
+            220.87,
+            327.651
+          ],
+          "text": "3\n"
+        },
+        {
+          "bbox": [
+            253.175,
+            315.211,
+            320.722,
+            331.411
+          ],
+          "text": "Druk een derde keer om \nhet licht uit te schakelen.\n"
+        },
+        {
+          "bbox": [
+            41.544,
+            354.14,
+            92.424,
+            364.044
+          ],
+          "text": "LCD-SCHERM\n"
+        },
+        {
+          "bbox": [
+            222.497,
+            379.738,
+            244.142,
+            384.69
+          ],
+          "text": "Inschakelen\n"
+        },
+        {
+          "bbox": [
+            250.955,
+            375.646,
+            320.175,
+            387.146
+          ],
+          "text": "Druk op de AAN/UIT-knop of \nwanneer het product oplaadt.\n"
+        },
+        {
+          "bbox": [
+            222.822,
+            391.272,
+            244.326,
+            396.224
+          ],
+          "text": "Uitschakelen\n"
+        },
+        {
+          "bbox": [
+            250.78,
+            390.501,
+            311.54,
+            396.501
+          ],
+          "text": "Druk op de AAN/UIT-knop.\n"
+        },
+        {
+          "bbox": [
+            182.706,
+            391.399,
+            215.629,
+            405.811
+          ],
+          "text": "Kort \ninschakelen\n"
+        },
+        {
+          "bbox": [
+            222.807,
+            407.127,
+            247.231,
+            416.079
+          ],
+          "text": "Automatisch \nuitschakelen\n"
+        },
+        {
+          "bbox": [
+            251.355,
+            399.271,
+            313.04,
+            421.771
+          ],
+          "text": "Het LCD-scherm schakelt \nautomatisch uit en gaat in \nslaapstand na 2 minuten \ninactiviteit.\n"
+        },
+        {
+          "bbox": [
+            222.495,
+            429.831,
+            244.527,
+            434.783
+          ],
+          "text": "Inschakelen\n"
+        },
+        {
+          "bbox": [
+            250.955,
+            423.396,
+            315.456,
+            440.396
+          ],
+          "text": "Druk tweemaal op de \nAAN/UIT-knop wanneer het \nproduct is ingeschakeld.\n"
+        },
+        {
+          "bbox": [
+            222.527,
+            444.055,
+            246.242,
+            449.007
+          ],
+          "text": "Uitschakelen\n"
+        },
+        {
+          "bbox": [
+            250.955,
+            443.036,
+            310.34,
+            449.036
+          ],
+          "text": "Druk op de Aan/Uit-knop.\n"
+        },
+        {
+          "bbox": [
+            182.706,
+            427.861,
+            217.181,
+            453.289
+          ],
+          "text": "Continu \ninschakelen \n(bij laden of \nontladen)\n"
+        },
+        {
+          "bbox": [
+            222.807,
+            457.323,
+            247.231,
+            466.275
+          ],
+          "text": "Automatisch \nuitschakelen\n"
+        },
+        {
+          "bbox": [
+            250.955,
+            452.196,
+            310.395,
+            469.196
+          ],
+          "text": "Het LCD-scherm schakelt \nautomatisch uit na 2 uur \ninactiviteit.\n"
+        },
+        {
+          "bbox": [
+            27.343,
+            481.621,
+            209.455,
+            488.821
+          ],
+          "text": "U kunt de schermweergavemodus ook instellen in de Jackery-app.\n"
+        },
+        {
+          "bbox": [
+            338.182,
+            504.01,
+            346.192,
+            511.21
+          ],
+          "text": "127\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 135,
+      "relative_body_page": 9,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "ONONDERBROKEN STROOMVOORZIENING (UPS)\n128\nSluit het product met de AC-oplaadkabel aan op een stopcontact, druk vervolgens op de Aan/uit-knop voor \nAC en voorzie uw apparaten tegelijkertijd van stroom.\nEen ononderbroken stroomvoorziening (UPS) is een type voortdurend stroomvoorzieningssysteem dat \nautomatisch back-upstroom levert aan een belasting wanneer de netstroom uitvalt.\nBij een plotseling verlies van stroomnet schakelt de Jackery Explorer 1000 automatisch binnen 10 ms over op \nopgeslagen stroom om uw apparaten draaiende te houden.\nIn de UPS-modus bedraagt de piekuitgang van het apparaat 1500W zonder stroomuitval. Omdat gelijktijdig \nladen/ontladen is ingeschakeld in de Bypass-modus, is het werkelijke uitgangsvermogen in deze modus lager \ndan het nominale uitgangsvermogen. Tijdens stroomuitval keert het echter terug naar het nominale \nuitgangsvermogen.\nTOETSCOMBINATIES\n3s\nAan/Uit-knop\nAan/uit-knop voor DC\nHoud beide knoppen 3 \nseconden ingedrukt\n1 seconde\nHoud beide knoppen \n1 seconde ingedrukt\nReset wifi en Bluetooth\nWifi en Bluetooth \nin-/uitschakelen\nKnoppen\nBEDIENING\nFunctie\nAan/uit-knop voor DC/USB\nAan/uit-knop voor DC/USB\n1 seconde\nAan/Uit-knop\nHoud beide knoppen \n1 seconde ingedrukt\nDe Noodoplaadmodus \nin-/uitschakelen\nLED-lampknop\n3s\nHoud beide knoppen 3 \nseconden ingedrukt\nDe Energiebesparingsmodus \nin-/uitschakelen\nAan/Uit-knop\nAan/uit-knop voor DC\nHERVATTINGSFUNCTIE VOOR AC- EN DC-UITGANGEN\nDeze functie onthoudt de uitgangsstatus en hervat automatisch de AC- en DC-uitgangen onder gedefinieerde \nvoorwaarden.\nVoorwaarden voor automatisch hervatten\nVoorwaarden voor niet-automatisch hervatten\nInschakelen/herstarten na uitschakelen of herstarten\nHandmatige uitvoer uitschakelen (knop/App)\nOTA-upgrade voltooid\nUitschakeling van de uitgang door de ontladingstimer\nBatterij-SOC ≥ ontlaadlimiet +10% \nna het bereiken van de limiet\nUitschakeling van de uitgang door Energiebesparingsmodus\nUitschakeling van de uitgang door geactiveerde beveiliging\n",
+      "text_sha256": "460f6073d8fe015fa2893b4044c15a7bfa7fd9f2737ce074fdb58308a8794a31",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            43.42,
+            37.891,
+            242.524,
+            47.795
+          ],
+          "text": "HERVATTINGSFUNCTIE VOOR AC- EN DC-UITGANGEN\n"
+        },
+        {
+          "bbox": [
+            28.681,
+            51.14,
+            335.166,
+            66.338
+          ],
+          "text": "Deze functie onthoudt de uitgangsstatus en hervat automatisch de AC- en DC-uitgangen onder gedefinieerde \nvoorwaarden.\n"
+        },
+        {
+          "bbox": [
+            35.145,
+            76.848,
+            322.442,
+            85.131
+          ],
+          "text": "Voorwaarden voor automatisch hervatten\nVoorwaarden voor niet-automatisch hervatten\n"
+        },
+        {
+          "bbox": [
+            34.482,
+            88.897,
+            302.531,
+            96.208
+          ],
+          "text": "Inschakelen/herstarten na uitschakelen of herstarten\nHandmatige uitvoer uitschakelen (knop/App)\n"
+        },
+        {
+          "bbox": [
+            178.98,
+            100.161,
+            334.213,
+            107.361
+          ],
+          "text": "Uitschakeling van de uitgang door Energiebesparingsmodus\n"
+        },
+        {
+          "bbox": [
+            35.164,
+            102.386,
+            129.259,
+            117.583
+          ],
+          "text": "Batterij-SOC ≥ ontlaadlimiet +10% \nna het bereiken van de limiet\n"
+        },
+        {
+          "bbox": [
+            178.98,
+            110.541,
+            332.806,
+            117.741
+          ],
+          "text": "Uitschakeling van de uitgang door geactiveerde beveiliging\n"
+        },
+        {
+          "bbox": [
+            34.48,
+            121.808,
+            326.37,
+            129.116
+          ],
+          "text": "OTA-upgrade voltooid\nUitschakeling van de uitgang door de ontladingstimer\n"
+        },
+        {
+          "bbox": [
+            42.425,
+            159.245,
+            118.049,
+            169.149
+          ],
+          "text": "TOETSCOMBINATIES\n"
+        },
+        {
+          "bbox": [
+            35.728,
+            182.535,
+            279.163,
+            190.924
+          ],
+          "text": "Knoppen\nBEDIENING\nFunctie\n"
+        },
+        {
+          "bbox": [
+            177.372,
+            202.821,
+            184.26,
+            211.221
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            164.441,
+            212.618,
+            223.445,
+            225.218
+          ],
+          "text": "Houd beide knoppen 3 \nseconden ingedrukt\n"
+        },
+        {
+          "bbox": [
+            44.838,
+            203.781,
+            335.561,
+            225.233
+          ],
+          "text": "De Energiebesparingsmodus \nin-/uitschakelen\nAan/Uit-knop\nAan/uit-knop voor DC\n"
+        },
+        {
+          "bbox": [
+            177.372,
+            237.49,
+            184.26,
+            245.89
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            255.269,
+            239.917,
+            317.422,
+            247.117
+          ],
+          "text": "Reset wifi en Bluetooth\n"
+        },
+        {
+          "bbox": [
+            44.838,
+            253.48,
+            79.977,
+            260.08
+          ],
+          "text": "Aan/Uit-knop\n"
+        },
+        {
+          "bbox": [
+            94.744,
+            253.48,
+            152.338,
+            260.08
+          ],
+          "text": "Aan/uit-knop voor DC/USB\n"
+        },
+        {
+          "bbox": [
+            164.441,
+            248.618,
+            223.445,
+            261.219
+          ],
+          "text": "Houd beide knoppen 3 \nseconden ingedrukt\n"
+        },
+        {
+          "bbox": [
+            177.372,
+            270.531,
+            209.32,
+            278.931
+          ],
+          "text": "1 seconde\n"
+        },
+        {
+          "bbox": [
+            255.269,
+            275.551,
+            303.49,
+            291.751
+          ],
+          "text": "Wifi en Bluetooth \nin-/uitschakelen\n"
+        },
+        {
+          "bbox": [
+            164.441,
+            281.811,
+            219.155,
+            294.412
+          ],
+          "text": "Houd beide knoppen \n1 seconde ingedrukt\n"
+        },
+        {
+          "bbox": [
+            34.157,
+            289.147,
+            90.631,
+            295.747
+          ],
+          "text": "Aan/uit-knop voor DC\n"
+        },
+        {
+          "bbox": [
+            94.805,
+            289.264,
+            152.276,
+            295.864
+          ],
+          "text": "Aan/uit-knop voor DC/USB\n"
+        },
+        {
+          "bbox": [
+            177.372,
+            307.215,
+            209.32,
+            315.615
+          ],
+          "text": "1 seconde\n"
+        },
+        {
+          "bbox": [
+            44.838,
+            322.981,
+            79.977,
+            329.581
+          ],
+          "text": "Aan/Uit-knop\n"
+        },
+        {
+          "bbox": [
+            104.441,
+            307.6,
+            320.009,
+            329.581
+          ],
+          "text": "De Noodoplaadmodus \nin-/uitschakelen\nLED-lampknop\n"
+        },
+        {
+          "bbox": [
+            164.441,
+            317.344,
+            219.155,
+            329.944
+          ],
+          "text": "Houd beide knoppen \n1 seconde ingedrukt\n"
+        },
+        {
+          "bbox": [
+            35.17,
+            380.183,
+            302.398,
+            395.039
+          ],
+          "text": "ONONDERBROKEN STROOMVOORZIENING (UPS)\n"
+        },
+        {
+          "bbox": [
+            31.173,
+            400.869,
+            332.137,
+            417.069
+          ],
+          "text": "Sluit het product met de AC-oplaadkabel aan op een stopcontact, druk vervolgens op de Aan/uit-knop voor \nAC en voorzie uw apparaten tegelijkertijd van stroom.\n"
+        },
+        {
+          "bbox": [
+            30.957,
+            421.095,
+            331.868,
+            491.295
+          ],
+          "text": "Een ononderbroken stroomvoorziening (UPS) is een type voortdurend stroomvoorzieningssysteem dat \nautomatisch back-upstroom levert aan een belasting wanneer de netstroom uitvalt.\nBij een plotseling verlies van stroomnet schakelt de Jackery Explorer 1000 automatisch binnen 10 ms over op \nopgeslagen stroom om uw apparaten draaiende te houden.\nIn de UPS-modus bedraagt de piekuitgang van het apparaat 1500W zonder stroomuitval. Omdat gelijktijdig \nladen/ontladen is ingeschakeld in de Bypass-modus, is het werkelijke uitgangsvermogen in deze modus lager \ndan het nominale uitgangsvermogen. Tijdens stroomuitval keert het echter terug naar het nominale \nuitgangsvermogen.\n"
+        },
+        {
+          "bbox": [
+            23.625,
+            504.009,
+            32.073,
+            511.209
+          ],
+          "text": "128\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 136,
+      "relative_body_page": 10,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "OPGELET\n• Dit product ondersteunt geen omschakeling binnen 0 ms. Sluit dit apparaat niet aan op \napparatuur die een voeding met 0 ms omschakeltijd vereist, zoals gegevensservers of \nwerkstations.\n• Test vóór gebruik meerdere keren of het product compatibel is met uw apparaat.\n• Sluit geen belastingen aan die het maximale uitgangsvermogen van het product overschrijden. \nAnders wordt de overbelastingsbeveiliging geactiveerd. \n129\nOPLADEN \nLaad het product voor het eerste gebruik volledig op.\nOPMERKING\nGroene energie eerst: Wij raden aan om eerst groene energie te gebruiken. Dit product ondersteunt twee modi \nvoor opladen tegelijkertijd: Opladen via zonnepanelen en opladen een AC-stopcontact. Wanneer het opladen \nvia een AC-stopcontact en het opladen via zonnepanelen tegelijkertijd zijn ingeschakeld, geeft het product \nprioriteit aan het opladen via zonnepanelen en worden beide methoden gebruikt om de batterij te laden met \nhet maximaal toegestane vermogen.\nWAARSCHUWING\nGebruik dit product niet voor toepassingen zoals gegevensservers of medische apparaten, waarbij \neen storing levensgevaar kan opleveren of aanzienlijke materiële schade kan veroorzaken.\nVoor de volgende apparatuur kan een verlies van stroomvoorziening tijdens gebruik ernstige \nschade aan de persoonlijke veiligheid of eigendommen veroorzaken:\n• Medische apparaten en andere apparatuur die nauw verband houden met de levensveiligheid.\n• Kritieke apparatuur zoals maatschappelijke infrastructuur en openbare diensten.\n• Bedrijfskritieke ondernemingsapparatuur, enz.\nPersonen die een pacemaker dragen (personen met een pacemakerimplantaat) mogen dit \nproduct niet gebruiken.\n• De aanbevolen oplaadtemperatuur voor het product ligt tussen 0 °C en 45 °C, en de ontlaadtemperatuur tussen -10 °C en \n45 °C.\n• Het gebruik van het product buiten dit temperatuurbereik kan de laad- en ontlaadmogelijkheden beperken of zelfs \nvoorkomen dat het product kan opladen of ontladen.\n• Het oplaadvermogen en de batterijcapaciteit van het product kunnen variëren als gevolg van verschillende temperaturen.\n",
+      "text_sha256": "80dd349ef5845235e944f0af3bfdf3df76f14208f55cc750fc85d1711e5522ed",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            41.733,
+            236.833,
+            71.448,
+            245.499
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            88.485,
+            220.194,
+            331.535,
+            258.799
+          ],
+          "text": "• Dit product ondersteunt geen omschakeling binnen 0 ms. Sluit dit apparaat niet aan op \napparatuur die een voeding met 0 ms omschakeltijd vereist, zoals gegevensservers of \nwerkstations.\n• Test vóór gebruik meerdere keren of het product compatibel is met uw apparaat.\n• Sluit geen belastingen aan die het maximale uitgangsvermogen van het product overschrijden. \nAnders wordt de overbelastingsbeveiliging geactiveerd. \n"
+        },
+        {
+          "bbox": [
+            34.497,
+            297.488,
+            84.93,
+            306.154
+          ],
+          "text": "WAARSCHUWING\n"
+        },
+        {
+          "bbox": [
+            89.508,
+            270.908,
+            338.491,
+            330.517
+          ],
+          "text": "Gebruik dit product niet voor toepassingen zoals gegevensservers of medische apparaten, waarbij \neen storing levensgevaar kan opleveren of aanzienlijke materiële schade kan veroorzaken.\nVoor de volgende apparatuur kan een verlies van stroomvoorziening tijdens gebruik ernstige \nschade aan de persoonlijke veiligheid of eigendommen veroorzaken:\n• Medische apparaten en andere apparatuur die nauw verband houden met de levensveiligheid.\n• Kritieke apparatuur zoals maatschappelijke infrastructuur en openbare diensten.\n• Bedrijfskritieke ondernemingsapparatuur, enz.\nPersonen die een pacemaker dragen (personen met een pacemakerimplantaat) mogen dit \nproduct niet gebruiken.\n"
+        },
+        {
+          "bbox": [
+            32.708,
+            367.074,
+            89.096,
+            381.93
+          ],
+          "text": "OPLADEN \n"
+        },
+        {
+          "bbox": [
+            26.46,
+            387.974,
+            332.014,
+            427.257
+          ],
+          "text": "Groene energie eerst: Wij raden aan om eerst groene energie te gebruiken. Dit product ondersteunt twee modi \nvoor opladen tegelijkertijd: Opladen via zonnepanelen en opladen een AC-stopcontact. Wanneer het opladen \nvia een AC-stopcontact en het opladen via zonnepanelen tegelijkertijd zijn ingeschakeld, geeft het product \nprioriteit aan het opladen via zonnepanelen en worden beide methoden gebruikt om de batterij te laden met \nhet maximaal toegestane vermogen.\n"
+        },
+        {
+          "bbox": [
+            33.044,
+            439.664,
+            195.998,
+            447.835
+          ],
+          "text": "Laad het product voor het eerste gebruik volledig op.\n"
+        },
+        {
+          "bbox": [
+            81.007,
+            457.695,
+            331.488,
+            469.094
+          ],
+          "text": "• De aanbevolen oplaadtemperatuur voor het product ligt tussen 0 °C en 45 °C, en de ontlaadtemperatuur tussen -10 °C en \n45 °C.\n"
+        },
+        {
+          "bbox": [
+            29.323,
+            466.647,
+            74.779,
+            476.551
+          ],
+          "text": "OPMERKING\n"
+        },
+        {
+          "bbox": [
+            81.007,
+            470.696,
+            320.862,
+            482.094
+          ],
+          "text": "• Het gebruik van het product buiten dit temperatuurbereik kan de laad- en ontlaadmogelijkheden beperken of zelfs \nvoorkomen dat het product kan opladen of ontladen.\n"
+        },
+        {
+          "bbox": [
+            81.007,
+            483.696,
+            332.307,
+            489.096
+          ],
+          "text": "• Het oplaadvermogen en de batterijcapaciteit van het product kunnen variëren als gevolg van verschillende temperaturen.\n"
+        },
+        {
+          "bbox": [
+            341.366,
+            502.042,
+            349.736,
+            509.242
+          ],
+          "text": "129\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 137,
+      "relative_body_page": 11,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "130\nOPLADEN VIA AC-STOPCONTACT\nZorg ervoor dat de AC-oplaadkabel volledig en correct in de AC-ingangspoort is gestoken. Een onvolledige \nverbinding kan instabiele stroom, oververhitting, slecht contact of apparaatstoringen veroorzaken.\nOPGELET\nOPLADEN VIA ZONNEPANELEN (APART VERKRIJGBAAR)\nNoodoplaadmodus\nIn deze modus kunt u het draagbare powerstation snel opladen via de AC-oplaadmethode. Deze \nnoodlaadfunctie kan via de Jackery-app worden geactiveerd of gedeactiveerd. In de noodoplaadmodus \nknippert het ronde indicatielampje voor de laadstatus (SOC) sneller.\n* Om de levensduur van de batterij te maximaliseren, wordt aangeraden om deze op normale snelheid op te \nladen. Gebruik de noodoplaadmodus alleen wanneer dat nodig is. Het wordt niet aanbevolen voor normaal, \nlangdurig gebruik.\nDe Jackery Explorer 1000 heeft twee DC8020-ingangspoorten en is compatibel met de Jackery-zonnepanelen. \nAls er op één DC8020-ingangspoort twee zonnepanelen tegelijk moeten worden aangesloten, raadpleeg dan \nde onderstaande afbeelding voor het opladen via de zonnepaneel-connector (deze is apart verkrijgbaar en \nwordt niet standaard meegeleverd).\nSluit de AC-oplaadkabel aan op de AC-ingangspoort van het product en op een stopcontact.\nSolarSaga 200 × 2\n",
+      "text_sha256": "bcb3bfbae6fcfcf9f740d82078f37ed6d8a9a16736816be1c47dc5dfee374f0c",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            40.613,
+            36.36,
+            165.421,
+            46.264
+          ],
+          "text": "OPLADEN VIA AC-STOPCONTACT\n"
+        },
+        {
+          "bbox": [
+            45.384,
+            139.21,
+            305.117,
+            146.41
+          ],
+          "text": "Sluit de AC-oplaadkabel aan op de AC-ingangspoort van het product en op een stopcontact.\n"
+        },
+        {
+          "bbox": [
+            33.032,
+            159.848,
+            321.117,
+            171.848
+          ],
+          "text": "Zorg ervoor dat de AC-oplaadkabel volledig en correct in de AC-ingangspoort is gestoken. Een onvolledige \nverbinding kan instabiele stroom, oververhitting, slecht contact of apparaatstoringen veroorzaken.\nOPGELET\n"
+        },
+        {
+          "bbox": [
+            28.844,
+            177.925,
+            82.496,
+            185.353
+          ],
+          "text": "Noodoplaadmodus\n"
+        },
+        {
+          "bbox": [
+            28.844,
+            187.759,
+            323.231,
+            209.191
+          ],
+          "text": "In deze modus kunt u het draagbare powerstation snel opladen via de AC-oplaadmethode. Deze \nnoodlaadfunctie kan via de Jackery-app worden geactiveerd of gedeactiveerd. In de noodoplaadmodus \nknippert het ronde indicatielampje voor de laadstatus (SOC) sneller.\n"
+        },
+        {
+          "bbox": [
+            28.844,
+            211.597,
+            331.363,
+            233.029
+          ],
+          "text": "* Om de levensduur van de batterij te maximaliseren, wordt aangeraden om deze op normale snelheid op te \nladen. Gebruik de noodoplaadmodus alleen wanneer dat nodig is. Het wordt niet aanbevolen voor normaal, \nlangdurig gebruik.\n"
+        },
+        {
+          "bbox": [
+            40.781,
+            244.848,
+            242.965,
+            254.752
+          ],
+          "text": "OPLADEN VIA ZONNEPANELEN (APART VERKRIJGBAAR)\n"
+        },
+        {
+          "bbox": [
+            30.278,
+            259.561,
+            338.267,
+            266.761
+          ],
+          "text": "De Jackery Explorer 1000 heeft twee DC8020-ingangspoorten en is compatibel met de Jackery-zonnepanelen. \n"
+        },
+        {
+          "bbox": [
+            254.76,
+            414.195,
+            301.564,
+            420.919
+          ],
+          "text": "SolarSaga 200 × 2\n"
+        },
+        {
+          "bbox": [
+            30.278,
+            445.063,
+            333.906,
+            468.259
+          ],
+          "text": "Als er op één DC8020-ingangspoort twee zonnepanelen tegelijk moeten worden aangesloten, raadpleeg dan \nde onderstaande afbeelding voor het opladen via de zonnepaneel-connector (deze is apart verkrijgbaar en \nwordt niet standaard meegeleverd).\n"
+        },
+        {
+          "bbox": [
+            25.3,
+            502.042,
+            34.3,
+            509.242
+          ],
+          "text": "130\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 138,
+      "relative_body_page": 12,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "OPGELET\nOPLADEN VIA EEN AUTO-OPLADER (AFZONDERLIJK VERKRIJGBAAR)\nDit product kan worden opgeladen met een 12 V-auto-oplader. Zorg ervoor dat de autolader en \nde 12 V-aansluiting in de auto (sigarettenaansteker) goed zijn aangesloten.\nHet wordt aanbevolen om het product op te laden met het Jackery-zonnepaneel. Zorg ervoor \ndat de open-klemspanning (Voc) van het zonnepaneel binnen het DC-ingangsbereik (16 V-60 V) \nvan de Jackery Explorer 1000 ligt. Jackery is niet verantwoordelijk voor schade of verlies als \ngevolg van het gebruik van zonnepanelen van derden.\n131\nOp één DC8020-ingangspoort kunnen maximaal twee zonnepanelen worden \naangesloten.\nOPGELET\nZorg ervoor dat de ingangsspanning van beide DC-ingangspoorten dezelfde is. Als u dit \nniet doet, kan het product beschadigd raken. Bijvoorbeeld:\n• Gebruik hetzelfde model van en hetzelfde aantal aan Jackery-zonnepanelen wanneer u \nzonnepanelen aansluit op beide DC8020-ingangspoorten. \n• Laad het product niet tegelijkertijd op via zowel een autolader als een zonnepaneel. \nHierdoor kan de autozekering doorbranden of leiden tot een laadstoring.\nVoertuig \n*De oplaadkabel voor de auto is apart verkrijgbaar.\nSolarSaga 100 Air × 4\n",
+      "text_sha256": "a769103be99aa3c647c8ebd16ea07496bd963895551c12143fe128f0eea0fc74",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            248.383,
+            165.354,
+            302.303,
+            172.078
+          ],
+          "text": "SolarSaga 100 Air × 4\n"
+        },
+        {
+          "bbox": [
+            38.045,
+            193.126,
+            71.883,
+            202.978
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            90.922,
+            194.541,
+            305.243,
+            209.739
+          ],
+          "text": "Op één DC8020-ingangspoort kunnen maximaal twee zonnepanelen worden \naangesloten.\n"
+        },
+        {
+          "bbox": [
+            38.044,
+            240.55,
+            71.882,
+            250.402
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            91.164,
+            221.317,
+            337.44,
+            270.511
+          ],
+          "text": "Zorg ervoor dat de ingangsspanning van beide DC-ingangspoorten dezelfde is. Als u dit \nniet doet, kan het product beschadigd raken. Bijvoorbeeld:\n• Gebruik hetzelfde model van en hetzelfde aantal aan Jackery-zonnepanelen wanneer u \nzonnepanelen aansluit op beide DC8020-ingangspoorten. \n• Laad het product niet tegelijkertijd op via zowel een autolader als een zonnepaneel. \nHierdoor kan de autozekering doorbranden of leiden tot een laadstoring.\n"
+        },
+        {
+          "bbox": [
+            30.201,
+            277.587,
+            338.696,
+            309.991
+          ],
+          "text": "Het wordt aanbevolen om het product op te laden met het Jackery-zonnepaneel. Zorg ervoor \ndat de open-klemspanning (Voc) van het zonnepaneel binnen het DC-ingangsbereik (16 V-60 V) \nvan de Jackery Explorer 1000 ligt. Jackery is niet verantwoordelijk voor schade of verlies als \ngevolg van het gebruik van zonnepanelen van derden.\n"
+        },
+        {
+          "bbox": [
+            40.442,
+            321.765,
+            291.266,
+            331.669
+          ],
+          "text": "OPLADEN VIA EEN AUTO-OPLADER (AFZONDERLIJK VERKRIJGBAAR)\n"
+        },
+        {
+          "bbox": [
+            29.249,
+            333.77,
+            338.859,
+            350.171
+          ],
+          "text": "Dit product kan worden opgeladen met een 12 V-auto-oplader. Zorg ervoor dat de autolader en \nde 12 V-aansluiting in de auto (sigarettenaansteker) goed zijn aangesloten.\n"
+        },
+        {
+          "bbox": [
+            170.16,
+            364.904,
+            327.016,
+            372.404
+          ],
+          "text": "*De oplaadkabel voor de auto is apart verkrijgbaar.\n"
+        },
+        {
+          "bbox": [
+            252.618,
+            401.022,
+            281.227,
+            409.422
+          ],
+          "text": "Voertuig \n"
+        },
+        {
+          "bbox": [
+            333.244,
+            502.467,
+            340.444,
+            509.667
+          ],
+          "text": "131\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 139,
+      "relative_body_page": 13,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "132\nOPSLAG\nBewaar het product op een droge, schone plaats met voldoende ventilatie. Opslagtemperatuur en \n-vochtigheid:\n• 1 maand: -20°C tot 45°C (0-60%RH)\n• 3 maanden: 0°C tot 45°C (0-60%RH)\n• 12 maanden: 0°C tot 25°C (0-60%RH)\nAls dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt \nbewaard, kan het zijn dat het niet meer kan worden opgeladen. Om dit te voorkomen en de batterij \nin goede conditie te houden, is het aan te raden om het product elke drie maanden te controleren \nen op te laden, waarbij minstens één keer per 6 tot 12 maanden een volledige laad- en \nontlaadcyclus moet worden uitgevoerd.\nOPGELET\n• Start het voertuig voordat u uw powerstation oplaadt.\n• Als u met uw voertuig op oneffen wegen rijdt, is het verboden de autolader te gebruiken \nom niet-standaard werking te voorkomen. Het bedrijf is niet aansprakelijk voor enig \nverlies of schade als gevolg van niet-standaard gebruik.\n• Opladen via de auto is alleen van toepassing op voertuigen met 12 V DC, niet op 24 V \nDC. Laad dit product niet op in een voertuig met 24 V om persoonlijk letsel en materiële \nschade te voorkomen.\nAls een van de volgende foutcodes verschijnt, volg dan de vermelde corrigerende acties om het probleem op te \nlossen. Als het probleem aanhoudt, neem dan contact op met Jackery-klantenondersteuning.\nPROBLEEMOPLOSSING\nFoutcode\nOplossingsmaatregelen\nLaad het product op via zonnepanelen of een AC-stopcontact totdat de fout verdwijnt.\nSluit het product aan op belastingen om de batterij te ontladen totdat de fout verdwijnt.\nF6\nF5\nF4\nF3\nF2\nF1\nF0\nHerstart het product.\nHerstart het product.\nHerstart het product.\nHerstart het product.\nVerwijder de belasting die op de USB-poorten van het product is aangesloten. Wacht tot de \nfout verdwijnt.\n Neem contact op met de Jackery-klantenondersteuning.\nF9\nF7\nF8\n Neem contact op met de Jackery-klantenondersteuning.\nFE\n1. Wacht tot het net genormaliseerd is voordat u het product via een AC-stopcontact oplaadt.\n2. Controleer of de luchtinlaat- en uitlaatopeningen geblokkeerd zijn; zorg voor 0,66 ft (20 cm) ruimte \naan beide zijden van het product.\n3. Plaats het product op een locatie die niet wordt blootgesteld aan direct zonlicht of hoge \nomgevingstemperaturen.\n4. Koppel alle belastingen van het product los. Laat het product inactief en wacht tot de fout verdwijnt.\n5. Herstart het product.\n1. Koppel alle DC-ingangen los van het product.\n2. Als u het product via een zonnepaneel oplaadt, controleer dan de open-klemspanning (VOC) van het \naangesloten zonnepaneel. Het product staat een maximale DC-ingangsspanning van 60 V toe.\n3. Start het product opnieuw op en houd het inactief. Wacht tot de fout verdwijnt.\n",
+      "text_sha256": "86b7748b93675940b25e0b3ecfba32d46e9df14fe63b4ed656460bb0f5a0b11f",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            36.1,
+            55.118,
+            69.938,
+            64.97
+          ],
+          "text": "OPGELET\n"
+        },
+        {
+          "bbox": [
+            88.59,
+            34.889,
+            333.971,
+            86.093
+          ],
+          "text": "• Start het voertuig voordat u uw powerstation oplaadt.\n• Als u met uw voertuig op oneffen wegen rijdt, is het verboden de autolader te gebruiken \nom niet-standaard werking te voorkomen. Het bedrijf is niet aansprakelijk voor enig \nverlies of schade als gevolg van niet-standaard gebruik.\n• Opladen via de auto is alleen van toepassing op voertuigen met 12 V DC, niet op 24 V \nDC. Laad dit product niet op in een voertuig met 24 V om persoonlijk letsel en materiële \nschade te voorkomen.\n"
+        },
+        {
+          "bbox": [
+            31.77,
+            97.162,
+            78.582,
+            112.018
+          ],
+          "text": "OPSLAG\n"
+        },
+        {
+          "bbox": [
+            25.882,
+            120.109,
+            344.613,
+            202.849
+          ],
+          "text": "Bewaar het product op een droge, schone plaats met voldoende ventilatie. Opslagtemperatuur en \n-vochtigheid:\n• 1 maand: -20°C tot 45°C (0-60%RH)\n• 3 maanden: 0°C tot 45°C (0-60%RH)\n• 12 maanden: 0°C tot 25°C (0-60%RH)\nAls dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt \nbewaard, kan het zijn dat het niet meer kan worden opgeladen. Om dit te voorkomen en de batterij \nin goede conditie te houden, is het aan te raden om het product elke drie maanden te controleren \nen op te laden, waarbij minstens één keer per 6 tot 12 maanden een volledige laad- en \nontlaadcyclus moet worden uitgevoerd.\n"
+        },
+        {
+          "bbox": [
+            32.43,
+            209.086,
+            158.526,
+            223.942
+          ],
+          "text": "PROBLEEMOPLOSSING\n"
+        },
+        {
+          "bbox": [
+            26.034,
+            229.427,
+            333.392,
+            245.627
+          ],
+          "text": "Als een van de volgende foutcodes verschijnt, volg dan de vermelde corrigerende acties om het probleem op te \nlossen. Als het probleem aanhoudt, neem dan contact op met Jackery-klantenondersteuning.\n"
+        },
+        {
+          "bbox": [
+            30.127,
+            254.541,
+            144.862,
+            262.896
+          ],
+          "text": "Foutcode\nOplossingsmaatregelen\n"
+        },
+        {
+          "bbox": [
+            72.692,
+            279.999,
+            125.222,
+            286.599
+          ],
+          "text": "Herstart het product.\n"
+        },
+        {
+          "bbox": [
+            40.082,
+            266.991,
+            125.222,
+            288.695
+          ],
+          "text": "F1\nF0\nHerstart het product.\n"
+        },
+        {
+          "bbox": [
+            72.692,
+            292.666,
+            125.222,
+            299.266
+          ],
+          "text": "Herstart het product.\n"
+        },
+        {
+          "bbox": [
+            72.692,
+            304.133,
+            125.222,
+            310.733
+          ],
+          "text": "Herstart het product.\n"
+        },
+        {
+          "bbox": [
+            72.693,
+            315.609,
+            295.101,
+            322.209
+          ],
+          "text": "Sluit het product aan op belastingen om de batterij te ontladen totdat de fout verdwijnt.\n"
+        },
+        {
+          "bbox": [
+            72.693,
+            328.05,
+            293.139,
+            334.65
+          ],
+          "text": "Laad het product op via zonnepanelen of een AC-stopcontact totdat de fout verdwijnt.\n"
+        },
+        {
+          "bbox": [
+            40.034,
+            291.159,
+            48.746,
+            336.711
+          ],
+          "text": "F5\nF4\nF3\nF2\n"
+        },
+        {
+          "bbox": [
+            39.746,
+            360.447,
+            48.322,
+            370.351
+          ],
+          "text": "F6\n"
+        },
+        {
+          "bbox": [
+            72.694,
+            342.084,
+            331.363,
+            396.699
+          ],
+          "text": "1. Wacht tot het net genormaliseerd is voordat u het product via een AC-stopcontact oplaadt.\n2. Controleer of de luchtinlaat- en uitlaatopeningen geblokkeerd zijn; zorg voor 0,66 ft (20 cm) ruimte \naan beide zijden van het product.\n3. Plaats het product op een locatie die niet wordt blootgesteld aan direct zonlicht of hoge \nomgevingstemperaturen.\n4. Koppel alle belastingen van het product los. Laat het product inactief en wacht tot de fout verdwijnt.\n5. Herstart het product.\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            412.964,
+            47.56,
+            422.868
+          ],
+          "text": "F7\n"
+        },
+        {
+          "bbox": [
+            72.694,
+            404.922,
+            330.723,
+            435.509
+          ],
+          "text": "1. Koppel alle DC-ingangen los van het product.\n2. Als u het product via een zonnepaneel oplaadt, controleer dan de open-klemspanning (VOC) van het \naangesloten zonnepaneel. Het product staat een maximale DC-ingangsspanning van 60 V toe.\n3. Start het product opnieuw op en houd het inactief. Wacht tot de fout verdwijnt.\n"
+        },
+        {
+          "bbox": [
+            72.103,
+            441.774,
+            216.945,
+            448.374
+          ],
+          "text": " Neem contact op met de Jackery-klantenondersteuning.\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            441.42,
+            48.184,
+            451.324
+          ],
+          "text": "F8\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            457.684,
+            48.064,
+            467.588
+          ],
+          "text": "F9\n"
+        },
+        {
+          "bbox": [
+            73.594,
+            456.376,
+            306.919,
+            470.979
+          ],
+          "text": "Verwijder de belasting die op de USB-poorten van het product is aangesloten. Wacht tot de \nfout verdwijnt.\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            476.119,
+            216.944,
+            486.023
+          ],
+          "text": " Neem contact op met de Jackery-klantenondersteuning.\nFE\n"
+        },
+        {
+          "bbox": [
+            26.475,
+            501.738,
+            34.845,
+            508.938
+          ],
+          "text": "132\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 140,
+      "relative_body_page": 14,
+      "page_size_points": [
+        368.918,
+        524.824
+      ],
+      "text": "133\nSPECIFICATIES\n※ USB Type-C   en USB-C   zijn geregistreerde handelsmerken van USB Implementers Forum.\n®\n®\nALGEMENE INFORMATIE\nProductnaam\nJackery Explorer 1000\nINGANGSPOORTEN\n1 × AC-ingang\nOplaadmodus: 220-240 V~50 Hz, max. 10 A\n11 V-16 V⎓8 A max., dubbel tot 8 A max.\n16 V-60 V⎓12 A max., dubbel tot 21 A/400 W max.\nUITGANGSPOORTEN\nOplaadtemperatuur\n0 °C tot 45 °C\nBEDRIJFSTEMPERATUUR\n①. Het product kan de batterij opladen via het AC-stopcontact terwijl het tegelijkertijd stroom levert via de \nAC-uitgangspoorten.\n2 × AC\n1 × USB-A\n1 x USB-C 30 W\n1 x USB-C 100 W\n230 V~ 50 Hz, 6,5 A max., 1500 W nominaal per poort, \n1500 W in totaal, 3000 W piekvermogen\n220 V-240 V~50 Hz, 1500 W\n100 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n18 W Max, 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A\n12 V⎓10 A Max\n30 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A\nJE-1000F\n1024 Wh (20 Ah/51,2 V DC)\nLiFePO4\nOngeveer 10,6 kg\n31,4 x 20,1 x 23,4 cm\n4000 cycli tot 70%+ capaciteit\nModelnummer\nCapaciteit\nCelchemie\nGewicht\nAfmetingen\nLevenscyclus\n2 × DC8020-poorten\n1 × DC 12 V-poort\nOntlaadtemperatuur\n-10 °C tot 45 °C\nAC-uitgang in Bypassmodus ①\n",
+      "text_sha256": "f2dc1849f187b1f0982456f2428740d9fdb66bdfa4d0e61cd9f8e3be5d6f1944",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            33.075,
+            32.36,
+            114.663,
+            47.216
+          ],
+          "text": "SPECIFICATIES\n"
+        },
+        {
+          "bbox": [
+            37.488,
+            57.021,
+            125.096,
+            66.925
+          ],
+          "text": "ALGEMENE INFORMATIE\n"
+        },
+        {
+          "bbox": [
+            33.1,
+            72.912,
+            189.76,
+            80.19
+          ],
+          "text": "Productnaam\nJackery Explorer 1000\n"
+        },
+        {
+          "bbox": [
+            129.773,
+            87.116,
+            155.86,
+            94.316
+          ],
+          "text": "JE-1000F\n"
+        },
+        {
+          "bbox": [
+            33.101,
+            87.084,
+            72.581,
+            94.362
+          ],
+          "text": "Modelnummer\n"
+        },
+        {
+          "bbox": [
+            129.773,
+            101.288,
+            201.388,
+            108.488
+          ],
+          "text": "1024 Wh (20 Ah/51,2 V DC)\n"
+        },
+        {
+          "bbox": [
+            33.101,
+            101.256,
+            62.68,
+            108.534
+          ],
+          "text": "Capaciteit\n"
+        },
+        {
+          "bbox": [
+            129.773,
+            115.46,
+            150.617,
+            122.66
+          ],
+          "text": "LiFePO4\n"
+        },
+        {
+          "bbox": [
+            33.101,
+            115.428,
+            62.393,
+            122.706
+          ],
+          "text": "Celchemie\n"
+        },
+        {
+          "bbox": [
+            129.773,
+            129.636,
+            176.717,
+            136.836
+          ],
+          "text": "Ongeveer 10,6 kg\n"
+        },
+        {
+          "bbox": [
+            33.101,
+            129.6,
+            56.075,
+            136.878
+          ],
+          "text": "Gewicht\n"
+        },
+        {
+          "bbox": [
+            129.773,
+            143.808,
+            183.112,
+            151.008
+          ],
+          "text": "31,4 x 20,1 x 23,4 cm\n"
+        },
+        {
+          "bbox": [
+            33.101,
+            143.772,
+            64.943,
+            151.05
+          ],
+          "text": "Afmetingen\n"
+        },
+        {
+          "bbox": [
+            129.773,
+            157.98,
+            212.837,
+            165.18
+          ],
+          "text": "4000 cycli tot 70%+ capaciteit\n"
+        },
+        {
+          "bbox": [
+            33.101,
+            157.944,
+            68.794,
+            165.222
+          ],
+          "text": "Levenscyclus\n"
+        },
+        {
+          "bbox": [
+            37.488,
+            183.482,
+            109.216,
+            193.386
+          ],
+          "text": "INGANGSPOORTEN\n"
+        },
+        {
+          "bbox": [
+            33.55,
+            200.585,
+            249.065,
+            207.863
+          ],
+          "text": "1 × AC-ingang\nOplaadmodus: 220-240 V~50 Hz, max. 10 A\n"
+        },
+        {
+          "bbox": [
+            33.551,
+            214.578,
+            90.352,
+            221.856
+          ],
+          "text": "2 × DC8020-poorten\n"
+        },
+        {
+          "bbox": [
+            130.012,
+            214.337,
+            266.23,
+            229.601
+          ],
+          "text": "11 V-16 V⎓8 A max., dubbel tot 8 A max.\n16 V-60 V⎓12 A max., dubbel tot 21 A/400 W max.\n"
+        },
+        {
+          "bbox": [
+            37.488,
+            246.571,
+            113.376,
+            256.475
+          ],
+          "text": "UITGANGSPOORTEN\n"
+        },
+        {
+          "bbox": [
+            33.1,
+            269.399,
+            50.314,
+            276.677
+          ],
+          "text": "2 × AC\n"
+        },
+        {
+          "bbox": [
+            130.582,
+            266.435,
+            277.497,
+            281.573
+          ],
+          "text": "230 V~ 50 Hz, 6,5 A max., 1500 W nominaal per poort, \n1500 W in totaal, 3000 W piekvermogen\n"
+        },
+        {
+          "bbox": [
+            130.798,
+            288.491,
+            206.308,
+            295.691
+          ],
+          "text": "220 V-240 V~50 Hz, 1500 W\n"
+        },
+        {
+          "bbox": [
+            33.077,
+            287.178,
+            119.195,
+            296.274
+          ],
+          "text": "AC-uitgang in Bypassmodus ①\n"
+        },
+        {
+          "bbox": [
+            130.882,
+            305.141,
+            299.067,
+            312.407
+          ],
+          "text": "30 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            33.076,
+            305.183,
+            75.892,
+            312.461
+          ],
+          "text": "1 x USB-C 30 W\n"
+        },
+        {
+          "bbox": [
+            33.1,
+            320.627,
+            78.622,
+            327.905
+          ],
+          "text": "1 x USB-C 100 W\n"
+        },
+        {
+          "bbox": [
+            131.278,
+            320.657,
+            294.003,
+            327.923
+          ],
+          "text": "100 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n"
+        },
+        {
+          "bbox": [
+            33.1,
+            336.635,
+            58.985,
+            343.913
+          ],
+          "text": "1 × USB-A\n"
+        },
+        {
+          "bbox": [
+            131.446,
+            336.929,
+            256.6,
+            344.195
+          ],
+          "text": "18 W Max, 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            33.101,
+            351.588,
+            80.147,
+            358.866
+          ],
+          "text": "1 × DC 12 V-poort\n"
+        },
+        {
+          "bbox": [
+            131.446,
+            351.629,
+            171.142,
+            358.895
+          ],
+          "text": "12 V⎓10 A Max\n"
+        },
+        {
+          "bbox": [
+            37.488,
+            378.545,
+            126.672,
+            388.449
+          ],
+          "text": "BEDRIJFSTEMPERATUUR\n"
+        },
+        {
+          "bbox": [
+            33.1,
+            394.028,
+            167.259,
+            401.864
+          ],
+          "text": "Oplaadtemperatuur\n0 °C tot 45 °C\n"
+        },
+        {
+          "bbox": [
+            33.101,
+            408.216,
+            172.42,
+            416.058
+          ],
+          "text": "Ontlaadtemperatuur\n-10 °C tot 45 °C\n"
+        },
+        {
+          "bbox": [
+            26.402,
+            427.249,
+            314.379,
+            436.435
+          ],
+          "text": "※ USB Type-C   en USB-C   zijn geregistreerde handelsmerken van USB Implementers Forum.\n®\n®\n"
+        },
+        {
+          "bbox": [
+            27.261,
+            441.121,
+            336.699,
+            458.215
+          ],
+          "text": "①. Het product kan de batterij opladen via het AC-stopcontact terwijl het tegelijkertijd stroom levert via de \nAC-uitgangspoorten.\n"
+        },
+        {
+          "bbox": [
+            334.333,
+            503.375,
+            342.673,
+            510.575
+          ],
+          "text": "133\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 141,
+      "relative_body_page": 15,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "Om de garantieverlenging te activeren, moet \nu uw product online registreren of contact \nopnemen met onze klantenservice via \nhello.eu@jackery.com om de \nstandaardgarantieperiode te verlengen.\nDeze garantie geldt alleen voor klanten die aankopen bij de officiële Jackery-website, \nJackery-merkplatformen van derden of lokale erkende dealers.\n*De garantieperiode en details kunnen variëren volgens lokale wetten, voorschriften en erkende dealers.\nJackery vervangt (op kosten van Jackery) elk Jackery-product dat gedurende de toepasselijke \ngarantieperiode niet functioneert als gevolg van een fabricage- of materiaalfout. Een vervangend \nproduct neemt de resterende garantie van het originele product over.\nGARANTIE\nJackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en \nmateriaalfouten bij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de \nsectie 'Garantieperiode' hieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen.\nIn deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij \naanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere \naansprakelijkheid te aanvaarden in verband met de verkoop van onze producten.\nDe standaard garantieperiode voor de Jackery Explorer 1000 is 36 \nmaanden. In alle gevallen gaat de garantieperiode in op de datum \nvan aankoop door de oorspronkelijke consument-koper. Het \naankoopbewijs van de eerste consument-koper, of ander redelijk \ndocumentair bewijs, is vereist om de startdatum van de \ngarantieperiode vast te stellen.\nBeperkte garantie\nRuilen\nDe garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet \noverdraagbaar aan een volgende eigenaar.\nBeperkt tot de oorspronkelijke koper\nUitsluitingen\nJackery behoudt zich het recht voor om het bovenstaande beleid voor service na verkoop definitief te \ninterpreteren.\nInterpretatierechten\nGarantieperiode\n Standaardgarantie\n JAAR\n3  \nVerlengde garantie\n JAAR\n2  \n134\nDe garantie van Jackery is niet van toepassing op:\n• Elk product met onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal \nconsumentengebruik, zoals toegestaan in de huidige productliteratuur van Jackery.\n• Een poging tot reparatie door iemand anders dan een erkend servicecentrum.\n• Elk product dat via een online veilinghuis is gekocht.\n• De garantie van Jackery is niet van toepassing op de batterijcel, tenzij u de batterijcel binnen zeven \ndagen na aankoop van het product volledig oplaadt en daarna ten minste één keer per zes maanden.\n",
+      "text_sha256": "2e7eac70112730c9106809768b10eaebc5f2bfcaef6a6c4b819e91ff7a0b3810",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            33.651,
+            31.132,
+            90.603,
+            45.988
+          ],
+          "text": "GARANTIE\n"
+        },
+        {
+          "bbox": [
+            34.792,
+            60.229,
+            317.001,
+            77.897
+          ],
+          "text": "Deze garantie geldt alleen voor klanten die aankopen bij de officiële Jackery-website, \nJackery-merkplatformen van derden of lokale erkende dealers.\n"
+        },
+        {
+          "bbox": [
+            28.019,
+            87.358,
+            311.671,
+            94.558
+          ],
+          "text": "*De garantieperiode en details kunnen variëren volgens lokale wetten, voorschriften en erkende dealers.\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            101.368,
+            107.176,
+            111.272
+          ],
+          "text": "Beperkte garantie\n"
+        },
+        {
+          "bbox": [
+            36.567,
+            116.088,
+            326.439,
+            136.691
+          ],
+          "text": "Jackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en \nmateriaalfouten bij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de \nsectie 'Garantieperiode' hieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen.\n"
+        },
+        {
+          "bbox": [
+            36.567,
+            139.925,
+            324.98,
+            160.528
+          ],
+          "text": "In deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij \naanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere \naansprakelijkheid te aanvaarden in verband met de verkoop van onze producten.\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            171.441,
+            101.624,
+            181.345
+          ],
+          "text": "Garantieperiode\n"
+        },
+        {
+          "bbox": [
+            40.662,
+            186.383,
+            306.642,
+            214.416
+          ],
+          "text": " Standaardgarantie\n JAAR\n3  \nVerlengde garantie\n JAAR\n2  \n"
+        },
+        {
+          "bbox": [
+            217.377,
+            215.094,
+            332.187,
+            249.7
+          ],
+          "text": "Om de garantieverlenging te activeren, moet \nu uw product online registreren of contact \nopnemen met onze klantenservice via \nhello.eu@jackery.com om de \nstandaardgarantieperiode te verlengen.\n"
+        },
+        {
+          "bbox": [
+            36.567,
+            215.099,
+            207.061,
+            256.706
+          ],
+          "text": "De standaard garantieperiode voor de Jackery Explorer 1000 is 36 \nmaanden. In alle gevallen gaat de garantieperiode in op de datum \nvan aankoop door de oorspronkelijke consument-koper. Het \naankoopbewijs van de eerste consument-koper, of ander redelijk \ndocumentair bewijs, is vereist om de startdatum van de \ngarantieperiode vast te stellen.\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            269.81,
+            62.144,
+            279.714
+          ],
+          "text": "Ruilen\n"
+        },
+        {
+          "bbox": [
+            36.569,
+            285.694,
+            307.539,
+            308.89
+          ],
+          "text": "Jackery vervangt (op kosten van Jackery) elk Jackery-product dat gedurende de toepasselijke \ngarantieperiode niet functioneert als gevolg van een fabricage- of materiaalfout. Een vervangend \nproduct neemt de resterende garantie van het originele product over.\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            320.461,
+            174.312,
+            330.365
+          ],
+          "text": "Beperkt tot de oorspronkelijke koper\n"
+        },
+        {
+          "bbox": [
+            36.567,
+            336.346,
+            294.674,
+            350.548
+          ],
+          "text": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet \noverdraagbaar aan een volgende eigenaar.\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            364.632,
+            85.744,
+            374.536
+          ],
+          "text": "Uitsluitingen\n"
+        },
+        {
+          "bbox": [
+            39.488,
+            381.971,
+            323.587,
+            443.171
+          ],
+          "text": "De garantie van Jackery is niet van toepassing op:\n• Elk product met onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal \nconsumentengebruik, zoals toegestaan in de huidige productliteratuur van Jackery.\n• Een poging tot reparatie door iemand anders dan een erkend servicecentrum.\n• Elk product dat via een online veilinghuis is gekocht.\n• De garantie van Jackery is niet van toepassing op de batterijcel, tenzij u de batterijcel binnen zeven \ndagen na aankoop van het product volledig oplaadt en daarna ten minste één keer per zes maanden.\n"
+        },
+        {
+          "bbox": [
+            41.443,
+            462.927,
+            116.715,
+            472.831
+          ],
+          "text": "Interpretatierechten\n"
+        },
+        {
+          "bbox": [
+            36.566,
+            477.815,
+            316.564,
+            492.017
+          ],
+          "text": "Jackery behoudt zich het recht voor om het bovenstaande beleid voor service na verkoop definitief te \ninterpreteren.\n"
+        },
+        {
+          "bbox": [
+            25.616,
+            503.003,
+            34.376,
+            510.203
+          ],
+          "text": "134\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 142,
+      "relative_body_page": 16,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "Zoek naar \\\"Jackery\\\" in Google \nPlay of de App Store om de app te \ninstalleren. Daarna kunt u zich \nregistreren en inloggen. \nOf scan de QR-code \nhieronder om de app te \ndownloaden en te installeren.\n2.3 Nadat u op het pictogram van het gevonden apparaat hebt getikt, maakt de app automatisch \nverbinding met het apparaat via Bluetooth.\n2. Apparaat toevoegen\n1. Download de app en log in\n2.1 Klik op de      -knop om uw apparaat toe te voegen;\nAPP INSTELLEN\nAan/Uit-knop\nAan/uit-knop voor \nDC/USB\nAan/uit-knop \nvoor DC\n2.1\n2.2\n135\n2.2 Druk op de aan/uit-knop op het apparaat om het in te schakelen; de wiﬁ- en \nBluetooth-pictogrammen op het apparaat knipperen om aan te geven dat het apparaat zich in de \nnetwerkconﬁguratiemodus bevindt. Tik op de knop 'Pictogram knippert' en geef de app toestemming \nom verbinding te maken met apparaten in de buurt en schakel de Bluetooth-machtigingen in.\n",
+      "text_sha256": "eb5ad6ece3b35ced1e6efc5223e87d46f2094bb4e16b9ca5a1fa18b0c8c92112",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            33.65,
+            31.668,
+            115.982,
+            46.524
+          ],
+          "text": "APP INSTELLEN\n"
+        },
+        {
+          "bbox": [
+            40.404,
+            51.238,
+            174.764,
+            63.618
+          ],
+          "text": "1. Download de app en log in\n"
+        },
+        {
+          "bbox": [
+            198.65,
+            125.319,
+            293.556,
+            150.519
+          ],
+          "text": "Of scan de QR-code \nhieronder om de app te \ndownloaden en te installeren.\n"
+        },
+        {
+          "bbox": [
+            46.827,
+            124.731,
+            162.789,
+            158.331
+          ],
+          "text": "Zoek naar \\\"Jackery\\\" in Google \nPlay of de App Store om de app te \ninstalleren. Daarna kunt u zich \nregistreren en inloggen. \n"
+        },
+        {
+          "bbox": [
+            41.364,
+            157.558,
+            150.264,
+            169.938
+          ],
+          "text": "2. Apparaat toevoegen\n"
+        },
+        {
+          "bbox": [
+            41.151,
+            172.728,
+            216.368,
+            181.128
+          ],
+          "text": "2.1 Klik op de      -knop om uw apparaat toe te voegen;\n"
+        },
+        {
+          "bbox": [
+            41.586,
+            183.31,
+            343.069,
+            218.118
+          ],
+          "text": "2.2 Druk op de aan/uit-knop op het apparaat om het in te schakelen; de wiﬁ- en \nBluetooth-pictogrammen op het apparaat knipperen om aan te geven dat het apparaat zich in de \nnetwerkconﬁguratiemodus bevindt. Tik op de knop 'Pictogram knippert' en geef de app toestemming \nom verbinding te maken met apparaten in de buurt en schakel de Bluetooth-machtigingen in.\n"
+        },
+        {
+          "bbox": [
+            128.221,
+            379.953,
+            234.142,
+            386.774
+          ],
+          "text": "2.1\n2.2\n"
+        },
+        {
+          "bbox": [
+            51.4,
+            410.727,
+            89.854,
+            417.927
+          ],
+          "text": "Aan/Uit-knop\n"
+        },
+        {
+          "bbox": [
+            59.074,
+            426.465,
+            112.132,
+            433.665
+          ],
+          "text": "Aan/uit-knop voor \n"
+        },
+        {
+          "bbox": [
+            87.526,
+            435.465,
+            110.632,
+            442.665
+          ],
+          "text": "DC/USB\n"
+        },
+        {
+          "bbox": [
+            278.104,
+            428.949,
+            317.446,
+            445.149
+          ],
+          "text": "Aan/uit-knop \nvoor DC\n"
+        },
+        {
+          "bbox": [
+            41.584,
+            463.701,
+            341.792,
+            480.624
+          ],
+          "text": "2.3 Nadat u op het pictogram van het gevonden apparaat hebt getikt, maakt de app automatisch \nverbinding met het apparaat via Bluetooth.\n"
+        },
+        {
+          "bbox": [
+            336.858,
+            503.074,
+            345.288,
+            510.274
+          ],
+          "text": "135\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 143,
+      "relative_body_page": 17,
+      "page_size_points": [
+        368.918,
+        524.823
+      ],
+      "text": "3. Apparaat ontkoppelen\nKlik op het instellingenpictogram rechtsboven in het hoofdscherm van het apparaat om de \ninstellingenpagina te openen en klik onderaan op de knop 'Ontkoppelen' om het apparaat te \nontkoppelen.\n4. Opmerkingen\nDe bovenstaande schermafbeeldingen zijn alleen ter referentie.\nAls tijdens het bindingsproces \"het apparaat is al gebonden\" wordt gemeld, kunnen de volgende twee \nmethoden worden gebruikt voor de verbinding:\n• De eigenaar van het apparaat deelt dit apparaat via de app met andere gebruikers.\n• Houd de AAN/UIT-knop en de DC/USB-knop 3 seconden ingedrukt om de wiﬁ en Bluetooth van het \napparaat te resetten en het apparaat vervolgens opnieuw te koppelen.\nSelecteer een wiﬁ-netwerk in de 2,4 GHz-band. Het apparaat ondersteunt geen \nwiﬁ-netwerk in de 5 GHz-band.\nOPMERKING\nDe Jackery-app kan via bluetooth slechts met één powerstation tegelijk verbinding maken. Wanneer \nu terugkeert naar de apparaatlijst, wordt de Bluetooth-verbinding automatisch verbroken. Tik \nopnieuw op het Powerstation in de lijst om automatisch opnieuw verbinding te maken.\nOPGELET\nOPMERKING\n2.5\n2.3\n2.4\n1000\n2.4 Nadat het apparaat succesvol is verbonden, voert u uw wifi-wachtwoord in en tikt u op de \nOK-knop.\n2.5 Nadat het apparaat succesvol aan de app is toegevoegd, is het wifi-pictogram op het \napparaat altijd aan.\n• Nadat het apparaat is ingeschakeld, worden wiﬁ en Bluetooth automatisch ingeschakeld en \nlichten de wiﬁ- en Bluetooth-pictogrammen op het scherm op.\n• Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt \ntotdat de wiﬁ- en Bluetooth-pictogrammen op het scherm oplichten.\n4.1 Wiﬁ en Bluetooth inschakelen:\n• Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt \ntotdat de wiﬁ- en Bluetooth-pictogrammen op het scherm uitgaan.\n4.2 Wiﬁ en Bluetooth uitschakelen\n• Houd de AAN/UIT-knop en de Aan/uit-knop voor DC/USB tegelijkertijd 3 seconden \ningedrukt om wiﬁ en Bluetooth te resetten naar de fabrieksinstellingen. Het gekoppelde \napp-account wordt ontkoppeld.\n4.3 Wiﬁ en Bluetooth resetten\n1000\n136\n",
+      "text_sha256": "f06f1ebdcda2283cfca831fc7cb163b47288a3b88b13fe74ca3ebd4bd6030567",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            94.431,
+            32.131,
+            330.105,
+            44.206
+          ],
+          "text": "Als tijdens het bindingsproces \"het apparaat is al gebonden\" wordt gemeld, kunnen de volgende twee \nmethoden worden gebruikt voor de verbinding:\n"
+        },
+        {
+          "bbox": [
+            94.431,
+            46.206,
+            291.83,
+            52.206
+          ],
+          "text": "• De eigenaar van het apparaat deelt dit apparaat via de app met andere gebruikers.\n"
+        },
+        {
+          "bbox": [
+            40.332,
+            46.401,
+            85.788,
+            56.305
+          ],
+          "text": "OPMERKING\n"
+        },
+        {
+          "bbox": [
+            94.431,
+            54.206,
+            325.711,
+            66.206
+          ],
+          "text": "• Houd de AAN/UIT-knop en de DC/USB-knop 3 seconden ingedrukt om de wiﬁ en Bluetooth van het \napparaat te resetten en het apparaat vervolgens opnieuw te koppelen.\n"
+        },
+        {
+          "bbox": [
+            37.097,
+            76.705,
+            330.775,
+            94.024
+          ],
+          "text": "2.4 Nadat het apparaat succesvol is verbonden, voert u uw wifi-wachtwoord in en tikt u op de \nOK-knop.\n"
+        },
+        {
+          "bbox": [
+            40.703,
+            97.571,
+            86.159,
+            107.475
+          ],
+          "text": "OPMERKING\n"
+        },
+        {
+          "bbox": [
+            92.831,
+            96.432,
+            314.518,
+            109.632
+          ],
+          "text": "Selecteer een wiﬁ-netwerk in de 2,4 GHz-band. Het apparaat ondersteunt geen \nwiﬁ-netwerk in de 5 GHz-band.\n"
+        },
+        {
+          "bbox": [
+            37.097,
+            112.683,
+            320.03,
+            128.84
+          ],
+          "text": "2.5 Nadat het apparaat succesvol aan de app is toegevoegd, is het wifi-pictogram op het \napparaat altijd aan.\n"
+        },
+        {
+          "bbox": [
+            255.1,
+            140.643,
+            262.109,
+            144.454
+          ],
+          "text": "1000\n"
+        },
+        {
+          "bbox": [
+            67.38,
+            227.6,
+            74.432,
+            231.408
+          ],
+          "text": "1000\n"
+        },
+        {
+          "bbox": [
+            80.273,
+            280.95,
+            283.126,
+            287.488
+          ],
+          "text": "2.5\n2.3\n2.4\n"
+        },
+        {
+          "bbox": [
+            51.691,
+            289.158,
+            219.342,
+            296.118
+          ],
+          "text": "De bovenstaande schermafbeeldingen zijn alleen ter referentie.\n"
+        },
+        {
+          "bbox": [
+            42.546,
+            302.243,
+            336.384,
+            320.603
+          ],
+          "text": "De Jackery-app kan via bluetooth slechts met één powerstation tegelijk verbinding maken. Wanneer \nu terugkeert naar de apparaatlijst, wordt de Bluetooth-verbinding automatisch verbroken. Tik \nopnieuw op het Powerstation in de lijst om automatisch opnieuw verbinding te maken.\nOPGELET\n"
+        },
+        {
+          "bbox": [
+            38.157,
+            331.086,
+            321.131,
+            369.995
+          ],
+          "text": "3. Apparaat ontkoppelen\nKlik op het instellingenpictogram rechtsboven in het hoofdscherm van het apparaat om de \ninstellingenpagina te openen en klik onderaan op de knop 'Ontkoppelen' om het apparaat te \nontkoppelen.\n"
+        },
+        {
+          "bbox": [
+            40.332,
+            371.416,
+            114.712,
+            383.796
+          ],
+          "text": "4. Opmerkingen\n"
+        },
+        {
+          "bbox": [
+            39.812,
+            384.344,
+            137.574,
+            392.758
+          ],
+          "text": "4.1 Wiﬁ en Bluetooth inschakelen:\n"
+        },
+        {
+          "bbox": [
+            39.973,
+            393.583,
+            340.235,
+            427.729
+          ],
+          "text": "• Nadat het apparaat is ingeschakeld, worden wiﬁ en Bluetooth automatisch ingeschakeld en \nlichten de wiﬁ- en Bluetooth-pictogrammen op het scherm op.\n• Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt \ntotdat de wiﬁ- en Bluetooth-pictogrammen op het scherm oplichten.\n"
+        },
+        {
+          "bbox": [
+            39.812,
+            432.469,
+            138.414,
+            440.883
+          ],
+          "text": "4.2 Wiﬁ en Bluetooth uitschakelen\n"
+        },
+        {
+          "bbox": [
+            39.973,
+            442.345,
+            329.319,
+            458.746
+          ],
+          "text": "• Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt \ntotdat de wiﬁ- en Bluetooth-pictogrammen op het scherm uitgaan.\n"
+        },
+        {
+          "bbox": [
+            39.812,
+            460.349,
+            125.589,
+            468.763
+          ],
+          "text": "4.3 Wiﬁ en Bluetooth resetten\n"
+        },
+        {
+          "bbox": [
+            39.91,
+            470.254,
+            322.275,
+            494.656
+          ],
+          "text": "• Houd de AAN/UIT-knop en de Aan/uit-knop voor DC/USB tegelijkertijd 3 seconden \ningedrukt om wiﬁ en Bluetooth te resetten naar de fabrieksinstellingen. Het gekoppelde \napp-account wordt ontkoppeld.\n"
+        },
+        {
+          "bbox": [
+            27.388,
+            503.374,
+            35.788,
+            510.574
+          ],
+          "text": "136\n"
+        }
+      ]
+    }
+  ],
+  "tables": {
+    "troubleshooting": {
+      "physical_page": 139,
+      "rows": [
+        {
+          "code": "F0",
+          "action": "Herstart het product."
+        },
+        {
+          "code": "F1",
+          "action": "Herstart het product."
+        },
+        {
+          "code": "F2",
+          "action": "Herstart het product."
+        },
+        {
+          "code": "F3",
+          "action": "Herstart het product."
+        },
+        {
+          "code": "F4",
+          "action": "Sluit het product aan op belastingen om de batterij te ontladen totdat de fout verdwijnt."
+        },
+        {
+          "code": "F5",
+          "action": "Laad het product op via zonnepanelen of een AC-stopcontact totdat de fout verdwijnt."
+        },
+        {
+          "code": "F6",
+          "action": "1. Wacht tot het net genormaliseerd is voordat u het product via een AC-stopcontact oplaadt. 2. Controleer of de luchtinlaat- en uitlaatopeningen geblokkeerd zijn; zorg voor 0,66 ft (20 cm) ruimte aan beide zijden van het product. 3. Plaats het product op een locatie die niet wordt blootgesteld aan direct zonlicht of hoge omgevingstemperaturen. 4. Koppel alle belastingen van het product los. Laat het product inactief en wacht tot de fout verdwijnt. 5. Herstart het product."
+        },
+        {
+          "code": "F7",
+          "action": "1. Koppel alle DC-ingangen los van het product. 2. Als u het product via een zonnepaneel oplaadt, controleer dan de open-klemspanning (VOC) van het aangesloten zonnepaneel. Het product staat een maximale DC-ingangsspanning van 60 V toe. 3. Start het product opnieuw op en houd het inactief. Wacht tot de fout verdwijnt."
+        },
+        {
+          "code": "F8",
+          "action": "Neem contact op met de Jackery-klantenondersteuning."
+        },
+        {
+          "code": "F9",
+          "action": "Verwijder de belasting die op de USB-poorten van het product is aangesloten. Wacht tot de fout verdwijnt."
+        },
+        {
+          "code": "FE",
+          "action": "Neem contact op met de Jackery-klantenondersteuning."
+        }
+      ]
+    },
+    "specifications": {
+      "physical_page": 140,
+      "groups": {
+        "general": [
+          {
+            "label": "Productnaam",
+            "value": "Jackery Explorer 1000"
+          },
+          {
+            "label": "Modelnummer",
+            "value": "JE-1000F"
+          },
+          {
+            "label": "Capaciteit",
+            "value": "1024 Wh (20 Ah/51,2 V DC)"
+          },
+          {
+            "label": "Celchemie",
+            "value": "LiFePO4"
+          },
+          {
+            "label": "Gewicht",
+            "value": "Ongeveer 10,6 kg"
+          },
+          {
+            "label": "Afmetingen",
+            "value": "31,4 x 20,1 x 23,4 cm"
+          },
+          {
+            "label": "Levenscyclus",
+            "value": "4000 cycli tot 70%+ capaciteit"
+          }
+        ],
+        "inputs": [
+          {
+            "label": "1 × AC-ingang",
+            "value": "Oplaadmodus: 220-240 V~50 Hz, max. 10 A"
+          },
+          {
+            "label": "2 × DC8020-poorten",
+            "value": "11 V-16 V⎓8 A max., dubbel tot 8 A max. 16 V-60 V⎓12 A max., dubbel tot 21 A/400 W max."
+          }
+        ],
+        "outputs": [
+          {
+            "label": "2 × AC",
+            "value": "230 V~ 50 Hz, 6,5 A max., 1500 W nominaal per poort, 1500 W in totaal, 3000 W piekvermogen"
+          },
+          {
+            "label": "AC-uitgang in Bypassmodus ①",
+            "value": "220 V-240 V~50 Hz, 1500 W"
+          },
+          {
+            "label": "1 x USB-C 30 W",
+            "value": "30 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A"
+          },
+          {
+            "label": "1 x USB-C 100 W",
+            "value": "100 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A"
+          },
+          {
+            "label": "1 × USB-A",
+            "value": "18 W Max, 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A"
+          },
+          {
+            "label": "1 × DC 12 V-poort",
+            "value": "12 V⎓10 A Max"
+          }
+        ],
+        "operating_temperature": [
+          {
+            "label": "Oplaadtemperatuur",
+            "value": "0 °C tot 45 °C"
+          },
+          {
+            "label": "Ontlaadtemperatuur",
+            "value": "-10 °C tot 45 °C"
+          }
+        ]
+      }
+    }
+  },
+  "figures_manifest": "/tmp/je1000f-nine-language-intake/nl_figure_manifest.json"
+}

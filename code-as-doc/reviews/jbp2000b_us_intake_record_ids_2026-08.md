@@ -1,5 +1,7 @@
 # JBP-2000B_US 入库 record_id 台账
 
+Status: done
+
 执行日期：2026-08-22 · 授权：操作者「1确认入库」
 基座：`LD3lb4G1ua4GOVs1vxAc9W2enje`（文档构建）· 身份：`--profile cli_aaa0db0d4b39dcca --as bot`
 批次全部为**新建**（无更新、无删除），除 §4 一处 TM 字段更新。

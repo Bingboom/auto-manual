@@ -1,0 +1,270 @@
+{
+  "schema": "hello-docs-deliverables/v1",
+  "exported_at": "2026-09-25",
+  "documents": [
+    {
+      "key": "JBP-2000B_US",
+      "model": "JBP-2000B",
+      "region": "US",
+      "lang": "",
+      "formats": {
+        "word": {
+          "version": "0.1",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/Ijf9wLWmViza60k23kgc5wd5nPh"
+        }
+      }
+    },
+    {
+      "key": "JE-1000F_AU",
+      "model": "JE-1000F",
+      "region": "AU",
+      "lang": "",
+      "formats": {
+        "print": {
+          "version": "0.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/EeL0wkjgQi50EJkCu76cLSnpn71"
+        },
+        "word": {
+          "version": "0.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/AiTtwWm2kiKmmTko2Aoclx5ynoa"
+        }
+      }
+    },
+    {
+      "key": "JE-1000F_EU",
+      "model": "JE-1000F",
+      "region": "EU",
+      "lang": "",
+      "formats": {
+        "print": {
+          "version": "1.0",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/QOjXwGACWi2x6Ck6NadcGh2wnrg"
+        },
+        "word": {
+          "version": "1.0",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/PM3gwMpXti852IknKVBcx2Jkn7d"
+        }
+      }
+    },
+    {
+      "key": "JE-1000F_JP",
+      "model": "JE-1000F",
+      "region": "JP",
+      "lang": "",
+      "formats": {
+        "print": {
+          "version": "1.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/DWb7wJ8Tni2GnukCKNOcy5fxnxb"
+        },
+        "word": {
+          "version": "1.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/YkCqwFAzsihyAtkMX40ceUCGnxd"
+        }
+      }
+    },
+    {
+      "key": "JE-1000F_KR",
+      "model": "JE-1000F",
+      "region": "KR",
+      "lang": "",
+      "formats": {
+        "print": {
+          "version": "0.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/TqiuwWDjTieNkwknCyIcb8ConDg"
+        },
+        "word": {
+          "version": "0.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/TzHOwW1jKicLt9kqWupcl9l8nrc"
+        }
+      }
+    },
+    {
+      "key": "JE-1000F_US",
+      "model": "JE-1000F",
+      "region": "US",
+      "lang": "",
+      "formats": {
+        "word": {
+          "version": "1.0",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/Z9P7wcf9YivZQZkwEMmcWHmXnwf"
+        },
+        "print": {
+          "version": "2.2",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/AX1uwZkNCicxtgk821bcJqi0nAd"
+        }
+      }
+    },
+    {
+      "key": "JE-1000F_US",
+      "model": "JE-1000F",
+      "region": "US",
+      "lang": "en",
+      "formats": {
+        "word": {
+          "version": "1.2",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/Jcdqw4CkhiaWgJkDIOLcIhB0nxg"
+        }
+      }
+    },
+    {
+      "key": "JE-1000F_US",
+      "model": "JE-1000F",
+      "region": "US",
+      "lang": "es",
+      "formats": {
+        "word": {
+          "version": "1.1",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/AT9SwonI5iwfexkd9bJcn3n8nDe"
+        }
+      }
+    },
+    {
+      "key": "JE-1000F_US",
+      "model": "JE-1000F",
+      "region": "US",
+      "lang": "fr",
+      "formats": {
+        "word": {
+          "version": "1.1",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/SgrEwCskiiiSj0kFbb4cLCpanFB"
+        }
+      }
+    },
+    {
+      "key": "JE-1000F_pt-BR",
+      "model": "JE-1000F",
+      "region": "pt-BR",
+      "lang": "",
+      "formats": {
+        "print": {
+          "version": "0.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/ZkR9wPfmViAc3zktKLbcuSAhnTg"
+        },
+        "word": {
+          "version": "0.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/FT4cwpk1piv852kE5gvc83ounzg"
+        }
+      }
+    },
+    {
+      "key": "JE-1000H_AU",
+      "model": "JE-1000H",
+      "region": "AU",
+      "lang": "",
+      "formats": {
+        "word": {
+          "version": "0.7",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/Ca9owSckoiv871kCSTvcpajlnCc"
+        }
+      }
+    },
+    {
+      "key": "JE-1000H_KR",
+      "model": "JE-1000H",
+      "region": "KR",
+      "lang": "",
+      "formats": {
+        "word": {
+          "version": "0.6",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/UM8HwN3jxir7HrkuheTcCT0vn6b"
+        }
+      }
+    },
+    {
+      "key": "JE-1800B_JP",
+      "model": "JE-1800B",
+      "region": "JP",
+      "lang": "",
+      "formats": {
+        "print": {
+          "version": "0.4",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/XgZfwtlHWinHP2ksD2Rcb2PLnQO"
+        },
+        "word": {
+          "version": "0.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/AiIhwIwGUiTcG3kEIQlcaHUmnTe"
+        }
+      }
+    },
+    {
+      "key": "JE-2000E_KR",
+      "model": "JE-2000E",
+      "region": "KR",
+      "lang": "",
+      "formats": {
+        "word": {
+          "version": "0.2",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/Jwp8wWi5LirRUskXP7gcUQd4nNg"
+        }
+      }
+    },
+    {
+      "key": "JE-2000F_CN",
+      "model": "JE-2000F",
+      "region": "CN",
+      "lang": "",
+      "formats": {
+        "print": {
+          "version": "0.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/YjLrw9YqsiwAIhkQgyucy2FVnoe"
+        },
+        "word": {
+          "version": "0.5",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/QLqvw5ZmeitXHLk2k1BciV9knte"
+        }
+      }
+    },
+    {
+      "key": "JE-2000F_EU",
+      "model": "JE-2000F",
+      "region": "EU",
+      "lang": "",
+      "formats": {
+        "word": {
+          "version": "",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/N7DiwJoh6iL8sykVFSnc8X5Yneb"
+        }
+      }
+    },
+    {
+      "key": "JE-3000C_KR",
+      "model": "JE-3000C",
+      "region": "KR",
+      "lang": "",
+      "formats": {
+        "word": {
+          "version": "0.1",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/YmsCwGT9si93Idk0fzmcGFWmnQh"
+        }
+      }
+    },
+    {
+      "key": "JE-300E_EU",
+      "model": "JE-300E",
+      "region": "EU",
+      "lang": "",
+      "formats": {
+        "word": {
+          "version": "0.1",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/Z0EzwzpGqi0UKLklkCOc3dXfn4f"
+        }
+      }
+    },
+    {
+      "key": "JE-900B_JP",
+      "model": "JE-900B",
+      "region": "JP",
+      "lang": "",
+      "formats": {
+        "print": {
+          "version": "0.3",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/A04AwxRw0iUr8hkLvkGc9yxbnwt"
+        },
+        "word": {
+          "version": "0.4",
+          "url": "https://xcn57j1urbe6.feishu.cn/wiki/RZJzwTCYjivnIQk3OHkcFZyZnqb"
+        }
+      }
+    }
+  ]
+}

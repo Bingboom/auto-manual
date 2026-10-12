@@ -1,5 +1,7 @@
 # JE-100C EU English Web intake — 2026-09
 
+Status: active
+
 ## Authority and target mapping
 
 - Target: `JE-100C / EU / en`; public product name: `Jackery Explorer 100D`.

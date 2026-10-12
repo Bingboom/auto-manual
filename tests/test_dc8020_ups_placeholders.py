@@ -6,7 +6,7 @@ from pathlib import Path
 
 from tools.page_contracts import load_page_contracts, required_page_values_for_lang
 from tools.utils.spec_master import resolve_template_substitutions_from_spec_master
-from tools.word_bundle_common import apply_rst_substitutions
+from tools.word.bundle_common import apply_rst_substitutions
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,27 +20,50 @@ LONG_TAIL_SPEC_MASTER = ROOT / "tests" / "fixtures" / "pv_input_range" / "Spec_M
 # (|PRODUCT_NAME_JOSA_EUN| → literal 본 제품은), a family-wide KR wording backport.
 # The ko charging golden moved for the same 본 제품 simplification in 08_charging_methods
 # (solar DC8020 intro + Voc DC-input sentence: |PRODUCT_NAME…| → literal 본 제품).
+# The en/de/it/uk charging and en/de/it UPS goldens moved when those figures'
+# alt text stopped calling the figure a placeholder; the rendered diff was
+# exactly those :alt: lines, nothing else.
+# The en/fr/es/de/it/uk UPS goldens moved again when the shared UPS template took
+# the UPS WARNING and the fourth CAUTION bullet of the JE-3000C EUUK
+# V2.0-2026-09-15 print for every model that uses it (operator rulings
+# 2026-09-27), for the Web and Word only: a `.. only:: not latex` block holds the
+# WARNING and the four-bullet CAUTION, and main's CAUTION follows unchanged under
+# `.. only:: latex`. Dropping the `not latex` block and unwrapping the `latex`
+# one gives main's rendered bytes exactly
+# (tests/test_je3000c_0915_warnings.py pins that print branch). The ko and pt-BR
+# goldens stay: the print has no block for those languages.
+# The same six goldens moved once more for the JE-3000C/EU print-gap corrections
+# (operator ruling 「JE-3000C 旧差异按印刷对齐」, 2026-09-27): a
+# `.. only:: model_je_3000c` branch sets the UPS figure after all of the UPS text,
+# as the JE-3000C print does, and the fr/de/it/uk branches carry that print's
+# wording; every other model reads the unchanged text under
+# `.. only:: not model_je_3000c` (tests/test_je3000c_eu_print_gaps.py pins that
+# view to main's bytes). The fr/de/it/uk carriers therefore hold
+# |UPS_TRANSFER_TIME| twice, once per branch.
 CHARGING_CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "d7529e0ce6e7c02591c42251e6bc9cc18339e929608d5a853e031efac0c9bf79"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "e1a8849432196fef888b16d1fd289a13920e79a05632dd005a2cfc44c7f007f5"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "a7753076fbe10257c7dc5ecf7fb9095bcc920afb137b02fb8542fe0ab4e01a52"),
     "es": (SPEC_MASTER, "JE-1000F", "US", "df5714e532914ca36e533ef67f3d31b2375e3d4f46a02a1aca3d02ace1d85e73"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "78a2169e709ea3b2814f066afff47e3fa2d7bee26d25cf37e32812d69e144f45"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "58e3ccbeaf293bdaa3e236fad51eaea01c4af1dc6f16156794040e78f9f3e304"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "538455b593163c25c96d5e4eb9de4ea7d9ecbe6030c355e701aaf6708b7fd3c9"),
-    "uk": (SPEC_MASTER, "JE-1000F", "EU", "59cb400cc4281f1285808960b2946eff99f9a8f8c1e097b19df4d3e289894cbe"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "8466079e2070ecdfbadc777c4c2bc69f101dde9f248f5d85367f16232bb57c19"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "7a61c39d6e9e61dc440fefb5cbac66c6388049fa6f7a9a06867fcc35ed8c2051"),
+    "uk": (SPEC_MASTER, "JE-1000F", "EU", "f86471a4b029af64e396444ce7543a50da1fcaef1c46e22e41e1ed5a5b73d24b"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "2f91c9eb6ed9585dc80feedf783b8d0db7df60ecd24abe55d7d783e4924f51ee"),
 }
 
 UPS_CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "ebda8dfde504619ee86f9fec5637931487d53d3598d00bdcbd635036dae207c8"),
-    "fr": (SPEC_MASTER, "JE-1000F", "US", "7e86629d410104f7d8be9c07a7d0f9cb0345281d568307c1522f8d7ab0d1d4b8"),
-    "es": (SPEC_MASTER, "JE-1000F", "US", "5357dde7f545649c6c473c2dcb8e0931bfb881efa1a375f2690176d023caee10"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "6b5b113e4b16fee5461b0069785c22788f18bd2c27c87812f02606666f252402"),
+    "fr": (SPEC_MASTER, "JE-1000F", "US", "e1bceddd1ea668a41a40fb8b10f587a2417f2ed8284b757d350ebbd29a4a5517"),
+    "es": (SPEC_MASTER, "JE-1000F", "US", "1ac2a973efb80d9a54786e83c624e65bb3936a407a8229bc70996e6f0620d32c"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "f56a0f8826321887c66267462fae53c0121623224826af2090bea548d69f8b27"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "8db266d60cb81c87bec75edb7e9bf636f977ca22292371d80cd67608ae4e3028"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "f2e6a41184ca3a17194a542a4d74de42680eec5a94eff3f55d22edbb55ea7622"),
-    "uk": (SPEC_MASTER, "JE-1000F", "EU", "2691fe1006dbe89008d0596e556ef53805bbd0a49238930a5795f7d73e0850d6"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "b86e5263fd8e5b10d3c4a500a1a932a9c7ada4eaa5db527940e01dc354d6a775"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "217d146b467be72189ca0523c5d4bea74475562cc5512bc6cba355d0934e614a"),
+    "uk": (SPEC_MASTER, "JE-1000F", "EU", "e2d4b1e55bf495a29f4877dd805759f114128b7e8a27d987413705b0dcab48e5"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "82bd0c003e01800f9a67ce244f443cec8537924184ee282572b7e64776f14c2a"),
 }
+# Carriers whose `.. only:: model_je_3000c` branch rewords the UPS text: one
+# |UPS_TRANSFER_TIME| per branch.
+UPS_TRANSFER_TIME_COUNT = {"fr": 2, "de": 2, "it": 2, "uk": 2}
 
 
 class Dc8020UpsPlaceholderTests(unittest.TestCase):
@@ -107,7 +130,7 @@ class Dc8020UpsPlaceholderTests(unittest.TestCase):
                     lang=lang,
                 )
 
-                self.assertEqual(1, source.count("|UPS_TRANSFER_TIME|"))
+                self.assertEqual(UPS_TRANSFER_TIME_COUNT.get(lang, 1), source.count("|UPS_TRANSFER_TIME|"))
                 self.assertTrue("0 ms" in source or "0 мс" in source)
                 self.assertIn("UPS_TRANSFER_TIME", substitutions)
                 rendered = apply_rst_substitutions(

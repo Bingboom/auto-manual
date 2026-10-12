@@ -1,0 +1,1740 @@
+{
+  "language": "uk",
+  "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+  "physical_pages": [
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55
+  ],
+  "frontmatter_page": 3,
+  "copy_by_page": {
+    "preface_important_en.rst": {
+      "IMPORTANT": "ВАЖЛИВО",
+      "Congratulations on your new Jackery Battery Pack 2000. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.": "Вітаємо з придбанням нового Jackery Battery Pack 2000. Перед використанням виробу уважно прочитайте цей посібник, зокрема відповідні застереження, щоб забезпечити належне використання. Зберігайте цей посібник у доступному місці для подальшого звернення.",
+      "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery assumes no responsibility for any errors that may appear.": "Відповідно до законів і нормативних актів право остаточного тлумачення цього документа та всіх пов'язаних з цим виробом документів належить Компанії. Хоча докладено всіх зусиль для забезпечення точності цього посібника, Jackery не несе відповідальності за будь-які помилки, що можуть у ньому міститися.",
+      "Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com.": "Зверніть увагу, що у разі оновлення, перегляду або припинення дії додаткові повідомлення не надсилатимуться. Щоб отримати останню версію посібників до виробу, відвідайте support.jackery.com.",
+      "* The images are for reference purposes only. Please refer to the actual product.": "* Зображення наведені лише для довідки. Орієнтуйтеся на фактичний виріб."
+    },
+    "toc.rst": {},
+    "safety_info_en.rst": {
+      "IMPORTANT SAFETY INFORMATION": "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ",
+      "The basic safety precautions should be followed when using this product, including:": "Під час використання цього продукту необхідно дотримуватися основних заходів безпеки, зокрема:",
+      "Please read all instructions before using this product.": "Будь ласка, прочитайте всі інструкції перед використанням цього продукту.",
+      "Close supervision is required when using this product near children to reduce the risk.": "Під час використання цього продукту поблизу дітей потрібен пильний нагляд, щоб зменшити ризик.",
+      "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.": "Існує ризик ураження електричним струмом при використанні аксесуарів, рекомендованих або проданих непрофесійними виробниками.",
+      "When the product is not in use, please unplug the power plug from the product's socket.": "Коли продукт не використовується, будь ласка, від’єднайте вилку живлення від розетки продукту.",
+      "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.": "Не розбирайте продукт, оскільки це може призвести до непередбачуваних ризиків, таких як пожежа, вибух або ураження електричним струмом.",
+      "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.": "Не використовуйте продукт із пошкодженими шнурами або вилками, або пошкодженими вихідними кабелями, оскільки це може спричинити ураження електричним струмом.",
+      "Charge the product in a well-ventilated area and do not restrict ventilation in any way.": "Заряджайте продукт у добре провітрюваному місці та не обмежуйте вентиляцію жодним чином.",
+      "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.": "Будь ласка, розміщуйте продукт у провітрюваному та сухому місці, щоб уникнути потрапляння дощу та води, що може спричинити ураження електричним струмом.",
+      "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.": "Не піддавайте продукт впливу вогню та високих температур (під прямим сонячним світлом або в транспортному засобі за високої температури), оскільки це може спричинити нещасні випадки, такі як пожежа або вибух.",
+      "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.": "Якщо цей продукт зберігається протягом тривалого часу (3 місяці — 6 місяців) із розрядженим акумулятором, він може втратити здатність до заряджання."
+    },
+    "symbol_meaning_en.rst": {
+      "MEANING OF SYMBOLS": "ЗНАЧЕННЯ СИМВОЛІВ",
+      "Symbol": "Символ",
+      "Meaning": "Значення",
+      "Symbol / Meaning": "имвол / Значення",
+      "WARNING": "ПОПЕРЕДЖЕННЯ",
+      "Hazardous practices that may result in severe injury, death, and/or property damage.": "Небезпечні дії, які можуть призвести до тяжких травм, смерті та/або пошкодження майна.",
+      "CAUTION": "УВАГА",
+      "Hazardous practices that may result in personal injury and/or property damage.": "Небезпечні дії, які можуть призвести до травмування людей та/або пошкодження майна.",
+      "NOTE": "ПРИМІТКА",
+      "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.": "Дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або неочікуваних результатів.",
+      "TIP": "ПОРАДА",
+      "Supplements the important information or operation tips in the text.": "Доповнює важливу інформацію або поради з експлуатації в тексті.",
+      "Warning and Caution Symbols. Alerts individuals to information that must be read to avoid potential hazards or risks.": "Попереджувальні та застережні символи. Повідомляють користувачам про інформацію, яку необхідно прочитати, щоб уникнути потенційних небезпек або ризиків.",
+      "Keep away from children.": "Тримайте подалі від дітей.",
+      "Read the user manual before operation.": "Перед використанням прочитайте посібник користувача.",
+      "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.": "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином.",
+      "Do not dismantle the product.": "Не розбирайте продукт.",
+      "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.": "Цей символ вказує, що продукт не можна утилізувати разом із побутовими відходами, і його слід передати до спеціалізованого пункту збору для переробки.Правильна утилізація та переробка допомагають захистити довкілля. Для отримання додаткової інформації щодо утилізації та переробки цього продукту зверніться до місцевої громади, служби утилізації або дилера.",
+      "Keep the product away from fire.": "Тримайте продукт подалі від вогню.",
+      "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.": "Батарейки та акумулятори не можна викидати разом із побутовими відходами. Як споживач ви юридично зобов’язані здавати всі батарейки та акумулятори у визначені пункти збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля."
+    },
+    "box_contents_en.rst": {
+      "WHAT'S IN THE BOX": "ЩО В КОРОБЦІ",
+      "Jackery Battery Pack 2000.": "Jackery Battery Pack 2000",
+      "Jackery Battery Pack 2000": "Jackery Battery Pack 2000",
+      "Expansion Cable.": "Кабель розширення",
+      "Expansion Cable": "Кабель розширення",
+      "User Manual.": "Керівництво користувача",
+      "User Manual": "Керівництво користувача"
+    },
+    "product_overview_en.rst": {
+      "PRODUCT OVERVIEW": "ОГЛЯД ПРОДУКТУ",
+      "POWER button LCD；Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)；FRONT VIEW；LEFT SIDE VIEW": "Ручка ВИГЛЯД СПЕРЕДУ ВИГЛЯД ЗЛІВА LCD-дисплей Порт розширення DC B (підключення до клеми B кабелю розширення) Порт розширення DC A (підключення до клеми A кабелю розширення) Кнопка POWER"
+    },
+    "lcd_display_en.rst": {
+      "LCD DISPLAY": "LCD-ДИСПЛЕЙ",
+      "Power Percentage/Fault Code": "Відсоток заряду/ код помилки",
+      "The display shows the current power percentage.": "На дисплеї відображається поточний рівень заряду.",
+      "When the system fails, it will be displayed as the corresponding fault code F0-FF.": "У разі збою відображається відповідний код несправності F0-FF.",
+      "Charging Indicator": "Індикатор заряджання",
+      "The indicator is displayed when charging and disappears when it is fully charged.": "Індикатор відображається під час заряджання та зникає після повного заряджання."
+    },
+    "operation_en.rst": {
+      "OPERATIONS": "ОПЕРАЦІЇ",
+      "POWER ON/OFF": "УВІМКНЕННЯ/ВИМКНЕННЯ",
+      "LCD DISPLAY ON/OFF": "УВІМКНЕННЯ/ВИМКНЕННЯ LCD-ДИСПЛЕЯ",
+      "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.": "Коли ви натискаєте основну кнопку POWER або під час заряджання продукту, LCD-дисплей підсвічується. Коли ви натискаєте її ще раз, LCD-дисплей вимикається.",
+      "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.": "Продукт автоматично вимкнеться, якщо протягом 2 годин не виконується заряджання або не підключено жодного навантаження.",
+      "NOTE": "ПРИМІТКА",
+      "When using with the portable power station, you can control the power status (on or off) of Jackery Battery Pack 2000 through the main POWER button of the portable power station.": "Під час використання з Jackery Explorer 2000 Plus ви можете керувати станом живлення (увімкнено або вимкнено) Jackery Battery Pack 2000 за допомогою основної кнопки POWER на Jackery Explorer 2000 Plus.",
+      "On Press once Off Press and hold for 3s": "Увімкнення Натисніть один раз Вимкнення Натисніть і утримуйте протягом 3 с",
+      "Jackery Battery Pack 2000 LCD display operation.": "УВІМКНЕННЯ/ВИМКНЕННЯ LCD-ДИСПЛЕЯ — Jackery Battery Pack 2000",
+      "When using with the portable power station, you can control the power status (on or off) of Jackery Battery Pack 2000 through the main POWER button of the portable power station.\nThe product will automatically shut down if it is not charged or no loads are connected for 2 hours.": "Під час використання з Jackery Explorer 2000 Plus ви можете керувати станом живлення (увімкнено або вимкнено) Jackery Battery Pack 2000 за допомогою основної кнопки POWER на Jackery Explorer 2000 Plus.\nПродукт автоматично вимкнеться, якщо протягом 2 годин не виконується заряджання або не підключено жодного навантаження."
+    },
+    "connections_en.rst": {
+      "CONNECTIONS": "ПІДКЛЮЧЕННЯ",
+      "Up to five battery packs can be used with the portable power station to provide additional capacity.": "До 5 комплектів цих продуктів можна використовувати разом із Jackery Explorer 2000 Plus для задоволення підвищених потреб у ємності.",
+      "CAUTION": "УВАГА",
+      "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.",
+      "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.": "Щоб забезпечити належну роботу продукту, переконайтеся, що повітрозабірні та витяжні отвори з обох боків не заблоковані. Залишайте щонайменше 200 мм простору між отворами та будь-якими предметами для належного відведення тепла.",
+      "NOTES": "ПРИМІТКИ",
+      "The display of the connection icon on the LCD screen (the portable power station) signifies a successful connection between the battery pack and the portable power station.": "Відображення піктограми на РК-дисплеї (Jackery Explorer 2000 Plus) означає успішне підключення між акумуляторним блоком і Jackery Explorer 2000 Plus.",
+      "Please do not stack the product on the top of the portable power station.": "Будь ласка, не встановлюйте продукт на Jackery Explorer 2000 Plus.",
+      "Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.": "Розміщуйте акумуляторні блоки на рівній, стабільній поверхні з достатньою несучою здатністю. Стандартна максимальна кількість складених акумуляторних блоків — 3.",
+      "If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.": "Якщо потрібно 4 або більше акумуляторних блоків, їх слід розмістити у стабільній зоні біля стіни, подалі від зовнішніх впливів, і вжити необхідних заходів для запобігання перекиданню.",
+      "Battery Pack connection, stacking, and clearance diagram.": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 2000",
+      "Correct connection order and expansion-cable locking and unlocking steps.": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 2000",
+      "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.\nTo ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.\nЩоб забезпечити належну роботу продукту, переконайтеся, що повітрозабірні та витяжні отвори з обох боків не заблоковані. Залишайте щонайменше 200 мм простору між отворами та будь-якими предметами для належного відведення тепла.",
+      "The display of the connection icon on the LCD screen (the portable power station) signifies a successful connection between the battery pack and the portable power station.\nPlease do not stack the product on the top of the portable power station.\nPlace the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.\nIf 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.": "Відображення піктограми на РК-дисплеї (Jackery Explorer 2000 Plus) означає успішне підключення між акумуляторним блоком і Jackery Explorer 2000 Plus.\nБудь ласка, не встановлюйте продукт на Jackery Explorer 2000 Plus.\nРозміщуйте акумуляторні блоки на рівній, стабільній поверхні з достатньою несучою здатністю. Стандартна максимальна кількість складених акумуляторних блоків — 3.\nЯкщо потрібно 4 або більше акумуляторних блоків, їх слід розмістити у стабільній зоні біля стіни, подалі від зовнішніх впливів, і вжити необхідних заходів для запобігання перекиданню."
+    },
+    "troubleshooting_en.rst": {
+      "TROUBLESHOOTING": "УСУНЕННЯ НЕСПРАВНОСТЕЙ",
+      "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.": "Якщо з'являється будь-який із наведених нижче кодів помилки, виконайте вказані дії для усунення проблеми. Якщо несправність не зникає, зверніться до служби підтримки Jackery.",
+      "Error Code": "Код помилки",
+      "Corrective Measures": "Коригувальні дії",
+      "Restart the product.": "Перезапустіть продукт.",
+      "Connect the product to loads to discharge its battery until the fault disappears.": "Підключіть продукт до навантажень, щоб розряджати його акумулятор, доки помилка не зникне.",
+      "Charge the product via solar panels or AC wall outlet until the fault disappears.": "Заряджайте продукт за допомогою сонячних панелей або від розетки змінного струму, доки помилка не зникне.",
+      "Contact Jackery Customer Support.": "Зверніться до служби підтримки клієнтів Jackery.",
+      "Place the product in an environment with a proper temperature and wait till the fault disappears.": "Розмістіть продукт у середовищі з належною температурою та зачекайте, доки помилка не зникне."
+    },
+    "charging_en.rst": {
+      "CHARGING": "ЗАРЯДЖАННЯ",
+      "CHARGING VIA AC WALL OUTLET": "ЗАРЯДЖАННЯ ВІД РОЗЕТКИ ЗМІННОГО СТРУМУ",
+      "To charge the battery pack from an AC wall outlet, connect it to the portable power station.": "Під час заряджання від мережі цей продукт слід використовувати разом із Jackery Explorer 2000 Plus.",
+      "WARNING": "ПОПЕРЕДЖЕННЯ",
+      "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.",
+      "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)": "ЗАРЯДЖАННЯ ВІД СОНЯЧНИХ ПАНЕЛЕЙ (ПРОДАЮТЬСЯ ОКРЕМО)",
+      "Charge the battery pack using solar panels and the portable power station, as shown in the figure below. For more information, refer to the user manual for the portable power station.": "Заряджайте свій продукт за допомогою сонячних панелей і Jackery Explorer 2000 Plus, як показано на рисунку нижче. Будь ласка, зверніться до посібника користувача Jackery Explorer 2000 Plus для отримання додаткової інформації.",
+      "AC wall charging connection through the portable power station.": "ЗАРЯДЖАННЯ — Jackery Battery Pack 2000",
+      "Solar charging connection through the portable power station.": "ЗАРЯДЖАННЯ — Jackery Battery Pack 2000"
+    },
+    "storage_en.rst": {
+      "STORAGE": "ЗБЕРІГАННЯ",
+      "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:": "Зберігайте продукт у сухому чистому місці з належною вентиляцією. Температура та вологість зберігання:",
+      "1 month: -20°C to 45°C (0-60%RH)": "1 місяць: від -20 °C до 45 °C (0-60% RH)",
+      "3 months: 0°C to 45°C (0-60%RH)": "3 місяці: від 0 °C до 45 °C (0-60% RH)",
+      "12 months: 0°C to 25°C (0-60%RH)": "12 місяців: від 0 °C до 25 °C (0-60% RH)",
+      "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.": "Якщо цей продукт зберігається протягом тривалого часу (3-6 місяців) із повністю розрядженим акумулятором, він може стати непридатним до заряджання. Щоб запобігти цьому та підтримувати справний стан акумулятора, рекомендується перевіряти й заряджати продукт кожні три місяці та виконувати повний цикл заряджання й розряджання принаймні один раз кожні 6-12 місяців."
+    },
+    "specifications_en.rst": {
+      "SPECIFICATIONS": "ТЕХНІЧНІ ХАРАКТЕРИСТИКИ",
+      "GENERAL INFO": "ЗАГАЛЬНА ІНФОРМАЦІЯ",
+      "Product Name": "Назва продукту",
+      "Jackery Battery Pack 2000": "Jackery Battery Pack 2000",
+      "Model No.": "№ моделі",
+      "JBP-2000B": "JBP-2000B",
+      "Capacity": "Ємність",
+      "2048 Wh (40 Ah/51.2 V ⎓)": "2048 Вт-год (40 A-год/51,2 В ⎓)",
+      "Cell Chemistry": "Хімічний склад елемента",
+      "LiFePO₄": "LiFePO₄",
+      "Weight": "Вага",
+      "About 14.8 kg": "Близько 14,8 кг",
+      "Dimensions": "Розміри",
+      "36.5 × 25.5 × 19.1 cm": "36,5 × 25,5 × 19,1 см",
+      "Cycle Life": "Ресурс циклів",
+      "6000 cycles to 70%+ capacity": "6000 циклів до 70%+ ємності",
+      "INPUT/OUTPUT PORTS": "ВХІДНІ/ВИХІДНІ ПОРТИ",
+      "DC Expansion Port (Input)": "Порт розширення DC (вхід)",
+      "36.8V-57.6V⎓75A Max": "36,8 V-57,6 V⎓75 A макс.",
+      "DC Expansion Port (Output)": "Порт розширення DC (вихід)",
+      "ENVIRONMENTAL OPERATING TEMPERATURE": "РОБОЧА ТЕМПЕРАТУРА СЕРЕДОВИЩА",
+      "Charge Temperature": "Температура заряджання",
+      "Discharge Temperature": "Температура розряджання",
+      "-10°C to 45°C": "від -10 °C до 45 °C"
+    },
+    "warranty_en.rst": {
+      "WARRANTY": "ГАРАНТІЯ",
+      "This warranty applies only to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.": "Ця гарантія застосовується лише до клієнтів, які здійснили покупку на офіційному вебсайті Jackery, на сторонніх платформах під брендом Jackery або у місцевих авторизованих дилерів.",
+      "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.": "* Гарантійний період і деталі можуть відрізнятися залежно від місцевих законів, нормативних актів і авторизованих дилерів.",
+      "Limited Warranty": "Обмежена гарантія",
+      "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.": "Jackery гарантує первинному споживачу-покупцю, що продукт Jackery не матиме дефектів виготовлення та матеріалів за умов нормального споживчого використання протягом відповідного гарантійного періоду, зазначеного в розділі «Гарантійний період» нижче, з урахуванням наведених нижче виключень.",
+      "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.": "Ця гарантійна заява визначає повний і виключний обсяг гарантійних зобов’язань Jackery. Ми не беремо на себе і не уповноважуємо будь-яку особу брати на себе від нашого імені будь-які інші зобов’язання у зв’язку з продажем нашої продукції.",
+      "Warranty Period": "Гарантійний період",
+      "The standard warranty period for Jackery Battery Pack 2000 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.": "Стандартний гарантійний період для Jackery Battery Pack 2000 становить 36 місяців. У кожному випадку гарантійний період обчислюється з дати покупки первинним споживачем-покупцем. Для визначення дати початку гарантійного періоду необхідний касовий чек від першого споживача-покупця або інший належний документальний доказ.",
+      "Exchange": "Umtausch",
+      "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.": "Jackery tauscht (auf Kosten von Jackery) jedes Jackery Produkt aus, das während der geltenden Garantiezeit aufgrund eines Verarbeitungs- oder Materialfehlers nicht mehr funktioniert. Ein Ersatzprodukt übernimmt die Restgarantie des Originalprodukts.",
+      "Limited to Original Consumer Buyer": "Обмеження для первинного споживача-покупця",
+      "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.": "Гарантія на продукт Jackery обмежується первинним споживачем-покупцем і не підлягає передачі будь-якому наступному власнику.",
+      "Exclusions": "Виключення",
+      "Interpretation Rights": "Право тлумачення",
+      "Jackery reserves the right to final interpretation of the above customer after-sales policy.": "Jackery залишає за собою право на остаточне тлумачення вищезазначеної.",
+      "3 YEARS": "3 РОКИ",
+      "Standard Warranty": "Стандартна гарантія на",
+      "2 YEARS": "2 РОКИ",
+      "Extended Warranty": "Розширена гарантія на",
+      "YEARS": "РОКИ",
+      "To activate the Warranty Extension, you must register your product online or contact our customer service team at": "Щоб активувати розширення гарантії, необхідно зареєструвати продукт онлайн або звернутися до нашої служби підтримки за адресою",
+      "to extend the standard warranty period.": "для подовження стандартного гарантійногоперіоду.",
+      "Jackery's warranty does not apply to:": "Гарантія Jackery не поширюється на:",
+      "Any product that has been misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.": "Будь-який продукт, який був неправильно використаний, зазнав неналежного поводження, модифікований, пошкоджений внаслідок нещасного випадку або використовувався не за призначенням, відмінним від звичайного споживчого використання, дозволеного в чинній документації Jackery.",
+      "Attempted repair by anyone other than an authorized facility.": "Спроби ремонту будь-ким, окрім авторизованого сервісного центру.",
+      "Any product purchased through an online auction house.": "Будь-який продукт, придбаний через онлайн-аукціон.",
+      "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.": "Гарантія Jackery не поширюється на акумуляторний елемент, якщо він не був повністю заряджений вами протягом семи днів після покупки продукту та щонайменше один раз кожні 6 місяців після цього.",
+      "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello.eu@jackery.com to extend the standard warranty period.": "Щоб активувати розширення гарантії, необхідно зареєструвати продукт онлайн або звернутися до нашої служби підтримки за адресою hello.eu@jackery.com для подовження стандартного гарантійногоперіоду."
+    },
+    "regulatory_compliance.rst": {
+      "EU REGULATIONS": "EU REGULATIONS",
+      "RED DECLARATION OF CONFORMITY": "RED DECLARATION OF CONFORMITY",
+      "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 2000 with Bluetooth and Wi-Fi JBP-2000B is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 2000 with Bluetooth and Wi-Fi JBP-2000B is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "https://de.jackery.com/pages/user-guides": "https://de.jackery.com/pages/user-guides",
+      "MANUFACTURER": "MANUFACTURER",
+      "SHENZHEN HELLO TECH ENERGY CO., LTD.": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "+86 400 668 9293": "+86 400 668 9293",
+      "sales@hello-tech.com": "sales@hello-tech.com",
+      "www.hello-tech.com": "www.hello-tech.com"
+    }
+  },
+  "evidence": [
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "IMPORTANT",
+      "native": "ВАЖЛИВО",
+      "physical_page": 3,
+      "selection": {
+        "method": "source frontmatter heading"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Congratulations on your new Jackery Battery Pack 2000. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference.",
+      "native": "Вітаємо з придбанням нового Jackery Battery Pack 2000. Перед використанням виробу уважно прочитайте цей посібник, зокрема відповідні застереження, щоб забезпечити належне використання. Зберігайте цей посібник у доступному місці для подальшого звернення.",
+      "physical_page": 3,
+      "selection": {
+        "method": "source frontmatter paragraph"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery assumes no responsibility for any errors that may appear.",
+      "native": "Відповідно до законів і нормативних актів право остаточного тлумачення цього документа та всіх пов'язаних з цим виробом документів належить Компанії. Хоча докладено всіх зусиль для забезпечення точності цього посібника, Jackery не несе відповідальності за будь-які помилки, що можуть у ньому міститися.",
+      "physical_page": 3,
+      "selection": {
+        "method": "source frontmatter paragraph"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com.",
+      "native": "Зверніть увагу, що у разі оновлення, перегляду або припинення дії додаткові повідомлення не надсилатимуться. Щоб отримати останню версію посібників до виробу, відвідайте support.jackery.com.",
+      "physical_page": 3,
+      "selection": {
+        "method": "source frontmatter paragraph"
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "* The images are for reference purposes only. Please refer to the actual product.",
+      "native": "* Зображення наведені лише для довідки. Орієнтуйтеся на фактичний виріб.",
+      "physical_page": 3,
+      "selection": {
+        "method": "source illustration disclaimer"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "IMPORTANT SAFETY INFORMATION",
+      "native": "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "The basic safety precautions should be followed when using this product, including:",
+      "native": "Під час використання цього продукту необхідно дотримуватися основних заходів безпеки, зокрема:",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please read all instructions before using this product.",
+      "native": "Будь ласка, прочитайте всі інструкції перед використанням цього продукту.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Close supervision is required when using this product near children to reduce the risk.",
+      "native": "Під час використання цього продукту поблизу дітей потрібен пильний нагляд, щоб зменшити ризик.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.",
+      "native": "Існує ризик ураження електричним струмом при використанні аксесуарів, рекомендованих або проданих непрофесійними виробниками.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "When the product is not in use, please unplug the power plug from the product's socket.",
+      "native": "Коли продукт не використовується, будь ласка, від’єднайте вилку живлення від розетки продукту.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.",
+      "native": "Не розбирайте продукт, оскільки це може призвести до непередбачуваних ризиків, таких як пожежа, вибух або ураження електричним струмом.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.",
+      "native": "Не використовуйте продукт із пошкодженими шнурами або вилками, або пошкодженими вихідними кабелями, оскільки це може спричинити ураження електричним струмом.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Charge the product in a well-ventilated area and do not restrict ventilation in any way.",
+      "native": "Заряджайте продукт у добре провітрюваному місці та не обмежуйте вентиляцію жодним чином.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.",
+      "native": "Будь ласка, розміщуйте продукт у провітрюваному та сухому місці, щоб уникнути потрапляння дощу та води, що може спричинити ураження електричним струмом.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.",
+      "native": "Не піддавайте продукт впливу вогню та високих температур (під прямим сонячним світлом або в транспортному засобі за високої температури), оскільки це може спричинити нещасні випадки, такі як пожежа або вибух.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.",
+      "native": "Якщо цей продукт зберігається протягом тривалого часу (3 місяці — 6 місяців) із розрядженим акумулятором, він може втратити здатність до заряджання.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source safety bullet"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "MEANING OF SYMBOLS",
+      "native": "ЗНАЧЕННЯ СИМВОЛІВ",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol",
+      "native": "Символ",
+      "physical_page": 48,
+      "selection": {
+        "method": "source symbol table header"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Meaning",
+      "native": "Значення",
+      "physical_page": 48,
+      "selection": {
+        "method": "source symbol table header"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol / Meaning",
+      "native": "имвол / Значення",
+      "physical_page": 48,
+      "selection": {
+        "method": "source symbol table header"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "WARNING",
+      "native": "ПОПЕРЕДЖЕННЯ",
+      "physical_page": 48,
+      "selection": {
+        "method": "source signal word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+      "native": "Небезпечні дії, які можуть призвести до тяжких травм, смерті та/або пошкодження майна.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source signal definition excluding word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "CAUTION",
+      "native": "УВАГА",
+      "physical_page": 48,
+      "selection": {
+        "method": "source signal word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in personal injury and/or property damage.",
+      "native": "Небезпечні дії, які можуть призвести до травмування людей та/або пошкодження майна.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source signal definition excluding word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "NOTE",
+      "native": "ПРИМІТКА",
+      "physical_page": 48,
+      "selection": {
+        "method": "source signal word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+      "native": "Дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або неочікуваних результатів.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source signal definition excluding word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "TIP",
+      "native": "ПОРАДА",
+      "physical_page": 48,
+      "selection": {
+        "method": "source signal word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Supplements the important information or operation tips in the text.",
+      "native": "Доповнює важливу інформацію або поради з експлуатації в тексті.",
+      "physical_page": 48,
+      "selection": {
+        "method": "source signal definition excluding word"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Warning and Caution Symbols. Alerts individuals to information that must be read to avoid potential hazards or risks.",
+      "native": "Попереджувальні та застережні символи. Повідомляють користувачам про інформацію, яку необхідно прочитати, щоб уникнути потенційних небезпек або ризиків.",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep away from children.",
+      "native": "Тримайте подалі від дітей.",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 19
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Read the user manual before operation.",
+      "native": "Перед використанням прочитайте посібник користувача.",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+      "native": "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином.",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 21
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Do not dismantle the product.",
+      "native": "Не розбирайте продукт.",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+      "native": "Цей символ вказує, що продукт не можна утилізувати разом із побутовими відходами, і його слід передати до спеціалізованого пункту збору для переробки.Правильна утилізація та переробка допомагають захистити довкілля. Для отримання додаткової інформації щодо утилізації та переробки цього продукту зверніться до місцевої громади, служби утилізації або дилера.",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 20
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep the product away from fire.",
+      "native": "Тримайте продукт подалі від вогню.",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 18
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "native": "Батарейки та акумулятори не можна викидати разом із побутовими відходами. Як споживач ви юридично зобов’язані здавати всі батарейки та акумулятори у визначені пункти збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля.",
+      "physical_page": 48,
+      "selection": {
+        "native_block": 17
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "WHAT'S IN THE BOX",
+      "native": "ЩО В КОРОБЦІ",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 2000.",
+      "native": "Jackery Battery Pack 2000",
+      "physical_page": 49,
+      "selection": {
+        "bbox_pt": [
+          27,
+          148,
+          130,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 2000",
+      "native": "Jackery Battery Pack 2000",
+      "physical_page": 49,
+      "selection": {
+        "bbox_pt": [
+          27,
+          148,
+          130,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable.",
+      "native": "Кабель розширення",
+      "physical_page": 49,
+      "selection": {
+        "bbox_pt": [
+          135,
+          148,
+          240,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable",
+      "native": "Кабель розширення",
+      "physical_page": 49,
+      "selection": {
+        "bbox_pt": [
+          135,
+          148,
+          240,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual.",
+      "native": "Керівництво користувача",
+      "physical_page": 49,
+      "selection": {
+        "bbox_pt": [
+          246,
+          148,
+          345,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual",
+      "native": "Керівництво користувача",
+      "physical_page": 49,
+      "selection": {
+        "bbox_pt": [
+          246,
+          148,
+          345,
+          164
+        ]
+      }
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "PRODUCT OVERVIEW",
+      "native": "ОГЛЯД ПРОДУКТУ",
+      "physical_page": 49,
+      "selection": {
+        "native_block": 9
+      }
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "POWER button LCD；Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)；FRONT VIEW；LEFT SIDE VIEW",
+      "native": "Ручка ВИГЛЯД СПЕРЕДУ ВИГЛЯД ЗЛІВА LCD-дисплей Порт розширення DC B (підключення до клеми B кабелю розширення) Порт розширення DC A (підключення до клеми A кабелю розширення) Кнопка POWER",
+      "physical_page": 49,
+      "selection": {
+        "method": "native overview labels for accessible image"
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "LCD DISPLAY",
+      "native": "LCD-ДИСПЛЕЙ",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Power Percentage/Fault Code",
+      "native": "Відсоток заряду/ код помилки",
+      "physical_page": 50,
+      "selection": {
+        "bbox_pt": [
+          30,
+          116,
+          104,
+          150
+        ]
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The display shows the current power percentage.",
+      "native": "На дисплеї відображається поточний рівень заряду.",
+      "physical_page": 50,
+      "selection": {
+        "method": "source first LCD explanation"
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "When the system fails, it will be displayed as the corresponding fault code F0-FF.",
+      "native": "У разі збою відображається відповідний код несправності F0-FF.",
+      "physical_page": 50,
+      "selection": {
+        "method": "source fault-code LCD explanation"
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Charging Indicator",
+      "native": "Індикатор заряджання",
+      "physical_page": 50,
+      "selection": {
+        "bbox_pt": [
+          30,
+          150,
+          104,
+          175
+        ]
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The indicator is displayed when charging and disappears when it is fully charged.",
+      "native": "Індикатор відображається під час заряджання та зникає після повного заряджання.",
+      "physical_page": 50,
+      "selection": {
+        "bbox_pt": [
+          105,
+          150,
+          342,
+          175
+        ]
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "OPERATIONS",
+      "native": "ОПЕРАЦІЇ",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "POWER ON/OFF",
+      "native": "УВІМКНЕННЯ/ВИМКНЕННЯ",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 8
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When using with the portable power station, you can control the power status (on or off) of Jackery Battery Pack 2000 through the main POWER button of the portable power station.",
+      "native": "Під час використання з Jackery Explorer 2000 Plus ви можете керувати станом живлення (увімкнено або вимкнено) Jackery Battery Pack 2000 за допомогою основної кнопки POWER на Jackery Explorer 2000 Plus.",
+      "physical_page": 50,
+      "selection": {
+        "method": "source operation note bullet"
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "LCD DISPLAY ON/OFF",
+      "native": "УВІМКНЕННЯ/ВИМКНЕННЯ LCD-ДИСПЛЕЯ",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.",
+      "native": "Коли ви натискаєте основну кнопку POWER або під час заряджання продукту, LCD-дисплей підсвічується. Коли ви натискаєте її ще раз, LCD-дисплей вимикається.",
+      "physical_page": 50,
+      "selection": {
+        "native_block": 17
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+      "native": "Продукт автоматично вимкнеться, якщо протягом 2 годин не виконується заряджання або не підключено жодного навантаження.",
+      "physical_page": 50,
+      "selection": {
+        "method": "source operation note bullet"
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "NOTE",
+      "native": "ПРИМІТКА",
+      "physical_page": 50,
+      "selection": {
+        "method": "source note signal"
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "On Press once Off Press and hold for 3s",
+      "native": "Увімкнення Натисніть один раз Вимкнення Натисніть і утримуйте протягом 3 с",
+      "physical_page": 50,
+      "selection": {
+        "method": "native power instruction accessibility"
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 2000 LCD display operation.",
+      "native": "УВІМКНЕННЯ/ВИМКНЕННЯ LCD-ДИСПЛЕЯ — Jackery Battery Pack 2000",
+      "physical_page": 50,
+      "selection": {
+        "method": "native LCD operation accessibility"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CONNECTIONS",
+      "native": "ПІДКЛЮЧЕННЯ",
+      "physical_page": 51,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Up to five battery packs can be used with the portable power station to provide additional capacity.",
+      "native": "До 5 комплектів цих продуктів можна використовувати разом із Jackery Explorer 2000 Plus для задоволення підвищених потреб у ємності.",
+      "physical_page": 51,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CAUTION",
+      "native": "УВАГА",
+      "physical_page": 51,
+      "selection": {
+        "method": "source caution signal"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.",
+      "native": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.",
+      "physical_page": 51,
+      "selection": {
+        "method": "source caution bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.",
+      "native": "Щоб забезпечити належну роботу продукту, переконайтеся, що повітрозабірні та витяжні отвори з обох боків не заблоковані. Залишайте щонайменше 200 мм простору між отворами та будь-якими предметами для належного відведення тепла.",
+      "physical_page": 51,
+      "selection": {
+        "method": "source caution bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "NOTES",
+      "native": "ПРИМІТКИ",
+      "physical_page": 51,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "The display of the connection icon on the LCD screen (the portable power station) signifies a successful connection between the battery pack and the portable power station.",
+      "native": "Відображення піктограми на РК-дисплеї (Jackery Explorer 2000 Plus) означає успішне підключення між акумуляторним блоком і Jackery Explorer 2000 Plus.",
+      "physical_page": 51,
+      "selection": {
+        "method": "source connection note bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Please do not stack the product on the top of the portable power station.",
+      "native": "Будь ласка, не встановлюйте продукт на Jackery Explorer 2000 Plus.",
+      "physical_page": 51,
+      "selection": {
+        "method": "source connection note bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.",
+      "native": "Розміщуйте акумуляторні блоки на рівній, стабільній поверхні з достатньою несучою здатністю. Стандартна максимальна кількість складених акумуляторних блоків — 3.",
+      "physical_page": 51,
+      "selection": {
+        "method": "source connection note bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.",
+      "native": "Якщо потрібно 4 або більше акумуляторних блоків, їх слід розмістити у стабільній зоні біля стіни, подалі від зовнішніх впливів, і вжити необхідних заходів для запобігання перекиданню.",
+      "physical_page": 51,
+      "selection": {
+        "method": "source connection note bullet"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery Pack connection, stacking, and clearance diagram.",
+      "native": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 2000",
+      "physical_page": 51,
+      "selection": {
+        "method": "native diagram accessibility"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Correct connection order and expansion-cable locking and unlocking steps.",
+      "native": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 2000",
+      "physical_page": 51,
+      "selection": {
+        "method": "native diagram accessibility"
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "TROUBLESHOOTING",
+      "native": "УСУНЕННЯ НЕСПРАВНОСТЕЙ",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.",
+      "native": "Якщо з'являється будь-який із наведених нижче кодів помилки, виконайте вказані дії для усунення проблеми. Якщо несправність не зникає, зверніться до служби підтримки Jackery.",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Error Code",
+      "native": "Код помилки",
+      "physical_page": 52,
+      "selection": {
+        "bbox_pt": [
+          27,
+          356.1700866699219,
+          88,
+          364.94777221679686
+        ]
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Corrective Measures",
+      "native": "Коригувальні дії",
+      "physical_page": 52,
+      "selection": {
+        "bbox_pt": [
+          88,
+          356.1700866699219,
+          345,
+          364.94777221679686
+        ]
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Restart the product.",
+      "native": "Перезапустіть продукт.",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Connect the product to loads to discharge its battery until the fault disappears.",
+      "native": "Підключіть продукт до навантажень, щоб розряджати його акумулятор, доки помилка не зникне.",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Charge the product via solar panels or AC wall outlet until the fault disappears.",
+      "native": "Заряджайте продукт за допомогою сонячних панелей або від розетки змінного струму, доки помилка не зникне.",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Contact Jackery Customer Support.",
+      "native": "Зверніться до служби підтримки клієнтів Jackery.",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Place the product in an environment with a proper temperature and wait till the fault disappears.",
+      "native": "Розмістіть продукт у середовищі з належною температурою та зачекайте, доки помилка не зникне.",
+      "physical_page": 52,
+      "selection": {
+        "native_block": 21
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING",
+      "native": "ЗАРЯДЖАННЯ",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA AC WALL OUTLET",
+      "native": "ЗАРЯДЖАННЯ ВІД РОЗЕТКИ ЗМІННОГО СТРУМУ",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "To charge the battery pack from an AC wall outlet, connect it to the portable power station.",
+      "native": "Під час заряджання від мережі цей продукт слід використовувати разом із Jackery Explorer 2000 Plus.",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "WARNING",
+      "native": "ПОПЕРЕДЖЕННЯ",
+      "physical_page": 53,
+      "selection": {
+        "method": "source warning label in combined block"
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Ensure all products are powered off before connecting the portable power station to the Jackery Battery Pack 2000.",
+      "native": "Переконайтеся, що всі продукти вимкнені, перш ніж підключати Jackery Explorer 2000 Plus до Jackery Battery Pack 2000.",
+      "physical_page": 53,
+      "selection": {
+        "method": "source warning body in combined block"
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+      "native": "ЗАРЯДЖАННЯ ВІД СОНЯЧНИХ ПАНЕЛЕЙ (ПРОДАЮТЬСЯ ОКРЕМО)",
+      "physical_page": 53,
+      "selection": {
+        "method": "source solar heading and qualifier"
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Charge the battery pack using solar panels and the portable power station, as shown in the figure below. For more information, refer to the user manual for the portable power station.",
+      "native": "Заряджайте свій продукт за допомогою сонячних панелей і Jackery Explorer 2000 Plus, як показано на рисунку нижче. Будь ласка, зверніться до посібника користувача Jackery Explorer 2000 Plus для отримання додаткової інформації.",
+      "physical_page": 53,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "AC wall charging connection through the portable power station.",
+      "native": "ЗАРЯДЖАННЯ — Jackery Battery Pack 2000",
+      "physical_page": 53,
+      "selection": {
+        "method": "native charging accessibility"
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Solar charging connection through the portable power station.",
+      "native": "ЗАРЯДЖАННЯ — Jackery Battery Pack 2000",
+      "physical_page": 53,
+      "selection": {
+        "method": "native charging accessibility"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "STORAGE",
+      "native": "ЗБЕРІГАННЯ",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+      "native": "Зберігайте продукт у сухому чистому місці з належною вентиляцією. Температура та вологість зберігання:",
+      "physical_page": 54,
+      "selection": {
+        "method": "visually verified outlined text"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "1 month: -20°C to 45°C (0-60%RH)",
+      "native": "1 місяць: від -20 °C до 45 °C (0-60% RH)",
+      "physical_page": 54,
+      "selection": {
+        "method": "visually verified outlined text"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "3 months: 0°C to 45°C (0-60%RH)",
+      "native": "3 місяці: від 0 °C до 45 °C (0-60% RH)",
+      "physical_page": 54,
+      "selection": {
+        "method": "visually verified outlined text"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "12 months: 0°C to 25°C (0-60%RH)",
+      "native": "12 місяців: від 0 °C до 25 °C (0-60% RH)",
+      "physical_page": 54,
+      "selection": {
+        "method": "visually verified outlined text"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+      "native": "Якщо цей продукт зберігається протягом тривалого часу (3-6 місяців) із повністю розрядженим акумулятором, він може стати непридатним до заряджання. Щоб запобігти цьому та підтримувати справний стан акумулятора, рекомендується перевіряти й заряджати продукт кожні три місяці та виконувати повний цикл заряджання й розряджання принаймні один раз кожні 6-12 місяців.",
+      "physical_page": 54,
+      "selection": {
+        "method": "visually verified outlined text"
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "SPECIFICATIONS",
+      "native": "ТЕХНІЧНІ ХАРАКТЕРИСТИКИ",
+      "physical_page": 54,
+      "selection": {
+        "bbox_pt": [
+          27,
+          160.597,
+          345,
+          180.597
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "GENERAL INFO",
+      "native": "ЗАГАЛЬНА ІНФОРМАЦІЯ",
+      "physical_page": 54,
+      "selection": {
+        "bbox_pt": [
+          27,
+          186.597,
+          345,
+          201.597
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Product Name",
+      "native": "Назва продукту",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Jackery Battery Pack 2000",
+      "native": "Jackery Battery Pack 2000",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 4
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Model No.",
+      "native": "№ моделі",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 5
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "JBP-2000B",
+      "native": "JBP-2000B",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Capacity",
+      "native": "Ємність",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "2048 Wh (40 Ah/51.2 V ⎓)",
+      "native": "2048 Вт-год (40 A-год/51,2 В ⎓)",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 8
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cell Chemistry",
+      "native": "Хімічний склад елемента",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 9
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "LiFePO₄",
+      "native": "LiFePO₄",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Weight",
+      "native": "Вага",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "About 14.8 kg",
+      "native": "Близько 14,8 кг",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Dimensions",
+      "native": "Розміри",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.5 × 25.5 × 19.1 cm",
+      "native": "36,5 × 25,5 × 19,1 см",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cycle Life",
+      "native": "Ресурс циклів",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "6000 cycles to 70%+ capacity",
+      "native": "6000 циклів до 70%+ ємності",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "INPUT/OUTPUT PORTS",
+      "native": "ВХІДНІ/ВИХІДНІ ПОРТИ",
+      "physical_page": 54,
+      "selection": {
+        "bbox_pt": [
+          27,
+          292.597,
+          345,
+          307.597
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Input)",
+      "native": "Порт розширення DC (вхід)",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 18
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.8V-57.6V⎓75A Max",
+      "native": "36,8 V-57,6 V⎓75 A макс.",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 19
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Output)",
+      "native": "Порт розширення DC (вихід)",
+      "physical_page": 54,
+      "selection": {
+        "native_block": 20
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "native": "РОБОЧА ТЕМПЕРАТУРА СЕРЕДОВИЩА",
+      "physical_page": 54,
+      "selection": {
+        "bbox_pt": [
+          27,
+          351.502,
+          345,
+          365.502
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Charge Temperature",
+      "native": "Температура заряджання",
+      "physical_page": 54,
+      "selection": {
+        "bbox_pt": [
+          27,
+          371.501,
+          179,
+          383.501
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Discharge Temperature",
+      "native": "Температура розряджання",
+      "physical_page": 54,
+      "selection": {
+        "bbox_pt": [
+          27,
+          383.501,
+          179,
+          395.501
+        ]
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "-10°C to 45°C",
+      "native": "від -10 °C до 45 °C",
+      "physical_page": 54,
+      "selection": {
+        "bbox_pt": [
+          180,
+          371.501,
+          345,
+          383.501
+        ]
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "WARRANTY",
+      "native": "ГАРАНТІЯ",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "This warranty applies only to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.",
+      "native": "Ця гарантія застосовується лише до клієнтів, які здійснили покупку на офіційному вебсайті Jackery, на сторонніх платформах під брендом Jackery або у місцевих авторизованих дилерів.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "native": "* Гарантійний період і деталі можуть відрізнятися залежно від місцевих законів, нормативних актів і авторизованих дилерів.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited Warranty",
+      "native": "Обмежена гарантія",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.",
+      "native": "Jackery гарантує первинному споживачу-покупцю, що продукт Jackery не матиме дефектів виготовлення та матеріалів за умов нормального споживчого використання протягом відповідного гарантійного періоду, зазначеного в розділі «Гарантійний період» нижче, з урахуванням наведених нижче виключень.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 4
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.",
+      "native": "Ця гарантійна заява визначає повний і виключний обсяг гарантійних зобов’язань Jackery. Ми не беремо на себе і не уповноважуємо будь-яку особу брати на себе від нашого імені будь-які інші зобов’язання у зв’язку з продажем нашої продукції.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 5
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Warranty Period",
+      "native": "Гарантійний період",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The standard warranty period for Jackery Battery Pack 2000 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+      "native": "Стандартний гарантійний період для Jackery Battery Pack 2000 становить 36 місяців. У кожному випадку гарантійний період обчислюється з дати покупки первинним споживачем-покупцем. Для визначення дати початку гарантійного періоду необхідний касовий чек від першого споживача-покупця або інший належний документальний доказ.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 9
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Exchange",
+      "native": "Umtausch",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. A replacement product assumes the remaining warranty of the original product.",
+      "native": "Jackery tauscht (auf Kosten von Jackery) jedes Jackery Produkt aus, das während der geltenden Garantiezeit aufgrund eines Verarbeitungs- oder Materialfehlers nicht mehr funktioniert. Ein Ersatzprodukt übernimmt die Restgarantie des Originalprodukts.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited to Original Consumer Buyer",
+      "native": "Обмеження для первинного споживача-покупця",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.",
+      "native": "Гарантія на продукт Jackery обмежується первинним споживачем-покупцем і не підлягає передачі будь-якому наступному власнику.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Exclusions",
+      "native": "Виключення",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Interpretation Rights",
+      "native": "Право тлумачення",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery reserves the right to final interpretation of the above customer after-sales policy.",
+      "native": "Jackery залишає за собою право на остаточне тлумачення вищезазначеної.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "3 YEARS",
+      "native": "3 РОКИ",
+      "physical_page": 55,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Standard Warranty",
+      "native": "Стандартна гарантія на",
+      "physical_page": 55,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "2 YEARS",
+      "native": "2 РОКИ",
+      "physical_page": 55,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Extended Warranty",
+      "native": "Розширена гарантія на",
+      "physical_page": 55,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "YEARS",
+      "native": "РОКИ",
+      "physical_page": 55,
+      "selection": {
+        "method": "source warranty badge"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "To activate the Warranty Extension, you must register your product online or contact our customer service team at",
+      "native": "Щоб активувати розширення гарантії, необхідно зареєструвати продукт онлайн або звернутися до нашої служби підтримки за адресою",
+      "physical_page": 55,
+      "selection": {
+        "method": "source extension paragraph surrounding mail link"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "to extend the standard warranty period.",
+      "native": "для подовження стандартного гарантійногоперіоду.",
+      "physical_page": 55,
+      "selection": {
+        "method": "source extension paragraph surrounding mail link"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to:",
+      "native": "Гарантія Jackery не поширюється на:",
+      "physical_page": 55,
+      "selection": {
+        "method": "visually verified outlined clause"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Any product that has been misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.",
+      "native": "Будь-який продукт, який був неправильно використаний, зазнав неналежного поводження, модифікований, пошкоджений внаслідок нещасного випадку або використовувався не за призначенням, відмінним від звичайного споживчого використання, дозволеного в чинній документації Jackery.",
+      "physical_page": 55,
+      "selection": {
+        "method": "visually verified outlined clause"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Attempted repair by anyone other than an authorized facility.",
+      "native": "Спроби ремонту будь-ким, окрім авторизованого сервісного центру.",
+      "physical_page": 55,
+      "selection": {
+        "method": "visually verified outlined clause"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Any product purchased through an online auction house.",
+      "native": "Будь-який продукт, придбаний через онлайн-аукціон.",
+      "physical_page": 55,
+      "selection": {
+        "method": "visually verified outlined clause"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.",
+      "native": "Гарантія Jackery не поширюється на акумуляторний елемент, якщо він не був повністю заряджений вами протягом семи днів після покупки продукту та щонайменше один раз кожні 6 місяців після цього.",
+      "physical_page": 55,
+      "selection": {
+        "method": "visually verified outlined clause"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "EU REGULATIONS",
+      "native": "EU REGULATIONS",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "RED DECLARATION OF CONFORMITY",
+      "native": "RED DECLARATION OF CONFORMITY",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 2000 with Bluetooth and Wi-Fi JBP-2000B is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "native": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 2000 with Bluetooth and Wi-Fi JBP-2000B is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "https://de.jackery.com/pages/user-guides",
+      "native": "https://de.jackery.com/pages/user-guides",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "MANUFACTURER",
+      "native": "MANUFACTURER",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "native": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "native": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "+86 400 668 9293",
+      "native": "+86 400 668 9293",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "sales@hello-tech.com",
+      "native": "sales@hello-tech.com",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "www.hello-tech.com",
+      "native": "www.hello-tech.com",
+      "physical_page": 80,
+      "selection": {
+        "method": "shared English regulatory page80"
+      }
+    }
+  ],
+  "native_exceptions": [
+    "UK frontmatter has no dual-host compatibility note; source operations refer to Explorer 2000 Plus.",
+    "UK lower symbol header is printed имвол; preserved.",
+    "UK Exchange title/body are printed in German; preserved.",
+    "UK storage and warranty exclusions are outlined; visually transcribed with OCR used only as a draft."
+  ],
+  "remove_compatibility_note": true,
+  "power_steps": [
+    "Увімкнення",
+    "Натисніть один раз",
+    "Вимкнення",
+    "Натисніть і утримуйте протягом 3 с"
+  ],
+  "inline_connection_marker": "Відображення піктограми",
+  "locking_labels": [
+    "Заблокувати",
+    "Розблокувати"
+  ]
+}

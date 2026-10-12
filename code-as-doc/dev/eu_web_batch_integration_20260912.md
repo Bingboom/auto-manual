@@ -1,5 +1,7 @@
 # EU English Web batch integration — 2026-09-12
 
+Status: active
+
 ## Discovery
 
 The independent-manual scope is 21 targets: 12 already merged and nine implemented in PRs #1091–#1099. PR #1100 contains subsequent JE-3000C illustration corrections. Combination projects are excluded. Latest inspected main is `d1eeb282`. GitHub permits squash merges only. Each source PR has passing checks before integration; this does not prove the combined tree or publication.
@@ -19,7 +21,7 @@ Work in an isolated integration worktree. Merge origin/main normally; do not for
 
 ## Validation commands
 
-Use the repository Python environment: `python -m ruff check build.py integrations tools tests scripts`, `python -m unittest`, `python tools/check_maintainability_guardrails.py`, and `python tools/check_doc_link_integrity.py`. Target build/check commands and frozen data roots are recorded in each target acceptance document. Final publication acceptance requires real RTD URLs, not localhost screenshots.
+Use the repository Python environment: `python -m ruff check build.py integrations tools tests scripts`, `python -m unittest`, `python -m tools.check_maintainability_guardrails`, and `python -m tools.check_doc_link_integrity`. Target build/check commands and frozen data roots are recorded in each target acceptance document. Final publication acceptance requires real RTD URLs, not localhost screenshots.
 
 ## JBP-2000B source-lock repair during final integration
 

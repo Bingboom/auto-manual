@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 import yaml
 
 from tools.manual_ir import read_manual_ir
-from tools.web_document_ir import render_document_fragments
+from tools.web.document_ir import render_document_fragments
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -218,7 +218,7 @@ def guarded(path, *args, **kwargs):
     return original(path, *args, **kwargs)
 with patch.object(Path, "open", guarded):
     from tools.manual_ir import read_manual_ir
-    from tools.web_document_ir import render_document_fragments
+    from tools.web.document_ir import render_document_fragments
     package = Path(sys.argv[1])
     rendered = render_document_fragments(
         read_manual_ir(package / "manual.ir.json"), package_root=package

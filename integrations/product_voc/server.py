@@ -9,8 +9,8 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from integrations.product_voc.intake import BotWriter, Intake, IntakeError
-from tools.rtd_portal import ASSETS
-from tools.rtd_product_voc import suggestion_markup
+from tools.rtd.portal import ASSETS
+from tools.rtd.product_voc import suggestion_markup
 from tools.utils.path_utils import PathSegments
 
 MAX_BODY = 24000
@@ -100,7 +100,7 @@ def make_handler(intake: Intake, origins: set[str], preview: bool = False, cloud
                 self.send(exc.status, json.dumps({"ok": False, "error": exc.code}).encode())
             except (ValueError, UnicodeError):
                 self.send(400, b'{"ok":false,"error":"invalid_json"}')
-            except Exception:
+            except Exception:  # noqa: BLE001 - HTTP boundary answers 503 for any failure
                 self.send(503, b'{"ok":false,"error":"unavailable"}')
 
         def do_GET(self):

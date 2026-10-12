@@ -21,7 +21,6 @@ except ModuleNotFoundError:  # direct tools/export_idml.py execution
 from ..primitives import (
     cell,
     component_table,
-    image_cell_content,
     psr,
     wrap_table_paragraph,
 )

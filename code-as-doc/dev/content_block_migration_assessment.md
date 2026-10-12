@@ -1,5 +1,7 @@
 # Content Block Migration Assessment
 
+Status: done
+
 Updated: 2026-05-31
 
 This report records the Phase 3 assessment for long-form template pages after the LCD / Symbols / Product overview short-copy consolidation. It is intentionally an assessment only: Operation guide and App setup body copy stays in RST until a follow-up migration is approved.

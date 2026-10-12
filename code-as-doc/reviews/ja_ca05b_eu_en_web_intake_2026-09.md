@@ -1,5 +1,7 @@
 # JA-CA05B EU English Web intake - 2026-09
 
+Status: active
+
 ## Authority and target mapping
 
 - Target: `JA-CA05B / EU / en`; delivery-table short name: `5M延长线`.

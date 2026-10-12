@@ -11,6 +11,8 @@ release of `JE-2000F / EU / en`, version `2.0`.
   full-frame recipe are hash-locked through `source_manifest.json`. Eleven
   panels retain their complete grey frame and image-owned text boxes; the LCD
   mode remains a device-only illustration beside a semantic CSS/HTML table.
+  The App recipe is hash-locked the same way: its one quarantined panel, the
+  App connect-result screens from PDF page 21, is shared by all six languages.
 - Live systems: this source has no live Bitable or build-queue dependency.
 
 Build it with:
@@ -24,3 +26,44 @@ python build.py md \
   --data-root manual_sources/JE-2000F/EU/en/2.0/phase2 \
   --staging-root <fresh-root>
 ```
+
+App add-device figure (2026-09-24): all six routes bind their own language block's crop of
+the App screens plus this model's control-panel box (`app_asset_recipe`, re-bound
+together with the English illustration manifest in `source_manifest.json`); see the intake review addendum of the same date.
+
+Specification tables (2026-09-27): values, structure and labels follow the
+print; formatting keeps the house rules. The fr/es/de/it/uk tables now give
+4000 cycles, the 3 × AC outputs without `10 A max.`, and the bypass output at
+`2200 W max.` (PDF pages 34/50/66/82/98). The it capacity reads
+`2048 Wh (40 Ah / 51,2 V ⎓)`, in the printed order. The en DC8020 line says
+`Car:` (PDF pages 18 and 8), and the fr labels read `N° modèle` and
+`3 × Sortie CA` (PDF page 34). Three print defects use the reviewed wording:
+de `Ladetemperatur` and it `Temperatura di scarica`, which the print's own
+charging notes use (PDF pages 63 and 79), and the de headings
+`EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE`, which the JE-1000H and JE-3600A
+EU prints set. The cells are in `phase2/Spec_Master.csv`,
+`phase2/spec_titles.csv` and `phase2/Localized_Copy.csv`, and
+`source_manifest.json` re-locks all three; see the intake review addendum of the
+same date.
+
+Specification notes order (2026-09-27): every language block of the print sets
+the footnote above the ※ USB Type-C trademark note (PDF pages
+18/34/50/66/82/98), while the Web put the ※ note first. The `spec` row of
+`phase2/page_registry.csv` now names
+`docs/templates/spec_template_footnotes_first.rst`, whose HTML branch (the Web,
+and the Word bundle, which takes its order from the HTML) puts the footnotes
+first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
+are unchanged. `source_manifest.json` re-locks the registry.
+
+Product overview AC output (2026-09-27): the front view of every language block
+of the print (PDF pages 8/24/40/56/72/88) gives the AC output its voltage,
+frequency and rating only; the surge peak is in the Total Output callout. The
+front-view figure's alt text now says what the print says: en
+`230 V~ 50 Hz, 2200 W Rated`, fr and es `230 V~ 50 Hz, 2200 W Nominal`, de
+`230 V~ 50 Hz, 2200 W Nennleistung`, it `230 V~ 50 Hz, 2200 W nominali`, uk
+`230 В~ 50 Гц, 2200 Вт ном. потужності`. The text is line 20 of
+`phase2/Spec_Master.csv` (`Value_source` and `Value_fr`/`es`/`de`/`it`/`uk`).
+The six `docs/renderers/web/je2000f_eu_<lang>_illustrations.json` bind it by
+exact text, so they change with it, and `source_manifest.json` re-locks
+`Spec_Master.csv` and the English manifest. The images do not change; see the
+intake review addendum of the same date.

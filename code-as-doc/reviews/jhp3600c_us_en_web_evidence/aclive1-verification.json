@@ -1,0 +1,56 @@
+{
+  "native_geometry": [
+    {
+      "region": "product",
+      "bbox": [
+        45,
+        73,
+        147,
+        193
+      ],
+      "scale": 12,
+      "direct_transform_pixel_identical": true
+    },
+    {
+      "region": "button-hand",
+      "bbox": [
+        160,
+        70,
+        255,
+        140
+      ],
+      "scale": 12,
+      "direct_transform_pixel_identical": true
+    },
+    {
+      "region": "sockets-appliances",
+      "bbox": [
+        161,
+        138,
+        320,
+        196
+      ],
+      "scale": 12,
+      "direct_transform_pixel_identical": true
+    }
+  ],
+  "source_outer_frame_removed": 597,
+  "prerequisite_capsule_removed": 613,
+  "original_crop_clipped_top_border": true,
+  "caption_removal_rect": [
+    43,
+    52,
+    100,
+    65
+  ],
+  "source_node_changes": [
+    [
+      "operations",
+      7
+    ]
+  ],
+  "art_sha256": "265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19",
+  "source_coverage_unmatched": 0,
+  "frozen_replay_files_byte_identical": 119,
+  "shared_operation_tests": 15
+}

@@ -233,7 +233,7 @@ def repo_health_metric(base_root: Path, *, runner: Any = subprocess.run) -> dict
                 ["git", "-C", str(base_root), *args],
                 capture_output=True, text=True, timeout=30,
             )
-        except Exception:
+        except (OSError, subprocess.SubprocessError):
             return None
         return proc.stdout if proc.returncode == 0 else None
 

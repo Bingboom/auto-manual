@@ -1,5 +1,7 @@
 # JE-1000F US PR5: FCC, inbox, overview, and LCD parity
 
+Status: done
+
 ## Scope
 
 PR5 aligns the repeated FCC/inbox, editable product-overview, and two-page LCD

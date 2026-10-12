@@ -59,6 +59,7 @@ def _run(cmd: Sequence[str], *, cwd: Path | None = None, timeout: int = 60) -> t
         capture_output=True,
         text=True,
         timeout=timeout,
+        check=False,
     )
     return completed.returncode, completed.stdout.strip(), completed.stderr.strip()
 
@@ -123,7 +124,7 @@ def probe_dingtalk() -> ProbeResult:
             client_secret_env="DINGTALK_CLIENT_SECRET",
             corp_id_env="DINGTALK_CORP_ID",
         )
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - a probe reports any failure as its result
         return ProbeResult("DingTalk", "failed", f"get_app_only_token error: {exc}")
     return ProbeResult(
         "DingTalk",
@@ -154,7 +155,7 @@ def probe_dingtalk_docs_session() -> ProbeResult:
 
         session = load_session_config_from_env()
         check_authenticated_session(session=session)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - a probe reports any failure as its result
         return ProbeResult("DingTalk AliDocs session", "failed", f"read-only session check error: {exc}")
     return ProbeResult(
         "DingTalk AliDocs session",

@@ -19,9 +19,12 @@ on the Hello-Docs business plane when a ``main`` push touches
 3. For each verified target, write the canonical nested URL to every recorded
    queue row idempotently: read the current value first (same value -> no
    write), write through the shared upsert path otherwise, then read the same
-   record back and require the stored value to match. A failed registration
-   leaves the run red for an independent retry (re-run the workflow); it never
-   re-publishes the manual.
+   record back and require the stored value to match. ``HTML_link`` is a
+   ``url``-type field, which lark-cli renders as ``[url](url)``, so both
+   comparisons normalize through ``document_link_queue.url_field_matches``
+   rather than comparing raw strings. A failed registration leaves the run red
+   for an independent retry (re-run the workflow); it never re-publishes the
+   manual.
 
 Rate limiting is undecided, not disproof: a run that ends throttled exits 75
 (sysexits EX_TEMPFAIL) so CI can say "re-run", mirroring
@@ -33,7 +36,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import sys
 import time
 from typing import Any
 
@@ -45,17 +47,21 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools import rtd_deployment_receipt as receipt  # noqa: E402
-from tools.document_link_queue import scalar_text  # noqa: E402
-from tools.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
+from tools.rtd import deployment_receipt as receipt  # noqa: E402
+from tools.web.document_link_queue import (  # noqa: E402
+    describe_url_field,
+    scalar_text,
+    url_field_matches,
+)
+from tools.build_queue.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity  # noqa: E402
 from tools.publish_locale_identity import safe_queue_record_ids  # noqa: E402
-from tools.queue_bound_binding import (  # noqa: E402
+from tools.build_queue.bound_binding import (  # noqa: E402
     collect_queue_preflight_errors,
     resolve_document_link_binding,
 )
-from tools.queue_bound_lark_ops import run_lark_cli_json  # noqa: E402
+from tools.build_queue.bound_lark_ops import run_lark_cli_json  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.verify_web_deployment_targets import (  # noqa: E402
     PUBLISH_MANIFEST,
@@ -64,6 +70,9 @@ from tools.verify_web_deployment_targets import (  # noqa: E402
     verify_targets_against_source,
 )
 from tools.write_publish_html_link import resolve_html_link_field_name  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("web-receipt", stream="stderr")
 
 
 REPORT_SCHEMA = "auto-manual-web-publish-receipt/v1"
@@ -279,7 +288,13 @@ def register_target_links(
     sleep_fn: Any = time.sleep,
     fetch_fields: Any = None,
 ) -> list[dict[str, str]]:
-    """Idempotent per-row registration: read, compare, write, read back."""
+    """Idempotent per-row registration: read, compare, write, read back.
+
+    ``HTML_link`` is a Bitable ``url``-type field, so a stored URL reads back
+    through lark-cli as ``[url](url)``. Both comparisons go through
+    ``url_field_matches``, which absorbs that rendering artifact and nothing
+    else — a pair whose halves disagree still fails the readback.
+    """
     fetch = fetch_fields or fetch_record_fields
     outcomes: list[dict[str, str]] = []
     for record_id in target["queue_record_ids"]:
@@ -291,7 +306,7 @@ def register_target_links(
             record_id=record_id,
         )
         before = scalar_text(before_fields.get(field_name)).strip()
-        if before == url:
+        if url_field_matches(before, url):
             print(f"[web-receipt] SKIP {record_id}: {field_name} already registered ({url})")
             outcomes.append({"record_id": record_id, "action": "already-registered"})
             continue
@@ -311,10 +326,10 @@ def register_target_links(
             record_id=record_id,
         )
         after = scalar_text(after_fields.get(field_name)).strip()
-        if after != url:
+        if not url_field_matches(after, url):
             raise RuntimeError(
                 f"HTML_link readback mismatch for {record_id}: wrote {url!r}, "
-                f"read back {after!r}"
+                f"read back {describe_url_field(after)}"
             )
         print(f"[web-receipt] WROTE {record_id}: {field_name}={url} (readback verified)")
         outcomes.append({"record_id": record_id, "action": "written"})
@@ -368,7 +383,8 @@ def run(
     report["verify_status"] = status
     report["verify_attempts"] = attempts
     verified_targets: list[dict[str, Any]] = []
-    for target, result in zip(targets, results):
+    # zip(strict=False): source data may differ in length; keep the existing truncation
+    for target, result in zip(targets, results, strict=False):
         entry: dict[str, Any] = {
             "model": target["model"],
             "region": target["region"],
@@ -469,8 +485,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
         exit_code, report = run(args)
-    except Exception as exc:
-        print(f"[web-receipt] ERROR: {exc}", file=sys.stderr)
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
+        _ERR.error(f"[web-receipt] ERROR: {exc}")
         return EXIT_FAILED
     if args.report_json is not None:
         report_path = Path(args.report_json)

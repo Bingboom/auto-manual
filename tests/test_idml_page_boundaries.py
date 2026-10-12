@@ -67,8 +67,6 @@ ALLOWED_MODEL_COMPARISONS = {
 MODEL_LITERAL_PATTERN = re.compile(r"jbp[-_ ]?2000b|je[-_]?\d{3,4}[a-z]?", re.I)
 ALLOWED_MODEL_LITERALS = {
     ("asset_contracts.py", "asset:controls/je1000f_us/network_pairing_panel"),
-    ("prose_image.py", "/app/je1000f_us/add_device_je1000f_us.png"),
-    ("prose_image.py", "/app/je1000f_us/connect_result_je1000f_us.png"),
     ("page_placed.py", "docs/renderers/latex/assets/back_cover_qr_jbp2000b.pdf"),
     ("page_placed.py", "jbp2000b"),
     ("page_placed.py", "je1000f"),

@@ -1,0 +1,105 @@
+{
+  "version": "git-20261005-31fd0692-symbols1",
+  "boundary": "Local browser validation; final frozen source receipt verified at committed ref. Source Markdown and symbol bytes unchanged from verified responsive preview.",
+  "desktop": {
+    "documentWidth": 1440,
+    "imageCount": 11,
+    "imagesLoaded": true,
+    "panels": [
+      {
+        "width": 396.515625,
+        "x": 316.59375
+      },
+      {
+        "width": 396.515625,
+        "x": 733.109375
+      }
+    ],
+    "viewport": 1440
+  },
+  "mobile": {
+    "documentWidth": 390,
+    "imageCount": 11,
+    "imagesLoaded": true,
+    "panels": [
+      {
+        "width": 354,
+        "x": 18
+      },
+      {
+        "width": 354,
+        "x": 18
+      }
+    ],
+    "viewport": 390
+  },
+  "narrow": {
+    "brokenImages": [],
+    "documentWidth": 320,
+    "imagesLoaded": true,
+    "panels": [
+      {
+        "width": 284,
+        "x": 18
+      },
+      {
+        "width": 284,
+        "x": 18
+      }
+    ],
+    "viewport": 320
+  },
+  "safetyDesktop": {
+    "columns": [
+      {
+        "display": "table-cell",
+        "width": 408.515625
+      },
+      {
+        "display": "table-cell",
+        "width": 408.515625
+      },
+      {
+        "display": "table-cell",
+        "width": 408.515625
+      },
+      {
+        "display": "table-cell",
+        "width": 408.515625
+      }
+    ],
+    "documentWidth": 1440,
+    "titleDisplay": "none",
+    "viewport": 1440,
+    "warningLoaded": true
+  },
+  "safetyNarrow": {
+    "columns": [
+      {
+        "display": "block",
+        "width": 288
+      },
+      {
+        "display": "block",
+        "width": 288
+      },
+      {
+        "display": "block",
+        "width": 288
+      },
+      {
+        "display": "block",
+        "width": 288
+      }
+    ],
+    "documentWidth": 320,
+    "heading": {
+      "background": "rgb(52, 48, 49)",
+      "color": "rgb(255, 255, 255)"
+    },
+    "titleDisplay": "none",
+    "viewport": 320,
+    "warningLoaded": true
+  },
+  "source_git_ref": "c6206a0a1dde99817aee3b324d267be5d883d18e"
+}

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+from dataclasses import dataclass, field
 from pathlib import Path
 import re
 from typing import cast
@@ -47,7 +48,7 @@ def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]
 def _to_float(value: str, default: float = 0.0) -> float:
     try:
         return float((value or "").strip())
-    except Exception:
+    except ValueError:
         return default
 
 
@@ -196,6 +197,412 @@ def _apply_spec_title_map(title: str, title_map: dict[str, str]) -> str:
     return title_map.get(raw.lower(), raw)
 
 
+@dataclass
+class _SpecAccumulator:
+    """Everything the per-row pass of ``_parse_spec_master_sections`` collects."""
+
+    rows: list[dict[str, object]] = field(default_factory=list)
+    notes: list[tuple[float, str]] = field(default_factory=list)
+    footnotes: list[tuple[float, str]] = field(default_factory=list)
+    footnote_defs: list[tuple[float, str, str]] = field(default_factory=list)
+    referenced_footnote_ids_by_page: dict[str, set[str]] = field(default_factory=dict)
+    target_source_langs: set[str] = field(default_factory=set)
+    title_candidates: list[tuple[float, str]] = field(default_factory=list)
+    section_title_overrides: dict[str, str] = field(default_factory=dict)
+
+
+def _reject_unquoted_commas(row: dict[str, str], idx: int) -> None:
+    overflow = cast(dict[str | None, object], row).get(None)
+    if isinstance(overflow, list) and any(str(x).strip() for x in overflow):
+        line = (row.get("__line__") or str(idx + 2)).strip()
+        raise ValueError(
+            f"Spec_Master CSV line {line} has unquoted commas in a field. "
+            "Quote the full cell value (e.g. Value_source=\"A, B, C\")."
+        )
+
+
+def _spec_row_page(
+    row: dict[str, str],
+    *,
+    target_sku: str,
+    var_region: str,
+    var_model: str,
+) -> str | None:
+    """Return the row's page value when it belongs to this target's spec page, else ``None``."""
+
+    if not _is_enabled_row(row):
+        return None
+    if not _is_latest_row(row):
+        return None
+
+    if target_sku and "sku_scope" in row and not _scope_allows(row.get("sku_scope", "ALL"), target_sku):
+        return None
+    if target_sku and "sku_id" in row:
+        row_sku = rst_escape(row.get("sku_id") or "")
+        if row_sku and row_sku != target_sku:
+            return None
+
+    row_region = _first_non_empty(row, ["Region", "region"])
+    if not region_value_matches_target(row_region, var_region):
+        return None
+    row_model = _first_non_empty(
+        row,
+        ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"],
+    )
+    if not model_value_matches_target(
+        row_model,
+        target_model=var_model,
+        target_region=var_region,
+        row_region=row_region,
+    ):
+        return None
+
+    page_value = _first_non_empty(row, ["Page", "page"])
+    if not page_value_matches(page_value, ("spec", "specifications")):
+        return None
+    return page_value
+
+
+def _spec_row_kind(row: dict[str, str], *, footnote_id: str, note_id: str) -> str:
+    row_kind = _first_non_empty(row, ["row_kind", "Row_kind", "kind", "Kind", "type", "Type"]).lower()
+    if row_kind:
+        return row_kind
+    if footnote_id:
+        return "footnote"
+    if note_id:
+        return "note"
+    return "data"
+
+
+def _collect_spec_annotations(
+    acc: _SpecAccumulator,
+    row: dict[str, str],
+    *,
+    row_kind: str,
+    footnote_id: str,
+    base_order: float,
+    lang: str,
+    vars_map: dict[str, str],
+) -> None:
+    """Collect the row's page title, section-title override, note and footnote."""
+
+    title_text = _pick_spec_lang_text(
+        row,
+        base="page_title",
+        lang=lang,
+        default_keys=["title_main", "Title_main"],
+    )
+    if title_text:
+        acc.title_candidates.append((base_order, apply_vars(title_text, vars_map)))
+
+    section_key_for_title = _first_non_empty(row, ["Section", "section"])
+    section_title_for_title = _pick_spec_lang_text(
+        row,
+        base="section_title",
+        lang=lang,
+        default_keys=[f"Section_{lang}", "Section_en", "Section"],
+    )
+    if (
+        section_key_for_title
+        and section_title_for_title
+        and row_kind in {"title", "section_title", "title_map"}
+    ):
+        acc.section_title_overrides[section_key_for_title] = apply_vars(
+            section_title_for_title,
+            vars_map,
+        )
+
+    note_text = _pick_spec_lang_text(
+        row,
+        base="note_text",
+        lang=lang,
+        default_keys=["note", "Note"],
+    )
+    if note_text and row_kind in {"note", "data"}:
+        note_order = _to_float(_first_non_empty(row, ["note_order", "Note_order"]), base_order)
+        acc.notes.append((note_order, apply_vars(note_text, vars_map)))
+
+    footnote_mark = _first_non_empty(row, ["footnote_mark", "Footnote_mark"])
+    footnote_text = _pick_spec_lang_text(
+        row,
+        base="footnote_text",
+        lang=lang,
+        default_keys=["footnote", "Footnote"],
+    )
+    if footnote_text and row_kind in {"footnote", "data"}:
+        footnote_order = _to_float(
+            _first_non_empty(row, ["footnote_order", "Footnote_order"]),
+            base_order,
+        )
+        if footnote_id:
+            acc.footnote_defs.append(
+                (
+                    footnote_order,
+                    footnote_id,
+                    apply_vars(_strip_legacy_footnote_prefix(footnote_text), vars_map),
+                )
+            )
+        else:
+            acc.footnotes.append(
+                (
+                    footnote_order,
+                    apply_vars(f"{footnote_mark}{footnote_text}", vars_map),
+                )
+            )
+
+
+def _spec_data_row(
+    acc: _SpecAccumulator,
+    row: dict[str, str],
+    *,
+    idx: int,
+    page_value: str,
+    lang: str,
+    vars_map: dict[str, str],
+    section_order_map: dict[str, float],
+) -> dict[str, object] | None:
+    """Build one spec table line from a data row; ``None`` when the row has no table content."""
+
+    section_key = _first_non_empty(row, ["Section", "section"])
+    row_key = _first_non_empty(row, ["Row_key", "row_key"])
+    if not section_key or not row_key:
+        return None
+    usage_type = _first_non_empty(row, ["Usage_type", "usage_type"]).strip().lower()
+    if usage_type == "page_value" or section_key.strip().lower() == "template vars":
+        return None
+
+    section_title = _pick_spec_lang_text(
+        row,
+        base="section_title",
+        lang=lang,
+        default_keys=[f"Section_{lang}", "Section_en", "Section"],
+    )
+    section_order = _to_float(
+        _first_non_empty(row, ["Section_order", "section_order"]),
+        section_order_map.get(section_key.strip().lower(), 99.0),
+    )
+    row_order = _to_float(_first_non_empty(row, ["row_order", "Row_order"]), idx)
+    line_order = _to_float(_first_non_empty(row, ["Line_order", "line_order"]), 1.0)
+
+    row_label = _pick_spec_lang_text(
+        row,
+        base="Row_label",
+        lang=lang,
+        default_keys=["Row_label_source", "Row_key"],
+    )
+    explicit_line_text = _pick_spec_lang_text(
+        row,
+        base="line_text",
+        lang=lang,
+        default_keys=[],
+    )
+    param_text = _pick_spec_lang_text(
+        row,
+        base="Param",
+        lang=lang,
+        default_keys=["Param_source", "Param_name"],
+    )
+    value_text = _pick_spec_lang_text(
+        row,
+        base="Value",
+        lang=lang,
+        default_keys=["Value_source", "Spec_Value"],
+    )
+    if not row_label or (not explicit_line_text and not param_text and not value_text):
+        return None
+
+    row_label_refs = _parse_footnote_refs(
+        _first_non_empty(row, ["Row_label_footnote_refs", "row_label_footnote_refs"])
+    )
+    param_refs = _parse_footnote_refs(
+        _first_non_empty(row, ["Param_footnote_refs", "param_footnote_refs"])
+    )
+    value_refs = _parse_footnote_refs(
+        _first_non_empty(row, ["Value_footnote_refs", "value_footnote_refs"])
+    )
+    if row_label_refs or param_refs or value_refs:
+        page_token = page_value or "specifications"
+        acc.referenced_footnote_ids_by_page.setdefault(page_token, set()).update(
+            [*row_label_refs, *param_refs, *value_refs]
+        )
+    sep = _pick_spec_lang_text(
+        row,
+        base="param_value_sep",
+        lang=lang,
+        default_keys=["param_value_sep"],
+    ) or ": "
+    if sep == ":":
+        sep = ": "
+
+    return {
+        "section_key": section_key,
+        "section_title": apply_vars(section_title, vars_map),
+        "section_order": section_order,
+        "row_key": row_key,
+        "row_label": apply_vars(row_label, vars_map),
+        "row_order": row_order,
+        "line_order": line_order,
+        "line_text": apply_vars(explicit_line_text, vars_map),
+        "param_text": apply_vars(param_text, vars_map),
+        "value_text": apply_vars(value_text, vars_map),
+        "param_value_sep": apply_vars(sep, vars_map),
+        "row_label_refs": row_label_refs,
+        "param_refs": param_refs,
+        "value_refs": value_refs,
+        "source_order": idx,
+    }
+
+
+def _add_referenced_footnotes(
+    acc: _SpecAccumulator,
+    blocks: list[dict[str, str]],
+    *,
+    model: str,
+    region: str,
+    lang: str,
+    vars_map: dict[str, str],
+) -> None:
+    """Define footnotes that table cells reference but no in-scope row defined."""
+
+    existing_footnote_ids = {footnote_id for _order, footnote_id, _text in acc.footnote_defs}
+    for footnote_row in collect_matching_footnote_rows(
+        blocks,
+        model=model,
+        region=region,
+        referenced_ids_by_page=acc.referenced_footnote_ids_by_page,
+        preferred_source_langs=acc.target_source_langs,
+    ):
+        footnote_id = _first_non_empty(footnote_row, ["Footnote_id", "footnote_id"])
+        if not footnote_id or footnote_id in existing_footnote_ids:
+            continue
+        footnote_text = _pick_spec_lang_text(
+            footnote_row,
+            base="footnote_text",
+            lang=lang,
+            default_keys=["footnote", "Footnote"],
+        )
+        if not footnote_text:
+            continue
+        footnote_order = _to_float(
+            _first_non_empty(footnote_row, ["footnote_order", "Footnote_order"]),
+            _to_float(_first_non_empty(footnote_row, ["row_order", "Row_order"]), 0.0),
+        )
+        acc.footnote_defs.append(
+            (
+                footnote_order,
+                footnote_id,
+                apply_vars(_strip_legacy_footnote_prefix(footnote_text), vars_map),
+            )
+        )
+        existing_footnote_ids.add(footnote_id)
+
+
+def _group_spec_rows(rows: list[dict[str, object]]) -> dict[str, dict[str, object]]:
+    """Group spec lines into sections and, within a section, into labelled rows."""
+
+    section_dict: dict[str, dict[str, object]] = {}
+    group_source_orders: dict[tuple[str, str], int] = {}
+    for spec_row in sorted(rows, key=lambda x: (x["section_order"], x["source_order"])):
+        section_key = str(spec_row["section_key"])
+        section = section_dict.setdefault(
+            section_key,
+            {
+                "title": spec_row["section_title"] or spec_row["section_key"],
+                "order": spec_row["section_order"],
+                "rows": {},
+                "source_order": spec_row["source_order"],
+            },
+        )
+        rows_map = section["rows"]
+        assert isinstance(rows_map, dict)
+        group_source_order = group_source_orders.setdefault(
+            (section_key, str(spec_row["row_key"])), int(cast(int, spec_row["source_order"]))
+        )
+        # A shared semantic key may contain separately labelled ports. Do not
+        # discard their localized labels or attach one port's notes to another.
+        row_group_key = (str(spec_row["row_key"]), str(spec_row["row_label"]), tuple(cast(list[str], spec_row["row_label_refs"])))
+        item = rows_map.setdefault(
+            row_group_key,
+            {
+                "label": spec_row["row_label"],
+                "label_refs": spec_row["row_label_refs"],
+                "order": spec_row["row_order"],
+                "source_order": spec_row["source_order"],
+                "group_source_order": group_source_order,
+                "line_order": spec_row["line_order"],
+                "lines": [],
+            },
+        )
+        lines = item["lines"]
+        assert isinstance(lines, list)
+        item["line_order"] = min(float(cast(float, item["line_order"])), float(cast(float, spec_row["line_order"])))
+        lines.append(
+            (
+                float(cast(float, spec_row["line_order"])),
+                int(cast(int, spec_row["source_order"])),
+                str(spec_row["line_text"]),
+                str(spec_row["param_text"]),
+                str(spec_row["value_text"]),
+                str(spec_row["param_value_sep"]),
+                cast(list[str], spec_row["param_refs"]),
+                cast(list[str], spec_row["value_refs"]),
+            )
+        )
+    return section_dict
+
+
+def _render_spec_row_lines(lines: list[tuple], footnote_marker_by_id: dict[str, str]) -> list[str]:
+    lines_sorted: list[str] = []
+    for _line_order, _source_order, explicit_line_text, param_text, value_text, sep, param_refs, value_refs in sorted(
+        lines,
+        key=lambda t: (t[0], t[1]),
+    ):
+        if explicit_line_text:
+            combined_refs = list(dict.fromkeys([*param_refs, *value_refs]))
+            lines_sorted.append(
+                _append_footnote_markers(explicit_line_text, combined_refs, footnote_marker_by_id)
+            )
+            continue
+
+        param_with_markers = _append_footnote_markers(param_text, param_refs, footnote_marker_by_id)
+        value_with_markers = _append_footnote_markers(value_text, value_refs, footnote_marker_by_id)
+        if param_with_markers and value_with_markers:
+            lines_sorted.append(f"{param_with_markers}{sep}{value_with_markers}")
+        else:
+            lines_sorted.append(value_with_markers or param_with_markers)
+    return lines_sorted
+
+
+def _render_spec_sections(
+    section_dict: dict[str, dict[str, object]],
+    footnote_marker_by_id: dict[str, str],
+) -> list[dict[str, object]]:
+    sections: list[dict[str, object]] = []
+    for section in sorted(
+        section_dict.values(),
+        key=lambda x: (float(cast(float, x["order"])), int(cast(int, x["source_order"]))),
+    ):
+        rows_map = section["rows"]
+        assert isinstance(rows_map, dict)
+        out_rows: list[tuple[str, str]] = []
+        for row in sorted(
+            rows_map.values(),
+            key=lambda x: (float(x["order"]), int(x["group_source_order"]),
+                           float(x["line_order"]), int(x["source_order"])),
+        ):
+            lines = row["lines"]
+            assert isinstance(lines, list)
+            lines_sorted = _render_spec_row_lines(lines, footnote_marker_by_id)
+            label_text = _append_footnote_markers(
+                str(row["label"]),
+                cast(list[str], row.get("label_refs") or []),
+                footnote_marker_by_id,
+            )
+            out_rows.append((label_text, "\n".join(lines_sorted)))
+        sections.append({"title": str(section["title"]), "rows": out_rows})
+    return sections
+
+
 def _parse_spec_master_sections(
     blocks: list[dict[str, str]],
     *,
@@ -203,14 +610,7 @@ def _parse_spec_master_sections(
     lang: str,
     vars_map: dict[str, str],
 ) -> tuple[str, list[dict[str, object]], list[str], list[str]]:
-    rows: list[dict[str, object]] = []
-    notes: list[tuple[float, str]] = []
-    footnotes: list[tuple[float, str]] = []
-    footnote_defs: list[tuple[float, str, str]] = []
-    referenced_footnote_ids_by_page: dict[str, set[str]] = {}
-    target_source_langs: set[str] = set()
-    title_candidates: list[tuple[float, str]] = []
-    section_title_overrides: dict[str, str] = {}
+    acc = _SpecAccumulator()
 
     var_region = _first_non_empty(vars_map, ["region", "Region"])
     raw_var_model = _first_non_empty(vars_map, ["model", "product_model", "model_no", "Model"])
@@ -227,259 +627,66 @@ def _parse_spec_master_sections(
 
     for idx, raw in enumerate(blocks):
         row = dict(raw)
-        overflow = row.get(None)
-        if isinstance(overflow, list) and any(str(x).strip() for x in overflow):
-            line = (row.get("__line__") or str(idx + 2)).strip()
-            raise ValueError(
-                f"Spec_Master CSV line {line} has unquoted commas in a field. "
-                "Quote the full cell value (e.g. Value_source=\"A, B, C\")."
-            )
-
-        if not _is_enabled_row(row):
-            continue
-        if not _is_latest_row(row):
-            continue
-
-        if target_sku and "sku_scope" in row and not _scope_allows(row.get("sku_scope", "ALL"), target_sku):
-            continue
-        if target_sku and "sku_id" in row:
-            row_sku = rst_escape(row.get("sku_id") or "")
-            if row_sku and row_sku != target_sku:
-                continue
-
-        row_region = _first_non_empty(row, ["Region", "region"])
-        if not region_value_matches_target(row_region, var_region):
-            continue
-        row_model = _first_non_empty(
+        _reject_unquoted_commas(row, idx)
+        page_value = _spec_row_page(
             row,
-            ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"],
+            target_sku=target_sku,
+            var_region=var_region,
+            var_model=var_model,
         )
-        if not model_value_matches_target(
-            row_model,
-            target_model=var_model,
-            target_region=var_region,
-            row_region=row_region,
-        ):
-            continue
-
-        page_value = _first_non_empty(row, ["Page", "page"])
-        if not page_value_matches(page_value, ("spec", "specifications")):
+        if page_value is None:
             continue
 
         footnote_id = _first_non_empty(row, ["Footnote_id", "footnote_id"])
         note_id = _first_non_empty(row, ["Note_id", "note_id"])
-        row_kind = _first_non_empty(row, ["row_kind", "Row_kind", "kind", "Kind", "type", "Type"]).lower()
-        if not row_kind:
-            if footnote_id:
-                row_kind = "footnote"
-            elif note_id:
-                row_kind = "note"
-            else:
-                row_kind = "data"
+        row_kind = _spec_row_kind(row, footnote_id=footnote_id, note_id=note_id)
         source_lang = source_language_for_row(row)
         if source_lang and row_kind not in {"note", "footnote"}:
-            target_source_langs.add(source_lang)
+            acc.target_source_langs.add(source_lang)
         base_order = _to_float(_first_non_empty(row, ["row_order", "Row_order"]), idx)
-        title_text = _pick_spec_lang_text(
+        _collect_spec_annotations(
+            acc,
             row,
-            base="page_title",
+            row_kind=row_kind,
+            footnote_id=footnote_id,
+            base_order=base_order,
             lang=lang,
-            default_keys=["title_main", "Title_main"],
+            vars_map=vars_map,
         )
-        if title_text:
-            title_candidates.append((base_order, apply_vars(title_text, vars_map)))
-
-        section_key_for_title = _first_non_empty(row, ["Section", "section"])
-        section_title_for_title = _pick_spec_lang_text(
-            row,
-            base="section_title",
-            lang=lang,
-            default_keys=[f"Section_{lang}", "Section_en", "Section"],
-        )
-        if (
-            section_key_for_title
-            and section_title_for_title
-            and row_kind in {"title", "section_title", "title_map"}
-        ):
-            section_title_overrides[section_key_for_title] = apply_vars(
-                section_title_for_title,
-                vars_map,
-            )
-
-        note_text = _pick_spec_lang_text(
-            row,
-            base="note_text",
-            lang=lang,
-            default_keys=["note", "Note"],
-        )
-        if note_text and row_kind in {"note", "data"}:
-            note_order = _to_float(_first_non_empty(row, ["note_order", "Note_order"]), base_order)
-            notes.append((note_order, apply_vars(note_text, vars_map)))
-
-        footnote_mark = _first_non_empty(row, ["footnote_mark", "Footnote_mark"])
-        footnote_text = _pick_spec_lang_text(
-            row,
-            base="footnote_text",
-            lang=lang,
-            default_keys=["footnote", "Footnote"],
-        )
-        if footnote_text and row_kind in {"footnote", "data"}:
-            footnote_order = _to_float(
-                _first_non_empty(row, ["footnote_order", "Footnote_order"]),
-                base_order,
-            )
-            if footnote_id:
-                footnote_defs.append(
-                    (
-                        footnote_order,
-                        footnote_id,
-                        apply_vars(_strip_legacy_footnote_prefix(footnote_text), vars_map),
-                    )
-                )
-            else:
-                footnotes.append(
-                    (
-                        footnote_order,
-                        apply_vars(f"{footnote_mark}{footnote_text}", vars_map),
-                    )
-                )
-
         if row_kind in {"note", "footnote", "title"}:
             continue
-
-        section_key = _first_non_empty(row, ["Section", "section"])
-        row_key = _first_non_empty(row, ["Row_key", "row_key"])
-        if not section_key or not row_key:
-            continue
-        usage_type = _first_non_empty(row, ["Usage_type", "usage_type"]).strip().lower()
-        if usage_type == "page_value" or section_key.strip().lower() == "template vars":
-            continue
-
-        section_title = _pick_spec_lang_text(
+        spec_row = _spec_data_row(
+            acc,
             row,
-            base="section_title",
+            idx=idx,
+            page_value=page_value,
             lang=lang,
-            default_keys=[f"Section_{lang}", "Section_en", "Section"],
+            vars_map=vars_map,
+            section_order_map=section_order_map,
         )
-        section_order = _to_float(
-            _first_non_empty(row, ["Section_order", "section_order"]),
-            section_order_map.get(section_key.strip().lower(), 99.0),
-        )
-        row_order = _to_float(_first_non_empty(row, ["row_order", "Row_order"]), idx)
-        line_order = _to_float(_first_non_empty(row, ["Line_order", "line_order"]), 1.0)
+        if spec_row is not None:
+            acc.rows.append(spec_row)
 
-        row_label = _pick_spec_lang_text(
-            row,
-            base="Row_label",
-            lang=lang,
-            default_keys=["Row_label_source", "Row_key"],
-        )
-        explicit_line_text = _pick_spec_lang_text(
-            row,
-            base="line_text",
-            lang=lang,
-            default_keys=[],
-        )
-        param_text = _pick_spec_lang_text(
-            row,
-            base="Param",
-            lang=lang,
-            default_keys=["Param_source", "Param_name"],
-        )
-        value_text = _pick_spec_lang_text(
-            row,
-            base="Value",
-            lang=lang,
-            default_keys=["Value_source", "Spec_Value"],
-        )
-        if not row_label or (not explicit_line_text and not param_text and not value_text):
-            continue
-
-        row_label_refs = _parse_footnote_refs(
-            _first_non_empty(row, ["Row_label_footnote_refs", "row_label_footnote_refs"])
-        )
-        param_refs = _parse_footnote_refs(
-            _first_non_empty(row, ["Param_footnote_refs", "param_footnote_refs"])
-        )
-        value_refs = _parse_footnote_refs(
-            _first_non_empty(row, ["Value_footnote_refs", "value_footnote_refs"])
-        )
-        if row_label_refs or param_refs or value_refs:
-            page_token = page_value or "specifications"
-            referenced_footnote_ids_by_page.setdefault(page_token, set()).update(
-                [*row_label_refs, *param_refs, *value_refs]
-            )
-        sep = _pick_spec_lang_text(
-            row,
-            base="param_value_sep",
-            lang=lang,
-            default_keys=["param_value_sep"],
-        ) or ": "
-        if sep == ":":
-            sep = ": "
-
-        rows.append(
-            {
-                "section_key": section_key,
-                "section_title": apply_vars(section_title, vars_map),
-                "section_order": section_order,
-                "row_key": row_key,
-                "row_label": apply_vars(row_label, vars_map),
-                "row_order": row_order,
-                "line_order": line_order,
-                "line_text": apply_vars(explicit_line_text, vars_map),
-                "param_text": apply_vars(param_text, vars_map),
-                "value_text": apply_vars(value_text, vars_map),
-                "param_value_sep": apply_vars(sep, vars_map),
-                "row_label_refs": row_label_refs,
-                "param_refs": param_refs,
-                "value_refs": value_refs,
-                "source_order": idx,
-            }
-        )
-
-    if referenced_footnote_ids_by_page:
-        existing_footnote_ids = {footnote_id for _order, footnote_id, _text in footnote_defs}
-        for row in collect_matching_footnote_rows(
+    if acc.referenced_footnote_ids_by_page:
+        _add_referenced_footnotes(
+            acc,
             blocks,
             model=var_model or raw_var_model,
             region=var_region,
-            referenced_ids_by_page=referenced_footnote_ids_by_page,
-            preferred_source_langs=target_source_langs,
-        ):
-            footnote_id = _first_non_empty(row, ["Footnote_id", "footnote_id"])
-            if not footnote_id or footnote_id in existing_footnote_ids:
-                continue
-            footnote_text = _pick_spec_lang_text(
-                row,
-                base="footnote_text",
-                lang=lang,
-                default_keys=["footnote", "Footnote"],
-            )
-            if not footnote_text:
-                continue
-            footnote_order = _to_float(
-                _first_non_empty(row, ["footnote_order", "Footnote_order"]),
-                _to_float(_first_non_empty(row, ["row_order", "Row_order"]), 0.0),
-            )
-            footnote_defs.append(
-                (
-                    footnote_order,
-                    footnote_id,
-                    apply_vars(_strip_legacy_footnote_prefix(footnote_text), vars_map),
-                )
-            )
-            existing_footnote_ids.add(footnote_id)
+            lang=lang,
+            vars_map=vars_map,
+        )
 
-    if section_title_overrides:
-        for row in rows:
-            key = str(row.get("section_key") or "")
-            if key in section_title_overrides:
-                row["section_title"] = section_title_overrides[key]
+    rows = acc.rows
+    if acc.section_title_overrides:
+        for spec_row in rows:
+            key = str(spec_row.get("section_key") or "")
+            if key in acc.section_title_overrides:
+                spec_row["section_title"] = acc.section_title_overrides[key]
 
     footnote_marker_by_id = {
         footnote_id: _footnote_marker_for_order(order)
-        for order, footnote_id, _text in sorted(footnote_defs, key=lambda item: item[0])
+        for order, footnote_id, _text in sorted(acc.footnote_defs, key=lambda item: item[0])
     }
 
     if not rows:
@@ -488,106 +695,17 @@ def _parse_spec_master_sections(
             f"spec page has no usable Spec_Master rows for sku={sku_id} lang={lang}{model_msg}"
         )
 
-    section_dict: dict[str, dict[str, object]] = {}
-    group_source_orders: dict[tuple[str, str], int] = {}
-    for row in sorted(rows, key=lambda x: (x["section_order"], x["source_order"])):
-        section_key = str(row["section_key"])
-        section = section_dict.setdefault(
-            section_key,
-            {
-                "title": row["section_title"] or row["section_key"],
-                "order": row["section_order"],
-                "rows": {},
-                "source_order": row["source_order"],
-            },
-        )
-        rows_map = section["rows"]
-        assert isinstance(rows_map, dict)
-        group_source_order = group_source_orders.setdefault(
-            (section_key, str(row["row_key"])), int(row["source_order"])
-        )
-        # A shared semantic key may contain separately labelled ports. Do not
-        # discard their localized labels or attach one port's notes to another.
-        row_key = (str(row["row_key"]), str(row["row_label"]), tuple(row["row_label_refs"]))
-        item = rows_map.setdefault(
-            row_key,
-            {
-                "label": row["row_label"],
-                "label_refs": row["row_label_refs"],
-                "order": row["row_order"],
-                "source_order": row["source_order"],
-                "group_source_order": group_source_order,
-                "line_order": row["line_order"],
-                "lines": [],
-            },
-        )
-        lines = item["lines"]
-        assert isinstance(lines, list)
-        item["line_order"] = min(float(item["line_order"]), float(row["line_order"]))
-        lines.append(
-            (
-                float(row["line_order"]),
-                int(row["source_order"]),
-                str(row["line_text"]),
-                str(row["param_text"]),
-                str(row["value_text"]),
-                str(row["param_value_sep"]),
-                cast(list[str], row["param_refs"]),
-                cast(list[str], row["value_refs"]),
-            )
-        )
+    sections = _render_spec_sections(_group_spec_rows(rows), footnote_marker_by_id)
 
-    sections: list[dict[str, object]] = []
-    for section in sorted(
-        section_dict.values(),
-        key=lambda x: (float(x["order"]), int(x["source_order"])),
-    ):
-        rows_map = section["rows"]
-        assert isinstance(rows_map, dict)
-        out_rows: list[tuple[str, str]] = []
-        for row in sorted(
-            rows_map.values(),
-            key=lambda x: (float(x["order"]), int(x["group_source_order"]),
-                           float(x["line_order"]), int(x["source_order"])),
-        ):
-            lines = row["lines"]
-            assert isinstance(lines, list)
-            lines_sorted: list[str] = []
-            for _line_order, _source_order, explicit_line_text, param_text, value_text, sep, param_refs, value_refs in sorted(
-                lines,
-                key=lambda t: (t[0], t[1]),
-            ):
-                if explicit_line_text:
-                    combined_refs = list(dict.fromkeys([*param_refs, *value_refs]))
-                    lines_sorted.append(
-                        _append_footnote_markers(explicit_line_text, combined_refs, footnote_marker_by_id)
-                    )
-                    continue
-
-                param_with_markers = _append_footnote_markers(param_text, param_refs, footnote_marker_by_id)
-                value_with_markers = _append_footnote_markers(value_text, value_refs, footnote_marker_by_id)
-                if param_with_markers and value_with_markers:
-                    lines_sorted.append(f"{param_with_markers}{sep}{value_with_markers}")
-                else:
-                    lines_sorted.append(value_with_markers or param_with_markers)
-
-            label_text = _append_footnote_markers(
-                str(row["label"]),
-                cast(list[str], row.get("label_refs") or []),
-                footnote_marker_by_id,
-            )
-            out_rows.append((label_text, "\n".join(lines_sorted)))
-        sections.append({"title": str(section["title"]), "rows": out_rows})
-
-    notes_text = [x[1] for x in sorted(notes, key=lambda t: t[0])]
+    notes_text = [x[1] for x in sorted(acc.notes, key=lambda t: t[0])]
     generated_footnotes = [
         (order, f"{_footnote_marker_for_order(order)} {text}".strip())
-        for order, _footnote_id, text in sorted(footnote_defs, key=lambda item: item[0])
+        for order, _footnote_id, text in sorted(acc.footnote_defs, key=lambda item: item[0])
     ]
-    footnotes_text = [x[1] for x in sorted([*footnotes, *generated_footnotes], key=lambda t: t[0])]
+    footnotes_text = [x[1] for x in sorted([*acc.footnotes, *generated_footnotes], key=lambda t: t[0])]
 
-    if title_candidates:
-        title_main = sorted(title_candidates, key=lambda t: t[0])[0][1]
+    if acc.title_candidates:
+        title_main = sorted(acc.title_candidates, key=lambda t: t[0])[0][1]
     else:
         # Canonical key only; localized per-language via spec_titles
         # (_apply_spec_title_map below). Do not hardcode localized titles here.
@@ -662,9 +780,10 @@ def collect_spec_content(
                 return r["text"]
         raise ValueError(f"Missing required block_type='{block_type}' sku={sku_id} lang={lang}")
 
-    sections: list[dict[str, object]] = []
-    notes: list[str] = []
-    footnotes: list[str] = []
+    # Same types as the Spec_Master branch above, which returns early.
+    sections = []
+    notes = []
+    footnotes = []
     current_section: dict[str, object] | None = None
 
     for r in sorted(use, key=sort_key):

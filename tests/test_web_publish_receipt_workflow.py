@@ -45,7 +45,7 @@ class TestWebPublishReceiptWorkflow(unittest.TestCase):
             if step.get("name") == "Verify deployment and register HTML_link"
         )
         run = str(register["run"])
-        self.assertIn("tools/write_web_publish_receipt_links.py", run)
+        self.assertIn("tools.write_web_publish_receipt_links", run)
         self.assertIn("--publish-root docs/publish", run)
         self.assertIn("AUTO_MANUAL_RTD_BASE_URL", run)
         self.assertIn("--rps", run)

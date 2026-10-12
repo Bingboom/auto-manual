@@ -6,7 +6,7 @@ repo_root=$(CDPATH= cd -- "$script_dir/.." && pwd)
 cd "$repo_root"
 
 if [ "$#" -lt 1 ]; then
-  echo "[start-branch] Usage: ./scripts/start_branch.sh codex/<topic> [--allow-dirty]" >&2
+  echo "[start-branch] Usage: ./scripts/start_branch.sh <type>/<area>-<topic> [--allow-dirty]" >&2
   exit 1
 fi
 

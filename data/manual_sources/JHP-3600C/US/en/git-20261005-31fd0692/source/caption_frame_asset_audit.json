@@ -1,0 +1,34 @@
+{
+  "source_sha256": "31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7",
+  "physical_page": 24,
+  "old_asset": {
+    "path": "assets/car_charging.png",
+    "sha256": "91518e6128fb1ed99be619b671d38a232e691c8b61e48445651a5074280a7e52",
+    "reuse_status": "superseded-do-not-reuse",
+    "fresh_gate_rejection": "baked caption frame remains in base art; remove it and draw it with shared CSS"
+  },
+  "current_admission": [
+    {
+      "source_ref": "source/content.json#reference-car_charging",
+      "asset_ref": "assets/car_charging_framefree.svg",
+      "labels": [
+        {
+          "line": 1,
+          "status": "passed",
+          "baked_fill_fraction": 0.0
+        }
+      ]
+    }
+  ],
+  "recipe": "data/asset_recipes/manual_jhp3600c_us_car_framefree.json",
+  "native_geometry": {
+    "removed_caption_drawing_index": 1068,
+    "preserved": "original source SVG ancestors, clip paths, transforms and opacity; full gray panel, white housing, connectors, cord, magnification circles"
+  },
+  "live_copy": [
+    "Vehicle",
+    "*The car charging cable is sold separately."
+  ],
+  "caption_renderer": "shared .hb-reference-live-pill",
+  "limitations": "Automatic check covers declared contrasting filled ReferenceFigure caption rectangles, not outline-only/same-tone/undeclared frames. Naked art and desktop/mobile browser QC remain required."
+}

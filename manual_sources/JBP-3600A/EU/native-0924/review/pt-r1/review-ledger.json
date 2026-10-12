@@ -1,0 +1,69 @@
+{
+  "language": "pt",
+  "status": "sealed-candidate-awaiting-independent-review",
+  "publication_eligible": false,
+  "independent_acceptance": false,
+  "producer_commit": "5de0abb3a86ff53763d6bfe40c117c4577d4aafa",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "english_revision": "565c52a2d450d2b353e0186b22d0b230a2fb13ee",
+  "ir_sha256": "6ebd5988ec96e846d2278076d46b5dcdfd276fde628cb35f6119de8d45409ea6",
+  "html_sha256": "c3683edd791fb497b80f427962a65e44820b9681ec412dd585989554da50df0c",
+  "markdown_sha256": "838a0e0508f8ae8647a1a311aa634a5a1347fbc5da7510b20a18621e204ee510",
+  "copy_map_sha256": "daf848b6afb8a38ab265b3aac79cefb73e1e0b54680f6e782444404c2966d281",
+  "preview": "http://127.0.0.1:56059/pt-r1/manual_jbp3600a_eu_pt.html",
+  "checks": {
+    "strict_sphinx": "passed",
+    "cold_replay": "Markdown and HTML byte-identical",
+    "native_copy": "169 mappings, zero missing values",
+    "images": "22/22 decoded; 18 neutral English assets reused; 3 native label panels; 1 shared x5",
+    "browser": "desktop 1440x1000; mobile 390x844; no document horizontal overflow",
+    "admission": "blocked as required"
+  },
+  "shared_validation": {
+    "full_unittest": "5075 passed;35 skipped; reused unchanged shared implementation",
+    "final_badge_scope": "36 targeted passed",
+    "producer_commit": "5de0abb3a86ff53763d6bfe40c117c4577d4aafa",
+    "evidence": [
+      {
+        "path": ".tmp/jbp3600a-native-languages/unittest-fr-fixes.log",
+        "sha256": "849ea1ccf761b945d6bd5aff84a263ef3a254affb97b6bc0b5cc7fb8a50773b4"
+      },
+      {
+        "path": ".tmp/jbp3600a-native-languages/label-scope-targeted.log",
+        "sha256": "bf7fd8256f8a8f40dbf80384b43d9acc504de8dd4edfb5e329757b88ed93d1f9"
+      },
+      {
+        "path": ".tmp/jbp3600a-native-languages/guardrails.log",
+        "sha256": "391444530fdeafdbcb1c0e93c49022908ebe8428ae75d3f9793c81f06f81bb91"
+      },
+      {
+        "path": ".tmp/jbp3600a-native-languages/us-fixture-check.log",
+        "sha256": "c906f8f7cd8fbe2a383a51ee5863b12d12e0c7cdc4dfb3c9a9e43df73a279ca5"
+      }
+    ]
+  },
+  "native_source_review": {
+    "path": "review/pt-source/source-copy-review.json",
+    "sha256": "2d2732ef21ee4c512ada73932670ed6f94c2ba71e0cbb60dc0e4be4dc0bf3094"
+  },
+  "native_findings": [
+    "Native operation uses ON and Apagado; retained."
+  ],
+  "review_boundaries": [
+    "English presentation revision remains unapproved",
+    "Three native labeled-art panels and shared x5 require operator source-exception review",
+    "No locale enrollment",
+    "No multilingual merge/publication authorization"
+  ],
+  "known_findings": [],
+  "packaged_css_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+  "pending_shared_css_revision": {
+    "status": "candidate-not-approved",
+    "scope": [
+      "Desktop anchor64px clears back-to-top",
+      "Mobile wrapped warranty headings reserve their full height",
+      "Targeted warranty titles retain dark fill and112px card anchor clearance"
+    ],
+    "baseline": "Published English and French r4 remain sealed; this does not promote a new baseline."
+  }
+}

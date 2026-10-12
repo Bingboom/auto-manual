@@ -1,0 +1,146 @@
+[
+  {
+    "language": "pt",
+    "brokenImages": [],
+    "imageRect": {
+      "height": 48,
+      "width": 47.8203125,
+      "x": 484.1015625,
+      "y": 425.7734375
+    },
+    "loaded": true,
+    "naturalHeight": 142,
+    "naturalWidth": 261,
+    "pageWidth": 1280,
+    "row": "21Baterias ConectadasExibe a quantidade de baterias externas conectadas, se houver.",
+    "viewport": 1280
+  },
+  {
+    "language": "pt",
+    "brokenImages": [],
+    "imageRect": {
+      "height": 48,
+      "width": 48,
+      "x": 133.84375,
+      "y": 426.1171875
+    },
+    "loaded": true,
+    "naturalHeight": 142,
+    "naturalWidth": 261,
+    "pageWidth": 840,
+    "row": "21Baterias ConectadasExibe a quantidade de baterias externas conectadas, se houver.",
+    "viewport": 840
+  },
+  {
+    "language": "pt",
+    "brokenImages": [],
+    "imageRect": {
+      "height": 48,
+      "width": 46.3671875,
+      "x": 67.9140625,
+      "y": 426.015625
+    },
+    "loaded": true,
+    "naturalHeight": 142,
+    "naturalWidth": 261,
+    "pageWidth": 390,
+    "row": "21Baterias ConectadasExibe a quantidade de baterias externas conectadas, se houver.",
+    "viewport": 390
+  },
+  {
+    "language": "nl",
+    "brokenImages": [],
+    "imageRect": {
+      "height": 48,
+      "width": 44.421875,
+      "x": 482.9765625,
+      "y": 426.09375
+    },
+    "loaded": true,
+    "naturalHeight": 142,
+    "naturalWidth": 261,
+    "pageWidth": 1280,
+    "row": "21Aangesloten batterijenToont het aantal batterijpakketten aan als deze zijn aangesloten.",
+    "viewport": 1280
+  },
+  {
+    "language": "nl",
+    "brokenImages": [],
+    "imageRect": {
+      "height": 48,
+      "width": 48,
+      "x": 132.2109375,
+      "y": 425.890625
+    },
+    "loaded": true,
+    "naturalHeight": 142,
+    "naturalWidth": 261,
+    "pageWidth": 840,
+    "row": "21Aangesloten batterijenToont het aantal batterijpakketten aan als deze zijn aangesloten.",
+    "viewport": 840
+  },
+  {
+    "language": "nl",
+    "brokenImages": [],
+    "imageRect": {
+      "height": 48,
+      "width": 42.21875,
+      "x": 66.5703125,
+      "y": 426.21875
+    },
+    "loaded": true,
+    "naturalHeight": 142,
+    "naturalWidth": 261,
+    "pageWidth": 390,
+    "row": "21Aangesloten batterijenToont het aantal batterijpakketten aan als deze zijn aangesloten.",
+    "viewport": 390
+  },
+  {
+    "language": "pl",
+    "brokenImages": [],
+    "imageRect": {
+      "height": 48,
+      "width": 47.8203125,
+      "x": 484.1015625,
+      "y": 425.8125
+    },
+    "loaded": true,
+    "naturalHeight": 142,
+    "naturalWidth": 261,
+    "pageWidth": 1280,
+    "row": "21Podłączone zestawy bateriiWyświetla liczbę zestawów baterii, jeśli są podłączone.",
+    "viewport": 1280
+  },
+  {
+    "language": "pl",
+    "brokenImages": [],
+    "imageRect": {
+      "height": 48,
+      "width": 48,
+      "x": 133.84375,
+      "y": 426.171875
+    },
+    "loaded": true,
+    "naturalHeight": 142,
+    "naturalWidth": 261,
+    "pageWidth": 840,
+    "row": "21Podłączone zestawy bateriiWyświetla liczbę zestawów baterii, jeśli są podłączone.",
+    "viewport": 840
+  },
+  {
+    "language": "pl",
+    "brokenImages": [],
+    "imageRect": {
+      "height": 48,
+      "width": 46.3671875,
+      "x": 67.9140625,
+      "y": 425.9765625
+    },
+    "loaded": true,
+    "naturalHeight": 142,
+    "naturalWidth": 261,
+    "pageWidth": 390,
+    "row": "21Podłączone zestawy bateriiWyświetla liczbę zestawów baterii, jeśli są podłączone.",
+    "viewport": 390
+  }
+]

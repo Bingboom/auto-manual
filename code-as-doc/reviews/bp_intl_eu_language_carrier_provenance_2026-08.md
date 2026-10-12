@@ -1,5 +1,7 @@
 # BP@INTL six-language carrier provenance (2026-08)
 
+Status: done
+
 ## Scope
 
 This record is the source and normalization ledger for Milestone M R1b. The

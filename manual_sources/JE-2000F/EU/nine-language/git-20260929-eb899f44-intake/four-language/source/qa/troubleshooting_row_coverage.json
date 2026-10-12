@@ -1,0 +1,297 @@
+{
+  "method": "native PDF majority-line membership in source-local cells; expected rows frozen before shared rebuild",
+  "candidate13_observation": "PT F5 incorrectly included the first line of F6 under character intersection; PL/NL matched. Use troubleshooting.selection=lines for all three locales.",
+  "results": [
+    {
+      "language": "pl",
+      "physical_page": 164,
+      "native_action_line_count": 22,
+      "duplicates": 0,
+      "uncovered_lines": 0,
+      "rows": [
+        {
+          "code": "F0",
+          "action": "Uruchom produkt ponownie.",
+          "native_line_indices": [
+            33
+          ]
+        },
+        {
+          "code": "F1",
+          "action": "Uruchom produkt ponownie.",
+          "native_line_indices": [
+            34
+          ]
+        },
+        {
+          "code": "F2",
+          "action": "Uruchom produkt ponownie.",
+          "native_line_indices": [
+            35
+          ]
+        },
+        {
+          "code": "F3",
+          "action": "Uruchom produkt ponownie.",
+          "native_line_indices": [
+            36
+          ]
+        },
+        {
+          "code": "F4",
+          "action": "Podłącz produkt do urządzeń odbiorczych, aby rozładować baterię, aż usterka zniknie.",
+          "native_line_indices": [
+            25
+          ]
+        },
+        {
+          "code": "F5",
+          "action": "Naładuj produkt za pomocą paneli słonecznych lub z gniazdka ściennego AC do momentu, aż usterka zniknie.",
+          "native_line_indices": [
+            24
+          ]
+        },
+        {
+          "code": "F6",
+          "action": "1. Przed przystąpieniem do ładowania produktu z gniazdka ściennego AC poczekaj, aż napięcie w sieci się ustabilizuje. 2. Sprawdź, czy wlotowe i wylotowe otwory wentylacyjne nie są zablokowane. Pozostaw 20 cm odstępu po obu stronach produktu. 3. Trzymaj produkt w miejscu nienarażonym na bezpośrednie działanie promieni słonecznych ani na wysokie temperatury otoczenia. 4. Odłącz wszystkie urządzenia odbiorcze od produktu. Pozostaw produkt w stanie bezczynności i poczekaj, aż usterka zniknie. 5. Uruchom produkt ponownie.",
+          "native_line_indices": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ]
+        },
+        {
+          "code": "F7",
+          "action": "1. Odłącz wszystkie wtyki DC podłączone do produktu. 2. Sprawdź napięcie obwodu otwartego (Voc) podłączonych paneli słonecznych. Produkt dopuszcza maksymalne napięcie wejściowe DC wynoszące 60 V. 3. Zrestartuj produkt i pozostaw go w stanie bezczynności. Poczekaj, aż usterka zniknie.",
+          "native_line_indices": [
+            53,
+            54,
+            55,
+            56
+          ]
+        },
+        {
+          "code": "F8",
+          "action": "Skontaktuj się z działem obsługi klienta Jackery.",
+          "native_line_indices": [
+            47
+          ]
+        },
+        {
+          "code": "F9",
+          "action": "Odłącz urządzenia odbiorcze podłączone do portów USB produktu. Poczekaj, aż usterka zniknie.",
+          "native_line_indices": [
+            46
+          ]
+        },
+        {
+          "code": "FE",
+          "action": "Skontaktuj się z działem obsługi klienta Jackery.",
+          "native_line_indices": [
+            51
+          ]
+        }
+      ]
+    },
+    {
+      "language": "pt",
+      "physical_page": 128,
+      "native_action_line_count": 22,
+      "duplicates": 0,
+      "uncovered_lines": 0,
+      "rows": [
+        {
+          "code": "F0",
+          "action": "Reinicie o produto.",
+          "native_line_indices": [
+            32
+          ]
+        },
+        {
+          "code": "F1",
+          "action": "Reinicie o produto.",
+          "native_line_indices": [
+            33
+          ]
+        },
+        {
+          "code": "F2",
+          "action": "Reinicie o produto.",
+          "native_line_indices": [
+            34
+          ]
+        },
+        {
+          "code": "F3",
+          "action": "Reinicie o produto.",
+          "native_line_indices": [
+            35
+          ]
+        },
+        {
+          "code": "F4",
+          "action": "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.",
+          "native_line_indices": [
+            24
+          ]
+        },
+        {
+          "code": "F5",
+          "action": "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.",
+          "native_line_indices": [
+            23
+          ]
+        },
+        {
+          "code": "F6",
+          "action": "1. Aguarde a normalização da rede elétrica antes de carregar o produto por meio de uma tomada CA. 2. Veriﬁque se as entradas e saídas de ar estão obstruídas; mantenha um espaço livre de 20 cm em ambos os lados do produto. 3. Coloque o produto em um local que não esteja exposto à luz solar direta ou a altas temperaturas ambientais. 4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça. 5. Reinicie o produto.",
+          "native_line_indices": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44
+          ]
+        },
+        {
+          "code": "F7",
+          "action": "1. Remova todas as entradas CC do produto. 2. Veriﬁque a tensão de circuito aberto (Voc) dos painéis solares conectados. O produto permite uma tensão máxima de entrada CC de 60 V. 3. Reinicie o produto e mantenha-o inativo. Aguarde até que a falha desapareça.",
+          "native_line_indices": [
+            52,
+            53,
+            54,
+            55
+          ]
+        },
+        {
+          "code": "F8",
+          "action": "Entre em contato com o Suporte ao Cliente da Jackery.",
+          "native_line_indices": [
+            46
+          ]
+        },
+        {
+          "code": "F9",
+          "action": "Remova a carga conectada às portas USB do produto. Aguarde até que a falha desapareça.",
+          "native_line_indices": [
+            45
+          ]
+        },
+        {
+          "code": "FE",
+          "action": "Entre em contato com o Suporte ao Cliente da Jackery.",
+          "native_line_indices": [
+            50
+          ]
+        }
+      ]
+    },
+    {
+      "language": "nl",
+      "physical_page": 146,
+      "native_action_line_count": 22,
+      "duplicates": 0,
+      "uncovered_lines": 0,
+      "rows": [
+        {
+          "code": "F0",
+          "action": "Herstart het product.",
+          "native_line_indices": [
+            32
+          ]
+        },
+        {
+          "code": "F1",
+          "action": "Herstart het product.",
+          "native_line_indices": [
+            33
+          ]
+        },
+        {
+          "code": "F2",
+          "action": "Herstart het product.",
+          "native_line_indices": [
+            34
+          ]
+        },
+        {
+          "code": "F3",
+          "action": "Herstart het product.",
+          "native_line_indices": [
+            35
+          ]
+        },
+        {
+          "code": "F4",
+          "action": "Sluit het product aan op belastingen om de batterij te ontladen totdat de fout verdwijnt.",
+          "native_line_indices": [
+            24
+          ]
+        },
+        {
+          "code": "F5",
+          "action": "Laad het product op via zonnepanelen of een AC-stopcontact totdat de fout verdwijnt.",
+          "native_line_indices": [
+            23
+          ]
+        },
+        {
+          "code": "F6",
+          "action": "1. Wacht tot het net genormaliseerd is voordat u het product via een AC-stopcontact oplaadt. 2. Controleer of de luchtinlaat- en uitlaatopeningen geblokkeerd zijn; zorg voor 20 cm ruimte aan beide zijden van het product. 3. Plaats het product op een locatie die niet wordt blootgesteld aan direct zonlicht of hoge omgevingstemperaturen. 4. Koppel alle belastingen van het product los. Laat het product inactief en wacht tot de fout verdwijnt. 5. Herstart het product.",
+          "native_line_indices": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+          ]
+        },
+        {
+          "code": "F7",
+          "action": "1. Koppel alle DC-ingangen los van het product. 2. Controleer de open-klemspanning (Voc) van de aangesloten zonnepanelen. Het product staat een maximale DC-ingangsspanning van 60 V toe. 3. Start het product opnieuw op en houd het inactief. Wacht tot de fout verdwijnt.",
+          "native_line_indices": [
+            52,
+            53,
+            54,
+            55
+          ]
+        },
+        {
+          "code": "F8",
+          "action": "Neem contact op met de Jackery-klantenondersteuning.",
+          "native_line_indices": [
+            46
+          ]
+        },
+        {
+          "code": "F9",
+          "action": "Verwijder de belasting die op de USB-poorten van het product is aangesloten. Wacht tot de fout verdwijnt.",
+          "native_line_indices": [
+            44,
+            45
+          ]
+        },
+        {
+          "code": "FE",
+          "action": "Neem contact op met de Jackery-klantenondersteuning.",
+          "native_line_indices": [
+            50
+          ]
+        }
+      ]
+    }
+  ]
+}

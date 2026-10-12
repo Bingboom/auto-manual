@@ -1,0 +1,55 @@
+{
+  "schema_version": "je1000f-nine-language-section-index/v1",
+  "status": "navigation_only; section bodies and figures require source-page reconciliation",
+  "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+  "source_physical_toc_pages": [5, 6, 7],
+  "section_ids": ["safety", "symbols", "in_the_box", "product_overview", "lcd_display", "operations", "ups", "charging", "storage", "troubleshooting", "specifications", "warranty", "app_setup"],
+  "languages": {
+    "en": {
+      "label": "English",
+      "physical_pages": [8, 24],
+      "titles": ["IMPORTANT SAFETY INFORMATION", "MEANING OF SYMBOLS", "WHAT'S IN THE BOX", "PRODUCT OVERVIEW", "LCD DISPLAY", "OPERATIONS", "UNINTERRUPTIBLE POWER SUPPLY (UPS)", "CHARGING", "STORAGE", "TROUBLESHOOTING", "SPECIFICATIONS", "WARRANTY", "APP SETUP"]
+    },
+    "fr": {
+      "label": "Français",
+      "physical_pages": [25, 41],
+      "titles": ["INFORMATIONS DE SÉCURITÉ IMPORTANTES", "SIGNIFICATION DES SYMBOLES", "CONTENU DE LA BOÎTE", "APERÇU DU PRODUIT", "AFFICHAGE LCD", "FONCTIONNEMENT", "ALIMENTATION SANS INTERRUPTION (ASI)", "CHARGE", "STOCKAGE", "DÉPANNAGE", "SPÉCIFICATIONS", "GARANTIE", "CONFIGURATION DE L’APPLICATION"]
+    },
+    "es": {
+      "label": "Español",
+      "physical_pages": [42, 58],
+      "titles": ["INFORMACIÓN IMPORTANTE DE SEGURIDAD", "SIGNIFICADO DE LOS SÍMBOLOS", "CONTENIDO DE LA CAJA", "DESCRIPCIÓN GENERAL DEL PRODUCTO", "PANTALLA LCD", "OPERACIONES", "FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)", "CARGANDO", "ALMACENAMIENTO", "RESOLUCIÓN DE PROBLEMAS", "ESPECIFICACIONES", "GARANTÍA", "CONFIGURACIÓN DE LA APLICACIÓN"]
+    },
+    "de": {
+      "label": "Deutsch",
+      "physical_pages": [59, 75],
+      "titles": ["SICHERHEITSVORKEHRUNGEN BEI DER VERWENDUNG", "BEDEUTUNG DER SYMBOLE", "LIEFERUMFANG", "PRODUKTÜBERSICHT", "LCD-ANZEIGE", "GRUNDLEGENDE OPERATIONEN", "UNTERBRECHUNGSFREIE STROMVERSORGUNG (UPS)", "LADEN", "LAGERUNG", "FEHLERSUCHE", "SPEZIFIKATIONEN", "GARANTIE", "APP-EINSTELLUNG"]
+    },
+    "it": {
+      "label": "Italiano",
+      "physical_pages": [76, 92],
+      "titles": ["PRECAUZIONI DI SICUREZZA", "SIGNIFICATO DEI SIMBOLI", "CONTENUTO DELLA CONFEZIONE", "PANORAMICA DEL PRODOTTO", "DISPLAY LCD", "OPERAZIONI", "GRUPPO DI CONTINUITA (UPS)", "RICARICA", "CONSERVAZIONE", "RISOLUZIONE DEI PROBLEMI", "SPECIFICHE", "GARANZIA", "CONFIGURAZIONE DELL'APP"]
+    },
+    "uk": {
+      "label": "Українська",
+      "physical_pages": [93, 109],
+      "titles": ["ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ", "ЗНАЧЕННЯ СИМВОЛІВ", "КОМПЛЕКТАЦІЯ", "ОГЛЯД ПРОДУКТУ", "РК-ДИСПЛЕЙ", "ОПЕРАЦІЇ", "ДЖЕРЕЛО БЕЗПЕРЕБІЙНОГО ЖИВЛЕННЯ (ДБЖ)", "ЗАРЯДЖАННЯ", "ЗБЕРІГАННЯ", "УСУНЕННЯ НЕСПРАВНОСТЕЙ", "ТЕХНІЧНІ ХАРАКТЕРИСТИКИ", "ГАРАНТІЯ", "НАЛАШТУВАННЯ ДОДАТКА"]
+    },
+    "pt": {
+      "label": "Português",
+      "physical_pages": [110, 126],
+      "titles": ["INFORMAÇÕES IMPORTANTES DE SEGURANÇA", "SIGNIFICADO DOS SÍMBOLOS", "CONTEÚDO DA EMBALAGEM", "VISÃO GERAL DO PRODUTO", "DISPLAY LCD", "OPERAÇÕES", "FONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)", "CARREGANDO", "ARMAZENAMENTO", "SOLUÇÃO DE PROBLEMAS", "ESPECIFICAÇÕES", "GARANTIA", "CONFIGURAÇÃO DO APLICATIVO"]
+    },
+    "nl": {
+      "label": "Nederlands",
+      "physical_pages": [127, 143],
+      "titles": ["BELANGRIJKE VEILIGHEIDSINFORMATIE", "BETEKENIS VAN SYMBOLEN", "WAT ZIT ER IN DE DOOS", "PRODUCTOVERZICHT", "LCD-SCHERM", "HANDELINGEN", "ONONDERBROKEN STROOMVOORZIENING (UPS)", "OPLADEN", "OPSLAG", "PROBLEEMOPLOSSING", "SPECIFICATIES", "GARANTIE", "APP INSTELLEN"]
+    },
+    "pl": {
+      "label": "Polski",
+      "physical_pages": [144, 160],
+      "titles": ["WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA", "ZNACZENIE SYMBOLI", "ZAWARTOŚĆ OPAKOWANIA", "WIDOK OGÓLNY PRODUKTU", "WYŚWIETLACZ LCD", "OBSŁUGA", "ZASILACZ BEZPRZERWOWY (UPS)", "ŁADOWANIE", "PRZECHOWYWANIE", "ROZWIĄZYWANIE PROBLEMÓW", "DANE TECHNICZNE", "GWARANCJA", "KONFIGURACJA APLIKACJI"]
+    }
+  },
+  "shared_physical_pages": {"cover": 1, "prefaces": [2, 4], "toc": [5, 7], "declaration": 161}
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "source": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-1.svg",
+    "repaired": "/tmp/repaired-shared-1.svg",
+    "retained_path_indices": [
+      56,
+      57,
+      58
+    ],
+    "source_sha256": "2a1cdabb87511d378a9d4e18b30a1e61d3fce5fb9c7be11a665d1dac9dfeef5c",
+    "target": "assets/symbol_warning_triangle.svg",
+    "max_mean_channel_error": 0.014021
+  },
+  {
+    "source": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-2.svg",
+    "repaired": "/tmp/repaired-shared-2.svg",
+    "retained_path_indices": [
+      62,
+      63,
+      64
+    ],
+    "source_sha256": "0273da6c2ff50078df7273974e47c2357d6e98bda546af36970c0564a75bb265",
+    "target": "assets/symbol_read_manual.svg",
+    "max_mean_channel_error": 0.013593
+  }
+]

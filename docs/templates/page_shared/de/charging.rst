@@ -5,8 +5,8 @@
 
    Dieses Produkt unterstützt bis zu 5 Batteriepacks, um den Bedarf an großer Energiekapazität zu decken. Weitere Informationen zur Verwendung finden Sie im *Jackery Battery Pack 2000 Benutzerhandbuch*.
 
-   .. image:: asset:in_the_box/main_unit1
-      :alt: Abbildung der Batteriepack-Verbindung als Platzhalter.
+   .. image:: renderers/web/assets/je2000e_eu_de/extra_battery.png
+      :alt: Abbildung der Batteriepack-Verbindung.
       :width: 360px
 
    .. only:: region_us
@@ -34,13 +34,9 @@
              - Wenn das Produkt mit angeschlossenen Batteriepacks verwendet wird, beträgt die Standard-Maximalanzahl der gestapelten Batteriepacks 3, und das Produkt muss auf einer ebenen, stabilen und ausreichend tragfähigen Oberfläche stehen.
              - Wenn 4 oder mehr Batteriepacks gestapelt werden müssen, muss das Produkt an einem stabilen, an der Wand anliegenden Ort aufgestellt und vor äußeren Einwirkungen geschützt werden, und es müssen die erforderlichen Kipp-Sicherungsmaßnahmen getroffen werden.
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 34 33 33
-
-      * - **Jackery Battery Pack 2000**
-        - **Verlängerungskabel**
-        - **Benutzerhandbuch**
+   .. image:: renderers/web/assets/je2000e_eu_de/battery_pack_kit.png
+      :alt: Jackery Battery Pack 2000, Verlängerungskabel, Benutzerhandbuch (separat erhältlich)
+      :width: 360px
 
 LADEN
 =====
@@ -65,7 +61,7 @@ AUFLADEN ÜBER EINE AC-STECKDOSE
 Schließen Sie das AC-Ladekabel an den AC-Eingangsanschluss des Produkts und an eine Steckdose an.
 
 .. image:: asset:charging/ac_wall
-   :alt: Abbildung des AC-Wandladens als Platzhalter.
+   :alt: Abbildung des AC-Wandladens.
    :width: 360px
 
 .. list-table::
@@ -75,8 +71,10 @@ Schließen Sie das AC-Ladekabel an den AC-Eingangsanschluss des Produkts und an 
    * - **VORSICHT**
      - Stellen Sie sicher, dass das AC-Ladekabel vollständig und sicher in den AC-Eingangsanschluss eingesteckt ist. Eine unvollständige Verbindung kann zu instabilem Strom, Überhitzung, schlechtem Kontakt oder Fehlfunktionen des Geräts führen.
 
+.. hb-capability-begin: 应急快充模式
 
 **Notfall-Lademodus**
 
 | In diesem Modus können Sie die tragbare Powerstation mit der AC-Lademethode schnell aufladen. Diese Notfall-Ladefunktion kann über die Jackery-App aktiviert oder deaktiviert werden. Im Notfall-Lademodus blinkt die kreisförmige Leuchte, die den Ladezustand (SOC) anzeigt, schneller.
 | \*Um die Batterielebensdauer zu maximieren, ist das Laden mit normaler Geschwindigkeit vorzuziehen. Verwenden Sie den Notfall-Lademodus nur bei Bedarf. Für den regelmäßigen Langzeitgebrauch wird er nicht empfohlen.
+.. hb-capability-end:

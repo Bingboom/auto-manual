@@ -43,13 +43,14 @@ KR = ROOT / "data/layout_params.idml-je3000c-kr.csv"
 
 HEADER = "key,value,unit,comment\n"
 
-# Every common value a bound overlay currently replaces. Empty today: the 46
-# shadow keys still carry scope infixes instead of overriding under their own
-# name. Migrating them lands here, one line per override, which is what makes
-# the migration reviewable -- and what makes an unintended one impossible to
-# slip in. Update deliberately, never to make a build pass.
+# Every common value a bound overlay currently replaces. The 46 shadow keys
+# still carry scope infixes instead of overriding under their own name.
+# Migrating them lands here, one line per override, which is what makes the
+# migration reviewable -- and what makes an unintended one impossible to slip
+# in. Update deliberately, never to make a build pass.
 PINNED_OVERRIDES: dict[str, tuple[str, ...]] = {
-    "layout_params.idml-compact.csv": (),
+    # Battery-pack books print the alert triangle on hazard signal words only.
+    "layout_params.idml-compact.csv": ("idml_symbols_signal_alert_icon",),
     "layout_params.idml-je3000c-kr.csv": (),
 }
 

@@ -98,8 +98,8 @@ def validate_manual_theme(
         unknown_keys = set(raw_projection) - _COMPONENT_ROLE_KEYS
         if unknown_keys:
             issues.append(f"{prefix} has unsupported keys {sorted(unknown_keys)!r}")
-        component_ids = raw_projection.get("component_ids")
-        theme_roles = raw_projection.get("theme_roles")
+        component_ids: Any = raw_projection.get("component_ids")
+        theme_roles: Any = raw_projection.get("theme_roles")
         if not _unique_non_empty_strings(component_ids):
             issues.append(f"{prefix}.component_ids must be a unique non-empty string list")
             component_ids = []

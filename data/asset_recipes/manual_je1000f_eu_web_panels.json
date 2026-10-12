@@ -3788,6 +3788,58 @@
         "region-specific",
         "web-composite"
       ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/shared/reference.app-connect-result",
+      "page": 22,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            49.0,
+            128.5,
+            317.0,
+            288.3
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.app-connect-result_shared_a41b6db31865.png",
+          "scale": 4,
+          "expected_sha256": "a41b6db31865f5091511b0d8ca830221cf328b45efdb4454fd864dba0132f059"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI panel, so the recipe keeps it quarantined (App/QR/URL/localized-UI gate); it is Web-buildable only through its approved 04_资产定义/04_资产导出物 rows, as the US reference.app-connect-result composite is. Source-PDF-faithful EN-block p22 panel with the embedded 2.3/2.4/2.5 captions (captions_embedded contract); FR (p39) embeds the identical bitmaps and ES/DE/IT (p56/p74/p91) the same screens at 266 px, so one panel serves all five JE-1000F/EU languages; candidate confirmed by the operator 2026-09-24 against the source page render"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
     }
   ]
 }

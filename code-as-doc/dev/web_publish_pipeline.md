@@ -1,5 +1,7 @@
 # Web Publish Pipeline
 
+Status: active
+
 This document owns the release contract for responsive manuals published to
 Read the Docs. Web delivery is intentionally separate from print delivery.
 
@@ -30,7 +32,7 @@ The Web profile renders explicitly declared specification sections across
 targets. `h2.hb-spec-section` with a source-authored
 `.hb-spec-section-text` title and its adjacent `hb-spec-table` or
 `manual-spec-table` are the declaration. The Web adapter in
-[`web_spec_component.py`](../../tools/web_spec_component.py) projects their
+[`web_spec_component.py`](../../tools/web/spec_component.py) projects their
 label/value rows through the existing `HB-TABLE-SPEC` ComponentSpec and public
 `web_spec_table_projection`. It keeps inline markup, row order, label spans,
 references and adjacent footnotes/safety copy. Only the declared decorative
@@ -46,7 +48,7 @@ no longer route or constrain rendering. The `{spec-table}` Markdown directive
 already consumes the same public adapter and requires no new interface.
 
 Troubleshooting follows the same semantic-before-figure boundary. In the
-RST-to-Web bundle path, [`word_bundle_html.py`](../../tools/word_bundle_html.py)
+RST-to-Web bundle path, [`word_bundle_html.py`](../../tools/word/bundle_html.py)
 resolves the current target's `plan_materialized_pages` once and passes a
 declaration for the exact materialized paths of `CsvPage(page="troubleshooting")`.
 The existing planner owns language/capability selection and `slot_id` naming;
@@ -55,7 +57,7 @@ error codes. This also covers unmarked `review-asis` snapshots without editing
 their reviewed RST. Explicit `table.hb-troubleshooting-table` declarations can
 scope individual tables in mixed HTML fragments.
 
-[`web_troubleshooting_component.py`](../../tools/web_troubleshooting_component.py)
+[`web_troubleshooting_component.py`](../../tools/web/troubleshooting_component.py)
 shares validation and DOM projection with `{troubleshooting}`. It consumes the
 existing `HB-TABLE-TROUBLESHOOTING` CSS; that style binding is **not** a registered
 ComponentSpec, and this adapter adds no public schema. The standalone Markdown
@@ -120,6 +122,79 @@ rule. Extracted PDF composites remain quarantine candidates until pixel review
 and normal manifest/registry approval; contract admission alone is not asset
 promotion.
 
+The App connect-result figure is the one EU composite bound as `locale=shared`.
+The EU/UK print repeats the same English screens in all five language blocks,
+so one panel serves EN/FR/ES/DE/IT, as the US `reference.app-connect-result`
+does. As an App UI crop, its recipe entry stays quarantined under the
+App/QR/URL/localized-UI recipe gate; approved `04_资产定义` and `04_资产导出物`
+rows make it Web-buildable. For print, the reviewed promotion
+`je1000f-eu-app-ui-v1` resolves `asset:app/add_device` and
+`asset:app/connect_result` to the EU print's own screens for JE-1000F/EU;
+review pages that still carry raw `common_assets/app/*.png` paths keep the
+shared JP-market images until they switch to `asset:` URIs.
+The frozen JE-1000F/EU 2.0 review copy made that switch on 2026-09-24 (the
+FR/ES/DE/IT/UK pages; the EN page already used the URIs), so a Web rebuild from
+it carries the EU export, not the JP screenshot, as the connect-result figure's
+hidden semantic image in all five routes.
+
+The in-box unit, LCD display mode and UPS figures are ordinary registry art, not
+composites. Their JE-1000F/EU target overrides (`in_the_box/je1000f_eu/main_unit1`,
+`operation/je1000f_eu/lcd_mode` and `operation/je1000f_eu/ups_mode`, each with an
+`_en` sibling; recipe `manual_je1000f_eu_uk_20260618_block_art.json`) vary by
+language: EN takes the English block (BS 1363 sockets), FR/ES/DE/IT/UK the French
+block (EU sockets). The frozen review copy switched those references to `asset:`
+URIs on 2026-09-26, so a Web rebuild shows the print's own art in those three
+visible figures on all five routes instead of the shared art (a US-outlet unit and
+another, wheeled model).
+
+`JE-2000F / EU` binds its App connect-result panel through its six per-language
+`web-illustrations/v1` manifests rather than composites. The six language blocks
+of its EU/UK print place the same five screen bitmaps, so one panel cut from the
+EN block (p21: the three screens with their embedded 2.3/2.4/2.5 captions)
+replaces `connect_result.png` in every language, and the localized "screenshots
+are for reference only" sentence stays live text. Its recipe,
+`data/asset_recipes/manual_je2000f_eu_web_app.json`, keeps the crop quarantined
+under the same gate: the hash-pinned manifest entries are its only route onto
+the page, and the frozen source binds the recipe as `app_asset_recipe`.
+`JE-3000C / EU` does the same for its fr/es/de/it/uk routes through five
+one-entry manifests, cut at the 12x scale of its English App panels; English
+keeps its own approved panel. `JE-2000E / EU` replaces both App figures of its
+fr/es/de/it/uk routes the same way (add-device 2.1/2.2 and connect-result). The
+print's control-panel box below the add-device screens carries per-language
+button labels, so since 2026-09-24 EN/FR/ES/DE/IT (and since 2026-09-26 UK) each
+bind their own block's crop of the screens together with that box, and the
+page's four label lines become covered annotations (kept as the figure's alt
+text). Since 2026-09-26 the German and Italian pages also name those buttons as
+their print blocks do (DE `POWER-Taste`, IT `CC / USB`). The UK block prints
+`AC1` for the AC2 button, so its crop re-sets that one character from the
+print's own glyphs (`redact_text_region`, then `copy_pdf_region`). The operator
+accepted that correction on 2026-09-27, so its registry row is `✅成品` like the
+other panels.
+`JE-3600A / EU`, whose English route also showed the JP screenshot, binds one
+shared connect-result panel for en/fr/es: an extra entry in its English manifest
+and one-entry fr/es manifests. Earlier
+Web App panels for JE-1000H, JE-2000E and JE-3000C were recipe-approved only
+because their keys carry none of the gate's tokens. Since 2026-09-25 the
+JE-1000H/EU (download, add-device and connect-result, six languages) and
+JE-3000C/EU English App panels are quarantined with App risk tags, keeping
+their keys, files and hashes. `tests/test_app_figure_gate.py` requires every
+manifest entry that replaces an App setup image (`download.png`,
+`add_device.png`, `connect_result.png`) or carries an `app-` reference id to
+resolve to a quarantined recipe asset. The JE-2000E/EU English connect-result
+panel was quarantined the same way on 2026-09-26, after #1258 moved its
+add-device figure to the App recipe, so the test lists no exceptions.
+
+The App add-device figure of `JE-2000F / EU` (six routes), `JE-3000C / EU`
+(fr/es/de/it/uk) and `JE-3600A / EU` (en/es/fr) is, since 2026-09-24, each
+language block's own crop of the 2.1/2.2 screens together with that model's
+control-panel box and its printed button labels (quarantined App recipe entries
+`web/<model>/eu/<lang>/app_add_device_panel`). It replaces the shared
+composition of generic App screens with the JE-1000F/US control-panel drawing,
+and on the JE-2000F and JE-3600A English routes a crop of the control-panel box
+without the screens. The page's button-label lines become covered annotations
+(the figure's alt text). The JE-3000C English route already had its own complete
+panel.
+
 Every newly generated Web `manual.ir.json` contains a
 `metadata.web_figure_coverage` payload with schema
 `web-figure-coverage/v1`. It audits actual rendered Overview, Operation and
@@ -145,7 +220,7 @@ online source update. For example, with a separate staging directory:
 ```bash
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --staging-root .tmp/web-check --no-clean --skip-root-index
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.ja.yaml --model JE-1000F --region JP --source runtime --data-root tests/fixtures/phase2 --staging-root .tmp/web-check --no-clean --skip-root-index
-python tools/readthedocs_source.py --build-root .tmp/web-check/docs/_build --output-dir .tmp/web-check/docs/_build/rtd
+python -m tools.readthedocs_source --build-root .tmp/web-check/docs/_build --output-dir .tmp/web-check/docs/_build/rtd
 python -m sphinx -b html .tmp/web-check/docs/_build/rtd .tmp/web-check/html
 ```
 
@@ -217,10 +292,15 @@ change JP D1–D4 or promote production eligibility.
    until the deployment verifies or the deploy timeout expires, and only then
    writes the canonical URL to each queue row — idempotently (an equal stored
    value is skipped, so reruns never re-register) and with a same-record
-   readback after every write. Verification failure or timeout registers
-   nothing and opens the `queue-failure-web-receipt` sentinel; the retry is a
-   `workflow_dispatch` re-run (optionally scoped by `record_ids`), never a
-   re-publish of the manual.
+   readback after every write. `HTML_link` is a Bitable URL field, which
+   `lark-cli base +record-get` reads back as a Markdown link whose label and
+   target are both the stored URL. Both comparisons accept exactly that form
+   (`document_link_queue.url_field_matches`); a link whose label or target
+   differs is a mismatch, so a hand-titled link is rewritten to the canonical
+   URL and a link to another page fails the readback. Verification failure or
+   timeout registers nothing and opens the `queue-failure-web-receipt`
+   sentinel; the retry is a `workflow_dispatch` re-run (optionally scoped by
+   `record_ids`), never a re-publish of the manual.
 
 ### 2.2 Git-only transaction
 
@@ -240,24 +320,63 @@ create synthetic queue rows or write `HTML_link`.
    actual page at desktop and mobile widths for image URLs and page overflow.
    When the target uses public IR or packaged assets, retain cold-replay and
    asset-tamper evidence as applicable.
+   For an already frozen external manual whose new Web languages are absent
+   from the phase2 build target, keep the existing target `build.py check` as a
+   repository regression gate. Render the designated source through a
+   source-local, hash-checked MyST adapter and state in `source_manifest.json`
+   that the `build.py` result does not validate those new language bodies.
+   Verify those bodies against their source pages, figures and structured
+   tables, then run the same strict Sphinx and browser gates. This exception
+   does not register a new phase2 or print target.
+   When a reviewed native source has a different chapter map from the historical
+   phase2 projection, enroll its exact original-source SHA-256 and target/locale
+   requirements under `prepared_component_admission.json:source_profiles`.
+   Admission selects that committed map from the frozen source identity; it
+   never derives requirements from candidate inventories. The historical
+   target entries remain applicable to existing phase2 builds. The JE-3600A
+   0924 source review records the 16 native chapters, shared artwork and
+   source-language exceptions in
+   [its nine-language review](../reviews/je3600a_eu_nine_language_web_2026-10.md).
 3. Put the verified MyST and verification HTML in an isolated release root.
    Write a real `auto-manual-web-publish/v1` record at
    `<model>/<region>/<lang>/latest/web/publish_meta.json`. Its
    `md_output_path` and `html_dir` must stay inside that release root, and the
    HTML directory must contain `index.html`. Record at least `model`, `region`,
    `lang`, `version`, `built_at`, `git_ref`, `md_output_path`, and `html_dir`.
+   An external frozen MyST language still declares `language_scope: single`.
+   Its `source_manifest.json` uses `auto-manual-frozen-web-source/v1` and
+   inventories every source input, including each locale's MyST and assets.
+   At the actual source Git commit, call
+   `seal_frozen_web_evidence` in `tools/web/frozen_source_evidence.py` for each
+   language. The resulting `auto-manual-frozen-web-language-evidence/v1`
+   receipt binds that manifest, the exact source commit, the versioned MyST
+   tree, and verification HTML including local images. Point the versioned
+   publish metadata at that receipt and its SHA-256. This evidence mode is
+   distinct from the phase2 projection receipt; neither can be substituted
+   for the other.
 4. Start from current `Hello-Docs/main:docs/publish/**` in an isolated checkout
    so previously published targets remain present. Assemble and verify the
    candidate with:
 
    ```bash
-   python tools/publish_branch_assembly.py --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
-   python -m sphinx -W -b html <hello-docs-candidate>/docs/publish/web <isolated-verification-html>
+   python -m tools.publish_branch_assembly --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
+   python -m sphinx -W -b html -D extensions=myst_parser,tools.rtd.portal <hello-docs-candidate>/docs/publish/web <isolated-verification-html>
    ```
 
    The assembler replaces matching target routes, retains the other stored
    targets, rebuilds the aggregate Sphinx tree, and rewrites
    `publish_manifest.json`.
+   Keep the RTD portal extension enabled in this aggregate preflight: it exports
+   the query corpus and seals the deployment receipt, including the bounded
+   frozen-source inventory. A plain Sphinx build without the extension cannot
+   validate those production callbacks.
+   The frozen-input inventory is bounded at 1152 MiB: it includes both the
+   self-contained source packages and their assembled Web copies. JE-5000A JP
+   brings the reviewed library from 1,057,291,744 to 1,093,933,355 bytes,
+   exceeding the previous 1 GiB source budget. Served-output and network
+   inventories retain their separate 512 MiB budget; the 32 MiB per-file and
+   10,000-file limits remain enforced. Do not remove reviewed artwork to fit
+   the input budget.
 5. Commit that candidate on the normal Hello-Docs release branch and open the
    usual `docs/publish/**`-only PR. Do not include engineering code, review
    branches, print artifacts, or unrelated targets.
@@ -472,7 +591,7 @@ watch for later drift.
 is the independent detector: a daily scheduled run on the Hello-Docs business
 plane feeds every target of `Hello-Docs/main:docs/publish/publish_manifest.json`
 through [`tools/verify_web_deployment_targets.py`](../../tools/verify_web_deployment_targets.py),
-which runs the full `tools.rtd_deployment_receipt.verify_deployment` check per
+which runs the full `tools.rtd.deployment_receipt.verify_deployment` check per
 canonical nested page — frozen-source byte identity plus the expected RTD
 project slug derived from the base URL — and fails the run on any unreachable
 page, drifted bytes, or wrong-site deployment. Failures open the
@@ -498,3 +617,56 @@ the approved review ref and asset rows. For the Git-only path, rebuild from the
 recorded source Git ref and release metadata. In either case, append a corrected
 candidate snapshot or prepare a `docs/publish/**`-only revert PR into `main`,
 verify the generated manifest, merge it, and let the `main` webhook rebuild RTD.
+
+## Native multilingual shared-component admission
+
+Native portable-manual imports use one semantic coverage policy in
+[`frozen_web_component_coverage.py`](../../tools/web/frozen_web_component_coverage.py).
+A valid `manual-ir/v2` envelope or `whole-document-components/v1` flag alone
+is insufficient: an ordinary table can satisfy the IR schema while missing
+its shared presentation, as happened to the JE-1000F key-combination table.
+The policy checks actual chapter flow against the existing component registry:
+
+| Semantic chapter | Required shared presentation |
+| --- | --- |
+| symbols | Signal meanings and pictogram meanings |
+| in_the_box | Inbox composition |
+| product_overview | Overview composition or governed reference figures |
+| lcd_display | LCD icon glossary |
+| operations | Operation panels, LCD modes, auto-resume and key combinations |
+| troubleshooting | Troubleshooting table |
+| specifications | Specification tables |
+| warranty | Lead, sections and years card |
+| app_setup | App composition |
+
+Requirements use stable chapter/component IDs, not translated headings, model
+names or counts copied from another product. Singleton semantic tables must
+occur once; variable specification groups, operation panels and warranty/App
+sections have no model-specific fixed count. The actual component inventory
+must match its declaration. Bare flow tables/images outside components fail;
+registered component carriers and approved dense-callout reference figures
+remain valid. Ordinary paragraphs and lists remain native semantic flow.
+
+`frozen_ai_web.assemble_book` validates new `frozen-pdf-json` output before
+writing the IR or Markdown and stores a `shared_component_coverage` report.
+`replay_package` recomputes coverage before replay for newly stamped packages;
+the contents of the stored report cannot turn admission off.
+`require_publishable_manual_ir` checks both native PDF
+and historical frozen AI sources at release sealing and evidence verification.
+Historical unstamped replay remains available for comparison, but generic
+legacy layouts must be migrated before a new publication is sealed. Other
+RST/projection releases do not inherit this import-specific chapter contract.
+
+When admission fails, migrate the named semantic block to its existing
+ComponentSpec. If no suitable component exists, define and validate the shared
+component first. Do not add a per-language stylesheet or relabel a screenshot
+as a semantic table. Rebuild into a new immutable version; do not edit the
+historical package. A library fix alone does not update already frozen books:
+rebuild and republish every affected language, then verify the live routes.
+
+Regression coverage includes the ten reviewed native imports (JE-1000F four
+languages and JE-2000F/E three each), the actual pre-fix four-language snapshot,
+and correctly rehashed IR with a removed binding. The pre-fix snapshot fails
+admission; the corrected ten books pass. These checks establish component
+coverage, not translation correctness or pixel-perfect layout: desktop/mobile
+preview and source comparison remain part of release acceptance.

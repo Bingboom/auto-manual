@@ -1,0 +1,24 @@
+{
+  "asset": "docs/renderers/web/assets/je1000e_sil_us_en/stand_2_art.png",
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    2952.197021484375,
+    2231.40478515625,
+    3267.197021484375,
+    2362.90478515625
+  ],
+  "sha256": "9e7e01c816912104755cbb7e9d22380fb644f2f863bdc10b95901421e1242c4b",
+  "label_rect_pct": [
+    3.5999503968253963,
+    7.008414032794677,
+    58,
+    0
+  ],
+  "source_text": [
+    "2. Align the mounting holes on the bottom of the product with",
+    "the holes on the vertical stand."
+  ],
+  "policy": "Text-only redaction; preserve original full thin grey rounded frame and all illustrations."
+}

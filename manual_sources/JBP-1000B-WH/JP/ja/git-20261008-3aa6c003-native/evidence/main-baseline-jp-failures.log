@@ -1,0 +1,60 @@
+[env-preflight] WARN env.lock: 7 package(s) differ from requirements.lock: certifi 2026.7.22 (lock 2026.6.17), cffi 2.1.1 (lock 2.1.0), charset-normalizer 3.5.1 (lock 3.4.8), cryptography 50.0.0 (lock 49.0.0), numpy 2.5.2 (lock 2.5.1), packaging 26.3 (lock 26.2), soupsieve 2.9.2 (lock 2.8.4)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+EE.F
+======================================================================
+ERROR: test_actual_jp_symbols_template_keeps_all_four_definitions (tests.test_jp_build_paths.SignalWordDefinitionTableTests.test_actual_jp_symbols_template_keeps_all_four_definitions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_jp_build_paths.py", line 43, in test_actual_jp_symbols_template_keeps_all_four_definitions
+    result = _parse_text(source.read_text(encoding="utf-8"), {"latex", "region_jp"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 260, in _parse_text
+    return extract_page(Path(tmp), tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 241, in extract_page
+    i = _consume_directive(lines, i, m.group(1), m.group(2).strip(), tags, result)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 224, in _consume_directive
+    _append_list_table(body, result)
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 194, in _append_list_table
+    raise ValueError(
+ValueError: known notice label cannot fall back to a generic table: '警告'
+
+======================================================================
+ERROR: test_distinct_signal_word_definitions_preserve_table_rows (tests.test_jp_build_paths.SignalWordDefinitionTableTests.test_distinct_signal_word_definitions_preserve_table_rows) (labels=('警告', '注意', '説明', 'ヒント'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_jp_build_paths.py", line 35, in test_distinct_signal_word_definitions_preserve_table_rows
+    result = _parse_text(_rst_table(rows), {"latex"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 260, in _parse_text
+    return extract_page(Path(tmp), tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 241, in extract_page
+    i = _consume_directive(lines, i, m.group(1), m.group(2).strip(), tags, result)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 224, in _consume_directive
+    _append_list_table(body, result)
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 194, in _append_list_table
+    raise ValueError(
+ValueError: known notice label cannot fall back to a generic table: '警告'
+
+======================================================================
+FAIL: test_substitutions_and_display_width_columns_preserve_values (tests.test_jp_rst_content.JpPreparedContentTests.test_substitutions_and_display_width_columns_preserve_values)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_jp_rst_content.py", line 28, in test_substitutions_and_display_width_columns_preserve_values
+    self.assertEqual(tables[1][0], ["自動復帰する条件", "自動復帰しない条件"])
+AssertionError: Lists differ: ['説明', '省エネモードは電源投入後に前回の状態を維持します。モード変更には手動での切り替えが必要です。'] != ['自動復帰する条件', '自動復帰しない条件']
+
+First differing element 0:
+'説明'
+'自動復帰する条件'
+
+- ['説明', '省エネモードは電源投入後に前回の状態を維持します。モード変更には手動での切り替えが必要です。']
++ ['自動復帰する条件', '自動復帰しない条件']
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.077s
+
+FAILED (failures=1, errors=2)

@@ -1,5 +1,7 @@
 # JAAC-WHE-100-EUA1 / EU / en Web intake review (2026-09)
 
+Status: active
+
 ## Traceable checklist
 
 - [x] Target identity is `JAAC-WHE-100-EUA1 / EU / en`.

@@ -1,0 +1,114 @@
+[
+  {
+    "source_page": 77,
+    "caption_text": "Simboli di avvertenza e cautela. Da leggere assolutamente per avvisare le persone di potenziali pericoli o rischi.",
+    "previous_asset_ref": "assets/symbol-warning_triangle.png",
+    "previous_sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67",
+    "previous_status": "superseded-do-not-reuse",
+    "selected_shared_key": "warning/outline-triangle-tinted",
+    "selected_asset_ref": "assets/symbol_warning_triangle.svg",
+    "selected_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "decision": "reuse shared glyph unchanged; exact original native row comparison",
+    "comparison": {
+      "max_mean_channel_error": 0.012382
+    }
+  },
+  {
+    "source_page": 77,
+    "caption_text": "Prima dell’utilizzo, leggere il manuale d’istruzioni.",
+    "previous_asset_ref": "assets/symbol-read_manual.png",
+    "previous_sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
+    "previous_status": "superseded-do-not-reuse",
+    "selected_shared_key": "read-manual/book-information",
+    "selected_asset_ref": "assets/symbol_read_manual.svg",
+    "selected_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "decision": "reuse shared glyph unchanged; exact original native row comparison",
+    "comparison": {
+      "max_mean_channel_error": 0.006937
+    }
+  },
+  {
+    "source_page": 77,
+    "caption_text": "Non smontare il prodotto.",
+    "previous_asset_ref": "assets/symbol-do_not_dismantle.png",
+    "previous_sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b",
+    "previous_status": "superseded-do-not-reuse",
+    "selected_shared_key": "do-not-dismantle/screwdriver-prohibited",
+    "selected_asset_ref": "assets/symbol_do_not_dismantle.svg",
+    "selected_sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+    "decision": "reuse shared glyph unchanged; exact original native row comparison",
+    "comparison": {
+      "max_mean_channel_error": 0.013557
+    }
+  },
+  {
+    "source_page": 77,
+    "caption_text": "Tenere il prodotto lontano da fiamme.",
+    "previous_asset_ref": "assets/symbol-no_open_flame.png",
+    "previous_sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+    "previous_status": "superseded-do-not-reuse",
+    "selected_shared_key": "no-open-flame/fire-match-prohibited",
+    "selected_asset_ref": "assets/symbol_no_open_flame.svg",
+    "selected_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+    "decision": "reuse shared glyph unchanged; exact original native row comparison",
+    "comparison": {
+      "max_mean_channel_error": 0.01603
+    }
+  },
+  {
+    "source_page": 77,
+    "caption_text": "Tenere lontano dalla portata dei bambini.",
+    "previous_asset_ref": "assets/symbol-keep_away_from_children.png",
+    "previous_sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+    "previous_status": "superseded-do-not-reuse",
+    "selected_shared_key": "keep-away-from-children/adult-child-prohibited",
+    "selected_asset_ref": "assets/symbol_keep_away_from_children.svg",
+    "selected_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+    "decision": "reuse shared glyph unchanged; exact original native row comparison",
+    "comparison": {
+      "max_mean_channel_error": 0.010243
+    }
+  },
+  {
+    "source_page": 77,
+    "caption_text": "Questo simbolo indica che all’interno del prodotto è presente una batteria agli ioni di litio (Li-ion), la quale va smaltita o riciclata adeguatamente.",
+    "previous_asset_ref": "assets/symbol-li_ion.png",
+    "previous_sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7",
+    "previous_status": "superseded-do-not-reuse",
+    "selected_shared_key": "li-ion/recycle-li-ion",
+    "selected_asset_ref": "assets/symbol_li_ion.svg",
+    "selected_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+    "decision": "reuse shared glyph unchanged; exact original native row comparison",
+    "comparison": {
+      "max_mean_channel_error": 0.012581
+    }
+  },
+  {
+    "source_page": 77,
+    "caption_text": "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici. Come consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose. Per favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente.",
+    "previous_asset_ref": "assets/symbol-battery_disposal.png",
+    "previous_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+    "previous_status": "superseded-do-not-reuse",
+    "selected_shared_key": "battery-weee/crossed-bin-no-bar",
+    "selected_asset_ref": "assets/symbol_battery_weee.png",
+    "selected_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+    "decision": "reuse shared glyph unchanged; exact original native row comparison",
+    "comparison": {
+      "max_mean_channel_error": 0.013243
+    }
+  },
+  {
+    "source_page": 77,
+    "caption_text": "Questo simbolo indica che il prodotto non va smaltito come rifiuto domestico e deve essere consegnato per il riciclaggio a un centro di raccolta designato. Smaltire adeguatamente e riciclare aiuta a proteggere l’ambiente. Per maggiori informazioni riguardo lo smaltimento e il riciclaggio di questo prodotto, contattare la propria comunità locale, i servizi di smaltimento o il proprio fornitore.",
+    "previous_asset_ref": "assets/symbol-weee.png",
+    "previous_sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+    "previous_status": "superseded-do-not-reuse",
+    "selected_shared_key": "weee/crossed-bin-bar",
+    "selected_asset_ref": "assets/symbol_weee.png",
+    "selected_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "decision": "reuse shared glyph unchanged; exact original native row comparison",
+    "comparison": {
+      "max_mean_channel_error": 0.016949
+    }
+  }
+]

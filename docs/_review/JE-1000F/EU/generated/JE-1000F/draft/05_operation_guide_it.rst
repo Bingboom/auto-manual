@@ -140,7 +140,7 @@ SCHERMO LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Segnaposto modalità display LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Segnaposto modalità display LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Acceso brevemente</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Accendi</td>
@@ -173,7 +173,7 @@ SCHERMO LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Acceso brevemente}{Accendi}{Premi il pulsante POWER principale oppure quando il prodotto è in carica.}{Spegni}{Premi il pulsante POWER principale.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente ed entra in modalità sleep dopo 2 minuti di inattività.}
       \HBLcdModeSecondGroup{Acceso fisso (in carica o in scarica)}{Accendi}{Premi due volte il pulsante POWER principale quando il prodotto è acceso.}{Spegni}{Premi il pulsante POWER principale.}{Spegnimento automatico}{Lo schermo LCD si spegne automaticamente dopo 2 ore di inattività.}
       \end{HBLcdModeTable}

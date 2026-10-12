@@ -1,5 +1,7 @@
 # JBP-2000B_US 入库单（骨架切片 S4，待操作者批准）
 
+Status: done
+
 日期：2026-08-21 · 目标：`JBP-2000B_US`（Battery Pack 2000，HTP017，美加规）
 
 来源唯一：出货说明书 `Jackery Battery Pack 2000 User Manual V2.0-2026-04-27.pdf`

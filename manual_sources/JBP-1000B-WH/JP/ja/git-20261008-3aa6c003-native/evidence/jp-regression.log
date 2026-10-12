@@ -1,0 +1,43 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+[validate_config] OK
+[validate_layout_params] OK
+[validate_spec_master] OK
+[build] validating config...
+[build] validating layout params...
+[build] Cleaning target output: /Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/docs/_build/JE-1000F/JP
+[build] target: model='JE-1000F', region='JP', lang=''
+[build] Staged 26 frozen attachment alias(es) across 2 bundle file(s)
+[build] Prepared bundle: /Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/docs/_build/JE-1000F/JP/rst
+[build] Bundle source: runtime
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/01_meaning_of_symbols.rst: rule JA-HONKI matched 3 time(s) in 01_meaning_of_symbols.rst (first: '本機'); use 本製品
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/01_meaning_of_symbols.rst: rule JA-RANGE-TILDE matched 1 time(s) in 01_meaning_of_symbols.rst (first: '～'); use 〜(U+301C)
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/01_meaning_of_symbols.rst: rule JA-CALLOUT-LABEL matched 1 time(s) in 01_meaning_of_symbols.rst (first: 'ご注意'); use 注意(CAUTION)/説明(NOTE)
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/02_whats_in_the_box.rst: rule JA-HONKI matched 1 time(s) in 02_whats_in_the_box.rst (first: '本機'); use 本製品
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/03_product_overview_placeholder.rst: rule JA-HALFWIDTH-KANA matched 1 time(s) in 03_product_overview_placeholder.rst (first: 'ｼｶﾞｰｿｹｯﾄ'); use 全角片假名
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/05_operation_guide_placeholder.rst: rule JA-LED-BUTTON matched 3 time(s) in 05_operation_guide_placeholder.rst (first: 'LEDスイッチ'); use LEDライトボタン
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/05_operation_guide_placeholder.rst: rule JA-SLASH matched 4 time(s) in 05_operation_guide_placeholder.rst (first: 'オン/オフ'); use オン／オフ
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/05_operation_guide_placeholder.rst: rule JA-CALLOUT-LABEL matched 2 time(s) in 05_operation_guide_placeholder.rst (first: 'ご注意'); use 注意(CAUTION)/説明(NOTE)
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/06_ups_mode.rst: rule JA-COMPANY matched 1 time(s) in 06_ups_mode.rst (first: '弊社'); use 当社
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/08_charging_methods.rst: rule JA-COMPANY matched 1 time(s) in 08_charging_methods.rst (first: '弊社'); use 当社
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/08_charging_methods.rst: rule JA-CALLOUT-LABEL matched 2 time(s) in 08_charging_methods.rst (first: 'ご注意'); use 注意(CAUTION)/説明(NOTE)
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/11_warranty.rst: rule JA-COMPANY matched 1 time(s) in 11_warranty.rst (first: '弊社'); use 当社
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/12_app_setup_placeholder.rst: rule JA-DISPLAY matched 6 time(s) in 12_app_setup_placeholder.rst (first: 'ディスプレー'); use ディスプレイ
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/12_app_setup_placeholder.rst: rule JA-USER-MANUAL matched 1 time(s) in 12_app_setup_placeholder.rst (first: 'ユーザーマニュアル'); use 取扱説明書
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/12_app_setup_placeholder.rst: rule JA-APP matched 1 time(s) in 12_app_setup_placeholder.rst (first: 'APP'); use アプリ / Jackeryアプリ
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/12_app_setup_placeholder.rst: rule JA-CALLOUT-LABEL matched 3 time(s) in 12_app_setup_placeholder.rst (first: '備考'); use 注意(CAUTION)/説明(NOTE)
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/charging.rst: rule JA-APP matched 1 time(s) in charging.rst (first: 'Jackery App'); use アプリ / Jackeryアプリ
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/page/charging.rst: rule JA-CALLOUT-LABEL matched 3 time(s) in charging.rst (first: 'ご注意'); use 注意(CAUTION)/説明(NOTE)
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/03_product_overview_ja.rst: rule JA-HALFWIDTH-KANA matched 1 time(s) in 03_product_overview_ja.rst (first: 'ｼｶﾞｰｿｹｯﾄ'); use 全角片假名
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/05_operation_guide_ja.rst: rule JA-LED-BUTTON matched 3 time(s) in 05_operation_guide_ja.rst (first: 'LEDスイッチ'); use LEDライトボタン
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/05_operation_guide_ja.rst: rule JA-SLASH matched 4 time(s) in 05_operation_guide_ja.rst (first: 'オン/オフ'); use オン／オフ
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/05_operation_guide_ja.rst: rule JA-CALLOUT-LABEL matched 2 time(s) in 05_operation_guide_ja.rst (first: 'ご注意'); use 注意(CAUTION)/説明(NOTE)
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/12_app_setup_ja.rst: rule JA-DISPLAY matched 6 time(s) in 12_app_setup_ja.rst (first: 'ディスプレー'); use ディスプレイ
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/12_app_setup_ja.rst: rule JA-USER-MANUAL matched 1 time(s) in 12_app_setup_ja.rst (first: 'ユーザーマニュアル'); use 取扱説明書
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/12_app_setup_ja.rst: rule JA-APP matched 1 time(s) in 12_app_setup_ja.rst (first: 'APP'); use アプリ / Jackeryアプリ
+[check] WARNING TERMINOLOGY_DEPRECATED target=JE-1000F/JP lang=ja path=docs/_build/JE-1000F/JP/rst/generated/JE-1000F/draft/12_app_setup_ja.rst: rule JA-CALLOUT-LABEL matched 3 time(s) in 12_app_setup_ja.rst (first: '備考'); use 注意(CAUTION)/説明(NOTE)
+[check] OK
+[build.py] /Users/pika/Documents/auto-manual2/.venv/bin/python -m tools.validate_config --config /Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/configs/config.ja.yaml
+[build.py] /Users/pika/Documents/auto-manual2/.venv/bin/python -m tools.validate_layout_params --csv /Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/data/layout_params.csv
+[build.py] /Users/pika/Documents/auto-manual2/.venv/bin/python -m tools.validate_spec_master --config /Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/configs/config.ja.yaml --model JE-1000F --region JP --source auto
+[build.py] /Users/pika/Documents/auto-manual2/.venv/bin/python -m tools.build.docs --config /Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/configs/config.ja.yaml --model JE-1000F --region JP --source auto --prepare-only --clean --no-open
+[build.py] /Users/pika/Documents/auto-manual2/.venv/bin/python -m tools.check.docs --config /Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/configs/config.ja.yaml --model JE-1000F --region JP

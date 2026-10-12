@@ -32,8 +32,8 @@ from tools.publish_locale_identity import (  # noqa: E402
     WebPublishTarget,
     assign_legacy_defaults,
     discover_web_publish_targets,
-    ensure_unique_targets as _ensure_unique_targets,
-    load_web_publish_target,
+    ensure_unique_targets as _ensure_unique_targets,  # noqa: F401 -- re-exported for callers and tests
+    load_web_publish_target as load_web_publish_target,
     migrate_legacy_targets,
     required_text as _required_text,
     safe_aliases,

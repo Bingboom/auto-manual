@@ -1,0 +1,151 @@
+{
+  "page": 125,
+  "crop": [
+    25,
+    400,
+    344,
+    484
+  ],
+  "gray_panel_bounds": [
+    40.2867,
+    401.0022,
+    340.6537,
+    482.9052
+  ],
+  "pdf_sha256": "dec50b4ab9918405b9f3c42b799886480c2372175e30d934539e5e798444e12a",
+  "png_sha256": "8a8570026e27955be63dcfe9795e34489d2ebc868f0cfe9f02a9bb39b7fee14f",
+  "labels": [
+    {
+      "language": "pt",
+      "role": "main-power",
+      "bbox": [
+        67.166,
+        428.985,
+        121.156,
+        438.185
+      ],
+      "text": "Botão liga/desliga"
+    },
+    {
+      "language": "pt",
+      "role": "dc-usb",
+      "bbox": [
+        45.914,
+        444.153,
+        121.156,
+        453.353
+      ],
+      "text": "Botão de energia CC/USB"
+    },
+    {
+      "language": "pt",
+      "role": "ac-power-1",
+      "bbox": [
+        262.586,
+        446.139,
+        316.138,
+        455.339
+      ],
+      "text": "Botão POWER CA1"
+    },
+    {
+      "language": "pt",
+      "role": "ac-power-2",
+      "bbox": [
+        262.586,
+        428.655,
+        317.248,
+        437.855
+      ],
+      "text": "Botão POWER CA2"
+    },
+    {
+      "language": "nl",
+      "role": "main-power",
+      "bbox": [
+        80.702,
+        428.985,
+        121.156,
+        438.185
+      ],
+      "text": "Aan/Uit-knop"
+    },
+    {
+      "language": "nl",
+      "role": "dc-usb",
+      "bbox": [
+        49.396,
+        444.151,
+        121.154,
+        453.351
+      ],
+      "text": "Aan/uit-knop voor DC/USB"
+    },
+    {
+      "language": "nl",
+      "role": "ac-power-1",
+      "bbox": [
+        262.584,
+        446.138,
+        329.432,
+        455.338
+      ],
+      "text": "Aan/uit-knop voor AC 1"
+    },
+    {
+      "language": "nl",
+      "role": "ac-power-2",
+      "bbox": [
+        262.584,
+        428.654,
+        330.542,
+        437.854
+      ],
+      "text": "Aan/uit-knop voor AC 2"
+    },
+    {
+      "language": "pl",
+      "role": "main-power",
+      "bbox": [
+        72.068,
+        428.986,
+        121.156,
+        438.186
+      ],
+      "text": "Przycisk zasilania"
+    },
+    {
+      "language": "pl",
+      "role": "dc-usb",
+      "bbox": [
+        47.462,
+        444.154,
+        121.156,
+        453.354
+      ],
+      "text": "Przycisk zasilania DC/USB"
+    },
+    {
+      "language": "pl",
+      "role": "ac-power-1",
+      "bbox": [
+        262.586,
+        446.14,
+        324.964,
+        455.34
+      ],
+      "text": "Przycisk zasilania AC 1"
+    },
+    {
+      "language": "pl",
+      "role": "ac-power-2",
+      "bbox": [
+        262.586,
+        428.656,
+        326.074,
+        437.856
+      ],
+      "text": "Przycisk zasilania AC 2"
+    }
+  ]
+}

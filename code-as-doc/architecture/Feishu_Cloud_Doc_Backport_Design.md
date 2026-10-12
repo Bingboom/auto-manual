@@ -131,7 +131,7 @@ Expected output:
 ## 3. Input Contract
 
 The input is a CLI invocation, not a chat message. The blessed entrypoint is
-`tools/cloud_doc_backport.py run-review-branch --doc-name <doc name> --cloud-doc <url>`
+`python -m tools.backport.cloud_doc run-review-branch --doc-name <doc name> --cloud-doc <url>`
 (see `AGENTS.md` §3): it resolves the review branch from the build table and runs
 in a sparse worktree. The legacy single-page `run-review --doc-url ... --source-path
 docs/_review/...rst` form remains for one-off inspection.
@@ -368,7 +368,7 @@ revert. Content writes are therefore the most strongly gated path.
   row)**, evidence, and a stable delta hash.
 - **Approval entry: operator CLI.** The operator reviews the emitted
   `source_table_change_request`s and applies the approved ones by running
-  `tools/cloud_doc_backport.py apply-source-table --write` with explicit
+  `python -m tools.backport.cloud_doc apply-source-table --write` with explicit
   `--table-binding`s — deliberately running it *is* the approval. The approval is
   recorded (approver, timestamp, request hashes, result).
 - **Exact-or-abstain.** A write needs an exact `record_id`; without it the request
@@ -385,7 +385,7 @@ revert. Content writes are therefore the most strongly gated path.
   before-value), since Bitable has no version history.
 
 **Implementation (shipped).** The executor entrypoint is
-`tools/cloud_doc_backport.py apply-source-table` (loads the change-request report,
+`python -m tools.backport.cloud_doc apply-source-table` (loads the change-request report,
 applies the R9 gates via `source_table_sync.apply_change_requests`, writes an apply
 report). It is dry-run by default; a live Bitable write requires an explicit
 `--write` plus per-table `--table-binding`s (`TABLE=BASE:TABLE_ID`), so an unmapped
@@ -465,13 +465,13 @@ Scope:
 Current command:
 
 ```bash
-python tools/cloud_doc_backport.py diff \
+python -m tools.backport.cloud_doc diff \
   --doc-url "<Feishu cloud doc URL or local fixture.md>" \
   --baseline <baseline.md> \
   --doc-type review|template \
   --out reports/cloud_doc_backport/<run-id>
 
-python tools/cloud_doc_backport.py diff \
+python -m tools.backport.cloud_doc diff \
   --doc-url "<Feishu cloud doc URL or local fixture.md>" \
   --template docs/templates/page_zh/00_preface.rst \
   --doc-type template \
@@ -527,10 +527,10 @@ Exit:
 Current command:
 
 ```bash
-python tools/cloud_doc_backport.py apply-template \
+python -m tools.backport.cloud_doc apply-template \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
 
-python tools/cloud_doc_backport.py apply-template \
+python -m tools.backport.cloud_doc apply-template \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json \
   --write
 ```
@@ -558,25 +558,25 @@ Exit:
 Current command:
 
 ```bash
-python tools/cloud_doc_backport.py run-review \
+python -m tools.backport.cloud_doc run-review \
   --doc-url <doc-or-fixture.md> \
   --source-path docs/_review/<model>/<region>/page/<page>.rst \
   --out reports/cloud_doc_backport/<run-id>
 
-python tools/cloud_doc_backport.py run-review \
+python -m tools.backport.cloud_doc run-review \
   --doc-url <doc-or-fixture.md> \
   --source-path docs/_review/<model>/<region>/page/<page>.rst \
   --out reports/cloud_doc_backport/<run-id> \
   --write
 
-python tools/cloud_doc_backport.py apply-review \
+python -m tools.backport.cloud_doc apply-review \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
 
-python tools/cloud_doc_backport.py apply-review \
+python -m tools.backport.cloud_doc apply-review \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json \
   --write
 
-python tools/cloud_doc_backport.py verify-review \
+python -m tools.backport.cloud_doc verify-review \
   --report reports/cloud_doc_backport/<run-id>/cloud_doc_backport_report.json
 ```
 
@@ -598,7 +598,7 @@ create GitHub PRs or write Feishu source tables by itself.
 `open-pr` is the P5 handoff surface:
 
 ```bash
-python tools/cloud_doc_backport.py open-pr \
+python -m tools.backport.cloud_doc open-pr \
   --manifest reports/cloud_doc_backport/<run-id>/cloud_doc_backport_run.json
 ```
 
@@ -636,7 +636,7 @@ without merging it or writing Feishu source tables.
 
 Scope:
 
-- Add `tools/cloud_doc_backport.py open-pr --manifest ...`.
+- Add `python -m tools.backport.cloud_doc open-pr --manifest ...`.
 - Require `cloud_doc_backport_run.json` to be `PR_READY`.
 - Refuse unrelated working-tree changes.
 - Commit only the changed `docs/_review/...rst` source; keep local reports out

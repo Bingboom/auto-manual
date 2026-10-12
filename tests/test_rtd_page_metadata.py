@@ -6,14 +6,20 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from tests.test_rtd_feedback import RtdFeedbackTests
-from tools.rtd_page_metadata import (
+from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
 )
 
 _BASE = "https://ht-doc.readthedocs.io"
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class RtdPageMetadataTests(unittest.TestCase):
+    def setUp(self):
+        isolate_shared_component_admission(self)
+
     def test_missing_or_blank_base_url_disables_absolute_tags(self) -> None:
         self.assertEqual("", normalize_site_base_url(None))
         self.assertEqual("", normalize_site_base_url("  "))

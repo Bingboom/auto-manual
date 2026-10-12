@@ -1,0 +1,626 @@
+{
+  "shared_buttons": {
+    "version": 1,
+    "source_recipe": "data/asset_recipes/manual_je1000f_us_master.json",
+    "transformation": "Select complete button vector paths inside the approved crop; omit the source page and table backdrop. Preserve the circular button face, switch, indicator dot and outlined product markings.",
+    "background": "transparent outside the circular button face",
+    "assets": [
+      {
+        "semantic_key": "button/power",
+        "asset": "power.svg",
+        "source": "docs/renderers/latex/assets/button_power.pdf",
+        "source_sha256": "80615c7fed8867b2190c629c76829fed8660ff0b3cc1671d0263355b45da0555",
+        "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+        "path_count": 8,
+        "scope": {
+          "models": [
+            "ALL"
+          ],
+          "regions": [
+            "ALL"
+          ],
+          "locales": [
+            "und"
+          ]
+        },
+        "text_policy": "fixed-product-markings"
+      },
+      {
+        "semantic_key": "button/ac",
+        "asset": "ac.svg",
+        "source": "docs/renderers/latex/assets/button_ac.pdf",
+        "source_sha256": "7d05327114394f47133a310dd6efb6278802c5e05aced6553e87553bc54bfde2",
+        "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+        "path_count": 5,
+        "scope": {
+          "models": [
+            "ALL"
+          ],
+          "regions": [
+            "ALL"
+          ],
+          "locales": [
+            "und"
+          ]
+        },
+        "text_policy": "fixed-product-markings"
+      },
+      {
+        "semantic_key": "button/dc_usb",
+        "asset": "dc_usb.svg",
+        "source": "docs/renderers/latex/assets/button_dc_usb.pdf",
+        "source_sha256": "87dcc54d611424a3228e70b85d81411299eeb247644c528fdb05d97969aa85b9",
+        "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+        "path_count": 9,
+        "scope": {
+          "models": [
+            "ALL"
+          ],
+          "regions": [
+            "ALL"
+          ],
+          "locales": [
+            "und"
+          ]
+        },
+        "text_policy": "fixed-product-markings"
+      },
+      {
+        "semantic_key": "button/led",
+        "asset": "led.svg",
+        "source": "docs/renderers/latex/assets/button_led.pdf",
+        "source_sha256": "b20f5428f8ac59d00ec78f12a4a3be43e3a30b61a62de0faf8f46f540c37ee2a",
+        "sha256": "9bfcc75dae807c470b6a6647de0112a986804e82abfede0c93cc2b100dcd3268",
+        "path_count": 8,
+        "scope": {
+          "models": [
+            "ALL"
+          ],
+          "regions": [
+            "ALL"
+          ],
+          "locales": [
+            "und"
+          ]
+        },
+        "text_policy": "fixed-product-markings"
+      }
+    ]
+  },
+  "shared_lcd": [
+    {
+      "semantic_key": "Wi-Fi",
+      "label": "Wi-Fi",
+      "source": "data/phase2/_attachments/lcd_icons/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png",
+      "asset": "assets/shared-lcd/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png",
+      "sha256": "220422befdf990375fe244f80f922b17b8a887d137be8b250a0587550fce99fc"
+    },
+    {
+      "semantic_key": "Bluetooth",
+      "label": "Bluetooth",
+      "source": "data/phase2/_attachments/lcd_icons/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png",
+      "asset": "assets/shared-lcd/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png",
+      "sha256": "ea0607778881880f46a7038f164e31294c57234902c2f4794ac58ef967d62256"
+    },
+    {
+      "semantic_key": "Quiet_Charging_Mode",
+      "label": "静音充電モード",
+      "source": "data/phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png",
+      "asset": "assets/shared-lcd/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png",
+      "sha256": "eb4a5d8fab7844fdf36461c6583787d5ba9da24059724028f931091d23ddff86"
+    },
+    {
+      "semantic_key": "Charging_Plan",
+      "label": "計画充電モード",
+      "source": "data/phase2/_attachments/lcd_icons/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png",
+      "asset": "assets/shared-lcd/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png",
+      "sha256": "b556af88ead6ae32d20eba6e77411f78211d9724194b9c9af30ddd7ecfda3a55"
+    },
+    {
+      "semantic_key": "Self-powered_Mode",
+      "label": "自家発電モード",
+      "source": "data/phase2/_attachments/lcd_icons/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+      "asset": "assets/shared-lcd/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+      "sha256": "c45de286ee70636b16fd833440c7ed92b560d2fe987c48031bd02191ef4ca8a1"
+    },
+    {
+      "semantic_key": "TOU_Mode",
+      "label": "TOUモード",
+      "source": "data/phase2/_attachments/lcd_icons/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png",
+      "asset": "assets/shared-lcd/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png",
+      "sha256": "be336ccbd531420b8a2418a084fa63753f6e98090e34c30a8b961c37020f451f"
+    },
+    {
+      "semantic_key": "UPS",
+      "label": "UPS機能",
+      "source": "data/phase2/_attachments/lcd_icons/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png",
+      "asset": "assets/shared-lcd/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png",
+      "sha256": "a05735b7276a37de99d3bc5a98ea6e61bb23b9ce79bc26b4ca837a7550fc8f51"
+    },
+    {
+      "semantic_key": "AC_Power_Indicator",
+      "label": "交流電源による出力マーク （正弦波)",
+      "source": "data/phase2/_attachments/lcd_icons/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png",
+      "asset": "assets/shared-lcd/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png",
+      "sha256": "a6df1c82717a47c895b2e496e71a47122ec6369475975b0dec1d3ffa61aefad0"
+    },
+    {
+      "semantic_key": "Output_Voltage_and_Frequency",
+      "label": "出力電圧と周波数",
+      "source": "data/phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png",
+      "asset": "assets/shared-lcd/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png",
+      "sha256": "5558fdd5e8d405d6c8c86be16c85785346b0da3088352bc2c85e40a65684f4ec"
+    },
+    {
+      "semantic_key": "Input_Power",
+      "label": "入力電力表示",
+      "source": "data/phase2/_attachments/lcd_icons/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+      "asset": "assets/shared-lcd/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+      "sha256": "182e6b96b78860011722a6f127073bca8eb297cea98a1f1ec1b46172141e5658"
+    },
+    {
+      "semantic_key": "Remaining_Charge_Time",
+      "label": "充電残り時間",
+      "source": "data/phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png",
+      "asset": "assets/shared-lcd/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png",
+      "sha256": "6bdbda943b9ad2457d9113f1f1fd4be8d60c2f97c2b8803e57a3af9612e03272"
+    },
+    {
+      "semantic_key": "AC_Wall_Charging_Indicator",
+      "label": "AC入力電力表示",
+      "source": "data/phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png",
+      "asset": "assets/shared-lcd/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png",
+      "sha256": "def927403a067872c225eec7e14fc095e074a5ef5dc80f4e53dc80e21f2a91ee"
+    },
+    {
+      "semantic_key": "Car_Charging_Indicator",
+      "label": "シガーソケット入力電力表示",
+      "source": "data/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png",
+      "asset": "assets/shared-lcd/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png",
+      "sha256": "d169703b0f4c468c8b4c39cdb62afa97dc87da0da12d864f1215e73d8ea51025"
+    },
+    {
+      "semantic_key": "Solar_Charging_Indicator",
+      "label": "ソーラー(グリーンエネルギー)充電接続",
+      "source": "data/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png",
+      "asset": "assets/shared-lcd/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png",
+      "sha256": "c97df8c3470a071ea4a22683179cd47600d04452469202ec4957c1f70c409de8"
+    },
+    {
+      "semantic_key": "Battery_Saving_Mode",
+      "label": "バッテリー節約モード Jackeryアプリで有効/無効にできます",
+      "source": "data/phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png",
+      "asset": "assets/shared-lcd/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png",
+      "sha256": "5701dcaf741ecb4e7607185ea8bdf34d4a1413c4a1f75bac5df959291ef63b1b"
+    },
+    {
+      "semantic_key": "Charging_Power_Limit",
+      "label": "充電速度制限",
+      "source": "data/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png",
+      "asset": "assets/shared-lcd/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png",
+      "sha256": "bdf3caf214a8b3cf2425e8dc9e71a1078b143b4b4ab7af571458618a05441108"
+    },
+    {
+      "semantic_key": "Battery_Power_Indicator",
+      "label": "バッテリーアイコン",
+      "source": "manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "asset": "assets/shared-lcd/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "semantic_key": "Remaining_Battery_Percentage",
+      "label": "バッテリーレベルパーセントタグ",
+      "source": "data/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+      "asset": "assets/shared-lcd/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+      "sha256": "8c3c5ff517ff51988805f90c9262b743aa0da43a1058f83b784925179305f11e"
+    },
+    {
+      "semantic_key": "Low_Battery_Indicator",
+      "label": "バッテリー残量警告灯",
+      "source": "data/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png",
+      "asset": "assets/shared-lcd/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png",
+      "sha256": "b55c4a4f8f424f6d758f739682ca4e58d3baa86876a01be836b212b0b1f0ecd2"
+    },
+    {
+      "semantic_key": "Discharge_Timer",
+      "label": "放電タイマー",
+      "source": "data/phase2/_attachments/lcd_icons/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png",
+      "asset": "assets/shared-lcd/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png",
+      "sha256": "123aa9b551fc88ad288c55db76f12f706353fc22a6f7d32ae2a1a6518cc614ac"
+    },
+    {
+      "semantic_key": "Energy_Saving_Mode",
+      "label": "省エネモード",
+      "source": "data/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png",
+      "asset": "assets/shared-lcd/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png",
+      "sha256": "9305fc61862b95c4e888edba9517f3f6281fea37d553deea3a899c67cfa2360c"
+    },
+    {
+      "semantic_key": "High_Temperature_Indicator",
+      "label": "高温インジケーター",
+      "source": "manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "asset": "assets/shared-lcd/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    {
+      "semantic_key": "Low_Temperature_Indicator",
+      "label": "低温インジケーター",
+      "source": "manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "asset": "assets/shared-lcd/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    },
+    {
+      "semantic_key": "Fault_code",
+      "label": "エラーコード",
+      "source": "data/phase2/_attachments/lcd_icons/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "asset": "assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a"
+    },
+    {
+      "semantic_key": "Output_Power",
+      "label": "消費電力",
+      "source": "manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "asset": "assets/shared-lcd/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "semantic_key": "Remaining_Discharge_Time",
+      "label": "バッテリー使用可能時間",
+      "source": "data/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png",
+      "asset": "assets/shared-lcd/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png",
+      "sha256": "14b7fae06ace57348de6185c2aac7435c2a88b340d44626388a6db75f6b65162"
+    }
+  ],
+  "pdf_diagrams": {
+    "source": "Jackery ポータブル電源 1000 New (JE-1000F) 取扱説明書V1.0-2026-06-05.pdf",
+    "source_sha256": "d88b32fedb3f38bcbefc6df635079d10da52fd4b16e1046913c86c0c2fa65b0f",
+    "status": "operator-reviewed v23; publication authorized 2026-09-30",
+    "assets": [
+      {
+        "name": "main-power",
+        "page": 12,
+        "clip": [
+          44,
+          87,
+          266,
+          166
+        ],
+        "transforms": "adjoining clips omit external annotation panels",
+        "removed_text": [
+          "本製品のデフォルトの待機時間は2時間です（充電または"
+        ],
+        "retained_text": [],
+        "asset": "assets/native-main-power.svg",
+        "sha256": "37a22ca8d87ee150c5ede4cefd5e3759d0162b9bcd7ee6d0de95ff93539ce0c0",
+        "clip_parts": [
+          [
+            44,
+            87,
+            266,
+            154
+          ],
+          [
+            44,
+            154,
+            157,
+            166
+          ],
+          [
+            203,
+            154,
+            266,
+            158
+          ]
+        ]
+      },
+      {
+        "name": "ac-power",
+        "page": 12,
+        "clip": [
+          39,
+          323,
+          331,
+          473
+        ],
+        "transforms": "redact_text; graphics preserve; no fill",
+        "removed_text": [
+          "オン",
+          "オフ",
+          "1回押す",
+          "1回押す"
+        ],
+        "retained_text": [],
+        "asset": "assets/native-ac-power.svg",
+        "sha256": "1086699f8b96edc71aeeae4056f285b7349e601b05e9c77addf42db65e291068"
+      },
+      {
+        "name": "frequency-displays",
+        "page": 13,
+        "clip": [
+          59,
+          136,
+          311,
+          200
+        ],
+        "transforms": "clip only",
+        "removed_text": [],
+        "retained_text": [
+          "50HZ",
+          "60HZ"
+        ],
+        "asset": "assets/native-frequency-displays.svg",
+        "sha256": "c222da22ef0e4dbdba9a586b88d7777061930aafdb899f4b56b2a8f53156cd3c"
+      },
+      {
+        "name": "usb-power",
+        "page": 13,
+        "clip": [
+          46,
+          254,
+          326,
+          405
+        ],
+        "transforms": "adjoining clips omit external annotation panels; text redaction with graphics preserved",
+        "removed_text": [
+          "前提：",
+          "主電源ボタンがオンになっていることを確認してください。",
+          "オン",
+          "オフ",
+          "1回押す",
+          "1回押す"
+        ],
+        "retained_text": [],
+        "asset": "assets/native-usb-power.svg",
+        "sha256": "5aca9997001e5f74653867475d880f1f98e5ea40c928eb2acbe65349088cf1d5",
+        "clip_parts": [
+          [
+            211,
+            254,
+            326,
+            259
+          ],
+          [
+            46,
+            259,
+            326,
+            405
+          ]
+        ]
+      },
+      {
+        "name": "energy-buttons",
+        "page": 14,
+        "clip": [
+          44,
+          350,
+          327,
+          435
+        ],
+        "transforms": "redact_text; graphics preserve; no fill",
+        "removed_text": [
+          "オン/オフ",
+          "主電源ボタン",
+          "AC出力ボタン"
+        ],
+        "retained_text": [],
+        "asset": "assets/native-energy-buttons.svg",
+        "sha256": "2f3f1cbf95e9d5fd351dfc0b26a07223f8ea88fd0200e0238dc09bf4b0c0643d"
+      },
+      {
+        "name": "led-light",
+        "page": 15,
+        "clip": [
+          43,
+          232,
+          203,
+          316
+        ],
+        "transforms": "clip only",
+        "removed_text": [],
+        "retained_text": [
+          "LIGHT"
+        ],
+        "asset": "assets/native-led-light.svg",
+        "sha256": "d2c69cc2d49ec6b957bb9fbd6e614abb9fe645059aee1b27e5f3fedab5d4f93f"
+      },
+      {
+        "name": "led-on-icon",
+        "page": 15,
+        "clip": [
+          231,
+          239,
+          250,
+          261
+        ],
+        "transforms": "clip only",
+        "removed_text": [],
+        "retained_text": [],
+        "asset": "assets/native-led-on-icon.svg",
+        "sha256": "74091cbe7aaf823c402837e78ae12257aaa74e9e5d0649ddc5f0950bf1229584"
+      },
+      {
+        "name": "led-off-icon",
+        "page": 15,
+        "clip": [
+          231,
+          290,
+          250,
+          311
+        ],
+        "transforms": "clip only",
+        "removed_text": [],
+        "retained_text": [],
+        "asset": "assets/native-led-off-icon.svg",
+        "sha256": "8d6f52e01e2341e4db5a198f5a068a14b72d46c14fc68692583708194c0b1167"
+      },
+      {
+        "name": "lcd-button",
+        "page": 15,
+        "clip": [
+          36,
+          366,
+          147,
+          455
+        ],
+        "transforms": "clip only",
+        "removed_text": [],
+        "retained_text": [],
+        "asset": "assets/native-lcd-button.svg",
+        "sha256": "7246f9f39e6d037c0ea57f745507d91ef265b59e82a7bd51683cf44922827187"
+      },
+      {
+        "name": "ups",
+        "page": 16,
+        "clip_parts": [
+          [
+            44,
+            289,
+            334,
+            413
+          ],
+          [
+            44,
+            413,
+            149,
+            460
+          ]
+        ],
+        "asset": "assets/native-ups.svg",
+        "removed_text": [
+          "電気製品のコンセントを…"
+        ],
+        "transforms": "adjoining clips omit external annotation panels",
+        "sha256": "6d9ffbbdac2ff2e56e16fe6aa0847b2459c9dcbeaa7371416e0c97207c37bb87"
+      },
+      {
+        "name": "ac-charge",
+        "page": 18,
+        "clip": [
+          26,
+          101,
+          340,
+          204
+        ],
+        "transforms": "clip only",
+        "removed_text": [],
+        "retained_text": [],
+        "asset": "assets/native-ac-charge.svg",
+        "sha256": "79050b061d5bc5234b04233fa41660ae0a7b538e020c584e46707c5f4725e96a"
+      },
+      {
+        "name": "solar-direct",
+        "page": 19,
+        "clip": [
+          26,
+          86,
+          340,
+          216
+        ],
+        "transforms": "redact_text; graphics preserve; no fill",
+        "removed_text": [
+          "ください。"
+        ],
+        "retained_text": [],
+        "asset": "assets/native-solar-direct.svg",
+        "sha256": "4cda4d8c0a9fd224b6bec82b4410f4afb94ca139a33f8a616935490cf45eeaa8"
+      },
+      {
+        "name": "solar-adapter",
+        "page": 19,
+        "clip": [
+          26,
+          311,
+          341,
+          472
+        ],
+        "transforms": "redact_text; graphics preserve; no fill",
+        "removed_text": [
+          "SolarSaga アダプター（Pro/Plus/New専用）別売り",
+          "SolarSaga 100 Air × 4"
+        ],
+        "retained_text": [],
+        "asset": "assets/native-solar-adapter.svg",
+        "sha256": "6589274a236a8ea6ef02457e10857b6e449dfe1f20ca6979b1f246ee03c95e40"
+      },
+      {
+        "name": "car-charge",
+        "page": 20,
+        "clip": [
+          26,
+          335,
+          340,
+          458
+        ],
+        "transforms": "redact_text; graphics preserve; no fill",
+        "removed_text": [
+          "車"
+        ],
+        "retained_text": [],
+        "asset": "assets/native-car-charge.svg",
+        "sha256": "ae8bb886e144c7206f36d9392b2c50f0e573bc518756621e90312fd74f5f2778"
+      },
+      {
+        "name": "app-phones",
+        "page": 25,
+        "clip": [
+          96,
+          204,
+          258,
+          347
+        ],
+        "transforms": "clip only",
+        "removed_text": [],
+        "retained_text": [
+          "クし、アプリが近くのデバイスに接続し、Bluetoothのアクセス許可を開くことを許可します。",
+          "2.1",
+          "2.2"
+        ],
+        "asset": "assets/native-app-phones.svg",
+        "sha256": "0cb399f3ea1117014a9959b2d3884a60ac0f609859007cbac06df7fc10e98651"
+      },
+      {
+        "name": "app-button-map",
+        "page": 25,
+        "clip": [
+          31,
+          358,
+          343,
+          420
+        ],
+        "transforms": "redact_text; graphics preserve; no fill",
+        "removed_text": [
+          "2.1",
+          "2.2",
+          "AC出力ボタン",
+          "主電源ボタン",
+          "DC/USB出力ボタン"
+        ],
+        "retained_text": [],
+        "asset": "assets/native-app-button-map.svg",
+        "sha256": "b76beabd9ab2f6e107cfd3cb3d1645c1d564d3db5ba4da9f596ef6c35a188724"
+      },
+      {
+        "name": "app-results",
+        "page": 26,
+        "clip": [
+          68,
+          101,
+          305,
+          235
+        ],
+        "transforms": "clip only",
+        "removed_text": [],
+        "retained_text": [
+          "2.5",
+          "2.3",
+          "2.4",
+          "3600 Plus",
+          "1000 Pro v2"
+        ],
+        "asset": "assets/native-app-results.svg",
+        "sha256": "306f3fe861ff0aa8f577f129af3250ef0fcbd152ffd0c93cc2332f5274dbfe03"
+      }
+    ]
+  },
+  "artwork_policy": "Shared icons first. Ordinary illustrations use native labels; tables remain HTML. Dense leader overview diagrams retain annotations. New standalone extractions have transparent backdrops."
+}

@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import sys
 from typing import Any
 
 try:
@@ -17,12 +16,12 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
+from tools.build_queue.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity  # noqa: E402
-from tools.rtd_deployment_receipt import DEFAULT_RTD_BASE_URL  # noqa: E402
-from tools.queue_bound_binding import collect_queue_preflight_errors, resolve_document_link_binding  # noqa: E402
-from tools.queue_bound_lark_ops import run_lark_cli_json  # noqa: E402
+from tools.rtd.deployment_receipt import DEFAULT_RTD_BASE_URL  # noqa: E402
+from tools.build_queue.bound_binding import collect_queue_preflight_errors, resolve_document_link_binding  # noqa: E402
+from tools.build_queue.bound_lark_ops import run_lark_cli_json  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.write_publish_html_link import (  # noqa: E402
     display_path,
@@ -30,6 +29,9 @@ from tools.write_publish_html_link import (  # noqa: E402
     target_record_ids_from_publish_meta,
     write_html_link_records,
 )
+from tools.utils.log import get_logger
+
+_ERR = get_logger("web-publish-link", stream="stderr")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -195,8 +197,8 @@ def main(argv: list[str] | None = None) -> int:
             explicit_record_ids=tuple(str(item).strip() for item in args.record_id if str(item).strip()),
             pending=bool(args.pending),
         )
-    except Exception as exc:
-        print(f"[web-publish-link] ERROR: {exc}", file=sys.stderr)
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
+        _ERR.error(f"[web-publish-link] ERROR: {exc}")
         return 1
     if args.pending:
         print(f"[web-publish-link] Recorded {written} pending HTML_link registration(s).")

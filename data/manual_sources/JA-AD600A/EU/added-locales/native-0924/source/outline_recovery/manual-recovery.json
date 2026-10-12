@@ -1,0 +1,47 @@
+[
+  {
+    "language": "de",
+    "role": "pre-checks-before-warning",
+    "native_rst": "1. Stellen Sie sicher, dass das Fahrzeug vor der Installation ausgeschaltet ist.\n\n2. Stellen Sie sicher, dass die Systemspannung des Fahrzeugs 12 V oder 24 V beträgt.\n\n3. Stellen Sie sicher, dass die Ausgangsspannung des Produkts mit der DC-Eingangsspannung der tragbaren Powerstation übereinstimmt.\n\n4. Ermitteln Sie die Position der Fahrzeugbatterie und stellen Sie sicher, dass ausreichend Platz für die Durchführung des Eingangskabels vorhanden ist.\n\n5. Wählen Sie eine geeignete Installationsposition. Es wird empfohlen, das Produkt im Kofferraum zu installieren und dabei auf allen Seiten mindestens 20 cm Abstand einzuhalten, um eine Überhitzung bei längerem Betrieb zu vermeiden.\n\n   - Es wird empfohlen, das Produkt auf derselben Seite wie die Batterie zu installieren. Beispiel: Befindet sich die Batterie auf der linken Fahrzeugseite, installieren Sie das Produkt ebenfalls auf der linken Seite."
+  },
+  {
+    "language": "de",
+    "role": "wiring-precautions",
+    "native_rst": "**Vorsichtsmaßnahmen:**\n\n- Stellen Sie sicher, dass alle Kabel fest angeschlossen sind, um Überhitzung oder Kurzschlüsse durch lose Verbindungen zu vermeiden.\n- Achten Sie beim Anschließen des Ringkabelschuhs an die Fahrzeugbatterie auf eine feste Verbindung, um ungewöhnliche Temperaturanstiege zu vermeiden.\n- Stellen Sie sicher, dass das Fahrzeug ausgeschaltet ist."
+  },
+  {
+    "language": "de",
+    "role": "warranty-body-4",
+    "native_rst": "Die Garantie von Jackery gilt nicht für:\n\n- Produkte, die missbräuchlich verwendet, zweckentfremdet, verändert, durch einen Unfall beschädigt oder für andere Zwecke als die normale Verbrauchernutzung gemäß der aktuellen Produktliteratur von Jackery verwendet wurden.\n- Reparaturversuche durch andere Personen als eine autorisierte Einrichtung.\n- Produkte, die über ein Online-Auktionshaus gekauft wurden.\n- Die Garantie von Jackery gilt nicht für die Batteriezelle, es sei denn, die Batteriezelle wird von Ihnen innerhalb von sieben Tagen nach dem Kauf des Produkts vollständig aufgeladen und danach mindestens einmal alle 6 Monate."
+  },
+  {
+    "language": "it",
+    "role": "installation-safety",
+    "native_rst": "- Si raccomanda di affidare il cablaggio a un professionista.\n- Prima di eseguire il cablaggio o il collegamento, adottare misure di protezione personale, ad esempio indossando occhiali di sicurezza e guanti isolanti, e rispettare sempre le indicazioni di sicurezza elettrica.\n- Spegnere sempre il veicolo prima di iniziare qualsiasi intervento elettrico.\n- Mantenere il prodotto asciutto durante l'uso.\n- Non inserire oggetti estranei nelle porte del prodotto.\n- Non utilizzare il prodotto se il cablaggio, i connettori o il prodotto stesso sono danneggiati.\n- Evitare di posizionare i cavi vicino a fonti di calore, oggetti taglienti o aree soggette ad attrito.\n- Fissare correttamente i cavi per prevenire potenziali problemi causati da usura o collegamenti allentati.\n- Prima di avviare il veicolo e il prodotto, verificare che il cablaggio sia completo e che tutte le viti e i connettori siano serrati saldamente.\n- Non utilizzare questo prodotto per caricare centrali elettriche portatili danneggiate o non ricaricabili, né batterie di riserva danneggiate o non ricaricabili.\n- Se il prodotto presenta anomalie dopo l'avvio del veicolo, controllare la spia di stato e consultare il manuale per la risoluzione dei problemi.\n- Prima di collegare, scollegare o modificare il cablaggio, assicurarsi che il veicolo sia spento, che il prodotto sia spento e il collegamento sia interrotto."
+  },
+  {
+    "language": "it",
+    "role": "emergency",
+    "native_rst": "- In caso di emergenza (ad esempio gravi danni da urto), indossare guanti isolanti e spostare il prodotto in un'area aperta, lontano da materiali infiammabili e persone. Smaltire il prodotto in conformità alle leggi e ai regolamenti locali.\n- Se il prodotto cade accidentalmente in acqua, viene esposto alla pioggia o presenta umidità visibile sulla superficie, non toccare direttamente il prodotto né l'acqua circostante. Adottare le precauzioni necessarie contro le scosse elettriche e spostare il prodotto in un'area sicura, asciutta e ben ventilata. Non utilizzare né toccare il prodotto finché non è completamente asciutto. Se è necessaria assistenza, contattare immediatamente il servizio clienti Jackery.\n- Se il prodotto prende fuoco, utilizzare i seguenti metodi di estinzione nell'ordine indicato: acqua o acqua nebulizzata, sabbia, coperta antincendio, polvere estinguente a secco o estintore a CO₂."
+  },
+  {
+    "language": "it",
+    "role": "pre-checks-before-warning",
+    "native_rst": "1. Assicurarsi che il veicolo sia spento prima dell’installazione.\n\n2. Verificare che la tensione dell'impianto del veicolo sia 12V o 24V.\n\n3. Assicurarsi che la tensione di uscita del prodotto corrisponda alla tensione di ingresso CC della centrale elettrica portatile.\n\n4. Individuare la posizione della batteria del veicolo e assicurarsi che vi sia spazio sufficiente per il passaggio del cavo di ingresso.\n\n5. Scegliere una posizione di installazione adeguata. Si consiglia di installare il prodotto nel bagagliaio, assicurandosi di avere almeno 20 cm di spazio libero su tutti i lati per evitare il surriscaldamento dovuto a un funzionamento prolungato.\n\n   - Si consiglia di installare il prodotto sullo stesso lato della batteria. Ad esempio, se la batteria si trova sul lato sinistro del veicolo, installare il prodotto sul lato sinistro."
+  },
+  {
+    "language": "it",
+    "role": "wiring-precautions",
+    "native_rst": "Precauzioni:\n\n- Assicurarsi che i cavi siano fissati saldamente per evitare temperature elevate o cortocircuiti causati da collegamenti allentati.\n- Quando si collega il terminale OT alla batteria del veicolo, assicurarsi che il collegamento sia sicuro per prevenire aumenti anomali della temperatura.\n- Assicurarsi che il veicolo sia spento."
+  },
+  {
+    "language": "it",
+    "role": "daily-precautions",
+    "native_rst": "- Non tirare con forza il cablaggio quando si scollega il prodotto, per evitare danni. L'uso prolungato del prodotto può causare il riscaldamento dell'involucro esterno. Evitare il contatto diretto per evitare ustioni.\n- Controllare regolarmente il cablaggio ogni mese per verificare che i terminali OT siano collegati saldamente e che i cavi non presentino crepe, usura o corrosione.\n- Utilizzare un panno asciutto e morbido o un fazzoletto per pulire il prodotto. Non lavarlo direttamente con acqua.\n- Durante l'uso del prodotto, assicurarsi che non vi siano oggetti nel raggio di 20 cm in qualsiasi direzione, per evitare che il calore influisca sugli elementi circostanti.\n- Se si riscontrano segni di usura, danni o altri problemi sul prodotto o sui cavi, interrompere immediatamente l'uso e richiedere una riparazione o una sostituzione.\n- Spegnere il prodotto quando non è in uso."
+  },
+  {
+    "language": "it",
+    "role": "warranty-body-4",
+    "native_rst": "La garanzia Jackery non si applica a:\n\n- Qualsiasi prodotto che sia stato usato in modo improprio, abusato, modificato, danneggiato accidentalmente o utilizzato per qualsiasi scopo diverso dal normale uso da parte del consumatore previsto dalla documentazione di prodotto Jackery vigente.\n- Tentativi di riparazione da parte di soggetti diversi da una struttura autorizzata.\n- Qualsiasi prodotto acquistato tramite una casa d'aste online.\n- La garanzia Jackery non si applica alla cella della batteria, a meno che la cella della batteria non venga caricata completamente dall'utente entro sette giorni dall'acquisto del prodotto e almeno una volta ogni 6 mesi successivamente."
+  }
+]

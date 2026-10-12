@@ -115,7 +115,7 @@ python3 -m tools.tm_hit_rate stats
 - 有没回收的编辑 → 仓库里自动开/更新一个
   **`[backport-reminder]`** issue，列出哪些文档、哪个分支、云文档链接。
 - **你要做的**：看到 issue，对着列出的文档跑
-  `python tools/cloud_doc_backport.py run-review-branch --doc-name <名> --cloud-doc <链接>`。
+  `python -m tools.backport.cloud_doc run-review-branch --doc-name <名> --cloud-doc <链接>`。
   回收完成后，下一次哨兵运行会自动把 issue 关掉——不用手动关。
 - 从没回收过的评审文档会标 `no_baseline`（评审开始后一次 backport 都没跑），
   处理方式相同。
@@ -147,10 +147,10 @@ python3 -m tools.tm_hit_rate stats
 
 ```bash
 # ① 先出 QC 结果（已有流程）：
-python tools/content_lint.py --data-root data/phase2 --json --write-report
+python -m tools.content_lint --data-root data/phase2 --json --write-report
 
 # ② 渲染到构建好的 PDF 上：
-python tools/pdf_annotate.py \
+python -m tools.pdf_annotate \
   --pdf docs/_build/<model>/<region>/pdf/<manual>.pdf \
   --findings reports/content_qc/<run-id>/findings.json
 ```
@@ -193,7 +193,7 @@ main，分钟级、零手工）；但**在飞的评审分支不会自动吃到�
 ## 4.6 三流转双面仪表（一条命令看全局）
 
 ```bash
-python tools/flow_dashboard.py report
+python -m tools.flow_dashboard report
 ```
 
 只读聚合既有台账/报告，输出 `reports/flow_dashboard/dashboard.md`（同目录还有
@@ -216,7 +216,7 @@ python tools/flow_dashboard.py report
   获取规格书后文案 3 天、设计排版+评审约 1 周；产品阶段 EVT→DVT→PVT
   每轮规格变更都触发同流程的修订（文案→设计→评审→发布），PVT 变更较少
   但仍有。月度例行跑法：
-  `python tools/flow_dashboard.py report --baseline-hours-per-manual 80`。
+  `python -m tools.flow_dashboard report --baseline-hours-per-manual 80`。
   修订轮的省时暂未单独计价（可数轮数在修订台账里，等 H2 一起做每轮基准）
 - 已审计 PDF 数的数据源是 `reports/pdf_annotate/ledger.jsonl`——
   `pdf_annotate` 每次运行自动记账（`--no-ledger` 关闭）；
@@ -235,11 +235,11 @@ python tools/flow_dashboard.py report
 lark-cli base +base-create --name "演练-base重建-<日期>"
 # 2. 从 schema 镜像重建表结构（幂等，dry-run 默认，--write 执行）
 # 完整重建用整库镜像（21 表）；promote 流程的 2 表小 manifest 仍是 manifest.json
-python tools/bitable_schema.py apply --manifest bitable_schema/business_base_manifest.json \
+python -m tools.bitable_schema apply --manifest bitable_schema/business_base_manifest.json \
   --base-token <scratch> --identity user --write --yes
 # 复杂字段（公式/lookup/link）apply 会列跳过清单——按 manifest 里的 detail 手工重建
 # 3. 从种子/快照灌数据
-python tools/bitable_schema.py seed-import --base-token <scratch> \
+python -m tools.bitable_schema seed-import --base-token <scratch> \
   --table 规格书字段映射规则 --seed bitable_schema/seed/规格书字段映射规则.csv \
   --key 规格书字段 --identity user --write --yes
 # 4. 回读核对行数/字段数，记录耗时到本节
@@ -285,11 +285,11 @@ secret 在 base API 下无效 → 0 表。**bot 权限本身无问题**（同一
 # 1. 从 Actions 下载最近的 phase2-content-backup-<run_id> 工件并解压
 # 2. scratch base + 结构（同 4.7 步骤 1-2）
 # 3. 回灌内容（dry-run 默认；--write --yes 执行；空表才允许写入）
-python tools/bitable_content_backup.py restore \
+python -m tools.bitable_content_backup restore \
   --backup <解压目录>/business --base-token <scratch> \
   --tables <误删的表> --identity user --write --yes
 # 4. 行数核对
-python tools/bitable_content_backup.py verify \
+python -m tools.bitable_content_backup verify \
   --backup <解压目录>/business --base-token <scratch> --identity user
 # 5. 核对通过后，把需要的行从 scratch 手工/按表搬回生产表（或对生产空表重复 3）
 ```
@@ -518,13 +518,13 @@ manual-release/je-1000f/us/en-fr-es/0.8
 
 ```bash
 # 1. 空跑：显示将绑定的 tag / commit / manifest SHA，不改 Git
-python tools/release_tag.py --manifest <release-manifest.json>
+python -m tools.release_tag --manifest <release-manifest.json>
 
 # 2. 创建本地 annotated tag，再核对一次
-python tools/release_tag.py --manifest <release-manifest.json> --write
+python -m tools.release_tag --manifest <release-manifest.json> --write
 
 # 3. 推送；重复执行是幂等的
-python tools/release_tag.py --manifest <release-manifest.json> --write --push
+python -m tools.release_tag --manifest <release-manifest.json> --write --push
 ```
 
 tag 指向 manifest 的完整 `git_sha`；注释同时记录 manifest SHA-256 和 E1
@@ -541,7 +541,7 @@ fail-closed，不能删 tag 后强行重绑。先确认是不是版本号复用�
 
    ```bash
    python build.py release-rebuild-verify --manifest <release-manifest.json>
-   python tools/release_tag.py --manifest <release-manifest.json>
+   python -m tools.release_tag --manifest <release-manifest.json>
    ```
 
    第一条验证 E1 快照+历史构建；第二条若 tag 已存在则验证 commit 和注释绑定。
@@ -612,6 +612,6 @@ Publish，并逐字节比较 DOCX/Markdown/PDF。原归档文件丢失而必须�
 | --- | --- |
 | 每轮评审收尾 | `tm-candidates` → 过目 → `tm-apply`（§1.2 ②③） |
 | 有 `[backport-reminder]` issue 时 | 对着清单跑回收（§3） |
-| 每月 | `python tools/flow_dashboard.py report`（§4.6，一条命令出两面）；`python tools/printed_url_inventory.py check && python tools/printed_url_inventory.py liveness`（§4.8 印刷外链）；`top_corrected_sources` 里反复出现的文件记下来（模板优化候选） |
+| 每月 | `python -m tools.flow_dashboard report`（§4.6，一条命令出两面）；`python -m tools.printed_url_inventory check && python -m tools.printed_url_inventory liveness`（§4.8 印刷外链）；`top_corrected_sources` 里反复出现的文件记下来（模板优化候选） |
 
 跑了 2–3 轮、流程顺手之后，这套程序会固化成 skill（届时本文档仍是底层参考）。

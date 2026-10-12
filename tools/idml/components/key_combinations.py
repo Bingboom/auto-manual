@@ -515,11 +515,13 @@ def render_key_combinations(
     # Keep the clock on the same left text edge as the Operation header.  The
     # duration remains separated from the icon by the governed clock gap.
     clock_left = first_w + scaled(6.5)
+    # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
     for index, (row_top, row_h, assets) in enumerate(
-        zip(row_tops, row_heights, button_assets)
+        zip(row_tops, row_heights, button_assets, strict=False)
     ):
         icon_top = row_top + scaled(2.2)
-        for side, (left, asset) in enumerate(zip(button_lefts, assets)):
+        # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
+        for side, (left, asset) in enumerate(zip(button_lefts, assets, strict=False)):
             underlays.append(_positioned_image(
                 f"key_button_{index}_{side}_{tid}",
                 asset,
@@ -540,7 +542,8 @@ def render_key_combinations(
     text_layers: list[str] = []
     headers = [_plain(cell) for cell in raw_rows[0][:3]]
     header_ranges = ((0.0, x1), (x1, x2), (x2, width))
-    for index, (header, (left, right)) in enumerate(zip(headers, header_ranges)):
+    # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
+    for index, (header, (left, right)) in enumerate(zip(headers, header_ranges, strict=False)):
         text_layers.append(_editable_text_frame(
             ctx,
             story_id=f"st_anchor_key_header_{index}_{tid}",
@@ -558,8 +561,9 @@ def render_key_combinations(
             valign="CenterAlign",
         ))
 
+    # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
     for index, (row, row_top, row_h) in enumerate(
-        zip(rows, row_tops, row_heights)
+        zip(rows, row_tops, row_heights, strict=False)
     ):
         row_bottom = row_top + row_h
         labels = _split_button_labels(row[0])
@@ -567,8 +571,9 @@ def render_key_combinations(
             (scaled(3.0), first_w * 0.49),
             (first_w * 0.51, first_w - scaled(3.0)),
         )
+        # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
         for side, (label, (left, right)) in enumerate(
-            zip(labels, caption_ranges)
+            zip(labels, caption_ranges, strict=False)
         ):
             text_layers.append(_editable_text_frame(
                 ctx,

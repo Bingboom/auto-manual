@@ -1,5 +1,7 @@
 # JE-2000E-KR 回写轮收尾报告（Hello-Docs#90 合入后）
 
+Status: done
+
 - generated_utc: 2026-09-19T09:16:25Z
 - 对象：`review/JE-2000E-KR` @ tip `d53ccf331dd13ffd2c7d2279ab7111b5091d6a05`（= Hello-Docs#90 squash `d53ccf33`，仅存在于 hello-docs 远端；origin 无此分支）
 - 工具：`tools/cloud_doc_backport.py run-review-branch`（dry-run，`--remote hello-docs --lang ko`，F2 值索引 147 值 / data/phase2 快照 2026-08-22，F3 家族模板 11 个）

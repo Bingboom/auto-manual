@@ -1,5 +1,7 @@
 # JA-CC30A / EU / en Web intake review (2026-09)
 
+Status: active
+
 ## Scope and source authority
 
 - Target: `JA-CC30A / EU / en / Web`.

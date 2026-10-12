@@ -7,7 +7,7 @@
    .. raw:: latex
 
       \section{ЩО В КОРОБЦІ}
-      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Кабель для заряджання AC}{manual_icon1.png}{Посібник користувача}
+      \HBInBoxThree{asset:in_the_box/main_unit1}{Jackery Explorer 1000}{ac_charging_cable.png}{Кабель для заряджання AC}{manual_icon1.png}{Посібник користувача}
       \HBTipBlock{ПОРАДИ}{Кабель для заряджання від автомобіля не входить до комплекту, але його можна придбати окремо на нашому вебсайті. Для отримання допомоги зверніться до служби підтримки Jackery.}
 
 .. only:: not latex
@@ -20,7 +20,7 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
+      * - .. image:: asset:in_the_box/main_unit1
              :alt: Заглушка зображення електростанції.
              :width: 120px
 

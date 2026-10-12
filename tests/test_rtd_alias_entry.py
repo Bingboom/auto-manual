@@ -7,13 +7,19 @@ from tempfile import TemporaryDirectory
 
 from tests import test_rtd_feedback
 from tools.readthedocs_source import RtdManual, _write_short_aliases
-from tools.rtd_alias_entry import alias_head_markup, alias_targets, delayed_forward_body
+from tools.rtd.alias_entry import alias_head_markup, alias_targets, delayed_forward_body
 
 _BASE = "https://ht-doc.readthedocs.io"
 _TARGET = "JE-TEST/EU/fr/md/manual.html"
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class RtdAliasEntryTests(unittest.TestCase):
+    def setUp(self):
+        isolate_shared_component_admission(self)
+
     def test_alias_targets_map_stems_to_nested_urls(self) -> None:
         products = [{"publications": [{"url": _TARGET}, {"url": "JE-TEST/EU/md/manual_legacy.html"}]}]
         self.assertEqual(

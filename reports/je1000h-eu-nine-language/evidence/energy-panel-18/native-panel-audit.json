@@ -1,0 +1,62 @@
+[
+  {
+    "language": "pt",
+    "physical_page": 117,
+    "crop": [
+      27,
+      228,
+      343,
+      375
+    ],
+    "operations": [
+      "crop"
+    ],
+    "source_page_sha256": "ae54e1b9b99ce42498a0f3ff4b4dd9f2515db7304e1dd9b5cbdf0c53f521f8d1",
+    "pdf_sha256": "49222f9fa31809f019e0762ff5b9db2a2059801d6e5bb536312b23245ff23aed",
+    "png_sha256": "a5aaa997ef795fbfbc4521e8438cc242c92d462b0e9ce145f1f7d2b4c11b06e9",
+    "native_gray_frame_retained": true,
+    "four_sides_inside_clip": true,
+    "top_gray_note_retained": true,
+    "text": "Para desativar o modo de economia de energia, pressione e segure ao mesmo tempo o botão de \nenergia CA 1 e o botão POWER\npor mais de 3 segundos. O produto não desligará automaticamente a saída CA 1/CA 2 ou CC/USB.\n3s\nPressione e segure ambos os \nbotões por mais de 3 segundos.\nLigar/Desligar\n"
+  },
+  {
+    "language": "nl",
+    "physical_page": 134,
+    "crop": [
+      27,
+      228,
+      343,
+      375
+    ],
+    "operations": [
+      "crop"
+    ],
+    "source_page_sha256": "ad7b8e4c7f98a4aa7c65f460c3b15b506c9dd23d40956c86d4ed475f21416b3d",
+    "pdf_sha256": "f2881558919c6913aa53e35608a58a9e57a2afcbe911178335039b9b682d66e3",
+    "png_sha256": "e57383a5325d54a554ff507f257e269c21a9176087cf2a5e84e1f2008838ccf7",
+    "native_gray_frame_retained": true,
+    "four_sides_inside_clip": true,
+    "top_gray_note_retained": true,
+    "text": "Om de Energiebesparingsmodus uit te schakelen, houdt u zowel de Aan/uit-knop voor AC 1 als de hoofd AAN/UIT-knop \ningedrukt\ngedurende meer dan 3 seconden. Het product schakelt de AC 1/AC 2- of DC/USB-uitgang niet automatisch uit.\n3s\nHoud beide knoppen langer \ndan 3 seconden ingedrukt.\nAan/Uit\n"
+  },
+  {
+    "language": "pl",
+    "physical_page": 151,
+    "crop": [
+      27,
+      228,
+      343,
+      375
+    ],
+    "operations": [
+      "crop"
+    ],
+    "source_page_sha256": "b0146fcfa5377b9dd52c9f75bd3162db25a552ceee0f3f7b85235e0a50ce6a36",
+    "pdf_sha256": "0fafbeb48e081165c7ad294131f3a5212fd060ec5424632270752cdd68a2ed30",
+    "png_sha256": "eb5fea48aeb0edf845168897547234d3e5f637b622568a6454c90431ef92a4df",
+    "native_gray_frame_retained": true,
+    "four_sides_inside_clip": true,
+    "top_gray_note_retained": true,
+    "text": "Aby wyłączyć tryb oszczędzania energii, naciśnij i przytrzymaj jednocześnie przycisk zasilania AC oraz przycisk POWER\nna dłużej niż 3 sekundy. Produkt nie będzie automatycznie wyłączać wyjścia AC 1 / AC 2 ani DC/USB.\n3 s Naciśnij i przytrzymaj oba przyciski \nprzez ponad 3 sekundy.\nWł./wył.\n"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "batch": "1465",
+  "model": "JE-3600A",
+  "language": "es",
+  "baseline_version": "git-20261005-47a346dc",
+  "source": "delivered JE-3600A corrected AI/PDF and modification records",
+  "scope": "semantic Web copy only; no print pagination or reviewer colors",
+  "deltas": [
+    {
+      "path": "/5/blocks/0/1/children/0/text",
+      "old": "AFFICHAGE LCD",
+      "new": "PANTALLA LCD"
+    },
+    {
+      "path": "/5/blocks/1/1/component_spec/slots/1/content",
+      "old": "JE-3600A — AFFICHAGE LCD 1–21",
+      "new": "JE-3600A — PANTALLA LCD 1–21"
+    },
+    {
+      "path": "/5/blocks/1/1/carrier_flow/0/alt",
+      "old": "JE-3600A — AFFICHAGE LCD 1–21",
+      "new": "JE-3600A — PANTALLA LCD 1–21"
+    },
+    {
+      "path": "/5/blocks/2/1/component_spec/slots/0/content",
+      "old": "AFFICHAGE LCD",
+      "new": "PANTALLA LCD"
+    },
+    {
+      "path": "/6/blocks/11/1/children/0/text",
+      "old": "AFFICHAGE LCD",
+      "new": "PANTALLA LCD"
+    },
+    {
+      "path": "/6/blocks/12/1/component_spec/slots/0/content",
+      "old": "AFFICHAGE LCD",
+      "new": "PANTALLA LCD"
+    },
+    {
+      "path": "/8/blocks/0/1/children/0/text",
+      "old": "CONNEXIONS",
+      "new": "CONEXIONES"
+    }
+  ],
+  "raw_capture_policy": "original native capture files retained as evidence; corrected chapters supersede affected original strings"
+}

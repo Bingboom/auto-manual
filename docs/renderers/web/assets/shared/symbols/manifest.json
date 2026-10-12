@@ -1,0 +1,1537 @@
+{
+  "schema_version": "auto-manual-shared-web-symbols/v1",
+  "assets": [
+    {
+      "key": "warning/outline-triangle-tinted",
+      "path": "native-v1/symbol_warning_triangle.svg",
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-1.svg",
+        "source_sha256": "2a1cdabb87511d378a9d4e18b30a1e61d3fce5fb9c7be11a665d1dac9dfeef5c",
+        "repair": "retain existing SVG glyph paths and ancestor transforms; remove unrelated page/cell backdrop objects",
+        "retained_path_indices": [
+          56,
+          57,
+          58
+        ]
+      }
+    },
+    {
+      "key": "read-manual/book-information",
+      "path": "native-v1/symbol_read_manual.svg",
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/pdf-symbol-2.svg",
+        "source_sha256": "0273da6c2ff50078df7273974e47c2357d6e98bda546af36970c0564a75bb265",
+        "repair": "retain existing SVG glyph paths and ancestor transforms; remove unrelated page/cell backdrop objects",
+        "retained_path_indices": [
+          62,
+          63,
+          64
+        ]
+      }
+    },
+    {
+      "key": "electric-shock/bolt-triangle-tinted",
+      "path": "native-v1/symbol_electric_shock.svg",
+      "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          657,
+          658,
+          659
+        ]
+      }
+    },
+    {
+      "key": "battery-charging/flame-battery-triangle-tinted",
+      "path": "native-v1/symbol_battery_charging.svg",
+      "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          660,
+          661,
+          662,
+          663,
+          664,
+          665,
+          666
+        ]
+      }
+    },
+    {
+      "key": "explosive-material/burst-triangle-tinted",
+      "path": "native-v1/symbol_explosive_material.svg",
+      "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          667,
+          668,
+          669,
+          670
+        ]
+      }
+    },
+    {
+      "key": "heavy-object/person-load-triangle-tinted",
+      "path": "native-v1/symbol_heavy_object.svg",
+      "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          731,
+          732,
+          733,
+          734,
+          735,
+          736,
+          737,
+          738
+        ]
+      }
+    },
+    {
+      "key": "do-not-dismantle/screwdriver-prohibited",
+      "path": "native-v1/symbol_do_not_dismantle.svg",
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          642,
+          643,
+          644
+        ]
+      }
+    },
+    {
+      "key": "no-open-flame/fire-match-prohibited",
+      "path": "native-v1/symbol_no_open_flame.svg",
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          725,
+          726,
+          727,
+          728,
+          729,
+          730
+        ]
+      }
+    },
+    {
+      "key": "keep-away-from-children/adult-child-prohibited",
+      "path": "native-v1/symbol_keep_away_from_children.svg",
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          739,
+          740,
+          741,
+          742
+        ]
+      }
+    },
+    {
+      "key": "li-ion/recycle-li-ion",
+      "path": "native-v1/symbol_li_ion.svg",
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "authority PDF original vectors; suitable existing candidates absent",
+        "recipe": "data/asset_recipes/manual_jhp3600c_us_native_symbols.json",
+        "physical_page": 5,
+        "drawing_indices": [
+          645,
+          646,
+          647,
+          648,
+          649,
+          650,
+          651,
+          652,
+          653
+        ]
+      }
+    },
+    {
+      "key": "weee/crossed-bin-bar",
+      "path": "native-v1/symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "docs/renderers/web/assets/je100c_eu_shared/symbol_weee.png",
+        "decision": "reuse existing shared file byte-identical"
+      }
+    },
+    {
+      "key": "read-manual/person-reading-circle",
+      "path": "native-v1/symbol_read_manual_person.svg",
+      "sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "retain only fully contained native glyph paths; no cell or page backdrop",
+        "retained_path_indices": [
+          46,
+          47,
+          48,
+          49,
+          50
+        ]
+      }
+    },
+    {
+      "key": "no-open-flame/crossed-flame",
+      "path": "native-v1/symbol_no_open_flame_crossed.svg",
+      "sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "retain only fully contained native glyph paths; no cell or page backdrop",
+        "retained_path_indices": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57
+        ]
+      }
+    },
+    {
+      "key": "keep-away-from-children/adult-child-panel",
+      "path": "native-v1/symbol_keep_away_from_children_panel.svg",
+      "sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "retain only fully contained native glyph paths; no cell or page backdrop",
+        "retained_path_indices": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
+        ]
+      }
+    },
+    {
+      "key": "do-not-dismantle/screwdriver-prohibited-native-dark",
+      "path": "native-v1/symbol_do_not_dismantle_dark.svg",
+      "sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "Native dark source tint; complete glyph paths only; no cell background",
+        "retained_path_indices": [
+          31,
+          32,
+          33
+        ]
+      }
+    },
+    {
+      "key": "li-ion/recycle-li-ion-native-dark",
+      "path": "native-v1/symbol_li_ion_dark.svg",
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 4,
+        "repair": "Native dark source tint; complete glyph paths only; no cell background",
+        "retained_path_indices": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ]
+      }
+    },
+    {
+      "key": "fcc/nested-c-native-dark",
+      "path": "native-v1/fcc_mark.svg",
+      "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/Jackery Battery Pack-1.pdf",
+        "source_sha256": "7afcb2a1e9e7b2011ddbfbe3ed81aa6c5ec5d196e4d9ad008208195fa06b6137",
+        "physical_page": 5,
+        "retained_path_indices": [
+          707
+        ],
+        "repair": "Complete native FCC glyph only, retaining source tint; exclude panel backdrop drawing 706"
+      }
+    },
+    {
+      "key": "li-ion/htp017-recycle-li-ion",
+      "path": "native-v1/symbol_li_ion_htp017.svg",
+      "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-2000B/EU/native-0924/HTP017-EU-9国说明书-0924.ai",
+        "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+        "physical_page": 48,
+        "drawing_indices": [
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55
+        ],
+        "glyph_bbox": [
+          37.86470031738281,
+          470.8490905761719,
+          56.008399963378906,
+          491.173095703125
+        ],
+        "decision": "existing Li-ion variants fail native glyph comparison; retain original PDF SVG paths and ancestors with real transparent margins"
+      }
+    },
+    {
+      "key": "battery-weee/crossed-bin-no-bar",
+      "path": "native-v1/symbol_battery_weee.png",
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "docs/renderers/web/assets/je100c_eu_shared/symbol_battery_weee.png",
+        "decision": "reuse published glyph unchanged; HTP017 four native caption/glyph rows pass source-bound admission"
+      }
+    },
+    {
+      "key": "unplug/h1-jp-native",
+      "path": "native-v1/h1-jp-unplug.svg",
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-unplug.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "glyph_bbox": [
+          38,
+          272,
+          58,
+          292
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "do-not-dismantle/h1-jp-native",
+      "path": "native-v1/h1-jp-do_not_dismantle.svg",
+      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-do_not_dismantle.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "glyph_bbox": [
+          38,
+          298,
+          58,
+          318
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "no-wet-hands/h1-jp-native",
+      "path": "native-v1/h1-jp-no_wet_hands.svg",
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-no_wet_hands.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ],
+        "glyph_bbox": [
+          38,
+          328,
+          58,
+          348
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "warning-triangle/h1-jp-native",
+      "path": "native-v1/h1-jp-warning_triangle.svg",
+      "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-warning_triangle.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          107
+        ],
+        "glyph_bbox": [
+          37,
+          365,
+          59,
+          385
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "read-manual/h1-jp-native",
+      "path": "native-v1/h1-jp-read_manual.svg",
+      "sha256": "d77bdba4899e5d56d0502a10732bd3488d90aa88639ce336cab9ff42d35cfd30",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-read_manual.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          70,
+          71,
+          72,
+          73,
+          74
+        ],
+        "glyph_bbox": [
+          38,
+          400,
+          58,
+          420
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "no-open-flame/h1-jp-native",
+      "path": "native-v1/h1-jp-no_open_flame.svg",
+      "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-no_open_flame.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81
+        ],
+        "glyph_bbox": [
+          35,
+          430,
+          60,
+          453
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "keep-away-from-children/h1-jp-native",
+      "path": "native-v1/h1-jp-keep_away_from_children.svg",
+      "sha256": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-keep_away_from_children.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106
+        ],
+        "glyph_bbox": [
+          37,
+          467,
+          59,
+          487
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "mandatory/h1-jp-native",
+      "path": "native-v1/h1-jp-mandatory.svg",
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-mandatory.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          55
+        ],
+        "glyph_bbox": [
+          195,
+          271,
+          215,
+          292
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "keep-dry/h1-jp-native",
+      "path": "native-v1/h1-jp-keep_dry.svg",
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-keep_dry.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69
+        ],
+        "glyph_bbox": [
+          195,
+          297,
+          215,
+          318
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "prohibited/h1-jp-native",
+      "path": "native-v1/h1-jp-prohibited.svg",
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-prohibited.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          56,
+          57,
+          58
+        ],
+        "glyph_bbox": [
+          195,
+          324,
+          215,
+          344
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "battery-recycle/h1-jp-native",
+      "path": "native-v1/h1-jp-battery_recycle.svg",
+      "sha256": "4ece7680add5525499da868786eec13e2b1b20dd831fca2f54bfb9840e608f8d",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-battery_recycle.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96
+        ],
+        "glyph_bbox": [
+          193,
+          364,
+          217,
+          388
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "weee/h1-jp-native",
+      "path": "native-v1/h1-jp-weee.svg",
+      "sha256": "21fd7d31c0d22590a0f461da3821869eee28a23122edc994b471642a89ad3e92",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed/artwork/symbol-weee.svg",
+        "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+        "physical_page": 3,
+        "drawing_indices": [
+          82,
+          83,
+          84,
+          85
+        ],
+        "glyph_bbox": [
+          192,
+          434,
+          216,
+          467
+        ],
+        "repair": "unchanged native SVG selection already pixel-reviewed; no glyph redraw, no cell backdrop",
+        "approval": "MA-274"
+      }
+    },
+    {
+      "key": "do-not-dismantle/screwdriver-circle-gray",
+      "path": "native-v1/symbol_do_not_dismantle_gray_jp.svg",
+      "sha256": "9629d601e6cd919cbbd5f1bcf2ff31f01daceeb3a287c07c1eddfd82160c2888",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          712,
+          713,
+          714,
+          715,
+          716,
+          717,
+          718,
+          719,
+          720,
+          721,
+          722,
+          723,
+          724,
+          725,
+          726,
+          727,
+          728
+        ],
+        "glyph_bbox": [
+          36,
+          54,
+          58,
+          75
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "warning/filled-triangle-gray",
+      "path": "native-v1/symbol_warning_triangle_gray_jp.svg",
+      "sha256": "25010027afb12cdffa2ee29be0da86b358e6c05bd7e2deab0e1f975eaed0eeb0",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          774
+        ],
+        "glyph_bbox": [
+          36,
+          87,
+          58,
+          107
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "read-manual/person-book-circle-gray",
+      "path": "native-v1/symbol_read_manual_gray_jp.svg",
+      "sha256": "94568bcf403d86a49206c4728223b1f8a53642f4bff01a3abc0d1a1569fc7440",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          737,
+          738,
+          739,
+          740,
+          741
+        ],
+        "glyph_bbox": [
+          37,
+          123,
+          57,
+          144
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "no-open-flame/fire-match-crossed-gray",
+      "path": "native-v1/symbol_no_open_flame_gray_jp.svg",
+      "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          742,
+          743,
+          744,
+          745,
+          746,
+          747,
+          748
+        ],
+        "glyph_bbox": [
+          35,
+          155,
+          60,
+          179
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "keep-away-from-children/adult-child-frame-gray",
+      "path": "native-v1/symbol_keep_away_from_children_gray_jp.svg",
+      "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          764,
+          765,
+          766,
+          767,
+          768,
+          769,
+          770,
+          771,
+          772,
+          773
+        ],
+        "glyph_bbox": [
+          37,
+          197,
+          57,
+          216
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "li-ion/recycle-li-ion-32-gray",
+      "path": "native-v1/native-li_ion_gray_jp.svg",
+      "sha256": "4d202540e27b0d52e806abf8b0e357382d0661d31f07a756b624108e2c0716d9",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          753,
+          754,
+          755,
+          756,
+          757,
+          758,
+          759,
+          760,
+          761,
+          762,
+          763
+        ],
+        "glyph_bbox": [
+          192,
+          76,
+          217,
+          100
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "weee/crossed-bin-bar-gray",
+      "path": "native-v1/symbol_weee_gray_jp.svg",
+      "sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native/source/symbol_release_admission.json",
+        "source_pdf_sha256": "3aa6c0039b413716274089e5335dc2ce5853264dca4d7b0a6e5e110b6b0b302c",
+        "physical_page": 4,
+        "drawing_indices": [
+          749,
+          750,
+          751,
+          752
+        ],
+        "glyph_bbox": [
+          192,
+          163,
+          215,
+          196
+        ],
+        "repair": "native source glyph paths; omit table cell/page background; preserve native gray fill and fixed markings"
+      }
+    },
+    {
+      "key": "read-manual/person-circle-jhp3000d-native",
+      "path": "native-v1/symbol_read_manual_person_jhp3000d.svg",
+      "sha256": "b925552372b168a3e354081d97e43ccd08eb74803f685fc32223e49a27d0c0e5",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/Jackery HomePower 3000 User Manual.pdf",
+        "source_sha256": "cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27",
+        "physical_page": 5,
+        "retained_path_indices": [
+          53,
+          54,
+          55,
+          56,
+          57
+        ],
+        "repair": "Exact original person-circle glyph and tint after all existing shared variants fail source-bound comparison; pipeline recipe retains native drawings only."
+      }
+    },
+    {
+      "key": "explosive-material/burst-triangle-native-v2-3e3a39",
+      "path": "native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+      "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/Jackery HomePower 5000 Plus.pdf",
+        "source_sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a",
+        "physical_page": 5,
+        "drawing_indices": [
+          28,
+          29,
+          30,
+          31
+        ],
+        "glyph_bbox": [
+          38.35389938354492,
+          297.3736938476562,
+          61.0109001159668,
+          317.0687194824219
+        ],
+        "derivation": "native source path variant after shared tint-corrected glyph still fails fixed comparison",
+        "prior_shared_sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0"
+      }
+    },
+    {
+      "key": "no-open-flame/fire-match-prohibited-3e3a39",
+      "path": "native-v1/symbol_no_open_flame_3e3a39.svg",
+      "sha256": "ad99d5bda8ad04836ff7903beaec8fff8cd3843bf528a16f88c8be0c5f2a3414",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/Jackery HomePower 5000 Plus.pdf",
+        "source_sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a",
+        "physical_page": 5,
+        "drawing_indices": [
+          41,
+          42,
+          43,
+          44,
+          45,
+          46
+        ],
+        "glyph_bbox": [
+          198.32979431152344,
+          239.95110168457032,
+          217.7938018798828,
+          259.4131103515625
+        ],
+        "derivation": "shared glyph paths unchanged; match native dark-gray tint only",
+        "prior_shared_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+      }
+    },
+    {
+      "key": "keep-away-from-children/adult-child-prohibited-3e3a39",
+      "path": "native-v1/symbol_keep_away_from_children_3e3a39.svg",
+      "sha256": "da3ed4aa5fa4e4ec565d39a1b18d7b657d5b18cd4521be1881f21ac6fbb20c6e",
+      "status": "local-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/Jackery HomePower 5000 Plus.pdf",
+        "source_sha256": "051169dd15831f5670ada665146c3499e71e415c092a379fd782578bb517c26a",
+        "physical_page": 5,
+        "drawing_indices": [
+          55,
+          56,
+          57,
+          58
+        ],
+        "glyph_bbox": [
+          198.33069458007813,
+          269.673681640625,
+          217.79369506835937,
+          289.1366821289063
+        ],
+        "derivation": "shared glyph paths unchanged; match native dark-gray tint only",
+        "prior_shared_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+      }
+    },
+    {
+      "key": "general_warning/je2000e-eu-pt-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-pt-general_warning.svg",
+      "sha256": "949fa4b358483f531c93ce6dd6f25c3d2964c4b3c1bf43a760e377618c209661",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "pt",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 123,
+        "glyph_bbox": [
+          31,
+          47,
+          68,
+          71
+        ],
+        "drawing_indices": [
+          80,
+          81,
+          82
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "read_manual/je2000e-eu-pt-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-pt-read_manual.svg",
+      "sha256": "6362f59270d725546ac3b20117319193bce10d58950c8aa20c4870ce79320931",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "pt",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 123,
+        "glyph_bbox": [
+          32,
+          81,
+          66,
+          97
+        ],
+        "drawing_indices": [
+          103,
+          104
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "do_not_dismantle/je2000e-eu-pt-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-pt-do_not_dismantle.svg",
+      "sha256": "0d8c33aa24918ce77020239e2659f837648ad94a6dd8ff91db9304caa6fe1dea",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "pt",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 123,
+        "glyph_bbox": [
+          32,
+          107,
+          66,
+          127
+        ],
+        "drawing_indices": [
+          87,
+          88
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "no_open_flame/je2000e-eu-pt-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-pt-no_open_flame.svg",
+      "sha256": "3073529057ed5709e276e85747cad8532e07939d511bf9b448c8252770dd351d",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "pt",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 123,
+        "glyph_bbox": [
+          32,
+          136,
+          66,
+          154
+        ],
+        "drawing_indices": [
+          107,
+          108,
+          109
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "keep_away_from_children/je2000e-eu-pt-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-pt-keep_away_from_children.svg",
+      "sha256": "6b403148bbaa42cc77f87100c32b91bf06b00db6c69093c247bff1c5fc2a07bd",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "pt",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 123,
+        "glyph_bbox": [
+          32,
+          160,
+          66,
+          181
+        ],
+        "drawing_indices": [
+          111,
+          112,
+          113
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "li_ion/je2000e-eu-pt-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-pt-li_ion.svg",
+      "sha256": "3c4b2b3413e011c23cfbd259c4d971ed8fa10f37ff011506f95c8018dad18476",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "pt",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 123,
+        "glyph_bbox": [
+          32,
+          185,
+          66,
+          206
+        ],
+        "drawing_indices": [
+          90,
+          91,
+          92,
+          93,
+          95,
+          96,
+          97,
+          98
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "battery_disposal/je2000e-eu-pt-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-pt-battery_disposal.svg",
+      "sha256": "890aad750886f80abc628c01b22c36ae6c305b91d48a8c441d27bbf9bb11411a",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "pt",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 123,
+        "glyph_bbox": [
+          188,
+          60,
+          224,
+          133
+        ],
+        "drawing_indices": [
+          115,
+          116
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "weee/je2000e-eu-pt-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-pt-weee.svg",
+      "sha256": "fbb8f66e93bbefa15b3edcd942ba6ec2950ad5b533ee07e0ec5efd644194e456",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "pt",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 123,
+        "glyph_bbox": [
+          188,
+          155,
+          224,
+          196
+        ],
+        "drawing_indices": [
+          99,
+          100,
+          101
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "general_warning/je2000e-eu-nl-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-nl-general_warning.svg",
+      "sha256": "eaef6a90726af3e60a79e0f248504e49297eb3292b5ae062d38cd128d42e6ea3",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "nl",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 142,
+        "glyph_bbox": [
+          31,
+          47,
+          68,
+          71
+        ],
+        "drawing_indices": [
+          93,
+          94,
+          95
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "read_manual/je2000e-eu-nl-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-nl-read_manual.svg",
+      "sha256": "86b48cf47f0b596dcf2d57ad0e45407d416d5abb34b45e9936d6c9cae0a52933",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "nl",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 142,
+        "glyph_bbox": [
+          32,
+          81,
+          66,
+          97
+        ],
+        "drawing_indices": [
+          129,
+          130
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "do_not_dismantle/je2000e-eu-nl-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-nl-do_not_dismantle.svg",
+      "sha256": "485710ddc8f74a55644647db29fa3c62eaa98d3cfbbea4e7dc98d7d60a7840aa",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "nl",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 142,
+        "glyph_bbox": [
+          32,
+          107,
+          66,
+          127
+        ],
+        "drawing_indices": [
+          113,
+          114
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "no_open_flame/je2000e-eu-nl-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-nl-no_open_flame.svg",
+      "sha256": "2fb0aebd9051c751a6ecb9ca82ff418d8d5a9449e434639f250e80099527001c",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "nl",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 142,
+        "glyph_bbox": [
+          32,
+          136,
+          66,
+          154
+        ],
+        "drawing_indices": [
+          133,
+          134,
+          135
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "keep_away_from_children/je2000e-eu-nl-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-nl-keep_away_from_children.svg",
+      "sha256": "dd1fc4a732d593c1c003c30858ac051eb8280468b88fb8bf349873dcc478eac3",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "nl",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 142,
+        "glyph_bbox": [
+          32,
+          160,
+          66,
+          181
+        ],
+        "drawing_indices": [
+          137,
+          138,
+          139
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "li_ion/je2000e-eu-nl-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-nl-li_ion.svg",
+      "sha256": "260b81ab9fb3571e4440250d359264bb7f85973d01db16ed29618efa6ab6faf7",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "nl",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 142,
+        "glyph_bbox": [
+          32,
+          185,
+          66,
+          206
+        ],
+        "drawing_indices": [
+          116,
+          117,
+          118,
+          119,
+          121,
+          122,
+          123,
+          124
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "battery_disposal/je2000e-eu-nl-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-nl-battery_disposal.svg",
+      "sha256": "be61c6855d5a5268f359fe1b1381423df264bd9d98622c0c67fd54ad611f73c2",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "nl",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 142,
+        "glyph_bbox": [
+          188,
+          60,
+          224,
+          133
+        ],
+        "drawing_indices": [
+          141,
+          142
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "weee/je2000e-eu-nl-batch1465-native",
+      "path": "native-v1/je2000e-eu-batch1465-nl-weee.svg",
+      "sha256": "0c35a797d48e5e6dc936c3731e395590feafb9aff1b1b2b9447a3af4cc42d510",
+      "status": "source-bound native; visual and independent admission verified; publication pending",
+      "provenance": {
+        "model": "JE-2000E",
+        "region": "EU",
+        "language": "nl",
+        "source_pdf": "JE-2000E_修正版_竖版.pdf",
+        "source_sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+        "physical_page": 142,
+        "glyph_bbox": [
+          188,
+          155,
+          224,
+          196
+        ],
+        "drawing_indices": [
+          125,
+          126,
+          127
+        ],
+        "extraction": "tools.asset_pipeline.native_svg.native_symbol_svg; original paths and ancestor transforms only"
+      }
+    },
+    {
+      "key": "read-manual/person-reading-circle-tw-477dfbd7",
+      "path": "native-v1/person-reading-circle-tw-477dfbd7.svg",
+      "sha256": "779f14e6d648e3955bc1fb5ea606759f26da6562080602f465b60194ea9935a5",
+      "status": "git-review-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7/Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+        "source_sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
+        "physical_page": 4,
+        "drawing_indices": [
+          44,
+          45,
+          46,
+          47,
+          48
+        ],
+        "glyph_bbox": [
+          31.213700103759766,
+          233.70081787109376,
+          55.789702606201175,
+          258.27479858398436
+        ],
+        "decision": "existing catalog candidates fail fixed shape/tint/transparent-margin comparison; exact native vector variant only"
+      }
+    },
+    {
+      "key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+      "path": "native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+      "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+      "status": "git-review-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7/Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+        "source_sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
+        "physical_page": 4,
+        "drawing_indices": [
+          31,
+          32,
+          33
+        ],
+        "glyph_bbox": [
+          189.15220336914064,
+          205.9471862792969,
+          208.6981994628906,
+          225.48118896484374
+        ],
+        "decision": "existing catalog candidates fail fixed shape/tint/transparent-margin comparison; exact native vector variant only"
+      }
+    },
+    {
+      "key": "recycle/taiwan-restricted-battery-477dfbd7",
+      "path": "native-v1/taiwan-restricted-battery-477dfbd7.svg",
+      "sha256": "0c810a41f2312ec8dff7b8af1beee394e0799f38761dfe9f8a36bb4aacf41564",
+      "status": "git-review-candidate; registry promotion pending",
+      "provenance": {
+        "source": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7/Jackery Explorer 1500 Ultra 說明書-20260923.pdf",
+        "source_sha256": "477dfbd75e15c4f5cf0ef1cfb16142467027b8ab272bec04dfd92371d2d4fdc0",
+        "physical_page": 4,
+        "drawing_indices": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ],
+        "glyph_bbox": [
+          191.00069885253907,
+          266.96461181640626,
+          207.518603515625,
+          287.0682861328125
+        ],
+        "decision": "existing catalog candidates fail fixed shape/tint/transparent-margin comparison; exact native vector variant only"
+      }
+    }
+  ],
+  "withdrawn": [
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+      "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+      "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+      "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+      "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+      "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+      "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+      "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+      "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+      "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+      "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    },
+    {
+      "path": "docs/templates/word_template/common_assets/symbols/weee.png",
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+      "reason": "legacy Web symbol raster withdrawn after background/glyph QC; use explicit checked vector variant"
+    }
+  ]
+}

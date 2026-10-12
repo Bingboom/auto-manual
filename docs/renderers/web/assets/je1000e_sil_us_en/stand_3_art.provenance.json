@@ -1,0 +1,23 @@
+{
+  "asset": "docs/renderers/web/assets/je1000e_sil_us_en/stand_3_art.png",
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    3321.531005859375,
+    1891.90478515625,
+    3636.031005859375,
+    2023.90478515625
+  ],
+  "sha256": "fd4927f5e7638076c1a0320b16ada12a513931f4ba1a8fd1a47678c0a53fcc9b",
+  "label_rect_pct": [
+    3.2702423241255962,
+    7.89480498342803,
+    58,
+    0
+  ],
+  "source_text": [
+    "3. Tighten the screws."
+  ],
+  "policy": "Text-only redaction; preserve original full thin grey rounded frame and all illustrations."
+}

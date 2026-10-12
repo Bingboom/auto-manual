@@ -5,8 +5,8 @@
 
    Questo prodotto può supportare fino a 5 battery pack per soddisfare le esigenze di grande capacità energetica. Per i dettagli sull'utilizzo, fare riferimento al *Manuale utente di Jackery Battery Pack 2000*.
 
-   .. image:: asset:in_the_box/main_unit1
-      :alt: Segnaposto diagramma di collegamento al battery pack.
+   .. image:: renderers/web/assets/je2000e_eu_it/extra_battery.png
+      :alt: Diagramma di collegamento al battery pack.
       :width: 360px
 
    .. only:: region_us
@@ -34,13 +34,9 @@
              - Quando il prodotto viene utilizzato con battery pack collegati, il numero massimo predefinito di battery pack impilati e 3, e il prodotto deve essere collocato su una superficie piana e stabile con sufficiente capacità di carico.
              - Se occorre impilare 4 o più battery pack, il prodotto deve essere collocato in un'area stabile contro una parete e protetto dagli urti esterni, adottando le necessarie misure di fissaggio antiribaltamento.
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 34 33 33
-
-      * - **Jackery Battery Pack 2000**
-        - **Cavo di espansione**
-        - **Manuale utente**
+   .. image:: renderers/web/assets/je2000e_eu_it/battery_pack_kit.png
+      :alt: Jackery Battery Pack 2000, Cavo di espansione, Manuale utente (venduti separatamente)
+      :width: 360px
 
 RICARICA
 ========
@@ -65,7 +61,7 @@ RICARICA TRAMITE PRESA A MURO CA
 Collegare il cavo di ricarica CA alla porta di ingresso CA del prodotto e a una presa a muro.
 
 .. image:: asset:charging/ac_wall
-   :alt: Segnaposto diagramma di ricarica da presa a muro CA.
+   :alt: Diagramma di ricarica da presa a muro CA.
    :width: 360px
 
 .. list-table::
@@ -75,8 +71,10 @@ Collegare il cavo di ricarica CA alla porta di ingresso CA del prodotto e a una 
    * - **ATTENZIONE**
      - Assicurarsi che il cavo di ricarica CA sia inserito completamente e saldamente nella porta di ingresso CA. Un collegamento incompleto può causare corrente instabile, surriscaldamento, cattivo contatto o malfunzionamento del dispositivo.
 
+.. hb-capability-begin: 应急快充模式
 
 **Modalità di ricarica di emergenza**
 
 | In questa modalità, è possibile ricaricare rapidamente la power station portatile utilizzando il metodo di ricarica CA. Questa funzione di ricarica di emergenza può essere attivata o disattivata tramite l'app Jackery. Quando la modalità di ricarica di emergenza è attiva, la luce circolare che indica lo stato di carica (SOC) lampeggia più rapidamente.
 | \*Per massimizzare la durata della batteria, è preferibile caricare a velocità normale. Utilizzare la modalità di ricarica di emergenza solo quando necessario. Non è consigliata per un uso regolare e prolungato.
+.. hb-capability-end:

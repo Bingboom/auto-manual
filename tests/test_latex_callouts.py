@@ -46,15 +46,12 @@ class LatexCalloutTests(unittest.TestCase):
         )
         self.assertEqual(0, completed.returncode, completed.stderr)
 
-    def test_hb_apply_lang_has_a_warning_label_for_every_registered_language(self) -> None:
+    def test_hb_apply_lang_has_a_warning_label_for_every_print_language(self) -> None:
         source = (LATEX_RENDERER / "components_safety.tex").read_text(encoding="utf-8")
-        for spec in lang_registry.LANGUAGE_REGISTRY:
-            with self.subTest(language=spec.code):
-                pack = lang_registry.idml_language_pack(spec.code)
-                self.assertIsNotNone(pack)
-                assert pack is not None
+        for code, pack in lang_registry.IDML_LANGUAGE_PACKS.items():
+            with self.subTest(language=code):
                 label = pack.symbol_copy[3]
-                if spec.code == "en":
+                if code == "en":
                     self.assertIn(
                         r"\renewcommand{\HBLocalizedWarningLabel}{WARNING}",
                         source,
@@ -63,7 +60,7 @@ class LatexCalloutTests(unittest.TestCase):
                 self.assertRegex(
                     source,
                     re.compile(
-                        rf"\\ifstrequal\{{#1\}}\{{{re.escape(spec.code)}\}}"
+                        rf"\\ifstrequal\{{#1\}}\{{{re.escape(code)}\}}"
                         rf"\{{\\renewcommand\{{\\HBLocalizedWarningLabel\}}"
                         rf"\{{{re.escape(label)}\}}\}}\{{\}}%"
                     ),

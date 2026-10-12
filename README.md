@@ -7,20 +7,31 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 
 ## 工作流路线图
 
+系统建设页新增三类访问入口的[架构视图](code-as-doc/dev/rtd_manual_portal.md#system-workspace-page)，与演进史共用记录。
+[设计系统页](code-as-doc/dev/rtd_manual_portal.md#design-system-page)汇总网页版的颜色、字体与组件、共享图标素材和印刷规格，取值和预览在构建时读自仓库。
+[系统数据页](code-as-doc/dev/rtd_manual_portal.md#system-data-page)统计已发布网页说明书、机型能力与素材注册，可按区域和机型筛选。
+说明书工作台提供工作入口、三类资产管理与生产复用证据；统计边界见 [工作台统计契约](code-as-doc/dev/workspace_production_evidence.md)，生产后刷新与补做见 [数据持续更新](code-as-doc/dev/workspace_data_refresh.md)。
+
 手册中心按冻结发布记录提供[独立语言切换](code-as-doc/dev/rtd_locale_navigation.md)，区分已验证单语与语言身份待核验的旧出版物。
 
 Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。
+说明书网页化先按[素材复用与背景规则](docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)盘点已有素材，确认不能复用后再提取；新外部冻结稿的符号表须通过原稿图形与真实透明度准入，停用旧错误素材并按共用图形变体复用。
 Git-only 显式撤回、恢复与独立回执见[操作说明](code-as-doc/dev/web_publication_withdrawal.md)。
-封存源辅助文件的复制边界见[构建指南](code-as-doc/build_doc_guide.md)。
+外部原稿按源文件哈希登记章节准入，见 [Git-only 发布流程](code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction)。冻结源库与输出预算边界也由该契约维护。
+FridgeGuard US 英法西三语的冻结源、共享组件与发布验收见[录入记录](code-as-doc/reviews/je1000e_sil_us_en_web_intake.md)。
+SlimPower H1 日规日文的批准快照、回放与来源边界见[Git-only 发布源](manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-no-cover-reviewed/README.md)。
+封存源辅助文件的复制边界和原稿版式回放见[构建指南](code-as-doc/build_doc_guide/web-publish-and-rtd.md)。
+Web 资源池的图片与内嵌 CSS 引用边界也见[构建指南](code-as-doc/build_doc_guide/web-publish-and-rtd.md)。
 
 Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。
+JE-1000F/EU 新增四语按[原生 PDF 与共享 IR 接入](code-as-doc/dev/four_language_shared_ir_alignment.md)维护；原稿与勘误保留，正文、表格和图内标签使用网页组件。
 冻结目录也可运行[只读线上链接检查](code-as-doc/dev/manual_operations_online_health.md)，HTTP成功不等于版本验收。
 
 Web profile 配合显式 `--lang` 会冻结完整配置语言源，再将所选语言投影为
 `check`、Markdown 和 HTML 共用的规范 RST；边界见[说明](code-as-doc/dev/web_language_projection.md)。
-JE-1000F US 的三语前言仅在 Web 投影中拆分，IDML/Word/PDF 仍保留三语；配置边界见[构建指南](code-as-doc/build_doc_guide.md)。
+JE-1000F US 的三语前言仅在 Web 投影中拆分，IDML/Word/PDF 仍保留三语；配置边界见[构建指南](code-as-doc/build_doc_guide/config-and-manifests.md)。
 这项本地构建能力不代表已接通独立语言发布。
-审稿语言裁剪同时清理生成页副本和目录引用，原审稿文件保留；见[构建指南](code-as-doc/build_doc_guide.md)。
+审稿语言裁剪同时清理生成页副本和目录引用，原审稿文件保留；见[构建指南](code-as-doc/build_doc_guide/quality-gates.md)。
 Web 队列支持显式语言的单语配置，约束与未释放的发布门禁见[队列契约](code-as-doc/dev/web_publish_locale_queue.md)。
 
 ![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)
@@ -60,14 +71,19 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 
 ## 文档入口
 
+JE-100C/EU 九语 Web 本地构建与源稿差异记录见[构建指南](code-as-doc/build_doc_guide/web-target-notes.md#je-100ceu-nine-language-web-source)。
+
 | 想了解什么 | 从这里开始 |
 | --- | --- |
 | 第一次接手项目 | [`ONBOARDING.md`](ONBOARDING.md) |
 | 完整命令和运维流程 | [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md) |
 | 手册中心首页与目录缩略图替换 | [`RTD manual center`](code-as-doc/dev/rtd_manual_portal.md) |
-| Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`code-as-doc/dev/web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md)；[`RTD 部署回执与严格读取`](code-as-doc/dev/rtd_deployment_receipt.md) |
-| RTD 手册中心：首页、地区筛选、发布链接与构建排查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
-| RTD 知识库与工作资料入口（内容存于 Hello-Docs） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#personal-workspace-entry) |
+| Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`Web 发布与原生多语共享组件准入`](code-as-doc/dev/web_publish_pipeline.md)；[`欧规共享组件存量迁移`](code-as-doc/dev/eu_shared_component_rollout_2026-09.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md)；[`RTD 部署回执与严格读取`](code-as-doc/dev/rtd_deployment_receipt.md) |
+| RTD 手册中心：US/EU/UK/CN/JP 地区筛选、发布链接与构建排查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
+| 现有钉钉机器人查询已发布欧规产品信息 | [`欧规说明书查询与启用`](code-as-doc/dev/eu_manual_query.md) |
+| RTD 知识库与工作资料（同项目公开直达，说明书首页不提供入口） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#personal-workspace-entry) |
+| RTD 系统建设页：当前工作、系统架构、能力与系统演变 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#system-workspace-page) |
+| RTD 交付物页：各型号网页手册、印刷交付包与 Word 云文档的链接汇总 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#deliverables-page) |
 | RTD 手册反馈：售后邮箱入口与发布后健康检查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
 | 产品改进建议：网页表单与飞书机器人代提交 | [`VOC 接入`](code-as-doc/dev/product_voc.md) |
 | RTD 访问统计（默认关闭，Cloudflare Web Analytics） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
@@ -81,7 +97,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 最短上手示例 | [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) |
 | 公共 IR 的调用方与迁移边界 | [`Shared-source plan`](code-as-doc/dev/latex_indesign_same_source_plan.md) |
 | 整本 IR → Web 收口与加电包日语验收 | [`执行目标与证据`](code-as-doc/dev/ir_document_closeout.md) |
-| JS-100I 欧规英语 Web 目标与验收 | [`目标实现记录`](code-as-doc/dev/js100i_eu_en_web_acceptance.md) |
+| JS-100I 欧规 Web 目标与九语候选验收 | [`英语实现记录`](code-as-doc/dev/js100i_eu_en_web_acceptance.md) · [`九语候选记录`](code-as-doc/reviews/js100i_eu_nine_language_2026-09.md) |
 | JBP-3600A / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md) |
 | JE-2000F / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/je2000f_eu_en_web_intake_2026-09.md) |
 | JE-2000E / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/je2000e_eu_en_web_intake_2026-09.md) |
@@ -92,3 +108,11 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 钉钉悟空 MCP Bridge 源码与部署 | [`agent/wukong-bridge/README.md`](agent/wukong-bridge/README.md) |
 
 README 只保留路线图、视频位和最短入口；详细机制由上表中的权威文档维护。
+
+Prepared EU Web admission and legacy migration debt: [shared-component admission](code-as-doc/dev/prepared_component_admission.md).
+
+中规/日规审核源的纯文字清单、LCD 表和 App 接入规则见 [构建说明](code-as-doc/build_doc_guide/web-component-admission.md)。
+
+旧版 RST 网页表格的共享组件声明见 [样式定义](docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference)。
+
+Intake preparation: [source-copy work packets and shared-art review](code-as-doc/dev/manual_intake_assistance.md) enumerate pending work without approving a baseline or publishing.

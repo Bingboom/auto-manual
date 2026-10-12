@@ -28,6 +28,14 @@ _LATEX_LCD_MODE_ASSET_RE = re.compile(
     r"(\\begin\{HBLcdModeTable\}\{)([^{}]+)(\})",
     re.IGNORECASE,
 )
+# ``\HBInBoxThree{image1}{label1}{image2}{label2}{image3}{label3}``: only the
+# odd arguments are images.  A label with nested braces leaves the call as is.
+_LATEX_INBOX_THREE_RE = re.compile(r"(\\HBInBoxThree)((?:\{[^{}]*\}){6})")
+_LATEX_BRACE_ARG_RE = re.compile(r"\{([^{}]*)\}")
+_LATEX_INCLUDEGRAPHICS_RE = re.compile(
+    r"(\\includegraphics(?:\[[^\]]*\])?\{)([^{}]+)(\})",
+    re.IGNORECASE,
+)
 _EMPTY_TOP_LEVEL_LINE_BLOCK_RE = re.compile(r"(?m)^\|[ \t]*(\r?\n|$)")
 _BUNDLE_SOURCE_PREFIX = "bundle-source:"
 
@@ -446,14 +454,15 @@ def rewrite_rst_asset_paths(
             required_format="png",
         )
 
-    def transform_latex_lcd_mode(raw_value: str) -> str:
-        # Only semantic registry references belong to this channel.  Review
-        # bundles can also contain non-indexed generated drafts that still
-        # carry the historical ``{lcd_mode.png}`` basename; treating those as
-        # governed references makes finalization fail before the selected
-        # review pages are built.  Preserve legacy args verbatim while new
-        # templates use ``asset:operation/lcd_mode`` and receive target-aware
-        # resolution below.
+    def transform_latex_semantic_png(raw_value: str) -> str:
+        # Only semantic registry references belong to these raw-LaTeX
+        # channels (the LCD mode table, the in-box cards, includegraphics).
+        # Review bundles can also contain non-indexed generated drafts that
+        # still carry historical basenames such as ``{lcd_mode.png}``;
+        # treating those as governed references makes finalization fail
+        # before the selected review pages are built.  Preserve legacy args
+        # verbatim while pages that use ``asset:operation/lcd_mode`` (or
+        # another asset URI) receive target-aware resolution below.
         if parse_asset_uri(raw_value) is None:
             return raw_value
         return transform(
@@ -472,7 +481,9 @@ def rewrite_rst_asset_paths(
             required_format="pdf",
         ),
         latex_app_transform=transform_latex_app,
-        latex_lcd_mode_transform=transform_latex_lcd_mode,
+        latex_lcd_mode_transform=transform_latex_semantic_png,
+        latex_inbox_transform=transform_latex_semantic_png,
+        latex_graphics_transform=transform_latex_semantic_png,
     )
 
 
@@ -484,6 +495,8 @@ def map_rst_asset_paths(
     latex_transform: Callable[[str], str] | None = None,
     latex_app_transform: Callable[[str], str] | None = None,
     latex_lcd_mode_transform: Callable[[str], str] | None = None,
+    latex_inbox_transform: Callable[[str], str] | None = None,
+    latex_graphics_transform: Callable[[str], str] | None = None,
 ) -> str:
     """Transform governed RST, HTML, and raw-LaTeX asset path values."""
 
@@ -513,11 +526,29 @@ def map_rst_asset_paths(
             return match.group(0)
         return f"{prefix}{latex_lcd_mode_transform(raw_value)}{suffix}"
 
+    def replace_latex_inbox_three(match: re.Match[str]) -> str:
+        macro, raw_args = match.groups()
+        if latex_inbox_transform is None:
+            return match.group(0)
+        args = _LATEX_BRACE_ARG_RE.findall(raw_args)
+        return macro + "".join(
+            "{" + (latex_inbox_transform(arg) if index % 2 == 0 else arg) + "}"
+            for index, arg in enumerate(args)
+        )
+
+    def replace_latex_graphics(match: re.Match[str]) -> str:
+        prefix, raw_value, suffix = match.groups()
+        if latex_graphics_transform is None:
+            return match.group(0)
+        return f"{prefix}{latex_graphics_transform(raw_value)}{suffix}"
+
     out = _RST_ASSET_DIRECTIVE_RE.sub(replace_directive, text)
     out = _HTML_SRC_RE.sub(replace_html_src, out)
     out = _LATEX_INCLUDEPDF_RE.sub(replace_latex_include, out)
     out = _LATEX_APP_ASSET_RE.sub(replace_latex_app_asset, out)
-    return _LATEX_LCD_MODE_ASSET_RE.sub(replace_latex_lcd_mode_asset, out)
+    out = _LATEX_LCD_MODE_ASSET_RE.sub(replace_latex_lcd_mode_asset, out)
+    out = _LATEX_INBOX_THREE_RE.sub(replace_latex_inbox_three, out)
+    return _LATEX_INCLUDEGRAPHICS_RE.sub(replace_latex_graphics, out)
 
 
 def raw_html_asset_values(text: str) -> tuple[str, ...]:

@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools import check_docs
+from tools.check import docs as check_docs
 
 
 class TestCheckDocsRendererContracts(unittest.TestCase):

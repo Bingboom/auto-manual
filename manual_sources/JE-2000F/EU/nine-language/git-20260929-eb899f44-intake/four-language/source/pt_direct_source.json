@@ -1,0 +1,4023 @@
+{
+  "schema_version": "je2000f-eu-four-locale-direct-source/v1",
+  "locale": "pt",
+  "source_path": "je2000f-eu-nine-languages.ai",
+  "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "method": "native PDF-compatible text; no OCR, no translation",
+  "status": "candidate; unresolved source errata and visual parity review",
+  "sections": [
+    {
+      "id": "safety",
+      "physical_pages": [
+        116
+      ]
+    },
+    {
+      "id": "symbols",
+      "physical_pages": [
+        116,
+        117
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "physical_pages": [
+        117
+      ]
+    },
+    {
+      "id": "product_overview",
+      "physical_pages": [
+        118
+      ]
+    },
+    {
+      "id": "lcd_display",
+      "physical_pages": [
+        119,
+        120
+      ]
+    },
+    {
+      "id": "operations",
+      "physical_pages": [
+        121,
+        122,
+        123,
+        124
+      ]
+    },
+    {
+      "id": "ups",
+      "physical_pages": [
+        124,
+        125
+      ]
+    },
+    {
+      "id": "charging",
+      "physical_pages": [
+        126,
+        127,
+        128
+      ]
+    },
+    {
+      "id": "storage",
+      "physical_pages": [
+        128
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "physical_pages": [
+        128
+      ]
+    },
+    {
+      "id": "specifications",
+      "physical_pages": [
+        129
+      ]
+    },
+    {
+      "id": "warranty",
+      "physical_pages": [
+        130
+      ]
+    },
+    {
+      "id": "app_setup",
+      "physical_pages": [
+        131,
+        132,
+        133
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "physical_page": 116,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "INFORMAÇÕES IMPORTANTES DE SEGURANÇA\nSímbolo\nSigniﬁcado\nPráticas perigosas que podem resultar em lesões pessoais e/ou danos \nmateriais.\n CUIDADO\nPráticas perigosas que podem resultar em lesões graves, morte e/ou danos \nmateriais.\nAVISO \nPráticas perigosas que podem resultar em danos ao equipamento, perda de \ndados, deterioração do desempenho ou resultados imprevistos.\nNOTA\nComplementa informações importantes ou dicas de operação no texto.\nDICA\nSIGNIFICADO DOS SÍMBOLOS\nINSTRUÇÕES DE MANUTENÇÃO DO USUÁRIO\nDurante o ciclo de vida de produtos de armazenamento de energia, é esperado certo grau de \ndegradação da capacidade e da energia. À medida que o número de ciclos de carga e \ndescarga aumenta e o tempo de armazenamento se prolonga, essa degradação se intensifica \ngradualmente, o que é um fenômeno normal consistente com o envelhecimento natural das \ncélulas da bateria.\nSempre siga estas precauções básicas ao usar este produto.\n• Leia todas as instruções antes de usar este produto.\n• Não permita que crianças brinquem com o produto. É necessária supervisão constante quando \no produto é usado perto de crianças.\n• Pode ocorrer risco de choque elétrico se forem usados acessórios recomendados ou vendidos \npor fabricantes não proﬁssionais.\n• Quando o produto não estiver em uso, desconecte o plugue de alimentação da tomada do \nproduto.\n• Não desmonte o produto, pois isso pode causar riscos imprevisíveis, como incêndio, explosão ou \nchoque elétrico.\n• Não utilize o produto com cabos, plugues ou cabos de saída daniﬁcados, pois isso pode causar \nchoque elétrico.\n• Para garantir a circulação adequada de ar, mantenha as aberturas de ventilação do produto \ndesobstruídas. A área onde o produto é utilizado deve ter ﬂuxo de ar adequado, em um \nambiente fresco e seco, para evitar o superaquecimento.\n   - O carregamento em espaços úmidos ou com pouca ventilação pode causar riscos à \nsegurança.\n   - A água pode causar curtos-circuitos ou danos ao carregador, gerando riscos à segurança.\n• Não exponha o produto ao fogo, altas temperaturas, luz solar direta ou ambientes quentes, \ncomo o interior de um veículo estacionado. Essa exposição pode causar incêndio ou explosão.\nINSTRUÇÕES RELATIVAS AO RISCO DE INCÊNDIO, CHOQUE ELÉTRICO OU \nLESÕES PESSOAIS\nAVISO\n01\n",
+      "text_sha256": "68640856a9c094363d741cff0ce741b1873ea938234b5596830a2b53a2d89c7c",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            34.775,
+            31.084,
+            292.607,
+            45.94
+          ],
+          "text": "INFORMAÇÕES IMPORTANTES DE SEGURANÇA\n"
+        },
+        {
+          "bbox": [
+            43.891,
+            61.926,
+            315.824,
+            77.773
+          ],
+          "text": "INSTRUÇÕES RELATIVAS AO RISCO DE INCÊNDIO, CHOQUE ELÉTRICO OU \nLESÕES PESSOAIS\nAVISO\n"
+        },
+        {
+          "bbox": [
+            29.389,
+            88.332,
+            342.334,
+            225.861
+          ],
+          "text": "Sempre siga estas precauções básicas ao usar este produto.\n• Leia todas as instruções antes de usar este produto.\n• Não permita que crianças brinquem com o produto. É necessária supervisão constante quando \no produto é usado perto de crianças.\n• Pode ocorrer risco de choque elétrico se forem usados acessórios recomendados ou vendidos \npor fabricantes não proﬁssionais.\n• Quando o produto não estiver em uso, desconecte o plugue de alimentação da tomada do \nproduto.\n• Não desmonte o produto, pois isso pode causar riscos imprevisíveis, como incêndio, explosão ou \nchoque elétrico.\n• Não utilize o produto com cabos, plugues ou cabos de saída daniﬁcados, pois isso pode causar \nchoque elétrico.\n• Para garantir a circulação adequada de ar, mantenha as aberturas de ventilação do produto \ndesobstruídas. A área onde o produto é utilizado deve ter ﬂuxo de ar adequado, em um \nambiente fresco e seco, para evitar o superaquecimento.\n   - O carregamento em espaços úmidos ou com pouca ventilação pode causar riscos à \n"
+        },
+        {
+          "bbox": [
+            29.389,
+            224.461,
+            336.868,
+            259.867
+          ],
+          "text": "segurança.\n   - A água pode causar curtos-circuitos ou danos ao carregador, gerando riscos à segurança.\n• Não exponha o produto ao fogo, altas temperaturas, luz solar direta ou ambientes quentes, \ncomo o interior de um veículo estacionado. Essa exposição pode causar incêndio ou explosão.\n"
+        },
+        {
+          "bbox": [
+            34.805,
+            278.63,
+            199.342,
+            288.534
+          ],
+          "text": "INSTRUÇÕES DE MANUTENÇÃO DO USUÁRIO\n"
+        },
+        {
+          "bbox": [
+            29.389,
+            295.084,
+            335.874,
+            337.084
+          ],
+          "text": "Durante o ciclo de vida de produtos de armazenamento de energia, é esperado certo grau de \ndegradação da capacidade e da energia. À medida que o número de ciclos de carga e \ndescarga aumenta e o tempo de armazenamento se prolonga, essa degradação se intensifica \ngradualmente, o que é um fenômeno normal consistente com o envelhecimento natural das \ncélulas da bateria.\n"
+        },
+        {
+          "bbox": [
+            35.004,
+            345.213,
+            200.268,
+            360.069
+          ],
+          "text": "SIGNIFICADO DOS SÍMBOLOS\n"
+        },
+        {
+          "bbox": [
+            37.45,
+            376.815,
+            152.899,
+            386.719
+          ],
+          "text": "Símbolo\nSigniﬁcado\n"
+        },
+        {
+          "bbox": [
+            56.708,
+            394.838,
+            320.929,
+            409.916
+          ],
+          "text": "Práticas perigosas que podem resultar em lesões graves, morte e/ou danos \nmateriais.\nAVISO \n"
+        },
+        {
+          "bbox": [
+            49.572,
+            421.17,
+            306.034,
+            435.57
+          ],
+          "text": "Práticas perigosas que podem resultar em lesões pessoais e/ou danos \nmateriais.\n CUIDADO\n"
+        },
+        {
+          "bbox": [
+            59.516,
+            446.279,
+            324.067,
+            461.357
+          ],
+          "text": "Práticas perigosas que podem resultar em danos ao equipamento, perda de \ndados, deterioração do desempenho ou resultados imprevistos.\nNOTA\n"
+        },
+        {
+          "bbox": [
+            60.589,
+            473.271,
+            309.09,
+            485.469
+          ],
+          "text": "Complementa informações importantes ou dicas de operação no texto.\nDICA\n"
+        },
+        {
+          "bbox": [
+            26.724,
+            503.804,
+            32.424,
+            511.004
+          ],
+          "text": "01\n"
+        }
+      ],
+      "relative_body_page": 1
+    },
+    {
+      "physical_page": 117,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "Símbolo\nSigniﬁcado\nSímbolos de Advertência e Cuidado. Deve ser \nlido para alertar sobre potenciais perigos ou \nriscos.\nLeia o manual do usuário antes de operar.\nMantenha o produto longe de fogo.\nSímbolo Signiﬁcado\nMantenha fora do alcance de crianças.\nEste símbolo indica que há uma bateria de \níons de lítio (Li-ion) dentro do produto e \nque ela deve ser descartada ou reciclada \ncorretamente.\nEste símbolo indica que o produto não deve ser \ndescartado como lixo doméstico e deve ser \nencaminhado a um ponto de coleta designado \npara reciclagem. \nO descarte e a reciclagem adequados podem \najudar a proteger o meio ambiente. Para obter \nmais informações sobre o descarte e a \nreciclagem deste produto, entre em contato \ncom a autoridade local, o serviço de coleta ou \no revendedor.\nJackery Explorer 2000\n Cabo de carregamento CA\nManual do usuário\nCONTEÚDO DA EMBALAGEM\n1\n2\n3\nO cabo de carregamento veicular não está incluído, mas está disponível para \ncompra separadamente em nosso site. Para obter assistência, entre em contato \ncom o atendimento ao cliente da Jackery.\nDICA\nAs baterias e os acumuladores não devem ser \ndescartados junto com o lixo doméstico.\nComo consumidor, você é legalmente obrigado \na descartar todas as baterias e acumuladores \nem pontos de coleta designados, \nindependentemente de conterem substâncias \nperigosas.\nDevolva as baterias e acumuladores usados a \num ponto de coleta local, centro de reciclagem \nou ao revendedor onde foram comprados. O \ndescarte adequado garante a reciclagem \nambientalmente responsável e evita danos \npotenciais à saúde humana e ao meio \nambiente.\nNão desmonte o produto.\n \nPotência\nLUZ\nCC 12 V 10 A\nCC\nUSB\nUSB-C 30 W\nUSB-A 18 W\nUSB-C 100 W\nCA\nCA 2200 W ONDA SENOIDAL PURA\nJackery Explorer 2000\n02\n",
+      "text_sha256": "9f874e99f9d02d5e067212c1b014c2df1b8f078439feda709e6549ccf07aa852",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            35.741,
+            31.016,
+            115.502,
+            40.92
+          ],
+          "text": "Símbolo\nSigniﬁcado\n"
+        },
+        {
+          "bbox": [
+            191.618,
+            31.016,
+            267.731,
+            40.92
+          ],
+          "text": "Símbolo Signiﬁcado\n"
+        },
+        {
+          "bbox": [
+            73.845,
+            50.131,
+            179.471,
+            68.131
+          ],
+          "text": "Símbolos de Advertência e Cuidado. Deve ser \nlido para alertar sobre potenciais perigos ou \nriscos.\n"
+        },
+        {
+          "bbox": [
+            73.845,
+            86.781,
+            170.12,
+            92.781
+          ],
+          "text": "Leia o manual do usuário antes de operar.\n"
+        },
+        {
+          "bbox": [
+            73.845,
+            117.15,
+            132.515,
+            123.15
+          ],
+          "text": "Não desmonte o produto.\n"
+        },
+        {
+          "bbox": [
+            226.078,
+            54.872,
+            336.438,
+            138.872
+          ],
+          "text": "As baterias e os acumuladores não devem ser \ndescartados junto com o lixo doméstico.\nComo consumidor, você é legalmente obrigado \na descartar todas as baterias e acumuladores \nem pontos de coleta designados, \nindependentemente de conterem substâncias \nperigosas.\nDevolva as baterias e acumuladores usados a \num ponto de coleta local, centro de reciclagem \nou ao revendedor onde foram comprados. O \ndescarte adequado garante a reciclagem \nambientalmente responsável e evita danos \npotenciais à saúde humana e ao meio \nambiente.\n"
+        },
+        {
+          "bbox": [
+            73.845,
+            147.43,
+            155.546,
+            153.43
+          ],
+          "text": "Mantenha o produto longe de fogo.\n"
+        },
+        {
+          "bbox": [
+            73.845,
+            178.058,
+            164.044,
+            184.058
+          ],
+          "text": "Mantenha fora do alcance de crianças.\n"
+        },
+        {
+          "bbox": [
+            226.08,
+            160.728,
+            335.94,
+            220.728
+          ],
+          "text": "Este símbolo indica que o produto não deve ser \ndescartado como lixo doméstico e deve ser \nencaminhado a um ponto de coleta designado \npara reciclagem. \nO descarte e a reciclagem adequados podem \najudar a proteger o meio ambiente. Para obter \nmais informações sobre o descarte e a \nreciclagem deste produto, entre em contato \ncom a autoridade local, o serviço de coleta ou \no revendedor.\n"
+        },
+        {
+          "bbox": [
+            73.845,
+            202.833,
+            172.993,
+            226.833
+          ],
+          "text": "Este símbolo indica que há uma bateria de \níons de lítio (Li-ion) dentro do produto e \nque ela deve ser descartada ou reciclada \ncorretamente.\n"
+        },
+        {
+          "bbox": [
+            34.636,
+            245.1,
+            193.024,
+            259.956
+          ],
+          "text": "CONTEÚDO DA EMBALAGEM\n"
+        },
+        {
+          "bbox": [
+            81.334,
+            288.262,
+            294.754,
+            301.498
+          ],
+          "text": "1\n2\n3\n"
+        },
+        {
+          "bbox": [
+            70.34,
+            336.812,
+            73.513,
+            337.732
+          ],
+          "text": "Potência\n"
+        },
+        {
+          "bbox": [
+            94.657,
+            340.043,
+            95.945,
+            340.964
+          ],
+          "text": "LUZ\n"
+        },
+        {
+          "bbox": [
+            61.899,
+            341.586,
+            66.224,
+            342.506
+          ],
+          "text": "CC 12 V 10 A\n"
+        },
+        {
+          "bbox": [
+            61.728,
+            348.44,
+            66.176,
+            349.36
+          ],
+          "text": "USB-C 30 W\n"
+        },
+        {
+          "bbox": [
+            61.553,
+            351.788,
+            75.738,
+            352.708
+          ],
+          "text": "USB-C 100 W\nCA\n"
+        },
+        {
+          "bbox": [
+            67.213,
+            351.788,
+            70.562,
+            352.708
+          ],
+          "text": "CC\nUSB\n"
+        },
+        {
+          "bbox": [
+            61.872,
+            354.558,
+            66.049,
+            355.478
+          ],
+          "text": "USB-A 18 W\n"
+        },
+        {
+          "bbox": [
+            87.548,
+            355.093,
+            99.355,
+            356.013
+          ],
+          "text": "CA 2200 W ONDA SENOIDAL PURA\n"
+        },
+        {
+          "bbox": [
+            77.07,
+            361.936,
+            90.156,
+            363.464
+          ],
+          "text": "Jackery Explorer 2000\n"
+        },
+        {
+          "bbox": [
+            52.512,
+            391.099,
+            317.699,
+            398.528
+          ],
+          "text": "Jackery Explorer 2000\n Cabo de carregamento CA\nManual do usuário\n"
+        },
+        {
+          "bbox": [
+            46.189,
+            441.41,
+            326.519,
+            465.026
+          ],
+          "text": "O cabo de carregamento veicular não está incluído, mas está disponível para \ncompra separadamente em nosso site. Para obter assistência, entre em contato \ncom o atendimento ao cliente da Jackery.\nDICA\n"
+        },
+        {
+          "bbox": [
+            337.331,
+            504.381,
+            344.201,
+            511.581
+          ],
+          "text": "02\n"
+        }
+      ],
+      "relative_body_page": 2
+    },
+    {
+      "physical_page": 118,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "03\n \nPotência\nLUZ\nCC 12 V 10 A\nCC\nUSB\nUSB-C 30 W\nUSB-A 18 W\nUSB-C 100 W\nCA\nCA 2200 W ONDA SENOIDAL PURA\nJackery Explorer 2000\nVISTA FRONTAL\nVISTA LATERAL DIREITA\nVISÃO GERAL DO PRODUTO\n12 V⎓10 A máx.\nSaída CA\nBotão Power CA\nBotão de energia CC/USB\nSaída USB-C 30 W\nSaída USB-C 100 W\nSaída USB-A 18 W\nLCD\nBotão da luz LED\nLuz LED \nBotão Power Principal\nPorta CC 12 V\n18 W máx., 5-6 V⎓3 A, \n6-9 V⎓2 A, 9-12 V⎓1,5 A\n30 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 \nV⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A\n100 W máx., 5 V⎓3 A, 9 V⎓3 A, \n12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n230 V~ 50 Hz, \n2200 W Nominal\nSaída Total\n2200 W Nominal, 4400 W de Pico\nCA 100 V-120 V 15 A máx.\nEntrada CC (8020)\nEntrada CC (2 × portas DC8020)\nPV: 16-60 V⎓12 A máx., duplicado até 21 A \nmáx. / 400 W máx.\nVeicular: 11-16 V⎓8 A máx., duplicado até \n8 A máx.\nEntrada CA\n220 V-240 V~ 50 Hz, 10 A máx.\nAlça\n",
+      "text_sha256": "ccd1358d96c2679de37ece9a4c63e65d9e38d75a89a2875f5b0f715b26a5d547",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            32.695,
+            31.084,
+            188.539,
+            45.94
+          ],
+          "text": "VISÃO GERAL DO PRODUTO\n"
+        },
+        {
+          "bbox": [
+            39.203,
+            68.743,
+            97.163,
+            78.647
+          ],
+          "text": "VISTA FRONTAL\n"
+        },
+        {
+          "bbox": [
+            28.297,
+            92.165,
+            99.228,
+            100.831
+          ],
+          "text": "Botão Power Principal\n"
+        },
+        {
+          "bbox": [
+            324.929,
+            92.263,
+            338.026,
+            100.929
+          ],
+          "text": "LCD\n"
+        },
+        {
+          "bbox": [
+            284.672,
+            115.321,
+            339.3,
+            123.987
+          ],
+          "text": "Botão da luz LED\n"
+        },
+        {
+          "bbox": [
+            28.297,
+            115.874,
+            72.124,
+            124.54
+          ],
+          "text": "Porta CC 12 V\n"
+        },
+        {
+          "bbox": [
+            28.798,
+            123.117,
+            63.268,
+            134.557
+          ],
+          "text": "12 V⎓10 A máx.\n"
+        },
+        {
+          "bbox": [
+            28.871,
+            146.338,
+            89.863,
+            155.004
+          ],
+          "text": "Saída USB-C 30 W\n"
+        },
+        {
+          "bbox": [
+            153.221,
+            153.732,
+            160.514,
+            155.89
+          ],
+          "text": "Potência\n"
+        },
+        {
+          "bbox": [
+            309.522,
+            147.906,
+            335.807,
+            156.572
+          ],
+          "text": "Luz LED \n"
+        },
+        {
+          "bbox": [
+            209.583,
+            161.314,
+            212.568,
+            163.473
+          ],
+          "text": "LUZ\n"
+        },
+        {
+          "bbox": [
+            133.654,
+            164.929,
+            143.679,
+            167.087
+          ],
+          "text": "CC 12 V 10 A\n"
+        },
+        {
+          "bbox": [
+            29.238,
+            152.841,
+            103.283,
+            170.281
+          ],
+          "text": "30 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 \nV⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            28.304,
+            171.321,
+            92.6,
+            179.987
+          ],
+          "text": "Saída USB-C 100 W\n"
+        },
+        {
+          "bbox": [
+            133.258,
+            181.008,
+            143.566,
+            183.167
+          ],
+          "text": "USB-C 30 W\n"
+        },
+        {
+          "bbox": [
+            132.854,
+            188.865,
+            165.727,
+            191.023
+          ],
+          "text": "USB-C 100 W\nCA\n"
+        },
+        {
+          "bbox": [
+            145.974,
+            188.864,
+            153.736,
+            191.023
+          ],
+          "text": "CC\nUSB\n"
+        },
+        {
+          "bbox": [
+            29.238,
+            177.231,
+            99.908,
+            194.671
+          ],
+          "text": "100 W máx., 5 V⎓3 A, 9 V⎓3 A, \n12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n"
+        },
+        {
+          "bbox": [
+            133.59,
+            195.359,
+            143.273,
+            197.517
+          ],
+          "text": "USB-A 18 W\n"
+        },
+        {
+          "bbox": [
+            193.107,
+            196.616,
+            220.473,
+            198.775
+          ],
+          "text": "CA 2200 W ONDA SENOIDAL PURA\n"
+        },
+        {
+          "bbox": [
+            302.886,
+            202.506,
+            333.37,
+            211.172
+          ],
+          "text": "Saída CA\n"
+        },
+        {
+          "bbox": [
+            168.845,
+            212.694,
+            199.176,
+            216.279
+          ],
+          "text": "Jackery Explorer 2000\n"
+        },
+        {
+          "bbox": [
+            28.304,
+            210.836,
+            87.133,
+            219.502
+          ],
+          "text": "Saída USB-A 18 W\n"
+        },
+        {
+          "bbox": [
+            300.943,
+            212.801,
+            339.893,
+            224.801
+          ],
+          "text": "230 V~ 50 Hz, \n2200 W Nominal\n"
+        },
+        {
+          "bbox": [
+            28.539,
+            217.283,
+            82.639,
+            234.723
+          ],
+          "text": "18 W máx., 5-6 V⎓3 A, \n6-9 V⎓2 A, 9-12 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            28.983,
+            253.011,
+            335.695,
+            262.538
+          ],
+          "text": "Botão Power CA\nBotão de energia CC/USB\n"
+        },
+        {
+          "bbox": [
+            296.88,
+            276.936,
+            333.552,
+            285.602
+          ],
+          "text": "Saída Total\n"
+        },
+        {
+          "bbox": [
+            261.748,
+            286.502,
+            338.642,
+            292.502
+          ],
+          "text": "2200 W Nominal, 4400 W de Pico\n"
+        },
+        {
+          "bbox": [
+            39.203,
+            315.919,
+            125.547,
+            325.823
+          ],
+          "text": "VISTA LATERAL DIREITA\n"
+        },
+        {
+          "bbox": [
+            31.044,
+            339.342,
+            45.499,
+            348.008
+          ],
+          "text": "Alça\n"
+        },
+        {
+          "bbox": [
+            242.135,
+            368.901,
+            339.197,
+            387.003
+          ],
+          "text": "Entrada CC (2 × portas DC8020)\nPV: 16-60 V⎓12 A máx., duplicado até 21 A \n"
+        },
+        {
+          "bbox": [
+            169.938,
+            396.772,
+            200.244,
+            398.527
+          ],
+          "text": "CA 100 V-120 V 15 A máx.\nEntrada CC (8020)\n"
+        },
+        {
+          "bbox": [
+            244.282,
+            384.258,
+            339.197,
+            399.003
+          ],
+          "text": "máx. / 400 W máx.\nVeicular: 11-16 V⎓8 A máx., duplicado até \n"
+        },
+        {
+          "bbox": [
+            31.044,
+            395.454,
+            99.938,
+            401.454
+          ],
+          "text": "220 V-240 V~ 50 Hz, 10 A máx.\n"
+        },
+        {
+          "bbox": [
+            31.044,
+            385.928,
+            337.941,
+            402.258
+          ],
+          "text": "8 A máx.\nEntrada CA\n"
+        },
+        {
+          "bbox": [
+            26.299,
+            504.381,
+            33.139,
+            511.581
+          ],
+          "text": "03\n"
+        }
+      ],
+      "relative_body_page": 3
+    },
+    {
+      "physical_page": 119,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "04\nDISPLAY LCD \n11\n13\n14\n12\n15\n16\n17\n18 19\n21\n22 23\n25\n24\n20\n1\n2\n3\n4\n10\n5\n6\n9\n7\n8\n6\n1\n2\n3\n4\n5\nModo de \ncarregamento \nsilencioso\nModo de autoalimentação\nModo TOU\nPlano de carregamento\nWi-Fi\nBluetooth\nPersonaliza o tempo de carregamento do Jackery Explorer 2000. \nAdequado para situações com tarifas de energia elétrica variáveis, permite \nprogramar o carregamento de acordo com os horários de pico e fora de \npico, reduzindo os custos com energia elétrica.\nAtive/desative este recurso no aplicativo da Jackery. A configuração é \nmantida quando o dispositivo é desligado.\nLigado: Wi-Fi conectado.\nPisca: Pronto para conectar ao Wi-Fi.\nDesligado: Wi-Fi desconectado.\nLigado: Bluetooth conectado.\nPisca: Pronto para conectar ao Bluetooth.\nDesligado: Bluetooth desconectado.\nLigado: O ruído durante o carregamento é significativamente \nreduzido, enquanto a potência de carregamento é menor e a \nvelocidade de carregamento diminui.\nDesligado: Modo de carregamento silencioso desativado.\nAtive/desative este recurso no aplicativo da Jackery. A configuração \né mantida quando o dispositivo é desligado.\nLigado: O modo TOU está ativado (SOC de reserva padrão: 60%). Durante os \nhorários de pico, o produto prioriza a descarga da bateria para reduzir os \ncustos de energia quando a energia armazenada excede o SOC de reserva. \nDurante os horários fora de pico, o produto carrega a bateria a partir da \nrede elétrica para reduzir o consumo nos horários de pico e aproveitar os \nperíodos de menor demanda.\nDesligado: O modo TOU está desabilitado. O produto não segue a \nestratégia de TOU (tarifa por tempo de uso) e opera de acordo com a lógica \npadrão de fornecimento de energia e carregamento.\nAtive/desative este recurso no aplicativo da Jackery. A configuração é \nmantida quando o dispositivo é desligado.\nMaximiza o uso da energia solar e reduz a dependência da rede elétrica ao \npriorizar a energia solar armazenada, reduzindo os custos de energia. A \nestação de energia deve estar conectada simultaneamente aos painéis \nsolares e à rede; a potência da carga é limitada pela potência de bypass.\nAtive/desative este recurso no aplicativo da Jackery. A configuração é \nmantida quando o dispositivo é desligado.\n",
+      "text_sha256": "9e35c2811aeb25847ca487e8662e7221cf1780a735e09a3f1d60fdee34fff005",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            35.007,
+            31.638,
+            111.183,
+            46.494
+          ],
+          "text": "DISPLAY LCD \n"
+        },
+        {
+          "bbox": [
+            141.274,
+            59.275,
+            243.394,
+            67.751
+          ],
+          "text": "5\n6\n9\n7\n8\n"
+        },
+        {
+          "bbox": [
+            92.378,
+            59.275,
+            133.053,
+            67.846
+          ],
+          "text": "1\n2\n3\n4\n"
+        },
+        {
+          "bbox": [
+            301.939,
+            136.125,
+            309.184,
+            144.525
+          ],
+          "text": "24\n"
+        },
+        {
+          "bbox": [
+            45.553,
+            137.959,
+            52.617,
+            146.435
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            45.545,
+            153.32,
+            50.561,
+            161.797
+          ],
+          "text": "11\n"
+        },
+        {
+          "bbox": [
+            301.779,
+            154.225,
+            309.199,
+            162.625
+          ],
+          "text": "25\n"
+        },
+        {
+          "bbox": [
+            196.378,
+            217.897,
+            203.972,
+            226.373
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            90.951,
+            217.897,
+            263.03,
+            226.548
+          ],
+          "text": "13\n14\n12\n15\n16\n17\n18 19\n21\n22 23\n"
+        },
+        {
+          "bbox": [
+            87.254,
+            251.243,
+            99.739,
+            257.433
+          ],
+          "text": "Wi-Fi\n"
+        },
+        {
+          "bbox": [
+            37.578,
+            249.442,
+            39.941,
+            257.782
+          ],
+          "text": "1\n"
+        },
+        {
+          "bbox": [
+            161.319,
+            242.999,
+            247.15,
+            261.189
+          ],
+          "text": "Ligado: Wi-Fi conectado.\nPisca: Pronto para conectar ao Wi-Fi.\nDesligado: Wi-Fi desconectado.\n"
+        },
+        {
+          "bbox": [
+            87.254,
+            272.688,
+            109.693,
+            278.878
+          ],
+          "text": "Bluetooth\n"
+        },
+        {
+          "bbox": [
+            36.935,
+            271.062,
+            40.584,
+            279.402
+          ],
+          "text": "2\n"
+        },
+        {
+          "bbox": [
+            161.244,
+            265.229,
+            257.105,
+            283.419
+          ],
+          "text": "Ligado: Bluetooth conectado.\nPisca: Pronto para conectar ao Bluetooth.\nDesligado: Bluetooth desconectado.\n"
+        },
+        {
+          "bbox": [
+            36.918,
+            301.451,
+            40.602,
+            309.792
+          ],
+          "text": "3\n"
+        },
+        {
+          "bbox": [
+            87.254,
+            297.468,
+            121.693,
+            315.658
+          ],
+          "text": "Modo de \ncarregamento \nsilencioso\n"
+        },
+        {
+          "bbox": [
+            161.529,
+            287.834,
+            320.062,
+            323.909
+          ],
+          "text": "Ligado: O ruído durante o carregamento é significativamente \nreduzido, enquanto a potência de carregamento é menor e a \nvelocidade de carregamento diminui.\nDesligado: Modo de carregamento silencioso desativado.\nAtive/desative este recurso no aplicativo da Jackery. A configuração \né mantida quando o dispositivo é desligado.\n"
+        },
+        {
+          "bbox": [
+            36.936,
+            347.036,
+            40.967,
+            355.377
+          ],
+          "text": "4\n"
+        },
+        {
+          "bbox": [
+            87.254,
+            349.503,
+            142.149,
+            355.693
+          ],
+          "text": "Plano de carregamento\n"
+        },
+        {
+          "bbox": [
+            161.244,
+            330.744,
+            335.188,
+            366.744
+          ],
+          "text": "Personaliza o tempo de carregamento do Jackery Explorer 2000. \nAdequado para situações com tarifas de energia elétrica variáveis, permite \nprogramar o carregamento de acordo com os horários de pico e fora de \npico, reduzindo os custos com energia elétrica.\nAtive/desative este recurso no aplicativo da Jackery. A configuração é \nmantida quando o dispositivo é desligado.\n"
+        },
+        {
+          "bbox": [
+            36.937,
+            392.516,
+            40.69,
+            400.857
+          ],
+          "text": "5\n"
+        },
+        {
+          "bbox": [
+            87.259,
+            395.178,
+            149.045,
+            401.368
+          ],
+          "text": "Modo de autoalimentação\n"
+        },
+        {
+          "bbox": [
+            161.569,
+            379.054,
+            336.133,
+            415.054
+          ],
+          "text": "Maximiza o uso da energia solar e reduz a dependência da rede elétrica ao \npriorizar a energia solar armazenada, reduzindo os custos de energia. A \nestação de energia deve estar conectada simultaneamente aos painéis \nsolares e à rede; a potência da carga é limitada pela potência de bypass.\nAtive/desative este recurso no aplicativo da Jackery. A configuração é \nmantida quando o dispositivo é desligado.\n"
+        },
+        {
+          "bbox": [
+            87.259,
+            454.778,
+            111.354,
+            460.968
+          ],
+          "text": "Modo TOU\n"
+        },
+        {
+          "bbox": [
+            37.057,
+            453.368,
+            40.74,
+            461.708
+          ],
+          "text": "6\n"
+        },
+        {
+          "bbox": [
+            161.244,
+            426.484,
+            338.089,
+            492.559
+          ],
+          "text": "Ligado: O modo TOU está ativado (SOC de reserva padrão: 60%). Durante os \nhorários de pico, o produto prioriza a descarga da bateria para reduzir os \ncustos de energia quando a energia armazenada excede o SOC de reserva. \nDurante os horários fora de pico, o produto carrega a bateria a partir da \nrede elétrica para reduzir o consumo nos horários de pico e aproveitar os \nperíodos de menor demanda.\nDesligado: O modo TOU está desabilitado. O produto não segue a \nestratégia de TOU (tarifa por tempo de uso) e opera de acordo com a lógica \npadrão de fornecimento de energia e carregamento.\nAtive/desative este recurso no aplicativo da Jackery. A configuração é \nmantida quando o dispositivo é desligado.\n"
+        },
+        {
+          "bbox": [
+            335.886,
+            503.803,
+            343.146,
+            511.003
+          ],
+          "text": "04\n"
+        }
+      ],
+      "relative_body_page": 4
+    },
+    {
+      "physical_page": 120,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "05\n12\nIndicador de \nenergia da bateria \nQuando o produto estiver sendo carregado, o círculo laranja ao redor \nda porcentagem da bateria acenderá em sequência. Ao carregar \noutros dispositivos, o círculo laranja permanece aceso.\nModo de economia de \nbateria\nPorcentagem de bateria \nrestante\nModo de economia \nde energia\nCódigo de falha\nQuando a saída CA ou CC for ativada pressionando o botão POWER CA \nou o botão POWER CC/USB:\nLigado: O Modo de economia de energia está ativado.\nDesligado: O Modo de economia de energia está desativado.\nA configuração é mantida quando o dispositivo é desligado.\nPotência de saída\nTempo de descarga \nrestante \nIndicador de alta \ntemperatura\nIndicador de \ntemperatura baixa\n14\n13\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n9\n11\n7\n8\nIndicador de energia AC\nPotência de entrada\nTempo de carregamento \nrestante\nIndicador de \ncarregamento via \ntomada CA\nIndicador de \ncarregamento veicular\nLimite de potência de \ncarregamento\nUPS\nIndicador de \ncarregamento solar\nLigado: O limite de potência de carregamento está ativado no aplicativo Jackery.\nDesligado: O limite de potência de carregamento está desativado no aplicativo \nJackery.\nA configuração é mantida quando o dispositivo é desligado.\nLigado: O produto está operando no modo de bypass. As cargas \nconectadas às portas CA consomem energia da rede em vez da estação de \nenergia. Se a rede elétrica falhar repentinamente, o produto alterna \nautomaticamente para a energia da bateria em 10 ms.\nDesligado: O produto não está no Modo de bypass. As cargas conectadas \nàs portas CA são alimentadas pela bateria interna da estação de energia.\nA saída CA (onda senoidal pura) está ligada.\nExibe a potência de entrada em watts.\nExibe o tempo de carregamento restante.\nO produto é carregado pela Entrada CA usando energia da rede.\nO produto é carregado pela Entrada CC (DC8020) usando CC 12 V \n(carregamento veicular).\nO produto é carregado pela Entrada CC (DC8020) usando painel(is) \nsolar(es).\nLigado: Limita a capacidade máxima utilizável da bateria para prolongar \nsua vida útil.\nDesligado: Modo de economia de bateria desativado.\nAtive/desative este recurso no aplicativo da Jackery. A configuração é \nmantida quando o dispositivo é desligado.\nQuando esse recurso está ativado, o produto ocasionalmente realiza um \nciclo completo de carga e descarga para calibrar o SOC.\nIndicador de \nbateria fraca\nLigado: O nível da bateria está abaixo de 20%.\nPisca: O nível da bateria está abaixo de 5%.\nDesligado: O nível da bateria está acima de 20% ou o produto está \ncarregando.\nTemporizador de descarga\nLigado: Um temporizador de descarga está definido.\nDesligado: Nenhum temporizador de descarga está definido.\nAtive/desative este recurso no aplicativo da Jackery. A configuração não \né mantida quando o dispositivo é desligado.\nExibe a porcentagem de bateria restante.\nOcorreu um erro no produto. Consulte a seção de Solução de problemas \npara obter detalhes.\nA proteção contra alta temperatura foi ativada. O produto pode parar \nde funcionar até que sua temperatura retorne à faixa normal de \noperação.\nA proteção contra baixa temperatura foi ativada. O produto pode parar \nde funcionar até que sua temperatura retorne à faixa normal de \noperação.\nExibe o tempo de descarga restante.\nExibe a potência de saída em watts.\nTensão e Frequência \nde Saída\n10\nExibe a tensão e a frequência de saída quando a saída CA está ligada.\n",
+      "text_sha256": "f272440dda026ca3a705eb3cdbfa75a8605c837b60c4da7a79a6eb0cf573719c",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            91.084,
+            49.464,
+            100.114,
+            55.653
+          ],
+          "text": "UPS\n"
+        },
+        {
+          "bbox": [
+            36.338,
+            48.226,
+            39.744,
+            56.567
+          ],
+          "text": "7\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            33.667,
+            338.151,
+            69.742
+          ],
+          "text": "Ligado: O produto está operando no modo de bypass. As cargas \nconectadas às portas CA consomem energia da rede em vez da estação de \nenergia. Se a rede elétrica falhar repentinamente, o produto alterna \nautomaticamente para a energia da bateria em 10 ms.\nDesligado: O produto não está no Modo de bypass. As cargas conectadas \nàs portas CA são alimentadas pela bateria interna da estação de energia.\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            81.792,
+            263.483,
+            87.792
+          ],
+          "text": "A saída CA (onda senoidal pura) está ligada.\n"
+        },
+        {
+          "bbox": [
+            36.4,
+            81.104,
+            147.811,
+            89.444
+          ],
+          "text": "8\nIndicador de energia AC\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            98.732,
+            325.299,
+            104.732
+          ],
+          "text": "Exibe a tensão e a frequência de saída quando a saída CA está ligada.\n"
+        },
+        {
+          "bbox": [
+            91.084,
+            94.149,
+            140.135,
+            106.339
+          ],
+          "text": "Tensão e Frequência \nde Saída\n"
+        },
+        {
+          "bbox": [
+            36.678,
+            98.559,
+            40.362,
+            106.9
+          ],
+          "text": "9\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            118.042,
+            250.531,
+            124.042
+          ],
+          "text": "Exibe a potência de entrada em watts.\n"
+        },
+        {
+          "bbox": [
+            91.084,
+            118.698,
+            138.733,
+            124.888
+          ],
+          "text": "Potência de entrada\n"
+        },
+        {
+          "bbox": [
+            35.155,
+            117.218,
+            41.967,
+            125.558
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            134.902,
+            256.795,
+            140.902
+          ],
+          "text": "Exibe o tempo de carregamento restante.\n"
+        },
+        {
+          "bbox": [
+            91.084,
+            130.983,
+            149.569,
+            143.173
+          ],
+          "text": "Tempo de carregamento \nrestante\n"
+        },
+        {
+          "bbox": [
+            35.719,
+            135.622,
+            40.654,
+            143.962
+          ],
+          "text": "11\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            152.737,
+            311.357,
+            158.737
+          ],
+          "text": "O produto é carregado pela Entrada CA usando energia da rede.\n"
+        },
+        {
+          "bbox": [
+            34.948,
+            154.053,
+            41.169,
+            162.394
+          ],
+          "text": "12\n"
+        },
+        {
+          "bbox": [
+            91.084,
+            148.788,
+            133.803,
+            166.978
+          ],
+          "text": "Indicador de \ncarregamento via \ntomada CA\n"
+        },
+        {
+          "bbox": [
+            35.114,
+            172.645,
+            41.37,
+            180.986
+          ],
+          "text": "13\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            169.642,
+            315.606,
+            181.642
+          ],
+          "text": "O produto é carregado pela Entrada CC (DC8020) usando CC 12 V \n(carregamento veicular).\n"
+        },
+        {
+          "bbox": [
+            91.084,
+            170.193,
+            143.939,
+            182.383
+          ],
+          "text": "Indicador de \ncarregamento veicular\n"
+        },
+        {
+          "bbox": [
+            35.114,
+            190.236,
+            41.717,
+            198.577
+          ],
+          "text": "14\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            187.392,
+            318.381,
+            199.392
+          ],
+          "text": "O produto é carregado pela Entrada CC (DC8020) usando painel(is) \nsolar(es).\n"
+        },
+        {
+          "bbox": [
+            91.084,
+            188.633,
+            136.904,
+            200.823
+          ],
+          "text": "Indicador de \ncarregamento solar\n"
+        },
+        {
+          "bbox": [
+            91.085,
+            217.537,
+            144.255,
+            229.727
+          ],
+          "text": "Modo de economia de \nbateria\n"
+        },
+        {
+          "bbox": [
+            34.941,
+            222.666,
+            41.266,
+            231.006
+          ],
+          "text": "15\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            204.657,
+            330.982,
+            246.732
+          ],
+          "text": "Ligado: Limita a capacidade máxima utilizável da bateria para prolongar \nsua vida útil.\nDesligado: Modo de economia de bateria desativado.\nAtive/desative este recurso no aplicativo da Jackery. A configuração é \nmantida quando o dispositivo é desligado.\nQuando esse recurso está ativado, o produto ocasionalmente realiza um \nciclo completo de carga e descarga para calibrar o SOC.\n"
+        },
+        {
+          "bbox": [
+            35.079,
+            255.34,
+            41.335,
+            263.68
+          ],
+          "text": "16\n"
+        },
+        {
+          "bbox": [
+            91.084,
+            251.958,
+            142.683,
+            264.148
+          ],
+          "text": "Limite de potência de \ncarregamento\n"
+        },
+        {
+          "bbox": [
+            161.451,
+            249.595,
+            332.257,
+            270.125
+          ],
+          "text": "Ligado: O limite de potência de carregamento está ativado no aplicativo Jackery.\nDesligado: O limite de potência de carregamento está desativado no aplicativo \nJackery.\nA configuração é mantida quando o dispositivo é desligado.\n"
+        },
+        {
+          "bbox": [
+            35.115,
+            278.986,
+            41.093,
+            287.327
+          ],
+          "text": "17\n"
+        },
+        {
+          "bbox": [
+            91.4,
+            275.697,
+            136.405,
+            287.887
+          ],
+          "text": "Indicador de \nenergia da bateria \n"
+        },
+        {
+          "bbox": [
+            161.4,
+            272.497,
+            321.982,
+            290.497
+          ],
+          "text": "Quando o produto estiver sendo carregado, o círculo laranja ao redor \nda porcentagem da bateria acenderá em sequência. Ao carregar \noutros dispositivos, o círculo laranja permanece aceso.\n"
+        },
+        {
+          "bbox": [
+            91.084,
+            298.174,
+            121.839,
+            310.364
+          ],
+          "text": "Indicador de \nbateria fraca\n"
+        },
+        {
+          "bbox": [
+            35.254,
+            302.298,
+            41.634,
+            310.638
+          ],
+          "text": "18\n"
+        },
+        {
+          "bbox": [
+            161.404,
+            295.184,
+            316.039,
+            318.929
+          ],
+          "text": "Ligado: O nível da bateria está abaixo de 20%.\nPisca: O nível da bateria está abaixo de 5%.\nDesligado: O nível da bateria está acima de 20% ou o produto está \ncarregando.\n"
+        },
+        {
+          "bbox": [
+            161.404,
+            324.979,
+            257.068,
+            330.979
+          ],
+          "text": "Exibe a porcentagem de bateria restante.\n"
+        },
+        {
+          "bbox": [
+            35.051,
+            324.755,
+            41.306,
+            333.096
+          ],
+          "text": "19\n"
+        },
+        {
+          "bbox": [
+            91.085,
+            322.702,
+            149.075,
+            334.892
+          ],
+          "text": "Porcentagem de bateria \nrestante\n"
+        },
+        {
+          "bbox": [
+            91.084,
+            351.284,
+            153.265,
+            357.474
+          ],
+          "text": "Temporizador de descarga\n"
+        },
+        {
+          "bbox": [
+            34.504,
+            350.497,
+            42.532,
+            358.837
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            161.404,
+            339.544,
+            330.186,
+            363.619
+          ],
+          "text": "Ligado: Um temporizador de descarga está definido.\nDesligado: Nenhum temporizador de descarga está definido.\nAtive/desative este recurso no aplicativo da Jackery. A configuração não \né mantida quando o dispositivo é desligado.\n"
+        },
+        {
+          "bbox": [
+            36.27,
+            376.999,
+            42.351,
+            385.339
+          ],
+          "text": "21\n"
+        },
+        {
+          "bbox": [
+            92.85,
+            374.942,
+            138.735,
+            387.132
+          ],
+          "text": "Modo de economia \nde energia\n"
+        },
+        {
+          "bbox": [
+            161.401,
+            367.448,
+            329.113,
+            397.448
+          ],
+          "text": "Quando a saída CA ou CC for ativada pressionando o botão POWER CA \nou o botão POWER CC/USB:\nLigado: O Modo de economia de energia está ativado.\nDesligado: O Modo de economia de energia está desativado.\nA configuração é mantida quando o dispositivo é desligado.\n"
+        },
+        {
+          "bbox": [
+            92.131,
+            403.128,
+            133.441,
+            415.318
+          ],
+          "text": "Indicador de alta \ntemperatura\n"
+        },
+        {
+          "bbox": [
+            161.402,
+            401.378,
+            324.419,
+            419.378
+          ],
+          "text": "A proteção contra alta temperatura foi ativada. O produto pode parar \nde funcionar até que sua temperatura retorne à faixa normal de \noperação.\n"
+        },
+        {
+          "bbox": [
+            34.504,
+            418.714,
+            41.871,
+            427.054
+          ],
+          "text": "22\n"
+        },
+        {
+          "bbox": [
+            92.131,
+            425.143,
+            135.907,
+            437.333
+          ],
+          "text": "Indicador de \ntemperatura baixa\n"
+        },
+        {
+          "bbox": [
+            161.402,
+            422.423,
+            328.248,
+            440.423
+          ],
+          "text": "A proteção contra baixa temperatura foi ativada. O produto pode parar \nde funcionar até que sua temperatura retorne à faixa normal de \noperação.\n"
+        },
+        {
+          "bbox": [
+            34.504,
+            447.02,
+            41.837,
+            455.361
+          ],
+          "text": "23\n"
+        },
+        {
+          "bbox": [
+            91.328,
+            449.904,
+            129.101,
+            456.094
+          ],
+          "text": "Código de falha\n"
+        },
+        {
+          "bbox": [
+            161.402,
+            444.706,
+            330.044,
+            456.706
+          ],
+          "text": "Ocorreu um erro no produto. Consulte a seção de Solução de problemas \npara obter detalhes.\n"
+        },
+        {
+          "bbox": [
+            161.402,
+            466.663,
+            244.751,
+            472.663
+          ],
+          "text": "Exibe a potência de saída em watts.\n"
+        },
+        {
+          "bbox": [
+            34.504,
+            465.155,
+            42.115,
+            473.496
+          ],
+          "text": "24\n"
+        },
+        {
+          "bbox": [
+            91.086,
+            468.288,
+            132.836,
+            474.478
+          ],
+          "text": "Potência de saída\n"
+        },
+        {
+          "bbox": [
+            161.402,
+            483.918,
+            245.796,
+            489.918
+          ],
+          "text": "Exibe o tempo de descarga restante.\n"
+        },
+        {
+          "bbox": [
+            34.504,
+            481.698,
+            41.941,
+            490.039
+          ],
+          "text": "25\n"
+        },
+        {
+          "bbox": [
+            91.086,
+            480.943,
+            138.277,
+            493.133
+          ],
+          "text": "Tempo de descarga \nrestante \n"
+        },
+        {
+          "bbox": [
+            26.323,
+            503.803,
+            33.343,
+            511.003
+          ],
+          "text": "05\n"
+        }
+      ],
+      "relative_body_page": 5
+    },
+    {
+      "physical_page": 121,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "06\nOPERAÇÕES \nLIGAR/DESLIGAR \nSAÍDA CA LIGAR/DESLIGAR\nON\nApagado\nPressione uma vez\nPressione uma vez\nPressione uma vez\nPressione e segure por 3 s\n3s\nON\nApagado\nQuando o Modo de Economia de Energia estiver ativado, o produto será desligado \nautomaticamente após 12 horas se o botão POWER CA ou o botão POWER CC/USB estiver \nligado, mas o produto não estiver carregando nem descarregando.\nTempo de espera padrão: 2 horas\nO produto será desligado automaticamente após 2 horas de \ninatividade, sem estar carregando nem descarregando.\nO tempo de espera pode ser deﬁnido no aplicativo da \nJackery.\nPré-requisito: O produto está ligado.\n",
+      "text_sha256": "b827189e1211f10a22d7e966801e0912397bd58808ac397f6aa40dfaa8e917c0",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            34.739,
+            31.297,
+            107.639,
+            46.153
+          ],
+          "text": "OPERAÇÕES \n"
+        },
+        {
+          "bbox": [
+            41.188,
+            57.124,
+            107.068,
+            67.028
+          ],
+          "text": "LIGAR/DESLIGAR \n"
+        },
+        {
+          "bbox": [
+            264.483,
+            78.931,
+            279.133,
+            91.311
+          ],
+          "text": "ON\n"
+        },
+        {
+          "bbox": [
+            264.813,
+            91.711,
+            315.549,
+            98.911
+          ],
+          "text": "Pressione uma vez\n"
+        },
+        {
+          "bbox": [
+            264.193,
+            105.061,
+            308.113,
+            117.441
+          ],
+          "text": "Apagado\n"
+        },
+        {
+          "bbox": [
+            264.813,
+            117.211,
+            335.937,
+            124.411
+          ],
+          "text": "Pressione e segure por 3 s\n"
+        },
+        {
+          "bbox": [
+            278.013,
+            128.665,
+            284.901,
+            137.065
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            157.071,
+            147.186,
+            326.029,
+            183.276
+          ],
+          "text": "Tempo de espera padrão: 2 horas\nO produto será desligado automaticamente após 2 horas de \ninatividade, sem estar carregando nem descarregando.\nO tempo de espera pode ser deﬁnido no aplicativo da \nJackery.\n"
+        },
+        {
+          "bbox": [
+            41.312,
+            199.461,
+            318.677,
+            223.221
+          ],
+          "text": "Quando o Modo de Economia de Energia estiver ativado, o produto será desligado \nautomaticamente após 12 horas se o botão POWER CA ou o botão POWER CC/USB estiver \nligado, mas o produto não estiver carregando nem descarregando.\n"
+        },
+        {
+          "bbox": [
+            40.685,
+            243.372,
+            142.917,
+            253.276
+          ],
+          "text": "SAÍDA CA LIGAR/DESLIGAR\n"
+        },
+        {
+          "bbox": [
+            39.606,
+            268.877,
+            151.601,
+            277.048
+          ],
+          "text": "Pré-requisito: O produto está ligado.\n"
+        },
+        {
+          "bbox": [
+            284.061,
+            302.853,
+            298.711,
+            315.233
+          ],
+          "text": "ON\n"
+        },
+        {
+          "bbox": [
+            284.613,
+            313.753,
+            335.349,
+            320.953
+          ],
+          "text": "Pressione uma vez\n"
+        },
+        {
+          "bbox": [
+            283.771,
+            325.983,
+            327.691,
+            338.363
+          ],
+          "text": "Apagado\n"
+        },
+        {
+          "bbox": [
+            283.785,
+            337.897,
+            334.521,
+            345.097
+          ],
+          "text": "Pressione uma vez\n"
+        },
+        {
+          "bbox": [
+            336.871,
+            503.803,
+            343.831,
+            511.003
+          ],
+          "text": "06\n"
+        }
+      ],
+      "relative_body_page": 6
+    },
+    {
+      "physical_page": 122,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "07\nSAÍDA CC 12 V/USB LIGAR/DESLIGAR\nPressione uma vez\nPressione uma vez\nON\nApagado\nCUIDADO\n• A porta CC 12 V é compatível apenas com baterias automotivas de 12 V e não é adequada para sistemas de \n24 V.\n• Não dê partida no veículo enquanto o produto estiver carregando a bateria através da saída CC 12 V, pois \nisso pode danificar o produto.\n• Este recurso destina-se apenas a uso emergencial e não pode carregar uma bateria de carro totalmente \ndescarregada ou danificada.\nCUIDADO\n• A porta USB-C de 100 W é uma saída de alta potência USB-PD Power Source 3 (PS3). Se o dispositivo do \nusuário ou acessório conectado não atender aos requisitos de segurança, pode haver risco de incêndio. \nAntes de usar essas portas, certifique-se de que o dispositivo ou acessório conectado possua proteção \ncontra incêndio.\n• Conecte o Jackery Explorer 2000 apenas a dispositivos ou acessórios que estejam em conformidade com as \ncláusulas 6.3, 6.4 e 6.5 da IEC/EN/UL 62368-1 (ou outras normas equivalentes).\n• Para obter a potência máxima de saída, use o cabo USB-C para USB-C de 5 A (20 V CC/5 A, 100 W).\nO produto pode carregar a bateria do seu carro usando o cabo de carregamento de bateria automotiva de 12 \nV da Jackery, vendido separadamente e disponível em nosso site.\nPré-requisito: O produto está ligado.\nA luz LED possui dois modos: Modo de iluminação e modo SOS. Em qualquer modo, \npressione e segure o botão da luz LED para desligar a luz.\nLIGAR/DESLIGAR A LUZ LED \nLUZ\nPressione o botão da luz LED \numa vez para ligar a luz.\nPressione novamente para \nalternar para o modo SOS.\nPressione uma terceira \nvez para desligar a luz.\n1\n3\n2\nSOS\n",
+      "text_sha256": "0cda98a3f1fac40616c12b5cc30352dead4d279026ddbbde80660c19cbbcd8eb",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            40.297,
+            27.976,
+            178.425,
+            37.88
+          ],
+          "text": "SAÍDA CC 12 V/USB LIGAR/DESLIGAR\n"
+        },
+        {
+          "bbox": [
+            40.986,
+            52.472,
+            152.981,
+            60.642
+          ],
+          "text": "Pré-requisito: O produto está ligado.\n"
+        },
+        {
+          "bbox": [
+            294.028,
+            63.944,
+            307.098,
+            74.989
+          ],
+          "text": "ON\n"
+        },
+        {
+          "bbox": [
+            293.776,
+            73.6,
+            336.885,
+            80.8
+          ],
+          "text": "Pressione uma vez\n"
+        },
+        {
+          "bbox": [
+            293.761,
+            84.579,
+            332.944,
+            95.624
+          ],
+          "text": "Apagado\n"
+        },
+        {
+          "bbox": [
+            293.776,
+            95.391,
+            335.323,
+            102.591
+          ],
+          "text": "Pressione uma vez\n"
+        },
+        {
+          "bbox": [
+            37.376,
+            238.785,
+            73.187,
+            248.637
+          ],
+          "text": "CUIDADO\n"
+        },
+        {
+          "bbox": [
+            82.371,
+            222.654,
+            335.434,
+            266.654
+          ],
+          "text": "• A porta USB-C de 100 W é uma saída de alta potência USB-PD Power Source 3 (PS3). Se o dispositivo do \nusuário ou acessório conectado não atender aos requisitos de segurança, pode haver risco de incêndio. \nAntes de usar essas portas, certifique-se de que o dispositivo ou acessório conectado possua proteção \ncontra incêndio.\n• Conecte o Jackery Explorer 2000 apenas a dispositivos ou acessórios que estejam em conformidade com as \ncláusulas 6.3, 6.4 e 6.5 da IEC/EN/UL 62368-1 (ou outras normas equivalentes).\n• Para obter a potência máxima de saída, use o cabo USB-C para USB-C de 5 A (20 V CC/5 A, 100 W).\n"
+        },
+        {
+          "bbox": [
+            27.554,
+            276.122,
+            333.918,
+            290.522
+          ],
+          "text": "O produto pode carregar a bateria do seu carro usando o cabo de carregamento de bateria automotiva de 12 \nV da Jackery, vendido separadamente e disponível em nosso site.\n"
+        },
+        {
+          "bbox": [
+            37.376,
+            313.843,
+            73.187,
+            323.695
+          ],
+          "text": "CUIDADO\n"
+        },
+        {
+          "bbox": [
+            82.371,
+            306.386,
+            336.012,
+            339.386
+          ],
+          "text": "• A porta CC 12 V é compatível apenas com baterias automotivas de 12 V e não é adequada para sistemas de \n24 V.\n• Não dê partida no veículo enquanto o produto estiver carregando a bateria através da saída CC 12 V, pois \nisso pode danificar o produto.\n• Este recurso destina-se apenas a uso emergencial e não pode carregar uma bateria de carro totalmente \ndescarregada ou danificada.\n"
+        },
+        {
+          "bbox": [
+            42.16,
+            347.842,
+            146.56,
+            357.746
+          ],
+          "text": "LIGAR/DESLIGAR A LUZ LED \n"
+        },
+        {
+          "bbox": [
+            47.356,
+            372.558,
+            301.799,
+            388.649
+          ],
+          "text": "A luz LED possui dois modos: Modo de iluminação e modo SOS. Em qualquer modo, \npressione e segure o botão da luz LED para desligar a luz.\n"
+        },
+        {
+          "bbox": [
+            220.192,
+            421.774,
+            223.288,
+            431.678
+          ],
+          "text": "1\n"
+        },
+        {
+          "bbox": [
+            256.854,
+            418.414,
+            337.41,
+            432.814
+          ],
+          "text": "Pressione o botão da luz LED \numa vez para ligar a luz.\n"
+        },
+        {
+          "bbox": [
+            159.576,
+            440.105,
+            171.226,
+            448.619
+          ],
+          "text": "LUZ\n"
+        },
+        {
+          "bbox": [
+            220.192,
+            445.521,
+            248.928,
+            455.425
+          ],
+          "text": "2\nSOS\n"
+        },
+        {
+          "bbox": [
+            256.854,
+            442.912,
+            331.169,
+            457.312
+          ],
+          "text": "Pressione novamente para \nalternar para o modo SOS.\n"
+        },
+        {
+          "bbox": [
+            220.192,
+            470.559,
+            224.552,
+            480.463
+          ],
+          "text": "3\n"
+        },
+        {
+          "bbox": [
+            256.854,
+            468.016,
+            319.955,
+            482.416
+          ],
+          "text": "Pressione uma terceira \nvez para desligar a luz.\n"
+        },
+        {
+          "bbox": [
+            24.054,
+            503.804,
+            30.654,
+            511.004
+          ],
+          "text": "07\n"
+        }
+      ],
+      "relative_body_page": 7
+    },
+    {
+      "physical_page": 123,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "08\nTELA LCD\nMODO DE ECONOMIA DE ENERGIA\nPara evitar consumo desnecessário da bateria caso o usuário se esqueça de desligar a saída, o produto ativa o Modo de \nEconomia de Energia por padrão. Quando a saída CA ou CC/USB estiver ligada, o ícone do Modo de Economia de Energia \nserá exibido na tela LCD. Neste modo, se nenhum dispositivo estiver conectado ou o consumo de energia do dispositivo \nconectado estiver abaixo de um determinado limite (25 W na saída CA ou 2 W na saída CC/USB), a respectiva saída será \ndesligada automaticamente após o tempo definido. A configuração padrão é de 12 horas. A duração do Modo de \nEconomia de Energia pode ser definida no aplicativo da Jackery para 1 h, 2 h, 8 h, 12 h ou 24 h. Se a duração for definida \ncomo Nunca Desligar, o Modo de Economia de Energia será desativado.\nPara desativar o Modo de Economia de Energia, mantenha pressionados simultaneamente o botão \nPOWER CA e o botão POWER principal por mais de 3 segundos. Quando o modo de economia de \nenergia estiver desativado, o ícone não aparecerá mais na tela LCD e o produto não desligará \nautomaticamente a saída CA ou USB.\nAo alimentar dispositivos de baixa potência (CA ≤ 25 W ou CC/USB ≤ 2 W), desative o Modo de \nEconomia de Energia para evitar que a saída desligue automaticamente durante a operação.\nNOTA\nAceso Brevemente\nAceso \ncontinuamente (em \nestado de carga ou \ndescarga)\nDesligar\nDesligamento \nautomático\nDesligar\nLigar\nDesligamento \nautomático\nPressione o Botão de Energia Principal \nou quando o produto estiver \ncarregando.\nO LCD desliga automaticamente após \n2 horas de inatividade.\nPressione o Botão de Energia Principal.\nPressione duas vezes o botão POWER \nprincipal quando o produto estiver \nligado.\nO LCD desliga automaticamente e \nentra no modo de suspensão após 2 \nminutos de inatividade.\nPressione o Botão de Energia Principal.\nLigar\nVocê também pode definir o modo de exibição da tela no aplicativo da Jackery.\nO Modo de Economia de Energia retoma o estado anterior após ligar o produto. É \nnecessário alternar manualmente para mudar o modo.\n3s\nPressione e segure ambos os \nbotões por mais de 3 segundos.\nLigar/Desligar\nFUNÇÃO DE RETOMADA DAS SAÍDAS CA E CC\nA Função de Retomada da Saída CA/CC é desativada por padrão. Ative essa função no aplicativo para permitir \nque o dispositivo memorize o status da saída CA/CC e retome automaticamente as saídas CA e CC em condições \ndefinidas.\nCondições de retomada automática\nCondições de não retomada automática\nLigar/reiniciar após desligamento ou reinício\nDesligamento manual da saída (botão/App)\nSOC da bateria ≥ limite de descarga + 10% após atingir o limite\nAtualização OTA concluída\nDesligamento da saída no modo de economia \nde energia\nDesligamento da saída acionado pela proteção\nDesligamento da saída acionado pelo temporizador \nde descarga\n",
+      "text_sha256": "17656a51fc7251c44e2db27f4bde33554c887c7ba52b9d374ea4daa9405c2989",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            27.18,
+            28.313,
+            344.372,
+            58.575
+          ],
+          "text": "FUNÇÃO DE RETOMADA DAS SAÍDAS CA E CC\nA Função de Retomada da Saída CA/CC é desativada por padrão. Ative essa função no aplicativo para permitir \nque o dispositivo memorize o status da saída CA/CC e retome automaticamente as saídas CA e CC em condições \ndefinidas.\n"
+        },
+        {
+          "bbox": [
+            32.676,
+            62.002,
+            306.67,
+            68.282
+          ],
+          "text": "Condições de retomada automática\nCondições de não retomada automática\n"
+        },
+        {
+          "bbox": [
+            32.675,
+            72.57,
+            314.145,
+            78.57
+          ],
+          "text": "Ligar/reiniciar após desligamento ou reinício\nDesligamento manual da saída (botão/App)\n"
+        },
+        {
+          "bbox": [
+            32.694,
+            84.426,
+            176.269,
+            90.426
+          ],
+          "text": "SOC da bateria ≥ limite de descarga + 10% após atingir o limite\n"
+        },
+        {
+          "bbox": [
+            212.104,
+            81.886,
+            320.123,
+            93.886
+          ],
+          "text": "Desligamento da saída no modo de economia \nde energia\n"
+        },
+        {
+          "bbox": [
+            212.529,
+            96.531,
+            323.354,
+            102.531
+          ],
+          "text": "Desligamento da saída acionado pela proteção\n"
+        },
+        {
+          "bbox": [
+            33.194,
+            108.496,
+            94.92,
+            114.496
+          ],
+          "text": "Atualização OTA concluída\n"
+        },
+        {
+          "bbox": [
+            212.009,
+            105.141,
+            333.618,
+            116.141
+          ],
+          "text": "Desligamento da saída acionado pelo temporizador \nde descarga\n"
+        },
+        {
+          "bbox": [
+            41.991,
+            122.567,
+            77.135,
+            132.471
+          ],
+          "text": "TELA LCD\n"
+        },
+        {
+          "bbox": [
+            221.439,
+            146.975,
+            230.791,
+            151.927
+          ],
+          "text": "Ligar\n"
+        },
+        {
+          "bbox": [
+            254.027,
+            142.063,
+            324.876,
+            156.463
+          ],
+          "text": "Pressione o Botão de Energia Principal \nou quando o produto estiver \ncarregando.\n"
+        },
+        {
+          "bbox": [
+            221.435,
+            157.66,
+            236.78,
+            162.612
+          ],
+          "text": "Desligar\n"
+        },
+        {
+          "bbox": [
+            254.031,
+            158.751,
+            324.8,
+            163.551
+          ],
+          "text": "Pressione o Botão de Energia Principal.\n"
+        },
+        {
+          "bbox": [
+            181.723,
+            164.824,
+            216.066,
+            169.776
+          ],
+          "text": "Aceso Brevemente\n"
+        },
+        {
+          "bbox": [
+            221.435,
+            172.88,
+            248.219,
+            182.632
+          ],
+          "text": "Desligamento \nautomático\n"
+        },
+        {
+          "bbox": [
+            254.031,
+            170.387,
+            322.167,
+            184.787
+          ],
+          "text": "O LCD desliga automaticamente e \nentra no modo de suspensão após 2 \nminutos de inatividade.\n"
+        },
+        {
+          "bbox": [
+            221.435,
+            197.924,
+            230.787,
+            202.876
+          ],
+          "text": "Ligar\n"
+        },
+        {
+          "bbox": [
+            253.683,
+            192.347,
+            323.545,
+            206.747
+          ],
+          "text": "Pressione duas vezes o botão POWER \nprincipal quando o produto estiver \nligado.\n"
+        },
+        {
+          "bbox": [
+            253.239,
+            211.863,
+            324.008,
+            216.663
+          ],
+          "text": "Pressione o Botão de Energia Principal.\n"
+        },
+        {
+          "bbox": [
+            221.435,
+            212.148,
+            236.779,
+            217.1
+          ],
+          "text": "Desligar\n"
+        },
+        {
+          "bbox": [
+            180.811,
+            202.32,
+            218.135,
+            221.672
+          ],
+          "text": "Aceso \ncontinuamente (em \nestado de carga ou \ndescarga)\n"
+        },
+        {
+          "bbox": [
+            253.239,
+            223.259,
+            324.944,
+            232.859
+          ],
+          "text": "O LCD desliga automaticamente após \n2 horas de inatividade.\n"
+        },
+        {
+          "bbox": [
+            221.435,
+            223.564,
+            248.219,
+            233.316
+          ],
+          "text": "Desligamento \nautomático\n"
+        },
+        {
+          "bbox": [
+            27.252,
+            246.762,
+            248.633,
+            253.962
+          ],
+          "text": "Você também pode definir o modo de exibição da tela no aplicativo da Jackery.\n"
+        },
+        {
+          "bbox": [
+            28.206,
+            259.007,
+            339.336,
+            315.626
+          ],
+          "text": "MODO DE ECONOMIA DE ENERGIA\nPara evitar consumo desnecessário da bateria caso o usuário se esqueça de desligar a saída, o produto ativa o Modo de \nEconomia de Energia por padrão. Quando a saída CA ou CC/USB estiver ligada, o ícone do Modo de Economia de Energia \nserá exibido na tela LCD. Neste modo, se nenhum dispositivo estiver conectado ou o consumo de energia do dispositivo \nconectado estiver abaixo de um determinado limite (25 W na saída CA ou 2 W na saída CC/USB), a respectiva saída será \ndesligada automaticamente após o tempo definido. A configuração padrão é de 12 horas. A duração do Modo de \nEconomia de Energia pode ser definida no aplicativo da Jackery para 1 h, 2 h, 8 h, 12 h ou 24 h. Se a duração for definida \ncomo Nunca Desligar, o Modo de Economia de Energia será desativado.\n"
+        },
+        {
+          "bbox": [
+            40.773,
+            325.76,
+            314.904,
+            369.962
+          ],
+          "text": "Para desativar o Modo de Economia de Energia, mantenha pressionados simultaneamente o botão \nPOWER CA e o botão POWER principal por mais de 3 segundos. Quando o modo de economia de \nenergia estiver desativado, o ícone não aparecerá mais na tela LCD e o produto não desligará \nautomaticamente a saída CA ou USB.\nAo alimentar dispositivos de baixa potência (CA ≤ 25 W ou CC/USB ≤ 2 W), desative o Modo de \nEconomia de Energia para evitar que a saída desligue automaticamente durante a operação.\n"
+        },
+        {
+          "bbox": [
+            245.469,
+            441.335,
+            312.689,
+            453.715
+          ],
+          "text": "Ligar/Desligar\n"
+        },
+        {
+          "bbox": [
+            233.71,
+            444.039,
+            334.824,
+            467.771
+          ],
+          "text": "3s\nPressione e segure ambos os \nbotões por mais de 3 segundos.\n"
+        },
+        {
+          "bbox": [
+            45.421,
+            481.347,
+            65.968,
+            491.199
+          ],
+          "text": "NOTA\n"
+        },
+        {
+          "bbox": [
+            86.547,
+            478.954,
+            312.133,
+            493.354
+          ],
+          "text": "O Modo de Economia de Energia retoma o estado anterior após ligar o produto. É \nnecessário alternar manualmente para mudar o modo.\n"
+        },
+        {
+          "bbox": [
+            337.974,
+            503.804,
+            345.042,
+            511.004
+          ],
+          "text": "08\n"
+        }
+      ],
+      "relative_body_page": 8
+    },
+    {
+      "physical_page": 124,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "09\nFONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)\nCUIDADO\n• Este produto não suporta comutação de 0 ms. Não conecte este produto a equipamentos que exijam \nfonte de alimentação com comutação de 0 ms, como servidores de dados ou estações de trabalho.\n• Antes do uso, teste a compatibilidade com seu dispositivo várias vezes.\n• Não conecte cargas que excedam a potência máxima de saída do produto. Caso contrário, a proteção \ncontra sobrecarga será acionada.\nConecte o produto a uma tomada de parede usando o cabo de carregamento CA. Em seguida, pressione o \nbotão POWER CA e ligue seus aparelhos ao mesmo tempo.\nUma fonte de alimentação ininterrupta (UPS) é um tipo de sistema de energia contínua que fornece energia \nelétrica de backup automaticamente a uma carga quando a rede elétrica falha.\nEm caso de queda repentina de energia da rede, o Jackery Explorer 2000 alternará automaticamente para a \nenergia armazenada em até 10 ms para manter seus aparelhos funcionando.\nNo modo UPS, a potência de pico da unidade atinge 10 A antes de quedas de energia. Como o carregamento e \no descarregamento simultâneos estão habilitados no Modo de bypass,\na potência de saída real é menor que a potência nominal neste modo, mas retorna à potência nominal durante \nquedas de energia.\nCOMBINAÇÕES DE TECLAS\n3s\nBotão Power Principal\nBotão Power CA\nPressione e segure ambos por 3 s\n1 s\nPressione e segure ambos por 1 s\nRedefinir o Wi-Fi e o Bluetooth\nAtivar/desativar \nWi-Fi e Bluetooth\nBotões\nOperação\nFunção\nBotão de energia CC/USB\nBotão de energia CC/USB\n3s\nPressione e segure ambos por 3 s\nLigar/Desligar o Modo de \nEconomia de Energia\nBotão Power Principal\nBotão Power CA\n1 s\nPressione e segure ambos por 1 s\nLigar/desligar o Modo de \ncarregamento de \nemergência\nBotão Power Principal\nBotão da luz LED\nLUZ\n",
+      "text_sha256": "6eab83945ba92892fe1879f59dcf9e3aa56e8f6d35db37f99302cca8104c3fd6",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            39.077,
+            26.492,
+            138.685,
+            36.396
+          ],
+          "text": "COMBINAÇÕES DE TECLAS\n"
+        },
+        {
+          "bbox": [
+            32.38,
+            40.562,
+            275.862,
+            48.951
+          ],
+          "text": "Botões\nOperação\nFunção\n"
+        },
+        {
+          "bbox": [
+            174.024,
+            59.294,
+            180.912,
+            67.694
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            251.921,
+            60.254,
+            324.023,
+            74.654
+          ],
+          "text": "Ligar/Desligar o Modo de \nEconomia de Energia\n"
+        },
+        {
+          "bbox": [
+            161.094,
+            70.09,
+            244.331,
+            76.69
+          ],
+          "text": "Pressione e segure ambos por 3 s\n"
+        },
+        {
+          "bbox": [
+            36.07,
+            76.256,
+            136.517,
+            82.256
+          ],
+          "text": "Botão Power Principal\nBotão Power CA\n"
+        },
+        {
+          "bbox": [
+            174.024,
+            93.964,
+            180.912,
+            102.364
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            252.401,
+            99.04,
+            335.705,
+            106.24
+          ],
+          "text": "Redefinir o Wi-Fi e o Bluetooth\n"
+        },
+        {
+          "bbox": [
+            161.094,
+            106.092,
+            244.331,
+            112.692
+          ],
+          "text": "Pressione e segure ambos por 3 s\n"
+        },
+        {
+          "bbox": [
+            36.07,
+            110.433,
+            85.974,
+            116.433
+          ],
+          "text": "Botão Power Principal\n"
+        },
+        {
+          "bbox": [
+            94.627,
+            110.433,
+            151.17,
+            116.433
+          ],
+          "text": "Botão de energia CC/USB\n"
+        },
+        {
+          "bbox": [
+            174.024,
+            127.004,
+            181.332,
+            135.404
+          ],
+          "text": "1 s\n"
+        },
+        {
+          "bbox": [
+            251.921,
+            127.984,
+            299.585,
+            142.384
+          ],
+          "text": "Ativar/desativar \nWi-Fi e Bluetooth\n"
+        },
+        {
+          "bbox": [
+            161.094,
+            140.284,
+            243.286,
+            146.884
+          ],
+          "text": "Pressione e segure ambos por 1 s\n"
+        },
+        {
+          "bbox": [
+            33.91,
+            145.614,
+            94.569,
+            151.614
+          ],
+          "text": "Botão de energia CC/USB\n"
+        },
+        {
+          "bbox": [
+            104.369,
+            145.614,
+            141.629,
+            151.614
+          ],
+          "text": "Botão Power CA\n"
+        },
+        {
+          "bbox": [
+            174.024,
+            161.552,
+            181.332,
+            169.952
+          ],
+          "text": "1 s\n"
+        },
+        {
+          "bbox": [
+            118.191,
+            168.234,
+            126.491,
+            174.299
+          ],
+          "text": "LUZ\n"
+        },
+        {
+          "bbox": [
+            161.094,
+            172.348,
+            243.286,
+            178.948
+          ],
+          "text": "Pressione e segure ambos por 1 s\n"
+        },
+        {
+          "bbox": [
+            36.07,
+            159.439,
+            323.518,
+            184.556
+          ],
+          "text": "Ligar/desligar o Modo de \ncarregamento de \nemergência\nBotão Power Principal\nBotão da luz LED\n"
+        },
+        {
+          "bbox": [
+            32.236,
+            195.772,
+            286.624,
+            210.628
+          ],
+          "text": "FONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)\n"
+        },
+        {
+          "bbox": [
+            28.242,
+            215.215,
+            327.147,
+            229.615
+          ],
+          "text": "Conecte o produto a uma tomada de parede usando o cabo de carregamento CA. Em seguida, pressione o \nbotão POWER CA e ligue seus aparelhos ao mesmo tempo.\n"
+        },
+        {
+          "bbox": [
+            28.242,
+            389.959,
+            338.382,
+            447.559
+          ],
+          "text": "Uma fonte de alimentação ininterrupta (UPS) é um tipo de sistema de energia contínua que fornece energia \nelétrica de backup automaticamente a uma carga quando a rede elétrica falha.\nEm caso de queda repentina de energia da rede, o Jackery Explorer 2000 alternará automaticamente para a \nenergia armazenada em até 10 ms para manter seus aparelhos funcionando.\nNo modo UPS, a potência de pico da unidade atinge 10 A antes de quedas de energia. Como o carregamento e \no descarregamento simultâneos estão habilitados no Modo de bypass,\na potência de saída real é menor que a potência nominal neste modo, mas retorna à potência nominal durante \nquedas de energia.\n"
+        },
+        {
+          "bbox": [
+            33.65,
+            474.091,
+            69.461,
+            483.943
+          ],
+          "text": "CUIDADO\n"
+        },
+        {
+          "bbox": [
+            80.669,
+            463.509,
+            322.872,
+            495.509
+          ],
+          "text": "• Este produto não suporta comutação de 0 ms. Não conecte este produto a equipamentos que exijam \nfonte de alimentação com comutação de 0 ms, como servidores de dados ou estações de trabalho.\n• Antes do uso, teste a compatibilidade com seu dispositivo várias vezes.\n• Não conecte cargas que excedam a potência máxima de saída do produto. Caso contrário, a proteção \ncontra sobrecarga será acionada.\n"
+        },
+        {
+          "bbox": [
+            23.418,
+            503.803,
+            30.378,
+            511.003
+          ],
+          "text": "09\n"
+        }
+      ],
+      "relative_body_page": 9
+    },
+    {
+      "physical_page": 125,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "100\nUma fonte de alimentação ininterrupta (UPS) é um tipo de sistema de energia contínua que fornece energia \nelétrica de backup automaticamente a uma carga quando a rede elétrica falha.\nEm caso de queda repentina de energia da rede, o Jackery Explorer 2000 alternará automaticamente para a \nenergia armazenada em até 10 ms para manter seus aparelhos funcionando.\nNo modo UPS, a potência de pico da unidade atinge 10 A antes de quedas de energia. Como o \ncarregamento/descarregamento simultâneo é ativado no Modo de bypass, a potência de saída real é inferior \nà potência nominal neste modo, mas retorna à potência nominal durante quedas de energia.\nAVISO\nNão utilize este produto em aplicações como servidores de dados ou dispositivos médicos, em que \num mau funcionamento possa colocar vidas em risco ou causar danos materiais significativos.\nPara os seguintes equipamentos, uma interrupção no fornecimento de energia durante o uso pode \ncausar sérios danos à segurança pessoal ou danos materiais:\n• Dispositivos médicos e outros equipamentos intimamente relacionados à segurança da vida.\n• Equipamentos críticos, como os relacionados à infraestrutura social e aos serviços públicos.\n• Equipamentos empresariais críticos para o negócio, etc.\nIndivíduos que usam marcapasso cardíaco (portadores de marcapasso implantado) não devem \nusar este produto.\nCUIDADO\n• Este produto não suporta comutação de 0 ms. Não conecte este produto a equipamentos que exijam fonte \nde alimentação com comutação de 0 ms, como servidores de dados ou estações de trabalho.\n• Antes do uso, teste a compatibilidade com seu dispositivo várias vezes.\n• Não conecte cargas que excedam a potência máxima de saída do produto. Caso contrário, a proteção \ncontra sobrecarga será acionada. \n",
+      "text_sha256": "475d7e3f2ca3074cde99d4a784d1c04265d2f57eb332e79cae73dd1f739daacd",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            27.422,
+            27.441,
+            331.45,
+            88.641
+          ],
+          "text": "Uma fonte de alimentação ininterrupta (UPS) é um tipo de sistema de energia contínua que fornece energia \nelétrica de backup automaticamente a uma carga quando a rede elétrica falha.\nEm caso de queda repentina de energia da rede, o Jackery Explorer 2000 alternará automaticamente para a \nenergia armazenada em até 10 ms para manter seus aparelhos funcionando.\nNo modo UPS, a potência de pico da unidade atinge 10 A antes de quedas de energia. Como o \ncarregamento/descarregamento simultâneo é ativado no Modo de bypass, a potência de saída real é inferior \nà potência nominal neste modo, mas retorna à potência nominal durante quedas de energia.\n"
+        },
+        {
+          "bbox": [
+            43.127,
+            137.115,
+            66.222,
+            146.967
+          ],
+          "text": "AVISO\n"
+        },
+        {
+          "bbox": [
+            87.235,
+            111.518,
+            337.353,
+            171.127
+          ],
+          "text": "Não utilize este produto em aplicações como servidores de dados ou dispositivos médicos, em que \num mau funcionamento possa colocar vidas em risco ou causar danos materiais significativos.\nPara os seguintes equipamentos, uma interrupção no fornecimento de energia durante o uso pode \ncausar sérios danos à segurança pessoal ou danos materiais:\n• Dispositivos médicos e outros equipamentos intimamente relacionados à segurança da vida.\n• Equipamentos críticos, como os relacionados à infraestrutura social e aos serviços públicos.\n• Equipamentos empresariais críticos para o negócio, etc.\nIndivíduos que usam marcapasso cardíaco (portadores de marcapasso implantado) não devem \nusar este produto.\n"
+        },
+        {
+          "bbox": [
+            36.863,
+            206.545,
+            72.674,
+            216.397
+          ],
+          "text": "CUIDADO\n"
+        },
+        {
+          "bbox": [
+            83.663,
+            194.897,
+            334.348,
+            226.897
+          ],
+          "text": "• Este produto não suporta comutação de 0 ms. Não conecte este produto a equipamentos que exijam fonte \nde alimentação com comutação de 0 ms, como servidores de dados ou estações de trabalho.\n• Antes do uso, teste a compatibilidade com seu dispositivo várias vezes.\n• Não conecte cargas que excedam a potência máxima de saída do produto. Caso contrário, a proteção \ncontra sobrecarga será acionada. \n"
+        },
+        {
+          "bbox": [
+            340.172,
+            502.041,
+            349.772,
+            509.241
+          ],
+          "text": "100\n"
+        }
+      ],
+      "relative_body_page": 10
+    },
+    {
+      "physical_page": 126,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "10\nCARREGANDO \nCARREGAMENTO POR MEIO DE TOMADA CA\nCarregue totalmente o produto antes do primeiro uso.\n• A temperatura de carregamento recomendada para o produto varia de 0 °C a 45 °C, e a temperatura de \ndescarga varia de -10 °C a 45 °C.\n• Operar o produto fora dessa faixa de temperatura pode limitar sua capacidade de carregamento e \ndescarga ou até mesmo impedir que ele seja carregado ou descarregado.\n• A potência de carregamento e a capacidade da bateria do produto podem variar devido a flutuações de \ntemperatura.\nNOTA\nCertifique-se de que o cabo de carregamento CA esteja totalmente e firmemente conectado à porta de \nentrada CA. Uma conexão incompleta pode causar instabilidade na corrente elétrica, superaquecimento, \nmau contato ou mau funcionamento do dispositivo.\nCUIDADO\nCARREGAMENTO VIA PAINÉIS SOLARES (VENDIDOS SEPARADAMENTE)\nModo de carregamento de emergência\nNeste modo, você pode carregar rapidamente a estação de energia portátil usando o carregamento CA. Esta \nfunção de carregamento de emergência pode ser ativada ou desativada por meio do aplicativo da Jackery. \nNo modo de carregamento de emergência, a luz circular que indica o estado de carga (SOC) piscará em ritmo \nacelerado.\n*Para maximizar a vida útil da bateria, o ideal é carregar em velocidade normal. Use o modo de carregamento \nde emergência somente quando necessário. Não é recomendado para uso regular e de longo prazo.\nEnergia verde primeiro: Recomendamos priorizar o uso de energia verde. Este produto suporta dois modos de \ncarregamento ao mesmo tempo: carregamento solar e carregamento por tomada da rede elétrica CA. \nQuando o carregamento na tomada CA e o carregamento solar estão ativados simultaneamente, o produto \ndará prioridade ao carregamento solar, e ambos os métodos serão utilizados para carregar a bateria na \npotência máxima permitida.\nO Jackery Explorer 2000 possui duas portas de entrada DC8020 e é compatível com os painéis solares da \nJackery. Se for necessário conectar dois painéis solares a uma única porta de entrada DC8020, consulte a figura \nabaixo para carregar por meio do conector para painel solar (vendido separadamente, não incluso no pacote \npadrão).\nConecte o cabo de carregamento CA à porta de entrada CA do produto e a uma tomada da \nrede elétrica.\nSolarSaga 200 × 2\n",
+      "text_sha256": "866f7877b7aa26f0a9d34c333e9642f496f6210a085c5a56872587b6f2dcda47",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            35.244,
+            31.524,
+            119.64,
+            46.38
+          ],
+          "text": "CARREGANDO \n"
+        },
+        {
+          "bbox": [
+            29.483,
+            49.114,
+            334.957,
+            85.342
+          ],
+          "text": "Energia verde primeiro: Recomendamos priorizar o uso de energia verde. Este produto suporta dois modos de \ncarregamento ao mesmo tempo: carregamento solar e carregamento por tomada da rede elétrica CA. \nQuando o carregamento na tomada CA e o carregamento solar estão ativados simultaneamente, o produto \ndará prioridade ao carregamento solar, e ambos os métodos serão utilizados para carregar a bateria na \npotência máxima permitida.\n"
+        },
+        {
+          "bbox": [
+            32.937,
+            89.874,
+            173.201,
+            97.302
+          ],
+          "text": "Carregue totalmente o produto antes do primeiro uso.\n"
+        },
+        {
+          "bbox": [
+            42.241,
+            117.44,
+            62.897,
+            127.344
+          ],
+          "text": "NOTA\n"
+        },
+        {
+          "bbox": [
+            75.82,
+            103.376,
+            323.579,
+            141.376
+          ],
+          "text": "• A temperatura de carregamento recomendada para o produto varia de 0 °C a 45 °C, e a temperatura de \ndescarga varia de -10 °C a 45 °C.\n• Operar o produto fora dessa faixa de temperatura pode limitar sua capacidade de carregamento e \ndescarga ou até mesmo impedir que ele seja carregado ou descarregado.\n• A potência de carregamento e a capacidade da bateria do produto podem variar devido a flutuações de \ntemperatura.\n"
+        },
+        {
+          "bbox": [
+            42.034,
+            144.787,
+            205.546,
+            154.691
+          ],
+          "text": "CARREGAMENTO POR MEIO DE TOMADA CA\n"
+        },
+        {
+          "bbox": [
+            46.415,
+            244.495,
+            306.178,
+            258.895
+          ],
+          "text": "Conecte o cabo de carregamento CA à porta de entrada CA do produto e a uma tomada da \nrede elétrica.\n"
+        },
+        {
+          "bbox": [
+            34.453,
+            265.247,
+            319.171,
+            283.247
+          ],
+          "text": "Certifique-se de que o cabo de carregamento CA esteja totalmente e firmemente conectado à porta de \nentrada CA. Uma conexão incompleta pode causar instabilidade na corrente elétrica, superaquecimento, \nmau contato ou mau funcionamento do dispositivo.\nCUIDADO\n"
+        },
+        {
+          "bbox": [
+            30.245,
+            285.166,
+            335.541,
+            334.12
+          ],
+          "text": "Modo de carregamento de emergência\nNeste modo, você pode carregar rapidamente a estação de energia portátil usando o carregamento CA. Esta \nfunção de carregamento de emergência pode ser ativada ou desativada por meio do aplicativo da Jackery. \nNo modo de carregamento de emergência, a luz circular que indica o estado de carga (SOC) piscará em ritmo \nacelerado.\n*Para maximizar a vida útil da bateria, o ideal é carregar em velocidade normal. Use o modo de carregamento \nde emergência somente quando necessário. Não é recomendado para uso regular e de longo prazo.\n"
+        },
+        {
+          "bbox": [
+            42.203,
+            339.276,
+            300.411,
+            349.18
+          ],
+          "text": "CARREGAMENTO VIA PAINÉIS SOLARES (VENDIDOS SEPARADAMENTE)\n"
+        },
+        {
+          "bbox": [
+            30.725,
+            350.206,
+            341.372,
+            379.006
+          ],
+          "text": "O Jackery Explorer 2000 possui duas portas de entrada DC8020 e é compatível com os painéis solares da \nJackery. Se for necessário conectar dois painéis solares a uma única porta de entrada DC8020, consulte a figura \nabaixo para carregar por meio do conector para painel solar (vendido separadamente, não incluso no pacote \npadrão).\n"
+        },
+        {
+          "bbox": [
+            275.087,
+            485.047,
+            325.205,
+            492.247
+          ],
+          "text": "SolarSaga 200 × 2\n"
+        },
+        {
+          "bbox": [
+            341.159,
+            501.836,
+            346.979,
+            509.036
+          ],
+          "text": "10\n"
+        }
+      ],
+      "relative_body_page": 11
+    },
+    {
+      "physical_page": 127,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "11\nCUIDADO\nCARREGAMENTO COM CARREGADOR VEICULAR (VENDIDO SEPARADAMENTE)\nEste produto pode ser carregado usando um carregador veicular de 12 V. Certifique-se de que o \ncarregador veicular e a tomada de alimentação de 12 V do veículo (acendedor de cigarros) \nestejam bem conectados.\nRecomenda-se usar o painel solar Jackery para carregar o produto. Garanta que a tensão de \ncircuito aberto (Voc) do painel solar esteja dentro da faixa de entrada CC (16 V-60 V) do Jackery \nExplorer 2000. A Jackery não se responsabiliza por quaisquer danos ou perdas resultantes do \nuso de painéis solares de terceiros.\nUma porta de entrada DC8020 pode ser conectada a no máximo dois painéis solares.\nCUIDADO\nCertifique-se de que a tensão de entrada para ambas as portas de entrada CC seja a \nmesma. Caso contrário, o produto pode ser danificado. Por exemplo:\n• Use o mesmo modelo e a mesma quantidade de painéis solares da Jackery ao \nconectá-los às duas portas de entrada DC8020.\n• Não carregue o produto usando simultaneamente um carregador veicular e um painel \nsolar. Isso pode queimar o fusível do carro ou resultar em falha no carregamento.\nVeículo \n*O cabo de carregamento veicular é \nvendido separadamente.\nSolarSaga 100 Air × 4\n",
+      "text_sha256": "828f0d6639ffdfa42e7e1ce1b0295ff21518d41153cf5d80b393de08d99b4872",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            263.892,
+            158.017,
+            321.63,
+            165.217
+          ],
+          "text": "SolarSaga 100 Air × 4\n"
+        },
+        {
+          "bbox": [
+            91.087,
+            189.773,
+            328.576,
+            196.973
+          ],
+          "text": "Uma porta de entrada DC8020 pode ser conectada a no máximo dois painéis solares.\n"
+        },
+        {
+          "bbox": [
+            37.191,
+            188.357,
+            73.062,
+            198.209
+          ],
+          "text": "CUIDADO\n"
+        },
+        {
+          "bbox": [
+            37.191,
+            235.78,
+            73.062,
+            245.632
+          ],
+          "text": "CUIDADO\n"
+        },
+        {
+          "bbox": [
+            86.153,
+            216.549,
+            327.584,
+            262.323
+          ],
+          "text": "Certifique-se de que a tensão de entrada para ambas as portas de entrada CC seja a \nmesma. Caso contrário, o produto pode ser danificado. Por exemplo:\n• Use o mesmo modelo e a mesma quantidade de painéis solares da Jackery ao \nconectá-los às duas portas de entrada DC8020.\n• Não carregue o produto usando simultaneamente um carregador veicular e um painel \nsolar. Isso pode queimar o fusível do carro ou resultar em falha no carregamento.\n"
+        },
+        {
+          "bbox": [
+            28.281,
+            274.018,
+            338.521,
+            307.618
+          ],
+          "text": "Recomenda-se usar o painel solar Jackery para carregar o produto. Garanta que a tensão de \ncircuito aberto (Voc) do painel solar esteja dentro da faixa de entrada CC (16 V-60 V) do Jackery \nExplorer 2000. A Jackery não se responsabiliza por quaisquer danos ou perdas resultantes do \nuso de painéis solares de terceiros.\n"
+        },
+        {
+          "bbox": [
+            28.281,
+            316.723,
+            338.678,
+            352.229
+          ],
+          "text": "CARREGAMENTO COM CARREGADOR VEICULAR (VENDIDO SEPARADAMENTE)\nEste produto pode ser carregado usando um carregador veicular de 12 V. Certifique-se de que o \ncarregador veicular e a tomada de alimentação de 12 V do veículo (acendedor de cigarros) \nestejam bem conectados.\n"
+        },
+        {
+          "bbox": [
+            196.32,
+            356.34,
+            304.492,
+            370.74
+          ],
+          "text": "*O cabo de carregamento veicular é \nvendido separadamente.\n"
+        },
+        {
+          "bbox": [
+            256.959,
+            395.982,
+            281.529,
+            404.382
+          ],
+          "text": "Veículo \n"
+        },
+        {
+          "bbox": [
+            25.093,
+            501.836,
+            29.173,
+            509.036
+          ],
+          "text": "11\n"
+        }
+      ],
+      "relative_body_page": 12
+    },
+    {
+      "physical_page": 128,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "12\nCUIDADO\n• Ligue o veículo antes de carregar a estação de energia.\n• Se o veículo estiver trafegando por estradas irregulares, é proibido usar o carregador \nveicular, pois isso pode causar funcionamento inadequado. A Empresa não se \nresponsabiliza por quaisquer perdas causadas por operação fora do padrão.\n• O carregamento veicular é aplicável apenas a veículos com 12 V CC, não a 24 V CC. Por \nfavor, não carregue este produto em um veículo de 24 V para evitar ferimentos pessoais \ne danos materiais.\nARMAZENAMENTO\nArmazene o produto em local seco, limpo e com ventilação adequada. Temperatura e umidade de \narmazenamento:\n• 1 mês: -20°C a 45°C (0-60%UR)\n• 3 meses: 0°C a 45°C (0-60%UR)\n• 12 meses: 0°C a 25°C (0-60%UR)\nSe este produto for armazenado por um longo período (3 meses - 6 meses) com a bateria descarregada, ele pode \nnão voltar a carregar. Para evitar isso e manter a saúde da bateria, recomenda-se verificar e recarregar o produto \na cada três meses e realizar um ciclo completo de carga e descarga pelo menos uma vez a cada 6 a 12 meses.\nSe qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o \nproblema. Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.\nSOLUÇÃO DE PROBLEMAS\nCódigo de erro\nMedidas corretivas\nCarregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.\nConecte o produto a cargas para descarregar a bateria até que a falha desapareça.\nF6\nF5\nF4\nF3\nF2\nF1\nF0\nReinicie o produto.\nReinicie o produto.\nReinicie o produto.\nReinicie o produto.\n1. Aguarde a normalização da rede elétrica antes de carregar o produto por meio de uma tomada \nCA.\n2. Veriﬁque se as entradas e saídas de ar estão obstruídas; mantenha um espaço livre de 20 cm \nem ambos os lados do produto.\n3. Coloque o produto em um local que não esteja exposto à luz solar direta ou a altas \ntemperaturas ambientais.\n4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha \ndesapareça.\n5. Reinicie o produto.\nRemova a carga conectada às portas USB do produto. Aguarde até que a falha desapareça.\n Entre em contato com o Suporte ao Cliente da Jackery.\nF9\nF7\nF8\n Entre em contato com o Suporte ao Cliente da Jackery.\nFE\n1. Remova todas as entradas CC do produto.\n2. Veriﬁque a tensão de circuito aberto (Voc) dos painéis solares conectados. O produto permite \numa tensão máxima de entrada CC de 60 V.\n3. Reinicie o produto e mantenha-o inativo. Aguarde até que a falha desapareça.\n",
+      "text_sha256": "ad5705ac9a6cc01dd675a672fb38a6b3c907ccbcf1523bf047fd1e0ab6b78353",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            37.819,
+            52.611,
+            73.69,
+            62.463
+          ],
+          "text": "CUIDADO\n"
+        },
+        {
+          "bbox": [
+            88.214,
+            31.826,
+            333.959,
+            84.23
+          ],
+          "text": "• Ligue o veículo antes de carregar a estação de energia.\n• Se o veículo estiver trafegando por estradas irregulares, é proibido usar o carregador \nveicular, pois isso pode causar funcionamento inadequado. A Empresa não se \nresponsabiliza por quaisquer perdas causadas por operação fora do padrão.\n• O carregamento veicular é aplicável apenas a veículos com 12 V CC, não a 24 V CC. Por \nfavor, não carregue este produto em um veículo de 24 V para evitar ferimentos pessoais \ne danos materiais.\n"
+        },
+        {
+          "bbox": [
+            34.507,
+            106.429,
+            136.759,
+            121.285
+          ],
+          "text": "ARMAZENAMENTO\n"
+        },
+        {
+          "bbox": [
+            28.618,
+            129.153,
+            301.81,
+            143.553
+          ],
+          "text": "Armazene o produto em local seco, limpo e com ventilação adequada. Temperatura e umidade de \narmazenamento:\n"
+        },
+        {
+          "bbox": [
+            28.618,
+            146.385,
+            116.036,
+            153.585
+          ],
+          "text": "• 1 mês: -20°C a 45°C (0-60%UR)\n"
+        },
+        {
+          "bbox": [
+            28.618,
+            156.417,
+            116.986,
+            163.617
+          ],
+          "text": "• 3 meses: 0°C a 45°C (0-60%UR)\n"
+        },
+        {
+          "bbox": [
+            28.618,
+            166.449,
+            118.636,
+            173.649
+          ],
+          "text": "• 12 meses: 0°C a 25°C (0-60%UR)\n"
+        },
+        {
+          "bbox": [
+            28.618,
+            176.481,
+            344.217,
+            198.081
+          ],
+          "text": "Se este produto for armazenado por um longo período (3 meses - 6 meses) com a bateria descarregada, ele pode \nnão voltar a carregar. Para evitar isso e manter a saúde da bateria, recomenda-se verificar e recarregar o produto \na cada três meses e realizar um ciclo completo de carga e descarga pelo menos uma vez a cada 6 a 12 meses.\n"
+        },
+        {
+          "bbox": [
+            35.167,
+            207.353,
+            180.607,
+            222.209
+          ],
+          "text": "SOLUÇÃO DE PROBLEMAS\n"
+        },
+        {
+          "bbox": [
+            28.768,
+            227.679,
+            321.235,
+            242.079
+          ],
+          "text": "Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o \nproblema. Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.\n"
+        },
+        {
+          "bbox": [
+            32.864,
+            252.992,
+            136.817,
+            261.163
+          ],
+          "text": "Código de erro\nMedidas corretivas\n"
+        },
+        {
+          "bbox": [
+            79.431,
+            278.266,
+            125.894,
+            284.866
+          ],
+          "text": "Reinicie o produto.\n"
+        },
+        {
+          "bbox": [
+            42.818,
+            265.258,
+            125.894,
+            286.962
+          ],
+          "text": "F1\nF0\nReinicie o produto.\n"
+        },
+        {
+          "bbox": [
+            79.431,
+            290.932,
+            125.894,
+            297.532
+          ],
+          "text": "Reinicie o produto.\n"
+        },
+        {
+          "bbox": [
+            79.431,
+            302.4,
+            125.894,
+            309.0
+          ],
+          "text": "Reinicie o produto.\n"
+        },
+        {
+          "bbox": [
+            79.431,
+            313.876,
+            295.211,
+            320.476
+          ],
+          "text": "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.\n"
+        },
+        {
+          "bbox": [
+            79.431,
+            326.316,
+            317.783,
+            332.917
+          ],
+          "text": "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.\n"
+        },
+        {
+          "bbox": [
+            42.77,
+            289.426,
+            51.482,
+            334.978
+          ],
+          "text": "F5\nF4\nF3\nF2\n"
+        },
+        {
+          "bbox": [
+            42.482,
+            358.714,
+            51.058,
+            368.617
+          ],
+          "text": "F6\n"
+        },
+        {
+          "bbox": [
+            79.26,
+            336.67,
+            329.168,
+            396.07
+          ],
+          "text": "1. Aguarde a normalização da rede elétrica antes de carregar o produto por meio de uma tomada \nCA.\n2. Veriﬁque se as entradas e saídas de ar estão obstruídas; mantenha um espaço livre de 20 cm \nem ambos os lados do produto.\n3. Coloque o produto em um local que não esteja exposto à luz solar direta ou a altas \ntemperaturas ambientais.\n4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha \ndesapareça.\n5. Reinicie o produto.\n"
+        },
+        {
+          "bbox": [
+            42.225,
+            411.23,
+            50.297,
+            421.134
+          ],
+          "text": "F7\n"
+        },
+        {
+          "bbox": [
+            79.223,
+            404.495,
+            321.409,
+            430.895
+          ],
+          "text": "1. Remova todas as entradas CC do produto.\n2. Veriﬁque a tensão de circuito aberto (Voc) dos painéis solares conectados. O produto permite \numa tensão máxima de entrada CC de 60 V.\n3. Reinicie o produto e mantenha-o inativo. Aguarde até que a falha desapareça.\n"
+        },
+        {
+          "bbox": [
+            78.837,
+            440.037,
+            219.756,
+            446.637
+          ],
+          "text": " Entre em contato com o Suporte ao Cliente da Jackery.\n"
+        },
+        {
+          "bbox": [
+            42.225,
+            439.686,
+            50.921,
+            449.59
+          ],
+          "text": "F8\n"
+        },
+        {
+          "bbox": [
+            80.432,
+            457.016,
+            316.028,
+            463.616
+          ],
+          "text": "Remova a carga conectada às portas USB do produto. Aguarde até que a falha desapareça.\n"
+        },
+        {
+          "bbox": [
+            42.225,
+            455.95,
+            50.801,
+            465.854
+          ],
+          "text": "F9\n"
+        },
+        {
+          "bbox": [
+            42.225,
+            474.385,
+            219.758,
+            484.289
+          ],
+          "text": " Entre em contato com o Suporte ao Cliente da Jackery.\nFE\n"
+        },
+        {
+          "bbox": [
+            333.037,
+            502.261,
+            338.227,
+            509.461
+          ],
+          "text": "12\n"
+        }
+      ],
+      "relative_body_page": 13
+    },
+    {
+      "physical_page": 129,
+      "page_size_points": [
+        368.504,
+        524.823
+      ],
+      "text": "13\nESPECIFICAÇÕES\n※ USB Type-C® e USB-C® são marcas registradas do USB Implementers Forum.\nINFORMAÇÕES GERAIS\nNome do produto\nJackery Explorer 2000\nPORTAS DE ENTRADA\n1 × Entrada CA\nModo de carregamento: 220 V-240 V~ 50 Hz, 10 A max.\nModo de bypass①: 220 V-240 V~ 50 Hz, 10 A max.\nVeicular: 11 V-16 V⎓8 A máx., em modo duplo até 8 A máx.\nPV: 16 V-60 V⎓12 A, em modo duplo até 21 A máx. / 400 W máx.\nPORTAS DE SAÍDA\nTemperatura de carregamento\n0°C a 45°C\nTEMPERATURA AMBIENTE DE OPERAÇÃO\n➀ O produto pode carregar a bateria a partir da tomada CA enquanto fornece energia pelas portas de saída CA.\n3 × CA\nSaída CA no modo de bypass➀\n1 × USB-A\nUSB-C 30 W\nUSB-C 100 W\n230 V ~ 50 Hz, \n2200 W de potência nominal no total, pico de surto de 4400 W\n220 V-240 V ~ 50 Hz, 2200 W máx.\n100 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n18 W máx., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A\n12 V\u000010 A máx.\n30 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A\nNº do modelo\nCapacidade\nQuímica da célula\nPeso\nDimensões\nVida útil de ciclos\nJE-2000F\n2048 Wh (40 Ah/51,2 V CC)\nLiFePO4\nAproximadamente 18,5 kg\n36,6 × 25,5 × 26,9 cm\n4000 ciclos até 70%+ de capacidade\n2 × Portas DC8020\n1 × Porta CC 12 V\nTemperatura de descarga\n-10°C a 45°C\n",
+      "text_sha256": "c34c81b6a90c402b941021d101faf08aafd2bdc27efcaefc336a62ed92d62690",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            34.364,
+            30.833,
+            130.832,
+            45.689
+          ],
+          "text": "ESPECIFICAÇÕES\n"
+        },
+        {
+          "bbox": [
+            38.777,
+            55.494,
+            124.201,
+            65.398
+          ],
+          "text": "INFORMAÇÕES GERAIS\n"
+        },
+        {
+          "bbox": [
+            34.389,
+            71.385,
+            192.1,
+            78.663
+          ],
+          "text": "Nome do produto\nJackery Explorer 2000\n"
+        },
+        {
+          "bbox": [
+            131.061,
+            85.582,
+            158.199,
+            92.782
+          ],
+          "text": "JE-2000F\n"
+        },
+        {
+          "bbox": [
+            34.389,
+            82.354,
+            72.387,
+            96.082
+          ],
+          "text": "Nº do modelo\n"
+        },
+        {
+          "bbox": [
+            131.061,
+            99.754,
+            204.585,
+            106.954
+          ],
+          "text": "2048 Wh (40 Ah/51,2 V CC)\n"
+        },
+        {
+          "bbox": [
+            34.389,
+            99.73,
+            69.675,
+            107.008
+          ],
+          "text": "Capacidade\n"
+        },
+        {
+          "bbox": [
+            34.389,
+            113.902,
+            84.55,
+            121.18
+          ],
+          "text": "Química da célula\n"
+        },
+        {
+          "bbox": [
+            131.061,
+            113.926,
+            152.195,
+            122.532
+          ],
+          "text": "LiFePO4\n"
+        },
+        {
+          "bbox": [
+            131.062,
+            128.108,
+            201.621,
+            135.308
+          ],
+          "text": "Aproximadamente 18,5 kg\n"
+        },
+        {
+          "bbox": [
+            34.389,
+            128.074,
+            47.355,
+            135.352
+          ],
+          "text": "Peso\n"
+        },
+        {
+          "bbox": [
+            131.062,
+            142.28,
+            184.685,
+            149.48
+          ],
+          "text": "36,6 × 25,5 × 26,9 cm\n"
+        },
+        {
+          "bbox": [
+            34.389,
+            142.246,
+            64.395,
+            149.524
+          ],
+          "text": "Dimensões\n"
+        },
+        {
+          "bbox": [
+            131.062,
+            156.452,
+            233.692,
+            163.652
+          ],
+          "text": "4000 ciclos até 70%+ de capacidade\n"
+        },
+        {
+          "bbox": [
+            34.389,
+            156.418,
+            82.467,
+            163.696
+          ],
+          "text": "Vida útil de ciclos\n"
+        },
+        {
+          "bbox": [
+            38.778,
+            176.396,
+            118.266,
+            186.3
+          ],
+          "text": "PORTAS DE ENTRADA\n"
+        },
+        {
+          "bbox": [
+            34.84,
+            193.528,
+            282.503,
+            208.012
+          ],
+          "text": "1 × Entrada CA\nModo de carregamento: 220 V-240 V~ 50 Hz, 10 A max.\nModo de bypass①: 220 V-240 V~ 50 Hz, 10 A max.\n"
+        },
+        {
+          "bbox": [
+            34.84,
+            222.17,
+            85.613,
+            229.448
+          ],
+          "text": "2 × Portas DC8020\n"
+        },
+        {
+          "bbox": [
+            131.302,
+            214.228,
+            306.106,
+            235.156
+          ],
+          "text": "Veicular: 11 V-16 V⎓8 A máx., em modo duplo até 8 A máx.\nPV: 16 V-60 V⎓12 A, em modo duplo até 21 A máx. / 400 W máx.\n"
+        },
+        {
+          "bbox": [
+            38.778,
+            250.03,
+            106.218,
+            259.934
+          ],
+          "text": "PORTAS DE SAÍDA\n"
+        },
+        {
+          "bbox": [
+            34.39,
+            273.741,
+            51.736,
+            281.02
+          ],
+          "text": "3 × CA\n"
+        },
+        {
+          "bbox": [
+            131.872,
+            268.491,
+            305.453,
+            282.891
+          ],
+          "text": "230 V ~ 50 Hz, \n2200 W de potência nominal no total, pico de surto de 4400 W\n"
+        },
+        {
+          "bbox": [
+            132.088,
+            291.057,
+            226.641,
+            298.257
+          ],
+          "text": "220 V-240 V ~ 50 Hz, 2200 W máx.\n"
+        },
+        {
+          "bbox": [
+            34.39,
+            285.982,
+            122.445,
+            303.094
+          ],
+          "text": "Saída CA no modo de bypass➀\n"
+        },
+        {
+          "bbox": [
+            34.39,
+            305.505,
+            68.98,
+            312.783
+          ],
+          "text": "USB-C 30 W\n"
+        },
+        {
+          "bbox": [
+            132.172,
+            302.572,
+            302.024,
+            316.299
+          ],
+          "text": "30 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            34.39,
+            319.425,
+            71.686,
+            326.703
+          ],
+          "text": "USB-C 100 W\n"
+        },
+        {
+          "bbox": [
+            132.568,
+            315.382,
+            296.961,
+            329.109
+          ],
+          "text": "100 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A\n"
+        },
+        {
+          "bbox": [
+            34.39,
+            333.981,
+            60.274,
+            341.259
+          ],
+          "text": "1 × USB-A\n"
+        },
+        {
+          "bbox": [
+            132.736,
+            331.035,
+            259.558,
+            344.763
+          ],
+          "text": "18 W máx., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A\n"
+        },
+        {
+          "bbox": [
+            35.056,
+            348.932,
+            80.325,
+            356.21
+          ],
+          "text": "1 × Porta CC 12 V\n"
+        },
+        {
+          "bbox": [
+            132.736,
+            348.969,
+            175.018,
+            356.253
+          ],
+          "text": "12 V\u000010 A máx.\n"
+        },
+        {
+          "bbox": [
+            38.777,
+            372.023,
+            188.889,
+            381.927
+          ],
+          "text": "TEMPERATURA AMBIENTE DE OPERAÇÃO\n"
+        },
+        {
+          "bbox": [
+            34.39,
+            391.039,
+            161.109,
+            398.875
+          ],
+          "text": "Temperatura de carregamento\n0°C a 45°C\n"
+        },
+        {
+          "bbox": [
+            35.14,
+            406.538,
+            166.571,
+            413.816
+          ],
+          "text": "Temperatura de descarga\n-10°C a 45°C\n"
+        },
+        {
+          "bbox": [
+            28.55,
+            420.129,
+            343.298,
+            437.265
+          ],
+          "text": "➀ O produto pode carregar a bateria a partir da tomada CA enquanto fornece energia pelas portas de saída CA.\n"
+        },
+        {
+          "bbox": [
+            28.656,
+            435.81,
+            275.489,
+            443.615
+          ],
+          "text": "※ USB Type-C® e USB-C® são marcas registradas do USB Implementers Forum.\n"
+        },
+        {
+          "bbox": [
+            26.268,
+            502.467,
+            31.488,
+            509.667
+          ],
+          "text": "13\n"
+        }
+      ],
+      "relative_body_page": 14
+    },
+    {
+      "physical_page": 130,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "14\nPara ativar a extensão da garantia, você \ndeve registrar seu produto online ou entrar \nem contato com nossa equipe de \natendimento ao cliente em \nhello.eu@jackery.com para estender o \nperíodo de garantia padrão.\n* O período e os termos da garantia podem variar de acordo com as leis e regulamentações locais e \ncom os distribuidores autorizados.\nA Jackery substituirá, às suas próprias custas, qualquer produto Jackery que apresente falha de \nfuncionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. \nUm produto substituto assume a garantia restante do produto original.\nGARANTIA\nO período de garantia padrão do Jackery Explorer 2000 é de 36 \nmeses. Em todos os casos, o período de garantia é contado a \npartir da data de compra pelo comprador consumidor original. O \ncomprovante de compra do primeiro comprador consumidor, ou \noutra prova documental razoável, é necessário para estabelecer a \ndata de início do período de garantia.\nGarantia Limitada\nTroca\nA garantia dos produtos Jackery é limitada ao comprador consumidor original e não é transferível a \nqualquer proprietário subsequente.\nLimitado ao comprador consumidor original\nA garantia da Jackery não se aplica a:\n• Qualquer produto que tenha sido utilizado de forma inadequada, submetido a uso abusivo, \nmodificado, danificado acidentalmente ou usado para qualquer finalidade que não seja o uso normal \ndo consumidor, conforme autorizado na documentação atual do produto da Jackery.\n• Tentativa de reparo por qualquer pessoa que não seja uma assistência autorizada.\n• Qualquer produto adquirido por meio de leilão online.\n• A garantia da Jackery não se aplica à célula da bateria, a menos que ela seja totalmente carregada \npor você dentro de sete dias após a compra do produto e, posteriormente, pelo menos uma vez a cada \n6 meses.\nExclusões\nA Jackery reserva-se o direito de interpretação final da política de pós-venda acima mencionada.\nDireitos de interpretação\nPeríodo de Garantia\n Garantia Padrão\n ANOS\n3  \nGarantia Estendida\n ANOS\n2  \nEsta garantia aplica-se somente a clientes que compram no site oficial da Jackery, em \nplataformas de terceiros da marca Jackery ou com revendedores locais autorizados.\nA Jackery garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de \nfabricação e material sob uso normal do consumidor durante o período de garantia aplicável identificado \nna seção \"Período de Garantia\" abaixo, sujeito às exclusões estabelecidas abaixo.\nEsta declaração de garantia estabelece a obrigação de garantia total e exclusiva da Jackery. Não \nassumiremos, nem autorizaremos qualquer pessoa a assumir em nosso nome, qualquer outra \nresponsabilidade relacionada à venda de nossos produtos.\n",
+      "text_sha256": "d41196ada975f2cec970897454acf1325f0b2e1ee90b7c2331ca6933b74f9852",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            34.941,
+            31.084,
+            93.549,
+            45.94
+          ],
+          "text": "GARANTIA\n"
+        },
+        {
+          "bbox": [
+            36.081,
+            61.048,
+            319.688,
+            78.114
+          ],
+          "text": "Esta garantia aplica-se somente a clientes que compram no site oficial da Jackery, em \nplataformas de terceiros da marca Jackery ou com revendedores locais autorizados.\n"
+        },
+        {
+          "bbox": [
+            30.423,
+            85.469,
+            308.812,
+            99.869
+          ],
+          "text": "* O período e os termos da garantia podem variar de acordo com as leis e regulamentações locais e \ncom os distribuidores autorizados.\n"
+        },
+        {
+          "bbox": [
+            40.777,
+            101.319,
+            108.937,
+            111.223
+          ],
+          "text": "Garantia Limitada\n"
+        },
+        {
+          "bbox": [
+            36.081,
+            114.906,
+            329.056,
+            136.506
+          ],
+          "text": "A Jackery garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de \nfabricação e material sob uso normal do consumidor durante o período de garantia aplicável identificado \nna seção \"Período de Garantia\" abaixo, sujeito às exclusões estabelecidas abaixo.\n"
+        },
+        {
+          "bbox": [
+            36.081,
+            139.338,
+            310.582,
+            160.938
+          ],
+          "text": "Esta declaração de garantia estabelece a obrigação de garantia total e exclusiva da Jackery. Não \nassumiremos, nem autorizaremos qualquer pessoa a assumir em nosso nome, qualquer outra \nresponsabilidade relacionada à venda de nossos produtos.\n"
+        },
+        {
+          "bbox": [
+            40.777,
+            171.393,
+            116.48,
+            181.297
+          ],
+          "text": "Período de Garantia\n"
+        },
+        {
+          "bbox": [
+            41.951,
+            186.336,
+            308.366,
+            214.369
+          ],
+          "text": " Garantia Padrão\n ANOS\n3  \nGarantia Estendida\n ANOS\n2  \n"
+        },
+        {
+          "bbox": [
+            37.856,
+            215.045,
+            206.792,
+            254.645
+          ],
+          "text": "O período de garantia padrão do Jackery Explorer 2000 é de 36 \nmeses. Em todos os casos, o período de garantia é contado a \npartir da data de compra pelo comprador consumidor original. O \ncomprovante de compra do primeiro comprador consumidor, ou \noutra prova documental razoável, é necessário para estabelecer a \ndata de início do período de garantia.\n"
+        },
+        {
+          "bbox": [
+            218.666,
+            215.046,
+            326.805,
+            254.646
+          ],
+          "text": "Para ativar a extensão da garantia, você \ndeve registrar seu produto online ou entrar \nem contato com nossa equipe de \natendimento ao cliente em \nhello.eu@jackery.com para estender o \nperíodo de garantia padrão.\n"
+        },
+        {
+          "bbox": [
+            40.777,
+            269.761,
+            61.241,
+            279.665
+          ],
+          "text": "Troca\n"
+        },
+        {
+          "bbox": [
+            36.081,
+            285.647,
+            321.121,
+            307.247
+          ],
+          "text": "A Jackery substituirá, às suas próprias custas, qualquer produto Jackery que apresente falha de \nfuncionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. \nUm produto substituto assume a garantia restante do produto original.\n"
+        },
+        {
+          "bbox": [
+            40.778,
+            321.387,
+            174.309,
+            330.053
+          ],
+          "text": "Limitado ao comprador consumidor original\n"
+        },
+        {
+          "bbox": [
+            36.081,
+            336.298,
+            311.627,
+            350.698
+          ],
+          "text": "A garantia dos produtos Jackery é limitada ao comprador consumidor original e não é transferível a \nqualquer proprietário subsequente.\n"
+        },
+        {
+          "bbox": [
+            40.777,
+            364.584,
+            76.337,
+            374.488
+          ],
+          "text": "Exclusões\n"
+        },
+        {
+          "bbox": [
+            36.081,
+            380.469,
+            328.249,
+            449.277
+          ],
+          "text": "A garantia da Jackery não se aplica a:\n• Qualquer produto que tenha sido utilizado de forma inadequada, submetido a uso abusivo, \nmodificado, danificado acidentalmente ou usado para qualquer finalidade que não seja o uso normal \ndo consumidor, conforme autorizado na documentação atual do produto da Jackery.\n• Tentativa de reparo por qualquer pessoa que não seja uma assistência autorizada.\n• Qualquer produto adquirido por meio de leilão online.\n• A garantia da Jackery não se aplica à célula da bateria, a menos que ela seja totalmente carregada \npor você dentro de sete dias após a compra do produto e, posteriormente, pelo menos uma vez a cada \n6 meses.\n"
+        },
+        {
+          "bbox": [
+            42.732,
+            462.879,
+            135.74,
+            472.783
+          ],
+          "text": "Direitos de interpretação\n"
+        },
+        {
+          "bbox": [
+            36.081,
+            478.765,
+            306.887,
+            485.965
+          ],
+          "text": "A Jackery reserva-se o direito de interpretação final da política de pós-venda acima mencionada.\n"
+        },
+        {
+          "bbox": [
+            334.127,
+            502.26,
+            339.647,
+            509.46
+          ],
+          "text": "14\n"
+        }
+      ],
+      "relative_body_page": 15
+    },
+    {
+      "physical_page": 131,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "15\nPesquise por \"Jackery\" no Google Play ou \nApp Store para instalar o aplicativo. \nDepois disso, você pode se registrar e \nfazer login. \nComo alternativa, escaneie o \ncódigo QR abaixo para \nbaixar e instalar o aplicativo.\n2. Adicionar dispositivo\n1. Baixe o aplicativo e faça login\n2.1 Clique no botão         para adicionar seu dispositivo;\nCONFIGURAÇÃO DO APLICATIVO\nBotão Power Principal\nBotão de energia CC/USB\nBotão Power CA\n2.2 Pressione o botão POWER principal do dispositivo para ligá-lo. Os ícones de Wi-Fi e \nBluetooth no dispositivo piscarão para indicar que o dispositivo entrou no modo de \nconﬁguração de rede. Em seguida, toque no botão \"Ícone piscando\" e permita que o \naplicativo se conecte a dispositivos próximos e ative as permissões de Bluetooth.\n2.1\n2.2\n",
+      "text_sha256": "29753c56c6563d9fbebf5509db924cb7e39397716bc08247564ab740d5040c80",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            35.146,
+            31.621,
+            221.614,
+            46.477
+          ],
+          "text": "CONFIGURAÇÃO DO APLICATIVO\n"
+        },
+        {
+          "bbox": [
+            41.9,
+            51.191,
+            191.78,
+            63.571
+          ],
+          "text": "1. Baixe o aplicativo e faça login\n"
+        },
+        {
+          "bbox": [
+            205.543,
+            125.271,
+            302.458,
+            150.471
+          ],
+          "text": "Como alternativa, escaneie o \ncódigo QR abaixo para \nbaixar e instalar o aplicativo.\n"
+        },
+        {
+          "bbox": [
+            48.323,
+            124.683,
+            186.447,
+            158.283
+          ],
+          "text": "Pesquise por \"Jackery\" no Google Play ou \nApp Store para instalar o aplicativo. \nDepois disso, você pode se registrar e \nfazer login. \n"
+        },
+        {
+          "bbox": [
+            42.86,
+            157.512,
+            150.91,
+            169.892
+          ],
+          "text": "2. Adicionar dispositivo\n"
+        },
+        {
+          "bbox": [
+            43.01,
+            172.681,
+            217.807,
+            181.081
+          ],
+          "text": "2.1 Clique no botão         para adicionar seu dispositivo;\n"
+        },
+        {
+          "bbox": [
+            43.083,
+            183.208,
+            323.628,
+            216.808
+          ],
+          "text": "2.2 Pressione o botão POWER principal do dispositivo para ligá-lo. Os ícones de Wi-Fi e \nBluetooth no dispositivo piscarão para indicar que o dispositivo entrou no modo de \nconﬁguração de rede. Em seguida, toque no botão \"Ícone piscando\" e permita que o \naplicativo se conecte a dispositivos próximos e ative as permissões de Bluetooth.\n"
+        },
+        {
+          "bbox": [
+            129.286,
+            379.739,
+            235.207,
+            386.56
+          ],
+          "text": "2.1\n2.2\n"
+        },
+        {
+          "bbox": [
+            50.633,
+            416.349,
+            111.299,
+            423.549
+          ],
+          "text": "Botão Power Principal\n"
+        },
+        {
+          "bbox": [
+            38.057,
+            433.119,
+            323.525,
+            441.123
+          ],
+          "text": "Botão de energia CC/USB\nBotão Power CA\n"
+        },
+        {
+          "bbox": [
+            28.076,
+            502.797,
+            33.356,
+            509.997
+          ],
+          "text": "15\n"
+        }
+      ],
+      "relative_body_page": 16
+    },
+    {
+      "physical_page": 132,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "16\n2.3 Após tocar no ícone do dispositivo encontrado, o aplicativo conecta automaticamente o \ndispositivo via Bluetooth.\n3. Desvincular o dispositivo\nToque no ícone de Conﬁgurações no canto superior direito da interface principal do dispositivo para acessar \na página de conﬁgurações e clique no botão Desvincular na parte inferior da página para desvincular o \ndispositivo.\n4. Notas\nAs capturas de tela acima são apenas para referência.\nSe \"o dispositivo já foi vinculado\" for exibido durante o processo de vinculação, as duas formas a seguir \npoderão ser usadas para a conexão:\n• O proprietário do dispositivo compartilhará este dispositivo com outros usuários por meio do aplicativo.\n• Pressione e segure os botões POWER e o CC/USB POWER  por 3 segundos para redeﬁnir o Wi-Fi e o \nBluetooth do dispositivo e, em seguida, vincule o dispositivo novamente.\nSelecione uma rede Wi-Fi na banda de 2,4 GHz. O dispositivo não suporta redes Wi-Fi na \nfaixa de 5 GHz.\nNOTA\nO aplicativo da Jackery pode se conectar a apenas uma estação de energia via Bluetooth por vez. Ao \nretornar à lista de dispositivos, o Bluetooth é desconectado automaticamente. Toque novamente na \nestação de energia na lista para reconectar automaticamente.\nCUIDADO\nNOTA\n2.4 Após o dispositivo ser conectado com sucesso, insira sua senha de Wi-Fi e toque no botão OK.\n2.5 Após o dispositivo ser adicionado com sucesso ao aplicativo, o ícone de Wi-Fi no dispositivo ficará sempre \naceso.\n• O Wi-Fi e o Bluetooth são ativados automaticamente após o dispositivo ser ligado, e os \nícones de Wi-Fi e Bluetooth na tela acendem.\n• Pressione e segure simultaneamente o botão de energia CC/USB e o botão de energia CA \naté que os ícones de Wi-Fi e Bluetooth acendam na tela.\n4.1 Para ativar o Wi-Fi e o Bluetooth:\n• Pressione e segure simultaneamente o botão de energia CC/USB e o botão de energia CA \naté que os ícones de Wi-Fi e Bluetooth se apaguem na tela.\n4.2 Para desativar o Wi-Fi e o Bluetooth\n• Mantenha pressionados simultaneamente o botão POWER principal e o botão POWER \nCC/USB por 3 segundos para restaurar as conﬁgurações de fábrica do Wi-Fi e do \nBluetooth. A conta do aplicativo conectada será desvinculada.\n4.3 Para redeﬁnir o Wi-Fi e o Bluetooth\n2.5\n2.3\n2.4\n2000\n2000\n",
+      "text_sha256": "a801ca8d0386618fb6853d321f8f0f87229ca06d152a7b07779dc945071baee6",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            39.709,
+            27.567,
+            320.552,
+            43.407
+          ],
+          "text": "2.3 Após tocar no ícone do dispositivo encontrado, o aplicativo conecta automaticamente o \ndispositivo via Bluetooth.\n"
+        },
+        {
+          "bbox": [
+            91.699,
+            53.79,
+            328.442,
+            65.79
+          ],
+          "text": "Se \"o dispositivo já foi vinculado\" for exibido durante o processo de vinculação, as duas formas a seguir \npoderão ser usadas para a conexão:\n"
+        },
+        {
+          "bbox": [
+            50.042,
+            61.335,
+            76.772,
+            73.715
+          ],
+          "text": "NOTA\n"
+        },
+        {
+          "bbox": [
+            91.699,
+            67.79,
+            333.467,
+            73.79
+          ],
+          "text": "• O proprietário do dispositivo compartilhará este dispositivo com outros usuários por meio do aplicativo.\n"
+        },
+        {
+          "bbox": [
+            91.699,
+            75.79,
+            326.684,
+            87.79
+          ],
+          "text": "• Pressione e segure os botões POWER e o CC/USB POWER  por 3 segundos para redeﬁnir o Wi-Fi e o \nBluetooth do dispositivo e, em seguida, vincule o dispositivo novamente.\n"
+        },
+        {
+          "bbox": [
+            39.151,
+            95.751,
+            308.406,
+            102.951
+          ],
+          "text": "2.4 Após o dispositivo ser conectado com sucesso, insira sua senha de Wi-Fi e toque no botão OK.\n"
+        },
+        {
+          "bbox": [
+            92.821,
+            106.239,
+            340.105,
+            120.639
+          ],
+          "text": "Selecione uma rede Wi-Fi na banda de 2,4 GHz. O dispositivo não suporta redes Wi-Fi na \nfaixa de 5 GHz.\n"
+        },
+        {
+          "bbox": [
+            50.691,
+            108.855,
+            77.421,
+            121.235
+          ],
+          "text": "NOTA\n"
+        },
+        {
+          "bbox": [
+            38.593,
+            125.583,
+            335.283,
+            139.983
+          ],
+          "text": "2.5 Após o dispositivo ser adicionado com sucesso ao aplicativo, o ícone de Wi-Fi no dispositivo ficará sempre \naceso.\n"
+        },
+        {
+          "bbox": [
+            257.244,
+            150.781,
+            263.401,
+            153.86
+          ],
+          "text": "2000\n"
+        },
+        {
+          "bbox": [
+            69.981,
+            238.342,
+            74.751,
+            240.727
+          ],
+          "text": "2000\n"
+        },
+        {
+          "bbox": [
+            82.417,
+            290.731,
+            285.27,
+            297.269
+          ],
+          "text": "2.5\n2.3\n2.4\n"
+        },
+        {
+          "bbox": [
+            53.187,
+            298.938,
+            199.45,
+            305.898
+          ],
+          "text": "As capturas de tela acima são apenas para referência.\n"
+        },
+        {
+          "bbox": [
+            44.042,
+            311.75,
+            329.124,
+            329.75
+          ],
+          "text": "O aplicativo da Jackery pode se conectar a apenas uma estação de energia via Bluetooth por vez. Ao \nretornar à lista de dispositivos, o Bluetooth é desconectado automaticamente. Toque novamente na \nestação de energia na lista para reconectar automaticamente.\nCUIDADO\n"
+        },
+        {
+          "bbox": [
+            39.653,
+            337.69,
+            340.246,
+            370.38
+          ],
+          "text": "3. Desvincular o dispositivo\nToque no ícone de Conﬁgurações no canto superior direito da interface principal do dispositivo para acessar \na página de conﬁgurações e clique no botão Desvincular na parte inferior da página para desvincular o \ndispositivo.\n"
+        },
+        {
+          "bbox": [
+            41.828,
+            369.382,
+            80.238,
+            381.762
+          ],
+          "text": "4. Notas\n"
+        },
+        {
+          "bbox": [
+            41.304,
+            382.189,
+            158.798,
+            390.764
+          ],
+          "text": "4.1 Para ativar o Wi-Fi e o Bluetooth:\n"
+        },
+        {
+          "bbox": [
+            41.465,
+            392.871,
+            337.248,
+            426.828
+          ],
+          "text": "• O Wi-Fi e o Bluetooth são ativados automaticamente após o dispositivo ser ligado, e os \nícones de Wi-Fi e Bluetooth na tela acendem.\n• Pressione e segure simultaneamente o botão de energia CC/USB e o botão de energia CA \naté que os ícones de Wi-Fi e Bluetooth acendam na tela.\n"
+        },
+        {
+          "bbox": [
+            41.297,
+            430.314,
+            169.586,
+            438.889
+          ],
+          "text": "4.2 Para desativar o Wi-Fi e o Bluetooth\n"
+        },
+        {
+          "bbox": [
+            41.465,
+            440.317,
+            337.248,
+            457.117
+          ],
+          "text": "• Pressione e segure simultaneamente o botão de energia CC/USB e o botão de energia CA \naté que os ícones de Wi-Fi e Bluetooth se apaguem na tela.\n"
+        },
+        {
+          "bbox": [
+            41.29,
+            461.394,
+            165.638,
+            469.969
+          ],
+          "text": "4.3 Para redeﬁnir o Wi-Fi e o Bluetooth\n"
+        },
+        {
+          "bbox": [
+            41.458,
+            470.466,
+            323.913,
+            495.666
+          ],
+          "text": "• Mantenha pressionados simultaneamente o botão POWER principal e o botão POWER \nCC/USB por 3 segundos para restaurar as conﬁgurações de fábrica do Wi-Fi e do \nBluetooth. A conta do aplicativo conectada será desvinculada.\n"
+        },
+        {
+          "bbox": [
+            334.766,
+            502.868,
+            339.986,
+            510.068
+          ],
+          "text": "16\n"
+        }
+      ],
+      "relative_body_page": 17
+    },
+    {
+      "physical_page": 133,
+      "page_size_points": [
+        368.504,
+        524.409
+      ],
+      "text": "108\n3. Desvincular o dispositivo\nToque no ícone de Conﬁgurações no canto superior direito da interface principal do dispositivo \npara acessar a página de conﬁgurações e clique no botão Desvincular na parte inferior da página \npara desvincular o dispositivo.\n4. Notas\n• O Wi-Fi e o Bluetooth são ativados automaticamente após o dispositivo ser ligado, e os \nícones de Wi-Fi e Bluetooth na tela acendem.\n• Mantenha pressionados simultaneamente o botão POWER CC/USB e o botão POWER CA \naté que os ícones de Wi-Fi e Bluetooth na tela acendam.\n4.1 Para ativar o Wi-Fi e o Bluetooth:\n• Mantenha pressionados simultaneamente o botão POWER CC/USB e o botão POWER CA \naté que os ícones de Wi-Fi e Bluetooth na tela se apaguem.\n4.2 Para desativar o Wi-Fi e o Bluetooth\n• Mantenha pressionados simultaneamente o botão POWER e o botão POWER CC/USB por 3 \nsegundos para restaurar as conﬁgurações de fábrica do Wi-Fi e do Bluetooth. A conta do \naplicativo conectada será desvinculada.\n4.3 Para redeﬁnir o Wi-Fi e o Bluetooth\n",
+      "text_sha256": "2b2548b2539eb8f80e0aaa1d70607c957008a225703e2f019d0fb870a5653d4e",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            40.583,
+            25.469,
+            340.786,
+            64.379
+          ],
+          "text": "3. Desvincular o dispositivo\nToque no ícone de Conﬁgurações no canto superior direito da interface principal do dispositivo \npara acessar a página de conﬁgurações e clique no botão Desvincular na parte inferior da página \npara desvincular o dispositivo.\n"
+        },
+        {
+          "bbox": [
+            42.757,
+            65.8,
+            81.167,
+            78.18
+          ],
+          "text": "4. Notas\n"
+        },
+        {
+          "bbox": [
+            42.24,
+            78.6,
+            159.735,
+            87.175
+          ],
+          "text": "4.1 Para ativar o Wi-Fi e o Bluetooth:\n"
+        },
+        {
+          "bbox": [
+            39.398,
+            87.966,
+            332.606,
+            122.112
+          ],
+          "text": "• O Wi-Fi e o Bluetooth são ativados automaticamente após o dispositivo ser ligado, e os \nícones de Wi-Fi e Bluetooth na tela acendem.\n• Mantenha pressionados simultaneamente o botão POWER CC/USB e o botão POWER CA \naté que os ícones de Wi-Fi e Bluetooth na tela acendam.\n"
+        },
+        {
+          "bbox": [
+            42.247,
+            126.725,
+            170.537,
+            135.3
+          ],
+          "text": "4.2 Para desativar o Wi-Fi e o Bluetooth\n"
+        },
+        {
+          "bbox": [
+            39.405,
+            136.728,
+            332.613,
+            153.129
+          ],
+          "text": "• Mantenha pressionados simultaneamente o botão POWER CC/USB e o botão POWER CA \naté que os ícones de Wi-Fi e Bluetooth na tela se apaguem.\n"
+        },
+        {
+          "bbox": [
+            42.254,
+            154.606,
+            166.603,
+            163.181
+          ],
+          "text": "4.3 Para redeﬁnir o Wi-Fi e o Bluetooth\n"
+        },
+        {
+          "bbox": [
+            39.349,
+            164.637,
+            339.351,
+            189.039
+          ],
+          "text": "• Mantenha pressionados simultaneamente o botão POWER e o botão POWER CC/USB por 3 \nsegundos para restaurar as conﬁgurações de fábrica do Wi-Fi e do Bluetooth. A conta do \naplicativo conectada será desvinculada.\n"
+        },
+        {
+          "bbox": [
+            334.767,
+            503.075,
+            343.875,
+            510.275
+          ],
+          "text": "108\n"
+        }
+      ],
+      "relative_body_page": 18
+    }
+  ],
+  "tables": {
+    "troubleshooting": {
+      "physical_page": 128
+    },
+    "specifications": {
+      "physical_page": 129
+    }
+  }
+}

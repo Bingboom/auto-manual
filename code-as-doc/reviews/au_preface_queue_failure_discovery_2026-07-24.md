@@ -1,5 +1,7 @@
 # AU draft-queue preface failure discovery (2026-07-24)
 
+Status: done
+
 ## Scope
 
 Fix the JE-1000H AU draft-package queue failure reported by Hello-Docs runs

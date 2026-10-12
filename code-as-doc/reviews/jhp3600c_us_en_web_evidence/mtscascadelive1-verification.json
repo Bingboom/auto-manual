@@ -1,0 +1,76 @@
+{
+  "source_page": 20,
+  "crop": [
+    26.0,
+    63.0,
+    343.0,
+    425.0
+  ],
+  "removed_copy_regions": [
+    [
+      206,
+      81,
+      320,
+      152
+    ],
+    [
+      53,
+      158,
+      107,
+      176
+    ],
+    [
+      171,
+      195,
+      255,
+      212
+    ],
+    [
+      248,
+      341,
+      312,
+      366
+    ]
+  ],
+  "retained_geometry_pixel_identical_at12x": true,
+  "all_four_edges_pixel_identical_at12x": true,
+  "retained_text": "NEMA 14-50R",
+  "regions": {
+    "products": [
+      88,
+      232,
+      257,
+      337
+    ],
+    "mts-box": [
+      48,
+      92,
+      116,
+      147
+    ],
+    "button-hand": [
+      137,
+      370,
+      216,
+      411
+    ],
+    "nema-marking": [
+      272,
+      197,
+      311,
+      208
+    ],
+    "communication-cable": [
+      183,
+      334,
+      287,
+      340
+    ]
+  },
+  "bare_art_review": "Complete native panel, product/cables, MTS box, AC button/hand and all leaders preserved. No independent empty caption frame.",
+  "source_commit": "6b6aef7e0bbac4f56335e94faeb5a097a99e228f",
+  "base_sha256": "a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477",
+  "frozen_replay_files_byte_identical": 124,
+  "aggregate_targets": 106,
+  "baseline_files_byte_identical": 5609
+}

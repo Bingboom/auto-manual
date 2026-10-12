@@ -15,6 +15,20 @@ from ..style_names import paragraph_style_ref
 from .base import RenderContext
 
 
+# Full-measure art, by the slot its source named (RenderContext.asset_slot):
+# a target override keeps its slot whatever its file is called (LaTeX flattens
+# its asset directory, so an override needs a basename of its own). The
+# suffixes below are the fallback for bundles without a usage manifest.
+_FULL_MEASURE_SLOTS = frozenset({
+    "overview/front_product",
+    "operation/energy_saving",
+    "operation/led_light",
+    "operation/ups_mode",
+    "charging/ac_wall",
+    "charging/solar_direct",
+    "charging/solar_adapter",
+    "charging/car_charge",
+})
 _FULL_MEASURE_SUFFIXES = (
     "/operation/energy_saving.png",
     "/operation/led_light.png",
@@ -28,12 +42,15 @@ _FULL_MEASURE_SUFFIXES = (
     "/assets/solar_adapter.png",
     "/assets/car_charge.png",
 )
+_APP_MEASURE_RATIOS_BY_SLOT = {
+    "app/download": 0.60,
+    "app/add_device": 0.55,
+    "app/connect_result": 0.58,
+}
 _APP_MEASURE_RATIOS = {
     "/app/download.png": 0.60,
     "/app/add_device.png": 0.55,
     "/app/connect_result.png": 0.58,
-    "/app/je1000f_us/add_device_je1000f_us.png": 0.55,
-    "/app/je1000f_us/connect_result_je1000f_us.png": 0.58,
 }
 
 IMAGE_ROLE_DEFAULT = "default"
@@ -108,6 +125,13 @@ def _semantic_max_width(
     paths = (ref.replace("\\", "/"), resolved.replace("\\", "/"))
     if any(path.endswith(("front_product.jpg", "right_side_ports.png")) for path in paths):
         return ctx.text_measure
+    slot = ctx.asset_slot(ref)
+    if slot is not None:
+        if slot.logical_key in _FULL_MEASURE_SLOTS:
+            return ctx.text_measure
+        slot_ratio = _APP_MEASURE_RATIOS_BY_SLOT.get(slot.logical_key)
+        if slot_ratio is not None:
+            return ctx.text_measure * slot_ratio
     if any(path.endswith(_FULL_MEASURE_SUFFIXES) for path in paths):
         return ctx.text_measure
     for suffix, ratio in _APP_MEASURE_RATIOS.items():
@@ -300,6 +324,10 @@ def render_image_block(
         + "</CharacterStyleRange></ParagraphStyleRange>\n")
     space_before = param_pt(ctx.params, "idml_figure_space_before", 2.83)
     space_after = param_pt(ctx.params, "idml_figure_space_after", 4.25)
+    # A target override keeps its shared art's spacing: match by the slot the
+    # source named as well as by the shared file name.
+    slot = ctx.asset_slot(ref)
+    slot_key = slot.logical_key if slot is not None else ""
     if spacing_variant == "charging":
         # Above-line image paragraphs already contribute their native line
         # box.  Charging's diagram-to-heading transition therefore needs no
@@ -314,7 +342,7 @@ def render_image_block(
             "idml_charging_figure_space_after",
             0.0,
         )
-    if any(
+    if slot_key == "operation/ups_mode" or any(
         path.endswith(("/operation/ups_mode.png", "/assets/op_ups_mode.png"))
         for path in (ref.replace("\\", "/"), img.as_posix())
     ):
@@ -324,7 +352,7 @@ def render_image_block(
             f"lang_{language}_idml_ups_image_space_before",
             param_pt(ctx.params, "idml_ups_image_space_before", 5.2),
         )
-    if ref.endswith("front_product.jpg"):
+    if slot_key == "overview/front_product" or ref.endswith("front_product.jpg"):
         space_after = 1.58
     xml = xml.replace(
         "<ParagraphStyleRange ",

@@ -1,0 +1,338 @@
+{
+  "desktop": {
+    "documentWidth": 1440,
+    "labels": [
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "descriptionWeight": "400",
+        "text": "Off:",
+        "weight": "700"
+      }
+    ],
+    "rows": 33,
+    "table": {
+      "bottom": 3517.296875,
+      "height": 2941.4375,
+      "left": 314.59375,
+      "right": 1131.625,
+      "top": 575.859375,
+      "width": 817.03125,
+      "x": 314.59375,
+      "y": 575.859375
+    },
+    "unmarked": [],
+    "viewport": 1440
+  },
+  "mobile": {
+    "description": {
+      "bottom": 2798.2265625,
+      "height": 76.5,
+      "left": 299.59375,
+      "right": 658,
+      "top": 2721.7265625,
+      "width": 358.40625,
+      "x": 299.59375,
+      "y": 2721.7265625
+    },
+    "documentWidth": 390,
+    "labels": [
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      }
+    ],
+    "table": {
+      "bottom": 6007.7421875,
+      "height": 3288.015625,
+      "left": 16,
+      "right": 374,
+      "top": 2719.7265625,
+      "width": 358,
+      "x": 16,
+      "y": 2719.7265625
+    },
+    "tableScrollWidth": 640,
+    "viewport": 390
+  },
+  "mobileScrolled": {
+    "firstDescription": {
+      "bottom": 181.7265625,
+      "height": 76.5,
+      "left": 13.59375,
+      "right": 372,
+      "top": 105.2265625,
+      "width": 358.40625,
+      "x": 13.59375,
+      "y": 105.2265625
+    },
+    "labels": [
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      },
+      {
+        "text": "On:",
+        "weight": "700"
+      },
+      {
+        "text": "Blink:",
+        "weight": "700"
+      },
+      {
+        "text": "Off:",
+        "weight": "700"
+      }
+    ],
+    "scrollLeft": 286
+  }
+}

@@ -3,10 +3,10 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from tools.data_snapshot import PHASE2_REQUIRED_DERIVED_FILES, PHASE2_REQUIRED_TABLE_FILES
+from tools.data.snapshot import PHASE2_REQUIRED_DERIVED_FILES, PHASE2_REQUIRED_TABLE_FILES
 from tools.schema_drift import REQUIRED_CSV_HEADERS
-from tools.source_table_contract import load_source_table_contract, source_tables
-from tools.sync_data_models import TABLE_SCHEMAS
+from tools.data.source_table_contract import load_source_table_contract, source_tables
+from tools.data.sync_data_models import TABLE_SCHEMAS
 
 
 # These are intentional topology differences between the registries.  Keep

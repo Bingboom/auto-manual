@@ -127,7 +127,7 @@ renderer-local 常量称为批准变体。
 
 ### 0.4 “流水线”的定义
 
-本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 先组合成 prepared RST bundle。Web 生产路径由 [`tools/web_document_source.py`](../../../tools/web_document_source.py) 一次读取有序源页，写出 `manual-ir/v2` / `whole-document-components/v1`；PDF、IDML 与 Word 保留各自的固定页/文档 adapter，历史 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) `manual-ir/v1` 入口继续兼容。它不是“根据文字长得像什么来猜组件”，也不是 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
+本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 先组合成 prepared RST bundle。Web 生产路径由 [`tools/web/document_source.py`](../../../tools/web/document_source.py) 一次读取有序源页，写出 `manual-ir/v2` / `whole-document-components/v1`；PDF、IDML 与 Word 保留各自的固定页/文档 adapter，历史 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) `manual-ir/v1` 入口继续兼容。它不是“根据文字长得像什么来猜组件”，也不是 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
 
 ```text
 phase2 / 模板
@@ -286,6 +286,7 @@ registry。第 1–3 页和封底的 page-role scoped fallback 由上面的批�
 | 自动恢复对比表 | `HB-TABLE-AUTO-RESUME` | `` ```{comparison} `` | `.hb-auto-resume-composition` | `HBAutoResumeTable` @ `components_data_tables` | 同上 | 经 HTML 转换 | aligned |
 | 按键组合表 | `HB-TABLE-KEY-COMBINATIONS` | 流水线 | `.manual-table` | `HBKeyCombinationTable` | `HB Data Header` / `HB Data Body`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | 故障排查表 | `HB-TABLE-TROUBLESHOOTING` | `` ```{troubleshooting} `` | `.hb-troubleshooting-composition` | `HBTroubleshootingTable` | `正文表格` + `HB Rounded Table Outer`（关闭自动缩放） | 经 HTML 转换 | aligned |
+| 纯文字参考表 | `HB-TABLE-REFERENCE` | RST 显式语义声明 | `.hb-reference-composition` | 仅语义投影 | 仅语义投影 | 仅语义投影 | Web rendered；其余 projection-only |
 | 通用表 | 无专属 ID | pipe 表 / `` ```{manual-table} `` | `.manual-table` | 走 `HB-TYPE-BODY` 排版 | `正文表格` | 表样式 `tableHeader`（单行且 ≥3 列时 `TableGrid`） | — |
 
 IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。Charging 的图→带尾部胶囊标题属于完整组合内部过渡：只消费 `idml_charging_figure_space_after` 与 `idml_charging_headingpill_space_before`，不能再叠普通图后距与普通 H2 前距。该标题行的横向几何也归共享 `HeadingPill` 所有：标题列和胶囊列按 Gilroy Bold 字面宽度收紧，组件用 10.9pt 定义标题末字到胶囊首字的可见间距；页面编排器只能放置整行，不能把胶囊右对齐或重新分配两列宽度。
@@ -612,6 +613,78 @@ IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对
 
 普通插图：`img { max-width: 100%; height: auto }`，Web 投影下每张独立图占满同一内容宽度并居中，不保留印刷侧的固定像素宽度提示。
 
+### 新录入网页的图文分工
+
+以下规则同时适用于原生 PDF 四语录入和审核 RST 的 Web Publish，不能因型号、
+地区、语言或输入入口不同而重新选择样式。已批准的历史 finished-panel 契约仍按
+其目标范围执行，不能用这段规则自动改写历史冻结版本。
+
+| 源稿内容 | 网页承载 | 验收要求 |
+|---|---|---|
+| 普通操作、UPS、充电图中的说明文字 | 无字底图 + 既有 Operation / ReferenceFigure 的活文字 | 每段源文字只消费一次；章节标题、正文和表格不截入底图 |
+| 承载说明文字的灰框、白框、胶囊和气泡 | 共享 HTML/CSS 绘制，随文字换行 | 底图连同空文字框一起去除；不能只删字后留下空框。沿用共享色阶与圆角 |
+| 插图自身的背景、外轮廓、外框、线缆、引线及放大圆 | 保留完整源图几何 | 去文字框不能扩大裁切、截断右边线或放大圆；不得用白块覆盖非白背景 |
+| 正视图、侧视图等密集引线标注图 | 经目标确认的本地化完整图 | 保留完整标注，不混入章节标题；型号、插座、接口必须匹配 |
+| App 界面、二维码、产品实物铭刻 | 保留图内内容 | App 步骤号统一用图下 HTML；不把界面文字当说明文字删除 |
+
+2026-10-03 共用图整理约束：太阳能接线图保留原图中的 `SolarSaga 型号 × 数量`
+文字作为选材主标识（例如 `SolarSaga 100 Air × 4`），不得把该标识当普通说明文字去除；
+同标识下仍核对主机、接口及接线变体，不能据此跨型号误用。原标识未写数量时不自行补数。
+车充及车充线图的说明文字采用原生 HTML，文字框采用共享 CSS；无字底图中不能残留
+文字或空白文字框。操作与按键**图片**不纳入共用素材库，既有 Operation 等共享组件
+继续复用。独立 LCD/安规符号需真实透明底，灰底、白底及低分辨率版本不能选作主资产；
+图内数值（例如连接电池 `×8`）属于身份，不能用 `×5` 等近似图替代。
+
+外观相同的素材由执行者对照归一到既有主资产，旧路径/哈希作为追溯别名保留；
+不同分辨率、透明区隐藏 RGB 或留白不作为新图身份。感知相似度只能筛候选，最终核对
+符号形状、数值、主机及接线。操作者按明确标识和差异确认，不承担逐张重复认图。
+
+Operation 底图已含完整外框时，在承载组件的中立 flow 容器声明
+`data-preserve-art-frame="true"`：共享 CSS 取消组件额外的外框和圆角裁边。
+图内前提说明继续使用 Operation 的 prerequisite 槽位及源坐标，浅灰胶囊由
+HTML/CSS 按 `prerequisite_fill` 绘制；只有前缀加粗，不把说明移到图外。
+
+跨语言可复用已核对的同一底图和组件；跨型号复用前必须核对主机、接口和地区差异。
+共享样式不代表可以借用另一型号的底图。底图、源文字、SHA-256 和百分比标签位置
+必须一起登记；独立线缆名称也使用 ReferenceFigure 的活文字标签，产品实物
+铭刻继续保留。无文字框的标签不额外生成胶囊。`base-art-live-copy` 复用现有
+`manual-ir/v2 → ComponentSpec → 公共 Web 渲染器`，不能用目标专属 HTML 或截图绕开它。
+
+新增目标要登记必需的组件槽位。校验分别检查源文字只出现一次、组件实际使用、
+布局所绑定的底图哈希，以及去字区域无残字/空文字框；最后对照 PDF 检查桌面和
+窄屏。构建通过、旧语言测试通过，都不等于新目标的视觉验收通过。
+
+图内文字由 HTML 承载不等于把文字移到图外。ReferenceFigure 的
+`base_art_layout.mobile_labels=overlay` 明确要求窄屏仍按底图坐标放置；
+`preserve_frame=true` 保留源图边界，禁止默认裁边。JE-2000F/CN 的两张太阳能图
+和车充图使用这两个选项，车充白色提示框由 `.hb-reference-live-pill` 绘制。
+
+原稿同时有应用商店徽章和二维码时，使用已有 `HB-SPECIAL-APP/download` 双栏组件。
+源图声明 `hb-source-app-download`，`data-app-download` 绑定 `artwork.store` 与
+`artwork.qr`，后接两段原语种说明；共享 IR 固定两栏和素材角色，不依赖型号白名单。
+复用已批准的徽章与源二维码，缺素材或少一栏说明即拒绝录入，不降级为仅二维码。
+编号 App 标题不加圆点，采用原稿大小写与紧凑间距。完整双机/三机截图使用现有
+`hb-app-add-device-phone-art` 加 `hb-app-phone-pair` / `hb-app-phone-trio` 共享限宽
+变体，最大 22rem / 36.75rem，窄屏缩至可用宽度；该尺寸在成品图替换后仍有效。
+截图保留手机全框、状态栏、底部界面和原有步骤号，各语言继承同一组件及尺寸决策。
+
+只有下载二维码与说明的源稿使用 `HB-SPECIAL-APP/download-qr-only` Web 变体：
+原文左排、二维码右排，二维码最大 `9rem`，手机为 `6rem`，保留完整边框。
+它不补画源稿没有的应用商店徽章，不套用普通插图的通栏宽度。该变体通过共享 IR
+冻结一个源图与一段活文字；印刷适配器尚未声明支持，调用时明确拒绝。
+
+App 添加设备源稿中夹在手机图和按键图之间的备注，由共享组件的
+`interstitial_note` 活文字槽位保存原顺序；不能为合并图片而移到按键图之后。
+手机图与图下步骤号共同服从目标声明的最大宽度，窄屏按比例缩小。
+若源截图之间留有间隔，App/ReferenceFigure 使用 `caption_centers_pct` 登记各图的
+原生横向中心；不能把整幅图机械等分后让编号偏离手机中心。
+审核 RST 的 App 行内按钮和结果截图可用 `semantic_source_patterns` 显式登记，
+分别使用现有 `inline-control` 与 ReferenceFigure 活编号组件，无需开启历史整页插图适配。
+
+四语的已验证实现与历史纠错见
+[`four_language_shared_ir_alignment.md`](../../../code-as-doc/dev/four_language_shared_ir_alignment.md)
+及[充电标签纠错记录](../../../code-as-doc/dev/je2000_eu_new_locales_ir_adapters_2026-09.md#charging-label-regression-and-english-artwork-reuse-2026-09-29)。
+
 四个专题版块都是**流水线专属**，作者不能用 md 写，只能改源表或模板：
 
 | 版块 | Web 结构 | 说明 |
@@ -621,9 +694,15 @@ IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对
 | 产品概览 | `.hb-annotated-figure` > `.hb-annotated-stage` + `.hb-leader-layer` | 带引线标注：标注位置靠逐图百分比坐标，是流水线独有的能力 |
 | App 设置 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | 商店徽章 / QR / 双机图；默认的共享按键底图不依赖目标插图授权，标签保持为覆盖活文本。仅当 target 的已核准 finished-panel 明确包含该组标签时，允许在 presentation 前以整图消费该 reference，并同时移除重复活文本；JE-2000F/EU/en 的三键控制面板属于此批准变体。LCD 模式表不属于此例外，仍由设备图与语义化 CSS/HTML 表格组成 |
 
+Web App 的编号步骤标题保留源文大小写，不加圆点，与步骤正文左边线对齐；该例外仅限包含共享 Add Device 组件的章节，不覆盖其他章节的 H2/H3。
+
 IDML App 下载构图以左右两个活文本栏的中心分别对齐商店徽章和 QR，不以整页中心或固定左边缘对齐；控制面板的三条原生延长线统一消费 `idml_app_control_leader_extension_weight`，与链接底图中的引线保持同一视觉线宽。
 
 FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。源 payload 先类型化为 ComponentSpec；IDML/LaTeX 再从语义 block 重建自己的结构，不保留或回放旧双文本 payload。
+FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。
+短版 FCC 声明在既有受保护 `figure` 载体上声明 `hb-fcc-composition hb-fcc-statement`，复用浅灰圆角 FCC 面板；共享样式保留单栏、紧凑标题和正文，标题取消通用圆点。原稿标题、段落和标题锚点由原生 flow 承载，不增加原稿未含的 NOTE / MODIFICATION 条款；FCC 标志复用注册表 `mark/fcc` 的现有主资产，按操作者指定放在左侧，不套用完整两栏 FCC 语义实例。
+
+
 
 开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec。兼容变体 `three-card-responsive` 固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label；`responsive-card-grid` 保存任意非空有序卡组，按顺序复用可重复的 `card_art` 资产角色。两种变体都把相邻 TIP/NOTE 的 label/body 纳入同一实例。Web adapter 支持两种变体：三卡继续等宽，动态卡片在桌面自适应、平板三列、手机单列。LaTeX 的 `HBInBoxThree`、IDML 绝对坐标 composer 和 Word 三列表格只对旧三卡变体声明 `rendered`；动态变体在注册表中逐端标为 `not-applicable`，调用这些 adapter 会显式失败，不假称完成印刷排版。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、非空卡片组以及相邻 TIP/NOTE label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
 
@@ -684,19 +763,17 @@ Web 投影没有页的概念，这三条不参与。
 | 断点 | 改动 |
 |---|---|
 | `min-width: 82rem` | 加宽阅读区，组件取值不变 |
-| `max-width: 760px` | H1 缩号缩圆角；H2 圆点顶对齐、字号锁 `1rem`；语言胶囊在组件内部横向滚动；符号双栏转单列；LCD 模式转单列 |
+| `max-width: 760px` | H1 缩号缩圆角；H2 圆点顶对齐、字号锁 `1rem`；符号双栏转单列；LCD 模式转单列 |
 | `max-width: 520px` | 警示框标签/正文上下堆叠 |
-| `print` | 隐藏 Web 语言跳转；H1/H2/H3 统一避免跨页断裂 |
+| `print` | H1/H2/H3 统一避免跨页断裂 |
 
 所有通栏组件共享一条外宽契约：`box-sizing: border-box; width: 100%; max-width: var(--hb-component-band-max)`（= 阅读宽 58rem），成员包括 `h1`、docutils 表格容器、符号 / 故障排查 / 规格 / FCC / LCD / 对比六类 composition。新增通栏组件必须加进这条 `:is()` 列表，否则宽度会和邻居差一截。
 
-整本语言跳转条是 Web-only 导航 affordance，不伪装成四端 ComponentSpec，也不登记
-虚假的跨端 `HB-*` 语义。整本 IR 重放器只在 `declared_languages` 至少有两项时生成一次导航，
-并按最终 page language 给每种语言的首个片段插入稳定锚点；本地名称来自
-`lang_registry.LanguageSpec.native_name`。未知、重复、越界或没有页面边界的语言均
-fail-closed。Pandoc 前后通过受检占位符原样保护 `<nav>` 和空锚点，避免 MyST 重放时
-丢失链接。样式只在共享 `web_language_navigation.css` 定义；目标 overlay 不复制
-导航 HTML/CSS，移动端溢出由组件自身承接，打印时整体隐藏。
+整本 Web 文档不再生成文内语言跳转条和 `#hb-lang-*` 锚点；语言切换由手册中心的
+[语言下拉框](../../../code-as-doc/dev/rtd_locale_navigation.md)承担。`declared_languages`
+至少有两项时，整本 IR 重放器仍校验语言：未知、重复、越界或没有页面的语言均 fail-closed；
+首个片段开头与声明语言一致的合并语言清单行（英文名或本地名，以 ` / ` 分隔）照旧删除。
+目标 overlay 不得另造语言导航 HTML/CSS。
 
 字体：`Gilroy` 是商业授权，不随站分发；回退 `Avenir Next → Avenir → Segoe UI → Helvetica → Arial`，字形与印刷稿不完全一致。
 
@@ -760,7 +837,7 @@ Word 复用结构语义，但不承诺 PDF/IDML 的固定页几何：
 - 正文归一到 `BodyText` / `FirstParagraph` / `Compact`；
 - 表格按形状选 `TableGrid` 或 `tableHeader`，必要时再做列宽和边框覆盖；
 - 文档标题来自配置的 `build.word_title`，不是正文中的第一个 H1；
-- `tools/word_bundle_docx_styles.py` 只做样式归一，不按英文标题匹配语义。
+- `tools/word/bundle_docx_styles.py` 只做样式归一，不按英文标题匹配语义。
 
 Word 若需要新增独立组件样式，应先进入 `manual_style.yaml` 的 `word` binding 与 §1
 的语义对照，不能只在 DOCX remapper 中增加一次性规则。
@@ -801,12 +878,12 @@ reference-layout plan 或[执行状态](../../../code-as-doc/dev/style_debt_exec
            → prepared RST bundle：docs/_build/<model>/<region>/rst/page/*.rst
              （冻结样例：docs/_review/JE-1000F/US/page/）
 
-(2) 出片   docutils 逐页渲染 HTML fragment（tools/word_bundle_html.py），
-           同时做结构归一（tools/word_bundle_html_rewrite.py）：
+(2) 出片   docutils 逐页渲染 HTML fragment（tools/word/bundle_html.py），
+           同时做结构归一（tools/word/bundle_html_rewrite.py）：
            无表头、单行两列、首格是登记信号词的 list-table
            → table.manual-callout-table 等
 
-(3) 升级   Web 档案（AUTO_MANUAL_PRESENTATION_PROFILE=web → tools/web_presentation.py）
+(3) 升级   Web 档案（AUTO_MANUAL_PRESENTATION_PROFILE=web → tools/web/presentation.py）
            先按实际 model/region 解析 shared base → skeleton → target overlay，
            再按 resolved contract 的 source_patterns 认页（按页名 pattern，如
            spec_* / troubleshooting_* / *11_warranty，不猜内容），
@@ -858,7 +935,7 @@ JE-1000F / US 与 EU）生效，未授权目标保持中立 flow / 基础排版�
 
 ```rst
 TROUBLESHOOTING
-===============
+========
 
 If any of the following fault codes appear, follow the listed corrective actions...
 
@@ -889,7 +966,7 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
        - Do not charge the product using both a car charger and a solar panel...
 ```
 
-**L2** 归一发生在链路第 (2) 层（[`word_bundle_html_rewrite.py`](../../../tools/word_bundle_html_rewrite.py)）：判定条件是**无表头 + 恰好一行 + 恰好两格 + 首格文本是 [`signal_words.py`](../../../tools/signal_words.py) 登记的信号词**，四项都满足才归一；差一项就按通用表处理。类型化入口随后生成同一个 `HB-CALLOUT-STRIP` ComponentSpec；五种 variant 是 `warning`、`danger`、`caution`、`note`、`tip`，标签、正文、列表、语言和 source ref 保持为实例数据。Web、LaTeX、IDML、Word 各自通过注册的 adapter 消费它，不再各自维护一份 variant 映射。
+**L2** 归一发生在链路第 (2) 层（[`word_bundle_html_rewrite.py`](../../../tools/word/bundle_html_rewrite.py)）：判定条件是**无表头 + 恰好一行 + 恰好两格 + 首格文本是 [`signal_words.py`](../../../tools/signal_words.py) 登记的信号词**，四项都满足才归一；差一项就按通用表处理。类型化入口随后生成同一个 `HB-CALLOUT-STRIP` ComponentSpec；五种 variant 是 `warning`、`danger`、`caution`、`note`、`tip`，标签、正文、列表、语言和 source ref 保持为实例数据。Web、LaTeX、IDML、Word 各自通过注册的 adapter 消费它，不再各自维护一份 variant 映射。
 
 **L3 最终 Web 标记**：
 
@@ -900,7 +977,7 @@ CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
 </tr></tbody></table>
 ```
 
-版面规则见 §3.1。**md 等价**：`` ```{callout} CAUTION ``，正文按完整 Markdown 解析（[`manual_md_directives.py`](../../../tools/manual_md_directives.py) 先校验 ComponentSpec，再由 Web adapter 产出上面这段标记）。Pandoc 前后由 [`web_presentation.py`](../../../tools/web_presentation.py) 保护并原样恢复整张表；恢复前后会重新校验同一 component ID、variant 和 slot 内容，不能靠 Pandoc 重建一个近似表格。
+版面规则见 §3.1。**md 等价**：`` ```{callout} CAUTION ``，正文按完整 Markdown 解析（[`manual_md_directives.py`](../../../tools/manual_md_directives.py) 先校验 ComponentSpec，再由 Web adapter 产出上面这段标记）。Pandoc 前后由 [`web_presentation.py`](../../../tools/web/presentation.py) 保护并原样恢复整张表；恢复前后会重新校验同一 component ID、variant 和 slot 内容，不能靠 Pandoc 重建一个近似表格。
 
 ### 10.5 竖式规格表（`HB-TABLE-SPEC`）
 
@@ -1001,6 +1078,124 @@ IDML 的可见 LCD 圆角外壳高度必须等于表格行高之和，最后一�
 圆角线。InDesign 原生终止标记使用外壳之外、与主表框串接的透明载体；最终化脚本
 只能按 `tf_terminal_carrier_group_*` 标签扩展该载体，禁止读取表格行高后改写主表框、
 底部遮罩、底板或外框。EN/FR/ES 共用这一结构回归。
+
+#### 共用图标优先（Web 插图选材规则）
+
+本节是所有说明书网页化的选材顺序，适用于图标、App 截图、操作图、接线图和完整
+面板，不只适用于 LCD。新增型号、语言或收到新版 PDF/AI 时，都须先完成以下检查。
+
+**先盘点 → 核对身份 → 直接复用 → 必要时处理文字 → 最后才提取。**
+
+1. 按图的功能/槽位列出需求，先检查目标已有资产清单、同型号同区域其他语言的
+   已有资产、共享素材与模板附件。入口包括 `manual_sources/`、
+   `docs/renderers/web/assets/`、`docs/templates/word_template/common_assets/`、
+   `docs/renderers/latex/assets/` 和现有资产注册表；先查清单，再打开候选图核对。
+2. 核对型号、区域、接口/插座、功能、参数、App 界面版本及图内文字语言。文件名相似
+   不等于可复用；来源版本不同也不自动否定复用，须记录内容相同或差异的证据。
+3. 内容一致时直接绑定既有素材。冻结包需要复制文件时，保持字节不变并记录原路径与
+   SHA-256；不得再次截图、重裁、缩放或去底后冒充复用。新增语言、页码变化、拿到
+   新源稿本身都不是重提理由。浏览器验收截图只作证据，不替代生产素材。
+4. 只有外部标签需要翻译时，复用底图和已有组件，修改原生文字及其锚点；标签必须
+   留在对应面板内并对准引线。含本地化文字的成品图须匹配目标语言；不能把外语
+   标注当作通用图。App 界面若与目标原稿一致，可跨手册语言复用，无需翻译界面截图。
+5. 仅在查无可用素材、清晰度确实不足，或目标外观/接口/内容存在明确差异时才提取。
+   提取前在目标现有审查记录中填完下表；缺少检索结果或具体理由，不进入提取步骤。
+   不为此新建每型号配置、资产注册表或构建管线。
+
+| 图/槽位 | 查过的清单与候选路径 | 身份/内容核对 | 决定 | 新提取的具体理由 | 最终来源与哈希 | 背景/边界策略 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 每张待用图一行 | 候选路径；无匹配时记录查过的范围 | 型号/区域/界面/语言与差异证据 | 复用 / 复用底图改文字 / 新提取 | 复用时填不适用 | 既有路径或原稿页码、裁切框及 SHA-256 | 独立图标透明底 / 完整面板保留 / App 整框保留 |
+
+这张表是执行与人工审查的前置检查，复用/背景策略须写入现有资产绑定或目标审查
+记录；并非新增的 JSON schema 或已经实现的自动构建门禁。
+
+LCD 状态图标、Wi-Fi、Bluetooth、充电模式等通用小图必须先复用已有共用素材，
+按功能语义键匹配；PDF 页码、印刷编号和语言不能作为重新裁图或复制一套图标的理由。
+LCD 共用附件由 `lcd_icons_blocks.csv` 引用，下载到
+`data/phase2/_attachments/lcd_icons/`；按现有装配与冻结资产流程引用同一份素材，
+不得为单个语言重新从 PDF 裁切带单元格底色、边框或空白的小图。
+
+POWER、AC、DC/USB、LIGHT 按钮图也按 `button/power`、`button/ac`、
+`button/dc_usb`、`button/led` 共用语义键维护。Web 使用
+[`shared/buttons/`](../web/assets/shared/buttons/manifest.json) 中的透明 SVG：
+去掉原稿的矩形表格底色，保留圆形按键面、开关符号、指示点和产品丝印；
+按钮外的名称、组合加号与长按说明由原生 HTML 排版。相同按钮不按语言重裁，
+形状或丝印不同的按钮不能仅凭名称替换。
+
+按键组合使用 `HB-TABLE-KEY-COMBINATIONS` 的三列表格，不用普通表格仿排。
+原生 carrier 以 `.hb-key-button-pair` 保留两个按钮和各自名称（POWER/USB/AC
+强调），组合加号和 `.hb-key-duration[data-duration-icon="clock"]` 使用共享样式。
+按键图 3.35rem 见方，组合加号 1.82rem 并与按键同高居中，沿用批准印刷版
+`idml_key_button_size` 22.08pt 对 6pt 功能文字的比例。
+首列灰底、其余白底，窄屏在组件内横向滚动。下方丝印的 `power-bottom`、
+`usb-bottom`、`ac-bottom` 与原有上方丝印变体分别匹配，不互相替代。
+原稿的小标题与另售标签为两个独立胶囊时，使用共享 `h3.hb-heading-label-pair`，仅 `.hb-heading-title` 绘制浅灰底，`.hb-sold-separately` 保持深色底；标题容器透明，窄屏可换行，禁止整行套一个底板。
+
+标题中的另售说明使用原生 `.hb-sold-separately` 圆角标签，文字仍在标题内；
+冻结重放保留内联标签并继续生成 MyST 导航标题，不能摊成带破折号的标题文字。
+
+完成选材后，先按消费组件确定图的类型，再决定背景处理。**透明底规则针对 LCD／
+状态图标、独立按钮符号等小图**，移除这些小图外围的页面/单元格底色和边框。
+“小图”按功能角色判断，不按网页显示尺寸判断；大图缩小显示仍是大图，不能因
+无文字或单独成图就归入小图去底规则。优先导出不含外围背景对象的 SVG，或带真实透明通道的 PNG；
+不能改铺白底或用 CSS 混合模式冒充透明。产品本体的颜色、材质阴影、按键面、
+丝印和屏幕／App 内容保留，不能按灰色或白色批量删除图形。交付前检查独立图标自身的透明区域，并在白色、灰色／棋盘背景上
+以 12 倍检查轮廓，再回到网页组件中验收。
+
+**符号表的新冻结稿准入。** `seal_frozen_web_evidence` 从实际 IR 的
+`HB-TABLE-SYMBOL-ICON` 读取全部符号行，要求 `source_manifest.json` 提供
+`symbol_asset_admission`（`auto-manual-symbol-asset-admission/v1`），逐行包含
+资产路径/哈希、权威 PDF 物理页、`drawing_indices`、`glyph_bbox`、
+`caption_bbox`、`row_bbox`、`caption_text`、说明区域的 `caption_sha256`
+及 `shared_symbol_key`。
+`locales` 按语言记录，顺序必须与实际组件行一致；缺项或文件名相同不能跳过。
+选材统一从 [`shared/symbols/manifest.json`](../web/assets/shared/symbols/manifest.json)
+按语义与明确图形变体选择（例如 `read-manual/book-information`），冻结复制须字节
+不变。`withdrawn` 按哈希停用旧错误素材，改名或搬进新包仍拒绝；旧文件保留历史
+来源，但不再作为新稿的 Web 小符号候选。先修共用库一次，再复用；已有适合图形
+不得重复提取。独立完整面板和历史封存不受此停用影响。
+程序重新读取权威 PDF，保留原生路径及祖先变换/透明度，排除位于符号范围外的
+页面/单元格对象，再检查资产真实透明边缘、归一化 alpha 与预乘 RGB。
+RGBA 中画有矩形灰底、只有语义相同但轮廓不同、源页/说明/哈希不符均拒绝封存。
+固定像素容差为每通道平均误差 2%，不能由候选稿放宽；仍需桌面、窄屏和棋盘底视觉验收。
+
+源文字可提取时逐行比对原文；转曲说明的逐字转录与坐标必须人工核对，程序核验
+该说明区域的原稿渲染哈希及组件文字绑定，哈希不等于 OCR 或人工批准。
+新 SVG 使用现有 asset-intake 的 `crop` + `retain_vector_drawings` recipe，
+不允许在此输出中覆盖填色或删除笔画；保留原始组透明度。已有 PDF/PNG 提取行为
+不变。注册表晋级仍按原流程确认像素；源绑定通过不自动批准晋级。
+这项准入仅作用于**新外部冻结稿封存**，历史回执继续按原封存库存验证；普通大图
+和完整面板不受小符号透明检查影响。
+
+**完整大图面板与小图标分开处理。** 当目标沿用源稿的成品面板（如整张充电图、
+UPS、扩容连接图、配件排、节能组合操作面板或 App 按键说明面板）时，灰底、白色说明区、圆角边框和徽标属于要保留的
+原稿版式，不能套用独立图标的去底规则。按完整面板裁取并核对四边，绑定对应
+语言、页码及哈希；图内已有文字不再生成一排重复标题，同时保留检索/读屏文本。
+面板顶部的灰底说明区、灰色外框及引线与操作文字的相对位置一并保留，不能拆到
+图下重排，也不能额外叠加第二个时钟或边框。
+是否采用成品面板由目标明确声明，不能以此把正文、表格或普通图默认转成截图。
+普通 `base-art-live-copy` 不属于上述成品面板例外。图中独立承载说明文字的白色/灰色胶囊、气泡或提示框仍按「新录入网页的图文分工」去除，由共享 CSS 绘制；不能把“保留面板背景”理解为保留空文字框。验收同时看裸底图和桌面/窄屏页面，IR 组件计数不能证明图片中没有空框。
+
+后续获取或复用底图时，**禁止保留独立空白文字框**，包括白/灰说明框、胶囊和气泡；统一用共享 CSS 绘制。先验收裸底图，再验收文字叠加页面。旧错图保留路径/哈希用于追溯，但在既有取图决策中标记 `superseded-do-not-reuse`，不能再次选作主资产。产品白色表面、截图 UI 和完整面板背景按角色保留，禁止按颜色批量删除。
+
+新冻结 Web 候选的封装入口运行 `tools/web/caption_frame_admission.py`：从实际 ReferenceFigure ComponentSpec 读取 CSS 填充文字框坐标及底图哈希，检查该区域的真实像素，拦截仍占据文字框内部的同色不透明填充（占比 ≥85%）。门禁只针对与面板底色有对比的已声明填充框，不是任意图片识别；同色框、仅轮廓框及未声明区域仍需裸图视觉核验。历史冻结版本回放不追溯改写。
+
+无字底图加原生标签的 App 控制面板同样保留灰底和完整引线；是否含文字与是否
+保留面板背景是两个独立决定。App 截图须保留手机四边、圆角、顶部状态栏和底部
+界面，不得只按内部内容收紧裁切。原图已含步骤编号时，不再叠加第二套编号。
+
+只有共用素材确实缺失，或目标型号／地区的图形存在明确差异时，才进入 PDF/AI
+提取流程，并记录差异依据、来源和哈希。新增通用图标应回到共用资产路径维护，
+不另建每语言私有图标集。不能以这个规则跨型号复用接口、插座或整机外观不同的接线图。
+
+未声明成品面板的普通操作图、接线图采用无字底图加网页原生标题、步骤和说明；产品丝印、屏幕内容
+和 App 截图保留。表格必须保留原生单元格，不能用整图代替。正面、侧面等密集引线
+标注图可保留完整标注，图中已有文字不再追加可见的重复说明或折叠文字栏。
+
+交付前须核对复用文件哈希、背景策略和完整四边，并在桌面/手机网页中检查实际加载
+的素材、标签与引线、重复文字和溢出。新提取图还须对照原稿检查上下左右是否漏裁
+或带入邻图；不能把构建通过或只看缩略图当作视觉验收。保留既有语言与已修复图的
+对照证据，发现同类问题先检查共用绑定，再修改共享来源，避免按语言反复裁图。
 
 ### 10.8 符号页两表（`HB-TABLE-SYMBOL-SIGNAL` / `-ICON`）
 
@@ -1126,6 +1321,8 @@ IDML 的可见 LCD 圆角外壳高度必须等于表格行高之和，最后一�
 ```
 
 改这类页 = 同时改两个分支；只改一个分支就是 Web/印刷分叉。批量转换存量文档遇到安全类内容时，用 `` ```{callout} WARNING `` 承载文案即可，不要手抄 `hb-safety` 结构（那是 §3.2 的流水线专属语义）。
+
+FridgeGuard 的 EN/FR/ES 安全页沿用现有 `hb-symbol-signal-composition`，用 `hb-safety-instruction` / `hb-safety-lead` 显式声明风险提示与首段警告的 Web 版式。风险提示表必须放在受保护的 figure 内，避免 Pandoc/MyST 将它转为带空表头的普通表格；三角图标复用共用深色/白色 SVG，并声明尺寸。共用样式由 [`web_symbols_fcc_components.css`](web_symbols_fcc_components.css) 维护，保留深色图标整格、加粗原文、紧凑双栏与深色操作标题条。双栏外侧不加 `border-spacing`，只由两格内侧 padding 保留栏距，使标题、风险提示与警告框左边缘对齐。640px 以下，外表、tbody、tr 与两格均转为全宽单栏；风险图标列保留固定宽度。其他语言继承这些声明、结构与图标，仅使用其原稿文案。纯 Web 排版修复不改印刷分支的原文或语义。
 
 ---
 
@@ -1263,3 +1460,138 @@ plain-Markdown 的三处实现缺口已经关闭：单元格支持确定性的 `
 
 仓库内新链接、代码注释和测试应直接指向本文。`STYLE_DEBT.md` 是旧快照，不再作为
 当前文档提交；未完成项直接维护在 `manual_style.yaml`，执行证据放历史状态文档。
+
+### Authored text references (`HB-TABLE-REFERENCE`)
+
+The shared Web component preserves source-authored text tables that do not have
+per-row icon assets. RST declares `hb-source-lcd-legend` (number/name/description),
+`hb-source-lcd-actions` (mode/action/result), `hb-source-lcd-actions-compact`
+(function/description), `hb-source-lcd-descriptions` (headerless name/description),
+or `hb-source-symbol-meanings` (two headerless columns).
+CSV pages opt into the text-only LCD variant through the shared
+`lcd_descriptions_template.rst`; actual icon rows are rejected, and other
+LCD templates retain their existing contracts.
+The source adapter preserves ordered rich-text cells and deliberately blank
+callout numbers. It rejects conflicting declarations, unexpected columns,
+headers, spans, nested tables and image cells. It never infers meaning from a
+localized heading or adds replacement icon assets.
+
+ComponentSpec owns the variant, accessible label, headers and rows. The Web
+renderer owns `.hb-reference-composition` / `.hb-reference-table`; dark header,
+paper, border and radius use the common manual CSS tokens. LCD artwork remains
+an independently governed source image. LaTeX/IDML/Word adapters expose semantic
+projections only; this addition does not claim new layout parity for those
+renderers. The existing `HB-TABLE-LCD-ICON/icon-catalog` still requires one
+approved icon per row.
+
+`hb-source-specification` declares a headerless label/value table immediately
+after its authored H2; it reuses `HB-TABLE-SPEC`. `hb-source-signals` reuses
+`HB-TABLE-SYMBOL-SIGNAL`, and `hb-troubleshooting-table` reuses the existing
+troubleshooting component. These declarations belong in source RST, not
+hand-edited generated HTML. The CSV assembly plan also passes the semantic
+`symbols` page role even when a slot renames the generated filename.
+
+### Source-authored LCD and panel boundaries
+
+A declared `hb-lcd-icon-table` may occur more than once in a page. The
+`lcd-unnumbered` declaration maps a true three-column icon/name/description
+source to `HB-TABLE-LCD-ICON/icon-catalog-unnumbered`; numbered sources retain
+four columns and circles. Neither variant fabricates a header row.
+
+The `web_source_panels.css` source containers preserve PDF grouping around
+registered components: `hb-device-actions` pairs device art with an authored
+function table, `hb-source-operation` groups illustration and source copy,
+`hb-source-warranty` keeps a caption on the card border, and
+`hb-source-purchase` / `hb-source-safety-heading` keep original icon/text strips.
+Only these explicit boundaries bypass Pandoc flattening; ordinary paragraphs
+continue through normal Markdown conversion. Narrow displays stack device art
+above its function table without adding manual text. Both function-table column
+headers retain bold type across languages; normal first-column weight applies
+only to body cells. Function and description cells are vertically centered
+within each row, including when localized text wraps across multiple lines.
+
+Authored `hb-step-pair` containers pair a native `hb-step-copy` rubric number
+with exactly one complete figure: two columns on desktop and copy followed by
+art on narrow displays. Within each copy block, the circular number occupies
+a fixed first column and prose starts on its right; continuation paragraphs
+remain in the prose column. Copy and artwork align at their top edges. This uses the existing protected `hb-source-operation`
+boundary; it does not require an operation-footer transform. `hb-source-note`
+retains a gray notice, and `hb-source-power` retains the source's grouped power
+instructions. A rubric within `hb-source-safety-heading` keeps the source signal
+below the common icon without triggering a second warning-card transform.
+
+Within `hb-source-status`, the native roles `hb-lamp-green`, `hb-lamp-red`,
+`hb-lamp-blinking`, and `hb-lamp-off` add simple lamp shapes alongside editable
+color text. Blinking has a static halo. The four-column status table scrolls
+inside its own container on narrow screens. `hb-source-period-table` retains
+a two-column period badge/prose composition on desktop and stacks on mobile.
+The explicit `hb-source-warranty-note` marker on the protected introductory
+notice scopes its containing chapter to compact source prose and title-case H2s
+without decorative dots. The period badge uses a white numeral inside a dark
+circle on white, followed by the unit and a bold subtitle. This declaration is
+independent of product IDs, chapter IDs and localized heading wording.
+Authored `hb-inbox-marker` labels replace numeric decoration; an optional
+`hb-inbox-primary` source role puts the main item on its own row. Subsequent
+items use four desktop columns and two mobile columns, retaining source order.
+These opt-in compositions live in `web_source_panels.css`; ordinary inboxes
+and warranty transformations retain their existing shared components.
+
+When the operator requests preservation of original panel backgrounds, retain
+the complete source panel (including gray shapes and rounded edges). The
+standalone-device crop and the complete illustration panel are different
+presentation assets. Avoid duplicate live captions when the original panel
+already contains them.
+
+
+Within `hb-source-signals`, the source may explicitly mark a label using the
+RST roles `hb-signal-warning`, `hb-signal-danger`, `hb-signal-caution`,
+`hb-signal-note`, or `hb-signal-tip`. This binds icon presence to authored
+semantics while retaining the exact localized label. At most one such role
+may occur in a label cell; conflicting roles are rejected. Unmarked legacy
+labels keep the existing language-data lookup behavior.
+
+### 原稿标题型号与完整警告框
+
+原稿标题条右侧带型号时，在同一个可导航 H1 中声明 `hb-heading-title` 与
+`hb-heading-model`，保留 `Model:` 原文；共享 `web_source_panels.css` 负责字号、
+右对齐和窄屏换行。不要把型号移到标题下方段落，也不要把用于区分章节的内部名称
+附加到原稿标题文字。
+
+原稿为整行白底、深色描边的图标警告框时，在现有 `HB-CALLOUT-STRIP/warning`
+载体上声明 `hb-source-warning-lockup`；label 中使用 `hb-warning-lockup` 绑定现有
+共用 SVG 和原语种信号词，body 的原稿加粗使用语义 strong。共享样式处理描边、
+列宽及手机堆叠，不增设型号专属告警适配器。普通接线图内标签继续使用现有
+ReferenceFigure `base-art-live-copy` 源坐标，全部说明（含图内脚注）放在图内对应位置。
+
+### 可编辑 PACKAGE LIST 分组
+
+原稿将多个配件放在一个外框内时，可用共享 `hb-package-panel` / `hb-package-grid` 保持分组和原稿顺序；四列或 `hb-package-grid--five` 五列在窄屏统一降为两列。每件配件使用已核对的共用无外部标签图片，名称保留为原生段落；实线/虚线完整外框及 `hb-package-sold` availability capsule 均由共享 CSS 绘制，禁止底图保留空白标签框或 capsule。说明书缩略封面可换成现有通用文档图标，以可编辑名称区分文档；省略的微型封面印刷细节必须在原稿覆盖记录中注明，不能用已停用整图的 bbox 冒充保留。固定产品铭文及实物模板印刷仍属实物图形。
+
+原稿中独立的深色圆角正文提示使用原生 `p.hb-prose-pill > strong`；共享样式使用品牌深色底、白色粗体、内容宽度及可换行胶囊。它仍是正文，不升级为标题或更改警告级别。引导短语使用原生 `strong`，其后的正文维持普通字重。
+
+原稿图内的说明文字应绑定 `HB-SPECIAL-REFERENCE-FIGURE/base-art-live-copy` 的原稿坐标，不另放图外重复段落。完整底图使用 `preserve_frame`；需要手机可读字号时，`hb-reference-contained-copy` 容器让共用组件的默认手机排版仍处于同一原稿色调的圆角图框内，图片保持原字节和完整边缘。桌面坐标布局不受影响。
+
+
+### JA-AD600A EU 共用底图复核
+
+操作者要求图内需要翻译的说明与底图分离；尺寸、单位、固定铭刻和对应编号可保留。
+英文当前通过既有 ReferenceFigure 接入五张共用底图，共 26 个原生说明标签；
+九语均复用同一图形，各语文字仍应来自各语原稿。本地预览不提供点击编辑功能。
+
+| 图示 | 已检查候选与决定 | 原稿及底图策略 |
+|---|---|---|
+| 产品概览 | 既有 `product_overview.png` 留有英文；同型号其他语言及 shared/template 无匹配无字图，新增共用 PDF/PNG | 当前 AI 实际第 5 页；去除六处说明，保留铭刻、产品轮廓及全部虚线引线 |
+| 安装总图 | 既有 `installation_diagram.png` 留有英文；无匹配共用裸图，新增共用 PDF/PNG | 当前 AI 实际第 9 页；去除八处说明及独立脚注底框，保留灰色放大面板、车辆、线缆和 A–F 编号；脚注框由 CSS 绘制 |
+| 保险丝、ACC 接线、端口连接 | 复用本轮已核实的 `ja_ad600a_eu_shared` 底图，不重新提取 | 现有底图哈希不变，十二处原生标签独立于图形 |
+
+新增两图的原稿 SHA-256、四个输出哈希及删除区域锁定在
+[`manual_ja_ad600a_eu_overview_bases.json`](../../../data/asset_recipes/manual_ja_ad600a_eu_overview_bases.json)，
+对应标签坐标和必需槽位锁定在 `ja-ad600a-eu-v1` target overlay。
+旧图及原始 recipe 保留追溯，本轮未写入资产注册表或线上业务表。
+
+
+短版 FCC 的标题/正文/标志排版由共享 `web_fcc_statement.css` 承载，接入既有样式组装列表；完整 FCC 样式保持原模块，不提高维护性行数上限。
+
+### Native preface heading and prose
+
+Source-authored PDF prefaces use `h1.hb-preface-heading` with `.hb-preface-region` and `.hb-preface-prose` (shared rules in `web_source_panels.css`). The heading has a transparent background with the native region/language badge; prose uses compact 1.45 line height and 0.45rem paragraph margins. Keep the native title/region text and keep ordinary chapter H1 bars unchanged. This treatment is explicitly opt-in through authored classes, not a target/model selector.

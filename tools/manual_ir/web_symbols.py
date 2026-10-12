@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any, cast
 
 from bs4 import BeautifulSoup, Tag
 
@@ -12,7 +13,9 @@ from tools.manual_ir.web_source import make_web_source
 from tools.utils.path_utils import get_paths
 
 
-def decode_signal_table(soup: BeautifulSoup, *, source_path: Path, expected_body_rows: int):
+def decode_signal_table(
+    soup: BeautifulSoup, *, source_path: Path, expected_body_rows: int
+) -> tuple[dict[str, Any], Tag, list[Tag], list[Tag]]:
     """Select the original governed table and validate all labels before rendering."""
     error_type = ValueError
     if isinstance(expected_body_rows, bool) or not isinstance(expected_body_rows, int) or expected_body_rows < 1:
@@ -54,13 +57,13 @@ def decode_signal_table(soup: BeautifulSoup, *, source_path: Path, expected_body
         )
 
     table, headers, body_rows = candidates[0]
-    rows = [*table.select("thead > tr"), *body_rows]
-    if (table.find("table") or len(table.find_all("tr")) != len(rows)
+    table_rows = [*table.select("thead > tr"), *body_rows]
+    if (table.find("table") or len(table.find_all("tr")) != len(table_rows)
             or len(table.find_all("thead", recursive=False)) != 1
             or len(table.find_all("tbody", recursive=False)) != 1
             or table.find("tfoot")
-            or any(len(row.find_all(["th", "td"], recursive=False)) != 2 for row in rows)
-            or any(str(cell.get(attr, "1")) != "1" for row in rows
+            or any(len(row.find_all(["th", "td"], recursive=False)) != 2 for row in table_rows)
+            or any(str(cell.get(attr, "1")) != "1" for row in table_rows
                    for cell in row.find_all(["th", "td"], recursive=False)
                    for attr in ("rowspan", "colspan"))):
         raise ValueError(f"{source_path}: signal table requires complete unspanned two-cell rows")
@@ -110,7 +113,10 @@ def load_web_signal_source(
     )
 
 
-def _symbol_source(html, *, payload, source_path, language, model, region, kind, projection, shape):
+def _symbol_source(
+    html: str, *, payload: dict[str, Any], source_path: Path, language: str | None,
+    model: str | None, region: str | None, kind: str, projection: str, shape: dict[str, Any],
+) -> ManualSource:
     contracts = get_paths().renderer_contracts_dir
     return make_web_source(
         html, source_path=source_path, blocks=((kind, payload),),
@@ -123,7 +129,7 @@ def _symbol_source(html, *, payload, source_path, language, model, region, kind,
     )
 
 
-def _symbol_ir_payload(ir: ManualIR, *, projection: str, kind: str):
+def _symbol_ir_payload(ir: ManualIR, *, projection: str, kind: str) -> dict[str, Any]:
     issues = validate_manual_ir(ir, require_zero_skipped_raw=True)
     if issues:
         raise ManualIRValidationError(ir.source, issues)
@@ -138,18 +144,20 @@ def _symbol_ir_payload(ir: ManualIR, *, projection: str, kind: str):
     return payload
 
 
-def decode_signal_ir(ir: ManualIR):
+def decode_signal_ir(ir: ManualIR) -> tuple[BeautifulSoup, Tag, list[Tag], list[Tag], Any]:
     payload = _symbol_ir_payload(ir, projection="web-symbol-signals", kind="web_signal_table")
     soup = BeautifulSoup(payload["table_html"], "html.parser")
     decoded, table, headers, rows = decode_signal_table(
-        soup, source_path=Path(ir.pages[0].source_ref), expected_body_rows=payload.get("expected_body_rows"),
+        soup, source_path=Path(ir.pages[0].source_ref), expected_body_rows=cast(int, payload.get("expected_body_rows")),
     )
     if decoded != payload:
         raise ValueError(f"{ir.pages[0].source_ref}: signal semantics/assets do not match retained markup")
     return soup, table, headers, rows, payload["labels"]
 
 
-def decode_pair_table(soup: BeautifulSoup, *, source_path: Path):
+def decode_pair_table(
+    soup: BeautifulSoup, *, source_path: Path
+) -> tuple[dict[str, Any], Tag, list[Tag], list[list[Tag]]]:
     """Decode two ordered symbol panels with target-independent row counts."""
     candidates: list[tuple[Tag, list[list[Tag]]]] = []
     for table in soup.find_all("table"):
@@ -223,7 +231,7 @@ def load_web_pair_source(
     )
 
 
-def decode_pair_ir(ir: ManualIR):
+def decode_pair_ir(ir: ManualIR) -> tuple[BeautifulSoup, Tag, list[Tag], list[list[Tag]]]:
     payload = _symbol_ir_payload(ir, projection="web-symbol-pairs", kind="web_symbol_pairs")
     soup = BeautifulSoup(payload["table_html"], "html.parser")
     decoded, table, header, rows = decode_pair_table(soup, source_path=Path(ir.pages[0].source_ref))

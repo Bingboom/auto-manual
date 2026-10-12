@@ -1,0 +1,8 @@
+{
+  "source_commit": "a08d816979a0036607db43a37a2a6954f6f7dced",
+  "technical_version": "git-20261005-31fd0692-ups120style1",
+  "baseline_ref": "83cc003714a81a6d8fa1e89b9b38829b76ed598e",
+  "baseline_files_byte_identical": 5609,
+  "candidate_targets": 106,
+  "scope": "local-only"
+}

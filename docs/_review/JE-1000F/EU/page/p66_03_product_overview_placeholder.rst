@@ -30,7 +30,7 @@
    --------------
 
    .. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
-      :alt: Segnaposto diagramma vista frontale.
+      :alt: Diagramma vista frontale.
       :width: 420px
 
    .. list-table::
@@ -72,7 +72,7 @@
    -----------------
 
    .. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
-      :alt: Segnaposto diagramma vista lato destro.
+      :alt: Diagramma vista lato destro.
       :width: 420px
 
    .. list-table::

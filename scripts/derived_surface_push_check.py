@@ -40,7 +40,7 @@ def _run_git(repo_root: Path, *args: str) -> str | None:
             timeout=30,
             check=False,
         )
-    except Exception:
+    except (OSError, subprocess.SubprocessError):
         return None
     if completed.returncode != 0:
         return None
@@ -123,7 +123,7 @@ def main(argv: list[str] | None = None) -> int:
         message = check_push(
             sys.stdin.read().splitlines(), Path(args.repo_root), args.base_branch
         )
-    except Exception:
+    except Exception:  # noqa: BLE001 - advisory hook must never break a push
         return 0  # advisory: never break a push
     if message:
         print(message, file=sys.stderr)

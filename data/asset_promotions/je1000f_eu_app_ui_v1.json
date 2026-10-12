@@ -1,0 +1,135 @@
+{
+  "schema_version": "reviewed-asset-promotion/v1",
+  "promotion_id": "je1000f-eu-app-ui-v1",
+  "decision": {
+    "reviewer": "唐夏冰",
+    "decided_at": "2026-09-24T06:18:00-07:00",
+    "outcome": "approved"
+  },
+  "scope": {
+    "models": [
+      "JE-1000F"
+    ],
+    "regions": [
+      "EU"
+    ],
+    "languages": [
+      "en",
+      "fr",
+      "es",
+      "de",
+      "it",
+      "uk"
+    ]
+  },
+  "bindings": {
+    "source": {
+      "name": "Jackery Explorer 1000 User Manual (JE-1000F) V2.0 EU-UK-2026-06-18.pdf",
+      "sha256": "0b4424aff74b3feee08208b1fc0e1d3dde0d2400315ccb72475f6cb2b4d11cfe"
+    },
+    "frozen_reference": {
+      "name": "Jackery Explorer 1000 User Manual (JE-1000F) V2.0 EU-UK-2026-06-18.pdf",
+      "sha256": "0b4424aff74b3feee08208b1fc0e1d3dde0d2400315ccb72475f6cb2b4d11cfe"
+    },
+    "recipe": {
+      "path": "data/asset_recipes/manual_je1000f_eu_app_ui.json",
+      "sha256": "feac8187a82c298db2a297bf8469a9814fbc0b758ccf4d34a6642852c3adcd47"
+    },
+    "evidence": {
+      "path": "data/asset_evidence/app_ui_candidates_je1000f_eu.json",
+      "sha256": "f3431b131848856c997bbcb79c61d5dd7556d81d1b6c1cbf8d2ca2b2cb5645a6"
+    }
+  },
+  "candidate_asset_key_whitelist": [
+    "app/je1000f_eu/english_ui/add_device_screens",
+    "app/je1000f_eu/english_ui/connect_result_screens"
+  ],
+  "promoted_asset_key_whitelist": [
+    "app/je1000f_eu/add_device",
+    "app/je1000f_eu/connect_result"
+  ],
+  "candidate_assets": [
+    {
+      "asset_key": "app/je1000f_eu/english_ui/add_device_screens",
+      "path": "data/asset_evidence/app_ui/je1000f_eu/pdf-p21-add-device.png",
+      "sha256": "02f840f1341d94d08478c84ea4ae88280ef2806d618484596885efbe4debafe0",
+      "dimensions_px": [
+        706,
+        618
+      ]
+    },
+    {
+      "asset_key": "app/je1000f_eu/english_ui/connect_result_screens",
+      "path": "data/asset_evidence/app_ui/je1000f_eu/pdf-p22-connect-result.png",
+      "sha256": "23cde742b3012b96fce07f9efe3475ee2e75230f2b2d39311291a33d4cf51f69",
+      "dimensions_px": [
+        1072,
+        606
+      ]
+    }
+  ],
+  "promoted_outputs": [
+    {
+      "asset_key": "app/je1000f_eu/add_device",
+      "path": "docs/templates/word_template/common_assets/app/je1000f_eu/add_device_je1000f_eu.png",
+      "sha256": "02f840f1341d94d08478c84ea4ae88280ef2806d618484596885efbe4debafe0",
+      "dimensions_px": [
+        706,
+        618
+      ],
+      "composition": {
+        "canvas_px": [
+          706,
+          618
+        ],
+        "background": "#FFFFFF",
+        "placements": [
+          {
+            "candidate_asset_key": "app/je1000f_eu/english_ui/add_device_screens",
+            "xy_px": [
+              0,
+              0
+            ],
+            "source_rect_px": [
+              0,
+              0,
+              706,
+              618
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "asset_key": "app/je1000f_eu/connect_result",
+      "path": "docs/templates/word_template/common_assets/app/je1000f_eu/connect_result_je1000f_eu.png",
+      "sha256": "23cde742b3012b96fce07f9efe3475ee2e75230f2b2d39311291a33d4cf51f69",
+      "dimensions_px": [
+        1072,
+        606
+      ],
+      "composition": {
+        "canvas_px": [
+          1072,
+          606
+        ],
+        "background": "#FFFFFF",
+        "placements": [
+          {
+            "candidate_asset_key": "app/je1000f_eu/english_ui/connect_result_screens",
+            "xy_px": [
+              0,
+              0
+            ],
+            "source_rect_px": [
+              0,
+              0,
+              1072,
+              606
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

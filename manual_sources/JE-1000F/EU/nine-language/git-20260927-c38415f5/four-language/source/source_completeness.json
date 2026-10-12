@@ -1,0 +1,585 @@
+{
+  "schema_version": "je1000f-eu-four-locale-source-completeness/v1",
+  "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+  "scope": "new locales only: uk,pt,nl,pl",
+  "method": "Direct text objects from exact AI PDF-compatible layer; no OCR, no translation. Visual source review of safety, storage/faults, specifications, symbol pages and 84 image crops.",
+  "summary": "All 68 target body pages contain selectable source text. Safety bullets, storage, fault actions F0-F9/FE, specifications, symbol meaning rows and LCD 1-25 have structured extracts. Other page flow from visual-order blocks still needs Web semantic assembly and browser review.",
+  "limits": "This is not a character-by-character visual audit of every line or a publication acceptance. Source editorial defects must be resolved separately; app screenshot UI is English in source. Illustrator re-export changes electrical symbol ⎓ to a control character; source AI text is preferred.",
+  "artifacts": {
+    "front_back": "source/front_back_source.json",
+    "symbols": "source/symbols.json",
+    "lcd": "source/lcd_indicators.json",
+    "figure_qa": "source/figure_qa.json",
+    "locale_direct_source_pattern": "source/{locale}_direct_source.json",
+    "locale_figure_manifest_pattern": "source/{locale}_figure_manifest.json"
+  },
+  "locales": {
+    "uk": {
+      "physical_pages": [
+        93,
+        109
+      ],
+      "direct_text_characters": 29704,
+      "nonempty_pages": 17,
+      "page_records": [
+        {
+          "physical_page": 93,
+          "character_count": 2363,
+          "block_count": 23,
+          "sha256": "ee0e0a0b073d89aeff91bd5a72390e99cee236ed404792af0c765cbde6bca08e",
+          "nonempty": true
+        },
+        {
+          "physical_page": 94,
+          "character_count": 1103,
+          "block_count": 19,
+          "sha256": "6ccfca4d619c80b85b8baf54196b43f87b7dc28acefe828bb5f393035d8acdab",
+          "nonempty": true
+        },
+        {
+          "physical_page": 95,
+          "character_count": 804,
+          "block_count": 28,
+          "sha256": "82d128997433d6a0e98331281520c648a229bc5642413eb52d604c4abe5170d8",
+          "nonempty": true
+        },
+        {
+          "physical_page": 96,
+          "character_count": 2411,
+          "block_count": 30,
+          "sha256": "04f5dcab5310465eec7d57bcf6feee6d449ed279296362fea34653f5792becae",
+          "nonempty": true
+        },
+        {
+          "physical_page": 97,
+          "character_count": 3029,
+          "block_count": 57,
+          "sha256": "71cd23c8ebdb23cb7cf38bd76098d4a3171d34461c5599803ef4cc1d9df1994f",
+          "nonempty": true
+        },
+        {
+          "physical_page": 98,
+          "character_count": 597,
+          "block_count": 16,
+          "sha256": "54ce2c1c863d7b726148fcd3621cb3e17159c0a739a017a22082b1fe8b35f916",
+          "nonempty": true
+        },
+        {
+          "physical_page": 99,
+          "character_count": 2431,
+          "block_count": 15,
+          "sha256": "0a7752beb58c98a59abc18b839f92205c556087eed2f699cdcab5d930d9939e2",
+          "nonempty": true
+        },
+        {
+          "physical_page": 100,
+          "character_count": 1110,
+          "block_count": 31,
+          "sha256": "21af821bf17eef3d24e4f5d466721af318d4128fa274808ee479abea85a63226",
+          "nonempty": true
+        },
+        {
+          "physical_page": 101,
+          "character_count": 1923,
+          "block_count": 30,
+          "sha256": "bc32dfdc7795d44146611548045c4d580c90389c9466443647c84e0cee7306fd",
+          "nonempty": true
+        },
+        {
+          "physical_page": 102,
+          "character_count": 1913,
+          "block_count": 10,
+          "sha256": "1339524c0ec5bd3486cca42ad1d4014dae1c52c307421bd1370ee24638cb087e",
+          "nonempty": true
+        },
+        {
+          "physical_page": 103,
+          "character_count": 1306,
+          "block_count": 9,
+          "sha256": "9e2985bf325ca46e5b46fbc04f5201f94093a80de362128f12ed6433bcba8d03",
+          "nonempty": true
+        },
+        {
+          "physical_page": 104,
+          "character_count": 1283,
+          "block_count": 10,
+          "sha256": "079368b43f6d8d7a36661f886d6cca8c8918786e51d0b2e6987e0097d8f8d654",
+          "nonempty": true
+        },
+        {
+          "physical_page": 105,
+          "character_count": 2834,
+          "block_count": 35,
+          "sha256": "1b8fe1658edf79b2cd5f53f92ac1181b2bb557528cba0677c73fb936c55219ff",
+          "nonempty": true
+        },
+        {
+          "physical_page": 106,
+          "character_count": 1322,
+          "block_count": 38,
+          "sha256": "d0c2ce59d0398d61b7bcf32e1e6c497e3100d32bf04a8e93d5f459860467c44d",
+          "nonempty": true
+        },
+        {
+          "physical_page": 107,
+          "character_count": 2588,
+          "block_count": 18,
+          "sha256": "12a4c8322d40f68317ca7ebb609a488527557ac2c05a09991b5d21fe76c142dd",
+          "nonempty": true
+        },
+        {
+          "physical_page": 108,
+          "character_count": 770,
+          "block_count": 14,
+          "sha256": "f91a83f6058dff8acd053a5d11279b4eb8fcc5bb1d10744f2c3a0b0e0a85738d",
+          "nonempty": true
+        },
+        {
+          "physical_page": 109,
+          "character_count": 1917,
+          "block_count": 20,
+          "sha256": "32c7ab58066123a2c25057e1ffe984c246c1e0fbda099e26a31325c1d685e760",
+          "nonempty": true
+        }
+      ],
+      "semantic_tables": {
+        "symbols_first_page": 4,
+        "pictograms_second_page": 7,
+        "lcd_rows": 26,
+        "fault_codes": 11,
+        "specification_rows": 17
+      },
+      "figure_crops": 21,
+      "individual_pictogram_icons": 7
+    },
+    "pt": {
+      "physical_pages": [
+        110,
+        126
+      ],
+      "direct_text_characters": 29998,
+      "nonempty_pages": 17,
+      "page_records": [
+        {
+          "physical_page": 110,
+          "character_count": 2267,
+          "block_count": 22,
+          "sha256": "d36f1f8830c2a9d26db81ebf0be8df63aa9375510be461bf45519260c49a854a",
+          "nonempty": true
+        },
+        {
+          "physical_page": 111,
+          "character_count": 1109,
+          "block_count": 18,
+          "sha256": "1d0948709bf95b580a72d5a8d73a6b68db1209089464d847f54915376a344f62",
+          "nonempty": true
+        },
+        {
+          "physical_page": 112,
+          "character_count": 683,
+          "block_count": 27,
+          "sha256": "ed41e54d2a163138ea046bcd7d9d5c18ca3b614b7465472e1eb56e608d8ed5fc",
+          "nonempty": true
+        },
+        {
+          "physical_page": 113,
+          "character_count": 2613,
+          "block_count": 30,
+          "sha256": "716d25fc124af74de08e2b01ac9bed03ec2d0276f750c243584f23f4b9542fcf",
+          "nonempty": true
+        },
+        {
+          "physical_page": 114,
+          "character_count": 2974,
+          "block_count": 56,
+          "sha256": "9212862327b5da41998cc941772ef3e64e159a833f40b21b69e5c5bf2576ac4b",
+          "nonempty": true
+        },
+        {
+          "physical_page": 115,
+          "character_count": 631,
+          "block_count": 16,
+          "sha256": "9f7fa3ca53dbfd3536e6e85bb39534e42cdc8ff312eb1cfc405807995e132e4f",
+          "nonempty": true
+        },
+        {
+          "physical_page": 116,
+          "character_count": 2569,
+          "block_count": 15,
+          "sha256": "90a69094b41a7d92062d361660bef2beb827ebed0a6dd84391bbd90ca5621ac9",
+          "nonempty": true
+        },
+        {
+          "physical_page": 117,
+          "character_count": 1137,
+          "block_count": 31,
+          "sha256": "799094b199104d5fdce2fc457417d7a67d282e37059a56afb044eb2de1870ce0",
+          "nonempty": true
+        },
+        {
+          "physical_page": 118,
+          "character_count": 1902,
+          "block_count": 30,
+          "sha256": "1ce27c295db282f46dc424c8fcf2d5304131b80be7b327162cadeea4c8a6b3ef",
+          "nonempty": true
+        },
+        {
+          "physical_page": 119,
+          "character_count": 2036,
+          "block_count": 10,
+          "sha256": "87a02c25844fe8a3bf55f3630cca8aea5149478fd8e61b8423404e0adeb14784",
+          "nonempty": true
+        },
+        {
+          "physical_page": 120,
+          "character_count": 1372,
+          "block_count": 11,
+          "sha256": "d7cf3f46ccfb53d4875cd79d2a8950232ec6df9020bd10e4038a020e03aa61e1",
+          "nonempty": true
+        },
+        {
+          "physical_page": 121,
+          "character_count": 1229,
+          "block_count": 11,
+          "sha256": "d366cafe1a91a97f3a45dcbb00250593eee5e97eb4e10c5fbe43fd7d95d48fab",
+          "nonempty": true
+        },
+        {
+          "physical_page": 122,
+          "character_count": 2591,
+          "block_count": 28,
+          "sha256": "6983afe5935a2693b0685a88ca1e0ef37f5e73bffe68094eb73d4566c5590779",
+          "nonempty": true
+        },
+        {
+          "physical_page": 123,
+          "character_count": 1180,
+          "block_count": 38,
+          "sha256": "b3e06403a663d111b9070e27deab62fc7adaea890a61e8984dff4e3e42e981d1",
+          "nonempty": true
+        },
+        {
+          "physical_page": 124,
+          "character_count": 2728,
+          "block_count": 19,
+          "sha256": "0148f4a828d558fdd07930a3174b47c9e303f1934be68934ccef04fc437e6d1d",
+          "nonempty": true
+        },
+        {
+          "physical_page": 125,
+          "character_count": 868,
+          "block_count": 12,
+          "sha256": "1a7781cee3abd6e7a6d6d821e891d535009e673f780f2ba5230112cab359c55a",
+          "nonempty": true
+        },
+        {
+          "physical_page": 126,
+          "character_count": 2109,
+          "block_count": 20,
+          "sha256": "69e777439e344e3fc67eb0c432f484b64781d68fb5f5793dcafdf980ed04e91e",
+          "nonempty": true
+        }
+      ],
+      "semantic_tables": {
+        "symbols_first_page": 4,
+        "pictograms_second_page": 7,
+        "lcd_rows": 26,
+        "fault_codes": 11,
+        "specification_rows": 17
+      },
+      "figure_crops": 21,
+      "individual_pictogram_icons": 7
+    },
+    "nl": {
+      "physical_pages": [
+        127,
+        143
+      ],
+      "direct_text_characters": 30094,
+      "nonempty_pages": 17,
+      "page_records": [
+        {
+          "physical_page": 127,
+          "character_count": 2441,
+          "block_count": 22,
+          "sha256": "0bae36213e174a7327bf105b2d9974fd7ff4ac8280f85dd9fef564a10ba93d18",
+          "nonempty": true
+        },
+        {
+          "physical_page": 128,
+          "character_count": 1139,
+          "block_count": 17,
+          "sha256": "c9ce8425dcc342b765b211a4118c536d9f789e326c390f530d583ad758168bab",
+          "nonempty": true
+        },
+        {
+          "physical_page": 129,
+          "character_count": 680,
+          "block_count": 27,
+          "sha256": "52ad142401b4222a01962983fdd25bac71950976dda0c931d5d820d5af61958b",
+          "nonempty": true
+        },
+        {
+          "physical_page": 130,
+          "character_count": 2621,
+          "block_count": 30,
+          "sha256": "c1a72084b0d0df8fab9bb1498b7a287f90f32138034a6d918810b7a54c8136d4",
+          "nonempty": true
+        },
+        {
+          "physical_page": 131,
+          "character_count": 2929,
+          "block_count": 57,
+          "sha256": "a1c4694b2a4c03fb561cd83cac73a93b8af2c91859d123cea57d9abb95734a09",
+          "nonempty": true
+        },
+        {
+          "physical_page": 132,
+          "character_count": 607,
+          "block_count": 16,
+          "sha256": "b145c7e48769fc8b1e5fce84e205544b9155c02876843eaa000ddec366943b7e",
+          "nonempty": true
+        },
+        {
+          "physical_page": 133,
+          "character_count": 2560,
+          "block_count": 15,
+          "sha256": "156516c46771fb7156f98491cd79c78c9fc752e7ff0eeca763bf0bd337b81f95",
+          "nonempty": true
+        },
+        {
+          "physical_page": 134,
+          "character_count": 1132,
+          "block_count": 31,
+          "sha256": "29882401aeccbc0ca9dbeca7bad06ab44eeb0220caa695214ba04338f524a6cc",
+          "nonempty": true
+        },
+        {
+          "physical_page": 135,
+          "character_count": 1983,
+          "block_count": 31,
+          "sha256": "460f6073d8fe015fa2893b4044c15a7bfa7fd9f2737ce074fdb58308a8794a31",
+          "nonempty": true
+        },
+        {
+          "physical_page": 136,
+          "character_count": 2070,
+          "block_count": 12,
+          "sha256": "80dd349ef5845235e944f0af3bfdf3df76f14208f55cc750fc85d1711e5522ed",
+          "nonempty": true
+        },
+        {
+          "physical_page": 137,
+          "character_count": 1249,
+          "block_count": 11,
+          "sha256": "bcb3bfbae6fcfcf9f740d82078f37ed6d8a9a16736816be1c47dc5dfee374f0c",
+          "nonempty": true
+        },
+        {
+          "physical_page": 138,
+          "character_count": 1189,
+          "block_count": 11,
+          "sha256": "a769103be99aa3c647c8ebd16ea07496bd963895551c12143fe128f0eea0fc74",
+          "nonempty": true
+        },
+        {
+          "physical_page": 139,
+          "character_count": 2698,
+          "block_count": 24,
+          "sha256": "86b7748b93675940b25e0b3ecfba32d46e9df14fe63b4ed656460bb0f5a0b11f",
+          "nonempty": true
+        },
+        {
+          "physical_page": 140,
+          "character_count": 1144,
+          "block_count": 38,
+          "sha256": "f2dc1849f187b1f0982456f2428740d9fdb66bdfa4d0e61cd9f8e3be5d6f1944",
+          "nonempty": true
+        },
+        {
+          "physical_page": 141,
+          "character_count": 2668,
+          "block_count": 19,
+          "sha256": "2e7eac70112730c9106809768b10eaebc5f2bfcaef6a6c4b819e91ff7a0b3810",
+          "nonempty": true
+        },
+        {
+          "physical_page": 142,
+          "character_count": 893,
+          "block_count": 14,
+          "sha256": "eb5ad6ece3b35ced1e6efc5223e87d46f2094bb4e16b9ca5a1fa18b0c8c92112",
+          "nonempty": true
+        },
+        {
+          "physical_page": 143,
+          "character_count": 2091,
+          "block_count": 22,
+          "sha256": "f06f1ebdcda2283cfca831fc7cb163b47288a3b88b13fe74ca3ebd4bd6030567",
+          "nonempty": true
+        }
+      ],
+      "semantic_tables": {
+        "symbols_first_page": 4,
+        "pictograms_second_page": 7,
+        "lcd_rows": 26,
+        "fault_codes": 11,
+        "specification_rows": 17
+      },
+      "figure_crops": 21,
+      "individual_pictogram_icons": 7
+    },
+    "pl": {
+      "physical_pages": [
+        144,
+        160
+      ],
+      "direct_text_characters": 30895,
+      "nonempty_pages": 17,
+      "page_records": [
+        {
+          "physical_page": 144,
+          "character_count": 2488,
+          "block_count": 23,
+          "sha256": "ac93eccbc7c4101a6df0730bab3c1dfbec60e678025e8d4341fcf25a71baacac",
+          "nonempty": true
+        },
+        {
+          "physical_page": 145,
+          "character_count": 1175,
+          "block_count": 19,
+          "sha256": "36ada1bd71b42ef650e077ad0bfe3af8a68fc2cf10944052e1da53528418c30b",
+          "nonempty": true
+        },
+        {
+          "physical_page": 146,
+          "character_count": 799,
+          "block_count": 27,
+          "sha256": "baecabedfd9f397bd9ab8d39fead49adf33daee07f50a46cad5e8f73d5637907",
+          "nonempty": true
+        },
+        {
+          "physical_page": 147,
+          "character_count": 2542,
+          "block_count": 30,
+          "sha256": "49866918797c2414b00b5239ac4a7fbd904472541462ca6f58915dbe7244d69b",
+          "nonempty": true
+        },
+        {
+          "physical_page": 148,
+          "character_count": 2936,
+          "block_count": 56,
+          "sha256": "8c132c68cbb59ac51418f6cf4829c009118f769e0032fee01ae7c6cb92cc0116",
+          "nonempty": true
+        },
+        {
+          "physical_page": 149,
+          "character_count": 595,
+          "block_count": 16,
+          "sha256": "049b27e46da85b07be170a868d2445bffa1cb9dabc9e5994c13a284429ea762d",
+          "nonempty": true
+        },
+        {
+          "physical_page": 150,
+          "character_count": 2658,
+          "block_count": 15,
+          "sha256": "57310a8ce2c5e95488cd1d6da728d4cfb2b811740ba22d430ede6ac4474ca41b",
+          "nonempty": true
+        },
+        {
+          "physical_page": 151,
+          "character_count": 1145,
+          "block_count": 32,
+          "sha256": "1ee23fceef952b2ffd9560494ccca28a90fc2fbadf2b2cc09ca78bf7a2c4bba7",
+          "nonempty": true
+        },
+        {
+          "physical_page": 152,
+          "character_count": 2104,
+          "block_count": 32,
+          "sha256": "eb5c7cf063774521da91abe45f853e2dbf40e4dd4c2d5bfbbdce0a61b79edeb8",
+          "nonempty": true
+        },
+        {
+          "physical_page": 153,
+          "character_count": 2036,
+          "block_count": 10,
+          "sha256": "ad46c279d4807b47bc40f2a7ec8cbb68cdff7d3ddd20189b2cded4fbf63eaf1f",
+          "nonempty": true
+        },
+        {
+          "physical_page": 154,
+          "character_count": 1377,
+          "block_count": 11,
+          "sha256": "88e909925e777baa23bab7df0f584d7e3cb4f488dad761440ae41876e2f9c50f",
+          "nonempty": true
+        },
+        {
+          "physical_page": 155,
+          "character_count": 1290,
+          "block_count": 10,
+          "sha256": "13f324768535526fec50552001fba0767ae0f908ee7a453c417d54d7997380bc",
+          "nonempty": true
+        },
+        {
+          "physical_page": 156,
+          "character_count": 2852,
+          "block_count": 24,
+          "sha256": "235f0d7738af5399051f92430ad6541f72a878adb2019b8c7c03a5327ce72f0e",
+          "nonempty": true
+        },
+        {
+          "physical_page": 157,
+          "character_count": 1242,
+          "block_count": 39,
+          "sha256": "97b312cdb8f1a254bc50d7b066d504bf3bc86c451f93276ece74bf51f9499053",
+          "nonempty": true
+        },
+        {
+          "physical_page": 158,
+          "character_count": 2767,
+          "block_count": 19,
+          "sha256": "ce5b5d126ce595f27929c535a7984063d0864ff7e9493ecd9c6b022c0a428699",
+          "nonempty": true
+        },
+        {
+          "physical_page": 159,
+          "character_count": 874,
+          "block_count": 12,
+          "sha256": "b0c39d77e70633354f8882cf2ce6cb7d1b198ed389fe9a2efbefd5dfcc5501a3",
+          "nonempty": true
+        },
+        {
+          "physical_page": 160,
+          "character_count": 2015,
+          "block_count": 20,
+          "sha256": "dbe521f133844ea67664faaac92832a48a1a2003aa157de95aa508aa2702cc0e",
+          "nonempty": true
+        }
+      ],
+      "semantic_tables": {
+        "symbols_first_page": 4,
+        "pictograms_second_page": 7,
+        "lcd_rows": 26,
+        "fault_codes": 11,
+        "specification_rows": 17
+      },
+      "figure_crops": 21,
+      "individual_pictogram_icons": 7
+    }
+  },
+  "known_source_issues": [
+    {
+      "locale": "uk",
+      "page": 99,
+      "issue": "Polish USB-C warning in Ukrainian section"
+    },
+    {
+      "locale": "nl",
+      "pages": [
+        135,
+        142
+      ],
+      "issue": "AC control mislabeled DC"
+    }
+  ]
+}

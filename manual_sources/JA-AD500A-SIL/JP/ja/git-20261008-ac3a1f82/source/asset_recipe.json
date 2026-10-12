@@ -1,0 +1,386 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/ja-ad500a-sil-jp-v2",
+    "expected_sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777",
+    "expected_page_count": 10
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 10
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.35,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "jp-1",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "jp-2",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "jp-3",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "jp-4",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "jp-5",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "jp-6",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "jp-7",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "jp-8",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "jp-9",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "jp-10",
+      "role": "source_artboard",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "JP source provenance"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/inbox-manual",
+      "page": 2,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            157,
+            80,
+            202,
+            146
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-manual.png",
+          "scale": 4,
+          "expected_sha256": "786c47843102633c475c02ce22d32ea089f348d91799195a648d7fca37fc90d4"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/solar",
+      "page": 4,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            22,
+            131,
+            234,
+            349
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/solar.png",
+          "scale": 4,
+          "expected_sha256": "434a3768abbb54d3f148e55fbe2475ce1a38906a18518ce96f266538e72080d8"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/car",
+      "page": 6,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            23,
+            116,
+            234,
+            286
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            162,
+            255.6,
+            227.6,
+            276
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/car.png",
+          "scale": 4,
+          "expected_sha256": "29f7b772d7e313cac5527f2d81b82b00716586375fa6bfd562556030a50319fb"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/contact-qr",
+      "page": 10,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            195,
+            309,
+            234,
+            349
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 4,
+          "expected_sha256": "aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}

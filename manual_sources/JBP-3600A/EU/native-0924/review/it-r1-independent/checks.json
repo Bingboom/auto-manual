@@ -1,0 +1,50 @@
+{
+  "package": {
+    "files": 29,
+    "mismatches": []
+  },
+  "html": {
+    "files": 58,
+    "mismatches": []
+  },
+  "evidence": {
+    "files": 22,
+    "mismatches": []
+  },
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "semantic_pages_match": true,
+  "shared_assets": {
+    "count": 18,
+    "mismatches": []
+  },
+  "independent_structure_differences": 11,
+  "copy_map_entries": 170,
+  "report_count_correction": {
+    "producer_report": 169,
+    "actual_copy_map_entries": 170,
+    "blocking_content_issue": false,
+    "requested_action": "append evidence correction without changing sealed source bytes"
+  },
+  "browser": {
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "images_decoded": 22,
+    "document_width": 390,
+    "broken_article_anchors": [],
+    "lcd_desktop_top": 63.921875,
+    "lcd_mobile_top": 96.0546875,
+    "operation_mobile_top": 96.171875,
+    "warranty_title_top": 101.4765625,
+    "warranty_title_bottom": 126.640625,
+    "warranty_body_top": 131.4375,
+    "troubleshooting_scroll_left": 286,
+    "troubleshooting_table_width": 640,
+    "troubleshooting_wrapper_width": 354
+  }
+}

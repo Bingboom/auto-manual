@@ -1,5 +1,7 @@
 # JS-200E EU English Web Intake Review
 
+Status: active
+
 ## Scope and identity
 
 - Target: `JS-200E / EU / en`

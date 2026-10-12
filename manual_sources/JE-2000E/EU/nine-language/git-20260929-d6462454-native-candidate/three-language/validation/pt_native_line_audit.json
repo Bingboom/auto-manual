@@ -1,0 +1,100 @@
+{
+  "html": "/tmp/je2000e-intake/pt-web-11-html/manual_je2000e_eu_pt.html",
+  "source": "/tmp/je2000-new-locales/HTE152-EU-9国语言-0924.ai",
+  "pages": [
+    122,
+    140
+  ],
+  "checked_long_lines": 402,
+  "potential_missing_lines": [
+    {
+      "page": 124,
+      "bbox": [
+        266.6484069824219,
+        431.96209716796875,
+        292.508544921875,
+        433.4099426269531
+      ],
+      "text": "CA 220 V-240 V 10 A máx.          Entrada CC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 132,
+      "bbox": [
+        235.39549255371094,
+        272.4612121582031,
+        245.2312469482422,
+        273.581298828125
+      ],
+      "text": "CA 220 V-240 V 10 A máx.          Entrada CC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 134,
+      "bbox": [
+        136.4315948486328,
+        247.49050903320312,
+        145.21286010742188,
+        248.610595703125
+      ],
+      "text": "CA 220 V-240 V 10 A máx.          Entrada CC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 134,
+      "bbox": [
+        179.14210510253906,
+        223.9498748779297,
+        206.148193359375,
+        226.92233276367188
+      ],
+      "text": "CA 220 V-240 V 10 A máx.          Entrada CC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 135,
+      "bbox": [
+        127.53810119628906,
+        91.151611328125,
+        136.31935119628906,
+        92.27169799804688
+      ],
+      "text": "CA 220 V-240 V 10 A máx.          Entrada CC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 135,
+      "bbox": [
+        90.97648620605469,
+        123.85881805419922,
+        119.77439880371094,
+        127.23135375976562
+      ],
+      "text": "0 V-240 V 10 A máx.          Entrada CC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 135,
+      "bbox": [
+        120.61129760742188,
+        351.669189453125,
+        130.0424041748047,
+        352.87152099609375
+      ],
+      "text": "CA 220 V-240 V 10 A máx.          Entrada CC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 135,
+      "bbox": [
+        83.05875396728516,
+        389.18499755859375,
+        115.30249786376953,
+        392.9717102050781
+      ],
+      "text": "0 V-240 V 10 A máx.          Entrada CC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    }
+  ],
+  "scope": "Triage only: excludes short or outlined text, allows hidden semantic carriers; does not prove visual parity."
+}

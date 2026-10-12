@@ -1,0 +1,4665 @@
+{
+  "schema_version": "web-language-baseline/v1",
+  "status": "candidate",
+  "revision": "en-r6",
+  "model": "JBP-3600A",
+  "region": "EU",
+  "baseline_language": "en",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "ir_content_sha256": "243bfa943c73dbaf9afdc3493181ac42d02bfe4b1e491c86d6d9de77f49e3d94",
+  "structure": {
+    "model": "JBP-3600A",
+    "region": "EU",
+    "pages": [
+      {
+        "slot": "preface",
+        "items": []
+      },
+      {
+        "slot": "toc",
+        "items": []
+      },
+      {
+        "slot": "safety",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          }
+        ]
+      },
+      {
+        "slot": "symbols",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "component",
+            "slot": "symbols#symbol-signals",
+            "component_id": "HB-TABLE-SYMBOL-SIGNAL",
+            "variant": "localized-badges",
+            "token_roles": [
+              "component.table.symbol-signal"
+            ],
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "headers",
+                "content_kind": "ordered_headers",
+                "shape": [
+                  {
+                    "content_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "content_text": null
+                  },
+                  {
+                    "content_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "content_text": null
+                  }
+                ]
+              },
+              {
+                "role": "rows",
+                "content_kind": "ordered_rows",
+                "shape": [
+                  {
+                    "label": null,
+                    "meaning_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "meaning_text": null,
+                    "show_icon": null
+                  },
+                  {
+                    "label": null,
+                    "meaning_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "meaning_text": null,
+                    "show_icon": null
+                  },
+                  {
+                    "label": null,
+                    "meaning_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "meaning_text": null,
+                    "show_icon": null
+                  },
+                  {
+                    "label": null,
+                    "meaning_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "meaning_text": null,
+                    "show_icon": null
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "table",
+                "presentation": {
+                  "class": [
+                    "longtable"
+                  ]
+                },
+                "children": [
+                  {
+                    "kind": "column_group",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 22.0%"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 78.0%"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "table_head",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "head"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "head"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "inline_group",
+                                "layout": {
+                                  "class": [
+                                    "hb-warning-lockup"
+                                  ],
+                                  "style": "display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"
+                                },
+                                "children": [
+                                  {
+                                    "kind": "inline_group",
+                                    "layout": {
+                                      "style": "font-size:13px; margin-right:7px;"
+                                    },
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "inline_group",
+                                "layout": {
+                                  "class": [
+                                    "hb-warning-lockup"
+                                  ],
+                                  "style": "display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"
+                                },
+                                "children": [
+                                  {
+                                    "kind": "inline_group",
+                                    "layout": {
+                                      "style": "font-size:13px; margin-right:7px;"
+                                    },
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "inline_group",
+                                "layout": {
+                                  "class": [
+                                    "hb-warning-lockup"
+                                  ],
+                                  "style": "display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"
+                                },
+                                "children": [
+                                  {
+                                    "kind": "inline_group",
+                                    "layout": {
+                                      "style": "font-size:13px; margin-right:7px;"
+                                    },
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "inline_group",
+                                "layout": {
+                                  "class": [
+                                    "hb-warning-lockup"
+                                  ],
+                                  "style": "display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"
+                                },
+                                "children": [
+                                  {
+                                    "kind": "inline_group",
+                                    "layout": {
+                                      "style": "font-size:13px; margin-right:7px;"
+                                    },
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "component",
+            "slot": "symbols#symbol-icons",
+            "component_id": "HB-TABLE-SYMBOL-ICON",
+            "variant": "two-panel-responsive",
+            "token_roles": [
+              "component.table.symbol-icon"
+            ],
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "headers",
+                "content_kind": "ordered_headers",
+                "shape": [
+                  {
+                    "content_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "strong",
+                        {}
+                      ],
+                      [
+                        "/strong"
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "content_text": null
+                  },
+                  {
+                    "content_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "strong",
+                        {}
+                      ],
+                      [
+                        "/strong"
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "content_text": null
+                  },
+                  {
+                    "content_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "strong",
+                        {}
+                      ],
+                      [
+                        "/strong"
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "content_text": null
+                  },
+                  {
+                    "content_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "strong",
+                        {}
+                      ],
+                      [
+                        "/strong"
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "content_text": null
+                  }
+                ]
+              },
+              {
+                "role": "panels",
+                "content_kind": "ordered_panels",
+                "shape": [
+                  [
+                    {
+                      "asset_index": 0,
+                      "icon_alt": null,
+                      "meaning_html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "meaning_text": null
+                    },
+                    {
+                      "asset_index": 1,
+                      "icon_alt": null,
+                      "meaning_html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "meaning_text": null
+                    },
+                    {
+                      "asset_index": 2,
+                      "icon_alt": null,
+                      "meaning_html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "meaning_text": null
+                    },
+                    {
+                      "asset_index": 3,
+                      "icon_alt": null,
+                      "meaning_html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "meaning_text": null
+                    }
+                  ],
+                  [
+                    {
+                      "asset_index": 4,
+                      "icon_alt": null,
+                      "meaning_html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "meaning_text": null
+                    },
+                    {
+                      "asset_index": 5,
+                      "icon_alt": null,
+                      "meaning_html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "meaning_text": null
+                    },
+                    {
+                      "asset_index": 6,
+                      "icon_alt": null,
+                      "meaning_html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "meaning_text": null
+                    },
+                    {
+                      "asset_index": 7,
+                      "icon_alt": null,
+                      "meaning_html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "meaning_text": null
+                    }
+                  ]
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "role": "icons",
+                "locale_policy": "shared",
+                "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+              },
+              {
+                "role": "icons",
+                "locale_policy": "shared",
+                "sha256": "e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61"
+              },
+              {
+                "role": "icons",
+                "locale_policy": "shared",
+                "sha256": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8"
+              },
+              {
+                "role": "icons",
+                "locale_policy": "shared",
+                "sha256": "5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941"
+              },
+              {
+                "role": "icons",
+                "locale_policy": "shared",
+                "sha256": "e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab"
+              },
+              {
+                "role": "icons",
+                "locale_policy": "shared",
+                "sha256": "81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804"
+              },
+              {
+                "role": "icons",
+                "locale_policy": "shared",
+                "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+              },
+              {
+                "role": "icons",
+                "locale_policy": "shared",
+                "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+              }
+            ],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "table",
+                "presentation": {
+                  "class": [
+                    "longtable"
+                  ]
+                },
+                "children": [
+                  {
+                    "kind": "column_group",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 12.0%"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 38.0%"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 12.0%"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 38.0%"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+                                "presentation": {
+                                  "style": "width: 40px;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab",
+                                "presentation": {
+                                  "style": "width: 40px;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61",
+                                "presentation": {
+                                  "style": "width: 40px;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804",
+                                "presentation": {
+                                  "style": "width: 40px;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8",
+                                "presentation": {
+                                  "style": "width: 40px;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+                                "presentation": {
+                                  "style": "width: 40px;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941",
+                                "presentation": {
+                                  "style": "width: 40px;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+                                "presentation": {
+                                  "style": "width: 40px;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "inbox",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "component",
+            "slot": "inbox",
+            "component_id": "HB-SPECIAL-INBOX",
+            "variant": "three-card-responsive",
+            "token_roles": [
+              "component.special.inbox"
+            ],
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "cards",
+                "content_kind": "ordered_cards",
+                "shape": [
+                  {
+                    "alt": null,
+                    "image_asset_role": "card_1_art",
+                    "label": null,
+                    "number": null
+                  },
+                  {
+                    "alt": null,
+                    "image_asset_role": "card_2_art",
+                    "label": null,
+                    "number": null
+                  },
+                  {
+                    "alt": null,
+                    "image_asset_role": "card_3_art",
+                    "label": null,
+                    "number": null
+                  }
+                ]
+              },
+              {
+                "role": "tip_label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "tip_body",
+                "content_kind": "rich_text",
+                "shape": null
+              }
+            ],
+            "assets": [
+              {
+                "role": "card_1_art",
+                "locale_policy": "shared",
+                "sha256": "4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44"
+              },
+              {
+                "role": "card_2_art",
+                "locale_policy": "shared",
+                "sha256": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7"
+              },
+              {
+                "role": "card_3_art",
+                "locale_policy": "shared",
+                "sha256": "8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040"
+              }
+            ],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "table",
+                "presentation": {},
+                "children": [
+                  {
+                    "kind": "column_group",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 33.0%"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 33.0%"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 34.0%"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44",
+                                "presentation": {
+                                  "class": [
+                                    "manual-finished-illustration"
+                                  ],
+                                  "style": "width: 100%; height: auto;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7",
+                                "presentation": {
+                                  "class": [
+                                    "manual-finished-illustration"
+                                  ],
+                                  "style": "width: 100%; height: auto;"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "image",
+                                "sha256": "8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040",
+                                "presentation": {
+                                  "class": [
+                                    "manual-finished-illustration"
+                                  ],
+                                  "style": "width: 100%; height: auto;"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "overview",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "section",
+            "layout": {},
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "image",
+                "sha256": "d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5",
+                "presentation": {
+                  "class": [
+                    "manual-finished-illustration"
+                  ],
+                  "style": "width: 100%; height: auto;"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "layout": {},
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "image",
+                "sha256": "4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43",
+                "presentation": {
+                  "class": [
+                    "manual-finished-illustration"
+                  ],
+                  "style": "width: 100%; height: auto;"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "lcd",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "image",
+            "sha256": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f",
+            "presentation": {
+              "class": [
+                "manual-finished-illustration"
+              ],
+              "style": "width: 100%; height: auto;"
+            }
+          },
+          {
+            "kind": "component",
+            "slot": "lcd#authored-table-1",
+            "component_id": "HB-TABLE-REFERENCE",
+            "variant": "lcd-descriptions",
+            "token_roles": [
+              "component.table.reference"
+            ],
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "headers",
+                "content_kind": "ordered_headers",
+                "shape": []
+              },
+              {
+                "role": "rows",
+                "content_kind": "ordered_rows",
+                "shape": [
+                  [
+                    {
+                      "html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "text": null
+                    },
+                    {
+                      "html": [
+                        [
+                          "div",
+                          {
+                            "class": "line-block"
+                          }
+                        ],
+                        [
+                          "div",
+                          {
+                            "class": "line"
+                          }
+                        ],
+                        [
+                          "/div"
+                        ],
+                        [
+                          "div",
+                          {
+                            "class": "line"
+                          }
+                        ],
+                        [
+                          "/div"
+                        ],
+                        [
+                          "/div"
+                        ]
+                      ],
+                      "text": null
+                    }
+                  ],
+                  [
+                    {
+                      "html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "text": null
+                    },
+                    {
+                      "html": [
+                        [
+                          "p",
+                          {}
+                        ],
+                        [
+                          "/p"
+                        ]
+                      ],
+                      "text": null
+                    }
+                  ]
+                ]
+              }
+            ],
+            "assets": [],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "table",
+                "presentation": {
+                  "class": [
+                    "hb-source-lcd-descriptions"
+                  ]
+                },
+                "children": [
+                  {
+                    "kind": "column_group",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 35.0%"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 65.0%"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "operation",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "section",
+            "layout": {},
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "component",
+                "slot": "operation#operation-main-power",
+                "component_id": "HB-SPECIAL-OPERATION",
+                "variant": "status-right",
+                "token_roles": [
+                  "component.special.operation"
+                ],
+                "slots": [
+                  {
+                    "role": "operation_id",
+                    "content_kind": "inline_text",
+                    "shape": "main-power"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "shape": null
+                  },
+                  {
+                    "role": "steps",
+                    "content_kind": "ordered_steps",
+                    "shape": [
+                      {
+                        "id": "on",
+                        "parts": [
+                          {
+                            "html": [
+                              [
+                                "strong",
+                                {}
+                              ],
+                              [
+                                "/strong"
+                              ]
+                            ],
+                            "role": "label",
+                            "text": null
+                          },
+                          {
+                            "html": [],
+                            "role": "instruction",
+                            "text": null
+                          }
+                        ]
+                      },
+                      {
+                        "id": "off",
+                        "parts": [
+                          {
+                            "html": [
+                              [
+                                "strong",
+                                {}
+                              ],
+                              [
+                                "/strong"
+                              ]
+                            ],
+                            "role": "label",
+                            "text": null
+                          },
+                          {
+                            "html": [],
+                            "role": "instruction",
+                            "text": null
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "artwork",
+                    "locale_policy": "shared",
+                    "sha256": "a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00"
+                  }
+                ],
+                "presentation": {
+                  "presentation_mode": "base-art-live-copy"
+                },
+                "carrier_layout": [
+                  {
+                    "kind": "image",
+                    "sha256": "a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00",
+                    "presentation": {
+                      "class": [
+                        "manual-finished-illustration"
+                      ],
+                      "style": "width: 100%; height: auto;"
+                    }
+                  }
+                ]
+              },
+              {
+                "kind": "component",
+                "slot": "operation#callout-1",
+                "component_id": "HB-CALLOUT-STRIP",
+                "variant": "note",
+                "token_roles": [
+                  "component.callout"
+                ],
+                "slots": [
+                  {
+                    "role": "label",
+                    "content_kind": "inline_text",
+                    "shape": null
+                  },
+                  {
+                    "role": "body",
+                    "content_kind": "rich_text",
+                    "shape": null
+                  }
+                ],
+                "assets": [],
+                "presentation": {},
+                "carrier_layout": [
+                  {
+                    "kind": "table",
+                    "presentation": {
+                      "class": [
+                        "manual-callout-table"
+                      ],
+                      "style": "width:100%; border-collapse:collapse; margin:0 0 16px 0;"
+                    },
+                    "children": [
+                      {
+                        "kind": "table_body",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_row",
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "table_cell",
+                                "header": false,
+                                "presentation": {
+                                  "class": [
+                                    "manual-callout-label"
+                                  ],
+                                  "style": "width:16%; border:1px solid #000; padding:6px 8px; vertical-align:top;"
+                                },
+                                "children": []
+                              },
+                              {
+                                "kind": "table_cell",
+                                "header": false,
+                                "presentation": {
+                                  "class": [
+                                    "manual-callout-body"
+                                  ],
+                                  "style": "border:1px solid #000; padding:6px 8px; vertical-align:top;"
+                                },
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "layout": {},
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "image",
+                "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b",
+                "presentation": {
+                  "class": [
+                    "manual-finished-illustration"
+                  ],
+                  "style": "width: 100%; height: auto;"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "connections",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "component",
+            "slot": "connections#callout-1",
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "caution",
+            "token_roles": [
+              "component.callout"
+            ],
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "shape": null
+              }
+            ],
+            "assets": [],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "table",
+                "presentation": {
+                  "class": [
+                    "manual-callout-table"
+                  ],
+                  "style": "width:100%; border-collapse:collapse; margin:0 0 16px 0;"
+                },
+                "children": [
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "manual-callout-label"
+                              ],
+                              "style": "width:16%; border:1px solid #000; padding:6px 8px; vertical-align:top;"
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "manual-callout-body"
+                              ],
+                              "style": "border:1px solid #000; padding:6px 8px; vertical-align:top;"
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "component",
+            "slot": "connections#reference-clearance",
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "shape": "clearance"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "captions",
+                "content_kind": "ordered_labels",
+                "shape": [
+                  {
+                    "html": [],
+                    "text": null
+                  },
+                  {
+                    "html": [],
+                    "text": null
+                  }
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "locale_policy": "exact",
+                "sha256": "8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848"
+              }
+            ],
+            "presentation": {
+              "base_art_layout": {
+                "art_sha256": "8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848",
+                "labels": [
+                  {
+                    "line": 0,
+                    "rect": [
+                      54,
+                      83,
+                      33,
+                      7
+                    ]
+                  },
+                  {
+                    "line": 1,
+                    "rect": [
+                      28,
+                      88,
+                      33,
+                      7
+                    ]
+                  }
+                ],
+                "panel_fill": "#ffffff",
+                "panel_top": 0,
+                "preserve_frame": true
+              },
+              "caption_centers_pct": null,
+              "captions_embedded": false,
+              "presentation_mode": "base-art-live-copy"
+            },
+            "carrier_layout": [
+              {
+                "kind": "image",
+                "sha256": "8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848",
+                "presentation": {
+                  "class": [
+                    "manual-finished-illustration"
+                  ],
+                  "style": "width: 100%; height: auto;"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "image",
+            "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce",
+            "presentation": {
+              "class": [
+                "manual-finished-illustration"
+              ],
+              "style": "width: 100%; height: auto;"
+            }
+          },
+          {
+            "kind": "component",
+            "slot": "connections#callout-2",
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "note",
+            "token_roles": [
+              "component.callout"
+            ],
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "shape": null
+              }
+            ],
+            "assets": [],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "table",
+                "presentation": {
+                  "class": [
+                    "manual-callout-table"
+                  ],
+                  "style": "width:100%; border-collapse:collapse; margin:0 0 16px 0;"
+                },
+                "children": [
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "manual-callout-label"
+                              ],
+                              "style": "width:16%; border:1px solid #000; padding:6px 8px; vertical-align:top;"
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "manual-callout-body"
+                              ],
+                              "style": "border:1px solid #000; padding:6px 8px; vertical-align:top;"
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "component",
+            "slot": "connections#reference-locking",
+            "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "variant": "semantic-fallback",
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "slots": [
+              {
+                "role": "reference_id",
+                "content_kind": "inline_text",
+                "shape": "locking"
+              },
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "caption_mode",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "caption_layout",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "captions",
+                "content_kind": "ordered_labels",
+                "shape": [
+                  {
+                    "html": [
+                      [
+                        "strong",
+                        {}
+                      ],
+                      [
+                        "/strong"
+                      ]
+                    ],
+                    "text": null
+                  },
+                  {
+                    "html": [
+                      [
+                        "strong",
+                        {}
+                      ],
+                      [
+                        "/strong"
+                      ]
+                    ],
+                    "text": null
+                  },
+                  {
+                    "html": [],
+                    "text": null
+                  },
+                  {
+                    "html": [],
+                    "text": null
+                  },
+                  {
+                    "html": [],
+                    "text": null
+                  },
+                  {
+                    "html": [],
+                    "text": null
+                  }
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "role": "source_art",
+                "locale_policy": "exact",
+                "sha256": "d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448"
+              }
+            ],
+            "presentation": {
+              "base_art_layout": {
+                "art_sha256": "d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448",
+                "labels": [
+                  {
+                    "color": "#ffffff",
+                    "fill": "#434345",
+                    "line": 0,
+                    "rect": [
+                      58,
+                      4,
+                      18,
+                      6
+                    ]
+                  },
+                  {
+                    "color": "#ffffff",
+                    "fill": "#434345",
+                    "line": 1,
+                    "rect": [
+                      58,
+                      52,
+                      18,
+                      6
+                    ]
+                  },
+                  {
+                    "line": 2,
+                    "rect": [
+                      59.4,
+                      15.8,
+                      4,
+                      5
+                    ]
+                  },
+                  {
+                    "line": 3,
+                    "rect": [
+                      80.3,
+                      15.8,
+                      4,
+                      5
+                    ]
+                  },
+                  {
+                    "line": 4,
+                    "rect": [
+                      59.4,
+                      64.2,
+                      4,
+                      5
+                    ]
+                  },
+                  {
+                    "line": 5,
+                    "rect": [
+                      80.3,
+                      64.2,
+                      4,
+                      5
+                    ]
+                  }
+                ],
+                "mobile_labels": "overlay",
+                "panel_fill": "#ffffff",
+                "panel_top": 0,
+                "preserve_frame": true
+              },
+              "caption_centers_pct": null,
+              "captions_embedded": false,
+              "presentation_mode": "base-art-live-copy"
+            },
+            "carrier_layout": [
+              {
+                "kind": "image",
+                "sha256": "d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448",
+                "presentation": {
+                  "class": [
+                    "manual-finished-illustration"
+                  ],
+                  "style": "width: 100%; height: auto;"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "troubleshooting",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "component",
+            "slot": "troubleshooting#troubleshooting",
+            "component_id": "HB-TABLE-TROUBLESHOOTING",
+            "variant": "two-column",
+            "token_roles": [
+              "component.table.troubleshooting"
+            ],
+            "slots": [
+              {
+                "role": "headers",
+                "content_kind": "ordered_headers",
+                "shape": [
+                  {
+                    "content_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "content_text": null
+                  },
+                  {
+                    "content_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "content_text": null
+                  }
+                ]
+              },
+              {
+                "role": "rows",
+                "content_kind": "ordered_rows",
+                "shape": [
+                  {
+                    "code_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "code_text": null,
+                    "measures_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "measures_text": null
+                  },
+                  {
+                    "code_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "code_text": null,
+                    "measures_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "measures_text": null
+                  },
+                  {
+                    "code_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "code_text": null,
+                    "measures_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "measures_text": null
+                  },
+                  {
+                    "code_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "code_text": null,
+                    "measures_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "measures_text": null
+                  },
+                  {
+                    "code_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "code_text": null,
+                    "measures_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "measures_text": null
+                  },
+                  {
+                    "code_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "code_text": null,
+                    "measures_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "measures_text": null
+                  },
+                  {
+                    "code_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "code_text": null,
+                    "measures_html": [
+                      [
+                        "p",
+                        {}
+                      ],
+                      [
+                        "/p"
+                      ]
+                    ],
+                    "measures_text": null
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "table",
+                "presentation": {
+                  "class": [
+                    "longtable"
+                  ]
+                },
+                "children": [
+                  {
+                    "kind": "column_group",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 14.0%"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "column",
+                        "presentation": {
+                          "style": "width: 86.0%"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "table_head",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "head"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "head"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {},
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "charging",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "section",
+            "layout": {},
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "component",
+                "slot": "charging#callout-1",
+                "component_id": "HB-CALLOUT-STRIP",
+                "variant": "warning",
+                "token_roles": [
+                  "component.callout"
+                ],
+                "slots": [
+                  {
+                    "role": "label",
+                    "content_kind": "inline_text",
+                    "shape": null
+                  },
+                  {
+                    "role": "body",
+                    "content_kind": "rich_text",
+                    "shape": null
+                  }
+                ],
+                "assets": [],
+                "presentation": {},
+                "carrier_layout": [
+                  {
+                    "kind": "table",
+                    "presentation": {
+                      "class": [
+                        "manual-callout-table"
+                      ],
+                      "style": "width:100%; border-collapse:collapse; margin:0 0 16px 0;"
+                    },
+                    "children": [
+                      {
+                        "kind": "table_body",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_row",
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "table_cell",
+                                "header": false,
+                                "presentation": {
+                                  "class": [
+                                    "manual-callout-label"
+                                  ],
+                                  "style": "width:16%; border:1px solid #000; padding:6px 8px; vertical-align:top;"
+                                },
+                                "children": []
+                              },
+                              {
+                                "kind": "table_cell",
+                                "header": false,
+                                "presentation": {
+                                  "class": [
+                                    "manual-callout-body"
+                                  ],
+                                  "style": "border:1px solid #000; padding:6px 8px; vertical-align:top;"
+                                },
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "image",
+                "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc",
+                "presentation": {
+                  "class": [
+                    "manual-finished-illustration"
+                  ],
+                  "style": "width: 100%; height: auto;"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "layout": {},
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "image",
+                "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768",
+                "presentation": {
+                  "class": [
+                    "manual-finished-illustration"
+                  ],
+                  "style": "width: 100%; height: auto;"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "storage",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          }
+        ]
+      },
+      {
+        "slot": "specifications",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {
+              "class": [
+                "hb-h1-pill"
+              ]
+            },
+            "children": []
+          },
+          {
+            "kind": "component",
+            "slot": "specifications#specification-1",
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "shape": [
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {
+                  "class": [
+                    "hb-spec-section"
+                  ]
+                },
+                "children": []
+              },
+              {
+                "kind": "table",
+                "presentation": {
+                  "class": [
+                    "hb-spec-table"
+                  ]
+                },
+                "children": [
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "component",
+            "slot": "specifications#specification-2",
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "shape": [
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {
+                  "class": [
+                    "hb-spec-section"
+                  ]
+                },
+                "children": []
+              },
+              {
+                "kind": "table",
+                "presentation": {
+                  "class": [
+                    "hb-spec-table"
+                  ]
+                },
+                "children": [
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "component",
+            "slot": "specifications#specification-3",
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "shape": [
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": null,
+                    "label_rowspan": 1,
+                    "references": [],
+                    "values": [
+                      {
+                        "references": [],
+                        "text": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "presentation": {},
+            "carrier_layout": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {
+                  "class": [
+                    "hb-spec-section"
+                  ]
+                },
+                "children": []
+              },
+              {
+                "kind": "table",
+                "presentation": {
+                  "class": [
+                    "hb-spec-table"
+                  ]
+                },
+                "children": [
+                  {
+                    "kind": "table_body",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_row",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_cell",
+                            "header": true,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-label"
+                              ]
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "table_cell",
+                            "header": false,
+                            "presentation": {
+                              "class": [
+                                "hb-spec-value"
+                              ]
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "warranty",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "component",
+            "slot": "warranty#warranty-lead",
+            "component_id": "HB-WARRANTY-LEAD",
+            "variant": "intro-panel",
+            "token_roles": [
+              "component.warranty.lead"
+            ],
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "shape": null
+              },
+              {
+                "role": "lead",
+                "content_kind": "rich_text",
+                "shape": null
+              },
+              {
+                "role": "local_note",
+                "content_kind": "rich_text",
+                "shape": null
+              }
+            ],
+            "assets": [],
+            "presentation": {},
+            "carrier_layout": []
+          },
+          {
+            "kind": "section",
+            "layout": {
+              "class": [
+                "warranty-section"
+              ]
+            },
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "component",
+                "slot": "warranty#warranty-section-1",
+                "component_id": "HB-WARRANTY-SECTION",
+                "variant": "rounded-card",
+                "token_roles": [
+                  "component.warranty.section"
+                ],
+                "slots": [
+                  {
+                    "role": "title",
+                    "content_kind": "inline_text",
+                    "shape": null
+                  },
+                  {
+                    "role": "section_index",
+                    "content_kind": "block_index",
+                    "shape": null
+                  },
+                  {
+                    "role": "blocks",
+                    "content_kind": "ordered_blocks",
+                    "shape": [
+                      {
+                        "html": [
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ]
+                        ],
+                        "kind": "paragraph",
+                        "text": null
+                      },
+                      {
+                        "html": [
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ]
+                        ],
+                        "kind": "paragraph",
+                        "text": null
+                      }
+                    ]
+                  }
+                ],
+                "assets": [],
+                "presentation": {},
+                "carrier_layout": []
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "layout": {
+              "class": [
+                "warranty-section",
+                "warranty-years"
+              ]
+            },
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "component",
+                "slot": "warranty#warranty-years",
+                "component_id": "HB-WARRANTY-YEARS",
+                "variant": "numeric-badges",
+                "token_roles": [
+                  "component.warranty.years"
+                ],
+                "slots": [
+                  {
+                    "role": "title",
+                    "content_kind": "inline_text",
+                    "shape": null
+                  },
+                  {
+                    "role": "periods",
+                    "content_kind": "ordered_periods",
+                    "shape": [
+                      {
+                        "body_html": [
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ]
+                        ],
+                        "body_text": null,
+                        "label": null,
+                        "number": null,
+                        "unit": null
+                      },
+                      {
+                        "body_html": [
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "a",
+                            {
+                              "class": "reference external"
+                            }
+                          ],
+                          [
+                            "/a"
+                          ],
+                          [
+                            "/p"
+                          ]
+                        ],
+                        "body_text": null,
+                        "label": null,
+                        "number": null,
+                        "unit": null
+                      }
+                    ]
+                  }
+                ],
+                "assets": [],
+                "presentation": {},
+                "carrier_layout": [
+                  {
+                    "kind": "table",
+                    "presentation": {},
+                    "children": [
+                      {
+                        "kind": "column_group",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "column",
+                            "presentation": {
+                              "style": "width: 50.0%"
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "column",
+                            "presentation": {
+                              "style": "width: 50.0%"
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "table_body",
+                        "presentation": {},
+                        "children": [
+                          {
+                            "kind": "table_row",
+                            "presentation": {},
+                            "children": [
+                              {
+                                "kind": "table_cell",
+                                "header": false,
+                                "presentation": {},
+                                "children": []
+                              },
+                              {
+                                "kind": "table_cell",
+                                "header": false,
+                                "presentation": {},
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "layout": {
+              "class": [
+                "warranty-section"
+              ]
+            },
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "component",
+                "slot": "warranty#warranty-section-3",
+                "component_id": "HB-WARRANTY-SECTION",
+                "variant": "rounded-card",
+                "token_roles": [
+                  "component.warranty.section"
+                ],
+                "slots": [
+                  {
+                    "role": "title",
+                    "content_kind": "inline_text",
+                    "shape": null
+                  },
+                  {
+                    "role": "section_index",
+                    "content_kind": "block_index",
+                    "shape": null
+                  },
+                  {
+                    "role": "blocks",
+                    "content_kind": "ordered_blocks",
+                    "shape": [
+                      {
+                        "html": [
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ]
+                        ],
+                        "kind": "paragraph",
+                        "text": null
+                      }
+                    ]
+                  }
+                ],
+                "assets": [],
+                "presentation": {},
+                "carrier_layout": []
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "layout": {
+              "class": [
+                "warranty-section"
+              ]
+            },
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "component",
+                "slot": "warranty#warranty-section-4",
+                "component_id": "HB-WARRANTY-SECTION",
+                "variant": "rounded-card",
+                "token_roles": [
+                  "component.warranty.section"
+                ],
+                "slots": [
+                  {
+                    "role": "title",
+                    "content_kind": "inline_text",
+                    "shape": null
+                  },
+                  {
+                    "role": "section_index",
+                    "content_kind": "block_index",
+                    "shape": null
+                  },
+                  {
+                    "role": "blocks",
+                    "content_kind": "ordered_blocks",
+                    "shape": [
+                      {
+                        "html": [
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ]
+                        ],
+                        "kind": "paragraph",
+                        "text": null
+                      }
+                    ]
+                  }
+                ],
+                "assets": [],
+                "presentation": {},
+                "carrier_layout": []
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "layout": {
+              "class": [
+                "warranty-section"
+              ]
+            },
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "component",
+                "slot": "warranty#warranty-section-5",
+                "component_id": "HB-WARRANTY-SECTION",
+                "variant": "rounded-card",
+                "token_roles": [
+                  "component.warranty.section"
+                ],
+                "slots": [
+                  {
+                    "role": "title",
+                    "content_kind": "inline_text",
+                    "shape": null
+                  },
+                  {
+                    "role": "section_index",
+                    "content_kind": "block_index",
+                    "shape": null
+                  },
+                  {
+                    "role": "blocks",
+                    "content_kind": "ordered_blocks",
+                    "shape": [
+                      {
+                        "html": [
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ]
+                        ],
+                        "kind": "paragraph",
+                        "text": null
+                      },
+                      {
+                        "html": [
+                          [
+                            "ul",
+                            {
+                              "class": "simple"
+                            }
+                          ],
+                          [
+                            "li",
+                            {}
+                          ],
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ],
+                          [
+                            "/li"
+                          ],
+                          [
+                            "li",
+                            {}
+                          ],
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ],
+                          [
+                            "/li"
+                          ],
+                          [
+                            "li",
+                            {}
+                          ],
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ],
+                          [
+                            "/li"
+                          ],
+                          [
+                            "li",
+                            {}
+                          ],
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ],
+                          [
+                            "/li"
+                          ],
+                          [
+                            "/ul"
+                          ]
+                        ],
+                        "items": [
+                          null,
+                          null,
+                          null,
+                          null
+                        ],
+                        "kind": "list"
+                      }
+                    ]
+                  }
+                ],
+                "assets": [],
+                "presentation": {},
+                "carrier_layout": []
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "layout": {
+              "class": [
+                "warranty-section"
+              ]
+            },
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              },
+              {
+                "kind": "component",
+                "slot": "warranty#warranty-section-6",
+                "component_id": "HB-WARRANTY-SECTION",
+                "variant": "rounded-card",
+                "token_roles": [
+                  "component.warranty.section"
+                ],
+                "slots": [
+                  {
+                    "role": "title",
+                    "content_kind": "inline_text",
+                    "shape": null
+                  },
+                  {
+                    "role": "section_index",
+                    "content_kind": "block_index",
+                    "shape": null
+                  },
+                  {
+                    "role": "blocks",
+                    "content_kind": "ordered_blocks",
+                    "shape": [
+                      {
+                        "html": [
+                          [
+                            "p",
+                            {}
+                          ],
+                          [
+                            "/p"
+                          ]
+                        ],
+                        "kind": "paragraph",
+                        "text": null
+                      }
+                    ]
+                  }
+                ],
+                "assets": [],
+                "presentation": {},
+                "carrier_layout": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "slot": "regulatory",
+        "items": [
+          {
+            "kind": "heading",
+            "level": 1,
+            "presentation": {},
+            "children": []
+          },
+          {
+            "kind": "section",
+            "layout": {},
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "layout": {},
+            "children": [
+              {
+                "kind": "heading",
+                "level": 2,
+                "presentation": {},
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "style_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+    "web_contract_sha256": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+    "component_registry_sha256": "9275f1facc80873cdbf74f4f3c91c29f87ebc26fd6056eb37e69e13f96639a8f",
+    "manual_theme": {
+      "component_roles": {
+        "component.callout": {
+          "component_ids": [
+            "HB-CALLOUT-STRIP"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "border.strong",
+            "width.component-band"
+          ]
+        },
+        "component.special.app": {
+          "component_ids": [
+            "HB-SPECIAL-APP"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.special.fcc": {
+          "component_ids": [
+            "HB-SPECIAL-FCC"
+          ],
+          "theme_roles": [
+            "surface.fcc",
+            "radius.fcc",
+            "type.fcc.body",
+            "width.component-band"
+          ]
+        },
+        "component.special.inbox": {
+          "component_ids": [
+            "HB-SPECIAL-INBOX"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "surface.muted",
+            "border.inbox",
+            "radius.inbox",
+            "type.inbox.label",
+            "width.component-band"
+          ]
+        },
+        "component.special.operation": {
+          "component_ids": [
+            "HB-SPECIAL-OPERATION"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.special.overview": {
+          "component_ids": [
+            "HB-SPECIAL-OVERVIEW"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "line.overview.leader",
+            "type.overview.label",
+            "width.component-band"
+          ]
+        },
+        "component.special.reference-figure": {
+          "component_ids": [
+            "HB-SPECIAL-REFERENCE-FIGURE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.auto-resume": {
+          "component_ids": [
+            "HB-TABLE-AUTO-RESUME"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.key-combinations": {
+          "component_ids": [
+            "HB-TABLE-KEY-COMBINATIONS"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.lcd-icon": {
+          "component_ids": [
+            "HB-TABLE-LCD-ICON"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.lcd-mode": {
+          "component_ids": [
+            "HB-TABLE-LCD-MODE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.reference": {
+          "component_ids": [
+            "HB-TABLE-REFERENCE"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.spec": {
+          "component_ids": [
+            "HB-TABLE-SPEC"
+          ],
+          "theme_roles": [
+            "surface.brand",
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.symbol-icon": {
+          "component_ids": [
+            "HB-TABLE-SYMBOL-ICON"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.symbol-signal": {
+          "component_ids": [
+            "HB-TABLE-SYMBOL-SIGNAL"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.table.troubleshooting": {
+          "component_ids": [
+            "HB-TABLE-TROUBLESHOOTING"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "surface.muted",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.lead": {
+          "component_ids": [
+            "HB-WARRANTY-LEAD"
+          ],
+          "theme_roles": [
+            "surface.muted",
+            "radius.panel",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.section": {
+          "component_ids": [
+            "HB-WARRANTY-SECTION"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "border.strong",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        },
+        "component.warranty.years": {
+          "component_ids": [
+            "HB-WARRANTY-YEARS"
+          ],
+          "theme_roles": [
+            "surface.paper",
+            "radius.panel",
+            "type.table.label",
+            "type.table.value",
+            "width.component-band"
+          ]
+        }
+      },
+      "roles": {
+        "border.inbox": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Line K40"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-line-soft"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-inbox-word-card"
+            }
+          }
+        },
+        "border.strong": {
+          "bindings": {
+            "idml": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_rule"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_borders"
+            }
+          }
+        },
+        "line.overview.leader": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Brand Dark"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBTextBlack"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "style",
+              "name": "BodyText"
+            }
+          }
+        },
+        "radius.fcc": {
+          "bindings": {
+            "idml": {
+              "kind": "layout-token",
+              "name": "comp_fcc_arc"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_fcc_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-fcc-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "transform_word_fcc_html"
+            }
+          }
+        },
+        "radius.inbox": {
+          "bindings": {
+            "idml": {
+              "kind": "object-style",
+              "name": "HB Inbox Card"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_inbox_card_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-inbox-card-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "transform_word_inbox_html"
+            }
+          }
+        },
+        "radius.panel": {
+          "bindings": {
+            "idml": {
+              "kind": "object-style",
+              "name": "HB Rounded Table Outer"
+            },
+            "latex": {
+              "kind": "layout-token",
+              "name": "comp_table_outer_arc"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-panel-radius"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_layout"
+            }
+          }
+        },
+        "surface.brand": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Brand Dark"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBSharedTableFrameColor"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-brand-dark"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_borders"
+            }
+          }
+        },
+        "surface.fcc": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/HB Bg K05"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "BgK05"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-surface"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-fcc-word-table"
+            }
+          }
+        },
+        "surface.muted": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Label"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "HBSharedTableLeftBg"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-surface"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-label"
+            }
+          }
+        },
+        "surface.paper": {
+          "bindings": {
+            "idml": {
+              "kind": "color",
+              "name": "Color/Paper"
+            },
+            "latex": {
+              "kind": "color",
+              "name": "white"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-paper"
+            },
+            "word": {
+              "kind": "table-style",
+              "name": "tableHeader"
+            }
+          }
+        },
+        "type.fcc.body": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB FCC Text"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeFccText"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-fcc-word-table"
+            }
+          }
+        },
+        "type.inbox.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB InBox Label"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBtype_inbox_label_font_size"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "hb-inbox-word-card"
+            }
+          }
+        },
+        "type.overview.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Body"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBOverviewPanel"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "style",
+              "name": "BodyText"
+            }
+          }
+        },
+        "type.table.label": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Label"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeSpecLabel"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-label"
+            }
+          }
+        },
+        "type.table.value": {
+          "bindings": {
+            "idml": {
+              "kind": "paragraph-style",
+              "name": "HB Spec Value"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "HBTypeSpecValue"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-font-family"
+            },
+            "word": {
+              "kind": "html-class",
+              "name": "manual-spec-value"
+            }
+          }
+        },
+        "width.component-band": {
+          "bindings": {
+            "idml": {
+              "kind": "property-adapter",
+              "name": "spec_table_body_width"
+            },
+            "latex": {
+              "kind": "macro",
+              "name": "linewidth"
+            },
+            "web": {
+              "kind": "css-custom-property",
+              "name": "--hb-component-band-max"
+            },
+            "word": {
+              "kind": "property-adapter",
+              "name": "_set_spec_table_cell_widths"
+            }
+          }
+        }
+      },
+      "schema_version": "manual-theme/v1",
+      "theme_id": "hb-manual-default"
+    }
+  },
+  "structure_sha256": "4945109f8637535c441427e90b85d5f5424e0c3d0f87a52a8c7d8cc7961521d0",
+  "approval": null,
+  "asset_decisions": {
+    "/pages/3/items/2/assets/0": {
+      "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/assets/1": {
+      "sha256": "e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/assets/2": {
+      "sha256": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/assets/3": {
+      "sha256": "5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/assets/4": {
+      "sha256": "e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/assets/5": {
+      "sha256": "81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/assets/6": {
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/assets/7": {
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/carrier_layout/0/children/1/children/1/children/0/children/0": {
+      "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/carrier_layout/0/children/1/children/1/children/2/children/0": {
+      "sha256": "e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/carrier_layout/0/children/1/children/2/children/0/children/0": {
+      "sha256": "e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/carrier_layout/0/children/1/children/2/children/2/children/0": {
+      "sha256": "81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/carrier_layout/0/children/1/children/3/children/0/children/0": {
+      "sha256": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/carrier_layout/0/children/1/children/3/children/2/children/0": {
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/carrier_layout/0/children/1/children/4/children/0/children/0": {
+      "sha256": "5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/3/items/2/carrier_layout/0/children/1/children/4/children/2/children/0": {
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/4/items/1/assets/0": {
+      "sha256": "4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/4/items/1/assets/1": {
+      "sha256": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/4/items/1/assets/2": {
+      "sha256": "8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/4/items/1/carrier_layout/0/children/1/children/0/children/0/children/0": {
+      "sha256": "4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/4/items/1/carrier_layout/0/children/1/children/0/children/1/children/0": {
+      "sha256": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/4/items/1/carrier_layout/0/children/1/children/0/children/2/children/0": {
+      "sha256": "8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/5/items/1/children/1": {
+      "sha256": "d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/5/items/2/children/1": {
+      "sha256": "4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/6/items/1": {
+      "sha256": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/7/items/1/children/1/assets/0": {
+      "sha256": "a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/7/items/1/children/1/carrier_layout/0": {
+      "sha256": "a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/7/items/2/children/1": {
+      "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/8/items/2/assets/0": {
+      "sha256": "8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/8/items/2/carrier_layout/0": {
+      "sha256": "8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/8/items/3": {
+      "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/8/items/5/assets/0": {
+      "sha256": "d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/8/items/5/carrier_layout/0": {
+      "sha256": "d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/10/items/1/children/2": {
+      "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    },
+    "/pages/10/items/2/children/1": {
+      "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768",
+      "source_ref": "",
+      "content_mode": "",
+      "text_owner": "",
+      "frame_policy": "",
+      "leader_policy": "",
+      "applicability": ""
+    }
+  },
+  "locales": {
+    "en": {
+      "page_map": {
+        "preface_important_en.rst": "preface",
+        "toc.rst": "toc",
+        "safety_info_en.rst": "safety",
+        "symbol_meaning_en.rst": "symbols",
+        "box_contents_en.rst": "inbox",
+        "product_overview_en.rst": "overview",
+        "lcd_display_en.rst": "lcd",
+        "operation_en.rst": "operation",
+        "connections_en.rst": "connections",
+        "troubleshooting_en.rst": "troubleshooting",
+        "charging_en.rst": "charging",
+        "storage_en.rst": "storage",
+        "specifications_en.rst": "specifications",
+        "warranty_en.rst": "warranty",
+        "regulatory_compliance.rst": "regulatory"
+      },
+      "component_map": {
+        "symbol_meaning_en.rst#symbol-signals": "symbols#symbol-signals",
+        "symbol_meaning_en.rst#symbol-icons": "symbols#symbol-icons",
+        "box_contents_en.rst": "inbox",
+        "lcd_display_en.rst#authored-table-1": "lcd#authored-table-1",
+        "operation_en.rst#operation-main-power": "operation#operation-main-power",
+        "operation_en.rst#callout-1": "operation#callout-1",
+        "connections_en.rst#callout-1": "connections#callout-1",
+        "connections_en.rst#reference-clearance": "connections#reference-clearance",
+        "connections_en.rst#callout-2": "connections#callout-2",
+        "connections_en.rst#reference-locking": "connections#reference-locking",
+        "troubleshooting_en.rst#troubleshooting": "troubleshooting#troubleshooting",
+        "charging_en.rst#callout-1": "charging#callout-1",
+        "specifications_en.rst#specification-1": "specifications#specification-1",
+        "specifications_en.rst#specification-2": "specifications#specification-2",
+        "specifications_en.rst#specification-3": "specifications#specification-3",
+        "warranty_en.rst#warranty-lead": "warranty#warranty-lead",
+        "warranty_en.rst#warranty-section-1": "warranty#warranty-section-1",
+        "warranty_en.rst#warranty-years": "warranty#warranty-years",
+        "warranty_en.rst#warranty-section-3": "warranty#warranty-section-3",
+        "warranty_en.rst#warranty-section-4": "warranty#warranty-section-4",
+        "warranty_en.rst#warranty-section-5": "warranty#warranty-section-5",
+        "warranty_en.rst#warranty-section-6": "warranty#warranty-section-6"
+      },
+      "snapshot_sha256": null,
+      "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+      "source_pages": [],
+      "differences": []
+    }
+  }
+}

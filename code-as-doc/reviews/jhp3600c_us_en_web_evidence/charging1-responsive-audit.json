@@ -1,0 +1,74 @@
+[
+  {
+    "headingCount": 84,
+    "lead": {
+      "text": "Green energy first:",
+      "weight": "700"
+    },
+    "pageOverflow": false,
+    "pill": {
+      "background": "rgb(52, 48, 49)",
+      "bottom": 278.0234375,
+      "color": "rgb(255, 255, 255)",
+      "height": 28.625,
+      "left": 314.59375,
+      "overflow": false,
+      "radius": "999px",
+      "right": 655.5390625,
+      "text": "Fully charge the product before its first use.",
+      "top": 249.3984375,
+      "weight": "700",
+      "width": 340.9453125
+    },
+    "separateBlock": true,
+    "width": 1440
+  },
+  {
+    "headingCount": 84,
+    "lead": {
+      "text": "Green energy first:",
+      "weight": "700"
+    },
+    "pageOverflow": false,
+    "pill": {
+      "background": "rgb(52, 48, 49)",
+      "bottom": 1986.6484375,
+      "color": "rgb(255, 255, 255)",
+      "height": 28.0546875,
+      "left": 16,
+      "overflow": false,
+      "radius": "999px",
+      "right": 350.1171875,
+      "text": "Fully charge the product before its first use.",
+      "top": 1958.59375,
+      "weight": "700",
+      "width": 334.1171875
+    },
+    "separateBlock": true,
+    "width": 390
+  },
+  {
+    "headingCount": 84,
+    "lead": {
+      "text": "Green energy first:",
+      "weight": "700"
+    },
+    "pageOverflow": false,
+    "pill": {
+      "background": "rgb(52, 48, 49)",
+      "bottom": 2111.40625,
+      "color": "rgb(255, 255, 255)",
+      "height": 49.21875,
+      "left": 16,
+      "overflow": false,
+      "radius": "999px",
+      "right": 304,
+      "text": "Fully charge the product before its first use.",
+      "top": 2062.1875,
+      "weight": "700",
+      "width": 288
+    },
+    "separateBlock": true,
+    "width": 320
+  }
+]

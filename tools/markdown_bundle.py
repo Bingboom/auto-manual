@@ -11,12 +11,12 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 from tools.gen_index_bundle import MaterializedBundle
-from tools.word_bundle_common import paths
-from tools.word_bundle_docx_pandoc import resolve_pandoc_binary
-from tools.word_bundle_html import build_word_bundle_html
+from tools.word.bundle_common import paths
+from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
+from tools.word.bundle_html import build_word_bundle_html
 from tools.manual_ir import ManualIR, read_manual_ir
 from tools.utils.path_utils import PathSegments
-from tools.web_presentation import (
+from tools.web.presentation import (
     DOCUMENT_PRESENTATION_PROFILE,
     PRESENTATION_PROFILE_ENV,
     WEB_PRESENTATION_PROFILE,
@@ -30,10 +30,7 @@ from tools.web_presentation import (
     restore_web_figures_after_pandoc,
     restore_web_inline_controls_after_pandoc,
 )
-from tools.web_language_navigation import (
-    protect_web_language_navigation_for_pandoc,
-    restore_web_language_navigation_after_pandoc,
-)
+from tools.web.callout_alignment import align_callout_label_columns
 
 
 MYST_COMPATIBLE_WRITER = "commonmark_x+pipe_tables+yaml_metadata_block-fenced_divs-bracketed_spans-attributes"
@@ -205,7 +202,6 @@ def export_markdown_from_bundle(
     protected_callouts: dict[str, ManualIR | str] = {}
     protected_figures: dict[str, str] = {}
     protected_inline_controls: dict[str, str] = {}
-    protected_language_navigation: dict[str, str] = {}
     temporary_input: tempfile.TemporaryDirectory[str] | None = None
     if presentation_profile == WEB_PRESENTATION_PROFILE:
         document_ir_path = bundle_html.parent / PathSegments.MANUAL_IR_JSON
@@ -229,15 +225,7 @@ def export_markdown_from_bundle(
         protected_html, protected_inline_controls = protect_web_inline_controls_for_pandoc(
             protected_html
         )
-        protected_html, protected_language_navigation = (
-            protect_web_language_navigation_for_pandoc(protected_html)
-        )
-        if (
-            protected_figures
-            or protected_callouts
-            or protected_inline_controls
-            or protected_language_navigation
-        ):
+        if protected_figures or protected_callouts or protected_inline_controls:
             temporary_input = tempfile.TemporaryDirectory(
                 prefix="auto-manual-web-pandoc-",
                 dir=bundle_html.parent,
@@ -264,17 +252,8 @@ def export_markdown_from_bundle(
     finally:
         if temporary_input is not None:
             temporary_input.cleanup()
-    if (
-        protected_figures
-        or protected_callouts
-        or protected_inline_controls
-        or protected_language_navigation
-    ):
+    if protected_figures or protected_callouts or protected_inline_controls:
         markdown_text = out_path.read_text(encoding="utf-8")
-        markdown_text = restore_web_language_navigation_after_pandoc(
-            markdown_text,
-            protected_language_navigation,
-        )
         markdown_text = restore_web_figures_after_pandoc(
             markdown_text,
             protected_figures,
@@ -283,10 +262,11 @@ def export_markdown_from_bundle(
             markdown_text,
             protected_inline_controls,
         )
-        out_path.write_text(
-            restore_web_callouts_after_pandoc(markdown_text, protected_callouts),
-            encoding="utf-8",
-        )
+        markdown_text = restore_web_callouts_after_pandoc(markdown_text, protected_callouts)
+        if protected_callouts:
+            # One label-column width per page: see tools/web/callout_alignment.py.
+            markdown_text = align_callout_label_columns(markdown_text)
+        out_path.write_text(markdown_text, encoding="utf-8")
     _rewrite_local_file_uris_to_relative(out_path)
     bundle_title = materialized_bundle.title if materialized_bundle is not None else "Manual"
     _write_myst_sphinx_scaffold(

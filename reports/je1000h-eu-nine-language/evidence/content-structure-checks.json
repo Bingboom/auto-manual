@@ -1,0 +1,41 @@
+{
+  "pt": {
+    "operation_steps": {
+      "main-power": 2,
+      "ac-output": 4,
+      "dc-usb-output": 2,
+      "led-light": 3,
+      "energy-saving": 1
+    },
+    "ac_dc_prerequisites_outside_art": true,
+    "energy_footer_duration_count": 1,
+    "spec_tables": 4,
+    "null_glyphs": 0
+  },
+  "nl": {
+    "operation_steps": {
+      "main-power": 2,
+      "ac-output": 4,
+      "dc-usb-output": 2,
+      "led-light": 3,
+      "energy-saving": 1
+    },
+    "ac_dc_prerequisites_outside_art": true,
+    "energy_footer_duration_count": 1,
+    "spec_tables": 4,
+    "null_glyphs": 0
+  },
+  "pl": {
+    "operation_steps": {
+      "main-power": 2,
+      "ac-output": 4,
+      "dc-usb-output": 2,
+      "led-light": 3,
+      "energy-saving": 1
+    },
+    "ac_dc_prerequisites_outside_art": true,
+    "energy_footer_duration_count": 1,
+    "spec_tables": 4,
+    "null_glyphs": 0
+  }
+}

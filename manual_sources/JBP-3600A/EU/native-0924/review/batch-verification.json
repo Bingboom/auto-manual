@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "publication_eligible": false,
+  "producer_parent_commit": "5de0abb3a86ff53763d6bfe40c117c4577d4aafa",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "packages": [
+    {
+      "revision": "fr-r4",
+      "manifest_entries_verified": {
+        "package-manifest.json": 29,
+        "html-manifest.json": 60,
+        "evidence-manifest.json": 46
+      }
+    },
+    {
+      "revision": "es-r2",
+      "manifest_entries_verified": {
+        "package-manifest.json": 29,
+        "html-manifest.json": 60,
+        "evidence-manifest.json": 24
+      }
+    },
+    {
+      "revision": "de-r1",
+      "manifest_entries_verified": {
+        "package-manifest.json": 29,
+        "html-manifest.json": 58,
+        "evidence-manifest.json": 27
+      }
+    },
+    {
+      "revision": "it-r1",
+      "manifest_entries_verified": {
+        "package-manifest.json": 29,
+        "html-manifest.json": 58,
+        "evidence-manifest.json": 22
+      }
+    },
+    {
+      "revision": "uk-r1",
+      "manifest_entries_verified": {
+        "package-manifest.json": 29,
+        "html-manifest.json": 55,
+        "evidence-manifest.json": 22
+      }
+    },
+    {
+      "revision": "pt-r1",
+      "manifest_entries_verified": {
+        "package-manifest.json": 29,
+        "html-manifest.json": 58,
+        "evidence-manifest.json": 22
+      }
+    },
+    {
+      "revision": "nl-r1",
+      "manifest_entries_verified": {
+        "package-manifest.json": 29,
+        "html-manifest.json": 58,
+        "evidence-manifest.json": 22
+      }
+    },
+    {
+      "revision": "pl-r1",
+      "manifest_entries_verified": {
+        "package-manifest.json": 29,
+        "html-manifest.json": 56,
+        "evidence-manifest.json": 22
+      }
+    },
+    {
+      "revision": "en-r5",
+      "manifest_entries_verified": {
+        "package-manifest.json": 26,
+        "html-manifest.json": 51,
+        "evidence-manifest.json": 15
+      }
+    }
+  ],
+  "copy_map_source_evidence_hashes": "all matched sealed ledgers",
+  "independent_reports": "FR r4 and ES r2 source/layout PASS; remaining6 pending",
+  "fresh_native_admission": "all8 remain blocked",
+  "shared_stylesheet_sha256": "362a75d05efbfe8b84c1927c659cda63fc8f4adab65f653c6420b70ec18172f5",
+  "doc_links": "252 Markdown files,2223 links,0 broken;0 lifecycle violations",
+  "full_suite": "inherited5075-test run with35 skips plus36 final badge-scope tests; not repeated for CSS/content-only changes"
+}

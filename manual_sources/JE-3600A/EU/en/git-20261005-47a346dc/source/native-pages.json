@@ -1,0 +1,3545 @@
+{
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "pages": [
+    {
+      "physical_page": 1,
+      "text": "USER MANUAL\nJackery Explorer 3600 Plus\nCONTACT US:\nhello.eu@jackery.com\nModel: JE-3600A\n",
+      "blocks": [
+        {
+          "bbox": [
+            64.17720031738281,
+            366.55438232421875,
+            302.28021240234375,
+            423.11065673828125
+          ],
+          "text": "USER MANUAL\nJackery Explorer 3600 Plus\n"
+        },
+        {
+          "bbox": [
+            28.629199981689453,
+            450.6880187988281,
+            85.27494812011719,
+            461.6130065917969
+          ],
+          "text": "CONTACT US:\n"
+        },
+        {
+          "bbox": [
+            63.438499450683594,
+            473.57232666015625,
+            324.4455261230469,
+            488.8756103515625
+          ],
+          "text": "hello.eu@jackery.com\nModel: JE-3600A\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 2,
+      "text": "Congratulations on your new Jackery Explorer 3600 Plus. Please read this manual carefully \nbefore using the product, particularly the relevant precautions to ensure proper use. Keep \nthis manual in an accessible place for frequent reference.\nIn compliance with laws and regulations, the right of final interpretation of this document \nand all related documents of this product resides with the Company.\nPlease kindly notice that no further notifications will be given in case of any update, revision \nor termination.\nFélicitations d’avoir fait l’acquisition du nouveau Jackery Explorer 3600 Plus. Veuillez lire \nattentivement ce manuel avant d’utiliser le dispositif, en particulier les précautions à prendre \nafin de garantir une bonne utilisation. Conservez ce manuel dans un endroit accessible pour \npouvoir vous y référer fréquemment.\nConformément aux lois et réglementations, le droit d’interprétation finale de ce document et \nde tous les documents relatifs à ce produit appartient à l’entreprise.\nVeuillez noter qu’aucune autre notification ne sera donnée en cas de mise à jour, de révision \nou de résiliation.\nFelicidades por su nuevo Jackery Explorer 3600 Plus. Lea atentamente este manual antes de \nutilizar el producto, en particular las precauciones pertinentes para garantizar un uso \ncorrecto. Guarde este manual en un lugar accesible para consultarlo con frecuencia.\nEn cumplimiento de las leyes y reglamentos, el derecho de interpretación final de este \ndocumento y de todos los documentos relacionados con este producto corresponde a la \nEmpresa.\nTenga en cuenta que no se realizarán más notificaciones en caso de actualización, revisión \no finalización.\nIMPORTANT\nIMPORTANT\nIMPORTANTE\nUS\nFR\nES\n",
+      "blocks": [
+        {
+          "bbox": [
+            37.676300048828125,
+            35.980003356933594,
+            48.389949798583984,
+            46.71099090576172
+          ],
+          "text": "US\n"
+        },
+        {
+          "bbox": [
+            55.98680114746094,
+            33.83671188354492,
+            121.98680877685547,
+            48.692710876464844
+          ],
+          "text": "IMPORTANT\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            53.8187255859375,
+            325.44482421875,
+            82.2247085571289
+          ],
+          "text": "Congratulations on your new Jackery Explorer 3600 Plus. Please read this manual carefully \nbefore using the product, particularly the relevant precautions to ensure proper use. Keep \nthis manual in an accessible place for frequent reference.\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            85.82269287109375,
+            320.3488464355469,
+            104.2256851196289
+          ],
+          "text": "In compliance with laws and regulations, the right of final interpretation of this document \nand all related documents of this product resides with the Company.\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            107.82366943359375,
+            329.3291015625,
+            126.2266616821289
+          ],
+          "text": "Please kindly notice that no further notifications will be given in case of any update, revision \nor termination.\n"
+        },
+        {
+          "bbox": [
+            38.439083099365234,
+            153.37939453125,
+            48.259925842285156,
+            164.11036682128906
+          ],
+          "text": "FR\n"
+        },
+        {
+          "bbox": [
+            55.98680114746094,
+            151.7127227783203,
+            121.98680877685547,
+            166.5687255859375
+          ],
+          "text": "IMPORTANT\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            172.81167602539062,
+            332.49383544921875,
+            211.22064208984375
+          ],
+          "text": "Félicitations d’avoir fait l’acquisition du nouveau Jackery Explorer 3600 Plus. Veuillez lire \nattentivement ce manuel avant d’utiliser le dispositif, en particulier les précautions à prendre \nafin de garantir une bonne utilisation. Conservez ce manuel dans un endroit accessible pour \npouvoir vous y référer fréquemment.\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            214.81863403320312,
+            333.2708435058594,
+            233.22161865234375
+          ],
+          "text": "Conformément aux lois et réglementations, le droit d’interprétation finale de ce document et \nde tous les documents relatifs à ce produit appartient à l’entreprise.\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            236.81961059570312,
+            329.5398254394531,
+            255.22259521484375
+          ],
+          "text": "Veuillez noter qu’aucune autre notification ne sera donnée en cas de mise à jour, de révision \nou de résiliation.\n"
+        },
+        {
+          "bbox": [
+            38.18770980834961,
+            280.6949768066406,
+            47.8351936340332,
+            291.42596435546875
+          ],
+          "text": "ES\n"
+        },
+        {
+          "bbox": [
+            55.98680114746094,
+            278.93670654296875,
+            128.3468017578125,
+            293.792724609375
+          ],
+          "text": "IMPORTANTE\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            301.1916198730469,
+            333.3583679199219,
+            329.59759521484375
+          ],
+          "text": "Felicidades por su nuevo Jackery Explorer 3600 Plus. Lea atentamente este manual antes de \nutilizar el producto, en particular las precauciones pertinentes para garantizar un uso \ncorrecto. Guarde este manual en un lugar accesible para consultarlo con frecuencia.\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            333.19561767578125,
+            322.7225036621094,
+            361.60162353515625
+          ],
+          "text": "En cumplimiento de las leyes y reglamentos, el derecho de interpretación final de este \ndocumento y de todos los documentos relacionados con este producto corresponde a la \nEmpresa.\n"
+        },
+        {
+          "bbox": [
+            35.8296012878418,
+            365.1996154785156,
+            328.9601745605469,
+            383.6026306152344
+          ],
+          "text": "Tenga en cuenta que no se realizarán más notificaciones en caso de actualización, revisión \no finalización.\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 8,
+      "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC \nSHOCK, OR INJURY TO PERSONS\nAlways follow these basic precautions when using this product.\nRead all the instructions before using the product.\nDo not allow children to play with the product. Close supervision of children is necessary when the product is \nused near children.\nRisk of electric shock may occur if using accessories that are not recommended or sold by professional product \nmanufacturers.\nWhen the product is not in use, unplug the power plug from the product's socket.\nDo not dismantle the product, as this may lead to unpredictable risks such as fire, explosion, or electric shock.\nDo not use the product with damaged cords, plugs, or output cables, as this may cause electric shock.\nTo ensure proper air circulation, keep the product vents uncovered. The area where the product is used must \nhave adequate airflow in a cool, dry environment to prevent overheating.\n-Charging in damp or poorly ventilated spaces may cause safety hazards.\n-Water can cause short circuits or damage to the charger, leading to safety risks.\nDo not expose the product to fire, high temperatures, direct sunlight, or high-heat environments such as inside a \nparked vehicle. Such exposure may result in fire or explosion.\nUSER MAINTENANCE INSTRUCTIONS\nDuring the lifecycle of energy storage products, a certain degree of capacity and energy degradation is \nexpected. As the number of charge and discharge cycles increases and storage time extends, this degradation \nwill gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.\n",
+      "blocks": [
+        {
+          "bbox": [
+            133.73629760742188,
+            67.72560119628906,
+            338.7043762207031,
+            87.2296142578125
+          ],
+          "text": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC \nSHOCK, OR INJURY TO PERSONS\n"
+        },
+        {
+          "bbox": [
+            28.81839942932129,
+            102.2193832397461,
+            219.78196716308594,
+            110.26638793945312
+          ],
+          "text": "Always follow these basic precautions when using this product.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            116.57569122314453,
+            171.2097930908203,
+            123.77569580078125
+          ],
+          "text": "Read all the instructions before using the product.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            127.7776870727539,
+            329.39056396484375,
+            142.17770385742188
+          ],
+          "text": "Do not allow children to play with the product. Close supervision of children is necessary when the product is \nused near children.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            146.17970275878906,
+            336.6875915527344,
+            160.5797119140625
+          ],
+          "text": "Risk of electric shock may occur if using accessories that are not recommended or sold by professional product \nmanufacturers.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            164.5817108154297,
+            253.78932189941406,
+            171.78170776367188
+          ],
+          "text": "When the product is not in use, unplug the power plug from the product's socket.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            175.78370666503906,
+            331.0413818359375,
+            182.98370361328125
+          ],
+          "text": "Do not dismantle the product, as this may lead to unpredictable risks such as fire, explosion, or electric shock.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            186.98570251464844,
+            313.93548583984375,
+            194.18569946289062
+          ],
+          "text": "Do not use the product with damaged cords, plugs, or output cables, as this may cause electric shock.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            198.1876983642578,
+            329.66302490234375,
+            212.58770751953125
+          ],
+          "text": "To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must \nhave adequate airflow in a cool, dry environment to prevent overheating.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            216.58970642089844,
+            237.87265014648438,
+            223.78970336914062
+          ],
+          "text": "-Charging in damp or poorly ventilated spaces may cause safety hazards.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            227.7917022705078,
+            255.3935546875,
+            234.99169921875
+          ],
+          "text": "-Water can cause short circuits or damage to the charger, leading to safety risks.\n"
+        },
+        {
+          "bbox": [
+            36.98830032348633,
+            238.9936981201172,
+            339.8898620605469,
+            253.39370727539062
+          ],
+          "text": "Do not expose the product to fire, high temperatures, direct sunlight, or high-heat environments such as inside a \nparked vehicle. Such exposure may result in fire or explosion.\n"
+        },
+        {
+          "bbox": [
+            36.5166015625,
+            285.96929931640625,
+            168.3646240234375,
+            295.873291015625
+          ],
+          "text": "USER MAINTENANCE INSTRUCTIONS\n"
+        },
+        {
+          "bbox": [
+            29.243200302124023,
+            301.91357421875,
+            335.13336181640625,
+            323.11761474609375
+          ],
+          "text": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is \nexpected. As the number of charge and discharge cycles increases and storage time extends, this degradation \nwill gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells.\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 9,
+      "text": "WHAT'S IN THE BOX\n1\n2\nAC Charging Cable\nJackery Explorer 3600 Plus\n3\nUser Manual\nThe car charging cable is not included but is available for purchase separately on \nour website. For assistance, please contact Jackery customer service.\nTIP\nBatteries and accumulators must not be \ndisposed of with household waste.\nAs a consumer, you are legally required to \ndispose of all batteries and accumulators \nat designated collection points, \nregardless of whether they contain \nhazardous substances.\nPlease return used batteries and \naccumulators to a local collection point, \nrecycling center, or to the retailer where \nthey were purchased. Proper disposal \nensures environmentally responsible \nrecycling and prevents potential harm to \nhuman health and the environment.\n",
+      "blocks": [
+        {
+          "bbox": [
+            227.4813995361328,
+            45.97431182861328,
+            335.0807189941406,
+            141.07351684570312
+          ],
+          "text": "Batteries and accumulators must not be \ndisposed of with household waste.\nAs a consumer, you are legally required to \ndispose of all batteries and accumulators \nat designated collection points, \nregardless of whether they contain \nhazardous substances.\nPlease return used batteries and \naccumulators to a local collection point, \nrecycling center, or to the retailer where \nthey were purchased. Proper disposal \nensures environmentally responsible \nrecycling and prevents potential harm to \nhuman health and the environment.\n"
+        },
+        {
+          "bbox": [
+            35.972198486328125,
+            246.1557159423828,
+            145.1242218017578,
+            261.01171875
+          ],
+          "text": "WHAT'S IN THE BOX\n"
+        },
+        {
+          "bbox": [
+            85.22949981689453,
+            298.4715270996094,
+            199.0976104736328,
+            311.7077941894531
+          ],
+          "text": "1\n2\n"
+        },
+        {
+          "bbox": [
+            291.8926086425781,
+            298.4720153808594,
+            297.7303161621094,
+            311.7077941894531
+          ],
+          "text": "3\n"
+        },
+        {
+          "bbox": [
+            275.4433898925781,
+            410.552490234375,
+            315.58843994140625,
+            419.12750244140625
+          ],
+          "text": "User Manual\n"
+        },
+        {
+          "bbox": [
+            43.99290466308594,
+            410.5534973144531,
+            227.7358856201172,
+            419.1285095214844
+          ],
+          "text": "AC Charging Cable\nJackery Explorer 3600 Plus\n"
+        },
+        {
+          "bbox": [
+            51.36869812011719,
+            463.8266906738281,
+            331.4354248046875,
+            478.2266845703125
+          ],
+          "text": "The car charging cable is not included but is available for purchase separately on \nour website. For assistance, please contact Jackery customer service.\nTIP\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 10,
+      "text": "03\nRIGHT SIDE VIEW\nFRONT VIEW\nPRODUCT OVERVIEW\n100W Max, 5V⎓3A, 9V⎓3A, \n12V⎓3A, 15V⎓3A, 20V⎓5A\n18W Max, 5-6V⎓3A, \n6-9V⎓2A, 9-12V⎓1.5A\nAC Output\nAC Power Button\nUSB Power Button\nUSB-C 100W Output\nUSB-A 18W Output\nLCD\nPower Button\n230V~ 50 Hz, 3600W\nAC Total Output 3600W\nAC Input\nDC Input\n220V-240V~ 50 Hz, 10A Max\n(2×DC8020 Ports):\n12-16V⎓8A Max,\ndouble to 8A Max\n16-60V⎓12A, \ndouble to 24A Max/ 1000W Max\nDC Expansion Port\nConnect to Battery Pack\nWheels\nRetractable Handle \nPress the button on the retractable handle and pull up to extend.\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.360801696777344,
+            31.002727508544922,
+            153.22080993652344,
+            45.858726501464844
+          ],
+          "text": "PRODUCT OVERVIEW\n"
+        },
+        {
+          "bbox": [
+            40.69919967651367,
+            59.34321975708008,
+            87.35519409179688,
+            69.24722290039062
+          ],
+          "text": "FRONT VIEW\n"
+        },
+        {
+          "bbox": [
+            327.0191955566406,
+            69.88731384277344,
+            340.1161804199219,
+            78.55331420898438
+          ],
+          "text": "LCD\n"
+        },
+        {
+          "bbox": [
+            28.014190673828125,
+            108.32432556152344,
+            71.07819366455078,
+            116.99032592773438
+          ],
+          "text": "Power Button\n"
+        },
+        {
+          "bbox": [
+            28.0072021484375,
+            121.99531555175781,
+            94.78791046142578,
+            130.66131591796875
+          ],
+          "text": "USB-C 100W Output\n"
+        },
+        {
+          "bbox": [
+            27.98539924621582,
+            130.90870666503906,
+            94.4786605834961,
+            143.5279998779297
+          ],
+          "text": "100W Max, 5V⎓3A, 9V⎓3A, \n12V⎓3A, 15V⎓3A, 20V⎓5A\n"
+        },
+        {
+          "bbox": [
+            305.0508117675781,
+            136.9871063232422,
+            339.8128356933594,
+            145.65310668945312
+          ],
+          "text": "AC Output\n"
+        },
+        {
+          "bbox": [
+            282.0128173828125,
+            146.30030822753906,
+            340.13787841796875,
+            159.61920166015625
+          ],
+          "text": "230V~ 50 Hz, 3600W\nAC Total Output 3600W\n"
+        },
+        {
+          "bbox": [
+            28.0072021484375,
+            153.81031799316406,
+            89.39021301269531,
+            162.476318359375
+          ],
+          "text": "USB-A 18W Output\n"
+        },
+        {
+          "bbox": [
+            27.985397338867188,
+            162.6663055419922,
+            79.87186431884766,
+            175.2855987548828
+          ],
+          "text": "18W Max, 5-6V⎓3A, \n6-9V⎓2A, 9-12V⎓1.5A\n"
+        },
+        {
+          "bbox": [
+            28.0072021484375,
+            182.45433044433594,
+            340.1161804199219,
+            191.47732543945312
+          ],
+          "text": "AC Power Button\nUSB Power Button\n"
+        },
+        {
+          "bbox": [
+            40.69919967651367,
+            244.3588104248047,
+            103.97920227050781,
+            254.2628173828125
+          ],
+          "text": "RIGHT SIDE VIEW\n"
+        },
+        {
+          "bbox": [
+            27.535200119018555,
+            269.552490234375,
+            184.3887176513672,
+            284.8644104003906
+          ],
+          "text": "Retractable Handle \nPress the button on the retractable handle and pull up to extend.\n"
+        },
+        {
+          "bbox": [
+            311.25201416015625,
+            350.11810302734375,
+            340.10601806640625,
+            358.78411865234375
+          ],
+          "text": "DC Input\n"
+        },
+        {
+          "bbox": [
+            297.4153137207031,
+            359.835693359375,
+            340.1067810058594,
+            366.1957092285156
+          ],
+          "text": "(2×DC8020 Ports):\n"
+        },
+        {
+          "bbox": [
+            297.489501953125,
+            365.8352966308594,
+            340.1073303222656,
+            378.1949157714844
+          ],
+          "text": "12-16V⎓8A Max,\ndouble to 8A Max\n"
+        },
+        {
+          "bbox": [
+            27.595199584960938,
+            377.61700439453125,
+            340.1077880859375,
+            392.51904296875
+          ],
+          "text": "16-60V⎓12A, \ndouble to 24A Max/ 1000W Max\nDC Expansion Port\nConnect to Battery Pack\n"
+        },
+        {
+          "bbox": [
+            311.7070007324219,
+            398.5721130371094,
+            340.0710144042969,
+            407.2381286621094
+          ],
+          "text": "AC Input\n"
+        },
+        {
+          "bbox": [
+            272.79150390625,
+            407.9755859375,
+            340.0003356933594,
+            414.3356018066406
+          ],
+          "text": "220V-240V~ 50 Hz, 10A Max\n"
+        },
+        {
+          "bbox": [
+            27.984899520874023,
+            461.773193359375,
+            51.938907623291016,
+            470.439208984375
+          ],
+          "text": "Wheels\n"
+        },
+        {
+          "bbox": [
+            27.834999084472656,
+            503.9656982421875,
+            34.67499923706055,
+            511.16571044921875
+          ],
+          "text": "03\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 11,
+      "text": "04\nLCD DISPLAY \n6\n7\n1\n2\n3\n4\n5\nAC Power Indicator \nOutput Voltage \nand Frequency\nQuiet Charging Mode\nBattery Saving Mode\nSelf-powered Mode\nCharging Plan\nWi-Fi\nBluetooth\n20\n21\n8\n9\n1\n10\n2\n11\n12\n13\n14\n15\n17\n18\n19\n3\n4\n5\n6\n7\n16\nOn: The noise during charging is significantly minimized, while \nthe charging power is reduced and the charging speed slows \ndown.\nOff: Quiet Charging Mode is disabled.\nEnable/disable this feature in the Jackery App.\nOn: Limits the maximum usable battery capacity to extend \nbattery life.\nOff: Battery Saving Mode is disabled.\nEnable/disable this feature in the Jackery App. This feature \nis not available when the product is connected to battery \npack(s).\nMaximizes the use of solar energy and reduces reliance on \ngrid electricity by prioritizing stored solar energy, reducing \nelectricity costs (please enable/disable this feature in the \napp). The power station must be connected to both solar \npanels and the grid simultaneously, with load power limited \nby bypass power.\nCustomizes the charging time of the Jackery Explorer 3600 \nPlus. Suitable for situations with fluctuating electricity prices, \nit allows for charging plans based on peak and off-peak \nelectricity times, reducing electricity costs (Please set in the \nJackery App).\nThe AC output (pure sine wave) is on.\nDisplays the output voltage and frequency when the AC \noutput is turned on.\nOn: Wi-Fi connected.\nBlink: Ready to connect to Wi-Fi.\nOff: Wi-Fi disconnected.\nOn:  Bluetooth Connected.\nBlink: Ready to connect to Bluetooth.\nOff: Bluetooth disconnected.\n",
+      "blocks": [
+        {
+          "bbox": [
+            35.682098388671875,
+            31.003704071044922,
+            111.85810852050781,
+            45.859703063964844
+          ],
+          "text": "LCD DISPLAY \n"
+        },
+        {
+          "bbox": [
+            91.17414855957031,
+            57.41764831542969,
+            93.28292846679688,
+            64.86040496826172
+          ],
+          "text": "1\n"
+        },
+        {
+          "bbox": [
+            102.44239807128906,
+            57.42137145996094,
+            105.6986083984375,
+            64.86412811279297
+          ],
+          "text": "2\n"
+        },
+        {
+          "bbox": [
+            114.22560119628906,
+            57.42039489746094,
+            265.1289367675781,
+            65.16594696044922
+          ],
+          "text": "3\n4\n5\n6\n7\n"
+        },
+        {
+          "bbox": [
+            330.06689453125,
+            113.99185943603516,
+            336.5257263183594,
+            120.91201782226562
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            38.727500915527344,
+            114.67729187011719,
+            42.12636184692383,
+            122.12004852294922
+          ],
+          "text": "8\n"
+        },
+        {
+          "bbox": [
+            330.537109375,
+            132.1184844970703,
+            335.787109375,
+            139.3184814453125
+          ],
+          "text": "21\n"
+        },
+        {
+          "bbox": [
+            38.522823333740234,
+            133.84239196777344,
+            41.81004333496094,
+            141.28515625
+          ],
+          "text": "9\n"
+        },
+        {
+          "bbox": [
+            89.91310119628906,
+            184.40769958496094,
+            96.11540222167969,
+            191.8504638671875
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            230.2274932861328,
+            185.2651824951172,
+            235.68551635742188,
+            192.70794677734375
+          ],
+          "text": "16\n"
+        },
+        {
+          "bbox": [
+            103.44339752197266,
+            184.35987854003906,
+            280.5498046875,
+            192.78213500976562
+          ],
+          "text": "11\n12\n13\n14\n15\n17\n18\n19\n"
+        },
+        {
+          "bbox": [
+            37.44089889526367,
+            209.37301635742188,
+            39.80406951904297,
+            217.713623046875
+          ],
+          "text": "1\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            209.21180725097656,
+            105.40771484375,
+            217.8778076171875
+          ],
+          "text": "Wi-Fi\n"
+        },
+        {
+          "bbox": [
+            37.162601470947266,
+            232.81741333007812,
+            40.811614990234375,
+            241.15802001953125
+          ],
+          "text": "2\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            233.2357940673828,
+            119.34468841552734,
+            241.90179443359375
+          ],
+          "text": "Bluetooth\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            202.839111328125,
+            272.3257141113281,
+            247.2691650390625
+          ],
+          "text": "On: Wi-Fi connected.\nBlink: Ready to connect to Wi-Fi.\nOff: Wi-Fi disconnected.\nOn:  Bluetooth Connected.\nBlink: Ready to connect to Bluetooth.\nOff: Bluetooth disconnected.\n"
+        },
+        {
+          "bbox": [
+            37.16699981689453,
+            265.6123046875,
+            40.850765228271484,
+            273.9529113769531
+          ],
+          "text": "3\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            265.456787109375,
+            158.17303466796875,
+            274.122802734375
+          ],
+          "text": "Quiet Charging Mode\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            251.361083984375,
+            339.3390808105469,
+            286.65911865234375
+          ],
+          "text": "On: The noise during charging is significantly minimized, while \nthe charging power is reduced and the charging speed slows \ndown.\nOff: Quiet Charging Mode is disabled.\nEnable/disable this feature in the Jackery App.\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            309.36077880859375,
+            156.20742797851562,
+            318.02679443359375
+          ],
+          "text": "Battery Saving Mode\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            294.08709716796875,
+            333.53948974609375,
+            336.3870849609375
+          ],
+          "text": "On: Limits the maximum usable battery capacity to extend \nbattery life.\nOff: Battery Saving Mode is disabled.\nEnable/disable this feature in the Jackery App. This feature \nis not available when the product is connected to battery \npack(s).\n"
+        },
+        {
+          "bbox": [
+            37.059600830078125,
+            335.7759094238281,
+            41.09089279174805,
+            344.11651611328125
+          ],
+          "text": "4\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            360.8877868652344,
+            152.21810913085938,
+            369.5538024902344
+          ],
+          "text": "Self-powered Mode\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            343.8150939941406,
+            333.5916442871094,
+            386.02508544921875
+          ],
+          "text": "Maximizes the use of solar energy and reduces reliance on \ngrid electricity by prioritizing stored solar energy, reducing \nelectricity costs (please enable/disable this feature in the \napp). The power station must be connected to both solar \npanels and the grid simultaneously, with load power limited \nby bypass power.\n"
+        },
+        {
+          "bbox": [
+            37.059600830078125,
+            407.43359375,
+            40.812870025634766,
+            415.7742004394531
+          ],
+          "text": "5\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            407.4307861328125,
+            134.3527069091797,
+            416.0968017578125
+          ],
+          "text": "Charging Plan\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            393.68109130859375,
+            336.56591796875,
+            428.88909912109375
+          ],
+          "text": "Customizes the charging time of the Jackery Explorer 3600 \nPlus. Suitable for situations with fluctuating electricity prices, \nit allows for charging plans based on peak and off-peak \nelectricity times, reducing electricity costs (Please set in the \nJackery App).\n"
+        },
+        {
+          "bbox": [
+            37.18069839477539,
+            445.02392578125,
+            40.864463806152344,
+            453.3645324707031
+          ],
+          "text": "6\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            446.33709716796875,
+            271.00628662109375,
+            453.537109375
+          ],
+          "text": "The AC output (pure sine wave) is on.\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            445.16778564453125,
+            151.7477264404297,
+            453.83380126953125
+          ],
+          "text": "AC Power Indicator \n"
+        },
+        {
+          "bbox": [
+            37.31840133666992,
+            477.08740234375,
+            40.72414779663086,
+            485.4280090332031
+          ],
+          "text": "7\n"
+        },
+        {
+          "bbox": [
+            170.23629760742188,
+            473.0970764160156,
+            325.7736511230469,
+            487.2991027832031
+          ],
+          "text": "Displays the output voltage and frequency when the AC \noutput is turned on.\n"
+        },
+        {
+          "bbox": [
+            87.92870330810547,
+            471.4457702636719,
+            140.21871948242188,
+            488.5257873535156
+          ],
+          "text": "Output Voltage \nand Frequency\n"
+        },
+        {
+          "bbox": [
+            335.7240905761719,
+            503.9666748046875,
+            342.9841003417969,
+            511.16668701171875
+          ],
+          "text": "04\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 12,
+      "text": "A product error has occurred. Please refer to the \nTroubleshooting section for details.\nDisplays the remaining battery percentage.\nDisplays the quantity of battery packs if any is connected.\nThe product is charged via the DC Input (DC8020) using \nsolar panel(s).\n11\nBattery Power \nIndicator \nWhen the product is being charged, the orange circle \naround the battery percentage will light up in sequence. \nWhen charging other devices, the orange circle will stay on.\nLow Battery Indicator\nRemaining Battery\nPercentage\nEnergy Saving Mode\nHigh temperature protection is triggered. The product may \nstop functioning until its temperature returns to the normal \noperating range.\nLow temperature protection is triggered. The product may \nstop functioning until its temperature returns to the normal \noperating range.\nFault code\nWhen the AC or USB output is turned on by pressing the AC \nor USB power button:\nOn: Energy Saving Mode is enabled.\nOff: Energy Saving Mode is disabled.\nOutput Power\nRemaining \nDischarge Time \nHigh Temperature \nIndicator\nLow Temperature \nIndicator\n13\n12\n14\n15\n16\n17\n18\n21\n20\n19\n10\n8\n9\nInput Power\nRemaining Charge \nTime\nAC Wall Charging \nIndicator\nCar Charging \nIndicator\n05\nSolar Charging\nIndicator\nOn: The battery level is below 20%.\nBlink: The battery level is below 5%.\nOff: The battery level is not below 20% or the product is \ncharging.\nDisplays the input power in watts.\nDisplays the remaining charging time.\nThe product is charged via the AC Input using grid power.\nThe product is charged via the DC Input (DC8020) using DC\n12V (car charging).\nDisplays the output power in watts.\nDisplays the remaining discharging time.\nBattery Pack Indicator \nand Number of \nConnected Batteries\n",
+      "blocks": [
+        {
+          "bbox": [
+            168.16990661621094,
+            38.75498580932617,
+            259.8253479003906,
+            45.95498275756836
+          ],
+          "text": "Displays the input power in watts.\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            37.39628219604492,
+            128.4279022216797,
+            46.06228256225586
+          ],
+          "text": "Input Power\n"
+        },
+        {
+          "bbox": [
+            36.1254997253418,
+            39.200721740722656,
+            39.93437576293945,
+            47.54132080078125
+          ],
+          "text": "8\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            64.4949722290039,
+            270.7321472167969,
+            71.69497680664062
+          ],
+          "text": "Displays the remaining charging time.\n"
+        },
+        {
+          "bbox": [
+            36.16699981689453,
+            64.67090606689453,
+            39.850765228271484,
+            73.01150512695312
+          ],
+          "text": "9\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            59.77668380737305,
+            152.03408813476562,
+            76.86367797851562
+          ],
+          "text": "Remaining Charge \nTime\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            89.38297271728516,
+            325.2486877441406,
+            96.58297729492188
+          ],
+          "text": "The product is charged via the AC Input using grid power.\n"
+        },
+        {
+          "bbox": [
+            34.72949981689453,
+            88.46240997314453,
+            41.68000030517578,
+            96.80300903320312
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            83.80348205566406,
+            149.5612335205078,
+            100.89047241210938
+          ],
+          "text": "AC Wall Charging \nIndicator\n"
+        },
+        {
+          "bbox": [
+            35.40330123901367,
+            112.80323028564453,
+            40.338157653808594,
+            121.14382934570312
+          ],
+          "text": "11\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            109.0209732055664,
+            331.5973205566406,
+            123.22299194335938
+          ],
+          "text": "The product is charged via the DC Input (DC8020) using DC\n12V (car charging).\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            108.20545959472656,
+            135.73690795898438,
+            124.36846923828125
+          ],
+          "text": "Car Charging \nIndicator\n"
+        },
+        {
+          "bbox": [
+            34.79790115356445,
+            136.13519287109375,
+            41.01860046386719,
+            144.47579956054688
+          ],
+          "text": "12\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            133.1663055419922,
+            322.80853271484375,
+            147.36831665039062
+          ],
+          "text": "The product is charged via the DC Input (DC8020) using \nsolar panel(s).\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            132.37001037597656,
+            139.00660705566406,
+            148.53302001953125
+          ],
+          "text": "Solar Charging\nIndicator\n"
+        },
+        {
+          "bbox": [
+            34.79790115356445,
+            161.71041870117188,
+            41.05335235595703,
+            170.051025390625
+          ],
+          "text": "13\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            157.0174102783203,
+            137.17190551757812,
+            174.10440063476562
+          ],
+          "text": "Battery Power \nIndicator \n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            154.79039001464844,
+            330.4435119628906,
+            175.99441528320312
+          ],
+          "text": "When the product is being charged, the orange circle \naround the battery percentage will light up in sequence. \nWhen charging other devices, the orange circle will stay on.\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            195.5760040283203,
+            159.4249267578125,
+            204.24200439453125
+          ],
+          "text": "Low Battery Indicator\n"
+        },
+        {
+          "bbox": [
+            34.624000549316406,
+            196.08541870117188,
+            41.22697830200195,
+            204.426025390625
+          ],
+          "text": "14\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            184.75897216796875,
+            320.4720458984375,
+            215.71298217773438
+          ],
+          "text": "On: The battery level is below 20%.\nBlink: The battery level is below 5%.\nOff: The battery level is not below 20% or the product is \ncharging.\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            230.17430114746094,
+            286.9027404785156,
+            237.37429809570312
+          ],
+          "text": "Displays the remaining battery percentage.\n"
+        },
+        {
+          "bbox": [
+            34.762699127197266,
+            229.69580078125,
+            41.08765411376953,
+            238.03640747070312
+          ],
+          "text": "15\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            225.24900817871094,
+            150.14993286132812,
+            242.33599853515625
+          ],
+          "text": "Remaining Battery\nPercentage\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            265.4422912597656,
+            327.2929382324219,
+            272.6423034667969
+          ],
+          "text": "Displays the quantity of battery packs if any is connected.\n"
+        },
+        {
+          "bbox": [
+            34.79880142211914,
+            264.4507141113281,
+            41.05425262451172,
+            272.79132080078125
+          ],
+          "text": "16\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            255.93199157714844,
+            164.13734436035156,
+            281.44000244140625
+          ],
+          "text": "Battery Pack Indicator \nand Number of \nConnected Batteries\n"
+        },
+        {
+          "bbox": [
+            34.9375,
+            301.43212890625,
+            40.91493225097656,
+            309.7727355957031
+          ],
+          "text": "17\n"
+        },
+        {
+          "bbox": [
+            89.9208984375,
+            301.39239501953125,
+            124.42390441894531,
+            310.05841064453125
+          ],
+          "text": "Fault code\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            299.3363037109375,
+            300.9835205078125,
+            313.5382995605469
+          ],
+          "text": "A product error has occurred. Please refer to the \nTroubleshooting section for details.\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            331.0382995605469,
+            149.7509307861328,
+            347.2012939453125
+          ],
+          "text": "High Temperature \nIndicator\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            329.3421630859375,
+            330.2155456542969,
+            350.54620361328125
+          ],
+          "text": "High temperature protection is triggered. The product may \nstop functioning until its temperature returns to the normal \noperating range.\n"
+        },
+        {
+          "bbox": [
+            34.73440170288086,
+            353.3608093261719,
+            41.11496353149414,
+            361.701416015625
+          ],
+          "text": "18\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            368.15228271484375,
+            147.6649169921875,
+            384.3153076171875
+          ],
+          "text": "Low Temperature \nIndicator\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            365.66015625,
+            328.836669921875,
+            386.86419677734375
+          ],
+          "text": "Low temperature protection is triggered. The product may \nstop functioning until its temperature returns to the normal \noperating range.\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            397.5940856933594,
+            331.8186950683594,
+            411.79608154296875
+          ],
+          "text": "When the AC or USB output is turned on by pressing the AC \nor USB power button:\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            410.2239990234375,
+            156.40933227539062,
+            418.8900146484375
+          ],
+          "text": "Energy Saving Mode\n"
+        },
+        {
+          "bbox": [
+            34.9375,
+            410.5884094238281,
+            41.05393981933594,
+            418.92901611328125
+          ],
+          "text": "19\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            414.340087890625,
+            267.03192138671875,
+            421.7680969238281
+          ],
+          "text": "On: Energy Saving Mode is enabled.\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            424.1741027832031,
+            268.3807067871094,
+            431.60211181640625
+          ],
+          "text": "Off: Energy Saving Mode is disabled.\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            447.9429626464844,
+            264.4753112792969,
+            455.1429748535156
+          ],
+          "text": "Displays the output power in watts.\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            447.0212707519531,
+            134.826904296875,
+            455.6872863769531
+          ],
+          "text": "Output Power\n"
+        },
+        {
+          "bbox": [
+            34.6416015625,
+            447.941650390625,
+            41.89270782470703,
+            455.710693359375
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            168.16990661621094,
+            477.5049743652344,
+            278.41876220703125,
+            484.7049865722656
+          ],
+          "text": "Displays the remaining discharging time.\n"
+        },
+        {
+          "bbox": [
+            34.9375,
+            477.3529968261719,
+            41.019187927246094,
+            485.693603515625
+          ],
+          "text": "21\n"
+        },
+        {
+          "bbox": [
+            89.9218978881836,
+            471.40228271484375,
+            141.7779083251953,
+            488.4892883300781
+          ],
+          "text": "Remaining \nDischarge Time \n"
+        },
+        {
+          "bbox": [
+            27.508800506591797,
+            503.9158935546875,
+            34.52880096435547,
+            511.11590576171875
+          ],
+          "text": "05\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 13,
+      "text": "POWER ON/OFF\nUSB OUTPUT ON/OFF\n3s\nDefault standby time: 2 hours\nThe product will automatically shut down after 2\nhours of inactivity, with no charging or discharging.\n*The standby time can be set in the Jackery App.\nOPERATIONS\nOn\nOﬀ\nPress once\nPress and hold for 3s\nPrerequisite: The product is turned on.\nOn\nOﬀ\nPress once\nPress once\n06\nWhen Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the \nAC or USB power button is ON but the product is neither charging nor discharging.\nCAUTION\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.834999084472656,
+            31.003704071044922,
+            107.43501281738281,
+            45.859703063964844
+          ],
+          "text": "OPERATIONS\n"
+        },
+        {
+          "bbox": [
+            40.80619812011719,
+            59.38029861450195,
+            101.55020141601562,
+            69.2843017578125
+          ],
+          "text": "POWER ON/OFF\n"
+        },
+        {
+          "bbox": [
+            262.1401062011719,
+            85.30868530273438,
+            275.8301086425781,
+            97.68868255615234
+          ],
+          "text": "On\n"
+        },
+        {
+          "bbox": [
+            262.47021484375,
+            98.08777618408203,
+            292.1462097167969,
+            105.28778076171875
+          ],
+          "text": "Press once\n"
+        },
+        {
+          "bbox": [
+            261.85009765625,
+            111.43869018554688,
+            275.8200988769531,
+            123.81868743896484
+          ],
+          "text": "Oﬀ\n"
+        },
+        {
+          "bbox": [
+            262.47021484375,
+            123.59378814697266,
+            319.2062072753906,
+            130.79379272460938
+          ],
+          "text": "Press and hold for 3s\n"
+        },
+        {
+          "bbox": [
+            276.61279296875,
+            135.62088012695312,
+            283.50079345703125,
+            144.0208740234375
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            177.11770629882812,
+            169.877685546875,
+            315.4531555175781,
+            201.16165161132812
+          ],
+          "text": "Default standby time: 2 hours\nThe product will automatically shut down after 2\nhours of inactivity, with no charging or discharging.\n*The standby time can be set in the Jackery App.\n"
+        },
+        {
+          "bbox": [
+            48.4375,
+            216.29188537597656,
+            321.3384704589844,
+            231.4898681640625
+          ],
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the \nAC or USB power button is ON but the product is neither charging nor discharging.\n"
+        },
+        {
+          "bbox": [
+            40.39400100708008,
+            253.6356964111328,
+            119.80999755859375,
+            263.5397033691406
+          ],
+          "text": "USB OUTPUT ON/OFF\n"
+        },
+        {
+          "bbox": [
+            44.25979995727539,
+            276.3049011230469,
+            159.31829833984375,
+            284.4757080078125
+          ],
+          "text": "Prerequisite: The product is turned on.\n"
+        },
+        {
+          "bbox": [
+            288.8359069824219,
+            281.0664978027344,
+            302.5259094238281,
+            293.4465026855469
+          ],
+          "text": "On\n"
+        },
+        {
+          "bbox": [
+            289.1659851074219,
+            293.8455810546875,
+            318.84197998046875,
+            301.04559326171875
+          ],
+          "text": "Press once\n"
+        },
+        {
+          "bbox": [
+            288.5458984375,
+            307.1965026855469,
+            302.5158996582031,
+            319.5765075683594
+          ],
+          "text": "Oﬀ\n"
+        },
+        {
+          "bbox": [
+            289.1659851074219,
+            319.80157470703125,
+            318.84197998046875,
+            327.0015869140625
+          ],
+          "text": "Press once\n"
+        },
+        {
+          "bbox": [
+            39.56740188598633,
+            458.3353271484375,
+            73.70722198486328,
+            468.1873474121094
+          ],
+          "text": "CAUTION\n"
+        },
+        {
+          "bbox": [
+            333.75799560546875,
+            503.9175720214844,
+            340.7179870605469,
+            511.1175842285156
+          ],
+          "text": "06\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 14,
+      "text": "AC OUTPUT ON/OFF\n3s\nPress and hold for 3s\nPrerequisite: The product is turned on.\nOn\nOﬀ\nPress once\nPress once\nOn/Oﬀ\n07\nENERGY SAVING MODE\nMain power button\nAC power button\nTo prevent unnecessary battery consumption from forgetting to turn oﬀ the output, the product \nenables Energy Saving Mode by default. If no device is connected or the connected device's power \nconsumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product \nwill automatically turn oﬀ the outputs.\nTo disable the energy saving mode, press and hold both the AC power button and POWER button for \nmore than 3 seconds. The product will not automatically turn oﬀ the AC or DC output.\nEnergy Saving Mode resumes previous state after power-on. Manual switching is \nrequired for mode changes.\nNOTE\n",
+      "blocks": [
+        {
+          "bbox": [
+            40.845699310302734,
+            29.709003448486328,
+            116.68569946289062,
+            39.61300277709961
+          ],
+          "text": "AC OUTPUT ON/OFF\n"
+        },
+        {
+          "bbox": [
+            45.54880142211914,
+            55.670711517333984,
+            160.6072998046875,
+            63.841514587402344
+          ],
+          "text": "Prerequisite: The product is turned on.\n"
+        },
+        {
+          "bbox": [
+            279.5693054199219,
+            91.040283203125,
+            293.2593078613281,
+            103.42028045654297
+          ],
+          "text": "On\n"
+        },
+        {
+          "bbox": [
+            279.8994140625,
+            103.8202896118164,
+            309.5754089355469,
+            111.02029418945312
+          ],
+          "text": "Press once\n"
+        },
+        {
+          "bbox": [
+            279.279296875,
+            117.1702880859375,
+            293.2492980957031,
+            129.55029296875
+          ],
+          "text": "Oﬀ\n"
+        },
+        {
+          "bbox": [
+            279.8994140625,
+            129.7703094482422,
+            309.5754089355469,
+            136.97030639648438
+          ],
+          "text": "Press once\n"
+        },
+        {
+          "bbox": [
+            41.549800872802734,
+            242.37648010253906,
+            127.36581420898438,
+            252.28048706054688
+          ],
+          "text": "ENERGY SAVING MODE\n"
+        },
+        {
+          "bbox": [
+            48.82320022583008,
+            275.65277099609375,
+            326.7060241699219,
+            322.8428039550781
+          ],
+          "text": "To prevent unnecessary battery consumption from forgetting to turn oﬀ the output, the product \nenables Energy Saving Mode by default. If no device is connected or the connected device's power \nconsumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product \nwill automatically turn oﬀ the outputs.\nTo disable the energy saving mode, press and hold both the AC power button and POWER button for \nmore than 3 seconds. The product will not automatically turn oﬀ the AC or DC output.\n"
+        },
+        {
+          "bbox": [
+            173.36570739746094,
+            394.48291015625,
+            302.5881652832031,
+            401.0829162597656
+          ],
+          "text": "Main power button\nAC power button\n"
+        },
+        {
+          "bbox": [
+            221.33349609375,
+            426.739990234375,
+            254.22349548339844,
+            439.1199951171875
+          ],
+          "text": "On/Oﬀ\n"
+        },
+        {
+          "bbox": [
+            207.20069885253906,
+            433.36029052734375,
+            278.39959716796875,
+            445.6228942871094
+          ],
+          "text": "3s\nPress and hold for 3s\n"
+        },
+        {
+          "bbox": [
+            46.27830123901367,
+            473.9906921386719,
+            314.578369140625,
+            489.1886901855469
+          ],
+          "text": "Energy Saving Mode resumes previous state after power-on. Manual switching is \nrequired for mode changes.\nNOTE\n"
+        },
+        {
+          "bbox": [
+            28.986299514770508,
+            503.9804992675781,
+            35.586299896240234,
+            511.1805114746094
+          ],
+          "text": "07\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 15,
+      "text": "08\nLCD SCREEN \nKEY COMBINATION\n3s\n3s\nPOWER button\nPOWER button\nAC power button\nAC power button\nPress and hold both for 3s\nPress and hold both for 3s\n1s\nPress and hold both for 1s\nReset Wi-Fi and Bluetooth\nTurn on/off the \nEnergy Saving Mode\nTurn on/off Wi-Fi and \nBluetooth\nButtons\nOperation\nFunction\nUSB power button\nUSB power button\nShortly On\nSteady On \n(in charging \nor \ndischarging \nstate)\nTurn oﬀ\nAuto-oﬀ\nTurn oﬀ\nTurn on\nAuto-oﬀ\nPress the POWER Button or \nwhen the product is charging.\nPress the POWER Button.\nThe LCD turns oﬀ automatically \nand enters sleep mode after 2 \nminutes of inactivity.\nTurn on\nPress the POWER button \ntwice when the product is \npowered on.\nPress the POWER button.\nThe LCD turns oﬀ \nautomatically after 2 hours of \ninactivity.\nYou can also set the screen display mode in the Jackery App.\n",
+      "blocks": [
+        {
+          "bbox": [
+            42.26459884643555,
+            27.448810577392578,
+            90.88859558105469,
+            37.35280990600586
+          ],
+          "text": "LCD SCREEN \n"
+        },
+        {
+          "bbox": [
+            201.7593536376953,
+            74.84529876708984,
+            220.81813049316406,
+            81.76737976074219
+          ],
+          "text": "Turn on\n"
+        },
+        {
+          "bbox": [
+            245.63380432128906,
+            73.13204193115234,
+            324.0258483886719,
+            86.97621154785156
+          ],
+          "text": "Press the POWER Button or \nwhen the product is charging.\n"
+        },
+        {
+          "bbox": [
+            245.63380432128906,
+            97.0536117553711,
+            311.0688171386719,
+            103.97569274902344
+          ],
+          "text": "Press the POWER Button.\n"
+        },
+        {
+          "bbox": [
+            201.75929260253906,
+            97.26482391357422,
+            220.8872833251953,
+            104.18690490722656
+          ],
+          "text": "Turn oﬀ\n"
+        },
+        {
+          "bbox": [
+            157.06539916992188,
+            98.07328796386719,
+            190.0630645751953,
+            106.37980651855469
+          ],
+          "text": "Shortly On\n"
+        },
+        {
+          "bbox": [
+            201.75929260253906,
+            118.75786590576172,
+            223.85226440429688,
+            125.67994689941406
+          ],
+          "text": "Auto-oﬀ\n"
+        },
+        {
+          "bbox": [
+            245.63380432128906,
+            111.9764633178711,
+            329.77691650390625,
+            132.7427215576172
+          ],
+          "text": "The LCD turns oﬀ automatically \nand enters sleep mode after 2 \nminutes of inactivity.\n"
+        },
+        {
+          "bbox": [
+            201.75929260253906,
+            148.41897583007812,
+            220.8180694580078,
+            155.34104919433594
+          ],
+          "text": "Turn on\n"
+        },
+        {
+          "bbox": [
+            245.63380432128906,
+            140.98944091796875,
+            315.004638671875,
+            161.7556915283203
+          ],
+          "text": "Press the POWER button \ntwice when the product is \npowered on.\n"
+        },
+        {
+          "bbox": [
+            245.63380432128906,
+            171.75811767578125,
+            311.1039733886719,
+            178.68019104003906
+          ],
+          "text": "Press the POWER button.\n"
+        },
+        {
+          "bbox": [
+            201.75929260253906,
+            172.11557006835938,
+            220.8872833251953,
+            179.0376434326172
+          ],
+          "text": "Turn oﬀ\n"
+        },
+        {
+          "bbox": [
+            156.02708435058594,
+            156.3573760986328,
+            194.76937866210938,
+            192.3522491455078
+          ],
+          "text": "Steady On \n(in charging \nor \ndischarging \nstate)\n"
+        },
+        {
+          "bbox": [
+            201.75929260253906,
+            195.47760009765625,
+            223.85226440429688,
+            202.39967346191406
+          ],
+          "text": "Auto-oﬀ\n"
+        },
+        {
+          "bbox": [
+            245.63380432128906,
+            188.6826171875,
+            324.5744323730469,
+            209.44886779785156
+          ],
+          "text": "The LCD turns oﬀ \nautomatically after 2 hours of \ninactivity.\n"
+        },
+        {
+          "bbox": [
+            29.6835994720459,
+            233.77999877929688,
+            215.45382690429688,
+            241.6999969482422
+          ],
+          "text": "You can also set the screen display mode in the Jackery App.\n"
+        },
+        {
+          "bbox": [
+            42.051300048828125,
+            266.3126220703125,
+            112.73928833007812,
+            276.21661376953125
+          ],
+          "text": "KEY COMBINATION\n"
+        },
+        {
+          "bbox": [
+            35.354000091552734,
+            286.65020751953125,
+            280.0562744140625,
+            295.038818359375
+          ],
+          "text": "Buttons\nOperation\nFunction\n"
+        },
+        {
+          "bbox": [
+            176.9980010986328,
+            308.20599365234375,
+            183.88600158691406,
+            316.6059875488281
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            254.81399536132812,
+            315.1162109375,
+            326.64654541015625,
+            322.31622314453125
+          ],
+          "text": "Reset Wi-Fi and Bluetooth\n"
+        },
+        {
+          "bbox": [
+            164.06790161132812,
+            323.39990234375,
+            228.69728088378906,
+            329.9999084472656
+          ],
+          "text": "Press and hold both for 3s\n"
+        },
+        {
+          "bbox": [
+            43.83150100708008,
+            330.0630187988281,
+            81.2144546508789,
+            336.66302490234375
+          ],
+          "text": "POWER button\n"
+        },
+        {
+          "bbox": [
+            100.85299682617188,
+            330.0630187988281,
+            146.33140563964844,
+            336.66302490234375
+          ],
+          "text": "USB power button\n"
+        },
+        {
+          "bbox": [
+            176.9980010986328,
+            349.9696960449219,
+            183.88600158691406,
+            358.36968994140625
+          ],
+          "text": "3s\n"
+        },
+        {
+          "bbox": [
+            254.15399169921875,
+            351.65618896484375,
+            310.3133544921875,
+            366.69219970703125
+          ],
+          "text": "Turn on/off the \nEnergy Saving Mode\n"
+        },
+        {
+          "bbox": [
+            164.06790161132812,
+            364.20440673828125,
+            228.69728088378906,
+            370.8044128417969
+          ],
+          "text": "Press and hold both for 3s\n"
+        },
+        {
+          "bbox": [
+            43.83150100708008,
+            371.1150207519531,
+            144.95339965820312,
+            377.71502685546875
+          ],
+          "text": "POWER button\nAC power button\n"
+        },
+        {
+          "bbox": [
+            176.9980010986328,
+            392.24749755859375,
+            182.55599975585938,
+            400.6474914550781
+          ],
+          "text": "1s\n"
+        },
+        {
+          "bbox": [
+            253.27198791503906,
+            394.64617919921875,
+            313.73333740234375,
+            409.8442077636719
+          ],
+          "text": "Turn on/off Wi-Fi and \nBluetooth\n"
+        },
+        {
+          "bbox": [
+            164.06790161132812,
+            405.52789306640625,
+            227.65228271484375,
+            412.1278991699219
+          ],
+          "text": "Press and hold both for 1s\n"
+        },
+        {
+          "bbox": [
+            102.23100280761719,
+            412.6391906738281,
+            144.9539031982422,
+            419.23919677734375
+          ],
+          "text": "AC power button\n"
+        },
+        {
+          "bbox": [
+            40.484901428222656,
+            412.9341125488281,
+            85.96330261230469,
+            419.53411865234375
+          ],
+          "text": "USB power button\n"
+        },
+        {
+          "bbox": [
+            334.9800109863281,
+            504.4921875,
+            342.0480041503906,
+            511.69219970703125
+          ],
+          "text": "08\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 16,
+      "text": "09\nUNINTERRUPTIBLE POWER SUPPLY (UPS)\nConnect the product to a wall outlet with the AC charging cable, then press the AC power button and power your \nappliances at the same time.\nIn UPS mode, the unit's peak output reaches 10A before power outages. As simultaneous charging/discharging is \nenabled in Bypass Mode, the actual output power is lower than the rated output power in this mode but returns to \nrated output power during outages.\nAn uninterruptible power supply (UPS) is a type of continual power system that \nprovides automated backup electric power to a load when the mains grid \npower fails.\nIn the event of a sudden loss of grid power, the Explorer 3600 Plus will \nautomatically switch to stored power within 10 ms to keep your appliances \nrunning.\nCAUTION\n",
+      "blocks": [
+        {
+          "bbox": [
+            31.319299697875977,
+            30.341808319091797,
+            252.9473419189453,
+            45.19780731201172
+          ],
+          "text": "UNINTERRUPTIBLE POWER SUPPLY (UPS)\n"
+        },
+        {
+          "bbox": [
+            26.462900161743164,
+            58.58640670776367,
+            338.4742736816406,
+            74.78640747070312
+          ],
+          "text": "Connect the product to a wall outlet with the AC charging cable, then press the AC power button and power your \nappliances at the same time.\n"
+        },
+        {
+          "bbox": [
+            130.4687042236328,
+            262.337890625,
+            327.2042236328125,
+            304.9463806152344
+          ],
+          "text": "An uninterruptible power supply (UPS) is a type of continual power system that \nprovides automated backup electric power to a load when the mains grid \npower fails.\nIn the event of a sudden loss of grid power, the Explorer 3600 Plus will \nautomatically switch to stored power within 10 ms to keep your appliances \nrunning.\n"
+        },
+        {
+          "bbox": [
+            25.37700080871582,
+            334.8744812011719,
+            339.0132141113281,
+            360.0744934082031
+          ],
+          "text": "In UPS mode, the unit's peak output reaches 10A before power outages. As simultaneous charging/discharging is \nenabled in Bypass Mode, the actual output power is lower than the rated output power in this mode but returns to \nrated output power during outages.\n"
+        },
+        {
+          "bbox": [
+            35.30220031738281,
+            392.0121154785156,
+            69.59184265136719,
+            401.8641357421875
+          ],
+          "text": "CAUTION\n"
+        },
+        {
+          "bbox": [
+            25.120100021362305,
+            504.0448913574219,
+            32.080101013183594,
+            511.2449035644531
+          ],
+          "text": "09\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 17,
+      "text": "10\nThis product can support up to 5 battery packs to meet the need for large power capacity. For details on how to \nuse it, please refer to the Jackery Battery Pack 3600 User Manual.\nCONNECTIONS \n CONNECT TO BATTERY PACK(S) \nAt least 200 mm\nAt least 200 mm\nSOLD SEPARATELY\nCAUTION\nExpansion Cable\nJackery Battery Pack 3600\nUser Manual\nSold \nseparately\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.1963005065918,
+            30.340801239013672,
+            120.90830993652344,
+            45.196800231933594
+          ],
+          "text": "CONNECTIONS \n"
+        },
+        {
+          "bbox": [
+            169.216796875,
+            60.48090744018555,
+            224.87620544433594,
+            68.44879913330078
+          ],
+          "text": "SOLD SEPARATELY\n"
+        },
+        {
+          "bbox": [
+            39.56880187988281,
+            60.03911209106445,
+            160.8167724609375,
+            69.943115234375
+          ],
+          "text": " CONNECT TO BATTERY PACK(S) \n"
+        },
+        {
+          "bbox": [
+            27.799800872802734,
+            77.81009674072266,
+            336.3347473144531,
+            94.01010131835938
+          ],
+          "text": "This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to \nuse it, please refer to the Jackery Battery Pack 3600 User Manual.\n"
+        },
+        {
+          "bbox": [
+            112.83300018310547,
+            262.5790100097656,
+            251.0989990234375,
+            269.87237548828125
+          ],
+          "text": "At least 200 mm\nAt least 200 mm\n"
+        },
+        {
+          "bbox": [
+            37.779300689697266,
+            339.0639343261719,
+            72.0269775390625,
+            348.91595458984375
+          ],
+          "text": "CAUTION\n"
+        },
+        {
+          "bbox": [
+            303.70208740234375,
+            415.42437744140625,
+            333.7611083984375,
+            430.18743896484375
+          ],
+          "text": "Sold \nseparately\n"
+        },
+        {
+          "bbox": [
+            49.247291564941406,
+            447.0884094238281,
+            245.25729370117188,
+            453.0884094238281
+          ],
+          "text": "Expansion Cable\nJackery Battery Pack 3600\nUser Manual\n"
+        },
+        {
+          "bbox": [
+            335.20208740234375,
+            503.7421875,
+            341.0220947265625,
+            510.94219970703125
+          ],
+          "text": "10\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 18,
+      "text": "CHARGING VIA AC WALL OUTLET\nConnect the AC charging cable to the AC \ninput port of the product and a wall outlet.\nCHARGING\n11\nFully charge the product before its first use.\nNOTE\nMake sure the AC charging cable is fully and securely plugged into the AC input port. An \nincomplete connection may cause unstable current, overheating, poor contact, or device \nmalfunction.\nCAUTION\nGreen energy first: We advocate using the green energy first. This product supports two modes of charging at the \nsame time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the \nsame time, the product will give priority to solar charging and both methods will be used to charge the battery at \nthe maximum permissible power.\nSOLD SEPARATELY\nSolarSaga 200 × 4\nCHARGING VIA SOLAR PANELS\nJackery Explorer 3600 Plus has two DC8020 input ports and is compatible with the Jackery solar panels. If one \nDC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging \nthrough the solar panel connector (sold separately, not included as standard).\n",
+      "blocks": [
+        {
+          "bbox": [
+            37.4995002746582,
+            31.023387908935547,
+            99.70750427246094,
+            45.87938690185547
+          ],
+          "text": "CHARGING\n"
+        },
+        {
+          "bbox": [
+            30.54050064086914,
+            54.233314514160156,
+            344.80255126953125,
+            88.5233154296875
+          ],
+          "text": "Green energy first: We advocate using the green energy first. This product supports two modes of charging at the \nsame time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the \nsame time, the product will give priority to solar charging and both methods will be used to charge the battery at \nthe maximum permissible power.\n"
+        },
+        {
+          "bbox": [
+            34.75490188598633,
+            93.69119262695312,
+            166.93243408203125,
+            101.86199188232422
+          ],
+          "text": "Fully charge the product before its first use.\n"
+        },
+        {
+          "bbox": [
+            43.539100646972656,
+            127.59138488769531,
+            63.49910354614258,
+            137.49539184570312
+          ],
+          "text": "NOTE\n"
+        },
+        {
+          "bbox": [
+            41.12260055541992,
+            165.53468322753906,
+            163.77862548828125,
+            175.43869018554688
+          ],
+          "text": "CHARGING VIA AC WALL OUTLET\n"
+        },
+        {
+          "bbox": [
+            192.6562042236328,
+            258.4657897949219,
+            309.8182373046875,
+            274.6658020019531
+          ],
+          "text": "Connect the AC charging cable to the AC \ninput port of the product and a wall outlet.\n"
+        },
+        {
+          "bbox": [
+            39.84280014038086,
+            289.1894836425781,
+            332.762939453125,
+            310.39349365234375
+          ],
+          "text": "Make sure the AC charging cable is fully and securely plugged into the AC input port. An \nincomplete connection may cause unstable current, overheating, poor contact, or device \nmalfunction.\nCAUTION\n"
+        },
+        {
+          "bbox": [
+            165.79490661621094,
+            322.2166748046875,
+            221.45431518554688,
+            330.1845703125
+          ],
+          "text": "SOLD SEPARATELY\n"
+        },
+        {
+          "bbox": [
+            43.35689926147461,
+            321.462890625,
+            156.8289031982422,
+            331.36688232421875
+          ],
+          "text": "CHARGING VIA SOLAR PANELS\n"
+        },
+        {
+          "bbox": [
+            32.77539825439453,
+            335.1947937011719,
+            346.07080078125,
+            360.3948059082031
+          ],
+          "text": "Jackery Explorer 3600 Plus has two DC8020 input ports and is compatible with the Jackery solar panels. If one \nDC8020 input port needs to connect two solar panels simultaneously, please refer to the figure below for charging \nthrough the solar panel connector (sold separately, not included as standard).\n"
+        },
+        {
+          "bbox": [
+            255.47459411621094,
+            484.70111083984375,
+            302.6431579589844,
+            491.4250793457031
+          ],
+          "text": "SolarSaga 200 × 4\n"
+        },
+        {
+          "bbox": [
+            29.61520004272461,
+            504.1977844238281,
+            33.6952018737793,
+            511.3977966308594
+          ],
+          "text": "11\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 19,
+      "text": "12\nIt is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (V    ) \nof the solar panel is within the DC input range (16V-60V) of the Explorer 3600 Plus. Jackery is not responsible for any \ndamage or loss resulting from the use of third-party solar panels.\nCAUTION\nCAUTION\nSOLD SEPARATELY\nCHARGING VIA A CAR CHARGER\nThis product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet \n(car cigarette lighter) provide a good connection.\nVehicle \n*The car charging cable is sold separately.\nCAUTION\nOne DC8020 input port can be connected to at most two solar panels.\noc\n",
+      "blocks": [
+        {
+          "bbox": [
+            85.11329650878906,
+            33.01560592651367,
+            279.2709045410156,
+            40.21560287475586
+          ],
+          "text": "One DC8020 input port can be connected to at most two solar panels.\n"
+        },
+        {
+          "bbox": [
+            37.39360046386719,
+            31.38624382019043,
+            71.5824966430664,
+            41.23824691772461
+          ],
+          "text": "CAUTION\n"
+        },
+        {
+          "bbox": [
+            37.696510314941406,
+            74.51860046386719,
+            71.88540649414062,
+            84.37060546875
+          ],
+          "text": "CAUTION\n"
+        },
+        {
+          "bbox": [
+            333.0487976074219,
+            120.0322494506836,
+            337.77459716796875,
+            124.92945098876953
+          ],
+          "text": "oc\n"
+        },
+        {
+          "bbox": [
+            29.901611328125,
+            117.21735382080078,
+            341.2241516113281,
+            142.41879272460938
+          ],
+          "text": "It is recommended to use the Jackery solar panel to charge the product. Ensure that the open-circuit voltage (V    ) \nof the solar panel is within the DC input range (16V-60V) of the Explorer 3600 Plus. Jackery is not responsible for any \ndamage or loss resulting from the use of third-party solar panels.\n"
+        },
+        {
+          "bbox": [
+            40.6963005065918,
+            156.00840759277344,
+            230.71990966796875,
+            165.91241455078125
+          ],
+          "text": "SOLD SEPARATELY\nCHARGING VIA A CAR CHARGER\n"
+        },
+        {
+          "bbox": [
+            29.49799919128418,
+            172.8900909423828,
+            332.9755859375,
+            188.08807373046875
+          ],
+          "text": "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet \n(car cigarette lighter) provide a good connection.\n"
+        },
+        {
+          "bbox": [
+            245.57420349121094,
+            206.90380859375,
+            269.9902038574219,
+            215.30380249023438
+          ],
+          "text": "Vehicle \n"
+        },
+        {
+          "bbox": [
+            185.14840698242188,
+            300.4115905761719,
+            329.0186462402344,
+            308.81158447265625
+          ],
+          "text": "*The car charging cable is sold separately.\n"
+        },
+        {
+          "bbox": [
+            37.3838005065918,
+            355.7099304199219,
+            71.57270050048828,
+            365.56195068359375
+          ],
+          "text": "CAUTION\n"
+        },
+        {
+          "bbox": [
+            334.61041259765625,
+            504.52337646484375,
+            339.8004150390625,
+            511.723388671875
+          ],
+          "text": "12\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 20,
+      "text": "13\nSTORAGE\nTROUBLESHOOTING\nError Code\nCorrective Measures\nFC\nFA\nF9\nF8\nF7\nF6\nF5\n1.  Restart the battery packs and the Jackery Explorer 3600 Plus respectively.\n2. If the fault persists, disconnect the battery pack from the Jackery Explorer 3600 Plus and \nconnect them again.\nRemove the load connected to the USB ports of the product. Wait until the fault disappears.\nContact Jackery Customer Support\nCharge the product via solar panels or AC wall outlet until the fault disappears.\nF4\nF3\nF2\nF1\nF0\nConnect the product to loads to discharge its battery until the fault disappears.\nRestart the product.\nRestart the product.\nRestart the product.\nRestart the product.\n1.  Turn oﬀ the AC output of both units.\n2. Press the AC power button on each unit again within 1 minute.\n1.  Wait for the grid to normalize before charging the product via AC wall outlet.\n2. Check whether the air intake and exhaust vents are blocked; ensure 200 mm clearance on \nboth side of the product.\n3. Place the product in a location that is not exposed to direct sunlight or high environment \ntemperatures.\n4. Disconnect all loads from the product. Keep the product idle and wait until the fault \ndisappears.\n5. Restart the product.\n1.  Remove all DC inputs from the product.\n2. Check the open-circuit voltage (Voc) of the connected solar panels. The product allows a \nmaximum DC input voltage of 60V.\n3. Restart the product and keep it idle. Wait until the fault disappears.\nIf any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If fault persists, \nplease contact Jackery Customer Support.\n",
+      "blocks": [
+        {
+          "bbox": [
+            39.594200134277344,
+            30.574016571044922,
+            93.73819732666016,
+            45.430015563964844
+          ],
+          "text": "STORAGE\n"
+        },
+        {
+          "bbox": [
+            38.887699127197266,
+            173.3924102783203,
+            150.66770935058594,
+            188.2484130859375
+          ],
+          "text": "TROUBLESHOOTING\n"
+        },
+        {
+          "bbox": [
+            32.49089813232422,
+            195.9615020751953,
+            338.6985168457031,
+            212.1614990234375
+          ],
+          "text": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If fault persists, \nplease contact Jackery Customer Support.\n"
+        },
+        {
+          "bbox": [
+            36.077598571777344,
+            223.49380493164062,
+            140.68760681152344,
+            231.8824005126953
+          ],
+          "text": "Error Code\nCorrective Measures\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            238.2735137939453,
+            132.69691467285156,
+            245.4735107421875
+          ],
+          "text": "Restart the product.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            237.4403839111328,
+            56.60750198364258,
+            247.34439086914062
+          ],
+          "text": "F0\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            250.36351013183594,
+            132.69691467285156,
+            257.5635070800781
+          ],
+          "text": "Restart the product.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            249.5283966064453,
+            54.66350173950195,
+            259.4324035644531
+          ],
+          "text": "F1\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            262.4534912109375,
+            132.69691467285156,
+            269.65350341796875
+          ],
+          "text": "Restart the product.\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            274.5434875488281,
+            132.69691467285156,
+            281.7434997558594
+          ],
+          "text": "Restart the product.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            261.6164245605469,
+            55.9275016784668,
+            283.4564208984375
+          ],
+          "text": "F3\nF2\n"
+        },
+        {
+          "bbox": [
+            77.75489807128906,
+            287.4315185546875,
+            295.8831481933594,
+            294.63153076171875
+          ],
+          "text": "Connect the product to loads to discharge its battery until the fault disappears.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            286.31243896484375,
+            56.12750244140625,
+            296.2164306640625
+          ],
+          "text": "F4\n"
+        },
+        {
+          "bbox": [
+            77.75499725341797,
+            301.16693115234375,
+            294.3699951171875,
+            308.366943359375
+          ],
+          "text": "Charge the product via solar panels or AC wall outlet until the fault disappears.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            300.44091796875,
+            55.951499938964844,
+            310.34490966796875
+          ],
+          "text": "F5\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            341.3209228515625,
+            55.99150085449219,
+            351.22491455078125
+          ],
+          "text": "F6\n"
+        },
+        {
+          "bbox": [
+            77.83889770507812,
+            315.9434814453125,
+            332.2970886230469,
+            379.1295166015625
+          ],
+          "text": "1.  Wait for the grid to normalize before charging the product via AC wall outlet.\n2. Check whether the air intake and exhaust vents are blocked; ensure 200 mm clearance on \nboth side of the product.\n3. Place the product in a location that is not exposed to direct sunlight or high environment \ntemperatures.\n4. Disconnect all loads from the product. Keep the product idle and wait until the fault \ndisappears.\n5. Restart the product.\n"
+        },
+        {
+          "bbox": [
+            47.93550109863281,
+            397.9449462890625,
+            56.00749969482422,
+            407.84893798828125
+          ],
+          "text": "F7\n"
+        },
+        {
+          "bbox": [
+            77.83889770507812,
+            387.36749267578125,
+            329.91986083984375,
+            415.573486328125
+          ],
+          "text": "1.  Remove all DC inputs from the product.\n2. Check the open-circuit voltage (Voc) of the connected solar panels. The product allows a \nmaximum DC input voltage of 60V.\n3. Restart the product and keep it idle. Wait until the fault disappears.\n"
+        },
+        {
+          "bbox": [
+            77.75499725341797,
+            423.3209228515625,
+            175.5843963623047,
+            430.52093505859375
+          ],
+          "text": "Contact Jackery Customer Support\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            421.888916015625,
+            56.11149978637695,
+            431.79290771484375
+          ],
+          "text": "F8\n"
+        },
+        {
+          "bbox": [
+            77.75499725341797,
+            436.68890380859375,
+            329.7604675292969,
+            443.888916015625
+          ],
+          "text": "Remove the load connected to the USB ports of the product. Wait until the fault disappears.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            435.27294921875,
+            55.99150085449219,
+            445.17694091796875
+          ],
+          "text": "F9\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            451.9609375,
+            56.66350173950195,
+            461.86492919921875
+          ],
+          "text": "FA\n"
+        },
+        {
+          "bbox": [
+            77.83889770507812,
+            448.771484375,
+            251.9037628173828,
+            462.9735107421875
+          ],
+          "text": "1.  Turn oﬀ the AC output of both units.\n2. Press the AC power button on each unit again within 1 minute.\n"
+        },
+        {
+          "bbox": [
+            47.41550064086914,
+            474.4569396972656,
+            57.3754997253418,
+            484.3609313964844
+          ],
+          "text": "FC\n"
+        },
+        {
+          "bbox": [
+            77.95899963378906,
+            470.2889099121094,
+            327.53436279296875,
+            491.492919921875
+          ],
+          "text": "1.  Restart the battery packs and the Jackery Explorer 3600 Plus respectively.\n2. If the fault persists, disconnect the battery pack from the Jackery Explorer 3600 Plus and \nconnect them again.\n"
+        },
+        {
+          "bbox": [
+            32.0625,
+            504.4569091796875,
+            37.282501220703125,
+            511.65692138671875
+          ],
+          "text": "13\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 21,
+      "text": "GENERAL INFO\nProduct Name\nModel No.\nCapacity\nCell Chemistry\nWeight\nDimensions\nCycle Life\nIEC code\nJackery Explorer 3600 Plus\nJE-3600A\n80Ah / 44.8V DC (3584 Wh)\nLiFePO₄ \nAbout 35 kg\n38.5×30.9×49.1 cm\n6000 cycles to 70%+ capacity\nIFpR41/136[14S4P]M/-20+40/90\nINPUT PORTS\n1 × AC Input\n  \n2 × DC8020 Ports\n1 × DC Expansion Port\nCharge Mode : 220-240V~ 50Hz, 10A Max\nBypass Mode① : 220-240V~ 50Hz, 10A Max\n12-16V⎓8A Max, Double to 8A Max\n16-60V⎓12A, Double to 24A Max / 1000W Max\n36.4V-50.4V⎓100A Max\nOUTPUT PORTS\n3 × AC Output\nAC Total Output②\nAC Output in Bypass Mode①\n2 × USB-C 100W Output\n2 × USB-A 18W Output\n1 × DC Expansion Port\n230V~ 50Hz, 3600W\n3600W Rated, 7200W Surge peak\n220-240V~ 50Hz, 10A Max\n100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A\n18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A\n36.4V-50.4V⎓60A Max\nCharge Temperature\nDischarge Temperature\nENVIRONMENTAL OPERATING TEMPERATURE\n14\n -20°C to 45°C\n -20°C to 45°C\n※ USB Type-C   and USB-C   are registered trademarks of USB Implementers Forum.\n®\n®\nSPECIFICATIONS\n① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.\n② Indicates that two or more AC output ports work together.\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.834999084472656,
+            30.802501678466797,
+            127.64300537109375,
+            45.65850067138672
+          ],
+          "text": "SPECIFICATIONS\n"
+        },
+        {
+          "bbox": [
+            39.12110137939453,
+            58.42720413208008,
+            93.4011001586914,
+            68.33120727539062
+          ],
+          "text": "GENERAL INFO\n"
+        },
+        {
+          "bbox": [
+            31.937101364135742,
+            75.81121063232422,
+            84.96910095214844,
+            85.41120910644531
+          ],
+          "text": "Product Name\n"
+        },
+        {
+          "bbox": [
+            140.72909545898438,
+            75.97920989990234,
+            238.4970703125,
+            85.57920837402344
+          ],
+          "text": "Jackery Explorer 3600 Plus\n"
+        },
+        {
+          "bbox": [
+            31.937101364135742,
+            88.81121063232422,
+            68.72109985351562,
+            98.41120910644531
+          ],
+          "text": "Model No.\n"
+        },
+        {
+          "bbox": [
+            140.72909545898438,
+            88.97920989990234,
+            177.15309143066406,
+            98.57920837402344
+          ],
+          "text": "JE-3600A\n"
+        },
+        {
+          "bbox": [
+            31.937101364135742,
+            101.81121063232422,
+            66.30510711669922,
+            111.41120910644531
+          ],
+          "text": "Capacity\n"
+        },
+        {
+          "bbox": [
+            140.72909545898438,
+            101.97920989990234,
+            240.28912353515625,
+            111.57920837402344
+          ],
+          "text": "80Ah / 44.8V DC (3584 Wh)\n"
+        },
+        {
+          "bbox": [
+            31.937101364135742,
+            114.81121063232422,
+            84.61711120605469,
+            124.41120910644531
+          ],
+          "text": "Cell Chemistry\n"
+        },
+        {
+          "bbox": [
+            140.72909545898438,
+            114.97920989990234,
+            171.16908264160156,
+            124.6672134399414
+          ],
+          "text": "LiFePO₄ \n"
+        },
+        {
+          "bbox": [
+            31.937101364135742,
+            127.81121063232422,
+            58.809104919433594,
+            137.4112091064453
+          ],
+          "text": "Weight\n"
+        },
+        {
+          "bbox": [
+            140.72909545898438,
+            127.97920989990234,
+            184.76910400390625,
+            137.57920837402344
+          ],
+          "text": "About 35 kg\n"
+        },
+        {
+          "bbox": [
+            31.937101364135742,
+            140.81121826171875,
+            73.48910522460938,
+            150.4112091064453
+          ],
+          "text": "Dimensions\n"
+        },
+        {
+          "bbox": [
+            140.72909545898438,
+            140.97921752929688,
+            205.0491180419922,
+            150.57920837402344
+          ],
+          "text": "38.5×30.9×49.1 cm\n"
+        },
+        {
+          "bbox": [
+            31.937101364135742,
+            153.81121826171875,
+            67.51309967041016,
+            163.4112091064453
+          ],
+          "text": "Cycle Life\n"
+        },
+        {
+          "bbox": [
+            140.72909545898438,
+            153.97921752929688,
+            250.5770721435547,
+            163.57920837402344
+          ],
+          "text": "6000 cycles to 70%+ capacity\n"
+        },
+        {
+          "bbox": [
+            31.937101364135742,
+            166.81121826171875,
+            65.0010986328125,
+            176.4112091064453
+          ],
+          "text": "IEC code\n"
+        },
+        {
+          "bbox": [
+            140.72909545898438,
+            166.97921752929688,
+            256.82513427734375,
+            176.57920837402344
+          ],
+          "text": "IFpR41/136[14S4P]M/-20+40/90\n"
+        },
+        {
+          "bbox": [
+            39.12160110473633,
+            195.09022521972656,
+            87.8656005859375,
+            204.99423217773438
+          ],
+          "text": "INPUT PORTS\n"
+        },
+        {
+          "bbox": [
+            140.72959899902344,
+            212.67422485351562,
+            293.30560302734375,
+            222.2742156982422
+          ],
+          "text": "Charge Mode : 220-240V~ 50Hz, 10A Max\n"
+        },
+        {
+          "bbox": [
+            140.72959899902344,
+            225.67422485351562,
+            300.0016174316406,
+            235.38621520996094
+          ],
+          "text": "Bypass Mode① : 220-240V~ 50Hz, 10A Max\n"
+        },
+        {
+          "bbox": [
+            31.93760108947754,
+            220.34622192382812,
+            74.28160095214844,
+            239.9462127685547
+          ],
+          "text": "1 × AC Input\n  \n"
+        },
+        {
+          "bbox": [
+            140.72959899902344,
+            238.67422485351562,
+            266.6416015625,
+            248.36221313476562
+          ],
+          "text": "12-16V⎓8A Max, Double to 8A Max\n"
+        },
+        {
+          "bbox": [
+            31.93760108947754,
+            243.34622192382812,
+            95.00160217285156,
+            252.9462127685547
+          ],
+          "text": "2 × DC8020 Ports\n"
+        },
+        {
+          "bbox": [
+            140.72959899902344,
+            251.67422485351562,
+            310.0735778808594,
+            261.3622131347656
+          ],
+          "text": "16-60V⎓12A, Double to 24A Max / 1000W Max\n"
+        },
+        {
+          "bbox": [
+            31.93760108947754,
+            260.3462219238281,
+            110.77759552001953,
+            269.94622802734375
+          ],
+          "text": "1 × DC Expansion Port\n"
+        },
+        {
+          "bbox": [
+            140.72959899902344,
+            264.6742248535156,
+            227.60157775878906,
+            274.3622131347656
+          ],
+          "text": "36.4V-50.4V⎓100A Max\n"
+        },
+        {
+          "bbox": [
+            39.12160110473633,
+            291.3857421875,
+            96.21760559082031,
+            301.28973388671875
+          ],
+          "text": "OUTPUT PORTS\n"
+        },
+        {
+          "bbox": [
+            31.72960090637207,
+            308.0577392578125,
+            83.18559265136719,
+            317.6577453613281
+          ],
+          "text": "3 × AC Output\n"
+        },
+        {
+          "bbox": [
+            140.7216033935547,
+            308.0577392578125,
+            214.8575897216797,
+            317.6577453613281
+          ],
+          "text": "230V~ 50Hz, 3600W\n"
+        },
+        {
+          "bbox": [
+            140.7216033935547,
+            321.0577392578125,
+            266.2735900878906,
+            330.6577453613281
+          ],
+          "text": "3600W Rated, 7200W Surge peak\n"
+        },
+        {
+          "bbox": [
+            31.72960090637207,
+            321.0577392578125,
+            100.08158874511719,
+            330.7697448730469
+          ],
+          "text": "AC Total Output②\n"
+        },
+        {
+          "bbox": [
+            140.7216033935547,
+            334.0577392578125,
+            236.66555786132812,
+            343.6577453613281
+          ],
+          "text": "220-240V~ 50Hz, 10A Max\n"
+        },
+        {
+          "bbox": [
+            31.72960090637207,
+            334.0577392578125,
+            138.77760314941406,
+            343.7697448730469
+          ],
+          "text": "AC Output in Bypass Mode①\n"
+        },
+        {
+          "bbox": [
+            31.72960090637207,
+            347.0577392578125,
+            119.9135971069336,
+            356.6577453613281
+          ],
+          "text": "2 × USB-C 100W Output\n"
+        },
+        {
+          "bbox": [
+            140.7216033935547,
+            347.0577392578125,
+            335.1296691894531,
+            356.7457275390625
+          ],
+          "text": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A\n"
+        },
+        {
+          "bbox": [
+            31.72960090637207,
+            360.0577392578125,
+            113.29759216308594,
+            369.6577453613281
+          ],
+          "text": "2 × USB-A 18W Output\n"
+        },
+        {
+          "bbox": [
+            140.7216033935547,
+            360.0577392578125,
+            293.19366455078125,
+            369.7457275390625
+          ],
+          "text": "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A\n"
+        },
+        {
+          "bbox": [
+            31.72960090637207,
+            373.0577392578125,
+            110.56959533691406,
+            382.6577453613281
+          ],
+          "text": "1 × DC Expansion Port\n"
+        },
+        {
+          "bbox": [
+            140.7216033935547,
+            373.0577392578125,
+            224.07359313964844,
+            382.7457275390625
+          ],
+          "text": "36.4V-50.4V⎓60A Max\n"
+        },
+        {
+          "bbox": [
+            39.12030029296875,
+            399.913330078125,
+            203.04034423828125,
+            409.81732177734375
+          ],
+          "text": "ENVIRONMENTAL OPERATING TEMPERATURE\n"
+        },
+        {
+          "bbox": [
+            32.384300231933594,
+            417.0813293457031,
+            109.9522933959961,
+            426.68133544921875
+          ],
+          "text": "Charge Temperature\n"
+        },
+        {
+          "bbox": [
+            141.03469848632812,
+            418.0603332519531,
+            195.33871459960938,
+            427.66033935546875
+          ],
+          "text": " -20°C to 45°C\n"
+        },
+        {
+          "bbox": [
+            32.384300231933594,
+            430.0813293457031,
+            119.44828033447266,
+            439.68133544921875
+          ],
+          "text": "Discharge Temperature\n"
+        },
+        {
+          "bbox": [
+            141.03469848632812,
+            430.4283447265625,
+            195.33871459960938,
+            440.0283508300781
+          ],
+          "text": " -20°C to 45°C\n"
+        },
+        {
+          "bbox": [
+            28.406299591064453,
+            461.5686950683594,
+            289.76043701171875,
+            470.6638488769531
+          ],
+          "text": "※ USB Type-C   and USB-C   are registered trademarks of USB Implementers Forum.\n®\n®\n"
+        },
+        {
+          "bbox": [
+            29.3710994720459,
+            476.3838195800781,
+            279.31024169921875,
+            490.8766174316406
+          ],
+          "text": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.\n② Indicates that two or more AC output ports work together.\n"
+        },
+        {
+          "bbox": [
+            335.7373046875,
+            503.9652099609375,
+            341.25732421875,
+            511.16522216796875
+          ],
+          "text": "14\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 22,
+      "text": "15\nTo activate the Warranty Extension, you \nmust register your product online  or \ncontact our customer service team at \nhello.eu@jackery.com to extend the \nstandard warranty runtime.\nWe only provide our warranty to customers who purchase from the official Jackery website, \nJackery-branded third-party platforms, or local authorized dealers. \n*Warranty period and details may vary according to local laws, regulations, and authorized dealers.\nJackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable \nwarranty period due to a defect in workmanship or material. A replacement product assumes the \nremaining warranty of the original product.\nWARRANTY\nJackery warrants to the original consumer purchaser that the Jackery product will be free from defects in \nworkmanship and material under normal consumer use during the applicable warranty period identified in \nthe 'Warranty Period' section below, subject to the exclusions set forth below.\nThis warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor \nauthorize any person to assume for us, any other liability in connection with the sale of our products.\nThe standard warranty period for Jackery Explorer 3600 Plus \nis 36 months. In each case, the warranty period is measured \nstarting on the date of purchase by the original consumer \npurchaser. The sales receipt from the first consumer purchase, \nor other reasonable documentary proof, is required in order to \nestablish the start date of the warranty period.\nLimited Warranty\nExchange\nThe warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to \nany subsequent owner.\nLimited to Original Consumer Buyer\nExclusions\nInterpretation Rights\nWarranty Period\n Standard Warranty\n YEARS\n3  \nExtended Warranty\n YEARS\n2  \nJackery reserves the right to final interpretation of the above customers' after-sales policy.\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.900901794433594,
+            31.031200408935547,
+            99.66490173339844,
+            45.88719940185547
+          ],
+          "text": "WARRANTY\n"
+        },
+        {
+          "bbox": [
+            36.039100646972656,
+            58.87299728393555,
+            333.2143249511719,
+            76.541015625
+          ],
+          "text": "We only provide our warranty to customers who purchase from the official Jackery website, \nJackery-branded third-party platforms, or local authorized dealers. \n"
+        },
+        {
+          "bbox": [
+            29.26759910583496,
+            84.81690216064453,
+            302.1865539550781,
+            92.01690673828125
+          ],
+          "text": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.\n"
+        },
+        {
+          "bbox": [
+            40.73540115356445,
+            99.59529113769531,
+            104.87940216064453,
+            109.49929809570312
+          ],
+          "text": "Limited Warranty\n"
+        },
+        {
+          "bbox": [
+            37.81639862060547,
+            114.26029205322266,
+            328.8577575683594,
+            135.46432495117188
+          ],
+          "text": "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in \nworkmanship and material under normal consumer use during the applicable warranty period identified in \nthe 'Warranty Period' section below, subject to the exclusions set forth below.\n"
+        },
+        {
+          "bbox": [
+            37.81639862060547,
+            138.0983428955078,
+            333.70928955078125,
+            152.30035400390625
+          ],
+          "text": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor \nauthorize any person to assume for us, any other liability in connection with the sale of our products.\n"
+        },
+        {
+          "bbox": [
+            40.73540115356445,
+            170.6206817626953,
+            101.41460418701172,
+            180.52468872070312
+          ],
+          "text": "Warranty Period\n"
+        },
+        {
+          "bbox": [
+            41.91109848022461,
+            185.56375122070312,
+            308.0198059082031,
+            213.5970458984375
+          ],
+          "text": " Standard Warranty\n YEARS\n3  \nExtended Warranty\n YEARS\n2  \n"
+        },
+        {
+          "bbox": [
+            218.62600708007812,
+            214.2183074951172,
+            329.02532958984375,
+            249.42636108398438
+          ],
+          "text": "To activate the Warranty Extension, you \nmust register your product online  or \ncontact our customer service team at \nhello.eu@jackery.com to extend the \nstandard warranty runtime.\n"
+        },
+        {
+          "bbox": [
+            37.81639862060547,
+            214.2263641357422,
+            207.94943237304688,
+            256.4364318847656
+          ],
+          "text": "The standard warranty period for Jackery Explorer 3600 Plus \nis 36 months. In each case, the warranty period is measured \nstarting on the date of purchase by the original consumer \npurchaser. The sales receipt from the first consumer purchase, \nor other reasonable documentary proof, is required in order to \nestablish the start date of the warranty period.\n"
+        },
+        {
+          "bbox": [
+            40.73440170288086,
+            270.7740173339844,
+            77.0464096069336,
+            280.6780090332031
+          ],
+          "text": "Exchange\n"
+        },
+        {
+          "bbox": [
+            37.817596435546875,
+            286.66290283203125,
+            330.1208190917969,
+            307.86688232421875
+          ],
+          "text": "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable \nwarranty period due to a defect in workmanship or material. A replacement product assumes the \nremaining warranty of the original product.\n"
+        },
+        {
+          "bbox": [
+            40.73540115356445,
+            323.5240173339844,
+            172.1041717529297,
+            333.4280090332031
+          ],
+          "text": "Limited to Original Consumer Buyer\n"
+        },
+        {
+          "bbox": [
+            37.81639862060547,
+            340.1889953613281,
+            326.0341796875,
+            354.3909912109375
+          ],
+          "text": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to \nany subsequent owner.\n"
+        },
+        {
+          "bbox": [
+            40.73440170288086,
+            369.3423156738281,
+            78.45439910888672,
+            379.2463073730469
+          ],
+          "text": "Exclusions\n"
+        },
+        {
+          "bbox": [
+            40.73540115356445,
+            462.48980712890625,
+            117.54340362548828,
+            472.393798828125
+          ],
+          "text": "Interpretation Rights\n"
+        },
+        {
+          "bbox": [
+            37.81639862060547,
+            479.3764953613281,
+            284.1145935058594,
+            486.5765075683594
+          ],
+          "text": "Jackery reserves the right to final interpretation of the above customers' after-sales policy.\n"
+        },
+        {
+          "bbox": [
+            27.80470085144043,
+            504.0434875488281,
+            33.08470153808594,
+            511.2434997558594
+          ],
+          "text": "15\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 23,
+      "text": "16\nSearch for \"Jackery\" in Google Play or \nApp Store to install the App. After that, \nyou can register and log in.\nAlternatively, scan the QR \ncode below to download and \ninstall the App.\n2. Add device\n2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device \nﬂash to indicate that the device has entered the network conﬁguring mode, tap the “Icon Flashed” \nbutton and allow the App to connect to nearby devices and open Bluetooth permissions.\n1. Download the App and log in\n2.1 Click the button          to add your device;\n2.1\n2.2\nAPP SETUP\nNOTE\nAfter the device is turned on and not connected to the App within 2 hours, it will \nautomatically turn oﬀ Wi-Fi and Bluetooth. Now it is required to press and hold USB power \nbutton and AC power button to turn on Wi-Fi and Bluetooth again.\nPOWER Button\nAC Button\nUSB Power \nButton\n",
+      "blocks": [
+        {
+          "bbox": [
+            34.899898529052734,
+            31.068309783935547,
+            94.82791137695312,
+            45.92430877685547
+          ],
+          "text": "APP SETUP\n"
+        },
+        {
+          "bbox": [
+            29.355499267578125,
+            51.907012939453125,
+            174.2055206298828,
+            64.2870101928711
+          ],
+          "text": "1. Download the App and log in\n"
+        },
+        {
+          "bbox": [
+            48.075199127197266,
+            123.25729370117188,
+            177.19021606445312,
+            148.457275390625
+          ],
+          "text": "Search for \"Jackery\" in Google Play or \nApp Store to install the App. After that, \nyou can register and log in.\n"
+        },
+        {
+          "bbox": [
+            199.898193359375,
+            123.84527587890625,
+            297.1631774902344,
+            149.04525756835938
+          ],
+          "text": "Alternatively, scan the QR \ncode below to download and \ninstall the App.\n"
+        },
+        {
+          "bbox": [
+            29.355499267578125,
+            156.085205078125,
+            92.58550262451172,
+            168.4652099609375
+          ],
+          "text": "2. Add device\n"
+        },
+        {
+          "bbox": [
+            29.356000900268555,
+            171.2548828125,
+            169.23001098632812,
+            179.65487670898438
+          ],
+          "text": "2.1 Click the button          to add your device;\n"
+        },
+        {
+          "bbox": [
+            29.356000900268555,
+            181.43490600585938,
+            327.9129638671875,
+            207.45872497558594
+          ],
+          "text": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device \nﬂash to indicate that the device has entered the network conﬁguring mode, tap the “Icon Flashed” \nbutton and allow the App to connect to nearby devices and open Bluetooth permissions.\n"
+        },
+        {
+          "bbox": [
+            140.3975067138672,
+            366.25286865234375,
+            234.06350708007812,
+            373.74688720703125
+          ],
+          "text": "2.1\n2.2\n"
+        },
+        {
+          "bbox": [
+            35.46580123901367,
+            402.0575866699219,
+            76.21180725097656,
+            409.2575988769531
+          ],
+          "text": "POWER Button\n"
+        },
+        {
+          "bbox": [
+            35.46580123901367,
+            429.37890625,
+            331.65008544921875,
+            442.57891845703125
+          ],
+          "text": "AC Button\nUSB Power \nButton\n"
+        },
+        {
+          "bbox": [
+            47.93949890136719,
+            477.09564208984375,
+            67.86207580566406,
+            486.9476623535156
+          ],
+          "text": "NOTE\n"
+        },
+        {
+          "bbox": [
+            96.03130340576172,
+            469.7184143066406,
+            334.6144104003906,
+            492.6748046875
+          ],
+          "text": "After the device is turned on and not connected to the App within 2 hours, it will \nautomatically turn oﬀ Wi-Fi and Bluetooth. Now it is required to press and hold USB power \nbutton and AC power button to turn on Wi-Fi and Bluetooth again.\n"
+        },
+        {
+          "bbox": [
+            335.4657897949219,
+            504.0791015625,
+            340.685791015625,
+            511.27911376953125
+          ],
+          "text": "16\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 24,
+      "text": "2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.\n• The device owner will share this device with other users through the App.\n• Press and hold the POWER button and USB power button for 3 seconds to reset the \ndevice, and then re-bind the device. \n3. Unbind the device\nClick the Settings icon in the upper right corner of the main interface of the device to enter the \nsettings page, and click the Unbind button at the bottom of the page to unbind the device.\n4. Notes\n4.1 To turn on Wi-Fi & Bluetooth:\n4.2 To turn off Wi-Fi & Bluetooth:\nHold the POWER button and USB power button at the same time for 3 seconds to reset Wi-Fi & \nBluetooth to factory settings and reboot the system. The connected App account will be unbound.\n4.3 To reset Wi-Fi & Bluetooth：\n2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button.\n2.5 After the device is successfully added on the App, the Wi-Fi icon on the device will be always on.\nThe above screenshots are for reference only.\n2.5\n2.3\n2.4\n17\nIf \"the device has been bound\" is prompted during the binding process, the following two \nways can be used for connection:\nPlease select a Wi-Fi network in 2.4GHz band. The device does not support a Wi-Fi \nnetwork in 5GHz band.\nNOTE\nThe Jackery app can connect to only one power station via Bluetooth at a time. Returning \nto the device list automatically disconnects Bluetooth. Tap the power station in the list \nagain to reconnect automatically.\nCAUTION\nNOTE\nE3600 Plus\nExplorer 3600 Plus\n",
+      "blocks": [
+        {
+          "bbox": [
+            32.31639862060547,
+            27.827787399291992,
+            336.8846435546875,
+            35.74778747558594
+          ],
+          "text": "2.3 After tapping the searched device icon, the App automatically connects the device via Bluetooth.\n"
+        },
+        {
+          "bbox": [
+            86.93709564208984,
+            43.14209747314453,
+            331.105224609375,
+            58.43008041381836
+          ],
+          "text": "If \"the device has been bound\" is prompted during the binding process, the following two \nways can be used for connection:\n"
+        },
+        {
+          "bbox": [
+            48.72359848022461,
+            59.88133239746094,
+            68.64617156982422,
+            69.73333740234375
+          ],
+          "text": "NOTE\n"
+        },
+        {
+          "bbox": [
+            86.96630096435547,
+            60.66947555541992,
+            318.675537109375,
+            83.86544799804688
+          ],
+          "text": "• The device owner will share this device with other users through the App.\n• Press and hold the POWER button and USB power button for 3 seconds to reset the \ndevice, and then re-bind the device. \n"
+        },
+        {
+          "bbox": [
+            32.31639862060547,
+            90.64328002929688,
+            321.80633544921875,
+            98.56327819824219
+          ],
+          "text": "2.4 After the device is successfully connected, enter your Wi-Fi password and tap the OK button.\n"
+        },
+        {
+          "bbox": [
+            47.837669372558594,
+            107.44017028808594,
+            67.76024627685547,
+            117.29217529296875
+          ],
+          "text": "NOTE\n"
+        },
+        {
+          "bbox": [
+            86.51709747314453,
+            104.78009796142578,
+            315.4572448730469,
+            119.97808837890625
+          ],
+          "text": "Please select a Wi-Fi network in 2.4GHz band. The device does not support a Wi-Fi \nnetwork in 5GHz band.\n"
+        },
+        {
+          "bbox": [
+            32.31639862060547,
+            127.71548461914062,
+            332.37945556640625,
+            135.63548278808594
+          ],
+          "text": "2.5 After the device is successfully added on the App, the Wi-Fi icon on the device will be always on.\n"
+        },
+        {
+          "bbox": [
+            253.57229614257812,
+            151.64718627929688,
+            276.1437683105469,
+            154.90505981445312
+          ],
+          "text": "Explorer 3600 Plus\n"
+        },
+        {
+          "bbox": [
+            77.84770202636719,
+            231.9576416015625,
+            92.3909683227539,
+            235.54635620117188
+          ],
+          "text": "E3600 Plus\n"
+        },
+        {
+          "bbox": [
+            91.32418823242188,
+            280.4560546875,
+            281.4701843261719,
+            287.65606689453125
+          ],
+          "text": "2.5\n2.3\n2.4\n"
+        },
+        {
+          "bbox": [
+            63.47850036621094,
+            287.8936767578125,
+            182.58152770996094,
+            294.8536682128906
+          ],
+          "text": "The above screenshots are for reference only.\n"
+        },
+        {
+          "bbox": [
+            40.794898986816406,
+            301.38714599609375,
+            334.0396728515625,
+            324.58319091796875
+          ],
+          "text": "The Jackery app can connect to only one power station via Bluetooth at a time. Returning \nto the device list automatically disconnects Bluetooth. Tap the power station in the list \nagain to reconnect automatically.\nCAUTION\n"
+        },
+        {
+          "bbox": [
+            32.31639862060547,
+            330.18829345703125,
+            324.88104248046875,
+            360.2467956542969
+          ],
+          "text": "3. Unbind the device\nClick the Settings icon in the upper right corner of the main interface of the device to enter the \nsettings page, and click the Unbind button at the bottom of the page to unbind the device.\n"
+        },
+        {
+          "bbox": [
+            32.31639862060547,
+            366.32196044921875,
+            71.1999740600586,
+            378.70196533203125
+          ],
+          "text": "4. Notes\n"
+        },
+        {
+          "bbox": [
+            32.31740188598633,
+            380.0671691894531,
+            138.60275268554688,
+            388.6421813964844
+          ],
+          "text": "4.1 To turn on Wi-Fi & Bluetooth:\n"
+        },
+        {
+          "bbox": [
+            32.31740188598633,
+            428.9987487792969,
+            140.29493713378906,
+            437.5737609863281
+          ],
+          "text": "4.2 To turn off Wi-Fi & Bluetooth:\n"
+        },
+        {
+          "bbox": [
+            32.31740188598633,
+            469.853271484375,
+            138.43783569335938,
+            478.42828369140625
+          ],
+          "text": "4.3 To reset Wi-Fi & Bluetooth：\n"
+        },
+        {
+          "bbox": [
+            32.31639862060547,
+            479.5738830566406,
+            335.4345703125,
+            496.49627685546875
+          ],
+          "text": "Hold the POWER button and USB power button at the same time for 3 seconds to reset Wi-Fi & \nBluetooth to factory settings and reboot the system. The connected App account will be unbound.\n"
+        },
+        {
+          "bbox": [
+            31.995100021362305,
+            504.080078125,
+            36.97509765625,
+            511.28009033203125
+          ],
+          "text": "17\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 161,
+      "text": "Download the Jackery  Mobile App\nDescargar la aplicación móvil Jackery\nScarica l'applicazione mobile Jackery\nTéléchargez l’application mobile Jackery\nLaden Sie sich die Jackery Mobiltelefon-App herunter\nRED Declaration of Conformity\nShenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 3600 Plus with \nBluetooth and Wi-Fi  JE-3600A is in compliance with the essential requirements and other relevant \nprovisions of the RED Directive 2014/53/EU,The full text of the EU declaration of conformity is \navailable at the following internet address: https://de.jackery.com/pages/user-guides\nMANUFACTURER: SHENZHEN HELLO TECH ENERGY CO., LTD. \nsales@hello-tech.com\nAddress: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side \nof Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, \nGuangdong, China\n+86 400 668 9293\nwww.hello-tech.com\nEU Regulations\n",
+      "blocks": [
+        {
+          "bbox": [
+            26.852100372314453,
+            239.79150390625,
+            139.5023956298828,
+            248.28250122070312
+          ],
+          "text": "Download the Jackery  Mobile App\n"
+        },
+        {
+          "bbox": [
+            26.859899520874023,
+            252.25830078125,
+            157.6604766845703,
+            260.7492980957031
+          ],
+          "text": "Téléchargez l’application mobile Jackery\n"
+        },
+        {
+          "bbox": [
+            26.8528995513916,
+            264.72528076171875,
+            198.54888916015625,
+            273.2162780761719
+          ],
+          "text": "Laden Sie sich die Jackery Mobiltelefon-App herunter\n"
+        },
+        {
+          "bbox": [
+            26.852100372314453,
+            277.1925048828125,
+            147.8750762939453,
+            285.6835021972656
+          ],
+          "text": "Scarica l'applicazione mobile Jackery\n"
+        },
+        {
+          "bbox": [
+            26.852100372314453,
+            289.65948486328125,
+            149.14837646484375,
+            298.1504821777344
+          ],
+          "text": "Descargar la aplicación móvil Jackery\n"
+        },
+        {
+          "bbox": [
+            34.644500732421875,
+            366.7256164550781,
+            97.05950927734375,
+            377.86761474609375
+          ],
+          "text": "EU Regulations\n"
+        },
+        {
+          "bbox": [
+            27.951900482177734,
+            388.415283203125,
+            343.3608093261719,
+            430.48529052734375
+          ],
+          "text": "RED Declaration of Conformity\nShenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 3600 Plus with \nBluetooth and Wi-Fi  JE-3600A is in compliance with the essential requirements and other relevant \nprovisions of the RED Directive 2014/53/EU,The full text of the EU declaration of conformity is \navailable at the following internet address: https://de.jackery.com/pages/user-guides\n"
+        },
+        {
+          "bbox": [
+            28.10740089416504,
+            447.4984130859375,
+            250.34744262695312,
+            457.40240478515625
+          ],
+          "text": "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO., LTD. \n"
+        },
+        {
+          "bbox": [
+            28.381799697875977,
+            461.7991943359375,
+            280.7886657714844,
+            483.39923095703125
+          ],
+          "text": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side \nof Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, \nGuangdong, China\n"
+        },
+        {
+          "bbox": [
+            39.95610046386719,
+            487.9237976074219,
+            285.5519714355469,
+            496.4153137207031
+          ],
+          "text": "+86 400 668 9293\nwww.hello-tech.com\n"
+        },
+        {
+          "bbox": [
+            120.17289733886719,
+            487.92431640625,
+            191.27883911132812,
+            496.4153137207031
+          ],
+          "text": "sales@hello-tech.com\n"
+        }
+      ]
+    }
+  ]
+}

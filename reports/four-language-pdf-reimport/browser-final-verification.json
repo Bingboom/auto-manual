@@ -1,0 +1,37 @@
+{
+  "candidate": "four-native-complete-4",
+  "languages": [
+    "uk",
+    "pt",
+    "nl",
+    "pl"
+  ],
+  "overview": {
+    "viewport_widths": [
+      390,
+      768,
+      1024,
+      1280
+    ],
+    "views": [
+      "front",
+      "right"
+    ],
+    "overlapping_callout_pairs": 0,
+    "clipped_callouts": 0,
+    "page_horizontal_overflow": false
+  },
+  "app": {
+    "control_asset_sha256": "3bafcc34c487826771aec91e5d8ad3246bf8ee1bde8aa3ee46ff0e483d077c2c",
+    "all_four_desktop_labels_readable": true,
+    "leader_lines_cross_labels": false,
+    "all_four_mobile_verified": true
+  },
+  "other_visual_checks": [
+    "four-language mobile operations (earlier candidate, identical assets/styles)",
+    "desktop PL/NL operations (identical final assets/styles)",
+    "PL solar charging and warranty cards",
+    "mobile PL warning strips and native spec table horizontal scroll"
+  ],
+  "acceptance_boundary": "Local browser and static source checks only. PR merge and RTD deployment remain pending."
+}

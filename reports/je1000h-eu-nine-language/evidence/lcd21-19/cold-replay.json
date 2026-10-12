@@ -1,0 +1,20 @@
+[
+  {
+    "language": "pt",
+    "before": "745d237378057b21902a4dd12488fce7f39f76f11f1b947c0558aeafc3239cc4",
+    "after": "745d237378057b21902a4dd12488fce7f39f76f11f1b947c0558aeafc3239cc4",
+    "source_reads_blocked": true
+  },
+  {
+    "language": "nl",
+    "before": "5b81c7144d3803dbe69d59b30450d81d110580243b631802e8561fa61056a513",
+    "after": "5b81c7144d3803dbe69d59b30450d81d110580243b631802e8561fa61056a513",
+    "source_reads_blocked": true
+  },
+  {
+    "language": "pl",
+    "before": "b0425dbdca94cb368a608d11786967cd35e735b04d0f7842ada2fa65e8277e96",
+    "after": "b0425dbdca94cb368a608d11786967cd35e735b04d0f7842ada2fa65e8277e96",
+    "source_reads_blocked": true
+  }
+]

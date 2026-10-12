@@ -5,7 +5,7 @@ HAUPTSTROMVERSORGUNG EIN/AUS
 ----------------------------
 
 .. image:: asset:operation/main_power
-   :alt: Platzhalter für Ein-/Ausschalten.
+   :alt: Ein-/Ausschalten.
    :width: 360px
 
 | Ein: Einmal drücken.
@@ -22,7 +22,7 @@ AC-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: asset:operation/ac_output
-   :alt: Platzhalter für AC-Ausgang Ein/Aus.
+   :alt: AC-Ausgang Ein/Aus.
    :width: 360px
 
 Die AC1- und AC2-Stromtasten steuern zwei getrennte Paare von AC-Ausgängen. Durch Drücken
@@ -41,7 +41,7 @@ DC 12V/USB-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: asset:operation/dc_usb_output
-   :alt: Platzhalter für DC/USB-Ausgang Ein/Aus.
+   :alt: DC/USB-Ausgang Ein/Aus.
    :width: 360px
 
 | 
@@ -70,7 +70,7 @@ DC 12V/USB-AUSGANG EIN/AUS
 
    * - **VORSICHT**
      -
-       - Der DC-12-V-Anschluss ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
+       - Die DC-12V-Buchse ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
        - Starten Sie das Fahrzeug nicht, während das Produkt die Fahrzeugbatterie über den 12-V-DC-Ausgang lädt, da dies das Produkt beschädigen kann.
        - Diese Funktion ist nur für den Notfall vorgesehen und kann eine leere oder beschädigte Fahrzeugbatterie nicht aufladen.
 
@@ -79,12 +79,12 @@ ENERGIESPARMODUS
 
 Um zu verhindern, dass die Batterie unnötig entladen wird, wenn das Ausschalten des Ausgangs vergessen wird, ist der Energiesparmodus standardmäßig aktiviert. Wenn der AC- oder DC/USB-Ausgang eingeschaltet wird, wird das Energiesparmodus-Symbol auf dem LCD angezeigt. In diesem Modus schaltet sich der entsprechende Ausgang nach der eingestellten Zeit automatisch aus, wenn kein Gerät angeschlossen ist oder die Leistungsaufnahme des angeschlossenen Geräts unter einem bestimmten Schwellenwert liegt (|ENERGY_SAVING_AC_THRESHOLD| beim AC-Ausgang oder |ENERGY_SAVING_DC_THRESHOLD| beim DC/USB-Ausgang). Die Standardeinstellung ist |ENERGY_SAVING_AUTO_OFF_DURATION|. Die Dauer des Energiesparmodus kann in der Jackery-App auf 1 H, 2 H, 8 H, 12 H oder 24 H eingestellt werden. Wenn "Nie ausschalten" eingestellt ist, wird der Energiesparmodus deaktiviert.
 
-Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC1-Einschalttaste als auch die Haupt-POWER-Taste länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder DC/USB-Ausgang nicht mehr automatisch aus.
+Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC1-Einschalttaste als auch die POWER-Taste länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder DC/USB-Ausgang nicht mehr automatisch aus.
 
 Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_THRESHOLD| oder DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird.
 
 .. image:: asset:operation/energy_saving
-   :alt: Platzhalter für die Tastenbedienung des Energiesparmodus.
+   :alt: Tastenbedienung des Energiesparmodus.
    :width: 320px
 
 
@@ -104,7 +104,7 @@ LED-LICHT EIN/AUS
 Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie in jedem Modus die LED-Lichttaste gedrückt, um das Licht auszuschalten.
 
 .. image:: asset:operation/led_light
-   :alt: Platzhalter für den LED-Licht-Modus.
+   :alt: LED-Licht-Modus.
    :width: 360px
 
 |
@@ -144,15 +144,15 @@ LCD-ANZEIGE
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="asset:operation/lcd_mode" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Kurzzeitig an</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>
-          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die Haupt-POWER-Taste oder während das Produkt geladen wird.</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die POWER-Taste oder während das Produkt geladen wird.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Aus</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die Haupt-POWER-Taste.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die POWER-Taste.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Autom. aus</td>
@@ -161,11 +161,11 @@ LCD-ANZEIGE
         <tr>
           <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Dauerhaft an (beim Laden oder Entladen)</td>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die Haupt-POWER-Taste zweimal, wenn das Produkt eingeschaltet ist.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die POWER-Taste zweimal, wenn das Produkt eingeschaltet ist.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Aus</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die Haupt-POWER-Taste.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die POWER-Taste.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Autom. aus</td>
@@ -178,8 +178,8 @@ LCD-ANZEIGE
    .. raw:: latex
 
       \begin{HBLcdModeTable}{asset:operation/lcd_mode}
-      \HBLcdModeFirstGroup{Kurzzeitig an}{Ein}{Drücken Sie die Haupt-POWER-Taste oder während das Produkt geladen wird.}{Aus}{Drücken Sie die Haupt-POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach 2 Minuten Inaktivität automatisch aus und wechselt in den Schlafmodus.}
-      \HBLcdModeSecondGroup{Dauerhaft an (beim Laden oder Entladen)}{Ein}{Drücken Sie die Haupt-POWER-Taste zweimal, wenn das Produkt eingeschaltet ist.}{Aus}{Drücken Sie die Haupt-POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach |DEFAULT_STANDBY_DURATION| Inaktivität automatisch aus.}
+      \HBLcdModeFirstGroup{Kurzzeitig an}{Ein}{Drücken Sie die POWER-Taste oder während das Produkt geladen wird.}{Aus}{Drücken Sie die POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach 2 Minuten Inaktivität automatisch aus und wechselt in den Schlafmodus.}
+      \HBLcdModeSecondGroup{Dauerhaft an (beim Laden oder Entladen)}{Ein}{Drücken Sie die POWER-Taste zweimal, wenn das Produkt eingeschaltet ist.}{Aus}{Drücken Sie die POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach |DEFAULT_STANDBY_DURATION| Inaktivität automatisch aus.}
       \end{HBLcdModeTable}
 
 Sie können den Bildschirm-Anzeigemodus auch in der Jackery-App einstellen.
@@ -194,15 +194,15 @@ TASTENKOMBINATION
    * - Tasten
      - Bedienung
      - Funktion
-   * - Haupt-POWER-Taste + AC1-Einschalttaste
+   * - POWER-Taste + AC1-Einschalttaste
      - Beide 3 s lang gedrückt halten
      - Energiesparmodus ein-/ausschalten
-   * - Haupt-POWER-Taste + DC/USB-Einschalttaste
+   * - POWER-Taste + DC/USB-Einschalttaste
      - Beide 3 s lang gedrückt halten
      - WLAN und Bluetooth zurücksetzen
    * - DC/USB-Einschalttaste + AC1-Einschalttaste
      - Beide 1 s lang gedrückt halten
      - WLAN und Bluetooth ein-/ausschalten
-   * - Haupt-POWER-Taste + LED-Lichttaste
+   * - POWER-Taste + LED-Lichttaste
      - Beide 1 s lang gedrückt halten
      - Notfall-Lademodus ein-/ausschalten

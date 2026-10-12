@@ -1,0 +1,52 @@
+{
+  "schema_version": "app-ui-candidate-evidence/v1",
+  "evidence_status": "quarantine",
+  "source": {
+    "name": "Jackery Explorer 1000 User Manual (JE-1000F) V2.0 EU-UK-2026-06-18.pdf",
+    "sha256": "0b4424aff74b3feee08208b1fc0e1d3dde0d2400315ccb72475f6cb2b4d11cfe"
+  },
+  "frozen_reference": {
+    "name": "Jackery Explorer 1000 User Manual (JE-1000F) V2.0 EU-UK-2026-06-18.pdf",
+    "sha256": "0b4424aff74b3feee08208b1fc0e1d3dde0d2400315ccb72475f6cb2b4d11cfe"
+  },
+  "note": "The EU print is both the extraction source and the frozen reference: there is no separate design master for these screens. The EN block's App screens are the same English screens the fr/es/de/it blocks print.",
+  "candidates": [
+    {
+      "asset_key": "app/je1000f_eu/english_ui/add_device_screens",
+      "source_page": 21,
+      "bbox_pt": [
+        91.0,
+        219.5,
+        267.5,
+        374.0
+      ],
+      "output_path": "data/asset_evidence/app_ui/je1000f_eu/pdf-p21-add-device.png",
+      "output_dimensions_px": [
+        706,
+        618
+      ],
+      "output_sha256": "02f840f1341d94d08478c84ea4ae88280ef2806d618484596885efbe4debafe0"
+    },
+    {
+      "asset_key": "app/je1000f_eu/english_ui/connect_result_screens",
+      "source_page": 22,
+      "bbox_pt": [
+        49.0,
+        128.5,
+        317.0,
+        279.8
+      ],
+      "output_path": "data/asset_evidence/app_ui/je1000f_eu/pdf-p22-connect-result.png",
+      "output_dimensions_px": [
+        1072,
+        606
+      ],
+      "output_sha256": "23cde742b3012b96fce07f9efe3475ee2e75230f2b2d39311291a33d4cf51f69"
+    }
+  ],
+  "promotion_requirements": [
+    "The operator reviews the crops against the source page renders before promotion.",
+    "Promotion admits exactly one export per crop, byte-identical to the crop (a single full-canvas placement).",
+    "The promoted exports override the shared JP-market app/add_device and app/connect_result only for JE-1000F/EU."
+  ]
+}

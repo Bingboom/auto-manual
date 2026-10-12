@@ -14,7 +14,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.manual_ir import read_manual_ir
-from tools.web_document_ir import render_document_fragments
+from tools.web.document_ir import render_document_fragments
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -141,9 +141,16 @@ class Je300dEuEnWebTests(unittest.TestCase):
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])
         self.assertEqual(11, coverage["summary"]["by_status"]["finished-panel"])
 
-        lcd = soup.select_one("table.lcd-text-only")
+        lcd = soup.select_one(
+            '[data-component-id="HB-TABLE-REFERENCE"]'
+            '[data-component-variant="lcd-legend"] table'
+        )
         self.assertIsNotNone(lcd)
         self.assertEqual(11, len(lcd.select("tbody > tr")))
+        self.assertEqual(
+            ["1", "2", "3", "4", "5", "6", "7", "8", "8", "9", "10"],
+            [row.find("td").get_text(strip=True) for row in lcd.select("tbody > tr")],
+        )
         lcd_text = lcd.get_text(" ", strip=True)
         self.assertIn("USB-C Charging Indicator", lcd_text)
         self.assertIn("High Temperature Indicator", lcd_text)

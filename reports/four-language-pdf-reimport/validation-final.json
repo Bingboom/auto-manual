@@ -1,0 +1,20 @@
+{
+  "unittest": {
+    "command": "python3 -m unittest",
+    "tests": 4783,
+    "skipped": 22,
+    "seconds": 667.56,
+    "result": "pass"
+  },
+  "ruff": "pass",
+  "maintainability": "pass; 0 new baseline issues",
+  "doc_links": {
+    "files": 233,
+    "links": 2098,
+    "broken": 0
+  },
+  "us_fixture_check": "pass; isolated staging/root index preserved",
+  "four_strict_sphinx": "pass",
+  "aggregate_strict_sphinx_preflight": "pass",
+  "release_boundary": "Local verification. CI, mirror and RTD remain separate."
+}

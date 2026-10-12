@@ -1,0 +1,391 @@
+{
+  "tags": [
+    {
+      "id": "basics",
+      "title": "基础参数"
+    },
+    {
+      "id": "battery",
+      "title": "电池与 BMS"
+    },
+    {
+      "id": "inverter",
+      "title": "AC 输出与负载"
+    },
+    {
+      "id": "charging",
+      "title": "充电与太阳能"
+    },
+    {
+      "id": "expansion",
+      "title": "扩容兼容"
+    },
+    {
+      "id": "backup",
+      "title": "备电切换"
+    },
+    {
+      "id": "ports",
+      "title": "接口与 PD"
+    },
+    {
+      "id": "environment",
+      "title": "环境与携带"
+    }
+  ],
+  "topics": [
+    {
+      "id": "watts",
+      "title": "能不能启动：额定功率与启动冲击有什么不同？",
+      "tags": [
+        "basics",
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "额定输出功率用于判断持续供电能力。冰箱、泵和电机等负载启动时可能出现更高的瞬时需求；能否启动还取决于电源的短时输出能力、持续时间与保护策略。",
+      "application": "对比 Explorer 1000、1000 Plus、2000 和 3000 时，不能只看型号中的数字；阅读规格中的额定输出与浪涌条件。",
+      "boundary": "浪涌功率不能当作长期额定功率；只比较两个 W 数字不够。多台负载同时启动可能叠加冲击，不能保证所有同功率电器都能启动。",
+      "read": "SPECIFICATIONS / OUTPUT PORTS（额定输出与浪涌）",
+      "diagram_nodes": [
+        "负载启动",
+        "短时功率需求",
+        "电源短时能力"
+      ],
+      "diagram_caption": "启动冲击表现为负载电流短时增大，开关器件、滤波器、电池及保护环节都必须承受；短时允许不等于可持续。"
+    },
+    {
+      "id": "watt-hours",
+      "title": "Wh：大致能用多久？",
+      "tags": [
+        "basics",
+        "battery"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "dedicated",
+        "battery"
+      ],
+      "answer": "Wh 是储电量。理想续航约等于可用能量 Wh ÷ 平均负载 W；例如 1000Wh ÷ 100W = 10 小时，是忽略损耗的演算。",
+      "application": "读 Explorer 或 JBP 电池的容量，再结合实际设备的平均耗电估算续航。冰箱等设备会间歇工作，不能直接用铭牌功率代表平均耗电。",
+      "boundary": "实际续航还受逆变损耗、待机耗电、温度、老化及可用电量限制影响。示例数字不是某个型号的实测承诺。",
+      "read": "SPECIFICATIONS / Capacity（容量）",
+      "diagram_nodes": [
+        "可用电量 Wh",
+        "逆变与待机损耗",
+        "负载平均功率 W"
+      ],
+      "diagram_caption": "续航约为可用能量除以平均功率；电池标称容量不能全部当作负载可用能量。"
+    },
+    {
+      "id": "bms",
+      "title": "BMS：为什么电池会限制充放电？",
+      "tags": [
+        "battery"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "dedicated",
+        "battery"
+      ],
+      "answer": "BMS 是电池管理系统，监测电压、电流和温度，按电池状态允许、限制或停止充放电。",
+      "application": "Explorer 主机和 JBP 扩容电池都需要电池保护。遇到温度或电池故障提示，先看对应型号的故障说明。",
+      "boundary": "BMS 保护不等于可以超出说明书条件使用；这里解释功能原理，不推定某型号采用的芯片或内部电路。",
+      "read": "TROUBLESHOOTING / SAFETY / SPECIFICATIONS（故障、安全与温度）",
+      "diagram_nodes": [
+        "电芯电压与温度",
+        "BMS 判断",
+        "允许 / 限制 / 停止"
+      ],
+      "diagram_caption": "BMS 根据电池状态限制能量流动。"
+    },
+    {
+      "id": "soc-soh",
+      "title": "SOC、SOH：电量与健康度有什么不同？",
+      "tags": [
+        "battery"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "dedicated",
+        "battery"
+      ],
+      "answer": "SOC 是当前剩余电量的估算；SOH 是电池相对新电池的健康程度。电量显示 100%，并不表示电池没有老化。",
+      "application": "看 Explorer 与 JBP 的电量显示、储存要求和循环寿命条件。循环次数必须与对应的剩余容量条件一起读。",
+      "boundary": "各型号的寿命条件可能不同；不能把循环次数直接换算成固定使用年限，也不代表 App 一定显示 SOH。",
+      "read": "LCD DISPLAY / STORAGE / Cycle Life（电量、储存与寿命）",
+      "diagram_nodes": [
+        "电池状态",
+        "SOC：当前电量",
+        "SOH：健康程度"
+      ],
+      "diagram_caption": "两个指标分别描述剩余电量与电池老化，不是同一个百分比。"
+    },
+    {
+      "id": "inverter",
+      "title": "逆变器：直流电怎样给家电用？",
+      "tags": [
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "沿图读电路：DC 母线供给 H 桥。Q1/Q4 与 Q2/Q3 交替开关，让 A、B 两点间形成正负脉冲；PWM 调节脉冲，Lf 与 Cf 滤去高频分量，得到负载使用的交流。控制器采样输出电压、电流并调整驱动。同一桥臂上下开关不能同时导通，需死区。",
+      "application": "交流 Explorer 主机可以通过 AC 插座供电；100D、300D 属于直流供电产品，不能把 USB 或直流接口当作 AC 插座。",
+      "boundary": "图中 Q 为功率开关简化符号，未展开体二极管、隔离升压、驱动电源、EMI 和接地。低压电池通常还需升压或变压环节才能形成所需母线；本图从 DC 母线开始，不代表任一型号的完整拓扑。",
+      "read": "AC OUTPUT / SPECIFICATIONS（交流输出）",
+      "diagram_nodes": [
+        "电池直流 DC",
+        "逆变器 DC → AC",
+        "交流插座 → 家电"
+      ],
+      "diagram_caption": "Cdc 稳定直流母线；H 桥控制电压极性；Lf/Cf 为输出滤波；虚线表示控制与反馈，不是功率导线。"
+    },
+    {
+      "id": "ac-total",
+      "title": "多个 AC 插座：单口功率和总功率怎样看？",
+      "tags": [
+        "basics",
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "先确认说明书给的是单个插座上限，还是所有 AC 插座合计上限。多个插座通常共享 AC 输出能力；同时使用时，各电器的实际输入功率之和必须满足 AC 总输出限制，也要满足单个插座的限制。",
+      "application": "阅读 Explorer 的 AC 输出规格。例如假设某电源 AC 合计上限为 1000W，两台分别消耗 600W、500W 的电器同时运行就超过合计上限；插座再多也不会增加这项能力。",
+      "boundary": "示例不是某个型号的参数。AC 总功率、USB 总功率和整机总输出是不同范围，不能互相替代；某型号没有明确单口上限时，也不要把总功率直接标成每个插座的额定值。",
+      "read": "SPECIFICATIONS / AC OUTPUT（单口限制、AC 合计与同时输出条件）",
+      "diagram_nodes": [
+        "共享 AC 输出",
+        "AC 插座 1",
+        "AC 插座 2 / 其他"
+      ],
+      "diagram_caption": "两条交流供电导线接到各并联支路；负载电流汇总到公共电源路径。图中电阻符号代表电器等效负载，实际电器未必是纯电阻。"
+    },
+    {
+      "id": "ac-match",
+      "title": "能不能接：电压、频率与波形要匹配",
+      "tags": [
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "核对电器的输入电压范围、频率要求与电源的 AC 输出规格；需要特定波形的负载，还要检查波形要求。插头能插入只是机械条件。",
+      "application": "先选择实际使用地区，再查 Explorer 或 FridgeGuard 的 AC 电压、频率与波形说明；宽电压适配器和固定电压家电的要求可能不同。",
+      "boundary": "转接插头不负责变压或变频。不能把欧规参数照搬到美规，也不能只凭正弦波描述就认定所有负载兼容。",
+      "read": "SPECIFICATIONS / AC OUTPUT / SAFETY（电压、频率、波形与使用限制）",
+      "diagram_nodes": [
+        "AC 输出规格",
+        "电压 / 频率 / 波形",
+        "电器输入要求"
+      ],
+      "diagram_caption": "控制器和 PWM 决定输出频率与幅值，滤波影响波形。读取供电端输出规格，再与电器输入要求比较。"
+    },
+    {
+      "id": "ac-boost",
+      "title": "升功率模式：为什么不能当作额定功率提高？",
+      "tags": [
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "部分产品提供升功率或类似模式，其工作方式和允许负载由型号决定；有的模式通过调整输出电压让特定负载工作。应分别阅读正常额定输出和该模式的条件。",
+      "application": "查对应 Explorer 说明书是否明确支持这类模式，以及适用电器、开启方式和限制。说明书未声明支持时，不推定该产品具有此功能。",
+      "boundary": "模式宣传的可带负载功率不等于正常额定输出，也不同于短时浪涌功率。不能据此认定电机、精密电子设备或稳压负载可以正常运行。",
+      "read": "AC OUTPUT / 升功率模式说明（是否支持、适用负载与限制）",
+      "diagram_nodes": [
+        "特定模式开启",
+        "按型号调整输出",
+        "适用负载工作"
+      ],
+      "diagram_caption": "典型控制系统可调节 PWM 来改变输出电压；不同型号的模式实现不同，不能把这个教学例子当作产品内部设计。"
+    },
+    {
+      "id": "ac-protection",
+      "title": "过载或自动关机：怎样判断和恢复？",
+      "tags": [
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "输出停止可能与过载、温度、电量不足或低负载自动关机有关。先读取显示屏或 App 提示，再按对应故障说明处理；恢复条件和操作顺序依型号而异。",
+      "application": "同时接多台设备时先核对合计运行功率与启动需求；若触发保护，按说明书移除或降低负载、检查通风并完成规定的恢复步骤。小功率设备还需查 AC 节能或自动关闭设置。",
+      "boundary": "保护停机不表示设备损坏，也不能反复强行重启。不要把低负载自动关机当成过载；故障未排除时按说明书停止使用或联系售后。",
+      "read": "TROUBLESHOOTING / AC OUTPUT / ENERGY SAVING（故障代码、恢复与自动关机）",
+      "diagram_nodes": [
+        "负载 / 温度异常",
+        "检测与保护",
+        "限制或停止输出"
+      ],
+      "diagram_caption": "输出电流、电压及温度检测参与保护控制；过流时可限制或停止驱动。熔断器、电子保护与低负载关机不是同一个机制。"
+    },
+    {
+      "id": "solar-mppt",
+      "title": "太阳能与 MPPT：为什么不是一直满功率？",
+      "tags": [
+        "charging"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "solar"
+      ],
+      "answer": "太阳能板输出随光照、角度、遮挡和温度变化。MPPT 用于寻找当时可获得的较大功率工作点，再由充电系统向电池供电。",
+      "application": "使用 SolarSaga 40 Air、100、100 Air、200 时，先查太阳能板电气参数，再查主机的太阳能输入范围和连接说明。",
+      "boundary": "太阳能板额定功率来自规定测试条件。实际充电也受主机输入上限影响；不得仅按 W 数量相加来决定串并联。",
+      "read": "ELECTRICAL DATA / SOLAR CHARGING（电气参数与太阳能充电）",
+      "diagram_nodes": [
+        "太阳能板",
+        "MPPT / 充电转换",
+        "电池"
+      ],
+      "diagram_caption": "光照决定可获得的输入，主机输入范围与上限决定可接收的能量。"
+    },
+    {
+      "id": "charging-path",
+      "title": "市电、车充与快充：补能路径有什么区别？",
+      "tags": [
+        "charging"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "dedicated",
+        "charger"
+      ],
+      "answer": "市电充电需要 AC/DC 转换；车载充电通过直流路径调节电压和电流。最终充电速度由电源、线材、设备和电池状态共同限制。",
+      "application": "102W GaN 充电器用于 USB 设备；JA-AD600A 是 DC-DC 车载充电器。它们的接口、安装条件与适用设备不同。",
+      "boundary": "充电器的最大功率不是任何设备都能获得的功率。车载 DC-DC 的车辆接线与安装必须按其说明书执行。",
+      "read": "CHARGING / Product Compatibility / PRODUCT INSTALLATION（充电、兼容与安装）",
+      "diagram_nodes": [
+        "市电 / 车载电源",
+        "充电转换与限制",
+        "电池"
+      ],
+      "diagram_caption": "不同输入走相应转换路径，速度受电源、线材、设备和电池共同限制。"
+    },
+    {
+      "id": "battery-expansion",
+      "title": "扩容：增加续航，还是增加输出功率？",
+      "tags": [
+        "expansion",
+        "battery"
+      ],
+      "groups": [
+        "expandable",
+        "battery"
+      ],
+      "answer": "扩容电池主要增加可储存的能量。是否改变主机可输出的功率，要看整个系统的设计和明确规格。",
+      "application": "为 1000 Plus、2000 Plus、3600 Plus 选择扩容电池时，从主机和 JBP 各自的连接章节核对兼容型号、数量上限和操作顺序。",
+      "boundary": "本页列出相关产品供学习，不构成任意主机与 JBP 电池之间的兼容推荐；型号、接口或容量相近都不够。",
+      "read": "CONNECTIONS / CONNECT TO BATTERY PACK(S)（电池连接）",
+      "diagram_nodes": [
+        "扩容电池",
+        "兼容连接与协调",
+        "主机电池系统"
+      ],
+      "diagram_caption": "增加可用能量不自动提高逆变器的额定功率。"
+    },
+    {
+      "id": "ups",
+      "title": "备电与旁路：停电时会怎样？",
+      "tags": [
+        "backup",
+        "inverter"
+      ],
+      "groups": [
+        "appliance",
+        "expandable",
+        "dedicated"
+      ],
+      "answer": "支持旁路的产品在规定条件下可由市电向 AC 负载供电；市电失效后，具备备电切换功能的产品才会按设计切换为电池供电。先确认是否支持，再检查切换时间和允许负载。",
+      "application": "学习 Explorer 的 UPS 章节，或 FridgeGuard 的备电与 AC 输出延迟设置；冰箱还要考虑压缩机启动需求。",
+      "boundary": "边充边用不自动等于旁路或 UPS。旁路供电上限可能与电池逆变输出上限不同；有 UPS 功能也不等于零切换时间，不能直接保证敏感或关键设备兼容。",
+      "read": "UNINTERRUPTIBLE POWER SUPPLY / AC Output Delay（备电与延迟）",
+      "diagram_nodes": [
+        "市电旁路",
+        "供电切换",
+        "AC 负载"
+      ],
+      "diagram_caption": "有市电时可走旁路，断电后由电池经逆变器供电；是否支持与切换时间按型号确认。"
+    },
+    {
+      "id": "ports-pd",
+      "title": "接口能插上，就能正常充电吗？",
+      "tags": [
+        "ports",
+        "expansion"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "dedicated",
+        "solar",
+        "charger",
+        "connect"
+      ],
+      "answer": "接口形状只是一个条件，还要匹配电压、电流、极性、线材和协议。USB PD 会协商供电能力，支持相同接口也可能得到不同功率。",
+      "application": "看 100D、300D 的 USB 端口组合；看 GaN 充电器的多口分配；看 JA-CA05B、JA-CA3SA 的连接与适用产品说明。",
+      "boundary": "连接指南明确存在“能插入但不导通”的情况。不要靠外形推断兼容；多口同时使用的功率也不能直接相加。",
+      "read": "OUTPUT PORTS / MULTI-PORT OUTPUT / CONNECTION GUIDE（接口与连接）",
+      "diagram_nodes": [
+        "供电端能力",
+        "线材与协议协商",
+        "设备接收能力"
+      ],
+      "diagram_caption": "接口外形相同，不代表电压、电流、协议或功率相同。"
+    },
+    {
+      "id": "environment",
+      "title": "温度、重量与保护：为什么也影响选型？",
+      "tags": [
+        "environment"
+      ],
+      "groups": [
+        "portable",
+        "appliance",
+        "expandable",
+        "dedicated",
+        "battery",
+        "solar",
+        "charger",
+        "carry"
+      ],
+      "answer": "电池、功率模块和负载都会产生热量。使用温度、通风空间、防护条件和搬运负担，决定产品能否在实际环境中持续工作。",
+      "application": "比较主机和 JBP 的重量；阅读太阳能板的防护条件、DC-DC 充电器的车内安装、加热保护包与折叠推车的使用要求。",
+      "boundary": "防护等级不等于可以任意淋雨或浸水；保护包和推车也不能替代产品的温度、通风及载荷限制。",
+      "read": "TEMPERATURE / SAFETY / HOW TO USE / SPECIFICATIONS（环境与使用）",
+      "diagram_nodes": [
+        "负载工作产生热",
+        "散热与温度监测",
+        "持续输出 / 保护"
+      ],
+      "diagram_caption": "环境温度与通风影响持续工作；防护与搬运条件也需独立核对。"
+    }
+  ]
+}

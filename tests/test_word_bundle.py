@@ -6,13 +6,14 @@ import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest import mock
 
 import yaml
 from bs4 import BeautifulSoup
 
 from tools.language_aliases import language_key
-from tools.word_bundle import derive_word_title, render_safety_word_html, render_spec_word_html, resolve_reference_doc
-from tools.word_bundle_html import (
+from tools.word.bundle import derive_word_title, render_safety_word_html, render_spec_word_html, resolve_reference_doc
+from tools.word.bundle_html import (
     _build_word_only_tags,
     build_word_bundle_html,
     _convert_rst_fragment_to_html,
@@ -20,14 +21,60 @@ from tools.word_bundle_html import (
     _rewrite_word_friendly_fragment,
     _stage_fragment_assets,
 )
-from tools.word_bundle_html_rewrite import _extract_spec_word_data
-from tools.web_presentation import load_web_manual_contract
+from tools.word import bundle_html as word_bundle_html
+from tools.word.bundle_html_rewrite import _extract_spec_word_data
+from tools.web.presentation import load_web_manual_contract
 
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class TestWordBundle(unittest.TestCase):
+    def test_native_rst_admonitions_keep_rich_body_and_explicit_boundary(self) -> None:
+        from tools.word.bundle_html import _publish_rst_fragment_to_html
+
+        for variant in ("note", "tip", "warning", "caution", "danger"):
+            with self.subTest(variant=variant):
+                source = (
+                    f".. {variant}::\n\n   First **important** paragraph.\n\n"
+                    "   - Use the cable.\n   - Keep dry.\n\nOutside the box.\n"
+                )
+                fragment = _publish_rst_fragment_to_html(source, Path("notice.rst"))
+                soup = BeautifulSoup(_rewrite_word_friendly_fragment(fragment, lang="en"), "html.parser")
+                boxes = soup.select("table.manual-callout-table")
+                self.assertEqual(1, len(boxes))
+                from tools.manual_ir.web_callouts import decode_callout_payload
+                payload = decode_callout_payload(str(boxes[0]), source_ref="notice.rst")
+                self.assertEqual(variant, payload["component_spec"]["variant"])
+                self.assertIsNone(soup.select_one("aside.admonition"))
+                body = boxes[0].select_one(".manual-callout-body")
+                self.assertEqual("important", body.strong.get_text())
+                self.assertEqual(["Use the cable.", "Keep dry."], [li.get_text() for li in body.select("li")])
+                self.assertNotIn("Outside the box.", body.get_text())
+                self.assertIn("Outside the box.", soup.get_text())
+
+    def test_native_callout_type_survives_localized_titles(self) -> None:
+        from docutils.core import publish_parts
+        from tools.manual_ir.web_callouts import decode_callout_payload
+
+        for lang in ("en", "fr", "es", "de", "it", "uk", "pt_br", "nl", "pl"):
+            for variant in ("note", "tip", "warning", "caution", "danger"):
+                with self.subTest(lang=lang, variant=variant):
+                    fragment = publish_parts(
+                        f".. {variant}::\n\n   Body.\n", writer_name="html5",
+                        settings_overrides={"language_code": lang},
+                    )["fragment"]
+                    original = BeautifulSoup(fragment, "html.parser")
+                    label = original.select_one(".admonition-title").get_text()
+                    soup = BeautifulSoup(_rewrite_word_friendly_fragment(fragment, lang=lang), "html.parser")
+                    payload = decode_callout_payload(str(soup.table), source_ref="notice.rst")
+                    self.assertEqual(variant, payload["component_spec"]["variant"])
+                    self.assertEqual(lang, payload["component_spec"]["language"])
+                    self.assertEqual(label, soup.select_one(".manual-callout-label").get_text())
+                    soup.table["data-callout-variant"] = "invalid"
+                    with self.assertRaisesRegex(ValueError, "invalid or conflicting"):
+                        decode_callout_payload(str(soup.table), source_ref="notice.rst")
+
     def test_document_profile_projects_fcc_as_editable_two_column_html(self) -> None:
         source = Path("docs/_review/JE-1000F/US/page/01_fcc.rst")
         with tempfile.TemporaryDirectory() as td:
@@ -1152,6 +1199,28 @@ DC OUTPUT
         self.assertNotIn("warning_bar.png", out)
         self.assertNotIn("<strong>WARNING</strong>", out)
         self.assertNotIn("manual-callout-table", out)
+
+
+class FragmentLanguageInferenceTests(unittest.TestCase):
+    """Path-based language inference must not read the checkout's own directory name."""
+
+    _ROOT = Path("/work/auto-manual-worktrees/terminology-jp-rules")
+
+    def _infer(self, path: Path):
+        with mock.patch.object(word_bundle_html, "paths", SimpleNamespace(root=self._ROOT)):
+            return word_bundle_html._infer_fragment_lang(path)
+
+    def test_checkout_directory_name_is_not_a_language(self) -> None:
+        # A worktree named *-jp-* once made every US review page resolve to ja.
+        page = self._ROOT / "docs/_review/JE-1000F/US/page/03_product_overview_placeholder.rst"
+        self.assertIsNone(self._infer(page))
+
+    def test_repo_directories_still_carry_the_language(self) -> None:
+        self.assertEqual(self._infer(self._ROOT / "docs/templates/page_jp/charging.rst"), "ja")
+        self.assertEqual(self._infer(self._ROOT / "docs/templates/page_shared/fr/charging.rst"), "fr")
+
+    def test_paths_outside_the_repo_keep_every_component(self) -> None:
+        self.assertEqual(self._infer(Path("/elsewhere/bundle/fr/page/11_warranty.rst")), "fr")
 
 
 if __name__ == "__main__":

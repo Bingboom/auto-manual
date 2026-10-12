@@ -35,11 +35,11 @@ from tools.component_specs.reference_figure_adapters import (
 from tools.component_specs.registry import load_component_registry
 from tools.component_specs.theme import load_manual_theme
 from tools.manual_ir import read_manual_ir
-from tools.web_composite_manifest import load_web_composite_manifest
-from tools.web_document_ir import render_document_fragments
-from tools.web_document_source import load_web_document
-from tools.web_presentation import load_web_manual_contract
-from tools.word_bundle_html import _build_word_only_tags
+from tools.web.composite_manifest import load_web_composite_manifest
+from tools.web.document_ir import render_document_fragments
+from tools.web.document_source import load_web_document
+from tools.web.presentation import load_web_manual_contract
+from tools.word.bundle_html import _build_word_only_tags
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -163,6 +163,32 @@ class AppReferenceComponentSpecTests(unittest.TestCase):
                 self.assertTrue(latex_app_projection(spec)["adapter"])
                 self.assertTrue(idml_app_payload(spec)["kind"])
                 self.assertTrue(word_app_projection(spec)["editable"])
+        # Legacy five-language App art already contains the step numbers.
+        self.assertNotIn("step_captions", web_app_projection(add_device))
+        native_step_spec = app_add_device_component_spec(
+            accessibility_label="Add-device steps",
+            reference_id="app-add-device",
+            labels=(
+                {"role": "main-power", "html": "POWER", "text": "POWER"},
+                {"role": "dc-usb", "html": "DC / USB", "text": "DC / USB"},
+                {"role": "ac-power", "html": "AC", "text": "AC"},
+            ),
+            step_captions=(
+                {"role": "step-2-1", "html": "2.1", "text": "2.1"},
+                {"role": "step-2-2", "html": "2.2", "text": "2.2"},
+            ),
+            source_art_ref="source.png",
+            phone_art_ref="phones.png",
+            control_art_ref="controls.png",
+            source_ref="app.rst#native-add-device",
+            language="pl",
+            registry=registry,
+            theme=theme,
+        )
+        self.assertEqual(
+            ["2.1", "2.2"],
+            [item["text"] for item in web_app_projection(native_step_spec)["step_captions"]],
+        )
 
         reference = reference_figure_component_spec(
             reference_id="charging-car",
@@ -265,8 +291,23 @@ class AppReferenceComponentSpecTests(unittest.TestCase):
                 and spec.variant == "approved-composite"
             ]
             self.assertEqual(
-                {"charging-car", "app-connect-result"},
+                {"app-connect-result"},
                 {str(spec.slot("reference_id").content) for spec in selected},
+            )
+            # JE-1000F/US draws the car figure on its registered art with live
+            # copy: no approved composite is frozen, and the layout replays
+            # from the spec because replay never reopens the contract.
+            (car,) = [
+                spec
+                for spec in specs
+                if spec.component_id == REFERENCE_FIGURE_COMPONENT_ID
+                and str(spec.slot("reference_id").content) == "charging-car"
+            ]
+            self.assertEqual(["source_art"], [asset.role for asset in car.assets])
+            self.assertEqual("base-art-live-copy", car.metadata["presentation_mode"])
+            self.assertEqual(
+                [0, 1],
+                [label["line"] for label in car.metadata["base_art_layout"]["labels"]],
             )
             for spec in specs:
                 for asset in spec.assets:
@@ -294,15 +335,15 @@ class AppReferenceComponentSpecTests(unittest.TestCase):
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation.transform_app_download",
+                    "tools.web.presentation.transform_app_download",
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation.transform_app_control",
+                    "tools.web.presentation.transform_app_control",
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation._transform_reference_figures",
+                    "tools.web.presentation._transform_reference_figures",
                     side_effect=source_projector_error,
                 ),
             ):
@@ -316,15 +357,32 @@ class AppReferenceComponentSpecTests(unittest.TestCase):
             self.assertEqual(1, len(soup.select("figure.hb-app-add-device-composition")))
             self.assertEqual(5, len(soup.select("figure.hb-reference-figure")))
             self.assertEqual(
-                2,
+                1,
                 len(soup.select("figure.hb-reference-figure.hb-has-composite-art")),
+            )
+            car_figure = soup.select_one(
+                'figure.hb-reference-figure.hb-base-art-live-copy'
+                '[data-reference-id="charging-car"]'
+            )
+            self.assertIsNotNone(car_figure)
+            self.assertEqual(
+                ["Vehicle", "*The car charging cable is sold separately."],
+                [
+                    " ".join(label.get_text().split())
+                    for label in (
+                        car_figure.select(
+                            ".hb-reference-art-panel > .hb-reference-live-label"
+                        )
+                        if car_figure
+                        else []
+                    )
+                ],
             )
             expected_hashes = {
                 entry.web_replace_key: entry.source_fragment_sha256
                 for entry in manifest.entries
                 if entry.locale in {"en", "shared"}
-                and entry.web_replace_key
-                in {"reference.charging-car", "reference.app-connect-result"}
+                and entry.web_replace_key == "reference.app-connect-result"
             }
             self.assertEqual(
                 expected_hashes,

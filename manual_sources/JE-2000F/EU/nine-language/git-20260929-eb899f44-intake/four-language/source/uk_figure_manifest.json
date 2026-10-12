@@ -1,0 +1,272 @@
+{
+  "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "locale": "uk",
+  "figures": [
+    {
+      "slug": "front_view",
+      "section_id": "product_overview",
+      "path": "figures/uk/p100_front_view.png",
+      "sha256": "25db2ead08fcf1aefb0a06e0e6edda9047d22bfb08682c43859930e814b2f483",
+      "clip_points": [
+        20,
+        60,
+        350,
+        308
+      ],
+      "physical_page": 100,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "right_view",
+      "section_id": "product_overview",
+      "path": "figures/uk/p100_right_view.png",
+      "sha256": "eb026aedf1202954db8f9e503347d86c292af7cf59428012df52ebb0a66221b1",
+      "clip_points": [
+        20,
+        309,
+        350,
+        497
+      ],
+      "physical_page": 100,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "lcd_display",
+      "section_id": "lcd_display",
+      "path": "figures/uk/p101_lcd_display.png",
+      "sha256": "2661c1e09f597dd074400a3ef7745a99585d964b131f9f7db6782bc1f7e5b84b",
+      "clip_points": [
+        25,
+        50,
+        345,
+        232
+      ],
+      "physical_page": 101,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "ups_connection",
+      "section_id": "ups",
+      "path": "figures/uk/p106_ups_connection.png",
+      "sha256": "c4678f0b5cf88406536e13cad0ad9f430a4ec0b8de16504c4a6f6c949bfda8f3",
+      "clip_points": [
+        25,
+        236,
+        345,
+        384
+      ],
+      "physical_page": 106,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "ac_wall_charging",
+      "section_id": "charging",
+      "path": "figures/uk/p108_ac_wall_charging.png",
+      "sha256": "ac50b90a1254597204384e93b4bd4e72b03a04c66f7d3500b35679f70241396c",
+      "clip_points": [
+        25,
+        159,
+        345,
+        261
+      ],
+      "physical_page": 108,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "solar_single",
+      "section_id": "charging",
+      "path": "figures/uk/p108_solar_single.png",
+      "sha256": "ca447eee680013c58421e627d7ffe3244ef96278e1121eca03b9d10c04f434a3",
+      "clip_points": [
+        25,
+        384,
+        345,
+        497
+      ],
+      "physical_page": 108,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "solar_four",
+      "section_id": "charging",
+      "path": "figures/uk/p109_solar_four.png",
+      "sha256": "ff0bc29614cf88423ca327aa0148f4201cbec8b87d0a6fddb5d91a5c29866198",
+      "clip_points": [
+        25,
+        24,
+        345,
+        176
+      ],
+      "physical_page": 109,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "car_charging",
+      "section_id": "charging",
+      "path": "figures/uk/p109_car_charging.png",
+      "sha256": "17f027c980785ee405a70f9e44c73adebb4023d50b1a0cd5c10b9bacba1ea2bd",
+      "clip_points": [
+        25,
+        377,
+        345,
+        497
+      ],
+      "physical_page": 109,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "main_power",
+      "section_id": "operations",
+      "path": "figures/uk/p103_main_power.png",
+      "sha256": "4ac3092b7ff4005bc6c898635b6c2ba3427af9ad7cf4a1c43aa030577f8673b6",
+      "clip_points": [
+        25,
+        72,
+        345,
+        193
+      ],
+      "physical_page": 103,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "ac_output",
+      "section_id": "operations",
+      "path": "figures/uk/p103_ac_output.png",
+      "sha256": "1d97c602cf13b07c8705b2e79d18242d632190de13cc1492c9233e75b67d159e",
+      "clip_points": [
+        25,
+        280,
+        345,
+        370
+      ],
+      "physical_page": 103,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "dc_usb_output",
+      "section_id": "operations",
+      "path": "figures/uk/p104_dc_usb_output.png",
+      "sha256": "10ec3b6d8b0ea8d3b42869ec252cfc574b4c082b734b4215837b76650972ef92",
+      "clip_points": [
+        25,
+        55,
+        345,
+        222
+      ],
+      "physical_page": 104,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "led_light",
+      "section_id": "operations",
+      "path": "figures/uk/p104_led_light.png",
+      "sha256": "752b379948aa4faa05cdf4ad8b5e7ac4e04496de0ac0006ee8a92097574202e9",
+      "clip_points": [
+        25,
+        397,
+        345,
+        493
+      ],
+      "physical_page": 104,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "energy_saving",
+      "section_id": "operations",
+      "path": "figures/uk/p105_energy_saving.png",
+      "sha256": "544c1b52ebaf4cfb99b30055a778b94d873fc77938613bf1c5d1cd3da1cf184f",
+      "clip_points": [
+        25,
+        379,
+        345,
+        475
+      ],
+      "physical_page": 105,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "lcd_mode_art",
+      "section_id": "operations",
+      "path": "figures/uk/p105_lcd_mode_art.png",
+      "sha256": "9b31d32f13a80b0999dbbc5a820d42f00e8aade7d42ce61bbc854b24c856ca02",
+      "clip_points": [
+        25,
+        141,
+        179,
+        239
+      ],
+      "physical_page": 105,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "in_box_cards",
+      "section_id": "in_the_box",
+      "path": "figures/uk/p099_in_box_cards.png",
+      "sha256": "390af467467cedc241dca74745826502d3206d8705dc436664167e74527b568e",
+      "clip_points": [
+        25,
+        279,
+        345,
+        410
+      ],
+      "physical_page": 99,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "app_add_device",
+      "section_id": "app_setup",
+      "path": "figures/uk/p113_app_add_device.png",
+      "sha256": "f26cf52729ffe5a0b92bb9591850a48e14ff6d3a19b889128bb728d262bdc771",
+      "clip_points": [
+        55,
+        225,
+        310,
+        395
+      ],
+      "physical_page": 113,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "app_control",
+      "section_id": "app_setup",
+      "path": "figures/uk/p113_app_control.png",
+      "sha256": "787f735fb5e23d435769bf5e5cda2c4936a622403cf8a614157fa2abbb400943",
+      "clip_points": [
+        25,
+        403,
+        350,
+        496
+      ],
+      "physical_page": 113,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "app_pairing",
+      "section_id": "app_setup",
+      "path": "figures/uk/p114_app_pairing.png",
+      "sha256": "acdd9b75c69be2de553dc8b8b830ac6a368d27bd1717ae0094dd2b2345dbcab5",
+      "clip_points": [
+        40,
+        140,
+        332,
+        298
+      ],
+      "physical_page": 114,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    },
+    {
+      "slug": "app_qr_and_badges",
+      "section_id": "app_setup",
+      "path": "figures/uk/p113_app_qr_and_badges.png",
+      "sha256": "1adf7909e8d08cc2befffed400cc8452c4664896cafe4b657eb8caa8cc331976",
+      "clip_points": [
+        45,
+        70,
+        310,
+        124
+      ],
+      "physical_page": 113,
+      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+    }
+  ]
+}

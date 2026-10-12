@@ -1,0 +1,3290 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/je1000h-eu-three-locales-native",
+    "expected_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
+    "expected_page_count": 161
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 161
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.25,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "native_source_001",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "native_source_002",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "native_source_003",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "native_source_004",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "native_source_005",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "native_source_006",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "native_source_007",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "native_source_008",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "native_source_009",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "native_source_010",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "native_source_011",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "native_source_012",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "native_source_013",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "native_source_014",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "native_source_015",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "native_source_016",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "native_source_017",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "native_source_018",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "native_source_019",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "native_source_020",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "native_source_021",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 22,
+      "page_key": "native_source_022",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 23,
+      "page_key": "native_source_023",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "native_source_024",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "native_source_025",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "native_source_026",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "native_source_027",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "native_source_028",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 29,
+      "page_key": "native_source_029",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 30,
+      "page_key": "native_source_030",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 31,
+      "page_key": "native_source_031",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 32,
+      "page_key": "native_source_032",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 33,
+      "page_key": "native_source_033",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 34,
+      "page_key": "native_source_034",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 35,
+      "page_key": "native_source_035",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 36,
+      "page_key": "native_source_036",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 37,
+      "page_key": "native_source_037",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 38,
+      "page_key": "native_source_038",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 39,
+      "page_key": "native_source_039",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 40,
+      "page_key": "native_source_040",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 41,
+      "page_key": "native_source_041",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 42,
+      "page_key": "native_source_042",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 43,
+      "page_key": "native_source_043",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 44,
+      "page_key": "native_source_044",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 45,
+      "page_key": "native_source_045",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 46,
+      "page_key": "native_source_046",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 47,
+      "page_key": "native_source_047",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 48,
+      "page_key": "native_source_048",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 49,
+      "page_key": "native_source_049",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 50,
+      "page_key": "native_source_050",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 51,
+      "page_key": "native_source_051",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 52,
+      "page_key": "native_source_052",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 53,
+      "page_key": "native_source_053",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 54,
+      "page_key": "native_source_054",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 55,
+      "page_key": "native_source_055",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 56,
+      "page_key": "native_source_056",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 57,
+      "page_key": "native_source_057",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 58,
+      "page_key": "native_source_058",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 59,
+      "page_key": "native_source_059",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 60,
+      "page_key": "native_source_060",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 61,
+      "page_key": "native_source_061",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 62,
+      "page_key": "native_source_062",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 63,
+      "page_key": "native_source_063",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 64,
+      "page_key": "native_source_064",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 65,
+      "page_key": "native_source_065",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 66,
+      "page_key": "native_source_066",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 67,
+      "page_key": "native_source_067",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 68,
+      "page_key": "native_source_068",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 69,
+      "page_key": "native_source_069",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 70,
+      "page_key": "native_source_070",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 71,
+      "page_key": "native_source_071",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 72,
+      "page_key": "native_source_072",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 73,
+      "page_key": "native_source_073",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 74,
+      "page_key": "native_source_074",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 75,
+      "page_key": "native_source_075",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 76,
+      "page_key": "native_source_076",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 77,
+      "page_key": "native_source_077",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 78,
+      "page_key": "native_source_078",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 79,
+      "page_key": "native_source_079",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 80,
+      "page_key": "native_source_080",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 81,
+      "page_key": "native_source_081",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 82,
+      "page_key": "native_source_082",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 83,
+      "page_key": "native_source_083",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 84,
+      "page_key": "native_source_084",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 85,
+      "page_key": "native_source_085",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 86,
+      "page_key": "native_source_086",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 87,
+      "page_key": "native_source_087",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 88,
+      "page_key": "native_source_088",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 89,
+      "page_key": "native_source_089",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 90,
+      "page_key": "native_source_090",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 91,
+      "page_key": "native_source_091",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 92,
+      "page_key": "native_source_092",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 93,
+      "page_key": "native_source_093",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 94,
+      "page_key": "native_source_094",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 95,
+      "page_key": "native_source_095",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 96,
+      "page_key": "native_source_096",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 97,
+      "page_key": "native_source_097",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 98,
+      "page_key": "native_source_098",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 99,
+      "page_key": "native_source_099",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 100,
+      "page_key": "native_source_100",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 101,
+      "page_key": "native_source_101",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 102,
+      "page_key": "native_source_102",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 103,
+      "page_key": "native_source_103",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 104,
+      "page_key": "native_source_104",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 105,
+      "page_key": "native_source_105",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 106,
+      "page_key": "native_source_106",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 107,
+      "page_key": "native_source_107",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 108,
+      "page_key": "native_source_108",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 109,
+      "page_key": "native_source_109",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 110,
+      "page_key": "native_source_110",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 111,
+      "page_key": "native_source_111",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 112,
+      "page_key": "native_source_112",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 113,
+      "page_key": "native_source_113",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 114,
+      "page_key": "native_source_114",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 115,
+      "page_key": "native_source_115",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 116,
+      "page_key": "native_source_116",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 117,
+      "page_key": "native_source_117",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 118,
+      "page_key": "native_source_118",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 119,
+      "page_key": "native_source_119",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 120,
+      "page_key": "native_source_120",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 121,
+      "page_key": "native_source_121",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 122,
+      "page_key": "native_source_122",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 123,
+      "page_key": "native_source_123",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 124,
+      "page_key": "native_source_124",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 125,
+      "page_key": "native_source_125",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 126,
+      "page_key": "native_source_126",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 127,
+      "page_key": "native_source_127",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 128,
+      "page_key": "native_source_128",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 129,
+      "page_key": "native_source_129",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 130,
+      "page_key": "native_source_130",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 131,
+      "page_key": "native_source_131",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 132,
+      "page_key": "native_source_132",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 133,
+      "page_key": "native_source_133",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 134,
+      "page_key": "native_source_134",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 135,
+      "page_key": "native_source_135",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 136,
+      "page_key": "native_source_136",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 137,
+      "page_key": "native_source_137",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 138,
+      "page_key": "native_source_138",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 139,
+      "page_key": "native_source_139",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 140,
+      "page_key": "native_source_140",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 141,
+      "page_key": "native_source_141",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 142,
+      "page_key": "native_source_142",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 143,
+      "page_key": "native_source_143",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 144,
+      "page_key": "native_source_144",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 145,
+      "page_key": "native_source_145",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 146,
+      "page_key": "native_source_146",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 147,
+      "page_key": "native_source_147",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 148,
+      "page_key": "native_source_148",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 149,
+      "page_key": "native_source_149",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 150,
+      "page_key": "native_source_150",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 151,
+      "page_key": "native_source_151",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 152,
+      "page_key": "native_source_152",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 153,
+      "page_key": "native_source_153",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 154,
+      "page_key": "native_source_154",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 155,
+      "page_key": "native_source_155",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 156,
+      "page_key": "native_source_156",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 157,
+      "page_key": "native_source_157",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 158,
+      "page_key": "native_source_158",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 159,
+      "page_key": "native_source_159",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 160,
+      "page_key": "native_source_160",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 161,
+      "page_key": "native_source_161",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "reference.ups_connection.pt",
+      "page": 118,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            256,
+            343,
+            497
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-ups_connection.pdf",
+          "expected_sha256": "979248b7b89539a148a1f80f69d0a72c8a9c829965da1db27f58786f25f7de4b"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.battery_stack.pt",
+      "page": 119,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            203,
+            343,
+            412
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-battery_stack.pdf",
+          "expected_sha256": "54ffd82f01e78ff3b1dce084c8b61c844ad3511162826e6e38fc494cfaa8deae"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.battery_items.pt",
+      "page": 119,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            418,
+            344,
+            490
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-battery_items.pdf",
+          "expected_sha256": "042a4268087bbce82653f486f15abdf221e494b7599de1734dbf169270d2c9ee"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.ac_wall_charging.pt",
+      "page": 120,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25,
+            246,
+            341,
+            364
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-ac_wall_charging.pdf",
+          "expected_sha256": "696063b576e5c6d3e1222c3fb19658acd588532de7daf37c0fa6424373f1411d"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.solar_four.pt",
+      "page": 121,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            30,
+            343,
+            177
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-solar_four.pdf",
+          "expected_sha256": "ca6730bd5e0d862ec2f895b6fe38d0a5ccee4a7e59b53d5348842803e5d38296"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.car_charging.pt",
+      "page": 121,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26,
+            356,
+            341,
+            496
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-car_charging.pdf",
+          "expected_sha256": "267c79dd93c3b29228f77bcc198568980535ec5e29c889c2aeb59238e4e0b359"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.ups_connection.nl",
+      "page": 135,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            256,
+            343,
+            497
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/nl/reference-ups_connection.pdf",
+          "expected_sha256": "d6231104fb7afaa90635331e6e35ae34fc79a162755f02cdad7e850871471588"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.battery_stack.nl",
+      "page": 136,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            203,
+            343,
+            412
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/nl/reference-battery_stack.pdf",
+          "expected_sha256": "daf2032c9dcc52accc9df30a4b2d22f48e245dcd78bb6028dfaf27c00586198f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.battery_items.nl",
+      "page": 136,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            418,
+            344,
+            490
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/nl/reference-battery_items.pdf",
+          "expected_sha256": "e084066ed7238330e4e6b5799c492d8686fa6720392ece3e995eb312483a998b"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.ac_wall_charging.nl",
+      "page": 137,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25,
+            246,
+            341,
+            364
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/nl/reference-ac_wall_charging.pdf",
+          "expected_sha256": "25fd27d9a22a281dc4f0a02201c6ea1e93762a5eac1173a71e891a931701afaa"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.solar_four.nl",
+      "page": 138,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            30,
+            343,
+            177
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/nl/reference-solar_four.pdf",
+          "expected_sha256": "b2dfeb5c9f03fb37c3e7df5b0ead17f9e325631f2576017799d26917c845893d"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.car_charging.nl",
+      "page": 138,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26,
+            356,
+            341,
+            496
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/nl/reference-car_charging.pdf",
+          "expected_sha256": "8e2dfdf395b79093aa593f8ce03e2105babfc7d0e9925ff3d97fd8b8682034a5"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.ups_connection.pl",
+      "page": 152,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            256,
+            343,
+            497
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pl/reference-ups_connection.pdf",
+          "expected_sha256": "1810e7d00e28420b6577c44eac948028c25c87a86b17bb85a332b63270a7615f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.battery_stack.pl",
+      "page": 153,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            203,
+            343,
+            412
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pl/reference-battery_stack.pdf",
+          "expected_sha256": "124321565109b42167fd9e5ebbdf1b0a6c9c0568f581657a7244a9046098223b"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.battery_items.pl",
+      "page": 153,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            418,
+            344,
+            490
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pl/reference-battery_items.pdf",
+          "expected_sha256": "25c5fff8599cc5e7b9a497734fa18b95cbd31445c356defe8f371af274a04c2e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.ac_wall_charging.pl",
+      "page": 154,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25,
+            246,
+            341,
+            364
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pl/reference-ac_wall_charging.pdf",
+          "expected_sha256": "3992343d9e44890eb3370cf5f291a2e3d88555777680c41395a018f55ff98c06"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.solar_four.pl",
+      "page": 155,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            30,
+            343,
+            177
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pl/reference-solar_four.pdf",
+          "expected_sha256": "053fa84d42a97f30646ed50d3540e2e6e5b2044e198ee8b247fbf987504d7f7a"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.car_charging.pl",
+      "page": 155,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26,
+            356,
+            341,
+            496
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pl/reference-car_charging.pdf",
+          "expected_sha256": "0ff8fe51f42b60ba4f0acc29a3d78961f80a5779a5836731cac020500db7ed26"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.energy_saving.pt",
+      "page": 117,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pt"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            228,
+            343,
+            375
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pt/reference-energy_saving.pdf",
+          "expected_sha256": "49222f9fa31809f019e0762ff5b9db2a2059801d6e5bb536312b23245ff23aed"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.energy_saving.nl",
+      "page": 134,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "nl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            228,
+            343,
+            375
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/nl/reference-energy_saving.pdf",
+          "expected_sha256": "f2881558919c6913aa53e35608a58a9e57a2afcbe911178335039b9b682d66e3"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    },
+    {
+      "asset_key": "reference.energy_saving.pl",
+      "page": 151,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pl"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            228,
+            343,
+            375
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pl/reference-energy_saving.pdf",
+          "expected_sha256": "0fafbeb48e081165c7ad294131f3a5212fd060ec5424632270752cdd68a2ed30"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "local candidate; no registry promotion or publication"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "localized-text"
+      ]
+    }
+  ]
+}

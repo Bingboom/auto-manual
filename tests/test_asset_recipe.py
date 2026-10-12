@@ -23,6 +23,18 @@ class TestSwapPDFRegions(unittest.TestCase):
                 _transform({**payload, "other_bbox_pt": box}, "test")
 
 
+class TestCopyPDFRegion(unittest.TestCase):
+    def test_roundtrip_and_invalid_geometry(self):
+        payload = {"op": "copy_pdf_region", "bbox_pt": [60, 10, 63, 17], "other_bbox_pt": [10, 30, 13, 37]}
+        self.assertEqual(_transform(payload, "test").as_manifest(), payload)
+        # Unequal size, then overlapping regions.
+        for box in ([10, 30, 14, 37], [61, 12, 64, 19]):
+            with self.assertRaises(RecipeValidationError):
+                _transform({**payload, "other_bbox_pt": box}, "test")
+        with self.assertRaises(RecipeValidationError):
+            _transform({key: value for key, value in payload.items() if key != "other_bbox_pt"}, "test")
+
+
 def sample_recipe_payload(*, source_sha256: str = "a" * 64) -> dict[str, object]:
     page_catalog: list[dict[str, object]] = []
     for page in range(1, 60):

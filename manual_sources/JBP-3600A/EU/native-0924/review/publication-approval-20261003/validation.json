@@ -1,0 +1,43 @@
+{
+  "status": "local-validation-passed",
+  "full_suite": {
+    "tests": 5109,
+    "skipped": 35,
+    "code_head": "698cbfc7c69203971b4563b3444bddb744145d0b",
+    "seconds": 837.721
+  },
+  "post_full_main_sync": {
+    "main": "473e12fa3760c66eca9eb7d3be07d4def3c0fe87",
+    "scope": "Standalone intake helper and docs only; no reviewed renderer/body changes.",
+    "tests": "....................\n----------------------------------------------------------------------\nRan 20 tests in 0.235s\n\nOK\n1 pending copy items; candidate only\nincomplete: 4 issues",
+    "ruff": "pass",
+    "guardrails": "pass",
+    "doc_links": "pass"
+  },
+  "initial_failure": {
+    "tests": 5109,
+    "failures": 1,
+    "reason": "Expected enrolled target count 67; the 8 new reviewed locales make 75. Assertion updated; targeted test and complete rerun passed."
+  },
+  "source_regression": {
+    "us": "passed with isolated existing phase2 snapshot",
+    "jbp_en": "passed with committed Git-only phase2 snapshot",
+    "native_body_authority": "Independent source reviews and final delta acceptance; build.py is not a native content audit."
+  },
+  "publication_preflight": "96-target strict Sphinx passed; other 87 records / 4658 source files unchanged; CSS exact accepted hash.",
+  "local_log_sha256": {
+    "full-unittest.log": "6d8053917a50b5a678a5fd01c3a2cc9259baf26b701b49123aa08e1d2d4df7aa",
+    "full-unittest-final.log": "2ce490e3e7fe7937641ee427f353fdb0de402ca16618ca50fd59ab7ef158b4d1",
+    "targeted.log": "63701bd80bc5e9d305208a63d0a36288fc8849c7f9c028fd820775b55377399a",
+    "main-sync-targeted.log": "e9f0768e06d8b20987b64f1bd6564407a5d96096eec0656002400c511f7ccc80",
+    "1416-targeted.log": "8b8e3099dcae747b5d733b9ec6efa1c603285499631912c034f79f1fabfcbe73",
+    "guardrails-post-1416.log": "82ed63240e5c12490241d1466e1a61174ee2cf07d8f098067528e8cd98e95988",
+    "doc-links-post-1416.log": "380beebf8509b8ef3ed8f78d84effa443b9731e8d66299a9674976258e77cdc2",
+    "us-check-materialized.log": "9121d53a7c78c2e67d58c01ef74e9e78c33914c712ffcac1f773718f7d620100",
+    "jbp-check.log": "89a702c839d8a009118f7d03acbd466ded492dbaac05a13af4a7d814854fe705",
+    "aggregate-trial-sphinx.log": "a1c7148e7c0d8f48e398337c9444c896033bb5d7c1b89ade702151ac46350a52",
+    "approved-verification.log": "045dfd228dec98df55a9a3612ef4da15bf245cf0a1f1d03d1ada44c6634301dd"
+  },
+  "runtime": "/tmp/jbp3600a-assets-runtime/bin/python",
+  "source_commit_before_validation_record": "8804f8e196dcd03307b3812b222e407f765eed56"
+}

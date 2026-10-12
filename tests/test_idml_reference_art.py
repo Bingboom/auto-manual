@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import re
+import shutil
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -217,6 +219,124 @@ class ReferenceArtGeometryTests(unittest.TestCase):
             ],
         )
 
+    def test_web_base_art_mode_alone_keeps_the_movable_idml_clock(self) -> None:
+        """A Web contract mode is not an IDML route (fr/es/trilingual/other targets)."""
+        stories = {}
+
+        def add_story(story_id, _label, parts):
+            stories[story_id] = "".join(parts)
+            return story_id
+
+        base = _ctx()
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                ctx = RenderContext(
+                    params=base.params,
+                    page_w=base.page_w,
+                    m_l=base.m_l,
+                    m_r=base.m_r,
+                    root=base.root,
+                    bundle_root=ROOT / "docs",
+                    model="JE-1000F",
+                    region="US",
+                    language=language,
+                    add_story=add_story,
+                )
+                tid = f"us_{language}_power"
+                render_oppanel(
+                    {
+                        "kind": "oppanel",
+                        "image": "renderers/latex/assets/op_main_power.png",
+                        "rows": [["On", "Press once"], ["Off", "Hold for 3 seconds"]],
+                    },
+                    ctx,
+                    tid=tid,
+                    terminal=False,
+                )
+                panel = stories[f"st_anchor_oppanel_{tid}"]
+                self.assertIn(f"oppanel_main_power_clock_mask_{tid}", panel)
+                self.assertIn(f"oppanel_main_power_clock_{tid}", panel)
+
+    def test_registered_base_art_keeps_one_drawn_clock(self) -> None:
+        stories = {}
+
+        def add_story(story_id, _label, parts):
+            stories[story_id] = "".join(parts)
+            return story_id
+
+        base = _ctx()
+
+        def ctx(region: str, *, registered: bool) -> RenderContext:
+            return RenderContext(
+                params=base.params,
+                page_w=base.page_w,
+                m_l=base.m_l,
+                m_r=base.m_r,
+                root=base.root,
+                bundle_root=ROOT / "docs",
+                model="JE-1000F",
+                region=region,
+                language="en",
+                registered_components=registered,
+                add_story=add_story,
+            )
+
+        power = {
+            "kind": "oppanel",
+            "image": "renderers/latex/assets/op_main_power.png",
+            "rows": [["On", "Press once"], ["Off", "Hold for 3 seconds"]],
+        }
+        ac = {
+            "kind": "oppanel",
+            "image": "renderers/latex/assets/op_ac_output.png",
+            "prereq": "Prerequisite: The product is powered on.",
+            "rows": [["On", "Press once"], ["Off", "Press once"]],
+        }
+        render_oppanel(power, ctx("US", registered=True), tid="base_power", terminal=False)
+        render_oppanel(power, ctx("US", registered=False), tid="legacy_power", terminal=False)
+        render_oppanel(power, ctx("EU", registered=True), tid="eu_power", terminal=False)
+        render_oppanel(ac, ctx("US", registered=True), tid="base_ac", terminal=False)
+
+        base_power = stories["st_anchor_oppanel_base_power"]
+        self.assertNotIn("oppanel_main_power_clock_mask_base_power", base_power)
+        self.assertNotIn("oppanel_main_power_clock_base_power", base_power)
+        self.assertIn("st_anchor_oppanel_row_0_base_power", stories)
+        base_duration = _item_bounds(
+            base_power, "tf_oppanel_main_power_duration_base_power",
+        )
+        legacy_power = stories["st_anchor_oppanel_legacy_power"]
+        self.assertIn("oppanel_main_power_clock_mask_legacy_power", legacy_power)
+        self.assertIn("oppanel_main_power_clock_legacy_power", legacy_power)
+        legacy_duration = _item_bounds(
+            legacy_power, "tf_oppanel_main_power_duration_legacy_power",
+        )
+        # The editable duration moves past the drawn clock, on the same line.
+        self.assertGreater(base_duration[0], legacy_duration[0] + 15.0)
+        self.assertAlmostEqual(base_duration[1], legacy_duration[1], places=3)
+        self.assertAlmostEqual(base_duration[3], legacy_duration[3], places=3)
+        # A target whose contract has no base-art mode keeps the legacy panel.
+        self.assertIn(
+            "oppanel_main_power_clock_mask_eu_power",
+            stories["st_anchor_oppanel_eu_power"],
+        )
+        # Only the main-power panel changes; the AC prerequisite keeps its mask.
+        self.assertIn("oppanel_prereq_mask_base_ac", stories["st_anchor_oppanel_base_ac"])
+
+        stale = {**power, "presentation_mode": "base-art-live-copy"}
+        for label, context in (
+            ("other target", ctx("EU", registered=True)),
+            ("no target", RenderContext(
+                params=base.params, page_w=base.page_w, m_l=base.m_l,
+                m_r=base.m_r, root=base.root, bundle_root=ROOT / "docs",
+                add_story=add_story,
+            )),
+        ):
+            with self.subTest(label), self.assertRaisesRegex(
+                ValueError,
+                "frozen operation artwork mode.*does not match target contract",
+            ):
+                render_oppanel(stale, context, tid="stale_mode", terminal=False)
+
     def test_main_power_duration_is_language_neutral(self) -> None:
         for instruction in (
             "Press and hold for 3 seconds.",
@@ -281,25 +401,41 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         self.assertIn('SpaceBefore="3.2"', xml or "")
 
     def test_app_art_uses_role_specific_measure_widths(self) -> None:
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
+
         base = _ctx()
         app_root = ROOT / "docs/templates/word_template/common_assets/app"
-        ctx = RenderContext(
-            params=base.params,
-            page_w=base.page_w,
-            m_l=base.m_l,
-            m_r=base.m_r,
-            root=base.root,
-            bundle_root=app_root,
-        )
+
+        def ctx_for(bundle_root: Path) -> RenderContext:
+            return RenderContext(
+                params=base.params,
+                page_w=base.page_w,
+                m_l=base.m_l,
+                m_r=base.m_r,
+                root=base.root,
+                bundle_root=bundle_root,
+            )
+
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        # Target overrides keep their App slot whatever their files are called.
+        overrides = write_bundle_with_rewrites(Path(temp.name), [
+            ("app/add_device_any_target.png", "app/add_device",
+             "app/target/add_device", app_root / "je1000f_us/add_device_je1000f_us.png"),
+            ("app/connect_result_any_target.png", "app/connect_result",
+             "app/target/connect_result",
+             app_root / "je1000f_us/connect_result_je1000f_us.png"),
+        ])
         refs_and_ratios = (
-            ("download.png", 0.60),
-            ("add_device.png", 0.55),
-            ("connect_result.png", 0.58),
-            ("je1000f_us/add_device_je1000f_us.png", 0.55),
-            ("je1000f_us/connect_result_je1000f_us.png", 0.58),
+            (app_root, "download.png", 0.60),
+            (app_root, "add_device.png", 0.55),
+            (app_root, "connect_result.png", 0.58),
+            (overrides, "app/add_device_any_target.png", 0.55),
+            (overrides, "app/connect_result_any_target.png", 0.58),
         )
-        for index, (name, ratio) in enumerate(refs_and_ratios):
+        for index, (bundle_root, name, ratio) in enumerate(refs_and_ratios):
             with self.subTest(name=name):
+                ctx = ctx_for(bundle_root)
                 xml, height = render_image_block(
                     name,
                     ctx,
@@ -761,6 +897,131 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         self.assertIn("st_anchor_oppanel_led_sos_editable_led", stories)
         self.assertNotIn("<Table", panel)
 
+    def test_led_card_draws_target_art_as_registered_and_substitutes_shared_art(
+        self,
+    ) -> None:
+        """The shared LED extraction lost the magnifier and the hand, so the
+        card substitutes the complete illustration for it. A target's own LED
+        art is drawn as registered and ends where the step circles begin."""
+        base = _ctx()
+        width = base.text_measure
+        # A staged bundle carries the complete illustration under _assets.
+        bundle = tempfile.TemporaryDirectory()
+        self.addCleanup(bundle.cleanup)
+        complete = (
+            Path(bundle.name) / "_assets" / "templates" / "word_template"
+            / "common_assets" / "operation" / "led_light_complete.png"
+        )
+        complete.parent.mkdir(parents=True)
+        shutil.copyfile(
+            ROOT / "docs" / "templates" / "word_template" / "common_assets"
+            / "operation" / "led_light_complete.png",
+            complete,
+        )
+        cases = (
+            (
+                "docs/templates/word_template/common_assets/operation/led_light.png",
+                "led_light_complete.png",
+                width * 0.568,
+            ),
+            (
+                "docs/renderers/latex/assets/op_led_light_je1000f_us.png",
+                "op_led_light_je1000f_us.png",
+                width * (0.59 - 0.054),
+            ),
+        )
+        for image, linked, art_width in cases:
+            with self.subTest(image=image):
+                stories = {}
+
+                def add_story(story_id, _label, parts, stories=stories):
+                    stories[story_id] = "".join(parts)
+                    return story_id
+
+                ctx = RenderContext(
+                    params=base.params, page_w=base.page_w, m_l=base.m_l,
+                    m_r=base.m_r, root=base.root, bundle_root=Path(bundle.name),
+                    add_story=add_story,
+                )
+                render_oppanel(
+                    {
+                        "kind": "oppanel",
+                        "layout": "led_light",
+                        "image": image,
+                        "lead": "The LED light has two modes: Light and SOS.",
+                        "steps": ["First step.", "Second step.", "Third step."],
+                        "sos_label": "SOS",
+                    },
+                    ctx,
+                    tid="led_art",
+                    terminal=False,
+                )
+
+                art = _item_xml(
+                    stories["st_anchor_oppanel_led_art"], "led_artimg", "Rectangle",
+                )
+                self.assertIn(f"/{linked}", art)
+                self.assertAlmostEqual(art_width, _image_width(art), places=2)
+
+    def test_led_card_substitution_follows_the_resolved_asset_key(self) -> None:
+        """With a usage manifest the resolved asset key decides, not the name:
+        an override staged as ``led_light.png`` is drawn as registered, and the
+        shared row under any file name is still substituted."""
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
+
+        base = _ctx()
+        width = base.text_measure
+        common = ROOT / "docs/templates/word_template/common_assets/operation"
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        bundle = write_bundle_with_rewrites(Path(temp.name), [
+            ("renderers/latex/assets/led_light.png", "operation/led_light",
+             "operation/target/led_light",
+             ROOT / "docs/renderers/latex/assets/op_led_light_je1000f_us.png"),
+            ("renderers/latex/assets/shared_led_copy.png", "operation/led_light",
+             "operation/led_light", common / "led_light.png"),
+        ])
+        complete = bundle / "_assets/templates/word_template/common_assets/operation"
+        complete.mkdir(parents=True)
+        shutil.copyfile(common / "led_light_complete.png", complete / "led_light_complete.png")
+        cases = (
+            ("renderers/latex/assets/led_light.png", "led_light.png",
+             width * (0.59 - 0.054)),
+            ("renderers/latex/assets/shared_led_copy.png", "led_light_complete.png",
+             width * 0.568),
+        )
+        for image, linked, art_width in cases:
+            with self.subTest(image=image):
+                stories = {}
+
+                def add_story(story_id, _label, parts, stories=stories):
+                    stories[story_id] = "".join(parts)
+                    return story_id
+
+                ctx = RenderContext(
+                    params=base.params, page_w=base.page_w, m_l=base.m_l,
+                    m_r=base.m_r, root=base.root, bundle_root=bundle,
+                    add_story=add_story,
+                )
+                render_oppanel(
+                    {
+                        "kind": "oppanel",
+                        "layout": "led_light",
+                        "image": image,
+                        "lead": "The LED light has two modes: Light and SOS.",
+                        "steps": ["First step.", "Second step.", "Third step."],
+                        "sos_label": "SOS",
+                    },
+                    ctx,
+                    tid="led_art",
+                    terminal=False,
+                )
+                art = _item_xml(
+                    stories["st_anchor_oppanel_led_art"], "led_artimg", "Rectangle",
+                )
+                self.assertIn(f"/{linked}", art)
+                self.assertAlmostEqual(art_width, _image_width(art), places=2)
+
     def test_long_localized_led_steps_keep_non_overlapping_slots(self) -> None:
         stories = {}
 
@@ -802,7 +1063,7 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         ]
         effective_bottoms = [
             top + max(18.0, ((len(step) + 23) // 24) * 7.5)
-            for (_left, top, _right, _bottom), step in zip(bounds, steps)
+            for (_left, top, _right, _bottom), step in zip(bounds, steps, strict=True)
         ]
         self.assertLessEqual(effective_bottoms[0] + 1.0, bounds[1][1])
         self.assertLessEqual(effective_bottoms[1] + 1.0, bounds[2][1])

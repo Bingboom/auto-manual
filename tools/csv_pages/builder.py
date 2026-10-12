@@ -12,7 +12,7 @@ try:
     from tools.script_bootstrap import bootstrap_repo_root
 except ImportError:  # pragma: no cover - direct script execution fallback
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-    from script_bootstrap import bootstrap_repo_root
+    from script_bootstrap import bootstrap_repo_root  # type: ignore[no-redef]
 
 ROOT = bootstrap_repo_root(__file__, parent_count=2)
 
@@ -23,7 +23,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 from tools.utils.spec_master import resolve_product_name_from_spec_master
 from tools.utils.path_utils import Paths
-from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR
+from tools.data.snapshot import STRUCTURED_DATA_DEFAULT_DIR
 from tools import lang_registry
 from tools.localized_copy import first_text, localized_columns
 
@@ -47,7 +47,7 @@ def _parse_langs(value: str) -> list[str]:
 def _parse_order(value: str) -> float:
     try:
         return float((value or "").strip())
-    except Exception:
+    except ValueError:
         return 0.0
 
 

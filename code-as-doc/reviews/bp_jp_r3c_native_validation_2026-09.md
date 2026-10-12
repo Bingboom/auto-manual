@@ -1,5 +1,7 @@
 # JBP-2000B JP R3c native IDML validation (2026-09)
 
+Status: done
+
 **2026-09-04 design Mac / 2026-09-05 UTC: native engineering acceptance
 complete, with the explicit debt below.** R3 was opened from the portable
 handoff package, saved, closed, reopened and exported by InDesign. All twelve

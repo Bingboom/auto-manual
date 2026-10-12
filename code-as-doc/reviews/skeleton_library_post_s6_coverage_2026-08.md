@@ -1,6 +1,6 @@
 # Skeleton library post-S6 coverage re-baseline (R0, 2026-08)
 
-Status: `ready_for_review`
+Status: done · Recorded detail: `ready_for_review`
 
 Branch: `docs/milestone-m-r0-coverage-rebaseline`
 

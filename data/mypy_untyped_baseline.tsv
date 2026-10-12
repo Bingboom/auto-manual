@@ -1,0 +1,5 @@
+# Per-file count of `mypy --disallow-untyped-defs` errors in tools/manual_ir,
+# tools/component_specs and tools/csv_pages (mypy 2.3.1). No file may grow,
+# unlisted files may not add one, and a lower count must be written back.
+# Regenerate intentionally with:
+#   python tools/check_mypy_ratchet.py update

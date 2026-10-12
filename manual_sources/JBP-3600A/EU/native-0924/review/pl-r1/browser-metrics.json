@@ -1,0 +1,774 @@
+{
+  "desktop": {
+    "clocks": [
+      {
+        "height": 25.6015625,
+        "text": "3s",
+        "width": 49.15625,
+        "x": 971.421875,
+        "y": 2628.46484375
+      }
+    ],
+    "headings": [
+      {
+        "height": 51.7109375,
+        "id": "wazne-informacje-dotyczace-bezpieczenstwa",
+        "text": "WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": -2518.03125
+      },
+      {
+        "height": 51.7109375,
+        "id": "znaczenie-symboli",
+        "text": "ZNACZENIE SYMBOLI¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": -1764.8828125
+      },
+      {
+        "height": 51.7109375,
+        "id": "zawartosc-opakowania",
+        "text": "ZAWARTOŚĆ OPAKOWANIA¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": -436.6796875
+      },
+      {
+        "height": 51.7109375,
+        "id": "widok-ogolny-produktu",
+        "text": "WIDOK OGÓLNY PRODUKTU¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 63.828125
+      },
+      {
+        "height": 51.7109375,
+        "id": "wyswietlacz-lcd",
+        "text": "WYŚWIETLACZ LCD¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 1760.8828125
+      },
+      {
+        "height": 51.7109375,
+        "id": "obsluga",
+        "text": "OBSŁUGA¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2361.734375
+      },
+      {
+        "height": 51.7109375,
+        "id": "polaczenia",
+        "text": "POŁĄCZENIA¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 3353.015625
+      },
+      {
+        "height": 51.7109375,
+        "id": "rozwiazywanie-problemow",
+        "text": "ROZWIĄZYWANIE PROBLEMÓW¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 5456.0078125
+      },
+      {
+        "height": 51.7109375,
+        "id": "ladowanie",
+        "text": "ŁADOWANIE¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 5953.625
+      },
+      {
+        "height": 51.7109375,
+        "id": "przechowywanie",
+        "text": "PRZECHOWYWANIE¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 7342.5546875
+      },
+      {
+        "height": 51.7109375,
+        "id": "dane-techniczne",
+        "text": "DANE TECHNICZNE¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 7743.15625
+      },
+      {
+        "height": 51.7109375,
+        "id": "gwarancja",
+        "text": "GWARANCJA¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 8528.578125
+      },
+      {
+        "height": 51.7109375,
+        "id": "eu-regulations",
+        "text": "EU REGULATIONS¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 9755.015625
+      }
+    ],
+    "horizontalOverflow": false,
+    "images": [
+      {
+        "alt": "warning_triangle",
+        "height": 62.8125,
+        "loaded": true,
+        "src": "assets/ir/ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d/symbol_warning.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": -1281.0546875
+      },
+      {
+        "alt": "read_manual",
+        "height": 51.90625,
+        "loaded": true,
+        "src": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": -1180.0390625
+      },
+      {
+        "alt": "do_not_dismantle",
+        "height": 67.484375,
+        "loaded": true,
+        "src": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": -1097.8359375
+      },
+      {
+        "alt": "no_open_flame",
+        "height": 63.7734375,
+        "loaded": true,
+        "src": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": -1000.0546875
+      },
+      {
+        "alt": "keep_away_from_children",
+        "height": 71.1953125,
+        "loaded": true,
+        "src": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": -1288.9609375
+      },
+      {
+        "alt": "li_ion",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": -1178.328125
+      },
+      {
+        "alt": "weee",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": -990.78125
+      },
+      {
+        "alt": "weee2",
+        "height": 79.1015625,
+        "loaded": true,
+        "src": "assets/ir/4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74/symbol_battery_weee.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": -694.6796875
+      },
+      {
+        "alt": "Jackery Battery Pack 3600",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44/inbox_unit_clean.png",
+        "width": 172.796875,
+        "x": 363.859375,
+        "y": -279.78125
+      },
+      {
+        "alt": "Przedłużacz",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7/inbox_cable_clean.png",
+        "width": 172.796875,
+        "x": 649.59375,
+        "y": -279.78125
+      },
+      {
+        "alt": "Instrukcja obsługi",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040/inbox_manual_clean.png",
+        "width": 172.796875,
+        "x": 935.328125,
+        "y": -279.78125
+      },
+      {
+        "alt": "Przycisk zasilania Wyświetlacz LCD",
+        "height": 854.609375,
+        "loaded": true,
+        "src": "assets/ir/63334ce912c6e2124d16f1d159aebd87ab3a25a1840e46dbe7bb0d89d5a7b4a0/overview_front.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 199.7890625
+      },
+      {
+        "alt": "Port rozszerzeń DC B (podłącz do zacisku B przedłużacza) (podłącz do zacisku A przedłużacza) Port rozszerzeń DC A Uchwyt",
+        "height": 577.4375,
+        "loaded": true,
+        "src": "assets/ir/ae05447328cffb2edf5ac51c3068db513fa0cdb31735bace965a2075e6d7b3f7/overview_left.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 1138.6484375
+      },
+      {
+        "alt": "WYŚWIETLACZ LCD",
+        "height": 149.828125,
+        "loaded": true,
+        "src": "assets/ir/6442fb65a1e87356d4e7fcf2b41c50479b133df01f48ed0b391aadce490ab67c/lcd_annotated.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 1832.59375
+      },
+      {
+        "alt": "",
+        "height": 216.5234375,
+        "loaded": true,
+        "src": "assets/ir/a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00/power_native.png",
+        "width": 840.8125,
+        "x": 315.59375,
+        "y": 2502.6953125
+      },
+      {
+        "alt": "WŁĄCZANIE/WYŁĄCZANIE WYŚWIETLACZA LCD",
+        "height": 237.984375,
+        "loaded": true,
+        "src": "assets/ir/54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b/lcd_control_clean.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 3012.265625
+      },
+      {
+        "alt": "",
+        "height": 361.203125,
+        "loaded": true,
+        "src": "assets/ir/8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848/clearance_native.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 3694.7421875
+      },
+      {
+        "alt": "POŁĄCZENIA — Jackery Battery Pack 3600",
+        "height": 484.28125,
+        "loaded": true,
+        "src": "assets/ir/5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce/stacking_clean.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 4087.9453125
+      },
+      {
+        "alt": "×5",
+        "height": 19.5859375,
+        "loaded": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png",
+        "width": 30.3984375,
+        "x": 605.78125,
+        "y": 4615.046875
+      },
+      {
+        "alt": "",
+        "height": 636.7890625,
+        "loaded": true,
+        "src": "assets/ir/d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448/locking_native.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 4774.421875
+      },
+      {
+        "alt": "ŁADOWANIE Z SIECIOWEGO GNIAZDKA ŚCIENNEGO AC",
+        "height": 417.4140625,
+        "loaded": true,
+        "src": "assets/ir/c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc/ac_charging.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 6252.4296875
+      },
+      {
+        "alt": "ŁADOWANIE ZA POMOCĄ PANELI SŁONECZNYCH",
+        "height": 481.6015625,
+        "loaded": true,
+        "src": "assets/ir/e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768/solar_charging.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 6816.15625
+      }
+    ],
+    "inlineIcon": [
+      {
+        "height": 19.5859375,
+        "paragraph": "Wyświetlenie ikony  na ekranie LCD (Jackery Explorer 3600 Plus) oznacza pomyślne połączenie między zestawem baterii a urządzeniem Jackery Explorer 3600 Plus.",
+        "width": 30.3984375,
+        "x": 605.78125,
+        "y": 4615.046875
+      }
+    ],
+    "lcdRows": [
+      2,
+      2
+    ],
+    "lockBadges": [
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "16.772px",
+        "height": 38.203125,
+        "text": "Zablokowanie",
+        "width": 122.59375,
+        "x": 803.421875,
+        "y": 4799.890625
+      },
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "16.772px",
+        "height": 38.203125,
+        "text": "Odblokowanie",
+        "width": 127.2421875,
+        "x": 803.421875,
+        "y": 5105.546875
+      }
+    ],
+    "url": "http://127.0.0.1:56059/pl-r1/manual_jbp3600a_eu_pl.html#widok-ogolny-produktu",
+    "viewport": [
+      1440,
+      1000
+    ],
+    "visualViewport": [
+      1440,
+      1000
+    ]
+  },
+  "desktopSpecifications": {
+    "y": 64.15625
+  },
+  "mobile": {
+    "clocks": [
+      {
+        "height": 15.078125,
+        "text": "3s",
+        "width": 28.9453125,
+        "x": 294.6796875,
+        "y": 1897.1484375
+      }
+    ],
+    "headings": [
+      {
+        "height": 70.484375,
+        "id": "wazne-informacje-dotyczace-bezpieczenstwa",
+        "text": "WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA¶",
+        "width": 358,
+        "x": 16,
+        "y": -3184.7421875
+      },
+      {
+        "height": 46.046875,
+        "id": "znaczenie-symboli",
+        "text": "ZNACZENIE SYMBOLI¶",
+        "width": 358,
+        "x": 16,
+        "y": -1956.015625
+      },
+      {
+        "height": 46.046875,
+        "id": "zawartosc-opakowania",
+        "text": "ZAWARTOŚĆ OPAKOWANIA¶",
+        "width": 358,
+        "x": 16,
+        "y": -253.4140625
+      },
+      {
+        "height": 46.046875,
+        "id": "widok-ogolny-produktu",
+        "text": "WIDOK OGÓLNY PRODUKTU¶",
+        "width": 358,
+        "x": 16,
+        "y": 95.828125
+      },
+      {
+        "height": 46.046875,
+        "id": "wyswietlacz-lcd",
+        "text": "WYŚWIETLACZ LCD¶",
+        "width": 358,
+        "x": 16,
+        "y": 929.9609375
+      },
+      {
+        "height": 46.046875,
+        "id": "obsluga",
+        "text": "OBSŁUGA¶",
+        "width": 358,
+        "x": 16,
+        "y": 1722.671875
+      },
+      {
+        "height": 46.046875,
+        "id": "polaczenia",
+        "text": "POŁĄCZENIA¶",
+        "width": 358,
+        "x": 16,
+        "y": 2703.6015625
+      },
+      {
+        "height": 46.046875,
+        "id": "rozwiazywanie-problemow",
+        "text": "ROZWIĄZYWANIE PROBLEMÓW¶",
+        "width": 358,
+        "x": 16,
+        "y": 4423.03125
+      },
+      {
+        "height": 46.046875,
+        "id": "ladowanie",
+        "text": "ŁADOWANIE¶",
+        "width": 358,
+        "x": 16,
+        "y": 5049.2734375
+      },
+      {
+        "height": 46.046875,
+        "id": "przechowywanie",
+        "text": "PRZECHOWYWANIE¶",
+        "width": 358,
+        "x": 16,
+        "y": 6111.390625
+      },
+      {
+        "height": 46.046875,
+        "id": "dane-techniczne",
+        "text": "DANE TECHNICZNE¶",
+        "width": 358,
+        "x": 16,
+        "y": 6706.609375
+      },
+      {
+        "height": 46.046875,
+        "id": "gwarancja",
+        "text": "GWARANCJA¶",
+        "width": 358,
+        "x": 16,
+        "y": 7599.5625
+      },
+      {
+        "height": 46.046875,
+        "id": "eu-regulations",
+        "text": "EU REGULATIONS¶",
+        "width": 358,
+        "x": 16,
+        "y": 9594.3828125
+      }
+    ],
+    "horizontalOverflow": false,
+    "images": [
+      {
+        "alt": "warning_triangle",
+        "height": 53.484375,
+        "loaded": true,
+        "src": "assets/ir/ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d/symbol_warning.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1393.75
+      },
+      {
+        "alt": "read_manual",
+        "height": 44.1953125,
+        "loaded": true,
+        "src": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1308.8203125
+      },
+      {
+        "alt": "do_not_dismantle",
+        "height": 57.453125,
+        "loaded": true,
+        "src": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1243.296875
+      },
+      {
+        "alt": "no_open_flame",
+        "height": 54.296875,
+        "loaded": true,
+        "src": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1164.515625
+      },
+      {
+        "alt": "keep_away_from_children",
+        "height": 60.6171875,
+        "loaded": true,
+        "src": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1033.3046875
+      },
+      {
+        "alt": "li_ion",
+        "height": 71.3125,
+        "loaded": true,
+        "src": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -940.9453125
+      },
+      {
+        "alt": "weee",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -776.5234375
+      },
+      {
+        "alt": "weee2",
+        "height": 67.3515625,
+        "loaded": true,
+        "src": "assets/ir/4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74/symbol_battery_weee.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -490.8515625
+      },
+      {
+        "alt": "Jackery Battery Pack 3600",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44/inbox_unit_clean.png",
+        "width": 91.46875,
+        "x": 27,
+        "y": -128.5703125
+      },
+      {
+        "alt": "Przedłużacz",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7/inbox_cable_clean.png",
+        "width": 91.46875,
+        "x": 149.265625,
+        "y": -128.5703125
+      },
+      {
+        "alt": "Instrukcja obsługi",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040/inbox_manual_clean.png",
+        "width": 91.46875,
+        "x": 271.53125,
+        "y": -128.5703125
+      },
+      {
+        "alt": "Przycisk zasilania Wyświetlacz LCD",
+        "height": 363.0078125,
+        "loaded": true,
+        "src": "assets/ir/63334ce912c6e2124d16f1d159aebd87ab3a25a1840e46dbe7bb0d89d5a7b4a0/overview_front.png",
+        "width": 358,
+        "x": 16,
+        "y": 214.1796875
+      },
+      {
+        "alt": "Port rozszerzeń DC B (podłącz do zacisku B przedłużacza) (podłącz do zacisku A przedłużacza) Port rozszerzeń DC A Uchwyt",
+        "height": 245.2734375,
+        "loaded": true,
+        "src": "assets/ir/ae05447328cffb2edf5ac51c3068db513fa0cdb31735bace965a2075e6d7b3f7/overview_left.png",
+        "width": 358,
+        "x": 16,
+        "y": 649.4921875
+      },
+      {
+        "alt": "WYŚWIETLACZ LCD",
+        "height": 63.640625,
+        "loaded": true,
+        "src": "assets/ir/6442fb65a1e87356d4e7fcf2b41c50479b133df01f48ed0b391aadce490ab67c/lcd_annotated.png",
+        "width": 358,
+        "x": 16,
+        "y": 996.0078125
+      },
+      {
+        "alt": "",
+        "height": 91.671875,
+        "loaded": true,
+        "src": "assets/ir/a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00/power_native.png",
+        "width": 356,
+        "x": 17,
+        "y": 1846.0234375
+      },
+      {
+        "alt": "WŁĄCZANIE/WYŁĄCZANIE WYŚWIETLACZA LCD",
+        "height": 106.875,
+        "loaded": true,
+        "src": "assets/ir/54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b/lcd_control_clean.png",
+        "width": 358,
+        "x": 16,
+        "y": 2471.625
+      },
+      {
+        "alt": "",
+        "height": 153.421875,
+        "loaded": true,
+        "src": "assets/ir/8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848/clearance_native.png",
+        "width": 358,
+        "x": 16,
+        "y": 3276.7578125
+      },
+      {
+        "alt": "POŁĄCZENIA — Jackery Battery Pack 3600",
+        "height": 205.703125,
+        "loaded": true,
+        "src": "assets/ir/5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce/stacking_clean.png",
+        "width": 358,
+        "x": 16,
+        "y": 3518.0234375
+      },
+      {
+        "alt": "×5",
+        "height": 19.1875,
+        "loaded": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png",
+        "width": 29.7890625,
+        "x": 170.171875,
+        "y": 3816.859375
+      },
+      {
+        "alt": "",
+        "height": 270.484375,
+        "loaded": true,
+        "src": "assets/ir/d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448/locking_native.png",
+        "width": 358,
+        "x": 16,
+        "y": 4117.3515625
+      },
+      {
+        "alt": "ŁADOWANIE Z SIECIOWEGO GNIAZDKA ŚCIENNEGO AC",
+        "height": 177.3046875,
+        "loaded": true,
+        "src": "assets/ir/c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc/ac_charging.png",
+        "width": 358,
+        "x": 16,
+        "y": 5469.5
+      },
+      {
+        "alt": "ŁADOWANIE ZA POMOCĄ PANELI SŁONECZNYCH",
+        "height": 204.5703125,
+        "loaded": true,
+        "src": "assets/ir/e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768/solar_charging.png",
+        "width": 358,
+        "x": 16,
+        "y": 5871.625
+      }
+    ],
+    "inlineIcon": [
+      {
+        "height": 19.1875,
+        "paragraph": "Wyświetlenie ikony  na ekranie LCD (Jackery Explorer 3600 Plus) oznacza pomyślne połączenie między zestawem baterii a urządzeniem Jackery Explorer 3600 Plus.",
+        "width": 29.7890625,
+        "x": 170.171875,
+        "y": 3816.859375
+      }
+    ],
+    "lcdRows": [
+      2,
+      2
+    ],
+    "lockBadges": [
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "14px",
+        "height": 21.03125,
+        "text": "Zablokowanie",
+        "width": 104.71875,
+        "x": 223.6328125,
+        "y": 4128.1640625
+      },
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "14px",
+        "height": 21.03125,
+        "text": "Odblokowanie",
+        "width": 108.6015625,
+        "x": 223.6328125,
+        "y": 4258
+      }
+    ],
+    "url": "http://127.0.0.1:56059/pl-r1/manual_jbp3600a_eu_pl.html#widok-ogolny-produktu",
+    "viewport": [
+      390,
+      844
+    ],
+    "visualViewport": [
+      390,
+      844
+    ]
+  },
+  "lcdAnchor": {
+    "y": 95.9609375
+  },
+  "warrantyLayout": [
+    {
+      "gap": 4.796875,
+      "headingRight": 213.078125,
+      "sectionRight": 374,
+      "title": "Ograniczona gwarancja"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 159.0703125,
+      "sectionRight": 374,
+      "title": "Okres gwarancji"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 202.1796875,
+      "sectionRight": 374,
+      "title": "Naprawa lub wymiana"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 360,
+      "sectionRight": 374,
+      "title": "Ograniczenie do pierwotnego nabywcy konsumenckiego"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 127.921875,
+      "sectionRight": 374,
+      "title": "Wyłączenia"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 199.8984375,
+      "sectionRight": 374,
+      "title": "Prawo do interpretacji"
+    }
+  ]
+}

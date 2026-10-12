@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import re
+from typing import Callable
 
 try:
     from tools.component_specs.adapters import idml_notice_payload_from_legacy
@@ -145,6 +146,108 @@ def _extract_boxed_intro(body: str) -> list[tuple[str, str]] | None:
     return [("h2", texts[0]), *(("body", text) for text in texts[1:])]
 
 
+def _component(payload: dict) -> tuple[str, str]:
+    return ("component", json.dumps(payload, ensure_ascii=False))
+
+
+def _rest(args: list[str]) -> list[str]:
+    return [a for a in args[1:] if a]
+
+
+def _safetywarning_block(args: list[str], optional: str, macro: str, kind: str) -> tuple[str, str]:
+    payload = {"kind": "safetywarning", "texts": [args[0]]}
+    if optional.strip():
+        payload["label"] = _detex(optional)
+    return _component(payload)
+
+
+def _noticed_block(args: list[str], optional: str, macro: str, kind: str) -> tuple[str, str]:
+    label = args[0].strip()
+    if not label:
+        raise ValueError("notice label is required from source RST")
+    return _component(idml_notice_payload_from_legacy(
+        {"kind": "notice", "label": label,
+         "variant": optional or "notice",
+         "texts": _rest(args)},
+        source_ref="rst:raw-latex:HBNoticeBlock",
+    ))
+
+
+def _legacy_notice_block(args: list[str], optional: str, macro: str, kind: str) -> tuple[str, str]:
+    return _component(idml_notice_payload_from_legacy(
+        {"kind": "notice", "label": args[0], "variant": kind,
+         "texts": _rest(args)},
+        source_ref=f"rst:raw-latex:{macro[1:]}",
+    ))
+
+
+# kind -> (argument guard, block builder). Guards: "args" needs at least one
+# argument, "lenN" exactly N, "consumed" an earlier recognized macro, "any" none.
+_MACRO_RULES: dict[str, tuple[str, Callable[[list[str], str, str, str], tuple[str, str]]]] = {
+    "safetywarning": ("args", _safetywarning_block),
+    "safetyinstruction": ("args", lambda a, o, m, k: _component({"kind": "safetyinstruction", "texts": [a[0]]})),
+    "warninglead": ("args", lambda a, o, m, k: _component({"kind": "warninglead", "label": a[0], "texts": _rest(a)})),
+    "labelled": ("args", lambda a, o, m, k: _component({"kind": "warnbox", "label": a[0], "texts": _rest(a)})),
+    "noticed": ("args", _noticed_block),
+    "note": ("args", _legacy_notice_block),
+    "tip": ("args", _legacy_notice_block),
+    "caution": ("args", _legacy_notice_block),
+    "bodies": ("any", lambda a, o, m, k: _component({"kind": "fcc", "texts": [x for x in a if x]})),
+    "langtag": ("len2", lambda a, o, m, k: _component({"kind": "langtag", "lang": a[0], "texts": [a[1]]})),
+    "inbox": ("len6", lambda a, o, m, k: _component(
+        {"kind": "inbox", "items": [{"img": a[i], "label": a[i + 1]} for i in range(0, 6, 2)]})),
+    "h1x": ("args", lambda a, o, m, k: ("h1", a[0])),
+    "h2": ("args", lambda a, o, m, k: ("h2", a[0])),
+    "h2num": ("len2", lambda a, o, m, k: ("h2", f"{a[0]} {a[1]}".strip())),
+    "image1": ("args", lambda a, o, m, k: ("image", a[0])),
+    "body": ("args", lambda a, o, m, k: (k, a[0])),
+    "safetylead": ("args", lambda a, o, m, k: (k, a[0])),
+    "pagebreak": ("consumed", lambda a, o, m, k: ("layout", "page_break")),
+}
+
+
+def _macro_block(kind: str, macro: str, args: list[str], optional: str,
+                 consumed_any: bool) -> tuple[str, str] | None:
+    """The block one recognized macro call contributes, or None."""
+    rule = _MACRO_RULES.get(kind)
+    if rule is None:
+        return None
+    guard, build = rule
+    allowed = {
+        "args": bool(args),
+        "len2": len(args) == 2,
+        "len6": len(args) == 6,
+        "consumed": consumed_any,
+        "any": True,
+    }[guard]
+    return build(args, optional, macro, kind) if allowed else None
+
+
+def _lcd_mode_table_block(body: str, start: int) -> tuple[str, str] | None:
+    """An HBLcdModeTable environment as one lcdmode component, or None without groups."""
+    import json as _json
+    j = start
+    img_args, j = _read_braced_args(body, j, 1)
+    groups = []
+    for macro in ("\\HBLcdModeFirstGroup", "\\HBLcdModeSecondGroup"):
+        pos = body.find(macro + "{", j)
+        if pos == -1:
+            continue
+        args, _ = _read_braced_args(body, pos + len(macro), 7)
+        args = [_detex(a) for a in args]
+        if len(args) == 7:
+            groups.append({"state": args[0],
+                           "actions": [[args[1], args[2]],
+                                       [args[3], args[4]],
+                                       [args[5], args[6]]]})
+    if groups:
+        return ("component", _json.dumps(
+            {"kind": "lcdmode",
+             "img": img_args[0] if img_args else "",
+             "groups": groups}, ensure_ascii=False))
+    return None
+
+
 def _extract_raw_latex(body: str, result: ExtractResult) -> None:
     stripped_body = body.strip()
     if r"\begin{tcolorbox}" in body:
@@ -177,26 +280,9 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
     # HBLcdModeTable environment: structured mode/action/description groups
     mt = re.search(r"\\begin\{HBLcdModeTable\}", body)
     if mt:
-        import json as _json
-        j = mt.end()
-        img_args, j = _read_braced_args(body, j, 1)
-        groups = []
-        for macro in ("\\HBLcdModeFirstGroup", "\\HBLcdModeSecondGroup"):
-            pos = body.find(macro + "{", j)
-            if pos == -1:
-                continue
-            args, _ = _read_braced_args(body, pos + len(macro), 7)
-            args = [_detex(a) for a in args]
-            if len(args) == 7:
-                groups.append({"state": args[0],
-                               "actions": [[args[1], args[2]],
-                                           [args[3], args[4]],
-                                           [args[5], args[6]]]})
-        if groups:
-            result.blocks.append(("component", _json.dumps(
-                {"kind": "lcdmode",
-                 "img": img_args[0] if img_args else "",
-                 "groups": groups}, ensure_ascii=False)))
+        block = _lcd_mode_table_block(body, mt.end())
+        if block is not None:
+            result.blocks.append(block)
             return
 
     i = 0
@@ -237,66 +323,9 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
         uncovered.append(body[covered_end:pos])
         covered_end = j
         args = [_detex(a) for a in args]
-        import json as _json
-        if kind == "safetywarning" and args:
-            payload = {"kind": "safetywarning", "texts": [args[0]]}
-            if optional.strip():
-                payload["label"] = _detex(optional)
-            result.blocks.append(("component", _json.dumps(
-                payload,
-                ensure_ascii=False)))
-        elif kind == "safetyinstruction" and args:
-            result.blocks.append(("component", _json.dumps(
-                {"kind": "safetyinstruction", "texts": [args[0]]},
-                ensure_ascii=False)))
-        elif kind == "warninglead" and args:
-            result.blocks.append(("component", _json.dumps(
-                {"kind": "warninglead", "label": args[0],
-                 "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
-        elif kind == "labelled" and args:
-            result.blocks.append(("component", _json.dumps(
-                {"kind": "warnbox", "label": args[0],
-                 "texts": [a for a in args[1:] if a]}, ensure_ascii=False)))
-        elif kind == "noticed" and args:
-            label = args[0].strip()
-            if not label:
-                raise ValueError("notice label is required from source RST")
-            result.blocks.append(("component", _json.dumps(
-                idml_notice_payload_from_legacy(
-                    {"kind": "notice", "label": label,
-                     "variant": optional or "notice",
-                     "texts": [a for a in args[1:] if a]},
-                    source_ref="rst:raw-latex:HBNoticeBlock",
-                ), ensure_ascii=False)))
-        elif kind in {"note", "tip", "caution"} and args:
-            result.blocks.append(("component", _json.dumps(
-                idml_notice_payload_from_legacy(
-                    {"kind": "notice", "label": args[0], "variant": kind,
-                     "texts": [a for a in args[1:] if a]},
-                    source_ref=f"rst:raw-latex:{macro[1:]}",
-                ), ensure_ascii=False)))
-        elif kind == "bodies":
-            result.blocks.append(("component", _json.dumps(
-                {"kind": "fcc", "texts": [a for a in args if a]}, ensure_ascii=False)))
-        elif kind == "langtag" and len(args) == 2:
-            result.blocks.append(("component", _json.dumps(
-                {"kind": "langtag", "lang": args[0], "texts": [args[1]]},
-                ensure_ascii=False)))
-        elif kind == "inbox" and len(args) == 6:
-            items = [{"img": args[i], "label": args[i + 1]} for i in range(0, 6, 2)]
-            result.blocks.append(("component", _json.dumps({"kind": "inbox", "items": items}, ensure_ascii=False)))
-        elif kind == "h1x" and args:
-            result.blocks.append(("h1", args[0]))
-        elif kind == "h2" and args:
-            result.blocks.append(("h2", args[0]))
-        elif kind == "h2num" and len(args) == 2:
-            result.blocks.append(("h2", f"{args[0]} {args[1]}".strip()))
-        elif kind == "image1" and args:
-            result.blocks.append(("image", args[0]))
-        elif kind in {"body", "safetylead"} and args:
-            result.blocks.append((kind, args[0]))
-        elif kind == "pagebreak" and consumed_any:
-            result.blocks.append(("layout", "page_break"))
+        block = _macro_block(kind, macro, args, optional, consumed_any)
+        if block is not None:
+            result.blocks.append(block)
         consumed_any = True
         i = j
     uncovered.append(body[covered_end:])

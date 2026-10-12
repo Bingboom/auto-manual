@@ -1,0 +1,21 @@
+{
+  "source_sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da",
+  "crop_pt": [
+    582,
+    688,
+    791,
+    923
+  ],
+  "production_png_scale": 4,
+  "production_png_outside_annotation_rectangles_identical": true,
+  "production_png_all_four_edges_identical": true,
+  "vector_pdf_12x_outside_rectangles": {
+    "differing_pixels": 1720,
+    "max_channel_difference": 14
+  },
+  "vector_pdf_12x_note": "Direct source clip and cropped PDF Form render at slightly different subpixel phases; visual inspection retains geometry. Do not claim byte-identical 12x PDF raster.",
+  "12x_annotation_edge_inspection": "No residual glyphs or severed leaders in all three white-canvas removal areas",
+  "retained_markings": "Jackery product branding",
+  "png_sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2",
+  "pdf_sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891"
+}

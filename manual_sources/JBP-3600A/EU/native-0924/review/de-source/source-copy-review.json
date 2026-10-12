@@ -1,0 +1,78 @@
+{
+  "status": "producer-native-source-review-only",
+  "language": "de",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "copy_map_sha256": "b0a91833a9c12fbedf894863ab5827f34a3e356756390e673bdaadbd81f30b3b",
+  "explicit_mappings": 169,
+  "viewed_pages": [
+    2,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38
+  ],
+  "shared_legal_page": 79,
+  "critical_checks": [
+    "Native safety,signal/symbol descriptions,operation and caution wording checked",
+    "Native specifications and units checked without English-value substitution",
+    "Troubleshooting actions and codes checked",
+    "Native storage/recharge maintenance intervals checked",
+    "Native warranty terms,exclusions,3+2year badges and contact identity checked",
+    "Inline x5 position verified and existing candidate bytes selected for reuse"
+  ],
+  "native_exceptions": [
+    "Safety bullet 2 repeats the first instruction in the native source; retained.",
+    "General-info heading repeats the specifications heading in source; retained.",
+    "Source cycle-life value and environmental-temperature heading are English; retained.",
+    "Second clearance label reads ≥≈200 mm; retained as source text.",
+    "Left port B label reads C-Erweiterungsport B; retained in native panel.",
+    "Native source pairs the do-not-dismantle hand symbol with Vermeiden Sie Hitze and no-flame symbol with Demontieren Sie das Produkt nicht; preserve native copy and pairing pending operator review."
+  ],
+  "browser_acceptance": false,
+  "publication_eligible": false,
+  "files": [
+    {
+      "path": "pages/de-2.png",
+      "sha256": "a2e5d4a7a08ae4d3b2ab5e0657daa64a66ce62bbfb87117cb3809f390a512400"
+    },
+    {
+      "path": "pages/de-31.png",
+      "sha256": "4ab24b6560450d7a381021e46dc7809a2e8d824f8f165a548b08ca6b577d1a60"
+    },
+    {
+      "path": "pages/de-32.png",
+      "sha256": "fca16b8ea6bfead177021cf9b741bdb1853232e45c89db3b1b6f9504f11009be"
+    },
+    {
+      "path": "pages/de-33.png",
+      "sha256": "156d6baeb01728b5feb0675acb43484b1c13b9f0fb65efaefe02087082f6dd7f"
+    },
+    {
+      "path": "pages/de-34.png",
+      "sha256": "47f5da4fcab35f8cdc5228de1709fbc6231967ffd6b05b7765afb4eda7ebed0d"
+    },
+    {
+      "path": "pages/de-35.png",
+      "sha256": "81249b6649eb0f8f22b78527181681b5a5c4055b8cf4659a9185dbb09da8acf7"
+    },
+    {
+      "path": "pages/de-36.png",
+      "sha256": "1bebb993bfd57394d700adf8a2af7a4c2b1b76049046c12e00e2ae0cafcf1fc9"
+    },
+    {
+      "path": "pages/de-37.png",
+      "sha256": "b19a9078d44bb8a321091ace9e5e59c078f2408f5dbdc1b325ab11143a85bf89"
+    },
+    {
+      "path": "pages/de-38.png",
+      "sha256": "77116951be45e0608d86a52ec3044f715d9fbeed1e01e41986816b194f07e10d"
+    }
+  ],
+  "corrections": [
+    "Native hand/no-flame caption pairing now bound to original page31 glyph slots. Prior semantic translation pairing was incorrect; no native wording changed."
+  ]
+}

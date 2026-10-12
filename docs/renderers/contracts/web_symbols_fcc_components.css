@@ -1,5 +1,3 @@
-/* Searchable Symbols components layered over the shared Web manual theme. */
-
 .hb-symbol-signal-composition {
   margin: 1rem auto 2rem;
   overflow: hidden;
@@ -14,7 +12,8 @@
   border: 0 !important;
   border-collapse: separate !important;
   border-spacing: 0;
-  table-layout: fixed;
+  /* Content-sized: a long localized badge (uk "ПОПЕРЕДЖЕННЯ") widens the label column instead of overflowing it. */
+  table-layout: auto;
   background: var(--hb-paper);
   color: var(--hb-text);
   font-size: clamp(0.84rem, 1.35vw, 0.95rem);
@@ -63,6 +62,7 @@
   display: flex;
   box-sizing: border-box;
   width: min(100%, 10.5rem);
+  min-width: max-content;
   min-height: 2rem;
   align-items: center;
   justify-content: center;

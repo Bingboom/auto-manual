@@ -4,7 +4,7 @@ from __future__ import annotations
 import unittest
 
 from tools.manual_ir import ManualIR, read_manual_ir
-from tools.web_presentation import protect_web_callouts_for_pandoc
+from tools.web.presentation import protect_web_callouts_for_pandoc
 
 
 TABLE = ('<table class="manual-callout-table" lang="en"><tbody><tr>'
@@ -25,8 +25,8 @@ class WebCalloutIRTests(unittest.TestCase):
         from pathlib import Path
         from tempfile import TemporaryDirectory
         from tools.manual_ir import read_manual_ir, write_manual_ir
-        from tools.web_callout_ir import render_callout_ir
-        from tools.web_presentation import restore_web_callouts_after_pandoc
+        from tools.web.callout_ir import render_callout_ir
+        from tools.web.presentation import restore_web_callouts_after_pandoc
 
         with TemporaryDirectory() as td:
             source = Path(td) / 'bundle.html'
@@ -49,7 +49,7 @@ class WebCalloutIRTests(unittest.TestCase):
     def test_corrupt_envelope_rejects_both_handoff_boundaries(self) -> None:
         from dataclasses import replace
         from unittest.mock import patch
-        from tools import web_presentation
+        from tools.web import presentation as web_presentation
         from tools.manual_ir import build_manual_ir_from_source
 
         def corrupt(source):
@@ -69,7 +69,7 @@ class WebCalloutIRTests(unittest.TestCase):
         from pathlib import Path
         from tools.manual_ir import build_manual_ir_from_source, validate_manual_ir
         from tools.manual_ir.web_callouts import load_web_callout_source
-        from tools.web_callout_ir import render_callout_ir
+        from tools.web.callout_ir import render_callout_ir
 
         for change in ('body', 'variant', 'asset', 'kind', 'projection', 'extra-field'):
             with self.subTest(change=change):
@@ -94,7 +94,7 @@ class WebCalloutIRTests(unittest.TestCase):
                     render_callout_ir(ir)
 
     def test_malformed_later_callout_fails_without_returning_partial_output(self) -> None:
-        from tools.web_presentation import WebPresentationError
+        from tools.web.presentation import WebPresentationError
         malformed = [
             TABLE.replace('</tr>', '<td>Lost extra cell</td></tr>'),
             TABLE.replace('</tbody>', '<tr><td>Lost row</td></tr></tbody>'),
@@ -118,8 +118,9 @@ class WebCalloutIRTests(unittest.TestCase):
         from tempfile import TemporaryDirectory
         from types import SimpleNamespace
         from unittest.mock import patch
-        from tools import markdown_bundle, web_presentation
-        from tools.web_callout_ir import render_callout_ir
+        from tools import markdown_bundle
+        from tools.web import presentation as web_presentation
+        from tools.web.callout_ir import render_callout_ir
         from tools.manual_ir import build_manual_ir_from_source
 
         with TemporaryDirectory() as td:
@@ -158,7 +159,8 @@ class WebCalloutIRTests(unittest.TestCase):
         from tempfile import TemporaryDirectory
         from types import SimpleNamespace
         from unittest.mock import patch
-        from tools import markdown_bundle, web_presentation
+        from tools import markdown_bundle
+        from tools.web import presentation as web_presentation
         from tools.manual_ir import build_manual_ir_from_source
 
         def fake_pandoc(command, **kwargs):

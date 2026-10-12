@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from tools.queue_config_resolution import resolve_config_path_for_task
+from tools.build_queue.config_resolution import resolve_config_path_for_task
 
 US_HOST_CONFIG = """
 build:

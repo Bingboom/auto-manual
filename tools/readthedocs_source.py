@@ -21,7 +21,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.publish_asset_pool import pool_publish_assets  # noqa: E402
-from tools.web_presentation import WEB_STYLESHEET_NAME, copy_web_stylesheet  # noqa: E402
+from tools.web.presentation import WEB_STYLESHEET_NAME, copy_web_stylesheet  # noqa: E402
 
 _FILE_URI_RE = re.compile(r"file:///[^\s\"')<>]+")
 _HTML_IMG_SRC_RE = re.compile(r"(<img\b[^>]*?\bsrc=)([\"'])([^\"']+)(\2)", re.IGNORECASE)
@@ -129,7 +129,7 @@ def _rewrite_markdown_file_uris(*, source_dir: Path, destination_dir: Path) -> N
         def replace(match: re.Match[str]) -> str:
             raw_uri = match.group(0)
             local_path = _local_path_from_file_uri(raw_uri)
-            for base_dir in base_dirs:
+            for base_dir in base_dirs:  # noqa: B023 -- invoked before the loop advances
                 try:
                     return local_path.relative_to(base_dir).as_posix()
                 except ValueError:
@@ -190,7 +190,7 @@ def _rewrite_markdown_asset_sources(*, output_dir: Path, destination_dir: Path, 
             prefix, quote, src, _ = match.groups()
             rewritten_src = _static_src_for_manual_asset(
                 src=src,
-                markdown_path=markdown_path,
+                markdown_path=markdown_path,  # noqa: B023 -- invoked before the loop advances
                 output_dir=output_dir,
                 destination_dir=destination_dir,
                 manual_relative=manual_relative,

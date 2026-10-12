@@ -1,12 +1,81 @@
 """Structure-first HTML source adapter for operation-panel ComponentSpecs."""
 from __future__ import annotations
 
+from collections.abc import Sequence
+from dataclasses import replace
+import json
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Iterator, Mapping
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.operation import operation_component_spec
+
+# Source `operation_panel_copy` blocks name the IDML panel layout; this maps a
+# Web figure variant to the panel whose copy it may carry and the copy field.
+_PANEL_COPY_LAYOUTS = {
+    "footer-overlay": ("energy_saving", "mode_label"),
+    "footer-panel": ("led_light", "sos_label"),
+}
+_BASE_ART_LIVE_COPY = "base-art-live-copy"
+
+
+def _panel_copy_field(
+    panel_copy: Sequence[Mapping[str, Any]],
+    *,
+    variant: str,
+    field: str,
+    source_path: Path,
+    operation_id: str,
+) -> str:
+    """Return one source panel-copy field for a base-art figure, if it declares one."""
+
+    panel_layout, panel_field = _PANEL_COPY_LAYOUTS.get(variant, (None, None))
+    if panel_layout is None or panel_field != field:
+        return ""
+    matches = [
+        entry
+        for entry in panel_copy
+        if str(entry.get("layout") or "").strip() == panel_layout
+    ]
+    if len(matches) > 1:
+        raise ValueError(
+            f"{source_path}: operation {operation_id!r} has {len(matches)} "
+            f"{panel_layout!r} panel-copy blocks"
+        )
+    return str(matches[0].get(field) or "").strip() if matches else ""
+
+
+def base_art_panel_copy(
+    panel_copy: Sequence[Mapping[str, Any]],
+    *,
+    figure: Mapping[str, Any],
+    source_path: Path,
+) -> dict[str, str]:
+    """Return the source panel copy (mode or SOS label) a base-art figure shows.
+
+    HTML conversion drops the page's ``operation_panel_copy`` blocks, so every
+    Web path reads them from the source and asks here which ones apply; other
+    presentation modes keep their figure specs unchanged.
+    """
+
+    if str(figure.get("presentation_mode") or "").strip() != _BASE_ART_LIVE_COPY:
+        return {}
+    variant = str(figure.get("layout") or "")
+    operation_id = str(figure.get("id") or "").strip()
+    fields: dict[str, str] = {}
+    for field in ("mode_label", "sos_label"):
+        value = _panel_copy_field(
+            panel_copy,
+            variant=variant,
+            field=field,
+            source_path=source_path,
+            operation_id=operation_id,
+        )
+        if value:
+            fields[field] = value
+    return fields
 
 
 def _sibling(tag: Tag, *, previous: bool) -> Tag | None:
@@ -41,10 +110,16 @@ def parse_operation_components(
     source_path: Path,
     config: Mapping[str, Any],
     language: str,
-) -> tuple[tuple[object, tuple[Tag, ...], Tag, tuple[Tag, ...]], ...]:
-    """Return specs, carrier nodes, artwork, and semantic-only source nodes."""
+    panel_copy: Sequence[Mapping[str, Any]] = (),
+) -> tuple[tuple[ComponentSpec, tuple[Tag, ...], Tag, tuple[Tag, ...]], ...]:
+    """Return specs, carrier nodes, artwork, and semantic-only source nodes.
 
-    parsed: list[tuple[object, tuple[Tag, ...], Tag, tuple[Tag, ...]]] = []
+    ``panel_copy`` holds the page's ``operation_panel_copy`` source blocks, which
+    HTML conversion drops. Only a base-art figure carries their copy, so every
+    other figure keeps its frozen spec byte for byte.
+    """
+
+    parsed: list[tuple[ComponentSpec, tuple[Tag, ...], Tag, tuple[Tag, ...]]] = []
     for raw_figure in config.get("figures", []):
         if not isinstance(raw_figure, Mapping):
             raise ValueError(f"{source_path}: operation figure contract must be a mapping")
@@ -123,16 +198,26 @@ def parse_operation_components(
             prerequisite = str(candidate)
             owned.append(candidate)
         owned.extend((image, line_block))
+        variant = str(raw_figure.get("layout") or "")
+        presentation_mode = str(raw_figure.get("presentation_mode") or "").strip()
+        figure_copy = base_art_panel_copy(
+            panel_copy, figure=raw_figure, source_path=source_path,
+        )
         spec = operation_component_spec(
             operation_id=operation_id,
             accessibility_label=str(image.get("alt") or operation_id),
-            layout=str(raw_figure.get("layout") or ""),
+            layout=variant,
             steps=steps,
             prerequisite_html=prerequisite,
             supporting_copy=supporting,
             artwork_ref=str(image.get("src") or ""),
             source_ref=f"{source_path}#operation-{operation_id}",
             language=language,
+            mode_label=figure_copy.get("mode_label", ""),
+            sos_label=figure_copy.get("sos_label", ""),
+            metadata={"presentation_mode": presentation_mode}
+            if presentation_mode
+            else None,
         )
         parsed.append(
             (spec, tuple(owned), image, tuple(supporting_lines[:supporting_count]))
@@ -141,3 +226,18 @@ def parse_operation_components(
 
 
 __all__ = ["parse_operation_components"]
+
+
+def parse_declared_operations(
+    soup: BeautifulSoup, *, source_path: Path, language: str,
+) -> Iterator[tuple[ComponentSpec, tuple[Tag, ...], Tag, tuple[Tag, ...]]]:
+    """Bind explicitly authored panels through the shared operation source adapter."""
+    for image in soup.select("img.hb-source-operation"):
+        config = json.loads(str(image.get("data-operation") or "{}"))
+        if not isinstance(config, dict) or config.get("presentation_mode") != _BASE_ART_LIVE_COPY:
+            raise ValueError(f"{source_path}: declared operation requires base-art-live-copy")
+        config["image_key"] = str(image.get("src") or "")
+        for spec, owned, artwork, discarded in parse_operation_components(
+            soup, source_path=source_path, config={"figures": [config]}, language=language,
+        ):
+            yield replace(spec, metadata={**spec.metadata, "web_presentation": config}), owned, artwork, discarded

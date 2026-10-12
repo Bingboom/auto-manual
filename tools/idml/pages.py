@@ -4,15 +4,14 @@ from __future__ import annotations
 from pathlib import Path
 
 from .params import IDPKG
-from .safety_story import _safety_section_story
+from .safety_story import _safety_section_story as _safety_section_story
 from .symbols_page import (
     ROOT as ROOT, SymbolOverflow,
-    _localized_signal_label_bar,
-    _symbol_signal_bar,
-    _symbols_icon_table,
-    _symbols_signal_table,
-    _table_story,
-    add_safety_symbols_page,
+    _symbol_signal_bar as _symbol_signal_bar,
+    _symbols_icon_table as _symbols_icon_table,
+    _symbols_signal_table as _symbols_signal_table,
+    _table_story as _table_story,
+    add_safety_symbols_page as add_safety_symbols_page,
 )
 
 

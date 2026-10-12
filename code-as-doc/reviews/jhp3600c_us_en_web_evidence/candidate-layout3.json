@@ -1,0 +1,9 @@
+{
+  "hello_docs_base": "83cc003714a81a6d8fa1e89b9b38829b76ed598e",
+  "existing_source_files": 5609,
+  "changed_existing_source_files": [],
+  "total_targets": 106,
+  "source_git_ref": "10b89f4343a001bc9b91d5ccb8c4503a69d5ce7a",
+  "version": "git-20261005-31fd0692-layout3",
+  "publish_manifest_sha256": "792fcbd2a35900ad06114c1e0ddca0523e76c8c820f281077f67680c9cb05704"
+}

@@ -1,0 +1,4431 @@
+{
+  "final_verification": {
+    "accepted_at": "2026-10-09T01:56:39.793364+00:00",
+    "content_sha256": "e371d43c625f6c6beac545ec0515ad850a7d350937fc625e74851568d2587ed5",
+    "stylesheet_sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f",
+    "native_visible_lines": 447,
+    "viewports": [
+      [
+        1280,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "loaded_images": 50,
+    "broken_images": 0,
+    "page_horizontal_overflow": false,
+    "clipped_live_labels": [],
+    "english_before_locales_gate": "source/en/acceptance.json",
+    "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+    "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+    "preface_heading": "FR IMPORTANT",
+    "preface_native_title_and_badge": true,
+    "preface_background": "transparent",
+    "preface_paragraphs": 4,
+    "fcc_component": "HB-SPECIAL-FCC/two-column",
+    "fcc_mark": "assets/fcc-mark.svg",
+    "fcc_measures": 4,
+    "fcc_bold_labels": 2,
+    "fcc_desktop_columns": 2,
+    "fcc_mobile_columns": 1,
+    "lcd_icon_width_px": 72,
+    "lcd_icon_aspect_ratio": "native",
+    "lcd_browser_metrics": {
+      "desktop": {
+        "icons": [
+          {
+            "cell": 91.4453125,
+            "height": 77.140625,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 42.8515625,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 78.8515625,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 50.59375,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 41.140625,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 46.6953125,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "cell": 91.4453125,
+            "height": 36.96875,
+            "loaded": true,
+            "width": 72
+          }
+        ],
+        "pageOverflow": false
+      },
+      "mobile": {
+        "icons": [
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          },
+          {
+            "contained": true,
+            "loaded": true,
+            "width": 72
+          }
+        ],
+        "pageOverflow": false,
+        "panelWidth": 358,
+        "tableWidth": 640
+      }
+    },
+    "power_panel_css_frame": true,
+    "power_note_inset_desktop": true,
+    "power_mobile_labels": "shared readable stack",
+    "power_panel_checks": {
+      "desktop": {
+        "note_inside": true,
+        "note_position": "absolute",
+        "page_overflow": false,
+        "css_border": "2px",
+        "live_labels": 5
+      },
+      "mobile": {
+        "note_inside": true,
+        "note_position": "static",
+        "page_overflow": false,
+        "css_border": "2px",
+        "live_labels": 5
+      }
+    },
+    "lcd_mode_component": "HB-TABLE-LCD-MODE/two-state-three-action",
+    "lcd_mode_browser_metrics": {
+      "desktop": {
+        "imageContained": true,
+        "imageHeight": 425.984375,
+        "imageTableGap": 7.4140625,
+        "pageOverflow": false,
+        "rows": 6,
+        "rowspans": [
+          3,
+          3
+        ],
+        "tableHeight": 425.984375,
+        "viewport": [
+          1280,
+          900
+        ]
+      },
+      "mobile": {
+        "imageHeight": 279.21875,
+        "imageWidth": 144,
+        "pageOverflow": false,
+        "panelWidth": 358,
+        "stacked": true,
+        "tableWidth": 544,
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    "lcd_mode_artwork_unchanged": true,
+    "bracket_caution_list_metrics": {
+      "desktop": {
+        "itemGap": 5.4375,
+        "items": 2,
+        "lists": 1,
+        "pageOverflow": false
+      },
+      "mobile": {
+        "itemGap": 5.4375,
+        "items": 2,
+        "lists": 1,
+        "pageOverflow": false
+      }
+    },
+    "vertical_opening_component": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+    "vertical_opening_metrics": {
+      "desktop": {
+        "background": "rgba(0, 0, 0, 0)",
+        "captionClipped": false,
+        "captionInside": true,
+        "displayRatio": 0.559321181646763,
+        "imageGap": 34.1640625,
+        "label": "Préparation avant l'installation:",
+        "nativeRatio": 0.559322033898305,
+        "pageOverflow": false,
+        "prepWidth": 449.2265625,
+        "resultHeight": 310.7421875,
+        "resultLoaded": true,
+        "resultWidth": 173.8046875,
+        "toc": true
+      },
+      "mobile": {
+        "captionClipped": false,
+        "captionInside": true,
+        "displayRatio": 0.5593386985178981,
+        "nativeRatio": 0.559322033898305,
+        "pageOverflow": false,
+        "prepWidth": 358,
+        "resultHeight": 214.5390625,
+        "resultLoaded": true,
+        "resultWidth": 120,
+        "stacked": true
+      }
+    },
+    "vertical_artwork_unchanged": true,
+    "vertical_step_row_metrics": {
+      "desktop": {
+        "cards": [
+          {
+            "height": 312.875,
+            "imageHeight": 232.7109375,
+            "imageWidth": 623.203125,
+            "loaded": true,
+            "nativeRatio": 2.6779661016949152,
+            "ratio": 2.678013898680633,
+            "width": 657.203125,
+            "x": 431.3984375,
+            "y": 7090.8359375
+          },
+          {
+            "height": 363.7890625,
+            "imageHeight": 258.3515625,
+            "imageWidth": 623.203125,
+            "loaded": true,
+            "nativeRatio": 2.4122137404580153,
+            "ratio": 2.4122289757779187,
+            "width": 657.203125,
+            "x": 431.3984375,
+            "y": 7419.7109375
+          },
+          {
+            "height": 281.3203125,
+            "imageHeight": 201.15625,
+            "imageWidth": 623.203125,
+            "loaded": true,
+            "nativeRatio": 3.0980392156862746,
+            "ratio": 3.098104707161722,
+            "width": 657.203125,
+            "x": 431.3984375,
+            "y": 7799.5
+          }
+        ],
+        "cols": "657.203px",
+        "overflow": false,
+        "viewport": [
+          1280,
+          900
+        ]
+      },
+      "mobile": {
+        "cards": [
+          {
+            "height": 199.6953125,
+            "imageHeight": 120.984375,
+            "imageWidth": 324,
+            "loaded": true,
+            "nativeRatio": 2.6779661016949152,
+            "ratio": 2.678031770631538,
+            "width": 358,
+            "x": 16,
+            "y": 2231.6796875
+          },
+          {
+            "height": 237.3203125,
+            "imageHeight": 134.3125,
+            "imageWidth": 324,
+            "loaded": true,
+            "nativeRatio": 2.4122137404580153,
+            "ratio": 2.4122847836202883,
+            "width": 358,
+            "x": 16,
+            "y": 2447.375
+          },
+          {
+            "height": 183.2890625,
+            "imageHeight": 104.578125,
+            "imageWidth": 324,
+            "loaded": true,
+            "nativeRatio": 3.0980392156862746,
+            "ratio": 3.098162259076647,
+            "width": 358,
+            "x": 16,
+            "y": 2700.6953125
+          }
+        ],
+        "cols": "358px",
+        "overflow": false,
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    "vertical_steps_full_width": true,
+    "wall_mount_heading_metrics": {
+      "desktop": {
+        "bullet": "none",
+        "chapterNavigation": true,
+        "font": "18.4px",
+        "headingBackground": "rgba(0, 0, 0, 0)",
+        "headingFits": true,
+        "headingPadding": "0px",
+        "introToSubtitle": 10.3984375,
+        "overflow": false,
+        "titleToIntro": 5.59375,
+        "viewport": [
+          1280,
+          900
+        ]
+      },
+      "mobile": {
+        "bullet": "none",
+        "chapterNavigation": true,
+        "font": "18.4px",
+        "headingBackground": "rgba(0, 0, 0, 0)",
+        "headingFits": true,
+        "headingPadding": "0px",
+        "introToSubtitle": 10.3984375,
+        "overflow": false,
+        "titleToIntro": 5.59375,
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    "source_stylesheet_sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f",
+    "wood_opening_metrics": {
+      "desktop": {
+        "chapterNavigation": true,
+        "frame": "rgb(247, 247, 247)",
+        "labels": [
+          {
+            "font": "14.4px",
+            "inside": true,
+            "text": "Preparation before installation:"
+          },
+          {
+            "font": "12.6061px",
+            "inside": true,
+            "text": "VENDUS SÉPARÉMENT"
+          }
+        ],
+        "nativeAspect": 0.48677248677248675,
+        "overflow": false,
+        "parallel": true,
+        "prepWidth": 420.2109375,
+        "resultAspect": 0.48677278124072426,
+        "resultHeight": 421.125,
+        "resultLoaded": true,
+        "resultWidth": 204.9921875,
+        "stacked": false,
+        "viewport": [
+          1280,
+          900
+        ]
+      },
+      "mobile": {
+        "chapterNavigation": true,
+        "frame": "rgb(247, 247, 247)",
+        "labels": [
+          {
+            "font": "13.6px",
+            "inside": true,
+            "text": "Preparation before installation:"
+          },
+          {
+            "font": "10.74px",
+            "inside": true,
+            "text": "VENDUS SÉPARÉMENT"
+          }
+        ],
+        "nativeAspect": 0.48677248677248675,
+        "overflow": false,
+        "parallel": false,
+        "prepWidth": 358,
+        "resultAspect": 0.48677367037637714,
+        "resultHeight": 279.390625,
+        "resultLoaded": true,
+        "resultWidth": 136,
+        "stacked": true,
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    "wood_opening_artwork_unchanged": true,
+    "wood_preparation_live_labels": 2,
+    "native_wall_row_map": {
+      "wood": [
+        "1-2",
+        "3/4:1.8:1",
+        "5",
+        "6",
+        "7"
+      ],
+      "concrete": [
+        "preparation/result",
+        "1-2",
+        "3",
+        "4-5",
+        "6-7",
+        "8-9"
+      ]
+    },
+    "active_artwork": 50,
+    "unchanged_original_artwork": 44,
+    "wall_art_12x": {
+      "wood-5": {
+        "zoom": 12,
+        "changed_pixels": 133420,
+        "outside_reviewed_frame_bands": 0,
+        "removed_frame_paths": [
+          0,
+          211,
+          212,
+          213
+        ]
+      },
+      "wood-6": {
+        "zoom": 12,
+        "changed_pixels": 126219,
+        "outside_reviewed_frame_bands": 0,
+        "removed_frame_paths": [
+          0,
+          211,
+          212,
+          213
+        ]
+      },
+      "wood-7": {
+        "zoom": 12,
+        "changed_pixels": 127816,
+        "outside_reviewed_frame_bands": 0,
+        "removed_frame_paths": [
+          0,
+          211,
+          212,
+          213
+        ]
+      },
+      "concrete-4-5": {
+        "zoom": 12,
+        "changed_pixels": 191708,
+        "outside_reviewed_frame_bands": 0,
+        "removed_frame_paths": [
+          2,
+          3,
+          1057,
+          1058
+        ]
+      },
+      "concrete-6-7": {
+        "zoom": 12,
+        "changed_pixels": 175659,
+        "outside_reviewed_frame_bands": 0,
+        "removed_frame_paths": [
+          2,
+          3,
+          1057,
+          1058
+        ]
+      },
+      "concrete-8-9": {
+        "zoom": 12,
+        "changed_pixels": 195406,
+        "outside_reviewed_frame_bands": 0,
+        "removed_frame_paths": [
+          337,
+          338
+        ]
+      }
+    },
+    "wall_browser_qc": [
+      {
+        "lang": "fr",
+        "mode": "desktop",
+        "broken": [],
+        "clipped": [],
+        "height": 900,
+        "overflow": false,
+        "overlaps": [],
+        "panels": [
+          {
+            "class": "native-wall-panel native-wood-1-2",
+            "h": 245.84375,
+            "w": 657.1953125,
+            "x": 431.3984375,
+            "y": -327.65625
+          },
+          {
+            "class": "native-wall-panel native-wood-3",
+            "h": 334.6328125,
+            "w": 412.1953125,
+            "x": 431.3984375,
+            "y": -65.8125
+          },
+          {
+            "class": "native-wall-panel native-wood-4",
+            "h": 334.6328125,
+            "w": 229,
+            "x": 859.59375,
+            "y": -65.8125
+          },
+          {
+            "class": "native-wall-panel native-wood-5",
+            "h": 330.59375,
+            "w": 657.1953125,
+            "x": 431.3984375,
+            "y": 284.8203125
+          },
+          {
+            "class": "native-wall-panel native-wood-6",
+            "h": 243.7734375,
+            "w": 657.1953125,
+            "x": 431.3984375,
+            "y": 631.4140625
+          },
+          {
+            "class": "native-wall-panel native-wood-7",
+            "h": 351.265625,
+            "w": 657.1953125,
+            "x": 431.3984375,
+            "y": 891.1875
+          },
+          {
+            "class": "native-wall-panel native-concrete-1-2",
+            "h": 247.9140625,
+            "w": 657.203125,
+            "x": 431.3984375,
+            "y": 1647.8203125
+          },
+          {
+            "class": "native-wall-panel native-concrete-3",
+            "h": 345.0703125,
+            "w": 657.203125,
+            "x": 431.3984375,
+            "y": 1911.734375
+          },
+          {
+            "class": "native-wall-panel native-wall-pair native-concrete-4-5",
+            "h": 474.1796875,
+            "w": 657.203125,
+            "x": 431.3984375,
+            "y": 2272.8046875
+          },
+          {
+            "class": "native-wall-panel native-wall-pair native-concrete-6-7",
+            "h": 482.5,
+            "w": 657.203125,
+            "x": 431.3984375,
+            "y": 2762.984375
+          },
+          {
+            "class": "native-wall-panel native-wall-pair native-concrete-8-9",
+            "h": 393.0703125,
+            "w": 657.203125,
+            "x": 431.3984375,
+            "y": 3261.484375
+          }
+        ],
+        "width": 1280
+      },
+      {
+        "lang": "fr",
+        "mode": "mobile",
+        "broken": [],
+        "clipped": [],
+        "height": 844,
+        "overflow": false,
+        "overlaps": [],
+        "panels": [
+          {
+            "class": "native-wall-panel native-wood-1-2",
+            "h": 223.4296875,
+            "w": 358,
+            "x": 16,
+            "y": -1021.3125
+          },
+          {
+            "class": "native-wall-panel native-wood-3",
+            "h": 347.234375,
+            "w": 358,
+            "x": 16,
+            "y": -781.8828125
+          },
+          {
+            "class": "native-wall-panel native-wood-4",
+            "h": 609.6640625,
+            "w": 358,
+            "x": 16,
+            "y": -418.6484375
+          },
+          {
+            "class": "native-wall-panel native-wood-5",
+            "h": 429.7578125,
+            "w": 358,
+            "x": 16,
+            "y": 207.015625
+          },
+          {
+            "class": "native-wall-panel native-wood-6",
+            "h": 293.859375,
+            "w": 358,
+            "x": 16,
+            "y": 652.7734375
+          },
+          {
+            "class": "native-wall-panel native-wood-7",
+            "h": 290.34375,
+            "w": 358,
+            "x": 16,
+            "y": 962.6328125
+          },
+          {
+            "class": "native-wall-panel native-concrete-1-2",
+            "h": 224.5078125,
+            "w": 358,
+            "x": 16,
+            "y": 1796.9609375
+          },
+          {
+            "class": "native-wall-panel native-concrete-3",
+            "h": 249.0234375,
+            "w": 358,
+            "x": 16,
+            "y": 2037.46875
+          },
+          {
+            "class": "native-wall-panel native-wall-pair native-concrete-4-5",
+            "h": 629.28125,
+            "w": 358,
+            "x": 16,
+            "y": 2302.4921875
+          },
+          {
+            "class": "native-wall-panel native-wall-pair native-concrete-6-7",
+            "h": 452.71875,
+            "w": 358,
+            "x": 16,
+            "y": 2947.7734375
+          },
+          {
+            "class": "native-wall-panel native-wall-pair native-concrete-8-9",
+            "h": 313.4609375,
+            "w": 358,
+            "x": 16,
+            "y": 3416.4921875
+          }
+        ],
+        "width": 390
+      }
+    ],
+    "wall_panel_correction_recipe_artifacts": 110,
+    "solar_model_caption_single_line": true,
+    "solar_artwork_unchanged": true,
+    "solar_artwork_sha256": "d1dbc3ead370f54552830243ea50bc6a6e361505b9a1074e145b84adeda3d593",
+    "solar_source_physical_page": 32,
+    "solar_browser_metrics": {
+      "mobile": {
+        "language": "fr",
+        "size": "mobile",
+        "brokenImages": [],
+        "images": 50,
+        "labels": [
+          {
+            "clipped": false,
+            "contained": true,
+            "fontSize": "8px",
+            "line": "0",
+            "lineHeight": "9.6px",
+            "rect": {
+              "bottom": 18124.640625,
+              "height": 9.8828125,
+              "right": 170.6953125,
+              "width": 71.59375,
+              "x": 99.1015625,
+              "y": 18114.7578125
+            },
+            "text": "SolarSaga 500 X",
+            "textRects": [
+              {
+                "bottom": 18124.3984375,
+                "height": 9.5,
+                "right": 160.8046875,
+                "width": 61.703125,
+                "x": 99.1015625,
+                "y": 18114.8984375
+              }
+            ],
+            "whiteSpace": "nowrap"
+          },
+          {
+            "clipped": false,
+            "contained": true,
+            "fontSize": "8px",
+            "line": "1",
+            "lineHeight": "9.6px",
+            "rect": {
+              "bottom": 18172.578125,
+              "height": 9.8828125,
+              "right": 252.9453125,
+              "width": 29.828125,
+              "x": 223.1171875,
+              "y": 18162.6953125
+            },
+            "text": "DC8020",
+            "textRects": [
+              {
+                "bottom": 18172.3359375,
+                "height": 9.5,
+                "right": 253.265625,
+                "width": 30.1484375,
+                "x": 223.1171875,
+                "y": 18162.8359375
+              }
+            ],
+            "whiteSpace": "nowrap"
+          }
+        ],
+        "overlaps": [],
+        "pageOverflow": false,
+        "panel": {
+          "bottom": 18207.921875,
+          "height": 190.2578125,
+          "right": 374,
+          "width": 358,
+          "x": 16,
+          "y": 18017.6640625
+        },
+        "viewport": [
+          390,
+          844
+        ]
+      },
+      "desktop": {
+        "language": "fr",
+        "size": "desktop",
+        "brokenImages": [],
+        "images": 50,
+        "labels": [
+          {
+            "clipped": false,
+            "contained": true,
+            "fontSize": "9.52945px",
+            "line": "0",
+            "lineHeight": "11.4353px",
+            "rect": {
+              "bottom": 15749.2578125,
+              "height": 18.140625,
+              "right": 715.390625,
+              "width": 131.4375,
+              "x": 583.953125,
+              "y": 15731.1171875
+            },
+            "text": "SolarSaga 500 X",
+            "textRects": [
+              {
+                "bottom": 15745.46875,
+                "height": 11.5,
+                "right": 657.4140625,
+                "width": 73.4609375,
+                "x": 583.953125,
+                "y": 15733.96875
+              }
+            ],
+            "whiteSpace": "nowrap"
+          },
+          {
+            "clipped": false,
+            "contained": true,
+            "fontSize": "9.52945px",
+            "line": "1",
+            "lineHeight": "11.4353px",
+            "rect": {
+              "bottom": 15837.265625,
+              "height": 18.140625,
+              "right": 866.375,
+              "width": 54.75,
+              "x": 811.625,
+              "y": 15819.125
+            },
+            "text": "DC8020",
+            "textRects": [
+              {
+                "bottom": 15833.4765625,
+                "height": 11.5,
+                "right": 847.515625,
+                "width": 35.890625,
+                "x": 811.625,
+                "y": 15821.9765625
+              }
+            ],
+            "whiteSpace": "nowrap"
+          }
+        ],
+        "overlaps": [],
+        "pageOverflow": false,
+        "panel": {
+          "bottom": 15902.140625,
+          "height": 349.265625,
+          "right": 1088.6015625,
+          "width": 657.203125,
+          "x": 431.3984375,
+          "y": 15552.875
+        },
+        "viewport": [
+          1280,
+          900
+        ]
+      }
+    },
+    "solar_footnote_policy": "native sold-separately wording retained in introductory prose; no extra footnote",
+    "warranty_notice_semantic_bold": true,
+    "warranty_notice_native_font": "Gilroy-Bold",
+    "warranty_notice_source_physical_page": 35,
+    "warranty_notice_browser_metrics": {
+      "desktop": {
+        "language": "fr",
+        "size": "desktop",
+        "brokenImages": [],
+        "contained": true,
+        "images": 50,
+        "leadFontWeight": "700",
+        "noteFontWeight": "400",
+        "noteStrong": 0,
+        "pageOverflow": false,
+        "semanticStrong": true,
+        "textRects": [
+          {
+            "bottom": -751.921875,
+            "right": 1059.84375,
+            "x": 448.1953125,
+            "y": -770.921875
+          },
+          {
+            "bottom": -730.328125,
+            "right": 1020.6015625,
+            "x": 448.1953125,
+            "y": -749.328125
+          },
+          {
+            "bottom": -708.734375,
+            "right": 660.296875,
+            "x": 448.1953125,
+            "y": -727.734375
+          }
+        ],
+        "viewport": [
+          1280,
+          900
+        ]
+      },
+      "mobile": {
+        "language": "fr",
+        "size": "mobile",
+        "brokenImages": [],
+        "contained": true,
+        "images": 50,
+        "leadFontWeight": "700",
+        "noteFontWeight": "400",
+        "noteStrong": 0,
+        "pageOverflow": false,
+        "semanticStrong": true,
+        "textRects": [
+          {
+            "bottom": 1608.8671875,
+            "right": 322.2734375,
+            "x": 29.59375,
+            "y": 1590.8671875
+          },
+          {
+            "bottom": 1629.1640625,
+            "right": 308.109375,
+            "x": 29.59375,
+            "y": 1611.1640625
+          },
+          {
+            "bottom": 1649.4609375,
+            "right": 352.734375,
+            "x": 29.59375,
+            "y": 1631.4609375
+          },
+          {
+            "bottom": 1669.7578125,
+            "right": 322.09375,
+            "x": 29.59375,
+            "y": 1651.7578125
+          },
+          {
+            "bottom": 1690.0546875,
+            "right": 147.6328125,
+            "x": 29.59375,
+            "y": 1672.0546875
+          }
+        ],
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    }
+  },
+  "verification_history": [
+    {
+      "accepted_at": "2026-10-08T16:41:22.514338+00:00",
+      "content_sha256": "6011b91038581245befd432f0500b408ee19ac72f23efe702ca6a10dbf43512a",
+      "stylesheet_sha256": "5b2621fd078a86aba00c2ec02e3d2b940daad73feae829df851245ed816870c9",
+      "native_visible_lines": 446,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 52,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged."
+    },
+    {
+      "accepted_at": "2026-10-08T22:23:54.530098+00:00",
+      "content_sha256": "e64d9b404076df15fc25d7de683267c011d0e67a704b7ccf217b0497cf1d612c",
+      "stylesheet_sha256": "5b2621fd078a86aba00c2ec02e3d2b940daad73feae829df851245ed816870c9",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 52,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4
+    },
+    {
+      "accepted_at": "2026-10-08T22:42:02.339950+00:00",
+      "content_sha256": "c9d13f2a11a43bdd3992917f14a989e58d34259ac82b90a0fbc503cac6157c9d",
+      "stylesheet_sha256": "88e480af6322011a1dc7e7983dcbfaedd1617d7db9ef3a101dd8bd423cb12bde",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1
+    },
+    {
+      "accepted_at": "2026-10-08T22:56:59.098509+00:00",
+      "content_sha256": "c9d13f2a11a43bdd3992917f14a989e58d34259ac82b90a0fbc503cac6157c9d",
+      "stylesheet_sha256": "3e602eb54789fe9a6e86efea824be1990d674084c6dd7f962881ccc27c5158ba",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      }
+    },
+    {
+      "accepted_at": "2026-10-08T23:15:23.626730+00:00",
+      "content_sha256": "59d36f08228aac157a3c3c403ff47e22c2114ad8210a0285322ba8c4d98e4ee7",
+      "stylesheet_sha256": "fa9536b51f39a5941dda1333d793f1214e32eb14d31c7cd10899b275f6387276",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      },
+      "power_panel_css_frame": true,
+      "power_note_inset_desktop": true,
+      "power_mobile_labels": "shared readable stack",
+      "power_panel_checks": {
+        "desktop": {
+          "note_inside": true,
+          "note_position": "absolute",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        },
+        "mobile": {
+          "note_inside": true,
+          "note_position": "static",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        }
+      }
+    },
+    {
+      "accepted_at": "2026-10-08T23:31:49.508759+00:00",
+      "content_sha256": "7531759540ef0b065da4e93fe50ae120fd0342d24fc158813ed5fcdf1a6bd3d9",
+      "stylesheet_sha256": "efa1bf09fdb0ac5ceb89fca61ef6b5e6177bfa5c0d225ed000733287f5ca7f86",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      },
+      "power_panel_css_frame": true,
+      "power_note_inset_desktop": true,
+      "power_mobile_labels": "shared readable stack",
+      "power_panel_checks": {
+        "desktop": {
+          "note_inside": true,
+          "note_position": "absolute",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        },
+        "mobile": {
+          "note_inside": true,
+          "note_position": "static",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        }
+      },
+      "lcd_mode_component": "HB-TABLE-LCD-MODE/two-state-three-action",
+      "lcd_mode_browser_metrics": {
+        "desktop": {
+          "imageContained": true,
+          "imageHeight": 425.984375,
+          "imageTableGap": 7.4140625,
+          "pageOverflow": false,
+          "rows": 6,
+          "rowspans": [
+            3,
+            3
+          ],
+          "tableHeight": 425.984375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "imageHeight": 279.21875,
+          "imageWidth": 144,
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "stacked": true,
+          "tableWidth": 544,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "lcd_mode_artwork_unchanged": true
+    },
+    {
+      "accepted_at": "2026-10-08T23:38:51.327516+00:00",
+      "content_sha256": "7531759540ef0b065da4e93fe50ae120fd0342d24fc158813ed5fcdf1a6bd3d9",
+      "stylesheet_sha256": "efa1bf09fdb0ac5ceb89fca61ef6b5e6177bfa5c0d225ed000733287f5ca7f86",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      },
+      "power_panel_css_frame": true,
+      "power_note_inset_desktop": true,
+      "power_mobile_labels": "shared readable stack",
+      "power_panel_checks": {
+        "desktop": {
+          "note_inside": true,
+          "note_position": "absolute",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        },
+        "mobile": {
+          "note_inside": true,
+          "note_position": "static",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        }
+      },
+      "lcd_mode_component": "HB-TABLE-LCD-MODE/two-state-three-action",
+      "lcd_mode_browser_metrics": {
+        "desktop": {
+          "imageContained": true,
+          "imageHeight": 425.984375,
+          "imageTableGap": 7.4140625,
+          "pageOverflow": false,
+          "rows": 6,
+          "rowspans": [
+            3,
+            3
+          ],
+          "tableHeight": 425.984375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "imageHeight": 279.21875,
+          "imageWidth": 144,
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "stacked": true,
+          "tableWidth": 544,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "lcd_mode_artwork_unchanged": true,
+      "bracket_caution_list_metrics": {
+        "desktop": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        },
+        "mobile": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        }
+      }
+    },
+    {
+      "accepted_at": "2026-10-08T23:59:30.346586+00:00",
+      "content_sha256": "e1d4f503a2d7e3d9664ef61f83b16ef5d2bc379188d043cc2424eb9b0ef7c7b8",
+      "stylesheet_sha256": "1ebaa3a8d96929a9cb2a55b3e90941f90911afdf9e6b822b318f6df03cadaea4",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      },
+      "power_panel_css_frame": true,
+      "power_note_inset_desktop": true,
+      "power_mobile_labels": "shared readable stack",
+      "power_panel_checks": {
+        "desktop": {
+          "note_inside": true,
+          "note_position": "absolute",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        },
+        "mobile": {
+          "note_inside": true,
+          "note_position": "static",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        }
+      },
+      "lcd_mode_component": "HB-TABLE-LCD-MODE/two-state-three-action",
+      "lcd_mode_browser_metrics": {
+        "desktop": {
+          "imageContained": true,
+          "imageHeight": 425.984375,
+          "imageTableGap": 7.4140625,
+          "pageOverflow": false,
+          "rows": 6,
+          "rowspans": [
+            3,
+            3
+          ],
+          "tableHeight": 425.984375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "imageHeight": 279.21875,
+          "imageWidth": 144,
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "stacked": true,
+          "tableWidth": 544,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "lcd_mode_artwork_unchanged": true,
+      "bracket_caution_list_metrics": {
+        "desktop": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        },
+        "mobile": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        }
+      },
+      "vertical_opening_component": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "vertical_opening_metrics": {
+        "desktop": {
+          "background": "rgba(0, 0, 0, 0)",
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.559321181646763,
+          "imageGap": 34.1640625,
+          "label": "Préparation avant l'installation:",
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 449.2265625,
+          "resultHeight": 310.7421875,
+          "resultLoaded": true,
+          "resultWidth": 173.8046875,
+          "toc": true
+        },
+        "mobile": {
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.5593386985178981,
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 358,
+          "resultHeight": 214.5390625,
+          "resultLoaded": true,
+          "resultWidth": 120,
+          "stacked": true
+        }
+      },
+      "vertical_artwork_unchanged": true
+    },
+    {
+      "accepted_at": "2026-10-08T23:59:30.346586+00:00",
+      "content_sha256": "e1d4f503a2d7e3d9664ef61f83b16ef5d2bc379188d043cc2424eb9b0ef7c7b8",
+      "stylesheet_sha256": "1ebaa3a8d96929a9cb2a55b3e90941f90911afdf9e6b822b318f6df03cadaea4",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      },
+      "power_panel_css_frame": true,
+      "power_note_inset_desktop": true,
+      "power_mobile_labels": "shared readable stack",
+      "power_panel_checks": {
+        "desktop": {
+          "note_inside": true,
+          "note_position": "absolute",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        },
+        "mobile": {
+          "note_inside": true,
+          "note_position": "static",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        }
+      },
+      "lcd_mode_component": "HB-TABLE-LCD-MODE/two-state-three-action",
+      "lcd_mode_browser_metrics": {
+        "desktop": {
+          "imageContained": true,
+          "imageHeight": 425.984375,
+          "imageTableGap": 7.4140625,
+          "pageOverflow": false,
+          "rows": 6,
+          "rowspans": [
+            3,
+            3
+          ],
+          "tableHeight": 425.984375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "imageHeight": 279.21875,
+          "imageWidth": 144,
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "stacked": true,
+          "tableWidth": 544,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "lcd_mode_artwork_unchanged": true,
+      "bracket_caution_list_metrics": {
+        "desktop": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        },
+        "mobile": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        }
+      },
+      "vertical_opening_component": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "vertical_opening_metrics": {
+        "desktop": {
+          "background": "rgba(0, 0, 0, 0)",
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.559321181646763,
+          "imageGap": 34.1640625,
+          "label": "Préparation avant l'installation:",
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 449.2265625,
+          "resultHeight": 310.7421875,
+          "resultLoaded": true,
+          "resultWidth": 173.8046875,
+          "toc": true
+        },
+        "mobile": {
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.5593386985178981,
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 358,
+          "resultHeight": 214.5390625,
+          "resultLoaded": true,
+          "resultWidth": 120,
+          "stacked": true
+        }
+      },
+      "vertical_artwork_unchanged": true,
+      "vertical_step_row_metrics": {
+        "desktop": {
+          "cards": [
+            {
+              "height": 312.875,
+              "imageHeight": 232.7109375,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678013898680633,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7090.8359375
+            },
+            {
+              "height": 363.7890625,
+              "imageHeight": 258.3515625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122289757779187,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7419.7109375
+            },
+            {
+              "height": 281.3203125,
+              "imageHeight": 201.15625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098104707161722,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7799.5
+            }
+          ],
+          "cols": "657.203px",
+          "overflow": false,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "cards": [
+            {
+              "height": 199.6953125,
+              "imageHeight": 120.984375,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678031770631538,
+              "width": 358,
+              "x": 16,
+              "y": 2231.6796875
+            },
+            {
+              "height": 237.3203125,
+              "imageHeight": 134.3125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122847836202883,
+              "width": 358,
+              "x": 16,
+              "y": 2447.375
+            },
+            {
+              "height": 183.2890625,
+              "imageHeight": 104.578125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098162259076647,
+              "width": 358,
+              "x": 16,
+              "y": 2700.6953125
+            }
+          ],
+          "cols": "358px",
+          "overflow": false,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "vertical_steps_full_width": true
+    },
+    {
+      "accepted_at": "2026-10-08T23:59:30.346586+00:00",
+      "content_sha256": "e1d4f503a2d7e3d9664ef61f83b16ef5d2bc379188d043cc2424eb9b0ef7c7b8",
+      "stylesheet_sha256": "1ebaa3a8d96929a9cb2a55b3e90941f90911afdf9e6b822b318f6df03cadaea4",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      },
+      "power_panel_css_frame": true,
+      "power_note_inset_desktop": true,
+      "power_mobile_labels": "shared readable stack",
+      "power_panel_checks": {
+        "desktop": {
+          "note_inside": true,
+          "note_position": "absolute",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        },
+        "mobile": {
+          "note_inside": true,
+          "note_position": "static",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        }
+      },
+      "lcd_mode_component": "HB-TABLE-LCD-MODE/two-state-three-action",
+      "lcd_mode_browser_metrics": {
+        "desktop": {
+          "imageContained": true,
+          "imageHeight": 425.984375,
+          "imageTableGap": 7.4140625,
+          "pageOverflow": false,
+          "rows": 6,
+          "rowspans": [
+            3,
+            3
+          ],
+          "tableHeight": 425.984375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "imageHeight": 279.21875,
+          "imageWidth": 144,
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "stacked": true,
+          "tableWidth": 544,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "lcd_mode_artwork_unchanged": true,
+      "bracket_caution_list_metrics": {
+        "desktop": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        },
+        "mobile": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        }
+      },
+      "vertical_opening_component": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "vertical_opening_metrics": {
+        "desktop": {
+          "background": "rgba(0, 0, 0, 0)",
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.559321181646763,
+          "imageGap": 34.1640625,
+          "label": "Préparation avant l'installation:",
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 449.2265625,
+          "resultHeight": 310.7421875,
+          "resultLoaded": true,
+          "resultWidth": 173.8046875,
+          "toc": true
+        },
+        "mobile": {
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.5593386985178981,
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 358,
+          "resultHeight": 214.5390625,
+          "resultLoaded": true,
+          "resultWidth": 120,
+          "stacked": true
+        }
+      },
+      "vertical_artwork_unchanged": true,
+      "vertical_step_row_metrics": {
+        "desktop": {
+          "cards": [
+            {
+              "height": 312.875,
+              "imageHeight": 232.7109375,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678013898680633,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7090.8359375
+            },
+            {
+              "height": 363.7890625,
+              "imageHeight": 258.3515625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122289757779187,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7419.7109375
+            },
+            {
+              "height": 281.3203125,
+              "imageHeight": 201.15625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098104707161722,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7799.5
+            }
+          ],
+          "cols": "657.203px",
+          "overflow": false,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "cards": [
+            {
+              "height": 199.6953125,
+              "imageHeight": 120.984375,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678031770631538,
+              "width": 358,
+              "x": 16,
+              "y": 2231.6796875
+            },
+            {
+              "height": 237.3203125,
+              "imageHeight": 134.3125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122847836202883,
+              "width": 358,
+              "x": 16,
+              "y": 2447.375
+            },
+            {
+              "height": 183.2890625,
+              "imageHeight": 104.578125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098162259076647,
+              "width": 358,
+              "x": 16,
+              "y": 2700.6953125
+            }
+          ],
+          "cols": "358px",
+          "overflow": false,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "vertical_steps_full_width": true,
+      "wall_mount_heading_metrics": {
+        "desktop": {
+          "bullet": "none",
+          "chapterNavigation": true,
+          "font": "18.4px",
+          "headingBackground": "rgba(0, 0, 0, 0)",
+          "headingFits": true,
+          "headingPadding": "0px",
+          "introToSubtitle": 10.3984375,
+          "overflow": false,
+          "titleToIntro": 5.59375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "bullet": "none",
+          "chapterNavigation": true,
+          "font": "18.4px",
+          "headingBackground": "rgba(0, 0, 0, 0)",
+          "headingFits": true,
+          "headingPadding": "0px",
+          "introToSubtitle": 10.3984375,
+          "overflow": false,
+          "titleToIntro": 5.59375,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      }
+    },
+    {
+      "accepted_at": "2026-10-09T00:48:37.594228+00:00",
+      "content_sha256": "78a8f1cf9c9c45346579b059d432951aebe8d3984d397100a5288901f0b42730",
+      "stylesheet_sha256": "1ebaa3a8d96929a9cb2a55b3e90941f90911afdf9e6b822b318f6df03cadaea4",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      },
+      "power_panel_css_frame": true,
+      "power_note_inset_desktop": true,
+      "power_mobile_labels": "shared readable stack",
+      "power_panel_checks": {
+        "desktop": {
+          "note_inside": true,
+          "note_position": "absolute",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        },
+        "mobile": {
+          "note_inside": true,
+          "note_position": "static",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        }
+      },
+      "lcd_mode_component": "HB-TABLE-LCD-MODE/two-state-three-action",
+      "lcd_mode_browser_metrics": {
+        "desktop": {
+          "imageContained": true,
+          "imageHeight": 425.984375,
+          "imageTableGap": 7.4140625,
+          "pageOverflow": false,
+          "rows": 6,
+          "rowspans": [
+            3,
+            3
+          ],
+          "tableHeight": 425.984375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "imageHeight": 279.21875,
+          "imageWidth": 144,
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "stacked": true,
+          "tableWidth": 544,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "lcd_mode_artwork_unchanged": true,
+      "bracket_caution_list_metrics": {
+        "desktop": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        },
+        "mobile": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        }
+      },
+      "vertical_opening_component": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "vertical_opening_metrics": {
+        "desktop": {
+          "background": "rgba(0, 0, 0, 0)",
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.559321181646763,
+          "imageGap": 34.1640625,
+          "label": "Préparation avant l'installation:",
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 449.2265625,
+          "resultHeight": 310.7421875,
+          "resultLoaded": true,
+          "resultWidth": 173.8046875,
+          "toc": true
+        },
+        "mobile": {
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.5593386985178981,
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 358,
+          "resultHeight": 214.5390625,
+          "resultLoaded": true,
+          "resultWidth": 120,
+          "stacked": true
+        }
+      },
+      "vertical_artwork_unchanged": true,
+      "vertical_step_row_metrics": {
+        "desktop": {
+          "cards": [
+            {
+              "height": 312.875,
+              "imageHeight": 232.7109375,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678013898680633,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7090.8359375
+            },
+            {
+              "height": 363.7890625,
+              "imageHeight": 258.3515625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122289757779187,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7419.7109375
+            },
+            {
+              "height": 281.3203125,
+              "imageHeight": 201.15625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098104707161722,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7799.5
+            }
+          ],
+          "cols": "657.203px",
+          "overflow": false,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "cards": [
+            {
+              "height": 199.6953125,
+              "imageHeight": 120.984375,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678031770631538,
+              "width": 358,
+              "x": 16,
+              "y": 2231.6796875
+            },
+            {
+              "height": 237.3203125,
+              "imageHeight": 134.3125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122847836202883,
+              "width": 358,
+              "x": 16,
+              "y": 2447.375
+            },
+            {
+              "height": 183.2890625,
+              "imageHeight": 104.578125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098162259076647,
+              "width": 358,
+              "x": 16,
+              "y": 2700.6953125
+            }
+          ],
+          "cols": "358px",
+          "overflow": false,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "vertical_steps_full_width": true,
+      "wall_mount_heading_metrics": {
+        "desktop": {
+          "bullet": "none",
+          "chapterNavigation": true,
+          "font": "18.4px",
+          "headingBackground": "rgba(0, 0, 0, 0)",
+          "headingFits": true,
+          "headingPadding": "0px",
+          "introToSubtitle": 10.3984375,
+          "overflow": false,
+          "titleToIntro": 5.59375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "bullet": "none",
+          "chapterNavigation": true,
+          "font": "18.4px",
+          "headingBackground": "rgba(0, 0, 0, 0)",
+          "headingFits": true,
+          "headingPadding": "0px",
+          "introToSubtitle": 10.3984375,
+          "overflow": false,
+          "titleToIntro": 5.59375,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "source_stylesheet_sha256": "10e56de00b95d526918841e8b87ebd72493f2fbbfbd903e371a0ca96dfd39076",
+      "wood_opening_metrics": {
+        "desktop": {
+          "chapterNavigation": true,
+          "frame": "rgb(247, 247, 247)",
+          "labels": [
+            {
+              "font": "14.4px",
+              "inside": true,
+              "text": "Preparation before installation:"
+            },
+            {
+              "font": "12.6061px",
+              "inside": true,
+              "text": "VENDUS SÉPARÉMENT"
+            }
+          ],
+          "nativeAspect": 0.48677248677248675,
+          "overflow": false,
+          "parallel": true,
+          "prepWidth": 420.2109375,
+          "resultAspect": 0.48677278124072426,
+          "resultHeight": 421.125,
+          "resultLoaded": true,
+          "resultWidth": 204.9921875,
+          "stacked": false,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "chapterNavigation": true,
+          "frame": "rgb(247, 247, 247)",
+          "labels": [
+            {
+              "font": "13.6px",
+              "inside": true,
+              "text": "Preparation before installation:"
+            },
+            {
+              "font": "10.74px",
+              "inside": true,
+              "text": "VENDUS SÉPARÉMENT"
+            }
+          ],
+          "nativeAspect": 0.48677248677248675,
+          "overflow": false,
+          "parallel": false,
+          "prepWidth": 358,
+          "resultAspect": 0.48677367037637714,
+          "resultHeight": 279.390625,
+          "resultLoaded": true,
+          "resultWidth": 136,
+          "stacked": true,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "wood_opening_artwork_unchanged": true,
+      "wood_preparation_live_labels": 2
+    },
+    {
+      "accepted_at": "2026-10-09T01:27:57.899741+00:00",
+      "content_sha256": "f0a94bcdafda21fb07bdd48b5332f3c6dba0f0dffdd038fdc500d32040efef21",
+      "stylesheet_sha256": "1ebaa3a8d96929a9cb2a55b3e90941f90911afdf9e6b822b318f6df03cadaea4",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 53,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      },
+      "power_panel_css_frame": true,
+      "power_note_inset_desktop": true,
+      "power_mobile_labels": "shared readable stack",
+      "power_panel_checks": {
+        "desktop": {
+          "note_inside": true,
+          "note_position": "absolute",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        },
+        "mobile": {
+          "note_inside": true,
+          "note_position": "static",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        }
+      },
+      "lcd_mode_component": "HB-TABLE-LCD-MODE/two-state-three-action",
+      "lcd_mode_browser_metrics": {
+        "desktop": {
+          "imageContained": true,
+          "imageHeight": 425.984375,
+          "imageTableGap": 7.4140625,
+          "pageOverflow": false,
+          "rows": 6,
+          "rowspans": [
+            3,
+            3
+          ],
+          "tableHeight": 425.984375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "imageHeight": 279.21875,
+          "imageWidth": 144,
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "stacked": true,
+          "tableWidth": 544,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "lcd_mode_artwork_unchanged": true,
+      "bracket_caution_list_metrics": {
+        "desktop": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        },
+        "mobile": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        }
+      },
+      "vertical_opening_component": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "vertical_opening_metrics": {
+        "desktop": {
+          "background": "rgba(0, 0, 0, 0)",
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.559321181646763,
+          "imageGap": 34.1640625,
+          "label": "Préparation avant l'installation:",
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 449.2265625,
+          "resultHeight": 310.7421875,
+          "resultLoaded": true,
+          "resultWidth": 173.8046875,
+          "toc": true
+        },
+        "mobile": {
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.5593386985178981,
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 358,
+          "resultHeight": 214.5390625,
+          "resultLoaded": true,
+          "resultWidth": 120,
+          "stacked": true
+        }
+      },
+      "vertical_artwork_unchanged": true,
+      "vertical_step_row_metrics": {
+        "desktop": {
+          "cards": [
+            {
+              "height": 312.875,
+              "imageHeight": 232.7109375,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678013898680633,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7090.8359375
+            },
+            {
+              "height": 363.7890625,
+              "imageHeight": 258.3515625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122289757779187,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7419.7109375
+            },
+            {
+              "height": 281.3203125,
+              "imageHeight": 201.15625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098104707161722,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7799.5
+            }
+          ],
+          "cols": "657.203px",
+          "overflow": false,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "cards": [
+            {
+              "height": 199.6953125,
+              "imageHeight": 120.984375,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678031770631538,
+              "width": 358,
+              "x": 16,
+              "y": 2231.6796875
+            },
+            {
+              "height": 237.3203125,
+              "imageHeight": 134.3125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122847836202883,
+              "width": 358,
+              "x": 16,
+              "y": 2447.375
+            },
+            {
+              "height": 183.2890625,
+              "imageHeight": 104.578125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098162259076647,
+              "width": 358,
+              "x": 16,
+              "y": 2700.6953125
+            }
+          ],
+          "cols": "358px",
+          "overflow": false,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "vertical_steps_full_width": true,
+      "wall_mount_heading_metrics": {
+        "desktop": {
+          "bullet": "none",
+          "chapterNavigation": true,
+          "font": "18.4px",
+          "headingBackground": "rgba(0, 0, 0, 0)",
+          "headingFits": true,
+          "headingPadding": "0px",
+          "introToSubtitle": 10.3984375,
+          "overflow": false,
+          "titleToIntro": 5.59375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "bullet": "none",
+          "chapterNavigation": true,
+          "font": "18.4px",
+          "headingBackground": "rgba(0, 0, 0, 0)",
+          "headingFits": true,
+          "headingPadding": "0px",
+          "introToSubtitle": 10.3984375,
+          "overflow": false,
+          "titleToIntro": 5.59375,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "source_stylesheet_sha256": "a8331809175652ec901d453132b34fbdb00c7db1bfeb976b27e94a86534cf936",
+      "wood_opening_metrics": {
+        "desktop": {
+          "chapterNavigation": true,
+          "frame": "rgb(247, 247, 247)",
+          "labels": [
+            {
+              "font": "14.4px",
+              "inside": true,
+              "text": "Preparation before installation:"
+            },
+            {
+              "font": "12.6061px",
+              "inside": true,
+              "text": "VENDUS SÉPARÉMENT"
+            }
+          ],
+          "nativeAspect": 0.48677248677248675,
+          "overflow": false,
+          "parallel": true,
+          "prepWidth": 420.2109375,
+          "resultAspect": 0.48677278124072426,
+          "resultHeight": 421.125,
+          "resultLoaded": true,
+          "resultWidth": 204.9921875,
+          "stacked": false,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "chapterNavigation": true,
+          "frame": "rgb(247, 247, 247)",
+          "labels": [
+            {
+              "font": "13.6px",
+              "inside": true,
+              "text": "Preparation before installation:"
+            },
+            {
+              "font": "10.74px",
+              "inside": true,
+              "text": "VENDUS SÉPARÉMENT"
+            }
+          ],
+          "nativeAspect": 0.48677248677248675,
+          "overflow": false,
+          "parallel": false,
+          "prepWidth": 358,
+          "resultAspect": 0.48677367037637714,
+          "resultHeight": 279.390625,
+          "resultLoaded": true,
+          "resultWidth": 136,
+          "stacked": true,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "wood_opening_artwork_unchanged": true,
+      "wood_preparation_live_labels": 2,
+      "native_wall_row_map": {
+        "wood": [
+          "1-2",
+          "3/4:1.8:1",
+          "5",
+          "6",
+          "7"
+        ],
+        "concrete": [
+          "preparation/result",
+          "1-2",
+          "3",
+          "4-5",
+          "6-7",
+          "8-9"
+        ]
+      },
+      "active_artwork": 50,
+      "unchanged_original_artwork": 44,
+      "wall_art_12x": {
+        "wood-5": {
+          "zoom": 12,
+          "changed_pixels": 133420,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            0,
+            211,
+            212,
+            213
+          ]
+        },
+        "wood-6": {
+          "zoom": 12,
+          "changed_pixels": 126219,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            0,
+            211,
+            212,
+            213
+          ]
+        },
+        "wood-7": {
+          "zoom": 12,
+          "changed_pixels": 127816,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            0,
+            211,
+            212,
+            213
+          ]
+        },
+        "concrete-4-5": {
+          "zoom": 12,
+          "changed_pixels": 191708,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            2,
+            3,
+            1057,
+            1058
+          ]
+        },
+        "concrete-6-7": {
+          "zoom": 12,
+          "changed_pixels": 175659,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            2,
+            3,
+            1057,
+            1058
+          ]
+        },
+        "concrete-8-9": {
+          "zoom": 12,
+          "changed_pixels": 195406,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            337,
+            338
+          ]
+        }
+      },
+      "wall_browser_qc": [
+        {
+          "lang": "fr",
+          "mode": "desktop",
+          "broken": [],
+          "clipped": [],
+          "height": 900,
+          "overflow": false,
+          "overlaps": [],
+          "panels": [
+            {
+              "class": "native-wall-panel native-wood-1-2",
+              "h": 245.84375,
+              "w": 657.1953125,
+              "x": 431.3984375,
+              "y": -327.65625
+            },
+            {
+              "class": "native-wall-panel native-wood-3",
+              "h": 334.6328125,
+              "w": 412.1953125,
+              "x": 431.3984375,
+              "y": -65.8125
+            },
+            {
+              "class": "native-wall-panel native-wood-4",
+              "h": 334.6328125,
+              "w": 229,
+              "x": 859.59375,
+              "y": -65.8125
+            },
+            {
+              "class": "native-wall-panel native-wood-5",
+              "h": 330.59375,
+              "w": 657.1953125,
+              "x": 431.3984375,
+              "y": 284.8203125
+            },
+            {
+              "class": "native-wall-panel native-wood-6",
+              "h": 243.7734375,
+              "w": 657.1953125,
+              "x": 431.3984375,
+              "y": 631.4140625
+            },
+            {
+              "class": "native-wall-panel native-wood-7",
+              "h": 351.265625,
+              "w": 657.1953125,
+              "x": 431.3984375,
+              "y": 891.1875
+            },
+            {
+              "class": "native-wall-panel native-concrete-1-2",
+              "h": 247.9140625,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 1647.8203125
+            },
+            {
+              "class": "native-wall-panel native-concrete-3",
+              "h": 345.0703125,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 1911.734375
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-4-5",
+              "h": 474.1796875,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 2272.8046875
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-6-7",
+              "h": 482.5,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 2762.984375
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-8-9",
+              "h": 393.0703125,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 3261.484375
+            }
+          ],
+          "width": 1280
+        },
+        {
+          "lang": "fr",
+          "mode": "mobile",
+          "broken": [],
+          "clipped": [],
+          "height": 844,
+          "overflow": false,
+          "overlaps": [],
+          "panels": [
+            {
+              "class": "native-wall-panel native-wood-1-2",
+              "h": 223.4296875,
+              "w": 358,
+              "x": 16,
+              "y": -1021.3125
+            },
+            {
+              "class": "native-wall-panel native-wood-3",
+              "h": 347.234375,
+              "w": 358,
+              "x": 16,
+              "y": -781.8828125
+            },
+            {
+              "class": "native-wall-panel native-wood-4",
+              "h": 609.6640625,
+              "w": 358,
+              "x": 16,
+              "y": -418.6484375
+            },
+            {
+              "class": "native-wall-panel native-wood-5",
+              "h": 429.7578125,
+              "w": 358,
+              "x": 16,
+              "y": 207.015625
+            },
+            {
+              "class": "native-wall-panel native-wood-6",
+              "h": 293.859375,
+              "w": 358,
+              "x": 16,
+              "y": 652.7734375
+            },
+            {
+              "class": "native-wall-panel native-wood-7",
+              "h": 290.34375,
+              "w": 358,
+              "x": 16,
+              "y": 962.6328125
+            },
+            {
+              "class": "native-wall-panel native-concrete-1-2",
+              "h": 224.5078125,
+              "w": 358,
+              "x": 16,
+              "y": 1796.9609375
+            },
+            {
+              "class": "native-wall-panel native-concrete-3",
+              "h": 249.0234375,
+              "w": 358,
+              "x": 16,
+              "y": 2037.46875
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-4-5",
+              "h": 629.28125,
+              "w": 358,
+              "x": 16,
+              "y": 2302.4921875
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-6-7",
+              "h": 452.71875,
+              "w": 358,
+              "x": 16,
+              "y": 2947.7734375
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-8-9",
+              "h": 313.4609375,
+              "w": 358,
+              "x": 16,
+              "y": 3416.4921875
+            }
+          ],
+          "width": 390
+        }
+      ],
+      "wall_panel_correction_recipe_artifacts": 110
+    },
+    {
+      "accepted_at": "2026-10-09T01:45:21.150506+00:00",
+      "content_sha256": "375c1e9f9ecb727659193b44a27bc09a0453229d9d01f77d88f2d71dac6775bb",
+      "stylesheet_sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f",
+      "native_visible_lines": 447,
+      "viewports": [
+        [
+          1280,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "loaded_images": 50,
+      "broken_images": 0,
+      "page_horizontal_overflow": false,
+      "clipped_live_labels": [],
+      "english_before_locales_gate": "source/en/acceptance.json",
+      "scope": "Source-preserving layout acceptance; source content differences remain flagged.",
+      "shared_stylesheet_sha256": "b21d68bbd53bf1e93bde5c9387d5bcbdde5f0317c810f38cce0f9d6041326090",
+      "preface_heading": "FR IMPORTANT",
+      "preface_native_title_and_badge": true,
+      "preface_background": "transparent",
+      "preface_paragraphs": 4,
+      "fcc_component": "HB-SPECIAL-FCC/two-column",
+      "fcc_mark": "assets/fcc-mark.svg",
+      "fcc_measures": 4,
+      "fcc_bold_labels": 2,
+      "fcc_desktop_columns": 2,
+      "fcc_mobile_columns": 1,
+      "lcd_icon_width_px": 72,
+      "lcd_icon_aspect_ratio": "native",
+      "lcd_browser_metrics": {
+        "desktop": {
+          "icons": [
+            {
+              "cell": 91.4453125,
+              "height": 77.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 42.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 78.8515625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 50.59375,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 41.140625,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 46.6953125,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "cell": 91.4453125,
+              "height": 36.96875,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false
+        },
+        "mobile": {
+          "icons": [
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            },
+            {
+              "contained": true,
+              "loaded": true,
+              "width": 72
+            }
+          ],
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "tableWidth": 640
+        }
+      },
+      "power_panel_css_frame": true,
+      "power_note_inset_desktop": true,
+      "power_mobile_labels": "shared readable stack",
+      "power_panel_checks": {
+        "desktop": {
+          "note_inside": true,
+          "note_position": "absolute",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        },
+        "mobile": {
+          "note_inside": true,
+          "note_position": "static",
+          "page_overflow": false,
+          "css_border": "2px",
+          "live_labels": 5
+        }
+      },
+      "lcd_mode_component": "HB-TABLE-LCD-MODE/two-state-three-action",
+      "lcd_mode_browser_metrics": {
+        "desktop": {
+          "imageContained": true,
+          "imageHeight": 425.984375,
+          "imageTableGap": 7.4140625,
+          "pageOverflow": false,
+          "rows": 6,
+          "rowspans": [
+            3,
+            3
+          ],
+          "tableHeight": 425.984375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "imageHeight": 279.21875,
+          "imageWidth": 144,
+          "pageOverflow": false,
+          "panelWidth": 358,
+          "stacked": true,
+          "tableWidth": 544,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "lcd_mode_artwork_unchanged": true,
+      "bracket_caution_list_metrics": {
+        "desktop": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        },
+        "mobile": {
+          "itemGap": 5.4375,
+          "items": 2,
+          "lists": 1,
+          "pageOverflow": false
+        }
+      },
+      "vertical_opening_component": "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback",
+      "vertical_opening_metrics": {
+        "desktop": {
+          "background": "rgba(0, 0, 0, 0)",
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.559321181646763,
+          "imageGap": 34.1640625,
+          "label": "Préparation avant l'installation:",
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 449.2265625,
+          "resultHeight": 310.7421875,
+          "resultLoaded": true,
+          "resultWidth": 173.8046875,
+          "toc": true
+        },
+        "mobile": {
+          "captionClipped": false,
+          "captionInside": true,
+          "displayRatio": 0.5593386985178981,
+          "nativeRatio": 0.559322033898305,
+          "pageOverflow": false,
+          "prepWidth": 358,
+          "resultHeight": 214.5390625,
+          "resultLoaded": true,
+          "resultWidth": 120,
+          "stacked": true
+        }
+      },
+      "vertical_artwork_unchanged": true,
+      "vertical_step_row_metrics": {
+        "desktop": {
+          "cards": [
+            {
+              "height": 312.875,
+              "imageHeight": 232.7109375,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678013898680633,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7090.8359375
+            },
+            {
+              "height": 363.7890625,
+              "imageHeight": 258.3515625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122289757779187,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7419.7109375
+            },
+            {
+              "height": 281.3203125,
+              "imageHeight": 201.15625,
+              "imageWidth": 623.203125,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098104707161722,
+              "width": 657.203125,
+              "x": 431.3984375,
+              "y": 7799.5
+            }
+          ],
+          "cols": "657.203px",
+          "overflow": false,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "cards": [
+            {
+              "height": 199.6953125,
+              "imageHeight": 120.984375,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.6779661016949152,
+              "ratio": 2.678031770631538,
+              "width": 358,
+              "x": 16,
+              "y": 2231.6796875
+            },
+            {
+              "height": 237.3203125,
+              "imageHeight": 134.3125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 2.4122137404580153,
+              "ratio": 2.4122847836202883,
+              "width": 358,
+              "x": 16,
+              "y": 2447.375
+            },
+            {
+              "height": 183.2890625,
+              "imageHeight": 104.578125,
+              "imageWidth": 324,
+              "loaded": true,
+              "nativeRatio": 3.0980392156862746,
+              "ratio": 3.098162259076647,
+              "width": 358,
+              "x": 16,
+              "y": 2700.6953125
+            }
+          ],
+          "cols": "358px",
+          "overflow": false,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "vertical_steps_full_width": true,
+      "wall_mount_heading_metrics": {
+        "desktop": {
+          "bullet": "none",
+          "chapterNavigation": true,
+          "font": "18.4px",
+          "headingBackground": "rgba(0, 0, 0, 0)",
+          "headingFits": true,
+          "headingPadding": "0px",
+          "introToSubtitle": 10.3984375,
+          "overflow": false,
+          "titleToIntro": 5.59375,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "bullet": "none",
+          "chapterNavigation": true,
+          "font": "18.4px",
+          "headingBackground": "rgba(0, 0, 0, 0)",
+          "headingFits": true,
+          "headingPadding": "0px",
+          "introToSubtitle": 10.3984375,
+          "overflow": false,
+          "titleToIntro": 5.59375,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "source_stylesheet_sha256": "11a90f298942e76fb9b937c3959cadecb3447ae73643119feb67954f4b95e49f",
+      "wood_opening_metrics": {
+        "desktop": {
+          "chapterNavigation": true,
+          "frame": "rgb(247, 247, 247)",
+          "labels": [
+            {
+              "font": "14.4px",
+              "inside": true,
+              "text": "Preparation before installation:"
+            },
+            {
+              "font": "12.6061px",
+              "inside": true,
+              "text": "VENDUS SÉPARÉMENT"
+            }
+          ],
+          "nativeAspect": 0.48677248677248675,
+          "overflow": false,
+          "parallel": true,
+          "prepWidth": 420.2109375,
+          "resultAspect": 0.48677278124072426,
+          "resultHeight": 421.125,
+          "resultLoaded": true,
+          "resultWidth": 204.9921875,
+          "stacked": false,
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        "mobile": {
+          "chapterNavigation": true,
+          "frame": "rgb(247, 247, 247)",
+          "labels": [
+            {
+              "font": "13.6px",
+              "inside": true,
+              "text": "Preparation before installation:"
+            },
+            {
+              "font": "10.74px",
+              "inside": true,
+              "text": "VENDUS SÉPARÉMENT"
+            }
+          ],
+          "nativeAspect": 0.48677248677248675,
+          "overflow": false,
+          "parallel": false,
+          "prepWidth": 358,
+          "resultAspect": 0.48677367037637714,
+          "resultHeight": 279.390625,
+          "resultLoaded": true,
+          "resultWidth": 136,
+          "stacked": true,
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      },
+      "wood_opening_artwork_unchanged": true,
+      "wood_preparation_live_labels": 2,
+      "native_wall_row_map": {
+        "wood": [
+          "1-2",
+          "3/4:1.8:1",
+          "5",
+          "6",
+          "7"
+        ],
+        "concrete": [
+          "preparation/result",
+          "1-2",
+          "3",
+          "4-5",
+          "6-7",
+          "8-9"
+        ]
+      },
+      "active_artwork": 50,
+      "unchanged_original_artwork": 44,
+      "wall_art_12x": {
+        "wood-5": {
+          "zoom": 12,
+          "changed_pixels": 133420,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            0,
+            211,
+            212,
+            213
+          ]
+        },
+        "wood-6": {
+          "zoom": 12,
+          "changed_pixels": 126219,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            0,
+            211,
+            212,
+            213
+          ]
+        },
+        "wood-7": {
+          "zoom": 12,
+          "changed_pixels": 127816,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            0,
+            211,
+            212,
+            213
+          ]
+        },
+        "concrete-4-5": {
+          "zoom": 12,
+          "changed_pixels": 191708,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            2,
+            3,
+            1057,
+            1058
+          ]
+        },
+        "concrete-6-7": {
+          "zoom": 12,
+          "changed_pixels": 175659,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            2,
+            3,
+            1057,
+            1058
+          ]
+        },
+        "concrete-8-9": {
+          "zoom": 12,
+          "changed_pixels": 195406,
+          "outside_reviewed_frame_bands": 0,
+          "removed_frame_paths": [
+            337,
+            338
+          ]
+        }
+      },
+      "wall_browser_qc": [
+        {
+          "lang": "fr",
+          "mode": "desktop",
+          "broken": [],
+          "clipped": [],
+          "height": 900,
+          "overflow": false,
+          "overlaps": [],
+          "panels": [
+            {
+              "class": "native-wall-panel native-wood-1-2",
+              "h": 245.84375,
+              "w": 657.1953125,
+              "x": 431.3984375,
+              "y": -327.65625
+            },
+            {
+              "class": "native-wall-panel native-wood-3",
+              "h": 334.6328125,
+              "w": 412.1953125,
+              "x": 431.3984375,
+              "y": -65.8125
+            },
+            {
+              "class": "native-wall-panel native-wood-4",
+              "h": 334.6328125,
+              "w": 229,
+              "x": 859.59375,
+              "y": -65.8125
+            },
+            {
+              "class": "native-wall-panel native-wood-5",
+              "h": 330.59375,
+              "w": 657.1953125,
+              "x": 431.3984375,
+              "y": 284.8203125
+            },
+            {
+              "class": "native-wall-panel native-wood-6",
+              "h": 243.7734375,
+              "w": 657.1953125,
+              "x": 431.3984375,
+              "y": 631.4140625
+            },
+            {
+              "class": "native-wall-panel native-wood-7",
+              "h": 351.265625,
+              "w": 657.1953125,
+              "x": 431.3984375,
+              "y": 891.1875
+            },
+            {
+              "class": "native-wall-panel native-concrete-1-2",
+              "h": 247.9140625,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 1647.8203125
+            },
+            {
+              "class": "native-wall-panel native-concrete-3",
+              "h": 345.0703125,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 1911.734375
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-4-5",
+              "h": 474.1796875,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 2272.8046875
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-6-7",
+              "h": 482.5,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 2762.984375
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-8-9",
+              "h": 393.0703125,
+              "w": 657.203125,
+              "x": 431.3984375,
+              "y": 3261.484375
+            }
+          ],
+          "width": 1280
+        },
+        {
+          "lang": "fr",
+          "mode": "mobile",
+          "broken": [],
+          "clipped": [],
+          "height": 844,
+          "overflow": false,
+          "overlaps": [],
+          "panels": [
+            {
+              "class": "native-wall-panel native-wood-1-2",
+              "h": 223.4296875,
+              "w": 358,
+              "x": 16,
+              "y": -1021.3125
+            },
+            {
+              "class": "native-wall-panel native-wood-3",
+              "h": 347.234375,
+              "w": 358,
+              "x": 16,
+              "y": -781.8828125
+            },
+            {
+              "class": "native-wall-panel native-wood-4",
+              "h": 609.6640625,
+              "w": 358,
+              "x": 16,
+              "y": -418.6484375
+            },
+            {
+              "class": "native-wall-panel native-wood-5",
+              "h": 429.7578125,
+              "w": 358,
+              "x": 16,
+              "y": 207.015625
+            },
+            {
+              "class": "native-wall-panel native-wood-6",
+              "h": 293.859375,
+              "w": 358,
+              "x": 16,
+              "y": 652.7734375
+            },
+            {
+              "class": "native-wall-panel native-wood-7",
+              "h": 290.34375,
+              "w": 358,
+              "x": 16,
+              "y": 962.6328125
+            },
+            {
+              "class": "native-wall-panel native-concrete-1-2",
+              "h": 224.5078125,
+              "w": 358,
+              "x": 16,
+              "y": 1796.9609375
+            },
+            {
+              "class": "native-wall-panel native-concrete-3",
+              "h": 249.0234375,
+              "w": 358,
+              "x": 16,
+              "y": 2037.46875
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-4-5",
+              "h": 629.28125,
+              "w": 358,
+              "x": 16,
+              "y": 2302.4921875
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-6-7",
+              "h": 452.71875,
+              "w": 358,
+              "x": 16,
+              "y": 2947.7734375
+            },
+            {
+              "class": "native-wall-panel native-wall-pair native-concrete-8-9",
+              "h": 313.4609375,
+              "w": 358,
+              "x": 16,
+              "y": 3416.4921875
+            }
+          ],
+          "width": 390
+        }
+      ],
+      "wall_panel_correction_recipe_artifacts": 110,
+      "solar_model_caption_single_line": true,
+      "solar_artwork_unchanged": true,
+      "solar_artwork_sha256": "d1dbc3ead370f54552830243ea50bc6a6e361505b9a1074e145b84adeda3d593",
+      "solar_source_physical_page": 32,
+      "solar_browser_metrics": {
+        "mobile": {
+          "language": "fr",
+          "size": "mobile",
+          "brokenImages": [],
+          "images": 50,
+          "labels": [
+            {
+              "clipped": false,
+              "contained": true,
+              "fontSize": "8px",
+              "line": "0",
+              "lineHeight": "9.6px",
+              "rect": {
+                "bottom": 18124.640625,
+                "height": 9.8828125,
+                "right": 170.6953125,
+                "width": 71.59375,
+                "x": 99.1015625,
+                "y": 18114.7578125
+              },
+              "text": "SolarSaga 500 X",
+              "textRects": [
+                {
+                  "bottom": 18124.3984375,
+                  "height": 9.5,
+                  "right": 160.8046875,
+                  "width": 61.703125,
+                  "x": 99.1015625,
+                  "y": 18114.8984375
+                }
+              ],
+              "whiteSpace": "nowrap"
+            },
+            {
+              "clipped": false,
+              "contained": true,
+              "fontSize": "8px",
+              "line": "1",
+              "lineHeight": "9.6px",
+              "rect": {
+                "bottom": 18172.578125,
+                "height": 9.8828125,
+                "right": 252.9453125,
+                "width": 29.828125,
+                "x": 223.1171875,
+                "y": 18162.6953125
+              },
+              "text": "DC8020",
+              "textRects": [
+                {
+                  "bottom": 18172.3359375,
+                  "height": 9.5,
+                  "right": 253.265625,
+                  "width": 30.1484375,
+                  "x": 223.1171875,
+                  "y": 18162.8359375
+                }
+              ],
+              "whiteSpace": "nowrap"
+            }
+          ],
+          "overlaps": [],
+          "pageOverflow": false,
+          "panel": {
+            "bottom": 18207.921875,
+            "height": 190.2578125,
+            "right": 374,
+            "width": 358,
+            "x": 16,
+            "y": 18017.6640625
+          },
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        "desktop": {
+          "language": "fr",
+          "size": "desktop",
+          "brokenImages": [],
+          "images": 50,
+          "labels": [
+            {
+              "clipped": false,
+              "contained": true,
+              "fontSize": "9.52945px",
+              "line": "0",
+              "lineHeight": "11.4353px",
+              "rect": {
+                "bottom": 15749.2578125,
+                "height": 18.140625,
+                "right": 715.390625,
+                "width": 131.4375,
+                "x": 583.953125,
+                "y": 15731.1171875
+              },
+              "text": "SolarSaga 500 X",
+              "textRects": [
+                {
+                  "bottom": 15745.46875,
+                  "height": 11.5,
+                  "right": 657.4140625,
+                  "width": 73.4609375,
+                  "x": 583.953125,
+                  "y": 15733.96875
+                }
+              ],
+              "whiteSpace": "nowrap"
+            },
+            {
+              "clipped": false,
+              "contained": true,
+              "fontSize": "9.52945px",
+              "line": "1",
+              "lineHeight": "11.4353px",
+              "rect": {
+                "bottom": 15837.265625,
+                "height": 18.140625,
+                "right": 866.375,
+                "width": 54.75,
+                "x": 811.625,
+                "y": 15819.125
+              },
+              "text": "DC8020",
+              "textRects": [
+                {
+                  "bottom": 15833.4765625,
+                  "height": 11.5,
+                  "right": 847.515625,
+                  "width": 35.890625,
+                  "x": 811.625,
+                  "y": 15821.9765625
+                }
+              ],
+              "whiteSpace": "nowrap"
+            }
+          ],
+          "overlaps": [],
+          "pageOverflow": false,
+          "panel": {
+            "bottom": 15902.140625,
+            "height": 349.265625,
+            "right": 1088.6015625,
+            "width": 657.203125,
+            "x": 431.3984375,
+            "y": 15552.875
+          },
+          "viewport": [
+            1280,
+            900
+          ]
+        }
+      },
+      "solar_footnote_policy": "native sold-separately wording retained in introductory prose; no extra footnote"
+    }
+  ],
+  "stylesheet_sha256": "10e56de00b95d526918841e8b87ebd72493f2fbbfbd903e371a0ca96dfd39076"
+}

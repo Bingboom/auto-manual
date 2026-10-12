@@ -1,0 +1,519 @@
+# System Workspace status contract: the curated half of /workspace/system/.
+#
+# Public page, public repository — write only what may be published. Internal
+# framing (gap narrative, resource needs) belongs to the Feishu internal page.
+# Numbers never appear in this file: every figure on the page is computed at
+# build time from docs/publish/publish_manifest.json, the execution ledger, the
+# corpus snapshot or the skeleton blueprints under docs/manifests/skeletons.
+#
+# Evidence grammar (checked by `python tools/rtd/system_workspace.py check`):
+#   pr:<repo>#<n>             merged pull request (verified with --online)
+#   file:<repo>:<path>        file or directory on main
+#   url:<https-url>           page answering 200 (verified with --online)
+#   rev:<REV-nn>=<status>     execution-ledger row and the status it had when verified
+#   ack:<who> <YYYY-MM-DD>「…」 operator confirmation; never an entry's only evidence
+# See code-as-doc/dev/rtd_manual_portal.md#system-workspace-page for the rules.
+#
+# Where each figure comes from, how often entries are re-reviewed, the snapshot
+# files and what shows when a source cannot be read are registered once, in
+# source_registry.yaml next to this file, not here.
+
+schema: hello-docs-system-workspace/v1
+verified_on: 2026-09-24
+
+repositories:
+  auto-manual: https://github.com/Bingboom/auto-manual
+  hello-docs: https://github.com/Bingboom/Hello-Docs
+
+vocabulary:
+  status:
+    available: 已在生产使用，有线上或交付产物、持续运行记录
+    validated: 在代表目标上跑通并有验收记录，覆盖尚未铺开
+    in_progress: 已有合入的实现，验收或覆盖未完成
+    planned: 已登记在方案或台账（须引用 REV 编号），尚无实现
+    blocked: 有已知阻塞，须写明阻塞项与重启条件
+    retired: 已停用或撤回；不计入能力，不上公开页
+    no_data: 没有可追溯的数据源；不显示数字
+  mode:
+    automated: 环节之间自动衔接，不需要人工搬运
+    manual: 能走通，但需要人工触发或衔接
+
+hero:
+  title: Hello Docs
+  subtitle: 先跑通网页交付与真实维护，再按实际需求补齐语料与来源治理
+  evidence:
+    - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
+
+# Current focus decides the page order: lanes marked now come first, next
+# after, and the cards and gates they name carry the lane's tag. A lane's
+# figures come from the publish manifest (publications: books by model x
+# region, REV-04 caliber; regions), the corpus snapshot or the skeleton
+# blueprints; its progress from the ledger gates or rows it lists. The focus
+# is the operator's call: re-confirm it whenever verified_on moves.
+focus:
+  note: 一条交付主线，语料与 SSOT 随实际需求补齐。先完成发布基线和真实维护，再逐步扩展共享与覆盖。
+  evidence:
+    - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
+    - "ack:夏冰 2026-09-26「按这个顺序 当下的系统建设布局 做一下 更清晰的布局版面的调整」"
+  lanes:
+    - id: web
+      horizon: now
+      title: 网页发布与维护闭环
+      goal: 先收口发布基线，再用真实修订验证发布、恢复与维护全过程
+      action: 收口 REV-07 → 完成 REV-09 修订、发布与恢复演练 → 验收 G1 → 开始 G2 维护试点
+      card: web_publishing
+      metrics: [publications, regions]
+      gates: [G1, G2]
+    - id: corpus
+      horizon: support
+      title: 语料库建设与管理
+      goal: 围绕下一批明确的型号、区域和语言补译、审核，让语料服务实际交付
+      action: 用 REV-18 记录真实命中与人工修正；以复用质量验证收益，不以句对数量代替验收
+      card: language
+      metrics: [corpus]
+      revs: [REV-11, REV-18, REV-35..REV-38]
+    - id: ssot
+      horizon: support
+      title: SSOT · 贯穿全程
+      goal: 每碰到一类实际数据，就明确来源、写入者、批准者和发布快照
+      action: 按需求扩展现有来源登记；无需先建完所有事实域、任务状态和审批系统
+      items: [agent_operations.source_registry]
+      revs: [REV-44]
+    - id: shared_ir
+      horizon: next
+      title: Shared IR（共享底稿）
+      goal: 先明确公共语义与各格式排版边界，再用代表目标验证共享收益
+      action: 完成 REV-39 边界设计；按 REV-40 及其依赖验收代表目标，再决定扩展。IDML 独立验收不阻塞 Web 交付
+      card: document_production
+      items: [document_production.shared_ir]
+      revs: [REV-39..REV-40]
+    - id: skeletons
+      horizon: later
+      title: 骨架与覆盖扩展
+      goal: 在生产和维护方式稳定后，减少新型号接入时复制模板的工作
+      action: 复用已经验证的生产方式，按产品线逐步扩展骨架和覆盖
+      card: content_foundation
+      items: [content_foundation.skeletons]
+      metrics: [skeletons]
+      revs: [REV-41..REV-43]
+    - id: multi_agent
+      horizon: deferred
+      title: 多 Agent · 按需再启动
+      goal: 当前只保留设计参考，不进入交付主线
+      action: 出现持续的交接或并发瓶颈后，再评估是否启动；不作为网页、语料、SSOT 或 Shared IR（共享底稿）的前置条件
+  regions: {EU: 欧规, US: 美规, UK: 英规, JP: 日规, KR: 韩规, CN: 中规, AU: 澳规, BR: 巴西规, TW: 台规}
+  skeleton_families:
+    - {family: MAIN, label: 便携电源}
+    - {family: BP, label: 电池包}
+    - {family: SOLAR, label: 太阳能板}
+    - {family: CHARGER, label: 充电器}
+
+capabilities:
+  - id: web_publishing
+    title: 网页发布
+    en: Web Publishing
+    status: available
+    summary: 在线手册按产品、市场、语言浏览；每次发布有版本和回执，每天自动校验
+    items:
+      - id: manual_center
+        label: 手册中心
+        status: available
+        note: 按产品、区域、语言进入在线手册
+        evidence:
+          - "url:https://ht-doc.readthedocs.io/"
+          - "file:auto-manual:tools/rtd/portal.py"
+      - id: search
+        label: 站内搜索
+        status: available
+        note: 按手册目录和章节关键词搜索
+        evidence:
+          - "pr:auto-manual#1133"
+      - id: locale_nav
+        label: 语言切换
+        status: available
+        note: 同一本手册在各语言版之间跳转
+        evidence:
+          - "pr:auto-manual#1073"
+      - id: receipt
+        label: 版本与部署回执
+        status: available
+        note: 线上内容与发布源逐文件对应，可回查到提交
+        evidence:
+          - "pr:auto-manual#1127"
+          - "url:https://ht-doc.readthedocs.io/manual-deployment.json"
+      - id: daily_check
+        label: 每日部署校验
+        status: available
+        note: 每天核对线上页面与发布源是否一致，出错自动开告警
+        evidence:
+          - "pr:auto-manual#1192"
+          - "pr:auto-manual#1193"
+          - "rev:REV-08=done"
+          - "file:auto-manual:.github/workflows/verify-web-deployment.yml"
+      - id: qr_entry
+        label: 印刷二维码入口
+        status: available
+        note: 印刷手册上的二维码进入对应在线手册，可单独统计
+        evidence:
+          - "pr:auto-manual#1160"
+      - id: analytics
+        label: 访问统计
+        status: available
+        note: 按入口和页面统计访问
+        evidence:
+          - "pr:auto-manual#1155"
+          - "pr:auto-manual#1163"
+
+  - id: language
+    title: 语言资产
+    en: Language Intelligence
+    status: in_progress
+    summary: 术语、句对和翻译规则逐步沉淀为可维护、可复用的语言资产
+    items:
+      - id: translation_memory
+        label: 翻译记忆库
+        status: available
+        note: 句对与术语集中在一个记忆库，构建和翻译都从这里取
+        evidence:
+          - "pr:auto-manual#521"
+          - "file:auto-manual:.agents/skills/bitable-translation-memory/SKILL.md"
+          - "file:auto-manual:tools/rtd_portal_assets/system_workspace_corpus.json"
+      - id: short_copy
+        label: 短文案自动取译文
+        status: available
+        note: 页面短文案按键从记忆库取对应语言，构建时写入
+        evidence:
+          - "file:auto-manual:tools/word/bundle_common.py"
+      - id: correction_reflow
+        label: 评审修正回收入库
+        status: validated
+        note: 评审中的修正整理成候选，经语言负责人审核后入库并回读
+        evidence:
+          - "pr:auto-manual#518"
+          - "rev:REV-11=done"
+      - id: pretranslation
+        label: 文档预翻译
+        status: in_progress
+        note: Word 与云文档按记忆库预填并高亮，剩余交人工；真实命中与修正记录尚待验收
+        evidence:
+          - "pr:auto-manual#371"
+          - "pr:auto-manual#746"
+          - "rev:REV-18=planned"
+      - id: terminology
+        label: 术语检查
+        status: in_progress
+        note: 构建检查按术语规则拦截不合规写法，日语规则已接入
+        evidence:
+          - "pr:auto-manual#1222"
+          - "file:auto-manual:data/terminology_rules.csv"
+
+  - id: document_production
+    title: 多格式生产
+    en: Document Production
+    status: in_progress
+    summary: 同一份内容产出网页、Word、PDF 和印刷用 IDML；印刷路径仍在验收
+    items:
+      - id: web
+        label: 网页手册
+        short: 网页
+        status: available
+        note: 在线手册由构建产出并发布
+        evidence:
+          - "file:hello-docs:docs/publish/publish_manifest.json"
+          - "pr:hello-docs#119"
+      - id: word
+        label: Word
+        short: Word
+        status: available
+        note: 评审稿与交付件由构建队列生成
+        evidence:
+          - "file:auto-manual:.github/workflows/feishu-draft-build-queue.yml"
+          - "file:auto-manual:configs/config.us.yaml"
+      - id: pdf
+        label: PDF（LaTeX 排版）
+        short: PDF
+        status: available
+        note: 由构建队列产出；出货印刷走 IDML
+        evidence:
+          - "file:auto-manual:tools/build_queue/build_execution.py"
+          - "file:auto-manual:.github/workflows/feishu-build-queue.yml"
+      - id: shared_ir
+        label: Shared IR（共享底稿）
+        status: validated
+        note: 代表手册的各格式从同一套语义组件生成；不代表版面逐像素一致
+        evidence:
+          - "pr:auto-manual#1057"
+          - "file:auto-manual:code-as-doc/dev/ir_document_closeout.md"
+      - id: idml
+        label: 印刷排版（IDML）
+        short: IDML
+        status: in_progress
+        note: 可导出可编辑的 IDML 交给设计；原生验收未完成，出货书仍有 InDesign 手工处理
+        evidence:
+          - "pr:auto-manual#548"
+          - "pr:auto-manual#615"
+          - "pr:auto-manual#955"
+          - "rev:REV-20=planned"
+
+  - id: content_foundation
+    title: 内容地基
+    en: Content Foundation
+    status: in_progress
+    summary: 产品数据、共享模板和插图资产集中维护，按型号、区域、语言组装手册
+    items:
+      - id: structured_data
+        label: 结构化产品数据
+        status: available
+        note: 规格书经人工确认后入库，构建直接取表内数值
+        evidence:
+          - "pr:auto-manual#496"
+          - "file:auto-manual:.agents/skills/spec-sheet-structured-intake/SKILL.md"
+          - "file:auto-manual:code-as-doc/reviews/jbp2000b_us_intake_order_2026-08.md"
+      - id: shared_templates
+        label: 共享模板与继承
+        status: available
+        note: 一套共享模板加家族配置继承，差异按区域、语言覆盖
+        evidence:
+          - "file:auto-manual:docs/templates/page_shared"
+          - "file:auto-manual:code-as-doc/manual_family_guide.md"
+      - id: skeletons
+        label: 产品骨架
+        status: in_progress
+        note: 电池包、太阳能板、充电器已由骨架生成清单；便携电源仍用区域家族清单；骨架库设计待批
+        evidence:
+          - "pr:auto-manual#936"
+          - "pr:auto-manual#983"
+          - "file:auto-manual:docs/manifests/skeletons"
+          - "file:auto-manual:docs/manifests/family/index.yaml"
+          - "file:auto-manual:code-as-doc/architecture/Product_Skeleton_Library_Design.md"
+      - id: reusable_blocks
+        label: 可复用内容组件
+        status: in_progress
+        note: 规格、符号、故障排除等参考类页面由数据驱动；说明类正文仍按语言分模板
+        evidence:
+          - "file:auto-manual:tools/csv_pages"
+          - "file:auto-manual:code-as-doc/architecture/Long_Form_Content_Block_Design.md"
+      - id: asset_library
+        label: 插图资产库
+        status: in_progress
+        note: 插图登记并做哈希校验；按目标的覆盖和去文字化仍在推进
+        evidence:
+          - "pr:auto-manual#662"
+          - "pr:auto-manual#670"
+          - "pr:auto-manual#1236"
+          - "file:auto-manual:code-as-doc/dev/asset_ai_master_intake_plan.md"
+
+  - id: review_backport
+    title: 评审回写
+    en: Review & Backport
+    status: in_progress
+    fold: true
+    summary: 评审意见回到受控的源头，不只改在生成的文档里
+    items:
+      - id: review
+        label: 评审分支与评审稿
+        status: available
+        note: 每本在评审的手册有独立评审分支，评审稿由构建生成
+        evidence:
+          - "file:auto-manual:.github/workflows/feishu-start-review.yml"
+          - "pr:hello-docs#12"
+      - id: change_detection
+        label: 评审差异识别
+        status: validated
+        note: 对比评审后的云文档与评审页，逐条列出改动
+        evidence:
+          - "pr:auto-manual#343"
+          - "file:auto-manual:.agents/skills/cloud-doc-backport-ops/SKILL.md"
+      - id: backport_pages
+        label: 回写评审页
+        status: validated
+        note: 改动以草稿 PR 回到评审分支，人工确认后合入
+        evidence:
+          - "pr:hello-docs#12"
+          - "pr:hello-docs#13"
+      - id: source_update
+        label: 回写源表与模板
+        status: in_progress
+        note: 源表写入须逐项审批；模板层的回流尚未完成
+        evidence:
+          - "file:auto-manual:tools/backport/orchestration.py"
+          - "file:auto-manual:code-as-doc/optimization_project.md"
+      - id: revision_ledger
+        label: 修订台账
+        status: in_progress
+        note: 评审修正逐条入账，用于统计回收情况
+        evidence:
+          - "pr:auto-manual#500"
+          - "pr:auto-manual#564"
+
+  - id: agent_operations
+    title: Agent 执行
+    en: Agent Operations
+    status: in_progress
+    fold: true
+    summary: Agent 可调用部分成熟能力，都是有边界、写入前须人工确认的受控操作；多 Agent 调度与任务续接尚未建设
+    items:
+      - id: im_control
+        label: 聊天指令
+        status: available
+        note: 在聊天中发起评审、构建草稿、发布和查询状态
+        evidence:
+          - "file:auto-manual:integrations/openclaw/README.md"
+          - "file:auto-manual:code-as-doc/openclaw_phase1_implementation_checklist.md"
+          - "ack:夏冰 2026-09-24「在用」"
+      - id: skills
+        label: 技能库
+        status: available
+        note: 入库、回写、翻译预处理、发布等操作写成可复用技能，Agent 按技能执行
+        evidence:
+          - "file:auto-manual:.agents/skills"
+          - "file:auto-manual:AGENTS.md"
+      - id: source_registry
+        label: 来源登记（SSOT）
+        status: validated
+        note: 每项事实以哪里为准、多久算过期、取不到时怎么显示，登记在一份文件里；系统建设页和交付物页按它取数，并在页面底部公开列出
+        evidence:
+          - "file:auto-manual:tools/rtd_portal_assets/source_registry.yaml"
+          - "file:auto-manual:code-as-doc/dev/ssot_source_registry_design.md"
+          - "rev:REV-44=done"
+          - "ack:夏冰 2026-09-25「验收」"
+      - id: agent_dispatch
+        label: 多 Agent 调度与任务续接
+        status: planned
+        note: 仅保留设计参考，当前暂不启动；出现持续交接或并发瓶颈后再评估，不作为网页交付前置条件
+        evidence:
+          - "rev:REV-45=planned"
+          - "file:auto-manual:code-as-doc/dev/multi_agent_dispatch_design.md"
+
+corpus:
+  # Counts only, from `python tools/rtd/system_workspace.py corpus-export`
+  # (read-only TM read); refresh monthly through a PR. The snapshot file and
+  # its freshness limit are the `corpus` domain of source_registry.yaml.
+  languages:
+    - {code: en, label: 英语}
+    - {code: zh, label: 简体中文}
+    - {code: zh-TW, label: 繁体中文}
+    - {code: fr, label: 法语}
+    - {code: es, label: 西班牙语}
+    - {code: de, label: 德语}
+    - {code: it, label: 意大利语}
+    - {code: uk, label: 乌克兰语}
+    - {code: ko, label: 韩语}
+    - {code: jp, label: 日语}
+    - {code: pt-BR, label: 巴西葡语}
+
+flow:
+  - from: 规格书
+    to: 结构化数据
+    status: available
+    mode: manual
+    note: 候选值须人工确认后才入库
+    evidence: ["pr:auto-manual#496"]
+  - from: 结构化数据
+    to: 模板组装
+    status: available
+    mode: automated
+    note: 同步数据后按家族配置组装页面
+    evidence: ["file:auto-manual:tools/data/snapshot.py", "file:auto-manual:.github/workflows/feishu-build-queue.yml"]
+  - from: 模板组装
+    to: 网页
+    status: available
+    mode: manual
+    note: 发布步骤由人执行，合入后自动上线
+    evidence: ["file:auto-manual:tools/publish_branch_assembly.py", "pr:hello-docs#119"]
+  - from: 模板组装
+    to: Word 与 PDF
+    status: available
+    mode: automated
+    note: 构建队列生成并上传
+    evidence: ["file:auto-manual:.github/workflows/feishu-draft-build-queue.yml"]
+  - from: 模板组装
+    to: IDML 印刷
+    status: in_progress
+    mode: manual
+    note: 导出后由设计在 InDesign 完成；原生验收未做
+    evidence: ["pr:auto-manual#615", "rev:REV-20=planned"]
+  - from: 翻译记忆库
+    to: 构建短文案
+    status: available
+    mode: automated
+    note: 构建时按键取对应语言的译文
+    evidence: ["file:auto-manual:tools/word/bundle_common.py"]
+  - from: 翻译记忆库
+    to: 文档预翻译
+    status: in_progress
+    mode: manual
+    note: 按记忆库预填并高亮，其余交人工翻译
+    evidence: ["pr:auto-manual#746", "rev:REV-18=planned"]
+  - from: 评审
+    to: 回写评审页
+    status: validated
+    mode: manual
+    note: 改动以草稿 PR 回到评审分支，人工确认后合入
+    evidence: ["pr:hello-docs#12", "pr:hello-docs#13"]
+  - from: 回写
+    to: 源表与模板
+    status: in_progress
+    mode: manual
+    note: 源表写入逐项审批；模板层回流未完成
+    evidence: ["file:auto-manual:tools/backport/orchestration.py"]
+  - from: 评审修正
+    to: 翻译记忆库
+    status: validated
+    mode: manual
+    note: 修正候选经语言负责人审核后入库并回读
+    evidence: ["pr:auto-manual#518", "rev:REV-11=done"]
+  - from: 发布
+    to: 运营观测
+    status: available
+    mode: automated
+    note: 每日部署校验与访问统计
+    evidence: ["pr:auto-manual#1192", "pr:auto-manual#1155"]
+  - from: Agent
+    to: 生产流程
+    status: in_progress
+    mode: manual
+    note: 聊天指令可触发评审、构建与发布；任务续接与多 Agent 调度尚未建设
+    evidence: ["file:auto-manual:integrations/openclaw/README.md"]
+  - from: 版本管理
+    to: 可追溯
+    status: available
+    mode: automated
+    note: 发布件带版本与源指纹，可回查到提交
+    evidence: ["pr:auto-manual#1127", "file:auto-manual:tools/release_manifest.py"]
+
+now_next:
+  source: "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
+  gates:
+    - {id: G1, label: 发布基线, revs: [REV-01..REV-12]}
+    - {id: G2, label: 维护试点, revs: [REV-13..REV-19]}
+    - {id: G3, label: 网页扩展, revs: [REV-21..REV-25, REV-27]}
+    - {id: IDML, label: 印刷独立验收, revs: [REV-20, REV-26], fold: true}
+    - {id: G4, label: 协作与服务准备, revs: [REV-29..REV-31], fold: true}
+  now_labels:
+    REV-07: 发布登记幂等与失败重试
+    REV-09: 代表目标修订、发布与恢复演练
+    REV-39: Shared IR（共享底稿）：共用内容结构边界摸底
+
+working_today:
+  - id: manual_center
+    label: 手册中心
+    note: 按产品、市场、语言浏览在线手册
+    page: index
+  - id: knowledge
+    label: 知识库与 AI 分享
+    note: 分享资料与实践记录
+    page: workspace/index
+
+# Skills and hooks: read from the tree at build time (.agents/skills,
+# .claude/skills, .claude/settings.json, .githooks/pre-push); nothing is
+# hand-listed here. The contract only maps skills to focus lanes (an empty list
+# shows the lane has no skill yet); unmapped skills are listed under 其他技能.
+# `check` warns about unregistered skills and hook scripts without tests.
+tooling:
+  note: Agent 可调用的技能和自动运行的钩子，构建时从仓库读取；未登记的技能和没有测试的钩子会标出来。
+  skill_lanes:
+    web: [hello-docs-pipeline-dispatch-triage, local-publish-queue-run]
+    corpus: [bitable-translation-memory, bilingual-tm-maintenance, lark-tm-translation-preprocess, manual-rewrite-with-tm]
+    shared_ir: []
+    skeletons: []

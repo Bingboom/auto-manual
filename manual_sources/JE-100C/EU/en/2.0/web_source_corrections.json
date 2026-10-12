@@ -1,0 +1,631 @@
+{
+  "schema_version": "source-asset-corrections/v1",
+  "source": {
+    "file": "16-0102-000467 HTE162100A-EUUK-JAK 说明书 RoHS REACH A0(1).pdf",
+    "sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621"
+  },
+  "review_status": "local-candidate-not-registry-promoted",
+  "method": "bounded source rendering at 12x; only enumerated table backdrops removed",
+  "assets": [
+    {
+      "key": "lcd_input",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_input.png",
+      "source_page": 7,
+      "bbox_pt": [
+        36,
+        130,
+        51,
+        140
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "d885d71e56e89be78deaaba7d1fe02c6d4d2c8ae4e92b21129fe302d5a44503d"
+    },
+    {
+      "key": "lcd_charge_time",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_charge_time.png",
+      "source_page": 7,
+      "bbox_pt": [
+        36,
+        146,
+        51,
+        156
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "30ca3526ad823eb0bcb86ed426556305c3a88f3822b9afe0b338faefadf663b5"
+    },
+    {
+      "key": "lcd_steady",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_steady.png",
+      "source_page": 7,
+      "bbox_pt": [
+        36,
+        163,
+        49,
+        176
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "6ae3372cbf05adfa1915451b65e5179de273c5db9dfa256f6702a025fa5ea142"
+    },
+    {
+      "key": "lcd_thermal",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_thermal.png",
+      "source_page": 7,
+      "bbox_pt": [
+        36,
+        186,
+        49,
+        199
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "d8afe79c89066a0c48cea82e68b7cc32175cfb8e7894793105dca8bafeaf3bcd"
+    },
+    {
+      "key": "lcd_energy",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_energy.png",
+      "source_page": 7,
+      "bbox_pt": [
+        37,
+        206,
+        49,
+        218
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "abffef2553a3ff4c6aec158c2eeca3c411a752983fcd9499d444b46363a635e0"
+    },
+    {
+      "key": "lcd_ring",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_ring.png",
+      "source_page": 7,
+      "bbox_pt": [
+        37,
+        228,
+        52,
+        244
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "116e805fbbb3afefab436e34075834edddf54bed96d38054072a9307acdb40c6"
+    },
+    {
+      "key": "lcd_low_battery",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_low_battery.png",
+      "source_page": 7,
+      "bbox_pt": [
+        39,
+        256,
+        48,
+        264
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "8aba48b4eeefd20e8cb0eaa4306c99e5bef4f3b00aacbe7624d3c987e9610e72"
+    },
+    {
+      "key": "lcd_percentage",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_percentage.png",
+      "source_page": 7,
+      "bbox_pt": [
+        33,
+        274,
+        53,
+        288
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "442522aad3e203194cd620402e723f7e7ba2735748e4bcefdf86289b3aa4c8f1"
+    },
+    {
+      "key": "lcd_discharge_time",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_discharge_time.png",
+      "source_page": 7,
+      "bbox_pt": [
+        36,
+        298,
+        53,
+        306
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "a6254ee6c2442338ce3be607854e610e87454464a34471c200a3e15b754504ac"
+    },
+    {
+      "key": "lcd_output",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_output.png",
+      "source_page": 7,
+      "bbox_pt": [
+        36,
+        316,
+        51,
+        327
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,108.156,334.0722)",
+          "d": "M0 0H-88.001C-89.824 0-91.316 1.492-91.316 3.315V204.522C-91.316 206.727-89.528 208.515-87.323 208.515H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "595a94ae122a1f50c02bd8b92ac70cbaa1548edf18365e0eb5eec9dbf41ccdac"
+    },
+    {
+      "key": "lcd_fault",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_fault.png",
+      "source_page": 8,
+      "bbox_pt": [
+        30,
+        25,
+        44,
+        39
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,101.5944,83.2995)",
+          "d": "M0 0H-82.022C-82.988 0-83.778 .79-83.778 1.756V60.206C-83.778 62.169-82.187 63.76-80.225 63.76H0Z",
+          "fill": "#ebecec"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,118.9549,237.81542)",
+          "d": "M0 0H-97.088C-98.041 0-98.821 .78-98.821 1.733V50.548C-98.821 51.7-97.887 52.635-96.734 52.635H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "9a4dcfb95f2780c03a70f9ad6c34f29b31c7bcab8165309018dc366ef8a22ad3"
+    },
+    {
+      "key": "lcd_high_temperature",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_high_temperature.png",
+      "source_page": 8,
+      "bbox_pt": [
+        33,
+        48,
+        43,
+        60
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,101.5944,83.2995)",
+          "d": "M0 0H-82.022C-82.988 0-83.778 .79-83.778 1.756V60.206C-83.778 62.169-82.187 63.76-80.225 63.76H0Z",
+          "fill": "#ebecec"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,118.9549,237.81542)",
+          "d": "M0 0H-97.088C-98.041 0-98.821 .78-98.821 1.733V50.548C-98.821 51.7-97.887 52.635-96.734 52.635H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "3bc177aa1ca91a3172263fd9ed24e529eca1def19489bd50408aad730da53c57"
+    },
+    {
+      "key": "lcd_low_temperature",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_low_temperature.png",
+      "source_page": 8,
+      "bbox_pt": [
+        33,
+        67,
+        43,
+        79
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,101.5944,83.2995)",
+          "d": "M0 0H-82.022C-82.988 0-83.778 .79-83.778 1.756V60.206C-83.778 62.169-82.187 63.76-80.225 63.76H0Z",
+          "fill": "#ebecec"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,118.9549,237.81542)",
+          "d": "M0 0H-97.088C-98.041 0-98.821 .78-98.821 1.733V50.548C-98.821 51.7-97.887 52.635-96.734 52.635H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "9a6f857384d84940df6a0a04569eb20f3327fb7608f822a3eec4fc3c6d8eede8"
+    },
+    {
+      "key": "lcd_discharging",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_discharging.png",
+      "source_page": 8,
+      "bbox_pt": [
+        43,
+        190,
+        51,
+        201
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,101.5944,83.2995)",
+          "d": "M0 0H-82.022C-82.988 0-83.778 .79-83.778 1.756V60.206C-83.778 62.169-82.187 63.76-80.225 63.76H0Z",
+          "fill": "#ebecec"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,118.9549,237.81542)",
+          "d": "M0 0H-97.088C-98.041 0-98.821 .78-98.821 1.733V50.548C-98.821 51.7-97.887 52.635-96.734 52.635H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "196dfcec907c1922ec559a59639f12677b94f0a40fef2163703bb512f93e2d27"
+    },
+    {
+      "key": "lcd_charging",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_charging.png",
+      "source_page": 8,
+      "bbox_pt": [
+        42,
+        206,
+        51,
+        219
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,101.5944,83.2995)",
+          "d": "M0 0H-82.022C-82.988 0-83.778 .79-83.778 1.756V60.206C-83.778 62.169-82.187 63.76-80.225 63.76H0Z",
+          "fill": "#ebecec"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,118.9549,237.81542)",
+          "d": "M0 0H-97.088C-98.041 0-98.821 .78-98.821 1.733V50.548C-98.821 51.7-97.887 52.635-96.734 52.635H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "65b2acf888574217b4837b443b6a2ef962d8752080ec2a152c7d25aa149fd7ce"
+    },
+    {
+      "key": "lcd_watts",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_watts.png",
+      "source_page": 8,
+      "bbox_pt": [
+        44,
+        227,
+        51,
+        234
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,101.5944,83.2995)",
+          "d": "M0 0H-82.022C-82.988 0-83.778 .79-83.778 1.756V60.206C-83.778 62.169-82.187 63.76-80.225 63.76H0Z",
+          "fill": "#ebecec"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,118.9549,237.81542)",
+          "d": "M0 0H-97.088C-98.041 0-98.821 .78-98.821 1.733V50.548C-98.821 51.7-97.887 52.635-96.734 52.635H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "7da3de69f1cc2e3d06cb208ca58dc282e30d4251ce1332322079c8637c2f1433"
+    },
+    {
+      "key": "lcd_health",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_health.png",
+      "source_page": 9,
+      "bbox_pt": [
+        32,
+        35,
+        56,
+        45
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,116.02,82.42981)",
+          "d": "M0 0H-96.931C-97.97 0-98.821 .851-98.821 1.89V60.389C-98.821 61.647-97.801 62.667-96.544 62.667H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "e97ce3a6dcc8de61459628138749323ace0aedf4472ab94c5f54e8c5a22fa7b7"
+    },
+    {
+      "key": "lcd_temperature",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/lcd_temperature.png",
+      "source_page": 9,
+      "bbox_pt": [
+        32,
+        65,
+        56,
+        73
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,116.02,82.42981)",
+          "d": "M0 0H-96.931C-97.97 0-98.821 .851-98.821 1.89V60.389C-98.821 61.647-97.801 62.667-96.544 62.667H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "scale": 12,
+      "sha256": "60c5cbfe5f8497b1ea4bdf9a6c2c0ed58670557da37738e7b52112279c29ad72"
+    },
+    {
+      "key": "symbol_warning",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_warning.png",
+      "source_page": 5,
+      "bbox_pt": [
+        24,
+        145,
+        41,
+        160
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,157.6204,226.42722)",
+          "d": "M0 0H-26.247C-27.549 0-28.604 1.055-28.604 2.357V87.145C-28.604 88.447-27.549 89.503-26.247 89.503H0Z",
+          "fill": "#f2f2f3"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,46.8547,306.2986)",
+          "d": "M0 0H-24.21C-25.961 0-27.381 1.419-27.381 3.17V165.931C-27.381 167.682-25.961 169.102-24.21 169.102H0Z",
+          "fill": "#f2f2f3"
+        }
+      ],
+      "scale": 12,
+      "sha256": "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d"
+    },
+    {
+      "key": "symbol_manual",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_manual.png",
+      "source_page": 5,
+      "bbox_pt": [
+        25,
+        162.3,
+        41,
+        174
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,157.6204,226.42722)",
+          "d": "M0 0H-26.247C-27.549 0-28.604 1.055-28.604 2.357V87.145C-28.604 88.447-27.549 89.503-26.247 89.503H0Z",
+          "fill": "#f2f2f3"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,46.8547,306.2986)",
+          "d": "M0 0H-24.21C-25.961 0-27.381 1.419-27.381 3.17V165.931C-27.381 167.682-25.961 169.102-24.21 169.102H0Z",
+          "fill": "#f2f2f3"
+        }
+      ],
+      "scale": 12,
+      "sha256": "e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61"
+    },
+    {
+      "key": "symbol_weee",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_weee.png",
+      "source_page": 5,
+      "bbox_pt": [
+        24,
+        185,
+        42,
+        211
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,157.6204,226.42722)",
+          "d": "M0 0H-26.247C-27.549 0-28.604 1.055-28.604 2.357V87.145C-28.604 88.447-27.549 89.503-26.247 89.503H0Z",
+          "fill": "#f2f2f3"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,46.8547,306.2986)",
+          "d": "M0 0H-24.21C-25.961 0-27.381 1.419-27.381 3.17V165.931C-27.381 167.682-25.961 169.102-24.21 169.102H0Z",
+          "fill": "#f2f2f3"
+        }
+      ],
+      "scale": 12,
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    {
+      "key": "symbol_battery_weee",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_battery_weee.png",
+      "source_page": 5,
+      "bbox_pt": [
+        24,
+        256,
+        42,
+        276
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,157.6204,226.42722)",
+          "d": "M0 0H-26.247C-27.549 0-28.604 1.055-28.604 2.357V87.145C-28.604 88.447-27.549 89.503-26.247 89.503H0Z",
+          "fill": "#f2f2f3"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,46.8547,306.2986)",
+          "d": "M0 0H-24.21C-25.961 0-27.381 1.419-27.381 3.17V165.931C-27.381 167.682-25.961 169.102-24.21 169.102H0Z",
+          "fill": "#f2f2f3"
+        }
+      ],
+      "scale": 12,
+      "sha256": "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74"
+    },
+    {
+      "key": "symbol_dismantle",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_dismantle.png",
+      "source_page": 5,
+      "bbox_pt": [
+        135,
+        145,
+        151,
+        160.2
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,157.6204,226.42722)",
+          "d": "M0 0H-26.247C-27.549 0-28.604 1.055-28.604 2.357V87.145C-28.604 88.447-27.549 89.503-26.247 89.503H0Z",
+          "fill": "#f2f2f3"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,46.8547,306.2986)",
+          "d": "M0 0H-24.21C-25.961 0-27.381 1.419-27.381 3.17V165.931C-27.381 167.682-25.961 169.102-24.21 169.102H0Z",
+          "fill": "#f2f2f3"
+        }
+      ],
+      "scale": 12,
+      "sha256": "f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8",
+      "crop_correction": "Exclude neighboring table rule at y=161.0989pt; preserve original icon ending at y=159.5117pt."
+    },
+    {
+      "key": "symbol_fire",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_fire.png",
+      "source_page": 5,
+      "bbox_pt": [
+        135,
+        162,
+        151,
+        176.3
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,157.6204,226.42722)",
+          "d": "M0 0H-26.247C-27.549 0-28.604 1.055-28.604 2.357V87.145C-28.604 88.447-27.549 89.503-26.247 89.503H0Z",
+          "fill": "#f2f2f3"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,46.8547,306.2986)",
+          "d": "M0 0H-24.21C-25.961 0-27.381 1.419-27.381 3.17V165.931C-27.381 167.682-25.961 169.102-24.21 169.102H0Z",
+          "fill": "#f2f2f3"
+        }
+      ],
+      "scale": 12,
+      "sha256": "5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941",
+      "crop_correction": "Preserve complete original circle ending at y=175.6837pt; exclude next table rule at y=177.5805pt."
+    },
+    {
+      "key": "symbol_children",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_children.png",
+      "source_page": 5,
+      "bbox_pt": [
+        135,
+        179,
+        151,
+        195
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,157.6204,226.42722)",
+          "d": "M0 0H-26.247C-27.549 0-28.604 1.055-28.604 2.357V87.145C-28.604 88.447-27.549 89.503-26.247 89.503H0Z",
+          "fill": "#f2f2f3"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,46.8547,306.2986)",
+          "d": "M0 0H-24.21C-25.961 0-27.381 1.419-27.381 3.17V165.931C-27.381 167.682-25.961 169.102-24.21 169.102H0Z",
+          "fill": "#f2f2f3"
+        }
+      ],
+      "scale": 12,
+      "sha256": "e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab"
+    },
+    {
+      "key": "symbol_li_ion",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_li_ion.png",
+      "source_page": 5,
+      "bbox_pt": [
+        135,
+        200,
+        152,
+        220
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,157.6204,226.42722)",
+          "d": "M0 0H-26.247C-27.549 0-28.604 1.055-28.604 2.357V87.145C-28.604 88.447-27.549 89.503-26.247 89.503H0Z",
+          "fill": "#f2f2f3"
+        },
+        {
+          "transform": "matrix(1,0,0,-1,46.8547,306.2986)",
+          "d": "M0 0H-24.21C-25.961 0-27.381 1.419-27.381 3.17V165.931C-27.381 167.682-25.961 169.102-24.21 169.102H0Z",
+          "fill": "#f2f2f3"
+        }
+      ],
+      "scale": 12,
+      "sha256": "81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804"
+    },
+    {
+      "key": "operation_lcd",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/operation_lcd.png",
+      "source_page": 10,
+      "bbox_pt": [
+        33,
+        223,
+        87,
+        320
+      ],
+      "removed_layout_paths": [],
+      "scale": 12,
+      "sha256": "3bfea24fa9b667706e1b505020bcce2ea4df4f7b59702f9491466c992209c6ac"
+    },
+    {
+      "key": "symbol_purchase",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/symbol_purchase.png",
+      "source_page": 6,
+      "bbox_pt": [
+        18.6,
+        329,
+        27.5,
+        337.4
+      ],
+      "removed_layout_paths": [],
+      "scale": 12,
+      "sha256": "02bb73ccbdbb42c043b769decd554886fcaa3b5d36b6b2570128a94540a35bb3"
+    }
+  ]
+}

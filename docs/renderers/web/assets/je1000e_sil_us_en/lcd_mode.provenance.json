@@ -1,0 +1,13 @@
+{
+  "source_pdf": "Jackery FridgeGuard User Manual V2.0-2026-07-29.pdf",
+  "source_pdf_sha256": "537939d0d62b0cf0d3f91b432f8114e566aeb69b1267d2468410ee4d3f8b0fb1",
+  "physical_page": 9,
+  "bbox_pt": [
+    27,
+    305,
+    101,
+    463
+  ],
+  "path": "docs/renderers/web/assets/je1000e_sil_us_en/lcd_mode.png",
+  "sha256": "e4d9be8aab4ba8beee23c037d3c0c59edf7c849289e31948be6b75879483d7c8"
+}

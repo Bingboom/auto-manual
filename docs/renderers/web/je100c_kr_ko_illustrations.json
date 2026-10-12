@@ -1,0 +1,150 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-100C",
+  "region": "KR",
+  "language": "ko",
+  "source_pdf_sha256": "3fdf64e8769f53b8f85c6cb1444ce368fb4e721e94ca2195a2a7ef69fcf26cd9",
+  "source_pdf_name": "16-0102-000273 HTE162100A-KR-JAK 说明书 RoHS REACH-V0.3-Q.pdf",
+  "illustrations": [
+    {
+      "replaces": [
+        "overview.png"
+      ],
+      "path": "assets/je100c_kr_ko/overview.png",
+      "sha256": "e9ee37349affa04ca42f0a4db93b706e28dffde688ec61c7e4b69de8bec261c6",
+      "source_page": 4,
+      "bbox_pt": [
+        18.333333333333332,
+        181.66666666666666,
+        238.0,
+        325.6666666666667
+      ]
+    },
+    {
+      "replaces": [
+        "lcd1.png"
+      ],
+      "path": "assets/je100c_kr_ko/lcd1.png",
+      "sha256": "b95da6a98e216035f9ff2a031225001a0c312a1517d9bf8397386d6bbd2f9ac1",
+      "source_page": 5,
+      "bbox_pt": [
+        47.333333333333336,
+        54.333333333333336,
+        220.66666666666666,
+        125.66666666666667
+      ]
+    },
+    {
+      "replaces": [
+        "lcd2.png"
+      ],
+      "path": "assets/je100c_kr_ko/lcd2.png",
+      "sha256": "e83c1fe1a0291e52e153b810945ff8366f6c8f5275c6d1337e7a26f52c918a6e",
+      "source_page": 6,
+      "bbox_pt": [
+        23.333333333333332,
+        97.0,
+        223.33333333333334,
+        162.33333333333334
+      ]
+    },
+    {
+      "replaces": [
+        "lcd3.png"
+      ],
+      "path": "assets/je100c_kr_ko/lcd3.png",
+      "sha256": "ea967c05fec72b11d24635e889f8d37b1816419892f342525fd55b15945908c1",
+      "source_page": 6,
+      "bbox_pt": [
+        48.333333333333336,
+        229.66666666666666,
+        174.66666666666666,
+        284.0
+      ]
+    },
+    {
+      "replaces": [
+        "output.png"
+      ],
+      "path": "assets/je100c_kr_ko/output.png",
+      "sha256": "14490170ccbece7c3f6d224f075a6e27302840e1ec24f379fe5320c509176599",
+      "source_page": 7,
+      "bbox_pt": [
+        18.0,
+        46.666666666666664,
+        237.66666666666666,
+        136.33333333333334
+      ]
+    },
+    {
+      "replaces": [
+        "energy.png"
+      ],
+      "path": "assets/je100c_kr_ko/energy.png",
+      "sha256": "4b00aa91e7501b497dd55b75e985d157543bb7c06cca2c77e4d456e75118b9d4",
+      "source_page": 7,
+      "bbox_pt": [
+        18.0,
+        216.66666666666666,
+        237.66666666666666,
+        328.3333333333333
+      ]
+    },
+    {
+      "replaces": [
+        "charging_ac.png"
+      ],
+      "path": "assets/je100c_kr_ko/charging_ac.png",
+      "sha256": "8c10867006121f5883268e5e6c1729c40a00550a0331481662d1791812d80211",
+      "source_page": 8,
+      "bbox_pt": [
+        15.666666666666666,
+        272.6666666666667,
+        235.33333333333334,
+        350.6666666666667
+      ]
+    },
+    {
+      "replaces": [
+        "charging_solar.png"
+      ],
+      "path": "assets/je100c_kr_ko/charging_solar.png",
+      "sha256": "cf15c4a4d49e557e2370055d1cafb4feffc8d17c262f36927e6dcdaed80266b7",
+      "source_page": 9,
+      "bbox_pt": [
+        15.333333333333334,
+        58.0,
+        234.33333333333334,
+        147.0
+      ]
+    },
+    {
+      "replaces": [
+        "charging_car.png"
+      ],
+      "path": "assets/je100c_kr_ko/charging_car.png",
+      "sha256": "e5a43298272d2518b38a653e2c4afdd474d44fb3f94b6112580b5e16572b38b9",
+      "source_page": 9,
+      "bbox_pt": [
+        16.0,
+        210.33333333333334,
+        235.33333333333334,
+        318.3333333333333
+      ]
+    },
+    {
+      "replaces": [
+        "operation_lcd.png"
+      ],
+      "path": "assets/je100c_kr_ko/operation_lcd.png",
+      "sha256": "cb69d1ce4efb2390b46a921a94b07c89dd18979b9cc1bab3b8a83c04c6365581",
+      "source_page": 8,
+      "bbox_pt": [
+        30.0,
+        60.0,
+        86.66666666666667,
+        159.33333333333334
+      ]
+    }
+  ]
+}

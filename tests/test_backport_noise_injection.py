@@ -26,7 +26,7 @@ import re
 import unittest
 from pathlib import Path
 
-from tools.cloud_doc_backport import build_report
+from tools.backport.cloud_doc import build_report
 
 
 def _report(baseline: str, fetched: str, *, doc_type: str = "review") -> dict:

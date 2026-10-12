@@ -1,0 +1,18 @@
+[validate_config] OK
+[validate_layout_params] OK
+[validate_spec_master] OK
+[build] validating config...
+[build] validating layout params...
+[build] target: model='JE-1000F', region='US', lang='en'
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/en/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/fr/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/es/07_extra_battery.rst
+[build] Staged 37 frozen attachment alias(es) across 0 review file(s)
+[build] Prepared bundle: /Users/pika/.codex/worktrees/6985/auto-manual2/docs/_build/JE-1000F/US/en/rst
+[build] Bundle source: review
+[check] OK
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 /Users/pika/.codex/worktrees/6985/auto-manual2/tools/validate_config.py --config /Users/pika/.codex/worktrees/6985/auto-manual2/configs/config.us-en.yaml
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 /Users/pika/.codex/worktrees/6985/auto-manual2/tools/validate_layout_params.py --csv /Users/pika/.codex/worktrees/6985/auto-manual2/data/layout_params.csv
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 /Users/pika/.codex/worktrees/6985/auto-manual2/tools/validate_spec_master.py --config /Users/pika/.codex/worktrees/6985/auto-manual2/configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --source auto
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 /Users/pika/.codex/worktrees/6985/auto-manual2/tools/build_docs.py --config /Users/pika/.codex/worktrees/6985/auto-manual2/configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --source auto --prepare-only --clean --no-open
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 /Users/pika/.codex/worktrees/6985/auto-manual2/tools/check_docs.py --config /Users/pika/.codex/worktrees/6985/auto-manual2/configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2

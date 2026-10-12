@@ -5,7 +5,8 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from tools import rtd_deployment_receipt, write_web_publish_html_link
+from tools import write_web_publish_html_link
+from tools.rtd import deployment_receipt as rtd_deployment_receipt
 from tools.write_web_publish_html_link import (
     latest_web_publish_metadata,
     persist_rtd_url,

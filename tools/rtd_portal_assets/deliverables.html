@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="说明书工作台：生产结果、资产引用与回流复用证据，按目标查找多格式交付物。">
+  <title>说明书工作台</title>
+  <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/deliverables.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/manual-workbench.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/production-evidence.css', 1) }}">
+  <script defer src="{{ pathto('_static/manual-workbench.js', 1) }}"></script>
+  <script defer src="{{ pathto('_static/machine-surface-stats.js', 1) }}"></script>
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+<body class="app system-workspace deliverables">
+{%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
+{%- macro web_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip" href="{{ pathto(item.docname)|e }}" title="{{ item.title|e }}"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
+{%- macro feishu_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip is-feishu" href="{{ item.url|e }}" title="{{ item.title|e }}（飞书，需登录）" target="_blank" rel="noopener"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
+{{ site_sidebar('deliverables', {'share': has_share, 'system': system_entry, 'deliverables': True, 'design': design_entry, 'data': data_entry}) }}
+<div class="app-content">
+  {{ site_topbar('知识库', '说明书工作台') }}
+
+  <main id="top">
+    <section class="wb-hero page-head">
+      <div>
+      <h1>说明书工作台</h1>
+      <p>看交付成果、用共享资产、跟进生产与修订。</p></div>
+    </section>
+
+    {% include 'workbench_summary.html' %}
+
+    <nav class="page-tabs" role="tablist" aria-label="工作台分类">
+      <a role="tab" href="#deliverables" data-tab="deliverables" aria-selected="true">交付物</a>
+      <a role="tab" href="#work-entries" data-tab="work-entries">工作入口</a>
+      <a role="tab" href="#production-evidence" data-tab="production-evidence">生产与资产</a>
+    </nav>
+
+    <div class="tab-panel" id="deliverables" role="tabpanel" aria-label="交付物">
+
+    <section class="sw-section" id="deliverables-matrix" aria-labelledby="deliverables-title">
+      <div class="dl-section-title"><h2 id="deliverables-title">交付物矩阵</h2><p>按型号与区域查找 · 点语言标签打开对应版本</p></div>
+      <div class="dl-toolbar">
+        <label class="dl-select"><span>型号</span><select id="dl-model"><option value="">全部型号</option>{% for m in models %}<option value="{{ m.model|e }}">{{ m.model|e }}{% if m.name %} · {{ m.name|e }}{% endif %}</option>{% endfor %}</select></label>
+        <label class="dl-select"><span>区域</span><select id="dl-region"><option value="">全部区域</option>{% for r in regions %}<option value="{{ r.code|e }}">{{ r.label|e }}</option>{% endfor %}</select></label>
+        <div class="dl-meta">
+          <span>网页手册：{% if web_missing %}{{ fallbacks.publications|e }}{% else %}发布清单{% if last_published %} · 目录中最近构建 {{ last_published|e }}{% endif %}{% endif %}</span>
+          <span>印刷交付包、Word 云文档：{% if snapshot_date %}飞书快照 {{ snapshot_date|e }}{% else %}{{ fallbacks.deliverables_feishu|e }}{% endif %}{{ stale_mark(stale) }}</span>
+        </div>
+      </div>
+      {%- if models %}
+      <p class="dl-hint">点标签即可打开：<span class="dl-chip"><b>EN</b>2.5</span> 是本站的网页手册，<span class="dl-chip is-feishu"><b>整本</b>1.0</span> 是飞书知识库里的文档（新窗口打开，需登录飞书）。</p>
+      <div class="dl-table-wrap" role="region" aria-label="交付物矩阵，可横向滚动" tabindex="0">
+        <table class="dl-table">
+          <caption class="wb-sr-only">按型号分组、区域分行的网页手册、印刷交付包与 Word 云文档</caption>
+          <thead><tr><th scope="col">区域</th><th scope="col">网页手册</th><th scope="col">印刷交付包<small>IDML + PDF</small></th><th scope="col">Word 云文档</th></tr></thead>
+          {%- for m in models %}
+          <tbody data-model="{{ m.model|e }}">
+            <tr class="dl-model"><th colspan="4"><b>{{ m.model|e }}</b>{% if m.name %}<span>{{ m.name|e }}</span>{% endif %}</th></tr>
+            {%- for row in m.rows %}
+            <tr data-region="{{ row.region|e }}">
+              <td class="dl-region">{{ row.region_label|e }}</td>
+              <td data-label="网页手册">{{ web_chips(row.web) }}</td>
+              <td data-label="印刷交付包">{{ feishu_chips(row.print) }}</td>
+              <td data-label="Word 云文档">{{ feishu_chips(row.word) }}</td>
+            </tr>
+            {%- endfor %}
+          </tbody>
+          {%- endfor %}
+        </table>
+      </div>
+      <p class="dl-empty" id="dl-empty" hidden>没有符合筛选条件的交付物。</p>
+      {%- else %}
+      <div class="empty-state">{% if web_missing and feishu_missing %}<h3>Unavailable</h3><p>发布清单和飞书快照当前都不可读。</p>{% elif web_missing or feishu_missing %}<h3>Unavailable</h3><p>部分来源不可读；可读来源暂无交付物。</p>{% else %}<h3>0 个交付物</h3><p>当前有效快照没有交付物。</p>{% endif %}</div>
+      {%- endif %}
+      <p class="dl-note">每个标签是一个语言版本和它的版本号，“整本”表示多种语言合在一本。PDF 在印刷交付包的压缩包里。</p>
+    </section>
+    </div>
+
+    <div class="tab-panel" id="work-entries" role="tabpanel" aria-label="工作入口">
+      {% include 'manual_workbench.html' %}
+    </div>
+
+    <div class="tab-panel" id="production-evidence" role="tabpanel" aria-label="生产与资产">
+      {% include 'production_evidence.html' %}
+      <details class="pe-system-entry" id="more-evidence"><summary>更多数据：周期活动、资产总览与统计口径</summary>
+        {% include 'production_evidence_details.html' %}
+      </details>
+    </div>
+
+    <footer>
+      <span>页面构建日期 {{ build_date|e }}</span>
+      <span>数据来源：发布清单 · 飞书文档构建表快照</span>
+    </footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  function revealTarget(hash = location.hash) {
+    const target = document.getElementById(hash.slice(1));
+    if (!target) return;
+    for (let parent = target; parent; parent = parent.parentElement) {
+      if (parent.tagName === "DETAILS") parent.open = true;
+    }
+    target.scrollIntoView({block: "start"});
+  }
+  window.addEventListener("hashchange", () => revealTarget());
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (link && link.hash === location.hash) revealTarget(link.hash);
+  });
+  revealTarget();
+  const model = document.getElementById("dl-model");
+  const region = document.getElementById("dl-region");
+  const empty = document.getElementById("dl-empty");
+  const groups = [...document.querySelectorAll(".dl-table tbody")];
+  if (!model || !region || !empty) return;
+  function refresh() {
+    let shown = 0;
+    groups.forEach((group) => {
+      const modelMatch = !model.value || group.dataset.model === model.value;
+      let rows = 0;
+      group.querySelectorAll("tr[data-region]").forEach((row) => {
+        const visible = modelMatch && (!region.value || row.dataset.region === region.value);
+        row.hidden = !visible;
+        if (visible) rows += 1;
+      });
+      group.hidden = rows === 0;
+      shown += rows;
+    });
+    empty.hidden = shown !== 0;
+  }
+  model.addEventListener("change", refresh);
+  region.addEventListener("change", refresh);
+})();
+</script>
+{{ site_script() }}
+</body>
+</html>

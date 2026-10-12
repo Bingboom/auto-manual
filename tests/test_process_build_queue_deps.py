@@ -1,0 +1,299 @@
+from __future__ import annotations
+
+from contextlib import redirect_stdout
+from dataclasses import replace
+import inspect
+import io
+import os
+from pathlib import Path
+import sys
+import tempfile
+from types import SimpleNamespace
+import unittest
+from unittest import mock
+
+from tools.build_queue import process_build_queue, process_build_queue_services, bound_runtime as queue_bound_runtime, group_processing as queue_group_processing
+from tools.build_queue.process_build_queue_deps import default_queue_deps
+from tools.phase2_support import LarkCliSource
+from tools.utils.path_utils import PathSegments, review_dir_of
+
+
+class TestBuildQueueDefaultBoundaries(unittest.TestCase):
+    def test_snapshot_entry_keeps_keyword_only_contract_and_dynamic_runner(self) -> None:
+        signature = inspect.signature(process_build_queue.sync_phase2_snapshot_before_queue)
+        for name in ("config_path", "data_root"):
+            self.assertEqual(inspect.Parameter.KEYWORD_ONLY, signature.parameters[name].kind)
+            self.assertIs(inspect.Parameter.empty, signature.parameters[name].default)
+        config_path = Path("configs/config.us-en.yaml")
+        expected = [
+            sys.executable, str(process_build_queue.ROOT / "build.py"), "sync-data",
+            "--config", str(config_path), "--data-root", "snapshot",
+        ]
+        for _ in range(2):
+            with mock.patch.object(queue_bound_runtime, "_run_command_impl") as runner:
+                process_build_queue.sync_phase2_snapshot_before_queue(
+                    config_path=config_path, data_root="snapshot",
+                )
+            self.assertEqual(mock.call(
+                expected, cwd=process_build_queue.ROOT, prefix="[build-queue]", env=None,
+                command_failure_message=queue_bound_runtime.command_failure_message,
+            ), runner.call_args)
+
+    def test_default_queue_client_fetches_without_changing_empty_result_output(self) -> None:
+        cfg = {"sync": {"phase2": {
+            "provider": "lark_cli", "cli_bin": sys.executable,
+            "base_token_env": "QUEUE_DEPS_TEST_BASE",
+            "document_link": {"table_id_env": "QUEUE_DEPS_TEST_TABLE"},
+        }}}
+        output = io.StringIO()
+        with mock.patch.dict(os.environ, {
+            "QUEUE_DEPS_TEST_BASE": "app-test", "QUEUE_DEPS_TEST_TABLE": "tbl-test",
+            "AUTO_MANUAL_LOG_LEVEL": "INFO",
+        }), mock.patch.object(LarkCliSource, "fetch_records_with_ids", return_value=[]) as fetch:
+            with redirect_stdout(output):
+                result = process_build_queue.process_build_queue(
+                    cfg=cfg, config_path=Path("config.yaml"), data_root=None, dry_run=True,
+                )
+        self.assertEqual(0, result)
+        fetch.assert_called_once_with(base_token="app-test", table_id="tbl-test", view_id=None)
+        self.assertEqual("[build-queue] No pending build tasks found.\n", output.getvalue())
+
+
+class TestBuildQueueInjectedBoundaries(unittest.TestCase):
+    def test_default_dependencies_resolve_current_boundary_names(self) -> None:
+        module = SimpleNamespace(
+            LarkCliSource=mock.Mock(), _run_command=mock.Mock(),
+            _prepare_git_ref_worktree=mock.Mock(), _remove_worktree=mock.Mock(),
+        )
+        first = default_queue_deps(module)
+        module.LarkCliSource = mock.Mock()
+        module._run_command = mock.Mock()
+        module._prepare_git_ref_worktree = mock.Mock()
+        module._remove_worktree = mock.Mock()
+        second = default_queue_deps(module)
+        for field, name in (
+            ("source_factory", "LarkCliSource"), ("run_command", "_run_command"),
+            ("prepare_git_ref_worktree", "_prepare_git_ref_worktree"),
+            ("remove_worktree", "_remove_worktree"),
+        ):
+            self.assertIs(getattr(module, name), getattr(second, field))
+            self.assertIsNot(getattr(first, field), getattr(second, field))
+
+    def test_queue_uses_injected_client_and_propagates_fetch_failure(self) -> None:
+        cfg = {"sync": {"phase2": {
+            "provider": "lark_cli", "cli_bin": sys.executable,
+            "base_token_env": "QUEUE_DEPS_TEST_BASE",
+            "document_link": {"table_id_env": "QUEUE_DEPS_TEST_TABLE"},
+        }}}
+        source = mock.Mock()
+        source.fetch_records_with_ids.return_value = []
+        factory = mock.Mock(return_value=source)
+        deps = replace(default_queue_deps(process_build_queue), source_factory=factory)
+        with mock.patch.dict(os.environ, {
+            "QUEUE_DEPS_TEST_BASE": "app-test", "QUEUE_DEPS_TEST_TABLE": "tbl-test",
+            "AUTO_MANUAL_LOG_LEVEL": "INFO",
+        }), redirect_stdout(io.StringIO()) as output:
+            result = process_build_queue.process_build_queue(
+                cfg=cfg, config_path=Path("config.yaml"), data_root=None, dry_run=True, deps=deps,
+            )
+            self.assertEqual(0, result)
+            self.assertEqual("[build-queue] No pending build tasks found.\n", output.getvalue())
+            source.fetch_records_with_ids.side_effect = RuntimeError("client unavailable")
+            with self.assertRaisesRegex(RuntimeError, "client unavailable"):
+                process_build_queue.process_build_queue(
+                    cfg=cfg, config_path=Path("config.yaml"), data_root=None, dry_run=True, deps=deps,
+                )
+        self.assertEqual(2, factory.call_count)
+        self.assertEqual(sys.executable, factory.call_args.kwargs["cli_bin"])
+        source.fetch_records_with_ids.assert_called_with(
+            base_token="app-test", table_id="tbl-test", view_id=None,
+        )
+        source.upsert_record.assert_not_called()
+
+    def test_injected_git_and_command_boundaries_cleanup_on_build_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            worktree = Path(td)
+            (review_dir_of(worktree / PathSegments.DOCS) / "M1" / "US").mkdir(parents=True)
+            prepare = mock.Mock(return_value=worktree)
+            remove = mock.Mock()
+            runner = mock.Mock(side_effect=RuntimeError("injected command failed"))
+            deps = replace(
+                default_queue_deps(process_build_queue), run_command=runner,
+                prepare_git_ref_worktree=prepare, remove_worktree=remove,
+            )
+            with self.assertRaisesRegex(RuntimeError, "injected command failed"):
+                process_build_queue.build_document_for_task(
+                    config_path=Path("configs/config.us-en.yaml"), model="M1", region="US",
+                    data_root=None, doc_phase="draft", git_ref="main", deps=deps,
+                )
+            prepare.assert_called_once_with("main", prefer_local=False)
+            remove.assert_called_once_with(worktree)
+            runner.assert_called_once_with([
+                sys.executable, str(worktree / "build.py"), "check",
+                "--config", str(worktree / "configs/config.us-en.yaml"), "--model", "M1", "--region", "US",
+                "--source", "review",
+            ], cwd=worktree)
+
+    def test_queue_forwards_injected_snapshot_and_build_callbacks(self) -> None:
+        runner = mock.Mock(side_effect=RuntimeError("injected command failed"))
+        deps = replace(default_queue_deps(process_build_queue), run_command=runner)
+
+        def run_callbacks(**kwargs: object) -> int:
+            for name, arguments in (
+                ("sync_phase2_snapshot_before_queue", {"config_path": Path("config.yaml"), "data_root": None}),
+                ("build_document_for_task", {
+                    "config_path": Path("config.yaml"), "model": "M1", "region": "US",
+                    "data_root": None, "doc_phase": "draft",
+                }),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "injected command failed"):
+                    kwargs[name](**arguments)
+            return 17
+
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=run_callbacks):
+            result = process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False, deps=deps,
+            )
+        self.assertEqual(17, result)
+        self.assertEqual(["sync-data", "check"], [call.args[0][2] for call in runner.call_args_list])
+
+    def test_queue_forwards_each_optional_override_and_keeps_facade_defaults(self) -> None:
+        overrides = {
+            name: mock.Mock(name=name)
+            for name in (
+                "sync_phase2_snapshot_before_queue", "build_document_for_task",
+                "resolve_dingtalk_mirror_destination", "ensure_dingtalk_session_ready",
+                "publish_word_artifact", "import_markdown_to_cloud_doc", "finalize_cloud_doc",
+            )
+        }
+        resolve_artifact = mock.Mock(name="resolve_artifact_destination")
+        deps = replace(default_queue_deps(process_build_queue), resolve_artifact_destination=resolve_artifact, **overrides)
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False, deps=deps,
+            )
+        for name, value in overrides.items():
+            self.assertIs(value, captured[name], name)
+        self.assertIs(resolve_artifact, captured["resolve_wiki_destination"])
+        self.assertIs(resolve_artifact, captured["resolve_row_artifact_destination"])
+        self.assertIs(process_build_queue.resolve_wiki_destination, captured["resolve_lark_wiki_destination"])
+
+        captured.clear()
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False,
+            )
+        self.assertIs(process_build_queue.publish_word_artifact, captured["publish_word_artifact"])
+        self.assertIs(process_build_queue.build_document_for_task, captured["build_document_for_task"])
+
+    def test_clock_override_reaches_the_group_processor(self) -> None:
+        clock = mock.Mock(name="clock")
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False,
+                deps=replace(default_queue_deps(process_build_queue), clock=clock),
+            )
+        processor = captured["process_queue_record_group"]
+        self.assertIs(queue_group_processing.process_queue_record_group, processor.func)  # type: ignore[attr-defined]
+        self.assertEqual({"clock": clock}, processor.keywords)  # type: ignore[attr-defined]
+
+        captured.clear()
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False,
+            )
+        self.assertIs(queue_group_processing.process_queue_record_group, captured["process_queue_record_group"])
+
+    def test_bootstrap_uses_session_overrides(self) -> None:
+        preflight = mock.Mock(return_value=["blocked"])
+        deps = replace(
+            default_queue_deps(process_build_queue),
+            collect_queue_preflight_errors=preflight,
+            resolve_document_link_binding=mock.Mock(),
+            phase2_identity=mock.Mock(return_value="bot"),
+        )
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_bootstrap_queue_session_impl", side_effect=capture):
+            process_build_queue_services._bootstrap_queue_session(process_build_queue, deps=deps, cfg={})
+        self.assertIs(preflight, captured["collect_queue_preflight_errors"])
+        self.assertIs(deps.resolve_document_link_binding, captured["resolve_document_link_binding"])
+        self.assertIs(deps.phase2_identity, captured["phase2_identity"])
+
+    def test_build_document_facade_forwards_its_collaborators(self) -> None:
+        with mock.patch.object(process_build_queue_services, "_build_document_for_task_impl", return_value="built") as impl:
+            result = process_build_queue.build_document_for_task(
+                config_path=Path("config.yaml"), model="M1", region="US", data_root=None, doc_phase="draft",
+            )
+        self.assertEqual("built", result)
+        kwargs = impl.call_args.kwargs
+        self.assertEqual(process_build_queue.ROOT, kwargs["repo_root"])
+        for name, facade_name in (
+            ("normalize_workflow_action", "normalize_workflow_action"),
+            ("prepare_git_ref_worktree", "_prepare_git_ref_worktree"),
+            ("remove_worktree", "_remove_worktree"),
+            ("config_path_in_repo_root", "_config_path_in_repo_root"),
+            ("run_command", "_run_command"),
+            ("build_py_target_command", "_build_py_target_command"),
+            ("resolve_word_output_path_for_target", "resolve_word_output_path_for_target"),
+            ("resolve_pdf_output_path_for_target", "resolve_pdf_output_path_for_target"),
+            ("resolve_md_output_path_for_target", "resolve_md_output_path_for_target"),
+            ("versioned_pdf_output_path", "_versioned_pdf_output_path"),
+            ("versioned_word_output_path", "_versioned_word_output_path"),
+            ("versioned_md_output_path", "_versioned_md_output_path"),
+            ("resolve_html_output_dir_for_target", "resolve_html_output_dir_for_target"),
+            ("stage_publish_assets_to_host_repo", "_stage_publish_assets_to_host_repo"),
+            ("stage_web_publish_assets_to_host_repo", "_stage_web_publish_assets_to_host_repo"),
+            ("stage_draft_word_output_to_host_repo", "_stage_draft_word_output_to_host_repo"),
+            ("stage_draft_md_output_to_host_repo", "_stage_draft_md_output_to_host_repo"),
+        ):
+            self.assertIs(getattr(process_build_queue, facade_name), kwargs[name], name)
+
+    def test_nested_overrides_reach_artifact_destination_and_publish(self) -> None:
+        resolve_wiki = mock.Mock(return_value="wiki-destination")
+        upload = mock.Mock(return_value=("file_token", "https://drive/file_token"))
+        move = mock.Mock(return_value="https://wiki/node")
+        deps = replace(
+            default_queue_deps(process_build_queue),
+            resolve_wiki_destination=resolve_wiki,
+            upload_word_to_drive=upload,
+            move_drive_file_to_wiki=move,
+        )
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False, deps=deps,
+            )
+        self.assertIs(resolve_wiki, captured["resolve_lark_wiki_destination"])
+        destination = captured["resolve_wiki_destination"](  # type: ignore[operator]
+            cfg={}, cli_bin="lark-cli", identity="bot", binding=object(),
+        )
+        self.assertEqual("wiki-destination", destination)
+        result = captured["publish_word_artifact"](  # type: ignore[operator]
+            cfg={}, cli_bin="lark-cli", artifact_output_path=Path("manual.docx"), identity="bot",
+            artifact_destination=destination,
+        )
+        upload.assert_called_once()
+        move.assert_called_once()
+        self.assertEqual("https://wiki/node", result.document_link_url)

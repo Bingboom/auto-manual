@@ -16,6 +16,14 @@ ROOT = Path(__file__).resolve().parents[1]
 class IdmlPageRoleTests(unittest.TestCase):
     def test_known_semantic_pages_have_explicit_roles(self) -> None:
         cases = {
+            "01_safety.rst": PageRole.SAFETY,
+            "02_symbols.rst": PageRole.SYMBOLS,
+            "04_overview.rst": PageRole.PRODUCT_OVERVIEW,
+            "05_lcd.rst": PageRole.LCD,
+            "06_operations.rst": PageRole.OPERATION_GUIDE,
+            "08_storage.rst": PageRole.STORAGE_MAINTENANCE,
+            "09_specifications.rst": PageRole.SPEC,
+            "10_warranty.rst": PageRole.WARRANTY,
             "00_preface.rst": PageRole.PREFACE,
             "00_preface_single_language.rst": PageRole.PREFACE,
             "00_toc.rst": PageRole.TOC,

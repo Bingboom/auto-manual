@@ -1,0 +1,59 @@
+{
+  "status": "local validation passed; awaiting Japanese operator source/layout confirmation; no release authorization",
+  "target": {
+    "model": "JA-AD500A-SIL",
+    "region": "JP",
+    "language": "ja"
+  },
+  "source_identity": {
+    "filename": "Jackery DC Input Module取扱説明書V2.0-20260525.pdf",
+    "path": "source/original.pdf",
+    "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777",
+    "physical_page_count": 10
+  },
+  "strict_sphinx": "passed, both fresh source and frozen package",
+  "cold_replay": "exact MyST bytes; source-free; tampered asset rejected",
+  "source_tamper": "changed 500W rejected by input hash",
+  "source_text": "168 primary PDF lines match; independently exact LED cells; all source warranty clauses native",
+  "artwork": "12x non-label pixels unchanged; 4 pin-checked JP exports; byte-exact und artwork reuse",
+  "browser": {
+    "surface": "Codex in-app browser",
+    "widths": [
+      1280,
+      390
+    ],
+    "loaded_images": 6,
+    "live_labels": 9,
+    "clipped_labels": 0,
+    "page_overflow": 0,
+    "table_overflow": 0,
+    "component_clipping": 0,
+    "broken_fragments": 0,
+    "duplicate_ids": 0,
+    "DC8020_labels_single_line": true,
+    "minimum_external_annotation_font_px": 10
+  },
+  "focused_tests": {
+    "count": 45,
+    "status": "OK"
+  },
+  "ruff": "passed",
+  "maintainability": "passed",
+  "doc_links": "266 files, 2578 links; zero broken",
+  "repository_regression": "JE-1000F US/en build.py check with committed fixture: passed; not the JP source gate",
+  "full_unit_suite": {
+    "initial_command": "python3 -m unittest",
+    "initial_result": "5217 tests in 2200.590s; FAILED (errors=1, skipped=35)",
+    "error": "tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only: macOS /var versus /private/var ValueError",
+    "targeted_retest": "TMPDIR=/private/tmp python3 -m unittest tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only — OK (1 test)",
+    "canonical_tmp_full_suite": {
+      "command": "TMPDIR=/private/tmp python3 -m unittest",
+      "result": "Ran 5217 tests in 3267.125s\n\nOK (skipped=35)",
+      "status": "passed"
+    }
+  },
+  "publication_eligible": false,
+  "business_plane_writes": false,
+  "validation_environment": "system Python 3.12; preflight reported dependency-lock differences; no dependency installs or edits",
+  "whitespace_cleanup": "blank-line/trailing whitespace only; final HTML remains byte-identical; cold replay and tamper rejection rechecked"
+}

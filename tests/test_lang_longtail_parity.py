@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import unittest
 
-from tools import build_docs, build_docs_shared, content_lint, localized_copy
+from tools import content_lint, localized_copy
+from tools.build import docs as build_docs, docs_shared as build_docs_shared
 from tools import lang_registry, signal_words
-from tools.check_docs import _pick_spec_value
+from tools.check.docs import _pick_spec_value
 from tools.idml import loaders
 from tools.idml.page_toc import _LANG_HEADERS
 from tools.manual_copy_source import TM_LANGUAGE_FIELDS
@@ -45,10 +46,15 @@ class LanguageLongTailParityTest(unittest.TestCase):
             spec = lang_registry.language_spec(code)
             self.assertIsNotNone(spec, code)
             assert spec is not None
-            expected_lcd[code] = _suffix(spec.columns_for_table("lcd_icons"), "icon_desc")
-            expected_trouble[code] = _suffix(
-                spec.columns_for_table("troubleshooting"), "corrective_measures"
-            )
+            if spec.sync_enabled:
+                expected_lcd[code] = _suffix(spec.columns_for_table("lcd_icons"), "icon_desc")
+                expected_trouble[code] = _suffix(
+                    spec.columns_for_table("troubleshooting"), "corrective_measures"
+                )
+            else:
+                self.assertEqual(spec.table_columns, ())
+                expected_lcd[code] = code
+                expected_trouble[code] = code
             expected_text[code] = _suffix_or(
                 spec.columns_for_table("spec_notes"),
                 "Text",
@@ -145,10 +151,21 @@ class LanguageLongTailParityTest(unittest.TestCase):
         expected_labels = lang_registry.language_display_labels()
         for language_map in maps:
             self.assertEqual(language_map, expected_labels)
+        # Web output registration does not create translated print packs.
+        print_languages = {spec.code for spec in lang_registry.sync_language_specs()}
+        print_aliases = {
+            alias.casefold()
+            for spec in lang_registry.sync_language_specs()
+            for alias in spec.aliases
+        }
+        self.assertEqual(set(_LANG_HEADERS), print_languages | print_aliases)
+        self.assertEqual(set(lang_registry.IDML_LANGUAGE_PACKS), print_languages)
         for spec in lang_registry.LANGUAGE_REGISTRY:
-            with self.subTest(language=spec.code):
-                self.assertIn(spec.code, _LANG_HEADERS)
-                self.assertIn(spec.code, lang_registry.IDML_LANGUAGE_PACKS)
+            if not spec.sync_enabled:
+                with self.subTest(offline_language=spec.code):
+                    self.assertIn(spec.code.casefold(), expected_labels)
+                    self.assertIsNone(lang_registry.idml_language_pack(spec.code))
+                    self.assertNotIn(spec.code, lang_registry.governed_languages())
 
     def test_core_longtail_alias_sets_remain_closed(self) -> None:
         aliases = {
@@ -156,7 +173,13 @@ class LanguageLongTailParityTest(unittest.TestCase):
             for spec in lang_registry.LANGUAGE_REGISTRY
             for alias in spec.aliases
         }
-        self.assertEqual(set(TM_LANGUAGE_FIELDS), aliases)
+        sync_aliases = {
+            alias.casefold()
+            for spec in lang_registry.sync_language_specs()
+            for alias in spec.aliases
+        }
+        self.assertEqual(set(TM_LANGUAGE_FIELDS), sync_aliases)
+        self.assertEqual(aliases - sync_aliases, {"pt", "nl", "pl", "zh-tw", "zh_tw", "zh-hant"})
         self.assertEqual(signal_words._SUPPORTED_LANGS, aliases)
         self.assertEqual(
             set(localized_copy._LANG_TEXT_COLUMNS),

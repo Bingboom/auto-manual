@@ -1,0 +1,182 @@
+{
+  "sections": [
+    {
+      "id": "safety",
+      "physical_pages": [
+        127
+      ]
+    },
+    {
+      "id": "symbols",
+      "physical_pages": [
+        127,
+        128
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "physical_pages": [
+        128,
+        129
+      ]
+    },
+    {
+      "id": "product_overview",
+      "physical_pages": [
+        129,
+        130
+      ]
+    },
+    {
+      "id": "lcd_display",
+      "physical_pages": [
+        130,
+        131,
+        132
+      ]
+    },
+    {
+      "id": "operations",
+      "physical_pages": [
+        132,
+        133,
+        134,
+        135
+      ]
+    },
+    {
+      "id": "ups",
+      "physical_pages": [
+        135,
+        136
+      ]
+    },
+    {
+      "id": "battery_expansion",
+      "physical_pages": [
+        136,
+        137
+      ]
+    },
+    {
+      "id": "charging",
+      "physical_pages": [
+        137,
+        138,
+        139
+      ]
+    },
+    {
+      "id": "storage",
+      "physical_pages": [
+        139
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "physical_pages": [
+        139,
+        140
+      ]
+    },
+    {
+      "id": "specifications",
+      "physical_pages": [
+        140,
+        141
+      ]
+    },
+    {
+      "id": "warranty",
+      "physical_pages": [
+        141,
+        142
+      ]
+    },
+    {
+      "id": "app_setup",
+      "physical_pages": [
+        142,
+        143
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "physical_page": 127,
+      "relative_body_page": 1
+    },
+    {
+      "physical_page": 128,
+      "relative_body_page": 2
+    },
+    {
+      "physical_page": 129,
+      "relative_body_page": 3
+    },
+    {
+      "physical_page": 130,
+      "relative_body_page": 4
+    },
+    {
+      "physical_page": 131,
+      "relative_body_page": 5
+    },
+    {
+      "physical_page": 132,
+      "relative_body_page": 6
+    },
+    {
+      "physical_page": 133,
+      "relative_body_page": 7
+    },
+    {
+      "physical_page": 134,
+      "relative_body_page": 8
+    },
+    {
+      "physical_page": 135,
+      "relative_body_page": 9
+    },
+    {
+      "physical_page": 136,
+      "relative_body_page": 10
+    },
+    {
+      "physical_page": 137,
+      "relative_body_page": 11
+    },
+    {
+      "physical_page": 138,
+      "relative_body_page": 12
+    },
+    {
+      "physical_page": 139,
+      "relative_body_page": 13
+    },
+    {
+      "physical_page": 140,
+      "relative_body_page": 14
+    },
+    {
+      "physical_page": 141,
+      "relative_body_page": 15
+    },
+    {
+      "physical_page": 142,
+      "relative_body_page": 16
+    },
+    {
+      "physical_page": 143,
+      "relative_body_page": 17
+    }
+  ],
+  "tables": {
+    "troubleshooting": {
+      "physical_page": 139
+    },
+    "specifications": {
+      "physical_page": 140
+    }
+  }
+}

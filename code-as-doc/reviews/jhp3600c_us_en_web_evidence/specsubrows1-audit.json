@@ -1,0 +1,378 @@
+{
+  "scope": "local-only",
+  "sourceCommit": "e2253503dc02b6e22b45dc0d87bea131372ea291",
+  "checks": [
+    {
+      "headings": 84,
+      "overflow": false,
+      "tables": [
+        {
+          "bold": [],
+          "chapter": "specifications",
+          "continuationLabelCount": 0,
+          "label": "1 \u00d7 AC Input",
+          "mergedHeight": 71.234375,
+          "modeValues": [
+            "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+            "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
+          ],
+          "rows": 3,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "INPUT PORTS",
+          "valueHeightSum": 71.234375
+        },
+        {
+          "bold": [
+            {
+              "text": "120V AC Input:",
+              "weight": "700"
+            },
+            {
+              "text": "240V AC Input:",
+              "weight": "700"
+            }
+          ],
+          "chapter": "specifications",
+          "continuationLabelCount": 0,
+          "label": "AC Output in Bypass Mode\u2460",
+          "mergedHeight": 143.203125,
+          "modeValues": [
+            "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2463 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2463 Max",
+            "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+          ],
+          "rows": 7,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "OUTPUT PORTS",
+          "valueHeightSum": 143.203125
+        },
+        {
+          "bold": [],
+          "chapter": "specifications-model-jhp-3600c",
+          "continuationLabelCount": 0,
+          "label": "1 \u00d7 AC Input",
+          "mergedHeight": 71.234375,
+          "modeValues": [
+            "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+            "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
+          ],
+          "rows": 3,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "INPUT PORTS",
+          "valueHeightSum": 71.234375
+        },
+        {
+          "bold": [
+            {
+              "text": "120V AC Input:",
+              "weight": "700"
+            },
+            {
+              "text": "240V AC Input:",
+              "weight": "700"
+            }
+          ],
+          "chapter": "specifications-model-jhp-3600c",
+          "continuationLabelCount": 0,
+          "label": "AC Output in Bypass Mode\u2460",
+          "mergedHeight": 143.203125,
+          "modeValues": [
+            "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2074 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2074 Max",
+            "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+          ],
+          "rows": 7,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "OUTPUT PORTS",
+          "valueHeightSum": 143.203125
+        }
+      ],
+      "width": 1440
+    },
+    {
+      "headings": 84,
+      "overflow": false,
+      "tables": [
+        {
+          "bold": [],
+          "chapter": "specifications",
+          "continuationLabelCount": 0,
+          "label": "1 \u00d7 AC Input",
+          "mergedHeight": 127.0625,
+          "modeValues": [
+            "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+            "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
+          ],
+          "rows": 3,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "INPUT PORTS",
+          "valueHeightSum": 127.0625
+        },
+        {
+          "bold": [
+            {
+              "text": "120V AC Input:",
+              "weight": "700"
+            },
+            {
+              "text": "240V AC Input:",
+              "weight": "700"
+            }
+          ],
+          "chapter": "specifications",
+          "continuationLabelCount": 0,
+          "label": "AC Output in Bypass Mode\u2460",
+          "mergedHeight": 250.21875,
+          "modeValues": [
+            "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2463 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2463 Max",
+            "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+          ],
+          "rows": 7,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "OUTPUT PORTS",
+          "valueHeightSum": 250.21875
+        },
+        {
+          "bold": [],
+          "chapter": "specifications-model-jhp-3600c",
+          "continuationLabelCount": 0,
+          "label": "1 \u00d7 AC Input",
+          "mergedHeight": 127.0625,
+          "modeValues": [
+            "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+            "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
+          ],
+          "rows": 3,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "INPUT PORTS",
+          "valueHeightSum": 127.0625
+        },
+        {
+          "bold": [
+            {
+              "text": "120V AC Input:",
+              "weight": "700"
+            },
+            {
+              "text": "240V AC Input:",
+              "weight": "700"
+            }
+          ],
+          "chapter": "specifications-model-jhp-3600c",
+          "continuationLabelCount": 0,
+          "label": "AC Output in Bypass Mode\u2460",
+          "mergedHeight": 250.21875,
+          "modeValues": [
+            "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2074 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2074 Max",
+            "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+          ],
+          "rows": 7,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "OUTPUT PORTS",
+          "valueHeightSum": 250.21875
+        }
+      ],
+      "width": 390
+    },
+    {
+      "headings": 84,
+      "overflow": false,
+      "tables": [
+        {
+          "bold": [],
+          "chapter": "specifications",
+          "continuationLabelCount": 0,
+          "label": "1 \u00d7 AC Input",
+          "mergedHeight": 144.65625,
+          "modeValues": [
+            "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+            "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
+          ],
+          "rows": 3,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "INPUT PORTS",
+          "valueHeightSum": 144.65625
+        },
+        {
+          "bold": [
+            {
+              "text": "120V AC Input:",
+              "weight": "700"
+            },
+            {
+              "text": "240V AC Input:",
+              "weight": "700"
+            }
+          ],
+          "chapter": "specifications",
+          "continuationLabelCount": 0,
+          "label": "AC Output in Bypass Mode\u2460",
+          "mergedHeight": 303,
+          "modeValues": [
+            "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2463 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2463 Max",
+            "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+          ],
+          "rows": 7,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "OUTPUT PORTS",
+          "valueHeightSum": 303
+        },
+        {
+          "bold": [],
+          "chapter": "specifications-model-jhp-3600c",
+          "continuationLabelCount": 0,
+          "label": "1 \u00d7 AC Input",
+          "mergedHeight": 144.65625,
+          "modeValues": [
+            "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+            "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
+          ],
+          "rows": 3,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "INPUT PORTS",
+          "valueHeightSum": 144.65625
+        },
+        {
+          "bold": [
+            {
+              "text": "120V AC Input:",
+              "weight": "700"
+            },
+            {
+              "text": "240V AC Input:",
+              "weight": "700"
+            }
+          ],
+          "chapter": "specifications-model-jhp-3600c",
+          "continuationLabelCount": 0,
+          "label": "AC Output in Bypass Mode\u2460",
+          "mergedHeight": 303,
+          "modeValues": [
+            "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2074 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2074 Max",
+            "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+          ],
+          "rows": 7,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "OUTPUT PORTS",
+          "valueHeightSum": 303
+        }
+      ],
+      "width": 320
+    },
+    {
+      "headings": 84,
+      "overflow": false,
+      "tables": [
+        {
+          "bold": [],
+          "chapter": "specifications",
+          "continuationLabelCount": 0,
+          "label": "1 \u00d7 AC Input",
+          "mergedHeight": 91.875,
+          "modeValues": [
+            "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+            "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
+          ],
+          "rows": 3,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "INPUT PORTS",
+          "valueHeightSum": 91.875
+        },
+        {
+          "bold": [
+            {
+              "text": "120V AC Input:",
+              "weight": "700"
+            },
+            {
+              "text": "240V AC Input:",
+              "weight": "700"
+            }
+          ],
+          "chapter": "specifications",
+          "continuationLabelCount": 0,
+          "label": "AC Output in Bypass Mode\u2460",
+          "mergedHeight": 179.84375,
+          "modeValues": [
+            "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2463 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2463 Max",
+            "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+          ],
+          "rows": 7,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "OUTPUT PORTS",
+          "valueHeightSum": 179.84375
+        },
+        {
+          "bold": [],
+          "chapter": "specifications-model-jhp-3600c",
+          "continuationLabelCount": 0,
+          "label": "1 \u00d7 AC Input",
+          "mergedHeight": 91.875,
+          "modeValues": [
+            "Charge Mode : 100-120V~ 60Hz, 15A Max, 1800W",
+            "Bypass Mode\u2460 : 100V-120V~ 60Hz, 12A Max, 1440W"
+          ],
+          "rows": 3,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "INPUT PORTS",
+          "valueHeightSum": 91.875
+        },
+        {
+          "bold": [
+            {
+              "text": "120V AC Input:",
+              "weight": "700"
+            },
+            {
+              "text": "240V AC Input:",
+              "weight": "700"
+            }
+          ],
+          "chapter": "specifications-model-jhp-3600c",
+          "continuationLabelCount": 0,
+          "label": "AC Output in Bypass Mode\u2460",
+          "mergedHeight": 179.84375,
+          "modeValues": [
+            "120V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 12A Max, 1440W Max per port, 1440W\u2074 in Total\nNEMA 14-50R: 240V~ 60Hz, 1440W\u2074 Max",
+            "240V AC Input:\nNEMA 5-20R: 100V-120V~ 60Hz, 20A Max, 2400W per port, 4800W in Total\nNEMA 14-50R: 240V~ 60Hz, 40A Max, 9600W Max"
+          ],
+          "rows": 7,
+          "rowspan": 2,
+          "separatorStyle": "solid",
+          "separatorWidth": "1px",
+          "title": "OUTPUT PORTS",
+          "valueHeightSum": 179.84375
+        }
+      ],
+      "width": 641
+    }
+  ]
+}

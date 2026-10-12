@@ -1,0 +1,48 @@
+[validate_config] OK
+[validate_layout_params] OK
+[validate_spec_master] OK
+[build] validating config...
+[build] validating layout params...
+[build] target: model='JE-1000F', region='US', lang='en'
+[build] Review overlay safety_fr.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p20_01_user_maintenance_instructions.rst: dropped out-of-scope 'fr' page
+[build] Review overlay symbols_fr.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p22_01_fcc.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p23_02_whats_in_the_box.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p24_03_product_overview_placeholder.rst: dropped out-of-scope 'fr' page
+[build] Review overlay lcd_icons_fr.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p26_05_operation_guide_placeholder.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p27_06_ups_mode.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p28_charging.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p29_08_charging_methods.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p30_09_storage_and_maintenance.rst: dropped out-of-scope 'fr' page
+[build] Review overlay troubleshooting_fr.rst: dropped out-of-scope 'fr' page
+[build] Review overlay spec_fr.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p33_11_warranty.rst: dropped out-of-scope 'fr' page
+[build] Review overlay p34_12_app_setup_placeholder.rst: dropped out-of-scope 'fr' page
+[build] Review overlay safety_es.rst: dropped out-of-scope 'es' page
+[build] Review overlay p36_01_user_maintenance_instructions.rst: dropped out-of-scope 'es' page
+[build] Review overlay symbols_es.rst: dropped out-of-scope 'es' page
+[build] Review overlay p38_01_fcc.rst: dropped out-of-scope 'es' page
+[build] Review overlay p39_02_whats_in_the_box.rst: dropped out-of-scope 'es' page
+[build] Review overlay p40_03_product_overview_placeholder.rst: dropped out-of-scope 'es' page
+[build] Review overlay lcd_icons_es.rst: dropped out-of-scope 'es' page
+[build] Review overlay p42_05_operation_guide_placeholder.rst: dropped out-of-scope 'es' page
+[build] Review overlay p43_06_ups_mode.rst: dropped out-of-scope 'es' page
+[build] Review overlay p44_charging.rst: dropped out-of-scope 'es' page
+[build] Review overlay p45_08_charging_methods.rst: dropped out-of-scope 'es' page
+[build] Review overlay p46_09_storage_and_maintenance.rst: dropped out-of-scope 'es' page
+[build] Review overlay troubleshooting_es.rst: dropped out-of-scope 'es' page
+[build] Review overlay spec_es.rst: dropped out-of-scope 'es' page
+[build] Review overlay p49_11_warranty.rst: dropped out-of-scope 'es' page
+[build] Review overlay p50_12_app_setup_placeholder.rst: dropped out-of-scope 'es' page
+[build] Review overlay 00_preface.rst: dropped ['fr', 'es'] language block(s) not shipped by this target
+[build] Staged 37 frozen attachment alias(es) across 0 review file(s)
+[build] Prepared bundle: /tmp/dc-input-jp-discovery/repo-regression/docs/_build/JE-1000F/US/en/web/source/rst
+[build] Bundle source: review
+[check] OK
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m tools.validate_config --config /Users/pika/.codex/worktrees/dc-input-jp-web/auto-manual2/configs/config.us-en.yaml
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m tools.validate_layout_params --csv /Users/pika/.codex/worktrees/dc-input-jp-web/auto-manual2/data/layout_params.csv
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m tools.validate_spec_master --config /Users/pika/.codex/worktrees/dc-input-jp-web/auto-manual2/configs/config.us-en.yaml --model JE-1000F --region US --lang en --data-root tests/fixtures/phase2 --source auto
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m tools.build.docs --config /Users/pika/.codex/worktrees/dc-input-jp-web/auto-manual2/configs/config.us-en.yaml --model JE-1000F --region US --lang en --data-root tests/fixtures/phase2 --source auto --prepare-only --output-base-root /tmp/dc-input-jp-discovery/repo-regression/docs/_build --skip-root-index --clean --no-open
+[build.py] /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -m tools.check.docs --config /Users/pika/.codex/worktrees/dc-input-jp-web/auto-manual2/configs/config.us-en.yaml --model JE-1000F --region US --lang en --data-root tests/fixtures/phase2 --docs-build-dir /tmp/dc-input-jp-discovery/repo-regression/docs/_build

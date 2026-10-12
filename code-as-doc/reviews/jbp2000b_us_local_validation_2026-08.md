@@ -1,5 +1,7 @@
 # JBP-2000B_US 本地生产线验证与修复计划
 
+Status: done
+
 日期：2026-08-22
 目标：`JBP-2000B_US`（HTP017 美加规，EN/FR/ES，Battery Pack）
 源文档：`Jackery Battery Pack 2000 User Manual V2.0-2026-04-27.pdf`（28 页）

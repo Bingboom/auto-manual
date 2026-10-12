@@ -48,6 +48,7 @@ EXPECTED_STYLE_SEMANTICS = {
     "HB-TABLE-KEY-COMBINATIONS",
     "HB-TABLE-LCD-ICON",
     "HB-TABLE-LCD-MODE",
+    "HB-TABLE-REFERENCE",
     "HB-TABLE-SPEC",
     "HB-TABLE-SYMBOL-ICON",
     "HB-TABLE-SYMBOL-SIGNAL",
@@ -348,7 +349,7 @@ class RenderContractTests(unittest.TestCase):
             )
         )
         native_selectors = {"p", "ul", "ol", "h1", "h2", "h3"}
-        word_style_source = (ROOT / "tools" / "word_bundle_docx_styles.py").read_text(
+        word_style_source = (ROOT / "tools" / "word" / "bundle_docx_styles.py").read_text(
             encoding="utf-8"
         )
         for style_id, style in self.contract["styles"].items():

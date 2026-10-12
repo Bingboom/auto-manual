@@ -1,0 +1,5 @@
+# Plan/review docs that predate the lifecycle Status rule.
+# New docs under code-as-doc/dev/ and code-as-doc/reviews/ must start with
+# `Status: <proposed|active|done|archived|superseded-by>`; fixed entries become stale.
+# Regenerate intentionally with:
+#   python tools/check_doc_lifecycle.py update

@@ -1,0 +1,3 @@
+*.pdf -text
+*.json text eol=lf
+phase2/*.csv text eol=lf

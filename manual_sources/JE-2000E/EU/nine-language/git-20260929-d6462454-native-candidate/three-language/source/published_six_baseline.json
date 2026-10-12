@@ -1,0 +1,48 @@
+{
+  "hello_docs_main": "36b6a3fe96dc54685e816459031594c160f27c29",
+  "version": "2.10",
+  "rows": [
+    {
+      "lang": "en",
+      "path": "docs/publish/sources/web/JE-2000E/EU/en/md/manual_je2000e_eu_en.md",
+      "sha256": "2e719b543bfc9829d21a7ce9495e02eb5d336c70020f39c39593915ab2712061",
+      "size": 74632,
+      "identical_to_local_2_10": true
+    },
+    {
+      "lang": "fr",
+      "path": "docs/publish/sources/web/JE-2000E/EU/fr/md/manual_je2000e_eu_fr.md",
+      "sha256": "b5409d36f949d668d90c24bdda7d135934e891424dd8550625090c17e02008fe",
+      "size": 79884,
+      "identical_to_local_2_10": true
+    },
+    {
+      "lang": "es",
+      "path": "docs/publish/sources/web/JE-2000E/EU/es/md/manual_je2000e_eu_es.md",
+      "sha256": "66e6e5b7416540a6403f4c3a4218f02ee8fbc33ac1c2b3f674c21eece013d7e1",
+      "size": 78852,
+      "identical_to_local_2_10": true
+    },
+    {
+      "lang": "de",
+      "path": "docs/publish/sources/web/JE-2000E/EU/de/md/manual_je2000e_eu_de.md",
+      "sha256": "78440f1a7e492d35139a5fb4d5c2213b66c1696816e3ba1a9a28ee227a63763a",
+      "size": 77949,
+      "identical_to_local_2_10": true
+    },
+    {
+      "lang": "it",
+      "path": "docs/publish/sources/web/JE-2000E/EU/it/md/manual_je2000e_eu_it.md",
+      "sha256": "cbde2b8ff4dd78f34d3b2ffea55ea4a9351bcb3aa18b35ce2a40510556f398e6",
+      "size": 78360,
+      "identical_to_local_2_10": true
+    },
+    {
+      "lang": "uk",
+      "path": "docs/publish/sources/web/JE-2000E/EU/uk/md/manual_je2000e_eu_uk.md",
+      "sha256": "c458d723f39ddfed0449631d7571bb81ca1179c0ede46220ecc95359e5205a52",
+      "size": 102212,
+      "identical_to_local_2_10": true
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 """Regression coverage for section links and visible-body search extraction."""
 import unittest
 
-from tools.rtd_portal_search import ManualSections
+from tools.rtd.portal_search import ManualSections
 
 
 class SearchSectionsTest(unittest.TestCase):

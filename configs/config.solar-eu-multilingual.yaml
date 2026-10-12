@@ -1,0 +1,30 @@
+# Same solar family, additional EU locales from the native nine-language master.
+extends: config.solar-eu-en.yaml
+build:
+  family_id: solar-eu-multilingual
+  language_family: eu
+  include_lang_in_output_path: false
+  languages:
+  - fr
+  - es
+  - de
+  - it
+  - uk
+  - pt
+  - nl
+  - pl
+  targets:
+  - model: JS-100I
+    region: EU
+paths:
+  page_manifest: docs/manifests/manual_solar-eu-multilingual.yaml
+  web_illustration_manifests:
+    JS-100I_EU:
+      fr: docs/renderers/web/js100i_eu_fr_illustrations.json
+      es: docs/renderers/web/js100i_eu_es_illustrations.json
+      de: docs/renderers/web/js100i_eu_de_illustrations.json
+      it: docs/renderers/web/js100i_eu_it_illustrations.json
+      uk: docs/renderers/web/js100i_eu_uk_illustrations.json
+      pt: docs/renderers/web/js100i_eu_pt_illustrations.json
+      nl: docs/renderers/web/js100i_eu_nl_illustrations.json
+      pl: docs/renderers/web/js100i_eu_pl_illustrations.json

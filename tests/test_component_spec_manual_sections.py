@@ -19,6 +19,7 @@ from tools.component_specs.lcd_mode_adapters import (
     web_lcd_mode_projection,
     word_lcd_mode_projection,
 )
+from tools.component_specs.model import ComponentSpecError
 from tools.component_specs.operation import (
     OPERATION_COMPONENT_ID,
     operation_component_spec,
@@ -52,17 +53,17 @@ from tools.manual_ir.whole_document_components import discover_registered_compon
 from tools.manual_ir import read_manual_ir
 from tools.render_contract import load_render_contract
 from tools.utils.path_utils import Paths
-from tools.web_composite_manifest import load_web_composite_manifest
-from tools.web_composite_presentation import WebCompositeContext
-from tools.web_document_ir import render_document_fragments
-from tools.web_document_source import load_web_document
-from tools.web_operation_component import render_operation_component
-from tools.web_presentation import WebPresentationError, load_web_manual_contract
-from tools.word_bundle_html import (
+from tools.web.composite_manifest import load_web_composite_manifest
+from tools.web.composite_presentation import WebCompositeContext
+from tools.web.document_ir import render_document_fragments
+from tools.web.document_source import load_web_document
+from tools.web.operation_component import render_operation_component
+from tools.web.presentation import WebPresentationError, load_web_manual_contract
+from tools.word.bundle_html import (
     _publish_rst_fragment_to_html,
     _rewrite_word_friendly_fragment,
 )
-from tools.word_bundle_html_only import _build_word_only_tags
+from tools.word.bundle_html_only import _build_word_only_tags
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -131,6 +132,7 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
             artwork_ref="asset:operation/ac_output",
             source_ref="page/operations.rst#ac-output",
             language="en",
+            metadata={"presentation_mode": "base-art-live-copy"},
             registry=self.registry,
             theme=self.theme,
         )
@@ -143,6 +145,7 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                 "layout": "status-right",
                 "step_ids": ["on", "off"],
                 "web_replace_key": "operation.ac-output",
+                "presentation_mode": "base-art-live-copy",
             },
         )
         self.assertEqual("hb-operation-figure", web["composition_class"])
@@ -159,6 +162,21 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
             idml_operation_payload(spec),
         )
         self.assertEqual("hb-operation-word-panel", word_operation_projection(spec)["panel_class"])
+
+        with self.assertRaisesRegex(
+            ComponentSpecError,
+            "frozen presentation mode.*does not match target contract",
+        ):
+            web_operation_projection(
+                spec,
+                {
+                    "id": "ac-output",
+                    "image_key": "operation/ac_output",
+                    "layout": "status-right",
+                    "step_ids": ["on", "off"],
+                    "web_replace_key": "operation.ac-output",
+                },
+            )
 
     def test_operation_replay_restores_supporting_copy_before_residual_lines(self) -> None:
         spec = operation_component_spec(
@@ -497,6 +515,10 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                 "lcd_mode",
             )
         }
+        # JE-1000F/US resolves its LED art to the target's own override.
+        replacements["asset:operation/led_light"] = str(
+            ROOT / "docs" / "renderers" / "latex" / "assets" / "op_led_light_je1000f_us.png"
+        )
         manifest = load_web_composite_manifest(
             ROOT / "tests" / "fixtures" / "phase2" / "web_composite_manifest.json"
         )
@@ -552,11 +574,11 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation._transform_lcd_mode_table",
+                    "tools.web.presentation._transform_lcd_mode_table",
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation._transform_warranty",
+                    "tools.web.presentation._transform_warranty",
                     side_effect=source_projector_error,
                 ),
             ):
@@ -567,9 +589,53 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
             soup = BeautifulSoup("".join(fragments), "html.parser")
             self.assertEqual(5, len(soup.select("figure.hb-operation-figure")))
             self.assertEqual(
-                5,
+                0,
                 len(soup.select("figure.hb-operation-figure.hb-has-composite-art")),
             )
+            self.assertEqual(
+                5,
+                len(soup.select("figure.hb-operation-figure.hb-base-art-live-copy")),
+            )
+            # The SOS badge is source panel copy too; it survives the frozen IR.
+            sos = soup.select_one(
+                'figure.hb-base-art-live-copy[data-operation-id="led-light"] '
+                ".hb-operation-marker-sos"
+            )
+            self.assertEqual("SOS", sos.get_text(strip=True) if sos else None)
+            # Each drawn pill keeps the tone the contract measured from its art.
+            for operation_id, tone in (("ac-output", "#f8f8f8"), ("dc-usb-output", "#e8e8e8")):
+                pill = soup.select_one(
+                    f'figure.hb-base-art-live-copy[data-operation-id="{operation_id}"] '
+                    ".hb-operation-art-box > .hb-operation-prerequisite"
+                )
+                self.assertIn(f"--hb-fill:{tone}", pill.get("style", "") if pill else "")
+            # The raw source panel copy (HTML drops it) survives the frozen IR:
+            # energy saving shows its On/Off label and duration beside the art.
+            energy = soup.select_one(
+                'figure.hb-base-art-live-copy[data-operation-id="energy-saving"]'
+            )
+            main_power = soup.select_one(
+                'figure.hb-base-art-live-copy[data-operation-id="main-power"]'
+            )
+            self.assertIsNotNone(energy)
+            self.assertIsNotNone(main_power)
+            if energy is None or main_power is None:
+                return
+            mode_label = energy.select_one(".hb-operation-footer .hb-operation-mode-label")
+            self.assertEqual("On/Off", mode_label.get_text(strip=True) if mode_label else None)
+            energy_duration = energy.select_one(".hb-operation-footer .hb-operation-duration")
+            self.assertEqual(
+                "3s", energy_duration.get_text(strip=True) if energy_duration else None
+            )
+            main_duration = main_power.select_one(
+                ".hb-operation-art-box > .hb-operation-duration"
+            )
+            self.assertEqual(
+                "3s", main_duration.get_text(strip=True) if main_duration else None
+            )
+            for figure in soup.select("figure.hb-base-art-live-copy"):
+                art = figure.select_one(".hb-operation-art-box > img.hb-operation-art")
+                self.assertEqual("", art.get("alt") if art else None)
             self.assertEqual(1, len(soup.select("figure.hb-lcd-mode-composition")))
             replayed = "".join(fragments)
             self.assertEqual(1, replayed.count("Default standby time"))

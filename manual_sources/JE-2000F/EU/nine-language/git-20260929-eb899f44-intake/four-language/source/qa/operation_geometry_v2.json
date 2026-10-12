@@ -1,0 +1,418 @@
+{
+  "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "method": "F native crop and bracket-arm geometry bound to existing base-art-live-copy components; live copy unchanged",
+  "native_findings": {
+    "dc_circle_original_bbox": [
+      198.46,
+      59.82,
+      243.77,
+      105.13
+    ],
+    "dc_old_crop_top": 63,
+    "energy_product_original_bbox": [
+      45.36,
+      375.1,
+      145.12,
+      452.32
+    ],
+    "energy_old_crop_top": 380,
+    "normal_renderer_issue": "Old steps_rect came from different geometry; supporting copy also changed stage percentage height. New per-step anchors resolve against the art canvas."
+  },
+  "geometry": [
+    {
+      "locale": "pl",
+      "figure": "main-power",
+      "physical_page": 157,
+      "clip_points": [
+        35,
+        75,
+        345,
+        164
+      ],
+      "base_art_layout": {
+        "art_sha256": "7963f6ec89f5c0c70277ddafc9839c3ae8a6537995ee5b7821b33eacaa8ab421",
+        "step_anchors": [
+          [
+            74.0268,
+            16.1326
+          ],
+          [
+            73.9332,
+            46.1607
+          ]
+        ],
+        "step_width": 24,
+        "duration_anchor": [
+          78.391,
+          64.9371
+        ]
+      }
+    },
+    {
+      "locale": "pl",
+      "figure": "ac-output",
+      "physical_page": 157,
+      "clip_points": [
+        33,
+        264,
+        337,
+        475
+      ],
+      "base_art_layout": {
+        "art_sha256": "4cc273350725c8fd8c86a762d9182f6f5b20ccbbc269e74d3c6e7b42e37e9bee",
+        "step_anchors": [
+          [
+            82.5859,
+            22.4896
+          ],
+          [
+            82.4905,
+            33.1773
+          ]
+        ],
+        "step_width": 17,
+        "prerequisite_rect": [
+          0.3671,
+          1.1035,
+          43.472,
+          6.4891
+        ],
+        "prerequisite_fill": "#f7f7f8"
+      }
+    },
+    {
+      "locale": "pl",
+      "figure": "dc-usb-output",
+      "physical_page": 158,
+      "clip_points": [
+        33,
+        48,
+        337,
+        209
+      ],
+      "base_art_layout": {
+        "art_sha256": "1011ac47b8742bbf023809b1dc0bc8f91232b9e5d57ad94992f4e579b8070720",
+        "step_anchors": [
+          [
+            85.8645,
+            14.1143
+          ],
+          [
+            85.7766,
+            26.6099
+          ]
+        ],
+        "step_width": 13.7,
+        "prerequisite_rect": [
+          0.8208,
+          1.1932,
+          44.0951,
+          8.505
+        ],
+        "prerequisite_fill": "#e6e7e8"
+      }
+    },
+    {
+      "locale": "pl",
+      "figure": "led-light",
+      "physical_page": 158,
+      "clip_points": [
+        35,
+        397,
+        220,
+        489
+      ],
+      "base_art_layout": {
+        "art_sha256": "be11625d32dec37ce37a16297c46ee2238ee274e3b9900de962ff9a8fc222b07",
+        "art_width": 62,
+        "step_markers": [
+          "bulb-lit",
+          "sos",
+          "bulb-off"
+        ]
+      }
+    },
+    {
+      "locale": "pl",
+      "figure": "energy-saving",
+      "physical_page": 159,
+      "clip_points": [
+        35,
+        373,
+        337,
+        455
+      ],
+      "base_art_layout": {
+        "art_sha256": "fcca6ba0f606290c2a361bc33f5bd5c5d84a46606d230494782449792e77901d",
+        "footer_x": 69.6921
+      }
+    },
+    {
+      "locale": "pt",
+      "figure": "main-power",
+      "physical_page": 121,
+      "clip_points": [
+        35,
+        75,
+        345,
+        164
+      ],
+      "base_art_layout": {
+        "art_sha256": "8003f5bf02faec702f34d4827fe88710624f893ef3c5ef4d10511101b96c36b2",
+        "step_anchors": [
+          [
+            74.0268,
+            16.1326
+          ],
+          [
+            73.9332,
+            46.1607
+          ]
+        ],
+        "step_width": 24,
+        "duration_anchor": [
+          78.391,
+          64.9371
+        ]
+      }
+    },
+    {
+      "locale": "pt",
+      "figure": "ac-output",
+      "physical_page": 121,
+      "clip_points": [
+        33,
+        264,
+        337,
+        475
+      ],
+      "base_art_layout": {
+        "art_sha256": "785adfbd8fc4b999f7a7f5e8155a115540b4446b0bee0992c6a5d094a9d244f5",
+        "step_anchors": [
+          [
+            82.5859,
+            22.4896
+          ],
+          [
+            82.4905,
+            33.1773
+          ]
+        ],
+        "step_width": 17,
+        "prerequisite_rect": [
+          0.3672,
+          1.1033,
+          43.472,
+          6.4896
+        ],
+        "prerequisite_fill": "#f7f7f8"
+      }
+    },
+    {
+      "locale": "pt",
+      "figure": "dc-usb-output",
+      "physical_page": 122,
+      "clip_points": [
+        33,
+        48,
+        337,
+        209
+      ],
+      "base_art_layout": {
+        "art_sha256": "404088c6a9d1482f684671a4ce4057820fb01ef3b8ee73a142d13027e1fb2eac",
+        "step_anchors": [
+          [
+            85.8645,
+            14.1143
+          ],
+          [
+            85.7766,
+            26.6099
+          ]
+        ],
+        "step_width": 13.7,
+        "prerequisite_rect": [
+          0.821,
+          1.1936,
+          44.0951,
+          8.5043
+        ],
+        "prerequisite_fill": "#e6e7e8"
+      }
+    },
+    {
+      "locale": "pt",
+      "figure": "led-light",
+      "physical_page": 122,
+      "clip_points": [
+        35,
+        397,
+        220,
+        489
+      ],
+      "base_art_layout": {
+        "art_sha256": "a416242e7231c56704dfe0cf68b16e9d882ed9736fc7936a731136d40ec06f4f",
+        "art_width": 62,
+        "step_markers": [
+          "bulb-lit",
+          "sos",
+          "bulb-off"
+        ]
+      }
+    },
+    {
+      "locale": "pt",
+      "figure": "energy-saving",
+      "physical_page": 123,
+      "clip_points": [
+        35,
+        373,
+        337,
+        455
+      ],
+      "base_art_layout": {
+        "art_sha256": "cda223b100cfed6a652cb68ba15cb7f23be3a52eb22b301951c2e5d2ab10132e",
+        "footer_x": 69.6921
+      }
+    },
+    {
+      "locale": "nl",
+      "figure": "main-power",
+      "physical_page": 139,
+      "clip_points": [
+        35,
+        75,
+        345,
+        164
+      ],
+      "base_art_layout": {
+        "art_sha256": "a210e855db007daebc4e6ee7a1327a7572faf71b58d9c30799aba8827b372ab2",
+        "step_anchors": [
+          [
+            74.0268,
+            16.1326
+          ],
+          [
+            73.9332,
+            46.1607
+          ]
+        ],
+        "step_width": 24,
+        "duration_anchor": [
+          78.391,
+          64.9371
+        ]
+      }
+    },
+    {
+      "locale": "nl",
+      "figure": "ac-output",
+      "physical_page": 139,
+      "clip_points": [
+        33,
+        264,
+        337,
+        475
+      ],
+      "base_art_layout": {
+        "art_sha256": "6bafdd3a9f9df66ef56d76191e35b9688e8e97f602a2154f630a6ea946d78d7c",
+        "step_anchors": [
+          [
+            82.5859,
+            22.4896
+          ],
+          [
+            82.4905,
+            33.1773
+          ]
+        ],
+        "step_width": 17,
+        "prerequisite_rect": [
+          0.3672,
+          1.1031,
+          43.472,
+          6.4896
+        ],
+        "prerequisite_fill": "#f7f7f8"
+      }
+    },
+    {
+      "locale": "nl",
+      "figure": "dc-usb-output",
+      "physical_page": 140,
+      "clip_points": [
+        33,
+        48,
+        337,
+        209
+      ],
+      "base_art_layout": {
+        "art_sha256": "4e30a7129daded263cf580d421e8ef41d5e96eab9ce701596b831427cfd0da35",
+        "step_anchors": [
+          [
+            85.8645,
+            14.1143
+          ],
+          [
+            85.7766,
+            26.6099
+          ]
+        ],
+        "step_width": 13.7,
+        "prerequisite_rect": [
+          0.821,
+          1.1934,
+          44.0951,
+          8.505
+        ],
+        "prerequisite_fill": "#e6e7e8"
+      }
+    },
+    {
+      "locale": "nl",
+      "figure": "led-light",
+      "physical_page": 140,
+      "clip_points": [
+        35,
+        397,
+        220,
+        489
+      ],
+      "base_art_layout": {
+        "art_sha256": "b688edc6129a2373143a5790e11bc01c02dc0e78ac521f93645c7421c1817cee",
+        "art_width": 62,
+        "step_markers": [
+          "bulb-lit",
+          "sos",
+          "bulb-off"
+        ]
+      }
+    },
+    {
+      "locale": "nl",
+      "figure": "energy-saving",
+      "physical_page": 141,
+      "clip_points": [
+        35,
+        373,
+        337,
+        455
+      ],
+      "base_art_layout": {
+        "art_sha256": "f92b727d8a70d64e56298af3c1759eac375b0ad66dbe3625bf2ff7dd9029de6b",
+        "footer_x": 69.6921
+      }
+    }
+  ],
+  "validation": {
+    "strict_sphinx": {
+      "pl": "pass",
+      "pt": "pass",
+      "nl": "pass"
+    },
+    "operation_steps_prerequisites_supporting_text": "identical to candidate15 for all five figures in all three languages",
+    "artwork": "DC/energy 12x native render inspected; LED whole hand and source product preserved; original native circles/markers removed only where replaced by existing live component",
+    "browser_review": "parent task performing final desktop/mobile review"
+  },
+  "protected_files": "source/errata.json, source/target_layout.json and source/glyph_recoveries.json hashes verified unchanged by operation-only apply"
+}

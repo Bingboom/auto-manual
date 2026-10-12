@@ -34,11 +34,11 @@ from tools.component_specs.overview_adapters import (
 )
 from tools.component_specs.registry import registry_sha256
 from tools.component_specs.theme import theme_sha256
-from tools.web_presentation import protect_web_callouts_for_pandoc
-from tools.web_presentation import transform_web_fragment
-from tools.web_document_ir import render_document_fragments
-from tools.web_document_source import _consume_covered_annotations, load_web_document
-from tools.word_bundle_html import build_word_bundle_html
+from tools.web.presentation import protect_web_callouts_for_pandoc
+from tools.web.presentation import transform_web_fragment
+from tools.web.document_ir import render_document_fragments
+from tools.web.document_source import _consume_covered_annotations, load_web_document
+from tools.word.bundle_html import build_word_bundle_html
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -107,11 +107,11 @@ class WebDocumentIRTests(unittest.TestCase):
             )
             with (
                 patch(
-                    "tools.web_presentation.transform_specification_tables",
+                    "tools.web.presentation.transform_specification_tables",
                     side_effect=source_projector_error,
                 ),
                 patch(
-                    "tools.web_presentation.load_web_callout_source",
+                    "tools.web.presentation.load_web_callout_source",
                     side_effect=source_projector_error,
                 ),
             ):
@@ -126,7 +126,7 @@ class WebDocumentIRTests(unittest.TestCase):
             self.assertIn("AUTOMANUALWEBCALLOUT", protected)
 
     def test_japanese_box_contents_uses_shared_inbox_outside_figure_target(self):
-        from tools.web_presentation import transform_web_fragment
+        from tools.web.presentation import transform_web_fragment
         cells = ''.join(f'<td><img src="{i}.png"><p>{label}</p></td>'
                         for i, label in enumerate(('本体', '拡張ケーブル', '取扱説明書')))
         markup = f'<h1>同梱品</h1><table><tr>{cells}</tr></table><table><tr><td>注意</td><td>付属品についての注意</td></tr></table>'
@@ -152,13 +152,17 @@ class WebDocumentIRTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "changed or ambiguous"):
                 _consume_covered_annotations(soup, entry, soup.img)
 
-    def build(self, root, manifest=None):
+    def build(self, root, manifest=None, extra_images=()):
         pages = root / "source"
         pages.mkdir()
         (pages / "figure.png").write_bytes(b"frozen illustration")
         (pages / "03_product_overview_placeholder.rst").write_text(
             "日語文書\n========\n\n説明 **重要**。\n\n.. image:: figure.png\n   :alt: 帯字図\n"
         )
+        for name in extra_images:
+            (pages / name).write_bytes(b"frozen illustration")
+            with (pages / "03_product_overview_placeholder.rst").open("a") as page:
+                page.write(f"\n.. image:: {name}\n   :alt: additional source\n")
         (pages / "spec_ja.rst").write_text(
             "仕様\n====\n\n.. list-table::\n\n   * - 容量\n     - 2042.8Wh\n"
         )
@@ -168,7 +172,7 @@ class WebDocumentIRTests(unittest.TestCase):
         )
         output = root / "package"
         cfg = {"paths": {"web_illustration_manifest": str(manifest)}} if manifest else {}
-        with patch("tools.word_bundle_html._convert_rst_fragment_to_html", side_effect=AssertionError("old reader")):
+        with patch("tools.word.bundle_html._convert_rst_fragment_to_html", side_effect=AssertionError("old reader")):
             build_word_bundle_html(cfg, "BP", "JP", materialized_bundle=bundle,
                                    output_dir=output, presentation_profile="web")
         return read_manual_ir(output / "manual.ir.json"), output, pages
@@ -206,6 +210,27 @@ class WebDocumentIRTests(unittest.TestCase):
                     self.assertEqual(1, coverage["summary"]["by_status"]["finished-panel"])
                     self.assertEqual(["figure.png"], coverage["slots"][0]["replaces"])
 
+    def test_finished_panel_consumes_secondary_sources_and_requires_explicit_reuse(self):
+        for reuse in (None, False, "true", True):
+            with self.subTest(reuse=reuse), tempfile.TemporaryDirectory() as td:
+                root = Path(td)
+                art = root / "finished.png"
+                art.write_bytes(b"approved combined panel")
+                entry = {"path": art.name, "replaces": ["figure.png", "secondary.png"],
+                         "sha256": hashlib.sha256(art.read_bytes()).hexdigest(), "allow_reuse": reuse}
+                path = root / "illustrations.json"
+                path.write_text(json.dumps({"schema_version": "web-illustrations/v1", "model": "BP",
+                                            "region": "JP", "language": "ja", "illustrations": [entry]}))
+                extra = ("secondary.png",) if reuse is None else ("secondary.png", "figure.png")
+                if reuse is not None and reuse is not True:
+                    with self.assertRaisesRegex(ValueError, "repeated Web illustration source"):
+                        self.build(root, path, extra_images=extra)
+                else:
+                    ir, package, _ = self.build(root, path, extra_images=extra)
+                    markup = "".join(render_document_fragments(ir, package_root=package))
+                    self.assertNotIn("secondary.png", markup)
+                    self.assertEqual(markup.count('class="manual-finished-illustration"'), 2 if reuse else 1)
+
     def test_whole_document_replays_after_source_removed_and_package_moved(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -214,7 +239,7 @@ class WebDocumentIRTests(unittest.TestCase):
             shutil.rmtree(pages)
             relocated = root / "relocated"
             shutil.copytree(output, relocated)
-            with patch("tools.web_document_source.load_web_document", side_effect=AssertionError("source reopened")):
+            with patch("tools.web.document_source.load_web_document", side_effect=AssertionError("source reopened")):
                 after = render_document_fragments(read_manual_ir(relocated / "manual.ir.json"), package_root=relocated)
             self.assertEqual([x.replace(str(output), "PACKAGE") for x in before],
                              [x.replace(str(relocated), "PACKAGE") for x in after])
@@ -267,7 +292,7 @@ class WebDocumentIRTests(unittest.TestCase):
             ir, output, _ = self.build(Path(td))
 
             with patch(
-                "tools.web_document_ir.transform_web_fragment",
+                "tools.web.document_ir.transform_web_fragment",
                 side_effect=AssertionError("legacy DOM projector called"),
             ):
                 fragments = render_document_fragments(ir, package_root=output)
@@ -339,7 +364,7 @@ class WebDocumentIRTests(unittest.TestCase):
             )
 
             with patch(
-                "tools.web_embedded_components.resolve_overview_instance",
+                "tools.web.embedded_components.resolve_overview_instance",
                 side_effect=AssertionError("external Overview contract reopened"),
             ):
                 fragment = render_document_fragments(ir, package_root=output)[0]
@@ -375,7 +400,7 @@ class WebDocumentIRTests(unittest.TestCase):
             legacy = replace(ir, metadata=metadata)
 
             with patch(
-                "tools.web_document_ir.transform_web_fragment",
+                "tools.web.document_ir.transform_web_fragment",
                 wraps=transform_web_fragment,
             ) as projector:
                 fragments = render_document_fragments(legacy, package_root=output)
@@ -456,6 +481,62 @@ class WebDocumentIRTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "target does not match document"):
                 read_manual_ir(path)
 
+    def test_base_art_coverage_evidence_must_match_the_asset_manifest(self):
+        from tools.web.figure_coverage import build_web_figure_coverage
+
+        with tempfile.TemporaryDirectory() as td:
+            ir, _, _ = self.build(Path(td))
+            path, digest = next(iter(ir.metadata["asset_sha256"].items()))
+            coverage_ir = SimpleNamespace(
+                model=ir.model,
+                region=ir.region,
+                pages=(SimpleNamespace(page_id="05_operation_guide_placeholder.rst"),),
+                metadata={
+                    "web_contract": {
+                        "product_overview": {"source_patterns": []},
+                        "operations": {
+                            "source_patterns": ["*05_operation_guide_placeholder"],
+                            "figures": [
+                                {
+                                    "id": "main-power",
+                                    "web_replace_key": "operation.main-power",
+                                    "base_art_layout": {"art_sha256": digest},
+                                }
+                            ],
+                        },
+                        "reference_figures": {"figures": []},
+                    },
+                    "illustration_provenance": {"illustrations": []},
+                    "composites": [],
+                    "asset_sha256": {path: digest},
+                },
+            )
+            fragment = (
+                '<figure class="hb-operation-figure hb-base-art-live-copy" '
+                'data-web-replace-key="operation.main-power" '
+                'data-web-presentation-mode="base-art-live-copy" '
+                'data-web-base-art-ref="operation/main_power">'
+                '<div class="hb-operation-stage">'
+                f'<img src="file:///tmp/package/{path}">'
+                '<div class="hb-operation-steps">Live copy</div>'
+                "</div></figure>"
+            )
+            coverage = build_web_figure_coverage(coverage_ir, (fragment,))
+            self.assertEqual("base-art-live-copy", coverage["slots"][0]["status"])
+            validate_document(
+                replace(ir, metadata={**ir.metadata, "web_figure_coverage": coverage})
+            )
+
+            tampered = json.loads(json.dumps(coverage))
+            tampered["slots"][0]["asset"]["sha256"] = "0" * 64
+            with self.assertRaisesRegex(
+                ValueError,
+                "base-art evidence does not match the document asset manifest",
+            ):
+                validate_document(
+                    replace(ir, metadata={**ir.metadata, "web_figure_coverage": tampered})
+                )
+
     def test_missing_or_changed_asset_fails_before_render(self):
         with tempfile.TemporaryDirectory() as td:
             ir, output, _ = self.build(Path(td))
@@ -483,7 +564,7 @@ def guarded(path, *args, **kwargs):
     return original(path, *args, **kwargs)
 with patch.object(Path, "open", guarded):
     from tools.manual_ir import read_manual_ir
-    from tools.web_document_ir import render_document_fragments
+    from tools.web.document_ir import render_document_fragments
     package = Path(sys.argv[1])
     result = render_document_fragments(read_manual_ir(package / "manual.ir.json"), package_root=package)
     assert len(result) == 2
@@ -576,7 +657,7 @@ with patch.object(Path, "open", guarded):
 
     def test_declared_lcd_without_separate_icons_keeps_all_copy(self):
         from tools.csv_pages.renderers_lcd_icons import _rst_table
-        from tools.word_bundle_html import _convert_rst_fragment_to_html
+        from tools.word.bundle_html import _convert_rst_fragment_to_html
         rows = [{"no": "1", "figure": "", "name": "残量", "description": "現在の残量です。"}]
         with tempfile.TemporaryDirectory() as td:
             markup = _convert_rst_fragment_to_html(

@@ -1,5 +1,7 @@
 # Manual operations accepted closeout — 2026-09-13
 
+Status: done
+
 **The operator accepted closure with the remaining online resource re-verification deferred:** “后置剩余复验，收口合入 #1103”. All code/PR checks, latest-main ancestry, reviews/threads and MA-066 gates still apply to the final merge. The remaining verification is explicitly **not performed / user-deferred**, never reported passed.
 
 ## Actual state

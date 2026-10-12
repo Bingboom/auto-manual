@@ -1,0 +1,58 @@
+{
+  "schema_version": "je100c-copy-alignment/v1",
+  "language": "uk",
+  "authorization": "Operator selected: 以新版英文为准，校正这 4 语的差异译文",
+  "authority": {
+    "file": "16-0102-000467 HTE162100A-EUUK-JAK 说明书 RoHS REACH A0(1).pdf",
+    "sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+    "english_pages": [
+      4,
+      15
+    ]
+  },
+  "tm_base": "Ji1hb5ub1aUbewsTljGccvx5nhc",
+  "tm_table": "tblqtvNbgjDwR4ya",
+  "tm_fallback": {
+    "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/source/symbols.json",
+    "sha256": "74082793652dae76e3876e535031b274784b0531b7a8ad30f281b680ed9de9bc",
+    "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+  },
+  "changes": [
+    {
+      "file": "charging_uk.rst",
+      "before": "ЗАРЯДЖАННЯ ЧЕРЕЗ КАБЕЛЬ ЗМІННОГО СТРУМУ\n---------------------------------------\n\n.. image:: renderers/web/assets/je100c_eu_shared/charging_ac.svg\n   :alt: ЗАРЯДЖАННЯ ЧЕРЕЗ КАБЕЛЬ ЗМІННОГО СТРУМУ\n\n.. admonition:: УВАГА\n   :class: caution\n\n   - Придбайте кабель заряджання змінного струму окремо.\n\n   - Переконайтеся, що кабель заряджання змінного струму повністю та надійно підключений до вхідного порту змінного струму. Неповне підключення може спричинити нестабільний струм, перегрів, поганий контакт або несправність пристрою.\n\n",
+      "after": "ЗАРЯДЖАННЯ ЗА ДОПОМОГОЮ ЗАРЯДНОГО ПРИСТРОЮ USB-C\n------------------------------------------------\n\n.. image:: renderers/web/assets/je100c_eu_shared/charging_ac.svg\n   :alt: ЗАРЯДЖАННЯ ЗА ДОПОМОГОЮ ЗАРЯДНОГО ПРИСТРОЮ USB-C\n\n.. container:: hb-source-purchase\n\n   .. image:: renderers/web/assets/je100c_eu_shared/symbol_purchase.png\n      :alt: Зарядний пристрій USB-C продається окремо.\n\n   **Зарядний пристрій USB-C продається окремо.**\n\n",
+      "english_source": "CHARGING VIA A USB-C CHARGER / USB-C charger sold separately.",
+      "method": "new translation authorized by operator; no exact live TM match"
+    },
+    {
+      "file": "charging_uk.rst",
+      "before": "   - Якщо автомобіль рухається нерівною дорогою, заборонено використовувати автомобільний зарядний пристрій, оскільки це може призвести до неналежної роботи. Компанія не несе відповідальності за будь-які збитки, спричинені неналежною експлуатацією.",
+      "after": "   - Якщо автомобіль рухається нерівною дорогою, заборонено використовувати автомобільний зарядний пристрій, щоб уникнути перегріву через погане з’єднання. Компанія не несе відповідальності за будь-які збитки, спричинені неналежною експлуатацією.",
+      "english_source": "If the vehicle is running on bumpy roads, it is forbidden to use the car charger to avoid overheating caused by poor connection. The Company will not be responsible for any loss caused by non-standard operation.",
+      "method": "new translation of the newer-English missing hazard condition"
+    },
+    {
+      "file": "spec_uk.rst",
+      "before": "     - LiFePO₄",
+      "after": "     - Li-ion LFP",
+      "english_source": "Li-ion LFP",
+      "method": "updated source terminology; same chemistry"
+    },
+    {
+      "file": "spec_uk.rst",
+      "before": "Вхідні порти\n------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1\n     - 5 В⎓3 А, 9 В⎓3 А, 12 В⎓3 А, 15 В⎓3 А, 20 В ⎓5 А, 28 В⎓5 А, 140Вт макс.\n\n       Автомобіль: 12 В⎓5 А макс., 24 В⎓5 А макс.\n\n       ФЕ: 10В-30В⎓, 5А макс., 100Вт макс.\n\nВихідні порти\n-------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-A\n     - 5 В⎓2 А, 9 В⎓2 А, 12 В⎓1,5 А, 18 Вт макс.\n   * - USB-C1 / USB-C2\n     - 5 В⎓3 А, 9 В⎓3 А, 12 В⎓3 А, 15 В⎓3 А, 20 В⎓5 А, 28 В⎓5 А, 140Вт макс.\n\nЗагальна вихідна потужність\n---------------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1 + USB-C2\n     - ( 70 Вт + 70 Вт ) макс.\n   * - USB-C1 + USB-A / USB-C2 + USB-A\n     - ( 140 Вт + 18 Вт ) макс.\n   * - USB-C1 + USB-C2 + USB-A\n     - ( 70 Вт + 70 Вт + 18 Вт ) макс.\n\nРОБОЧА ТЕМПЕРАТУРА НАВКОЛИШНЬОГО СЕРЕДОВИЩА\n-------------------------------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - Температура заряджання\n     - від 0°C до 45°C\n   * - Температура розряду\n     - від -20°C до 45°C\n\n※ USB Type-C® та USB-C® є зареєстрованими торговельними марками USB Implementers Forum.\n",
+      "after": "   * - Ресурс циклів\n     - 3000 циклів до 80%+ ємності\n\nВхідні порти\n------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1\n     - 5 В⎓3 А, 9 В⎓3 А, 12 В⎓3 А, 15 В⎓3 А, 20 В ⎓5 А, 28 В⎓5 А, 140Вт макс.\n\n       Автомобіль: 12 В⎓5 А макс., 24 В⎓5 А макс.\n\n       ФЕ: 10В-30В⎓, 5А макс., 100Вт макс.\n\nВихідні порти\n-------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-A\n     - 5 В⎓2 А, 9 В⎓2 А, 12 В⎓1,5 А, 18 Вт макс.\n   * - USB-C1 / USB-C2\n     - 5 В⎓3 А, 9 В⎓3 А, 12 В⎓3 А, 15 В⎓3 А, 20 В⎓5 А, 28 В⎓5 А, 140Вт макс.\n\nЗагальна вихідна потужність\n---------------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1 + USB-C2\n     - ( 70 Вт + 70 Вт ) макс.\n   * - USB-C1 + USB-A / USB-C2 + USB-A\n     - ( 140 Вт + 18 Вт ) макс.\n   * - USB-C1 + USB-C2 + USB-A\n     - ( 70 Вт + 70 Вт + 18 Вт ) макс.\n\nРОБОЧА ТЕМПЕРАТУРА НАВКОЛИШНЬОГО СЕРЕДОВИЩА\n-------------------------------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - Температура заряджання\n     - від 0°C до 45°C\n   * - Температура розряду\n     - від -20°C до 45°C\n\n※ USB Type-C® та USB-C® є зареєстрованими торговельними марками USB Implementers Forum.\n",
+      "english_source": "Cycle Life / 3000 cycles to 80%+ capacity",
+      "method": "uk: TM recvgEwErzPJY3 parameter reuse; others: operator-authorized translation"
+    },
+    {
+      "file": "symbol_meaning_uk.rst",
+      "before": "   * - \n     - \n",
+      "after": "   * - .. image:: renderers/web/assets/je100c_eu_shared/symbol_battery_weee.png\n          :alt: battery_weee\n     - Батарейки та акумулятори не можна викидати разом із побутовими відходами. Як споживач ви юридично зобов’язані здавати всі батарейки та акумулятори у визначені пункти збору, незалежно від того, чи містять вони небезпечні речовини. Будь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля.\n",
+      "english_source": "Batteries and accumulators must not be disposed of with household waste. As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances. Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "method": "uk: exact live TM records recvgEwErzbPK6, recvgEwErz2Qox, recvgEwErzzwm8, recvgEwErzj960; pt/nl/pl: identical generic source paragraph in frozen JE-2000F source"
+    }
+  ],
+  "review_status": "local-aligned-candidate-not-published"
+}

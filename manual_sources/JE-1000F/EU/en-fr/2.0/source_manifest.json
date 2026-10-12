@@ -23,7 +23,10 @@
   "review_root": "docs/_review/JE-1000F/EU",
   "build_configs": {
     "en": "configs/config.eu-en.yaml",
-    "fr": "configs/config.eu-fr.yaml"
+    "fr": "configs/config.eu-fr.yaml",
+    "es": "configs/config.eu-es.yaml",
+    "de": "configs/config.eu-de.yaml",
+    "it": "configs/config.eu-it.yaml"
   },
   "build_source": "review-asis",
   "normalizations": [
@@ -62,6 +65,96 @@
       ],
       "change": "Restore safety condition, LCD mapping/copy, electrical maximum, native USB-C rows, troubleshooting, section order and App numbering; remove PDF-absent copy. Preserve documented authority-side inconsistencies.",
       "notes": "pdf_parity_notes.md"
+    },
+    {
+      "scope": "App connect-result Web figure",
+      "pdf_physical_pages": [
+        22
+      ],
+      "change": "Bind one shared finished panel (web-composite/je1000f_eu/reference.app-connect-result, locale=shared) cropped from the EN block with its 2.3/2.4/2.5 captions; the FR/ES/DE/IT blocks print the same English screens. It replaces the JP-market shared app/connect_result art the Web pages showed."
+    },
+    {
+      "scope": "App setup review pages",
+      "pdf_physical_pages": [
+        21,
+        22
+      ],
+      "change": "Switch the raw paths to the shared JP-market app/add_device and app/connect_result screenshots in the FR/ES/DE/IT/UK pages and the DE/ES/IT/UK generated drafts to asset:app/add_device and asset:app/connect_result, which the reviewed promotion je1000f-eu-app-ui-v1 resolves to the EU print's own screens (the same change as Hello-Docs #125 on review/JE-1000F-EU)."
+    },
+    {
+      "scope": "In-box, LCD display mode and UPS review pages",
+      "pdf_physical_pages": [
+        7,
+        14,
+        15,
+        24,
+        31,
+        32
+      ],
+      "change": "Switch the raw shared-art paths and bare basenames for in_the_box/main_unit1, operation/lcd_mode and operation/ups_mode in the FR/ES/DE/IT/UK pages, the DE/ES/IT/UK generated drafts and the EN in-box LaTeX macro to asset:in_the_box/main_unit1, asset:operation/lcd_mode and asset:operation/ups_mode. The JE-1000F/EU target overrides resolve them to the released print's own blocks (the English block's BS 1363 sockets for en, the French block's EU sockets for fr/es/de/it/uk) instead of the shared art (a US-outlet unit and another, wheeled model)."
+    },
+    {
+      "scope": "EN/DE/IT/ES figure alt text on the Web review pages",
+      "change": "Replace placeholder-worded image alt text (en 'image/diagram/operation placeholder', de 'als Platzhalter' and 'Platzhalter für', it 'Segnaposto', es 'Marcador de posición' and 'marcador de tienda') with a description of the figure in the page language on the 22 EN/DE/IT/ES review pages that feed the published Web routes. Re-approve the 33 EN/DE/IT source_fragment_sha256 values in phase2/web_composite_manifest.json, because that hash covers the semantic fragment including its alt text; the approved panel art is unchanged. The UK pages and generated drafts, which no published Web route reads, are unchanged."
+    },
+    {
+      "scope": "DE 12 V caution",
+      "pdf_physical_pages": [
+        64
+      ],
+      "change": "The p53 review page's first 12 V caution bullet named the car socket 'Der DC-12-V-Anschluss'; the print's DE block reads 'Die DC-12V-Buchse ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.' The other two bullets already match the print."
+    },
+    {
+      "scope": "FR App figure alt text on the Web review page",
+      "change": "Replace the p31 review page's three App figure alt texts that called the figure a reserved slot ('emplacement réservé') with a description of the figure in French, as in the shared FR templates. No Web composite governs these figures."
+    },
+    {
+      "scope": "ES/DE storage durations",
+      "pdf_physical_pages": [
+        52,
+        70
+      ],
+      "change": "The storage duration labels of the Spanish and German rows were swapped (es printed German '1 monat/3 monate/12 monate', de printed Spanish '1 mes/3 meses/12 meses'). Spec_Master Param_es and Param_de and the p42/p57 review pages now hold each block's printed labels: es '1 mes/3 meses/12 meses' (PDF page 52), de '1 Monat/3 Monate/12 Monate' (page 70, where the print sets them in lowercase; German capitalization follows JE-2000E's print and the other models)."
+    },
+    {
+      "scope": "ES/DE/IT environmental operating temperature heading",
+      "pdf_physical_pages": [
+        53,
+        71,
+        88
+      ],
+      "change": "The ENVIRONMENTAL OPERATING TEMPERATURE row of spec_titles.csv carried the English fallback in title_es/title_de/title_it, and the ES/DE/IT Web specification pages showed that English heading (and figure label). The cells now hold each block's printed heading: es 'TEMPERATURA DE FUNCIONAMIENTO' (PDF page 53), de 'UMGEBUNGSBETRIEBSTEMPERATUR' (page 71), it 'TEMPERATURA OPERATIVA AMBIENTALE' (page 88); the non-rendering Localized_Copy.csv twin spec.section.environmental_operating_temperature (text_es/text_de/text_it) matches. The --source review build regenerates the spec pages from these cells, so the review pages are unchanged. FR keeps its reviewed heading (review-asis) and the FR/UK cells are unchanged."
+    },
+    {
+      "scope": "FR/ES/DE/IT specification tables",
+      "pdf_physical_pages": [
+        36,
+        53,
+        67,
+        71,
+        88
+      ],
+      "change": "Values, structure and labels of the Web specification tables now follow each print block; unit spacing, case, decimal comma, '⎓' and 'max.' keep the house format. FR (review-asis; the spec_fr.rst review page, both carriers; PDF page 36): 'N° modèle', capacity '1024 Wh (20 Ah / 51,2 V DC)', and the ① bypass footnote now precedes the ※ USB Type-C note as printed. ES/DE/IT (--source review regenerates their spec pages from Spec_Master.csv; PDF pages 53, 71, 88): es DC8020 line 2 gains the printed maximum ('16 V-60 V⎓12 A máx., …'); de/it drop the unprinted temperature condition from the 100 W USB-C line; the merged USB-C row splits into the printed 30 W and 100 W rows (es 'Salida USB-C 30 W'/'Salida USB-C 100 W', de '1 × USB-C-Ausgang 30 W'/'… 100 W', it '1 × Uscita USB-C 30 W'/'… 100 W'); es 'Química de las celdas', 'Vida útil en ciclos' with '4000 ciclos hasta conservar más del 70 % de capacidad', '1 × Puerto CC 12 V' and capacity '… V DC'; de '2 × DC8020-Ports' and '1 × USB-A'; it capacity '1024 Wh (20 Ah / 51,2 V DC)', 'Vita ciclica', '1 × USB-A' and 'Temperatura di scarica'. Spec_Footnotes.csv ac_bypass Text_es/Text_de/Text_it hold each block's printed bypass footnote, so the bypass row also gets its ① marker. spec_titles.csv title_it and the non-rendering Localized_Copy.csv twins hold the printed 'PORTE IN INGRESSO' and 'PORTE IN USCITA'. Print defects keep the reviewed wording: the it AC input/output '60 Hz' stays 50 Hz, the de 'máx.' stays 'max.', and the de table's 'Ladtemperatur' becomes 'Ladetemperatur', as the DE block spells it in running text (PDF page 67). The it DC8020 line 2 keeps the print's '12 A' without 'max.' (a possible defect, left as printed). EN (PDF page 19 prints the ※ note first) and the UK cells are unchanged. The ES/DE/IT review pages are not edited because the review sync rewrites them from these cells; like their print blocks, they now render the ① footnote before the ※ note through docs/templates/spec_template_footnotes_first.rst (#1306)."
+    },
+    {
+      "scope": "DE specification port headings (print defect)",
+      "pdf_physical_pages": [
+        71
+      ],
+      "change": "The DE block prints the port headings as a mixed pair, 'EINGANGSPORTS' / 'AUSGANGSPORTE' (PDF page 71). The Web now uses the reviewed pair 'EINGANGSANSCHLÜSSE' / 'AUSGANGSANSCHLÜSSE', which the JE-1000H EU print (V2.0-2026-08-03, sha256 07e9ac4b…) and the JE-3600A EU print (2026-05-25, sha256 bfbcc437…) set on PDF page 70 of each; JE-2000F/EU takes the same pair (#1301). spec_titles.csv title_de of the INPUT PORTS and OUTPUT PORTS rows and the non-rendering Localized_Copy.csv twins (spec.section.input_ports / output_ports, text_de) hold it. The --source review build regenerates the DE spec page from these cells, so the review page is not edited."
+    },
+    {
+      "scope": "ES/DE/IT Web specification trailer order",
+      "pdf_physical_pages": [
+        53,
+        71,
+        88
+      ],
+      "change": "The FR/ES/DE/IT blocks of the print set the footnotes above the ※ USB-IF trademark note (PDF pages 36, 53, 71 and 88); the EN block sets the ※ note first (page 19). The spec row of phase2/page_registry.csv now names docs/templates/spec_template_footnotes_first.rst, whose HTML branch renders the footnotes before the notes and whose LaTeX branch is byte-identical to spec_template.rst, so the PDF and IDML output is unchanged. The --source review build regenerates the ES/DE/IT spec pages through this template, so the review pages are not edited. EN and FR build review-asis from their reviewed pages, which this change does not touch; EN keeps the printed ※-first order."
+    },
+    {
+      "scope": "UPS WARNING and fourth UPS CAUTION bullet on the review pages (Web and Word only)",
+      "change": "The five UPS review pages the EN/FR/ES/DE/IT Web routes render (page/06_ups_mode.rst and p24/p39/p54/p69) gain the UPS WARNING (data servers and medical devices; life-safety, infrastructure and business-critical equipment; pacemaker wearers) between the UPS text and the CAUTION, and a fourth CAUTION bullet (one unit directly on a wall outlet, no cascade), as the shared docs/templates/page_shared/<lang>/06_ups_mode.rst templates now carry them. Operator rulings of 2026-09-27: every model that uses the shared UPS template carries these blocks, although this model's V2.0-2026-06-18 print does not; and, until the LaTeX and IDML renderers are fixed, only the Web and Word outputs show them. A `.. only:: not latex` block holds the WARNING and the four-bullet CAUTION; main's CAUTION follows unchanged under `.. only:: latex`, so the PDF and IDML read these pages exactly as before. The wording is each language block of the JE-3000C EUUK V2.0-2026-09-15 print (sha256 f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32, PDF pages 14-15/30-31/46-47/62-63/78-79), with the house fixes 'outlet. Do' and whole-word labels. The UK page p84 keeps its wording, as for the 2026-09-27 alt-text change: this model ships no Ukrainian (data/model_languages.csv), so no output renders it. No Web composite governs the UPS page."
     }
   ],
   "files": [
@@ -72,8 +165,8 @@
     },
     {
       "path": "phase2/Localized_Copy.csv",
-      "size": 10004,
-      "sha256": "597f726f7faf29e57c27f7b78747fa431d21532ecd571548e532f7ad3b888bcf"
+      "size": 10002,
+      "sha256": "8e591e380a30d4fcf2f80136146b7c19c947e492c0d93648b2ad32364646b28a"
     },
     {
       "path": "phase2/Manual_Copy_Source.csv",
@@ -82,13 +175,13 @@
     },
     {
       "path": "phase2/Spec_Footnotes.csv",
-      "size": 480,
-      "sha256": "b98d5aa0f6f345395df9b45ae00f44b89f38c33103dbf673dd977f61201c9c21"
+      "size": 848,
+      "sha256": "e2b4dd4d941b1a0a08cb8ed43070e695e7e6a44c850b600bbb55139b2790e95b"
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 22380,
-      "sha256": "c29f793839c01c4d441e92abd7dbb8176b50d6f0dec528bdbfa02ff82f50063f"
+      "size": 22357,
+      "sha256": "5236d39c19e761c40bc387a3c83c79e2df608667f37c337b7a2938d6f3d5c4e4"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -326,9 +419,19 @@
       "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7"
     },
     {
+      "path": "phase2/_attachments/web_composites/operation.ac-output_de_eefd36599ef3.png",
+      "size": 106978,
+      "sha256": "eefd36599ef35e40de93411e4523119731d40ac2c019fab04190e7ee78934d5e"
+    },
+    {
       "path": "phase2/_attachments/web_composites/operation.ac-output_en_d775fac753d4.png",
       "size": 101220,
       "sha256": "d775fac753d482ca3a40c0f61f6bfc28c74280d746b9ee220c671a24b444e019"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/operation.ac-output_es_a71f9ff80a2f.png",
+      "size": 108932,
+      "sha256": "a71f9ff80a2f0d00f1e2613295d97bde4b45118bc4e00b9d7c57d97bd95572d3"
     },
     {
       "path": "phase2/_attachments/web_composites/operation.ac-output_fr_6efe223dae51.png",
@@ -336,9 +439,24 @@
       "sha256": "6efe223dae51a4ed12038f782bf0daad4927b34b62622ead6a115d25341b4409"
     },
     {
+      "path": "phase2/_attachments/web_composites/operation.ac-output_it_3fae4a706b6f.png",
+      "size": 109318,
+      "sha256": "3fae4a706b6f459b1e95c4237009ed4b6c916d096b8ae33c9c90947d15441b6b"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/operation.dc-usb-output_de_db2e22568da0.png",
+      "size": 110911,
+      "sha256": "db2e22568da0b8b8bb6df8935e553843c712414ef675494f3488dd1d8c8bc8ff"
+    },
+    {
       "path": "phase2/_attachments/web_composites/operation.dc-usb-output_en_8d9c9faed173.png",
       "size": 108652,
       "sha256": "8d9c9faed173010decc8adc7513a284aea7def5bd2f94e51c46a6fccc6b22e8c"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/operation.dc-usb-output_es_46ade2b744a8.png",
+      "size": 112997,
+      "sha256": "46ade2b744a87255c414707bd4b6cacc459c8159a1261ac22c935af0ea069f72"
     },
     {
       "path": "phase2/_attachments/web_composites/operation.dc-usb-output_fr_cca746bf84aa.png",
@@ -346,9 +464,24 @@
       "sha256": "cca746bf84aab963823421bfff4098f932515ffd55bf0ee85e5feb4fc3ec9b80"
     },
     {
+      "path": "phase2/_attachments/web_composites/operation.dc-usb-output_it_46e632819072.png",
+      "size": 113088,
+      "sha256": "46e63281907266fd50150c7d0d7b85d72b2f848d9b164fe18a0fd1fa269db8d0"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/operation.energy-saving_de_b9eb96b32d60.png",
+      "size": 135704,
+      "sha256": "b9eb96b32d6054e8e82031603d5dc9638b010d2cf45c8fa742511ada38f66abd"
+    },
+    {
       "path": "phase2/_attachments/web_composites/operation.energy-saving_en_0172891c9485.png",
       "size": 122943,
       "sha256": "0172891c9485e9d554a4f81b2a688af4492834a3a505fd96d3e107089196aa55"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/operation.energy-saving_es_e42fd7ad5c73.png",
+      "size": 130173,
+      "sha256": "e42fd7ad5c73c708cf3cc3ba58fd0726debace6077864b5da98b40f1a7c803a5"
     },
     {
       "path": "phase2/_attachments/web_composites/operation.energy-saving_fr_196db2418826.png",
@@ -356,9 +489,24 @@
       "sha256": "196db2418826e717a2c32008c46f01abf8fd03ac6f6192eb1904cdba74493cfc"
     },
     {
+      "path": "phase2/_attachments/web_composites/operation.energy-saving_it_57a3296be38a.png",
+      "size": 128767,
+      "sha256": "57a3296be38aa85fc52fdfa0fd563693fd8fc83a99bf796c8f30c7ed90575bd9"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/operation.led-light_de_f35210360304.png",
+      "size": 120175,
+      "sha256": "f35210360304e03ecb5349b2a2f9c5d916ef43e73dab1c1e54e4c2399723291e"
+    },
+    {
       "path": "phase2/_attachments/web_composites/operation.led-light_en_ca664bce0375.png",
       "size": 106196,
       "sha256": "ca664bce037561c5ac6e172569be4f2a3248401d4b5189be16b8c07842dd4ed7"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/operation.led-light_es_7b6b8e0b9379.png",
+      "size": 106977,
+      "sha256": "7b6b8e0b937950dd39a211f0d364451db720e799d6c6b06c5a0ff6a41c977e81"
     },
     {
       "path": "phase2/_attachments/web_composites/operation.led-light_fr_3870cb1a99ae.png",
@@ -366,9 +514,24 @@
       "sha256": "3870cb1a99ae7bb0a67ddc7f74482aff10f068e382eda5a2939695348e18132b"
     },
     {
+      "path": "phase2/_attachments/web_composites/operation.led-light_it_cbd02dc0d35e.png",
+      "size": 106730,
+      "sha256": "cbd02dc0d35ee8d0a481c68dc8c7cb27c94c1a8379164c3ae6c12fe399cbd54e"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/operation.main-power_de_41b0974b8970.png",
+      "size": 102190,
+      "sha256": "41b0974b8970b9e4c5b84c57f583b8aa5e3a27fc54bcf0189b01226e22740e0f"
+    },
+    {
       "path": "phase2/_attachments/web_composites/operation.main-power_en_d146a09b705b.png",
       "size": 97081,
       "sha256": "d146a09b705bc34e26589e29286c303c529044936772d8621f71865cf4644471"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/operation.main-power_es_671911ee2461.png",
+      "size": 104190,
+      "sha256": "671911ee24617ce810667c42c88751db21a91369f20ea7eb61f2f8c78914a7c4"
     },
     {
       "path": "phase2/_attachments/web_composites/operation.main-power_fr_28a0fab1fb35.png",
@@ -376,9 +539,24 @@
       "sha256": "28a0fab1fb35bba52bbf384c6e4826dacddb2377acca847809b8630049f1beb6"
     },
     {
+      "path": "phase2/_attachments/web_composites/operation.main-power_it_b6ba22bf8a02.png",
+      "size": 102070,
+      "sha256": "b6ba22bf8a029b653a15556e33f2015a13a517eaa08721f9b4e37264c7a14329"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/product-overview.front_de_95164f86b2b7.png",
+      "size": 125323,
+      "sha256": "95164f86b2b7cbeb3018ea08d76e63567893af3277eaef37413afad4a268c86e"
+    },
+    {
       "path": "phase2/_attachments/web_composites/product-overview.front_en_29bdd9e2f9e6.png",
       "size": 113774,
       "sha256": "29bdd9e2f9e601bf4e508c86279d43697a281fb74622f67f2156f53aacdfd99a"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/product-overview.front_es_9721230d3a53.png",
+      "size": 122920,
+      "sha256": "9721230d3a531d55891350e932924825b7f7ebc1296f8f1fa10799052334271e"
     },
     {
       "path": "phase2/_attachments/web_composites/product-overview.front_fr_80e4af9abe10.png",
@@ -386,9 +564,24 @@
       "sha256": "80e4af9abe10d0654c3746532bfa3de338d02cd6bf90640ce543e1f9b5f48fd9"
     },
     {
+      "path": "phase2/_attachments/web_composites/product-overview.front_it_94e88239416f.png",
+      "size": 121058,
+      "sha256": "94e88239416ffa759355428ec0afc8b5127ca20e6a09ff748fd32fbbe436770b"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/product-overview.right_de_3edc17cfcca3.png",
+      "size": 60501,
+      "sha256": "3edc17cfcca3ef6d8bd75f3898a20c9fa80e0bb1fe67070a710c05fdc6ba8a2a"
+    },
+    {
       "path": "phase2/_attachments/web_composites/product-overview.right_en_51e55d14c7f2.png",
       "size": 53641,
       "sha256": "51e55d14c7f2ff6b7b6b9b87867c15bab685aafd08dbe95c04eb52d33a9b8e1e"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/product-overview.right_es_c65945c9bd4f.png",
+      "size": 56551,
+      "sha256": "c65945c9bd4fc0990e1e3a2e8270f1dfd93037840dc818c0cb8f8e199d4bc5a5"
     },
     {
       "path": "phase2/_attachments/web_composites/product-overview.right_fr_d00533ec20fb.png",
@@ -396,9 +589,29 @@
       "sha256": "d00533ec20fb9f0c929be1bbea28322067cf11617b2c09cdd3ab946f4fd10087"
     },
     {
+      "path": "phase2/_attachments/web_composites/product-overview.right_it_92b0ed2a03fb.png",
+      "size": 58156,
+      "sha256": "92b0ed2a03fbce944c2f31abab8046c46fc31f69bf3362c2292027edfd54e838"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/reference.app-connect-result_shared_a41b6db31865.png",
+      "size": 86338,
+      "sha256": "a41b6db31865f5091511b0d8ca830221cf328b45efdb4454fd864dba0132f059"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/reference.charging-ac-wall_de_816f5bfb098b.png",
+      "size": 79043,
+      "sha256": "816f5bfb098b3ce45e0a4e4bcd556775773ae7b5bb98712d25b0286481258969"
+    },
+    {
       "path": "phase2/_attachments/web_composites/reference.charging-ac-wall_en_4f2729db0ddb.png",
       "size": 78877,
       "sha256": "4f2729db0ddb09e4125d08171902dbc761bb1a5deb236b5b9c91f5188d8ef9ef"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/reference.charging-ac-wall_es_9f7e4fac69bc.png",
+      "size": 78204,
+      "sha256": "9f7e4fac69bce45a7fedcb0fa3283b689ac5eefe24f63812559ae73821aae6a4"
     },
     {
       "path": "phase2/_attachments/web_composites/reference.charging-ac-wall_fr_68839eb0e574.png",
@@ -406,9 +619,24 @@
       "sha256": "68839eb0e574ba3c5a64ad1402486ae92a85fa26b9dcfd4e5beffc7b89bc2d1b"
     },
     {
+      "path": "phase2/_attachments/web_composites/reference.charging-ac-wall_it_8415ace8180e.png",
+      "size": 78350,
+      "sha256": "8415ace8180ea42ce80fab1c7a4c81c626363a92ae3679d0b03fba1ffb546f6c"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/reference.charging-car_de_4e3894dbfbe0.png",
+      "size": 121599,
+      "sha256": "4e3894dbfbe0bbd9fbfa171ab2e00a0c672acf21cc5cd90fd3542a446c5425d2"
+    },
+    {
       "path": "phase2/_attachments/web_composites/reference.charging-car_en_11ef39e9a113.png",
       "size": 120658,
       "sha256": "11ef39e9a1133dff3b94e994203d796a24250aa5732f153f85a04f11f00ebcae"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/reference.charging-car_es_bc528286d032.png",
+      "size": 121466,
+      "sha256": "bc528286d0324b037e234764b337ae77b9bf3813679f445039e9278eb895de49"
     },
     {
       "path": "phase2/_attachments/web_composites/reference.charging-car_fr_62d32ac8ac4e.png",
@@ -416,9 +644,24 @@
       "sha256": "62d32ac8ac4e8ab6bdc873f3067dccc96726ddc25ef14f618cb7e31509d39a3a"
     },
     {
+      "path": "phase2/_attachments/web_composites/reference.charging-car_it_ed8f8cb22483.png",
+      "size": 121396,
+      "sha256": "ed8f8cb224835522353ee77d78a4635b940028ca2f082ff300df220f11c55c1e"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/reference.charging-solar-adapter_de_6eb8244df99a.png",
+      "size": 255478,
+      "sha256": "6eb8244df99af302a5d115bad73b941dc29e575e1a945947d31de3afeafff7f8"
+    },
+    {
       "path": "phase2/_attachments/web_composites/reference.charging-solar-adapter_en_c57e7dbb85f0.png",
       "size": 255713,
       "sha256": "c57e7dbb85f0c3833192c7331fc7495c233e8dd62845a380ed97eddd601d335b"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/reference.charging-solar-adapter_es_6eb8244df99a.png",
+      "size": 255478,
+      "sha256": "6eb8244df99af302a5d115bad73b941dc29e575e1a945947d31de3afeafff7f8"
     },
     {
       "path": "phase2/_attachments/web_composites/reference.charging-solar-adapter_fr_e9e777b55c2f.png",
@@ -426,14 +669,34 @@
       "sha256": "e9e777b55c2fb65b6945630d28ebb3ac2c50ff47221fe63c9c5880e27d2c8d58"
     },
     {
+      "path": "phase2/_attachments/web_composites/reference.charging-solar-adapter_it_6eb8244df99a.png",
+      "size": 255478,
+      "sha256": "6eb8244df99af302a5d115bad73b941dc29e575e1a945947d31de3afeafff7f8"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/reference.charging-solar-direct_de_2e3b2cbda5f2.png",
+      "size": 155445,
+      "sha256": "2e3b2cbda5f222d16714244d5be6b10c15e8b957001c3ce1552230fdc4933e14"
+    },
+    {
       "path": "phase2/_attachments/web_composites/reference.charging-solar-direct_en_5c91e2f80ff4.png",
       "size": 157986,
       "sha256": "5c91e2f80ff4ac164680ff48fe9419a32abbf67e8c11de357695c72a82b75e50"
     },
     {
+      "path": "phase2/_attachments/web_composites/reference.charging-solar-direct_es_2e3b2cbda5f2.png",
+      "size": 155445,
+      "sha256": "2e3b2cbda5f222d16714244d5be6b10c15e8b957001c3ce1552230fdc4933e14"
+    },
+    {
       "path": "phase2/_attachments/web_composites/reference.charging-solar-direct_fr_3d1d76c2ff5d.png",
       "size": 155903,
       "sha256": "3d1d76c2ff5da5a4b5a2108c31c0310c16748e5fdb3d849da177fc0ffa3e7ef0"
+    },
+    {
+      "path": "phase2/_attachments/web_composites/reference.charging-solar-direct_it_2e3b2cbda5f2.png",
+      "size": 155445,
+      "sha256": "2e3b2cbda5f222d16714244d5be6b10c15e8b957001c3ce1552230fdc4933e14"
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
@@ -442,8 +705,8 @@
     },
     {
       "path": "phase2/page_registry.csv",
-      "size": 524,
-      "sha256": "4a347be200109527813038c2b52a09191a00946c8da6f0123d4ac4b92a623d4f"
+      "size": 540,
+      "sha256": "bba1487c6fdb715c70c625a9f5df533e109d585ad268f059318ec26d9b19cebc"
     },
     {
       "path": "phase2/row_key_mapping.csv",
@@ -452,8 +715,8 @@
     },
     {
       "path": "phase2/spec_titles.csv",
-      "size": 1028,
-      "sha256": "6e92e1172b2515eb4c35a07fc873d44504c0764e852de8b0992df15861b974d4"
+      "size": 1026,
+      "sha256": "a78fd77b6bc758dc5f32db72f7d845b1c9cf0782c8b337bc37b942090207e4b8"
     },
     {
       "path": "phase2/symbols_blocks.csv",
@@ -467,8 +730,8 @@
     },
     {
       "path": "phase2/web_composite_manifest.json",
-      "size": 14217,
-      "sha256": "63c92a2156e3740127eacaab6bffde44a8b1836638d7e24a0d14fb2339dee719"
+      "size": 32984,
+      "sha256": "f57309bba83011cf6c994c764edda7cdcc521b5e662cbe25b7ddf97c4f27530c"
     }
   ],
   "review_files": [
@@ -504,8 +767,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/05_operation_guide_de.rst",
-      "size": 10819,
-      "sha256": "7c6b88888feba1d960e93b2dafb5a7ec61fb32c39907dfbc08fa90aff08e134e"
+      "size": 10787,
+      "sha256": "5f13008565fb76df3685fff81aa865c202bca2154b5f6247d44b2fb78674961f"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/05_operation_guide_en.rst",
@@ -514,8 +777,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/05_operation_guide_es.rst",
-      "size": 11538,
-      "sha256": "73ccf9eba1e1eec1cd2fd13bb7471d0ec78dc6022db298b3c5e973da363832c5"
+      "size": 11506,
+      "sha256": "7a21ce12f5bcb8138fc3d17440df4adeac97d3e10c6180fa36e3c523fe3139d7"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/05_operation_guide_fr.rst",
@@ -524,18 +787,18 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/05_operation_guide_it.rst",
-      "size": 11025,
-      "sha256": "aebde62ab0aff6fbebf94c8a95676baa112ccd4ce525b94ead4dade2cec976b9"
+      "size": 10993,
+      "sha256": "68c15e8b2bd61e56e7b2fe99434d385cb7103aee7f01da75c08c9fee54f1d70b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/05_operation_guide_uk.rst",
-      "size": 14562,
-      "sha256": "d020f32acbc49a754f8dcb294eaad471658eff52b2eadde3712c8a503fb5ad56"
+      "size": 14530,
+      "sha256": "5ecc9e4d159ff1315f57d8029795228ae3bb0d2632a41b955afe47386fba6595"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_de.rst",
-      "size": 4164,
-      "sha256": "6f0ad0a92d85f82cb22f6b84e86aa9d62b74c53d9461f0ec1347fc5351190046"
+      "size": 4076,
+      "sha256": "3f13be1bd8ca407edd9e0a830e438915c3b9ed22a93daa1532b22885af45f6f6"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_en.rst",
@@ -544,8 +807,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_es.rst",
-      "size": 4354,
-      "sha256": "9ae8e30ef8a095f7018b63409e2d02882aa83dd8574b40e6cd9e3f38aceafa4c"
+      "size": 4266,
+      "sha256": "d92dc557f3033098970a90aff3ea39cd0c25571e89f14fe9d0fb7c9d3286dd65"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_fr.rst",
@@ -554,13 +817,13 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_it.rst",
-      "size": 4163,
-      "sha256": "03ee50038f92586d130335fd452eb5be3f066e606e55905ae238103e0f4dd530"
+      "size": 4075,
+      "sha256": "81ee1af96eeeb686bb8294d78cf1b73bcd5beb4efb2391ddfa9cda93eebe948b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_uk.rst",
-      "size": 5721,
-      "sha256": "0cc3d6612e5f0ac2a91fa41241a867028dc68d717a908a32a4b692e378fa1d34"
+      "size": 5633,
+      "sha256": "a4c119eefea243b74b4e51d7a7f54323a4a24ec10f20d86cf52c47175c06f9a8"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/lcd_icons_de.rst",
@@ -709,28 +972,28 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/02_whats_in_the_box.rst",
-      "size": 2380,
-      "sha256": "6b0fa49b91ac104500dc1434bc8b84c74fb2b12db8c75a629668e2406be850e8"
+      "size": 2298,
+      "sha256": "617d98a9510f7da8e9b8c88c350ef9535966c5e45a6e0a4bad9a5c786403d486"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/03_product_overview_placeholder.rst",
-      "size": 2615,
-      "sha256": "16a24fb6f4b049220f155c5dc4044f5b708ba5c30d32cda314fea2f276831154"
+      "size": 2591,
+      "sha256": "143812217b0392689500ba43e0035d119c18b20a6615494e1bce0c906d779505"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/05_operation_guide_placeholder.rst",
-      "size": 9431,
-      "sha256": "40a90b2b96a4fa6920b1a634cc265eb0f227f00447685fa13c80cfb972e0d229"
+      "size": 9359,
+      "sha256": "e63d7d3517c1d46274d2416d75bd940a25c1baa70d23eecd614222c99a664f9b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/06_ups_mode.rst",
-      "size": 1396,
-      "sha256": "6a7a102dce1c72b380e0ccf50be1856e466bef0cb887677b27cf82fafa871586"
+      "size": 2979,
+      "sha256": "2a0ebfc341c02c673d2d68baa11d4478bc8f3474a0661943c036bb5aa15c7e48"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/08_charging_methods.rst",
-      "size": 2577,
-      "sha256": "76a79b316e61692e0452cecc2f09ac6a372b060c7738f19705fdf1a35c01a35c"
+      "size": 2545,
+      "sha256": "750ab7860216c0ef3db1eae0f079b3a3716e4ebbe1f77cf5e39074fed88a641b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/09_storage_and_maintenance.rst",
@@ -744,13 +1007,13 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/12_app_setup_placeholder.rst",
-      "size": 3339,
-      "sha256": "869188e40464448f4ff7b9d782297b60306adec7752cd5b6a45f65156b7b4cd2"
+      "size": 3307,
+      "sha256": "0823100ce80326031a25dc651a5848816894eaff5a342936f16b4fd027c49cb1"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/charging.rst",
-      "size": 4703,
-      "sha256": "513f492c738ecce8361414d60a10894d9f73db4d84ab5993e95d8de1d9b334b4"
+      "size": 4679,
+      "sha256": "b5d072f32e3aef3f013083c23e92c986d8323e620256ea3058553e569715300b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/lcd_icons_de.rst",
@@ -789,8 +1052,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p20_02_whats_in_the_box.rst",
-      "size": 2764,
-      "sha256": "5de7a8df8de29dfc4e23970746a64795192b2a4d9dd6909f2f384373b098b404"
+      "size": 2702,
+      "sha256": "519830bbcc1c6bab5594269602a97b85eb60bfdd1e43d80d6b4d2b84be07ce43"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p21_03_product_overview_placeholder.rst",
@@ -799,13 +1062,13 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p23_05_operation_guide_placeholder.rst",
-      "size": 11349,
-      "sha256": "78b10a9d845351ace2c4548a3d783d5affd450822abd9afbefda0c32872495b0"
+      "size": 11317,
+      "sha256": "53fbfc4d182646b9d135178c45d454fa50e47b91d6896b395a8736a750805b3b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p24_06_ups_mode.rst",
-      "size": 1718,
-      "sha256": "5dc912ba07411fc98a46bca1b286fa3b1e4eaf1a77d4b2b5f7685e71f46431d7"
+      "size": 3616,
+      "sha256": "804f1cb3006fc6e02faca79fbf5d24189f95f5e1109dd39113be70ec677e70c3"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p25_charging.rst",
@@ -829,8 +1092,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p31_12_app_setup_placeholder.rst",
-      "size": 4302,
-      "sha256": "22135d4f8f0ee7fd9f48449c76b8fe2e858d61132f836a9f0ba282d14c16ed20"
+      "size": 4149,
+      "sha256": "c47a33c291630aaba3b08a0863a132f1b1eed401e3adcec20164475645856062"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p33_01_user_maintenance_instructions.rst",
@@ -839,8 +1102,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p35_02_whats_in_the_box.rst",
-      "size": 2841,
-      "sha256": "1c041c139d8c77c36f0767e7a3effecea4cc658646f47ec9f2eac979a3685cd7"
+      "size": 2779,
+      "sha256": "99e25a2b97519db680264f02df21933d52db9e84ad7f4bbb2a7bd8c2755b4d9b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p36_03_product_overview_placeholder.rst",
@@ -849,13 +1112,13 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p38_05_operation_guide_placeholder.rst",
-      "size": 11538,
-      "sha256": "73ccf9eba1e1eec1cd2fd13bb7471d0ec78dc6022db298b3c5e973da363832c5"
+      "size": 11506,
+      "sha256": "7a21ce12f5bcb8138fc3d17440df4adeac97d3e10c6180fa36e3c523fe3139d7"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p39_06_ups_mode.rst",
-      "size": 1653,
-      "sha256": "5aab91fbc3697f4d034cedfbffd2471e489704330a034c6f423e4ad39930c91f"
+      "size": 3443,
+      "sha256": "ffba7a7316eeb4d59fea9a2f80fb594a716ca9d545922d49cc0dac5e6c06d6fc"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p40_charging.rst",
@@ -869,8 +1132,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p42_09_storage_and_maintenance.rst",
-      "size": 652,
-      "sha256": "fd2df83d97f19919aca9e8759863380991ab7f7d96b4de6e9411e1154d5589c3"
+      "size": 648,
+      "sha256": "7a052905569b2be0f141d10a96444235243fb7247b84e40de90561b3d49d4c5b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p45_11_warranty.rst",
@@ -879,8 +1142,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p46_12_app_setup_placeholder.rst",
-      "size": 4354,
-      "sha256": "9ae8e30ef8a095f7018b63409e2d02882aa83dd8574b40e6cd9e3f38aceafa4c"
+      "size": 4213,
+      "sha256": "7143dd28f2c1ab27beeffa7f98aa2b2eb777d72ade61920ceb02e96ba0c126b4"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p48_01_user_maintenance_instructions.rst",
@@ -889,38 +1152,38 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p50_02_whats_in_the_box.rst",
-      "size": 1502,
-      "sha256": "77e1328eb0dbf0855f47edcff3f686effa9d48a9d7ef515c99d2a83e952f441e"
+      "size": 1423,
+      "sha256": "4e60aea851a4c6e0d983cede5b921d396ae6c8422b869f3a2fb7ed74bed477b7"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p51_03_product_overview_placeholder.rst",
-      "size": 3007,
-      "sha256": "49f6982a65e264c702a2ae76dc853301ccd975eb9b660b2d32afc15e02771468"
+      "size": 2975,
+      "sha256": "926e5e2f273acb630602a1cb02641e924f7ace2f22f8f69c48a6981ac71228a5"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p53_05_operation_guide_placeholder.rst",
-      "size": 10819,
-      "sha256": "7c6b88888feba1d960e93b2dafb5a7ec61fb32c39907dfbc08fa90aff08e134e"
+      "size": 10669,
+      "sha256": "2694298b30ed6842f7c71bb29ec1d3d38d7cc114b982b1af06fb1bdd57241c49"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst",
-      "size": 1660,
-      "sha256": "2b464e40b9738f87a2cfe3d4483d4bbe667d080a25db9117cb88ed2db5098aa7"
+      "size": 3404,
+      "sha256": "d8b3bd69d391d526fb01a50cd2ab72db064f8fdd060b909a5e5d56e1265357d8"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p55_charging.rst",
-      "size": 5122,
-      "sha256": "4b90d1a7b3727f4f0c8c2391598de7599719d8de85f9f1d3659ccc7f1a2f29aa"
+      "size": 5090,
+      "sha256": "7509d9f8a3020f9c11bb94eaca997b75ac2d11e3fb8633486913e4255e7be5ab"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p56_08_charging_methods.rst",
-      "size": 3101,
-      "sha256": "08739dafc3636cc820a2b80ab6e554370e3428cd0873795db620a376994b3fc6"
+      "size": 3057,
+      "sha256": "851cf90fb12a6348c5e81a983c4d3eb3a59ef72bc4350dddedaa4024d32bc352"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p57_09_storage_and_maintenance.rst",
-      "size": 692,
-      "sha256": "8650e0f58aed5d34375f34fa9eb984ae296e31e02772e4586d70c97eedaf9bde"
+      "size": 696,
+      "sha256": "306e5fb8e59d9590d2b9062f0fd961d9b2d9824f7cff0521b8adf17776149817"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p60_11_warranty.rst",
@@ -929,8 +1192,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p61_12_app_setup_placeholder.rst",
-      "size": 4164,
-      "sha256": "6f0ad0a92d85f82cb22f6b84e86aa9d62b74c53d9461f0ec1347fc5351190046"
+      "size": 4017,
+      "sha256": "a2dcfe83fed12297bb0718d12e8119a17c48422f61e852068ffad0e3edf0c5ed"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p63_01_user_maintenance_instructions.rst",
@@ -939,33 +1202,33 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p65_02_whats_in_the_box.rst",
-      "size": 1532,
-      "sha256": "b6e1d8e93bf186c994248b205cd170edf43c13a70b1b25976a03a7dd65f20f03"
+      "size": 1468,
+      "sha256": "4a55d2329c1bfde1c53255a7a6f65f7a7a787366c8f697a1c69ed4f795c5be66"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p66_03_product_overview_placeholder.rst",
-      "size": 2900,
-      "sha256": "24bde89bff463e5ca24f013300b789c83067126d4341c522565c7850b85e96d3"
+      "size": 2878,
+      "sha256": "989df876ba882368fd0dc37524bc80094c20e98ec7af36a2b84114fcd36fbc46"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p68_05_operation_guide_placeholder.rst",
-      "size": 11025,
-      "sha256": "aebde62ab0aff6fbebf94c8a95676baa112ccd4ce525b94ead4dade2cec976b9"
+      "size": 10927,
+      "sha256": "8d042336ae606a2e7518dad74fde4bd62ccf1c0c93924d7ab4f948b9364fa904"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst",
-      "size": 1629,
-      "sha256": "7814ebfc892bc2b894c922b322ec5e5a3ce1801b6b3d2276beab508be4420a15"
+      "size": 3423,
+      "sha256": "69d4e8b6165e3a9d52583869a436c7d79b28c99c70baa24e17b6959d27a55c79"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p70_charging.rst",
-      "size": 5116,
-      "sha256": "2f44ac8e96484fe90d0cbaa6c25ded09d785d311f8186837da48bccb79e22994"
+      "size": 5094,
+      "sha256": "e57397ec51f86ee305e6ee1521130481ed84f693ca7e4d2ad559a8d944f01e40"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p71_08_charging_methods.rst",
-      "size": 3099,
-      "sha256": "4c4d5dc14b6b8c2703d267396ed884817ff35566b00abb9529008acd34861100"
+      "size": 3070,
+      "sha256": "9d6f44f402958f0b0ac909fac51300bf028035db168d246d61515b1f7d3f1527"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p72_09_storage_and_maintenance.rst",
@@ -979,8 +1242,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p76_12_app_setup_placeholder.rst",
-      "size": 4163,
-      "sha256": "03ee50038f92586d130335fd452eb5be3f066e606e55905ae238103e0f4dd530"
+      "size": 4035,
+      "sha256": "12d0aa8622f5b84c1deaa9872f503df1e5b214abc6027e1be4917e67ed338f95"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p78_01_user_maintenance_instructions.rst",
@@ -989,8 +1252,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p80_02_whats_in_the_box.rst",
-      "size": 2026,
-      "sha256": "7adfe63af3578b3955cb5308334f46a75a3e6438568391e55064a39d39d90abe"
+      "size": 1995,
+      "sha256": "cdd268959306b1e4d6fd135baabc791785b5e981f8020df33ff7eadad89f095f"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p81_03_product_overview_placeholder.rst",
@@ -999,13 +1262,13 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p83_05_operation_guide_placeholder.rst",
-      "size": 14562,
-      "sha256": "d020f32acbc49a754f8dcb294eaad471658eff52b2eadde3712c8a503fb5ad56"
+      "size": 14530,
+      "sha256": "5ecc9e4d159ff1315f57d8029795228ae3bb0d2632a41b955afe47386fba6595"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p84_06_ups_mode.rst",
-      "size": 2578,
-      "sha256": "14d933313336244706b2082ac28b3e387d2bf646a0e64ec2825c4cb175b7430f"
+      "size": 2534,
+      "sha256": "944bd8194857e03d14f96be112b18e9e4f9f7e4d66f180891a520ab73f2500e5"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p85_charging.rst",
@@ -1029,8 +1292,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p91_12_app_setup_placeholder.rst",
-      "size": 5721,
-      "sha256": "0cc3d6612e5f0ac2a91fa41241a867028dc68d717a908a32a4b692e378fa1d34"
+      "size": 5633,
+      "sha256": "a4c119eefea243b74b4e51d7a7f54323a4a24ec10f20d86cf52c47175c06f9a8"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/safety_de.rst",
@@ -1079,8 +1342,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_fr.rst",
-      "size": 7939,
-      "sha256": "1c2911ca02ab1a4f06e211c79392249e763a04b11474658cc2be72f94554b3af"
+      "size": 7933,
+      "sha256": "68ba03b1d245d5e0f839952768deabefb2d1713596ec1a2f29502f8674d8bda7"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_it.rst",

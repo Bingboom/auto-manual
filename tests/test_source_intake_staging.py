@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.source_intake_staging import (  # noqa: E402
+from tools.data.source_intake_staging import (  # noqa: E402
     STAGING_OVERRIDE_SCHEMA_VERSION,
     build_lark_staging_payload,
     build_staging_plan,
@@ -164,7 +164,8 @@ class StagingPlanTests(unittest.TestCase):
             completed = subprocess.run(
                 [
                     sys.executable,
-                    str(Path(__file__).resolve().parents[1] / "tools" / "source_intake.py"),
+                    "-m",
+                    "tools.data.source_intake",
                     "stage-plan",
                     "--spec-candidates", str(root / "candidates.json"),
                     "--spec-sibling", str(root / "spec-sibling.json"),
@@ -177,6 +178,7 @@ class StagingPlanTests(unittest.TestCase):
                 check=False,
                 capture_output=True,
                 text=True,
+                cwd=str(Path(__file__).resolve().parents[1]),
             )
             self.assertEqual(completed.returncode, 0, completed.stderr)
             self.assertIn("STAGING 2 SPECS 1 PLACEHOLDERS 1", completed.stdout)

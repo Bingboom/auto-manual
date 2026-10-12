@@ -1,5 +1,7 @@
 # BP@JP R3c implementation plan (JBP-2000B_JP)
 
+Status: done
+
 Date: 2026-08-31
 
 This plan is intentionally staged from cheap and reversible checks to the
@@ -23,7 +25,7 @@ Checks:
 
 ```text
 git diff --check
-python tools/check_doc_link_integrity.py
+python -m tools.check_doc_link_integrity
 ```
 
 Safety net: retain the baseline `config not found` log outside the committed
@@ -363,8 +365,8 @@ since the previous 2026-09-01 record, which this replaces:
 python -m ruff check build.py integrations tools tests scripts          # exit 0
 python -m unittest                                                      # 3557 tests, OK (skipped=5)
 python -m mypy tools/utils                                              # no issues in 14 files
-python tools/check_maintainability_guardrails.py                        # OK, 62 hotspot files; language-literal 0 new / 66 known / 0 stale
-python tools/check_doc_link_integrity.py                                # 149 files, 1633 links, 0 broken
+python -m tools.check_maintainability_guardrails                        # OK, 62 hotspot files; language-literal 0 new / 66 known / 0 stale
+python -m tools.check_doc_link_integrity                                # 149 files, 1633 links, 0 broken
 python build.py check --config configs/config.bp-jp.yaml --model JBP-2000B --region JP   # [check] OK
 python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US    # [check] OK
 python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP       # [check] OK

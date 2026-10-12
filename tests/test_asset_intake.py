@@ -31,6 +31,44 @@ from tools.asset_pipeline.models import (
     AssetIntakeError,
     SourceValidationError,
 )
+
+
+class NativeAxisClosureTests(unittest.TestCase):
+    def test_axis_closures_preserve_original_fill_and_stroke_paths(self):
+        import xml.etree.ElementTree as ET
+        from types import SimpleNamespace
+        from tools.asset_pipeline.native_svg import native_art_svg, SVG
+
+        for fill, stroke in [
+            ('M10 10H60V60H40V10Z', 'M10 10H60V60H40V10H10Z'),
+            ('M10 10V60H60V40H10Z', 'M10 10V60H60V40H10V10Z'),
+        ]:
+            raw = (f'<svg xmlns="http://www.w3.org/2000/svg"><g opacity=".7">'
+                   f'<path d="{fill}" fill="#aaa"/>'
+                   f'<path d="{stroke}" fill="none" stroke="#222"/></g></svg>')
+            page = SimpleNamespace(
+                rect=fitz.Rect(0, 0, 100, 100),
+                get_drawings=lambda: [{'type': 'fs'}],
+                get_svg_image=lambda **kwargs: raw,
+            )
+            selected = ET.fromstring(native_art_svg(page, [0], [5, 5, 65, 65]))
+            self.assertEqual([p.get('d') for p in selected.iter(SVG + 'path')],
+                             [fill, stroke])
+            self.assertEqual(next(selected.iter(SVG + 'g')).get('opacity'), '.7')
+
+    def test_nonclosing_axis_segment_is_rejected(self):
+        from types import SimpleNamespace
+        from tools.asset_pipeline.native_svg import native_art_svg
+
+        raw = ('<svg xmlns="http://www.w3.org/2000/svg">'
+               '<path d="M10 10H60V60H40V10Z" fill="#aaa"/>'
+               '<path d="M10 10H60V60H40V10H20Z" fill="none" stroke="#222"/>'
+               '</svg>')
+        page = SimpleNamespace(rect=fitz.Rect(0, 0, 100, 100),
+                               get_drawings=lambda: [{'type': 'fs'}],
+                               get_svg_image=lambda **kwargs: raw)
+        with self.assertRaisesRegex(ValueError, 'fill/stroke SVG mapping'):
+            native_art_svg(page, [0], [5, 5, 65, 65])
 from tools.asset_pipeline.package import result_summary, run_intake
 from tools.asset_pipeline.recipe import load_recipe
 
@@ -41,6 +79,151 @@ def _sha256(path: Path) -> str:
 
 @unittest.skipIf(fitz is None, "PyMuPDF not installed")
 class TestAssetIntake(unittest.TestCase):
+    def test_native_panel_preserves_in_crop_images_and_their_transform(self):
+        from tools.asset_pipeline.native_svg import native_art_svg
+        import xml.etree.ElementTree as ET
+        ns = '{http://www.w3.org/2000/svg}'
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            page.draw_rect((5, 5, 95, 95), color=None, fill=(.8, .8, .8))
+            pixels = fitz.Pixmap(fitz.csRGB, fitz.IRect(0, 0, 2, 2))
+            pixels.clear_with(255)
+            page.insert_image(fitz.Rect(20, 30, 40, 50), pixmap=pixels)
+            page.insert_image(fitz.Rect(70, 70, 90, 90), pixmap=pixels)
+            original = ET.fromstring(page.get_svg_image(text_as_path=False))
+            selected = ET.fromstring(native_art_svg(page, [0], [10, 10, 60, 60]))
+            images = list(selected.iter(ns + 'image'))
+            self.assertEqual(1, len(images))
+            self.assertEqual(list(original.iter(ns + 'image'))[0].attrib, images[0].attrib)
+            transforms = [n.get('transform') for n in selected.iter(ns + 'g')]
+            self.assertIn('matrix(10,0,0,10,20,30)', transforms)
+    def test_native_panel_preserves_referenced_images_and_crop_clipping(self):
+        import xml.etree.ElementTree as ET
+        from types import SimpleNamespace
+        from tools.asset_pipeline.native_svg import native_art_svg, SVG
+
+        raw = ('<svg xmlns="http://www.w3.org/2000/svg" '
+               'xmlns:xlink="http://www.w3.org/1999/xlink">'
+               '<defs><image id="grid" width="2" height="2" xlink:href="data:image/png;base64,AA=="/>'
+               '<clipPath id="panel"><path d="M10 10H60V60H10Z"/></clipPath></defs>'
+               '<path d="M5 5H95V95H5Z" fill="#aaa"/>'
+               '<g clip-path="url(#panel)" opacity=".8"><g transform="matrix(10,0,0,10,20,30)">'
+               '<use xlink:href="#grid" x="0" y="0"/></g>'
+               '<g transform="matrix(10,0,0,10,70,70)"><use xlink:href="#grid"/></g></g></svg>')
+        page = SimpleNamespace(rect=fitz.Rect(0, 0, 100, 100),
+                               get_drawings=lambda: [{'type': 'f'}],
+                               get_svg_image=lambda **kwargs: raw)
+        selected = ET.fromstring(native_art_svg(page, [0], [10, 10, 60, 60]))
+        uses = list(selected.iter(SVG + 'use'))
+        self.assertEqual(1, len(uses))
+        self.assertEqual('#grid', uses[0].get('{http://www.w3.org/1999/xlink}href'))
+        self.assertEqual('2', next(selected.iter(SVG + 'image')).get('width'))
+        groups = list(selected.iter(SVG + 'g'))
+        self.assertEqual('url(#panel)', groups[0].get('clip-path'))
+        self.assertEqual('.8', groups[0].get('opacity'))
+        self.assertEqual('matrix(10,0,0,10,20,30)', groups[1].get('transform'))
+
+    def test_native_compound_fill_stroke_keeps_every_original_subpath(self):
+        from tools.asset_pipeline.native_svg import native_art_svg
+        import xml.etree.ElementTree as ET
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            shape = page.new_shape()
+            shape.draw_circle((30, 40), 15)
+            shape.draw_circle((70, 60), 10)
+            shape.finish(color=(0, 0, 0), fill=(.8, .8, .8), closePath=True)
+            shape.commit()
+            original = ET.fromstring(page.get_svg_image(text_as_path=False))
+            selected = ET.fromstring(native_art_svg(page, [0], [5, 5, 95, 95]))
+            ns = './/{http://www.w3.org/2000/svg}path'
+            self.assertEqual(2, len(selected.findall(ns)))
+            self.assertEqual([p.attrib for p in original.findall(ns)],
+                             [p.attrib for p in selected.findall(ns)])
+
+    def test_native_filled_stroked_button_keeps_both_paths_and_transparent_edges(self):
+        from tools.asset_pipeline.native_svg import native_symbol_svg
+        import xml.etree.ElementTree as ET
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            page.draw_rect((0, 0, 100, 100), color=None, fill=(.8, .8, .8))
+            page.draw_circle((50, 50), 20, color=(0, 0, 0), fill=(1, 1, 1), width=2)
+            page.draw_circle((45, 50), 3, color=None, fill=(0, 0, 0))
+            svg = native_symbol_svg(page, [1, 2], [28, 28, 72, 72])
+            paths = ET.fromstring(svg).findall('.//{http://www.w3.org/2000/svg}path')
+            self.assertEqual(3, len(paths))
+            self.assertEqual(paths[0].get('d').rstrip('Z'), paths[1].get('d').rstrip('Z'))
+            with fitz.open(stream=svg, filetype='svg') as selected:
+                with fitz.open(stream=selected.convert_to_pdf(), filetype='pdf') as rendered:
+                    pix = rendered[0].get_pixmap(alpha=True)
+                    self.assertEqual(0, pix.pixel(0, 0)[3])
+                    self.assertEqual((255, 255, 255, 255), pix.pixel(22, 12))
+                    self.assertEqual((0, 0, 0, 255), pix.pixel(17, 22))
+
+    def test_native_panel_omits_caption_path_without_deleting_white_product(self):
+        from tools.asset_pipeline.native_svg import native_art_svg, native_symbol_svg
+        import xml.etree.ElementTree as ET
+        with fitz.open() as doc:
+            page = doc.new_page(width=100, height=100)
+            page.draw_rect((5, 5, 95, 95), color=None, fill=(.8, .8, .8))
+            page.draw_circle((25, 35), 15, color=(0, 0, 0), fill=(1, 1, 1))
+            page.draw_rect((50, 70, 90, 80), color=None, fill=(1, 1, 1))
+            svg = native_art_svg(page, [0, 1], [4, 4, 96, 96])
+            root = ET.fromstring(svg)
+            self.assertEqual(3, len(root.findall('.//{http://www.w3.org/2000/svg}path')))
+            with fitz.open(stream=svg, filetype='svg') as selected:
+                pix = selected[0].get_pixmap(alpha=True)
+                self.assertEqual((204, 204, 204, 255), pix.pixel(60, 70))
+                self.assertEqual((255, 255, 255, 255), pix.pixel(20, 30))
+            with self.assertRaisesRegex(ValueError, 'every drawing'):
+                native_symbol_svg(page, [0, 1], [4, 4, 96, 96])
+            with self.assertRaisesRegex(ValueError, 'valid drawing'):
+                native_art_svg(page, [3], [4, 4, 96, 96])
+
+    def test_native_panel_preserves_original_source_clipping_groups(self):
+        from tools.asset_pipeline.native_svg import native_art_svg
+        import xml.etree.ElementTree as ET
+        ns = '{http://www.w3.org/2000/svg}'
+        with fitz.open() as source, fitz.open() as target:
+            source.new_page(width=200, height=200).draw_rect(
+                (0, 0, 200, 200), color=None, fill=(.6, .6, .6))
+            page = target.new_page(width=100, height=100)
+            page.show_pdf_page(fitz.Rect(20, 20, 80, 80), source, 0, clip=fitz.Rect(80, 80, 120, 120))
+            original = ET.fromstring(page.get_svg_image(text_as_path=False))
+            selected = ET.fromstring(native_art_svg(page, [0], [10, 10, 90, 90]))
+            original_clips = [n.attrib for n in original.iter(ns + 'g') if 'clip-path' in n.attrib]
+            self.assertTrue(original_clips)
+            self.assertEqual(original_clips,
+                             [n.attrib for n in selected.iter(ns + 'g') if 'clip-path' in n.attrib])
+            self.assertEqual(ET.tostring(original.find(ns + 'defs')),
+                             ET.tostring(selected.find(ns + 'defs')))
+
+    def test_native_symbol_svg_runs_through_recipe_pipeline(self):
+        from tools.web.symbol_asset_admission import compare_symbol
+        from tools.asset_pipeline.models import RecipeValidationError
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "source.pdf"
+            with fitz.open() as doc:
+                page = doc.new_page(width=120, height=100)
+                page.draw_rect((5, 5, 90, 90), color=None, fill=(.8, .8, .8))
+                page.draw_circle((45, 45), 12, color=(0, 0, 0), width=2)
+                doc.save(source)
+            payload = self._single_page_payload(sha256_file(source))
+            asset = payload["assets"][0]
+            asset["transforms"] = [{"op": "crop", "bbox_pt": [30, 30, 60, 60]},
+                                   {"op": "retain_vector_drawings", "drawing_indices": [1],
+                                    "fill_rgb_overrides": {}, "stroke_suppressed_indices": []}]
+            asset["outputs"] = [{"format": "svg", "path": "shared/symbol.svg"}]
+            recipe = self._write_recipe(root / "recipe.json", payload)
+            result = run_intake(source_path=source, recipe=recipe, output_root=root / "run")
+            output = result.output_root / "artifacts/shared/symbol.svg"
+            compare_symbol(output.read_bytes(), ".svg", output.read_bytes())
+            for transforms in ([asset["transforms"][0]],
+                               [asset["transforms"][0], {**asset["transforms"][1], "fill_rgb_overrides": {"1": [1, 0, 0]}}]):
+                asset["transforms"] = transforms
+                with self.assertRaisesRegex(RecipeValidationError, "unchanged retain_vector"):
+                    self._write_recipe(root / "invalid.json", payload)
+
     def test_native_pdf_region_swap_preserves_unaffected_art(self):
         from types import SimpleNamespace
         from tools.asset_pipeline.extract import _prepare_asset_source
@@ -65,6 +248,31 @@ class TestAssetIntake(unittest.TestCase):
             self.assertEqual(after.pixel(15, 35), before.pixel(15, 15))
             self.assertEqual(after.pixel(80, 70), before.pixel(80, 70))
             self.assertEqual(after.pixel(60, 50), before.pixel(60, 50))
+            result.close()
+
+    def test_native_pdf_region_copy_keeps_the_destination_background(self):
+        from types import SimpleNamespace
+        from tools.asset_pipeline.extract import _prepare_asset_source
+        from tools.asset_pipeline.models import TransformSpec
+        with TemporaryDirectory() as tmp:
+            source = Path(tmp) / "copy.pdf"
+            doc = fitz.open()
+            page = doc.new_page(width=120, height=100)
+            page.draw_rect(fitz.Rect(50, 5, 115, 45), color=None, fill=(0.5, 0.5, 0.5))  # tinted panel
+            page.draw_rect(fitz.Rect(11, 32, 13, 35), color=None, fill=(1, 0, 0))  # "glyph" on white
+            doc.save(source)
+            before = page.get_pixmap()
+            doc.close()
+            asset = SimpleNamespace(page=1, asset_key="test", crop_bbox=(0, 0, 120, 100), transforms=(
+                TransformSpec(op="crop", bbox_pt=(0, 0, 120, 100)),
+                TransformSpec(op="copy_pdf_region", bbox_pt=(60, 10, 64, 17), other_bbox_pt=(10, 30, 14, 37)),
+            ))
+            result, _ = _prepare_asset_source(fitz=fitz, source_path=source, asset=asset)
+            after = result[0].get_pixmap()
+            self.assertEqual(before.pixel(11, 33), after.pixel(61, 13))  # the glyph landed
+            self.assertEqual(before.pixel(60, 10), after.pixel(60, 10))  # no white patch around it
+            self.assertEqual(before.pixel(11, 33), after.pixel(11, 33))  # the source stays in place
+            self.assertEqual(before.pixel(90, 30), after.pixel(90, 30))
             result.close()
 
     def _make_source(

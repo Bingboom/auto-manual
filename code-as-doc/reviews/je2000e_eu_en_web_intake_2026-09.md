@@ -6,7 +6,7 @@ Implementation baseline: `d1b12bf8686941b5e79d9b507d7cc991da3427b9`
 
 Target: `JE-2000E / EU / en` (`HTE152`, Jackery Explorer 2000 Plus)
 
-Status: local Web implementation and verification complete; PR pending review.
+Status: active · Recorded detail: local Web implementation and verification complete; PR pending review.
 
 ## Authority and source inventory
 
@@ -141,3 +141,367 @@ The operator explicitly deferred repeated PDF/content and desktop/mobile visual
 acceptance to later manual review on 2026-09-13. It is pending, not claimed as
 passed and not a blocker for the authorized batch Web publication. Required
 automated build, artifact-integrity and URL checks remain release gates.
+
+## 2026-09-24 App panels for fr/es/de/it/uk
+
+The fr/es/de/it/uk routes, wired later from this frozen source, had no
+illustration manifest, so App setup showed the shared JP-market
+`add_device.png` and `connect_result.png`. The print's other five language
+blocks place the same App bitmaps as the English block, so two shared panels
+cut at 12x now replace them through five two-entry manifests: the add-device
+screens with their 2.1/2.2 captions from p23 (bbox 41 208 322.75 349, stopping
+above the grey control-panel box whose button labels are translated per
+block and stay live text) and the connection-result screens with their
+2.3/2.4/2.5 captions from p24 (bbox 41 79 322.75 249.5, excluding the
+localized "screenshots are for reference only" sentence). As App UI, their
+recipe `manual_je2000e_eu_web_app.json` stays quarantined, and the source
+manifest binds it as `app_asset_recipe`. English is unchanged. The operator
+confirmed both crops on 2026-09-24.
+
+## 2026-09-24 App add-device figure with the control-panel box
+
+The English add-device figure bound the approved `control_panel` crop (p23,
+bbox 28 351 342 431), which holds the grey control-panel box but not the
+2.1/2.2 App screens above it, while fr–uk showed the shared screens with the
+four button labels as plain text. Each language block prints the screens and
+its own control-panel box as one region, so EN/FR/ES/DE/IT now bind a 12x crop
+of that region from their own block (quarantined App recipe entries
+`web/je2000e/eu/<lang>/app_add_device_panel`):
+
+| Route | PDF page | bbox (pt) | Printed labels vs page labels |
+| --- | --- | --- | --- |
+| en | 23 | 27.5 208 341.5 434.5 | "Main Power Button" vs "Main POWER Button" |
+| fr | 42 | 26.7 204.3 340.6 423.2 | same wording |
+| es | 61 | 25.1 217.5 339 438 | same wording |
+| de | 80 | 25.1 217.5 339 438 | "POWER-Taste" vs "Haupt-POWER-Taste" |
+| it | 99 | 25.1 217.5 339 438 | "Pulsante CC/USB" vs "Pulsante DC / USB" |
+
+Each crop ends in the white gap above the next paragraph (step 2.3) and has
+pure-white edges. The page's four label lines become covered annotations, so
+the figure's alt text keeps the page wording. The uk block (p118) prints
+"Кнопка AC1" for both AC buttons; that crop is not reused, and uk keeps the
+shared screens with live labels. The operator chose this scope on 2026-09-24.
+
+## 2026-09-26 fr–uk figures from each print block
+
+Problem:
+
+- The fr/es/de/it/uk illustration manifests bound only the two App panels. The
+  other figure slots fell back to the shared art from the JE-1000F/US master,
+  which shows another product and US outlets. The battery-pack section showed
+  the in-box unit image as a placeholder.
+- English bound its block crops but not its in-box crops. "Implemented source
+  calibration" above says the shared in-box line art matches the paper manual.
+  It does not: the print draws the Explorer 2000 Plus, with UK sockets in the
+  English block and EU sockets in the fr–uk blocks.
+
+Change:
+
+- `data/asset_recipes/manual_je2000e_eu_web.json` gains 85 approved crops, 17
+  per language (the English figures plus the three in-box items), from the fr
+  (PDF pages 25–43), es (44–62), de (63–81), it (82–100) and uk (101–119)
+  blocks:
+  - The positions come from raster matching with the text removed, then each
+    block's own panel frame. The blocks drift from English by up to 9.5 pt.
+  - Crop edges exclude the neighbouring headings and text.
+  - The 19 English outputs are unchanged.
+- The English manifest binds its approved in-box crops (`inbox_main`,
+  `inbox_cable`, `inbox_manual`, p7) to the three in-box cards.
+- The five fr–uk manifests bind the 17 crops to the English slots. Their
+  `recipe` is now the web recipe; the App entries keep their own.
+- The fr–uk `charging.rst` templates' battery-pack section (JE-2000E only) now
+  points at its block's `extra_battery` crop, as English has since #1085. It
+  used the in-box unit image, whose shared name made the in-box binding
+  ambiguous (`repeated Web illustration source`).
+- Copy printed in a crop moves from the page into the figure's alt text, with
+  English's selectors: the overview callout tables, the operation panel lines,
+  the energy-saving notes, the LED lines, the UPS paragraphs, the AC wall
+  sentence and the car line.
+  - The French power section keeps its on/off and standby lines in one block,
+    so it has one binding where English has two.
+  - Like English, the fr–uk entries need no `consume_before_presentation`.
+- `source_manifest.json` re-locks the web recipe and the English manifest.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all 104 outputs against their
+  expected hashes; the 19 English crops are byte-identical.
+- **Visual review:** every crop was checked next to the English crop and its
+  page. The fr–uk crops show EU sockets and their own language's labels; no
+  English line remains apart from product markings (`LIGHT`).
+- **Covered copy:** each covered text was compared with the print text inside
+  its crop. The remaining misses are wording variants of the same instruction
+  (uk "Увімкнення" vs the page's "Увімкнути") and Italian accents that the PDF
+  text layer drops.
+- **Trial Web builds** (frozen data root, web profile) against the live pages
+  (2.2; uk 2.1):
+  - each fr–uk route replaces its 17 figures, drops the second solar figure as
+    English does, and removes only the covered copy (57–59 text lines);
+  - English replaces only its three in-box images;
+  - no shared JE-1000F figure remains on any route.
+- **Regression tests:** `Je2000eEuBlockIllustrationTests` and the German build
+  test fail on the previous recipe, manifests and templates (five failures, one
+  error).
+
+Still open (not changed here):
+
+- On fr–uk the LCD-mode image stays in the page's plain table; the English
+  LCD-mode component is not built there. Only the image changed.
+- `page_shared/pt-BR/charging.rst` keeps the in-box placeholder in its JE-2000E
+  block; there is no JE-2000E pt-BR route.
+
+## 2026-09-26 print correction and open items
+
+The operator asked for the battery-pack print defect to be corrected and for the
+open items of the addendum above to be resolved (「印刷问题要纠正」「把遗留问题解决掉」).
+
+Changes:
+
+- **Battery-pack clearance label.** The es/de/it/uk blocks print the figure's
+  label as `≥ 0,66 pies (200 mm)`: the Spanish art reused, with an imperial
+  value. The French block prints the same art as `≥ 200 mm`, and an aligned
+  pixel diff of the two crops differs only in that label. The es/de/it/uk
+  recipe entries now cut the French block's copy (PDF page 36), so their files
+  equal the French crop. English keeps its own `≥ 20cm`.
+- **Battery-pack kit box.** The print shows the kit (Battery Pack 2000,
+  expansion cable, user manual and a sold-separately badge) as a dashed box of
+  pictures. The pages rendered a label-only table whose header row came out
+  empty.
+  - Six new 12x crops, one per block (PDF pages 17/36/55/74/93/112), replace
+    that table in the EU variant of each language's `charging.rst` JE-2000E
+    block. English, French and Spanish keep the US variant.
+  - The figure's alt text holds the removed labels plus the heading's
+    sold-separately wording.
+- **Operation page components on fr–uk.** The Web contract matched operation
+  pages only by `*05_operation_guide_placeholder`, but JE-2000E's fr–uk pages
+  are `05_operation_guide_je2000e`. `shared_base.json` now lists that stem too,
+  so those pages get the English page's LCD-mode component (each with its own
+  block's LCD-mode crop), auto-resume table and key-combination table. No other
+  template uses the stem.
+- **App gate.** The English connect-result panel is App UI and is now
+  quarantined in place (key, output and hash unchanged). The retired English
+  control-panel crop is no longer bound, so `tests/test_app_figure_gate.py`
+  lists no exceptions.
+- **pt-BR placeholder.** `page_shared/pt-BR/charging.rst` has no JE-2000E route.
+  Its copy of the block now shows the English battery-pack figure instead of
+  the in-box image.
+- `source_manifest.json` re-locks the recipe and the English manifest.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all 110 outputs. 100 are
+  unchanged; the four es/de/it/uk battery-pack files now equal the French
+  crop; six kit files are new.
+- **Trial Web builds** against the live 2.3 pages:
+  - every route gains the kit figure and loses the package table;
+  - es/de/it/uk switch the battery-pack figure to the French art;
+  - on fr–uk the key-combination table moves into the English composition with
+    the same words, the LCD-mode image moves into the component and the
+    auto-resume table gains its composition;
+  - the English page changes only in the kit figure.
+- **Figure coverage:** 13 slots on every route (12 finished panels plus the
+  LCD-mode composition).
+- **Regression tests:** the updated tests fail on the previous state (13
+  failures).
+
+## 2026-09-26 uk App panel and the print's button names
+
+The uk add-device figure was the only one without its block's control-panel
+box, and the German, Italian and Ukrainian pages named some buttons
+differently from the figures next to them. The print decides, as for the other
+items in this record.
+
+**uk App panel.** The uk block (p118) sets the two screens and its
+control-panel box exactly as the es/de/it blocks do (same bitmaps, box and text
+positions) but labels the lower AC button `Кнопка AC1`. The block's own
+overview (p103), its AC text (p107: AC1 and AC2 each switch one pair of AC
+outlets) and every other block's panel call that button AC2. The quarantined
+entry `web/je2000e/eu/uk/app_add_device_panel` cuts the es/de/it bbox
+(25.1 217.5 339 438) at 12x and re-sets that one character from the print's own
+glyphs:
+
+- `redact_text_region` 324.75 400.3 326.5 406.8 removes the wrong `1`. It removes
+  text only: the grey box, leaders and screens stay.
+- `copy_pdf_region` paints the `2` of the same page's `2.1` caption
+  (128.64 344.21 131.79 351.41; Gilroy-Regular 6 pt, #404041, the labels' own
+  font, size and colour) at 324.54 399.94 327.69 407.14. That is the C–2
+  kerning the English block prints for `AC2 Power Button`.
+
+A pixel diff against the uncorrected crop changes 768 pixels, all inside
+pt 324.68 401.33 327.43 405.67. `copy_pdf_region` is new: the one-way form of
+`swap_pdf_regions`, painting no background so the copy can land on the grey
+box. The page's four label lines become the figure's alt text, as on the other
+routes. The operator accepted the correction on 2026-09-27
+(「接受修正，合入并发布 2.7」), so its registry row is `✅成品` like the other
+panels; the recipe keeps it quarantined under the App gate, as every App crop.
+The shared screens crop stays in the recipe, unbound, and can now be retired.
+
+**Button names.** The print's figures and text agree unless noted.
+
+| Route | Button | Page before | Print (PDF pages) | Result |
+| --- | --- | --- | --- | --- |
+| de | main | Haupt-POWER-Taste | POWER-Taste (65, 71, 72, 80, 81) | page follows the print |
+| de | AC1 | AC1-Einschalttaste | AC1-Einschalttaste (65, 80, 81), AC1-Stromtaste (69, 71, 72) | kept: the print is split, and the page matches its overview and App panel |
+| it | DC/USB | Pulsante DC / USB | Pulsante CC/USB (84, 87, 91, 99, 100) | page follows the print, with the page's ` / ` spacing |
+| uk | DC/USB label | Кнопка POWER DC / USB | Кнопка DC / USB (103, 118) | page follows the print |
+| uk | App notes 4.1/4.2 | кнопку AC | кнопку AC1 (119) | page follows the print |
+
+The page terms came from #319 (2026-06-03). It applied the reviewed JE-2000F EU
+revision to the shared EU templates: `POWER-Taste` → `Haupt-POWER-Taste`,
+`CC/USB` → `DC/USB` and `*-Stromtaste` → `*-Einschalttaste`. JE-2000E inherited
+them when it joined the single-language lines (#1139). The JE-2000E print,
+published later, keeps `POWER-Taste` and `CC/USB`. Other models' pages are
+unchanged.
+
+Files changed:
+
+- the frozen `Spec_Master.csv`: three cells (`main_power_button` Value_de,
+  `dc_usb_power_button` Value_it and Value_uk);
+- the frozen `lcd_icons_blocks.csv`: the Italian energy-saving note now says
+  `pulsante CA o CC/USB`;
+- `page_eu-de/05_operation_guide_je2000e.rst`: twelve `POWER-Taste`;
+- `page_eu-it/05_operation_guide_je2000e.rst`: the two key-combination rows;
+- `page_shared/uk/12_app_setup_je2000e.rst`: notes 4.1/4.2;
+- the matching covered texts in the de/it/uk manifests.
+
+The live 页面占位参数 rows `recvkvYQNbA32V` and `recvkvYQNb4X7g` still hold the
+old values. They were read only; the frozen source does not depend on them.
+
+Left as found:
+
+- The fr–uk LCD-icon energy note says `CA`/`AC` where the print says `AC1/2`.
+- The Italian operation text names outputs `uscita … DC/USB`; the print says
+  `CC/USB`.
+- The German print says `Stromtaste` in its energy and key-combination
+  sections.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all eight App outputs; the
+  seven existing ones are unchanged.
+- **Trial Web builds** against the live 2.6 pages:
+  - en/fr/es: no changed line;
+  - de: 10 lines, only `Haupt-POWER-Taste` → `POWER-Taste`;
+  - it: 9 lines, only `DC` → `CC` in the DC/USB button's name;
+  - uk: the add-device image and its alt text, the four label lines removed, the
+    overview alt's DC/USB label, and notes 4.1/4.2.
+
+## 2026-09-27 specification tables per print
+
+A read-only audit compared the six live specification tables (Hello-Docs
+`ea5f0e9f`) with each block's printed spec page (PDF pages 21/40/59/78/97/116)
+and listed 92 differences: 15 VALUE, 26 LABEL, 5 STRUCTURE, 39 FORMAT and 7
+PRINT-DEFECT (the print is wrong and the page already corrects it). The
+operator's ruling: values, structure and labels follow the print; formatting
+keeps this source's house rules; where the print is wrong, the page keeps the
+reviewed wording.
+
+Cause:
+
+- #1124 (2026-09-14) matched only the English columns to the print. English
+  lists the DC8020 PV line first, so its two cells swapped and gained `PV`/`Car`
+  prefixes. The translated cells kept the car rating on line 1 and fell back to
+  the English prefixes, so the car rating read `PV` and the PV rating `Car`. The
+  two USB-C ports got their own English labels; the fr–uk labels stayed equal,
+  so the renderer still merged the two rows into one.
+- The intake set the English weight to the print's 19.1 kg; the translations
+  kept 18,8 kg. The es/de/it/uk AC-output count (`2 ×`) and the other labels
+  came in with the translated rows (#1085).
+
+Change (frozen `phase2/` cells; the page is regenerated from them):
+
+| Route | Cell | Before → after | PDF page |
+| --- | --- | --- | --- |
+| fr–uk | `Spec_Master` `weight` `Value_<lang>` | `18,8` → `19,1` kg | 40/59/78/97/116 |
+| fr | `dc8020_ports` l01/l02 `Param_fr`, `Value_fr` | `PV: 11 V-16 V⎓8 A…` / `Car: 16 V-60 V⎓12 A, …` → `PV: 16 V-60 V⎓12 A max., Double à 21 A / 800 W max.` / `Voiture: 11 V-16 V⎓8 A max., Double à 8 A max.` | 40 |
+| es/de/it/uk | `dc8020_ports` l01/l02 `Param_<lang>` | English fallback `PV`/`Car` → es `Coche`/`PV`, de `Auto`/`PV`, it `Auto`/`FV`, uk `Автомобіль`/`PV` (values unchanged) | 59/78/97/116 |
+| es/de/it/uk | `ac_output` `Row_label_<lang>` | `2 ×` → `3 ×` (it `2 × uscite CA` → `3 × Uscita CA`) | 59/78/97/116 |
+| fr–uk | `usb_c` 30w/140w `Row_label_<lang>` | one shared label (`2 × Sortie USB-C` …) → fr `1 × Sortie USB-C 30 W`/`140 W`, es `1 × Salida USB-C 30 W`/`140 W`, de `1 × USB-C-Ausgang 30 W`/`140 W`, it `1 × Uscita USB-C 30 W`/`140 W`, uk `Вихід USB-C 30 Вт`/`140 Вт` | 40/59/78/97/116 |
+| en | `charging_temperature`, `discharging_temperature` `Row_label_source` | `Charging`/`Discharging Temperature` → `Charge`/`Discharge Temperature` | 21 |
+| fr | `model_no` `Row_label_fr`; `ac_input` l01/l02 `Param_fr` | `N° de modèle` → `N° modèle`; `Mode de charge` → `Mode charge`; `Mode bypass` → `Mode dérivation` | 40 |
+| es | `dc12_port` `Row_label_es` | `1 × Puerto CC 12 V` → `1 × Puerto DC 12 V` | 59 |
+| de | `Spec_Footnotes` `ac_bypass` `Text_de` | `… über die AC-Ausgänge liefern.` → `… über die AC-Ausgangsanschlüsse liefern.` | 78 |
+| it | `spec_titles` and `Localized_Copy` | `SPECIFICHE`, `INFO GENERALI`, `PORTE DI INPUT`, `PORTE DI USCITA` → `SPECIFICHE TECNICHE`, `INFORMAZIONI GENERALI`, `PORTE IN INGRESSO`, `PORTE IN USCITA` | 97 |
+| it | `Row_label_it` of `model_no`, `dc12_port` and the temperatures | `Numero di modello` → `Modello n.`; `1 × Porta CC 12 V` → `1 × Presa da 12 V CC`; `Temperatura di ricarica`/`di scarico` → `di carica`/`di scarica` | 97 |
+| uk | `spec_titles` and `Localized_Copy` page title | `Специфікації` → `ТЕХНІЧНІ ХАРАКТЕРИСТИКИ` | 116 |
+| uk | `ac_input` l02 `Param_uk`; `Row_label_uk` of `usb_a`, `dc12_port`, `discharging_temperature` | `Режим байпасу` → `Байпасний режим`; `1 вихід USB-A` → `1 вихід USB-A 18 Вт`; `1 × порт DC 12 В` → `Порт постійного струму 12 В`; `Температура розряду` → `Температура розряджання` | 116 |
+| de | `charging_temperature` `Row_label_de` | `Ladtemperatur` → `Ladetemperatur` (reviewed wording, below) | 78; prose 75 |
+| fr–uk | `dc_expansion_input` / `dc_expansion_output` `Value_<lang>` | empty, so the page showed the English `36.8 V-57.6 V⎓75 A max.` / `…55 A max.` → fr/de/it `36,8 V-57,6 V⎓75 A max.`, es `36,8 V-57,6 V⎓75 A máx.`, uk `36,8 В-57,6 В⎓75 A макс.` (outputs 55 A) | 40/59/78/97/116 |
+| de | `spec_titles` and `Localized_Copy` port headings | `EINGANGSPORTS` / `AUSGANGSPORTE` → `EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE` (reviewed wording, below) | 78 |
+
+The labels keep the house number–unit space where the fr/es/it prints set
+`30W`, `140W` or `12V`. The expansion cells equal their printed cells except the
+Italian input, which prints `36,8V-57,6V` and gains the same space. The uk cells
+print Cyrillic `В` and `макс.` with a Latin `A`, as 21 of the page's 26 amp
+values do; the frozen uk cells follow the print letter for letter.
+
+The DC8020 lines are positional: line 1 and line 2 are each block's first and
+second printed line, so `l01` is the PV port in en/fr and the car port in
+es/de/it/uk. The regression test checks that every prefix carries its own port's
+rating.
+
+Where a block words the same item differently, the spec page decides:
+
+- en: the table prints `Charge`/`Discharge Temperature`; the prose (p18) says
+  "charging temperature".
+- fr: the input line prints `Mode dérivation`; the output row on the same page
+  keeps its printed `Sortie CA en mode bypass`.
+- es: `Puerto DC 12 V`; the overview (p46) prints `Puerto CC 12 V`.
+- it: `FV`; the overview (p84) prints `PV`. `Presa da 12 V CC`; the overview
+  prints `Porta 12 V CC` and p89 `La porta CC 12 V`. `Temperatura di carica`;
+  the prose (p94) says `ricarica`.
+- uk: `Порт постійного струму 12 В`; the overview (p103) prints `Порт DC 12 В`.
+  The uk USB-C and 12 V rows carry no count, as printed; the other rows do.
+
+Where the print is wrong, the page keeps the reviewed wording:
+
+- de `Ladtemperatur` (p78) becomes `Ladetemperatur`, as the block's own prose
+  prints it (p75). The page had copied the typo.
+- de port headings: p78 prints the mixed pair `EINGANGSPORTS` /
+  `AUSGANGSPORTE`. They become `EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE`, the
+  pair two other EU prints set on PDF page 70:
+  - JE-1000H EU `V2.0-2026-08-03` (SHA-256 `07e9ac4b…`);
+  - JE-3600A EU `2026-05-25` (SHA-256 `bfbcc437…`).
+
+  Both are the prints their frozen sources lock. The JE-2000F lane (#1301)
+  corrects the same pair. The German table itself already says
+  `DC8020-Anschlüsse` and `DC 12 V-Anschluss`. On the page, each heading's
+  table `aria-label` changes with it.
+- The seven print defects the page already corrected stay corrected: the fr
+  trademark note printed in English and fr footnote `① 1.`; de `máx.` on the
+  bypass output, `1 × USB-A -Ausgänge` and the heading
+  `UMGEBUNGSAUFBETRIEBSTEMPERATUR`; it `2 × DC8020 Ports` in English; uk
+  `1 вхід змінного струму` on the DC8020 row.
+
+`source_manifest.json` re-locks `Spec_Master.csv`, `spec_titles.csv`,
+`Localized_Copy.csv` and `Spec_Footnotes.csv`.
+
+Not changed:
+
+- The other 29 FORMAT differences stay under the house rules. The audit counted
+  39; the ten expansion-port values among them were English fallbacks rather
+  than spacing, so a follow-up of the same day fills them (above).
+- The order of the trademark note and footnote ① comes from the shared
+  specification template, which another change handles.
+- The Product overview rows (figure alt text) are not part of this change.
+
+Verification:
+
+- **Trial Web builds** (default mode, frozen data root) of the six routes: the
+  unchanged source reproduces the live 2.8 pages exactly, with image `src`
+  normalized. With the change, only the fixed lines differ:
+  - en: the 2 temperature labels;
+  - fr: 6 cells (4 plus the two expansion values) and the USB-C split;
+  - es: 6 cells and the split;
+  - de: 7 cells (footnote ① included), the two port headings with their
+    `aria-label`s, and the split;
+  - it: the title, three headings, 9 cells and the split;
+  - uk: the title, 9 cells and the split.
+- **Print check:** every rendered label, prefix and value was compared with the
+  page's plain text (a second extraction path, whitespace removed). What is left
+  is FORMAT or a reviewed correction: the seven kept print defects,
+  `Ladetemperatur` and the German heading pair. The ten expansion cells were also
+  compared character by character with their printed cells.
+- **Regression tests:** `tests/test_je2000e_eu_spec_print.py` (12 tests) fails
+  on the previous cells: 11 tests, 39 failing subtests. Its print-defect guard
+  passes on both, by design.

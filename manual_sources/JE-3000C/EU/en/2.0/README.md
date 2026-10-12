@@ -4,13 +4,18 @@ This directory is the audited, target-scoped build input for the Git-only Web
 release of `JE-3000C / EU / en`, version `2.0`.
 
 - Authority: the current published `V2.0-2026-07-31` EUUK manual identified in
-  [`source_manifest.json`](source_manifest.json).
+  [`source_manifest.json`](source_manifest.json), for the figures and all
+  content except the German front view and three blocks of copy, which follow
+  its `V2.0-2026-09-15` revision (see the 2026-09-27 notes below).
 - Structured source: [`phase2/`](phase2) contains the target rows and shared
   dictionaries required to render the English manual.
 - Artwork: the deterministic extraction recipe is hash-locked through
   `source_manifest.json`. Operation and charging panels retain their complete
   grey frames and image-owned text; the LCD mode remains a device-only
   illustration beside a semantic CSS/HTML table.
+  The App recipe is hash-locked the same way: its one quarantined panel, the
+  App connect-result screens from PDF page 21, serves the fr/es/de/it/uk
+  routes built from this source; English keeps its own approved panel.
 - Live systems: this source has no live Bitable or build-queue dependency.
 
 Build it with:
@@ -24,3 +29,122 @@ python build.py md \
   --data-root manual_sources/JE-3000C/EU/en/2.0/phase2 \
   --staging-root <fresh-root>
 ```
+
+Control-panel button names (2026-09-24): the three `CONTROLS` label rows of
+`phase2/Spec_Master.csv` (`main_power_button`, `dc_usb_power_button`,
+`ac_power_button`) carried only the English source value, so the fr/es/de/it/uk
+routes printed "POWER Button", "DC / USB Power Button" and "AC Power Button" in
+the Product Overview, energy-saving, UPS and App pages. Their `Value_fr` …
+`Value_uk` cells now hold each language block's printed names (PDF pages
+36/52/68/84/100), and `source_manifest.json` re-locks the file. English is
+unchanged.
+
+App add-device figure (2026-09-24): the fr/es/de/it/uk routes bind their own language block's crop of
+the App screens plus this model's control-panel box (`app_asset_recipe`, re-bound
+alone in `source_manifest.json`); see the intake review addendum of the same date.
+
+Recipe gate (2026-09-25): the three English App panels in `asset_recipe` are quarantined as App UI;
+`source_manifest.json` rebinds the recipe hash. Pages are unchanged.
+
+Translated cells (2026-09-25): the fr/es/de/it/uk columns of the specification,
+storage, overview-callout and standby/auto-off rows of `phase2/Spec_Master.csv`
+and of footnote ② in `phase2/Spec_Footnotes.csv` were empty, so the fr–uk routes
+printed English there. They now hold each language block's printed text from
+this source's V2.0-2026-07-31 PDF; defects use reviewed wording, and the Spanish
+PV value takes the 2026-09-15 revision's correction (see the intake review
+addendum of the same date). `source_manifest.json` re-locks both files.
+
+Block figures (2026-09-25): the fr/es/de/it/uk routes bind their own language
+block's figures (15 crops each in `asset_recipe`; the fr–uk blocks draw EU
+sockets, the English block UK sockets) instead of the shared JE-1000F art; see
+the intake review addendum of the same date. `source_manifest.json` re-locks
+the web recipe.
+
+Emergency charging (2026-09-26): the fr–uk routes no longer print an Emergency
+Charging Mode block. This model lacks the feature, and the shared fr–uk
+charging templates now carry the English file's capability markers; see the
+intake review addendum of the same date.
+
+Specification tables (2026-09-27): the six spec tables follow this source's
+V2.0-2026-07-31 print (PDF pages 18/34/50/66/82/98) in values and labels;
+formatting keeps the house rules and print defects keep reviewed wording
+(operator ruling of the same date). In `phase2/Spec_Master.csv`, AC input line 1
+loses its charge-mode label in en/fr/es/de/it (the uk block prints one). English
+reads `Car:`, `2 × USB-C 100 W max.`, `2 × USB-A 18 W max.`, `Charge Temperature`
+and `Discharge Temperature`. The fr/es capacity reads `V DC`, and the Italian cycle
+life reads `fino al 70%`. In `phase2/Spec_Footnotes.csv`, footnote ① takes the
+printed German `AC-Ausgangsports` and the Ukrainian `або ATS`.
+`phase2/spec_titles.csv`, mirrored in `phase2/Localized_Copy.csv`, takes the
+printed de/it/uk page title and de/it section headings. See the intake review
+addendum of the same date. `source_manifest.json` re-locks the four files.
+
+Specification notes order (2026-09-27): every language block of the print sets
+the footnotes above the ※ USB Type-C trademark note (PDF pages
+18/34/50/66/82/98), while the Web put the ※ note first. The `spec` row of
+`phase2/page_registry.csv` now names
+`docs/templates/spec_template_footnotes_first.rst`, whose HTML branch (the Web,
+and the Word bundle, which takes its order from the HTML) puts the footnotes
+first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
+are unchanged. `source_manifest.json` re-locks the registry.
+
+German front view (2026-09-27): the de `overview_front` figure is re-cropped
+from the German block of the V2.0-2026-09-15 print (PDF page 56), with the
+approved 07-31 frame and scale. The only change is the AC button callout:
+`Bouton d'alimentation CA` becomes `AC-Ausgangstaste`, and the rest of the crop
+is pixel-identical. The operator confirmed the candidate on 2026-09-27. The
+corrective recipe
+`data/asset_recipes/manual_je3000c_eu_uk_20260915_de_overview_front.json` is
+pinned under `supplemental_asset_recipes` in `source_manifest.json`. The 07-31
+recipe and every other figure are unchanged. The printed
+`DC-12V-Ausgangstaste` label is still a print defect, so the page keeps its
+corrected callout table.
+
+New copy from the 2026-09-15 revision (2026-09-27): three blocks now follow each
+language block of the V2.0-2026-09-15 print (SHA-256 `f3264481…`), by operator
+ruling of the same date:
+
+- the Energy Saving Mode WARNING below the energy-saving NOTE, in this model's
+  own `docs/templates/targets/je3000c/05_operation_guide_*.rst`;
+- the UPS WARNING before the UPS CAUTION, and
+- a fourth UPS CAUTION bullet (one unit directly on a wall outlet, no cascade).
+
+The two UPS blocks sit in the shared `page_shared/<lang>/06_ups_mode.rst`, so
+every model that uses that template carries them. Figures and all other content
+stay on V2.0-2026-07-31, because the 09-15 drawings carry nine defects; the one
+exception is the German front view above. The 07-31 print remains the authority
+in `source_manifest.json`, which now scopes it and records the 09-15 print under
+`authority.adopted_copy_revisions`. No file of `phase2/` and no recipe changes;
+see the intake review addendum of the same date.
+
+The three blocks show on the Web and in Word only, for now (operator ruling of
+the same date): each sits under `.. only:: not latex`, and the UPS pages keep
+their previous CAUTION under `.. only:: latex`. The PDF (LaTeX) and IDML output
+stays as it was until those renderers keep these callouts' paragraphs.
+
+Older gaps against the print (2026-09-27): four places where the Web differed
+from both the V2.0-2026-07-31 print and its 09-15 revision now follow the print,
+by operator ruling of the same date (「JE-3000C 旧差异按印刷对齐」):
+
+- fr/es/de/it/uk Energy Saving Mode: the print's opening paragraph (on by
+  default, the LCD icon, the 25 W / 2 W threshold over 12 hours, the App
+  setting) and its disable sentence. They replace a reworded disable sentence and
+  low-power advice that no print carries (PDF pages 28–29/44–45/60–61/76–77/92–93).
+- fr/es/de/it/uk output-resume function: the print's sentence replaces the
+  unprinted claim that the function is off by default and must be enabled in the
+  App. The section now follows the LCD screen, as printed, and its table cells
+  follow the print (PDF pages 29/45/61/77/93).
+- UPS, all six languages: the figure follows all of the UPS text (PDF pages
+  14/30/46/62/78/94).
+- UPS text in fr/de/it/uk: this print's wording instead of the model family's.
+
+The first two edit this model's own
+`docs/templates/targets/je3000c/05_operation_guide_{fr,es,de,it,uk}.rst`; the
+English one already followed the print. The UPS page is shared, so the JE-3000C
+text and figure sit under `.. only:: model_je_3000c` in
+`page_shared/<lang>/06_ups_mode.rst`, and every other model keeps the previous
+text under `.. only:: not model_je_3000c`. These corrections reach every output
+(Web, Word, PDF and IDML); the 09-15 copy above stays Web and Word only. Values
+keep the house format, and print defects keep reviewed wording (the German `o`
+and 25 W USB limit, the Ukrainian `25 В`, the Italian block's stray German
+fragment). No file of `phase2/`, no recipe and no figure changes; see the
+intake review addendum of the same date.

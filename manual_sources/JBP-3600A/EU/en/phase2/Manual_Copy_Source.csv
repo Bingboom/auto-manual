@@ -10,8 +10,7 @@ lcd_icons.page_title,lcd_icons,page_title,ALL,ALL,en,TRUE,V1.0,LCD DISPLAY,,
 spec.page_title,specifications,page_title,ALL,ALL,en,TRUE,V1.0,SPECIFICATIONS,,migrated from 03_内容源_多语言标题
 spec.section.environmental_operating_temperature,specifications,section_title,ALL,ALL,en,TRUE,V1.0,ENVIRONMENTAL OPERATING TEMPERATURE,4,migrated from 03_内容源_多语言标题
 spec.section.general_info,specifications,section_title,ALL,ALL,en,TRUE,V1.0,GENERAL INFO,1,migrated from 03_内容源_多语言标题
-spec.section.input_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,INPUT PORTS,2,migrated from 03_内容源_多语言标题
-spec.section.output_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,OUTPUT PORTS,3,migrated from 03_内容源_多语言标题
+spec.section.input_output_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,INPUT/OUTPUT PORTS,2,one INPUT/OUTPUT PORTS section as printed in the EUUK V2.0 manuals (2026-09-27)
 symbols.header_meaning,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Meaning,,
 symbols.header_symbol,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Symbol,,
 symbols.page_title,symbols,page_title,ALL,ALL,en,TRUE,V1.0,MEANING OF SYMBOLS,,

@@ -1,5 +1,7 @@
 # Locale-safe Web publication identity
 
+Status: active
+
 OPS-02 separates the routing identity `(model, region, lang)` from language
 content verification. Engineering implementation belongs to auto-manual;
 business publication changes remain scoped to Hello-Docs `docs/publish/**`.

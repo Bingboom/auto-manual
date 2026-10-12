@@ -1,0 +1,42 @@
+[
+  {
+    "physical_page": 34,
+    "bbox": [
+      215,
+      170,
+      244,
+      216
+    ],
+    "reason": "Miniature printed document-cover detail is illustrative, not manual body copy. Replaced with shared language-neutral document icon; native item caption preserved."
+  },
+  {
+    "physical_page": 34,
+    "bbox": [
+      121,
+      352,
+      149,
+      392
+    ],
+    "reason": "Miniature printed document-cover detail is illustrative, not manual body copy. Replaced with shared language-neutral document icon; native item caption preserved."
+  },
+  {
+    "physical_page": 34,
+    "bbox": [
+      169,
+      352,
+      197,
+      392
+    ],
+    "reason": "Miniature printed document-cover detail is illustrative, not manual body copy. Replaced with shared language-neutral document icon; native item caption preserved."
+  },
+  {
+    "physical_page": 34,
+    "bbox": [
+      219,
+      352,
+      248,
+      392
+    ],
+    "reason": "Miniature printed document-cover detail is illustrative, not manual body copy. Replaced with shared language-neutral document icon; native item caption preserved."
+  }
+]

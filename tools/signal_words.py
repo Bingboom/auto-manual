@@ -9,7 +9,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from tools import lang_registry
-from tools.data_snapshot import LOCALIZED_COPY_FILE, STRUCTURED_DATA_DEFAULT_DIR, SYMBOLS_BLOCKS_FILE
+from tools.data.snapshot import LOCALIZED_COPY_FILE, STRUCTURED_DATA_DEFAULT_DIR, SYMBOLS_BLOCKS_FILE
 from tools.localized_copy import LocalizedCopyResolver
 from tools.utils.path_utils import repo_root
 from tools.utils.spec_master import canonicalize_model_token

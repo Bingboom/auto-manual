@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 
 from . import oppanel
+from .asset_slots import bundle_asset_slots
 from .components.prose_image import (
     IMAGE_ROLE_CHARGING_DIAGRAM,
     IMAGE_ROLE_FULL_MEASURE,
@@ -34,7 +35,7 @@ from .components.symbols_panel import SymbolsPanel, SymbolsPanelData
 from .components.symbol_sections import SignalWordsPanel, SymbolIconsPanel
 from .heading_suffix import promote_h2_suffix_pills
 from .params import IDPKG, param_pt
-from .prose_flow import mark_troubleshooting_table
+from .prose_flow import component_kind, mark_troubleshooting_table
 from .page03 import _spread_page
 from .page_overview import product_overview_frames, single_image_overview_frames
 
@@ -363,7 +364,9 @@ def add_lcd_operations_page(
     """Place the existing compact LCD and Operations components on one page."""
 
     lcd_options = dict((composition_data or {}).get("lcd") or {})
-    operation_blocks = oppanel.transform(operation_blocks)
+    operation_blocks = oppanel.transform(
+        operation_blocks, asset_slot=bundle_asset_slots(bundle_root)
+    )
     operation_panel_variant = str(
         lcd_options.get("operation_panel_variant") or ""
     )
@@ -802,7 +805,9 @@ def add_app_composition(
 
     from .prose_flow import align_app_second_page, promote_reference_figures
 
-    prepared = oppanel.transform(list(blocks))
+    prepared = oppanel.transform(
+        list(blocks), asset_slot=bundle_asset_slots(bundle_root)
+    )
     prepared = align_app_second_page(prepared, page_plan, source_stem)
     prepared = promote_reference_figures(prepared, page_plan, source_stem)
     writer.add_prose_story(
@@ -840,8 +845,13 @@ def add_storage_troubleshooting_page(
     bundle_root: Path,
     page_index: int,
     language: str,
+    split_leading_notice: bool = False,
 ) -> tuple[str, str]:
-    """Compose Storage and complete Troubleshooting components on one page."""
+    """Compose Storage and complete Troubleshooting components on one page.
+
+    ``split_leading_notice`` gives a notice that opens Storage (the registered
+    Charging car notice) its own frame above the Storage panel.
+    """
 
     page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
     split = param_pt(
@@ -849,6 +859,15 @@ def add_storage_troubleshooting_page(
         "idml_compact_storage_trouble_split",
         151.0,
     )
+    storage_blocks = list(storage_blocks)
+    leading_notice: tuple[str, str] | None = None
+    if (
+        split_leading_notice
+        and storage_blocks
+        and storage_blocks[0][0] == "component"
+        and component_kind(storage_blocks[0][1]) == "notice"
+    ):
+        leading_notice = storage_blocks.pop(0)
     panel = StoragePanel(
         writer,
         sid=sid,
@@ -856,6 +875,18 @@ def add_storage_troubleshooting_page(
         bundle_root=bundle_root,
         language=language,
     ).render()
+    notice_story: tuple[str, float] | None = None
+    if leading_notice is not None:
+        notice_sid = f"{sid}_lead_notice"
+        _, notice_height = writer.add_prose_story(
+            notice_sid,
+            f"{sid} leading notice",
+            [leading_notice],
+            bundle_root,
+            language=language,
+            disable_hyphenation=True,
+        )
+        notice_story = (notice_sid, notice_height)
     writer.add_prose_story(
         trouble_sid,
         trouble_title,
@@ -874,10 +905,36 @@ def add_storage_troubleshooting_page(
         + _spread_page(writer, spread_id, page_index + 1)
         + '</Spread>\n</idPkg:Spread>\n',
     ))
-    writer.add_story_frames(panel.story_id, [(page_index, page_top, split)])
+    trouble_top = split + 4.0
+    if notice_story is None:
+        writer.add_story_frames(panel.story_id, [(page_index, page_top, split)])
+    else:
+        gap = param_pt(
+            writer.params,
+            "idml_compact_storage_trouble_gap",
+            4.0,
+        )
+        safety = param_pt(
+            writer.params,
+            "idml_compact_shared_story_safety",
+            2.0,
+        )
+        notice_sid, notice_height = notice_story
+        notice_bottom = page_top + notice_height + safety
+        storage_top = notice_bottom + gap
+        storage_bottom = storage_top + panel.estimated_height + safety
+        trouble_top = storage_bottom + gap
+        writer.add_story_frames(
+            notice_sid,
+            [(page_index, page_top, notice_bottom)],
+        )
+        writer.add_story_frames(
+            panel.story_id,
+            [(page_index, storage_top, storage_bottom)],
+        )
     writer.add_story_frames(
         trouble_sid,
-        [(page_index, split + 4.0, writer.page_h - writer.m_b + 12.0)],
+        [(page_index, trouble_top, writer.page_h - writer.m_b + 12.0)],
     )
     return panel.story_id, trouble_sid
 

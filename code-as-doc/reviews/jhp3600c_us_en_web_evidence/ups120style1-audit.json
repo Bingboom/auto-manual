@@ -1,0 +1,227 @@
+[
+  {
+    "emphasis": [
+      {
+        "text": "120 V input with both 120 V and 240 V outputs",
+        "weight": "700"
+      },
+      {
+        "text": "use the left NEMA 5-20R (L1)",
+        "weight": "700"
+      },
+      {
+        "text": "1440 W",
+        "weight": "700"
+      },
+      {
+        "text": "2880 W",
+        "weight": "700"
+      },
+      {
+        "text": "2880 W",
+        "weight": "700"
+      },
+      {
+        "text": "2880 W",
+        "weight": "700"
+      },
+      {
+        "text": "If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption.",
+        "weight": "700"
+      }
+    ],
+    "headings": 84,
+    "imageLoaded": true,
+    "pageOverflow": false,
+    "paragraphCount": 6,
+    "pills": [
+      {
+        "background": "rgb(52, 48, 49)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "999px",
+        "rect": {
+          "bottom": 287.8203125,
+          "height": 31.4921875,
+          "left": 314.59375,
+          "right": 509.234375,
+          "top": 256.328125,
+          "width": 194.640625,
+          "x": 314.59375,
+          "y": 256.328125
+        },
+        "text": "Total Loads ≤1440 W:",
+        "weight": "700"
+      },
+      {
+        "background": "rgb(52, 48, 49)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "999px",
+        "rect": {
+          "bottom": 459.640625,
+          "height": 31.4921875,
+          "left": 314.59375,
+          "right": 504.4765625,
+          "top": 428.1484375,
+          "width": 189.8828125,
+          "x": 314.59375,
+          "y": 428.1484375
+        },
+        "text": "Total Loads >1440W:",
+        "weight": "700"
+      }
+    ],
+    "text": "Connect the product to a 120V wall outlet using the AC charging cable. Press the AC power button to enable AC power delivery. Total Loads ≤1440 W: The product operates in AC bypass mode. All three AC ports (two NEMA 5-20R and one NEMA 14-50R) can be used. In this condition, the product supports 120 V input with both 120 V and 240 V outputs, and switches to battery power within 10 ms when grid power fails. If only one 120V port is required, use the left NEMA 5-20R (L1) port as the primary connection. Total Loads >1440W: Each NEMA 5-20R port supports up to 1440 W, with a combined maximum of 2880 W across both ports. The NEMA 14-50R port supports up to 2880 W. All three AC ports together support a total output of up to 2880 W. When operating above 1440W with 120V AC input, the product still supports 120V/240V outputs. In this condition, the AC outputs consume battery power. If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption.",
+    "width": 1440,
+    "allTextUnchanged": true
+  },
+  {
+    "emphasis": [
+      {
+        "text": "120 V input with both 120 V and 240 V outputs",
+        "weight": "700"
+      },
+      {
+        "text": "use the left NEMA 5-20R (L1)",
+        "weight": "700"
+      },
+      {
+        "text": "1440 W",
+        "weight": "700"
+      },
+      {
+        "text": "2880 W",
+        "weight": "700"
+      },
+      {
+        "text": "2880 W",
+        "weight": "700"
+      },
+      {
+        "text": "2880 W",
+        "weight": "700"
+      },
+      {
+        "text": "If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption.",
+        "weight": "700"
+      }
+    ],
+    "headings": 84,
+    "imageLoaded": true,
+    "pageOverflow": false,
+    "paragraphCount": 6,
+    "pills": [
+      {
+        "background": "rgb(52, 48, 49)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "999px",
+        "rect": {
+          "bottom": 306.8984375,
+          "height": 30.859375,
+          "left": 16,
+          "right": 206.71875,
+          "top": 276.0390625,
+          "width": 190.71875,
+          "x": 16,
+          "y": 276.0390625
+        },
+        "text": "Total Loads ≤1440 W:",
+        "weight": "700"
+      },
+      {
+        "background": "rgb(52, 48, 49)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "999px",
+        "rect": {
+          "bottom": 572.3671875,
+          "height": 30.859375,
+          "left": 16,
+          "right": 202.0625,
+          "top": 541.5078125,
+          "width": 186.0625,
+          "x": 16,
+          "y": 541.5078125
+        },
+        "text": "Total Loads >1440W:",
+        "weight": "700"
+      }
+    ],
+    "text": "Connect the product to a 120V wall outlet using the AC charging cable. Press the AC power button to enable AC power delivery. Total Loads ≤1440 W: The product operates in AC bypass mode. All three AC ports (two NEMA 5-20R and one NEMA 14-50R) can be used. In this condition, the product supports 120 V input with both 120 V and 240 V outputs, and switches to battery power within 10 ms when grid power fails. If only one 120V port is required, use the left NEMA 5-20R (L1) port as the primary connection. Total Loads >1440W: Each NEMA 5-20R port supports up to 1440 W, with a combined maximum of 2880 W across both ports. The NEMA 14-50R port supports up to 2880 W. All three AC ports together support a total output of up to 2880 W. When operating above 1440W with 120V AC input, the product still supports 120V/240V outputs. In this condition, the AC outputs consume battery power. If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption.",
+    "width": 390,
+    "allTextUnchanged": true
+  },
+  {
+    "emphasis": [
+      {
+        "text": "120 V input with both 120 V and 240 V outputs",
+        "weight": "700"
+      },
+      {
+        "text": "use the left NEMA 5-20R (L1)",
+        "weight": "700"
+      },
+      {
+        "text": "1440 W",
+        "weight": "700"
+      },
+      {
+        "text": "2880 W",
+        "weight": "700"
+      },
+      {
+        "text": "2880 W",
+        "weight": "700"
+      },
+      {
+        "text": "2880 W",
+        "weight": "700"
+      },
+      {
+        "text": "If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption.",
+        "weight": "700"
+      }
+    ],
+    "headings": 84,
+    "imageLoaded": true,
+    "pageOverflow": false,
+    "paragraphCount": 6,
+    "pills": [
+      {
+        "background": "rgb(52, 48, 49)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "999px",
+        "rect": {
+          "bottom": 379.9921875,
+          "height": 30.859375,
+          "left": 16,
+          "right": 206.71875,
+          "top": 349.1328125,
+          "width": 190.71875,
+          "x": 16,
+          "y": 349.1328125
+        },
+        "text": "Total Loads ≤1440 W:",
+        "weight": "700"
+      },
+      {
+        "background": "rgb(52, 48, 49)",
+        "color": "rgb(255, 255, 255)",
+        "radius": "999px",
+        "rect": {
+          "bottom": 718.3515625,
+          "height": 30.859375,
+          "left": 16,
+          "right": 202.0625,
+          "top": 687.4921875,
+          "width": 186.0625,
+          "x": 16,
+          "y": 687.4921875
+        },
+        "text": "Total Loads >1440W:",
+        "weight": "700"
+      }
+    ],
+    "text": "Connect the product to a 120V wall outlet using the AC charging cable. Press the AC power button to enable AC power delivery. Total Loads ≤1440 W: The product operates in AC bypass mode. All three AC ports (two NEMA 5-20R and one NEMA 14-50R) can be used. In this condition, the product supports 120 V input with both 120 V and 240 V outputs, and switches to battery power within 10 ms when grid power fails. If only one 120V port is required, use the left NEMA 5-20R (L1) port as the primary connection. Total Loads >1440W: Each NEMA 5-20R port supports up to 1440 W, with a combined maximum of 2880 W across both ports. The NEMA 14-50R port supports up to 2880 W. All three AC ports together support a total output of up to 2880 W. When operating above 1440W with 120V AC input, the product still supports 120V/240V outputs. In this condition, the AC outputs consume battery power. If the battery becomes fully discharged, the connected load may experience overload shutdown and power interruption.",
+    "width": 320,
+    "allTextUnchanged": true
+  }
+]

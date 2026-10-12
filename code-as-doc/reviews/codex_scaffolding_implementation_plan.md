@@ -1,5 +1,7 @@
 # Codex 脚手架适配计划
 
+Status: active
+
 ## 目标
 
 把 Claude 项目配置中已经验证过的导航和工作方法转换成 Codex 可发现、可触发、可验证的 repo-local surface，同时不改变 manual build、review、queue、snapshot 或 release 行为。

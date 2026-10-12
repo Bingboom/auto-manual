@@ -60,7 +60,7 @@ jobs:
 
       - name: Run config doctors and production IDML pilot
         run: |
-          python tools/nightly_render.py \
+          python -m tools.nightly_render \
             --configs-dir configs \
             --data-root tests/fixtures/phase2 \
             --report "${RUNNER_TEMP}/nightly-render.json" \

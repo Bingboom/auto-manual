@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-29",
+  "locales": [
+    "pl",
+    "pt",
+    "nl"
+  ],
+  "scope": "Post-approval Web review; no merge or production publication",
+  "checks": {
+    "native_corrected_nameplate_figures": "passed all three locales",
+    "nl_ac_labels_including_hidden_semantics": "passed; DC/USB retained",
+    "overview_captions": "one native heading per view",
+    "legal_subject": "Jackery in all six new books",
+    "nl_dc_glyph": "Segoe UI Symbol U+2393; original native frame evidence; high zoom and browser-bound corrected asset verified",
+    "browser": "six routes load, no loaded broken images or document-wide overflow"
+  },
+  "input_recovery": {
+    "original_source_retrieved_again": true,
+    "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+    "reason": "Temporary open AI file changed externally; original downloaded to separate verified-originals path; no overwrite of current working AI."
+  }
+}

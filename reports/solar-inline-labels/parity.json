@@ -1,0 +1,47 @@
+{
+  "preview_url": "http://127.0.0.1:18858/pl/manual_je1000f_eu_pl.html",
+  "languages": [
+    "uk",
+    "pt",
+    "nl",
+    "pl"
+  ],
+  "strict_sphinx_builds": 4,
+  "assets_per_language": 57,
+  "lcd_rows": 26,
+  "lcd_columns": 4,
+  "lcd_unique_icons": 26,
+  "app_step_captions": [
+    "2.1",
+    "2.2",
+    "2.3",
+    "2.4",
+    "2.5"
+  ],
+  "overview_finished_panels_per_language": 2,
+  "semantic_overview_callouts_per_language": 15,
+  "charging_live_labels_per_language": 3,
+  "source_records_equal_to_previous_native_release": true,
+  "shared_stylesheet_unchanged": true,
+  "browser_checked": {
+    "viewport_width": 390,
+    "four_languages": true,
+    "horizontal_overflow": false,
+    "broken_loaded_images": 0,
+    "duplicate_overview_titles": false
+  },
+  "publication": "not yet deployed",
+  "validation": {
+    "full_unit_suite": {
+      "tests": 4800,
+      "skipped": 22,
+      "result": "passed"
+    },
+    "final_focused_tests": 37,
+    "frozen_manifest_inputs": 321,
+    "ruff": "passed",
+    "maintainability": "passed",
+    "doc_links": "233 documents / 2098 links / zero broken",
+    "US_fixture_check": "passed"
+  }
+}

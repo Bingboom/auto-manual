@@ -1,0 +1,3 @@
+Note_id,Region,Model,Source_lang,Is_Latest,Page,Note_order,Text_nl,Enabled
+note1,EU,JS-100I,nl,TRUE,specifications,2,"* STC (Standaard testcondities, 1000W/m2, 25°C, AM 1,5)",TRUE
+note2,EU,JS-100I,nl,TRUE,specifications,3,"* BNPI (bifaciale nominale instraling, voorzijde 1000 W/m2, achterzijde 135 W/m2, 25 °C, AM 1,5) Vouw het frame uit en plaats het op een vlak oppervlak. De ontwerplast is 1600Pa en de veiligheidsfactor is 1,5 keer.",TRUE

@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.queue_asset_preflight import preflight_asset_lineage
+from tools.build_queue.asset_preflight import preflight_asset_lineage
 
 
 REGISTRY_HEADER = (

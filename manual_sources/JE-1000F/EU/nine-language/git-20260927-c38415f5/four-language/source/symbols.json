@@ -1,0 +1,607 @@
+{
+  "schema_version": "je1000f-eu-four-locale-symbols/v1",
+  "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+  "method": "direct AI text objects and exact source artwork crops",
+  "locales": {
+    "uk": {
+      "physical_page": 93,
+      "rows": [
+        {
+          "label": "ПОПЕРЕДЖЕННЯ",
+          "meaning": "Небезпечні практики, які можуть призвести до серйозних травм, смерті та/або майнової шкоди."
+        },
+        {
+          "label": "УВАГА",
+          "meaning": "Небезпечні дії, які можуть призвести до травм та/або майнової шкоди."
+        },
+        {
+          "label": "ПРИМІТКА",
+          "meaning": "Небезпечні дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або непередбачуваних результатів."
+        },
+        {
+          "label": "ПОРАДА",
+          "meaning": "Доповнює важливу інформацію або операційні підказки в тексті."
+        }
+      ],
+      "pictogram_page": 94,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning": "Попереджувальні та застережні символи. Обов’язково прочитайте, щоб попередити користувачів про потенційні небезпеки або ризики.",
+          "meaning_bbox": [
+            72,
+            44,
+            182,
+            75
+          ],
+          "icon_bbox": [
+            29,
+            45,
+            68,
+            74
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/uk/p094_icon_general_warning.png",
+          "icon_sha256": "4d7258bc4ee0d300cc9163edb97147b47a4ba397343dc9efb1625b33ae3ffd6f"
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning": "Перед використанням прочитайте посібник користувача.",
+          "meaning_bbox": [
+            72,
+            75,
+            182,
+            106
+          ],
+          "icon_bbox": [
+            29,
+            76,
+            68,
+            105
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/uk/p094_icon_read_manual.png",
+          "icon_sha256": "a87437f4331135fed6de5ccd4439e46be786a622c91d0a0ff426b4a990b96b91"
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning": "Не розбирайте продукт.",
+          "meaning_bbox": [
+            72,
+            106,
+            182,
+            138
+          ],
+          "icon_bbox": [
+            29,
+            107,
+            68,
+            137
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/uk/p094_icon_do_not_disassemble.png",
+          "icon_sha256": "92a684936dd0014939f1b022bde383194922f6429031f1929969d0375b7f4e9a"
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning": "Тримайте продукт подалі від вогню.",
+          "meaning_bbox": [
+            72,
+            138,
+            182,
+            175
+          ],
+          "icon_bbox": [
+            29,
+            139,
+            68,
+            174
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/uk/p094_icon_keep_away_from_fire.png",
+          "icon_sha256": "2430fffe9653c7bbe210a5ddc5a5cf681a2b68c2c380b30967e35eea13ee9f41"
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning": "Тримайте подалі від дітей.",
+          "meaning_bbox": [
+            225,
+            44,
+            340,
+            75
+          ],
+          "icon_bbox": [
+            185,
+            45,
+            223,
+            74
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/uk/p094_icon_keep_away_from_children.png",
+          "icon_sha256": "38508be0e898050c780030286e709a3d059aa900a5ddb43d981fa693948741f3"
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning": "Цей символ вказує, що всередині продукту є літій-іонна (Li-ion) батарея, яку необхідно утилізувати або переробити належним чином.",
+          "meaning_bbox": [
+            225,
+            75,
+            340,
+            105
+          ],
+          "icon_bbox": [
+            185,
+            76,
+            223,
+            104
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/uk/p094_icon_lithium_battery.png",
+          "icon_sha256": "0101111b5a79604a9c4be2531a5655b33d3b5dd52426a5b4d23fa214ed2e683c"
+        },
+        {
+          "icon_id": "separate_collection",
+          "meaning": "Цей символ вказує, що продукт не можна утилізувати разом із побутовими відходами, і його слід передати до спеціалізованого пункту збору для переробки. Правильна утилізація та переробка допомагають захистити довкілля. Для отримання додаткової інформації щодо утилізації та переробки цього продукту зверніться до місцевої громади, служби утилізації або дилера.",
+          "meaning_bbox": [
+            225,
+            105,
+            340,
+            175
+          ],
+          "icon_bbox": [
+            185,
+            106,
+            223,
+            174
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/uk/p094_icon_separate_collection.png",
+          "icon_sha256": "3ce86abf9a39c853c0794ee58662fe6db13c4c7b88290ad29396930411615a8c"
+        }
+      ]
+    },
+    "pt": {
+      "physical_page": 110,
+      "rows": [
+        {
+          "label": "AVISO",
+          "meaning": "Práticas perigosas que podem resultar em lesões graves, morte e/ou danos materiais."
+        },
+        {
+          "label": "CUIDADO",
+          "meaning": "Práticas perigosas que podem resultar em lesões pessoais e/ou danos materiais."
+        },
+        {
+          "label": "NOTA",
+          "meaning": "Práticas perigosas que podem resultar em danos ao equipamento, perda de dados, deterioração do desempenho ou resultados imprevistos."
+        },
+        {
+          "label": "DICA",
+          "meaning": "Complementa informações importantes ou dicas de operação no texto."
+        }
+      ],
+      "pictogram_page": 111,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning": "Símbolos de Advertência e Cuidado. Deve ser lido para alertar sobre potenciais perigos ou riscos.",
+          "meaning_bbox": [
+            72,
+            44,
+            182,
+            75
+          ],
+          "icon_bbox": [
+            29,
+            45,
+            68,
+            74
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pt/p111_icon_general_warning.png",
+          "icon_sha256": "4d7258bc4ee0d300cc9163edb97147b47a4ba397343dc9efb1625b33ae3ffd6f"
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning": "Leia o manual do usuário antes de operar.",
+          "meaning_bbox": [
+            72,
+            75,
+            182,
+            106
+          ],
+          "icon_bbox": [
+            29,
+            76,
+            68,
+            105
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pt/p111_icon_read_manual.png",
+          "icon_sha256": "a87437f4331135fed6de5ccd4439e46be786a622c91d0a0ff426b4a990b96b91"
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning": "Não desmonte o produto.",
+          "meaning_bbox": [
+            72,
+            106,
+            182,
+            138
+          ],
+          "icon_bbox": [
+            29,
+            107,
+            68,
+            137
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pt/p111_icon_do_not_disassemble.png",
+          "icon_sha256": "92a684936dd0014939f1b022bde383194922f6429031f1929969d0375b7f4e9a"
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning": "Mantenha o produto longe de fogo.",
+          "meaning_bbox": [
+            72,
+            138,
+            182,
+            175
+          ],
+          "icon_bbox": [
+            29,
+            139,
+            68,
+            174
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pt/p111_icon_keep_away_from_fire.png",
+          "icon_sha256": "2430fffe9653c7bbe210a5ddc5a5cf681a2b68c2c380b30967e35eea13ee9f41"
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning": "Mantenha fora do alcance de crianças.",
+          "meaning_bbox": [
+            225,
+            44,
+            340,
+            75
+          ],
+          "icon_bbox": [
+            185,
+            45,
+            223,
+            74
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pt/p111_icon_keep_away_from_children.png",
+          "icon_sha256": "38508be0e898050c780030286e709a3d059aa900a5ddb43d981fa693948741f3"
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning": "Este símbolo indica que há uma bateria de íons de lítio (Li-ion) dentro do produto e que ela deve ser descartada ou reciclada corretamente.",
+          "meaning_bbox": [
+            225,
+            75,
+            340,
+            105
+          ],
+          "icon_bbox": [
+            185,
+            76,
+            223,
+            104
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pt/p111_icon_lithium_battery.png",
+          "icon_sha256": "0101111b5a79604a9c4be2531a5655b33d3b5dd52426a5b4d23fa214ed2e683c"
+        },
+        {
+          "icon_id": "separate_collection",
+          "meaning": "Este símbolo indica que o produto não deve ser descartado como lixo doméstico e deve ser encaminhado a um ponto de coleta designado para reciclagem. O descarte e a reciclagem adequados podem ajudar a proteger o meio ambiente. Para obter mais informações sobre o descarte e a reciclagem deste produto, entre em contato com a autoridade local, o serviço de coleta ou o revendedor.",
+          "meaning_bbox": [
+            225,
+            105,
+            340,
+            175
+          ],
+          "icon_bbox": [
+            185,
+            106,
+            223,
+            174
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pt/p111_icon_separate_collection.png",
+          "icon_sha256": "3ce86abf9a39c853c0794ee58662fe6db13c4c7b88290ad29396930411615a8c"
+        }
+      ]
+    },
+    "nl": {
+      "physical_page": 127,
+      "rows": [
+        {
+          "label": "WAARSCHUWING",
+          "meaning": "Gevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of materiële schade."
+        },
+        {
+          "label": "OPGELET",
+          "meaning": "Gevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade aan eigendommen."
+        },
+        {
+          "label": "OPMERKING",
+          "meaning": "Gevaarlijke praktijken die kunnen leiden tot schade aan apparatuur, gegevensverlies, slechtere prestaties of onverwachte resultaten."
+        },
+        {
+          "label": "TIP",
+          "meaning": "Vult de belangrijke informatie of bedieningstips in de tekst aan."
+        }
+      ],
+      "pictogram_page": 128,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning": "Waarschuwings- en voorzorgssymbolen. Moet worden gelezen om personen te waarschuwen voor mogelijke gevaren of risico's.",
+          "meaning_bbox": [
+            72,
+            44,
+            182,
+            75
+          ],
+          "icon_bbox": [
+            29,
+            45,
+            68,
+            74
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/nl/p128_icon_general_warning.png",
+          "icon_sha256": "4d7258bc4ee0d300cc9163edb97147b47a4ba397343dc9efb1625b33ae3ffd6f"
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning": "Lees de gebruikershandleiding voor gebruik.",
+          "meaning_bbox": [
+            72,
+            75,
+            182,
+            106
+          ],
+          "icon_bbox": [
+            29,
+            76,
+            68,
+            105
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/nl/p128_icon_read_manual.png",
+          "icon_sha256": "a87437f4331135fed6de5ccd4439e46be786a622c91d0a0ff426b4a990b96b91"
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning": "Demonteer het product niet.",
+          "meaning_bbox": [
+            72,
+            106,
+            182,
+            138
+          ],
+          "icon_bbox": [
+            29,
+            107,
+            68,
+            137
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/nl/p128_icon_do_not_disassemble.png",
+          "icon_sha256": "92a684936dd0014939f1b022bde383194922f6429031f1929969d0375b7f4e9a"
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning": "Houd het product uit de buurt van vuur.",
+          "meaning_bbox": [
+            72,
+            138,
+            182,
+            175
+          ],
+          "icon_bbox": [
+            29,
+            139,
+            68,
+            174
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/nl/p128_icon_keep_away_from_fire.png",
+          "icon_sha256": "2430fffe9653c7bbe210a5ddc5a5cf681a2b68c2c380b30967e35eea13ee9f41"
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning": "Houd het product buiten het bereik van kinderen.",
+          "meaning_bbox": [
+            225,
+            44,
+            340,
+            75
+          ],
+          "icon_bbox": [
+            185,
+            45,
+            223,
+            74
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/nl/p128_icon_keep_away_from_children.png",
+          "icon_sha256": "38508be0e898050c780030286e709a3d059aa900a5ddb43d981fa693948741f3"
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning": "Dit symbool geeft aan dat zich een lithium-ion (Li-ion) batterij in het product bevindt en dat deze op de juiste manier moet worden afgevoerd of gerecycled.",
+          "meaning_bbox": [
+            225,
+            75,
+            340,
+            105
+          ],
+          "icon_bbox": [
+            185,
+            76,
+            223,
+            104
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/nl/p128_icon_lithium_battery.png",
+          "icon_sha256": "0101111b5a79604a9c4be2531a5655b33d3b5dd52426a5b4d23fa214ed2e683c"
+        },
+        {
+          "icon_id": "separate_collection",
+          "meaning": "Dit symbool geeft aan dat het product niet als huishoudelijk afval mag worden weggegooid en naar een aangewezen inzamelingspunt voor recycling moet worden gebracht. Een juiste afvalverwerking en recycling dragen bij aan een beter milieu. Voor meer informatie over de verwijdering en recycling van dit product, neem contact op met uw gemeente, afvalverwerkingsdienst of leverancier.",
+          "meaning_bbox": [
+            225,
+            105,
+            340,
+            175
+          ],
+          "icon_bbox": [
+            185,
+            106,
+            223,
+            174
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/nl/p128_icon_separate_collection.png",
+          "icon_sha256": "3ce86abf9a39c853c0794ee58662fe6db13c4c7b88290ad29396930411615a8c"
+        }
+      ]
+    },
+    "pl": {
+      "physical_page": 144,
+      "rows": [
+        {
+          "label": "OSTRZEŻENIE",
+          "meaning": "Niebezpieczne praktyki, które mogą prowadzić do poważnych obrażeń, śmierci i/lub szkód materialnych."
+        },
+        {
+          "label": "PRZESTROGA",
+          "meaning": "Niebezpieczne praktyki, które mogą skutkować obrażeniami ciała i/lub szkodami materialnymi."
+        },
+        {
+          "label": "Uwaga",
+          "meaning": "Niebezpieczne praktyki, które mogą prowadzić do uszkodzenia sprzętu, utraty danych, pogorszenia wydajności lub nieprzewidzianych wyników."
+        },
+        {
+          "label": "WSKAZÓWKA",
+          "meaning": "Uzupełnia ważne informacje lub wskazówki dotyczące obsługi zawarte w tekście."
+        }
+      ],
+      "pictogram_page": 145,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning": "Symbole ostrzeżeń i środków ostrożności. Należy koniecznie przeczytać, aby poznać potencjalne zagrożenia lub ryzyka.",
+          "meaning_bbox": [
+            72,
+            44,
+            182,
+            75
+          ],
+          "icon_bbox": [
+            29,
+            45,
+            68,
+            74
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pl/p145_icon_general_warning.png",
+          "icon_sha256": "4d7258bc4ee0d300cc9163edb97147b47a4ba397343dc9efb1625b33ae3ffd6f"
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning": "Przed przystąpieniem do użytkowania przeczytaj instrukcję obsługi.",
+          "meaning_bbox": [
+            72,
+            75,
+            182,
+            106
+          ],
+          "icon_bbox": [
+            29,
+            76,
+            68,
+            105
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pl/p145_icon_read_manual.png",
+          "icon_sha256": "a87437f4331135fed6de5ccd4439e46be786a622c91d0a0ff426b4a990b96b91"
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning": "Nie rozmontowuj produktu.",
+          "meaning_bbox": [
+            72,
+            106,
+            182,
+            138
+          ],
+          "icon_bbox": [
+            29,
+            107,
+            68,
+            137
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pl/p145_icon_do_not_disassemble.png",
+          "icon_sha256": "92a684936dd0014939f1b022bde383194922f6429031f1929969d0375b7f4e9a"
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning": "Trzymaj produkt z dala od ognia.",
+          "meaning_bbox": [
+            72,
+            138,
+            182,
+            175
+          ],
+          "icon_bbox": [
+            29,
+            139,
+            68,
+            174
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pl/p145_icon_keep_away_from_fire.png",
+          "icon_sha256": "2430fffe9653c7bbe210a5ddc5a5cf681a2b68c2c380b30967e35eea13ee9f41"
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning": "Przechowuj w miejscu niedostępnym dla dzieci.",
+          "meaning_bbox": [
+            225,
+            44,
+            340,
+            75
+          ],
+          "icon_bbox": [
+            185,
+            45,
+            223,
+            74
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pl/p145_icon_keep_away_from_children.png",
+          "icon_sha256": "38508be0e898050c780030286e709a3d059aa900a5ddb43d981fa693948741f3"
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning": "Ten symbol oznacza, że wewnątrz produktu znajduje się bateria litowo-jonowa (Li-ion), którą należy prawidłowo utylizować lub poddać recyklingowi.",
+          "meaning_bbox": [
+            225,
+            75,
+            340,
+            105
+          ],
+          "icon_bbox": [
+            185,
+            76,
+            223,
+            104
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pl/p145_icon_lithium_battery.png",
+          "icon_sha256": "0101111b5a79604a9c4be2531a5655b33d3b5dd52426a5b4d23fa214ed2e683c"
+        },
+        {
+          "icon_id": "separate_collection",
+          "meaning": "Ten symbol oznacza, że produktu nie wolno wyrzucać razem z odpadami domowymi i należy go dostarczyć do wyznaczonego punktu zbiórki w celu recyklingu. Prawidłowa utylizacja i recykling przyczynią się do ochrony środowiska. Aby uzyskać więcej informacji na temat utylizacji i recyklingu tego produktu, skontaktuj się z lokalną gminą, firmą zajmującą się utylizacją lub sprzedawcą.",
+          "meaning_bbox": [
+            225,
+            105,
+            340,
+            175
+          ],
+          "icon_bbox": [
+            185,
+            106,
+            223,
+            174
+          ],
+          "icon_path": "/tmp/je1000f-nine-language-intake/figures/pl/p145_icon_separate_collection.png",
+          "icon_sha256": "3ce86abf9a39c853c0794ee58662fe6db13c4c7b88290ad29396930411615a8c"
+        }
+      ]
+    }
+  }
+}

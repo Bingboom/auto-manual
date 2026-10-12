@@ -1,0 +1,482 @@
+{
+  "base_manifest_id": "manual_solar_eu_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_solar_eu_multilingual"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_solar/fr/01_safety_tips.rst",
+          "lang": "fr",
+          "slot_id": "safety_tips_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/fr/02_whats_in_the_box.rst",
+          "lang": "fr",
+          "slot_id": "box_contents_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/fr/03_product_views.rst",
+          "lang": "fr",
+          "slot_id": "product_views_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/fr/04_unfolding.rst",
+          "lang": "fr",
+          "slot_id": "unfolding_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/fr/05_folding.rst",
+          "lang": "fr",
+          "slot_id": "folding_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/fr/06_charging_connections.rst",
+          "lang": "fr",
+          "slot_id": "charging_connections_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/fr/07_angle_and_device.rst",
+          "lang": "fr",
+          "slot_id": "angle_and_device_fr",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "fr"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_fr",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/fr/09_warranty.rst",
+          "lang": "fr",
+          "slot_id": "warranty_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/es/01_safety_tips.rst",
+          "lang": "es",
+          "slot_id": "safety_tips_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/es/02_whats_in_the_box.rst",
+          "lang": "es",
+          "slot_id": "box_contents_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/es/03_product_views.rst",
+          "lang": "es",
+          "slot_id": "product_views_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/es/04_unfolding.rst",
+          "lang": "es",
+          "slot_id": "unfolding_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/es/05_folding.rst",
+          "lang": "es",
+          "slot_id": "folding_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/es/06_charging_connections.rst",
+          "lang": "es",
+          "slot_id": "charging_connections_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/es/07_angle_and_device.rst",
+          "lang": "es",
+          "slot_id": "angle_and_device_es",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "es"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_es",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/es/09_warranty.rst",
+          "lang": "es",
+          "slot_id": "warranty_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/de/01_safety_tips.rst",
+          "lang": "de",
+          "slot_id": "safety_tips_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/de/02_whats_in_the_box.rst",
+          "lang": "de",
+          "slot_id": "box_contents_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/de/03_product_views.rst",
+          "lang": "de",
+          "slot_id": "product_views_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/de/04_unfolding.rst",
+          "lang": "de",
+          "slot_id": "unfolding_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/de/05_folding.rst",
+          "lang": "de",
+          "slot_id": "folding_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/de/06_charging_connections.rst",
+          "lang": "de",
+          "slot_id": "charging_connections_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/de/07_angle_and_device.rst",
+          "lang": "de",
+          "slot_id": "angle_and_device_de",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "de"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_de",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/de/09_warranty.rst",
+          "lang": "de",
+          "slot_id": "warranty_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/it/01_safety_tips.rst",
+          "lang": "it",
+          "slot_id": "safety_tips_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/it/02_whats_in_the_box.rst",
+          "lang": "it",
+          "slot_id": "box_contents_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/it/03_product_views.rst",
+          "lang": "it",
+          "slot_id": "product_views_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/it/04_unfolding.rst",
+          "lang": "it",
+          "slot_id": "unfolding_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/it/05_folding.rst",
+          "lang": "it",
+          "slot_id": "folding_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/it/06_charging_connections.rst",
+          "lang": "it",
+          "slot_id": "charging_connections_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/it/07_angle_and_device.rst",
+          "lang": "it",
+          "slot_id": "angle_and_device_it",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "it"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_it",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/it/09_warranty.rst",
+          "lang": "it",
+          "slot_id": "warranty_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/uk/01_safety_tips.rst",
+          "lang": "uk",
+          "slot_id": "safety_tips_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/uk/02_whats_in_the_box.rst",
+          "lang": "uk",
+          "slot_id": "box_contents_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/uk/03_product_views.rst",
+          "lang": "uk",
+          "slot_id": "product_views_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/uk/04_unfolding.rst",
+          "lang": "uk",
+          "slot_id": "unfolding_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/uk/05_folding.rst",
+          "lang": "uk",
+          "slot_id": "folding_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/uk/06_charging_connections.rst",
+          "lang": "uk",
+          "slot_id": "charging_connections_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/uk/07_angle_and_device.rst",
+          "lang": "uk",
+          "slot_id": "angle_and_device_uk",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "uk"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_uk",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/uk/09_warranty.rst",
+          "lang": "uk",
+          "slot_id": "warranty_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pt/01_safety_tips.rst",
+          "lang": "pt",
+          "slot_id": "safety_tips_pt",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pt/02_whats_in_the_box.rst",
+          "lang": "pt",
+          "slot_id": "box_contents_pt",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pt/03_product_views.rst",
+          "lang": "pt",
+          "slot_id": "product_views_pt",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pt/04_unfolding.rst",
+          "lang": "pt",
+          "slot_id": "unfolding_pt",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pt/05_folding.rst",
+          "lang": "pt",
+          "slot_id": "folding_pt",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pt/06_charging_connections.rst",
+          "lang": "pt",
+          "slot_id": "charging_connections_pt",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pt/07_angle_and_device.rst",
+          "lang": "pt",
+          "slot_id": "angle_and_device_pt",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "pt"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_pt",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/pt/09_warranty.rst",
+          "lang": "pt",
+          "slot_id": "warranty_pt",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/nl/01_safety_tips.rst",
+          "lang": "nl",
+          "slot_id": "safety_tips_nl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/nl/02_whats_in_the_box.rst",
+          "lang": "nl",
+          "slot_id": "box_contents_nl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/nl/03_product_views.rst",
+          "lang": "nl",
+          "slot_id": "product_views_nl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/nl/04_unfolding.rst",
+          "lang": "nl",
+          "slot_id": "unfolding_nl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/nl/05_folding.rst",
+          "lang": "nl",
+          "slot_id": "folding_nl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/nl/06_charging_connections.rst",
+          "lang": "nl",
+          "slot_id": "charging_connections_nl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/nl/07_angle_and_device.rst",
+          "lang": "nl",
+          "slot_id": "angle_and_device_nl",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "nl"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_nl",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/nl/09_warranty.rst",
+          "lang": "nl",
+          "slot_id": "warranty_nl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pl/01_safety_tips.rst",
+          "lang": "pl",
+          "slot_id": "safety_tips_pl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pl/02_whats_in_the_box.rst",
+          "lang": "pl",
+          "slot_id": "box_contents_pl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pl/03_product_views.rst",
+          "lang": "pl",
+          "slot_id": "product_views_pl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pl/04_unfolding.rst",
+          "lang": "pl",
+          "slot_id": "unfolding_pl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pl/05_folding.rst",
+          "lang": "pl",
+          "slot_id": "folding_pl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pl/06_charging_connections.rst",
+          "lang": "pl",
+          "slot_id": "charging_connections_pl",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/pl/07_angle_and_device.rst",
+          "lang": "pl",
+          "slot_id": "angle_and_device_pl",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "pl"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_pl",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/pl/09_warranty.rst",
+          "lang": "pl",
+          "slot_id": "warranty_pl",
+          "type": "rst_include"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_solar_eu_multilingual"
+}

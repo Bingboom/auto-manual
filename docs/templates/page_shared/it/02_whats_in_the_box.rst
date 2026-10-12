@@ -17,17 +17,17 @@
       :widths: 33 33 34
 
       * - .. image:: asset:in_the_box/main_unit1
-             :alt: Segnaposto immagine della stazione di alimentazione.
+             :alt: Immagine della stazione di alimentazione.
              :width: 120px
 
           |PRODUCT_NAME_BOLD|
         - .. image:: asset:in_the_box/ac_charging_cable
-             :alt: Segnaposto immagine del cavo di ricarica CA.
+             :alt: Immagine del cavo di ricarica CA.
              :width: 120px
 
           **Cavo di ricarica CA**
         - .. image:: asset:in_the_box/manual_icon1
-             :alt: Segnaposto immagine del manuale utente.
+             :alt: Immagine del manuale utente.
              :width: 120px
 
           Manuale utente

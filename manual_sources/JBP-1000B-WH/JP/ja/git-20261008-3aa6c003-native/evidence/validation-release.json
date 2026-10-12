@@ -1,0 +1,36 @@
+{
+  "target": {
+    "model": "JBP-1000B-WH",
+    "region": "JP",
+    "language": "ja"
+  },
+  "merge_authorization": "MA-275",
+  "full_suite": {
+    "tests": 5226,
+    "skipped": 35,
+    "failures": 0,
+    "errors": 0,
+    "duration_seconds": 1193.413,
+    "log": "unittest-release-summary.log",
+    "full_log_sha256": "08c3a4f037b549343c6664b3202391e315164fbeaf5ed493dbfd75cb78506b1f",
+    "environment": "pymupdf1.28.0; clean committed fixtures; canonical external TMPDIR"
+  },
+  "checks": {
+    "ruff": "passed",
+    "maintainability": "passed",
+    "doc_links": "passed",
+    "strict_target_sphinx": "passed",
+    "strict_aggregate_sphinx": "passed",
+    "native_symbol_source_admission": "7/7 passed, mean channel error 0",
+    "desktop_mobile": "passed 1280/390; 54 images loaded"
+  },
+  "preservation": "123 existing targets, 8562 existing files preserved; final publication resealed at actual merged engineering source ref",
+  "delivery_boundary": "Local release checks passed; remote engineering merge and production publication verified separately.",
+  "synchronized_main": "c4b2839041fb6ec6a501b70a16fca795903defca",
+  "post_sync_target_tests": {
+    "tests": 42,
+    "passed": true
+  },
+  "upstream_stylesheet_change": "23 appended native-preface rules from main; target uses none of those selectors; no body/art change.",
+  "log_format": "Sphinx release log copies normalize trailing whitespace; raw logs retained in task scratch."
+}

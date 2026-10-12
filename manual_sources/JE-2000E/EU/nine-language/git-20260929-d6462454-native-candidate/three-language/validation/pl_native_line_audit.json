@@ -1,0 +1,100 @@
+{
+  "html": "/tmp/je2000e-intake/pl-web-11-html/manual_je2000e_eu_pl.html",
+  "source": "/tmp/je2000-new-locales/HTE152-EU-9国语言-0924.ai",
+  "pages": [
+    160,
+    178
+  ],
+  "checked_long_lines": 412,
+  "potential_missing_lines": [
+    {
+      "page": 162,
+      "bbox": [
+        266.6484069824219,
+        431.9631042480469,
+        292.9936828613281,
+        433.41094970703125
+      ],
+      "text": "AC 220–240 V, maks. 10 A          WEJŚCIE DC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 170,
+      "bbox": [
+        235.39549255371094,
+        272.46221923828125,
+        245.41647338867188,
+        273.5823059082031
+      ],
+      "text": "AC 220–240 V, maks. 10 A          WEJŚCIE DC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 172,
+      "bbox": [
+        136.4315948486328,
+        247.49151611328125,
+        145.3793182373047,
+        248.61160278320312
+      ],
+      "text": "AC 220–240 V, maks. 10 A          WEJŚCIE DC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 172,
+      "bbox": [
+        179.14210510253906,
+        223.9498748779297,
+        206.65464782714844,
+        226.9473876953125
+      ],
+      "text": "AC 220–240 V, maks. 10 A          WEJŚCIE DC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 173,
+      "bbox": [
+        127.53810119628906,
+        91.15261840820312,
+        136.48582458496094,
+        92.272705078125
+      ],
+      "text": "AC 220–240 V, maks. 10 A          WEJŚCIE DC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 173,
+      "bbox": [
+        90.97647857666016,
+        123.85881805419922,
+        120.3857192993164,
+        127.26022338867188
+      ],
+      "text": "0–240 V, maks. 10 A          WEJŚCIE DC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 173,
+      "bbox": [
+        120.61129760742188,
+        351.6701965332031,
+        130.21987915039062,
+        352.8725280761719
+      ],
+      "text": "AC 220–240 V, maks. 10 A          WEJŚCIE DC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 173,
+      "bbox": [
+        83.05875396728516,
+        389.1860046386719,
+        115.98751068115234,
+        393.0104064941406
+      ],
+      "text": "0–240 V, maks. 10 A          WEJŚCIE DC(8020)",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    }
+  ],
+  "scope": "Triage only: excludes short or outlined text, allows hidden semantic carriers; does not prove visual parity."
+}

@@ -95,7 +95,8 @@ def parse_worktree_for_ref(porcelain: str, git_ref: str) -> str | None:
 def _default_run_git(repo_root: Path, git_bin: str) -> RunGit:
     def run_git(args: list[str]) -> str:
         result = subprocess.run(
-            [git_bin, *args], cwd=str(repo_root), capture_output=True, text=True
+            [git_bin, *args], cwd=str(repo_root), capture_output=True, text=True,
+            check=False,
         )
         if result.returncode != 0:
             detail = (result.stderr or result.stdout or "").strip()

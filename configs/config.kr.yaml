@@ -5,6 +5,8 @@ build:
   default_model: JE-1000F
   default_region: KR
   targets:
+    - model: JE-100C
+      region: KR
     - model: JE-1000F
       region: KR
     - model: JE-2000E
@@ -39,4 +41,8 @@ paths:
   spec_footnotes_csv: data/phase2/Spec_Footnotes.csv
   spec_notes_csv: data/phase2/Spec_Notes.csv
   spec_titles_csv: data/phase2/spec_titles.csv
+  page_manifests:
+    JE-100C_KR: docs/manifests/manual_je100c_kr-ko.yaml
+  web_illustration_manifests:
+    JE-100C_KR: docs/renderers/web/je100c_kr_ko_illustrations.json
   page_manifest: docs/manifests/manual_kr.yaml

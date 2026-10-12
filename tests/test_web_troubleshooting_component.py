@@ -14,10 +14,10 @@ from bs4 import BeautifulSoup
 
 from tools import plain_markdown_site as pms
 from tools.gen_index_bundle import plan_materialized_pages
-from tools.web_presentation import (
+from tools.web.presentation import (
     WebPresentationError, load_web_manual_contract, transform_web_fragment,
 )
-from tools.word_bundle_html import _convert_rst_fragment_to_html, build_word_bundle_html
+from tools.word.bundle_html import _convert_rst_fragment_to_html, build_word_bundle_html
 
 
 def source_table(*, declared: bool = True, head: bool = True) -> str:
@@ -117,7 +117,7 @@ class WebTroubleshootingTests(unittest.TestCase):
                 title='Manual', reference_doc=None, model='OTHER', region='JP',
                 lang='ja', languages=('ja',),
             )
-            with patch('tools.word_bundle_html.plan_materialized_pages', wraps=plan_materialized_pages) as planner:
+            with patch('tools.word.bundle_html.plan_materialized_pages', wraps=plan_materialized_pages) as planner:
                 output, _, _ = build_word_bundle_html(
                     cfg, 'OTHER', 'JP', materialized_bundle=bundle,
                     output_dir=root / 'web', presentation_profile='web',
@@ -127,7 +127,7 @@ class WebTroubleshootingTests(unittest.TestCase):
             self.assertEqual(1, len(soup.select('figure.hb-troubleshooting-composition')))
             self.assertEqual(2, len(soup.select('table')))
             self.assertFalse(soup.select('table')[1].find('thead'))
-            with patch('tools.word_bundle_html.plan_materialized_pages') as planner:
+            with patch('tools.word.bundle_html.plan_materialized_pages') as planner:
                 output, _, _ = build_word_bundle_html(
                     cfg, 'OTHER', 'JP', materialized_bundle=bundle,
                     output_dir=root / 'document',
@@ -150,7 +150,7 @@ class WebTroubleshootingTests(unittest.TestCase):
             env = dict(os.environ)
             env.pop('PYTHONPATH', None)
             command = [sys.executable, '-I', '-m', 'sphinx', '-W', '-b', 'html', str(staged), str(root / 'html')]
-            built = subprocess.run(command, cwd=root, env=env, text=True, capture_output=True)
+            built = subprocess.run(command, cwd=root, env=env, text=True, capture_output=True, check=False)
             self.assertEqual(0, built.returncode, built.stdout + built.stderr)
             markdown = BeautifulSoup((root / 'html/index.html').read_text(), 'html.parser').select_one('figure.hb-troubleshooting-composition')
             rst = _convert_rst_fragment_to_html(
@@ -172,7 +172,7 @@ class WebTroubleshootingTests(unittest.TestCase):
             self.assertEqual('0', markdown['tabindex'])
             # The standalone extension must reject malformed declared rows too.
             (staged / 'index.md').write_text('# Bad\n\n```{troubleshooting}\nE42 | Fix | Extra\n```\n')
-            bad = subprocess.run(command, cwd=root, env=env, text=True, capture_output=True)
+            bad = subprocess.run(command, cwd=root, env=env, text=True, capture_output=True, check=False)
             self.assertNotEqual(0, bad.returncode)
             self.assertIn('requires two unspanned cells', bad.stdout + bad.stderr)
 

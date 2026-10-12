@@ -100,7 +100,7 @@ class PerLanguageManifestBindingTests(unittest.TestCase):
         return manifest
 
     def test_merged_document_accepts_one_manifest_per_language(self) -> None:
-        from tools.web_document_source import load_web_document
+        from tools.web.document_source import load_web_document
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -119,8 +119,35 @@ class PerLanguageManifestBindingTests(unittest.TestCase):
                     illustration_manifests=manifests,
                 )
 
+    def test_language_projection_consumes_only_selected_family_binding(self) -> None:
+        from tools.web.document_source import load_web_document
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            manifests = {"fr": self._manifest(root, "fr"), "en": root / "unused.json"}
+            page = root / "instructions_fr.rst"
+            page.write_text("Instructions\n============\n\n.. image:: front_product.jpg\n")
+            materialized = _Materialized(("fr",), lang="fr")
+            materialized.title = "Instructions"
+            ir = load_web_document(
+                materialized, page_paths=[page], declarations={},
+                page_languages={page.name: "fr"}, active_tags=set(),
+                output_dir=root / "out", composite_manifest=None,
+                illustration_manifests=manifests,
+            )
+            self.assertEqual(ir.language, "fr")
+            self.assertEqual(len(ir.asset_refs), 1)
+            self.assertEqual(ir.metadata["illustration_provenance"]["language"], "fr")
+            with self.assertRaisesRegex(ValueError, "Missing Web illustration manifest"):
+                load_web_document(
+                    materialized, page_paths=[page], declarations={},
+                    page_languages={page.name: "fr"}, active_tags=set(),
+                    output_dir=root / "missing", composite_manifest=None,
+                    illustration_manifests={"en": root / "unused.json"},
+                )
+
     def test_rejects_a_language_the_document_never_declares(self) -> None:
-        from tools.web_document_source import load_web_document
+        from tools.web.document_source import load_web_document
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -138,7 +165,7 @@ class PerLanguageManifestBindingTests(unittest.TestCase):
                 )
 
     def test_rejects_a_manifest_filed_under_the_wrong_language(self) -> None:
-        from tools.web_document_source import load_web_document
+        from tools.web.document_source import load_web_document
 
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -701,7 +701,8 @@ def _editable_lcdmode_panel(
     ]
     text_layers: list[str] = []
     row_top = table_top
-    for group_index, (group, heights) in enumerate(zip(groups, row_heights)):
+    # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
+    for group_index, (group, heights) in enumerate(zip(groups, row_heights, strict=False)):
         group_top = row_top
         group_bottom = group_top + sum(heights)
         shapes.append(_shape(
@@ -734,8 +735,9 @@ def _editable_lcdmode_panel(
 
         actions = group["actions"]
         assert isinstance(actions, list)
+        # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
         for action_index, ((action, description), row_height) in enumerate(
-            zip(actions, heights)
+            zip(actions, heights, strict=False)
         ):
             row_bottom = row_top + row_height
             text_layers.extend([

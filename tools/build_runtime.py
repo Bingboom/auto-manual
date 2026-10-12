@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.config_loader import load_config_mapping
-from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.data.snapshot import resolve_data_snapshot_paths
 from tools.utils.path_utils import PathSegments, docs_build_dir_of
 
 
@@ -90,7 +90,7 @@ def should_run_spec_master_validation(
             model=model,
             region=region,
         )
-    except Exception:
+    except Exception:  # noqa: BLE001 - an unresolvable snapshot means a sync is needed
         return True
 
     if snapshot_paths.spec_master_csv.exists():
@@ -184,7 +184,7 @@ def run_validate(
     run_checked(
         [
             sys.executable,
-            str(repo_root / "tools" / "validate_config.py"),
+            "-m", "tools.validate_config",
             "--config",
             str(config_path),
         ]
@@ -192,7 +192,7 @@ def run_validate(
     run_checked(
         [
             sys.executable,
-            str(repo_root / "tools" / "validate_layout_params.py"),
+            "-m", "tools.validate_layout_params",
             "--csv",
             str(resolve_layout_params_csv(config_path)),
         ]
@@ -208,7 +208,7 @@ def run_validate(
     run_checked(
         [
             sys.executable,
-            str(repo_root / "tools" / "validate_spec_master.py"),
+            "-m", "tools.validate_spec_master",
             "--config",
             str(config_path),
             *(

@@ -1,5 +1,7 @@
 # VOC to local OpenClaw handoff
 
+Status: active
+
 This optional post-intake command lets an operator send one already verified
 product suggestion to the local HT-Docs OpenClaw `main` agent. It is deliberately
 separate from HTTP intake: the receiver never invokes a model, and this command
@@ -77,5 +79,5 @@ and no website or receiver integration.
 python3 -m unittest tests.test_product_voc_openclaw_handoff
 python3 -m ruff check integrations/product_voc/openclaw_handoff.py \
   tests/test_product_voc_openclaw_handoff.py
-python3 tools/check_doc_link_integrity.py
+python3 -m tools.check_doc_link_integrity
 ```

@@ -1,0 +1,13 @@
+{
+  "schema_version": "frozen-pdf-glyph-recoveries/v1",
+  "target": {
+    "model": "JE-2000E",
+    "region": "EU"
+  },
+  "locales": {
+    "pl": [],
+    "pt": [],
+    "nl": []
+  },
+  "verification": "No U+0000/U+001F/U+FFFD in AI-compatible PDF native text over the complete 19-page body for each locale; no replacement applied."
+}

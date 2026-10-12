@@ -17,7 +17,6 @@ Checks:
 from __future__ import annotations
 
 import argparse
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -39,6 +38,9 @@ from tools.config_pages import (
 )
 from tools.page_manifest import resolve_config_pages, resolve_page_manifest_path
 from tools.spec_master_sources import has_source_table_bindings
+from tools.utils.log import get_logger
+
+_ERR = get_logger("validate_config", stream="stderr")
 
 SYNC_PHASE2_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
 SYNC_PHASE2_TABLES = {
@@ -81,8 +83,8 @@ def _non_empty_str(value: Any) -> bool:
 def load_yaml(path: Path) -> dict:
     try:
         import yaml
-    except ImportError:
-        raise RuntimeError("PyYAML not installed. Run: pip install pyyaml")
+    except ImportError as exc:
+        raise RuntimeError("PyYAML not installed. Run: pip install pyyaml") from exc
 
     # -------------------------------
     # YAML loader that rejects duplicate keys
@@ -113,36 +115,8 @@ def load_yaml(path: Path) -> dict:
     return data
 
 
-def validate(cfg: dict, strict_files: bool) -> list[Issue]:
+def _validate_build(cfg: dict) -> tuple[dict, Any, list[Issue]]:
     issues: list[Issue] = []
-    docs_dir_value = Paths(root=ROOT).docs_dir
-
-    def _validate_optional_path(
-        value: Any,
-        *,
-        key: str,
-        require_non_empty: bool = False,
-        expect_dir: bool = False,
-    ) -> None:
-        if value is None:
-            return
-        if not isinstance(value, str):
-            issues.append(Issue("ERROR", f"{key} must be a string when provided"))
-            return
-        text = value.strip()
-        if require_non_empty and not text:
-            issues.append(Issue("ERROR", f"{key} must be a non-empty string when provided"))
-            return
-        if not text or not strict_files or has_tokenized_value(text):
-            return
-        candidate = as_path(text)
-        if not candidate.exists():
-            issues.append(Issue("ERROR", f"{key} path not found: {text}"))
-            return
-        if expect_dir and not candidate.is_dir():
-            issues.append(Issue("ERROR", f"{key} must point to a directory: {text}"))
-
-    # ---- build ----
     build = cfg.get("build", {})
     if not isinstance(build, dict):
         issues.append(Issue("ERROR", "build must be a mapping"))
@@ -188,7 +162,37 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                 if region is not None and (not isinstance(region, str) or not region.strip()):
                     issues.append(Issue("ERROR", f"build.targets[{idx}].region must be a non-empty string when provided"))
 
-    # ---- paths ----
+    return build, languages, issues
+
+
+def _validate_paths(cfg: dict, strict_files: bool, docs_dir_value: Path) -> tuple[Path, list[Issue]]:
+    issues: list[Issue] = []
+
+    def _validate_optional_path(
+        value: Any,
+        *,
+        key: str,
+        require_non_empty: bool = False,
+        expect_dir: bool = False,
+    ) -> None:
+        if value is None:
+            return
+        if not isinstance(value, str):
+            issues.append(Issue("ERROR", f"{key} must be a string when provided"))
+            return
+        text = value.strip()
+        if require_non_empty and not text:
+            issues.append(Issue("ERROR", f"{key} must be a non-empty string when provided"))
+            return
+        if not text or not strict_files or has_tokenized_value(text):
+            return
+        candidate = as_path(text)
+        if not candidate.exists():
+            issues.append(Issue("ERROR", f"{key} path not found: {text}"))
+            return
+        if expect_dir and not candidate.is_dir():
+            issues.append(Issue("ERROR", f"{key} must point to a directory: {text}"))
+
     paths = cfg.get("paths", {})
     if paths is not None and not isinstance(paths, dict):
         issues.append(Issue("ERROR", "paths must be a mapping"))
@@ -243,7 +247,11 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             if manifest_path is not None and not manifest_path.exists():
                 issues.append(Issue("ERROR", f"page_manifest file not found: {page_manifest}"))
 
-    # ---- checks ----
+    return docs_dir_value, issues
+
+
+def _validate_checks(cfg: dict) -> list[Issue]:
+    issues: list[Issue] = []
     checks = cfg.get("checks", {})
     if checks is not None and not isinstance(checks, dict):
         issues.append(Issue("ERROR", "checks must be a mapping"))
@@ -256,7 +264,11 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
         elif any(not item.strip() for item in allowed_foreign_identity_literals):
             issues.append(Issue("ERROR", "checks.allowed_foreign_identity_literals must not contain empty strings"))
 
-    # ---- sync ----
+    return issues
+
+
+def _validate_sync(cfg: dict) -> list[Issue]:
+    issues: list[Issue] = []
     sync = cfg.get("sync", {})
     if sync is not None and not isinstance(sync, dict):
         issues.append(Issue("ERROR", "sync must be a mapping"))
@@ -362,7 +374,13 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
                 )
             )
 
-    # ---- pages ----
+    return issues
+
+
+def _validate_pages(
+    cfg: dict, strict_files: bool, build: dict, languages: Any, docs_dir_value: Path,
+) -> list[Issue]:
+    issues: list[Issue] = []
     try:
         resolved_pages = resolve_config_pages(
             cfg,
@@ -474,6 +492,17 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
     return issues
 
 
+def validate(cfg: dict, strict_files: bool) -> list[Issue]:
+    docs_dir_value = Paths(root=ROOT).docs_dir
+    build, languages, issues = _validate_build(cfg)
+    docs_dir_value, path_issues = _validate_paths(cfg, strict_files, docs_dir_value)
+    issues.extend(path_issues)
+    for validator in (_validate_checks, _validate_sync):
+        issues.extend(validator(cfg))
+    issues.extend(_validate_pages(cfg, strict_files, build, languages, docs_dir_value))
+    return issues
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/config.us.yaml")
@@ -491,9 +520,9 @@ def main() -> None:
     warns = [i for i in issues if i.level == "WARN"]
 
     for w in warns:
-        print(f"[validate_config] WARN: {w.msg}", file=sys.stderr)
+        _ERR.warning(f"[validate_config] WARN: {w.msg}")
     for e in errors:
-        print(f"[validate_config] ERROR: {e.msg}", file=sys.stderr)
+        _ERR.error(f"[validate_config] ERROR: {e.msg}")
 
     if errors:
         raise SystemExit(1)

@@ -1,0 +1,23 @@
+[
+  {
+    "language": "pt",
+    "only_lcd21_image_src_changed": true,
+    "remaining_html_identical": true,
+    "energy_panel_preserved": true,
+    "css_identical": true
+  },
+  {
+    "language": "nl",
+    "only_lcd21_image_src_changed": true,
+    "remaining_html_identical": true,
+    "energy_panel_preserved": true,
+    "css_identical": true
+  },
+  {
+    "language": "pl",
+    "only_lcd21_image_src_changed": true,
+    "remaining_html_identical": true,
+    "energy_panel_preserved": true,
+    "css_identical": true
+  }
+]

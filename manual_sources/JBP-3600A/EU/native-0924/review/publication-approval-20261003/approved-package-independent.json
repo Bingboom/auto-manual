@@ -1,0 +1,47 @@
+[
+  {
+    "language": "en",
+    "accepted_html_sha256": "c6e447a16abc05b1a2f334e441dab1277b214992c008f173c5d27a272259abd0",
+    "matching_candidate_images": 21
+  },
+  {
+    "language": "fr",
+    "accepted_html_sha256": "dce81595d558e9975e474ed46e476222872256b99900daee931ea8e0c6ba5b49",
+    "matching_candidate_images": 22
+  },
+  {
+    "language": "es",
+    "accepted_html_sha256": "7704b68d7877e56fb498bc803530fff7472ec664bf490cdff12868b85a9edd59",
+    "matching_candidate_images": 22
+  },
+  {
+    "language": "de",
+    "accepted_html_sha256": "2a816bb562c1ee5fa96bd8706fdbb1f88f81ce81f46330fc4f4f4229429ce169",
+    "matching_candidate_images": 22
+  },
+  {
+    "language": "it",
+    "accepted_html_sha256": "3d8079560ccff5242e035e3954250d13afda7c552b897e540bdb3297813e18e6",
+    "matching_candidate_images": 22
+  },
+  {
+    "language": "uk",
+    "accepted_html_sha256": "916b2f5d5d8c08d6da4a7c87d64b6ffaa5848f468614e52e4b1b8966bbd6a9ab",
+    "matching_candidate_images": 22
+  },
+  {
+    "language": "pt",
+    "accepted_html_sha256": "f09854b6c97968dcc1d92db920a736aaf22d516a4a9fbe85f54a39dc54134f36",
+    "matching_candidate_images": 22
+  },
+  {
+    "language": "nl",
+    "accepted_html_sha256": "e4dd3261ba1874fa7d74d907b7dfc0cfdf991f428ff3bca256568693098bd202",
+    "matching_candidate_images": 22
+  },
+  {
+    "language": "pl",
+    "accepted_html_sha256": "9c842505cad6297029bdec56c584ccb010cc8e7c1229995c8bab32dc12a81677",
+    "matching_candidate_images": 22
+  }
+]

@@ -1,0 +1,386 @@
+{
+  "schema_version": "je1000f-figure-index/v1",
+  "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+  "locale": "uk",
+  "status": "same-relative-clip_trial; needs locale visual QA",
+  "figures": [
+    {
+      "locale": "uk",
+      "section_id": "symbols",
+      "physical_page": 93,
+      "relative_body_page": 1,
+      "slug": "symbol_chart",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p093_symbol_chart.png",
+      "sha256": "5e80f43f2bfc3c55fa0585899a013e47509dd56dbc558bdc2babbb47b218ef63",
+      "clip_points": [
+        27.0,
+        370.0,
+        341.0,
+        491.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "symbol meanings and warning labels also in selectable HTML table",
+      "status": "crop boundary inspected; four semantic label/meaning rows extracted"
+    },
+    {
+      "locale": "uk",
+      "section_id": "symbols",
+      "physical_page": 94,
+      "relative_body_page": 2,
+      "slug": "symbol_pictograms",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p094_symbol_pictograms.png",
+      "sha256": "040b911684706e30ab3d38ad5318eaceb52e8692aa06b82474c0dc4f66e5a2be",
+      "clip_points": [
+        27.0,
+        27.0,
+        341.0,
+        177.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "seven pictograms and meanings also in selectable HTML table",
+      "status": "crop boundary inspected; seven pictogram meanings extracted"
+    },
+    {
+      "locale": "uk",
+      "section_id": "in_the_box",
+      "physical_page": 94,
+      "relative_body_page": 2,
+      "slug": "in_box_cards",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p094_in_box_cards.png",
+      "sha256": "45f694f21a583fe9ee7aa79b998f82e69dadeb2841ce0d5d1771580fd6e00690",
+      "clip_points": [
+        20.0,
+        180.0,
+        350.0,
+        445.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "product_overview",
+      "physical_page": 95,
+      "relative_body_page": 3,
+      "slug": "front_view",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p095_front_view.png",
+      "sha256": "b77f660236c22280171a990a9f885350cdcd0835a7b849ebf06cd7f1d2fed9b9",
+      "clip_points": [
+        16.0,
+        60.0,
+        350.0,
+        310.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "product_overview",
+      "physical_page": 95,
+      "relative_body_page": 3,
+      "slug": "right_view",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p095_right_view.png",
+      "sha256": "31d711b04d44f7bebf86eb261e419fce84e26796197390172de01c83ce762984",
+      "clip_points": [
+        16.0,
+        310.0,
+        350.0,
+        500.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "lcd_display",
+      "physical_page": 96,
+      "relative_body_page": 4,
+      "slug": "lcd_display",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p096_lcd_display.png",
+      "sha256": "f6bab538f0e19fd3da44968ae999bccca5e609e34ef02f0880c6efd661d5ffd8",
+      "clip_points": [
+        25.0,
+        25.0,
+        345.0,
+        210.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "operations",
+      "physical_page": 98,
+      "relative_body_page": 6,
+      "slug": "main_power",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p098_main_power.png",
+      "sha256": "8b37cfb159f98a2efa8e55ae8ac824256222be170af12248d1dabebcddc64e3a",
+      "clip_points": [
+        23.0,
+        72.0,
+        337.0,
+        199.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "operations",
+      "physical_page": 98,
+      "relative_body_page": 6,
+      "slug": "ac_output",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p098_ac_output.png",
+      "sha256": "132cd58c936c0d3ab083714e7a47e66e182e5e54498d6e7de6d1bb7c0b619cff",
+      "clip_points": [
+        23.0,
+        275.0,
+        337.0,
+        498.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "operations",
+      "physical_page": 99,
+      "relative_body_page": 7,
+      "slug": "dc_usb_output",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p099_dc_usb_output.png",
+      "sha256": "896423e2a6f4c997626137f93867d7342ae69d8fc87b7bdb6825d212153c0da8",
+      "clip_points": [
+        32.0,
+        44.0,
+        346.0,
+        231.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "operations",
+      "physical_page": 100,
+      "relative_body_page": 8,
+      "slug": "energy_saving",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p100_energy_saving.png",
+      "sha256": "416a22e2992d3720b870229880b820df63920eb5acaf05bcb6a98fcd2949e593",
+      "clip_points": [
+        28.0,
+        30.0,
+        345.0,
+        145.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "operations",
+      "physical_page": 100,
+      "relative_body_page": 8,
+      "slug": "led_light",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p100_led_light.png",
+      "sha256": "d95fb8d2adc294602fd986766e064f037a5e81c67300db6a7fe2d2212ae52cc3",
+      "clip_points": [
+        27.0,
+        218.0,
+        345.0,
+        353.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "operations",
+      "physical_page": 100,
+      "relative_body_page": 8,
+      "slug": "lcd_mode_art",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p100_lcd_mode_art.png",
+      "sha256": "01290ba0c711b5edd4a66b4faadc694d12c13629c9d09a887bf674e230c594bb",
+      "clip_points": [
+        27.0,
+        368.0,
+        170.0,
+        480.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "ups",
+      "physical_page": 102,
+      "relative_body_page": 10,
+      "slug": "ups_connection",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p102_ups_connection.png",
+      "sha256": "61d1fb93dc8367612e726d70137d386193b5ee606f252316c176976ffa68f78e",
+      "clip_points": [
+        29.0,
+        37.0,
+        343.0,
+        212.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "charging",
+      "physical_page": 103,
+      "relative_body_page": 11,
+      "slug": "ac_wall_charging",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p103_ac_wall_charging.png",
+      "sha256": "372e5d5cee9f41608972b7a617a4c1db46bec94d4998648d461bfe4e4ce0a399",
+      "clip_points": [
+        26.0,
+        52.0,
+        340.0,
+        128.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "charging",
+      "physical_page": 103,
+      "relative_body_page": 11,
+      "slug": "solar_single",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p103_solar_single.png",
+      "sha256": "051edf9ad4d7407289890af573f397560298c087ffd9df51719df55dd993da92",
+      "clip_points": [
+        24.0,
+        267.0,
+        338.0,
+        423.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "charging",
+      "physical_page": 104,
+      "relative_body_page": 12,
+      "slug": "solar_four",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p104_solar_four.png",
+      "sha256": "68cf1b08eff113c41d6bc3c83f8a22468280d0fb481d8e6a86ed0dcbbaf0c1be",
+      "clip_points": [
+        28.0,
+        36.0,
+        341.0,
+        180.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "charging",
+      "physical_page": 104,
+      "relative_body_page": 12,
+      "slug": "car_charging",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p104_car_charging.png",
+      "sha256": "d3897622d0e3ba245aafdaf372b87e7434e71197cc7d54b9f1312ba012df4f31",
+      "clip_points": [
+        27.0,
+        380.0,
+        339.0,
+        492.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "app_setup",
+      "physical_page": 108,
+      "relative_body_page": 16,
+      "slug": "app_qr_and_badges",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p108_app_qr_and_badges.png",
+      "sha256": "44529437d7401f406bebc1729c14306f8942d19c93aa759ce39e6b6c00027073",
+      "clip_points": [
+        46.0,
+        69.0,
+        250.0,
+        122.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "app_setup",
+      "physical_page": 108,
+      "relative_body_page": 16,
+      "slug": "app_add_device",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p108_app_add_device.png",
+      "sha256": "1b22f8965b3b2b29dde520e30aacac341be7992246ea317a1affc432ae707746",
+      "clip_points": [
+        94.0,
+        221.0,
+        265.0,
+        373.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "app_setup",
+      "physical_page": 108,
+      "relative_body_page": 16,
+      "slug": "app_control",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p108_app_control.png",
+      "sha256": "2aebc90b42552c6dfa46ea53cf066e4f72b077bafd0b07a1684e542aacdcfecb",
+      "clip_points": [
+        39.0,
+        390.0,
+        341.0,
+        456.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "uk",
+      "section_id": "app_setup",
+      "physical_page": 109,
+      "relative_body_page": 17,
+      "slug": "app_pairing",
+      "path": "/tmp/je1000f-nine-language-intake/figures/uk/p109_app_pairing.png",
+      "sha256": "7fa317eac181e130f7a3c76ac795247af8371f41dfe7291665e296973124b77f",
+      "clip_points": [
+        52.0,
+        130.0,
+        314.0,
+        278.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    }
+  ]
+}

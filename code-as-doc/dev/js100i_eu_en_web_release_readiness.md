@@ -1,6 +1,6 @@
 # JS-100I EU English Web release readiness — 2026-09-06
 
-Status: Git-traceable V2.0 Web package built and accepted locally from final
+Status: active · Recorded detail: Git-traceable V2.0 Web package built and accepted locally from final
 engineering main. It is ready for the shared Hello-Docs `docs/publish/**`
 candidate. No online Base write, queue dispatch, Hello-Docs engineering edit,
 or production publication occurred in this target task.
@@ -104,13 +104,13 @@ AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
   --model JS-100I --region EU --lang en \
   --data-root data/manual_sources/JS-100I/EU/en/2.0/phase2 \
   --staging-root <build-stage>
-python tools/readthedocs_source.py \
+python -m tools.readthedocs_source \
   --build-root <build-stage>/docs/_build \
   --output-dir <build-stage>/docs/_build/rtd \
   --title "Jackery SolarSaga 100 Air User Manual"
 python -m sphinx -W -b html \
   <build-stage>/docs/_build/rtd <build-stage>/html
-python tools/publish_branch_assembly.py \
+python -m tools.publish_branch_assembly \
   --releases-root /tmp/auto-manual-web-release-js100i-final-20260907.8eQxSQ/releases \
   --output-dir <independent-candidate>/docs/publish \
   --title "Hello Docs Manual Library"

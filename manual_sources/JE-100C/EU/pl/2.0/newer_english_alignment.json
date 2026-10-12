@@ -1,0 +1,65 @@
+{
+  "schema_version": "je100c-copy-alignment/v1",
+  "language": "pl",
+  "authorization": "Operator selected: 以新版英文为准，校正这 4 语的差异译文",
+  "authority": {
+    "file": "16-0102-000467 HTE162100A-EUUK-JAK 说明书 RoHS REACH A0(1).pdf",
+    "sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+    "english_pages": [
+      4,
+      15
+    ]
+  },
+  "tm_base": "Ji1hb5ub1aUbewsTljGccvx5nhc",
+  "tm_table": "tblqtvNbgjDwR4ya",
+  "tm_fallback": {
+    "path": "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/source/symbols.json",
+    "sha256": "74082793652dae76e3876e535031b274784b0531b7a8ad30f281b680ed9de9bc",
+    "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+  },
+  "changes": [
+    {
+      "file": "charging_pl.rst",
+      "before": "ŁADOWANIE PRZEZ PRZEWÓD SIECIOWY DO ŁADOWANIA AC\n------------------------------------------------\n\n.. image:: renderers/web/assets/je100c_eu_shared/charging_ac.svg\n   :alt: ŁADOWANIE PRZEZ PRZEWÓD SIECIOWY DO ŁADOWANIA AC\n\n.. admonition:: PRZESTROGA\n   :class: caution\n\n   - Przewód sieciowy do ładowania AC należy zakupić oddzielnie.\n\n   - Upewnij się, że przewód ładowania AC jest solidnie i bezpiecznie podłączony do portu wejściowego AC. Niedokładne podpięcie przewodu może powodować niestabilność prądu, przegrzanie, słaby styk lub awarię urządzenia.\n\n",
+      "after": "ŁADOWANIE ZA POMOCĄ ŁADOWARKI USB-C\n-----------------------------------\n\n.. image:: renderers/web/assets/je100c_eu_shared/charging_ac.svg\n   :alt: ŁADOWANIE ZA POMOCĄ ŁADOWARKI USB-C\n\n.. container:: hb-source-purchase\n\n   .. image:: renderers/web/assets/je100c_eu_shared/symbol_purchase.png\n      :alt: Ładowarka USB-C jest sprzedawana oddzielnie.\n\n   **Ładowarka USB-C jest sprzedawana oddzielnie.**\n\n",
+      "english_source": "CHARGING VIA A USB-C CHARGER / USB-C charger sold separately.",
+      "method": "new translation authorized by operator; no exact live TM match"
+    },
+    {
+      "file": "charging_pl.rst",
+      "before": "   - Jeśli pojazd porusza się po wyboistych drogach, zabrania się korzystania z ładowarki samochodowej, aby uniknąć niestandardowego działania. Firma nie ponosi odpowiedzialności za jakiekolwiek straty spowodowane niestandardowym działaniem.",
+      "after": "   - Jeśli pojazd porusza się po wyboistej drodze, nie wolno używać ładowarki samochodowej, aby uniknąć przegrzania spowodowanego nieprawidłowym połączeniem. Firma nie ponosi odpowiedzialności za jakiekolwiek straty wynikające z nieprawidłowej eksploatacji.",
+      "english_source": "If the vehicle is running on bumpy roads, it is forbidden to use the car charger to avoid overheating caused by poor connection. The Company will not be responsible for any loss caused by non-standard operation.",
+      "method": "new translation of the newer-English missing hazard condition"
+    },
+    {
+      "file": "spec_pl.rst",
+      "before": "     - LiFePO4",
+      "after": "     - Li-ion LFP",
+      "english_source": "Li-ion LFP",
+      "method": "updated source terminology; same chemistry"
+    },
+    {
+      "file": "spec_pl.rst",
+      "before": "Porty wejściowe\n---------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1\n     - 5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 3 A, 15 V ⎓ 3 A, 20 V ⎓ 5 A, 28 V ⎓ 5 A, maks. 140 W\n\n       Pojazd: 12 V ⎓ maks. 5 A, 24 V ⎓ maks. 5 A\n\n       Fotowoltaika: 10 V – 30 V ⎓ maks. 5 A, maks. 100 W\n\nPorty wyjściowe\n---------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-A\n     - 5 V ⎓ 2 A, 9 V ⎓ 2 A, 12 V ⎓ 1,5 A, maks. 18 W\n   * - USB-C1 / USB-C2\n     - 5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 3 A, 15 V ⎓ 3 A, 20 V ⎓ 5 A, 28 V ⎓ 5 A, maks. 140 W\n\nCałkowita moc wyjściowa\n-----------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1 + USB-C2\n     - Maks. ( 70 W + 70 W )\n   * - Temperatura robocza otoczenia USB-C1 + USB-A / USB-C2 + USB-A\n     - Maks. ( 140W + 18W )\n   * - USB-C1 + USB-C2 + USB-A\n     - Maks. ( 70 W + 70 W + 18 W )\n\nTEMPERATURA OTOCZENIA ROBOCZEGO\n-------------------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - Temperatura ładowania\n     - 0°C do 45°C\n   * - Temperatura zasilania urządzeń odbiorczych\n     - -20°C do 45°C\n\n※ USB Type-C® i USB-C® są zastrzeżonymi znakami towarowymi USB Implementers Forum.\n",
+      "after": "   * - Żywotność cykliczna\n     - 3000 cykli do 80% lub więcej pojemności\n\nPorty wejściowe\n---------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1\n     - 5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 3 A, 15 V ⎓ 3 A, 20 V ⎓ 5 A, 28 V ⎓ 5 A, maks. 140 W\n\n       Pojazd: 12 V ⎓ maks. 5 A, 24 V ⎓ maks. 5 A\n\n       Fotowoltaika: 10 V – 30 V ⎓ maks. 5 A, maks. 100 W\n\nPorty wyjściowe\n---------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-A\n     - 5 V ⎓ 2 A, 9 V ⎓ 2 A, 12 V ⎓ 1,5 A, maks. 18 W\n   * - USB-C1 / USB-C2\n     - 5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 3 A, 15 V ⎓ 3 A, 20 V ⎓ 5 A, 28 V ⎓ 5 A, maks. 140 W\n\nCałkowita moc wyjściowa\n-----------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - USB-C1 + USB-C2\n     - Maks. ( 70 W + 70 W )\n   * - USB-C1 + USB-A / USB-C2 + USB-A\n     - Maks. ( 140W + 18W )\n   * - USB-C1 + USB-C2 + USB-A\n     - Maks. ( 70 W + 70 W + 18 W )\n\nTEMPERATURA OTOCZENIA ROBOCZEGO\n-------------------------------\n\n.. list-table::\n   :class: hb-source-specification\n   :header-rows: 0\n   :widths: 42 58\n\n   * - Temperatura ładowania\n     - 0°C do 45°C\n   * - Temperatura zasilania urządzeń odbiorczych\n     - -20°C do 45°C\n\n※ USB Type-C® i USB-C® są zastrzeżonymi znakami towarowymi USB Implementers Forum.\n",
+      "english_source": "Cycle Life / 3000 cycles to 80%+ capacity",
+      "method": "uk: TM recvgEwErzPJY3 parameter reuse; others: operator-authorized translation"
+    },
+    {
+      "file": "symbol_meaning_pl.rst",
+      "before": "   * - \n     - \n",
+      "after": "   * - .. image:: renderers/web/assets/je100c_eu_shared/symbol_battery_weee.png\n          :alt: battery_weee\n     - Baterii i akumulatorów nie wolno wyrzucać razem z odpadami domowymi. Jako konsument masz prawny obowiązek oddawania wszystkich baterii i akumulatorów do wyznaczonych punktów zbiórki, niezależnie od tego, czy zawierają substancje niebezpieczne. Zużyte baterie i akumulatory należy przekazać do lokalnego punktu zbiórki, centrum recyklingu lub do sprzedawcy, u którego zostały zakupione. Prawidłowa utylizacja zapewnia recykling przyjazny dla środowiska i zapobiega potencjalnym szkodom dla zdrowia ludzi i środowiska.\n",
+      "english_source": "Batteries and accumulators must not be disposed of with household waste. As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances. Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "method": "uk: exact live TM records recvgEwErzbPK6, recvgEwErz2Qox, recvgEwErzzwm8, recvgEwErzj960; pt/nl/pl: identical generic source paragraph in frozen JE-2000F source"
+    },
+    {
+      "file": "spec_pl.rst",
+      "before": "Temperatura robocza otoczenia USB-C1 + USB-A / USB-C2 + USB-A",
+      "after": "USB-C1 + USB-A / USB-C2 + USB-A",
+      "english_source": "USB-C1 + USB-A / USB-C2 + USB-A",
+      "method": "exclude invisible covered source text; confirmed against rendered AI page 111 and newer English"
+    }
+  ],
+  "review_status": "local-aligned-candidate-not-published"
+}

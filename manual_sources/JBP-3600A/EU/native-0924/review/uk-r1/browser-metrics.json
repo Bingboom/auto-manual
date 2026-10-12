@@ -1,0 +1,776 @@
+{
+  "desktop": {
+    "clocks": [
+      {
+        "height": 25.6015625,
+        "text": "3s",
+        "width": 49.15625,
+        "x": 971.421875,
+        "y": 5316.51953125
+      }
+    ],
+    "headings": [
+      {
+        "height": 51.7109375,
+        "id": "id1",
+        "text": "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 301.921875
+      },
+      {
+        "height": 51.7109375,
+        "id": "id2",
+        "text": "ЗНАЧЕННЯ СИМВОЛІВ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 979.25
+      },
+      {
+        "height": 51.7109375,
+        "id": "id3",
+        "text": "КОМПЛЕКТАЦІЯ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2301.921875
+      },
+      {
+        "height": 51.7109375,
+        "id": "id4",
+        "text": "ОГЛЯД ПРОДУКТУ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2802.4296875
+      },
+      {
+        "height": 51.7109375,
+        "id": "id5",
+        "text": "РК-ДИСПЛЕЙ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 4499.484375
+      },
+      {
+        "height": 51.7109375,
+        "id": "id6",
+        "text": "ОПЕРАЦІЇ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 5049.7890625
+      },
+      {
+        "height": 51.7109375,
+        "id": "id7",
+        "text": "ПІДКЛЮЧЕННЯ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 6015.796875
+      },
+      {
+        "height": 51.7109375,
+        "id": "id8",
+        "text": "УСУНЕННЯ НЕСПРАВНОСТЕЙ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 8118.7890625
+      },
+      {
+        "height": 51.7109375,
+        "id": "id9",
+        "text": "ЗАРЯДЖАННЯ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 8652.5
+      },
+      {
+        "height": 51.7109375,
+        "id": "id10",
+        "text": "Зберігання¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 10041.4296875
+      },
+      {
+        "height": 51.7109375,
+        "id": "id11",
+        "text": "ТЕХНІЧНІ ХАРАКТЕРИСТИКИ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 10416.7578125
+      },
+      {
+        "height": 51.7109375,
+        "id": "id15",
+        "text": "ГАРАНТІЯ¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 11202.1796875
+      },
+      {
+        "height": 51.7109375,
+        "id": "eu-regulations",
+        "text": "EU REGULATIONS¶",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 12447.90625
+      }
+    ],
+    "horizontalOverflow": false,
+    "images": [
+      {
+        "alt": "warning_triangle",
+        "height": 62.8125,
+        "loaded": true,
+        "src": "assets/ir/ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d/symbol_warning.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 1456.171875
+      },
+      {
+        "alt": "read_manual",
+        "height": 51.90625,
+        "loaded": true,
+        "src": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 1557.1875
+      },
+      {
+        "alt": "do_not_dismantle",
+        "height": 67.484375,
+        "loaded": true,
+        "src": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 1639.390625
+      },
+      {
+        "alt": "no_open_flame",
+        "height": 63.7734375,
+        "loaded": true,
+        "src": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+        "width": 71.1953125,
+        "x": 334.21875,
+        "y": 1737.171875
+      },
+      {
+        "alt": "keep_away_from_children",
+        "height": 71.1953125,
+        "loaded": true,
+        "src": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 1448.265625
+      },
+      {
+        "alt": "li_ion",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 1549.7578125
+      },
+      {
+        "alt": "weee",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 1737.9921875
+      },
+      {
+        "alt": "weee2",
+        "height": 79.1015625,
+        "loaded": true,
+        "src": "assets/ir/4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74/symbol_battery_weee.png",
+        "width": 71.1953125,
+        "x": 763.625,
+        "y": 2043.921875
+      },
+      {
+        "alt": "Акумуляторний блок Jackery 3600",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44/inbox_unit_clean.png",
+        "width": 172.796875,
+        "x": 363.859375,
+        "y": 2458.8203125
+      },
+      {
+        "alt": "Кабель розширення",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7/inbox_cable_clean.png",
+        "width": 172.796875,
+        "x": 649.59375,
+        "y": 2458.8203125
+      },
+      {
+        "alt": "Керівництво користувача",
+        "height": 168,
+        "loaded": true,
+        "src": "assets/ir/8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040/inbox_manual_clean.png",
+        "width": 172.796875,
+        "x": 935.328125,
+        "y": 2458.8203125
+      },
+      {
+        "alt": "Кнопка POWER РК-ДИСПЛЕЙ",
+        "height": 854.609375,
+        "loaded": true,
+        "src": "assets/ir/3c1871342b5a555b49b2ecc27e859163737c3255f51f86d3fcd1062b8fc25c53/overview_front.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 2938.390625
+      },
+      {
+        "alt": "Порт розширення DC B (Підключіть до клеми B кабелю розширення) (Підключіть до клеми A кабелю розширення) Порт розширення DC A Ручка",
+        "height": 577.4375,
+        "loaded": true,
+        "src": "assets/ir/1c59c9f8b41065513465f8234fec70976a425811ecc928483267c6096c586075/overview_left.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 3877.25
+      },
+      {
+        "alt": "РК-ДИСПЛЕЙ",
+        "height": 149.828125,
+        "loaded": true,
+        "src": "assets/ir/852bcd2252d4e67dd4b259085885d3f36aa16a082bba8cee3ba15cb295ee1755/lcd_annotated.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 4571.1953125
+      },
+      {
+        "alt": "",
+        "height": 216.5234375,
+        "loaded": true,
+        "src": "assets/ir/a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00/power_native.png",
+        "width": 840.8125,
+        "x": 315.59375,
+        "y": 5190.75
+      },
+      {
+        "alt": "УВІМКНЕННЯ/ВИМКНЕННЯ РК-ДИСПЛЕЯ",
+        "height": 237.984375,
+        "loaded": true,
+        "src": "assets/ir/54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b/lcd_control_clean.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 5675.046875
+      },
+      {
+        "alt": "",
+        "height": 361.203125,
+        "loaded": true,
+        "src": "assets/ir/8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848/clearance_native.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 6357.5234375
+      },
+      {
+        "alt": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 3600",
+        "height": 484.28125,
+        "loaded": true,
+        "src": "assets/ir/5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce/stacking_clean.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 6750.7265625
+      },
+      {
+        "alt": "×5",
+        "height": 19.5859375,
+        "loaded": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png",
+        "width": 30.3984375,
+        "x": 632.40625,
+        "y": 7277.828125
+      },
+      {
+        "alt": "",
+        "height": 636.7890625,
+        "loaded": true,
+        "src": "assets/ir/d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448/locking_native.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 7437.203125
+      },
+      {
+        "alt": "ЗАРЯДЖАННЯ ВІД МЕРЕЖІ ЗМІННОГО СТРУМУ",
+        "height": 417.4140625,
+        "loaded": true,
+        "src": "assets/ir/c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc/ac_charging.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 8926.03125
+      },
+      {
+        "alt": "ЗАРЯДЖАННЯ ВІД СОНЯЧНИХ ПАНЕЛЕЙ",
+        "height": 481.6015625,
+        "loaded": true,
+        "src": "assets/ir/e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768/solar_charging.png",
+        "width": 842.8125,
+        "x": 314.59375,
+        "y": 9515.03125
+      }
+    ],
+    "inlineIcon": [
+      {
+        "height": 19.5859375,
+        "paragraph": "Відображення значка  на РК-екрані (Jackery Explorer 3600 Plus) означає успішне з'єднання між акумуляторним блоком і Jackery Explorer 3600 Plus.",
+        "width": 30.3984375,
+        "x": 632.40625,
+        "y": 7277.828125
+      }
+    ],
+    "lcdRows": [
+      2,
+      2
+    ],
+    "lockBadges": [
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "16.772px",
+        "height": 38.203125,
+        "text": "Блокування",
+        "width": 107.6875,
+        "x": 803.421875,
+        "y": 7462.671875
+      },
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "16.772px",
+        "height": 38.203125,
+        "text": "Розблокування",
+        "width": 133.8984375,
+        "x": 803.421875,
+        "y": 7768.328125
+      }
+    ],
+    "url": "http://127.0.0.1:56059/uk-r1/manual_jbp3600a_eu_uk.html",
+    "viewport": [
+      1440,
+      1000
+    ],
+    "visualViewport": [
+      1440,
+      1000
+    ]
+  },
+  "desktopSpecifications": {
+    "method": "clicked sidebar",
+    "url": "http://127.0.0.1:56059/uk-r1/manual_jbp3600a_eu_uk.html#id11",
+    "y": 63.7578125
+  },
+  "mobile": {
+    "clocks": [
+      {
+        "height": 15.078125,
+        "text": "3s",
+        "width": 28.9453125,
+        "x": 294.6796875,
+        "y": 1775.875
+      }
+    ],
+    "headings": [
+      {
+        "height": 70.484375,
+        "id": "id1",
+        "text": "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ¶",
+        "width": 358,
+        "x": 16,
+        "y": -3167.3359375
+      },
+      {
+        "height": 46.046875,
+        "id": "id2",
+        "text": "ЗНАЧЕННЯ СИМВОЛІВ¶",
+        "width": 358,
+        "x": 16,
+        "y": -1938.609375
+      },
+      {
+        "height": 46.046875,
+        "id": "id3",
+        "text": "КОМПЛЕКТАЦІЯ¶",
+        "width": 358,
+        "x": 16,
+        "y": -253.203125
+      },
+      {
+        "height": 46.046875,
+        "id": "id4",
+        "text": "ОГЛЯД ПРОДУКТУ¶",
+        "width": 358,
+        "x": 16,
+        "y": 96.0390625
+      },
+      {
+        "height": 46.046875,
+        "id": "id5",
+        "text": "РК-ДИСПЛЕЙ¶",
+        "width": 358,
+        "x": 16,
+        "y": 930.171875
+      },
+      {
+        "height": 46.046875,
+        "id": "id6",
+        "text": "ОПЕРАЦІЇ¶",
+        "width": 358,
+        "x": 16,
+        "y": 1601.3984375
+      },
+      {
+        "height": 46.046875,
+        "id": "id7",
+        "text": "ПІДКЛЮЧЕННЯ¶",
+        "width": 358,
+        "x": 16,
+        "y": 2522.546875
+      },
+      {
+        "height": 46.046875,
+        "id": "id8",
+        "text": "УСУНЕННЯ НЕСПРАВНОСТЕЙ¶",
+        "width": 358,
+        "x": 16,
+        "y": 4169.0859375
+      },
+      {
+        "height": 46.046875,
+        "id": "id9",
+        "text": "ЗАРЯДЖАННЯ¶",
+        "width": 358,
+        "x": 16,
+        "y": 4805.5
+      },
+      {
+        "height": 46.046875,
+        "id": "id10",
+        "text": "Зберігання¶",
+        "width": 358,
+        "x": 16,
+        "y": 5867.6171875
+      },
+      {
+        "height": 46.046875,
+        "id": "id11",
+        "text": "ТЕХНІЧНІ ХАРАКТЕРИСТИКИ¶",
+        "width": 358,
+        "x": 16,
+        "y": 6462.8359375
+      },
+      {
+        "height": 46.046875,
+        "id": "id15",
+        "text": "ГАРАНТІЯ¶",
+        "width": 358,
+        "x": 16,
+        "y": 7445.6796875
+      },
+      {
+        "height": 46.046875,
+        "id": "eu-regulations",
+        "text": "EU REGULATIONS¶",
+        "width": 358,
+        "x": 16,
+        "y": 9382.6328125
+      }
+    ],
+    "horizontalOverflow": false,
+    "images": [
+      {
+        "alt": "warning_triangle",
+        "height": 53.484375,
+        "loaded": true,
+        "src": "assets/ir/ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d/symbol_warning.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1393.5390625
+      },
+      {
+        "alt": "read_manual",
+        "height": 44.1953125,
+        "loaded": true,
+        "src": "assets/ir/e0ea61a86d361997c3f183bb97dd110eaaa45efc09757ff5fb7b82de0299ca61/symbol_manual.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1308.609375
+      },
+      {
+        "alt": "do_not_dismantle",
+        "height": 57.453125,
+        "loaded": true,
+        "src": "assets/ir/f3e73715b8d162d565997f94284fa374a51252d3ada90f88f39381d22b1796e8/symbol_dismantle.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1243.0859375
+      },
+      {
+        "alt": "no_open_flame",
+        "height": 54.296875,
+        "loaded": true,
+        "src": "assets/ir/5535d752347971c9a7faf8850a57099f87365bff2e6138879832639b25d85941/symbol_fire.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1164.3046875
+      },
+      {
+        "alt": "keep_away_from_children",
+        "height": 60.6171875,
+        "loaded": true,
+        "src": "assets/ir/e3fae2d4d963da0abba9cdd5b96f2dae1a631c10b188715ad96456ddb706faab/symbol_children.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -1033.09375
+      },
+      {
+        "alt": "li_ion",
+        "height": 71.3125,
+        "loaded": true,
+        "src": "assets/ir/81c8856189a40c97bad96998b51131030f8ce01652183fe9ef19655a09acb804/symbol_li_ion.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -949.9453125
+      },
+      {
+        "alt": "weee",
+        "height": 80,
+        "loaded": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -785.5234375
+      },
+      {
+        "alt": "weee2",
+        "height": 67.3515625,
+        "loaded": true,
+        "src": "assets/ir/4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74/symbol_battery_weee.png",
+        "width": 60.6171875,
+        "x": 30.1640625,
+        "y": -490.640625
+      },
+      {
+        "alt": "Акумуляторний блок Jackery 3600",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44/inbox_unit_clean.png",
+        "width": 91.46875,
+        "x": 27,
+        "y": -128.359375
+      },
+      {
+        "alt": "Кабель розширення",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7/inbox_cable_clean.png",
+        "width": 91.46875,
+        "x": 149.265625,
+        "y": -128.359375
+      },
+      {
+        "alt": "Керівництво користувача",
+        "height": 104,
+        "loaded": true,
+        "src": "assets/ir/8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040/inbox_manual_clean.png",
+        "width": 91.46875,
+        "x": 271.53125,
+        "y": -128.359375
+      },
+      {
+        "alt": "Кнопка POWER РК-ДИСПЛЕЙ",
+        "height": 363.0078125,
+        "loaded": true,
+        "src": "assets/ir/3c1871342b5a555b49b2ecc27e859163737c3255f51f86d3fcd1062b8fc25c53/overview_front.png",
+        "width": 358,
+        "x": 16,
+        "y": 214.390625
+      },
+      {
+        "alt": "Порт розширення DC B (Підключіть до клеми B кабелю розширення) (Підключіть до клеми A кабелю розширення) Порт розширення DC A Ручка",
+        "height": 245.2734375,
+        "loaded": true,
+        "src": "assets/ir/1c59c9f8b41065513465f8234fec70976a425811ecc928483267c6096c586075/overview_left.png",
+        "width": 358,
+        "x": 16,
+        "y": 649.703125
+      },
+      {
+        "alt": "РК-ДИСПЛЕЙ",
+        "height": 63.640625,
+        "loaded": true,
+        "src": "assets/ir/852bcd2252d4e67dd4b259085885d3f36aa16a082bba8cee3ba15cb295ee1755/lcd_annotated.png",
+        "width": 358,
+        "x": 16,
+        "y": 996.21875
+      },
+      {
+        "alt": "",
+        "height": 91.671875,
+        "loaded": true,
+        "src": "assets/ir/a64e95408da798f56bc16719087264e365a7a3da82a338da3fa124342e3f2c00/power_native.png",
+        "width": 356,
+        "x": 17,
+        "y": 1724.75
+      },
+      {
+        "alt": "УВІМКНЕННЯ/ВИМКНЕННЯ РК-ДИСПЛЕЯ",
+        "height": 106.875,
+        "loaded": true,
+        "src": "assets/ir/54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b/lcd_control_clean.png",
+        "width": 358,
+        "x": 16,
+        "y": 2306.5390625
+      },
+      {
+        "alt": "",
+        "height": 153.421875,
+        "loaded": true,
+        "src": "assets/ir/8eb459c589e372e3953f2d5fd9f7e881e338818853787c961d91a11a2081e848/clearance_native.png",
+        "width": 358,
+        "x": 16,
+        "y": 3047.109375
+      },
+      {
+        "alt": "ПІДКЛЮЧЕННЯ — Jackery Battery Pack 3600",
+        "height": 205.703125,
+        "loaded": true,
+        "src": "assets/ir/5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce/stacking_clean.png",
+        "width": 358,
+        "x": 16,
+        "y": 3288.375
+      },
+      {
+        "alt": "×5",
+        "height": 19.1875,
+        "loaded": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png",
+        "width": 29.7890625,
+        "x": 196.265625,
+        "y": 3587.2109375
+      },
+      {
+        "alt": "",
+        "height": 270.484375,
+        "loaded": true,
+        "src": "assets/ir/d76e679d1243137bc957a275944ab8aacaf474f085a0fd1acba8afa2407e8448/locking_native.png",
+        "width": 358,
+        "x": 16,
+        "y": 3863.40625
+      },
+      {
+        "alt": "ЗАРЯДЖАННЯ ВІД МЕРЕЖІ ЗМІННОГО СТРУМУ",
+        "height": 177.3046875,
+        "loaded": true,
+        "src": "assets/ir/c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc/ac_charging.png",
+        "width": 358,
+        "x": 16,
+        "y": 5201.4296875
+      },
+      {
+        "alt": "ЗАРЯДЖАННЯ ВІД СОНЯЧНИХ ПАНЕЛЕЙ",
+        "height": 204.5703125,
+        "loaded": true,
+        "src": "assets/ir/e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768/solar_charging.png",
+        "width": 358,
+        "x": 16,
+        "y": 5627.8515625
+      }
+    ],
+    "inlineIcon": [
+      {
+        "height": 19.1875,
+        "paragraph": "Відображення значка  на РК-екрані (Jackery Explorer 3600 Plus) означає успішне з'єднання між акумуляторним блоком і Jackery Explorer 3600 Plus.",
+        "width": 29.7890625,
+        "x": 196.265625,
+        "y": 3587.2109375
+      }
+    ],
+    "lcdRows": [
+      2,
+      2
+    ],
+    "lockBadges": [
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "14px",
+        "height": 21.03125,
+        "text": "Блокування",
+        "width": 92.2734375,
+        "x": 223.6328125,
+        "y": 3874.21875
+      },
+      {
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(67, 67, 69)",
+        "fontSize": "14px",
+        "height": 21.03125,
+        "text": "Розблокування",
+        "width": 114.15625,
+        "x": 223.6328125,
+        "y": 4004.0546875
+      }
+    ],
+    "url": "http://127.0.0.1:56059/uk-r1/manual_jbp3600a_eu_uk.html#id4",
+    "viewport": [
+      390,
+      844
+    ],
+    "visualViewport": [
+      390,
+      844
+    ]
+  },
+  "warrantyLayout": [
+    {
+      "gap": 4.796875,
+      "headingRight": 186.296875,
+      "sectionRight": 374,
+      "title": "Обмежена гарантія"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 185.28125,
+      "sectionRight": 374,
+      "title": "Гарантійний період"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 178.921875,
+      "sectionRight": 374,
+      "title": "Ремонт або заміна"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 360,
+      "sectionRight": 374,
+      "title": "Обмеження для первинного споживача-покупця"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 134.546875,
+      "sectionRight": 374,
+      "title": "Виключення"
+    },
+    {
+      "gap": 4.796875,
+      "headingRight": 178.3515625,
+      "sectionRight": 374,
+      "title": "Право тлумачення"
+    }
+  ],
+  "mobileLcdAnchor": {
+    "y": 96.171875
+  }
+}

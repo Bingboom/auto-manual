@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 from typing import Any, Callable
 
-from tools.word_bundle_docx_pandoc import pandoc_version, resolve_pandoc_binary
+from tools.word.bundle_docx_pandoc import pandoc_version, resolve_pandoc_binary
 
 
 class SafeFormatDict(dict[str, str]):
@@ -21,7 +21,7 @@ class SafeFormatDict(dict[str, str]):
 def doctor_import(module_name: str) -> tuple[bool, str]:
     try:
         importlib.import_module(module_name)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - doctor reports any import-time failure
         return False, str(exc)
     return True, ""
 
@@ -46,7 +46,7 @@ def render_config_tokenized_value(value: str, model: str | None, region: str | N
     )
     try:
         return value.format_map(context)
-    except Exception:
+    except (AttributeError, IndexError, KeyError, TypeError, ValueError):
         return value
 
 
@@ -160,6 +160,23 @@ def resolve_reference_doc_status(
     return finding_cls("ERROR", "word.reference_doc", f"not found: {path}")
 
 
+def _add_environment_findings(
+    findings: list[Any],
+    doctor_add: Callable[[list[Any], str, str, str], None],
+    collector: Callable[[], list[tuple[str, str, str]]] | None,
+) -> None:
+    """Add drift against the pinned runtime and requirements.lock.
+
+    Advisory only (OK/WARN): a local mismatch is named once up front instead
+    of surfacing later as scattered test/build failures.
+    """
+
+    if collector is None:
+        from tools.env_preflight import collect_environment_findings as collector
+    for level, area, message in collector():
+        doctor_add(findings, level, area, message)
+
+
 def collect_doctor_findings(
     args: argparse.Namespace,
     *,
@@ -181,13 +198,14 @@ def collect_doctor_findings(
     which: Callable[[str], str | None] = shutil.which,
     collect_toolchain: Callable[[], dict[str, Any]] | None = None,
     collect_data_plane_findings: Callable[..., list[tuple[str, str, str]]] | None = None,
+    collect_environment_findings: Callable[[], list[tuple[str, str, str]]] | None = None,
 ) -> list[Any]:
     findings: list[Any] = []
     config_path = resolve_path_from_root(args.config)
 
     try:
         cfg = load_validate_yaml(config_path)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - doctor reports any config load failure as a finding
         doctor_add(findings, "ERROR", "config", f"failed to load {config_path}: {exc}")
         return findings
 
@@ -233,6 +251,8 @@ def collect_doctor_findings(
         else:
             doctor_add(findings, "WARN", area, f"missing optional module '{module_name}': {detail}")
 
+    _add_environment_findings(findings, doctor_add, collect_environment_findings)
+
     # Toolchain provenance (Milestone I3): informational, never blocking here —
     # the pdf/word-mode checks below still decide what is an ERROR. This block
     # exists so environment drift is visible before a build, with the same
@@ -250,7 +270,7 @@ def collect_doctor_findings(
 
     if getattr(args, "data_plane", False):
         if collect_data_plane_findings is None:
-            from tools.data_plane_doctor import collect_data_plane_findings as default_collect_data_plane_findings
+            from tools.data.plane_doctor import collect_data_plane_findings as default_collect_data_plane_findings
 
             collect_data_plane_findings = default_collect_data_plane_findings
         for level, area, message in collect_data_plane_findings(

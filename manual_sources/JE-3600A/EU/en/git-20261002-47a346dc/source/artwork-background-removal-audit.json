@@ -1,0 +1,122 @@
+{
+  "scope": "Five explanatory boxes in four operation panels and two standalone clock glyphs, explicitly requested by operator; native recipe whiteout on verified white canvas. CSS clocks accompany the live long-press copy.",
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "assets": [
+    {
+      "asset": "operation-main-power",
+      "before_sha256": "88e1c9c00f8149262899532345780b446445386bab9eae73a400b15a7a7cd932",
+      "after_sha256": "74b38732553a1bbc841044a19c422c8ab94c32b99f21c1fb3d9e85c282c1fccf",
+      "removed_background_regions": [
+        [
+          161.8,
+          159.0,
+          329.0,
+          204.8
+        ],
+        [
+          39.3,
+          210.0,
+          331.1,
+          237.6
+        ]
+      ],
+      "removed_clock_regions": [
+        [
+          263.0,
+          133.8,
+          274.9,
+          145.7
+        ]
+      ],
+      "changed_pixels_4x": 221473,
+      "outside_approved_regions_differing_pixels": 0,
+      "darkest_changed_original_channel_outside_clock_regions": 234,
+      "removal_interiors_pure_white_12x": true,
+      "source_drawing_indices": [
+        457,
+        458,
+        989
+      ],
+      "clock_source_drawing_indices": [
+        450,
+        451
+      ]
+    },
+    {
+      "asset": "operation-dc-usb-output",
+      "before_sha256": "9ad0867d1c31870e35544dce8cb90212ec4c12009d73ee5f982e608fa8f8efd5",
+      "after_sha256": "88ad76d50a5cc051f698e3bad435ed636ace4ac979cb14f27bae8b16721f3ae5",
+      "removed_background_regions": [
+        [
+          38.0,
+          273.0,
+          167.8,
+          288.2
+        ]
+      ],
+      "removed_clock_regions": [],
+      "changed_pixels_4x": 28171,
+      "outside_approved_regions_differing_pixels": 0,
+      "darkest_changed_original_channel_outside_clock_regions": 234,
+      "removal_interiors_pure_white_12x": true,
+      "source_drawing_indices": [
+        558
+      ],
+      "clock_source_drawing_indices": []
+    },
+    {
+      "asset": "operation-ac-output",
+      "before_sha256": "aa9934225a61f3889df67af57723a64c2dfc021d113f8664b939aec4e0a5895c",
+      "after_sha256": "735d933d7e263dc13c3ae216f4579cc2237843af9ab1982126c4f935f6a0c3c2",
+      "removed_background_regions": [
+        [
+          39.3,
+          52.4,
+          169.1,
+          67.6
+        ]
+      ],
+      "removed_clock_regions": [],
+      "changed_pixels_4x": 28193,
+      "outside_approved_regions_differing_pixels": 0,
+      "darkest_changed_original_channel_outside_clock_regions": 234,
+      "removal_interiors_pure_white_12x": true,
+      "source_drawing_indices": [
+        471
+      ],
+      "clock_source_drawing_indices": []
+    },
+    {
+      "asset": "operation-energy-saving",
+      "before_sha256": "5ad02a7e4ffda40943ed16b64ac7f8fd50588a3c49a70c5b0e00f8f8dc40ba73",
+      "after_sha256": "1ffe251a08a4be37ac52a79710641aba8ffdc87ce41c9a3b4824442bfecd8b3b",
+      "removed_background_regions": [
+        [
+          39.7,
+          269.4,
+          331.5,
+          330.1
+        ]
+      ],
+      "removed_clock_regions": [
+        [
+          193.5,
+          431.5,
+          205.5,
+          443.5
+        ]
+      ],
+      "changed_pixels_4x": 277247,
+      "outside_approved_regions_differing_pixels": 0,
+      "darkest_changed_original_channel_outside_clock_regions": 234,
+      "removal_interiors_pure_white_12x": true,
+      "source_drawing_indices": [
+        506
+      ],
+      "clock_source_drawing_indices": [
+        469,
+        470
+      ]
+    }
+  ]
+}

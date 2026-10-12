@@ -1,0 +1,1806 @@
+{
+  "language": "fr",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "status": "candidate-native-copy-visual-review-in-progress",
+  "normalization": [
+    "printer line-wrap whitespace joined",
+    "fi/fl/ff ligatures expanded",
+    "environne- ment joined from French printed line break"
+  ],
+  "copy_by_page": {
+    "preface_important_en.rst": {
+      "IMPORTANT": "IMPORTANT",
+      "Congratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.": "Félicitations d’avoir fait l’acquisition du nouveau Jackery Battery Pack 3600. Veuillez lire attentivement ce manuel avant d’utiliser le dispositif, en particulier les précautions à prendre afin de garantir une bonne utilisation. Conservez ce manuel dans un endroit accessible pour pouvoir vous y référer fréquemment.",
+      "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.": "Conformément aux lois et réglementations, le droit d’interprétation finale de ce document et de tous les documents relatifs à ce produit appartient à l’entreprise.",
+      "Please kindly notice that no further notifications will be given in case of any update, revision or termination.": "Veuillez noter qu’aucune autre notification ne sera donnée en cas de mise à jour, de révision ou de résiliation."
+    },
+    "toc.rst": {},
+    "safety_info_en.rst": {
+      "IMPORTANT SAFETY INFORMATION": "INFORMATIONS DE SÉCURITÉ IMPORTANTES",
+      "The basic safety precautions should be followed when using this product, including:": "Les précautions de base doivent être respectées lors de l'utilisation de ce produit, y compris :",
+      "Please read all instructions before using this product.": "Veuillez lire toutes les instructions avant d'utiliser ce produit.",
+      "Close supervision is required when using this product near children to reduce the risk.": "Une surveillance délicate est nécessaire lors de l'utilisation de ce produit à proximité d'enfants afin de réduire les risques.",
+      "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.": "L'utilisation d'accessoires recommandés ou vendus par des fabricants de produits non professionnels peut entraîner un risque d'électrocution.",
+      "When the product is not in use, please unplug the power plug from the product's socket.": "Lorsque le produit n'est pas utilisé, veuillez débrancher l'alimentation de la prise du produit.",
+      "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.": "Ne pas démonter le produit, ce qui pourrait entraîner des risques imprévisibles tels qu'un incendie, une explosion ou un choc électrique.",
+      "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.": "N'utilisez pas le produit avec des cordons ou des prises endommagés, ou des câbles de sortie endommagés, ce qui pourrait provoquer un choc électrique.",
+      "Charge the product in a well-ventilated area and do not restrict ventilation in any way.": "Charger le produit dans un endroit bien ventilé et ne pas restreindre la ventilation de quelque manière que ce soit.",
+      "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.": "Placez le produit dans un endroit ventilé et sec afin d'éviter que la pluie et l'eau ne provoquent un choc électrique.",
+      "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.": "N'exposez pas le produit au feu ou à des températures élevées (sous la lumière directe du soleil ou dans un véhicule soumis à une forte chaleur), ce qui pourrait provoquer des accidents tels qu'un incendie ou une explosion.",
+      "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.": "Si ce produit est stocké pendant une longue période (3 mois - 6 mois) alors qu'il n'est plus alimenté, il pourrait même devenir impossible à recharger."
+    },
+    "symbol_meaning_en.rst": {
+      "MEANING OF SYMBOLS": "SIGNIFICATION DES SYMBOLES",
+      "Symbol": "Symbole",
+      "Meaning": "Signification",
+      "WARNING": "AVERTISSEMENT",
+      "CAUTION": "ATTENTION",
+      "NOTE": "REMARQUE",
+      "TIP": "CONSEILS",
+      "Symbol / Meaning": "Symbole / Signification",
+      "Hazardous practices that may result in severe injury, death, and/or property damage.": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.",
+      "Hazardous practices that may result in personal injury and/or property damage.": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.",
+      "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.": "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.",
+      "Supplements the important information or operation tips in the text.": "Complémente les informations importantes ou les conseils d'utilisation dans le texte.",
+      "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.": "Mlise en garde! Le non-respect des messages d'avertissement peut entraîner des blessures.",
+      "Keep away from children.": "Les enfants ne sont pas admis",
+      "Read the user manual before operation.": "Lire le manuel de l'opérateur",
+      "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.",
+      "Do not dismantle the product.": "Ne démontez pas le produit.",
+      "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+      "Keep the product away from fire.": "Ne pas fumer ni utiliser de flamme nue",
+      "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.": "Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères. En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses. Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement."
+    },
+    "box_contents_en.rst": {
+      "WHAT'S IN THE BOX": "CONTENU DE LA BOÎTE",
+      "Jackery Battery Pack 3600.": "Jackery Battery Pack 3600",
+      "Jackery Battery Pack 3600": "Jackery Battery Pack 3600",
+      "Expansion Cable.": "Câble de rallonge",
+      "Expansion Cable": "Câble de rallonge",
+      "User Manual.": "Manuel d’utilisation",
+      "User Manual": "Manuel d’utilisation"
+    },
+    "product_overview_en.rst": {
+      "PRODUCT OVERVIEW": "APERÇU DU PRODUIT",
+      "FRONT VIEW": "VUE DE FACE",
+      "LEFT SIDE VIEW": "VUE LATÉRALE GAUCHE",
+      "POWER button LCD": "Bouton d’alimentation principale · Écran LCD",
+      "Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)": "Poignée · Port d’extension CC A (Connexion à la borne A du câble de rallonge) · Port d’extension CC B (Connexion à la borne B du câble de rallonge)"
+    },
+    "lcd_display_en.rst": {
+      "LCD DISPLAY": "AFFICHAGE LCD",
+      "Power Percentage/Fault Code": "Pourcentage de puissance/code d’erreur",
+      "Charging Indicator": "Témoin de charge",
+      "The display shows the current power percentage.": "L’affichage de la puissance représente le pourcentage de la valeur actuelle de la puissance.",
+      "When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.": "En cas de défaillance du système, le code d’erreur correspondant (F0-FF) s’affiche. Si le code FF s’affiche, retirez la charge et le dispositif peut se rétablir de lui-même. Si ce n'est pas le cas, veuillez contacter le service à la clientèle de Jackery. Si un autre code apparaît, veuillez contacter notre service à la clientèle.",
+      "The indicator is displayed when charging and disappears when it is fully charged.": "Le témoin s’affiche pendant la charge et disparaît lorsque l’appareil est complètement chargé."
+    },
+    "operation_en.rst": {
+      "OPERATIONS": "FONCTIONNEMENT",
+      "POWER ON/OFF": "MARCHE/ARRÊT",
+      "On": "Marche",
+      "Press once": "Appuyez une fois",
+      "Off": "Arrêt",
+      "Press and hold for 3s": "Appuyez et maintenez pendant 3 secondes",
+      "NOTE": "Remarques",
+      "LCD DISPLAY ON/OFF": "ACTIVATION/DÉSACTIVATION DE L’ÉCRAN LCD",
+      "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.": "Lorsque vous appuyez sur le « bouton d’alimentation principale » ou lorsque vous chargez le produit, l’écran LCD s’allume, et lorsque vous appuyez à nouveau sur ce bouton, l’écran LCD s’éteint.",
+      "When using with Jackery Explorer 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery Explorer 3600 Plus.": "Lorsque vous utilisez le Jackery Explorer 3600 Plus, vous pouvez contrôler la mise sous tension ou hors tension du Jackery Battery Pack 3600 via le « bouton d’alimentation principale » du Jackery Explorer 3600 Plus.",
+      "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.": "Le dispositif s’éteint automatiquement s’il n’est pas chargé ou si aucune charge n’est connectée pendant 2 heures.",
+      "Jackery Battery Pack 3600 POWER button operation.": "MARCHE/ARRÊT",
+      "Jackery Battery Pack 3600 LCD display operation.": "ACTIVATION/DÉSACTIVATION DE L’ÉCRAN LCD"
+    },
+    "connections_en.rst": {
+      "CONNECTIONS": "CONNEXIONS",
+      "Up to 5 sets of these products can be used along with Jackery Explorer 3600 Plus to meet the increased capacity needs.": "Pour répondre à des besoins de capacité accrue, jusqu’à 5 dispositifs peuvent être utilisés avec le Jackery Explorer 3600 Plus.",
+      "CAUTION": "Important",
+      "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.": "Assurez-vous que tous les produits sont éteints avant de connecter le Explorer 3600 Plus au(x) Jackery Battery Pack 3600.",
+      "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.": "Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.",
+      "≥0.66 ft (≈200 mm)": "≥0,66 pied (≈200 mm)",
+      "NOTES": "Remarques",
+      "Lock": "Verrouiller",
+      "Unlock": "Déverrouiller",
+      "The display of the connection icon on the LCD screen (Jackery Explorer 3600 Plus) signifies a successful connection between the battery pack and the Jackery Explorer 3600 Plus.": "L’apparition de l’icône sur l’écran LCD (Jackery Explorer 3600 Plus) signifie que la connexion entre l’unité de batterie et le Jackery Explorer 3600 Plus est réussie.",
+      "When using the product, do not stack more than three battery packs in one tower to prevent it from falling and causing injury.": "Lors de l'utilisation du produit, ne superposez pas plus de trois blocs-batterie dans une même tour pour éviter qu'ils ne tombent et ne causent des blessures.",
+      "Please do not stack the product on the top of the Jackery Explorer 3600 Plus.": "Veuillez ne pas empiler le dispositif sur le Jackery Explorer 3600 Plus.",
+      "Battery pack connection and clearance diagram.": "Connexions — Jackery Battery Pack 3600",
+      "Correct and incorrect battery pack stacking.": "Connexions — Jackery Battery Pack 3600",
+      "Battery pack stacking and expansion-cable locking and unlocking steps.": "Connexions — Jackery Battery Pack 3600"
+    },
+    "troubleshooting_en.rst": {
+      "TROUBLESHOOTING": "DÉPANNAGE",
+      "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.": "Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives indiquées pour résoudre le problème.Si l'erreur persiste, veuillez contacter le service à la clientèle de Jackery.",
+      "Error Code": "Code d'erreur",
+      "Corrective Measures": "Mesures correctives",
+      "Restart the product.": "Redémarrez le produit.",
+      "Contact Jackery Customer Support.": "Contacter le service à la clientèle de Jackery.",
+      "Connect the product to loads to discharge its battery until the fault disappears.": "Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse.",
+      "Charge the product via solar panels or AC wall outlet until the fault disappears.": "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse.",
+      "Place the product in an environment with a proper temperature and wait till the fault disappears.": "Placez le produit dans un environnement à température appropriée et attendez que l'erreur disparaisse."
+    },
+    "charging_en.rst": {
+      "CHARGING": "CHARGE",
+      "CHARGING VIA AC WALL OUTLET": "CHARGEMENT PAR PRISE MURALE CA",
+      "When charging from the wall, this product must be used with Jackery Explorer 3600 Plus.": "En cas de charge murale, ce dispositif doit être utilisé avec le Jackery Explorer 3600 Plus.",
+      "Charge your product with solar panels and Jackery Explorer 3600 Plus as shown in the figure below. Please refer to the Jackery Explorer 3600 Plus user manual for more information.": "Rechargez votre dispositif à l’aide de panneaux solaires et du Jackery Explorer 3600 Plus, comme indiqué dans la figure ci-dessous. Pour plus d’informations, veuillez vous reporter au manuel d’utilisation du Jackery Explorer 3600 Plus.",
+      "WARNING": "Avertissement",
+      "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.": "Assurez-vous que tous les produits sont éteints avant de connecter le Explorer 3600 Plus au(x) Battery Pack 3600.",
+      "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)": "CHARGEMENT PAR PANNEAUX SOLAIRES (VENDU SÉPARÉMENT)",
+      "AC wall charging connection through Jackery Explorer 3600 Plus.": "CHARGEMENT PAR PRISE MURALE CA",
+      "Solar charging connection through Jackery Explorer 3600 Plus.": "CHARGEMENT PAR PANNEAUX SOLAIRES"
+    },
+    "storage_en.rst": {
+      "STORAGE": "STOCKAGE",
+      "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:": "Conservez le produit dans un endroit propre et sec avec une ventilation adéquate.Température et humidité de stockage :",
+      "1 month: -20°C to 45°C (0-60%RH)": "1 mois : -20 à 45°C (0-60% HR)",
+      "3 months: 0°C to 45°C (0-60%RH)": "3 mois : 0 à 45°C (0-60% HR)",
+      "12 months: 0°C to 25°C (0-60%RH)": "12 mois : 0 à 25°C (0-60% HR)",
+      "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.": "Si ce produit est stocké pendant une longue période (3 à 6 mois) avec la batterie déchargée, il peut devenir impossible de le recharger. Pour éviter cela et préserver la santé de la batterie, il est recommandé de vérifier et de recharger le produit tous les trois mois, et d'effectuer un cycle de charge et de décharge complet au moins une fois tous les 6 à 12 mois."
+    },
+    "specifications_en.rst": {
+      "SPECIFICATIONS": "SPÉCIFICATIONS",
+      "GENERAL INFO": "INFORMATIONS GÉNÉRALES",
+      "Product Name": "Nom du produit",
+      "Jackery Battery Pack 3600": "Jackery Battery Pack 3600",
+      "Model No.": "N° modèle",
+      "JBP-3600A": "JBP-3600A",
+      "Capacity": "Capacité",
+      "80 Ah/44.8 V DC (3584 Wh)": "80Ah / 44.8Vdc (3584 Wh)",
+      "Cell Chemistry": "Cellule Chimique",
+      "LiFePO₄": "LiFePO₄",
+      "Weight": "Poids",
+      "About 55.1 lbs/25 kg": "Environ 55.1 lbs/25 kg",
+      "Dimensions": "Dimensions",
+      "14.8 × 12.5 × 9.0 in / 37.5 × 31.7 × 22.9 cm": "14,8 x 12,5 x 9,0 po/37,5 x 31,7x 22,9 cm",
+      "Cycle Life": "Durée de vie",
+      "6000 cycles to 70%+ capacity": "Capacité de 6000 cycles à 70 % ou plus",
+      "IEC Code": "Code CEI",
+      "IFpR41/136[14S4P]M/-20+40/90": "IFpR41/136[14S4P]M/-20+40/90",
+      "INPUT/OUTPUT PORTS": "PORTS D’ENTRÉE/SORTIE",
+      "DC Expansion Port (Input)": "Port d’extension CC (Entrée)",
+      "36.4V-50.4V⎓60A Max": "36,4V-50,4V⎓60A Max",
+      "DC Expansion Port (Output)": "Port d’extension CC (Sortie)",
+      "36.4V-50.4V⎓100A Max": "36,4V-50,4V⎓100A Max",
+      "ENVIRONMENTAL OPERATING TEMPERATURE": "TEMPÉRATURE DE FONCTIONNEMENT",
+      "Charge Temperature": "Température de charge",
+      "-20°C to 45°C": "-20°C à 45°C",
+      "Discharge Temperature": "Température de décharge"
+    },
+    "warranty_en.rst": {
+      "WARRANTY": "GARANTIE",
+      "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.": "Nous ne fournissons notre garantie qu'aux clients qui achètent sur le site officiel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux.",
+      "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.": "* La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux.",
+      "Limited Warranty": "Garantie limitée",
+      "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.": "Jackery garantit à l'acheteur et consommateur d'origine que le produit de Jackery sera exempt de tout défaut de fabrication et de matériaux dans le cadre d'une utilisation normale pendant toute la durée de la période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve des exceptions énoncées ci-dessous.",
+      "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.": "Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous n'assumerons pas et nous n'autorisons personne à assumer pour nous toute autre responsabilité en lien avec la vente de nos produits.",
+      "Warranty Period": "Période de garantie",
+      "The standard warranty period for Jackery Battery Pack 3600 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.": "La période de garantie standard du Jackery Battery Pack 3600 est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d'établir la date de début de la période de garantie.",
+      "Repair or Replacement": "Réparation ou remplacement",
+      "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.": "Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d'achat d'origine.",
+      "Limited to Original Consumer Buyer": "Limitée à l'acheteur et consommateur d'origine",
+      "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.": "La garantie d'un produit Jackery est limitée à l'acheteur et consommateur d'origine, elle ne peut pas être transférée à un autre propriétaire.",
+      "Exclusions": "Exclusions",
+      "Interpretation Rights": "Droits d'interprétation",
+      "Jackery reserves the right to final interpretation of the above customer after-sales policy.": "Jackery Inc. se réserve le droit d'interpréter de manière définitive la politique après-vente des clients ci-dessus.",
+      "3 YEARS": "3 ANS",
+      "Standard Warranty": "Garantie standard",
+      "2 YEARS": "2 ANS",
+      "Extended Warranty": "Garantie prolongée",
+      "To activate the Warranty Extension, you must register your product online or contact our customer service team at ": "Pour activer l'extension de garantie, vous devez enregistrer votre produit en ligne ou bien contacter notre service client à ",
+      " to extend the standard warranty runtime.": " afin de prolonger la durée de la garantie standard.",
+      "Jackery's warranty does not apply to:": "La garantie de Jackery ne s'applique pas à :",
+      "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.": "Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle du produit de Jackery.",
+      "Attempted repair by anyone other than an authorized facility.": "À une réparation tentée par quelqu'un d'autre qu'un établissement agréé.",
+      "Any product purchased through an online auction house.": "Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne.",
+      "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.": "La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois par la suite.",
+      "YEARS": "ANS"
+    },
+    "regulatory_compliance.rst": {
+      "EU REGULATIONS": "EU REGULATIONS",
+      "RED DECLARATION OF CONFORMITY": "RED DECLARATION OF CONFORMITY",
+      "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "https://de.jackery.com/pages/user-guides": "https://de.jackery.com/pages/user-guides",
+      "MANUFACTURER": "MANUFACTURER",
+      "SHENZHEN HELLO TECH ENERGY CO., LTD.": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "+86 400 668 9293": "+86 400 668 9293",
+      "sales@hello-tech.com": "sales@hello-tech.com",
+      "www.hello-tech.com": "www.hello-tech.com"
+    }
+  },
+  "evidence": [
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "IMPORTANT",
+      "native": "IMPORTANT",
+      "physical_page": 2,
+      "selection": {
+        "bbox_pt": [
+          48,
+          117,
+          345,
+          134.5
+        ]
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Congratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.",
+      "native": "Félicitations d’avoir fait l’acquisition du nouveau Jackery Battery Pack 3600. Veuillez lire attentivement ce manuel avant d’utiliser le dispositif, en particulier les précautions à prendre afin de garantir une bonne utilisation. Conservez ce manuel dans un endroit accessible pour pouvoir vous y référer fréquemment.",
+      "physical_page": 2,
+      "selection": {
+        "bbox_pt": [
+          28,
+          135,
+          345,
+          171
+        ]
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.",
+      "native": "Conformément aux lois et réglementations, le droit d’interprétation finale de ce document et de tous les documents relatifs à ce produit appartient à l’entreprise.",
+      "physical_page": 2,
+      "selection": {
+        "bbox_pt": [
+          28,
+          171,
+          345,
+          190
+        ]
+      }
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Please kindly notice that no further notifications will be given in case of any update, revision or termination.",
+      "native": "Veuillez noter qu’aucune autre notification ne sera donnée en cas de mise à jour, de révision ou de résiliation.",
+      "physical_page": 2,
+      "selection": {
+        "bbox_pt": [
+          28,
+          190,
+          345,
+          209
+        ]
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "IMPORTANT SAFETY INFORMATION",
+      "native": "INFORMATIONS DE SÉCURITÉ IMPORTANTES",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "The basic safety precautions should be followed when using this product, including:",
+      "native": "Les précautions de base doivent être respectées lors de l'utilisation de ce produit, y compris :",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please read all instructions before using this product.",
+      "native": "Veuillez lire toutes les instructions avant d'utiliser ce produit.",
+      "physical_page": 15,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Close supervision is required when using this product near children to reduce the risk.",
+      "native": "Une surveillance délicate est nécessaire lors de l'utilisation de ce produit à proximité d'enfants afin de réduire les risques.",
+      "physical_page": 15,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.",
+      "native": "L'utilisation d'accessoires recommandés ou vendus par des fabricants de produits non professionnels peut entraîner un risque d'électrocution.",
+      "physical_page": 15,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "When the product is not in use, please unplug the power plug from the product's socket.",
+      "native": "Lorsque le produit n'est pas utilisé, veuillez débrancher l'alimentation de la prise du produit.",
+      "physical_page": 15,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.",
+      "native": "Ne pas démonter le produit, ce qui pourrait entraîner des risques imprévisibles tels qu'un incendie, une explosion ou un choc électrique.",
+      "physical_page": 15,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.",
+      "native": "N'utilisez pas le produit avec des cordons ou des prises endommagés, ou des câbles de sortie endommagés, ce qui pourrait provoquer un choc électrique.",
+      "physical_page": 15,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Charge the product in a well-ventilated area and do not restrict ventilation in any way.",
+      "native": "Charger le produit dans un endroit bien ventilé et ne pas restreindre la ventilation de quelque manière que ce soit.",
+      "physical_page": 15,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.",
+      "native": "Placez le produit dans un endroit ventilé et sec afin d'éviter que la pluie et l'eau ne provoquent un choc électrique.",
+      "physical_page": 15,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.",
+      "native": "N'exposez pas le produit au feu ou à des températures élevées (sous la lumière directe du soleil ou dans un véhicule soumis à une forte chaleur), ce qui pourrait provoquer des accidents tels qu'un incendie ou une explosion.",
+      "physical_page": 15,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.",
+      "native": "Si ce produit est stocké pendant une longue période (3 mois - 6 mois) alors qu'il n'est plus alimenté, il pourrait même devenir impossible à recharger.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 18
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "MEANING OF SYMBOLS",
+      "native": "SIGNIFICATION DES SYMBOLES",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 0
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol",
+      "native": "Symbole",
+      "physical_page": 15,
+      "selection": {
+        "method": "native table label; whitespace/ligature normalization"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Meaning",
+      "native": "Signification",
+      "physical_page": 15,
+      "selection": {
+        "method": "native table label; whitespace/ligature normalization"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "WARNING",
+      "native": "AVERTISSEMENT",
+      "physical_page": 15,
+      "selection": {
+        "method": "native table label; whitespace/ligature normalization"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "CAUTION",
+      "native": "ATTENTION",
+      "physical_page": 15,
+      "selection": {
+        "method": "native table label; whitespace/ligature normalization"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "NOTE",
+      "native": "REMARQUE",
+      "physical_page": 15,
+      "selection": {
+        "method": "native table label; whitespace/ligature normalization"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "TIP",
+      "native": "CONSEILS",
+      "physical_page": 15,
+      "selection": {
+        "method": "native table label; whitespace/ligature normalization"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol / Meaning",
+      "native": "Symbole / Signification",
+      "physical_page": 15,
+      "selection": {
+        "method": "native table label; whitespace/ligature normalization"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+      "native": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 8,
+        "exclude_label": "AVERTISSEMENT"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in personal injury and/or property damage.",
+      "native": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 5,
+        "exclude_label": "ATTENTION"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+      "native": "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 6,
+        "exclude_label": "REMARQUE"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Supplements the important information or operation tips in the text.",
+      "native": "Complémente les informations importantes ou les conseils d'utilisation dans le texte.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 7,
+        "exclude_label": "CONSEILS"
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+      "native": "Mlise en garde! Le non-respect des messages d'avertissement peut entraîner des blessures.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep away from children.",
+      "native": "Les enfants ne sont pas admis",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Read the user manual before operation.",
+      "native": "Lire le manuel de l'opérateur",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+      "native": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Do not dismantle the product.",
+      "native": "Ne démontez pas le produit.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+      "native": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 17
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep the product away from fire.",
+      "native": "Ne pas fumer ni utiliser de flamme nue",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "native": "Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères. En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses. Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.",
+      "physical_page": 15,
+      "selection": {
+        "native_block": 19
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "WHAT'S IN THE BOX",
+      "native": "CONTENU DE LA BOÎTE",
+      "physical_page": 16,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 3600.",
+      "native": "Jackery Battery Pack 3600",
+      "physical_page": 16,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 3600",
+      "native": "Jackery Battery Pack 3600",
+      "physical_page": 16,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable.",
+      "native": "Câble de rallonge",
+      "physical_page": 16,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable",
+      "native": "Câble de rallonge",
+      "physical_page": 16,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual.",
+      "native": "Manuel d’utilisation",
+      "physical_page": 16,
+      "selection": {
+        "native_block": 17
+      }
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual",
+      "native": "Manuel d’utilisation",
+      "physical_page": 16,
+      "selection": {
+        "native_block": 17
+      }
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "PRODUCT OVERVIEW",
+      "native": "APERÇU DU PRODUIT",
+      "physical_page": 16,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "FRONT VIEW",
+      "native": "VUE DE FACE",
+      "physical_page": 16,
+      "selection": {
+        "bbox_pt": [
+          30,
+          272,
+          152,
+          291
+        ]
+      }
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "LEFT SIDE VIEW",
+      "native": "VUE LATÉRALE GAUCHE",
+      "physical_page": 16,
+      "selection": {
+        "bbox_pt": [
+          153,
+          272,
+          341,
+          291
+        ]
+      }
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "POWER button LCD",
+      "native": "Bouton d’alimentation principale · Écran LCD",
+      "physical_page": 16,
+      "selection": {
+        "method": "accessibility label from native figure labels"
+      }
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)",
+      "native": "Poignée · Port d’extension CC A (Connexion à la borne A du câble de rallonge) · Port d’extension CC B (Connexion à la borne B du câble de rallonge)",
+      "physical_page": 16,
+      "selection": {
+        "method": "accessibility label from native figure labels"
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "LCD DISPLAY",
+      "native": "AFFICHAGE LCD",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Power Percentage/Fault Code",
+      "native": "Pourcentage de puissance/code d’erreur",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Charging Indicator",
+      "native": "Témoin de charge",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The display shows the current power percentage.",
+      "native": "L’affichage de la puissance représente le pourcentage de la valeur actuelle de la puissance.",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 4,
+        "sentence": 1
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.",
+      "native": "En cas de défaillance du système, le code d’erreur correspondant (F0-FF) s’affiche. Si le code FF s’affiche, retirez la charge et le dispositif peut se rétablir de lui-même. Si ce n'est pas le cas, veuillez contacter le service à la clientèle de Jackery. Si un autre code apparaît, veuillez contacter notre service à la clientèle.",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 4,
+        "sentence": "2+"
+      }
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The indicator is displayed when charging and disappears when it is fully charged.",
+      "native": "Le témoin s’affiche pendant la charge et disparaît lorsque l’appareil est complètement chargé.",
+      "physical_page": 17,
+      "selection": {
+        "bbox_pt": [
+          109,
+          160,
+          341,
+          180
+        ]
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "OPERATIONS",
+      "native": "FONCTIONNEMENT",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 8
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "POWER ON/OFF",
+      "native": "MARCHE/ARRÊT",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "On",
+      "native": "Marche",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Press once",
+      "native": "Appuyez une fois",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Off",
+      "native": "Arrêt",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Press and hold for 3s",
+      "native": "Appuyez et maintenez pendant 3 secondes",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "NOTE",
+      "native": "Remarques",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "LCD DISPLAY ON/OFF",
+      "native": "ACTIVATION/DÉSACTIVATION DE L’ÉCRAN LCD",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 9
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.",
+      "native": "Lorsque vous appuyez sur le « bouton d’alimentation principale » ou lorsque vous chargez le produit, l’écran LCD s’allume, et lorsque vous appuyez à nouveau sur ce bouton, l’écran LCD s’éteint.",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When using with Jackery Explorer 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery Explorer 3600 Plus.",
+      "native": "Lorsque vous utilisez le Jackery Explorer 3600 Plus, vous pouvez contrôler la mise sous tension ou hors tension du Jackery Battery Pack 3600 via le « bouton d’alimentation principale » du Jackery Explorer 3600 Plus.",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 17,
+        "sentence": 1
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+      "native": "Le dispositif s’éteint automatiquement s’il n’est pas chargé ou si aucune charge n’est connectée pendant 2 heures.",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 17,
+        "sentence": 2
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 3600 POWER button operation.",
+      "native": "MARCHE/ARRÊT",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 3600 LCD display operation.",
+      "native": "ACTIVATION/DÉSACTIVATION DE L’ÉCRAN LCD",
+      "physical_page": 17,
+      "selection": {
+        "native_block": 9
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CONNECTIONS",
+      "native": "CONNEXIONS",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Up to 5 sets of these products can be used along with Jackery Explorer 3600 Plus to meet the increased capacity needs.",
+      "native": "Pour répondre à des besoins de capacité accrue, jusqu’à 5 dispositifs peuvent être utilisés avec le Jackery Explorer 3600 Plus.",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CAUTION",
+      "native": "Important",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 4
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.",
+      "native": "Assurez-vous que tous les produits sont éteints avant de connecter le Explorer 3600 Plus au(x) Jackery Battery Pack 3600.",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 21,
+        "sentence": 1
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.",
+      "native": "Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 21,
+        "sentence": "2+"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "≥0.66 ft (≈200 mm)",
+      "native": "≥0,66 pied (≈200 mm)",
+      "physical_page": 18,
+      "selection": {
+        "bbox_pt": [
+          110,
+          457,
+          180,
+          474
+        ]
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "NOTES",
+      "native": "Remarques",
+      "physical_page": 19,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Lock",
+      "native": "Verrouiller",
+      "physical_page": 19,
+      "selection": {
+        "native_block": 4
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Unlock",
+      "native": "Déverrouiller",
+      "physical_page": 19,
+      "selection": {
+        "native_block": 5
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "The display of the connection icon on the LCD screen (Jackery Explorer 3600 Plus) signifies a successful connection between the battery pack and the Jackery Explorer 3600 Plus.",
+      "native": "L’apparition de l’icône sur l’écran LCD (Jackery Explorer 3600 Plus) signifie que la connexion entre l’unité de batterie et le Jackery Explorer 3600 Plus est réussie.",
+      "physical_page": 19,
+      "selection": {
+        "native_block": 6,
+        "sentence": 1
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "When using the product, do not stack more than three battery packs in one tower to prevent it from falling and causing injury.",
+      "native": "Lors de l'utilisation du produit, ne superposez pas plus de trois blocs-batterie dans une même tour pour éviter qu'ils ne tombent et ne causent des blessures.",
+      "physical_page": 19,
+      "selection": {
+        "native_block": 6,
+        "sentence": 2
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Please do not stack the product on the top of the Jackery Explorer 3600 Plus.",
+      "native": "Veuillez ne pas empiler le dispositif sur le Jackery Explorer 3600 Plus.",
+      "physical_page": 19,
+      "selection": {
+        "native_block": 6,
+        "sentence": 3
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery pack connection and clearance diagram.",
+      "native": "Connexions — Jackery Battery Pack 3600",
+      "physical_page": 18,
+      "selection": {
+        "method": "accessibility label from native section title and model"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Correct and incorrect battery pack stacking.",
+      "native": "Connexions — Jackery Battery Pack 3600",
+      "physical_page": 18,
+      "selection": {
+        "method": "accessibility label from native section title and model"
+      }
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery pack stacking and expansion-cable locking and unlocking steps.",
+      "native": "Connexions — Jackery Battery Pack 3600",
+      "physical_page": 18,
+      "selection": {
+        "method": "accessibility label from native section title and model"
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "TROUBLESHOOTING",
+      "native": "DÉPANNAGE",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 5
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.",
+      "native": "Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives indiquées pour résoudre le problème.Si l'erreur persiste, veuillez contacter le service à la clientèle de Jackery.",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 20
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Error Code",
+      "native": "Code d'erreur",
+      "physical_page": 18,
+      "selection": {
+        "bbox_pt": [
+          28,
+          79,
+          82,
+          92
+        ]
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Corrective Measures",
+      "native": "Mesures correctives",
+      "physical_page": 18,
+      "selection": {
+        "bbox_pt": [
+          83,
+          79,
+          345,
+          92
+        ]
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Restart the product.",
+      "native": "Redémarrez le produit.",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 18
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Contact Jackery Customer Support.",
+      "native": "Contacter le service à la clientèle de Jackery.",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Connect the product to loads to discharge its battery until the fault disappears.",
+      "native": "Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse.",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 19
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Charge the product via solar panels or AC wall outlet until the fault disappears.",
+      "native": "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse.",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Place the product in an environment with a proper temperature and wait till the fault disappears.",
+      "native": "Placez le produit dans un environnement à température appropriée et attendez que l'erreur disparaisse.",
+      "physical_page": 18,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING",
+      "native": "CHARGE",
+      "physical_page": 20,
+      "selection": {
+        "native_block": 5
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA AC WALL OUTLET",
+      "native": "CHARGEMENT PAR PRISE MURALE CA",
+      "physical_page": 20,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "When charging from the wall, this product must be used with Jackery Explorer 3600 Plus.",
+      "native": "En cas de charge murale, ce dispositif doit être utilisé avec le Jackery Explorer 3600 Plus.",
+      "physical_page": 20,
+      "selection": {
+        "native_block": 4
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Charge your product with solar panels and Jackery Explorer 3600 Plus as shown in the figure below. Please refer to the Jackery Explorer 3600 Plus user manual for more information.",
+      "native": "Rechargez votre dispositif à l’aide de panneaux solaires et du Jackery Explorer 3600 Plus, comme indiqué dans la figure ci-dessous. Pour plus d’informations, veuillez vous reporter au manuel d’utilisation du Jackery Explorer 3600 Plus.",
+      "physical_page": 20,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "WARNING",
+      "native": "Avertissement",
+      "physical_page": 20,
+      "selection": {
+        "method": "native label from block 1"
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.",
+      "native": "Assurez-vous que tous les produits sont éteints avant de connecter le Explorer 3600 Plus au(x) Battery Pack 3600.",
+      "physical_page": 20,
+      "selection": {
+        "native_block": 1,
+        "exclude_label": "Avertissement"
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+      "native": "CHARGEMENT PAR PANNEAUX SOLAIRES (VENDU SÉPARÉMENT)",
+      "physical_page": 20,
+      "selection": {
+        "method": "native heading and qualifier combined into English semantic heading"
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "AC wall charging connection through Jackery Explorer 3600 Plus.",
+      "native": "CHARGEMENT PAR PRISE MURALE CA",
+      "physical_page": 20,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Solar charging connection through Jackery Explorer 3600 Plus.",
+      "native": "CHARGEMENT PAR PANNEAUX SOLAIRES",
+      "physical_page": 20,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "STORAGE",
+      "native": "STOCKAGE",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 29
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+      "native": "Conservez le produit dans un endroit propre et sec avec une ventilation adéquate.Température et humidité de stockage :",
+      "physical_page": 21,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "1 month: -20°C to 45°C (0-60%RH)",
+      "native": "1 mois : -20 à 45°C (0-60% HR)",
+      "physical_page": 21,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "3 months: 0°C to 45°C (0-60%RH)",
+      "native": "3 mois : 0 à 45°C (0-60% HR)",
+      "physical_page": 21,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "12 months: 0°C to 25°C (0-60%RH)",
+      "native": "12 mois : 0 à 25°C (0-60% HR)",
+      "physical_page": 21,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+      "native": "Si ce produit est stocké pendant une longue période (3 à 6 mois) avec la batterie déchargée, il peut devenir impossible de le recharger. Pour éviter cela et préserver la santé de la batterie, il est recommandé de vérifier et de recharger le produit tous les trois mois, et d'effectuer un cycle de charge et de décharge complet au moins une fois tous les 6 à 12 mois.",
+      "physical_page": 21,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "SPECIFICATIONS",
+      "native": "SPÉCIFICATIONS",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 1
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "GENERAL INFO",
+      "native": "INFORMATIONS GÉNÉRALES",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Product Name",
+      "native": "Nom du produit",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Jackery Battery Pack 3600",
+      "native": "Jackery Battery Pack 3600",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Model No.",
+      "native": "N° modèle",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 4
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "JBP-3600A",
+      "native": "JBP-3600A",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Capacity",
+      "native": "Capacité",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 5
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "80 Ah/44.8 V DC (3584 Wh)",
+      "native": "80Ah / 44.8Vdc (3584 Wh)",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cell Chemistry",
+      "native": "Cellule Chimique",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "LiFePO₄",
+      "native": "LiFePO₄",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Weight",
+      "native": "Poids",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "About 55.1 lbs/25 kg",
+      "native": "Environ 55.1 lbs/25 kg",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Dimensions",
+      "native": "Dimensions",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 8
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "14.8 × 12.5 × 9.0 in / 37.5 × 31.7 × 22.9 cm",
+      "native": "14,8 x 12,5 x 9,0 po/37,5 x 31,7x 22,9 cm",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cycle Life",
+      "native": "Durée de vie",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 9
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "6000 cycles to 70%+ capacity",
+      "native": "Capacité de 6000 cycles à 70 % ou plus",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 17
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "IEC Code",
+      "native": "Code CEI",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "IFpR41/136[14S4P]M/-20+40/90",
+      "native": "IFpR41/136[14S4P]M/-20+40/90",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 18
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "INPUT/OUTPUT PORTS",
+      "native": "PORTS D’ENTRÉE/SORTIE",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 19
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Input)",
+      "native": "Port d’extension CC (Entrée)",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 20
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.4V-50.4V⎓60A Max",
+      "native": "36,4V-50,4V⎓60A Max",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 22
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Output)",
+      "native": "Port d’extension CC (Sortie)",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 21
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.4V-50.4V⎓100A Max",
+      "native": "36,4V-50,4V⎓100A Max",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 23
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "native": "TEMPÉRATURE DE FONCTIONNEMENT",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 28
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Charge Temperature",
+      "native": "Température de charge",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 24
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "-20°C to 45°C",
+      "native": "-20°C à 45°C",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 26
+      }
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Discharge Temperature",
+      "native": "Température de décharge",
+      "physical_page": 21,
+      "selection": {
+        "native_block": 25
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "WARRANTY",
+      "native": "GARANTIE",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 5
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.",
+      "native": "Nous ne fournissons notre garantie qu'aux clients qui achètent sur le site officiel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux.",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 2
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "native": "* La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux.",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 3
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited Warranty",
+      "native": "Garantie limitée",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 9
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.",
+      "native": "Jackery garantit à l'acheteur et consommateur d'origine que le produit de Jackery sera exempt de tout défaut de fabrication et de matériaux dans le cadre d'une utilisation normale pendant toute la durée de la période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve des exceptions énoncées ci-dessous.",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 6
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.",
+      "native": "Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous n'assumerons pas et nous n'autorisons personne à assumer pour nous toute autre responsabilité en lien avec la vente de nos produits.",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 7
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Warranty Period",
+      "native": "Période de garantie",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 16
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The standard warranty period for Jackery Battery Pack 3600 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+      "native": "La période de garantie standard du Jackery Battery Pack 3600 est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d'établir la date de début de la période de garantie.",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 8
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Repair or Replacement",
+      "native": "Réparation ou remplacement",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 10
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.",
+      "native": "Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d'achat d'origine.",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 4
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited to Original Consumer Buyer",
+      "native": "Limitée à l'acheteur et consommateur d'origine",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 12
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.",
+      "native": "La garantie d'un produit Jackery est limitée à l'acheteur et consommateur d'origine, elle ne peut pas être transférée à un autre propriétaire.",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 11
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Exclusions",
+      "native": "Exclusions",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 13
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Interpretation Rights",
+      "native": "Droits d'interprétation",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 15
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery reserves the right to final interpretation of the above customer after-sales policy.",
+      "native": "Jackery Inc. se réserve le droit d'interpréter de manière définitive la politique après-vente des clients ci-dessus.",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 14
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "3 YEARS",
+      "native": "3 ANS",
+      "physical_page": 22,
+      "selection": {
+        "method": "native warranty badge text, spatial reading order"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Standard Warranty",
+      "native": "Garantie standard",
+      "physical_page": 22,
+      "selection": {
+        "method": "native warranty badge text, spatial reading order"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "2 YEARS",
+      "native": "2 ANS",
+      "physical_page": 22,
+      "selection": {
+        "method": "native warranty badge text, spatial reading order"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Extended Warranty",
+      "native": "Garantie prolongée",
+      "physical_page": 22,
+      "selection": {
+        "method": "native warranty badge text, spatial reading order"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "To activate the Warranty Extension, you must register your product online or contact our customer service team at ",
+      "native": "Pour activer l'extension de garantie, vous devez enregistrer votre produit en ligne ou bien contacter notre service client à ",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 1,
+        "before_link": "hello.eu@jackery.com"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": " to extend the standard warranty runtime.",
+      "native": " afin de prolonger la durée de la garantie standard.",
+      "physical_page": 22,
+      "selection": {
+        "native_block": 1,
+        "after_link": "hello.eu@jackery.com"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to:",
+      "native": "La garantie de Jackery ne s'applique pas à :",
+      "physical_page": 22,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.",
+      "native": "Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle du produit de Jackery.",
+      "physical_page": 22,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Attempted repair by anyone other than an authorized facility.",
+      "native": "À une réparation tentée par quelqu'un d'autre qu'un établissement agréé.",
+      "physical_page": 22,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Any product purchased through an online auction house.",
+      "native": "Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne.",
+      "physical_page": 22,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.",
+      "native": "La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois par la suite.",
+      "physical_page": 22,
+      "selection": {
+        "method": "visual transcription of outlined native source"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "EU REGULATIONS",
+      "native": "EU REGULATIONS",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "RED DECLARATION OF CONFORMITY",
+      "native": "RED DECLARATION OF CONFORMITY",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "native": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "https://de.jackery.com/pages/user-guides",
+      "native": "https://de.jackery.com/pages/user-guides",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "MANUFACTURER",
+      "native": "MANUFACTURER",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "native": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "native": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "+86 400 668 9293",
+      "native": "+86 400 668 9293",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "sales@hello-tech.com",
+      "native": "sales@hello-tech.com",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "www.hello-tech.com",
+      "native": "www.hello-tech.com",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared English source page, preserved without translation"
+      }
+    }
+  ],
+  "inline_connection_icon": {
+    "insert_after": "l’icône",
+    "physical_page": 19,
+    "native_block": 6,
+    "status": "native-source-structural-exception-not-approved"
+  }
+}

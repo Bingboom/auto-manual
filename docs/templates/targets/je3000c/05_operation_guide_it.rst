@@ -5,7 +5,7 @@ ACCENSIONE/SPEGNIMENTO
 ----------------------
 
 .. image:: asset:operation/main_power
-   :alt: Segnaposto operazione accensione/spegnimento.
+   :alt: Operazione accensione/spegnimento.
    :width: 360px
 
 | Accensione: premi una volta.
@@ -22,7 +22,7 @@ USCITA CA ATTIVA/DISATTIVA
 **Prerequisito**: il prodotto è acceso.
 
 .. image:: asset:operation/ac_output
-   :alt: Segnaposto operazione uscita CA attiva/disattiva.
+   :alt: Operazione uscita CA attiva/disattiva.
    :width: 360px
 
 | 
@@ -38,7 +38,7 @@ USCITA CC 12 V/ USB ATTIVA/DISATTIVA
 **Prerequisito**: il prodotto è acceso.
 
 .. image:: asset:operation/dc_usb_output
-   :alt: Segnaposto operazione uscita CC USB attiva/disattiva.
+   :alt: Operazione uscita CC USB attiva/disattiva.
    :width: 360px
 
 | 
@@ -74,12 +74,12 @@ USCITA CC 12 V/ USB ATTIVA/DISATTIVA
 MODALITÀ RISPARMIO ENERGETICO
 -----------------------------
 
-Per disattivare la Modalità risparmio energetico, tieni premuti per più di 3 secondi sia il pulsante CA sia il pulsante POWER principale. Una volta disattivata la Modalità risparmio energetico, l'icona non comparirà più sullo schermo LCD e il prodotto non spegnerà automaticamente l'uscita CA o DC/USB.
+Per prevenire un consumo inutile della batteria dimenticando di spegnere l'uscita, il prodotto attiva la Modalità di risparmio energetico per impostazione predefinita. Quando il pulsante di alimentazione CA è acceso, l’icona della MODALITÀ DI RISPARMIO ENERGETICO verrà visualizzata sullo schermo LCD. Se non è collegato alcun dispositivo o il consumo del dispositivo collegato è inferiore a una determinata soglia (uscita AC ≤ |ENERGY_SAVING_AC_THRESHOLD| oppure uscita USB-C ≤ |ENERGY_SAVING_DC_THRESHOLD|), il dispositivo spegne automaticamente tutte le uscite dopo |ENERGY_SAVING_AUTO_OFF_DURATION|.
 
-Quando si alimentano dispositivi a basso consumo (CA <= |ENERGY_SAVING_AC_THRESHOLD| oppure DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), disattiva la Modalità risparmio energetico per evitare che l'uscita si spenga automaticamente durante il funzionamento.
+Per disattivare la Modalità risparmio energetico, tenere premuti entrambi i pulsanti di accensione AC e POWER per più di 3 secondi. Il prodotto non disattiva automaticamente l’uscita CA o l’uscita CC/USB.
 
 .. image:: asset:operation/energy_saving
-   :alt: Segnaposto operazione tasti modalità risparmio energetico.
+   :alt: Operazione tasti modalità risparmio energetico.
    :width: 320px
 
 
@@ -92,27 +92,14 @@ Quando si alimentano dispositivi a basso consumo (CA <= |ENERGY_SAVING_AC_THRESH
    * - **NOTA**
      - La Modalità risparmio energetico riprende il suo stato precedente dopo l'accensione. Per cambiare modalità è necessario un intervento manuale.
 
+.. only:: not latex
 
-.. hb-capability-begin: AC/DC输出记忆恢复
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
 
-Funzione di ripristino delle uscite CA e CC
--------------------------------------------
-
-La funzione di ripristino delle uscite CA e CC è disattivata per impostazione predefinita. Attivare questa funzione nell’App Jackery per consentire al dispositivo di memorizzare lo stato delle uscite CA e CC e ripristinare automaticamente le uscite CA e CC in condizioni definite.
-
-+------------------------------------------------------------------------+------------------------------------------------------------------+
-| Condizioni di ripristino automatico                                    | Condizioni senza ripristino automatico                           |
-+========================================================================+==================================================================+
-| Accensione/Riavvio dopo lo spegnimento o il riavvio                    | Spegnimento manuale delle uscite (pulsante/App)                  |
-+------------------------------------------------------------------------+------------------------------------------------------------------+
-| SOC batteria ≥ limite di scarica +10% al raggiungimento del limite     | Spegnimento delle uscite in modalità risparmio energetico        |
-|                                                                        +------------------------------------------------------------------+
-|                                                                        | Spegnimento delle uscite attivato da protezione                  |
-+------------------------------------------------------------------------+------------------------------------------------------------------+
-| Aggiornamento OTA completato                                           | Spegnimento delle uscite attivato dal timer di scarica           |
-+------------------------------------------------------------------------+------------------------------------------------------------------+
-
-.. hb-capability-end:
+      * - **AVVERTENZA**
+        - Quando la Modalità di risparmio energetico è attiva, il prodotto disattiva automaticamente l'uscita CA se il consumo energetico del dispositivo collegato rimane basso per il periodo di tempo impostato. Quando si alimentano dispositivi che richiedono un'alimentazione continua, come frigoriferi, router, telecamere di sicurezza o pompe ad aria per acquari, si consiglia di disattivare la Modalità di risparmio energetico per evitare che un'interruzione imprevista ne comprometta il funzionamento.
 
 
 SCHERMO LCD
@@ -125,7 +112,7 @@ SCHERMO LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="asset:operation/lcd_mode" alt="Segnaposto modalità display LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Modalità display LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Acceso brevemente</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Accendi</td>
@@ -164,6 +151,27 @@ SCHERMO LCD
       \end{HBLcdModeTable}
 
 Puoi anche impostare la modalità di visualizzazione dello schermo nell'App Jackery.
+
+.. hb-capability-begin: AC/DC输出记忆恢复
+
+Funzione di ripristino delle uscite CA e CC
+-------------------------------------------
+
+Questa funzione memorizza lo stato delle uscite e ripristina automaticamente le uscite CA e CC in determinate condizioni.
+
++---------------------------------------------------------------------------+------------------------------------------------------------------+
+| Condizioni di ripristino automatico                                       | Condizioni senza ripristino automatico                           |
++===========================================================================+==================================================================+
+| Accensione/Riavvio dopo lo spegnimento o il riavvio                       | Spegnimento manuale delle uscite (pulsante/App)                  |
++---------------------------------------------------------------------------+------------------------------------------------------------------+
+| SOC della batteria ≥ limite di scarica +10% dopo aver raggiunto il limite | Spegnimento delle uscite in modalità risparmio energetico        |
+|                                                                           +------------------------------------------------------------------+
+|                                                                           | Spegnimento delle uscite attivato da protezione                  |
++---------------------------------------------------------------------------+------------------------------------------------------------------+
+| Aggiornamento OTA completato                                              | Spegnimento delle uscite attivato dal timer di scarica           |
++---------------------------------------------------------------------------+------------------------------------------------------------------+
+
+.. hb-capability-end:
 
 COMBINAZIONI DI TASTI
 ---------------------

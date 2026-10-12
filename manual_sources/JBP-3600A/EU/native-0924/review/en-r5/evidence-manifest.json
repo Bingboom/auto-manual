@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "path": "browser-metrics.json",
+      "sha256": "912ba625790accc266a8041f1b4bc2eac789a00544cb6f91b51c3a4b63a6e4db"
+    },
+    {
+      "path": "cold-sphinx.log",
+      "sha256": "bb6d72f1b27ce251f133803a9905873b979b4ea9f2b05028b4a6fe67b33d7fbc"
+    },
+    {
+      "path": "comparison.json",
+      "sha256": "3c92fcb4e099b467e71330d22fe91cca94fb5d3965ef0df191e1bd0f0f464b1e"
+    },
+    {
+      "path": "desktop-locking.png",
+      "sha256": "2a625b69bee9b31dfa3f88ba7247d6a6c4297a394d4f945622828f8a4c01da14"
+    },
+    {
+      "path": "desktop-overview.png",
+      "sha256": "ff78c32a148c6d6886e58c16461e316014b8a73c0912daa5a020f3769ee8ee6b"
+    },
+    {
+      "path": "desktop-warranty.png",
+      "sha256": "a3e7a0abda78310caf0e5b8b9c6c9c602bea52fa30b1de977b2b9eef61b16964"
+    },
+    {
+      "path": "en-r4-mobile-warranty.png",
+      "sha256": "9878b185d0d24401d4a6fd66356f5340266c94d28908c23ef52b9f271a3124e4"
+    },
+    {
+      "path": "en-released-mobile-locking.png",
+      "sha256": "a582681145d6bc98de3da255448accf6d131bca07b4486fa77679bdcc6f28a98"
+    },
+    {
+      "path": "english-web-r5-build.log",
+      "sha256": "63d6287bcb50c9f58963308e7a12e081d754506545315a4a72ab7be4904850f3"
+    },
+    {
+      "path": "english-web-r5-sphinx.log",
+      "sha256": "e64c11e23cdd3f2508806cc8436cded2336ec97405242607153fb2545588cb94"
+    },
+    {
+      "path": "html-manifest.json",
+      "sha256": "25436edd40bcc6ccd6872dbcf01402e07a39924cfe9927a5ecf592694dadf82d"
+    },
+    {
+      "path": "mobile-lcd.png",
+      "sha256": "e1ffb465b114f8cf619a30e95ceecd950422f618b1558ddfacfa17b9cd23cc4a"
+    },
+    {
+      "path": "mobile-locking.png",
+      "sha256": "ce80569a2e2798621131d4de5624e10db05383348b54d74fc86307d00ac58ba3"
+    },
+    {
+      "path": "mobile-warranty.png",
+      "sha256": "10c20fc4d63a73d1b0d70517b6bf56c08aa476fb38b915668b914b434f4dbdda"
+    },
+    {
+      "path": "package-manifest.json",
+      "sha256": "a3c712147b88438a68401b64b09abe27064000451af47c6076d6fd9780d7f104"
+    }
+  ]
+}

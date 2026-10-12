@@ -1,0 +1,57 @@
+{
+  "status": "candidate_trial",
+  "publication_eligible": false,
+  "target": "JBP-3600A/EU/nl",
+  "differences": [
+    {
+      "path": "/pages/5/items/1/children/1/sha256",
+      "expected": "d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5",
+      "actual": "61ef261ed443bb67b5113c84b98b85739b95c8829f53e63e1eb4560ffe0e6744",
+      "expected_sha256": "2c68dd88918345f6c58c0bdb945a27b698354a2ec5a55b26d34e2788e8f0029b",
+      "actual_sha256": "32a066349442ad4acde41592798e97c72c72d58ee7e1e22b5cccaa7d6093c441",
+      "chapter": "overview"
+    },
+    {
+      "path": "/pages/5/items/2/children/1/sha256",
+      "expected": "4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43",
+      "actual": "a324b0a701c5a6bb632ae9d22fc9a54a76170079b9f53ffc662f86d9ed46f4db",
+      "expected_sha256": "88f5ad6f617c5eeb34f622d99047f2adc2cbef26cd6a7507994e6877f23b755e",
+      "actual_sha256": "342b9dfa94330e9aee590f25e088b87d96b24ec0ea20158dae382e11a25e71de",
+      "chapter": "overview"
+    },
+    {
+      "path": "/pages/6/items/1/sha256",
+      "expected": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f",
+      "actual": "0032ac8b670a75171012c771206d209318abdb4559e9667612de69d10dd0213f",
+      "expected_sha256": "608d04f6c71a36e24b0b467b698d10e4c41c735489b5d87dede2947090f58144",
+      "actual_sha256": "783d9a5d5da8b69e27bd0f9e9ab2446694184787a9050d2814405a7da0c4fed0",
+      "chapter": "lcd"
+    },
+    {
+      "path": "/pages/8/items/4/carrier_layout/0/children/0/children/0/children/1/children/0",
+      "expected": {
+        "$absent": true
+      },
+      "actual": {
+        "kind": "paragraph",
+        "layout": {},
+        "children": [
+          {
+            "kind": "image",
+            "sha256": "8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd",
+            "presentation": {
+              "class": [
+                "manual-finished-illustration"
+              ],
+              "style": "display:inline-block;width:1.9em;height:auto;vertical-align:middle;"
+            }
+          }
+        ]
+      },
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "e641436469321b6d9010c541571a54fc62f91602bb120e447a74cd75346285b2",
+      "chapter": "connections",
+      "component_slot": "connections#callout-2"
+    }
+  ]
+}

@@ -548,6 +548,28 @@ class ReconcileTests(unittest.TestCase):
         )
         self.assertEqual(sync_tool.extract_link(None), "")
 
+    def test_rendered_pair_extraction_prefers_the_link_target(self) -> None:
+        """Shared shape parser: reconcile reports where a cell actually points.
+
+        ``extract_link`` stays the lenient reconcile reader — unlike the
+        receipt lane's fail-closed comparison, it reports a best-effort link
+        rather than rejecting. When the two halves disagree the target is what
+        a reader would open, so the target wins over the label.
+        """
+        self.assertEqual(
+            sync_tool.extract_link("[click here](https://ht-doc.readthedocs.io/b.html)"),
+            "https://ht-doc.readthedocs.io/b.html",
+        )
+        self.assertEqual(
+            sync_tool.extract_link("[https://a.example/a.html](https://b.example/b.html)"),
+            "https://b.example/b.html",
+        )
+        # Non-rendered cells still fall back to the first URL in the text.
+        self.assertEqual(
+            sync_tool.extract_link("see https://ht-doc.readthedocs.io/c.html for details"),
+            "https://ht-doc.readthedocs.io/c.html",
+        )
+
     def test_whitelist_schema_is_enforced(self) -> None:
         with TemporaryDirectory() as tmp:
             path = Path(tmp) / "w.json"

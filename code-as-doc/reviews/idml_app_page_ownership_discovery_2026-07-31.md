@@ -1,5 +1,7 @@
 # IDML App Page Ownership Discovery — 2026-07-31
 
+Status: done
+
 ## Scope
 
 Workstream W, Stage 4a item 13 replaces the target-named

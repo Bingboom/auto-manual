@@ -63,8 +63,14 @@ def operation_story_rhythm_for_next_block(
     baseline_panel_height: float,
     params: dict[str, tuple[str, str]] | None = None,
     first_operation_h2: bool = False,
+    inter_section_only: bool = False,
 ) -> tuple[str | None, float | None]:
-    """Return base operation rhythm with localized LCD/Key overrides."""
+    """Return base operation rhythm with localized LCD/Key overrides.
+
+    ``inter_section_only`` limits the page-foot gap to the structural
+    inter-section body, so copy that flows on after the Operation guide (a
+    registered component target's no-plan story) keeps ordinary spacing.
+    """
     normalized_language = (page_language or "en").split("-", 1)[0]
     rhythm_params = params or {}
     heading = _next_operation_heading(kind, next_block)
@@ -119,7 +125,11 @@ def operation_story_rhythm_for_next_block(
     if (
         title
         and "operation_guide" in title
-        and kind in {"body", "body_operation_inter_section"}
+        and kind in (
+            {"body_operation_inter_section"}
+            if inter_section_only
+            else {"body", "body_operation_inter_section"}
+        )
         and next_block[0] == "h2"
     ):
         # The approved first operation page deliberately holds the second

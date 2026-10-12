@@ -1,0 +1,178 @@
+{
+  "page_id": "introduction",
+  "title": "Jackery SlimPower H1 取扱説明書",
+  "physical_pages": [
+    1
+  ],
+  "blocks": [
+    {
+      "kind": "heading",
+      "level": 2,
+      "anchor": "introduction",
+      "children": [
+        {
+          "kind": "text",
+          "text": "Jackery SlimPower H1 取扱説明書"
+        }
+      ],
+      "schema_version": "manual-flow/v2"
+    },
+    {
+      "kind": "paragraph",
+      "children": [
+        {
+          "kind": "text",
+          "text": "型番：JE-1000E-WH"
+        }
+      ],
+      "schema_version": "manual-flow/v2",
+      "presentation": {
+        "html": {
+          "attributes": {
+            "class": "slimpower-cover-model"
+          }
+        }
+      }
+    },
+    {
+      "kind": "paragraph",
+      "children": [
+        {
+          "kind": "text",
+          "text": "国内専用/For use only in Japan"
+        }
+      ],
+      "schema_version": "manual-flow/v2",
+      "presentation": {
+        "html": {
+          "attributes": {
+            "class": "slimpower-cover-region"
+          }
+        }
+      }
+    },
+    {
+      "schema_version": "manual-flow/v2",
+      "kind": "component",
+      "component_spec": {
+        "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+        "variant": "semantic-fallback",
+        "source_ref": "ja/p1/figure-cover-unit",
+        "language": "ja",
+        "slots": [
+          {
+            "role": "reference_id",
+            "content_kind": "inline_text",
+            "content": "cover-unit"
+          },
+          {
+            "role": "accessibility_label",
+            "content_kind": "inline_text",
+            "content": "Jackery SlimPower H1"
+          },
+          {
+            "role": "caption_mode",
+            "content_kind": "inline_text",
+            "content": "none"
+          },
+          {
+            "role": "caption_layout",
+            "content_kind": "inline_text",
+            "content": "equal"
+          }
+        ],
+        "assets": [
+          {
+            "role": "source_art",
+            "asset_ref": "assets/cover-unit.png",
+            "locale_policy": "shared"
+          }
+        ],
+        "token_roles": [
+          "component.special.reference-figure"
+        ],
+        "metadata": {
+          "image_key": "cover-unit",
+          "web_replace_key": "",
+          "source_fragment_sha256": "0aca56979e715fa6d3db98dab85130cdcdb63031f1ce8bb18670a14035f7a6f9"
+        },
+        "schema_version": "component-spec/v1"
+      },
+      "carrier_flow": [
+        {
+          "kind": "image",
+          "source": "assets/cover-unit.png",
+          "alt": "Jackery SlimPower H1",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "style": "max-width:260px;height:auto;display:block;margin:0 auto"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "kind": "paragraph",
+      "children": [
+        {
+          "kind": "text",
+          "text": "写真はイメージです。実際の商品とは異なる場合があります。"
+        }
+      ],
+      "schema_version": "manual-flow/v2",
+      "presentation": {
+        "html": {
+          "attributes": {
+            "class": "slimpower-cover-caption"
+          }
+        }
+      }
+    },
+    {
+      "kind": "paragraph",
+      "children": [
+        {
+          "kind": "text",
+          "text": "お買い上げありがとうございます。"
+        }
+      ],
+      "schema_version": "manual-flow/v2",
+      "presentation": {
+        "html": {
+          "attributes": {
+            "class": "slimpower-cover-thanks"
+          }
+        }
+      }
+    },
+    {
+      "kind": "paragraph",
+      "children": [
+        {
+          "kind": "text",
+          "text": "ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。お読みになったあとは、すぐに取り出せる場所に大切に保管してください。本製品の取扱説明書は随時更新されますので、最新の取扱説明書は公式サイトでご確認ください。"
+        }
+      ],
+      "schema_version": "manual-flow/v2"
+    },
+    {
+      "kind": "paragraph",
+      "children": [
+        {
+          "kind": "text",
+          "text": "カスタマーサポート: jackery.jp@jackery.com"
+        }
+      ],
+      "schema_version": "manual-flow/v2",
+      "presentation": {
+        "html": {
+          "attributes": {
+            "class": "slimpower-cover-support"
+          }
+        }
+      }
+    }
+  ]
+}

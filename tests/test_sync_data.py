@@ -11,10 +11,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from unittest import mock
 
-from tools import sync_data
-from tools.source_record_index import SOURCE_RECORD_ID_KEY
+from tools.data import sync_data
+from tools.data.source_record_index import SOURCE_RECORD_ID_KEY
 from tools.sync_schema_sensor import missing_schema_columns
-from tools.sync_data_records import phase2_snapshot_write_lock
+from tools.data.sync_data_records import phase2_snapshot_write_lock
 
 
 class _FakeSource:
@@ -579,7 +579,7 @@ class TestSyncData(unittest.TestCase):
             }
         }
 
-        with mock.patch("tools.sync_data.shutil.which", return_value=None):
+        with mock.patch("tools.data.sync_data.shutil.which", return_value=None):
             errors = sync_data.collect_sync_preflight_errors(
                 cfg,
                 table_names=["spec_footnotes"],
@@ -612,7 +612,7 @@ class TestSyncData(unittest.TestCase):
             }
         }
 
-        with mock.patch("tools.sync_data.shutil.which", return_value=r"C:\tools\lark-cli.cmd"):
+        with mock.patch("tools.data.sync_data.shutil.which", return_value=r"C:\tools\lark-cli.cmd"):
             errors = sync_data.collect_sync_preflight_errors(
                 cfg,
                 table_names=["spec_master"],
@@ -1839,7 +1839,7 @@ class TestSyncData(unittest.TestCase):
         }
 
         with mock.patch.dict("os.environ", {}, clear=True), mock.patch(
-            "tools.sync_data.shutil.which",
+            "tools.data.sync_data.shutil.which",
             return_value=None,
         ):
             with self.assertRaisesRegex(
@@ -1864,7 +1864,7 @@ class TestSyncData(unittest.TestCase):
 
     def test_resolved_cli_command_parts_should_use_absolute_path_from_which(self) -> None:
         with mock.patch(
-            "tools.sync_data.shutil.which",
+            "tools.data.sync_data.shutil.which",
             return_value=r"C:\Users\tangxb\AppData\Roaming\npm\lark-cli.cmd",
         ):
             parts = sync_data._resolved_cli_command_parts("lark-cli")
@@ -1924,9 +1924,9 @@ class TestSyncData(unittest.TestCase):
             return mock.Mock(stdout=payloads.pop(0))
 
         with mock.patch(
-            "tools.sync_data.shutil.which",
+            "tools.data.sync_data.shutil.which",
             return_value=r"C:\Users\tangxb\AppData\Roaming\npm\lark-cli.cmd",
-        ), mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run):
+        ), mock.patch("tools.data.sync_data.subprocess.run", side_effect=fake_run):
             rows = source.fetch_records(
                 base_token="app_token",
                 table_id="tbl_titles",
@@ -1993,8 +1993,8 @@ class TestSyncData(unittest.TestCase):
                 )
             )
 
-        with mock.patch("tools.sync_data.shutil.which", return_value="/usr/local/bin/lark-cli"), mock.patch(
-            "tools.sync_data.subprocess.run",
+        with mock.patch("tools.data.sync_data.shutil.which", return_value="/usr/local/bin/lark-cli"), mock.patch(
+            "tools.data.sync_data.subprocess.run",
             side_effect=fake_run,
         ):
             rows = source.fetch_records(
@@ -2022,7 +2022,7 @@ class TestSyncData(unittest.TestCase):
                 stderr="api stderr",
             )
 
-        with mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run):
+        with mock.patch("tools.data.sync_data.subprocess.run", side_effect=fake_run):
             with self.assertRaisesRegex(RuntimeError, "exit code 2") as exc_info:
                 source._run_base_command(args=["+record-list"])
 
@@ -2065,9 +2065,9 @@ class TestSyncData(unittest.TestCase):
             return mock.Mock(stdout=payloads.pop(0))
 
         with mock.patch(
-            "tools.sync_data.shutil.which",
+            "tools.data.sync_data.shutil.which",
             return_value=r"C:\Users\tangxb\AppData\Roaming\npm\lark-cli.cmd",
-        ), mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run):
+        ), mock.patch("tools.data.sync_data.subprocess.run", side_effect=fake_run):
             rows = source.fetch_records(
                 base_token="app_token",
                 table_id="tbl_master",
@@ -2111,9 +2111,9 @@ class TestSyncData(unittest.TestCase):
             return mock.Mock(stdout=payloads.pop(0))
 
         with mock.patch(
-            "tools.sync_data.shutil.which",
+            "tools.data.sync_data.shutil.which",
             return_value=r"C:\Users\tangxb\AppData\Roaming\npm\lark-cli.cmd",
-        ), mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run):
+        ), mock.patch("tools.data.sync_data.subprocess.run", side_effect=fake_run):
             rows = source.fetch_records_with_ids(
                 base_token="app_token",
                 table_id="tbl_document_link",
@@ -2139,9 +2139,9 @@ class TestSyncData(unittest.TestCase):
             return mock.Mock(stdout=json.dumps({"ok": True}))
 
         with mock.patch(
-            "tools.sync_data.shutil.which",
+            "tools.data.sync_data.shutil.which",
             return_value=r"C:\Users\tangxb\AppData\Roaming\npm\lark-cli.cmd",
-        ), mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run):
+        ), mock.patch("tools.data.sync_data.subprocess.run", side_effect=fake_run):
             source.upsert_record(
                 base_token="app_token",
                 table_id="tbl_document_link",
@@ -2176,9 +2176,9 @@ class TestSyncData(unittest.TestCase):
             )
 
         with mock.patch(
-            "tools.sync_data.shutil.which",
+            "tools.data.sync_data.shutil.which",
             return_value=r"C:\Users\tangxb\AppData\Roaming\npm\lark-cli.cmd",
-        ), mock.patch("tools.sync_data.subprocess.run", side_effect=fake_run):
+        ), mock.patch("tools.data.sync_data.subprocess.run", side_effect=fake_run):
             source._field_name_map(base_token="app_token", table_id="tbl_document_link")
 
         self.assertIn("--as", seen_commands[0])

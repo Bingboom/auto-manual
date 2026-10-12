@@ -6,6 +6,7 @@ LCD DISPLAY
    :width: 80%
 
 .. list-table::
+   :class: hb-source-lcd-legend
    :header-rows: 1
    :widths: 8 27 65
 

@@ -1,5 +1,7 @@
 # Content Assembly Pilot Plan
 
+Status: archived
+
 > **ARCHIVED — rolled back 2026-05-30.** The assembly pilot described here was
 > removed from the codebase (the `assembly_pilot` switch and
 > `product_overview_renderer` no longer exist); Workstream N in

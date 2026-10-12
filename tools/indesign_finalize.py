@@ -334,7 +334,7 @@ def _collect_finalize_result(
                 "pass": not missing_glyphs,
                 "finding_count": len(missing_glyphs),
             }
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - glyph check failure is recorded in the report
             missing_glyphs = []
             glyph_validation = {
                 "pass": False,
@@ -490,7 +490,7 @@ def run_finalize_jobs(
             continue
         try:
             _run_jsx_jobs(runnable, application=application)
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - a runner failure is recorded per job
             for job in runnable:
                 results[job["job_id"]] = {
                     "job_id": job["job_id"],
@@ -504,7 +504,7 @@ def run_finalize_jobs(
                 results[job["job_id"]] = _collect_finalize_result(
                     job, pin_status=pin_status,
                 )
-            except Exception as exc:
+            except Exception as exc:  # noqa: BLE001 - a collection failure is recorded per job
                 results[job["job_id"]] = {
                     "job_id": job["job_id"],
                     "success": False,

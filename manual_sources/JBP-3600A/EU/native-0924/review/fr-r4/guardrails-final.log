@@ -1,0 +1,5 @@
+[language-literal] 0 new, 67 known, 0 stale, 74 current
+[complexity] 0 new, 0 grown, 0 improved, 0 stale, 252 baselined
+[facade-patch] 0 new, 0 grown, 0 improved, 0 stale, 64 baselined patches in 7 files
+[broad-except] 0 new, 0 grown, 0 improved, 0 stale, 0 baselined handlers in 0 files
+[maintainability] Guardrails OK for 62 hotspot files.

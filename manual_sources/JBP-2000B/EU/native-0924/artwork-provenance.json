@@ -1,0 +1,246 @@
+[
+  {
+    "asset": "power_native",
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "source_page": 10,
+    "bbox_pt": [
+      35,
+      229,
+      334,
+      307
+    ],
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          35,
+          229,
+          334,
+          307
+        ]
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          263,
+          231,
+          334,
+          291
+        ],
+        "graphics": "preserve"
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          265,
+          277,
+          277,
+          290
+        ],
+        "graphics": "remove_if_touched"
+      }
+    ],
+    "render_scale": 4,
+    "pdf_sha256": "cb108eb3f95ce501118a8756dabec61eeabb925220252c574e212b0948ea1952",
+    "sha256": "af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b",
+    "background_policy": "native backgrounds and clipping preserved",
+    "text_policy": "only external captions removed; numeric steps and physical product markings retained"
+  },
+  {
+    "asset": "locking_native",
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "source_page": 12,
+    "bbox_pt": [
+      27,
+      22,
+      342,
+      300
+    ],
+    "transforms": [
+      {
+        "op": "crop",
+        "bbox_pt": [
+          27,
+          22,
+          342,
+          300
+        ]
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          36,
+          155,
+          70,
+          170
+        ],
+        "graphics": "preserve"
+      },
+      {
+        "op": "redact_text_region",
+        "bbox_pt": [
+          36,
+          224,
+          73,
+          239
+        ],
+        "graphics": "preserve"
+      },
+      {
+        "op": "copy_pdf_region",
+        "bbox_pt": [
+          36,
+          155,
+          70,
+          170
+        ],
+        "other_bbox_pt": [
+          36,
+          171,
+          70,
+          186
+        ]
+      },
+      {
+        "op": "copy_pdf_region",
+        "bbox_pt": [
+          36,
+          224,
+          73,
+          239
+        ],
+        "other_bbox_pt": [
+          36,
+          241,
+          73,
+          256
+        ]
+      }
+    ],
+    "render_scale": 4,
+    "pdf_sha256": "1bafc0bc2f48b06ca0fa274f9ebee1bccd452894cbfea5129a6a1be1fdde40ba",
+    "sha256": "9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a",
+    "background_policy": "native backgrounds and clipping preserved",
+    "text_policy": "only external captions removed; numeric steps and physical product markings retained"
+  },
+  {
+    "asset": "overview",
+    "locale": "uk",
+    "source_page": 49,
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "bbox_pt": [
+      27,
+      224,
+      345,
+      354
+    ],
+    "render_scale": 4,
+    "sha256": "b358d85e56b8187022a0bcfaabb71f395586adab9b87605419c6010a56a52c5c",
+    "text_policy": "dense native annotated source panel; no duplicate body copy"
+  },
+  {
+    "asset": "lcd",
+    "locale": "uk",
+    "source_page": 50,
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "bbox_pt": [
+      27,
+      54,
+      345,
+      112
+    ],
+    "render_scale": 4,
+    "sha256": "dfe129c1a972f057d9b39b762f688103591ede63d51746b48c79519f1c9cd725",
+    "text_policy": "dense native annotated source panel; no duplicate body copy"
+  },
+  {
+    "asset": "overview",
+    "locale": "pt",
+    "source_page": 57,
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "bbox_pt": [
+      27,
+      214,
+      345,
+      345
+    ],
+    "render_scale": 4,
+    "sha256": "45c1eb33930e40f86104c223268a08f180e7813f83e68d4dc928166e922060e2",
+    "text_policy": "dense native annotated source panel; no duplicate body copy"
+  },
+  {
+    "asset": "lcd",
+    "locale": "pt",
+    "source_page": 58,
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "bbox_pt": [
+      27,
+      54,
+      345,
+      112
+    ],
+    "render_scale": 4,
+    "sha256": "b47ab796d64506a30e4bb674429f12e27cfeba426feb6d5475641abd6d12ba01",
+    "text_policy": "dense native annotated source panel; no duplicate body copy"
+  },
+  {
+    "asset": "overview",
+    "locale": "nl",
+    "source_page": 65,
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "bbox_pt": [
+      27,
+      214,
+      345,
+      345
+    ],
+    "render_scale": 4,
+    "sha256": "2a2e4aa74c577914d5aeeb0acf947e788523fd661173181ab8ecb5393fc87bd6",
+    "text_policy": "dense native annotated source panel; no duplicate body copy"
+  },
+  {
+    "asset": "lcd",
+    "locale": "nl",
+    "source_page": 66,
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "bbox_pt": [
+      27,
+      54,
+      345,
+      112
+    ],
+    "render_scale": 4,
+    "sha256": "1cc78d02c6f0be9080028b812573645bd232fc9e9984c184829ea81b57a45950",
+    "text_policy": "dense native annotated source panel; no duplicate body copy"
+  },
+  {
+    "asset": "overview",
+    "locale": "pl",
+    "source_page": 73,
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "bbox_pt": [
+      27,
+      214,
+      345,
+      345
+    ],
+    "render_scale": 4,
+    "sha256": "a12874566ecc79931e9bfc03e81b9595fde6040631581060de5d318917c24e12",
+    "text_policy": "dense native annotated source panel; no duplicate body copy"
+  },
+  {
+    "asset": "lcd",
+    "locale": "pl",
+    "source_page": 74,
+    "source_sha256": "b7d7fca4207792e6337c6e14003d12fd418fcd192ecc23137519c1147b6f85a3",
+    "bbox_pt": [
+      27,
+      54,
+      345,
+      112
+    ],
+    "render_scale": 4,
+    "sha256": "98bb7ca0ba8c9a3bfc5957779664a9c602a2d69ee9fe9c71c5c07ea7ad2dc9f1",
+    "text_policy": "dense native annotated source panel; no duplicate body copy"
+  }
+]

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from dataclasses import replace
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
@@ -38,14 +39,15 @@ from tools.manual_ir.whole_document_components import (
     discover_registered_components,
 )
 from tools.utils.path_utils import Paths
-from tools.web_document_ir import render_document_fragments
-from tools.web_document_source import load_web_document
-from tools.web_presentation import load_web_manual_contract
-from tools.word_bundle_html import (
+from tools.web.document_ir import render_document_fragments
+from tools.web.document_source import load_web_document
+from tools.web.presentation import load_web_manual_contract
+from tools.web.manual_table_components import render_manual_table_component
+from tools.word.bundle_html import (
     _publish_rst_fragment_to_html,
     _rewrite_word_friendly_fragment,
 )
-from tools.word_bundle_html_only import _build_word_only_tags
+from tools.word.bundle_html_only import _build_word_only_tags
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,6 +120,31 @@ class ManualTableComponentSpecTests(unittest.TestCase):
         self.assertTrue(
             self.registry["components"][SYMBOL_ICON_COMPONENT_ID]["asset_roles"]["icons"]["multiple"]
         )
+
+    def test_lcd_shared_number_spans_only_adjacent_rows_when_declared(self) -> None:
+        source = BeautifulSoup(_lcd_html(rows=4), "html.parser")
+        for row, number in zip(source.select("tr"), (23, 23, 24, 23), strict=True):
+            row.find("td").string = str(number)
+        spec, _, _ = parse_lcd_icon_html(
+            source, source_path=Path("lcd.rst"), declared_page=True, language="en",
+        )
+        historical = BeautifulSoup(render_manual_table_component(spec), "html.parser")
+        self.assertEqual(4, len(historical.select(".hb-lcd-number")))
+        self.assertFalse(historical.select("[rowspan]"))
+        grouped = replace(spec, metadata={**spec.metadata,
+                          "number_cell_layout": "span-adjacent-equal"})
+        rendered = BeautifulSoup(render_manual_table_component(grouped), "html.parser")
+        rows = rendered.select("tr")
+        self.assertEqual("2", rows[0].select_one(".hb-lcd-number")["rowspan"])
+        self.assertIsNone(rows[1].select_one(".hb-lcd-number"))
+        self.assertEqual(["23", "24", "23"],
+                         [cell.get_text() for cell in rendered.select(".hb-lcd-number")])
+        self.assertEqual([4, 3, 4, 4], [len(row.find_all("td", recursive=False)) for row in rows])
+        for role in ("icon", "name", "description"):
+            self.assertEqual(
+                [str(cell) for cell in historical.select(f".hb-lcd-{role}")],
+                [str(cell) for cell in rendered.select(f".hb-lcd-{role}")],
+            )
 
     def test_repeatable_asset_roles_are_ordered_and_single_roles_stay_unique(self) -> None:
         soup = BeautifulSoup(_lcd_html(), "html.parser")
@@ -279,6 +306,23 @@ class ManualTableComponentSpecTests(unittest.TestCase):
         self.assertEqual([LCD_ICON_COMPONENT_ID], [claim.spec.component_id for claim in lcd_claims])
         self.assertEqual([TROUBLESHOOTING_COMPONENT_ID], [claim.spec.component_id for claim in trouble_claims])
 
+    def test_multiple_numbered_and_unnumbered_lcd_tables_keep_separate_ownership(self):
+        numbered = _lcd_html(rows=1).replace('<table>', '<table class="hb-lcd-icon-table">')
+        unnumbered = numbered.replace('hb-lcd-icon-table', 'hb-lcd-icon-table lcd-unnumbered').replace('<td>1</td>', '')
+        soup = BeautifulSoup(numbered + '<p>Between</p>' + unnumbered, 'html.parser')
+        claims = discover_registered_components(
+            soup, source_path=Path('display.rst'), contract=load_web_manual_contract(),
+            model='OTHER', region='EU', language='en',
+        )
+        self.assertEqual(['icon-catalog', 'icon-catalog-unnumbered'], [c.spec.variant for c in claims])
+        self.assertIs(claims[0].owned_nodes[0], soup.select('table')[0])
+        self.assertIs(claims[1].owned_nodes[0], soup.select('table')[1])
+        self.assertNotIn('number_text', claims[1].spec.slot('rows').content[0])
+        self.assertEqual('', idml_manual_table_payload(claims[1].spec)['rows'][0]['no'])
+        with self.assertRaises(ValueError):
+            parse_lcd_icon_html(BeautifulSoup(unnumbered.replace(' lcd-unnumbered', ''), 'html.parser'),
+                               source_path=Path('display.rst'), declared_page=False, language='en')
+
     def test_text_only_lcd_table_stays_neutral_flow_even_when_declared(self) -> None:
         markup = (
             '<table class="hb-lcd-icon-table lcd-text-only"><tbody><tr>'
@@ -334,7 +378,7 @@ class ManualTableComponentSpecTests(unittest.TestCase):
             )
             page.unlink()
             with patch(
-                "tools.web_presentation.transform_lcd_icon_tables",
+                "tools.web.presentation.transform_lcd_icon_tables",
                 side_effect=AssertionError("legacy LCD projector called"),
             ):
                 fragment = render_document_fragments(ir, package_root=package)[0]

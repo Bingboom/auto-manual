@@ -1,5 +1,7 @@
 # BP@JP reference-versus-built ledger (R3c Phase 6)
 
+Status: active
+
 > **Superseded in part, 2026-09-03 (#1015).** The geometry this ledger records
 > as "built now" in §4a–§4d — the declared corner radii (5.80 / 7.89 / 4.80 /
 > 11.08 / 7.72), the specification pitch (14.95 / 38.35, shell 187.80), the

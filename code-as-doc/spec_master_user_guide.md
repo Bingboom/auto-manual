@@ -433,7 +433,7 @@ This section is for people maintaining the code path, not just editing the CSV.
 
 Current flow:
 
-1. [`build.py`](../build.py) or [`tools/build_docs.py`](../tools/build_docs.py) resolves target `model` and `region`
+1. [`build.py`](../build.py) or [`tools/build/docs.py`](../tools/build/docs.py) resolves target `model` and `region`
 2. product identity and template substitutions are resolved from [`Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 3. [`tools/csv_page_build.py`](../tools/csv_page_build.py) renders CSV-driven content
 4. [`tools/gen_index_bundle.py`](../tools/gen_index_bundle.py) materializes runtime pages
@@ -661,7 +661,7 @@ Current rule:
 - use `Note_order` to control the rendered note order
 - keep `Type=Note` for explicit trailer classification coming from the Feishu source
 - `Spec_Notes.csv` is not referenced from spec cells and does not generate superscript markers
-- when one rendered spec page contains both notes and footnotes at the bottom, their final display order follows [`../docs/templates/spec_template.rst`](../docs/templates/spec_template.rst)
+- when one rendered spec page contains both notes and footnotes at the bottom, their final display order follows the template named by the `spec` row of the `page_registry.csv` the build reads (each frozen `manual_sources/.../phase2` source carries its own; `data/phase2/page_registry.csv` serves every live target): the default [`../docs/templates/spec_template.rst`](../docs/templates/spec_template.rst) puts the notes (such as the ※ trademark note) first, and [`../docs/templates/spec_template_footnotes_first.rst`](../docs/templates/spec_template_footnotes_first.rst) puts the footnotes first, for sources whose print sets them first. Only the HTML order differs, so the Web and the Word bundle (which takes its trailer order from the HTML) follow the named template; the PDF and IDML output is the same for both
 
 ### 7.3 How [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) References Footnotes
 
@@ -744,7 +744,7 @@ python build.py check --config configs/config.ja.yaml --model JE-1000F --region 
 Mapping export:
 
 ```powershell
-python tools/export_spec_master_row_key_mapping.py
+python -m tools.export_spec_master_row_key_mapping
 ```
 
 Current output:

@@ -26,9 +26,13 @@
     "path": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
     "sha256": "a8a202b0a44a3646bfea9c4279947eab98b32ff03c4715c16445bf52c8f15de6"
   },
+  "app_asset_recipe": {
+    "path": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+    "sha256": "5de57e2ac1efe413f3ee833dc9f3d6b27eedb1a515e2103e7688afc7e149f7ff"
+  },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je2000f_eu_en_illustrations.json",
-    "sha256": "0b01dab2215e9b11df97caf561ff7c3a09a0f7c61a664d6d05006030706ec1f3"
+    "sha256": "61f60692d4c3e118415616bb52fa6d181688546663f557ac6948235740d2e6e4"
   },
   "files": [
     {
@@ -38,8 +42,8 @@
     },
     {
       "path": "phase2/Localized_Copy.csv",
-      "size": 9615,
-      "sha256": "b257e9badfec4c3cf501b1496b2d90f479b1ee4d3a5fc8e80e63c3f57e0d7d86"
+      "size": 9627,
+      "sha256": "718b182130dcaaf51efcc6bd4529b0a4b0ce100fac891b538fc9d6060f03499d"
     },
     {
       "path": "phase2/Manual_Copy_Source.csv",
@@ -53,8 +57,8 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 23757,
-      "sha256": "1eee1d2b1f658745b7e8f57d643c3c93fb2ee8b12e6fab6243a27a7e0f84fd7d"
+      "size": 23394,
+      "sha256": "3ee0146acf53fe3840f002c72afbb40b29d453e67eb6cc8fe3c62b58a8ff4bad"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -278,8 +282,8 @@
     },
     {
       "path": "phase2/page_registry.csv",
-      "size": 524,
-      "sha256": "4a347be200109527813038c2b52a09191a00946c8da6f0123d4ac4b92a623d4f"
+      "size": 540,
+      "sha256": "bba1487c6fdb715c70c625a9f5df533e109d585ad268f059318ec26d9b19cebc"
     },
     {
       "path": "phase2/row_key_mapping.csv",
@@ -288,8 +292,8 @@
     },
     {
       "path": "phase2/spec_titles.csv",
-      "size": 990,
-      "sha256": "54ec1e1d9988d56d04bf27e64b1fe1208039492779502f1991cbac52f367bc9d"
+      "size": 1002,
+      "sha256": "7315048c0555d3638ec5e06372f4d167c2543041746283752397419a2d86a916"
     },
     {
       "path": "phase2/symbols_blocks.csv",
@@ -307,7 +311,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "141f5ce994e635630363255c6519bd43fcd0f6392ac27ddffae6abcae6ccc676",
+  "files_inventory_sha256": "797f03827657a8546b260c531453caffc620d903012ad05a5a3a858e2e1bd7ab",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",

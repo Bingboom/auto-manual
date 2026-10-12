@@ -13,7 +13,13 @@ from tools import publish_branch_assembly
 from tests.web_language_evidence_fixture import seal_language_evidence_fixture
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class PublishBranchAssemblyTests(unittest.TestCase):
+    def setUp(self):
+        isolate_shared_component_admission(self)
+
     def _write_target(
         self,
         root: Path,

@@ -8,13 +8,13 @@ AUFLADEN ÜBER SOLARMODULE (SEPARAT ERHÄLTLICH)
 Jackery Explorer 1000 verfügt über zwei DC8020-Eingangsanschlüsse und ist mit den Jackery-Solarmodulen kompatibel.
 
 .. image:: _assets/templates/word_template/common_assets/charging/solar_direct.png
-   :alt: Abbildung der Solarladeverbindung als Platzhalter 1.
+   :alt: Abbildung der Solarladeverbindung (1).
    :width: 360px
 
 Wenn ein DC8020-Eingangsanschluss zwei Solarmodule gleichzeitig anschließen muss, beziehen Sie sich bitte auf die folgende Abbildung zum Aufladen über den Solarpanel-Anschluss (separat erhältlich, nicht im Lieferumfang enthalten).
 
 .. image:: _assets/templates/word_template/common_assets/charging/solar_adapter.png
-   :alt: Abbildung der Solarladeverbindung als Platzhalter 2.
+   :alt: Abbildung der Solarladeverbindung (2).
    :width: 360px
 
 .. list-table::
@@ -43,7 +43,7 @@ AUFLADEN ÜBER DAS AUTOLADEGERÄT (SEPARAT ERHÄLTLICH)
 Dieses Produkt kann mit einem 12-V-Autoladegerät aufgeladen werden. Stellen Sie sicher, dass das Autoladegerät und die 12-V-Autosteckdose (Zigarettenanzünder) gut verbunden sind.
 
 .. image:: _assets/templates/word_template/common_assets/charging/car_charge.png
-   :alt: Abbildung der Autoladeverbindung als Platzhalter.
+   :alt: Abbildung der Autoladeverbindung.
    :width: 360px
 
 | Fahrzeug

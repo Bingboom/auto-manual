@@ -4,8 +4,8 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from tools import process_build_queue
-from tools.queue_config_resolution import validate_family_config_request
+from tools.build_queue import process_build_queue
+from tools.build_queue.config_resolution import validate_family_config_request
 
 
 class TestWebPublishLocaleRouting(unittest.TestCase):

@@ -1,0 +1,80 @@
+[
+  {
+    "availability": 7,
+    "headings": 84,
+    "imageSource": "../../../../_static/manual-assets/_pool/c7/c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb.png",
+    "labels": [
+      {
+        "bottomPct": 22.998245085352668,
+        "insideArtwork": true,
+        "position": "absolute",
+        "text": "Jackery 40A Charging Cable\n(sold separately)",
+        "topPct": 12.498892099338804,
+        "userSelect": "auto"
+      },
+      {
+        "bottomPct": 69.49816531650507,
+        "insideArtwork": true,
+        "position": "absolute",
+        "text": "Jackery Parallel\nCommunication Cable\n(sold separately)",
+        "topPct": 52.49853757112722,
+        "userSelect": "auto"
+      }
+    ],
+    "loaded": true,
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "availability": 7,
+    "headings": 84,
+    "imageSource": "../../../../_static/manual-assets/_pool/c7/c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb.png",
+    "labels": [
+      {
+        "bottomPct": 18.40359252366696,
+        "insideArtwork": true,
+        "position": "absolute",
+        "text": "Jackery 40A Charging Cable\n(sold separately)",
+        "topPct": 3.997087142972733,
+        "userSelect": "auto"
+      },
+      {
+        "bottomPct": 62.20568007120317,
+        "insideArtwork": true,
+        "position": "absolute",
+        "text": "Jackery Parallel\nCommunication Cable\n(sold separately)",
+        "topPct": 42.99700623027753,
+        "userSelect": "auto"
+      }
+    ],
+    "loaded": true,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "availability": 7,
+    "headings": 84,
+    "imageSource": "../../../../_static/manual-assets/_pool/c7/c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb.png",
+    "labels": [
+      {
+        "bottomPct": 21.905959265778225,
+        "insideArtwork": true,
+        "position": "absolute",
+        "text": "Jackery 40A Charging Cable\n(sold separately)",
+        "topPct": 3.997988433492582,
+        "userSelect": "auto"
+      },
+      {
+        "bottomPct": 66.87452853909983,
+        "insideArtwork": true,
+        "position": "absolute",
+        "text": "Jackery Parallel\nCommunication Cable\n(sold separately)",
+        "topPct": 42.9972340960523,
+        "userSelect": "auto"
+      }
+    ],
+    "loaded": true,
+    "overflow": false,
+    "width": 320
+  }
+]

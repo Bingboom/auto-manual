@@ -1,0 +1,104 @@
+{
+  "figures": [
+    {
+      "slug": "ups_connection",
+      "section_id": "ups",
+      "physical_page": 170,
+      "clip_points": [
+        27,
+        210,
+        342,
+        337
+      ]
+    },
+    {
+      "slug": "ac_wall_charging",
+      "section_id": "charging",
+      "physical_page": 172,
+      "clip_points": [
+        30,
+        199,
+        343,
+        296
+      ]
+    },
+    {
+      "slug": "solar_four",
+      "section_id": "charging",
+      "physical_page": 173,
+      "clip_points": [
+        28,
+        25,
+        342,
+        166
+      ]
+    },
+    {
+      "slug": "car_charging",
+      "section_id": "charging",
+      "physical_page": 173,
+      "clip_points": [
+        28,
+        306,
+        341,
+        435
+      ]
+    },
+    {
+      "slug": "battery_connection",
+      "section_id": "extra_battery",
+      "physical_page": 171,
+      "clip_points": [
+        28,
+        99,
+        344,
+        305
+      ]
+    },
+    {
+      "slug": "battery_kit",
+      "section_id": "extra_battery",
+      "physical_page": 171,
+      "clip_points": [
+        28,
+        424,
+        344,
+        498
+      ]
+    },
+    {
+      "slug": "overview_front",
+      "section_id": "product_overview",
+      "physical_page": 162,
+      "clip_points": [
+        27,
+        74,
+        346,
+        240
+      ]
+    },
+    {
+      "slug": "overview_left",
+      "section_id": "product_overview",
+      "physical_page": 162,
+      "clip_points": [
+        27,
+        265,
+        344,
+        371
+      ]
+    },
+    {
+      "slug": "overview_right",
+      "section_id": "product_overview",
+      "physical_page": 162,
+      "clip_points": [
+        27,
+        390,
+        346,
+        499
+      ]
+    }
+  ],
+  "source_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de"
+}

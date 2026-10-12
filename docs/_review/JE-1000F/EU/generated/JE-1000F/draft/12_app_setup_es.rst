@@ -23,7 +23,7 @@ Alternativamente, escanee el código QR a continuación para descargar e instala
 2.2 Presione una vez el botón POWER principal del dispositivo para encenderlo.
 Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar que el dispositivo ha entrado en el modo de configuración de red. A continuación, pulse el botón "icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y abra los permisos de Bluetooth.
 
-.. image:: _assets/templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: Marcador de posición para el paso de añadir dispositivo en la aplicación.
    :width: 320px
 
@@ -55,7 +55,7 @@ Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar qu
 
 | Después de agregar exitosamente el dispositivo en la App, el icono del Wi-Fi en el dispositivo permanecerá siempre encendido.
 
-.. image:: _assets/templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: Marcador de posición de la pantalla de resultado de conexión en la aplicación.
    :width: 360px
 

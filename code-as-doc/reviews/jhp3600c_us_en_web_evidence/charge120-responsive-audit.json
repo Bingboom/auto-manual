@@ -1,0 +1,92 @@
+[
+  {
+    "contained": true,
+    "duplicateParagraph": 0,
+    "fontSize": "14.08px",
+    "label": {
+      "bottom": 282.0078125,
+      "height": 32.65625,
+      "left": 28.796875,
+      "right": 361.203125,
+      "top": 249.3515625,
+      "width": 332.40625,
+      "x": 28.796875,
+      "y": 249.3515625
+    },
+    "loaded": true,
+    "pageOverflow": false,
+    "panel": {
+      "bottom": 302,
+      "height": 177.1953125,
+      "left": 16,
+      "right": 374,
+      "top": 124.8046875,
+      "width": 358,
+      "x": 16,
+      "y": 124.8046875
+    },
+    "panelFill": "rgb(234, 235, 236)",
+    "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+    "width": 390
+  },
+  {
+    "contained": true,
+    "duplicateParagraph": 0,
+    "fontSize": "14.08px",
+    "label": {
+      "bottom": 319.078125,
+      "height": 48.984375,
+      "left": 28.796875,
+      "right": 291.203125,
+      "top": 270.09375,
+      "width": 262.40625,
+      "x": 28.796875,
+      "y": 270.09375
+    },
+    "loaded": true,
+    "pageOverflow": false,
+    "panel": {
+      "bottom": 339.0703125,
+      "height": 170.265625,
+      "left": 16,
+      "right": 304,
+      "top": 168.8046875,
+      "width": 288,
+      "x": 16,
+      "y": 168.8046875
+    },
+    "panelFill": "rgb(234, 235, 236)",
+    "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+    "width": 320
+  },
+  {
+    "contained": true,
+    "duplicateParagraph": 0,
+    "fontSize": "15.5236px",
+    "label": {
+      "bottom": -3039.828125,
+      "height": 38.8203125,
+      "left": 785.609375,
+      "right": 1098.53125,
+      "top": -3078.6484375,
+      "width": 312.921875,
+      "x": 785.609375,
+      "y": -3078.6484375
+    },
+    "loaded": true,
+    "pageOverflow": false,
+    "panel": {
+      "bottom": -3023.0703125,
+      "height": 271.4765625,
+      "left": 314.59375,
+      "right": 1131.625,
+      "top": -3294.546875,
+      "width": 817.03125,
+      "x": 314.59375,
+      "y": -3294.546875
+    },
+    "panelFill": "rgba(0, 0, 0, 0)",
+    "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+    "width": 1440
+  }
+]

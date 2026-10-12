@@ -25,7 +25,7 @@ def _one_page_pdf(directory: Path, width: float, height: float) -> Path:
     try:
         import fitz
     except ImportError:  # pragma: no cover - exercised only on a bare host
-        raise unittest.SkipTest("PyMuPDF is required to author the fixture")
+        raise unittest.SkipTest("PyMuPDF is required to author the fixture") from None
     path = directory / "fixture.pdf"
     document = fitz.open()
     document.new_page(width=width, height=height)

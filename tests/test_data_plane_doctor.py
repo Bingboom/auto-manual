@@ -3,7 +3,7 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from tools.data_plane_doctor import collect_data_plane_findings
+from tools.data.plane_doctor import collect_data_plane_findings
 from tools.validate_config import load_yaml
 
 

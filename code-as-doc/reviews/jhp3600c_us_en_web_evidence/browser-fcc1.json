@@ -1,0 +1,83 @@
+{
+  "desktop": {
+    "card": {
+      "bottom": 749.59375,
+      "height": 540.7578125,
+      "left": 314.59375,
+      "right": 1131.625,
+      "top": 208.8359375,
+      "width": 817.03125,
+      "x": 314.59375,
+      "y": 208.8359375
+    },
+    "columns": [
+      {
+        "bottom": 720.796875,
+        "height": 483.1640625,
+        "left": 343.390625,
+        "right": 705.5078125,
+        "top": 237.6328125,
+        "width": 362.1171875,
+        "x": 343.390625,
+        "y": 237.6328125
+      },
+      {
+        "bottom": 720.796875,
+        "height": 483.1640625,
+        "left": 740.703125,
+        "right": 1102.828125,
+        "top": 237.6328125,
+        "width": 362.125,
+        "x": 740.703125,
+        "y": 237.6328125
+      }
+    ],
+    "documentWidth": 1440,
+    "grid": "362.117px 362.125px",
+    "headingDisplay": "none",
+    "headingHeight": 0,
+    "imageLoaded": true,
+    "version": "Found an issue? Copy context Manual feedback context\nModel: JHP-3600C\nRegion: US\nLanguage: en\nVersion: git-20261005-31fd0692-fcc1\nPage: JHP-3600C/US/en/md/manual_jhp3600c_us_en.html Email support (hello@jackery.com)",
+    "viewport": 1440
+  },
+  "mobile": {
+    "card": {
+      "bottom": 3317.6328125,
+      "height": 848.1875,
+      "left": 16,
+      "right": 374,
+      "top": 2469.4453125,
+      "width": 358,
+      "x": 16,
+      "y": 2469.4453125
+    },
+    "columns": [
+      {
+        "bottom": 3026.1640625,
+        "height": 540.71875,
+        "left": 32,
+        "right": 358,
+        "top": 2485.4453125,
+        "width": 326,
+        "x": 32,
+        "y": 2485.4453125
+      },
+      {
+        "bottom": 3301.6328125,
+        "height": 269.875,
+        "left": 32,
+        "right": 358,
+        "top": 3031.7578125,
+        "width": 326,
+        "x": 32,
+        "y": 3031.7578125
+      }
+    ],
+    "documentWidth": 390,
+    "grid": "326px",
+    "headingDisplay": "none",
+    "headingHeight": 0,
+    "imageLoaded": true,
+    "viewport": 390
+  }
+}

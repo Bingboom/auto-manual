@@ -23,7 +23,7 @@
       "covered_annotations": [
         {
           "selector": "#section-2 > table",
-          "text": "Головна кнопка POWER LCD Порт DC 12 В 12 В⎓10 А макс. Кнопка LED-світла Кнопка DC / USB LED-світло Вихід USB-C 30 Вт 30 Вт макс., 5 В⎓3 А, 9 В⎓3 А, 12 В⎓2,5 А, 15 В⎓2 А, 20 В⎓1,5 А Кнопка AC Вихід USB-C 100 Вт 100 Вт макс., 5 В⎓3 А, 9 В⎓3 А, 12 В⎓3 А, 15 В⎓3 А, 20 В⎓5 А Вихід USB-A 18 Вт 18 Вт макс., 5-6 В⎓3 А, 6-9 В⎓2 А, 9-12 В⎓1,5 А Вихід змінного струму 230 В~ 50 Гц, 10 А макс., номінальна потужність 2200 Вт загалом, пікова потужність 4400 Вт"
+          "text": "Головна кнопка POWER LCD Порт DC 12 В 12 В⎓10 А макс. Кнопка LED-світла Кнопка DC / USB LED-світло Вихід USB-C 30 Вт 30 Вт макс., 5 В⎓3 А, 9 В⎓3 А, 12 В⎓2,5 А, 15 В⎓2 А, 20 В⎓1,5 А Кнопка AC Вихід USB-C 100 Вт 100 Вт макс., 5 В⎓3 А, 9 В⎓3 А, 12 В⎓3 А, 15 В⎓3 А, 20 В⎓5 А Вихід USB-A 18 Вт 18 Вт макс., 5-6 В⎓3 А, 6-9 В⎓2 А, 9-12 В⎓1,5 А Вихід змінного струму 230 В~ 50 Гц, 2200 Вт ном. потужності"
         },
         {
           "selector": "#section-2 > table",
@@ -310,6 +310,46 @@
           "text": "* Кабель для заряджання від автомобіля продається окремо."
         }
       ]
+    },
+    {
+      "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je2000f_eu_uk/app_add_device_panel.png",
+      "sha256": "8da4a952b5f6e596f445d921f59cc55663dcd547b0a3f75550b57827b762c964",
+      "source_page": 100,
+      "bbox_pt": [
+        32.3,
+        227.8,
+        334.6,
+        470.2
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Головна кнопка POWER Кнопка AC Кнопка DC / USB"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
+        "connect_result.png"
+      ],
+      "path": "assets/je2000f_eu_shared/app_connect_result.png",
+      "sha256": "6797b35ec9237f51288866c2a4b16a2a98052341c3692d7978883fd15fe3a842",
+      "source_page": 21,
+      "bbox_pt": [
+        49.0,
+        137.5,
+        321.0,
+        298.0
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+      "consume_before_presentation": true,
+      "reference_id": "app-connect-result"
     }
   ]
 }
