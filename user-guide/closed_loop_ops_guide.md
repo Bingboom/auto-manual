@@ -506,13 +506,15 @@ manifest 与附件，不连接实时 Base。
 
 ### 4.9.4 仓库现存素材入表（先跑 dry-run）
 
-仓库里四个目录的生产素材要逐个登记进三张 `04_资产*` 表，附件放文件本身。四个目录是：网页共享、网页机型、LaTeX、Word 公共素材。先跑只读 dry-run，核对暂存清单：
+已定的方向是：日常只在多维表一个地方管图，仓库里那份是同步命令生成的副本。第一步是把仓库里四个目录的生产素材逐个登记进三张 `04_资产*` 表，附件放文件本身。四个目录是：网页共享、网页机型、LaTeX、Word 公共素材。
+
+先用 lark-cli 只读保存三张表的线上快照，命令见设计文档 §11；再跑 dry-run，核对暂存清单：
 
 ```bash
-python -m tools.asset_pipeline.base_inventory --output-dir <新的或空的目录>
+python -m tools.asset_pipeline.base_inventory --output-dir <新的或空的目录> --live-snapshot <快照目录>
 ```
 
-这一步不调用飞书，只写 CSV 和 `summary.json`。之后的每一步都要操作者逐项确认：表结构变更、第一批写入、建议定义晋级。写入后要逐行回读。注册表外的建议定义在状态确定之前不能上传，否则下次 `sync-data` 会失败。方案、字段对应和当前盘点见 [`asset_base_inventory.md`](../code-as-doc/dev/asset_base_inventory.md)。
+这一步不调用飞书，只写 CSV 和 `summary.json`。每行都会标出动作：新建、保留、补字段，或等待晋级。之后的每一步都要操作者逐项确认：表结构变更、第一批写入、建议定义晋级。写入后要逐行回读。注册表外的建议定义在状态确定之前不能上传，否则下次 `sync-data` 会失败。方案、字段对应和当前盘点见 [`asset_base_inventory.md`](../code-as-doc/dev/asset_base_inventory.md)。
 
 ## 4.10 发布标记与回滚（K14）
 

@@ -21,6 +21,7 @@ from tools.asset_pipeline.base_inventory import (
     main,
     registry_sync_preview,
 )
+from tools.asset_pipeline.base_reconcile import SnapshotError, cell_text, load_snapshot
 from tools.asset_registry import APPROVED_STATUS, load_registry
 from tools.utils.path_utils import repo_root
 
@@ -33,6 +34,18 @@ PNG_1x1 = bytes.fromhex(
 
 def _sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def write_snapshot(directory: Path, tables: dict[str, list[tuple[str, dict]]]) -> Path:
+    """One lark-cli record-list page per table: field names, positional rows and record ids."""
+    directory.mkdir(parents=True, exist_ok=True)
+    for table, records in tables.items():
+        names = sorted({name for _record_id, fields in records for name in fields})
+        page = {"ok": True, "data": {"fields": names, "record_id_list": [record_id for record_id, _ in records],
+                                     "data": [[fields.get(name) for name in names] for _, fields in records],
+                                     "has_more": False}}
+        (directory / f"{table}_records_0.json").write_text(json.dumps(page, ensure_ascii=False), encoding="utf-8")
+    return directory
 
 
 def _use(language: str, model: str = "JE-1000H", region: str = "EU") -> IllustrationUse:
@@ -98,7 +111,7 @@ class RepositoryInventoryTests(unittest.TestCase):
     def test_gates_and_review_flags_agree(self):
         for row in self.inventory.exports:
             with self.subTest(file=row["repo_path"]):
-                self.assertIn(row["gate_status"], {"approved", "pending", "quarantine"})
+                self.assertIn(row["gate_status"], {"approved", "pending", "quarantine", "temporary", "missing"})
                 self.assertEqual(row["build_eligible"], "TRUE" if row["gate_status"] == "approved" else "FALSE")
                 self.assertEqual(row["visual_review_required"],
                                  "FALSE" if row["gate_status"] == "approved" else "TRUE")
@@ -216,7 +229,7 @@ class FixtureInventoryTests(unittest.TestCase):
         self.assertEqual((target["asset_key"], target["source_key"], target["source_page"], target["source_crop"]),
                          ("web/je2000e/eu/nl/battery_pack", "source/je2000e_nl_master", "7", "1 2 3 4"))
         self.assertEqual((target["needs_review"], target["pixel_size"], target["has_alpha"]), ("TRUE", "1x1", "TRUE"))
-        self.assertEqual(exports["docs/renderers/latex/assets/placeholder.png"]["gate_status"], "pending")
+        self.assertEqual(exports["docs/renderers/latex/assets/placeholder.png"]["gate_status"], "temporary")
         self.assertEqual(exports["docs/renderers/web/assets/shared/lcd/lcd_parallel.png"]["asset_key"],
                          "lcd/shared/parallel")
         added = exports["docs/renderers/web/assets/je2000e_eu_added/views_fr.png"]
@@ -230,7 +243,9 @@ class FixtureInventoryTests(unittest.TestCase):
         self.assertIn(("withdrawn-copy", "docs/renderers/web/assets/je2000e_eu_nl/stray_copy.png"), kinds)
         self.assertIn(("unregistered-master", "source/je2000e_nl_master"), kinds)
         master = inventory.sources["source/je2000e_nl_master"]
-        self.assertEqual((master["needs_review"], master["source_sha256"], master["page_count"]), ("TRUE", "ab" * 32, "30"))
+        self.assertEqual(master["archive_status"], "待校验")
+        self.assertEqual((master["needs_review"], master["source_sha256"], master["page_count"]),
+                         ("TRUE", "ab" * 32, "30"))
 
     def test_registry_rows_name_files_by_path_not_by_bytes(self):
         lockup = _sha(PNG_1x1 + b"k")
@@ -308,6 +323,84 @@ class FixtureInventoryTests(unittest.TestCase):
             for path in sorted(output.glob("*")):
                 path.unlink()
             output.rmdir()
+
+    def live_snapshot(self, *, placeholder_sha: str = "0" * 64) -> Path:
+        art = _sha(PNG_1x1 + b"b")
+        weee = "docs/templates/word_template/common_assets/symbols/weee.png"
+        # Outside the four art folders, so the dry run does not stage the snapshot itself.
+        return write_snapshot(self.root / "live-snapshot", {
+            "sources": [("recS1", {"source_key": "source/je2000e_nl_master"})],
+            "definitions": [
+                ("recD1", {"asset_key": "symbols/weee", "category": "标记", "language_dimension": ["中立"],
+                           "status": ["✅成品"], "textless_pending": False, "model_scope": "ALL",
+                           "region_scope": "ALL",
+                           "language_variants": None}),
+                ("recD2", {"asset_key": "web/je2000e/eu/nl/battery-pack", "category": "插图",
+                           "language_dimension": ["按语言"], "status": ["✅成品"], "model_scope": "JE-2000E",
+                           "region_scope": "EU", "language_variants": "nl"}),
+                ("recD3", {"asset_key": "mark/base_only", "category": "标记", "language_dimension": ["中立"],
+                           "status": ["✅成品"], "model_scope": "ALL", "region_scope": "ALL"}),
+            ],
+            "exports": [
+                ("recE1", {"export_key": "registry::docs/renderers/web/assets/je2000e_eu_nl/battery_pack.png",
+                           "repo_path": "docs/renderers/web/assets/je2000e_eu_nl/battery_pack.png",
+                           "asset_key": "web/je2000e/eu/nl/battery-pack", "content_sha256": art,
+                           "export_file": [{"file_token": "tok1", "name": "battery_pack.png", "size": 70}]}),
+                ("recE2", {"export_key": "registry::docs/renderers/latex/assets/placeholder.png",
+                           "repo_path": "docs/renderers/latex/assets/placeholder.png", "asset_key": "placeholder/slot",
+                           "content_sha256": placeholder_sha}),
+                ("recE3", {"export_key": "registry::docs/renderers/latex/assets/gone.png",
+                           "repo_path": "docs/renderers/latex/assets/gone.png", "asset_key": "placeholder/slot",
+                           "content_sha256": "1" * 64}),
+                ("recE4", {"export_key": "source/x::artifacts/weee.png", "artifact_kind": ["semantic-export"],
+                           "repo_path": weee, "asset_key": "symbols/weee", "content_sha256": "2" * 64}),
+            ],
+        })
+
+    def test_a_live_snapshot_gives_each_row_its_action_and_the_bases_own_keys(self):
+        self.build_tree()
+        inventory = build_inventory(self.root, tracked_only=False, live=load_snapshot(self.live_snapshot()))
+        exports = {row["repo_path"]: row for row in inventory.exports}
+        target = exports["docs/renderers/web/assets/je2000e_eu_nl/battery_pack.png"]
+        # The Base already names the file and approves it: its key and status win over the proposal.
+        self.assertEqual((target["asset_key"], target["gate_status"], target["action"], target["live_record_id"]),
+                         ("web/je2000e/eu/nl/battery-pack", "approved", "fill", "recE1"))
+        self.assertIn("artifact_kind", target["fill_fields"].split(";"))
+        self.assertEqual(target["needs_review"], "FALSE")
+        self.assertEqual(exports["docs/renderers/latex/assets/placeholder.png"]["action"], "update-file")
+        self.assertEqual(exports["docs/renderers/web/assets/shared/lcd/lcd_parallel.png"]["action"], "create")
+        definitions = inventory.definitions
+        self.assertEqual((definitions["web/je2000e/eu/nl/battery-pack"]["key_origin"],
+                          definitions["web/je2000e/eu/nl/battery-pack"]["action"]), ("base", "keep"))
+        self.assertNotIn("web/je2000e/eu/nl/battery_pack", definitions)
+        self.assertEqual(definitions["placeholder/slot"]["action"], "create")
+        self.assertEqual(definitions["lcd/shared/parallel"]["action"], "propose")
+        self.assertEqual(inventory.sources["source/je2000e_nl_master"]["action"], "keep")
+        self.assertEqual(inventory.sources["source/je2000e_nl_master"]["archive_status"], "")
+        kinds = {(item["kind"], item["subject"]) for item in inventory.findings}
+        for expected in (("live-key", "docs/renderers/web/assets/je2000e_eu_nl/battery_pack.png"),
+                         ("stale-attachment", "docs/renderers/latex/assets/placeholder.png"),
+                         ("orphan-export", "docs/renderers/latex/assets/gone.png"),
+                         ("stale-intake-export", "docs/templates/word_template/common_assets/symbols/weee.png"),
+                         ("base-drift", "symbols/weee"), ("base-only-definition", "mark/base_only")):
+            self.assertIn(expected, kinds)
+
+    def test_the_live_preview_shows_what_the_next_sync_writes_into_the_registry(self):
+        self.build_tree()
+        live = load_snapshot(self.live_snapshot())
+        inventory = build_inventory(self.root, tracked_only=False, live=live)
+        preview = registry_sync_preview(inventory, self.root, live)["next_sync_after_upload"]
+        # symbols/weee: the Base's category overwrites the registry's; the Base-only keys are appended.
+        self.assertEqual(preview["changed_keys"], ["symbols/weee"])
+        self.assertEqual(sorted(preview["appended_keys"]), ["mark/base_only", "web/je2000e/eu/nl/battery-pack"])
+        self.assertEqual((preview["uploaded_definitions"], preview["registry_loader"]), (1, "ok"))
+
+    def test_a_snapshot_without_a_table_is_refused(self):
+        snapshot = write_snapshot(self.root / "partial-snapshot", {"sources": []})
+        with self.assertRaisesRegex(SnapshotError, "definitions_records"):
+            load_snapshot(snapshot)
+        self.assertEqual(cell_text([{"id": "recX"}, {"id": "recY"}]), "recX,recY")
+        self.assertEqual(cell_text(["按语言"]), "按语言")
 
     def test_output_must_be_new_or_empty(self):
         with TemporaryDirectory() as temp:

@@ -18,15 +18,20 @@ dry run had to propose are flagged ``needs_review`` instead of being presented
 as facts. Definitions the registry already holds are staged in its exact
 spelling, and summary.json previews what the next sync-data would write to
 data/asset_registry.csv if the staged definitions were live.
+
+Given ``--live-snapshot`` (lark-cli JSON of the three live tables, saved
+read-only beforehand), each row also gets an action against what the Base
+already holds; see tools/asset_pipeline/base_reconcile.py.
 """
 from __future__ import annotations
 
 import argparse
 import collections
+from collections.abc import Callable
 import csv
 import hashlib
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
@@ -35,11 +40,24 @@ from typing import Any
 
 from PIL import Image
 
+from tools.asset_pipeline.base_reconcile import (
+    GIT_EXPORT_PREFIX,
+    LiveIndex,
+    LiveRecord,
+    SnapshotError,
+    load_snapshot,
+    reconcile_definitions,
+    reconcile_exports,
+    reconcile_sources,
+    report_duplicates,
+)
 from tools.asset_registry import (
     APPROVED_STATUS,
     LOCALIZED_LANGUAGE_DIMENSION,
+    MISSING_STATUS,
     NEUTRAL_LANGUAGE_DIMENSION,
     QUARANTINED_STATUS,
+    TEMPORARY_STATUS,
     REGISTRY_RELATIVE_PATH,
     AssetRecord,
     AssetRegistryError,
@@ -47,7 +65,7 @@ from tools.asset_registry import (
     load_registry_bytes,
     registered_exports,
 )
-from tools.sync_asset_registry import OWNED_COLUMNS, merge_registry_csv
+from tools.sync_asset_registry import OWNED_COLUMNS, definition_rows, merge_registry_csv
 from tools.utils.path_utils import PathSegments, Paths, latex_renderer_of, repo_root, word_common_assets_of
 
 SCHEMA = "asset-base-inventory/v1"
@@ -61,29 +79,34 @@ ILLUSTRATIONS_GLOB = "*_illustrations.json"
 FORBIDDEN_OUTPUT_ROOTS = (PathSegments.DOCS, PathSegments.DATA, "tools")
 KEY_PREFIXES = {"web-shared": "web-shared", "web-target": "web", "print": "print", "word": "word"}
 REGISTRY_ORIGIN = REGISTRY_RELATIVE_PATH.name
+# 04_资产源文件.archive_status for a master registered without its files yet.
+SOURCE_TO_VERIFY = "待校验"
 PENDING = "pending"
-REGISTRY_GATES = {APPROVED_STATUS: "approved", QUARANTINED_STATUS: "quarantine"}
+BASE_ORIGIN = "base"
+# The registry status behind a gate, in the gate vocabulary 04_资产定义 already uses.
+REGISTRY_GATES = {APPROVED_STATUS: "approved", QUARANTINED_STATUS: "quarantine",
+                  TEMPORARY_STATUS: "temporary", MISSING_STATUS: "missing"}
 
 # 04_资产源文件 fields first, then review-only columns that are never uploaded.
 SOURCE_COLUMNS = (
     "source_key", "source_kind", "source_format", "source_scope_model", "source_scope_region",
     "source_scope_lang", "document_revision", "registry_revision", "page_count", "page_width_mm",
-    "page_height_mm", "source_sha256", "notes",
-    "source_pointer", "source_name", "registered_in", "needs_review",
+    "page_height_mm", "source_sha256", "archive_status", "notes",
+    "source_pointer", "source_name", "registered_in", "needs_review", "action", "live_record_id",
 )
 # 04_资产定义 fields first, then review-only columns that are never uploaded.
 DEFINITION_COLUMNS = (
     "asset_key", "category", "language_dimension", "status", "textless_pending", "model_scope",
-    "region_scope", "language_variants", "gate_status", "build_eligible", "visual_review_required",
-    "source_key", "source_page", "source_crop", "notes",
-    "replaces", "git_exports", "key_origin", "registered_in", "needs_review",
+    "region_scope", "language_variants", "override_for", "gate_status", "build_eligible",
+    "visual_review_required", "source_key", "source_page", "source_crop", "notes",
+    "replaces", "git_exports", "key_origin", "registered_in", "needs_review", "action", "live_record_id",
 )
 # 04_资产导出物 fields, the two proposed new fields (pixel_size, has_alpha), then review-only columns.
 EXPORT_COLUMNS = (
     "export_key", "asset_key", "artifact_kind", "format", "repo_path", "size_bytes", "content_sha256",
     "locale", "gate_status", "build_eligible", "visual_review_required", "source_key", "source_page",
     "notes", "pixel_size", "has_alpha",
-    "source_crop", "registered_in", "needs_review",
+    "source_crop", "registered_in", "needs_review", "action", "live_record_id", "fill_fields",
 )
 FINDING_COLUMNS = ("kind", "subject", "detail")
 
@@ -161,6 +184,8 @@ class Identity:
     aliases: tuple[str, ...] = ()
     # A registered export with the same bytes, when the row does not list this file.
     copy_of: str = ""
+    # The registry or Base status behind the key; empty when nobody has decided yet.
+    status: str = ""
 
 
 @dataclass
@@ -182,6 +207,7 @@ class Context:
     # Lower-case region and language codes the registry names, for reading unregistered file paths.
     regions: frozenset[str]
     languages: frozenset[str]
+    live: LiveIndex | None = None
 
 
 @dataclass
@@ -505,10 +531,10 @@ def resolve_identity(art: ArtFile, ctx: Context, inventory: Inventory) -> Identi
         # The button manifest reuses registry keys (button/power); the registry row then approves.
         record = next((item for item in ctx.records if item.asset_key == manifest.key), None)
         identity = Identity(manifest.key, manifest.registered_in, (manifest.registered_in, *manifests),
-                            record=record, manifest=manifest, uses=uses)
+                            record=record, manifest=manifest, uses=uses, status=record.status if record else "")
     elif matches:
-        identity = Identity(keys[0], REGISTRY_ORIGIN, (REGISTRY_ORIGIN, *manifests),
-                            record=matches[0].record, uses=uses, aliases=keys[1:], copy_of=copy_of)
+        identity = Identity(keys[0], REGISTRY_ORIGIN, (REGISTRY_ORIGIN, *manifests), record=matches[0].record,
+                            uses=uses, aliases=keys[1:], copy_of=copy_of, status=matches[0].record.status)
     elif uses:
         identity = Identity(derived_web_key(art.repo_path, uses, ctx.conventions), "illustrations", manifests,
                             uses=uses)
@@ -520,9 +546,30 @@ def resolve_identity(art: ArtFile, ctx: Context, inventory: Inventory) -> Identi
     return identity
 
 
+def adopt_live_key(art: ArtFile, identity: Identity, ctx: Context, inventory: Inventory) -> Identity:
+    """A key the dry run could only propose yields to the one the Base already uses for this file.
+
+    The Base row for the file names the key; a Base definition with the proposed
+    key confirms it. Either way the Base definition's status then decides the gate.
+    """
+    if ctx.live is None or identity.origin not in {"illustrations", "derived"}:
+        return identity
+    row = ctx.live.git_exports.get(art.repo_path)
+    key = (row.text("asset_key") if row is not None else "") or identity.asset_key
+    definition = ctx.live.definitions.get(key)
+    if definition is None and key == identity.asset_key:
+        return identity
+    if key != identity.asset_key:
+        inventory.find("live-key", art.repo_path,
+                       f"the Base uses {key}; the dry run would propose {identity.asset_key}")
+    status = definition.text("status") if definition is not None else ""
+    return replace(identity, asset_key=key, origin=BASE_ORIGIN, registered_in=(BASE_ORIGIN, *identity.registered_in),
+                   status=status)
+
+
 def _gate(identity: Identity) -> str:
-    """Only a registry row's status approves; every other file waits for the operator."""
-    return REGISTRY_GATES.get(identity.record.status, PENDING) if identity.record is not None else PENDING
+    """Only a status someone decided, in the registry or the Base, approves; other files wait."""
+    return REGISTRY_GATES.get(identity.status, PENDING) if identity.status else PENDING
 
 
 def _gate_fields(gate: str) -> dict[str, str]:
@@ -588,7 +635,7 @@ def export_row(art: ArtFile, identity: Identity, ctx: Context) -> dict[str, str]
         notes.append("另有登记行指向同一文件：" + "、".join(identity.aliases))
     source_key, page, crop = _source_link(identity, ctx)
     return {
-        "export_key": f"git:{art.repo_path}", "asset_key": identity.asset_key, "artifact_kind": art.kind,
+        "export_key": f"{GIT_EXPORT_PREFIX}{art.repo_path}", "asset_key": identity.asset_key, "artifact_kind": art.kind,
         "format": art.fmt, "repo_path": art.repo_path, "size_bytes": str(art.size_bytes),
         "content_sha256": art.sha256, "pixel_size": art.pixel_size, "has_alpha": art.has_alpha,
         # Free-text locale: the web_locale select stays the web-composite gate's (en/fr/es/shared).
@@ -605,6 +652,7 @@ def _registry_definition(record: AssetRecord, raw: dict[str, str]) -> dict[str, 
     """A registry row in the registry's own spelling, so sync-data would overlay it unchanged."""
     return {
         "asset_key": record.asset_key, **{field: raw.get(column) or "" for field, column in OWNED_COLUMNS},
+        "override_for": raw.get("override_for") or "",
         **_gate_fields(REGISTRY_GATES.get(record.status, PENDING)), "notes": raw.get("备注") or "",
         "key_origin": REGISTRY_ORIGIN, "registered_in": {REGISTRY_ORIGIN}, "needs_review": "FALSE",
         "git_exports": 0, "replaces": set(), "languages": set(),
@@ -630,10 +678,32 @@ def _proposed_definition(art: ArtFile, identity: Identity, locale: str) -> dict[
     }
 
 
-def _add_definition(inventory: Inventory, art: ArtFile, identity: Identity, export: dict[str, str]) -> None:
+def _live_definition(key: str, record: LiveRecord) -> dict[str, Any]:
+    """A definition only the Base holds, in the spelling sync-data would write into the registry."""
+    owned = definition_rows([{"fields": record.fields}]).get(key, {})
+    return {
+        "asset_key": key, **{field: owned.get(column, "") for field, column in OWNED_COLUMNS},
+        "override_for": record.text("override_for"),
+        **_gate_fields(REGISTRY_GATES.get(record.text("status"), PENDING)),
+        "source_key": record.text("source_key"), "source_page": record.text("source_page"),
+        "source_crop": record.text("source_crop"), "notes": record.text("notes"),
+        "key_origin": BASE_ORIGIN, "registered_in": {BASE_ORIGIN}, "needs_review": "FALSE",
+        "git_exports": 0, "replaces": set(), "languages": set(),
+    }
+
+
+def _new_definition(art: ArtFile, identity: Identity, export: dict[str, str], ctx: Context) -> dict[str, Any]:
+    live = ctx.live.definitions.get(identity.asset_key) if ctx.live is not None else None
+    if identity.origin == BASE_ORIGIN and live is not None:
+        return _live_definition(identity.asset_key, live)
+    return _proposed_definition(art, identity, export["locale"])
+
+
+def _add_definition(inventory: Inventory, art: ArtFile, identity: Identity, export: dict[str, str],
+                    ctx: Context) -> None:
     definition = inventory.definitions.get(identity.asset_key)
     if definition is None:
-        definition = inventory.definitions[identity.asset_key] = _proposed_definition(art, identity, export["locale"])
+        definition = inventory.definitions[identity.asset_key] = _new_definition(art, identity, export, ctx)
     definition["git_exports"] += 1
     definition["registered_in"].update(identity.registered_in)
     definition["replaces"].update(replace for use in identity.uses for replace in use.replaces)
@@ -693,22 +763,51 @@ def _byte_findings(files: list[ArtFile], ctx: Context, inventory: Inventory) -> 
             inventory.find("missing-file", repo_path, "a manifest names this file but it is not in the tree")
 
 
-def build_inventory(root: Path, *, tracked_only: bool = True) -> Inventory:
-    """Stage every production-art file, its identity and its master, from the working tree."""
+def _drift(definitions: dict[str, dict[str, Any]]) -> Callable[[str, LiveRecord], list[str]]:
+    """The Base-owned columns where a live definition differs from a staged registry definition."""
+    def compare(key: str, live: LiveRecord) -> list[str]:
+        owned = definition_rows([{"fields": live.fields}]).get(key, {})
+        staged = definitions[key]
+        return [f"{field}: Base {owned.get(column, '')!r}, registry {staged[field]!r}"
+                for field, column in OWNED_COLUMNS if owned.get(column, "") != staged[field]]
+    return compare
+
+
+def _reconcile(inventory: Inventory, ctx: Context) -> None:
+    if ctx.live is None:
+        return
+    registry_keys = {record.asset_key for record in ctx.records}
+    reconcile_exports(inventory.exports, ctx.live, inventory.find)
+    reconcile_definitions(inventory.definitions, ctx.live, registry_keys, _drift(inventory.definitions),
+                          inventory.find)
+    reconcile_sources(inventory.sources, ctx.live)
+    report_duplicates(ctx.live, inventory.find)
+
+
+def build_inventory(root: Path, *, tracked_only: bool = True, live: LiveIndex | None = None) -> Inventory:
+    """Stage every production-art file, its identity and its master, from the working tree.
+
+    With a live snapshot, keys the Base already uses win over proposals and every
+    row gets an action against the live tables.
+    """
     inventory = Inventory()
     ctx = load_context(root, inventory)
+    ctx.live = live
     files = [_art_file(path, root, ctx.roots) for path in _listed_files(root, ctx.roots, tracked_only=tracked_only)]
     for record in ctx.records:
         raw = ctx.registry_rows.get(record.asset_key, {})
         inventory.definitions[record.asset_key] = _registry_definition(record, raw)
     for art in files:
-        identity = resolve_identity(art, ctx, inventory)
+        identity = adopt_live_key(art, resolve_identity(art, ctx, inventory), ctx, inventory)
         export = export_row(art, identity, ctx)
         inventory.exports.append(export)
-        _add_definition(inventory, art, identity, export)
+        _add_definition(inventory, art, identity, export, ctx)
     _source_rows(ctx, inventory)
     _illustration_masters(ctx, inventory)
+    for source in inventory.sources.values():
+        source.setdefault("archive_status", SOURCE_TO_VERIFY)
     _byte_findings(files, ctx, inventory)
+    _reconcile(inventory, ctx)
     return inventory
 
 
@@ -732,33 +831,51 @@ def _definition_rows(inventory: Inventory) -> list[dict[str, str]]:
     return rows
 
 
-def registry_sync_preview(inventory: Inventory, root: Path) -> dict[str, Any]:
+def _owned_record(row: dict[str, str]) -> dict[str, Any]:
+    return {"fields": {"asset_key": row["asset_key"], **{field: row[field] for field, _column in OWNED_COLUMNS}}}
+
+
+def _merge(existing: str, records: list[dict[str, Any]], source: str) -> tuple[str, Any, str]:
+    """sync-data's merge, then its loader check: (merged text, merge stats, "ok" or the loader's error)."""
+    text, stats = merge_registry_csv(existing, records)
+    try:
+        load_registry_bytes(text.encode("utf-8"), source=source)
+    except AssetRegistryError as exc:
+        return text, stats, str(exc)
+    return text, stats, "ok"
+
+
+def registry_sync_preview(inventory: Inventory, root: Path, live: LiveIndex | None = None) -> dict[str, Any]:
     """What the next sync-data would write to data/asset_registry.csv were the staged definitions live.
 
     sync-data overlays the Base-owned columns onto the registry's rows, appends a
     row for every Base key the registry lacks, then re-parses the result with the
-    registry loader (tools/sync_asset_registry.py). This runs the same steps.
+    registry loader (tools/sync_asset_registry.py). This runs the same steps. With
+    a live snapshot it also runs them on the live definitions plus the ones the
+    upload would create, which is what the next sync-data after the upload sees.
     """
     existing = (root / REGISTRY_RELATIVE_PATH).read_text(encoding="utf-8")
-    staged = {"registered": [], "proposed": []}
-    for row in _definition_rows(inventory):
-        group = "registered" if row["key_origin"] == REGISTRY_ORIGIN else "proposed"
-        staged[group].append({"fields": {"asset_key": row["asset_key"],
-                                         **{field: row[field] for field, _column in OWNED_COLUMNS}}})
-    registered_text, registered = merge_registry_csv(existing, staged["registered"])
-    proposed_text, proposed = merge_registry_csv(existing, staged["registered"] + staged["proposed"])
-    try:
-        load_registry_bytes(proposed_text.encode("utf-8"), source="<staged definitions>")
-        loader = "ok"
-    except AssetRegistryError as exc:
-        loader = str(exc)
-    without_status = sum(1 for item in staged["proposed"] if not item["fields"]["status"])
-    return {
-        "registered_definitions": {"rows": len(staged["registered"]), "registry_unchanged": registered_text == existing,
-                                   "changed_keys": list(registered.updated)},
-        "proposed_definitions": {"rows": len(staged["proposed"]), "would_append": len(proposed.appended),
-                                 "without_status": without_status, "registry_loader": loader},
+    rows = _definition_rows(inventory)
+    registered = [_owned_record(row) for row in rows if row["key_origin"] == REGISTRY_ORIGIN]
+    proposed = [_owned_record(row) for row in rows if row["key_origin"] not in {REGISTRY_ORIGIN, BASE_ORIGIN}]
+    registered_text, registered_stats, _loader = _merge(existing, registered, "<staged registry definitions>")
+    _text, proposed_stats, loader = _merge(existing, registered + proposed, "<staged definitions>")
+    preview: dict[str, Any] = {
+        "registered_definitions": {"rows": len(registered), "registry_unchanged": registered_text == existing,
+                                   "changed_keys": list(registered_stats.updated)},
+        "proposed_definitions": {"rows": len(proposed), "would_append": len(proposed_stats.appended),
+                                 "without_status": sum(1 for item in proposed if not item["fields"]["status"]),
+                                 "registry_loader": loader},
     }
+    if live is not None:
+        uploads = [_owned_record(row) for row in rows if row.get("action") == "create"]
+        records = [{"fields": record.fields} for record in live.definitions.values()] + uploads
+        _text, stats, loader = _merge(existing, records, "<Base definitions after the upload>")
+        preview["next_sync_after_upload"] = {
+            "base_definitions": len(live.definitions), "uploaded_definitions": len(uploads),
+            "changed_keys": list(stats.updated), "appended_keys": list(stats.appended), "registry_loader": loader,
+        }
+    return preview
 
 
 def _git_commit(root: Path) -> str:
@@ -766,7 +883,11 @@ def _git_commit(root: Path) -> str:
     return result.stdout.strip() if result.returncode == 0 else ""
 
 
-def summarize(inventory: Inventory, root: Path) -> dict[str, Any]:
+def _actions(rows: Any) -> dict[str, int]:
+    return dict(sorted(collections.Counter(row.get("action", "") for row in rows).items()))
+
+
+def summarize(inventory: Inventory, root: Path, live: LiveIndex | None = None) -> dict[str, Any]:
     exports = inventory.exports
     bytes_by_kind: collections.Counter = collections.Counter()
     for row in exports:
@@ -788,7 +909,12 @@ def summarize(inventory: Inventory, root: Path) -> dict[str, Any]:
             "asset_exports": sum(1 for row in exports if row["needs_review"] == "TRUE"),
         },
         "findings": dict(sorted(collections.Counter(item["kind"] for item in inventory.findings).items())),
-        "registry_sync_preview": registry_sync_preview(inventory, root),
+        "registry_sync_preview": registry_sync_preview(inventory, root, live),
+        "live_actions": None if live is None else {
+            "asset_sources": _actions(inventory.sources.values()),
+            "asset_definitions": _actions(inventory.definitions.values()),
+            "asset_exports": _actions(exports),
+        },
     }
 
 
@@ -831,20 +957,25 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output-dir", type=Path, required=True,
                         help="new or empty directory outside docs/, data/ and tools/")
     parser.add_argument("--repo-root", type=Path, default=None, help="repository root (default: this checkout)")
+    parser.add_argument("--live-snapshot", type=Path, default=None,
+                        help="directory of lark-cli record-list JSON for the three live tables, saved read-only")
     args = parser.parse_args(argv)
     root = (args.repo_root or repo_root()).resolve()
     try:
         check_output_dir(args.output_dir, root)
-        inventory = build_inventory(root)
-    except InventoryError as exc:
+        live = load_snapshot(args.live_snapshot) if args.live_snapshot is not None else None
+        inventory = build_inventory(root, live=live)
+    except (InventoryError, SnapshotError) as exc:
         print(f"[asset-inventory] ERROR: {exc}", file=sys.stderr)
         return 2
-    summary = summarize(inventory, root)
+    summary = summarize(inventory, root, live)
     write_inventory(inventory, summary, args.output_dir)
     rows = summary["rows"]
     print(f"[asset-inventory] staged {rows['asset_sources']} sources, {rows['asset_definitions']} definitions, "
           f"{rows['asset_exports']} exports into {args.output_dir}")
     print(f"[asset-inventory] needs review: {summary['needs_review']}; findings: {summary['findings']}")
+    if summary["live_actions"] is not None:
+        print(f"[asset-inventory] against the live tables: {summary['live_actions']}")
     return 0
 
 

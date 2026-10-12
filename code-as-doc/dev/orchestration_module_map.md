@@ -236,6 +236,9 @@ analytics is configured; unknown alias shapes pass through unchanged.
 - [`tools/asset_pipeline/base_inventory.py`](../../tools/asset_pipeline/base_inventory.py)
   - read-only dry run staging the four Git production-art folders as `04_资产*` rows; never calls Feishu ([design](asset_base_inventory.md))
   - identity from the shared manifests, registry paths and Web illustration manifests, plus a preview of the `sync-data` registry merge
+- [`tools/asset_pipeline/base_reconcile.py`](../../tools/asset_pipeline/base_reconcile.py)
+  - reads a saved lark-cli snapshot of the three live tables and gives each staged row its action (create / keep / fill / update-file / propose)
+  - reports Base-versus-repository disagreements (stale attachments, drifted or Base-only definitions) without overwriting either side
 
 ## 3. Build Bundle And Export Modules
 
