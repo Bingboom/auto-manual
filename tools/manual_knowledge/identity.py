@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import re
 
-GENERATOR_VERSION = "manual-knowledge/1.2"
+GENERATOR_VERSION = "manual-knowledge/1.3"
 MACHINE_SURFACE = {"source_kind": "published_html", "generation_mode": "html_compatibility",
                    "target_mode": "same_source_native", "generator_version": GENERATOR_VERSION}
 _PRINTED = re.compile(r"\d+(?:\.\d+)*")
@@ -16,8 +16,9 @@ _PRINTED = re.compile(r"\d+(?:\.\d+)*")
 _SEVERITY_LABELS = {
     "warning": "WARNING WARNUNG AVERTISSEMENT AVVERTENZA ADVERTENCIA AVISO WAARSCHUWING OSTRZEŻENIE ПОПЕРЕДЖЕННЯ",
     "caution": "CAUTION VORSICHT ATTENTION ATTENZIONE PRECAUCIÓN CUIDADO OPGELET PRZESTROGA УВАГА",
+    # IMPORTANT is a note-level word, as in the renderers' callout spec (Phase 2 D13).
     "note": ("NOTE NOTES HINWEIS HINWEISE REMARQUE REMARQUES NOTA NOTAS OPMERKING OPMERKINGEN "
-             "UWAGA UWAGI ПРИМІТКА ПРИМІТКИ OBSERVACIONES"),
+             "UWAGA UWAGI ПРИМІТКА ПРИМІТКИ OBSERVACIONES OBSERVAÇÃO OBSERVAÇÕES IMPORTANT IMPORTANTE"),
     "tip": "TIP TIPS TIPP CONSEJOS CONSEILS SUGGERIMENTO DICA DICAS WSKAZÓWKA WSKAZÓWKI ПОРАДА ПОРАДИ",
 }
 SEVERITY = {label.casefold(): severity for severity, labels in _SEVERITY_LABELS.items()

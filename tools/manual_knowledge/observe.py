@@ -34,7 +34,7 @@ from tools.utils.path_utils import PathSegments, knowledge_observation_reports_o
 
 ARTIFACT = "manual-observations.json"
 SCHEMA = "auto-manual-knowledge-observations/v1"
-GENERATOR_VERSION = "manual-observations/0.4"
+GENERATOR_VERSION = "manual-observations/0.5"
 FEATURE_SOURCE = f"{PathSegments.DATA}/{CAPABILITIES_CSV}"
 # Line-leading list glyphs only; signs, asterisks and numbering are content.
 _BULLETS = re.compile(r"^[ \t]*[•●▪◦‧·][ \t]*", re.MULTILINE)

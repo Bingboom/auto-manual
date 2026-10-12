@@ -1,6 +1,4 @@
 variant_key,label,disposition,note
-JBP-2000B/EU/fr,IMPORTANT,pending_style_guide,对应英文 CAUTION；Style Guide 裁定前不映射（Phase 2 立项 D13）
-JBP-3600A/EU/fr,Important,pending_style_guide,对应英文 CAUTION；Style Guide 裁定前不映射（Phase 2 立项 D13）
 JE-1000F/EU/nl,⚠,icon_only,图标标签不足以区分 warning 与 caution，不猜（P1-4 §3.1）
 JE-1000F/EU/pl,⚠,icon_only,图标标签不足以区分 warning 与 caution，不猜（P1-4 §3.1）
 JE-1000F/EU/pt,⚠,icon_only,图标标签不足以区分 warning 与 caution，不猜（P1-4 §3.1）
@@ -10,4 +8,3 @@ JE-1000H/EU/pl,OSTRZE,source_defect,OSTRZEŻENIE 被拆开；在权威源修正�
 JE-2000E/EU/nl,OK-knop. OPMERKING,source_defect,上一步骤的文字并入了标签；在权威源修正（P1-4 §3.2）
 JE-2000F/EU/nl,⚠,icon_only,图标标签不足以区分 warning 与 caution，不猜（P1-4 §3.1）
 JE-2000F/EU/pl,⚠,icon_only,图标标签不足以区分 warning 与 caution，不猜（P1-4 §3.1）
-JE-3600A/EU/es,Importante,pending_style_guide,对应英文 CAUTION，同一手册其他 CAUTION 用 PRECAUCIÓN；Style Guide 裁定前不映射（Phase 2 立项 D13）

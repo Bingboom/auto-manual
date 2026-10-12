@@ -128,7 +128,7 @@ P2-4 试点验收）；Phase 2b 与 Phase 3 需另行立项。
 `Important`、`IMPORTANT`、`Importante` 在对应位置都是英文版的 CAUTION。P1-4 把
 JBP-3600A fr 的 `Important` 记为"英文，未翻译"并不准确：这是法语 / 西语使用了词表之外的
 警示等级词，应按 Style Guide 的等级词条款决定是纳入映射还是修源（D13）。目前没有任何检查会在
-出现新的 `unknown` 标签时提示。
+出现新的 `unknown` 标签时提示。（D13 已于 2026-10-11 裁定，见 §5。）
 
 ### 4.2 修订号基本不可用
 
@@ -181,7 +181,7 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 | D10 | 分类与对齐方法 | 确定性规则：多语受控词表加实体锚点（数字、单位、型号、接口名），同一语料输出字节一致。由现有网关模型出候选作为 2a 之后的可选增量，另行确认；不用向量检索 |
 | D11 | 修订号 | 不推断；比较结果带 `revision_alignment`（`same` / `different` / `unknown`）。正式修订号由发布元数据补充，另行立项 |
 | D12 | 跨修订比较的归属 | 归 Phase 3（与上位计划 §9 一致），P2-0 更正 P1-4 §3.3"跨修订比较归 Phase 2"的说法；2a 产物记录 `source_sha256`，将来可从 Hello-Docs Git 历史重建语料做比较，不新建归档存储 |
-| D13 | 警示级别词表 | 补 `ПОРАДА`；`Important` / `IMPORTANT` / `Importante` 按 Style Guide 等级词条款处理：允许则映射为 caution，不允许则作为源缺陷交内容负责人；加 §7 P2-0 的 `unknown` 标签护栏 |
+| D13 | 警示级别词表 | 补 `ПОРАДА`；`Important` / `IMPORTANT` / `Importante` 按 Style Guide 等级词条款处理：允许则映射为 caution，不允许则作为源缺陷交内容负责人；加 §7 P2-0 的 `unknown` 标签护栏。2026-10-11 裁定：`IMPORTANT` 是 Style Definition 允许的等级词，按渲染器的 callout 契约（[`callout.py`](../../tools/component_specs/callout.py)）映射为 note，不是原拟的 caution；西语 `IMPORTANTE` 同；葡语 `Observação` 补入 note |
 | D14 | 试点验收门槛 | 高置信度齐套候选的人工确认率 ≥ 80%（确认为真实差异，或差异有可解释的原因）；全部误报记录原因 |
 
 ## 6. 契约
@@ -364,7 +364,7 @@ JBP-2000B/EU/de 的两条 `HINWEISE` 渲染为表格，JS-100I/EU/en 的两条�
 
 实现（P2-0）：词表补 `ПОРАДА`（tip），生成器升为 `manual-knowledge/1.2`。Style Guide 尚未裁定
 `Important` / `IMPORTANT` / `Importante`，按 D13 暂不映射；它们与 `⚠` 图标标签、P1-4 记录的源缺陷一起
-登记在 [`machine_surface_known_callout_labels.csv`](../../data/machine_surface_known_callout_labels.csv)。
+登记在 [`machine_surface_known_callout_labels.csv`](../../data/machine_surface_known_callout_labels.csv)（D13 裁定后这三行已删，见本节末）。
 清单逐版本记录 `unknown` 标签，`manifest` 命令报告新增与已不再出现的标签（上位计划 §5.5–§5.6）。
 
 实现（P2-1）：`tools/manual_knowledge/observe.py` 实现 §6.1 的命令与产物和 §6.2 的条目契约，
@@ -384,7 +384,7 @@ fresh，两次运行字节一致，产物约 5.7 MB。覆盖：105 个版本识�
 各语言条目与英文版主题完全一致的比例为 de 94%、fr 90%、es 97%、it 92%、nl 91%、pl 87%、
 pt 91%、uk 92%，余下差异多为译文本身增删了信息。已知缺口：葡语 `Observação`（note）不在
 等级词表中，JA-AD600A/EU/pt 的两段注记没有记为警示（安全章节里的一段记为安全条目，另一段
-未抽取）；补词表要升级语料生成器，留待 D13 的 Style Guide 裁定时一并处理。
+未抽取）；补词表要升级语料生成器，留待 D13 的 Style Guide 裁定时一并处理（已补入，见本节末）。
 
 实现（P2-3）：`relations.py` 实现 §6.4、§6.5，生成器升为 `manual-observations/0.3`；词表补西语
 `eliminación`、葡语 `eliminação`（废弃处理，只影响 1 条，P2-2 的统计不变）。10-11 本地重建上
@@ -416,6 +416,16 @@ JS-100I/EU/en 的两条提示是普通段落，数字在全文中被搜到，判
 `charging`。10-11 本地重建上共 3,336 条条目、1,410 条关系，`medium` 齐套差异主张从 42 条降到 33 条。
 `high` 8/8 确认，D14 门槛通过；`medium` 试点 21/21、全量 32/33 确认，建议交内容负责人的候选取
 `high` 与 `medium`。已知召回缺口：条目内部少了一句、又没有数字可比时发现不了。
+
+实现（D13 裁定，2026-10-11）：`IMPORTANT`（不区分大小写）与西语 `IMPORTANTE` 映射为 note，与渲染器的
+callout 契约一致；葡语 `Observação` / `Observações` 补入 note。生成器升为 `manual-knowledge/1.3` 与
+`manual-observations/0.5`；已知例外表删去三行 `pending_style_guide`。新增两条测试：两套词表都认识的标签
+必须给出同一等级；例外表中的标签必须仍是 `unknown`。10-11 本地重建前后对比：网页 HTML 字节一致，语料
+只有这三个警示框的 `severity` 由 `unknown` 变为 note（另有各版本 `machine_surface` 中的生成器版本），
+`unknown` 警示框由 12 个降为 9 个，`manifest` 的标签报告为 9 个已知、0 个新增、0 个过期。观察产物共
+3,337 条条目、1,410 → 1,412 条关系：JA-AD600A/EU/pt 的两段注记成为警示（其中一段原记为安全条目），
+与其他八种语言组成完整的簇；三处 `IMPORTANT` 类标签仍以 `severity` 差异（caution 对 note）报出，
+对应验收记录 §3.2 第 15 条。
 
 每个 PR 的本地验证按 [`AGENTS.md`](../../AGENTS.md) §8.5：`ruff`、`unittest`、改动
 `tools/` 边界时的 `check_maintainability_guardrails`、文档链接检查；改 `path_utils` 时加

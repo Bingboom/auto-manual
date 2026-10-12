@@ -60,9 +60,10 @@ JE-1000F 与 JE-2000F 的 nl / pl / pt / uk Git 原生版本里，安全须知�
 | JE-1000H / EU / nl | 警示标签显示为 `WAARSCHU`，正文末尾多出 `UWING`：单词 WAARSCHUWING 被拆到两个单元格 |
 | JE-1000H / EU / pl | 警示标签为 `OSTRZE`，同类拆词（OSTRZEŻENIE） |
 | JE-2000E / EU / nl | 警示标签为 `OK-knop. OPMERKING`：上一步骤的"OK-knop."被并入标签；正文也在句中截断 |
-| JBP-3600A / EU / fr | 警示标签为 `Important`，位置对应英文版 CAUTION（2026-10-11 更正：原记为"英文，未翻译"；实为词表外的法语等级词，是否映射待 Style Guide 裁定，见 [Phase 2 立项](machine_readable_knowledge_observation.md) D13） |
+| JBP-3600A / EU / fr | 警示标签为 `Important`，位置对应英文版 CAUTION（2026-10-11 更正：原记为"英文，未翻译"；实为词表外的法语等级词，是否映射待 Style Guide 裁定，见 [Phase 2 立项](machine_readable_knowledge_observation.md) D13；2026-10-11 裁定为 note 级等级词，与渲染器一致，比英文版的 CAUTION 低一级，仍交内容负责人） |
 
-这 4 处在机读面中均为 `severity: unknown`，不会被误判成正确级别。
+这 4 处在机读面中均为 `severity: unknown`，不会被误判成正确级别（2026-10-11 起 JBP-3600A / EU / fr
+一处按 D13 记为 note，其余 3 处仍为 `unknown`）。
 
 ### 3.3 已知边界（Phase 1 不处理）
 

@@ -101,7 +101,7 @@ D14 门槛的对象，只出现在印刷修订号相同的版本之间，10-11 �
 | 12 | JA-AD600A / it | 兼容表中 Explorer 2000 v2 的充电时间写作约 3.7 小时（英文版 5.6），Explorer 3000 Pro 的电流写作 8 A（英文版 12 A） | `JA-AD600A/EU/en/md/manual_jaad600a_eu_en.html#important-safety-instructions` | medium |
 | 13 | JE-1000H / nl、pl | 警示标签拆词 `WAARSCHU` / `OSTRZE`（P1-4 §3.2，仍未修） | `JE-1000H/EU/nl/md/manual_je1000h_eu_nl.html#belangrijke-veiligheidsinformatie` | medium |
 | 14 | JE-2000E / nl | Wi-Fi 提示的标签为 `OK-knop. OPMERKING`，正文截断（P1-4 §3.2，仍未修） | `JE-2000E/EU/nl/md/manual_je2000e_eu_nl.html#app-instellen` | medium |
-| 15 | JBP-2000B / fr、JBP-3600A / fr、JE-3600A / es | 警示标签为 `IMPORTANT` / `Important` / `Importante`，待 D13 的 Style Guide 裁定 | `JBP-2000B/EU/fr/md/manual_jbp2000b_eu_fr.html#connexions`、`JBP-3600A/EU/fr/md/manual_jbp3600a_eu_fr.html#connexions`、`JE-3600A/EU/es/md/manual_je3600a_eu_es.html#cargando` | medium |
+| 15 | JBP-2000B / fr、JBP-3600A / fr、JE-3600A / es | 英文版的 CAUTION 在这里写作 `IMPORTANT` / `Important` / `Importante`。2026-10-11 补记：D13 裁定这三个是 note 级等级词（与渲染器一致），等级比英文版低一级，应改为该语言的 CAUTION 等级词 | `JBP-2000B/EU/fr/md/manual_jbp2000b_eu_fr.html#connexions`、`JBP-3600A/EU/fr/md/manual_jbp3600a_eu_fr.html#connexions`、`JE-3600A/EU/es/md/manual_je3600a_eu_es.html#cargando` | medium |
 | 16 | JE-3600A / de | App 设置章节的三条 NOTE 写作 `TIPP` | `JE-3600A/EU/de/md/manual_je3600a_eu_de.html#app-einstellung` | medium |
 | 17 | JE-100C / de、es、fr、it | 充电温度提示为 NOTE（`HINWEIS` / `NOTA` / `REMARQUE`），en、nl、pl、pt、uk 为 CAUTION | `JE-100C/EU/en/md/manual_je100c_eu_en.html#charging` | medium |
 | 18 | JE-1000H、JE-3600A / de | 禁止明火图标的说明写作 "Vermeiden Sie Hitze."（避免受热），其他语言为"远离火源" | `JE-1000H/EU/de/md/manual_je1000h_eu_de.html#bedeutung-der-symbole`、`JE-3600A/EU/de/md/manual_je3600a_eu_de.html#bedeutung-der-symbole` | low |
@@ -152,7 +152,7 @@ D14 门槛的对象，只出现在印刷修订号相同的版本之间，10-11 �
 
 Phase 2a 验收标准全部满足。D14 门槛以 `high` 8/8 通过；`medium` 全量 33 条中 32 条确认，误报
 原因清楚。建议交内容负责人的候选取 `high` 与 `medium`，`low` 只供维护者参考。§3.2 的问题清单
-交内容负责人，在各版本声明的权威源修改后重新发布；D13 的等级词裁定仍待 Style Guide。
+交内容负责人，在各版本声明的权威源修改后重新发布；D13 的等级词已于 2026-10-11 裁定（补记，见 §3.2 第 15 条）。
 Phase 2b（跨区域比较）与 Phase 3（审核与回流）需另行立项。
 
 ## 5. 复现
