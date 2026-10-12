@@ -16,7 +16,7 @@ desktop/mobile pages, since a standalone target's `conf.py` does not configure t
 Fresh external frozen symbol tables require source-bound asset admission before evidence sealing.
 The actual symbol rows must pass native PDF glyph and real transparency checks, including RGBA
 rectangles; name/meaning matching alone is insufficient. See the
-[Web artwork contract](../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)
+[Web artwork contract](../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)
 for fields, outlined-caption review and the fixed pixel tolerance. Existing sealed receipts keep their
 original verification. Asset-intake supports unchanged retained native vectors as SVG, preserving
 group opacity; SVG cannot use fill overrides or stroke suppression.

@@ -32,7 +32,7 @@ Add new notes for this topic here, not to the hub.
 Safety intro pages are now maintained as fixed RST templates and then materialized into the bundle.
 The standalone user maintenance instructions page lives in shared templates and is included before the `symbols` page.
 
-For FridgeGuard Web safety pages, EN/FR/ES reuse the same risk banner, warning lead, SVG icons and compact two-column styles. Keep each native source's wording. Desktop review must check aligned left edges and visible triangles; phone review must check that the stacked columns fill the content width. Maintain the shared [safety style contract](../../docs/renderers/contracts/STYLE_DEFINITION.md#1011-例外模板自带双分支的页安全页fcc), rather than adjusting each language separately.
+For FridgeGuard Web safety pages, EN/FR/ES reuse the same risk banner, warning lead, SVG icons and compact two-column styles. Keep each native source's wording. Desktop review must check aligned left edges and visible triangles; phone review must check that the stacked columns fill the content width. Maintain the shared [safety style contract](../../docs/renderers/contracts/STYLE_DEFINITION/layer-walkthrough.md#1011-例外模板自带双分支的页安全页fcc), rather than adjusting each language separately.
 
 Primary inputs:
 

@@ -29,7 +29,7 @@ Document boundary (open the others only when the task needs them; see §10):
 
 ## 3. Workflow Rules
 
-- Before any manual-to-Web asset work, follow the [Web artwork reuse order](docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则): inventory existing assets and record reuse decisions before extracting; preserve complete panels and App screenshot frames. A new language or source PDF alone is not a reason to recrop.
+- Before any manual-to-Web asset work, follow the [Web artwork reuse order](docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则): inventory existing assets and record reuse decisions before extracting; preserve complete panels and App screenshot frames. A new language or source PDF alone is not a reason to recrop.
 - Do not create one config per model just because the model changed.
 - Keep the shared family config pattern with [`configs/config.us.yaml`](configs/config.us.yaml) and [`configs/config.ja.yaml`](configs/config.ja.yaml).
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.
@@ -189,8 +189,8 @@ When the active model is Fable, do not do the work yourself. Never read the docu
 
 Each agent and sub-agent loads this file and pays again for every document it opens.
 
-- Treat the [build guide](code-as-doc/build_doc_guide.md), [workflow guide](user-guide/hello_auto-doc.md) and [`code-as-doc/README.md`](code-as-doc/README.md) as indexes: open only the topic page the task needs.
+- Treat the [build guide](code-as-doc/build_doc_guide.md), [workflow guide](user-guide/hello_auto-doc.md), [style definition](docs/renderers/contracts/STYLE_DEFINITION.md), [optimization checklist](code-as-doc/next_optimization_checklist.md) and [`code-as-doc/README.md`](code-as-doc/README.md) as indexes: open only the topic page the task needs.
 - Logs, registries, archives and `code-as-doc/reviews/` are lookups: grep by ID or keyword and read the hit, unless the task is about that file.
-- In long contracts such as `STYLE_DEFINITION.md`, `grep -n` the section and read that range.
+- In a long doc that has no index yet, `grep -n` the section and read that range.
 - When delegating, hand each sub-agent the exact files or sections its piece needs, never "read the docs first".
 - New content goes to the owning page; the maintainability guardrails cap the hubs' line counts.

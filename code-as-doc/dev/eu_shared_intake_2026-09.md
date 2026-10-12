@@ -20,7 +20,7 @@ JE-300D's five multi-port combination tables remain separate definition debt.
 
 The new style entry is additive: all 33 existing style definitions and all
 layout tokens remain unchanged. Non-Web adapters for text references are
-semantic projections only. See [style definition](../../docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference).
+semantic projections only. See [style definition](../../docs/renderers/contracts/STYLE_DEFINITION/appendix-b-boundaries.md#authored-text-references-hb-table-reference).
 
 ## Validation and current acceptance boundary
 

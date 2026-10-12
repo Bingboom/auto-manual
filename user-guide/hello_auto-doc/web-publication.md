@@ -5,7 +5,7 @@ Add new notes for this topic here, not to the hub.
 
 外部冻结稿的符号表在封存前自动核对真实透明度和权威 PDF 的原始图形。
 共用文件名、符号含义一致或文件有 alpha 通道，都不能代替准入；转曲说明仍需逐行视觉核对。
-字段和边界见 [Web 素材规则](../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+字段和边界见 [Web 素材规则](../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)。
 
 说明书工作台首页优先展示生产概览、资产引用、回流复用缺口与交付风险。使用“口径与证据”查看来源时间、去重和对象；活动尚未记录不能读作 0。Word/印刷包链接仍在交付矩阵，操作导航移至“工作入口、系统健康与架构”，运行失败和待处理任务入口保留在首页。参考 [工作台统计契约](../../code-as-doc/dev/workspace_production_evidence.md)。
 
@@ -26,7 +26,7 @@ It is not the full maintainer command reference; use [`../code-as-doc/build_doc_
 复用底图并调整原生标签。新增语言或新 PDF 不构成重裁理由。
 
 确实缺图、清晰度不足或图形有差异时，先在目标审查记录填写
-[选材记录表](../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)，
+[选材记录表](../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)，
 说明查过什么以及为何不能复用，再提取。完整大图保留灰底、圆角、外框和引线；
 App 截图保留手机顶部状态栏及四边。透明底要求只用于 LCD／状态图标、独立按钮符号等小图，
 不按显示尺寸判断；完整大图缩小显示也不去底。
