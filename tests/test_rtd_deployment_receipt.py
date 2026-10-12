@@ -159,11 +159,27 @@ class DeploymentReceiptTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "safety limits"):
                 receipt.source_fingerprint(self.web)
 
-    def test_source_storage_budget_retains_file_size_and_count_limits(self):
-        for limit in ("MAX_FILE_BYTES", "MAX_FILES"):
+    def test_source_storage_budget_retains_file_size_and_source_count_limits(self):
+        for limit in ("MAX_FILE_BYTES", "MAX_SOURCE_FILES"):
             with self.subTest(limit=limit), patch.object(receipt, limit, 1):
                 with self.assertRaisesRegex(ValueError, "safety limits"):
                     receipt.source_fingerprint(self.web)
+
+    def test_source_count_budget_does_not_expand_served_or_network_inventory(self):
+        # The two frozen fixture files plus this asset fit the source budget
+        # exactly while exceeding the unchanged output/network file budget.
+        (self.web / "figure.svg").write_text("<svg/>")
+        receipt.write_deployment_receipt(self.app, None)
+        with patch.object(receipt, "MAX_SOURCE_FILES", 3), \
+                patch.object(receipt, "MAX_FILES", 2):
+            self.assertTrue(receipt.source_fingerprint(self.web))
+            with self.assertRaisesRegex(ValueError, "safety limits"):
+                receipt.write_deployment_receipt(self.app, None)
+            with self.assertRaisesRegex(ValueError, "Invalid deployment file inventory"):
+                self.verify()
+            (self.web / "overflow.md").write_text("extra source")
+            with self.assertRaisesRegex(ValueError, "safety limits"):
+                receipt.source_fingerprint(self.web)
 
     def test_real_frozen_sphinx_build_emits_verifiable_receipt(self):
         (self.web / "conf.py").write_text(

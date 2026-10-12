@@ -53,4 +53,4 @@ for old/new URL and version mapping, release-site evidence and recovery checks.
 These are planning/manual acceptance requirements; no new command, automated
 gate, hosting change or online write is introduced by the documentation update.
 
-Git-only frozen Web releases keep a separate 1152 MiB source-storage budget; served output and network verification remain limited to 512 MiB. Per-file and file-count limits are unchanged. See the [Git-only transaction contract](dev/web_publish_pipeline.md#22-git-only-transaction).
+Git-only frozen Web releases allow 1152 MiB and 20,000 source files; served output and network verification retain their separate 512 MiB and 10,000-file budgets. The 32 MiB per-file limit is unchanged. See the [Git-only transaction contract](dev/web_publish_pipeline.md#22-git-only-transaction).

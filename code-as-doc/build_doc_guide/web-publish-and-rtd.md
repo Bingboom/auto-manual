@@ -73,7 +73,8 @@ by evidence verification; print artifacts and symlinks remain prohibited.
 
 Frozen Web source storage is bounded separately from served output and network
 inventories. The [Git-only release contract](../dev/web_publish_pipeline.md#22-git-only-transaction)
-sets the 1 GiB source budget and retains the output, per-file and file-count limits.
+sets the 1152 MiB / 20,000-file source budgets. Served output and online verification
+retain 512 MiB / 10,000-file budgets; all inventories keep the 32 MiB per-file limit.
 
 RTD renders the frozen Web snapshot with the root-only portal extension:
 `python -m sphinx -b html -D extensions=myst_parser,tools.rtd.portal <frozen-web-source> <html-output>`.
