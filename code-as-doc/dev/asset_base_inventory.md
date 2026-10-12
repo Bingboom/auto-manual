@@ -4,7 +4,12 @@ Status: proposed
 
 Updated: 2026-10-12
 
-2026-10-12 已执行：§4 的表结构变更，以及 205 个已有导出物行的补字段，都已回读核对（见 §9）。新建行要等操作者说「入库」。
+2026-10-12 已执行，都已回读核对（见 §9）：
+- §4 的表结构变更；
+- 205 个已有导出物行的补字段；
+- 操作者说「入库」后的第一批写入：53 个母版、281 个定义、1069 个导出物连同附件。
+
+下一步是 §9 第 3 步的同步命令。
 
 dry-run 已实现：[`tools/asset_pipeline/base_inventory.py`](../../tools/asset_pipeline/base_inventory.py) 负责盘点，[`base_reconcile.py`](../../tools/asset_pipeline/base_reconcile.py) 负责和线上表对账。两者都只读工作区和事先保存的线上快照，不调用飞书。Base 结构变更和线上写入，都要等操作者确认后才做。
 
@@ -31,7 +36,7 @@ dry-run 已实现：[`tools/asset_pipeline/base_inventory.py`](../../tools/asset
 
 ## 3. 三张表各放什么
 
-以下是对照 2026-10-12 线上快照得出的数字。
+以下是第一批写入前、对照 2026-10-12 线上快照得出的数字。写入后的行数见 §9。
 
 **`04_资产源文件`**：一个设计母版（`.ai`/PDF）一行。
 - 线上已有 4 行，保留不动。
@@ -132,6 +137,10 @@ dry-run 已实现：[`tools/asset_pipeline/base_inventory.py`](../../tools/asset
 - 文件在 Base 里已有行，就用那一行的 key。例如 `js100i_eu_en` 的 13 个文件，Base 用的是 `web/js-100i/eu/en/...`，报 `live-key`。
 - 建议的 key 和 Base 里某个定义重合，也用 Base 的定义。
 - 两种情况下，门禁都取 Base 定义的状态。
+- 例外：建议的 key 如果是注册表某一行的 key，就不沿用那一行的状态。
+  - 注册表行只批准它按路径和哈希列出的文件。这个文件不在其中，否则第 2 步就已经命中。
+  - 这样的文件保持 `pending`，报 `registry-key-elsewhere`。
+  - 例如 `je2000f_eu_en/charging_ac.png`：它的建议 key 与注册表行 `web/je2000f/eu/en/charging_ac` 相同，但那一行批准的是 `je2000f_eu_en_full_frames/` 里的另一份字节。
 - 注册表命名的文件不让位；如果 Base 那一行用了别的 key，报 `live-key-differs`，交操作者判断。
 
 ## 7. 门禁（gate）
@@ -197,7 +206,7 @@ dry-run 用同一个合并函数做了两次预演，结果写在 `summary.json`
 
 **第 1 步：结构变更（2026-10-12 已完成）。** 见 §4。
 
-**第 2 步：第一批写入。** 只在操作者明确说「入库」后才做。
+**第 2 步：第一批写入（2026-10-12 已完成）。** 只在操作者明确说「入库」后才做。
 - 写之前重新保存一次快照、重跑 dry-run，确保动作是按最新线上状态算的。
 - 按动作执行：
   - `create`：新建 53 个母版元数据行、281 个注册表定义、1069 个导出物行；导出物的附件取自 `repo_path`。
@@ -206,7 +215,8 @@ dry-run 用同一个合并函数做了两次预演，结果写在 `summary.json`
   - `propose`：等第 3 步晋级。
 - 导出物能关联到定义的就关联；定义还在建议阶段的，先只填 `asset_key` 文本，晋级后再关联。
 - 每写一行都回读，核对 `record_id`、`export_key`、`content_sha256`，并确认附件的 `file_token` 不为空。
-- 写完后把附件全部下载下来比对 SHA-256，结果写进 `对账结果`。下载要用到 `internal-api-drive-stream.feishu.cn`，云环境的网络设置需要放行它。
+- 写完后把附件全部下载下来比对 SHA-256，结果写进 `对账结果`。
+- 上传和下载都用 lark-cli 1.0.49 的 `+record-upload-attachment` 和 `+record-download-attachment`。云环境现有的网络设置就够用，不需要另外放行域名。
 - 不删行；已有的定义、入库行和网页组合图行一律不改。
 
 2026-10-12 补字段记录：
@@ -219,6 +229,37 @@ dry-run 用同一个合并函数做了两次预演，结果写在 `summary.json`
   - 这 205 行的其他字段一个没变，附件都在；
   - 计划外的 256 行没有任何变化，总行数仍是 461。
 - 用写后的快照重跑 dry-run，这 205 行都变成 `keep`。
+
+2026-10-12 第一批写入记录：
+- 操作者说「入库」后，先重新保存快照。它与 dry-run 用的快照逐行相同：母版 4 行、定义 223 行、导出物 461 行。
+- 用 `+record-batch-create` 新建，每批最多 200 行：
+  - 母版 53 行，`archive_status` 都是「待校验」。
+  - 定义 281 行，拼写与注册表一致。有 `source_key` 的 266 行同时关联了 `source_record`。
+  - 导出物 1069 行，`export_key` 都是 `registry::<仓库路径>`：
+    - 定义已在 Base 里的 379 行关联了 `asset_record`；其余 690 行的定义还在建议阶段，只填 `asset_key` 文本；
+    - 有 `source_key` 的 757 行关联了 `source_record`。
+- 附件按 main `623d163` 的文件逐行上传，共 192.9 MB。每行上传前先读一次单元格，已经有附件就跳过，所以重试不会传出第二份。
+- 回读：每张表写完都重新保存快照，逐格核对：
+  - 新行与写入用的数据逐格一致，关联也一致（这份数据有 8 行偏离了计划，见下文）；
+  - 每个新导出物行恰好一个附件，`file_token` 与上传返回的相同，文件名和大小也对；
+  - 原有的行一个没变；
+  - 写完后三张表分别是 57、504、1530 行。
+- 下载比对：1274 个 `registry::` 行的附件全部下载，包括新建的 1069 行和原有的 205 行。
+  - SHA-256 都与 `content_sha256` 和仓库文件相同。
+  - `对账结果` 统一写成「一致：附件 SHA-256 与 content_sha256、仓库文件相同（2026-10-12 下载核对，main 623d163）」。
+  - 写后的快照显示只有这一列变了；256 个入库行和网页组合图行没动。
+- 用写后的快照重跑 dry-run（规则修正之前）：
+  - 母版 57 行、导出物 1274 行全部是 `keep`；定义 `keep` 499，待晋级 688；修正规则后的结果见 §12；
+  - 下次 `sync-data` 仍然只改原有的 6 处不一致，并追加 25 个 Base 独有定义；这批新定义不改注册表，加载器检查通过。
+- 原有的 205 个 `registry::` 行里只有 1 行关联了 `asset_record`。补关联要改现有行，留给操作者决定。
+- 写完后逐行对照计划，发现 `je2000f_eu_en/` 下有 8 个文件按 `approved` 建了行，而计划里它们是 `pending`。
+  - 原因：建导出物用的是定义写入之后的 dry-run。这 8 个文件的建议 key 与刚写进 Base 的注册表定义同名，dry-run 就沿用了那几条定义的 ✅成品。
+  - 但那几行注册表批准的是 `je2000f_eu_en_full_frames/` 里的另一份字节。规则已在 §6 修正，加了测试。
+  - 这 8 行已改回计划里的值：`gate_status` 为 `pending`，`build_eligible` 取消，`visual_review_required` 勾选。回读核对过，其他行都没变。
+  - 现在线上 1274 个 `registry::` 行的门禁和 `asset_key`，与批准的计划逐行一致：approved 566、pending 698、quarantine 6、temporary 4。
+- 同一目录下还有 2 个太阳能裁图：`charging_solar_adapter.png` 和 `charging_solar_direct.png`。
+  - 它们的建议 key 与上传前就在 Base 里的定义同名，所以计划里本来就是 `approved`。
+  - 按修正后的规则，它们应为 `pending`。要不要改线上这两行，等操作者决定。
 
 **第 3 步：同步命令（Base → 仓库）。** 这是日常流程的核心，参照 `sync_web_composites` 实现：
 - 只取 `approved`、`build_eligible`、恰好一个附件，且附件 SHA-256 等于 `content_sha256` 的行。
@@ -311,6 +352,7 @@ CSV 带 UTF-8 BOM，Excel 和飞书导入都能直接认出中文。多值字段
 | `illustration-without-path` | 插图清单的条目没有可用的路径 |
 | `live-key` | 采用了 Base 已有的 key，而不是 dry-run 的建议 |
 | `live-key-differs` | 注册表命名的文件，Base 那一行用了别的 key |
+| `registry-key-elsewhere` | 建议的 key 是注册表某一行的 key，但那一行列出的是别的文件；这个文件保持 `pending`（见 §6） |
 | `stale-attachment` | Base 里这个仓库文件的附件已经过时，要 `update-file` |
 | `stale-intake-export` | 入库行指向的仓库文件后来改过，入库附件是旧字节 |
 | `orphan-export` | Base 里有行，但仓库四个目录里已经没有这个文件 |
@@ -320,7 +362,16 @@ CSV 带 UTF-8 BOM，Excel 和飞书导入都能直接认出中文。多值字段
 
 ## 12. 当前盘点结果
 
-数据来自 main `1fcac3d` 和 2026-10-12 的线上快照。
+数据来自 main `1fcac3d` 和 2026-10-12 第一批写入前的线上快照。
+
+第一批写入后，用修正后的规则（§6）在写后快照上重跑：
+- 母版都是 `keep`，定义只剩 688 个待晋级。
+- 导出物 1272 个 `keep`，2 个 `fill`。
+  - 这 2 个是 §9 末尾的太阳能裁图。线上还是 `approved`，暂存已是 `pending`。
+  - dry-run 对已有行只补空字段，不改门禁，所以只报出要勾上 `visual_review_required`。
+  - 改不改等操作者决定。
+- 新增 `registry-key-elsewhere` 10 个，所以需要复核的导出物是 705 个。暂存的门禁是 approved 564、pending 700、quarantine 6、temporary 4；线上比它多 2 个 approved，就是这两张裁图。
+- 其余问题的数量都没有变。
 
 **总量**
 - 57 个母版、1187 个定义、1274 个导出物。
@@ -363,4 +414,4 @@ CSV 带 UTF-8 BOM，Excel 和飞书导入都能直接认出中文。多值字段
 3. 按 §8 分批晋级建议定义，先从没有登记的文件最多的目录开始。
 4. 如果需要按文件标出渲染面，先对模板和渲染器做一次引用普查。
 5. 业务 Base 结构清单要整库重导一次。2026-10-12 的整库导出显示，7 月 20 日以来其他表也有结构变化，例如 KO 列、钉钉字段、`Workflow_action` 的 `Web Publish` 选项。lark-cli 1.0.49 导出的公式明细改成按字段名书写，很多表的字段顺序也变了。这些不属于本次范围，本次只更新了三张资产表。
-6. 上传附件要用 lark-cli 1.0.69 或更新版本的 `+record-upload-attachment`（见 [`lark-cli-bitable-ops`](../../.agents/skills/lark-cli-bitable-ops/SKILL.md)）；CI 现在固定的是 1.0.49。
+6. 更正 [`lark-cli-bitable-ops`](../../.agents/skills/lark-cli-bitable-ops/SKILL.md) 命令参考里的版本说明。那里写上传附件要 1.0.69 或更新版本，但 CI 固定的 1.0.49 已经有 `+record-upload-attachment` 和 `+record-download-attachment`，2026-10-12 的第一批写入就是用它完成的。

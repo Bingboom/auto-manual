@@ -552,6 +552,8 @@ def adopt_live_key(art: ArtFile, identity: Identity, ctx: Context, inventory: In
     The Base row for the file names the key; a Base definition with the proposed
     key confirms it. Only a Base definition makes the identity the Base's own, with
     its status deciding the gate; a Base row's key without one stays a proposal.
+    A registry row's definition never confirms it: that row approves the files it
+    lists, and resolve_identity found this file is not one of them.
     """
     if ctx.live is None or identity.origin not in {"illustrations", "derived"}:
         return identity
@@ -561,10 +563,17 @@ def adopt_live_key(art: ArtFile, identity: Identity, ctx: Context, inventory: In
         inventory.find("live-key", art.repo_path,
                        f"the Base uses {key}; the dry run would propose {identity.asset_key}")
     definition = ctx.live.definitions.get(key)
-    if definition is None:
+    if definition is None or key in ctx.registry_rows:
         return replace(identity, asset_key=key)
     return replace(identity, asset_key=key, origin=BASE_ORIGIN, registered_in=(BASE_ORIGIN, *identity.registered_in),
                    status=definition.text("status"))
+
+
+def report_registry_key(art: ArtFile, identity: Identity, ctx: Context, inventory: Inventory) -> None:
+    """A proposed key a registry row already uses names another file's asset; the file stays pending."""
+    if identity.origin in {"illustrations", "derived"} and identity.asset_key in ctx.registry_rows:
+        inventory.find("registry-key-elsewhere", art.repo_path,
+                       f"registry row {identity.asset_key} lists other files; its status does not cover this one")
 
 
 def _gate(identity: Identity) -> str:
@@ -799,6 +808,7 @@ def build_inventory(root: Path, *, tracked_only: bool = True, live: LiveIndex | 
         inventory.definitions[record.asset_key] = _registry_definition(record, raw)
     for art in files:
         identity = adopt_live_key(art, resolve_identity(art, ctx, inventory), ctx, inventory)
+        report_registry_key(art, identity, ctx, inventory)
         export = export_row(art, identity, ctx)
         inventory.exports.append(export)
         _add_definition(inventory, art, identity, export, ctx)

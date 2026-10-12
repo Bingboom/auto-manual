@@ -396,6 +396,27 @@ class FixtureInventoryTests(unittest.TestCase):
                          ("base-drift", "symbols/weee"), ("base-only-definition", "mark/base_only")):
             self.assertIn(expected, kinds)
 
+    def test_a_proposed_key_another_files_registry_row_uses_stays_pending(self):
+        # The registry approves the full frame; the manifest-bound crop of the same name proposes the same key.
+        frame = self.put("docs/renderers/web/assets/je2000e_eu_nl_full_frames/battery_pack.png", PNG_1x1 + b"F")
+        self.build_tree(extra_registry="web/je2000e/eu/nl/battery_pack,,插图,按语言,✅成品,FALSE,JE-2000E,EU,"
+                                       f"docs/renderers/web/assets/je2000e_eu_nl_full_frames,nl,battery_pack.png:{frame},\n")
+        crop = "docs/renderers/web/assets/je2000e_eu_nl/battery_pack.png"
+        # After the registry definitions are uploaded, the Base holds the same approved definition.
+        uploaded = write_snapshot(self.root / "live-snapshot", {"sources": [], "exports": [], "definitions": [
+            ("recD1", {"asset_key": "web/je2000e/eu/nl/battery_pack", "category": "插图",
+                       "language_dimension": ["按语言"], "status": ["✅成品"], "model_scope": "JE-2000E",
+                       "region_scope": "EU", "language_variants": "nl"})]})
+        for live in (None, load_snapshot(uploaded)):
+            inventory = build_inventory(self.root, tracked_only=False, live=live)
+            exports = {row["repo_path"]: row for row in inventory.exports}
+            self.assertEqual((exports[crop]["asset_key"], exports[crop]["gate_status"], exports[crop]["needs_review"]),
+                             ("web/je2000e/eu/nl/battery_pack", "pending", "TRUE"))
+            full_frame = exports["docs/renderers/web/assets/je2000e_eu_nl_full_frames/battery_pack.png"]
+            self.assertEqual(full_frame["gate_status"], "approved")
+            self.assertIn(("registry-key-elsewhere", crop),
+                          {(item["kind"], item["subject"]) for item in inventory.findings})
+
     def test_the_live_preview_shows_what_the_next_sync_writes_into_the_registry(self):
         self.build_tree()
         live = load_snapshot(self.live_snapshot())
