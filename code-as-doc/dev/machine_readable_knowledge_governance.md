@@ -98,8 +98,9 @@ PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phas
 | 权威源（语料 `release_path` / `authority`） | EU 版本数（10-11） | 编辑入口 | 审批 |
 | --- | ---: | --- | --- |
 | `git_only_frozen` / `git_native` | 47 | 发布包不可改，修正后重建为新版本再发布（[发布流水线](web_publish_pipeline.md)） | 操作者指定内容；工程 PR + Hello-Docs 发布 PR |
-| `unclassified` / `unknown` | 62 | 文档构建表 `Git_ref` 指向的源，多为 `docs/templates/` 与冻结的 phase2 输入（[门户](rtd_manual_portal.md)） | 同上；先确认绑定 |
-| 评审分支（queue） | 0 | 回写 R 类改 `docs/_review/`、模板同步 T 类改 `docs/templates/`、F6 改飞书源表（[回写设计](../architecture/Feishu_Cloud_Doc_Backport_Design.md)、[模板同步](template_sync_runbook.md)） | 各自的门禁与回读 |
+| `unclassified` / `unknown` | 62 | 文档构建表 `Git_ref` 指向的源，多为 `docs/templates/` 与冻结的 phase2 输入（[门户](rtd_manual_portal.md)） | 操作者指定内容；工程 PR + Hello-Docs 发布 PR；先确认绑定 |
+| 评审分支（`queue`） | 0 | 回写 R 类改 `docs/_review/`、模板同步 T 类改 `docs/templates/`、F6 改飞书源表（[回写设计](../architecture/Feishu_Cloud_Doc_Backport_Design.md)、[模板同步](template_sync_runbook.md)） | 各自的门禁与回读 |
+| `legacy` / `unknown` | 0 | 没有发布元数据，同 `unclassified` | 操作者指定内容；工程 PR + Hello-Docs 发布 PR；先确认绑定 |
 
 ### 4.3 批准措辞已有唯一的库
 
@@ -135,7 +136,8 @@ PR 切分与验收标准。§5 的决策已于 2026-10-12 按建议确认，Phas
 ## 6. 契约
 
 §6.1 已随 P3-0 定稿，由 `python -m tools.manual_knowledge.findings check` 校验；§6.2、§6.3 分别随
-P3-1、P3-2 定稿，由同一命令的 `verify`、`propose` 与 `coverage` 实现。
+P3-1、P3-2 定稿，由同一命令的 `verify`、`propose` 与 `coverage` 实现；§6.4 随 P3-3 定稿，由 `bindings`
+实现，绑定字段由 `check` 校验。
 
 ### 6.1 台账条目
 
@@ -177,7 +179,7 @@ P3-1、P3-2 定稿，由同一命令的 `verify`、`propose` 与 `coverage` 实�
   支持它的 `observation_ids` 与生成器版本；`pilot_check` 是登记前的人工核对结论（`real` /
   `partly` / `explainable` / `false_positive`），未核对为 `null`。
 - `authority`：每个被主张版本的发布路径（`git_only_frozen` / `unclassified` / `queue` / `legacy`，
-  见 §4.2）；编辑入口由 P3-3 补上。
+  见 §4.2）。可选的 `bindings` 为 `unclassified` / `legacy` 版本写明要改的源；编辑入口与绑定见 §6.4。
 - `decisions`：按顺序重放状态迁移：`candidate` → `confirmed` / `rejected` / `not_applicable`；
   `confirmed` → `change_approved` → `applied` → `closed`；任一状态 → `superseded`。每条带人
   （`by`）、角色（`content_owner` / `certification_owner` / `operator`，即 §3.2 的内容负责人、
@@ -251,6 +253,40 @@ P3-1、P3-2 定稿，由同一命令的 `verify`、`propose` 与 `coverage` 实�
   的置信度；每个型号按版本汇总各状态的数量。
 - 离线生成，确定性，不进 RTD 构建。`absent` 与 `needs_review` 不是错误，只标出需要人看的位置。
 
+### 6.4 权威源绑定
+
+版本的编辑入口由它的发布路径决定（§4.2）。门户目录给每个发布版本的分类记在语料 `manual-knowledge.json`
+的 `source.release_path` 中：
+
+- `git_only_frozen` 与 `queue` 版本由发布物声明权威源，前者是 Hello-Docs 的冻结源清单
+  （`docs/publish/sources/web/<路由>/evidence/frozen_source_manifest.json`），后者是文档构建表的 `Git_ref`；
+  台账不另写绑定。
+- `unclassified` 与 `legacy` 版本没有声明，由人在条目的 `bindings` 里写明要改的源（D20）：
+
+  ```json
+  "bindings": {"JE-1000F/EU/en": {"sources": ["docs/templates/<模板>"], "by": "<姓名>", "role": "operator",
+                                  "date": "2026-10-14", "note": "…"}}
+  ```
+
+  `sources` 是一个或多个仓库内路径，只能落在 §4.2 的编辑入口下：`docs/templates/`、`docs/_review/`、
+  `data/phase2/` 或 `manual_sources/`（冻结的 phase2 输入等 Git 源）。`by`、`role`、`date` 同决定，日期不早于
+  登记日；`note` 可选。`check` 校验：键只能是条目主张、且 `authority` 为 `unclassified` / `legacy` 的版本；
+  从 `change_approved` 起每个这样的版本都要有绑定，操作者批准修改时就已确定改哪里。
+
+`python -m tools.manual_knowledge.findings bindings --corpus <manual-knowledge.json> --ledger <台账>` 只读，
+在语料旁写出 `findings-bindings.json`：
+
+- 对象：仍可能需要修改的条目，即 `closed`、`rejected`、`not_applicable`、`superseded` 以外的条目；其余列在
+  `inactive`。
+- 逐条目、逐版本给出现在的发布路径、具体位置（冻结源清单的 Hello-Docs 路径，或条目绑定的 `sources`）和状态：
+  `declared`（发布物已声明）、`bound`（条目已绑定，带人和日期）、`unbound`（未绑定）。报告的 `entries` 按发布路径
+  重复 §4.2 的编辑入口与审批，测试保证与 §4.2 逐字一致。
+- `editions` 逐版本列出版本号、`git_ref`、构建时间、冻结源清单与主张它的条目，同一版本的多条问题可以合并到一次
+  重建（§9）；`unbound` 列出未绑定的版本和主张它的条目，供人补写绑定。
+- 台账记录的发布路径与语料不一致（版本改走了另一条发布路径），或版本已不在语料中，列在 `problems`，命令以
+  非零退出，由人更新 `authority` 与绑定；`unbound` 本身不是错误。
+- 输出只取决于台账与语料，两次运行字节一致；命令不写台账，也不读写任何权威源。
+
 ## 7. 计划（PR 切分）
 
 | PR | 内容 | 主要文件 | 验证 |
@@ -305,6 +341,19 @@ Hello-Docs main 的台账运行：21 个型号的 109 个版本全部成列；11
 JE-1000H、JE-3000C、JE-2000E 的 nl/pl/pt 共 9 个单元格变为 `absent`，JA-AD600A 的 3 个变为
 `not_applicable`，`needs_review` 降为 582。测试覆盖各状态、结论优先级、`superseded`、列顺序、没有行的型号、
 等级主张只列不判、产品专属标记与确定性。
+
+实现（P3-3）：`tools/manual_knowledge/bindings.py` 实现 §6.4 的报告，命令为 `findings bindings`；`bindings` 字段和
+"从 `change_approved` 起必须绑定"的规则加在 `check` 中。§4.2 补了 `legacy` 行，`unclassified` 的审批不再写
+"同上"，报告的 `entries` 与之逐字一致。用线上语料（10-11 发布）与 Hello-Docs main 的台账运行：23 条都还是
+`candidate`，共主张 53 个版本，台账记录的发布路径与语料全部一致，`problems` 为空。21 个 `git_only_frozen`
+版本（49 个条目 × 版本）都给出冻结源清单；32 个 `unclassified` 版本（33 个条目 × 版本）全部未绑定，来自 7 个
+构建提交，其中 15 个来自 `138c9654`（JE-1000F 2.7、JE-2000F 2.6、JE-2000E 2.10）。高优先级 7 条中，第 7、8、9 条
+只涉及冻结包，可以直接按重建走；第 1、2、4、5 条合规条目的 26 个版本全部未绑定，批准修改前要先写绑定。13 个
+版本被多条条目主张，JE-1000H nl 有 5 条，一次重建可以一并处理。两次运行字节一致。在台账副本上把第 4 条推进到
+`change_approved`：不写绑定时 `check` 报出 5 个未绑定的版本，写上后通过，报告中这 5 个版本变为 `bound`；在语料
+副本上把 JE-1000H nl 改为 `unclassified`，主张它的 5 条各报一条问题，命令以非零退出。测试覆盖三种状态、`queue` 与
+`legacy`、非活动条目、按版本归并、发布路径变化、版本撤下、语料校验、与 §4.2 一致、写报告且不写台账，以及绑定
+字段的校验规则。
 
 ## 8. 验收标准
 

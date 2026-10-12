@@ -371,7 +371,8 @@ def serialize(value: dict) -> bytes:
     return (json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
 
 
-def _write(path: Path, data: bytes) -> None:
+def write_file(path: Path, data: bytes) -> None:
+    """Replace a report or the ledger in one step."""
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f"{path.name}.tmp")
     temporary.write_bytes(data)
@@ -394,12 +395,12 @@ def run(args: argparse.Namespace, ledger: dict) -> int:
         return 1
     output = args.output or args.observations.parent / {"verify": VERIFICATION, "propose": PROPOSALS,
                                                          "coverage": COVERAGE}[args.command]
-    _write(output, serialize(report))
+    write_file(output, serialize(report))
     result: dict = {"status": "written", "path": str(output), "totals": report["totals"]}
     if args.command == "verify" and args.write:
         updated, changed = apply_verification(ledger, report)
         if changed:
-            _write(args.ledger, serialize(updated))
+            write_file(args.ledger, serialize(updated))
         result["ledger"] = {"path": str(args.ledger), "updated": changed}
     problems = report.get("problems", [])
     if problems:

@@ -31,6 +31,7 @@ CHANGE = {'variants': [NL, PL], 'wording': ['tm:recA1b2C3'], 'pr': 'https://gith
           'published': {NL: f'{NL}@git-20261020-0a1b2c3d', PL: f'{PL}@git-20261020-0a1b2c3d'}}
 VERIFIED = {'result': 'closed', 'observed_at': '2026-10-21', 'generator': 'manual-observations/0.5',
             'needs_recheck': False}
+BOUND = {'sources': ['docs/templates/page/ups.rst'], 'by': 'Operator', 'role': 'operator', 'date': '2026-10-13'}
 
 
 def finding(**fields):
@@ -155,6 +156,31 @@ class LedgerContractTest(unittest.TestCase):
         self.assertProblem(finding(evidence={**CANDIDATE['evidence'], 'pilot_check': 'looks fine'}), 'pilot_check')
         self.assertProblem(finding(authority={NL: 'git_only_frozen'}), 'exactly the claimed editions')
         self.assertProblem(finding(authority={NL: 'git_only_frozen', PL: 'feishu'}), 'release path must be one of')
+
+    def test_editions_without_a_declared_authority_are_bound_before_the_change_is_approved(self):
+        mixed = {NL: 'unclassified', PL: 'git_only_frozen'}
+        self.assertEqual(problems(finding(authority=mixed)), [])
+        self.assertEqual(problems(finding(authority=mixed, bindings={NL: BOUND})), [])
+        self.assertEqual(problems(finding(authority={NL: 'legacy', PL: 'unclassified'},
+                                          bindings={NL: BOUND, PL: {**BOUND, 'sources': [
+                                              'manual_sources/JE-3000C/EU/pl/1.0/phase2', 'docs/templates'],
+                                              'note': 'the warning sits in the template'}})), [])
+        self.assertProblem(finding(bindings={NL: BOUND}), 'only a claimed edition published as')
+        self.assertProblem(finding(authority=mixed, bindings={'JE-3000C/EU/de': BOUND}), 'only a claimed edition')
+        self.assertProblem(finding(authority=mixed, bindings=[BOUND]), 'bindings must map')
+        for sources in ([], ['docs/_build/JE-3000C/EU'], ['docs/templatesx/ups.rst'], ['../docs/templates'],
+                        ['docs/templates/../../tools'], ['/manual_sources/JE-3000C'], ['docs/templates//ups.rst'],
+                        ['data/phase2', 'data/phase2'], [{'path': 'docs/templates'}], 'docs/templates'):
+            self.assertProblem(finding(authority=mixed, bindings={NL: {**BOUND, 'sources': sources}}),
+                               'distinct repository paths')
+        for fields in ({'by': ' '}, {'role': 'machine'}, {'date': '2026-10-11'}, {'date': '13.10.2026'},
+                       {'note': 5}):
+            self.assertProblem(finding(authority=mixed, bindings={NL: {**BOUND, **fields}}), 'a binding needs')
+        self.assertProblem(finding(authority=mixed, bindings={NL: {'sources': BOUND['sources']}}), 'binding misses')
+        approved = {'status': 'change_approved', 'decisions': [CONFIRMED, APPROVED], 'changes': [CHANGE]}
+        self.assertProblem(finding(authority=mixed, **approved), "needs the sources bound for ['JE-3000C/EU/nl']")
+        self.assertEqual(problems(finding(authority=mixed, bindings={NL: BOUND}, **approved)), [])
+        self.assertEqual(problems(finding(**approved)), [])
 
     def test_ledger_shape_ids_and_unknown_fields(self):
         self.assertEqual(check_ledger({'schema': 'v0'}), [f'ledger: schema must be {SCHEMA}'])
