@@ -30,6 +30,8 @@ FILLABLE_EXPORT_FIELDS = (
     "source_key", "source_page", "pixel_size", "has_alpha",
 )
 CHECKBOX_FIELDS = frozenset({"build_eligible", "visual_review_required", "has_alpha"})
+# Staged columns whose 04_资产导出物 field carries a Chinese name (added 2026-10-12).
+BASE_FIELD_NAMES = {"pixel_size": "像素尺寸", "has_alpha": "透明通道"}
 
 _PAGE = re.compile(r"_records_(\d+)\.json$")
 
@@ -134,12 +136,18 @@ def load_snapshot(directory: Path) -> LiveIndex:
     return index
 
 
+def base_field(column: str) -> str:
+    """The 04_资产导出物 field name a staged column is written to."""
+    return BASE_FIELD_NAMES.get(column, column)
+
+
 def _needs_fill(live: LiveRecord, name: str, staged: str) -> bool:
     if not staged:
         return False
+    current = live.text(base_field(name))
     if name in CHECKBOX_FIELDS:
-        return staged == "TRUE" and live.text(name) != "TRUE"
-    return not live.text(name)
+        return staged == "TRUE" and current != "TRUE"
+    return not current
 
 
 def _export_action(row: dict[str, str], live: LiveRecord | None, find: Finder) -> None:
@@ -208,6 +216,7 @@ def report_duplicates(index: LiveIndex, find: Finder) -> None:
 
 
 __all__ = [
-    "GIT_EXPORT_PREFIX", "LiveIndex", "LiveRecord", "SnapshotError", "cell_text", "load_snapshot",
+    "BASE_FIELD_NAMES", "GIT_EXPORT_PREFIX", "LiveIndex", "LiveRecord", "SnapshotError", "base_field", "cell_text",
+    "load_snapshot",
     "reconcile_definitions", "reconcile_exports", "reconcile_sources", "report_duplicates",
 ]

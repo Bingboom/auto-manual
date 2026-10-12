@@ -344,7 +344,7 @@ class FixtureInventoryTests(unittest.TestCase):
             "exports": [
                 ("recE1", {"export_key": "registry::docs/renderers/web/assets/je2000e_eu_nl/battery_pack.png",
                            "repo_path": "docs/renderers/web/assets/je2000e_eu_nl/battery_pack.png",
-                           "asset_key": "web/je2000e/eu/nl/battery-pack", "content_sha256": art,
+                           "asset_key": "web/je2000e/eu/nl/battery-pack", "content_sha256": art, "像素尺寸": "1x1",
                            "export_file": [{"file_token": "tok1", "name": "battery_pack.png", "size": 70}]}),
                 ("recE2", {"export_key": "registry::docs/renderers/latex/assets/placeholder.png",
                            "repo_path": "docs/renderers/latex/assets/placeholder.png", "asset_key": "placeholder/slot",
@@ -369,6 +369,8 @@ class FixtureInventoryTests(unittest.TestCase):
         self.assertEqual((target["asset_key"], target["gate_status"], target["action"], target["live_record_id"]),
                          ("web/je2000e/eu/nl/battery-pack", "approved", "fill", "recE1"))
         self.assertIn("artifact_kind", target["fill_fields"].split(";"))
+        # 像素尺寸 is already set on the Base row, so pixel_size is not filled again.
+        self.assertNotIn("pixel_size", target["fill_fields"].split(";"))
         self.assertEqual(target["needs_review"], "FALSE")
         self.assertEqual(exports["docs/renderers/latex/assets/placeholder.png"]["action"], "update-file")
         self.assertEqual(exports["docs/renderers/web/assets/shared/lcd/lcd_parallel.png"]["action"], "create")
