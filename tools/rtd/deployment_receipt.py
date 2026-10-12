@@ -32,8 +32,10 @@ MAX_FILES = 10000
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_TOTAL_BYTES = 512 * 1024 * 1024
 # Frozen inputs contain both self-contained sources and assembled Web copies.
-# Keep their storage budget separate from served-output and network budgets.
+# Keep their storage and file-count budgets separate from served-output and
+# network budgets; normal catalog growth must not enlarge network traversal.
 MAX_SOURCE_TOTAL_BYTES = 1152 * 1024 * 1024
+MAX_SOURCE_FILES = 20000
 MAX_FETCH_ATTEMPTS = 3
 FETCH_BUDGET_SECONDS = 45
 _CACHE = {".doctrees", "__pycache__", ".git"}
@@ -176,8 +178,10 @@ def _route(value: str) -> str:
     return value
 
 
-def _inventory(root: Path, *, max_total_bytes: int | None = None) -> dict[str, str]:
+def _inventory(root: Path, *, max_total_bytes: int | None = None,
+               max_files: int | None = None) -> dict[str, str]:
     total_limit = MAX_TOTAL_BYTES if max_total_bytes is None else max_total_bytes
+    file_limit = MAX_FILES if max_files is None else max_files
     result = {}
     total = 0
     for path in sorted(root.rglob("*")):
@@ -190,7 +194,7 @@ def _inventory(root: Path, *, max_total_bytes: int | None = None) -> dict[str, s
             continue
         size = path.stat().st_size
         total += size
-        if size > MAX_FILE_BYTES or total > total_limit or len(result) >= MAX_FILES:
+        if size > MAX_FILE_BYTES or total > total_limit or len(result) >= file_limit:
             raise ValueError("Deployment inventory exceeds safety limits")
         result[_route(relative.as_posix())] = hashlib.sha256(path.read_bytes()).hexdigest()
     return result
@@ -202,7 +206,8 @@ def source_fingerprint(web_root: Path) -> str:
             or web_root.parent.name != PathSegments.PUBLISH
             or not (web_root.parent / "publish_manifest.json").is_file()):
         raise ValueError("Expected a frozen publish/web source with publish manifest")
-    inventory = _inventory(web_root.parent, max_total_bytes=MAX_SOURCE_TOTAL_BYTES)
+    inventory = _inventory(web_root.parent, max_total_bytes=MAX_SOURCE_TOTAL_BYTES,
+                           max_files=MAX_SOURCE_FILES)
     if not inventory:
         raise ValueError("Empty frozen deployment source")
     return hashlib.sha256(json.dumps(inventory, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
