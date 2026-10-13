@@ -1,0 +1,211 @@
+{
+  "scope": "JP source-local layout candidate; operator acceptance pending",
+  "source_sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6",
+  "pdf_pages_visually_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "asset_reuse_decisions": [
+    {
+      "slot": "buttons/cart/plus",
+      "decision": "byte-identical existing shared/US glyph reuse",
+      "candidates": [
+        "JP horizontal button assets",
+        "US verified vertical glyphs",
+        "shared transparent add_device_plus",
+        "US white sold-separately-cart"
+      ],
+      "reason": "JP PDF15 uses upright POWER/AC/USB glyphs; JP PDF17 has matching white cart in gray capsule. Keep title ordinary parenthesized 別売."
+    },
+    {
+      "slot": "App phones",
+      "decision": "retain full native JP panels and image layers, remove adjacent source text only",
+      "candidates": [
+        "existing JP add/connect SVGs",
+        "individual embedded phone PNGs",
+        "CN/US panels"
+      ],
+      "reason": "JP screenshots differ; single PNG omits overlay photo and multiple third-screen layers. Old crops retain truncated neighboring note text. Existing native SVG pipeline retains all frames, opacity and clipping."
+    },
+    {
+      "slot": "App store/QR",
+      "decision": "retain original target download panels unchanged",
+      "candidates": [
+        "JP download-p28 and reminder-p30",
+        "shared App downloads"
+      ],
+      "reason": "Current target panels have complete original store/QR identity and frames; only external-caption alignment changes."
+    },
+    {
+      "slot": "key-duration-clock",
+      "candidates": [
+        "existing shared operation panels with embedded clocks",
+        "US/JP standalone asset inventories"
+      ],
+      "decision": "native small glyph selection after no suitable standalone reuse candidate",
+      "source_page": 15,
+      "source_bbox": [
+        163.7,
+        310.7,
+        174.9,
+        321.9
+      ],
+      "reason": "Clock circle and white hands are native paths20/21. Preserve all of them and real transparent corners; do not redraw."
+    },
+    {
+      "slot": "JP contact icons",
+      "candidates": [
+        "manual_sources/JHP-3600A/US/git-20261012-541ca8a5/assets/shared-contact-web.svg",
+        "shared-contact-mail.svg",
+        "shared-contact-phone.svg"
+      ],
+      "decision": "byte-identical existing semantic icon reuse",
+      "reason": "JP PDF27 uses the same circle web/mail/telephone symbols. Preserve original Japanese contact labels and values in three source gray capsule rows."
+    }
+  ],
+  "source_text_exceptions": [
+    {
+      "physical_page": 25,
+      "source_bboxes": [
+        [
+          72.4424,
+          469.4505,
+          76.7283,
+          475.649
+        ],
+        [
+          113.1372,
+          469.4505,
+          117.4231,
+          475.649
+        ]
+      ],
+      "old": "registered trademark glyphs extracted before sentence",
+      "new": "USB Type-C® and USB-C®",
+      "reason": "Restore native superscript reading order only."
+    }
+  ],
+  "warranty_native_card_titles": [
+    "保証期間",
+    "保証の適用範囲",
+    "保証の適用条件",
+    "保証対象外となる場合",
+    "購入証明について",
+    "保証内容"
+  ],
+  "changes": [
+    {
+      "physical_page": 17,
+      "source_node": [
+        15,
+        3
+      ],
+      "kind": "callout-native-items",
+      "item_count": 2
+    },
+    {
+      "physical_page": 18,
+      "source_node": [
+        16,
+        1
+      ],
+      "kind": "callout-native-items",
+      "item_count": 2
+    },
+    {
+      "physical_page": 18,
+      "source_node": [
+        16,
+        5
+      ],
+      "kind": "callout-native-items",
+      "item_count": 2
+    },
+    {
+      "physical_page": 20,
+      "source_node": [
+        18,
+        2
+      ],
+      "kind": "callout-native-items",
+      "item_count": 2
+    },
+    {
+      "physical_page": 20,
+      "source_node": [
+        18,
+        3
+      ],
+      "kind": "callout-native-items",
+      "item_count": 3
+    },
+    {
+      "physical_page": 22,
+      "source_node": [
+        20,
+        2
+      ],
+      "kind": "callout-native-items",
+      "item_count": 2
+    },
+    {
+      "physical_page": 23,
+      "source_node": [
+        21,
+        2
+      ],
+      "kind": "callout-native-items",
+      "item_count": 2
+    },
+    {
+      "physical_page": 29,
+      "source_node": [
+        27,
+        1
+      ],
+      "kind": "callout-native-items",
+      "item_count": 2
+    }
+  ],
+  "region_specific_specs": "JP original3000W/100V and native connector figures preserved; do not adopt US/CN specs.",
+  "caption_fit_notes": [
+    "PDF17 gray sold capsule retains original22.2079% width; live caption now has intrinsic width and native white cart.",
+    "PDF20 charging-caption anchor unchanged; extend live text width4% inside empty native panel to fit fallback Japanese font.",
+    "PDF15 key-table third row captions restored to original USB-left/AC-right positions; wording unchanged."
+  ],
+  "native_panel_restoration": [
+    "PDF6 gray usage introduction",
+    "PDF6 and7 two original precaution frames, not five invented section cards",
+    "PDF7 gray disclaimer",
+    "PDF8 three-paragraph gray package note panel",
+    "PDF27 three source contact capsule rows"
+  ]
+}

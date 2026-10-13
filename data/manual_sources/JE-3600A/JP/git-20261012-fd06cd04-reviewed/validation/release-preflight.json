@@ -1,0 +1,16 @@
+{
+  "scope": "reviewed Git-only source publication preflight",
+  "source_bytes_preserved": true,
+  "accepted_markdown_byte_parity": true,
+  "accepted_source_css_byte_parity": true,
+  "accepted_shared_css_byte_parity": true,
+  "strict_sphinx": "pass",
+  "release_tests": {
+    "count": 47,
+    "status": "pass"
+  },
+  "operator_accepted_at": "2026-10-13",
+  "authorization": "MA-298",
+  "repository_regression_gate": "JE-1000F/JP fixtures pass",
+  "regression_scope": "family only; native body validated through hash-checked source-local replay and accepted-byte parity"
+}
