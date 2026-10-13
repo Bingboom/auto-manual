@@ -34,7 +34,7 @@ For an attended integration test, run in the foreground:
 .venv/bin/python scripts/voc_mac_receiver.py run \
   --profile cli_aaa0db0d4b39dcca \
   --base Id29bqWMiaFdNjsuyrAcfrkLnZb --table tblmN7OHIB0HsC23 \
-  --origin https://ht-doc.readthedocs.io
+  --origin https://ht-docs-ht-manuals.readthedocs-hosted.com
 ```
 
 For a manually managed background process, replace `run` with `start`. The
@@ -44,7 +44,7 @@ wrapper waits for `http://127.0.0.1:9198/healthz` before reporting success:
 .venv/bin/python scripts/voc_mac_receiver.py start \
   --profile cli_aaa0db0d4b39dcca \
   --base Id29bqWMiaFdNjsuyrAcfrkLnZb --table tblmN7OHIB0HsC23 \
-  --origin https://ht-doc.readthedocs.io
+  --origin https://ht-docs-ht-manuals.readthedocs-hosted.com
 .venv/bin/python scripts/voc_mac_receiver.py status
 .venv/bin/python scripts/voc_mac_receiver.py stop
 ```

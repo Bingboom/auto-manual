@@ -120,7 +120,7 @@ capabilities:
         status: available
         note: 按产品、区域、语言进入在线手册
         evidence:
-          - "url:https://ht-doc.readthedocs.io/"
+          - "url:https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/"
           - "file:auto-manual:tools/rtd/portal.py"
       - id: search
         label: 站内搜索
@@ -140,7 +140,7 @@ capabilities:
         note: 线上内容与发布源逐文件对应，可回查到提交
         evidence:
           - "pr:auto-manual#1127"
-          - "url:https://ht-doc.readthedocs.io/manual-deployment.json"
+          - "url:https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/manual-deployment.json"
       - id: daily_check
         label: 每日部署校验
         status: available

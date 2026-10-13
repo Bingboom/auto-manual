@@ -161,7 +161,7 @@ Read-only verification from that business checkout, substituting a route
 actually present in the frozen catalog:
 
 ```bash
-python - https://ht-doc.readthedocs.io/ MODEL/REGION/LANG/md/manual.html <<'PYCODE'
+python - https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/ MODEL/REGION/LANG/md/manual.html <<'PYCODE'
 import json
 from pathlib import Path
 import sys
