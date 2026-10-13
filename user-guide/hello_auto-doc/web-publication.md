@@ -38,7 +38,7 @@ App 截图保留手机顶部状态栏及四边。透明底要求只用于 LCD／
 
 单语网页顶部通过语言切换栏显示当前语言，正文开头重复的独立语言名称不再显示；冻结源文件不变。
 
-手册中心卡片可按型号/市场指定说明书原图，补齐缺图或替换带编号边框的装箱图；参见[目录缩略图](../../code-as-doc/dev/rtd_manual_portal.md#accessory-catalog-artwork-2026-09-15)。
+手册中心卡片可按型号/市场指定说明书原图，补齐缺图或替换带编号边框的装箱图；参见[目录缩略图](../../code-as-doc/dev/rtd_manual_portal/manual-center.md#accessory-catalog-artwork-2026-09-15)。
 
 手册中心首页按“用电需求”分组：随身供电、通用电器供电、可扩容储能、专用场景备电，配套产品单独一栏，并随所选区域隐藏没有说明书的分组。归类是产品定位，维护在 `tools/rtd_portal_assets/settings.json` 的 `navigation` 表里；新上线的型号如果没写进表，会先显示在“其他说明书”，把它加到对应分组即可。能力比较和兼容查询要等有确认过的数据表再加。规则见[手册中心说明](../../code-as-doc/dev/rtd_manual_portal.md)。
 
@@ -46,7 +46,7 @@ App 截图保留手机顶部状态栏及四边。透明底要求只用于 LCD／
 未发布语言禁用；旧混语手册保留“当前发布版”，不标成已经完成的单语翻译。
 手册中心支持 US/EU/UK/CN/JP 区域筛选，默认仍为 EU；中规、日规独立筛选，中文和日文分别显示“简体中文”“日本語”。只有冻结清单中已经发布且具有相应身份凭据的语言页面才能启用。现有 `cn-zh` / `jp-ja` 整本家族的 Web Publish 任务应将 `Lang` 留空，由家族固定为中文／日文；不要套用欧规单语家族的显式 `Lang` 填法。
 
-知识库侧栏的“系统建设”页（`/workspace/system/`）先列“当前重点”：先完成网页发布与维护闭环；语料复用与 SSOT 同期支撑，再做 IR 代表试点、骨架与覆盖扩展，多 Agent 按需后置。每条线的数字取自发布清单、语料快照和骨架定义，进度取自执行台账。下面先看阶段门验收，再看语言资产、能力地图和生产流程连接。各项状态写在 `tools/rtd_portal_assets/system_workspace.yaml`，每条都要附证据；当前重点由操作者决定，改动时一并更新。修改该文件走 auto-manual PR，提交前运行 `python -m tools.rtd.system_workspace check`。页面公开可见，只写可公开的内容。页内“语言资产”块只展示翻译记忆库的汇总计数，不含语料原文；语料批次完成后使用 Workspace Data Refresh 刷新；已接入的本机 TM 写回批次可用包装器自动触发，见 [数据持续更新与补刷](../../code-as-doc/dev/workspace_data_refresh.md)。快照会保留往月的汇总数，页面显示与上期的对比。图中各语言的百分比是语料库句对覆盖（该语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率。页内“技能与钩子”列出 Agent 可调用的技能和自动运行的钩子，未登记的技能和没有测试的钩子会标出来；新增技能时记得在 AGENTS.md（Codex）或 `.claude/skills/README.md`（Claude）登记。页面底部的“数据来源”表列出每类数字以哪里为准、多少天算过期、取不到时显示什么，这些统一登记在 `tools/rtd_portal_assets/source_registry.yaml`；新增数据来源或改过期天数，只改这一个文件。规则见[系统建设页](../../code-as-doc/dev/rtd_manual_portal.md#system-workspace-page)。
+知识库侧栏的“系统建设”页（`/workspace/system/`）先列“当前重点”：先完成网页发布与维护闭环；语料复用与 SSOT 同期支撑，再做 IR 代表试点、骨架与覆盖扩展，多 Agent 按需后置。每条线的数字取自发布清单、语料快照和骨架定义，进度取自执行台账。下面先看阶段门验收，再看语言资产、能力地图和生产流程连接。各项状态写在 `tools/rtd_portal_assets/system_workspace.yaml`，每条都要附证据；当前重点由操作者决定，改动时一并更新。修改该文件走 auto-manual PR，提交前运行 `python -m tools.rtd.system_workspace check`。页面公开可见，只写可公开的内容。页内“语言资产”块只展示翻译记忆库的汇总计数，不含语料原文；语料批次完成后使用 Workspace Data Refresh 刷新；已接入的本机 TM 写回批次可用包装器自动触发，见 [数据持续更新与补刷](../../code-as-doc/dev/workspace_data_refresh.md)。快照会保留往月的汇总数，页面显示与上期的对比。图中各语言的百分比是语料库句对覆盖（该语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率。页内“技能与钩子”列出 Agent 可调用的技能和自动运行的钩子，未登记的技能和没有测试的钩子会标出来；新增技能时记得在 AGENTS.md（Codex）或 `.claude/skills/README.md`（Claude）登记。页面底部的“数据来源”表列出每类数字以哪里为准、多少天算过期、取不到时显示什么，这些统一登记在 `tools/rtd_portal_assets/source_registry.yaml`；新增数据来源或改过期天数，只改这一个文件。规则见[系统建设页](../../code-as-doc/dev/rtd_manual_portal/system-workspace.md#system-workspace-page)。
 
 “系统架构”标签（`/workspace/system/#tab-architecture`）展示人的入口、AI 能力入口与企业数据入口，围绕同一套可信内容和文档生产体系。现有多维表展示产品信息、内容模块、规格参数、多语言内容及业务维护与评审，经数据校验与快照进入 auto-manual；系统共用多维表、Git 原稿和批准素材，以及 Shared IR（共享底稿）与样式组件，支持文档生产、专业文件处理和内容查询。内容权威、组装、渲染与发布是其中的文档生产链路。MCP 与 PLM／ERP 同步及字段映射接入用虚线及“未来方向”标注；当前 Agent／Bot 单独列出。MCP 仅作为规划中的协议适配层，正式图稿修改保留人工批准。Shared IR（共享底稿）的 Web 整本与样式复用已有基础，机读语料目前仍从已发布 HTML 派生；已有基础按现有文件预翻译、AI 图稿与页码处理、PDF 标注、回写及构建技能列出，钩子标明触发与启用条件。架构视图也读取原有演进史摘要，不另建台账。
 
@@ -67,11 +67,11 @@ App 截图保留手机顶部状态栏及四边。透明底要求只用于 LCD／
 
 侧栏的“设计系统”（`/workspace/design/`）汇总说明书网页版的颜色、字体和组件，以及“图标与素材”和“印刷规格”两个分页：数值和组件预览在每次 RTD 构建时直接读取仓库当前的 `web_manual.css`，素材从共享素材目录和清单列出，印刷规格读 `data/layout_params.csv`；样式、素材或参数改动合入并发布后页面自动更新。说明文字维护在 `tools/rtd_portal_assets/design_system/`。
 
-侧栏的“系统数据”（`/workspace/data/`）汇总已发布的网页说明书、各机型与区域的能力开关、素材注册情况和工程规模：每次 RTD 构建时读取发布清单、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 和 `data/asset_registry.csv`，并用 `git ls-files` 统计各目录的代码与文档行数，不另存数据。页面顶部可按区域和机型筛选，也可以直接点击图表或表格里的机型（再点一次取消），所有卡片同时更新；筛选会写进网址，方便分享同一视图。按区域或机型筛选素材时，适用范围为 ALL 的通用素材也计入；工程规模是全仓库数据，不随筛选变化。规则见[系统数据页](../../code-as-doc/dev/rtd_manual_portal.md#system-data-page)。
+侧栏的“系统数据”（`/workspace/data/`）汇总已发布的网页说明书、各机型与区域的能力开关、素材注册情况和工程规模：每次 RTD 构建时读取发布清单、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 和 `data/asset_registry.csv`，并用 `git ls-files` 统计各目录的代码与文档行数，不另存数据。页面顶部可按区域和机型筛选，也可以直接点击图表或表格里的机型（再点一次取消），所有卡片同时更新；筛选会写进网址，方便分享同一视图。按区域或机型筛选素材时，适用范围为 ALL 的通用素材也计入；工程规模是全仓库数据，不随筛选变化。规则见[系统数据页](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#system-data-page)。
 
-侧栏“产品知识”下方的“产品矩阵”（`/products/matrix.html`）把已发布网页说明书里的产品按产品线 × 容量排开，并列出配套产品、功能矩阵、规格对照和说明书写明的搭配关系；顶部可按发布市场筛选。规格在每次 RTD 构建时从各型号已发布说明书的规格表读取（英文版优先），说明书改了重新发布后页面自动更新。导航表没有收录的型号归到哪条产品线、两款同名产品怎么区分、哪些配件搭配需要列出，维护在 `tools/rtd_portal_assets/product_matrix.json`；说明书正文不再提到的搭配会自动不显示，并在构建日志里提示。规则见[产品矩阵页](../../code-as-doc/dev/rtd_manual_portal.md#product-matrix-page)。
+侧栏“产品知识”下方的“产品矩阵”（`/products/matrix.html`）把已发布网页说明书里的产品按产品线 × 容量排开，并列出配套产品、功能矩阵、规格对照和说明书写明的搭配关系；顶部可按发布市场筛选。规格在每次 RTD 构建时从各型号已发布说明书的规格表读取（英文版优先），说明书改了重新发布后页面自动更新。导航表没有收录的型号归到哪条产品线、两款同名产品怎么区分、哪些配件搭配需要列出，维护在 `tools/rtd_portal_assets/product_matrix.json`；说明书正文不再提到的搭配会自动不显示，并在构建日志里提示。规则见[产品矩阵页](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page)。
 
-侧栏的“说明书工作台”（`/workspace/deliverables/`，沿用原交付物地址）从“结构化数据 + 模板与骨架”进入构建和多格式输出。点击地图节点，可找到飞书业务源表、语料库、资产、模板骨架、构建记录与对应操作指引；飞书入口需登录并具备权限，点击工作台入口本身不会触发构建。首页先提供常用工作入口，再用交付总量、交付入口条形图和三类资产关系图呈现重点；生产投入与回流再利用简要显示状态及入口。完整工作地图、交付矩阵和统计证据默认折叠，点击对应入口展开。资产部分按语料库、样式库、模板与骨架提供数量、维护入口和采用情况；登记量与配置引用不能当作成品使用量，缺少记录时明确标注。随后保留各型号的网页手册、印刷交付包（IDML + PDF）和 Word 云文档矩阵，按型号分组、每个区域一行，可以按型号、区域筛选，手机端可横向滚动。网页手册的链接随发布自动更新；印刷交付包和 Word 云文档的链接来自飞书文档构建表的快照，Word／印刷包交付写回并读回成功后，队列每批刷新一次并创建内容 PR。审核合入后还须完成 Workspace Data Verify，才能确认线上更新；补做统一使用 Workspace Data Refresh。飞书链接要登录飞书才能打开，但链接地址在公开页上可见。规则见[交付物页](../../code-as-doc/dev/rtd_manual_portal.md#deliverables-page)。
+侧栏的“说明书工作台”（`/workspace/deliverables/`，沿用原交付物地址）从“结构化数据 + 模板与骨架”进入构建和多格式输出。点击地图节点，可找到飞书业务源表、语料库、资产、模板骨架、构建记录与对应操作指引；飞书入口需登录并具备权限，点击工作台入口本身不会触发构建。首页先提供常用工作入口，再用交付总量、交付入口条形图和三类资产关系图呈现重点；生产投入与回流再利用简要显示状态及入口。完整工作地图、交付矩阵和统计证据默认折叠，点击对应入口展开。资产部分按语料库、样式库、模板与骨架提供数量、维护入口和采用情况；登记量与配置引用不能当作成品使用量，缺少记录时明确标注。随后保留各型号的网页手册、印刷交付包（IDML + PDF）和 Word 云文档矩阵，按型号分组、每个区域一行，可以按型号、区域筛选，手机端可横向滚动。网页手册的链接随发布自动更新；印刷交付包和 Word 云文档的链接来自飞书文档构建表的快照，Word／印刷包交付写回并读回成功后，队列每批刷新一次并创建内容 PR。审核合入后还须完成 Workspace Data Verify，才能确认线上更新；补做统一使用 Workspace Data Refresh。飞书链接要登录飞书才能打开，但链接地址在公开页上可见。规则见[交付物页](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)。
 
 ### 发布候选、撤回与恢复
 
@@ -79,7 +79,7 @@ Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，�
 组装资源池同时处理图片和 Markdown 内嵌 CSS 的 `url(...)` 引用，保留背景图、遮罩图的原始字节及逻辑资产身份。视觉检查须覆盖这些 CSS 图形；图片元素全部加载不代表全部资源已加载，正式上线仍以冻结资源回执核验为准。
 冻结发布源同时保留独立源包与整站组装副本，源清单上限为 1152 MiB、20,000 个文件。网页输出及线上取回仍限 512 MiB、10,000 个文件；单文件 32 MiB、路径与符号检查、哈希校验不变。发布前的整站 Sphinx 检查须加载 `myst_parser,tools.rtd.portal`，同时验证知识导出和部署凭据生成。
 
-已有外部原稿的 Git-only 新语种网页发布，也要把每种语言标为 `single`，用冻结源清单与实际 Git 提交、MyST、图片和验证 HTML 生成[单语发布凭据](../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction)；现有 `build.py check` 只作旧构建目标的回归检查，不代表验证了这些新语正文。
+已有外部原稿的 Git-only 新语种网页发布，也要把每种语言标为 `single`，用冻结源清单与实际 Git 提交、MyST、图片和验证 HTML 生成[单语发布凭据](../../code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction)；现有 `build.py check` 只作旧构建目标的回归检查，不代表验证了这些新语正文。
 原稿章节与历史 phase2 稿不同的，按原稿 SHA-256 登记独立的共享组件准入映射；仍须逐语核对原文、共用底图与桌面／手机页面。原稿中的语言混用保留并记录勘误，不自行翻译补齐。
 
 JE-1000F/EU 新增四语从提供的可编辑 PDF 重新读取文字，以原 AI 核对缺字，保留已批准勘误。维护时通过[共享 IR 接入工具](../../code-as-doc/dev/four_language_shared_ir_alignment.md)生成新候选包，采用英文网页的公共包装清单、总览、操作、App 和表格组件；正文不放印刷目录或表格截图。太阳能接线图中的型号/数量标注和车充图中的车辆标注保持为图框内可选中的文字，不能作为图外正文；桌面按原稿留白定位，窄屏在同一灰色图框内保持可读。配图须匹配原稿中的型号、插座和参数，资产清单未解决的项会阻止生成候选；历史 `build_web.py` 和截图保留作追溯证据。该步骤生成本地候选，尚需工程 PR、发布 PR 和 RTD 验收，不会自动发布，也不等于完成飞书语料入库或印刷产线注册。
@@ -128,7 +128,7 @@ Web 冻结产物可使用[只读健康报告](../../code-as-doc/dev/manual_opera
 
 后续发布入口整合及中长期工作见[产线盘活与演进方案](../../code-as-doc/manual_production_revitalization_plan.md)。
 后续每次执行先读[执行台账](../../code-as-doc/dev/manual_revitalization_execution.md)，按依赖领取 REV-ID，结束时回写证据及下一步；台账尚未接入自动调度。
-本轮先复核新旧站点和历史链接，具体检查见[入口整合要求](../../code-as-doc/dev/web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)。
+本轮先复核新旧站点和历史链接，具体检查见[入口整合要求](../../code-as-doc/dev/web_publish_pipeline/hosting-boundaries.md#31-hosting-convergence-and-legacy-entry-review)。
 保留已有 D1–D4 决策；方案登记不表示已迁移、已开通月报或已获在线写入授权。
 停止旧站独立更新与保留 `publish` 候选分支可以同时成立；历史版本链接不静默改指最新版。
 

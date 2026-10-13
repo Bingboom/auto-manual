@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-10-12
+Updated: 2026-10-13
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single current source of truth for the topic you are changing.
@@ -18,7 +18,7 @@ guides are indexes: open the index, then only the topic page your task needs.
 - [`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
   - current workflow and editing-surface rules (index of its topic pages)
 - [`../user-guide/quick_start_guide.md`](../user-guide/quick_start_guide.md)
-  - one concrete happy-path example
+  - one concrete happy-path example (index of its pages)
 - [`architecture/README.md`](architecture/README.md)
   - active architecture and integration doc map
 
@@ -49,7 +49,7 @@ These files describe the repo behavior that should be maintained today.
 - [`dev/git_branching_guide.md`](dev/git_branching_guide.md)
   - branch hygiene and GitHub protection rules
 - [`dev/orchestration_module_map.md`](dev/orchestration_module_map.md)
-  - ownership map for orchestration-first entrypoints
+  - ownership map for orchestration-first entrypoints (index of one page per module family)
 - [`dev/code_review_checklist.md`](dev/code_review_checklist.md)
   - code/config/data/doc review checklist
 - [`reviews/codex_scaffolding_discovery.md`](reviews/codex_scaffolding_discovery.md)
@@ -57,7 +57,7 @@ These files describe the repo behavior that should be maintained today.
 - [`reviews/codex_scaffolding_implementation_plan.md`](reviews/codex_scaffolding_implementation_plan.md)
   - bounded Codex skill and directory-navigation migration plan
 - [`dev/web_publish_pipeline.md`](dev/web_publish_pipeline.md)
-  - current Web Publish, `Hello-Docs/publish`, and Read the Docs contract
+  - current Web Publish, `Hello-Docs/publish`, and Read the Docs contract (index of its section pages)
 - [`dev/vercel_review_preview_guide.md`](dev/vercel_review_preview_guide.md)
   - legacy Vercel latest-publish implementation reference
 - [`tests/README.md`](tests/README.md)

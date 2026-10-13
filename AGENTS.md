@@ -54,7 +54,7 @@ Document boundary (open the others only when the task needs them; see §10):
 - Minimum set: [`README.md`](README.md) and the owning topic pages under [`code-as-doc/build_doc_guide/`](code-as-doc/build_doc_guide.md) and [`user-guide/hello_auto-doc/`](user-guide/hello_auto-doc.md). The two guide files themselves are indexes: edit them only to add, rename or re-scope a page, never to append notes. Split a page that passes ~400 lines and update its index row.
 - [`README.md`](README.md) is the workflow roadmap + quickstart + navigation map only. Touch it when the stable workflow topology, an entry point, a navigation pointer, or an editing-surface rule changes; behavior and contract details go to the owning document, with at most a one-line pointer in the README. Treat a README beyond ~350 lines as documentation debt.
 - If a code change affects the current workflow, editing surface, environment setup, or release flow, update the owning page of [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) in the same change.
-- If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) in the same change.
+- If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update the owning page of [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) in the same change.
 - When a phase or workstream from [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md) is completed, add a matching maintenance record at the top of [`code-as-doc/code_optimization_log.md`](code-as-doc/code_optimization_log.md); older records live in its archive.
 
 ## 6. Working Tree Safety
@@ -189,7 +189,7 @@ When the active model is Fable, do not do the work yourself. Never read the docu
 
 Each agent and sub-agent loads this file and pays again for every document it opens.
 
-- Treat the [build guide](code-as-doc/build_doc_guide.md), [workflow guide](user-guide/hello_auto-doc.md), [style definition](docs/renderers/contracts/STYLE_DEFINITION.md), [optimization checklist](code-as-doc/next_optimization_checklist.md) and [`code-as-doc/README.md`](code-as-doc/README.md) as indexes: open only the topic page the task needs.
+- Treat the [build guide](code-as-doc/build_doc_guide.md), [workflow guide](user-guide/hello_auto-doc.md), [style definition](docs/renderers/contracts/STYLE_DEFINITION.md), [optimization checklist](code-as-doc/next_optimization_checklist.md), [quick start](user-guide/quick_start_guide.md), the `dev/` hubs that [`code-as-doc.md`](code-as-doc/code-as-doc.md) Rule 7 lists and [`code-as-doc/README.md`](code-as-doc/README.md) as indexes: open only the topic page the task needs.
 - Logs, registries, archives and `code-as-doc/reviews/` are lookups: grep by ID or keyword and read the hit, unless the task is about that file.
 - In a long doc that has no index yet, `grep -n` the section and read that range.
 - When delegating, hand each sub-agent the exact files or sections its piece needs, never "read the docs first".

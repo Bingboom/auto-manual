@@ -48,9 +48,9 @@ For onboarding new external Markdown manuals into the template library, use:
 
 For planned publication-outlet consolidation and medium/long-term ownership, see
 the [manual revitalization plan](manual_production_revitalization_plan.md).
-Use the [hosting convergence review](dev/web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)
+Use the [hosting convergence review](dev/web_publish_pipeline/hosting-boundaries.md#31-hosting-convergence-and-legacy-entry-review)
 for old/new URL and version mapping, release-site evidence and recovery checks.
 These are planning/manual acceptance requirements; no new command, automated
 gate, hosting change or online write is introduced by the documentation update.
 
-Git-only frozen Web releases allow 1152 MiB and 20,000 source files; served output and network verification retain their separate 512 MiB and 10,000-file budgets. The 32 MiB per-file limit is unchanged. See the [Git-only transaction contract](dev/web_publish_pipeline.md#22-git-only-transaction).
+Git-only frozen Web releases allow 1152 MiB and 20,000 source files; served output and network verification retain their separate 512 MiB and 10,000-file budgets. The 32 MiB per-file limit is unchanged. See the [Git-only transaction contract](dev/web_publish_pipeline/input-paths.md#22-git-only-transaction).

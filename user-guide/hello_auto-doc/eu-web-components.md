@@ -41,7 +41,7 @@ Charging reference diagrams reuse the shared live-label component: captions occu
 充电、UPS、扩容等完整大图也应保留原稿灰底、白色说明区和圆角边框；透明底规则
 仅用于 LCD／状态图标、独立按钮符号等小图，不用于完整面板。
 
-共享代码更新后，旧的冻结手册不会自动迁移。每次修复需列出受影响语言、生成新冻结版本、检查桌面/手机并重新发布；验收应打开正式 RTD 路由。检查通过表示组件覆盖完整，仍需核验译文、参数、地区图片和实际版面。技术边界见[共享组件准入](../../code-as-doc/dev/web_publish_pipeline.md#native-multilingual-shared-component-admission)。
+共享代码更新后，旧的冻结手册不会自动迁移。每次修复需列出受影响语言、生成新冻结版本、检查桌面/手机并重新发布；验收应打开正式 RTD 路由。检查通过表示组件覆盖完整，仍需核验译文、参数、地区图片和实际版面。技术边界见[共享组件准入](../../code-as-doc/dev/web_publish_pipeline/shared-component-admission.md#native-multilingual-shared-component-admission)。
 
 JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引用，并通过
 `HB-TABLE-LCD-ICON` 保留编号、状态分行和加粗。发布门禁已取消六个纯文字表例外，
