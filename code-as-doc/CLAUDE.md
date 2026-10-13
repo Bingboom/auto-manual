@@ -12,6 +12,7 @@
 - `code_optimization_log.md`: recent maintenance records for completed roadmap workstreams, newest first; older records are in `code_optimization_log_archive.md`.
 - `build_doc_guide.md`: index of the maintainer build guide; its topic pages live in `build_doc_guide/`.
 - `next_optimization_checklist.md`: active optimization checklist; shared update rules plus an index of one page per milestone in `next_optimization_checklist/`.
+- `dev/orchestration_module_map.md`, `dev/rtd_manual_portal.md`, `dev/web_publish_pipeline.md`: indexes over their section pages in the same-named folders.
 - `dev/merge_authorizations.md`: gate-on-green protocol and live grants; expired rows are in `dev/merge_authorizations_archive.md`.
 
 ## Local Rules
