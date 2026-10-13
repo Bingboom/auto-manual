@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from html import escape, unescape
 from html.parser import HTMLParser
@@ -28,6 +29,10 @@ from tools.rtd.system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page
 from tools.safe_copy import copytree_replace_no_symlinks
 
 ASSETS = Path(__file__).resolve().parents[1] / "rtd_portal_assets"
+# One frozen source can serve two RTD projects: the combined (internal) site
+# and a manuals-only site that is safe to publish. Each project sets
+# RTD_SITE_ROLE in its environment; unset keeps the combined build.
+SITE_ROLES = ("combined", "manuals")
 _LINK = re.compile(r"^- \[([^\n]+)\]\(([^\s]+\.md)\)\s*$", re.MULTILINE)
 
 
@@ -124,6 +129,29 @@ def configure(app, config) -> None:
     config.html_static_path = [*config.html_static_path, str(ASSETS / PathSegments.STATIC)]
 
 
+def site_role(app) -> str:
+    role = app.config.rtd_site_role
+    if role not in SITE_ROLES:
+        raise ValueError(f"rtd_site_role must be one of {SITE_ROLES}, got {role!r}")
+    return role
+
+
+def manuals_only(app) -> bool:
+    """A manuals-only build emits no knowledge, workspace or sharing pages."""
+    return site_role(app) == "manuals"
+
+
+def site_base_url_for(settings: dict) -> str:
+    """Absolute-URL root: the serving project's canonical URL, else the settings value.
+
+    Read the Docs exports READTHEDOCS_CANONICAL_URL per project and version,
+    so each of the two projects gets its own canonical root (custom domain
+    included) without a per-project settings file.
+    """
+    return normalize_site_base_url(
+        os.environ.get("READTHEDOCS_CANONICAL_URL") or settings.get("site_base_url", ""))
+
+
 def portal_data(app) -> tuple[dict, list[dict]]:
     """Validate frozen publications once per build, not once per output page."""
     cached = getattr(app, "_rtd_portal_data", None)
@@ -152,7 +180,7 @@ def page_context(app, pagename, templatename, context, doctree):
     settings, products = portal_data(app)
     feedback_channels = normalize_channels(settings.get("feedback_channels", []))
     beacon_token = normalize_beacon_token(settings.get("analytics_beacon_token", ""))
-    site_base_url = normalize_site_base_url(settings.get("site_base_url", ""))
+    site_base_url = site_base_url_for(settings)
     voc_markup = page_markup(
         endpoint=normalize_endpoint(settings.get("product_voc_endpoint", "")),
         publications=[item for product in products for item in product["publications"]],
@@ -294,6 +322,9 @@ def cached_matrix_context(app):
 
 def site_nav(app) -> dict:
     """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
+    if manuals_only(app):
+        # The public shell hides internal entries; do not build their contexts at all.
+        return dict.fromkeys(("share", "system", "deliverables", "design", "data", "matrix"), False)
     return {
         "share": (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file(),
         "system": cached_system_context(app) is not None,
@@ -315,6 +346,8 @@ def collect_workspace_pages(app):
     it hides only its own links. The data and product-matrix pages likewise drop
     out, with their links, when their inputs are unreadable.
     """
+    if manuals_only(app):
+        return
     has_share = (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file()
     system = cached_system_context(app)
     design = cached_design_context(app)
@@ -356,7 +389,7 @@ def collect_workspace_pages(app):
 
 def write_design_pages(app, exception) -> None:
     """Write the design-system previews, live stylesheet and art beside its page."""
-    if exception is not None or getattr(app.builder, "format", None) != "html":
+    if exception is not None or getattr(app.builder, "format", None) != "html" or manuals_only(app):
         return
     design = cached_design_context(app)
     if design is not None:
@@ -365,7 +398,7 @@ def write_design_pages(app, exception) -> None:
 
 def copy_workspace_content(app, exception) -> None:
     """Copy the approved sharing package; policy source screenshots stay off-site."""
-    if exception is not None:
+    if exception is not None or manuals_only(app):
         return
     source = workspace_content(app) / "ai-share"
     if not source.is_dir():
@@ -384,6 +417,7 @@ def setup(app):
     from tools.rtd.workspace_revision import write_workspace_revision
 
     app.add_config_value("rtd_knowledge_dir", "", "html")
+    app.add_config_value("rtd_site_role", os.environ.get("RTD_SITE_ROLE", "combined"), "html")
     # ISO date for the system and deliverables pages' staleness rules; empty means the build date (UTC).
     app.add_config_value("rtd_system_workspace_date", "", "html")
     app.connect("config-inited", configure)

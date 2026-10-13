@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -98,6 +99,39 @@ class RtdPortalTests(unittest.TestCase):
         for src in ("https://host/product.png", "../outside.png", "/outside.png", "missing.png"):
             source.write_text(f'<img class="hb-inbox-art" src="{src}"/>')
             self.assertEqual(rtd_portal.product_image(source, self.root), "")
+
+    def test_manuals_role_builds_only_public_pages_with_project_canonical(self):
+        root = self.assemble()
+        assets = self.root / "portal-assets"
+        shutil.copytree(rtd_portal.ASSETS, assets)
+        (assets / "settings.json").write_text(json.dumps(dict(self.settings, product_voc_endpoint="")))
+        share = self.root / "knowledge" / "ai-share"
+        share.mkdir(parents=True)
+        (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
+        with (root / "conf.py").open("a") as conf:
+            conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
+            conf.write(f"rtd_knowledge_dir = {str(self.root / 'knowledge')!r}\n")
+        public = "https://manuals.example.com/en/latest/"
+        env = dict(os.environ, RTD_SITE_ROLE="manuals", READTHEDOCS_CANONICAL_URL=public)
+        out = self.root / "public"
+        result = subprocess.run(
+            [sys.executable, "-m", "sphinx", "-q", "-b", "html", "-D", "extensions=myst_parser,tools.rtd.portal",
+             str(root), str(out)],
+            cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True, check=False, env=env,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        for internal in ("workspace", "products", "market", "ai-share"):
+            self.assertFalse((out / internal).exists(), internal)
+        self.assertNotIn("业务资料", "".join(p.read_text(errors="ignore") for p in out.rglob("*.html")))
+        self.assertIn("说明书资料库", (out / "index.html").read_text())
+        self.assertTrue((out / "JE-TEST/EU/md/manual_EU.html").is_file())
+        alias = (out / "manual_EU.html").read_text()
+        self.assertIn('href="https://manuals.example.com/en/latest/JE-TEST/EU/md/manual_EU.html"', alias)
+
+    def test_unknown_site_role_fails_the_build(self):
+        app = SimpleNamespace(config=SimpleNamespace(rtd_site_role="public"))
+        with self.assertRaisesRegex(ValueError, "rtd_site_role"):
+            rtd_portal.site_role(app)
 
     def test_real_sphinx_changes_home_only_and_preserves_sources(self):
         root = self.assemble()

@@ -28,7 +28,7 @@ figures therefore keep working without another host. The two interfaces share
 the RTD project's visibility settings; the workspace path is navigation, not a
 separate access-control boundary.
 
-The workspace itself exists in every portal build; knowledge pages link back
+The workspace exists in every combined portal build; knowledge pages link back
 to the manual center, but the manual-center homepage does not link into the
 workspace. The system page lives inside it. The sharing package is an
 optional entry. Without `ai-share/00_打开分享.html`, the workspace hides the
@@ -38,6 +38,31 @@ pages are byte-identical to the earlier behaviour.
 
 Rollback: revert the portal extension's RTD activation and rebuild. Frozen
 content, QR aliases and nested manual URLs are unchanged.
+
+## Public manuals project (site role)
+
+One frozen `docs/publish/web` source can feed two Read the Docs projects, so
+the manuals can be public while the knowledge base stays internal. Each
+project selects its half with the `RTD_SITE_ROLE` environment variable (Sphinx
+config `rtd_site_role`); `.readthedocs.yaml` is shared and unchanged.
+
+| `RTD_SITE_ROLE` | Builds | Intended project |
+| --- | --- | --- |
+| unset or `combined` | everything: manual center, manuals, short aliases, search, `/workspace/`, knowledge pages, `/ai-share/` | the existing private project (`ht-docs-ht-manuals`) |
+| `manuals` | manual center, manuals, short aliases, search, `manual-knowledge.json`, deployment receipt; no `/workspace/`, `/products/`, `/market/` or `/ai-share/` output, and no internal sidebar data is built | a second project whose `latest` version is set to Public |
+
+Any other value fails the build. Absolute URLs (canonical, `hreflang`,
+`og:url`, alias canonical) use the serving project's
+`READTHEDOCS_CANONICAL_URL`, which Read the Docs sets per project and version
+(custom domains included); `site_base_url` in the portal settings is the
+fallback for local builds. Each project therefore gets its own canonical root
+without a per-project settings file, and the public domain can be chosen
+later without a code change.
+
+Set the public project's version to Public only after its first `manuals`
+build succeeds: before that, the project has no pages to expose, and an
+unset role would publish the internal pages. Knowledge pages in the combined
+site keep linking to the manuals inside the same private site.
 
 ## Deliverables page
 

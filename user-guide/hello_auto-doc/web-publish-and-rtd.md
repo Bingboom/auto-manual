@@ -66,6 +66,8 @@ OpenClaw 负责入库后的分析；分析结果先供人工审核。未验证�
 
 说明书资料库只提供说明书查找和阅读，不放知识库链接。按操作者的最新发布选择，“产品知识”“市场与政策”“产品案例”在同一个 RTD 项目发布，通过直达链接访问；站点为私有的 Read the Docs for Business 项目（`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`），需要登录并具备项目权限；相应内容已录入飞书知识库多维表。产品知识用列表结合典型电气示意解释实际产品；市场与政策按“政策变化 → 原理解释 → 产品影响”阅读，可筛选国家、主题、核实状态和关键词。页面不展示原始资料截图或整理过程，原始截图也不复制到网站；当前内容通过审核后的快照发布，尚未接入多维表自动同步。数据边界见[市场与政策](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#市场与政策)。
 
+同一份冻结发布源可以供两个 RTD 项目构建：现有私有项目不设 `RTD_SITE_ROLE`（或设为 `combined`），照常生成说明书、知识库、工作资料和 AI 分享；另建的公开项目在后台环境变量里设 `RTD_SITE_ROLE=manuals`，只生成说明书资料库、说明书、短地址和搜索，再把它的 `latest` 版本设为公开。先确认公开项目第一次构建成功、页面里没有知识库内容，再改可见性。两个项目的规范链接各自取 RTD 提供的项目地址，公开站以后换域名不用改代码。详见[公开说明书项目](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#public-manuals-project-site-role)。
+
 说明书中心和 AI 分享作为两个独立界面维护；`/workspace/` 是两者的个人内容
 入口。AI 分享稿及其演示、配图和参考资料保存在 Hello-Docs 的
 `docs/knowledge/ai-share/`，不放进 auto-manual。随同一次 RTD 构建发布到
