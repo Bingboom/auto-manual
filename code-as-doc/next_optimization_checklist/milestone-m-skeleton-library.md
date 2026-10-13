@@ -16,15 +16,19 @@ This milestone is the **superset execution** of Workstream M (`page_registry`
 becomes the only composition authority) in
 [`optimization_project.md`](../optimization_project.md).
 
-Milestone status: `in_progress` — the S1–S6 vertical slice is done: S1 #936 (`1823cc4e`),
+Milestone status: `deferred` (REV-41 decision, 2026-10-12) — the S1–S6 vertical slice is done: S1 #936 (`1823cc4e`),
 S2 #937 (`eeb8eaa8`), S3 #938 (`71f7c5ec`), S4 #940 (`5e1d0c26`) and
 S5 #939 (`0432e5b7`). Both S4 source-table batches have landed, and #944
 (`baf8b712`) restored the JBP target from CI `SKIP` to `PASS`. S6 closed
 2026-08-30 after the shared-component target assembly, pipeline-side
 reconciliation, native InDesign preflight, 28-page visual comparison,
 self-contained delivery-pack checks and operator ruling were all recorded.
-The milestone remains `in_progress` because the post-slice rollout and the
-remaining milestone exit criteria below are still open.
+The post-S6 scale-proof items R0–R3c then merged (#975–#983, #1029). The rest of
+the rollout (R4a–R6, which re-cut the M0–M9 backlog below) and the open exit
+criteria are deferred until a restart condition in
+[`dev/revitalization/rev41_skeleton_decision.md`](../dev/revitalization/rev41_skeleton_decision.md)
+§4 fires; its §3 is the progress index. The R0–R6 breakdown stays on branch
+`docs/milestone-m-scale-proof-checklist` (tracking PR #974, closed 2026-10-13).
 Milestone entry gate: operator approves the **vertical slice plan** (the wave
 plan's v2). S1 may start on that approval alone; every later slice item has
 its own gate.

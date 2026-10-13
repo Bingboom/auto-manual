@@ -52,9 +52,10 @@ Status: active · Owner: 夏冰 · Created: 2026-10-12
 
 ## 3. Milestone M 进度索引
 
-Draft 跟踪 PR [#974](https://github.com/Bingboom/auto-manual/pull/974) 停在 2026-08-31，没有回填 R3c。
-主线 [`next_optimization_checklist.md`](../../next_optimization_checklist.md) 的 Milestone M 一节仍是 M0–M9 积压
-（全部 deferred，与本决定一致），R0–R6 的分解只在 #974 分支上。截至本决定：
+跟踪 PR [#974](https://github.com/Bingboom/auto-manual/pull/974)（draft）停在 2026-08-31，没有回填 R3c，
+已于 2026-10-13 关闭；R0–R6 的分解原文留在分支 `docs/milestone-m-scale-proof-checklist` 上。
+主线的 [Milestone M 页](../../next_optimization_checklist/milestone-m-skeleton-library.md)已改为 `deferred` 并指向本文，
+其 M0–M9 积压本就全部 deferred。本表是主线上的进度索引，截至本决定：
 
 | 项 | 状态 | 证据 |
 |---|---|---|
@@ -81,16 +82,16 @@ Draft 跟踪 PR [#974](https://github.com/Bingboom/auto-manual/pull/974) 停在 
 ## 5. 后续事项
 
 - PR #1101：已定。2026-10-13 按操作者原话「#1101 关掉」关闭；分支 `feat/main-intl-web-skeleton` 保留，作为 T1 的参考。
-- PR #974（待操作者定）：刷新分支、回填 R3c 并把 R4a–R6 标为暂缓；或以本文为准关闭。该分支不属于本 PR，未推送。
-- [MA-023](../merge_authorizations.md)（待操作者定）：仍为"生效"，允许 R4a→R6 的 PR 全绿即合。暂缓期间没有可合入的对象；
-  是否撤销或收窄，要有操作者原话后再改登记表。
-- `next_optimization_checklist.md` 的 Milestone M 一节：在审 PR [#1509](https://github.com/Bingboom/auto-manual/pull/1509)
-  正在拆页，本 PR 不改；拆页合入后，可在 Milestone M 页加一行指向本文。
+- PR #974：已定。2026-10-13 按操作者原话「#974 也关掉」关闭，以本文 §3 为主线上的进度索引；分支未删，R0–R6 分解原文可供重启时参考。
+- [MA-023](../merge_authorizations.md)（待操作者定）：仍为"生效"，范围是 #974 的 R0–R6 清单，允许其中 PR 全绿即合。
+  #974 已关闭、R4a–R6 暂缓，已没有可合入的对象；是否撤销，要有操作者原话后再改登记表。
+- Milestone M 清单页：[PR #1509](https://github.com/Bingboom/auto-manual/pull/1509) 拆页合入后，本 PR 把
+  [Milestone M 页](../../next_optimization_checklist/milestone-m-skeleton-library.md)的状态改为 `deferred` 并指向本文。
 
 ## 6. 同步改动与回退
 
 本 PR 同步更新：台账 REV-41（verifying）、REV-42/43（deferred）、范围调整表和续接点；
-系统建设页的骨架线和"产品骨架"条目；`optimization_project.md` 的 Workstream M 状态；设计和需求文档头；
-用户指南里系统建设页的重点顺序。
+系统建设页的骨架线和"产品骨架"条目；Milestone M 清单页和 `optimization_project.md` Workstream M 的状态；
+设计和需求文档头；用户指南里系统建设页的重点顺序。
 
 回退：revert 本 PR，REV-41–43 恢复 planned，各文档恢复原状。

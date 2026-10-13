@@ -127,7 +127,7 @@ REV-34 是条件性专项，不是所有路线结束前必须完成的任务。
 
 ## 4. 当前续接点
 
-- REV-41 决定（2026-10-12）：骨架拓展评估后，操作者同意「修改 + 暂缓」，并要求写成决定记录（[revitalization/rev41_skeleton_decision.md](revitalization/rev41_skeleton_decision.md)）。REV-41 进 verifying，实施 PR 合入后翻 done；REV-42/43 改为 deferred。PR #1101 已于 2026-10-13 按操作者原话「#1101 关掉」关闭，分支保留作 T1 参考。待操作者另定：PR #974 刷新回填 R3c 还是关闭；MA-023 是否撤销或收窄。下一次复评在 D23 的 1.0 基线重发之后。
+- REV-41 决定（2026-10-12）：骨架拓展评估后，操作者同意「修改 + 暂缓」，并要求写成决定记录（[revitalization/rev41_skeleton_decision.md](revitalization/rev41_skeleton_decision.md)）。REV-41 进 verifying，实施 PR 合入后翻 done；REV-42/43 改为 deferred。PR #1101 已于 2026-10-13 按操作者原话「#1101 关掉」关闭，分支保留作 T1 参考。PR #974 也于同日按操作者原话「#974 也关掉」关闭，分支保留 R0–R6 分解原文，Milestone M 清单页改为 deferred 并指向决定记录。待操作者另定：MA-023 是否撤销。下一次复评在 D23 的 1.0 基线重发之后。
 - REV-45 开始（2026-09-25）：REV-44 验收后起草多 Agent 调度与任务续接设计（[multi_agent_dispatch_design.md](multi_agent_dispatch_design.md)），第一版只做认领、交接记录、续接读取和取号工具，不做自动调度；同日定稿：交接写在任务 PR 描述里、页面不显示认领人、做取号工具、用 REV-39 契约表冻结演示。
 - REV-44 验收（2026-09-25）：来源登记上线（#1274 `eb114b8f`），系统建设页与交付物页的快照名、过期天数和降级文案都从 `tools/rtd_portal_assets/source_registry.yaml` 读取，系统建设页底部公开“数据来源”表；操作者原话「验收」，翻 done。下一步：REV-45（多 Agent 调度与任务续接）可开始设计。
 - 范围变更（2026-09-25 晚）：新增 REV-44 SSOT 来源登记、REV-45 多 Agent 调度与任务续接（依赖 REV-44），均为 planned。REV-39 与 REV-44 同日开始：REV-39 为多 agent 只读摸底，产出契约表草稿；REV-44 为设计草稿（[ssot_source_registry_design.md](ssot_source_registry_design.md)），待操作者定稿。系统建设页“当前在做”列出这两项，“Agent 执行”能力卡加对应两项。
