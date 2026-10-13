@@ -4,7 +4,7 @@ Part of the [build guide](../build_doc_guide.md); its index lists the other topi
 Add new notes for this topic here, not to the hub.
 
 - Before selecting or extracting artwork, follow the shared
-  [Web artwork reuse order](../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则).
+  [Web artwork reuse order](../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则).
   Inventory existing target/shared assets and record each reuse decision in the
   target review record before any PDF/AI crop. Matching assets retain their bytes
   and source hash; language-only label changes reuse the base art. Complete
@@ -125,7 +125,7 @@ Add new notes for this topic here, not to the hub.
 不再另绘等宽标题列；语言或页码不匹配会阻止构建。此方式保留图内文字，
 不提供图内逐项 HTML 编辑，也不替代普通无字插图、正文或表格的原生 HTML。
 大图面板只按完整边界裁取，灰底、白色说明区、圆角框及徽标随原稿保留，不能套用
-独立图标去底规则；见[大图与独立插图的边界](../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+独立图标去底规则；见[大图与独立插图的边界](../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)。
 
 Native PDF LCD intake preserves semantic status lines and bold status prefixes in the existing `HB-TABLE-LCD-ICON` component. The verified uk/pt/nl/pl paragraph boundaries also separate App setup and retained-setting notes; printed line wrapping is not copied into Web layout. Numbered troubleshooting measures each start a new line; the emergency-charging lead retains its bold emphasis. Shared reference-figure captions follow the artwork, matching the App 2.1–2.2 captions. Source wording, governed icons and historical frozen versions remain unchanged.
 

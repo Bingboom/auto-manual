@@ -7,7 +7,7 @@ Add new notes for this topic here, not to the hub.
 
 Fresh EU/UK Web staging and sealing require a valid IR sidecar and the reviewed chapter/variant policy. Existing immutable evidence remains replayable. See [admission and bounded migration debt](../dev/prepared_component_admission.md) before onboarding or rebuilding a legacy target.
 
-Authored Web tables declare their semantic role in source RST; the shared adapter preserves rich cells and blank LCD callouts. CSV symbols use the assembly plan role instead of filename guessing. See [authored text references](../../docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference).
+Authored Web tables declare their semantic role in source RST; the shared adapter preserves rich cells and blank LCD callouts. CSV symbols use the assembly plan role instead of filename guessing. See [authored text references](../../docs/renderers/contracts/STYLE_DEFINITION/appendix-b-boundaries.md#authored-text-references-hb-table-reference).
 
 JE-3000C/EU 本地化操作章节与 JE-1000H/EU 英语章节通过现有目标展示 overlay 绑定共享操作表。自动恢复和组合键在 RST 导入时也生成 ComponentSpec，与 LCD 模式一起进入整本 IR；这不授予其它操作成品图的重排权限。存量发布迁移顺序与验收边界见 [EU shared-component rollout](../dev/eu_shared_component_rollout_2026-09.md)。
 
@@ -27,7 +27,7 @@ JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有
 
 中规审核源也支持三项无图项目列表：复用 `plain-inventory` 并保留列表强调和外部备注。独立 LCD 模式图后紧邻的四列表（首列全部为空、三项表头和六行动作）保留原图与表头，映射至 `HB-TABLE-REFERENCE/lcd-actions`；非空占位列或结构变化拒绝导入。显式绑定的 App 双图之间若有一张纯文字备注表，共享面板将其保留在面板后方，备注仍独立进入共享提示组件，不被图片或标签吞掉。
 
-原生 PDF 录入和审核 RST 的 Web Publish 共用[图文分工规则](../../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工)：普通说明文字与文字框由共享 HTML/CSS 承载，保留实际插图边界，密集引线图按已批准例外处理。新目标必须登记组件和底图哈希并独立验收，不能把四语测试通过当作中规验收。显式 `base-art-live-copy` 绑定复用 ReferenceFigure 适配器，不需要启用该目标不适用的整套 legacy figure 布局。
+原生 PDF 录入和审核 RST 的 Web Publish 共用[图文分工规则](../../docs/renderers/contracts/STYLE_DEFINITION/figures-warranty-templates.md#新录入网页的图文分工)：普通说明文字与文字框由共享 HTML/CSS 承载，保留实际插图边界，密集引线图按已批准例外处理。新目标必须登记组件和底图哈希并独立验收，不能把四语测试通过当作中规验收。显式 `base-art-live-copy` 绑定复用 ReferenceFigure 适配器，不需要启用该目标不适用的整套 legacy figure 布局。
 
 App 下载段如果只有一张二维码，使用显式 `app_download.presentation=qr-only` 绑定，映射到 `HB-SPECIAL-APP/download-qr-only`；它保留相邻说明段和单个源二维码，复用共享限宽样式，不能按普通通栏插图输出。
 
@@ -35,7 +35,7 @@ Operation 源图已含外框时，中立 flow 包裹容器声明 `data-preserve-
 
 Web App 编号步骤标题保留源文大小写，隐藏圆点并与步骤正文左边线对齐；该共享样式只作用于 App 章节。冻结包需重新生成并核验桌面/手机预览后才能采用更新样式。
 
-通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。仅上述 LCD／状态图标、独立按钮符号等小图默认透明底，移除其外围单元格底色和边框；保留符号、按键面和丝印。大图面板保留灰底、圆角、外框和引线，不能套用小图规则。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。仅上述 LCD／状态图标、独立按钮符号等小图默认透明底，移除其外围单元格底色和边框；保留符号、按键面和丝印。大图面板保留灰底、圆角、外框和引线，不能套用小图规则。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)。
 
 原稿 SVG 的填充／描边校验允许等价的绝对 H/V 闭合线段参与路径比较；导出仍保留原始路径、变换、透明度与裁切，并保留裁切范围内通过 `use` 引用的原稿嵌入图像；无法对应的路径继续拒绝。
 

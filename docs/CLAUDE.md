@@ -7,6 +7,7 @@
 - `templates/`: reusable RST source, recipes, snippets, Word templates, and contracts. See [`templates/CLAUDE.md`](templates/CLAUDE.md).
 - `manifests/`: manual composition manifests by market/language.
 - `renderers/`: render-time assets and LaTeX renderer configuration.
+- `renderers/contracts/STYLE_DEFINITION.md`: index of the cross-renderer style contract; it keeps §1 and §8, and its other sections are pages in `STYLE_DEFINITION/`.
 - `_review/`: target review surface after review starts; do not delete or rename committed review files without explicit confirmation.
 - `_build/`: generated output only. Do not hand-edit.
 - `index.rst`: generated index entrypoint; do not hand-edit unless the task is about index generation.

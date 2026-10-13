@@ -1,6 +1,6 @@
 # code-as-doc Documentation Map
 
-Updated: 2026-10-10
+Updated: 2026-10-12
 
 This directory is the maintainer-facing documentation area.
 Use it to find the single current source of truth for the topic you are changing.
@@ -41,7 +41,7 @@ These files describe the repo behavior that should be maintained today.
 - [`generated_page_authoring.md`](generated_page_authoring.md)
   - generated page, recipe, and snippet authoring rules
 - [`../docs/renderers/contracts/STYLE_DEFINITION.md`](../docs/renderers/contracts/STYLE_DEFINITION.md)
-  - canonical cross-renderer style contract, title source rules, and maintenance flow
+  - canonical cross-renderer style contract, title source rules, and maintenance flow; an index that keeps the §1 binding table and §8, with the other sections on its pages
 - [`dev/layout_params_guide.md`](dev/layout_params_guide.md)
   - current layout parameter semantics
 - [`dev/manual_template_intake_checklist.md`](dev/manual_template_intake_checklist.md)
@@ -79,7 +79,7 @@ Use these together; do not split operator guidance across older phase plans.
 - [`../optimization_project.md`](optimization_project.md)
   - current repo roadmap and active workstreams
 - [`next_optimization_checklist.md`](next_optimization_checklist.md)
-  - active optimization checklist
+  - active optimization checklist: shared update rules and an index of one page per milestone
 - [`dev/style_component_contract_v2_plan.md`](dev/style_component_contract_v2_plan.md)
   - serial PR plan and completion ledger for the four-renderer style/component contract v2 workstream
 - [`dev/code_quality_iterability_plan.md`](dev/code_quality_iterability_plan.md)

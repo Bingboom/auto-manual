@@ -16,5 +16,5 @@ checked file unchanged; repair the shared library once if necessary, and add a
 variant only when existing artwork genuinely differs from the authoritative
 source. Alpha-channel presence does not prove that cell backgrounds were removed.
 
-See [the artwork contract](../../../../renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)
+See [the artwork contract](../../../../renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)
 for source binding, transparency, glyph admission and visual review.

@@ -9,7 +9,7 @@ the literal `transforms[].op` values accepted by
 ## Reuse and classification before text removal
 
 Complete the selection table in the shared
-[Web artwork contract](../../../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)
+[Web artwork contract](../../../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)
 first: record searched manifests/candidates, identity/content checks, reuse or
 extraction decision, concrete reason for new extraction, source/hash and
 background policy. Reuse a matching asset unchanged; changing the manual's
