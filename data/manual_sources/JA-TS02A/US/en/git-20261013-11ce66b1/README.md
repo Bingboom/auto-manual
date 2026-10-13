@@ -16,3 +16,5 @@ The shared MyST/Furo scaffold and Web stylesheet are reused. This source-local a
 Git-only boundary: no Feishu/Base/source table, queue, online asset, build/link or HTML_link writes. This is a source candidate for review, not a production publication. Original source filename and SHA-256 remain in source_manifest.json.
 
 The unchanged 94,486,777-byte original PDF is archived losslessly as three ordered binary parts (each ≤32 MiB), matching the frozen-source per-file budget. Concatenating the parts restores the exact supplied PDF SHA-256. The adapter verifies the reassembled digest before every build. The user’s original file is preserved in Downloads.
+
+The complete original PDF is also committed for direct download at [Jackery Smart Transfer Switch.pdf](../../../original/Jackery%20Smart%20Transfer%20Switch.pdf). This byte-identical original sits outside the frozen Web package; it is not a served Web asset. Its SHA-256 is `11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3`. The publication package retains the bounded archive parts above.

@@ -31,7 +31,13 @@
         "sha256": "bda1844b17ba495f18a70b7d0ccb325e28e33d247bc1bdd8ad1c4e41816f739a"
       }
     ],
-    "archive_encoding": "Concatenate archive_parts in listed order; bytes equal the original supplied PDF."
+    "archive_encoding": "Concatenate archive_parts in listed order; bytes equal the original supplied PDF.",
+    "repository_pdf": {
+      "path": "data/manual_sources/JA-TS02A/original/Jackery Smart Transfer Switch.pdf",
+      "size_bytes": 94486777,
+      "sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+      "scope": "Original reference file outside the frozen Web package; not served or copied to the publication inventory."
+    }
   },
   "included_pages": {
     "en": {
@@ -172,8 +178,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 2193,
-      "sha256": "65feb2d724f2936b1e8d5e530a408db5e1f384bb07dd82f2e509875b89e94eb2"
+      "size": 2601,
+      "sha256": "436cdfc016120d60361fa300396c990539dc3f988bc4eedc5f70518775b581e1"
     },
     {
       "path": "assets/app-add-device.png",
