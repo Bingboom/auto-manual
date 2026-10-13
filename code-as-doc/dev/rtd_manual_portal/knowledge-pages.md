@@ -216,6 +216,46 @@ internal 知识库 page; the public manual library does not link to it.
   first. The counting functions have Node tests in
   `tests/system_data_ui.test.mjs`.
 
+## Product matrix page
+
+`/products/matrix.html` (产品矩阵) lays out the products the published Web
+manuals describe. It is an internal 知识库 page listed under 产品知识; the
+public manual library does not link to it.
+
+- **Read at build time.** `tools/rtd/product_matrix.py` reads the publish
+  manifest (each model's markets, languages and routes), then one published
+  manual per model: English first, then `language_order` and `region_order` in
+  `tools/rtd_portal_assets/product_matrix.json`. From the table after its
+  SPECIFICATIONS / 仕様 / 规格 / 規格 heading it takes capacity, AC rated and
+  surge output (a Total row wins over the largest single port), cycle life,
+  weight, solar STC power, IP rating and output power, as the manual prints
+  them. Names come from the manual-center catalog without the model code or the
+  manual-type suffix; product lines come from the `navigation` groups in
+  `settings.json`; capability switches from `data/model_capabilities.csv`.
+  Nothing is snapshotted; a published manual change appears on the next build.
+- **Curated config.** `product_matrix.json` holds only what no manual states:
+  the lines and accessory groups (navigation ids, or a new title), `assign` for
+  models the navigation does not list (shown with *), `tiers` (capacity
+  columns), `names` and `notes` overrides, `companions` (products without a
+  manual of their own, cited from another manual) and `pairings` (partners a
+  manual names). A companion or pairing partner is shown only while the cited
+  manual's text still contains its `match` text (or its label).
+- **Sections:** headline counts (models with Web manuals, Web manuals, power
+  stations and batteries, accessories; 更多型号持续维护中 when the capability
+  table has models without a Web manual), a market filter, the line × capacity
+  grid, accessory groups, the capability matrix (all / some / no regions), the
+  sortable spec table, pairings and data sources.
+- **JavaScript** (`_static/product-matrix.js`) only dims what a market has no
+  Web manual for and sorts the spec table; without it every product shows and
+  the filter stays hidden. Node tests: `tests/product_matrix_ui.test.mjs`.
+- **Failure:** without a readable publish manifest the page and its links are
+  skipped quietly (the bootstrap build has none). A config naming an unknown
+  group or tier shape, or a malformed capability CSV, skips the page with a
+  Sphinx warning. A model with no group, an unreadable manual, a missing
+  capacity or a pairing the manual no longer names is a Sphinx warning while
+  the page still renders (an unplaced model is listed under 其他).
+  `tests/test_rtd_product_matrix.py` covers the parsing and the rules.
+
 ## 产品知识
 
 按操作者 2026-10-06 的最终选择，产品知识、市场与政策和产品案例与说明书共用现有 `ht-doc` 公开 RTD 项目，无需登录。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；直接分享知识页链接即可访问。

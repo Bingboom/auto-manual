@@ -1,0 +1,68 @@
+{
+  "region_order": ["US", "EU", "JP", "CN", "TW"],
+  "language_order": ["en", "zh", "zh-TW", "ja", "fr", "es", "de"],
+  "lines": [
+    {"id": "portable", "fallback": "USB-C 供电"},
+    {"id": "appliance"},
+    {"id": "expandable"},
+    {"id": "homepower", "title": "家庭备电（HomePower）"},
+    {"id": "dedicated"},
+    {"id": "battery", "fallback": "扩容包"}
+  ],
+  "accessories": [
+    {"id": "solar", "title": "太阳能补能"},
+    {"id": "charger", "title": "充电器与输入"},
+    {"id": "connect"},
+    {"id": "carry"}
+  ],
+  "assign": {
+    "JE-1500C": "appliance",
+    "JE-5000A": "expandable",
+    "JHP-3000D": "homepower",
+    "JHP-3600C": "homepower",
+    "JHP-5000C": "homepower",
+    "JE-1000E-WH": "dedicated",
+    "JBP-1000B-SIL": "battery",
+    "JBP-1000B-WH": "battery",
+    "JBP-5000A": "battery",
+    "JA-AD500A-SIL": "charger"
+  },
+  "names": {
+    "JBP-1000B-SIL": "Battery Pack（FridgeGuard 用）",
+    "JBP-1000B-WH": "Battery Pack（SlimPower H1 用）"
+  },
+  "notes": {
+    "JA-AD01A": "三口 GaN 快充 · 102 W",
+    "JA-AD500A-SIL": "直流输入模块",
+    "JA-CA05B": "连接指南",
+    "JA-CA3SA": "2–3 块太阳能板串联"
+  },
+  "tiers": [
+    {"label": "≈100–300 Wh", "below": 400},
+    {"label": "≈500 Wh", "below": 800},
+    {"label": "≈1 kWh", "below": 1300},
+    {"label": "≈1.5–2 kWh", "below": 2600},
+    {"label": "≈3–3.6 kWh", "below": 4000},
+    {"label": "≈5 kWh"}
+  ],
+  "capability_labels": {"AC/DC输出记忆恢复": "输出记忆恢复", "TOU/计划充电": "TOU / 计划充电"},
+  "companions": [
+    {"title": "转换开关（无独立说明书）", "name": "Transfer Switch", "model": "JA-TS05A", "spec": "约 10.5 kg", "source": "JHP-3600C"},
+    {"title": "转换开关（无独立说明书）", "name": "Smart Transfer Switch", "model": "JA-TS02A", "spec": "约 11.6 kg", "source": "JHP-5000C"}
+  ],
+  "pairings": [
+    {"model": "JE-1000H", "parts": ["Battery Pack 2000"]},
+    {"model": "JE-2000E", "parts": ["Battery Pack 2000"]},
+    {"model": "JE-3600A", "parts": ["Battery Pack 3600"], "solar": ["SolarSaga 200"]},
+    {"model": "JHP-3600C", "parts": ["Battery Pack 3600", {"label": "Transfer Switch（JA-TS05A）", "match": "JA-TS05A"}]},
+    {"model": "JHP-5000C", "parts": ["Battery Pack 5000 Plus", {"label": "Smart Transfer Switch（JA-TS02A）", "match": "JA-TS02A"}], "solar": ["SolarSaga 500", "SolarSaga 200"]},
+    {"model": "JHP-3000D", "solar": ["SolarSaga 200"]},
+    {"model": "JE-1000E-SIL", "parts": [{"label": "Battery Pack（JBP-1000B-SIL）", "match": "Battery Pack"}, {"label": "DC Input Module（JA-AD500A-SIL）", "match": "DC Input Module"}], "solar": ["SolarSaga 500"]},
+    {"model": "JE-1000E-WH", "parts": [{"label": "Battery Pack（JBP-1000B-WH）", "match": "Battery Pack"}]},
+    {"model": "JA-AD600A", "parts": ["Explorer 1000 Plus", "Explorer 1000 v2", "Explorer 2000 Plus", "Explorer 2000 v2", "Explorer 3000 Pro", "Explorer 3000 v2"]},
+    {"model": "JA-CA3SA", "parts": [{"label": "2–3 块太阳能板串联", "match": "series"}, "Explorer 2000 Pro"]}
+  ],
+  "footnotes": [
+    "欧规网页说明书最多是上线顺序的结果：欧规先上，美规说明书存量更多但网页化较晚。"
+  ]
+}
