@@ -28,7 +28,7 @@ jobs:
       FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID }}
       FEISHU_TRANSLATION_MEMORY_BASE_TOKEN: ${{ secrets.FEISHU_TRANSLATION_MEMORY_BASE_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main
       - uses: ./.github/actions/feishu-common-setup
