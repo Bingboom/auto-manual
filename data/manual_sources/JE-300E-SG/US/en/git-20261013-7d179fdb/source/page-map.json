@@ -1,0 +1,521 @@
+{
+  "pdf_sha256": "7d179fdb0e3822657904440b17aba0a1abee22699d5c2764c178097d4240ce16",
+  "pages": [
+    {
+      "physical_page": 1,
+      "printed_page": null,
+      "role": "Printed cover",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 2,
+      "printed_page": null,
+      "role": "Multilingual preface",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 3,
+      "printed_page": null,
+      "role": "Multilingual contents",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 4,
+      "printed_page": "01",
+      "role": "English body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 5,
+      "printed_page": "02",
+      "role": "English body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 6,
+      "printed_page": "03",
+      "role": "English body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 7,
+      "printed_page": "04",
+      "role": "English body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 8,
+      "printed_page": "05",
+      "role": "English body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 9,
+      "printed_page": "06",
+      "role": "English body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6929931640625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 10,
+      "printed_page": "07",
+      "role": "English body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6929931640625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 11,
+      "printed_page": "08",
+      "role": "English body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 12,
+      "printed_page": "09",
+      "role": "English body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 13,
+      "printed_page": "10",
+      "role": "English body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 14,
+      "printed_page": "11",
+      "role": "English body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 15,
+      "printed_page": "12",
+      "role": "English body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 16,
+      "printed_page": "13",
+      "role": "English body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 17,
+      "printed_page": "14",
+      "role": "French body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 18,
+      "printed_page": "15",
+      "role": "French body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 19,
+      "printed_page": "16",
+      "role": "French body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 20,
+      "printed_page": "17",
+      "role": "French body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 21,
+      "printed_page": "18",
+      "role": "French body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 22,
+      "printed_page": "19",
+      "role": "French body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 23,
+      "printed_page": "20",
+      "role": "French body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6929931640625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 24,
+      "printed_page": "21",
+      "role": "French body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6929931640625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 25,
+      "printed_page": "22",
+      "role": "French body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 26,
+      "printed_page": "23",
+      "role": "French body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 27,
+      "printed_page": "24",
+      "role": "French body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 28,
+      "printed_page": "25",
+      "role": "French body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 29,
+      "printed_page": "26",
+      "role": "French body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 30,
+      "printed_page": "27",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 31,
+      "printed_page": "28",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 32,
+      "printed_page": "29",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 33,
+      "printed_page": "30",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 34,
+      "printed_page": "31",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 35,
+      "printed_page": "32",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 36,
+      "printed_page": "33",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 37,
+      "printed_page": "34",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6929931640625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 38,
+      "printed_page": "35",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.7869873046875,
+        524.6929931640625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 39,
+      "printed_page": "36",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 40,
+      "printed_page": "37",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 41,
+      "printed_page": "38",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 42,
+      "printed_page": "39",
+      "role": "Spanish body",
+      "page_size_points": [
+        368.9179992675781,
+        524.822998046875
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    },
+    {
+      "physical_page": 43,
+      "printed_page": null,
+      "role": "US back-cover contacts",
+      "page_size_points": [
+        368.7869873046875,
+        524.6920166015625
+      ],
+      "native_text_characters": 0,
+      "archived_in_original_pdf": true,
+      "web_conversion_completed": false
+    }
+  ]
+}
