@@ -1,7 +1,8 @@
 {#- Shared site shell: one sidebar and one top bar for every portal page.
     Import with context so pathto() resolves relative to the calling page:
       {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-    `nav` carries the optional entries: share (bool), system (bool), deliverables (bool), design (bool), data (bool).
+    `nav` carries the optional entries: share (bool), system (bool), deliverables (bool), design (bool), data (bool),
+    matrix (bool).
     Public manual pages pass internal=false to omit internal knowledge links. -#}
 {%- macro nav_link(href, icon, label, is_active, count='') -%}
 <a href="{{ href }}" class="app-nav-link{% if is_active %} active{% endif %}"{% if is_active %} aria-current="page"{% endif %}><i aria-hidden="true">{{ icon }}</i><span>{{ label }}</span>{% if count %}<em>{{ count }}</em>{% endif %}</a>
@@ -18,6 +19,7 @@
     {% if internal %}
     <div class="app-nav-group">知识库</div>
     {{ nav_link(pathto('products/knowledge'), '◇', '产品知识', active == 'product-knowledge') }}
+    {% if nav.matrix %}{{ nav_link(pathto('products/matrix'), '⊞', '产品矩阵', active == 'product-matrix') }}{% endif %}
     {{ nav_link(pathto('market/policy'), '◎', '市场与政策', active == 'market-policy') }}
     {{ nav_link(home, '⌂', '概览', active == 'overview') }}
     {% if nav.share %}{{ nav_link(('' if on_home else home) ~ '#shares', '✦', '分享资料', active == 'shares') }}{% endif %}

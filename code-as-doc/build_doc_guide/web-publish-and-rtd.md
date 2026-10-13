@@ -27,6 +27,8 @@ group opacity; SVG cannot use fill overrides or stroke suppression.
 
 系统数据 `/workspace/data/index.html` 在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/`、`data/asset_registry.csv` 与 `git ls-files`，汇总已发布网页说明书、机型能力、素材注册情况和各目录代码与文档行数，页面内可按区域和机型筛选；见 [RTD portal](../dev/rtd_manual_portal.md#system-data-page)。
 
+产品矩阵 `/products/matrix.html` 在构建时读取发布清单、各型号已发布网页说明书的规格表、说明书资料库目录与导航分组和 `data/model_capabilities.csv`，按产品线 × 容量排列电源与电池，并列出配套产品、规格对照、功能矩阵和说明书写明的搭配关系；说明书没有写明的归类和搭配维护在 `tools/rtd_portal_assets/product_matrix.json`，见 [RTD portal](../dev/rtd_manual_portal.md#product-matrix-page)。
+
 说明书工作台 `/workspace/deliverables/index.html` 由现有 RTD portal 构建时聚合发布目录、交付与语料快照、组件定义与明确目标绑定。首页采用结论优先布局：常用工作入口、生产规模及交付入口条形图、三类资产关系图、投入与回流简况；完整列表、工作地图和统计证据折叠展示，锚点导航自动展开目标；配置引用不等于实际消费。指标口径、来源时间、SHA-256 和对象列表可展开核验。无事件历史时显示 Not tracked yet，读取失败显示 Unavailable；详见 [工作台统计契约](../dev/workspace_production_evidence.md)。
 
 Web 引用块在深色站点主题下仍使用配对的浅底深字；源稿要求左侧灰标签、右侧白正文时，可在 `manual-callout-table` 上使用 `hb-callout-label-shaded`。已发布内容的结构勘误须更新冻结源并重新发布，修改模板本身不会改变线上快照。

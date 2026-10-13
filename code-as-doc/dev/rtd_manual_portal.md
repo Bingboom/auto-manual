@@ -47,15 +47,15 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台, 设计系统, 系统数据)
+Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台, 设计系统, 系统数据, 产品矩阵)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. The public manual library passes `internal=false` to
 both shell macros: its sidebar contains only 说明书资料库 and 搜索说明书正文,
 and its top bar keeps the breadcrumb and region selector. It has no internal
 knowledge links or 知识库 / 工作资料 switch. Internal pages retain their
-知识库 group (产品知识, 市场与政策, 概览, 分享资料, 系统建设, 说明书工作台, 设计系统,
+知识库 group (产品知识, 产品矩阵, 市场与政策, 概览, 分享资料, 系统建设, 说明书工作台, 设计系统,
 系统数据, 最近更新) and the page switch. Optional entries follow the same rules as before: 分享资料 only
-with the sharing package, 系统建设, 设计系统 and 系统数据 only when their context builds (each computed once
+with the sharing package, 系统建设, 设计系统, 系统数据 and 产品矩阵 only when their context builds (each computed once
 per build and shared with the sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
 The Furo search page and manual pages keep their theme.
@@ -723,6 +723,46 @@ internal 知识库 page; the public manual library does not link to it.
   warning and hides its sidebar entry; `tests/test_rtd_system_data.py` fails
   first. The counting functions have Node tests in
   `tests/system_data_ui.test.mjs`.
+
+## Product matrix page
+
+`/products/matrix.html` (产品矩阵) lays out the products the published Web
+manuals describe. It is an internal 知识库 page listed under 产品知识; the
+public manual library does not link to it.
+
+- **Read at build time.** `tools/rtd/product_matrix.py` reads the publish
+  manifest (each model's markets, languages and routes), then one published
+  manual per model: English first, then `language_order` and `region_order` in
+  `tools/rtd_portal_assets/product_matrix.json`. From the table after its
+  SPECIFICATIONS / 仕様 / 规格 / 規格 heading it takes capacity, AC rated and
+  surge output (a Total row wins over the largest single port), cycle life,
+  weight, solar STC power, IP rating and output power, as the manual prints
+  them. Names come from the manual-center catalog without the model code or the
+  manual-type suffix; product lines come from the `navigation` groups in
+  `settings.json`; capability switches from `data/model_capabilities.csv`.
+  Nothing is snapshotted; a published manual change appears on the next build.
+- **Curated config.** `product_matrix.json` holds only what no manual states:
+  the lines and accessory groups (navigation ids, or a new title), `assign` for
+  models the navigation does not list (shown with *), `tiers` (capacity
+  columns), `names` and `notes` overrides, `companions` (products without a
+  manual of their own, cited from another manual) and `pairings` (partners a
+  manual names). A companion or pairing partner is shown only while the cited
+  manual's text still contains its `match` text (or its label).
+- **Sections:** headline counts (models with Web manuals, Web manuals, power
+  stations and batteries, accessories; 更多型号持续维护中 when the capability
+  table has models without a Web manual), a market filter, the line × capacity
+  grid, accessory groups, the capability matrix (all / some / no regions), the
+  sortable spec table, pairings and data sources.
+- **JavaScript** (`_static/product-matrix.js`) only dims what a market has no
+  Web manual for and sorts the spec table; without it every product shows and
+  the filter stays hidden. Node tests: `tests/product_matrix_ui.test.mjs`.
+- **Failure:** without a readable publish manifest the page and its links are
+  skipped quietly (the bootstrap build has none). A config naming an unknown
+  group or tier shape, or a malformed capability CSV, skips the page with a
+  Sphinx warning. A model with no group, an unreadable manual, a missing
+  capacity or a pairing the manual no longer names is a Sphinx warning while
+  the page still renders (an unplaced model is listed under 其他).
+  `tests/test_rtd_product_matrix.py` covers the parsing and the rules.
 
 ## Maintenance surface
 
