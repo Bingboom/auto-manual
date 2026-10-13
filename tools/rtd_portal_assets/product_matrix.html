@@ -14,7 +14,7 @@
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 {%- macro market_tags(regions) -%}<span class="pm-markets">{% for region in regions %}<span class="pm-mk">{{ region|e }}</span>{% endfor %}</span>{%- endmacro -%}
 {%- macro card(item, ghost=false) -%}
-<div class="pm-card{% if ghost %} is-ghost{% endif %}" data-regions="{{ item.regions|join(' ')|e }}" title="{{ item.name|e }} · {{ item.model|e }} · 来源 {{ item.source|e }}">
+<div class="pm-card{% if ghost %} is-ghost{% endif %}" data-regions="{{ item.regions|join(' ')|e }}" title="{{ item.name|e }} · {{ item.model|e }} · 来源 {{ item.source|e }}{% if item.basis %} · 说明书原文：{{ item.basis|e }}{% endif %}{% if item.variant_of %} · 与 {{ item.variant_of|e }} 为同一产品的不同市场版本{% endif %}">
   <b>{{ item.name|e }}{% if item.inferred %}<sup title="{{ inferred_note|e }}">*</sup>{% endif %}</b>
   <span class="pm-model">{{ item.model|e }}</span>
   <span class="pm-facts">{% for fact in item.facts %}{% if not loop.first %} {% endif %}<span>{{ fact|e }}</span>{% endfor %}</span>
@@ -51,7 +51,7 @@
 
     <section class="pm-section" id="positioning" aria-labelledby="positioning-title">
       <h2 id="positioning-title">产品定位：产品线 × 容量</h2>
-      <p class="pm-note">每张卡片是一个型号，标出容量、AC 额定输出、重量和已有网页说明书的市场。同一列里的型号往往是同一电池平台在不同产品线或市场的版本。带 * 的型号说明书导航表没有收录，按产品名或同平台归入。</p>
+      <p class="pm-note">每张卡片是一个型号，标出容量、AC 额定输出、重量和已有网页说明书的市场。同一列里的型号往往是同一电池平台在不同产品线或市场的版本。带 * 的型号说明书导航表没有收录，按说明书内容归入；归入备电类的型号须有说明书原文支撑，不看产品名称，悬停卡片可看原文。</p>
       <div class="pm-scroll" tabindex="0" role="region" aria-label="产品定位矩阵，可横向滚动">
         <div class="pm-grid" role="table" aria-label="产品定位矩阵" style="--pm-tiers:{{ tiers|length }}">
           <div class="pm-row pm-head" role="row">
@@ -156,7 +156,7 @@
       <ul class="pm-sources">
         <li>型号、市场与语言：<code>docs/publish/publish_manifest.json</code>{% if built_on %}（构建于 {{ built_on|e }}）{% endif %}；名称取自说明书资料库目录。</li>
         <li>规格：各型号网页说明书的 SPECIFICATIONS / 仕様 / 规格表，照原文数值；悬停产品卡片可看用的是哪一份说明书。</li>
-        <li>产品线：说明书资料库导航表的分组；导航表未收录的型号（带 *）和搭配关系由 <code>tools/rtd_portal_assets/product_matrix.json</code> 维护。</li>
+        <li>产品线：说明书资料库导航表的分组；导航表未收录的型号（带 *）和搭配关系由 <code>tools/rtd_portal_assets/product_matrix.json</code> 维护。归入备电类须引用说明书原文，原文不再出现时该型号移到“其他”并在构建日志提示。</li>
         <li>功能：<code>data/model_capabilities.csv</code> 的 {{ capability_names|length }} 项能力开关{% if facts.pending %}；更多型号持续维护中{% endif %}。</li>
         {%- for note in footnotes %}
         <li>{{ note|e }}</li>

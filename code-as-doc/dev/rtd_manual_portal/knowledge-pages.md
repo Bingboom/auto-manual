@@ -265,6 +265,24 @@ public manual library does not link to it.
   manual of their own, cited from another manual) and `pairings` (partners a
   manual names). A companion or pairing partner is shown only while the cited
   manual's text still contains its `match` text (or its label).
+- **Backup lines need the manual's words.** A line marked `"evidence": true`
+  (家庭备电, 专用场景备电) takes an assigned model only as
+  `{"line": ..., "evidence": "<quote>"}`, and only while the model's source
+  manual contains that quote (case and spacing ignored). The card tooltip shows
+  the manual sentence. A product name is never the reason: HomePower 3000 and
+  HomePower 3600 Plus describe UPS like any power station but no home backup, so
+  they sit under 通用电器供电 and 可扩容储能. When a quote disappears, the model
+  moves to 其他 with a Sphinx warning. Navigation-listed models (FridgeGuard in
+  专用场景备电) are the operator's own grouping and need no quote.
+- **Operator decisions win over wording.** A manual sentence is necessary, not
+  sufficient: HomePower 5000 Plus carries a Smart Home Backup System guide, but
+  the operator ruled on 2026-10-13 that it is not a backup product, so it sits
+  under 可扩容储能. `{"same_as": "<model>"}` places one product sold in another
+  market where the operator placed it: SlimPower H1 (JE-1000E-WH, JP) is
+  FridgeGuard (JE-1000E-SIL, US) under another name, so it follows FridgeGuard
+  into 专用场景备电. `same_as` must name a navigation-listed model and takes no
+  line of its own; it is for one product's market versions, never for products
+  that merely share a platform.
 - **Sections:** headline counts (models with Web manuals, Web manuals, power
   stations and batteries, accessories; 更多型号持续维护中 when the capability
   table has models without a Web manual), a market filter, the line × capacity

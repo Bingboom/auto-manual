@@ -10,8 +10,8 @@ from unittest.mock import patch
 from tools.rtd import product_matrix
 from tools.rtd.portal import ASSETS
 from tools.rtd.product_matrix import (
-    ProductMatrixError, display_name, load_config, matrix_context, number, product_matrix_page_context,
-    read_specs, spec_pairs,
+    ProductMatrixError, display_name, evidence_excerpt, load_config, matrix_context, number,
+    product_matrix_page_context, read_specs, spec_pairs,
 )
 from tools.utils.path_utils import Paths
 
@@ -23,9 +23,9 @@ SETTINGS = {"navigation": {
 }}
 CONFIG = {
     "region_order": ["US", "EU", "JP"], "language_order": ["en", "ja"],
-    "lines": [{"id": "appliance"}, {"id": "home", "title": "家庭备电"}],
+    "lines": [{"id": "appliance"}, {"id": "home", "title": "家庭备电", "evidence": True}],
     "accessories": [{"id": "solar"}],
-    "assign": {"JE-H": "home"},
+    "assign": {"JE-H": {"line": "home", "evidence": "backup power to home circuits"}},
     "names": {"JS-S": "Panel S"}, "notes": {},
     "tiers": [{"label": "small", "below": 800}, {"label": "large"}],
     "capability_labels": {"静音充电": "静音"},
@@ -99,6 +99,12 @@ class ConfigTests(unittest.TestCase):
     def test_unknown_groups_untitled_lines_and_open_tiers_are_rejected(self):
         broken = [
             {**CONFIG, "assign": {"JE-H": "nowhere"}},
+            # A backup line takes an assigned model only with a quote from its manual, never by name alone.
+            {**CONFIG, "assign": {"JE-H": "home"}},
+            {**CONFIG, "assign": {"JE-H": {"line": "home", "evidence": " "}}},
+            # A market variant follows a navigation-listed model and names no line of its own.
+            {**CONFIG, "assign": {"JE-H": {"same_as": "JE-NOT-IN-NAVIGATION"}}},
+            {**CONFIG, "assign": {"JE-H": {"same_as": "JE-A", "line": "home"}}},
             {**CONFIG, "lines": [{"id": "not-in-navigation"}]},
             {**CONFIG, "accessories": [{"id": "appliance"}]},
             {**CONFIG, "tiers": [{"label": "only", "below": 100}]},
@@ -134,7 +140,8 @@ class MatrixContextTests(unittest.TestCase):
             folder.mkdir(parents=True)
             body = spec_table(manuals[item["model"]])
             if item["model"] == "JE-H":
-                body += "Use Battery Pack 3 and the transfer switch JA-SW1."
+                body += ("Use Battery Pack 3 and the transfer switch JA-SW1. "
+                         "## Home circuits\nThe unit can supply backup\npower to home circuits. Next sentence.")
             (folder / item["manual"]).write_text(body, encoding="utf-8")
         self.manifest = self.root / "docs" / "publish" / "publish_manifest.json"
         self.manifest.write_text(json.dumps({"built_at": "2026-10-12T08:00:00+00:00", "targets": targets}), encoding="utf-8")
@@ -162,6 +169,40 @@ class MatrixContextTests(unittest.TestCase):
         self.assertEqual(home["cells"][1][0]["model"], "JE-H")
         self.assertTrue(home["cells"][1][0]["inferred"])
         self.assertEqual(home["cells"][1][0]["name"], "HomePower H")
+
+    def test_a_backup_line_shows_the_manual_sentence_that_places_a_model_there(self):
+        card = self.context()["lines"][1]["cells"][1][0]
+        # The quote widens to its sentence; a heading right before it stays as context.
+        self.assertEqual((card["model"], card["basis"]),
+                         ("JE-H", "Home circuits The unit can supply backup power to home circuits."))
+
+    def test_without_its_quote_in_the_manual_a_model_leaves_the_backup_line(self):
+        config = {**CONFIG, "assign": {"JE-H": {"line": "home", "evidence": "whole-home backup"}}}
+        (self.assets / "product_matrix.json").write_text(json.dumps(config), encoding="utf-8")
+        context = self.context()
+        self.assertEqual(sum(len(cell) for cell in context["lines"][1]["cells"]), 0)
+        others = {group["title"]: group for group in context["accessories"]}["其他"]
+        self.assertIn("JE-H", [card["model"] for card in others["cards"]])
+        self.assertTrue(any("whole-home backup" in message for message in context["warnings"]))
+
+    def test_a_market_variant_takes_the_line_of_the_same_product(self):
+        config = {**CONFIG, "assign": {**CONFIG["assign"], "JX-Q": {"same_as": "JE-A"}}}
+        (self.assets / "product_matrix.json").write_text(json.dumps(config), encoding="utf-8")
+        specs = {row["model"]: row for row in self.context()["specs"]}
+        self.assertEqual(specs["JX-Q"]["line"], "通用电器供电")
+        loaded = load_config(self.assets, SETTINGS)
+        warnings: list[str] = []
+        products, _ = product_matrix.read_products(self.web, json.loads(self.manifest.read_text())["targets"],
+                                                   self.catalog, loaded, warnings)
+        self.assertEqual((products["JX-Q"]["group"], products["JX-Q"]["variant_of"]), ("appliance", "JE-A"))
+        self.assertEqual((products["JE-A"]["variant_of"], products["JE-H"]["variant_of"]), ("", ""))
+
+    def test_evidence_excerpt_keeps_the_sentence_and_ignores_case_and_spacing(self):
+        text = "Intro. The unit can supply Backup  Power to home circuits. Next."
+        self.assertEqual(evidence_excerpt(text, "backup power"), "The unit can supply Backup  Power to home circuits.")
+        self.assertEqual(evidence_excerpt("x" * 300 + " backup power " + "y" * 300, "backup power")[:1], "…")
+        self.assertEqual(evidence_excerpt(text, "absent"), "")
+        self.assertEqual(evidence_excerpt(text, "  "), "")
 
     def test_accessories_companions_and_unplaced_products(self):
         context = self.context()

@@ -13,7 +13,11 @@
 - ``product_matrix.json`` for what no manual states: the line of a model the
   navigation does not list (marked * on the page), capacity tiers, name
   overrides, short notes, products without their own manual, and which partner
-  products a manual names;
+  products a manual names. A line marked ``evidence`` (the backup lines) takes
+  an assigned model only with a quote its manual contains, or as ``same_as`` a
+  navigation-listed model when the operator confirms both are one product sold
+  in different markets: a product name such as HomePower does not make a
+  product a backup product;
 - ``data/model_capabilities.csv`` for the capability switches.
 
 A pairing or companion product is shown only when its text still appears in the
@@ -41,6 +45,8 @@ TEMPLATE = "product_matrix.html"
 CONFIG = "product_matrix.json"
 INFERRED_NOTE = "导航表未收录，按名称或同平台归入"
 OTHER_GROUP = "其他"
+# Where a quoted manual sentence starts or ends: sentence ends and Markdown headings.
+_SENTENCE_MARKS = (". ", "。", "! ", "? ", "# ")
 
 _TAG = re.compile(r"<[^>]+>")
 _BREAK = re.compile(r"<br\s*/?>", re.I)
@@ -156,6 +162,27 @@ def display_name(name: str, model: str) -> str:
     return _NAME_SUFFIX.sub("", name).strip() or model
 
 
+def _assignments(raw: dict[str, Any], lines: list[dict[str, Any]], accessories: list[dict[str, Any]],
+                 ids: list[str]) -> dict[str, dict[str, Any]]:
+    """Each assigned model as {"line", "evidence"?} or {"same_as"}, checked against the lines."""
+    evidence_lines = {entry["id"] for entry in lines if entry.get("evidence")}
+    navigation_models = {model for entry in lines + accessories for model in entry["models"]}
+    assign = {}
+    for model, entry in raw.items():
+        entry = {"line": entry} if isinstance(entry, str) else dict(entry)
+        if "same_as" in entry:
+            # One product in another market follows the operator's own placement of it.
+            if "line" in entry or entry["same_as"] not in navigation_models:
+                raise ProductMatrixError(f"{CONFIG}: {model} same_as must name a navigation-listed model, "
+                                         "without a line of its own")
+        elif entry.get("line") not in ids:
+            raise ProductMatrixError(f"{CONFIG}: {model} is assigned to unknown group {entry.get('line')!r}")
+        elif entry["line"] in evidence_lines and not str(entry.get("evidence") or "").strip():
+            raise ProductMatrixError(f"{CONFIG}: {model} needs an evidence quote from its manual for {entry['line']!r}")
+        assign[model] = entry
+    return assign
+
+
 def load_config(assets: Path, settings: dict[str, Any]) -> dict[str, Any]:
     """The curated config with every line and group resolved against the navigation."""
     config = json.loads((assets / CONFIG).read_text(encoding="utf-8"))
@@ -175,13 +202,11 @@ def load_config(assets: Path, settings: dict[str, Any]) -> dict[str, Any]:
     ids = [entry["id"] for entry in lines + accessories]
     if len(set(ids)) != len(ids):
         raise ProductMatrixError(f"{CONFIG}: line and accessory ids must be unique")
-    for model, group in config.get("assign", {}).items():
-        if group not in ids:
-            raise ProductMatrixError(f"{CONFIG}: {model} is assigned to unknown group {group!r}")
+    assign = _assignments(config.get("assign", {}), lines, accessories, ids)
     tiers = config["tiers"]
     if not tiers or any("below" not in tier for tier in tiers[:-1]) or "below" in tiers[-1]:
         raise ProductMatrixError(f"{CONFIG}: every tier but the last needs 'below', and the last none")
-    return {**config, "lines": lines, "accessories": accessories}
+    return {**config, "lines": lines, "accessories": accessories, "assign": assign}
 
 
 def _order(values: Iterable[str], preferred: list[str]) -> list[str]:
@@ -201,6 +226,49 @@ def _manual(srcdir: Path, target: dict[str, Any]) -> str | None:
     if not path.is_relative_to(srcdir.resolve()) or not path.is_file():
         return None
     return path.read_text(encoding="utf-8", errors="replace")
+
+
+def evidence_excerpt(text: str, quote: str, limit: int = 140) -> str:
+    """The manual sentence holding a quote (case and spacing ignored), or "" when the manual lacks it."""
+    words = quote.split()
+    if not words:
+        return ""
+    match = re.search(r"\s+".join(re.escape(word) for word in words), text, re.I)
+    if match is None:
+        return ""
+    # Widen to the enclosing sentence or heading, but never past `limit` characters on either side.
+    before = [text.rfind(mark, 0, match.start()) + len(mark) for mark in _SENTENCE_MARKS
+              if text.rfind(mark, 0, match.start()) >= 0]
+    after = [text.find(mark, match.end()) + len(mark.rstrip()) for mark in _SENTENCE_MARKS
+             if text.find(mark, match.end()) >= 0]
+    start = max([match.start() - limit, *before], default=match.start() - limit)
+    end = min([match.end() + limit, *after], default=match.end() + limit)
+    start, end = max(0, start), min(len(text), end)
+    clipped_start = start == match.start() - limit and start > 0
+    clipped_end = end == match.end() + limit and end < len(text)
+    return ("…" if clipped_start else "") + text[start:end].strip(" #") + ("…" if clipped_end else "")
+
+
+def _placement(model: str, text: str, placed: dict[str, str], config: dict[str, Any],
+               warnings: list[str]) -> tuple[str | None, str]:
+    """The model's group and, for an assigned model with a quote, the manual text that supports it."""
+    if model in placed:
+        return placed[model], ""
+    entry = config["assign"].get(model)
+    if entry is None:
+        warnings.append(f"{model}: no navigation group or {CONFIG} assignment; listed under {OTHER_GROUP}")
+        return None, ""
+    if "same_as" in entry:
+        return placed[entry["same_as"]], ""
+    quote = str(entry.get("evidence") or "").strip()
+    if not quote:
+        return entry["line"], ""
+    basis = evidence_excerpt(text, quote)
+    if not basis:
+        warnings.append(f"{model}: manual does not state {quote!r}; not placed under {entry['line']!r}, "
+                        f"listed under {OTHER_GROUP}")
+        return None, ""
+    return entry["line"], basis
 
 
 def _partner(item: str | dict[str, str]) -> tuple[str, str]:
@@ -229,13 +297,12 @@ def read_products(srcdir: Path, targets: list[dict[str, Any]], catalog: list[dic
         texts[model] = plain_text(markup)
         regions = _order((row["region"] for row in rows), config["region_order"])
         catalog_name = next((names[model][region] for region in [source["region"], *regions] if names[model].get(region)), "")
-        group = placed.get(model) or config.get("assign", {}).get(model)
-        if group is None:
-            warnings.append(f"{model}: no navigation group or {CONFIG} assignment; listed under {OTHER_GROUP}")
+        group, basis = _placement(model, texts[model], placed, config, warnings)
         products[model] = {
             "model": model,
             "name": config.get("names", {}).get(model) or display_name(catalog_name, model),
-            "group": group, "inferred": model not in placed,
+            "group": group, "inferred": model not in placed, "basis": basis,
+            "variant_of": config["assign"].get(model, {}).get("same_as", "") if model not in placed else "",
             "regions": regions, "langs": sorted({row["lang"] for row in rows}), "routes": len(rows),
             "source": f"{source['route']}（{source['lang']}）",
             "note": config.get("notes", {}).get(model, ""),
@@ -275,7 +342,8 @@ def _accessory_facts(product: dict[str, Any]) -> list[str]:
 
 
 def _card(product: dict[str, Any], facts: list[str]) -> dict[str, Any]:
-    return {key: product[key] for key in ("model", "name", "regions", "inferred", "source")} | {"facts": facts}
+    keys = ("model", "name", "regions", "inferred", "source", "basis", "variant_of")
+    return {key: product[key] for key in keys} | {"facts": facts}
 
 
 def positioning(products: dict[str, dict[str, Any]], config: dict[str, Any],
@@ -315,7 +383,8 @@ def companions(products: dict[str, dict[str, Any]], texts: dict[str, str], confi
             warnings.append(f"{item['model']}: not named in the published {item['source']} manual; companion dropped")
             continue
         groups.setdefault(item["title"], []).append({
-            "model": item["model"], "name": item["name"], "regions": source["regions"], "inferred": False,
+            "model": item["model"], "name": item["name"], "regions": source["regions"], "inferred": False, "basis": "",
+            "variant_of": "",
             "source": source["source"], "facts": [item["spec"], f"见 {source['name']} 说明书"],
         })
     return [{"title": title, "cards": cards, "ghost": True} for title, cards in groups.items()]
