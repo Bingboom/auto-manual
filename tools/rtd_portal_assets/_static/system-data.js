@@ -61,7 +61,22 @@
     }).sort((a, b) => b.share - a.share);
   };
 
-  const model = {fits, assetFits, countBy, summary, matrix, coverage};
+  // Lines per top-level directory, largest first, each split into its file types in the given order.
+  const codeAreas = (rows, types) => {
+    const areas = new Map();
+    for (const row of rows) {
+      const area = areas.get(row.area) || {area: row.area, files: 0, lines: 0, parts: new Map()};
+      area.files += row.files;
+      area.lines += row.lines;
+      area.parts.set(row.type, {type: row.type, files: row.files, lines: row.lines});
+      areas.set(row.area, area);
+    }
+    return [...areas.values()]
+      .map(area => ({...area, parts: types.filter(type => area.parts.has(type)).map(type => area.parts.get(type))}))
+      .sort((a, b) => b.lines - a.lines || a.area.localeCompare(b.area));
+  };
+
+  const model = {fits, assetFits, countBy, summary, matrix, coverage, codeAreas};
   globalThis.SystemDataModel = model;
 
   const source = typeof document !== 'undefined' && document.getElementById('system-data-json');
@@ -321,6 +336,41 @@
     }
   };
 
+  // Not filtered: the repository's size does not depend on a region or model.
+  const drawCode = () => {
+    const box = $('sd-code');
+    if (!box || !data.codebase) return;
+    const areas = codeAreas(data.codebase, data.file_types).slice(0, 10);
+    if (!areas.length) {
+      note(box, '没有可统计的文件。');
+      return;
+    }
+    const rowHeight = 26, barHeight = 14;
+    const {root, width} = stage(box, areas.length * rowHeight);
+    const labelW = labelWidth(root, areas.map(area => area.area), 'sd-label') + 10;
+    const valueW = labelWidth(root, areas.map(area => number.format(area.lines))) + 10;
+    const span = Math.max(10, width - labelW - valueW);
+    const max = areas[0].lines || 1;
+    areas.forEach((area, index) => {
+      const row = svg('g', {class: 'sd-row', transform: `translate(0,${index * rowHeight})`});
+      row.appendChild(svg('rect', {class: 'sd-row-bg', width, height: rowHeight, rx: 4}));
+      row.appendChild(svg('text', {class: 'sd-label', x: labelW - 10, y: rowHeight / 2, dy: '0.35em', 'text-anchor': 'end'}, area.area));
+      let x = labelW;
+      for (const part of area.parts) {
+        const length = (part.lines / max) * span;
+        row.appendChild(svg('rect', {
+          class: `sd-seg sd-type-${data.file_types.indexOf(part.type)}`, x, y: (rowHeight - barHeight) / 2,
+          width: Math.max(1, length - 1), height: barHeight, rx: 2,
+        }));
+        x += length;
+      }
+      row.appendChild(svg('text', {class: 'sd-value', x: labelW + Math.max(2, (area.lines / max) * span) + 6, y: rowHeight / 2, dy: '0.35em'}, number.format(area.lines)));
+      tip(row, [`${area.area} · ${number.format(area.files)} 个文件`,
+        ...area.parts.map(part => `${part.type}：${number.format(part.lines)} 行（${number.format(part.files)} 个文件）`)]);
+      root.appendChild(row);
+    });
+  };
+
   const fillCounts = () => {
     const counts = summary(data, sel);
     document.querySelectorAll('[data-kpi]').forEach(node => {
@@ -393,6 +443,7 @@
     drawMatrix();
     drawCapabilities();
     drawBars();
+    drawCode();
     filterTable();
   }
 

@@ -103,12 +103,12 @@ pairs and shared hold-duration clocks. Match product markings before choosing
 a shared button variant; function names alone do not establish artwork reuse.
 
 
-新增 Web 底图的独立说明框必须与说明文字一起移除，由共享 CSS 绘制；复用旧图也需先检查裸底图。新冻结候选封装会检查已声明 ReferenceFigure 填充文字框区域的底图哈希和真实像素，拒绝残留的对比色空框；同色、仅轮廓或未声明框仍须视觉核验。完整面板、产品表面与 App UI 按角色保留。详见[共用取图规范](../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+新增 Web 底图的独立说明框必须与说明文字一起移除，由共享 CSS 绘制；复用旧图也需先检查裸底图。新冻结候选封装会检查已声明 ReferenceFigure 填充文字框区域的底图哈希和真实像素，拒绝残留的对比色空框；同色、仅轮廓或未声明框仍须视觉核验。完整面板、产品表面与 App UI 按角色保留。详见[共用取图规范](../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)。
 
 原稿标题条内型号使用共享 `hb-heading-model`，整行图标警告使用
 `HB-CALLOUT-STRIP/warning` 的 `hb-source-warning-lockup` 声明；图内说明通过
 ReferenceFigure 源坐标保留在图内，不能移为图后段落。具体样式声明见
-[原稿标题型号与完整警告框](../../docs/renderers/contracts/STYLE_DEFINITION.md#原稿标题型号与完整警告框)。
+[原稿标题型号与完整警告框](../../docs/renderers/contracts/STYLE_DEFINITION/appendix-b-boundaries.md#原稿标题型号与完整警告框)。
 
 Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/list/image/paragraph 表达，使用共享 `hb-package-panel` 样式绘制完整外框、原生配件名称和 availability capsule。先复用已核对配件图；冻结副本必须与记录的共用源 hash 一致。旧整图标记 `superseded-do-not-reuse`，不参与当前原稿图片覆盖；微型文档封面替换为共用文档图标时单独记录 illustration-only omission，并保留原生配件名称。
 
@@ -118,7 +118,7 @@ Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/
 
 FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。
 
-JA-AD600A/EU 英文的五张说明图已分离需要翻译的文字，采用共用底图加原生标签；尺寸、单位、固定铭刻和 A–F 对应编号保留。各语替换文字时复用同一底图，详见[共用底图复核](../../docs/renderers/contracts/STYLE_DEFINITION.md#ja-ad600a-eu-共用底图复核)。
+JA-AD600A/EU 英文的五张说明图已分离需要翻译的文字，采用共用底图加原生标签；尺寸、单位、固定铭刻和 A–F 对应编号保留。各语替换文字时复用同一底图，详见[共用底图复核](../../docs/renderers/contracts/STYLE_DEFINITION/appendix-b-boundaries.md#ja-ad600a-eu-共用底图复核)。
 
 仅含一段声明的 FCC 可用 `hb-fcc-composition hb-fcc-statement` 复用完整 FCC 的浅灰圆角面板和紧凑正文，保持单栏和原稿内容；完整 FCC 的 NOTE / MODIFICATION 不应补入短声明。原生 H2 标题保留在 section 中，正文和左侧共用 FCC 标志由既有受保护 figure 通过原生 flow 输出；共享 CSS 将它们排在同一面板中。
 

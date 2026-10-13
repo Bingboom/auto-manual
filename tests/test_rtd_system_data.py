@@ -9,8 +9,8 @@ from unittest.mock import patch
 
 from tools.rtd import system_data
 from tools.rtd.system_data import (
-    SystemDataError, read_assets, read_published, read_targets, review_page_counts, system_data_context,
-    system_data_page_context,
+    SystemDataError, count_lines, read_assets, read_published, read_targets, review_page_counts,
+    system_data_context, system_data_page_context, tracked_files,
 )
 from tools.utils.path_utils import Paths, repo_root
 
@@ -52,8 +52,9 @@ class SystemDataTests(unittest.TestCase):
             target("JE-A", "EU", "en"), target("JE-A", "EU", "fr", "2026-10-05T00:00:00+00:00"), target("JE-B", "JP", "ja"),
         ])
 
-    def context(self, manifest_path: Path | None = None):
-        return system_data_context(self.root, manifest_path or self.manifest, {"en": "English", "ja": "日本語"})
+    def context(self, manifest_path: Path | None = None, files: list[str] | None = None):
+        return system_data_context(self.root, manifest_path or self.manifest, {"en": "English", "ja": "日本語"},
+                                   list_files=lambda root: files)
 
     def test_counts_and_rows_come_from_the_repository_files(self):
         context = self.context()
@@ -122,6 +123,42 @@ class SystemDataTests(unittest.TestCase):
             self.assertIsNone(system_data_page_context(app, {}))
         get_logger.return_value.warning.assert_called_once()
         self.assertIn("System data page skipped", get_logger.return_value.warning.call_args.args[0])
+
+    def test_code_size_counts_lines_per_directory_and_file_type(self):
+        files = {
+            "tools/a.py": "x\ny\n", "tools/b.py": "z", "docs/page.md": "a\n", "README.md": "a\nb\n",
+            "data/t.csv": "h\n1\n2\n", "configs/c.yml": "k: v\n", "image.png": "png",
+        }
+        for name, text in files.items():
+            (self.root / name).parent.mkdir(parents=True, exist_ok=True)
+            (self.root / name).write_text(text, encoding="utf-8")
+        # A listed file missing from disk (a sparse checkout) is skipped, as is any other suffix.
+        context = self.context(files=[*files, "tools/missing.py"])
+        self.assertEqual(context["codebase_total"], {"files": 6, "lines": 10})
+        payload = json.loads(context["data_json"])
+        self.assertEqual(payload["file_types"], ["Python", "Markdown 文档", "RST 模板/页面", "YAML 配置", "CSV 数据"])
+        self.assertEqual(payload["codebase"], [
+            {"area": "data", "type": "CSV 数据", "files": 1, "lines": 3},
+            {"area": "tools", "type": "Python", "files": 2, "lines": 3},
+            {"area": "(根目录)", "type": "Markdown 文档", "files": 1, "lines": 2},
+            {"area": "configs", "type": "YAML 配置", "files": 1, "lines": 1},
+            {"area": "docs", "type": "Markdown 文档", "files": 1, "lines": 1},
+        ])
+
+    def test_without_a_git_file_list_only_the_code_card_is_empty(self):
+        context = self.context(files=None)
+        self.assertIsNone(context["codebase_total"])
+        self.assertIsNone(json.loads(context["data_json"])["codebase"])
+        self.assertEqual(context["summary"]["manuals"], 3)
+        # Outside a checkout git has nothing to list.
+        self.assertIsNone(tracked_files(self.root))
+
+    def test_lines_are_counted_like_an_editor(self):
+        self.assertEqual([count_lines(data) for data in (b"", b"a", b"a\n", b"a\nb", b"\n\n")], [0, 1, 1, 2, 2])
+
+    @unittest.skipUnless((repo_root() / ".git").exists(), "needs a git checkout")
+    def test_the_checkout_lists_its_tracked_files(self):
+        self.assertIn("tools/rtd/system_data.py", tracked_files(repo_root()))
 
     def test_review_pages_are_counted_per_model_and_region(self):
         self.assertEqual(dict(review_page_counts(self.paths.review_dir)), {"JE-A_EU": 2})

@@ -15,7 +15,7 @@ traps, and closing checklist — keep it open.
 
 ## Reuse before extraction
 
-Follow the shared [Web artwork selection contract](../../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)
+Follow the shared [Web artwork selection contract](../../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)
 before choosing any transform. Inventory target assets, same-model/region
 assets in other languages, then shared/template assets. Open candidate images
 and verify identity, content, language and quality. Record the candidates,
