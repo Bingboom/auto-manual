@@ -31,7 +31,9 @@ _PROJECT_SLUG_META = re.compile(
     rb'<meta name="readthedocs-project-slug" content="(' + _PROJECT_SLUG.encode("ascii") + rb')" />')
 MAX_FILES = 10000
 MAX_FILE_BYTES = 32 * 1024 * 1024
-MAX_TOTAL_BYTES = 512 * 1024 * 1024
+# Served output and online verification. Raised from 512 MiB on 2026-10-13: the published
+# site (mostly manual artwork under _static) reached 519.6 MiB and the receipt refused to build.
+MAX_TOTAL_BYTES = 768 * 1024 * 1024
 # Frozen inputs contain both self-contained sources and assembled Web copies.
 # Keep their storage and file-count budgets separate from served-output and
 # network budgets; normal catalog growth must not enlarge network traversal.
