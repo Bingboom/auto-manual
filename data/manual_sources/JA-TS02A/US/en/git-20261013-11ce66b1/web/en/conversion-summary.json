@@ -1,0 +1,16 @@
+{
+  "target": {
+    "model": "JA-TS02A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261013-11ce66b1",
+    "printed_manual_version": "JAK-UM-V1.0"
+  },
+  "body_page_count": 22,
+  "chapter_count": 10,
+  "figure_count": 32,
+  "native_table_count": 5,
+  "recovered_source_lines": 5
+}

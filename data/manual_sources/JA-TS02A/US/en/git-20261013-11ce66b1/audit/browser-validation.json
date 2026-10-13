@@ -1,0 +1,24 @@
+{
+  "desktop": {
+    "cssViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "figureOverflow": [],
+    "figures": 32,
+    "missingImages": [],
+    "pageOverflow": false,
+    "tables": 5
+  },
+  "mobile": {
+    "cssViewport": {
+      "height": 844,
+      "width": 390
+    },
+    "figureOverflow": [],
+    "figures": 32,
+    "missingImages": [],
+    "pageOverflow": false,
+    "tables": 5
+  }
+}

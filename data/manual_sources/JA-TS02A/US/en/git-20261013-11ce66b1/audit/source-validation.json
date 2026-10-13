@@ -1,0 +1,14 @@
+{
+  "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+  "body_pages": 22,
+  "chapters": 10,
+  "native_tables": 5,
+  "figures": 32,
+  "shared_symbols": 4,
+  "inline_controls": 7,
+  "source_line_coverage_missing": [],
+  "table_cell_parity": true,
+  "cold_replay_byte_parity": true,
+  "asset_tamper_rejected": true,
+  "frozen_input_hashes": true
+}

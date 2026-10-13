@@ -1,0 +1,709 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-TS02A",
+    "region": "US",
+    "languages": [
+      "en"
+    ],
+    "technical_version": "git-20261013-11ce66b1",
+    "printed_manual_version": "JAK-UM-V1.0"
+  },
+  "original_source": {
+    "filename": "Jackery Smart Transfer Switch.pdf",
+    "sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "size_bytes": 94486777,
+    "physical_page_count": 92,
+    "archive_parts": [
+      {
+        "path": "source/pdf-archive/part-001.bin",
+        "size": 33554432,
+        "sha256": "d54689f81fc66ac17bdeba137e445fd805a147bcb5dc454f1b8f7565d24b227d"
+      },
+      {
+        "path": "source/pdf-archive/part-002.bin",
+        "size": 33554432,
+        "sha256": "9fc6597365e48459c554ff5edd9ab6e260b496f9ed63bee4f1f5472cf8b9440f"
+      },
+      {
+        "path": "source/pdf-archive/part-003.bin",
+        "size": 27377913,
+        "sha256": "bda1844b17ba495f18a70b7d0ccb325e28e33d247bc1bdd8ad1c4e41816f739a"
+      }
+    ],
+    "archive_encoding": "Concatenate archive_parts in listed order; bytes equal the original supplied PDF."
+  },
+  "included_pages": {
+    "en": {
+      "physical_pages": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "printed_pages": [
+        "01",
+        "22"
+      ]
+    }
+  },
+  "excluded_pages": {
+    "printed_cover": [
+      1
+    ],
+    "contents": [
+      2
+    ],
+    "non_english_body": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91
+    ],
+    "back_cover": [
+      92
+    ]
+  },
+  "web_roots": {
+    "en": "web/en"
+  },
+  "normalizations": [
+    "Reflow printed line breaks into searchable HTML paragraphs and native tables; retain source wording and numeric values.",
+    "Repeat merged table labels per row for accessible semantic tables; no values changed.",
+    "Normalize font ligatures with Unicode NFKC; reconnect print-split words.",
+    "Recover five visible source lines omitted from both PDF extractors, with exact source rectangles in source/text-recovery.json.",
+    "Retain App screenshot labels and restore source inline control faces in the associated native text.",
+    "Remove printed running headers; preserve parallel-column numbered step order and recompose the two CAUTION boxes into native callouts. Reconnect approximately across a print line break."
+  ],
+  "validation_boundary": {
+    "build_py_check": "Existing JE-1000F/US fixture regression only; does not validate JA-TS02A or register it in phase2.",
+    "native_body": [
+      "22-page content coverage",
+      "source table parity",
+      "asset identity and hashes",
+      "cold replay",
+      "asset tamper rejection",
+      "strict Sphinx",
+      "desktop/mobile browser"
+    ]
+  },
+  "source_authority": "operator-supplied original PDF; native visible English content; no translation or product adaptation",
+  "inputs": [
+    {
+      "path": "README.md",
+      "size": 2193,
+      "sha256": "65feb2d724f2936b1e8d5e530a408db5e1f384bb07dd82f2e509875b89e94eb2"
+    },
+    {
+      "path": "assets/app-add-device.png",
+      "size": 86953,
+      "sha256": "8ec50a9045ad8870de7796f8ce6d76f0e3cc79e3f4a159754e1942695ef89231"
+    },
+    {
+      "path": "assets/app-backup-only.png",
+      "size": 37032,
+      "sha256": "30cb6329780ce3fbae9e3026a791a15f16ca21bae35b0e65e876b35f802fe30b"
+    },
+    {
+      "path": "assets/app-backup-priority.png",
+      "size": 73073,
+      "sha256": "d253cb80890556eaae0ae4c36c75c1b8e25e5af7a4f35887b2bfcde529e1c36d"
+    },
+    {
+      "path": "assets/app-circuit-list.png",
+      "size": 45277,
+      "sha256": "43ac840e01564e36966d51deea6a91b5396dadea009aa63ad550658de52717d6"
+    },
+    {
+      "path": "assets/app-circuit-name.png",
+      "size": 31956,
+      "sha256": "76d31949f6dcc327935b90308723761ff1f0265349c782d893966c58f293552b"
+    },
+    {
+      "path": "assets/app-circuits.png",
+      "size": 62160,
+      "sha256": "cb62dd9e2971abf8b5393068207123e951c4fe42143ce0de3247bfad596b5e36"
+    },
+    {
+      "path": "assets/app-dashboard.png",
+      "size": 66072,
+      "sha256": "0e6b96bdb245522c3a60ff8506256427b144dd65c48c4bfef64e762b9c579ec8"
+    },
+    {
+      "path": "assets/app-download-qr.png",
+      "size": 25942,
+      "sha256": "60eee0e1760a0ec7773da42e6eebe1fbb5c773f00e8571c034756111430d878c"
+    },
+    {
+      "path": "assets/app-store-badges.png",
+      "size": 9976,
+      "sha256": "11a6eeda9f87362e2f4adddfdb385ef5985b7c1f4b7a0d1dcf6a1051b30e26e1"
+    },
+    {
+      "path": "assets/app-ups-mode.png",
+      "size": 46485,
+      "sha256": "260761da35742866a0b29b3f9db4c1f3007a935e1abd04da040f0d7754a1e100"
+    },
+    {
+      "path": "assets/app-voltage-menu.png",
+      "size": 86007,
+      "sha256": "77529b6211d52838673d4109db68311f82497af4963ab2a48049b5c5ade256a2"
+    },
+    {
+      "path": "assets/app-voltage-settings.png",
+      "size": 56968,
+      "sha256": "9345aabe484e0428a8d68fa479eeac2369d4afb55a123925f6577751061ef77e"
+    },
+    {
+      "path": "assets/app-wifi.png",
+      "size": 63601,
+      "sha256": "f8d235f7edeaf6428b5c7379b547b76bf2d6427efd4a8aee29bdab6eb1b370c8"
+    },
+    {
+      "path": "assets/app-working-modes.png",
+      "size": 56328,
+      "sha256": "d95cd41a97bd723d640dbf8b7442b7495269d0a37eadaa6271f445fcee78fa08"
+    },
+    {
+      "path": "assets/cable-entry.png",
+      "size": 123058,
+      "sha256": "a082f0ffd2de4fb6f600d68f16fab2d7439ad00a439e46a695f122339672c669"
+    },
+    {
+      "path": "assets/covered-overview.png",
+      "size": 65892,
+      "sha256": "2a336501ebb8d1e57332100faf40a2f2819a895544980b2316bd2eaed997eac5"
+    },
+    {
+      "path": "assets/deadfront-installation.png",
+      "size": 77443,
+      "sha256": "8226827b9e72290fbe0d68220f8346f421fb3f2f7cc3dab5a6e30da2351afc3d"
+    },
+    {
+      "path": "assets/dimensions.png",
+      "size": 33769,
+      "sha256": "7e0a5fb6bb44de7977b0bbabc3d4fe7cbb546560bac5f7c404cf02cb12eac1ab"
+    },
+    {
+      "path": "assets/external-emergency-stop.png",
+      "size": 69749,
+      "sha256": "b66f3f5947c8e5f9f8815a67c36bbc1dc521d006a81d34a75c6b4191e5c155a4"
+    },
+    {
+      "path": "assets/grid-preparation.png",
+      "size": 52146,
+      "sha256": "bbceedf49fa03e97e73e44319351853bac0e61e3aefbf5a592ca20bb1c173f5f"
+    },
+    {
+      "path": "assets/grid-wiring.png",
+      "size": 52331,
+      "sha256": "12713d2f1f131d54d5253d6c1e9c8ed8d491741fe671b5756e9e7e2866092bd3"
+    },
+    {
+      "path": "assets/inline-add-device.png",
+      "size": 1014,
+      "sha256": "4e520c727876b84293a37cff9bf08fe1e71ffefda176fe38a54f23d41ab2c3e3"
+    },
+    {
+      "path": "assets/inline-edit-name.png",
+      "size": 2374,
+      "sha256": "d9836a340efa452417ace01660c453f26fe44950daebe4cf059e2345e65a0c5b"
+    },
+    {
+      "path": "assets/inline-edit.png",
+      "size": 2460,
+      "sha256": "11c966d28e83d003bc47c87036074ff9e15d5a4d298e66045861ff18b2d009fb"
+    },
+    {
+      "path": "assets/inline-link-circuits.png",
+      "size": 2821,
+      "sha256": "c18d9aaaba0bedda5649c4811bf874195fab2acb47b18bafc2854cd9d391f43b"
+    },
+    {
+      "path": "assets/inline-save.png",
+      "size": 2328,
+      "sha256": "d9562c75be4ee1db93c20541ff9692b12051581bc581456e24000140eb03f442"
+    },
+    {
+      "path": "assets/inline-settings.png",
+      "size": 2748,
+      "sha256": "841f078d6aa2add1ac18e1cb3735754bdde17b629e9936e69cce463dc578978d"
+    },
+    {
+      "path": "assets/inline-voltage-config.png",
+      "size": 2921,
+      "sha256": "e93f10afdf54a3e1f3179edb5d4a3e5377b539a01c4b990b78bf92b150d336b0"
+    },
+    {
+      "path": "assets/iot-pairing.png",
+      "size": 23575,
+      "sha256": "dc197baa03625f36c821dcc7e6dd44dc5e9ea0eea1ffe8bd02c359eaf5db0dfe"
+    },
+    {
+      "path": "assets/load-wiring.png",
+      "size": 81101,
+      "sha256": "928a08d7c5c02e917e0445bba2c96610b45fd649d23d670ddad65e58120a548b"
+    },
+    {
+      "path": "assets/locking-panel.png",
+      "size": 37369,
+      "sha256": "1ec992619d23382a4ae37cbf0984c461ad20225c5e31de93d58b58aeafde91e1"
+    },
+    {
+      "path": "assets/mounting-brackets.png",
+      "size": 20861,
+      "sha256": "75bd76eb0f90b451180d27e9f4ab48004e0b7414ca0b597499bf1f6ff1181e9f"
+    },
+    {
+      "path": "assets/mounting-fasteners.png",
+      "size": 27693,
+      "sha256": "e1253a59b0da6e3c46bd002431da39c6e79a0f2cb2e4abd9860282bcd78d40fd"
+    },
+    {
+      "path": "assets/mounting-template.png",
+      "size": 32519,
+      "sha256": "963ffa0f2526f9c50ca47a5463a0939dc73aaf3a85ac2c2f44272c02dc7847fa"
+    },
+    {
+      "path": "assets/optional-tools.png",
+      "size": 31471,
+      "sha256": "db3532e54976425d8a5fbb8a71136f303b9079273b7b1cf99025dbbf420d035c"
+    },
+    {
+      "path": "assets/package-list.png",
+      "size": 60479,
+      "sha256": "326906d27c9fbc9851191b4221fed5ce558fc34ee1fe4b88e852cf6cc48d1d12"
+    },
+    {
+      "path": "assets/power-station-connections.png",
+      "size": 72645,
+      "sha256": "fb02e9dbf816aab9a7cbaa5c173a3c707606744c40ff4ac0b41256ab39be4121"
+    },
+    {
+      "path": "assets/symbol_electric_shock.png",
+      "size": 3078,
+      "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f"
+    },
+    {
+      "path": "assets/symbol_grounding.png",
+      "size": 2225,
+      "sha256": "54c57e5ecc98f1cf0e0edc1562f88f93e403a5fcecd5b309303de4089b316430"
+    },
+    {
+      "path": "assets/symbol_read_manual_operator.png",
+      "size": 2077,
+      "sha256": "c7a2c7dc6ddd9bb4724d9607df666243fc3bbeaa20a669d00de8f1d1a8463b47"
+    },
+    {
+      "path": "assets/symbol_warning_triangle.png",
+      "size": 5378,
+      "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c"
+    },
+    {
+      "path": "assets/system-overview.png",
+      "size": 51109,
+      "sha256": "4c066caaacabb3f3a9572b601f87b5a37390b9ff72832e212416fc72d0f921fd"
+    },
+    {
+      "path": "assets/uncovered-overview.png",
+      "size": 64232,
+      "sha256": "4bb84b651ee57db33560488d4c7e6b01132cdb6299abda6e07ad5d08d5b83b77"
+    },
+    {
+      "path": "audit/asset-decisions.json",
+      "size": 34891,
+      "sha256": "4f46b8e04a15a2d7f0fe4e6efd94afced42cb521ca12d1bbf54f202376edad98"
+    },
+    {
+      "path": "audit/browser-validation.json",
+      "size": 404,
+      "sha256": "b846e60677af80ae21eeb49248a8f52e9998e52d886224497514a6f09ce0bc9f"
+    },
+    {
+      "path": "audit/discovery.zh.md",
+      "size": 865,
+      "sha256": "89633fe80797b2e967f13e3097668e5fd4b1613c5f304b34e888172334401be6"
+    },
+    {
+      "path": "audit/source-validation.json",
+      "size": 380,
+      "sha256": "b78d842a2315ccfee890917b45415d944b13efff956368d5cd5783126fa2bfce"
+    },
+    {
+      "path": "audit/validation.zh.md",
+      "size": 1742,
+      "sha256": "76db70cff15a683393be3f6a8728482253d948df08794be6f5fe89328eb7acbf"
+    },
+    {
+      "path": "build_web.py",
+      "size": 12441,
+      "sha256": "8910cd71671e30cf5e2cd0505adf7511687b35aa77db534c193418cec2513a3e"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 42415,
+      "sha256": "0dee3a182098b416f5e194b2528be4cb0414606cbfc7f432120f0327390364ca"
+    },
+    {
+      "path": "source/inline-controls.json",
+      "size": 4993,
+      "sha256": "785373e7ee8760e0825f6ed1b0d81eccf138514305f2b6a9d77e638c171e0d7a"
+    },
+    {
+      "path": "source/native-pages.json",
+      "size": 553555,
+      "sha256": "2ba3b6af1cecc0f9d3dad54112bd5593dae2f77a6fb1117f02327f6170c79aad"
+    },
+    {
+      "path": "source/pdf-archive/part-001.bin",
+      "size": 33554432,
+      "sha256": "d54689f81fc66ac17bdeba137e445fd805a147bcb5dc454f1b8f7565d24b227d"
+    },
+    {
+      "path": "source/pdf-archive/part-002.bin",
+      "size": 33554432,
+      "sha256": "9fc6597365e48459c554ff5edd9ab6e260b496f9ed63bee4f1f5472cf8b9440f"
+    },
+    {
+      "path": "source/pdf-archive/part-003.bin",
+      "size": 27377913,
+      "sha256": "bda1844b17ba495f18a70b7d0ccb325e28e33d247bc1bdd8ad1c4e41816f739a"
+    },
+    {
+      "path": "source/text-recovery.json",
+      "size": 1270,
+      "sha256": "eb1b9c5f9503de66961bf2f46afef17f9223310813fe30c4423682e4834b759b"
+    },
+    {
+      "path": "source/web_presentation.css",
+      "size": 1861,
+      "sha256": "3a8633db2dbd42da659392e96730b47e2c49a0cb8b1deba18ce54f28bc3fbbb2"
+    },
+    {
+      "path": "web/en/_static/source_presentation.css",
+      "size": 1861,
+      "sha256": "3a8633db2dbd42da659392e96730b47e2c49a0cb8b1deba18ce54f28bc3fbbb2"
+    },
+    {
+      "path": "web/en/_static/web_manual.css",
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
+    },
+    {
+      "path": "web/en/assets/app-add-device.png",
+      "size": 86953,
+      "sha256": "8ec50a9045ad8870de7796f8ce6d76f0e3cc79e3f4a159754e1942695ef89231"
+    },
+    {
+      "path": "web/en/assets/app-backup-only.png",
+      "size": 37032,
+      "sha256": "30cb6329780ce3fbae9e3026a791a15f16ca21bae35b0e65e876b35f802fe30b"
+    },
+    {
+      "path": "web/en/assets/app-backup-priority.png",
+      "size": 73073,
+      "sha256": "d253cb80890556eaae0ae4c36c75c1b8e25e5af7a4f35887b2bfcde529e1c36d"
+    },
+    {
+      "path": "web/en/assets/app-circuit-list.png",
+      "size": 45277,
+      "sha256": "43ac840e01564e36966d51deea6a91b5396dadea009aa63ad550658de52717d6"
+    },
+    {
+      "path": "web/en/assets/app-circuit-name.png",
+      "size": 31956,
+      "sha256": "76d31949f6dcc327935b90308723761ff1f0265349c782d893966c58f293552b"
+    },
+    {
+      "path": "web/en/assets/app-circuits.png",
+      "size": 62160,
+      "sha256": "cb62dd9e2971abf8b5393068207123e951c4fe42143ce0de3247bfad596b5e36"
+    },
+    {
+      "path": "web/en/assets/app-dashboard.png",
+      "size": 66072,
+      "sha256": "0e6b96bdb245522c3a60ff8506256427b144dd65c48c4bfef64e762b9c579ec8"
+    },
+    {
+      "path": "web/en/assets/app-download-qr.png",
+      "size": 25942,
+      "sha256": "60eee0e1760a0ec7773da42e6eebe1fbb5c773f00e8571c034756111430d878c"
+    },
+    {
+      "path": "web/en/assets/app-store-badges.png",
+      "size": 9976,
+      "sha256": "11a6eeda9f87362e2f4adddfdb385ef5985b7c1f4b7a0d1dcf6a1051b30e26e1"
+    },
+    {
+      "path": "web/en/assets/app-ups-mode.png",
+      "size": 46485,
+      "sha256": "260761da35742866a0b29b3f9db4c1f3007a935e1abd04da040f0d7754a1e100"
+    },
+    {
+      "path": "web/en/assets/app-voltage-menu.png",
+      "size": 86007,
+      "sha256": "77529b6211d52838673d4109db68311f82497af4963ab2a48049b5c5ade256a2"
+    },
+    {
+      "path": "web/en/assets/app-voltage-settings.png",
+      "size": 56968,
+      "sha256": "9345aabe484e0428a8d68fa479eeac2369d4afb55a123925f6577751061ef77e"
+    },
+    {
+      "path": "web/en/assets/app-wifi.png",
+      "size": 63601,
+      "sha256": "f8d235f7edeaf6428b5c7379b547b76bf2d6427efd4a8aee29bdab6eb1b370c8"
+    },
+    {
+      "path": "web/en/assets/app-working-modes.png",
+      "size": 56328,
+      "sha256": "d95cd41a97bd723d640dbf8b7442b7495269d0a37eadaa6271f445fcee78fa08"
+    },
+    {
+      "path": "web/en/assets/cable-entry.png",
+      "size": 123058,
+      "sha256": "a082f0ffd2de4fb6f600d68f16fab2d7439ad00a439e46a695f122339672c669"
+    },
+    {
+      "path": "web/en/assets/covered-overview.png",
+      "size": 65892,
+      "sha256": "2a336501ebb8d1e57332100faf40a2f2819a895544980b2316bd2eaed997eac5"
+    },
+    {
+      "path": "web/en/assets/deadfront-installation.png",
+      "size": 77443,
+      "sha256": "8226827b9e72290fbe0d68220f8346f421fb3f2f7cc3dab5a6e30da2351afc3d"
+    },
+    {
+      "path": "web/en/assets/dimensions.png",
+      "size": 33769,
+      "sha256": "7e0a5fb6bb44de7977b0bbabc3d4fe7cbb546560bac5f7c404cf02cb12eac1ab"
+    },
+    {
+      "path": "web/en/assets/external-emergency-stop.png",
+      "size": 69749,
+      "sha256": "b66f3f5947c8e5f9f8815a67c36bbc1dc521d006a81d34a75c6b4191e5c155a4"
+    },
+    {
+      "path": "web/en/assets/grid-preparation.png",
+      "size": 52146,
+      "sha256": "bbceedf49fa03e97e73e44319351853bac0e61e3aefbf5a592ca20bb1c173f5f"
+    },
+    {
+      "path": "web/en/assets/grid-wiring.png",
+      "size": 52331,
+      "sha256": "12713d2f1f131d54d5253d6c1e9c8ed8d491741fe671b5756e9e7e2866092bd3"
+    },
+    {
+      "path": "web/en/assets/inline-add-device.png",
+      "size": 1014,
+      "sha256": "4e520c727876b84293a37cff9bf08fe1e71ffefda176fe38a54f23d41ab2c3e3"
+    },
+    {
+      "path": "web/en/assets/inline-edit-name.png",
+      "size": 2374,
+      "sha256": "d9836a340efa452417ace01660c453f26fe44950daebe4cf059e2345e65a0c5b"
+    },
+    {
+      "path": "web/en/assets/inline-edit.png",
+      "size": 2460,
+      "sha256": "11c966d28e83d003bc47c87036074ff9e15d5a4d298e66045861ff18b2d009fb"
+    },
+    {
+      "path": "web/en/assets/inline-link-circuits.png",
+      "size": 2821,
+      "sha256": "c18d9aaaba0bedda5649c4811bf874195fab2acb47b18bafc2854cd9d391f43b"
+    },
+    {
+      "path": "web/en/assets/inline-save.png",
+      "size": 2328,
+      "sha256": "d9562c75be4ee1db93c20541ff9692b12051581bc581456e24000140eb03f442"
+    },
+    {
+      "path": "web/en/assets/inline-settings.png",
+      "size": 2748,
+      "sha256": "841f078d6aa2add1ac18e1cb3735754bdde17b629e9936e69cce463dc578978d"
+    },
+    {
+      "path": "web/en/assets/inline-voltage-config.png",
+      "size": 2921,
+      "sha256": "e93f10afdf54a3e1f3179edb5d4a3e5377b539a01c4b990b78bf92b150d336b0"
+    },
+    {
+      "path": "web/en/assets/iot-pairing.png",
+      "size": 23575,
+      "sha256": "dc197baa03625f36c821dcc7e6dd44dc5e9ea0eea1ffe8bd02c359eaf5db0dfe"
+    },
+    {
+      "path": "web/en/assets/load-wiring.png",
+      "size": 81101,
+      "sha256": "928a08d7c5c02e917e0445bba2c96610b45fd649d23d670ddad65e58120a548b"
+    },
+    {
+      "path": "web/en/assets/locking-panel.png",
+      "size": 37369,
+      "sha256": "1ec992619d23382a4ae37cbf0984c461ad20225c5e31de93d58b58aeafde91e1"
+    },
+    {
+      "path": "web/en/assets/mounting-brackets.png",
+      "size": 20861,
+      "sha256": "75bd76eb0f90b451180d27e9f4ab48004e0b7414ca0b597499bf1f6ff1181e9f"
+    },
+    {
+      "path": "web/en/assets/mounting-fasteners.png",
+      "size": 27693,
+      "sha256": "e1253a59b0da6e3c46bd002431da39c6e79a0f2cb2e4abd9860282bcd78d40fd"
+    },
+    {
+      "path": "web/en/assets/mounting-template.png",
+      "size": 32519,
+      "sha256": "963ffa0f2526f9c50ca47a5463a0939dc73aaf3a85ac2c2f44272c02dc7847fa"
+    },
+    {
+      "path": "web/en/assets/optional-tools.png",
+      "size": 31471,
+      "sha256": "db3532e54976425d8a5fbb8a71136f303b9079273b7b1cf99025dbbf420d035c"
+    },
+    {
+      "path": "web/en/assets/package-list.png",
+      "size": 60479,
+      "sha256": "326906d27c9fbc9851191b4221fed5ce558fc34ee1fe4b88e852cf6cc48d1d12"
+    },
+    {
+      "path": "web/en/assets/power-station-connections.png",
+      "size": 72645,
+      "sha256": "fb02e9dbf816aab9a7cbaa5c173a3c707606744c40ff4ac0b41256ab39be4121"
+    },
+    {
+      "path": "web/en/assets/symbol_electric_shock.png",
+      "size": 3078,
+      "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f"
+    },
+    {
+      "path": "web/en/assets/symbol_grounding.png",
+      "size": 2225,
+      "sha256": "54c57e5ecc98f1cf0e0edc1562f88f93e403a5fcecd5b309303de4089b316430"
+    },
+    {
+      "path": "web/en/assets/symbol_read_manual_operator.png",
+      "size": 2077,
+      "sha256": "c7a2c7dc6ddd9bb4724d9607df666243fc3bbeaa20a669d00de8f1d1a8463b47"
+    },
+    {
+      "path": "web/en/assets/symbol_warning_triangle.png",
+      "size": 5378,
+      "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c"
+    },
+    {
+      "path": "web/en/assets/system-overview.png",
+      "size": 51109,
+      "sha256": "4c066caaacabb3f3a9572b601f87b5a37390b9ff72832e212416fc72d0f921fd"
+    },
+    {
+      "path": "web/en/assets/uncovered-overview.png",
+      "size": 64232,
+      "sha256": "4bb84b651ee57db33560488d4c7e6b01132cdb6299abda6e07ad5d08d5b83b77"
+    },
+    {
+      "path": "web/en/conf.py",
+      "size": 883,
+      "sha256": "40dfe281786c7f37182a56f546ca6ac8fedbc9dee0e6d5922bb02303f1939239"
+    },
+    {
+      "path": "web/en/conversion-summary.json",
+      "size": 326,
+      "sha256": "e7a50b4ac0e3472f4753686a8af31437209aa390b4a4891128ed43b5d976c8a2"
+    },
+    {
+      "path": "web/en/index.md",
+      "size": 98,
+      "sha256": "4d746b7f0976353177e0aed6caf45ae601f68d9f83d7528919fbcc7ed505e272"
+    },
+    {
+      "path": "web/en/manual_jats02a_us_en.md",
+      "size": 42026,
+      "sha256": "d3b3ec49ba89fce1484a65662ae87004bf4d937c31d59f963c60209e4974ba38"
+    }
+  ]
+}
