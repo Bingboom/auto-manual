@@ -1,0 +1,141 @@
+{
+  "brokenImages": [],
+  "calloutItems": [
+    {
+      "items": 3,
+      "label": "注意"
+    },
+    {
+      "items": 0,
+      "label": "说明"
+    },
+    {
+      "items": 3,
+      "label": "注意"
+    },
+    {
+      "items": 2,
+      "label": "注意"
+    },
+    {
+      "items": 2,
+      "label": "说明"
+    },
+    {
+      "items": 0,
+      "label": "提示"
+    },
+    {
+      "items": 2,
+      "label": "注意"
+    },
+    {
+      "items": 2,
+      "label": "提示"
+    },
+    {
+      "items": 0,
+      "label": "注意"
+    },
+    {
+      "items": 0,
+      "label": "注意"
+    },
+    {
+      "items": 2,
+      "label": "注意"
+    },
+    {
+      "items": 3,
+      "label": "注意"
+    },
+    {
+      "items": 0,
+      "label": "备注"
+    },
+    {
+      "items": 2,
+      "label": "备注"
+    },
+    {
+      "items": 0,
+      "label": "备注"
+    },
+    {
+      "items": 0,
+      "label": "注意"
+    }
+  ],
+  "cellOverflow": [],
+  "height": 844,
+  "labelCollisions": [],
+  "labelOverflow": [],
+  "labels": 128,
+  "pageOverflow": 0,
+  "rawBullets": [],
+  "scrollableFigures": [
+    "registration",
+    "inbox",
+    "overview-front",
+    "overview-side",
+    "lcd-map",
+    "power",
+    "ac-output",
+    "usb-output",
+    "energy-saving",
+    "ups",
+    "battery-stack",
+    "battery-accessories",
+    "parallel",
+    "parallel-interrupted",
+    "parallel-exit",
+    "charging-solar",
+    "charging-solar-four",
+    "charging-car",
+    "app-controls"
+  ],
+  "tables": [
+    {
+      "rows": 5,
+      "section": "id4"
+    },
+    {
+      "rows": 12,
+      "section": "id4"
+    },
+    {
+      "rows": 7,
+      "section": "id4"
+    },
+    {
+      "rows": 7,
+      "section": "id5"
+    },
+    {
+      "rows": 4,
+      "section": "id5"
+    },
+    {
+      "rows": 13,
+      "section": "id10"
+    },
+    {
+      "rows": 8,
+      "section": "id11"
+    },
+    {
+      "rows": 3,
+      "section": "id11"
+    },
+    {
+      "rows": 8,
+      "section": "id11"
+    },
+    {
+      "rows": 2,
+      "section": "id11"
+    }
+  ],
+  "unexpectedClipping": [],
+  "width": 390
+}
