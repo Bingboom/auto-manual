@@ -25,7 +25,7 @@ variant to this common library. Preserve native tint and group opacity; remove
 only identified page/cell backgrounds. Full panels and App frames use their
 own background policy.
 
-[Artwork selection and admission contract](../../../../contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则).
+[Artwork selection and admission contract](../../../../contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则).
 
 JBP-1000B-SIL adds five source-matched variants: a person reading inside a
 circle, crossed flame, adult/child panel, and native dark screwdriver and Li-ion
