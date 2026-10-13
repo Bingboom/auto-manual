@@ -67,11 +67,12 @@
       "sha256": "a24b9f2780a04a741f276844fdfb1f8c90f35192a1e3dafeaa530b8851120bc6"
     }
   ],
+  "publication_status": "operator-approved-git-only-release",
   "inputs": [
     {
       "path": "README.md",
-      "size": 4967,
-      "sha256": "c8f4f1cb5fa2d6f4b9082a66107c137331dc7970a887f7bbcc387353cb506e7d"
+      "size": 4959,
+      "sha256": "3de196c8398d869bb95a4a1478d7a4534af5bd82041e1e093f494c923657bc07"
     },
     {
       "path": "assets/ac-output-p8.svg",
@@ -459,14 +460,19 @@
       "sha256": "2674ffd633b4dbdce76f9f0b791f674c82cbe699aae09574f1b7724b9e98c9d7"
     },
     {
+      "path": "source/approval.json",
+      "size": 16349,
+      "sha256": "065a397b0c340bd8b746c4a9c75fe5ecc8c29b596b1253b51b492234ae1fc09a"
+    },
+    {
       "path": "source/artwork-recipes.json",
       "size": 18650,
       "sha256": "70b521d7aa36ae9809956c9d516da7ec77d7bbe039c92d01f71ccd4eff1bc5c1"
     },
     {
       "path": "source/differences.md",
-      "size": 5516,
-      "sha256": "87b2117db1c5d5206bd31eb731a4c5f72251de82262925575a33ca07fcdc49fb"
+      "size": 5714,
+      "sha256": "276e16d939a117004fee8b89eb1398bb50eee8f729f8440c3ef5190948a5957f"
     },
     {
       "path": "source/layout-artwork-recipes.json",
@@ -515,8 +521,8 @@
     },
     {
       "path": "validation/layout-checks.json",
-      "size": 1506,
-      "sha256": "049f02900faa8810db02cfb375bee80bedbf2c9fe7765af2da0da75cbc32879c"
+      "size": 1694,
+      "sha256": "b7c6d22a10f2b381c4badc2fb511afcb7106de81b07e477fce8cd2879088fd42"
     },
     {
       "path": "web/zh/_static/source_presentation.css",
@@ -830,8 +836,8 @@
     },
     {
       "path": "web/zh/manual.ir.json",
-      "size": 832397,
-      "sha256": "82f8a29f98a86491bf1f72b8d903705c7b13b7b73d58f0f4d34a1ffaaa298e2f"
+      "size": 850563,
+      "sha256": "eedad3945cfce7b16c73f489652d7691c4390d7d5be5dad67de4b9112c11c165"
     },
     {
       "path": "web/zh/manual_je3600a_cn_zh.md",

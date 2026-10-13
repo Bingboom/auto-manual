@@ -4,10 +4,11 @@ Operator instruction, 2026-10-13: 「再审阅校正一下 这俩文档的版面
 
 This edition fixes the Web layout of the [reviewed edition](../git-20261012-caa5370a-reviewed/README.md) (MA-298) against the same PDF: `电小二户外电源 3600 Plus.pdf`, SHA-256 `caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb`, 23 pages. The reviewed edition, its PDF and its release evidence remain immutable. The JP edition [`../../JP/git-20261013-fd06cd04-web-layout`](../../JP/git-20261013-fd06cd04-web-layout/README.md) is derived by the same script.
 
-**Status: candidate, operator acceptance pending.**
-- There is no `source/approval.json` and no `publication_status`. The rebuilt Manual IR says `publication_eligible: false`, so the release gates refuse to seal it.
-- After the operator accepts this candidate, `source/approval.json` binds the hash of every package input except `web/` and itself. The engineering PR is then merged by operator review (AGENTS.md §8.6), not by an agent grant.
-- Any later input change invalidates that acceptance: `rebuild.py` then refuses until a new acceptance is recorded.
+**Status: `operator-approved-git-only-release`.** The operator reviewed candidate `16368b7` on its chapter-by-chapter comparison page (print PDF beside the desktop and phone Web, CN and JP) and instructed 「上线发布」 on 2026-10-13.
+- `source/approval.json` binds the hash of every package input except `web/` and itself.
+- The rebuilt IR is publication-eligible.
+- The engineering PR is merged by operator review (AGENTS.md §8.6), not by an agent grant.
+- Any later input change invalidates the acceptance: `rebuild.py` then refuses until a new acceptance is recorded.
 
 ## What changed
 
@@ -51,7 +52,7 @@ To re-freeze, rebuild into `web/zh` and run `source/refresh_manifest.py` again.
 - **Unit tests:** `python3 -m unittest tests.test_je3600a_cn_jp_web_layout` covers both editions (see the JP README for the list).
 - **Evidence:** `validation/layout-checks.json` records strict Sphinx, cold-replay byte parity and the browser gate at 1280×900, 768×1024 and 390×844 CSS pixels.
 
-After the operator accepts the candidate and merges the engineering PR, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction):
+After the operator merges the engineering PR, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction):
 1. Seal `seal_frozen_web_evidence` at the merged `main` commit.
 2. Assemble from current Hello-Docs `main`.
 3. Open a `docs/publish/**`-only publish PR.

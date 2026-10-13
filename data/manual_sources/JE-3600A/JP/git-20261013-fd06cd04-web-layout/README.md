@@ -4,10 +4,11 @@ Operator instruction, 2026-10-13: 「再审阅校正一下 这俩文档的版面
 
 This edition fixes the Web layout of the [reviewed edition](../git-20261012-fd06cd04-reviewed/README.md) (MA-298) against the same PDF: `Jackery ポータブル電源 3600 Plus 取扱説明書.pdf`, SHA-256 `fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6`, 30 pages. The reviewed edition, its PDF and its release evidence remain immutable. The CN edition [`../../CN/git-20261013-caa5370a-web-layout`](../../CN/git-20261013-caa5370a-web-layout/README.md) is derived by the same script.
 
-**Status: candidate, operator acceptance pending.**
-- There is no `source/approval.json` and no `publication_status`. The rebuilt Manual IR says `publication_eligible: false`, so the release gates refuse to seal it.
-- After the operator accepts this candidate, `source/approval.json` binds the hash of every package input except `web/` and itself. The engineering PR is then merged by operator review (AGENTS.md §8.6), not by an agent grant.
-- Any later input change invalidates that acceptance: `rebuild.py` then refuses until a new acceptance is recorded.
+**Status: `operator-approved-git-only-release`.** The operator reviewed candidate `16368b7` on its chapter-by-chapter comparison page (print PDF beside the desktop and phone Web, CN and JP) and instructed 「上线发布」 on 2026-10-13.
+- `source/approval.json` binds the hash of every package input except `web/` and itself.
+- The rebuilt IR is publication-eligible.
+- The engineering PR is merged by operator review (AGENTS.md §8.6), not by an agent grant.
+- Any later input change invalidates the acceptance: `rebuild.py` then refuses until a new acceptance is recorded.
 
 ## What changed
 
@@ -49,7 +50,7 @@ To re-freeze, rebuild into `web/ja` and run `source/refresh_manifest.py` again.
 ## Validation and release boundary
 
 - **Unit tests:** `python3 -m unittest tests.test_je3600a_cn_jp_web_layout` covers both editions:
-  - identity, lineage and candidate status;
+  - identity, lineage and acceptance status;
   - cold replay equals the frozen `web/`;
   - the release admissions and the acceptance gate;
   - tamper rejection;
@@ -63,7 +64,7 @@ To re-freeze, rebuild into `web/ja` and run `source/refresh_manifest.py` again.
   Tests that rebuild skip with a message once the pinned shared inputs change: this edition is frozen against them.
 - **Evidence:** `validation/layout-checks.json` records strict Sphinx, cold-replay byte parity and the browser gate at 1280×900, 768×1024 and 390×844 CSS pixels. The gate checks page overflow, broken images, live labels outside their art panel, label overlaps and script errors.
 
-After the operator accepts the candidate and merges the engineering PR, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction):
+After the operator merges the engineering PR, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction):
 1. Seal `seal_frozen_web_evidence` at the merged `main` commit.
 2. Assemble from current Hello-Docs `main`.
 3. Open a `docs/publish/**`-only publish PR.

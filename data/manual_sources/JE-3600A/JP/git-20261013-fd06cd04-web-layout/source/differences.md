@@ -4,6 +4,8 @@
 
 Operator request: 「再审阅校正一下 这俩文档的版面 文档对应 发布 PR #220」 — re-review and correct the Web layout of the JE-3600A CN and JP manuals published by Bingboom/Hello-Docs#220. The method and standing instructions are the JHP-3000D ones: 「全部修，一次做完」, 「封面和目录 不用体现在web版面上」, and reuse of the existing shared components.
 
+Review: the operator reviewed candidate `16368b7` on its chapter-by-chapter comparison page (print PDF beside the desktop and phone Web, CN and JP) and instructed 「上线发布」 on 2026-10-13.
+
 Wording rule: the visible copy stays the reviewed copy. The only text edits restore the PDF where the reviewed intake disagreed with it; they are listed under [Copy restorations](#copy-restorations). Every other change is structure, weight, line breaks or artwork.
 
 Base: the reviewed edition `git-20261012-fd06cd04-reviewed` (MA-298), same PDF (SHA-256 `fd06cd04…8dd6`). It stays immutable. `derive_web_layout.py` regenerates this edition from it; each edit is logged in `source/ja/web_layout.json` (`changes`, `copy_restorations`).

@@ -72,6 +72,7 @@
       "sha256": "a24b9f2780a04a741f276844fdfb1f8c90f35192a1e3dafeaa530b8851120bc6"
     }
   ],
+  "publication_status": "operator-approved-git-only-release",
   "inputs": [
     {
       "path": "Jackery ポータブル電源 3600 Plus 取扱説明書.pdf",
@@ -80,8 +81,8 @@
     },
     {
       "path": "README.md",
-      "size": 5677,
-      "sha256": "c8f68024d4dd0747b24d9f21bf9ed8cbf5f0593c58e5cd4dd213e49182a88644"
+      "size": 5670,
+      "sha256": "22ee127da4683a71c38e64dda613d2e2a51b538225e86f3c3998226d32f1c3b7"
     },
     {
       "path": "assets/ac-output-p12.svg",
@@ -544,14 +545,19 @@
       "sha256": "2674ffd633b4dbdce76f9f0b791f674c82cbe699aae09574f1b7724b9e98c9d7"
     },
     {
+      "path": "source/approval.json",
+      "size": 18941,
+      "sha256": "4ddfb6798c748c9ca9e415a06d2c642ea40c6583283f8aaca8ebd29edbaae2ac"
+    },
+    {
       "path": "source/artwork-recipes.json",
       "size": 19984,
       "sha256": "5cc8cdc9f08783498f11673b728f7a122d73e47b9341d2ffb85db9619824f23f"
     },
     {
       "path": "source/differences.md",
-      "size": 7048,
-      "sha256": "800df00d46e711c4066efde2264078efa2e9b79fdcd33ae763b0f454efc0a1ac"
+      "size": 7246,
+      "sha256": "de69e771b561d4c7d35148d4edccddc95edeff61888b0777980c48a8bfa0ffc2"
     },
     {
       "path": "source/ja/content.json",
@@ -600,8 +606,8 @@
     },
     {
       "path": "validation/layout-checks.json",
-      "size": 1509,
-      "sha256": "68d83d884b106091822b02acc08b28d7615f244c086ad2f5cf1b318e35f23aca"
+      "size": 1697,
+      "sha256": "789701a62b0ac9312f45314acb96cc8671dbdb2cf711586dd904df6f192614f6"
     },
     {
       "path": "web/ja/_static/source_presentation.css",
@@ -995,8 +1001,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 1143461,
-      "sha256": "92e8bef7de7c51322b1f962824a3b9bc5a49843d78ef6cbad89583d86d494af4"
+      "size": 1164519,
+      "sha256": "3e7322ef51fcf75f1e88ba74cad83cf363edf65068472e94eb0288480df51f26"
     },
     {
       "path": "web/ja/manual_je3600a_jp_ja.md",
