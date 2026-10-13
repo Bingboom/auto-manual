@@ -116,7 +116,7 @@ Hello-Docs 发布 PR → 合入 `main` → HT-Doc 部署 → 线上版本与链�
 两种接入方式保留各自的来源和回执，不为 Git-only 补造队列历史，也不因为共用出口而授权在线表写入。
 
 HT-Manuals 兼容迁移是本轮首批任务，操作及证据要求由
-[发布入口整合检查](dev/web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)维护：
+[发布入口整合检查](dev/web_publish_pipeline/hosting-boundaries.md#31-hosting-convergence-and-legacy-entry-review)维护：
 
 1. 逐条建立旧 URL、新 URL、文档身份、内容版本、发布标识和处理结论的对应表。
 2. 只读核查 `HTML_link`、包材二维码、历史交付记录；经授权修改时保留原值并回读同一记录。
