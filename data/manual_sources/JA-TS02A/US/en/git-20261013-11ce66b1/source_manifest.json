@@ -187,8 +187,8 @@
     },
     {
       "path": "assets/app-backup-priority.png",
-      "size": 73073,
-      "sha256": "d253cb80890556eaae0ae4c36c75c1b8e25e5af7a4f35887b2bfcde529e1c36d"
+      "size": 76078,
+      "sha256": "b8743364742a36f406ef79f2776768f543f9082ebe71754896e8ae4c1a105957"
     },
     {
       "path": "assets/app-circuit-list.png",
@@ -317,8 +317,8 @@
     },
     {
       "path": "assets/iot-pairing.png",
-      "size": 23575,
-      "sha256": "dc197baa03625f36c821dcc7e6dd44dc5e9ea0eea1ffe8bd02c359eaf5db0dfe"
+      "size": 24315,
+      "sha256": "5b57169d52289a355eefc42f86ecb04b19fdf996ecc76e57b2bb24db96130ff6"
     },
     {
       "path": "assets/load-wiring.png",
@@ -332,8 +332,8 @@
     },
     {
       "path": "assets/mounting-brackets.png",
-      "size": 20861,
-      "sha256": "75bd76eb0f90b451180d27e9f4ab48004e0b7414ca0b597499bf1f6ff1181e9f"
+      "size": 22081,
+      "sha256": "c926f7355c74481f0ec58590ee3ab7ecc8f87371b2bdc13140d393c9b82d8ef6"
     },
     {
       "path": "assets/mounting-fasteners.png",
@@ -392,8 +392,8 @@
     },
     {
       "path": "audit/asset-decisions.json",
-      "size": 34891,
-      "sha256": "4f46b8e04a15a2d7f0fe4e6efd94afced42cb521ca12d1bbf54f202376edad98"
+      "size": 35527,
+      "sha256": "cd2b7a703d0dd3202f627ed1677ba3b0eac4a50be79f1d264502e39770a1b62f"
     },
     {
       "path": "audit/browser-validation.json",
@@ -422,8 +422,8 @@
     },
     {
       "path": "source/figures.json",
-      "size": 42415,
-      "sha256": "0dee3a182098b416f5e194b2528be4cb0414606cbfc7f432120f0327390364ca"
+      "size": 43051,
+      "sha256": "8b57993f3c189f56d39386eaa497ed2c6ca8c32af3685bcbe3292d9ba1af3ba9"
     },
     {
       "path": "source/inline-controls.json",
@@ -482,8 +482,8 @@
     },
     {
       "path": "web/en/assets/app-backup-priority.png",
-      "size": 73073,
-      "sha256": "d253cb80890556eaae0ae4c36c75c1b8e25e5af7a4f35887b2bfcde529e1c36d"
+      "size": 76078,
+      "sha256": "b8743364742a36f406ef79f2776768f543f9082ebe71754896e8ae4c1a105957"
     },
     {
       "path": "web/en/assets/app-circuit-list.png",
@@ -612,8 +612,8 @@
     },
     {
       "path": "web/en/assets/iot-pairing.png",
-      "size": 23575,
-      "sha256": "dc197baa03625f36c821dcc7e6dd44dc5e9ea0eea1ffe8bd02c359eaf5db0dfe"
+      "size": 24315,
+      "sha256": "5b57169d52289a355eefc42f86ecb04b19fdf996ecc76e57b2bb24db96130ff6"
     },
     {
       "path": "web/en/assets/load-wiring.png",
@@ -627,8 +627,8 @@
     },
     {
       "path": "web/en/assets/mounting-brackets.png",
-      "size": 20861,
-      "sha256": "75bd76eb0f90b451180d27e9f4ab48004e0b7414ca0b597499bf1f6ff1181e9f"
+      "size": 22081,
+      "sha256": "c926f7355c74481f0ec58590ee3ab7ecc8f87371b2bdc13140d393c9b82d8ef6"
     },
     {
       "path": "web/en/assets/mounting-fasteners.png",

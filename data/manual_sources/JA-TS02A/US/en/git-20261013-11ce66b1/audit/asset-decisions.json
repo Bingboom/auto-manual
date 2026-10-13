@@ -136,9 +136,9 @@
     "physical_page": 11,
     "bbox": [
       150,
-      241,
+      233.5,
       343,
-      355
+      359
     ],
     "inventories_checked": [
       "data/manual_sources/JA-TS02A",
@@ -151,7 +151,8 @@
     "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
     "background_strategy": "Retain complete artwork/panel; no background removal",
     "caption": "Attach the wall brackets",
-    "max_width": 400
+    "max_width": 400,
+    "boundary_review": "Expanded to retain the entire upper bracket/IoT housing/screenshot outer frame. Verified against the original full page."
   },
   {
     "slot": "mounting-template",
@@ -422,9 +423,9 @@
     "physical_page": 17,
     "bbox": [
       170,
-      196,
+      189,
       344,
-      316
+      320
     ],
     "inventories_checked": [
       "data/manual_sources/JA-TS02A",
@@ -437,7 +438,8 @@
     "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
     "background_strategy": "Retain complete artwork/panel; no background removal",
     "caption": "IoT button pairing operation",
-    "max_width": 420
+    "max_width": 420,
+    "boundary_review": "Expanded to retain the entire upper bracket/IoT housing/screenshot outer frame. Verified against the original full page."
   },
   {
     "slot": "app-add-device",
@@ -666,7 +668,7 @@
       54,
       299,
       166,
-      499
+      503.4
     ],
     "inventories_checked": [
       "data/manual_sources/JA-TS02A",
@@ -679,7 +681,9 @@
     "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
     "background_strategy": "Retain complete artwork/panel; no background removal",
     "caption": "Backup priority",
-    "max_width": 270
+    "max_width": 270,
+    "boundary_review": "Expanded to retain the entire upper bracket/IoT housing/screenshot outer frame. Verified against the original full page.",
+    "source_frame_note": "The source screenshot resource itself ends at the beginning of the No-power section; retain its complete available resource/frame, without inventing continuation."
   },
   {
     "slot": "app-ups-mode",

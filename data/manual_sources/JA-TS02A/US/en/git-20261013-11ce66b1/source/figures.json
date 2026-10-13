@@ -160,9 +160,9 @@
     "physical_page": 11,
     "bbox": [
       150,
-      241,
+      233.5,
       343,
-      355
+      359
     ],
     "inventories_checked": [
       "data/manual_sources/JA-TS02A",
@@ -177,9 +177,10 @@
     "caption": "Attach the wall brackets",
     "max_width": 400,
     "local_path": "assets/mounting-brackets.png",
-    "sha256": "75bd76eb0f90b451180d27e9f4ab48004e0b7414ca0b597499bf1f6ff1181e9f",
+    "sha256": "c926f7355c74481f0ec58590ee3ab7ecc8f87371b2bdc13140d393c9b82d8ef6",
     "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
-    "labels": ""
+    "labels": "",
+    "boundary_review": "Expanded to retain the entire upper bracket/IoT housing/screenshot outer frame. Verified against the original full page."
   },
   {
     "slot": "mounting-template",
@@ -498,9 +499,9 @@
     "physical_page": 17,
     "bbox": [
       170,
-      196,
+      189,
       344,
-      316
+      320
     ],
     "inventories_checked": [
       "data/manual_sources/JA-TS02A",
@@ -515,9 +516,10 @@
     "caption": "IoT button pairing operation",
     "max_width": 420,
     "local_path": "assets/iot-pairing.png",
-    "sha256": "dc197baa03625f36c821dcc7e6dd44dc5e9ea0eea1ffe8bd02c359eaf5db0dfe",
+    "sha256": "5b57169d52289a355eefc42f86ecb04b19fdf996ecc76e57b2bb24db96130ff6",
     "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
-    "labels": "AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME"
+    "labels": "AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME",
+    "boundary_review": "Expanded to retain the entire upper bracket/IoT housing/screenshot outer frame. Verified against the original full page."
   },
   {
     "slot": "app-add-device",
@@ -786,7 +788,7 @@
       54,
       299,
       166,
-      499
+      503.4
     ],
     "inventories_checked": [
       "data/manual_sources/JA-TS02A",
@@ -801,9 +803,11 @@
     "caption": "Backup priority",
     "max_width": 270,
     "local_path": "assets/app-backup-priority.png",
-    "sha256": "d253cb80890556eaae0ae4c36c75c1b8e25e5af7a4f35887b2bfcde529e1c36d",
+    "sha256": "b8743364742a36f406ef79f2776768f543f9082ebe71754896e8ae4c1a105957",
     "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
-    "labels": ""
+    "labels": "",
+    "boundary_review": "Expanded to retain the entire upper bracket/IoT housing/screenshot outer frame. Verified against the original full page.",
+    "source_frame_note": "The source screenshot resource itself ends at the beginning of the No-power section; retain its complete available resource/frame, without inventing continuation."
   },
   {
     "slot": "app-ups-mode",
