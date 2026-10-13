@@ -220,6 +220,10 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("RST 模板/页面", data_page)
         self.assertNotIn("Jackery", data_page)
         self.assertTrue((self.root / "after" / "_static" / "system-data.js").is_file())
+        # Without a publish manifest the product matrix and every link to it drop out.
+        self.assertFalse((self.root / "after" / "products" / "matrix.html").exists())
+        self.assertNotIn("products/matrix", workspace)
+        self.assertNotIn("products/matrix", data_page)
         knowledge_page = (self.root / "after" / "products" / "knowledge.html").read_text()
         self.assertIn('href="../index.html"', knowledge_page)
         self.assertIn("返回说明书资料库", knowledge_page)
