@@ -14,8 +14,10 @@
   navigation does not list (marked * on the page), capacity tiers, name
   overrides, short notes, products without their own manual, and which partner
   products a manual names. A line marked ``evidence`` (the backup lines) takes
-  an assigned model only with a quote its manual contains: a product name such
-  as HomePower does not make a product a backup product;
+  an assigned model only with a quote its manual contains, or as ``same_as`` a
+  navigation-listed model when the operator confirms both are one product sold
+  in different markets: a product name such as HomePower does not make a
+  product a backup product;
 - ``data/model_capabilities.csv`` for the capability switches.
 
 A pairing or companion product is shown only when its text still appears in the
@@ -160,6 +162,27 @@ def display_name(name: str, model: str) -> str:
     return _NAME_SUFFIX.sub("", name).strip() or model
 
 
+def _assignments(raw: dict[str, Any], lines: list[dict[str, Any]], accessories: list[dict[str, Any]],
+                 ids: list[str]) -> dict[str, dict[str, Any]]:
+    """Each assigned model as {"line", "evidence"?} or {"same_as"}, checked against the lines."""
+    evidence_lines = {entry["id"] for entry in lines if entry.get("evidence")}
+    navigation_models = {model for entry in lines + accessories for model in entry["models"]}
+    assign = {}
+    for model, entry in raw.items():
+        entry = {"line": entry} if isinstance(entry, str) else dict(entry)
+        if "same_as" in entry:
+            # One product in another market follows the operator's own placement of it.
+            if "line" in entry or entry["same_as"] not in navigation_models:
+                raise ProductMatrixError(f"{CONFIG}: {model} same_as must name a navigation-listed model, "
+                                         "without a line of its own")
+        elif entry.get("line") not in ids:
+            raise ProductMatrixError(f"{CONFIG}: {model} is assigned to unknown group {entry.get('line')!r}")
+        elif entry["line"] in evidence_lines and not str(entry.get("evidence") or "").strip():
+            raise ProductMatrixError(f"{CONFIG}: {model} needs an evidence quote from its manual for {entry['line']!r}")
+        assign[model] = entry
+    return assign
+
+
 def load_config(assets: Path, settings: dict[str, Any]) -> dict[str, Any]:
     """The curated config with every line and group resolved against the navigation."""
     config = json.loads((assets / CONFIG).read_text(encoding="utf-8"))
@@ -179,15 +202,7 @@ def load_config(assets: Path, settings: dict[str, Any]) -> dict[str, Any]:
     ids = [entry["id"] for entry in lines + accessories]
     if len(set(ids)) != len(ids):
         raise ProductMatrixError(f"{CONFIG}: line and accessory ids must be unique")
-    evidence_lines = {entry["id"] for entry in lines if entry.get("evidence")}
-    assign = {}
-    for model, entry in config.get("assign", {}).items():
-        entry = {"line": entry} if isinstance(entry, str) else dict(entry)
-        if entry.get("line") not in ids:
-            raise ProductMatrixError(f"{CONFIG}: {model} is assigned to unknown group {entry.get('line')!r}")
-        if entry["line"] in evidence_lines and not str(entry.get("evidence") or "").strip():
-            raise ProductMatrixError(f"{CONFIG}: {model} needs an evidence quote from its manual for {entry['line']!r}")
-        assign[model] = entry
+    assign = _assignments(config.get("assign", {}), lines, accessories, ids)
     tiers = config["tiers"]
     if not tiers or any("below" not in tier for tier in tiers[:-1]) or "below" in tiers[-1]:
         raise ProductMatrixError(f"{CONFIG}: every tier but the last needs 'below', and the last none")
@@ -243,6 +258,8 @@ def _placement(model: str, text: str, placed: dict[str, str], config: dict[str, 
     if entry is None:
         warnings.append(f"{model}: no navigation group or {CONFIG} assignment; listed under {OTHER_GROUP}")
         return None, ""
+    if "same_as" in entry:
+        return placed[entry["same_as"]], ""
     quote = str(entry.get("evidence") or "").strip()
     if not quote:
         return entry["line"], ""
@@ -285,6 +302,7 @@ def read_products(srcdir: Path, targets: list[dict[str, Any]], catalog: list[dic
             "model": model,
             "name": config.get("names", {}).get(model) or display_name(catalog_name, model),
             "group": group, "inferred": model not in placed, "basis": basis,
+            "variant_of": config["assign"].get(model, {}).get("same_as", "") if model not in placed else "",
             "regions": regions, "langs": sorted({row["lang"] for row in rows}), "routes": len(rows),
             "source": f"{source['route']}（{source['lang']}）",
             "note": config.get("notes", {}).get(model, ""),
@@ -324,7 +342,8 @@ def _accessory_facts(product: dict[str, Any]) -> list[str]:
 
 
 def _card(product: dict[str, Any], facts: list[str]) -> dict[str, Any]:
-    return {key: product[key] for key in ("model", "name", "regions", "inferred", "source", "basis")} | {"facts": facts}
+    keys = ("model", "name", "regions", "inferred", "source", "basis", "variant_of")
+    return {key: product[key] for key in keys} | {"facts": facts}
 
 
 def positioning(products: dict[str, dict[str, Any]], config: dict[str, Any],
@@ -365,6 +384,7 @@ def companions(products: dict[str, dict[str, Any]], texts: dict[str, str], confi
             continue
         groups.setdefault(item["title"], []).append({
             "model": item["model"], "name": item["name"], "regions": source["regions"], "inferred": False, "basis": "",
+            "variant_of": "",
             "source": source["source"], "facts": [item["spec"], f"见 {source['name']} 说明书"],
         })
     return [{"title": title, "cards": cards, "ghost": True} for title, cards in groups.items()]

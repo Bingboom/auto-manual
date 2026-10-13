@@ -102,6 +102,9 @@ class ConfigTests(unittest.TestCase):
             # A backup line takes an assigned model only with a quote from its manual, never by name alone.
             {**CONFIG, "assign": {"JE-H": "home"}},
             {**CONFIG, "assign": {"JE-H": {"line": "home", "evidence": " "}}},
+            # A market variant follows a navigation-listed model and names no line of its own.
+            {**CONFIG, "assign": {"JE-H": {"same_as": "JE-NOT-IN-NAVIGATION"}}},
+            {**CONFIG, "assign": {"JE-H": {"same_as": "JE-A", "line": "home"}}},
             {**CONFIG, "lines": [{"id": "not-in-navigation"}]},
             {**CONFIG, "accessories": [{"id": "appliance"}]},
             {**CONFIG, "tiers": [{"label": "only", "below": 100}]},
@@ -181,6 +184,18 @@ class MatrixContextTests(unittest.TestCase):
         others = {group["title"]: group for group in context["accessories"]}["其他"]
         self.assertIn("JE-H", [card["model"] for card in others["cards"]])
         self.assertTrue(any("whole-home backup" in message for message in context["warnings"]))
+
+    def test_a_market_variant_takes_the_line_of_the_same_product(self):
+        config = {**CONFIG, "assign": {**CONFIG["assign"], "JX-Q": {"same_as": "JE-A"}}}
+        (self.assets / "product_matrix.json").write_text(json.dumps(config), encoding="utf-8")
+        specs = {row["model"]: row for row in self.context()["specs"]}
+        self.assertEqual(specs["JX-Q"]["line"], "通用电器供电")
+        loaded = load_config(self.assets, SETTINGS)
+        warnings: list[str] = []
+        products, _ = product_matrix.read_products(self.web, json.loads(self.manifest.read_text())["targets"],
+                                                   self.catalog, loaded, warnings)
+        self.assertEqual((products["JX-Q"]["group"], products["JX-Q"]["variant_of"]), ("appliance", "JE-A"))
+        self.assertEqual((products["JE-A"]["variant_of"], products["JE-H"]["variant_of"]), ("", ""))
 
     def test_evidence_excerpt_keeps_the_sentence_and_ignores_case_and_spacing(self):
         text = "Intro. The unit can supply Backup  Power to home circuits. Next."
