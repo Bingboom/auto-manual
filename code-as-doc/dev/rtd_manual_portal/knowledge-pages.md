@@ -265,6 +265,15 @@ public manual library does not link to it.
   manual of their own, cited from another manual) and `pairings` (partners a
   manual names). A companion or pairing partner is shown only while the cited
   manual's text still contains its `match` text (or its label).
+- **Backup lines need the manual's words.** A line marked `"evidence": true`
+  (家庭备电, 专用场景备电) takes an assigned model only as
+  `{"line": ..., "evidence": "<quote>"}`, and only while the model's source
+  manual contains that quote (case and spacing ignored). The card tooltip shows
+  the manual sentence. A product name is never the reason: HomePower 3000 and
+  HomePower 3600 Plus describe UPS like any power station but no home backup, so
+  they sit under 通用电器供电 and 可扩容储能. When a quote disappears, the model
+  moves to 其他 with a Sphinx warning. Navigation-listed models (FridgeGuard in
+  专用场景备电) are the operator's own grouping and need no quote.
 - **Sections:** headline counts (models with Web manuals, Web manuals, power
   stations and batteries, accessories; 更多型号持续维护中 when the capability
   table has models without a Web manual), a market filter, the line × capacity
