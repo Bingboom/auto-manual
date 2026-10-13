@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="系统数据：已发布的网页说明书、各机型与区域的能力开关和素材注册情况，构建时读自仓库，可按区域和机型筛选。">
+  <meta name="description" content="系统数据：已发布的网页说明书、各机型与区域的能力开关、素材注册情况和工程规模，构建时读自仓库，可按区域和机型筛选。">
   <title>系统数据</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
@@ -22,7 +22,7 @@
   <main id="top">
     <section class="page-head">
       <h1>系统数据<span>.</span></h1>
-      <p>已发布的网页说明书、各机型与区域的能力开关和素材注册情况。数据在每次构建时读自仓库，可按区域和机型筛选。</p>
+      <p>已发布的网页说明书、各机型与区域的能力开关、素材注册情况和工程规模。数据在每次构建时读自仓库，可按区域和机型筛选。</p>
     </section>
 
     <div class="sd-filters" id="sd-filters" hidden>
@@ -125,7 +125,21 @@
       </div>
     </section>
 
-    <p class="sd-footer">每次构建时读取 <code>docs/publish/publish_manifest.json</code>{% if built_on %}（构建于 {{ built_on|e }}）{% endif %}、<code>data/model_capabilities.csv</code>、<code>data/model_languages.csv</code>、<code>docs/_review/</code> 和 <code>data/asset_registry.csv</code>；页面不另存数据。</p>
+    <section class="sd-section" id="codebase" aria-labelledby="codebase-title">
+      <h2 id="codebase-title">工程规模</h2>
+      <p class="sd-note">git 跟踪的 <code>.py</code> / <code>.rst</code> / <code>.md</code> / <code>.yaml</code> / <code>.csv</code> 文件，按顶层目录和文件类型统计行数；全仓库数据，不随筛选变化。</p>
+      {%- if codebase_total is none %}
+      <p class="sd-empty">无数据：本次构建拿不到 git 文件清单。</p>
+      {%- else %}
+      <article class="sd-card" id="sd-code-card">
+        <header><h3>各目录行数（前 10）</h3><p>共 {{ count(codebase_total.files) }} 个文件、{{ count(codebase_total.lines) }} 行；悬停查看各类型的文件数和行数。</p></header>
+        <div class="sd-legend">{% for kind in file_types %}<span><i class="sd-swatch sd-type-{{ loop.index0 }}"></i>{{ kind|e }}</span>{% endfor %}</div>
+        <div class="sd-chart" id="sd-code">{{ fallback() }}</div>
+      </article>
+      {%- endif %}
+    </section>
+
+    <p class="sd-footer">每次构建时读取 <code>docs/publish/publish_manifest.json</code>{% if built_on %}（构建于 {{ built_on|e }}）{% endif %}、<code>data/model_capabilities.csv</code>、<code>data/model_languages.csv</code>、<code>docs/_review/</code>、<code>data/asset_registry.csv</code> 和 <code>git ls-files</code>；页面不另存数据。</p>
   </main>
 </div>
 <script type="application/json" id="system-data-json">{{ data_json }}</script>

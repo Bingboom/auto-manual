@@ -1,5 +1,6 @@
 /* 系统数据 page. Owns only what sits inside .app-content (see site-shell.css). */
-.system-data {--sd-cell:#eef0f3;--sd-muted:#c3c7ce;--sd-critical:#c8372d;--sd-review:#1f5fae}
+.system-data {--sd-cell:#eef0f3;--sd-muted:#c3c7ce;--sd-critical:#c8372d;--sd-review:#1f5fae;
+  --sd-type-0:#3b6fd8;--sd-type-1:var(--brand);--sd-type-2:#2f9e6f;--sd-type-3:#cf9a12;--sd-type-4:#c2477a}
 .system-data main {padding-bottom:32px}
 .system-data code {font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
   padding:1px 5px;border-radius:5px;background:#eef0f3;color:#3a3d44;overflow-wrap:anywhere}
@@ -35,6 +36,12 @@
 .sd-swatch {display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--sd-cell)}
 .sd-swatch.is-on {background:var(--brand)}
 .sd-swatch.is-review {border-radius:50%;background:var(--sd-review)}
+/* File-type colours of the 工程规模 card, in FILE_TYPES order. */
+.sd-swatch.sd-type-0 {background:var(--sd-type-0)}
+.sd-swatch.sd-type-1 {background:var(--sd-type-1)}
+.sd-swatch.sd-type-2 {background:var(--sd-type-2)}
+.sd-swatch.sd-type-3 {background:var(--sd-type-3)}
+.sd-swatch.sd-type-4 {background:var(--sd-type-4)}
 
 .sd-chart {width:100%;min-height:80px}
 .sd-chart svg {display:block;overflow:visible}
@@ -45,6 +52,11 @@
 .sd-chart .sd-cell {fill:var(--sd-cell)}
 .sd-chart .sd-cell.is-on {fill:var(--brand)}
 .sd-chart .sd-review {fill:var(--sd-review)}
+.sd-chart .sd-seg.sd-type-0 {fill:var(--sd-type-0)}
+.sd-chart .sd-seg.sd-type-1 {fill:var(--sd-type-1)}
+.sd-chart .sd-seg.sd-type-2 {fill:var(--sd-type-2)}
+.sd-chart .sd-seg.sd-type-3 {fill:var(--sd-type-3)}
+.sd-chart .sd-seg.sd-type-4 {fill:var(--sd-type-4)}
 .sd-chart .sd-row-bg {fill:var(--app-bg);opacity:0}
 .sd-chart .sd-row:hover .sd-row-bg,.sd-chart .sd-row.is-picked .sd-row-bg {opacity:1}
 .sd-chart .sd-row.is-picked .sd-label {font-weight:650}

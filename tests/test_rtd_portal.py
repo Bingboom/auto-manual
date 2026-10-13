@@ -215,6 +215,9 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('<script type="application/json" id="system-data-json">', data_page)
         # This tree has no publish manifest: only the publication cards are empty.
         self.assertIn("无数据：本次构建没有可读的发布清单", data_page)
+        # The repository is a git checkout, so the 工程规模 card has its file list.
+        self.assertIn('id="sd-code"', data_page)
+        self.assertIn("RST 模板/页面", data_page)
         self.assertNotIn("Jackery", data_page)
         self.assertTrue((self.root / "after" / "_static" / "system-data.js").is_file())
         knowledge_page = (self.root / "after" / "products" / "knowledge.html").read_text()
