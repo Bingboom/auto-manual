@@ -1,0 +1,41 @@
+{
+  "en": {
+    "selected_text_lines": 723,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_existing_lcd_mode_block": true,
+    "markdown_change_only_scoped_css_and_lcd_mode_block": true,
+    "manual_ir_change_only_lcd_mode_and_content_stylesheet_hashes_and_inventory": true,
+    "all_other_source_nodes_and_previous_layout_corrections_preserved": true,
+    "native_wording_order_rowspans_and_line_breaks_preserved": true,
+    "base_art_byte_identical": true,
+    "component_id": "HB-TABLE-LCD-MODE",
+    "publication_eligible": false
+  },
+  "fr": {
+    "selected_text_lines": 874,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_existing_lcd_mode_block": true,
+    "markdown_change_only_scoped_css_and_lcd_mode_block": true,
+    "manual_ir_change_only_lcd_mode_and_content_stylesheet_hashes_and_inventory": true,
+    "all_other_source_nodes_and_previous_layout_corrections_preserved": true,
+    "native_wording_order_rowspans_and_line_breaks_preserved": true,
+    "base_art_byte_identical": true,
+    "component_id": "HB-TABLE-LCD-MODE",
+    "publication_eligible": false
+  },
+  "es": {
+    "selected_text_lines": 863,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_existing_lcd_mode_block": true,
+    "markdown_change_only_scoped_css_and_lcd_mode_block": true,
+    "manual_ir_change_only_lcd_mode_and_content_stylesheet_hashes_and_inventory": true,
+    "all_other_source_nodes_and_previous_layout_corrections_preserved": true,
+    "native_wording_order_rowspans_and_line_breaks_preserved": true,
+    "base_art_byte_identical": true,
+    "component_id": "HB-TABLE-LCD-MODE",
+    "publication_eligible": false
+  }
+}

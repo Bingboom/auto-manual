@@ -1,0 +1,84 @@
+[
+  {
+    "asset": "button-power-vertical.svg",
+    "sha256": "8e9b4b88fd3fcdbe0a3c9760569347f524f6c627c69c961df0b0c883f99d356b",
+    "drawing_indices": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "transparent_corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source_comparison_scale": 12,
+    "source_size": [
+      296,
+      296
+    ],
+    "export_size": [
+      296,
+      296
+    ]
+  },
+  {
+    "asset": "button-usb-vertical.svg",
+    "sha256": "6909fdf1d72a992e086f974e942f49bdf81307cb9702c429db42d3369b369797",
+    "drawing_indices": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "transparent_corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source_comparison_scale": 12,
+    "source_size": [
+      297,
+      296
+    ],
+    "export_size": [
+      296,
+      296
+    ]
+  },
+  {
+    "asset": "button-ac-vertical.svg",
+    "sha256": "cde202ff6bbbd00e43c671031fdb105e6bd811bb39ce5c5e9b97a84f0c2b29d8",
+    "drawing_indices": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "transparent_corner_alpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "source_comparison_scale": 12,
+    "source_size": [
+      296,
+      296
+    ],
+    "export_size": [
+      296,
+      296
+    ]
+  }
+]

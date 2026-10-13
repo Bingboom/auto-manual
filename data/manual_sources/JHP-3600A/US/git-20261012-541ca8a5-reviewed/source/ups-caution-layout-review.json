@@ -1,0 +1,50 @@
+{
+  "scope": "US EN/FR/ES UPS caution; native PDF physical pages 13/33/53",
+  "change": "Restore native semantic bullet lists inside registered HB-CALLOUT-STRIP.",
+  "native_source_copy": {
+    "en": {
+      "physical_page": 13,
+      "source_ref": "pdf/p13-b8-l0-0",
+      "semantic_list_items": 3,
+      "items": [
+        "This product does not support 0 ms switching. Do not connect it to equipment that  requires a 0 ms switching power supply, such as data servers or workstations.",
+        "Before use, please test compatibility with your device multiple times.",
+        "Do not connect loads exceeding the maximum output power of the product. Otherwise,  overload protection will be triggered."
+      ],
+      "native_wording_preserved": true
+    },
+    "fr": {
+      "physical_page": 33,
+      "source_ref": "pdf/p33-b8-l0-0",
+      "semantic_list_items": 4,
+      "items": [
+        "Ce produit ne prend pas en charge un basculement instantané (0 ms).",
+        "Ne le connectez pas à des équipements nécessitant une alimentation vec commutation  en 0 ms, tels que des serveurs de données ou des stations de travail.",
+        "Avant toute utilisation, testez plusieurs fois la compatibilité avec votre appareil.",
+        "Ne connectez pas de charges dépassant la puissance de sortie maximale du produit.  Sinon, la protection contre les surcharges sera déclenchée."
+      ],
+      "native_wording_preserved": true
+    },
+    "es": {
+      "physical_page": 53,
+      "source_ref": "pdf/p53-b8-l0-0",
+      "semantic_list_items": 3,
+      "items": [
+        "Este producto no admite conmutación de 0 ms. No lo conecte a equipos que  requieran una fuente de alimentación con conmutación de 0 ms, como servidores de  datos o estaciones de trabajo.",
+        "Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.",
+        "No conectes cargas que excedan la potencia máxima de salida del producto. De lo  contrario, se activará la protección contra sobrecarga."
+      ],
+      "native_wording_preserved": true
+    }
+  },
+  "shared_styles": "Existing shared callout and list styles; no CSS or artwork change.",
+  "preserved": [
+    "All native prose and per-language grouping",
+    "All base-art assets",
+    "All other source nodes and prior layout fixes"
+  ],
+  "browser_evidence": "validation/ups-caution-browser.json",
+  "checks": "validation/ups-caution-closure.json",
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review"
+}

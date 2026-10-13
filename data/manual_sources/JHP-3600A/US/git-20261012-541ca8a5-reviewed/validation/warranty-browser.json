@@ -1,0 +1,2455 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "grid": {
+        "columns": "359.688px 229.965px",
+        "rect": {
+          "height": 190.9982757568359,
+          "width": 621.6493530273438,
+          "x": 449.1710205078125,
+          "y": -1047.8863525390625
+        }
+      },
+      "headingCount": 28,
+      "lang": "en",
+      "lead": {
+        "bg": "rgb(244, 243, 243)",
+        "clipped": false,
+        "radius": "14.08px",
+        "text": "We only provide our warranty to customers who purchase from the official Jackery website,  Jackery-branded third-party platforms, or local authorized dealers. "
+      },
+      "legacyArtImages": 0,
+      "localNote": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "pageOverflow": 0,
+      "periods": [
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.002155303955078125,
+              "y": 0.12149429321289062
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 55.19965362548828,
+              "width": 55.19965362548828,
+              "x": 449.1710205078125,
+              "y": -1047.8863525390625
+            },
+            "weight": "700"
+          },
+          "body": "The standard warranty period for Jackery HomePower 3600  Plus is 36 months. In each case, the warranty period is  measured starting on the date of purchase by the original  consumer purchaser. The sales receipt from the first consumer  purchase, or other reasonable documentary proof, is required  in order to establish the start date of the warranty period.",
+          "label": "Standard Warranty",
+          "number": "3",
+          "rect": {
+            "height": 190.9982757568359,
+            "width": 359.6875305175781,
+            "x": 449.1710205078125,
+            "y": -1047.8863525390625
+          },
+          "unit": "YEARS"
+        },
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 3.4332275390625e-05,
+              "y": 0.12149429321289062
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 55.19965362548828,
+              "width": 55.19965362548828,
+              "x": 840.8551025390625,
+              "y": -1047.8863525390625
+            },
+            "weight": "700"
+          },
+          "body": "To activate the Warranty Extension, you  must register your product online  or  contact our customer service team at  hello@jackery.com to extend the  standard warranty runtime.",
+          "label": "Extended Warranty",
+          "number": "2",
+          "rect": {
+            "height": 172.69532775878906,
+            "width": 229.9652862548828,
+            "x": 840.8551025390625,
+            "y": -1047.8863525390625
+          },
+          "unit": "YEARS"
+        }
+      ],
+      "sections": [
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects  in workmanship and material under normal consumer use during the applicable warranty period identified in  the 'Warranty Period' section below, subject to the exclusions set forth below.This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor  authorize any person to assume for us, any other liability in connection with the sale of our products.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-limited",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 182.34376525878903,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -1284.513916015625
+          },
+          "title": "Limited Warranty",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 159.3359375,
+            "x": 449.1710205078125,
+            "y": -1296.48876953125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "3YEARSStandard WarrantyThe standard warranty period for Jackery HomePower 3600  Plus is 36 months. In each case, the warranty period is  measured starting on the date of purchase by the original  consumer purchaser. The sales receipt from the first consumer  purchase, or other reasonable documentary proof, is required  in order to establish the start date of the warranty period.2YEARSExtended WarrantyTo activate the Warranty Extension, you  must register your product online  or  contact our customer service team at  hello@jackery.com to extend the  standard warranty runtime.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-period",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 231.5451507568359,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -1073.3724365234375
+          },
+          "title": "Warranty Period",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 151.85330200195312,
+            "x": 449.1710205078125,
+            "y": -1085.3472900390625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the  applicable warranty period due to a defect in workmanship or material. The repaired/replaced product  assumes the remaining warranty of the original date of purchase.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-repair",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 98.43750762939452,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -813.029541015625
+          },
+          "title": "Repair or replacement",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 200.35157775878903,
+            "x": 449.1710205078125,
+            "y": -825.00439453125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to  any subsequent owner.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-original-buyer",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 79.140625,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -685.7943115234375
+          },
+          "title": "Limited to Original Consumer Buyer",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 304.51824951171875,
+            "x": 449.1710205078125,
+            "y": -697.7691040039062
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery's warranty does not apply to:Misused, abused, modified, damaged by accident, or used for anything other than normal consumer  use as authorized in Jackery's current product literature.Attempted repair by anyone other than an authorized facility.Any product purchased through an online auction house.Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within  seven days after you purchase the product and at least once every 6 months thereafter.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-exclusions",
+          "listItems": [
+            {
+              "marker": "disc",
+              "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer  use as authorized in Jackery's current product literature."
+            },
+            {
+              "marker": "disc",
+              "text": "Attempted repair by anyone other than an authorized facility."
+            },
+            {
+              "marker": "disc",
+              "text": "Any product purchased through an online auction house."
+            },
+            {
+              "marker": "disc",
+              "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within  seven days after you purchase the product and at least once every 6 months thereafter."
+            }
+          ],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 209.30990600585935,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -577.85595703125
+          },
+          "title": "Exclusions",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 102.26563262939452,
+            "x": 449.1710205078125,
+            "y": -589.8307495117188
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery reserves the right to final interpretation of the above customers' after-sales policy.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-interpretation",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 59.843753814697266,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -339.748291015625
+          },
+          "title": "Interpretation Rights",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 186.6840362548828,
+            "x": 449.1710205078125,
+            "y": -351.7231140136719
+          }
+        }
+      ],
+      "width": 1280
+    },
+    {
+      "grid": {
+        "columns": "651.233px",
+        "rect": {
+          "height": 255.6033172607422,
+          "width": 651.232666015625,
+          "x": 29.939237594604492,
+          "y": -1551.974853515625
+        }
+      },
+      "headingCount": 28,
+      "lang": "en",
+      "lead": {
+        "bg": "rgb(244, 243, 243)",
+        "clipped": false,
+        "radius": "11.2px",
+        "text": "We only provide our warranty to customers who purchase from the official Jackery website,  Jackery-branded third-party platforms, or local authorized dealers. "
+      },
+      "legacyArtImages": 0,
+      "localNote": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "pageOverflow": 0,
+      "periods": [
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.0021686553955078125,
+              "y": 0.21923255920410156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": -1551.974853515625
+            },
+            "weight": "700"
+          },
+          "body": "The standard warranty period for Jackery HomePower 3600  Plus is 36 months. In each case, the warranty period is  measured starting on the date of purchase by the original  consumer purchaser. The sales receipt from the first consumer  purchase, or other reasonable documentary proof, is required  in order to establish the start date of the warranty period.",
+          "label": "Standard Warranty",
+          "number": "3",
+          "rect": {
+            "height": 128.88890075683594,
+            "width": 651.232666015625,
+            "x": 29.939237594604492,
+            "y": -1551.974853515625
+          },
+          "unit": "YEARS"
+        },
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.002170562744140625,
+              "y": 0.21923255920410156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": -1388.654541015625
+            },
+            "weight": "700"
+          },
+          "body": "To activate the Warranty Extension, you  must register your product online  or  contact our customer service team at  hello@jackery.com to extend the  standard warranty runtime.",
+          "label": "Extended Warranty",
+          "number": "2",
+          "rect": {
+            "height": 109.11458587646484,
+            "width": 651.232666015625,
+            "x": 29.939237594604492,
+            "y": -1405.4862060546875
+          },
+          "unit": "YEARS"
+        }
+      ],
+      "sections": [
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects  in workmanship and material under normal consumer use during the applicable warranty period identified in  the 'Warranty Period' section below, subject to the exclusions set forth below.This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor  authorize any person to assume for us, any other liability in connection with the sale of our products.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-limited",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 158.8715362548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -1762.5521240234375
+          },
+          "title": "Limited Warranty",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 141.38455200195312,
+            "x": 29.939237594604492,
+            "y": -1774.5269775390625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "3YEARSStandard WarrantyThe standard warranty period for Jackery HomePower 3600  Plus is 36 months. In each case, the warranty period is  measured starting on the date of purchase by the original  consumer purchaser. The sales receipt from the first consumer  purchase, or other reasonable documentary proof, is required  in order to establish the start date of the warranty period.2YEARSExtended WarrantyTo activate the Warranty Extension, you  must register your product online  or  contact our customer service team at  hello@jackery.com to extend the  standard warranty runtime.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-period",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 291.974853515625,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -1574.8829345703125
+          },
+          "title": "Warranty Period",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 134.8697967529297,
+            "x": 29.939237594604492,
+            "y": -1586.857666015625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the  applicable warranty period due to a defect in workmanship or material. The repaired/replaced product  assumes the remaining warranty of the original date of purchase.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-repair",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 94.26215362548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -1254.1103515625
+          },
+          "title": "Repair or replacement",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 177.08334350585938,
+            "x": 29.939237594604492,
+            "y": -1266.0850830078125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to  any subsequent owner.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-original-buyer",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 74.96527862548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -1131.0504150390625
+          },
+          "title": "Limited to Original Consumer Buyer",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 267.756103515625,
+            "x": 29.939237594604492,
+            "y": -1143.0252685546875
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery's warranty does not apply to:Misused, abused, modified, damaged by accident, or used for anything other than normal consumer  use as authorized in Jackery's current product literature.Attempted repair by anyone other than an authorized facility.Any product purchased through an online auction house.Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within  seven days after you purchase the product and at least once every 6 months thereafter.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-exclusions",
+          "listItems": [
+            {
+              "marker": "disc",
+              "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer  use as authorized in Jackery's current product literature."
+            },
+            {
+              "marker": "disc",
+              "text": "Attempted repair by anyone other than an authorized facility."
+            },
+            {
+              "marker": "disc",
+              "text": "Any product purchased through an online auction house."
+            },
+            {
+              "marker": "disc",
+              "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within  seven days after you purchase the product and at least once every 6 months thereafter."
+            }
+          ],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 205.13455200195312,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -1027.287353515625
+          },
+          "title": "Exclusions",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 91.71007537841795,
+            "x": 29.939237594604492,
+            "y": -1039.26220703125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery reserves the right to final interpretation of the above customers' after-sales policy.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-interpretation",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 55.66840362548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -793.3551025390625
+          },
+          "title": "Interpretation Rights",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 165.19097900390625,
+            "x": 29.939237594604492,
+            "y": -805.3298950195312
+          }
+        }
+      ],
+      "width": 711
+    },
+    {
+      "grid": {
+        "columns": "330.122px",
+        "rect": {
+          "height": 365.4210205078125,
+          "width": 330.1215515136719,
+          "x": 29.939237594604492,
+          "y": -1930.108642578125
+        }
+      },
+      "headingCount": 28,
+      "lang": "en",
+      "lead": {
+        "bg": "rgb(244, 243, 243)",
+        "clipped": false,
+        "radius": "11.2px",
+        "text": "We only provide our warranty to customers who purchase from the official Jackery website,  Jackery-branded third-party platforms, or local authorized dealers. "
+      },
+      "legacyArtImages": 0,
+      "localNote": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "pageOverflow": 0,
+      "periods": [
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.0021686553955078125,
+              "y": 0.21917152404785156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": -1930.108642578125
+            },
+            "weight": "700"
+          },
+          "body": "The standard warranty period for Jackery HomePower 3600  Plus is 36 months. In each case, the warranty period is  measured starting on the date of purchase by the original  consumer purchaser. The sales receipt from the first consumer  purchase, or other reasonable documentary proof, is required  in order to establish the start date of the warranty period.",
+          "label": "Standard Warranty",
+          "number": "3",
+          "rect": {
+            "height": 202.1007080078125,
+            "width": 330.1215515136719,
+            "x": 29.939237594604492,
+            "y": -1930.108642578125
+          },
+          "unit": "YEARS"
+        },
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.002170562744140625,
+              "y": 0.21923255920410156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": -1693.576416015625
+            },
+            "weight": "700"
+          },
+          "body": "To activate the Warranty Extension, you  must register your product online  or  contact our customer service team at  hello@jackery.com to extend the  standard warranty runtime.",
+          "label": "Extended Warranty",
+          "number": "2",
+          "rect": {
+            "height": 145.72048950195312,
+            "width": 330.1215515136719,
+            "x": 29.939237594604492,
+            "y": -1710.4080810546875
+          },
+          "unit": "YEARS"
+        }
+      ],
+      "sections": [
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects  in workmanship and material under normal consumer use during the applicable warranty period identified in  the 'Warranty Period' section below, subject to the exclusions set forth below.This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor  authorize any person to assume for us, any other liability in connection with the sale of our products.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-limited",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 274.6528015136719,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": -2256.467041015625
+          },
+          "title": "Limited Warranty",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 141.38455200195312,
+            "x": 29.939237594604492,
+            "y": -2268.44189453125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "3YEARSStandard WarrantyThe standard warranty period for Jackery HomePower 3600  Plus is 36 months. In each case, the warranty period is  measured starting on the date of purchase by the original  consumer purchaser. The sales receipt from the first consumer  purchase, or other reasonable documentary proof, is required  in order to establish the start date of the warranty period.2YEARSExtended WarrantyTo activate the Warranty Extension, you  must register your product online  or  contact our customer service team at  hello@jackery.com to extend the  standard warranty runtime.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-period",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 401.79254150390625,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": -1953.0166015625
+          },
+          "title": "Warranty Period",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 134.8697967529297,
+            "x": 29.939237594604492,
+            "y": -1964.991455078125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the  applicable warranty period due to a defect in workmanship or material. The repaired/replaced product  assumes the remaining warranty of the original date of purchase.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-repair",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 171.4496612548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": -1522.42626953125
+          },
+          "title": "Repair or replacement",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 177.08334350585938,
+            "x": 29.939237594604492,
+            "y": -1534.401123046875
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to  any subsequent owner.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-original-buyer",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 94.26215362548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": -1322.1788330078125
+          },
+          "title": "Limited to Original Consumer Buyer",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 267.756103515625,
+            "x": 29.939237594604492,
+            "y": -1334.1536865234375
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery's warranty does not apply to:Misused, abused, modified, damaged by accident, or used for anything other than normal consumer  use as authorized in Jackery's current product literature.Attempted repair by anyone other than an authorized facility.Any product purchased through an online auction house.Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within  seven days after you purchase the product and at least once every 6 months thereafter.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-exclusions",
+          "listItems": [
+            {
+              "marker": "disc",
+              "text": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer  use as authorized in Jackery's current product literature."
+            },
+            {
+              "marker": "disc",
+              "text": "Attempted repair by anyone other than an authorized facility."
+            },
+            {
+              "marker": "disc",
+              "text": "Any product purchased through an online auction house."
+            },
+            {
+              "marker": "disc",
+              "text": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within  seven days after you purchase the product and at least once every 6 months thereafter."
+            }
+          ],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 320.9158020019531,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": -1199.1190185546875
+          },
+          "title": "Exclusions",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 91.71007537841795,
+            "x": 29.939237594604492,
+            "y": -1211.09375
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery reserves the right to final interpretation of the above customers' after-sales policy.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-interpretation",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 74.96527862548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": -849.4053955078125
+          },
+          "title": "Interpretation Rights",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 165.19097900390625,
+            "x": 29.939237594604492,
+            "y": -861.3802490234375
+          }
+        }
+      ],
+      "width": 390
+    },
+    {
+      "grid": {
+        "columns": "359.688px 229.965px",
+        "rect": {
+          "height": 209.3012237548828,
+          "width": 621.6493530273438,
+          "x": 449.1710205078125,
+          "y": 21585.669921875
+        }
+      },
+      "headingCount": 28,
+      "lang": "fr",
+      "lead": {
+        "bg": "rgb(244, 243, 243)",
+        "clipped": false,
+        "radius": "14.08px",
+        "text": "Nous ne fournissons notre garantie qu'aux clients qui achètent sur le site officiel de  Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs  autorisés locaux."
+      },
+      "legacyArtImages": 0,
+      "localNote": "*La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux.",
+      "pageOverflow": 0,
+      "periods": [
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.002155303955078125,
+              "y": 0.12228775024414062
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 55.19965362548828,
+              "width": 55.19965362548828,
+              "x": 449.1710205078125,
+              "y": 21585.669921875
+            },
+            "weight": "700"
+          },
+          "body": "La période de garantie standard du Jackery HomePower 3600 Plus  est de 36 mois. Dans tous les cas, la période de garantie commence  à compter de la date d'achat par l'acheteur et consommateur  d'origine. La facture du premier achat du consommateur ou toute  autre preuve documentaire raisonnable est nécessaire afin d'établir  la date de début de la période de garantie.",
+          "label": "Garantie standard",
+          "number": "3",
+          "rect": {
+            "height": 209.3012237548828,
+            "width": 359.6875305175781,
+            "x": 449.1710205078125,
+            "y": 21585.669921875
+          },
+          "unit": "ANS"
+        },
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 3.4332275390625e-05,
+              "y": 0.12228775024414062
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 55.19965362548828,
+              "width": 55.19965362548828,
+              "x": 840.8551025390625,
+              "y": 21585.669921875
+            },
+            "weight": "700"
+          },
+          "body": "Pour activer l'extension de garantie,  vous devez enregistrer votre produit  en ligne ou bien contacter notre  service client à hello@jackery.com  afin de prolonger la durée de la  garantie standard.",
+          "label": "Garantie prolongée",
+          "number": "2",
+          "rect": {
+            "height": 172.69532775878906,
+            "width": 229.9652862548828,
+            "x": 840.8551025390625,
+            "y": 21585.669921875
+          },
+          "unit": "ANS"
+        }
+      ],
+      "sections": [
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery Inc. garantit à l'acheteur et consommateur d'origine que le produit de Jackery sera exempt de tout  défaut de fabrication et de matériaux dans le cadre d'une utilisation normale pendant toute la durée de la  période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve  des exceptions énoncées ci-dessous.Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous  n'assumerons pas et nous n'autorisons personne à assumer pour nous toute autre responsabilité en lien avec  la vente de nos produits.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-limited",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 182.34376525878903,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 21349.041015625
+          },
+          "title": "Garantie limitée",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 150.71180725097656,
+            "x": 449.1710205078125,
+            "y": 21337.06640625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "3ANSGarantie standardLa période de garantie standard du Jackery HomePower 3600 Plus  est de 36 mois. Dans tous les cas, la période de garantie commence  à compter de la date d'achat par l'acheteur et consommateur  d'origine. La facture du premier achat du consommateur ou toute  autre preuve documentaire raisonnable est nécessaire afin d'établir  la date de début de la période de garantie.2ANSGarantie prolongéePour activer l'extension de garantie,  vous devez enregistrer votre produit  en ligne ou bien contacter notre  service client à hello@jackery.com  afin de prolonger la durée de la  garantie standard.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-period",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 249.8480987548828,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 21560.18359375
+          },
+          "title": "Période de garantie",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 180.5512237548828,
+            "x": 449.1710205078125,
+            "y": 21548.208984375
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery remplacera (aux frais de Jackery) tout produit de Jackery qui ne fonctionne plus en raison d'un  défaut de fabrication ou de matériau pendant la période de garantie applicable. Un produit remplacé  reprend la garantie restante du produit d'origine.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-repair",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 98.43750762939452,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 21838.830078125
+          },
+          "title": "Échange",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 90.5685806274414,
+            "x": 449.1710205078125,
+            "y": 21826.853515625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantie d'un produit Jackery est limitée à l'acheteur et consommateur d'origine, elle ne peut pas être  transférée à un autre propriétaire.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-original-buyer",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 79.140625,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 21966.064453125
+          },
+          "title": "Limitée à l'acheteur et consommateur d'origine",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 396.6970825195313,
+            "x": 449.1710205078125,
+            "y": 21954.08984375
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantie de Jackery ne s'applique pas à :Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre  utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle  du produit de Jackery.À une réparation tentée par quelqu'un d'autre qu'un établissement agréé.Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne.La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé  les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois  par la suite.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-exclusions",
+          "listItems": [
+            {
+              "marker": "disc",
+              "text": "Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre  utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle  du produit de Jackery."
+            },
+            {
+              "marker": "disc",
+              "text": "À une réparation tentée par quelqu'un d'autre qu'un établissement agréé."
+            },
+            {
+              "marker": "disc",
+              "text": "Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne."
+            },
+            {
+              "marker": "disc",
+              "text": "La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé  les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois  par la suite."
+            }
+          ],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 228.60678100585935,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 22074.001953125
+          },
+          "title": "Exclusions",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 102.26563262939452,
+            "x": 449.1710205078125,
+            "y": 22062.02734375
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery se réserve le droit d’interprétation finale de la politique de service après-vente ci-dessus.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-interpretation",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 79.140625,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 22331.408203125
+          },
+          "title": "Droits d'interprétation",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 197.7430725097656,
+            "x": 449.1710205078125,
+            "y": 22319.431640625
+          }
+        }
+      ],
+      "width": 1280
+    },
+    {
+      "grid": {
+        "columns": "651.233px",
+        "rect": {
+          "height": 255.6033172607422,
+          "width": 651.232666015625,
+          "x": 29.939237594604492,
+          "y": 21000.96484375
+        }
+      },
+      "headingCount": 28,
+      "lang": "fr",
+      "lead": {
+        "bg": "rgb(244, 243, 243)",
+        "clipped": false,
+        "radius": "11.2px",
+        "text": "Nous ne fournissons notre garantie qu'aux clients qui achètent sur le site officiel de  Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs  autorisés locaux."
+      },
+      "legacyArtImages": 0,
+      "localNote": "*La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux.",
+      "pageOverflow": 0,
+      "periods": [
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.0021686553955078125,
+              "y": 0.21929359436035156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": 21000.96484375
+            },
+            "weight": "700"
+          },
+          "body": "La période de garantie standard du Jackery HomePower 3600 Plus  est de 36 mois. Dans tous les cas, la période de garantie commence  à compter de la date d'achat par l'acheteur et consommateur  d'origine. La facture du premier achat du consommateur ou toute  autre preuve documentaire raisonnable est nécessaire afin d'établir  la date de début de la période de garantie.",
+          "label": "Garantie standard",
+          "number": "3",
+          "rect": {
+            "height": 128.88890075683594,
+            "width": 651.232666015625,
+            "x": 29.939237594604492,
+            "y": 21000.96484375
+          },
+          "unit": "ANS"
+        },
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.002170562744140625,
+              "y": 0.21929359436035156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": 21164.28515625
+            },
+            "weight": "700"
+          },
+          "body": "Pour activer l'extension de garantie,  vous devez enregistrer votre produit  en ligne ou bien contacter notre  service client à hello@jackery.com  afin de prolonger la durée de la  garantie standard.",
+          "label": "Garantie prolongée",
+          "number": "2",
+          "rect": {
+            "height": 109.11458587646484,
+            "width": 651.232666015625,
+            "x": 29.939237594604492,
+            "y": 21147.453125
+          },
+          "unit": "ANS"
+        }
+      ],
+      "sections": [
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery Inc. garantit à l'acheteur et consommateur d'origine que le produit de Jackery sera exempt de tout  défaut de fabrication et de matériaux dans le cadre d'une utilisation normale pendant toute la durée de la  période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve  des exceptions énoncées ci-dessous.Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous  n'assumerons pas et nous n'autorisons personne à assumer pour nous toute autre responsabilité en lien avec  la vente de nos produits.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-limited",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 178.1684112548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 20771.08984375
+          },
+          "title": "Garantie limitée",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 133.88021850585938,
+            "x": 29.939237594604492,
+            "y": 20759.115234375
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "3ANSGarantie standardLa période de garantie standard du Jackery HomePower 3600 Plus  est de 36 mois. Dans tous les cas, la période de garantie commence  à compter de la date d'achat par l'acheteur et consommateur  d'origine. La facture du premier achat du consommateur ou toute  autre preuve documentaire raisonnable est nécessaire afin d'établir  la date de début de la période de garantie.2ANSGarantie prolongéePour activer l'extension de garantie,  vous devez enregistrer votre produit  en ligne ou bien contacter notre  service client à hello@jackery.com  afin de prolonger la durée de la  garantie standard.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-period",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 291.974853515625,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 20978.056640625
+          },
+          "title": "Période de garantie",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 159.85243225097656,
+            "x": 29.939237594604492,
+            "y": 20966.08203125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery remplacera (aux frais de Jackery) tout produit de Jackery qui ne fonctionne plus en raison d'un  défaut de fabrication ou de matériau pendant la période de garantie applicable. Un produit remplacé  reprend la garantie restante du produit d'origine.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-repair",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 94.26215362548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 21298.830078125
+          },
+          "title": "Échange",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 81.52777862548828,
+            "x": 29.939237594604492,
+            "y": 21286.853515625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantie d'un produit Jackery est limitée à l'acheteur et consommateur d'origine, elle ne peut pas être  transférée à un autre propriétaire.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-original-buyer",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 74.96527862548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 21421.888671875
+          },
+          "title": "Limitée à l'acheteur et consommateur d'origine",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 347.9861145019531,
+            "x": 29.939237594604492,
+            "y": 21409.9140625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantie de Jackery ne s'applique pas à :Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre  utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle  du produit de Jackery.À une réparation tentée par quelqu'un d'autre qu'un établissement agréé.Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne.La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé  les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois  par la suite.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-exclusions",
+          "listItems": [
+            {
+              "marker": "disc",
+              "text": "Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre  utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle  du produit de Jackery."
+            },
+            {
+              "marker": "disc",
+              "text": "À une réparation tentée par quelqu'un d'autre qu'un établissement agréé."
+            },
+            {
+              "marker": "disc",
+              "text": "Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne."
+            },
+            {
+              "marker": "disc",
+              "text": "La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé  les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois  par la suite."
+            }
+          ],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 224.43142700195312,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 21525.65234375
+          },
+          "title": "Exclusions",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 91.71007537841795,
+            "x": 29.939237594604492,
+            "y": 21513.677734375
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery se réserve le droit d’interprétation finale de la politique de service après-vente ci-dessus.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-interpretation",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 55.66840362548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 21778.880859375
+          },
+          "title": "Droits d'interprétation",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 174.81336975097656,
+            "x": 29.939237594604492,
+            "y": 21766.90625
+          }
+        }
+      ],
+      "width": 711
+    },
+    {
+      "grid": {
+        "columns": "330.122px",
+        "rect": {
+          "height": 383.7239685058594,
+          "width": 330.1215515136719,
+          "x": 29.939237594604492,
+          "y": 26628.39453125
+        }
+      },
+      "headingCount": 28,
+      "lang": "fr",
+      "lead": {
+        "bg": "rgb(244, 243, 243)",
+        "clipped": false,
+        "radius": "11.2px",
+        "text": "Nous ne fournissons notre garantie qu'aux clients qui achètent sur le site officiel de  Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs  autorisés locaux."
+      },
+      "legacyArtImages": 0,
+      "localNote": "*La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux.",
+      "pageOverflow": 0,
+      "periods": [
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.0021686553955078125,
+              "y": 0.21831703186035156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": 26628.39453125
+            },
+            "weight": "700"
+          },
+          "body": "La période de garantie standard du Jackery HomePower 3600 Plus  est de 36 mois. Dans tous les cas, la période de garantie commence  à compter de la date d'achat par l'acheteur et consommateur  d'origine. La facture du premier achat du consommateur ou toute  autre preuve documentaire raisonnable est nécessaire afin d'établir  la date de début de la période de garantie.",
+          "label": "Garantie standard",
+          "number": "3",
+          "rect": {
+            "height": 220.40365600585935,
+            "width": 330.1215515136719,
+            "x": 29.939237594604492,
+            "y": 26628.39453125
+          },
+          "unit": "ANS"
+        },
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.002170562744140625,
+              "y": 0.21929359436035156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": 26883.23046875
+            },
+            "weight": "700"
+          },
+          "body": "Pour activer l'extension de garantie,  vous devez enregistrer votre produit  en ligne ou bien contacter notre  service client à hello@jackery.com  afin de prolonger la durée de la  garantie standard.",
+          "label": "Garantie prolongée",
+          "number": "2",
+          "rect": {
+            "height": 145.72048950195312,
+            "width": 330.1215515136719,
+            "x": 29.939237594604492,
+            "y": 26866.3984375
+          },
+          "unit": "ANS"
+        }
+      ],
+      "sections": [
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery Inc. garantit à l'acheteur et consommateur d'origine que le produit de Jackery sera exempt de tout  défaut de fabrication et de matériaux dans le cadre d'une utilisation normale pendant toute la durée de la  période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve  des exceptions énoncées ci-dessous.Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous  n'assumerons pas et nous n'autorisons personne à assumer pour nous toute autre responsabilité en lien avec  la vente de nos produits.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-limited",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 313.2465515136719,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 26263.443359375
+          },
+          "title": "Garantie limitée",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 133.88021850585938,
+            "x": 29.939237594604492,
+            "y": 26251.46875
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "3ANSGarantie standardLa période de garantie standard du Jackery HomePower 3600 Plus  est de 36 mois. Dans tous les cas, la période de garantie commence  à compter de la date d'achat par l'acheteur et consommateur  d'origine. La facture du premier achat du consommateur ou toute  autre preuve documentaire raisonnable est nécessaire afin d'établir  la date de début de la période de garantie.2ANSGarantie prolongéePour activer l'extension de garantie,  vous devez enregistrer votre produit  en ligne ou bien contacter notre  service client à hello@jackery.com  afin de prolonger la durée de la  garantie standard.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-period",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 420.0955200195313,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 26605.48828125
+          },
+          "title": "Période de garantie",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 159.85243225097656,
+            "x": 29.939237594604492,
+            "y": 26593.51171875
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery remplacera (aux frais de Jackery) tout produit de Jackery qui ne fonctionne plus en raison d'un  défaut de fabrication ou de matériau pendant la période de garantie applicable. Un produit remplacé  reprend la garantie restante du produit d'origine.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-repair",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 152.1527862548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 27054.380859375
+          },
+          "title": "Échange",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 81.52777862548828,
+            "x": 29.939237594604492,
+            "y": 27042.40625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantie d'un produit Jackery est limitée à l'acheteur et consommateur d'origine, elle ne peut pas être  transférée à un autre propriétaire.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-original-buyer",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 111.55382537841795,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 27235.33203125
+          },
+          "title": "Limitée à l'acheteur et consommateur d'origine",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 44.175350189208984,
+            "width": 330.1215515136719,
+            "x": 29.939237594604492,
+            "y": 27223.35546875
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantie de Jackery ne s'applique pas à :Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre  utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle  du produit de Jackery.À une réparation tentée par quelqu'un d'autre qu'un établissement agréé.Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne.La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé  les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois  par la suite.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-exclusions",
+          "listItems": [
+            {
+              "marker": "disc",
+              "text": "Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre  utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle  du produit de Jackery."
+            },
+            {
+              "marker": "disc",
+              "text": "À une réparation tentée par quelqu'un d'autre qu'un établissement agréé."
+            },
+            {
+              "marker": "disc",
+              "text": "Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne."
+            },
+            {
+              "marker": "disc",
+              "text": "La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé  les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois  par la suite."
+            }
+          ],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 359.5095520019531,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 27375.68359375
+          },
+          "title": "Exclusions",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 91.71007537841795,
+            "x": 29.939237594604492,
+            "y": 27363.70703125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery se réserve le droit d’interprétation finale de la politique de service après-vente ci-dessus.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-interpretation",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 74.96527862548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 27763.990234375
+          },
+          "title": "Droits d'interprétation",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 174.81336975097656,
+            "x": 29.939237594604492,
+            "y": 27752.015625
+          }
+        }
+      ],
+      "width": 390
+    },
+    {
+      "grid": {
+        "columns": "359.688px 229.965px",
+        "rect": {
+          "height": 209.3012237548828,
+          "width": 621.6493530273438,
+          "x": 449.1710205078125,
+          "y": 21576.802734375
+        }
+      },
+      "headingCount": 28,
+      "lang": "es",
+      "lead": {
+        "bg": "rgb(244, 243, 243)",
+        "clipped": false,
+        "radius": "14.08px",
+        "text": "Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery,  plataformas de terceros con la marca Jackery o distribuidores autorizados locales. "
+      },
+      "legacyArtImages": 0,
+      "localNote": "* El periodo de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.",
+      "pageOverflow": 0,
+      "periods": [
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.002155303955078125,
+              "y": 0.12228775024414062
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 55.19965362548828,
+              "width": 55.19965362548828,
+              "x": 449.1710205078125,
+              "y": 21576.802734375
+            },
+            "weight": "700"
+          },
+          "body": "El periodo de garantía estándar de Jackery HomePower 3600  Plus es de 36 meses. En cada caso, el período de garantía se  mide a partir de la fecha de compra por parte del comprador  consumidor original. Para establecer la fecha de inicio del  período de garantía, se necesita el recibo de venta de la primera  compra del consumidor u otra prueba documental razonable.",
+          "label": "Garantía Estándar",
+          "number": "3",
+          "rect": {
+            "height": 209.3012237548828,
+            "width": 359.6875305175781,
+            "x": 449.1710205078125,
+            "y": 21576.802734375
+          },
+          "unit": "AÑOS"
+        },
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 3.4332275390625e-05,
+              "y": 0.12228775024414062
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 55.19965362548828,
+              "width": 55.19965362548828,
+              "x": 840.8551025390625,
+              "y": 21576.802734375
+            },
+            "weight": "700"
+          },
+          "body": "Para activar la extensión de  garantía,debe registrar su producto  en línea oponerse en contacto con  nuestro equipo de atención al cliente  en hello@jackery.com para ampliar  laduración de la garantia estándar.",
+          "label": "Garantía extendida",
+          "number": "2",
+          "rect": {
+            "height": 190.9982757568359,
+            "width": 229.9652862548828,
+            "x": 840.8551025390625,
+            "y": 21576.802734375
+          },
+          "unit": "AÑOS"
+        }
+      ],
+      "sections": [
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery Inc. garantiza al consumidor original que el producto Jackery estará libre de defectos relativos al  acabado y a los materiales en condiciones normales de uso por parte del consumidor durante el período de  garantía aplicable identificado en la sección \"Período de garantía\" que figura a continuación, sujeto a las  exclusiones que se establecen a continuación.Esta declaración de garantía establece la obligación de garantía total y exclusiva de Jackery. No  asumiremos ni autorizaremos que ninguna persona asuma por nosotros ninguna otra responsabilidad en  relación con la venta de nuestros productos.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-limited",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 201.64064025878903,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 21320.876953125
+          },
+          "title": "Garantía limitada",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 163.92796325683594,
+            "x": 449.1710205078125,
+            "y": 21308.90234375
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "3AÑOSGarantía EstándarEl periodo de garantía estándar de Jackery HomePower 3600  Plus es de 36 meses. En cada caso, el período de garantía se  mide a partir de la fecha de compra por parte del comprador  consumidor original. Para establecer la fecha de inicio del  período de garantía, se necesita el recibo de venta de la primera  compra del consumidor u otra prueba documental razonable.2AÑOSGarantía extendidaPara activar la extensión de  garantía,debe registrar su producto  en línea oponerse en contacto con  nuestro equipo de atención al cliente  en hello@jackery.com para ampliar  laduración de la garantia estándar.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-period",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 249.8480987548828,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 21551.31640625
+          },
+          "title": "Período de garantía",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 181.5538330078125,
+            "x": 449.1710205078125,
+            "y": 21539.341796875
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery reparará o reemplazará (a cargo de Jackery) cualquier producto Jackery que no funcione  durante el periodo de garantía aplicable debido a defectos en la mano de obra o el material. El producto  reparado o reemplazado asumirá el periodo restante de la garantía desde la fecha original de compra.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-repair",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 117.73438262939452,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 21829.962890625
+          },
+          "title": "Reparación o reemplazo",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 216.24566650390625,
+            "x": 449.1710205078125,
+            "y": 21817.986328125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantía del producto de Jackery se limita al consumidor original y no es transferible a ningún  propietario posterior.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-original-buyer",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 79.140625,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 21976.494140625
+          },
+          "title": "Limitado al comprador consumidor original",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 365.8724060058594,
+            "x": 449.1710205078125,
+            "y": 21964.51953125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantía de Jackery no se aplica a:Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal  del consumidor según lo autorizado en los folletos actuales del producto de Jackery.Intento de reparación por cualquier persona que no sea un centro autorizado.Cualquier producto adquirido a través de una casa de subastas en línea.La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completa- mente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez  cada 6 meses.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-exclusions",
+          "listItems": [
+            {
+              "marker": "disc",
+              "text": "Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal  del consumidor según lo autorizado en los folletos actuales del producto de Jackery."
+            },
+            {
+              "marker": "disc",
+              "text": "Intento de reparación por cualquier persona que no sea un centro autorizado."
+            },
+            {
+              "marker": "disc",
+              "text": "Cualquier producto adquirido a través de una casa de subastas en línea."
+            },
+            {
+              "marker": "disc",
+              "text": "La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completa- mente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez  cada 6 meses."
+            }
+          ],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 228.60678100585935,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 22084.431640625
+          },
+          "title": "Exclusiones",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 111.9574737548828,
+            "x": 449.1710205078125,
+            "y": 22072.45703125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery se reserva el derecho a la interpretación final de la política posventa de los clientes anterior.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-interpretation",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "14.08px",
+          "rect": {
+            "height": 79.140625,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 22341.837890625
+          },
+          "title": "Derechos de interpretación",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 29.46180725097656,
+            "width": 239.57032775878903,
+            "x": 449.1710205078125,
+            "y": 22329.861328125
+          }
+        }
+      ],
+      "width": 1280
+    },
+    {
+      "grid": {
+        "columns": "651.233px",
+        "rect": {
+          "height": 273.90625,
+          "width": 651.232666015625,
+          "x": 29.939237594604492,
+          "y": 20899.310546875
+        }
+      },
+      "headingCount": 28,
+      "lang": "es",
+      "lead": {
+        "bg": "rgb(244, 243, 243)",
+        "clipped": false,
+        "radius": "11.2px",
+        "text": "Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery,  plataformas de terceros con la marca Jackery o distribuidores autorizados locales. "
+      },
+      "legacyArtImages": 0,
+      "localNote": "* El periodo de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.",
+      "pageOverflow": 0,
+      "periods": [
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.0021686553955078125,
+              "y": 0.21831703186035156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": 20899.310546875
+            },
+            "weight": "700"
+          },
+          "body": "El periodo de garantía estándar de Jackery HomePower 3600  Plus es de 36 meses. En cada caso, el período de garantía se  mide a partir de la fecha de compra por parte del comprador  consumidor original. Para establecer la fecha de inicio del  período de garantía, se necesita el recibo de venta de la primera  compra del consumidor u otra prueba documental razonable.",
+          "label": "Garantía Estándar",
+          "number": "3",
+          "rect": {
+            "height": 128.88890075683594,
+            "width": 651.232666015625,
+            "x": 29.939237594604492,
+            "y": 20899.310546875
+          },
+          "unit": "AÑOS"
+        },
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.002170562744140625,
+              "y": 0.21831703186035156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": 21062.630859375
+            },
+            "weight": "700"
+          },
+          "body": "Para activar la extensión de  garantía,debe registrar su producto  en línea oponerse en contacto con  nuestro equipo de atención al cliente  en hello@jackery.com para ampliar  laduración de la garantia estándar.",
+          "label": "Garantía extendida",
+          "number": "2",
+          "rect": {
+            "height": 127.41754150390624,
+            "width": 651.232666015625,
+            "x": 29.939237594604492,
+            "y": 21045.798828125
+          },
+          "unit": "AÑOS"
+        }
+      ],
+      "sections": [
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery Inc. garantiza al consumidor original que el producto Jackery estará libre de defectos relativos al  acabado y a los materiales en condiciones normales de uso por parte del consumidor durante el período de  garantía aplicable identificado en la sección \"Período de garantía\" que figura a continuación, sujeto a las  exclusiones que se establecen a continuación.Esta declaración de garantía establece la obligación de garantía total y exclusiva de Jackery. No  asumiremos ni autorizaremos que ninguna persona asuma por nosotros ninguna otra responsabilidad en  relación con la venta de nuestros productos.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-limited",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 178.1684112548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 20669.4375
+          },
+          "title": "Garantía limitada",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 145.3819580078125,
+            "x": 29.939237594604492,
+            "y": 20657.462890625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "3AÑOSGarantía EstándarEl periodo de garantía estándar de Jackery HomePower 3600  Plus es de 36 meses. En cada caso, el período de garantía se  mide a partir de la fecha de compra por parte del comprador  consumidor original. Para establecer la fecha de inicio del  período de garantía, se necesita el recibo de venta de la primera  compra del consumidor u otra prueba documental razonable.2AÑOSGarantía extendidaPara activar la extensión de  garantía,debe registrar su producto  en línea oponerse en contacto con  nuestro equipo de atención al cliente  en hello@jackery.com para ampliar  laduración de la garantia estándar.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-period",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 310.2778015136719,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 20876.40234375
+          },
+          "title": "Período de garantía",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 160.72048950195312,
+            "x": 29.939237594604492,
+            "y": 20864.427734375
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery reparará o reemplazará (a cargo de Jackery) cualquier producto Jackery que no funcione  durante el periodo de garantía aplicable debido a defectos en la mano de obra o el material. El producto  reparado o reemplazado asumirá el periodo restante de la garantía desde la fecha original de compra.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-repair",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 113.5590362548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 21215.478515625
+          },
+          "title": "Reparación o reemplazo",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 190.9201507568359,
+            "x": 29.939237594604492,
+            "y": 21203.50390625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantía del producto de Jackery se limita al consumidor original y no es transferible a ningún  propietario posterior.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-original-buyer",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 74.96527862548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 21357.8359375
+          },
+          "title": "Limitado al comprador consumidor original",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 321.15887451171875,
+            "x": 29.939237594604492,
+            "y": 21345.861328125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantía de Jackery no se aplica a:Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal  del consumidor según lo autorizado en los folletos actuales del producto de Jackery.Intento de reparación por cualquier persona que no sea un centro autorizado.Cualquier producto adquirido a través de una casa de subastas en línea.La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completa- mente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez  cada 6 meses.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-exclusions",
+          "listItems": [
+            {
+              "marker": "disc",
+              "text": "Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal  del consumidor según lo autorizado en los folletos actuales del producto de Jackery."
+            },
+            {
+              "marker": "disc",
+              "text": "Intento de reparación por cualquier persona que no sea un centro autorizado."
+            },
+            {
+              "marker": "disc",
+              "text": "Cualquier producto adquirido a través de una casa de subastas en línea."
+            },
+            {
+              "marker": "disc",
+              "text": "La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completa- mente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez  cada 6 meses."
+            }
+          ],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 205.13455200195312,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 21461.59765625
+          },
+          "title": "Exclusiones",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 100.14757537841795,
+            "x": 29.939237594604492,
+            "y": 21449.623046875
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery se reserva el derecho a la interpretación final de la política posventa de los clientes anterior.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-interpretation",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 74.96527862548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 21695.53125
+          },
+          "title": "Derechos de interpretación",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 211.22396850585935,
+            "x": 29.939237594604492,
+            "y": 21683.556640625
+          }
+        }
+      ],
+      "width": 711
+    },
+    {
+      "grid": {
+        "columns": "330.122px",
+        "rect": {
+          "height": 383.7239685058594,
+          "width": 330.1215515136719,
+          "x": 29.939237594604492,
+          "y": 26722.314453125
+        }
+      },
+      "headingCount": 28,
+      "lang": "es",
+      "lead": {
+        "bg": "rgb(244, 243, 243)",
+        "clipped": false,
+        "radius": "11.2px",
+        "text": "Solo ofrecemos nuestra garantía a clientes que compren en el sitio web oficial de Jackery,  plataformas de terceros con la marca Jackery o distribuidores autorizados locales. "
+      },
+      "legacyArtImages": 0,
+      "localNote": "* El periodo de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales.",
+      "pageOverflow": 0,
+      "periods": [
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.0021686553955078125,
+              "y": 0.21831703186035156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": 26722.314453125
+            },
+            "weight": "700"
+          },
+          "body": "El periodo de garantía estándar de Jackery HomePower 3600  Plus es de 36 meses. En cada caso, el período de garantía se  mide a partir de la fecha de compra por parte del comprador  consumidor original. Para establecer la fecha de inicio del  período de garantía, se necesita el recibo de venta de la primera  compra del consumidor u otra prueba documental razonable.",
+          "label": "Garantía Estándar",
+          "number": "3",
+          "rect": {
+            "height": 202.1007080078125,
+            "width": 330.1215515136719,
+            "x": 29.939237594604492,
+            "y": 26722.314453125
+          },
+          "unit": "AÑOS"
+        },
+        {
+          "badge": {
+            "bg": "rgb(52, 48, 49)",
+            "centerOffset": {
+              "x": 0.002170562744140625,
+              "y": 0.22027015686035156
+            },
+            "clipped": false,
+            "color": "rgb(255, 255, 255)",
+            "display": "grid",
+            "radius": "50%",
+            "rect": {
+              "height": 47.9991340637207,
+              "width": 47.9991340637207,
+              "x": 29.939237594604492,
+              "y": 26958.84765625
+            },
+            "weight": "700"
+          },
+          "body": "Para activar la extensión de  garantía,debe registrar su producto  en línea oponerse en contacto con  nuestro equipo de atención al cliente  en hello@jackery.com para ampliar  laduración de la garantia estándar.",
+          "label": "Garantía extendida",
+          "number": "2",
+          "rect": {
+            "height": 164.02345275878906,
+            "width": 330.1215515136719,
+            "x": 29.939237594604492,
+            "y": 26942.015625
+          },
+          "unit": "AÑOS"
+        }
+      ],
+      "sections": [
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery Inc. garantiza al consumidor original que el producto Jackery estará libre de defectos relativos al  acabado y a los materiales en condiciones normales de uso por parte del consumidor durante el período de  garantía aplicable identificado en la sección \"Período de garantía\" que figura a continuación, sujeto a las  exclusiones que se establecen a continuación.Esta declaración de garantía establece la obligación de garantía total y exclusiva de Jackery. No  asumiremos ni autorizaremos que ninguna persona asuma por nosotros ninguna otra responsabilidad en  relación con la venta de nuestros productos.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-limited",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 313.2465515136719,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 26357.36328125
+          },
+          "title": "Garantía limitada",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 145.3819580078125,
+            "x": 29.939237594604492,
+            "y": 26345.38671875
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "3AÑOSGarantía EstándarEl periodo de garantía estándar de Jackery HomePower 3600  Plus es de 36 meses. En cada caso, el período de garantía se  mide a partir de la fecha de compra por parte del comprador  consumidor original. Para establecer la fecha de inicio del  período de garantía, se necesita el recibo de venta de la primera  compra del consumidor u otra prueba documental razonable.2AÑOSGarantía extendidaPara activar la extensión de  garantía,debe registrar su producto  en línea oponerse en contacto con  nuestro equipo de atención al cliente  en hello@jackery.com para ampliar  laduración de la garantia estándar.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-period",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 420.0955200195313,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 26699.40625
+          },
+          "title": "Período de garantía",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 160.72048950195312,
+            "x": 29.939237594604492,
+            "y": 26687.431640625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery reparará o reemplazará (a cargo de Jackery) cualquier producto Jackery que no funcione  durante el periodo de garantía aplicable debido a defectos en la mano de obra o el material. El producto  reparado o reemplazado asumirá el periodo restante de la garantía desde la fecha original de compra.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-repair",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 171.4496612548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 27148.30078125
+          },
+          "title": "Reparación o reemplazo",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 190.9201507568359,
+            "x": 29.939237594604492,
+            "y": 27136.32421875
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantía del producto de Jackery se limita al consumidor original y no es transferible a ningún  propietario posterior.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-original-buyer",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 94.26215362548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 27348.546875
+          },
+          "title": "Limitado al comprador consumidor original",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 321.15887451171875,
+            "x": 29.939237594604492,
+            "y": 27336.572265625
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "La garantía de Jackery no se aplica a:Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal  del consumidor según lo autorizado en los folletos actuales del producto de Jackery.Intento de reparación por cualquier persona que no sea un centro autorizado.Cualquier producto adquirido a través de una casa de subastas en línea.La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completa- mente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez  cada 6 meses.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-exclusions",
+          "listItems": [
+            {
+              "marker": "disc",
+              "text": "Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal  del consumidor según lo autorizado en los folletos actuales del producto de Jackery."
+            },
+            {
+              "marker": "disc",
+              "text": "Intento de reparación por cualquier persona que no sea un centro autorizado."
+            },
+            {
+              "marker": "disc",
+              "text": "Cualquier producto adquirido a través de una casa de subastas en línea."
+            },
+            {
+              "marker": "disc",
+              "text": "La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completa- mente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez  cada 6 meses."
+            }
+          ],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 340.2126770019531,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 27471.607421875
+          },
+          "title": "Exclusiones",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 100.14757537841795,
+            "x": 29.939237594604492,
+            "y": 27459.6328125
+          }
+        },
+        {
+          "bodyBelowTitle": true,
+          "bodyClipped": false,
+          "bodyText": "Jackery se reserva el derecho a la interpretación final de la política posventa de los clientes anterior.",
+          "border": "1.94444px",
+          "borderColor": "rgb(222, 220, 221)",
+          "id": "warranty-interpretation",
+          "listItems": [],
+          "overflow": "visible",
+          "radius": "11.2px",
+          "rect": {
+            "height": 94.26215362548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 27840.6171875
+          },
+          "title": "Derechos de interpretación",
+          "titleBg": "rgb(52, 48, 49)",
+          "titleColor": "rgb(255, 255, 255)",
+          "titleCrossesTopBorder": true,
+          "titleMarker": "none",
+          "titleRect": {
+            "height": 26.88368225097656,
+            "width": 211.22396850585935,
+            "x": 29.939237594604492,
+            "y": 27828.642578125
+          }
+        }
+      ],
+      "width": 390
+    }
+  ],
+  "native_shapes": "Six source-authored panels; titles intentionally cross the top borders. All empty frames and white numeral circles use CSS.",
+  "operator_acceptance": "pending combined review"
+}

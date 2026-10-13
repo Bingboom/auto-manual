@@ -1,0 +1,74 @@
+{
+  "en": {
+    "source_text_lines_audited": 723,
+    "required_text_lines": 722,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "download_columns": 2,
+    "complete_qr_frame": true,
+    "shared_inline_plus": true,
+    "live_step_captions": [
+      "2.1",
+      "2.2"
+    ],
+    "native_phone_frames_preserved": 2,
+    "gray_neighbor_panel_excluded": true,
+    "phone_canvas_no_horizontal_overflow": true,
+    "artwork_edges_verified_at_scale": 12,
+    "source_change_only_app_download_plus_and_phone_asset": true,
+    "markdown_change_only_same_three_nodes_and_app_scoped_css": true,
+    "other_body_lists_tables_headings_footnotes_and_warranty_preserved": true,
+    "old_assets_archived_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 116,
+    "publication_eligible": false
+  },
+  "fr": {
+    "source_text_lines_audited": 874,
+    "required_text_lines": 873,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "download_columns": 2,
+    "complete_qr_frame": true,
+    "shared_inline_plus": true,
+    "live_step_captions": [
+      "2.1",
+      "2.2"
+    ],
+    "native_phone_frames_preserved": 2,
+    "gray_neighbor_panel_excluded": true,
+    "phone_canvas_no_horizontal_overflow": true,
+    "artwork_edges_verified_at_scale": 12,
+    "source_change_only_app_download_plus_and_phone_asset": true,
+    "markdown_change_only_same_three_nodes_and_app_scoped_css": true,
+    "other_body_lists_tables_headings_footnotes_and_warranty_preserved": true,
+    "old_assets_archived_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 116,
+    "publication_eligible": false
+  },
+  "es": {
+    "source_text_lines_audited": 863,
+    "required_text_lines": 862,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "download_columns": 2,
+    "complete_qr_frame": true,
+    "shared_inline_plus": true,
+    "live_step_captions": [
+      "2.1",
+      "2.2"
+    ],
+    "native_phone_frames_preserved": 2,
+    "gray_neighbor_panel_excluded": true,
+    "phone_canvas_no_horizontal_overflow": true,
+    "artwork_edges_verified_at_scale": 12,
+    "source_change_only_app_download_plus_and_phone_asset": true,
+    "markdown_change_only_same_three_nodes_and_app_scoped_css": true,
+    "other_body_lists_tables_headings_footnotes_and_warranty_preserved": true,
+    "old_assets_archived_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 116,
+    "publication_eligible": false
+  }
+}

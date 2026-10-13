@@ -34,7 +34,7 @@ MAX_TOTAL_BYTES = 512 * 1024 * 1024
 # Frozen inputs contain both self-contained sources and assembled Web copies.
 # Keep their storage and file-count budgets separate from served-output and
 # network budgets; normal catalog growth must not enlarge network traversal.
-MAX_SOURCE_TOTAL_BYTES = 1152 * 1024 * 1024
+MAX_SOURCE_TOTAL_BYTES = 1280 * 1024 * 1024
 MAX_SOURCE_FILES = 20000
 MAX_FETCH_ATTEMPTS = 3
 FETCH_BUDGET_SECONDS = 45

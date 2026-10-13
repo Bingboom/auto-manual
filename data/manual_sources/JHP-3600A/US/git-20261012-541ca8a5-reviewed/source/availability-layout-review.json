@@ -1,0 +1,159 @@
+{
+  "scope": "Nine native EN/FR/ES battery, solar and car title/availability pairs",
+  "headings": {
+    "en": [
+      {
+        "key": "connections-battery-packs",
+        "source_page": "page-14",
+        "source_node": [
+          11,
+          1
+        ],
+        "child_index": 0,
+        "removed_paragraph_count": 2,
+        "title": " CONNECT TO BATTERY PACK(S) ",
+        "label": "SOLD SEPARATELY",
+        "native_label_is_to_the_right_of_title": true,
+        "shared_heading": "HB-TITLE-L2 / native h2 circle marker",
+        "shared_label": "hb-sold-separately",
+        "native_body_and_bold_spans_preserved": true
+      },
+      {
+        "key": "charging-solar-panels",
+        "source_page": "page-17",
+        "source_node": [
+          14,
+          6
+        ],
+        "child_index": 0,
+        "removed_paragraph_count": 2,
+        "title": "CHARGING VIA SOLAR PANELS",
+        "label": "SOLD SEPARATELY",
+        "native_label_is_to_the_right_of_title": true,
+        "shared_heading": "HB-TITLE-L2 / native h2 circle marker",
+        "shared_label": "hb-sold-separately",
+        "native_body_and_bold_spans_preserved": true
+      },
+      {
+        "key": "charging-car-charger",
+        "source_page": "page-18",
+        "source_node": [
+          15,
+          2
+        ],
+        "child_index": 1,
+        "removed_paragraph_count": 1,
+        "title": "CHARGING VIA A CAR CHARGER ",
+        "label": "SOLD SEPARATELY",
+        "native_label_is_to_the_right_of_title": true,
+        "shared_heading": "HB-TITLE-L2 / native h2 circle marker",
+        "shared_label": "hb-sold-separately",
+        "native_body_and_bold_spans_preserved": true
+      }
+    ],
+    "fr": [
+      {
+        "key": "connections-battery-packs",
+        "source_page": "page-34",
+        "source_node": [
+          11,
+          1
+        ],
+        "child_index": 0,
+        "removed_paragraph_count": 2,
+        "title": " CONNECTER AU(X) PACK(S) BATTERIE",
+        "label": "VENDU SÉPARÉMENT",
+        "native_label_is_to_the_right_of_title": true,
+        "shared_heading": "HB-TITLE-L2 / native h2 circle marker",
+        "shared_label": "hb-sold-separately",
+        "native_body_and_bold_spans_preserved": true
+      },
+      {
+        "key": "charging-solar-panels",
+        "source_page": "page-37",
+        "source_node": [
+          14,
+          4
+        ],
+        "child_index": 0,
+        "removed_paragraph_count": 1,
+        "title": "CHARGEMENT PAR PANNEAUX SOLAIRES  ",
+        "label": "VENDU SÉPARÉMENT",
+        "native_label_is_to_the_right_of_title": true,
+        "shared_heading": "HB-TITLE-L2 / native h2 circle marker",
+        "shared_label": "hb-sold-separately",
+        "native_body_and_bold_spans_preserved": true
+      },
+      {
+        "key": "charging-car-charger",
+        "source_page": "page-38",
+        "source_node": [
+          15,
+          2
+        ],
+        "child_index": 1,
+        "removed_paragraph_count": 2,
+        "title": "CHARGEMENT PAR PRISE DE VOITURE",
+        "label": "VENDU SÉPARÉMENT",
+        "native_label_is_to_the_right_of_title": true,
+        "shared_heading": "HB-TITLE-L2 / native h2 circle marker",
+        "shared_label": "hb-sold-separately",
+        "native_body_and_bold_spans_preserved": true
+      }
+    ],
+    "es": [
+      {
+        "key": "connections-battery-packs",
+        "source_page": "page-54",
+        "source_node": [
+          11,
+          1
+        ],
+        "child_index": 0,
+        "removed_paragraph_count": 2,
+        "title": " CONECTAR AL/LOS PAQUETE(S) DE BATERÍAS",
+        "label": "SE VENDE POR SEPARADO",
+        "native_label_is_to_the_right_of_title": true,
+        "shared_heading": "HB-TITLE-L2 / native h2 circle marker",
+        "shared_label": "hb-sold-separately",
+        "native_body_and_bold_spans_preserved": true
+      },
+      {
+        "key": "charging-solar-panels",
+        "source_page": "page-57",
+        "source_node": [
+          14,
+          4
+        ],
+        "child_index": 0,
+        "removed_paragraph_count": 1,
+        "title": "CARGA MEDIANTE PANELES SOLARES ",
+        "label": "SE VENDE POR SEPARADO",
+        "native_label_is_to_the_right_of_title": true,
+        "shared_heading": "HB-TITLE-L2 / native h2 circle marker",
+        "shared_label": "hb-sold-separately",
+        "native_body_and_bold_spans_preserved": true
+      },
+      {
+        "key": "charging-car-charger",
+        "source_page": "page-58",
+        "source_node": [
+          15,
+          2
+        ],
+        "child_index": 1,
+        "removed_paragraph_count": 1,
+        "title": "CARGA CON UN CARGADOR DE EN EL VEHÍCULO ",
+        "label": "SE VENDE POR SEPARADO",
+        "native_label_is_to_the_right_of_title": true,
+        "shared_heading": "HB-TITLE-L2 / native h2 circle marker",
+        "shared_label": "hb-sold-separately",
+        "native_body_and_bold_spans_preserved": true
+      }
+    ]
+  },
+  "shared_styles": "HB-TITLE-L2 and hb-sold-separately; source-only alignment and bounded title width",
+  "artwork_decision": "Reuse all existing artwork byte-identically; no extraction",
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review"
+}

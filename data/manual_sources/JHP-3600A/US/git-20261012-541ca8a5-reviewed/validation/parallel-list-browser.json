@@ -1,0 +1,1230 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "labelsCentered": true,
+      "lists": [
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 13112.552734375
+              },
+              "text": "Ensure that both HP3600 Plus units are powered off. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 13137.826171875
+              },
+              "text": "Use one Jackery Connector to connect both units via the AC EXPANSION PORT. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 13163.099609375
+              },
+              "text": "Turn on both units.  "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 50.546878814697266,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 13188.373046875
+              },
+              "text": "Within 1 minute, press the AC power button on each unit in sequence to enable AC output."
+            }
+          ],
+          "key": "parallel-steps",
+          "marginBottom": "6px",
+          "marker": "decimal",
+          "rect": {
+            "height": 126.36719512939452,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 13112.552734375
+          },
+          "tag": "OL"
+        },
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 13244.91796875
+              },
+              "text": "If the connection is successful, the display will show a solid parallel icon. "
+            },
+            {
+              "bold": [
+                {
+                  "text": "FA",
+                  "weight": "700"
+                },
+                {
+                  "text": "AC",
+                  "weight": "700"
+                }
+              ],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 50.546878814697266,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 13270.19140625
+              },
+              "text": "If the setup fails, the display shows the FA code. Press the AC power button on each unit again in sequence."
+            }
+          ],
+          "key": "parallel-result",
+          "marginBottom": "18.4px",
+          "marker": "disc",
+          "rect": {
+            "height": 75.8203125,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 13244.91796875
+          },
+          "tag": "UL"
+        }
+      ],
+      "literalBullets": 0,
+      "pageOverflow": 0,
+      "width": 1280
+    },
+    {
+      "lang": "fr",
+      "width": 1280,
+      "labelsCentered": true,
+      "lists": [
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 13994.6494140625
+              },
+              "text": "Assurez-vous que les deux unités HomePower 3600 Plus sont éteintes. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14019.9228515625
+              },
+              "text": "Utilisez un connecteur Jackery pour relier les deux unités via le Port d’extension CA. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14045.1962890625
+              },
+              "text": "Allumez les deux unités. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 50.546878814697266,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14070.4697265625
+              },
+              "text": "Dans un délai d'une minute, appuyez sur le bouton d'alimentation CA de chaque unité en séquence pour activer  la sortie CA."
+            }
+          ],
+          "key": "parallel-steps",
+          "marginBottom": "6px",
+          "marker": "decimal",
+          "rect": {
+            "height": 126.36719512939452,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 13994.6494140625
+          },
+          "tag": "OL"
+        },
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14127.0146484375
+              },
+              "text": "Si la connexion est réussie, l'écran affichera une icône de mode parallèle fixe. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 50.546878814697266,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14152.2880859375
+              },
+              "text": "Si la configuration échoue, l'écran affichera le code FA. Appuyez à nouveau sur le bouton d'alimentation CA  de chaque unité en séquence."
+            }
+          ],
+          "key": "parallel-result",
+          "marginBottom": "18.4px",
+          "marker": "disc",
+          "rect": {
+            "height": 75.8203125,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 14127.0146484375
+          },
+          "tag": "UL"
+        }
+      ],
+      "literalBullets": 0,
+      "pageOverflow": 0
+    },
+    {
+      "lang": "es",
+      "width": 1280,
+      "labelsCentered": true,
+      "lists": [
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14034.189453125
+              },
+              "text": "Asegúrese de que ambas unidades HomePower 3600 Plus estén apagadas. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 50.546878814697266,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14059.462890625
+              },
+              "text": "Utilice un conector Jackery para conectar ambas unidades a través del PUERTO DE EXPANSIÓN CA. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14110.009765625
+              },
+              "text": "Encienda ambas unidades. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 50.546878814697266,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14135.283203125
+              },
+              "text": "En no más de 1 minuto, presione en secuencia el botón de energía CA en cada unidad para habilitar la salida CA."
+            }
+          ],
+          "key": "parallel-steps",
+          "marginBottom": "6px",
+          "marker": "decimal",
+          "rect": {
+            "height": 151.640625,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 14034.189453125
+          },
+          "tag": "OL"
+        },
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 25.273439407348633,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14191.828125
+              },
+              "text": "Si la conexión es exitosa, la pantalla mostrará un ícono paralelo sólido. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 50.546878814697266,
+                "width": 635.9375,
+                "x": 452.8255310058594,
+                "y": 14217.1015625
+              },
+              "text": "Si la configuración falla, la pantalla mostrará el código FA. Presione nuevamente en secuencia el botón de  energía CA en cada unidad."
+            }
+          ],
+          "key": "parallel-result",
+          "marginBottom": "18.4px",
+          "marker": "disc",
+          "rect": {
+            "height": 75.8203125,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": 14191.828125
+          },
+          "tag": "UL"
+        }
+      ],
+      "literalBullets": 0,
+      "pageOverflow": 0
+    },
+    {
+      "lang": "en",
+      "width": 711,
+      "labelsCentered": true,
+      "lists": [
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 12936.7060546875
+              },
+              "text": "Ensure that both HP3600 Plus units are powered off. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 12961.01171875
+              },
+              "text": "Use one Jackery Connector to connect both units via the AC EXPANSION PORT. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 12985.3173828125
+              },
+              "text": "Turn on both units.  "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13009.623046875
+              },
+              "text": "Within 1 minute, press the AC power button on each unit in sequence to enable AC output."
+            }
+          ],
+          "key": "parallel-steps",
+          "marginBottom": "6px",
+          "marker": "decimal",
+          "rect": {
+            "height": 97.22222900390624,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 12936.7060546875
+          },
+          "tag": "OL"
+        },
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13039.9267578125
+              },
+              "text": "If the connection is successful, the display will show a solid parallel icon. "
+            },
+            {
+              "bold": [
+                {
+                  "text": "FA",
+                  "weight": "700"
+                },
+                {
+                  "text": "AC",
+                  "weight": "700"
+                }
+              ],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13064.232421875
+              },
+              "text": "If the setup fails, the display shows the FA code. Press the AC power button on each unit again in sequence."
+            }
+          ],
+          "key": "parallel-result",
+          "marginBottom": "18.4px",
+          "marker": "disc",
+          "rect": {
+            "height": 72.91667175292969,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 13039.9267578125
+          },
+          "tag": "UL"
+        }
+      ],
+      "literalBullets": 0,
+      "pageOverflow": 0
+    },
+    {
+      "lang": "fr",
+      "width": 711,
+      "labelsCentered": true,
+      "lists": [
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13591.103515625
+              },
+              "text": "Assurez-vous que les deux unités HomePower 3600 Plus sont éteintes. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13615.408203125
+              },
+              "text": "Utilisez un connecteur Jackery pour relier les deux unités via le Port d’extension CA. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13639.7138671875
+              },
+              "text": "Allumez les deux unités. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13664.01953125
+              },
+              "text": "Dans un délai d'une minute, appuyez sur le bouton d'alimentation CA de chaque unité en séquence pour activer  la sortie CA."
+            }
+          ],
+          "key": "parallel-steps",
+          "marginBottom": "6px",
+          "marker": "decimal",
+          "rect": {
+            "height": 121.5277862548828,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 13591.103515625
+          },
+          "tag": "OL"
+        },
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13718.62890625
+              },
+              "text": "Si la connexion est réussie, l'écran affichera une icône de mode parallèle fixe. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13742.9345703125
+              },
+              "text": "Si la configuration échoue, l'écran affichera le code FA. Appuyez à nouveau sur le bouton d'alimentation CA  de chaque unité en séquence."
+            }
+          ],
+          "key": "parallel-result",
+          "marginBottom": "18.4px",
+          "marker": "disc",
+          "rect": {
+            "height": 72.91667175292969,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 13718.62890625
+          },
+          "tag": "UL"
+        }
+      ],
+      "literalBullets": 0,
+      "pageOverflow": 0
+    },
+    {
+      "lang": "es",
+      "width": 711,
+      "labelsCentered": true,
+      "lists": [
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13516.6455078125
+              },
+              "text": "Asegúrese de que ambas unidades HomePower 3600 Plus estén apagadas. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13540.951171875
+              },
+              "text": "Utilice un conector Jackery para conectar ambas unidades a través del PUERTO DE EXPANSIÓN CA. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13589.5625
+              },
+              "text": "Encienda ambas unidades. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13613.8681640625
+              },
+              "text": "En no más de 1 minuto, presione en secuencia el botón de energía CA en cada unidad para habilitar la salida CA."
+            }
+          ],
+          "key": "parallel-steps",
+          "marginBottom": "6px",
+          "marker": "decimal",
+          "rect": {
+            "height": 145.83334350585938,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 13516.6455078125
+          },
+          "tag": "OL"
+        },
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13668.4775390625
+              },
+              "text": "Si la conexión es exitosa, la pantalla mostrará un ícono paralelo sólido. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 657.5173950195312,
+                "x": 37.595489501953125,
+                "y": 13692.783203125
+              },
+              "text": "Si la configuración falla, la pantalla mostrará el código FA. Presione nuevamente en secuencia el botón de  energía CA en cada unidad."
+            }
+          ],
+          "key": "parallel-result",
+          "marginBottom": "18.4px",
+          "marker": "disc",
+          "rect": {
+            "height": 72.91667175292969,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": 13668.4775390625
+          },
+          "tag": "UL"
+        }
+      ],
+      "literalBullets": 0,
+      "pageOverflow": 0
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "labelsCentered": true,
+      "lists": [
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 16170.7041015625
+              },
+              "text": "Ensure that both HP3600 Plus units are powered off. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 16219.3154296875
+              },
+              "text": "Use one Jackery Connector to connect both units via the AC EXPANSION PORT. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 16267.92578125
+              },
+              "text": "Turn on both units.  "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 16292.2314453125
+              },
+              "text": "Within 1 minute, press the AC power button on each unit in sequence to enable AC output."
+            }
+          ],
+          "key": "parallel-steps",
+          "marginBottom": "6px",
+          "marker": "decimal",
+          "rect": {
+            "height": 170.13890075683594,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 16170.7041015625
+          },
+          "tag": "OL"
+        },
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 16346.8408203125
+              },
+              "text": "If the connection is successful, the display will show a solid parallel icon. "
+            },
+            {
+              "bold": [
+                {
+                  "text": "FA",
+                  "weight": "700"
+                },
+                {
+                  "text": "AC",
+                  "weight": "700"
+                }
+              ],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 72.91667175292969,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 16395.453125
+              },
+              "text": "If the setup fails, the display shows the FA code. Press the AC power button on each unit again in sequence."
+            }
+          ],
+          "key": "parallel-result",
+          "marginBottom": "18.4px",
+          "marker": "disc",
+          "rect": {
+            "height": 121.5277862548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 16346.8408203125
+          },
+          "tag": "UL"
+        }
+      ],
+      "literalBullets": 0,
+      "pageOverflow": 0
+    },
+    {
+      "lang": "fr",
+      "width": 390,
+      "labelsCentered": true,
+      "lists": [
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17069.328125
+              },
+              "text": "Assurez-vous que les deux unités HomePower 3600 Plus sont éteintes. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17117.939453125
+              },
+              "text": "Utilisez un connecteur Jackery pour relier les deux unités via le Port d’extension CA. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17166.55078125
+              },
+              "text": "Allumez les deux unités. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 72.91667175292969,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17190.85546875
+              },
+              "text": "Dans un délai d'une minute, appuyez sur le bouton d'alimentation CA de chaque unité en séquence pour activer  la sortie CA."
+            }
+          ],
+          "key": "parallel-steps",
+          "marginBottom": "6px",
+          "marker": "decimal",
+          "rect": {
+            "height": 194.4444580078125,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 17069.328125
+          },
+          "tag": "OL"
+        },
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17269.771484375
+              },
+              "text": "Si la connexion est réussie, l'écran affichera une icône de mode parallèle fixe. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 97.22222900390624,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17318.3828125
+              },
+              "text": "Si la configuration échoue, l'écran affichera le code FA. Appuyez à nouveau sur le bouton d'alimentation CA  de chaque unité en séquence."
+            }
+          ],
+          "key": "parallel-result",
+          "marginBottom": "18.4px",
+          "marker": "disc",
+          "rect": {
+            "height": 145.83334350585938,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 17269.771484375
+          },
+          "tag": "UL"
+        }
+      ],
+      "literalBullets": 0,
+      "pageOverflow": 0
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "labelsCentered": true,
+      "lists": [
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17221.341796875
+              },
+              "text": "Asegúrese de que ambas unidades HomePower 3600 Plus estén apagadas. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 72.91667175292969,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17269.953125
+              },
+              "text": "Utilice un conector Jackery para conectar ambas unidades a través del PUERTO DE EXPANSIÓN CA. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 24.30555725097656,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17342.869140625
+              },
+              "text": "Encienda ambas unidades. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 72.91667175292969,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17367.17578125
+              },
+              "text": "En no más de 1 minuto, presione en secuencia el botón de energía CA en cada unidad para habilitar la salida CA."
+            }
+          ],
+          "key": "parallel-steps",
+          "marginBottom": "6px",
+          "marker": "decimal",
+          "rect": {
+            "height": 218.75001525878903,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 17221.341796875
+          },
+          "tag": "OL"
+        },
+        {
+          "items": [
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 48.611114501953125,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17446.08984375
+              },
+              "text": "Si la conexión es exitosa, la pantalla mostrará un ícono paralelo sólido. "
+            },
+            {
+              "bold": [],
+              "clipped": false,
+              "display": "list-item",
+              "itemMarginBottom": "0px",
+              "itemMarginTop": "0px",
+              "paragraphMarginBottom": "0px",
+              "paragraphMarginTop": "0px",
+              "rect": {
+                "height": 72.91667175292969,
+                "width": 336.4062805175781,
+                "x": 37.595489501953125,
+                "y": 17494.701171875
+              },
+              "text": "Si la configuración falla, la pantalla mostrará el código FA. Presione nuevamente en secuencia el botón de  energía CA en cada unidad."
+            }
+          ],
+          "key": "parallel-result",
+          "marginBottom": "18.4px",
+          "marker": "disc",
+          "rect": {
+            "height": 121.5277862548828,
+            "width": 358.00347900390625,
+            "x": 15.99826431274414,
+            "y": 17446.08984375
+          },
+          "tag": "UL"
+        }
+      ],
+      "literalBullets": 0,
+      "pageOverflow": 0
+    }
+  ],
+  "operator_acceptance": "pending combined review"
+}

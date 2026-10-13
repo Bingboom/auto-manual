@@ -1,0 +1,844 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "art": {
+        "complete": true,
+        "labels": [
+          "Connect the AC charging cable to the AC ",
+          "input port of the product and a wall outlet."
+        ],
+        "naturalHeight": 104,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 216.7795257568359,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 1458.7413330078125
+        }
+      },
+      "heading": {
+        "clipped": false,
+        "marker": {
+          "bg": "rgb(52, 48, 49)",
+          "borderRadius": "50%",
+          "content": "\"\"",
+          "display": "block",
+          "height": "11.5191px",
+          "width": "11.5191px"
+        },
+        "rect": {
+          "height": 21.861980438232425,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 1420.881103515625
+        },
+        "tag": "H2",
+        "text": "CHARGING VIA AC WALL OUTLET"
+      },
+      "lang": "en",
+      "note": {
+        "align": "center",
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 151.640625,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 1182.03564453125
+            },
+            "text": "The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to  45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating  the product beyond this temperature range may restrict its charging and discharging  capabilities, or even prevent it from charging or discharging. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 50.546878814697266,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 1333.67626953125
+            },
+            "text": "The charging power and battery capacity of the product may vary due to temperature  fluctuations."
+          }
+        ],
+        "label": "NOTE",
+        "labelCenterOffset": {
+          "x": 1.9073486328125e-05,
+          "y": 0.27776336669921875
+        },
+        "vertical": "middle"
+      },
+      "pageOverflow": 0,
+      "pill": {
+        "bg": "rgb(52, 48, 49)",
+        "borderRadius": "999px",
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "liveStrong": 1,
+        "rect": {
+          "height": 31.501737594604492,
+          "width": 375.03472900390625,
+          "x": 431.2283325195313,
+          "y": 1119.474853515625
+        },
+        "text": "Fully charge the product before its first use.",
+        "weight": "700"
+      },
+      "width": 1280
+    },
+    {
+      "art": {
+        "complete": true,
+        "labels": [
+          "Connect the AC charging cable to the AC ",
+          "input port of the product and a wall outlet."
+        ],
+        "naturalHeight": 104,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 223.8932342529297,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 1093.6025390625
+        }
+      },
+      "heading": {
+        "clipped": false,
+        "marker": {
+          "bg": "rgb(52, 48, 49)",
+          "borderRadius": "50%",
+          "content": "\"\"",
+          "display": "block",
+          "height": "11.5191px",
+          "width": "11.5191px"
+        },
+        "rect": {
+          "height": 19.51388931274414,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 1058.09033203125
+        },
+        "tag": "H2",
+        "text": "CHARGING VIA AC WALL OUTLET"
+      },
+      "lang": "en",
+      "note": {
+        "align": "center",
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 121.5277862548828,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 851.29345703125
+            },
+            "text": "The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to  45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating  the product beyond this temperature range may restrict its charging and discharging  capabilities, or even prevent it from charging or discharging. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 48.611114501953125,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 972.8212280273438
+            },
+            "text": "The charging power and battery capacity of the product may vary due to temperature  fluctuations."
+          }
+        ],
+        "label": "NOTE",
+        "labelCenterOffset": {
+          "x": 0.0021686553955078125,
+          "y": 0.20832061767578125
+        },
+        "vertical": "middle"
+      },
+      "pageOverflow": 0,
+      "pill": {
+        "bg": "rgb(52, 48, 49)",
+        "borderRadius": "999px",
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "liveStrong": 1,
+        "rect": {
+          "height": 30.86805725097656,
+          "width": 367.521728515625,
+          "x": 15.99826431274414,
+          "y": 789.3663330078125
+        },
+        "text": "Fully charge the product before its first use.",
+        "weight": "700"
+      },
+      "width": 711
+    },
+    {
+      "art": {
+        "complete": true,
+        "labels": [
+          "Connect the AC charging cable to the AC ",
+          "input port of the product and a wall outlet."
+        ],
+        "naturalHeight": 104,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 210.9982757568359,
+          "width": 640,
+          "x": 15.99826431274414,
+          "y": 1312.4739990234375
+        }
+      },
+      "heading": {
+        "clipped": false,
+        "marker": {
+          "bg": "rgb(52, 48, 49)",
+          "borderRadius": "50%",
+          "content": "\"\"",
+          "display": "block",
+          "height": "11.5191px",
+          "width": "11.5191px"
+        },
+        "rect": {
+          "height": 19.51388931274414,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 1276.9619140625
+        },
+        "tag": "H2",
+        "text": "CHARGING VIA AC WALL OUTLET"
+      },
+      "lang": "en",
+      "note": {
+        "align": "center",
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 218.75001525878903,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 948.63720703125
+            },
+            "text": "The recommended charging temperature for the product ranges from -4°F to 113°F (-20°C to  45°C), and the discharging temperature ranges from -4°F to 113°F (-20°C to 45°C). Operating  the product beyond this temperature range may restrict its charging and discharging  capabilities, or even prevent it from charging or discharging. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 1167.38720703125
+            },
+            "text": "The charging power and battery capacity of the product may vary due to temperature  fluctuations."
+          }
+        ],
+        "label": "NOTE",
+        "labelCenterOffset": {
+          "x": 0.0021724700927734375,
+          "y": 0.20830726623535156
+        },
+        "vertical": "middle"
+      },
+      "pageOverflow": 0,
+      "pill": {
+        "bg": "rgb(52, 48, 49)",
+        "borderRadius": "999px",
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "liveStrong": 1,
+        "rect": {
+          "height": 54.14930725097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 812.8906860351562
+        },
+        "text": "Fully charge the product before its first use.",
+        "weight": "700"
+      },
+      "width": 390
+    },
+    {
+      "art": {
+        "complete": true,
+        "labels": [
+          "Connectez le câble de charge CA au port d’entrée ",
+          "CA de l’appareil et à une prise murale."
+        ],
+        "naturalHeight": 97,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 202.94271850585935,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 16660.240234375
+        }
+      },
+      "heading": {
+        "clipped": false,
+        "marker": {
+          "bg": "rgb(52, 48, 49)",
+          "borderRadius": "50%",
+          "content": "\"\"",
+          "display": "block",
+          "height": "11.5191px",
+          "width": "11.5191px"
+        },
+        "rect": {
+          "height": 21.861980438232425,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 16622.37890625
+        },
+        "tag": "H2",
+        "text": "CHARGEMENT PAR PRISE MURALE CA"
+      },
+      "lang": "fr",
+      "note": {
+        "align": "center",
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 151.640625,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 16383.5341796875
+            },
+            "text": "La température de charge recommandée pour le produit est comprise entre -4°F et 113°F  (-20°C à 45°C), et la température de décharge est comprise entre -4°F et 113°F (-20°C à  45°C). Utiliser le produit en dehors de cette plage de températures peut limiter ses capacités  de charge et de décharge, voire empêcher la charge ou la décharge. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 50.546878814697266,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 16535.173828125
+            },
+            "text": "La puissance de charge et la capacité de la batterie du produit peuvent varier en raison des  fluctuations de température."
+          }
+        ],
+        "label": "Remarque",
+        "labelCenterOffset": {
+          "x": 0.002162933349609375,
+          "y": 0.27745819091796875
+        },
+        "vertical": "middle"
+      },
+      "pageOverflow": 0,
+      "pill": {
+        "bg": "rgb(52, 48, 49)",
+        "borderRadius": "999px",
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "liveStrong": 1,
+        "rect": {
+          "height": 31.501737594604492,
+          "width": 540.703125,
+          "x": 431.2283325195313,
+          "y": 16320.97265625
+        },
+        "text": "Chargez complètement le produit avant sa première utilisation.",
+        "weight": "700"
+      },
+      "width": 1280
+    },
+    {
+      "art": {
+        "complete": true,
+        "labels": [
+          "Connectez le câble de charge CA au port d’entrée ",
+          "CA de l’appareil et à une prise murale."
+        ],
+        "naturalHeight": 97,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 209.6007080078125,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 16199.701171875
+        }
+      },
+      "heading": {
+        "clipped": false,
+        "marker": {
+          "bg": "rgb(52, 48, 49)",
+          "borderRadius": "50%",
+          "content": "\"\"",
+          "display": "block",
+          "height": "11.5191px",
+          "width": "11.5191px"
+        },
+        "rect": {
+          "height": 19.51388931274414,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 16164.189453125
+        },
+        "tag": "H2",
+        "text": "CHARGEMENT PAR PRISE MURALE CA"
+      },
+      "lang": "fr",
+      "note": {
+        "align": "center",
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 121.5277862548828,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 15957.392578125
+            },
+            "text": "La température de charge recommandée pour le produit est comprise entre -4°F et 113°F  (-20°C à 45°C), et la température de décharge est comprise entre -4°F et 113°F (-20°C à  45°C). Utiliser le produit en dehors de cette plage de températures peut limiter ses capacités  de charge et de décharge, voire empêcher la charge ou la décharge. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 48.611114501953125,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 16078.919921875
+            },
+            "text": "La puissance de charge et la capacité de la batterie du produit peuvent varier en raison des  fluctuations de température."
+          }
+        ],
+        "label": "Remarque",
+        "labelCenterOffset": {
+          "x": 0.0021724700927734375,
+          "y": 0.20871734619140625
+        },
+        "vertical": "middle"
+      },
+      "pageOverflow": 0,
+      "pill": {
+        "bg": "rgb(52, 48, 49)",
+        "borderRadius": "999px",
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "liveStrong": 1,
+        "rect": {
+          "height": 30.86805725097656,
+          "width": 529.8698120117188,
+          "x": 15.99826431274414,
+          "y": 15895.46484375
+        },
+        "text": "Chargez complètement le produit avant sa première utilisation.",
+        "weight": "700"
+      },
+      "width": 711
+    },
+    {
+      "art": {
+        "complete": true,
+        "labels": [
+          "Connectez le câble de charge CA au port d’entrée ",
+          "CA de l’appareil et à une prise murale."
+        ],
+        "naturalHeight": 97,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 197.5303955078125,
+          "width": 640,
+          "x": 15.99826431274414,
+          "y": 20340.19140625
+        }
+      },
+      "heading": {
+        "clipped": false,
+        "marker": {
+          "bg": "rgb(52, 48, 49)",
+          "borderRadius": "50%",
+          "content": "\"\"",
+          "display": "block",
+          "height": "11.5191px",
+          "width": "11.5191px"
+        },
+        "rect": {
+          "height": 19.51388931274414,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 20304.6796875
+        },
+        "tag": "H2",
+        "text": "CHARGEMENT PAR PRISE MURALE CA"
+      },
+      "lang": "fr",
+      "note": {
+        "align": "center",
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 218.75001525878903,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 19976.35546875
+            },
+            "text": "La température de charge recommandée pour le produit est comprise entre -4°F et 113°F  (-20°C à 45°C), et la température de décharge est comprise entre -4°F et 113°F (-20°C à  45°C). Utiliser le produit en dehors de cette plage de températures peut limiter ses capacités  de charge et de décharge, voire empêcher la charge ou la décharge. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 20195.10546875
+            },
+            "text": "La puissance de charge et la capacité de la batterie du produit peuvent varier en raison des  fluctuations de température."
+          }
+        ],
+        "label": "Remarque",
+        "labelCenterOffset": {
+          "x": 0.0021648406982421875,
+          "y": 0.20952796936035156
+        },
+        "vertical": "middle"
+      },
+      "pageOverflow": 0,
+      "pill": {
+        "bg": "rgb(52, 48, 49)",
+        "borderRadius": "999px",
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "liveStrong": 1,
+        "rect": {
+          "height": 54.14930725097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 19840.609375
+        },
+        "text": "Chargez complètement le produit avant sa première utilisation.",
+        "weight": "700"
+      },
+      "width": 390
+    },
+    {
+      "art": {
+        "complete": true,
+        "labels": [
+          "Conecte el cable de carga de CA al puerto de entrada ",
+          "de CA del producto y a una toma de corriente."
+        ],
+        "naturalHeight": 98,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 205.2647705078125,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 16462.53125
+        }
+      },
+      "heading": {
+        "clipped": false,
+        "marker": {
+          "bg": "rgb(52, 48, 49)",
+          "borderRadius": "50%",
+          "content": "\"\"",
+          "display": "block",
+          "height": "11.5191px",
+          "width": "11.5191px"
+        },
+        "rect": {
+          "height": 21.861980438232425,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 16424.671875
+        },
+        "tag": "H2",
+        "text": "CARGA MEDIANTE UNA TOMA DE CORRIENTE DE PARED  ALTERNA"
+      },
+      "lang": "es",
+      "note": {
+        "align": "center",
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 126.36719512939452,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 16211.0986328125
+            },
+            "text": "La temperatura de carga recomendada para el producto está entre -4 °F y 113 °F (-20 °C a  45 °C), y la temperatura de descarga está entre -4 °F y 113 °F (-20 °C a 45 °C). Operar el  producto fuera de este rango de temperatura puede limitar sus capacidades de carga y  descarga, e incluso impedir la carga o descarga. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 50.546878814697266,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 16337.4658203125
+            },
+            "text": "La potencia de carga y la capacidad de la batería del producto pueden variar debido a  fluctuaciones de temperatura."
+          }
+        ],
+        "label": "Nota",
+        "labelCenterOffset": {
+          "x": 0.002162933349609375,
+          "y": 0.27550506591796875
+        },
+        "vertical": "middle"
+      },
+      "pageOverflow": 0,
+      "pill": {
+        "bg": "rgb(52, 48, 49)",
+        "borderRadius": "999px",
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "liveStrong": 1,
+        "rect": {
+          "height": 31.501737594604492,
+          "width": 573.28125,
+          "x": 431.2283325195313,
+          "y": 16148.5380859375
+        },
+        "text": "Carga completamente el producto antes de usarlo por primera vez.",
+        "weight": "700"
+      },
+      "width": 1280
+    },
+    {
+      "art": {
+        "complete": true,
+        "labels": [
+          "Conecte el cable de carga de CA al puerto de entrada ",
+          "de CA del producto y a una toma de corriente."
+        ],
+        "naturalHeight": 98,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 212.0008850097656,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 15954.8232421875
+        }
+      },
+      "heading": {
+        "clipped": false,
+        "marker": {
+          "bg": "rgb(52, 48, 49)",
+          "borderRadius": "50%",
+          "content": "\"\"",
+          "display": "block",
+          "height": "11.5191px",
+          "width": "11.5191px"
+        },
+        "rect": {
+          "height": 19.51388931274414,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 15919.310546875
+        },
+        "tag": "H2",
+        "text": "CARGA MEDIANTE UNA TOMA DE CORRIENTE DE PARED  ALTERNA"
+      },
+      "lang": "es",
+      "note": {
+        "align": "center",
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 121.5277862548828,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 15712.513671875
+            },
+            "text": "La temperatura de carga recomendada para el producto está entre -4 °F y 113 °F (-20 °C a  45 °C), y la temperatura de descarga está entre -4 °F y 113 °F (-20 °C a 45 °C). Operar el  producto fuera de este rango de temperatura puede limitar sus capacidades de carga y  descarga, e incluso impedir la carga o descarga. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 48.611114501953125,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 15834.0419921875
+            },
+            "text": "La potencia de carga y la capacidad de la batería del producto pueden variar debido a  fluctuaciones de temperatura."
+          }
+        ],
+        "label": "Nota",
+        "labelCenterOffset": {
+          "x": 0,
+          "y": 0.20822906494140625
+        },
+        "vertical": "middle"
+      },
+      "pageOverflow": 0,
+      "pill": {
+        "bg": "rgb(52, 48, 49)",
+        "borderRadius": "999px",
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "liveStrong": 1,
+        "rect": {
+          "height": 30.86805725097656,
+          "width": 561.796875,
+          "x": 15.99826431274414,
+          "y": 15650.5869140625
+        },
+        "text": "Carga completamente el producto antes de usarlo por primera vez.",
+        "weight": "700"
+      },
+      "width": 711
+    },
+    {
+      "art": {
+        "complete": true,
+        "labels": [
+          "Conecte el cable de carga de CA al puerto de entrada ",
+          "de CA del producto y a una toma de corriente."
+        ],
+        "naturalHeight": 98,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 199.7916717529297,
+          "width": 640,
+          "x": 15.99826431274414,
+          "y": 20334.484375
+        }
+      },
+      "heading": {
+        "clipped": false,
+        "marker": {
+          "bg": "rgb(52, 48, 49)",
+          "borderRadius": "50%",
+          "content": "\"\"",
+          "display": "block",
+          "height": "11.5191px",
+          "width": "11.5191px"
+        },
+        "rect": {
+          "height": 39.02777862548828,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 20279.458984375
+        },
+        "tag": "H2",
+        "text": "CARGA MEDIANTE UNA TOMA DE CORRIENTE DE PARED  ALTERNA"
+      },
+      "lang": "es",
+      "note": {
+        "align": "center",
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 194.4444580078125,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 19975.439453125
+            },
+            "text": "La temperatura de carga recomendada para el producto está entre -4 °F y 113 °F (-20 °C a  45 °C), y la temperatura de descarga está entre -4 °F y 113 °F (-20 °C a 45 °C). Operar el  producto fuera de este rango de temperatura puede limitar sus capacidades de carga y  descarga, e incluso impedir la carga o descarga. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "margin": "0px",
+            "marker": "disc",
+            "pMargin": "0px",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 20169.8828125
+            },
+            "text": "La potencia de carga y la capacidad de la batería del producto pueden variar debido a  fluctuaciones de temperatura."
+          }
+        ],
+        "label": "Nota",
+        "labelCenterOffset": {
+          "x": 1.9073486328125e-06,
+          "y": 0.20952796936035156
+        },
+        "vertical": "middle"
+      },
+      "pageOverflow": 0,
+      "pill": {
+        "bg": "rgb(52, 48, 49)",
+        "borderRadius": "999px",
+        "clipped": false,
+        "color": "rgb(255, 255, 255)",
+        "liveStrong": 1,
+        "rect": {
+          "height": 54.14930725097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 19839.693359375
+        },
+        "text": "Carga completamente el producto antes de usarlo por primera vez.",
+        "weight": "700"
+      },
+      "width": 390
+    }
+  ],
+  "existing_dense_art_mobile_behavior": "Unchanged 640 CSS px canvas inside ht-dense horizontal scroll container at 390 CSS px; pill, heading and NOTE reflow without clipping.",
+  "operator_acceptance": "pending combined review"
+}

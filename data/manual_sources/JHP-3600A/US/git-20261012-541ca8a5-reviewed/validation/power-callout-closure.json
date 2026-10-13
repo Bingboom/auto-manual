@@ -1,0 +1,29 @@
+{
+  "en": {
+    "selected_text_lines": 723,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_json_byte_identical": true,
+    "markdown_change_only_appended_scoped_css": true,
+    "manual_ir_change_only_source_stylesheet_sha256": true,
+    "publication_eligible": false
+  },
+  "fr": {
+    "selected_text_lines": 874,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_json_byte_identical": true,
+    "markdown_change_only_appended_scoped_css": true,
+    "manual_ir_change_only_source_stylesheet_sha256": true,
+    "publication_eligible": false
+  },
+  "es": {
+    "selected_text_lines": 863,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_json_byte_identical": true,
+    "markdown_change_only_appended_scoped_css": true,
+    "manual_ir_change_only_source_stylesheet_sha256": true,
+    "publication_eligible": false
+  }
+}
