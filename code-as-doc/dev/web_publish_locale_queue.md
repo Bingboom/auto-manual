@@ -25,7 +25,7 @@ operator must still choose release versions and approve exact live queue writes.
 The former build-time HTML_link writeback is retired (REV-07): the queue lane
 records a pending registration only, and `web-publish-receipt.yml` writes
 `HTML_link` after the publish PR merges and the deployment verifies — see
-[web_publish_pipeline.md](web_publish_pipeline.md#41-receipt-timing-three-timestamps-kept-separate).
+[web_publish_pipeline.md](web_publish_pipeline/operator-contract-and-rollback.md#41-receipt-timing-three-timestamps-kept-separate).
 
 ## Output naming on a locale route
 

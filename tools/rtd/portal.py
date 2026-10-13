@@ -19,6 +19,7 @@ from tools.rtd.design_system import (
 )
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
 from tools.rtd.product_voc import normalize_endpoint, page_markup
+from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE, product_matrix_page_context
 from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
 )
@@ -144,6 +145,7 @@ def clear_catalog_cache(app, exception) -> None:
     app._rtd_system_context = _UNSET
     app._rtd_design_context = _UNSET
     app._rtd_data_context = _UNSET
+    app._rtd_matrix_context = _UNSET
 
 
 def page_context(app, pagename, templatename, context, doctree):
@@ -280,6 +282,16 @@ def cached_data_context(app):
     return cached
 
 
+def cached_matrix_context(app):
+    """Build the product-matrix context once per build; the sidebar and the page share it."""
+    cached = getattr(app, "_rtd_matrix_context", _UNSET)
+    if cached is _UNSET:
+        settings, products = portal_data(app)
+        cached = product_matrix_page_context(app, ASSETS, settings, products)
+        app._rtd_matrix_context = cached
+    return cached
+
+
 def site_nav(app) -> dict:
     """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
     return {
@@ -288,23 +300,26 @@ def site_nav(app) -> dict:
         "deliverables": True,
         "design": cached_design_context(app) is not None,
         "data": cached_data_context(app) is not None,
+        "matrix": cached_matrix_context(app) is not None,
     }
 
 
 def collect_workspace_pages(app):
-    """Add the workspace entry and its system, deliverables, design and data pages, leaving the manual-center root alone.
+    """Add the workspace entry, its pages and the product pages, leaving the manual-center root alone.
 
     The workspace exists as a separate entry, with the system and deliverables
     pages inside it. Public manual navigation does not link into it.
     The deliverables page always renders
     (a missing input shows as 无数据); the system page drops out on an authoring
     error. The AI sharing package is an optional entry, so moving or withdrawing
-    it hides only its own links.
+    it hides only its own links. The data and product-matrix pages likewise drop
+    out, with their links, when their inputs are unreadable.
     """
     has_share = (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file()
     system = cached_system_context(app)
     design = cached_design_context(app)
     data = cached_data_context(app)
+    matrix = cached_matrix_context(app)
     settings, products = portal_data(app)
     names = {(product["model"], product["region"]): product.get("name") or "" for product in products}
     deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
@@ -320,19 +335,23 @@ def collect_workspace_pages(app):
         "deliverables_entry": True,
         "design_entry": design is not None,
         "data_entry": data is not None,
+        "matrix_entry": matrix is not None,
     }, "workspace_portal.html"
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
 
         yield SYSTEM_PAGE, {**system, "has_share": has_share, "deliverables_entry": True,
                             "design_entry": design is not None, "data_entry": data is not None,
-                            "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
+                            "matrix_entry": matrix is not None, "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
     yield DELIVERABLES_PAGE, {**deliverables, "has_share": has_share, "system_entry": system is not None,
-                              "design_entry": design is not None, "data_entry": data is not None}, DELIVERABLES_TEMPLATE
+                              "design_entry": design is not None, "data_entry": data is not None,
+                              "matrix_entry": matrix is not None}, DELIVERABLES_TEMPLATE
     if design is not None:
         yield DESIGN_PAGE, {**template_context(design), "site_nav": site_nav(app)}, DESIGN_TEMPLATE
     if data is not None:
         yield DATA_PAGE, {**data, "site_nav": site_nav(app)}, DATA_TEMPLATE
+    if matrix is not None:
+        yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app)}, MATRIX_TEMPLATE
 
 
 def write_design_pages(app, exception) -> None:

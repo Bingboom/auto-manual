@@ -100,7 +100,7 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 上表的 `publish → PR → main` 是受支持的发布契约，不代表历史 RTD 项目均已迁到该配置。
 操作者提供的调查截图报告 HT-Manuals 仍关联 `publish`，HT-Doc 关联 `main`；
 本次文档更新未在线复核后台，也未执行迁移。以
-[发布入口整合检查](../code-as-doc/dev/web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)
+[发布入口整合检查](../code-as-doc/dev/web_publish_pipeline/hosting-boundaries.md#31-hosting-convergence-and-legacy-entry-review)
 逐项核实、批准变更并验收后，再回填实际托管状态。
 停止旧 RTD 项目独立更新不删除 `Hello-Docs/publish` 候选分支，也不合并工程/业务两个仓库。
 

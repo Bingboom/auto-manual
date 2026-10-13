@@ -117,7 +117,7 @@ Example **local integration** command (not a persistent production deployment):
 python -m integrations.product_voc.server \
   --base Id29bqWMiaFdNjsuyrAcfrkLnZb --table tblmN7OHIB0HsC23 \
   --state /absolute/private/runtime/voc.sqlite \
-  --origin https://ht-doc.readthedocs.io \
+  --origin https://ht-docs-ht-manuals.readthedocs-hosted.com \
   --origin http://127.0.0.1:9198 --preview
 ```
 

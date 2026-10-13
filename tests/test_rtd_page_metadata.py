@@ -30,11 +30,15 @@ class RtdPageMetadataTests(unittest.TestCase):
         self.assertNotIn("hreflang", markup)
         self.assertNotIn("og:url", markup)
 
-    def test_base_url_must_be_a_bare_https_origin(self) -> None:
+    def test_base_url_is_an_https_origin_with_optional_prefix(self) -> None:
         self.assertEqual(_BASE, normalize_site_base_url(f" {_BASE}/ "))
+        self.assertEqual(f"{_BASE}/en/latest", normalize_site_base_url(f"{_BASE}/en/latest/"))
+        markup = portal_head_markup(site_base_url=normalize_site_base_url(f"{_BASE}/en/latest"))
+        self.assertIn(f'<link rel="canonical" href="{_BASE}/en/latest/" />', markup)
         for raw in (
             "http://ht-doc.readthedocs.io",
-            f"{_BASE}/path",
+            f"{_BASE}/en/../latest",
+            f"{_BASE}/en//latest",
             f"{_BASE}?q=1",
             f"{_BASE}#f",
             "https://user:pw@ht-doc.readthedocs.io",
