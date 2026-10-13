@@ -1,0 +1,15 @@
+{
+  "policy": "Normalize source-font private-use decimal glyphs to their visually verified Unicode digits. Original page text and span source_text remain archived.",
+  "mapping": {
+    "0xf6b1": "0",
+    "0xf6b2": "1",
+    "0xf6b3": "2",
+    "0xf6b4": "3",
+    "0xf6b5": "4",
+    "0xf6b6": "5",
+    "0xf6b7": "6",
+    "0xf6b8": "7",
+    "0xf6b9": "8",
+    "0xf6ba": "9"
+  }
+}
