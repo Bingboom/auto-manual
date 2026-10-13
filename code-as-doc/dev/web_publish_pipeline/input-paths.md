@@ -148,7 +148,8 @@ create synthetic queue rows or write `HTML_link`.
    self-contained source packages and their assembled Web copies. JE-5000A JP
    brings the reviewed library from 1,057,291,744 to 1,093,933,355 bytes,
    exceeding the previous 1 GiB source budget. Served-output and network
-   inventories retain their separate 512 MiB budget. Frozen source permits
+   inventories have their separate budget, raised from 512 MiB to 768 MiB on
+   2026-10-13 when the served site reached 519.6 MiB. Frozen source permits
    20,000 files; served output, selected routes, receipt inventories and online
    dependency traversal retain the 10,000-file limit. Every inventory retains
    the 32 MiB per-file limit. The source count budget is separate because
