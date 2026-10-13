@@ -1,0 +1,77 @@
+{
+  "en": {
+    "source_text_lines_audited": 723,
+    "required_text_lines": 722,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "native_warranty_panels": 6,
+    "registered_warranty_components": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "native_year_numerals": [
+      "3",
+      "2"
+    ],
+    "native_exclusion_items": 4,
+    "body_rich_spans_preserved": true,
+    "source_change_only_warranty_chapter": true,
+    "markdown_change_only_warranty_and_targeted_css": true,
+    "other_body_lists_tables_headings_and_footnotes_preserved": true,
+    "former_year_art_archived_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  },
+  "fr": {
+    "source_text_lines_audited": 874,
+    "required_text_lines": 873,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "native_warranty_panels": 6,
+    "registered_warranty_components": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "native_year_numerals": [
+      "3",
+      "2"
+    ],
+    "native_exclusion_items": 4,
+    "body_rich_spans_preserved": true,
+    "source_change_only_warranty_chapter": true,
+    "markdown_change_only_warranty_and_targeted_css": true,
+    "other_body_lists_tables_headings_and_footnotes_preserved": true,
+    "former_year_art_archived_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  },
+  "es": {
+    "source_text_lines_audited": 863,
+    "required_text_lines": 862,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "native_warranty_panels": 6,
+    "registered_warranty_components": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "native_year_numerals": [
+      "3",
+      "2"
+    ],
+    "native_exclusion_items": 4,
+    "body_rich_spans_preserved": true,
+    "source_change_only_warranty_chapter": true,
+    "markdown_change_only_warranty_and_targeted_css": true,
+    "other_body_lists_tables_headings_and_footnotes_preserved": true,
+    "former_year_art_archived_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  }
+}

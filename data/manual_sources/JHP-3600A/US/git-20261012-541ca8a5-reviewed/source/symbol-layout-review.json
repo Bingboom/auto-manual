@@ -1,0 +1,94 @@
+{
+  "scope": "US symbol tables only; original locale text and approved shared icon bytes preserved",
+  "components": [
+    "HB-TABLE-SYMBOL-SIGNAL/localized-badges",
+    "HB-TABLE-SYMBOL-ICON/two-panel-responsive"
+  ],
+  "source_pages": {
+    "en": {
+      "physical_page": 5,
+      "signal_labels": [
+        "WARNING",
+        "CAUTION",
+        "NOTE",
+        "TIP"
+      ],
+      "icon_refs": [
+        "assets/shared-symbol_warning_triangle.svg",
+        "assets/shared-symbol_read_manual.svg",
+        "assets/shared-symbol_electric_shock.svg",
+        "assets/shared-symbol_battery_charging.svg",
+        "assets/shared-symbol_explosive_material.svg",
+        "assets/shared-symbol_heavy_object.svg",
+        "assets/shared-symbol_do_not_dismantle.svg",
+        "assets/shared-symbol_no_open_flame.svg",
+        "assets/shared-symbol_keep_away_from_children.svg",
+        "assets/shared-symbol_li_ion.svg",
+        "assets/shared-symbol_weee_gray_jp.svg"
+      ],
+      "panel_row_counts": [
+        6,
+        5
+      ]
+    },
+    "fr": {
+      "physical_page": 25,
+      "signal_labels": [
+        "AVERTISSEMENT",
+        "ATTENTION",
+        "REMARQUE",
+        "CONSEILS"
+      ],
+      "icon_refs": [
+        "assets/shared-symbol_warning_triangle.svg",
+        "assets/shared-symbol_read_manual.svg",
+        "assets/shared-symbol_electric_shock.svg",
+        "assets/shared-symbol_battery_charging.svg",
+        "assets/shared-symbol_explosive_material.svg",
+        "assets/shared-symbol_heavy_object.svg",
+        "assets/shared-symbol_do_not_dismantle.svg",
+        "assets/shared-symbol_no_open_flame.svg",
+        "assets/shared-symbol_keep_away_from_children.svg",
+        "assets/shared-symbol_li_ion.svg",
+        "assets/shared-symbol_weee_gray_jp.svg"
+      ],
+      "panel_row_counts": [
+        6,
+        5
+      ]
+    },
+    "es": {
+      "physical_page": 45,
+      "signal_labels": [
+        "ADVERTENCIA",
+        "PRECAUCIÓN",
+        "NOTA",
+        "CONSEJOS"
+      ],
+      "icon_refs": [
+        "assets/shared-symbol_warning_triangle.svg",
+        "assets/shared-symbol_read_manual.svg",
+        "assets/shared-symbol_electric_shock.svg",
+        "assets/shared-symbol_battery_charging.svg",
+        "assets/shared-symbol_explosive_material.svg",
+        "assets/shared-symbol_heavy_object.svg",
+        "assets/shared-symbol_do_not_dismantle.svg",
+        "assets/shared-symbol_no_open_flame.svg",
+        "assets/shared-symbol_keep_away_from_children.svg",
+        "assets/shared-symbol_li_ion.svg",
+        "assets/shared-symbol_weee_gray_jp.svg"
+      ],
+      "panel_row_counts": [
+        6,
+        5
+      ]
+    }
+  },
+  "layout": {
+    "signals": "dark badges with shared transparent white triangle; gray label column, white meaning column",
+    "pictograms": "native left six/right five rows; shared gray icon cells and dark rounded grid; side by side from 600 CSS px",
+    "mobile": "source panel order stacked at narrower widths"
+  },
+  "asset_reuse": "All eleven pictograms and the white warning triangle reuse existing pinned package assets. No extraction or recrop.",
+  "publication_eligible": false
+}

@@ -1,0 +1,47 @@
+{
+  "en": {
+    "source_text_lines_audited": 723,
+    "required_text_lines": 722,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "native_pill_and_heading": true,
+    "temperature_notice_semantic_items": 2,
+    "source_change_only_two_native_paragraphs": true,
+    "markdown_change_only_reviewed_nodes_and_targeted_css": true,
+    "other_body_text_and_lists_preserved": true,
+    "artwork_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  },
+  "fr": {
+    "source_text_lines_audited": 874,
+    "required_text_lines": 873,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "native_pill_and_heading": true,
+    "temperature_notice_semantic_items": 2,
+    "source_change_only_two_native_paragraphs": true,
+    "markdown_change_only_reviewed_nodes_and_targeted_css": true,
+    "other_body_text_and_lists_preserved": true,
+    "artwork_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  },
+  "es": {
+    "source_text_lines_audited": 863,
+    "required_text_lines": 862,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "native_pill_and_heading": true,
+    "temperature_notice_semantic_items": 2,
+    "source_change_only_two_native_paragraphs": true,
+    "markdown_change_only_reviewed_nodes_and_targeted_css": true,
+    "other_body_text_and_lists_preserved": true,
+    "artwork_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  }
+}

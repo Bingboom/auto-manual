@@ -1,0 +1,2104 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "headingCount": 28,
+      "lang": "en",
+      "list": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 19946.736328125
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 19946.736328125
+              },
+              {
+                "height": 16.66796875,
+                "width": 623.90625,
+                "x": 445.6293640136719,
+                "y": 19946.736328125
+              },
+              {
+                "height": 16.666015625,
+                "width": 108.60247802734376,
+                "x": 447.06597900390625,
+                "y": 19966.8984375
+              }
+            ],
+            "margin": "0px",
+            "marker": "①",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 657.5347290039062,
+              "x": 431.2283325195313,
+              "y": 19945.0703125
+            },
+            "text": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 19987.05859375
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 19987.05859375
+              },
+              {
+                "height": 16.666015625,
+                "width": 384.7960510253906,
+                "x": 445.6293640136719,
+                "y": 19987.05859375
+              }
+            ],
+            "margin": "0px",
+            "marker": "②",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 657.5347290039062,
+              "x": 431.2283325195313,
+              "y": 19985.390625
+            },
+            "text": "② Indicates that two or more AC output ports work together."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20007.21875
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20007.21875
+              },
+              {
+                "height": 16.666015625,
+                "width": 409.2013854980469,
+                "x": 445.6293640136719,
+                "y": 20007.21875
+              }
+            ],
+            "margin": "0px",
+            "marker": "③",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 657.5347290039062,
+              "x": 431.2283325195313,
+              "y": 20005.552734375
+            },
+            "text": "③ Indicates the AC output during parallel operation of two units."
+          }
+        ],
+        "margin": "0px",
+        "tag": "OL",
+        "type": "none"
+      },
+      "pageOverflow": 0,
+      "tableReferenceSuperscripts": [
+        "①",
+        "②",
+        "①",
+        "③"
+      ],
+      "trademark": {
+        "clipped": false,
+        "font": "14.4px",
+        "rect": {
+          "height": 20.16059112548828,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 19914.509765625
+        },
+        "terms": [
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.666015625,
+              "width": 80.138916015625,
+              "x": 443.23785400390625,
+              "y": 19916.177734375
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 523.3767700195312,
+              "y": 19911.142578125
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB Type-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          },
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.666015625,
+              "width": 44.865478515625,
+              "x": 564.4487915039062,
+              "y": 19916.177734375
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 609.3142700195312,
+              "y": 19911.142578125
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          }
+        ],
+        "text": "※ USB Type-C®   and USB-C®   are registered trademarks of USB Implementers Forum.",
+        "lineBoxProtrusionIsExpectedForSuperscript": true,
+        "actualInkVisibility": {
+          "minimumSuperscriptGapBelowTable": 22.092227935791016,
+          "paragraph": {
+            "actualClipped": false,
+            "clippingOwners": [],
+            "inkAboveLineBox": 3.3671875
+          },
+          "terms": [
+            {
+              "actualClipped": false,
+              "clippingOwners": [],
+              "inkAboveLineBox": 3.3671875
+            },
+            {
+              "actualClipped": false,
+              "clippingOwners": [],
+              "inkAboveLineBox": 3.3671875
+            }
+          ]
+        }
+      },
+      "width": 1280
+    },
+    {
+      "headingCount": 28,
+      "lang": "en",
+      "list": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 19489.892578125
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 19489.892578125
+              },
+              {
+                "height": 16.666015625,
+                "width": 646.9401245117188,
+                "x": 30.39930725097656,
+                "y": 19489.892578125
+              },
+              {
+                "height": 16.666015625,
+                "width": 85.56423950195312,
+                "x": 31.835939407348633,
+                "y": 19510.052734375
+              }
+            ],
+            "margin": "0px",
+            "marker": "①",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 679.1146240234375,
+              "x": 15.99826431274414,
+              "y": 19488.2265625
+            },
+            "text": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 19530.212890625
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 19530.212890625
+              },
+              {
+                "height": 16.66796875,
+                "width": 384.7960205078125,
+                "x": 30.39930725097656,
+                "y": 19530.212890625
+              }
+            ],
+            "margin": "0px",
+            "marker": "②",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 679.1146240234375,
+              "x": 15.99826431274414,
+              "y": 19528.546875
+            },
+            "text": "② Indicates that two or more AC output ports work together."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 19550.375
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 19550.375
+              },
+              {
+                "height": 16.666015625,
+                "width": 409.201416015625,
+                "x": 30.39930725097656,
+                "y": 19550.375
+              }
+            ],
+            "margin": "0px",
+            "marker": "③",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 679.1146240234375,
+              "x": 15.99826431274414,
+              "y": 19548.70703125
+            },
+            "text": "③ Indicates the AC output during parallel operation of two units."
+          }
+        ],
+        "margin": "0px",
+        "tag": "OL",
+        "type": "none"
+      },
+      "pageOverflow": 0,
+      "tableReferenceSuperscripts": [
+        "①",
+        "②",
+        "①",
+        "③"
+      ],
+      "trademark": {
+        "clipped": false,
+        "font": "14.4px",
+        "rect": {
+          "height": 20.16059112548828,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 19457.666015625
+        },
+        "terms": [
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 80.1388931274414,
+              "x": 28.007814407348633,
+              "y": 19459.33203125
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 108.1467056274414,
+              "y": 19454.296875
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB Type-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          },
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 44.86546325683594,
+              "x": 149.21875,
+              "y": 19459.33203125
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 194.0842132568359,
+              "y": 19454.296875
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          }
+        ],
+        "text": "※ USB Type-C®   and USB-C®   are registered trademarks of USB Implementers Forum.",
+        "lineBoxProtrusionIsExpectedForSuperscript": true,
+        "actualInkVisibility": {
+          "minimumSuperscriptGapBelowTable": 22.090709686279297,
+          "paragraph": {
+            "actualClipped": false,
+            "clippingOwners": [
+              {
+                "class": "content",
+                "clipped": false,
+                "overflowX": "hidden",
+                "overflowY": "auto"
+              }
+            ],
+            "inkAboveLineBox": 3.369140625
+          },
+          "terms": [
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.369140625
+            },
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.369140625
+            }
+          ]
+        }
+      },
+      "width": 711
+    },
+    {
+      "headingCount": 28,
+      "lang": "en",
+      "list": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 24307.25390625
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 24307.25390625
+              },
+              {
+                "height": 16.666015625,
+                "width": 322.3828125,
+                "x": 30.39930725097656,
+                "y": 24307.25390625
+              },
+              {
+                "height": 16.666015625,
+                "width": 320.959228515625,
+                "x": 31.835939407348633,
+                "y": 24327.4140625
+              },
+              {
+                "height": 16.66796875,
+                "width": 85.56423950195312,
+                "x": 31.835939407348633,
+                "y": 24347.57421875
+              }
+            ],
+            "margin": "0px",
+            "marker": "①",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 60.48177337646485,
+              "width": 358.00347900390625,
+              "x": 15.99826431274414,
+              "y": 24305.587890625
+            },
+            "text": "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 24367.736328125
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 24367.736328125
+              },
+              {
+                "height": 16.666015625,
+                "width": 321.4930419921875,
+                "x": 30.39930725097656,
+                "y": 24367.736328125
+              },
+              {
+                "height": 16.666015625,
+                "width": 59.709205627441406,
+                "x": 31.835939407348633,
+                "y": 24387.896484375
+              }
+            ],
+            "margin": "0px",
+            "marker": "②",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 358.00347900390625,
+              "x": 15.99826431274414,
+              "y": 24366.068359375
+            },
+            "text": "② Indicates that two or more AC output ports work together."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 24408.056640625
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 24408.056640625
+              },
+              {
+                "height": 16.666015625,
+                "width": 343.37677001953125,
+                "x": 30.39930725097656,
+                "y": 24408.056640625
+              },
+              {
+                "height": 16.66796875,
+                "width": 62.22657012939453,
+                "x": 31.835939407348633,
+                "y": 24428.216796875
+              }
+            ],
+            "margin": "0px",
+            "marker": "③",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 358.00347900390625,
+              "x": 15.99826431274414,
+              "y": 24406.390625
+            },
+            "text": "③ Indicates the AC output during parallel operation of two units."
+          }
+        ],
+        "margin": "0px",
+        "tag": "OL",
+        "type": "none"
+      },
+      "pageOverflow": 0,
+      "tableReferenceSuperscripts": [
+        "①",
+        "②",
+        "①",
+        "③"
+      ],
+      "trademark": {
+        "clipped": false,
+        "font": "14.4px",
+        "rect": {
+          "height": 40.32118225097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 24254.8671875
+        },
+        "terms": [
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.666015625,
+              "width": 80.1388931274414,
+              "x": 28.007814407348633,
+              "y": 24256.533203125
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 108.1467056274414,
+              "y": 24251.498046875
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB Type-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          },
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.666015625,
+              "width": 44.86546325683594,
+              "x": 149.21875,
+              "y": 24256.533203125
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 194.0842132568359,
+              "y": 24251.498046875
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          }
+        ],
+        "text": "※ USB Type-C®   and USB-C®   are registered trademarks of USB Implementers Forum.",
+        "lineBoxProtrusionIsExpectedForSuperscript": true,
+        "actualInkVisibility": {
+          "minimumSuperscriptGapBelowTable": 22.092445373535156,
+          "paragraph": {
+            "actualClipped": false,
+            "clippingOwners": [
+              {
+                "class": "content",
+                "clipped": false,
+                "overflowX": "hidden",
+                "overflowY": "auto"
+              }
+            ],
+            "inkAboveLineBox": 3.369140625
+          },
+          "terms": [
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.369140625
+            },
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.369140625
+            }
+          ]
+        }
+      },
+      "width": 390
+    },
+    {
+      "headingCount": 28,
+      "lang": "fr",
+      "list": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20982.865234375
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20982.865234375
+              },
+              {
+                "height": 16.66796875,
+                "width": 634.8350830078125,
+                "x": 445.6293640136719,
+                "y": 20982.865234375
+              },
+              {
+                "height": 16.66796875,
+                "width": 166.43231201171875,
+                "x": 447.06597900390625,
+                "y": 21003.025390625
+              }
+            ],
+            "margin": "0px",
+            "marker": "①",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 657.5347290039062,
+              "x": 431.2283325195313,
+              "y": 20981.19921875
+            },
+            "text": "① Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 21023.1875
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 21023.1875
+              },
+              {
+                "height": 16.666015625,
+                "width": 448.9236145019531,
+                "x": 445.6293640136719,
+                "y": 21023.1875
+              }
+            ],
+            "margin": "0px",
+            "marker": "②",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 657.5347290039062,
+              "x": 431.2283325195313,
+              "y": 21021.51953125
+            },
+            "text": "② Indique que deux ports de sortie CA ou plus fonctionnent ensemble."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 21043.34765625
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 21043.34765625
+              },
+              {
+                "height": 16.666015625,
+                "width": 470.7031555175781,
+                "x": 445.6293640136719,
+                "y": 21043.34765625
+              }
+            ],
+            "margin": "0px",
+            "marker": "③",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 657.5347290039062,
+              "x": 431.2283325195313,
+              "y": 21041.681640625
+            },
+            "text": "③ Indique la sortie CA lors du fonctionnement en parallèle de deux unités."
+          }
+        ],
+        "margin": "0px",
+        "tag": "OL",
+        "type": "none"
+      },
+      "pageOverflow": 0,
+      "tableReferenceSuperscripts": [
+        "①",
+        "②",
+        "①",
+        "③"
+      ],
+      "trademark": {
+        "clipped": false,
+        "font": "14.4px",
+        "rect": {
+          "height": 20.16059112548828,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 20950.638671875
+        },
+        "terms": [
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.666015625,
+              "width": 80.138916015625,
+              "x": 443.23785400390625,
+              "y": 20952.306640625
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 523.3767700195312,
+              "y": 20947.271484375
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB Type-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          },
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.666015625,
+              "width": 44.865478515625,
+              "x": 564.4487915039062,
+              "y": 20952.306640625
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 609.3142700195312,
+              "y": 20947.271484375
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          }
+        ],
+        "text": "※ USB Type-C®   and USB-C®   are registered trademarks of USB Implementers Forum.",
+        "lineBoxProtrusionIsExpectedForSuperscript": true,
+        "actualInkVisibility": {
+          "minimumSuperscriptGapBelowTable": 22.092227935791016,
+          "paragraph": {
+            "actualClipped": false,
+            "clippingOwners": [],
+            "inkAboveLineBox": 3.3671875
+          },
+          "terms": [
+            {
+              "actualClipped": false,
+              "clippingOwners": [],
+              "inkAboveLineBox": 3.3671875
+            },
+            {
+              "actualClipped": false,
+              "clippingOwners": [],
+              "inkAboveLineBox": 3.3671875
+            }
+          ]
+        }
+      },
+      "width": 1280
+    },
+    {
+      "headingCount": 28,
+      "lang": "fr",
+      "list": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20427.2578125
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20427.2578125
+              },
+              {
+                "height": 16.666015625,
+                "width": 657.8993530273438,
+                "x": 30.39930725097656,
+                "y": 20427.2578125
+              },
+              {
+                "height": 16.66796875,
+                "width": 143.36805725097656,
+                "x": 31.835939407348633,
+                "y": 20447.41796875
+              }
+            ],
+            "margin": "0px",
+            "marker": "①",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 679.1146240234375,
+              "x": 15.99826431274414,
+              "y": 20425.591796875
+            },
+            "text": "① Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20467.578125
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20467.578125
+              },
+              {
+                "height": 16.66796875,
+                "width": 448.9236450195313,
+                "x": 30.39930725097656,
+                "y": 20467.578125
+              }
+            ],
+            "margin": "0px",
+            "marker": "②",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 679.1146240234375,
+              "x": 15.99826431274414,
+              "y": 20465.912109375
+            },
+            "text": "② Indique que deux ports de sortie CA ou plus fonctionnent ensemble."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20487.740234375
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20487.740234375
+              },
+              {
+                "height": 16.666015625,
+                "width": 470.703125,
+                "x": 30.39930725097656,
+                "y": 20487.740234375
+              }
+            ],
+            "margin": "0px",
+            "marker": "③",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 679.1146240234375,
+              "x": 15.99826431274414,
+              "y": 20486.072265625
+            },
+            "text": "③ Indique la sortie CA lors du fonctionnement en parallèle de deux unités."
+          }
+        ],
+        "margin": "0px",
+        "tag": "OL",
+        "type": "none"
+      },
+      "pageOverflow": 0,
+      "tableReferenceSuperscripts": [
+        "①",
+        "②",
+        "①",
+        "③"
+      ],
+      "trademark": {
+        "clipped": false,
+        "font": "14.4px",
+        "rect": {
+          "height": 20.16059112548828,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 20395.03125
+        },
+        "terms": [
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 80.1388931274414,
+              "x": 28.007814407348633,
+              "y": 20396.697265625
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 108.1467056274414,
+              "y": 20391.6640625
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB Type-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          },
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 44.86546325683594,
+              "x": 149.21875,
+              "y": 20396.697265625
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 194.0842132568359,
+              "y": 20391.6640625
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          }
+        ],
+        "text": "※ USB Type-C®   and USB-C®   are registered trademarks of USB Implementers Forum.",
+        "lineBoxProtrusionIsExpectedForSuperscript": true,
+        "actualInkVisibility": {
+          "minimumSuperscriptGapBelowTable": 22.092662811279297,
+          "paragraph": {
+            "actualClipped": false,
+            "clippingOwners": [
+              {
+                "class": "content",
+                "clipped": false,
+                "overflowX": "hidden",
+                "overflowY": "auto"
+              }
+            ],
+            "inkAboveLineBox": 3.3671875
+          },
+          "terms": [
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.3671875
+            },
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.3671875
+            }
+          ]
+        }
+      },
+      "width": 711
+    },
+    {
+      "headingCount": 28,
+      "lang": "fr",
+      "list": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25798.6640625
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25798.6640625
+              },
+              {
+                "height": 16.66796875,
+                "width": 323.10333251953125,
+                "x": 30.39930725097656,
+                "y": 25798.6640625
+              },
+              {
+                "height": 16.66796875,
+                "width": 331.193603515625,
+                "x": 31.835939407348633,
+                "y": 25818.82421875
+              },
+              {
+                "height": 16.666015625,
+                "width": 143.36805725097656,
+                "x": 31.835939407348633,
+                "y": 25838.986328125
+              }
+            ],
+            "margin": "0px",
+            "marker": "①",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 60.48177337646485,
+              "width": 358.00347900390625,
+              "x": 15.99826431274414,
+              "y": 25796.998046875
+            },
+            "text": "① Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25859.146484375
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25859.146484375
+              },
+              {
+                "height": 16.666015625,
+                "width": 291.2022705078125,
+                "x": 30.39930725097656,
+                "y": 25859.146484375
+              },
+              {
+                "height": 16.666015625,
+                "width": 154.12327575683594,
+                "x": 31.835939407348633,
+                "y": 25879.306640625
+              }
+            ],
+            "margin": "0px",
+            "marker": "②",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 358.00347900390625,
+              "x": 15.99826431274414,
+              "y": 25857.48046875
+            },
+            "text": "② Indique que deux ports de sortie CA ou plus fonctionnent ensemble."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25899.466796875
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25899.466796875
+              },
+              {
+                "height": 16.66796875,
+                "width": 306.70574951171875,
+                "x": 30.39930725097656,
+                "y": 25899.466796875
+              },
+              {
+                "height": 16.666015625,
+                "width": 160.40365600585938,
+                "x": 31.835939407348633,
+                "y": 25919.62890625
+              }
+            ],
+            "margin": "0px",
+            "marker": "③",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 358.00347900390625,
+              "x": 15.99826431274414,
+              "y": 25897.80078125
+            },
+            "text": "③ Indique la sortie CA lors du fonctionnement en parallèle de deux unités."
+          }
+        ],
+        "margin": "0px",
+        "tag": "OL",
+        "type": "none"
+      },
+      "pageOverflow": 0,
+      "tableReferenceSuperscripts": [
+        "①",
+        "②",
+        "①",
+        "③"
+      ],
+      "trademark": {
+        "clipped": false,
+        "font": "14.4px",
+        "rect": {
+          "height": 40.32118225097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 25746.27734375
+        },
+        "terms": [
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 80.1388931274414,
+              "x": 28.007814407348633,
+              "y": 25747.943359375
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 108.1467056274414,
+              "y": 25742.91015625
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB Type-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          },
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 44.86546325683594,
+              "x": 149.21875,
+              "y": 25747.943359375
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 194.0842132568359,
+              "y": 25742.91015625
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          }
+        ],
+        "text": "※ USB Type-C®   and USB-C®   are registered trademarks of USB Implementers Forum.",
+        "lineBoxProtrusionIsExpectedForSuperscript": true,
+        "actualInkVisibility": {
+          "minimumSuperscriptGapBelowTable": 22.092010498046875,
+          "paragraph": {
+            "actualClipped": false,
+            "clippingOwners": [
+              {
+                "class": "content",
+                "clipped": false,
+                "overflowX": "hidden",
+                "overflowY": "auto"
+              }
+            ],
+            "inkAboveLineBox": 3.3671875
+          },
+          "terms": [
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.3671875
+            },
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.3671875
+            }
+          ]
+        }
+      },
+      "width": 390
+    },
+    {
+      "headingCount": 28,
+      "lang": "es",
+      "list": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20889.423828125
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20889.423828125
+              },
+              {
+                "height": 16.666015625,
+                "width": 642.62158203125,
+                "x": 445.6293640136719,
+                "y": 20889.423828125
+              },
+              {
+                "height": 16.66796875,
+                "width": 241.2413330078125,
+                "x": 447.06597900390625,
+                "y": 20909.583984375
+              }
+            ],
+            "margin": "0px",
+            "marker": "①",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 657.5347290039062,
+              "x": 431.2283325195313,
+              "y": 20887.7578125
+            },
+            "text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de  salida CA."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20929.744140625
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20929.744140625
+              },
+              {
+                "height": 16.66796875,
+                "width": 431.5321350097656,
+                "x": 445.6293640136719,
+                "y": 20929.744140625
+              }
+            ],
+            "margin": "0px",
+            "marker": "②",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 657.5347290039062,
+              "x": 431.2283325195313,
+              "y": 20928.078125
+            },
+            "text": "② Indica que dos o más puertos de salida CA trabajan en conjunto."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20949.90625
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401031494140623,
+                "x": 431.2283325195313,
+                "y": 20949.90625
+              },
+              {
+                "height": 16.666015625,
+                "width": 463.5937805175781,
+                "x": 445.6293640136719,
+                "y": 20949.90625
+              }
+            ],
+            "margin": "0px",
+            "marker": "③",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 657.5347290039062,
+              "x": 431.2283325195313,
+              "y": 20948.23828125
+            },
+            "text": "③ Indica la salida CA durante la operación en paralelo de dos unidades."
+          }
+        ],
+        "margin": "0px",
+        "tag": "OL",
+        "type": "none"
+      },
+      "pageOverflow": 0,
+      "tableReferenceSuperscripts": [
+        "①",
+        "②",
+        "①",
+        "③"
+      ],
+      "trademark": {
+        "clipped": false,
+        "font": "14.4px",
+        "rect": {
+          "height": 20.16059112548828,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 20857.197265625
+        },
+        "terms": [
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 80.138916015625,
+              "x": 443.23785400390625,
+              "y": 20858.86328125
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 523.3767700195312,
+              "y": 20853.830078125
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB Type-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          },
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 44.86541748046875,
+              "x": 545.4470825195312,
+              "y": 20858.86328125
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 590.3125,
+              "y": 20853.830078125
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          }
+        ],
+        "text": "※ USB Type-C®  y USB-C®  son marcas registradas de USB Implementers Forum.",
+        "lineBoxProtrusionIsExpectedForSuperscript": true,
+        "actualInkVisibility": {
+          "minimumSuperscriptGapBelowTable": 22.092227935791016,
+          "paragraph": {
+            "actualClipped": false,
+            "clippingOwners": [],
+            "inkAboveLineBox": 3.3671875
+          },
+          "terms": [
+            {
+              "actualClipped": false,
+              "clippingOwners": [],
+              "inkAboveLineBox": 3.3671875
+            },
+            {
+              "actualClipped": false,
+              "clippingOwners": [],
+              "inkAboveLineBox": 3.3671875
+            }
+          ]
+        }
+      },
+      "width": 1280
+    },
+    {
+      "headingCount": 28,
+      "lang": "es",
+      "list": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20279.79296875
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20279.79296875
+              },
+              {
+                "height": 16.666015625,
+                "width": 655.3776245117188,
+                "x": 30.39930725097656,
+                "y": 20279.79296875
+              },
+              {
+                "height": 16.666015625,
+                "width": 228.4852600097656,
+                "x": 31.835939407348633,
+                "y": 20299.953125
+              }
+            ],
+            "margin": "0px",
+            "marker": "①",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 679.1146240234375,
+              "x": 15.99826431274414,
+              "y": 20278.125
+            },
+            "text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de  salida CA."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20320.11328125
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20320.11328125
+              },
+              {
+                "height": 16.66796875,
+                "width": 431.53216552734375,
+                "x": 30.39930725097656,
+                "y": 20320.11328125
+              }
+            ],
+            "margin": "0px",
+            "marker": "②",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 679.1146240234375,
+              "x": 15.99826431274414,
+              "y": 20318.447265625
+            },
+            "text": "② Indica que dos o más puertos de salida CA trabajan en conjunto."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20340.2734375
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 20340.2734375
+              },
+              {
+                "height": 16.66796875,
+                "width": 463.59375,
+                "x": 30.39930725097656,
+                "y": 20340.2734375
+              }
+            ],
+            "margin": "0px",
+            "marker": "③",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 20.16059112548828,
+              "width": 679.1146240234375,
+              "x": 15.99826431274414,
+              "y": 20338.607421875
+            },
+            "text": "③ Indica la salida CA durante la operación en paralelo de dos unidades."
+          }
+        ],
+        "margin": "0px",
+        "tag": "OL",
+        "type": "none"
+      },
+      "pageOverflow": 0,
+      "tableReferenceSuperscripts": [
+        "①",
+        "②",
+        "①",
+        "③"
+      ],
+      "trademark": {
+        "clipped": false,
+        "font": "14.4px",
+        "rect": {
+          "height": 20.16059112548828,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 20247.56640625
+        },
+        "terms": [
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.666015625,
+              "width": 80.1388931274414,
+              "x": 28.007814407348633,
+              "y": 20249.232421875
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 108.1467056274414,
+              "y": 20244.197265625
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB Type-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          },
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.666015625,
+              "width": 44.865447998046875,
+              "x": 130.21702575683594,
+              "y": 20249.232421875
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 175.0824737548828,
+              "y": 20244.197265625
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          }
+        ],
+        "text": "※ USB Type-C®  y USB-C®  son marcas registradas de USB Implementers Forum.",
+        "lineBoxProtrusionIsExpectedForSuperscript": true,
+        "actualInkVisibility": {
+          "minimumSuperscriptGapBelowTable": 22.090709686279297,
+          "paragraph": {
+            "actualClipped": false,
+            "clippingOwners": [
+              {
+                "class": "content",
+                "clipped": false,
+                "overflowX": "hidden",
+                "overflowY": "auto"
+              }
+            ],
+            "inkAboveLineBox": 3.369140625
+          },
+          "terms": [
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.369140625
+            },
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.369140625
+            }
+          ]
+        }
+      },
+      "width": 711
+    },
+    {
+      "headingCount": 28,
+      "lang": "es",
+      "list": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25846.771484375
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25846.771484375
+              },
+              {
+                "height": 16.66796875,
+                "width": 314.1492919921875,
+                "x": 30.39930725097656,
+                "y": 25846.771484375
+              },
+              {
+                "height": 16.666015625,
+                "width": 337.6302185058594,
+                "x": 31.835939407348633,
+                "y": 25866.93359375
+              },
+              {
+                "height": 16.666015625,
+                "width": 228.4852600097656,
+                "x": 31.835939407348633,
+                "y": 25887.09375
+              }
+            ],
+            "margin": "0px",
+            "marker": "①",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 60.48177337646485,
+              "width": 358.00347900390625,
+              "x": 15.99826431274414,
+              "y": 25845.10546875
+            },
+            "text": "① El producto puede cargar la batería desde una toma de corriente CA mientras suministra energía a través de los puertos de  salida CA."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25907.25390625
+              },
+              {
+                "height": 16.666015625,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25907.25390625
+              },
+              {
+                "height": 16.666015625,
+                "width": 286.6796875,
+                "x": 30.39930725097656,
+                "y": 25907.25390625
+              },
+              {
+                "height": 16.66796875,
+                "width": 141.2543487548828,
+                "x": 31.835939407348633,
+                "y": 25927.4140625
+              }
+            ],
+            "margin": "0px",
+            "marker": "②",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 358.00347900390625,
+              "x": 15.99826431274414,
+              "y": 25905.587890625
+            },
+            "text": "② Indica que dos o más puertos de salida CA trabajan en conjunto."
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "indent": "-15.84px",
+            "lineRects": [
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25947.57421875
+              },
+              {
+                "height": 16.66796875,
+                "width": 14.401042938232422,
+                "x": 15.99826431274414,
+                "y": 25947.57421875
+              },
+              {
+                "height": 16.66796875,
+                "width": 288.4071044921875,
+                "x": 30.39930725097656,
+                "y": 25947.57421875
+              },
+              {
+                "height": 16.666015625,
+                "width": 171.5885467529297,
+                "x": 31.835939407348633,
+                "y": 25967.736328125
+              }
+            ],
+            "margin": "0px",
+            "marker": "③",
+            "pMargin": "0px",
+            "padding": "15.84px",
+            "rect": {
+              "height": 40.32118225097656,
+              "width": 358.00347900390625,
+              "x": 15.99826431274414,
+              "y": 25945.908203125
+            },
+            "text": "③ Indica la salida CA durante la operación en paralelo de dos unidades."
+          }
+        ],
+        "margin": "0px",
+        "tag": "OL",
+        "type": "none"
+      },
+      "pageOverflow": 0,
+      "tableReferenceSuperscripts": [
+        "①",
+        "②",
+        "①",
+        "③"
+      ],
+      "trademark": {
+        "clipped": false,
+        "font": "14.4px",
+        "rect": {
+          "height": 40.32118225097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 25794.384765625
+        },
+        "terms": [
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 80.1388931274414,
+              "x": 28.007814407348633,
+              "y": 25796.05078125
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 108.1467056274414,
+              "y": 25791.017578125
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB Type-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          },
+          {
+            "baseFont": "14.4px",
+            "baseRect": {
+              "height": 16.66796875,
+              "width": 44.865447998046875,
+              "x": 130.21702575683594,
+              "y": 25796.05078125
+            },
+            "clipped": false,
+            "noWrap": "nowrap",
+            "supFont": "9.36px",
+            "supRect": {
+              "height": 10.833333969116213,
+              "width": 7.5260419845581055,
+              "x": 175.0824737548828,
+              "y": 25791.017578125
+            },
+            "supTag": "SUP",
+            "supText": "®",
+            "text": "USB-C®",
+            "vertical": "super",
+            "lineBoxProtrusionIsExpectedForSuperscript": true
+          }
+        ],
+        "text": "※ USB Type-C®  y USB-C®  son marcas registradas de USB Implementers Forum.",
+        "lineBoxProtrusionIsExpectedForSuperscript": true,
+        "actualInkVisibility": {
+          "minimumSuperscriptGapBelowTable": 22.092010498046875,
+          "paragraph": {
+            "actualClipped": false,
+            "clippingOwners": [
+              {
+                "class": "content",
+                "clipped": false,
+                "overflowX": "hidden",
+                "overflowY": "auto"
+              }
+            ],
+            "inkAboveLineBox": 3.3671875
+          },
+          "terms": [
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.3671875
+            },
+            {
+              "actualClipped": false,
+              "clippingOwners": [
+                {
+                  "class": "content",
+                  "clipped": false,
+                  "overflowX": "hidden",
+                  "overflowY": "auto"
+                }
+              ],
+              "inkAboveLineBox": 3.3671875
+            }
+          ]
+        }
+      },
+      "width": 390
+    }
+  ],
+  "superscript_visibility_method": "SUP ink may extend above its parent line box. Check horizontal bounds, actual clipping ancestors and clearance below the preceding table; do not classify expected line-box protrusion as clipping.",
+  "operator_acceptance": "pending combined review"
+}

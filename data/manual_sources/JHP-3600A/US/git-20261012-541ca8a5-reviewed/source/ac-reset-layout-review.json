@@ -1,0 +1,17 @@
+{
+  "scope": "US EN/FR/ES AC reset explanation; regression checks for operation headings and prerequisites",
+  "change": "Center the existing AC reset explanation horizontally and vertically with scoped flex column CSS.",
+  "preserved": [
+    "All source JSON bytes",
+    "All base artwork and assets",
+    "Native line breaks and font sizes",
+    "Gray-frame positions and dimensions",
+    "Other figure labels",
+    "Prior layout corrections"
+  ],
+  "source_stylesheet_sha256": "042ed86c49f8e087780dd65ef7fee40c8236dd5b1d1fec4d0663d061fe341868",
+  "browser_evidence": "validation/ac-reset-browser.json",
+  "checks": "validation/ac-reset-closure.json",
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review"
+}

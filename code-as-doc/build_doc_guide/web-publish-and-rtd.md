@@ -75,7 +75,7 @@ by evidence verification; print artifacts and symlinks remain prohibited.
 
 Frozen Web source storage is bounded separately from served output and network
 inventories. The [Git-only release contract](../dev/web_publish_pipeline/input-paths.md#22-git-only-transaction)
-sets the 1152 MiB / 20,000-file source budgets. Served output and online verification
+sets the 1280 MiB / 20,000-file source budgets. Served output and online verification
 retain 512 MiB / 10,000-file budgets; all inventories keep the 32 MiB per-file limit.
 
 RTD renders the frozen Web snapshot with the root-only portal extension:
