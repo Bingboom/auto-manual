@@ -10,7 +10,7 @@ export function registerManualQuery(api, { clientFactory = createKnowledgeClient
   let client;
   const getClient = () => {
     const baseUrl = api.pluginConfig?.manualQueryBaseUrl;
-    if (!baseUrl) throw new Error("请先为现有插件配置 manualQueryBaseUrl 为说明书网站 HTTPS 根地址。");
+    if (!baseUrl) throw new Error("请先为现有插件配置 manualQueryBaseUrl 为说明书网站的 HTTPS 地址（含 /en/latest 等版本前缀）。");
     client ??= clientFactory({ baseUrl });
     return client;
   };

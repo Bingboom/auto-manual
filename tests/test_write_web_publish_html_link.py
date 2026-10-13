@@ -21,7 +21,7 @@ class WriteWebPublishHtmlLinkTests(unittest.TestCase):
             rtd_deployment_receipt.DEFAULT_RTD_BASE_URL,
         )
         self.assertEqual(
-            "ht-doc",
+            "ht-docs-ht-manuals",
             rtd_deployment_receipt.rtd_project_slug_from_base_url(
                 write_web_publish_html_link.DEFAULT_RTD_BASE_URL
             ),

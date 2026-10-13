@@ -113,7 +113,7 @@ Web 冻结产物可使用[只读健康报告](../../code-as-doc/dev/manual_opera
 读者自行提交问题，页面不会自动发送。GitHub Issues 转为内部/经销商分诊渠道。
 处理流程见[手册中心说明](../../code-as-doc/dev/rtd_manual_portal.md)。首次响应 3 个工作日内，
 不创建定时任务或常驻服务。访问统计经无 cookie 的 Cloudflare Web Analytics 采集（2026-09-15 起启用，
-站点 `ht-doc.readthedocs.io`；令牌是公开站点标识非密钥），不采集访客身份；
+原登记站点 `ht-doc.readthedocs.io`；2026-10-13 起网站迁到 `ht-docs-ht-manuals.readthedocs-hosted.com`，需在 Cloudflare 为新主机名改登记或新建站点并更换令牌；令牌是公开站点标识非密钥），不采集访客身份；
 清空 `analytics_beacon_token` 即完全关闭、页面回到字节等同。
 
 ### 页面元数据与对外链接

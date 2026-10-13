@@ -46,9 +46,12 @@ mismatch fails reporting the actually served slug. When omitted, behavior is
 unchanged and no slug key appears in the result. The expectation for the
 production site is derivable with
 `rtd_project_slug_from_base_url(base_url)` (the `https://<slug>.readthedocs.io`
-host shape; other hosts derive `None`), and the production base URL itself has
-a single source of truth in `tools.rtd.deployment_receipt.DEFAULT_RTD_BASE_URL`,
-which `tools/write_web_publish_html_link.py` reuses as its `--base-url` default.
+and `https://<slug>.readthedocs-hosted.com` host shapes, with or without a version
+prefix; other hosts derive `None`), and the production base URL itself has a
+single source of truth in `tools.rtd.deployment_receipt.DEFAULT_RTD_BASE_URL`
+(`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`, version prefix
+included), which `tools/write_web_publish_html_link.py`, the receipt and verify
+tools and the workflows' `AUTO_MANUAL_RTD_BASE_URL` fallback reuse.
 
 ### Narrowing what gets re-downloaded
 

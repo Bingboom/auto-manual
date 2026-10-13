@@ -55,8 +55,10 @@ so a release change requires a new search. Follow `next_offset` to read all
 conditions and warnings before answering. No workflow is dispatched by either
 tool or `/manual-query`; no second DingTalk connection or model account is needed.
 
-Set the optional `manualQueryBaseUrl` to the HTTPS root of the deployed site
-(for example `https://ht-doc.readthedocs.io`) in this plugin's existing config.
+Set the optional `manualQueryBaseUrl` to the HTTPS root of the deployed site,
+version prefix included (for example
+`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`), in this plugin's
+existing config. The site must be publicly readable: the client sends no credentials.
 Without it, query calls report unavailable. The client verifies the same-origin
 deployment receipt and export hashes, caches for at most 60 seconds between
 checks, and refuses expired data when a refresh fails. Same-origin RTD version

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import test from "node:test";
-import { createKnowledgeClient, siteOrigin, validateCorpus } from "../lib/manual-query/client.mjs";
+import { createKnowledgeClient, siteBase, validateCorpus } from "../lib/manual-query/client.mjs";
 import { readSection, searchManuals } from "../lib/manual-query/search.mjs";
 import { registerManualQuery, renderQueryResult } from "../lib/manual-query/plugin.mjs";
 import plugin from "../index.mjs";
@@ -41,11 +41,23 @@ function fetcher(current) {
   return { calls, fetchImpl };
 }
 
-test("query client accepts only bounded HTTPS origins", () => {
-  assert.equal(siteOrigin(origin + "/"), origin);
-  for (const url of ["http://manual.example", "https://x:y@manual.example", origin + "/x", origin + "?secret=1", origin + "#x"]) {
-    assert.throws(() => siteOrigin(url));
+test("query client accepts one HTTPS site root, with an optional version prefix", () => {
+  assert.equal(siteBase(origin + "/"), origin);
+  assert.equal(siteBase(origin + "/en/latest"), origin + "/en/latest");
+  assert.equal(siteBase(origin + "/en/latest/"), origin + "/en/latest");
+  for (const url of ["http://manual.example", "https://x:y@manual.example", origin + "?secret=1", origin + "#x",
+    origin + "//en/latest", origin + "/en/a%2Fb", origin + "/en/latest?x=1"]) {
+    assert.throws(() => siteBase(url));
   }
+});
+
+test("a version-prefixed root reads the receipt and links documents under that prefix", async () => {
+  const transport = fetcher(() => fixture());
+  const base = origin + "/en/latest";
+  const snapshot = await createKnowledgeClient({ baseUrl: base + "/", fetchImpl: transport.fetchImpl }).load();
+  for (const { url } of transport.calls) assert.ok(new URL(url).pathname.startsWith("/en/latest/"), url);
+  const result = searchManuals(snapshot, { query: "JE-TEST specifications" });
+  assert.equal(result.results[0].url, base + "/JE-TEST/EU/en/md/manual.html#specifications");
 });
 
 test("receipt/hash verification is atomic and cache refresh observes a replacement release", async () => {
