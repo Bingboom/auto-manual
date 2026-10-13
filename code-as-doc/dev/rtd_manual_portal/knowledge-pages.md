@@ -258,7 +258,7 @@ public manual library does not link to it.
 
 ## 产品知识
 
-按操作者 2026-10-06 的最终选择，产品知识、市场与政策和产品案例与说明书共用现有 `ht-doc` 公开 RTD 项目，无需登录。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；直接分享知识页链接即可访问。
+产品知识、市场与政策和产品案例与说明书共用同一个 RTD 项目（2026-10-06 定为同项目发布）。2026-10-13 起 Hello-Docs 转为私有仓库，站点改由 Read the Docs for Business 托管于 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`，访问需要登录并具备项目权限；页面路径须带 `/en/latest/` 前缀，例如 `/en/latest/products/knowledge.html`。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；分享知识页直达链接给有权限的人。
 
 `/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`；适用产品复用首页 `settings.json` 的 `navigation` 定位分组。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。
 

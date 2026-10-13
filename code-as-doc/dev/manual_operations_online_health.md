@@ -25,7 +25,7 @@ an HTML output directory. Example in the business mirror checkout:
 ```bash
 python -m tools.manual_operations_online_health \
   --web-root docs/publish/web \
-  --base-url https://ht-doc.readthedocs.io/ \
+  --base-url https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/ \
   --max-publications 100 \
   --output reports/manual_operations_health/http.json
 ```

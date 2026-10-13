@@ -209,7 +209,7 @@ Published HTML hash ↔ Machine Surface source hash → match: fresh / mismatch:
 部署回执判断任一机读产物是否 stale。
 
 ```
-python -m tools.manual_knowledge.manifest --base-url https://ht-doc.readthedocs.io
+python -m tools.manual_knowledge.manifest --base-url https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest
 python -m tools.manual_knowledge.manifest --site <构建输出目录> [--manifest <缓存的旧清单>]
 ```
 

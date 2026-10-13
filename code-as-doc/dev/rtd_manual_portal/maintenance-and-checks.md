@@ -55,9 +55,12 @@ Feishu credentials or runs the receiver.
   (product name, model, market, language), meta description, Open Graph
   tags, canonical and a self-inclusive `hreflang` group — all computed from
   the frozen publication identity and the catalog's `language_options`.
-  Absolute URLs come from `site_base_url` in the portal settings (a bare
-  HTTPS origin; empty omits canonical/hreflang/og:url) — this is the single
-  switch to flip when the custom domain lands. The portal home gets
+  Absolute URLs come from `site_base_url` in the portal settings (an
+  HTTPS origin plus an optional serving prefix such as `/en/latest`;
+  empty omits canonical/hreflang/og:url) — this is the single switch to
+  flip when the domain changes. It currently points at the private Read
+  the Docs for Business project
+  `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`. The portal home gets
   canonical/OG through its own template; legacy pages and the title of any
   page without a verified identity stay byte-identical via the shadow
   `page.html`'s fallback to the theme block.

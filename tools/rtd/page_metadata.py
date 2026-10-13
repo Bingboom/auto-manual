@@ -6,7 +6,12 @@ from urllib.parse import urlsplit
 
 
 def normalize_site_base_url(raw: object) -> str:
-    """Return the bare HTTPS origin for absolute URLs, or '' to omit them."""
+    """Return the HTTPS site root for absolute URLs, or '' to omit them.
+
+    The root is an origin plus an optional serving prefix such as
+    ``/en/latest`` (Read the Docs for Business serves under one); the
+    trailing slash is dropped so callers can append ``/<page>``.
+    """
     if raw is None:
         return ""
     if not isinstance(raw, str):
@@ -22,10 +27,12 @@ def normalize_site_base_url(raw: object) -> str:
     if (
         parsed.scheme != "https" or not parsed.netloc or not hostname
         or parsed.username is not None or parsed.password is not None
-        or parsed.path not in ("", "/") or parsed.query or parsed.fragment
+        or parsed.query or parsed.fragment
+        or any(part in {".", ".."} for part in parsed.path.split("/"))
+        or "//" in parsed.path.rstrip("/")
     ):
-        raise ValueError("site_base_url must be a bare HTTPS origin")
-    return f"https://{parsed.netloc}"
+        raise ValueError("site_base_url must be an HTTPS origin with an optional path prefix")
+    return f"https://{parsed.netloc}{parsed.path.rstrip('/')}"
 
 
 def page_title(*, name: str, model: str, region: str, lang_label: str) -> str:
