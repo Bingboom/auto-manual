@@ -59,6 +59,10 @@
   justify-content: flex-start;
   text-align: left;
 }
+/* Print draws every note box in the figures with one corner radius (p10, p11, p16), so
+   multi-line notes are rounded rectangles, not the shared one-line capsule. They take the
+   shared panel radius, as the approved rules above intend but lose to the capsule rule. */
+#furo-main-content .native-figure .hb-reference-live-pill { border-radius: var(--hb-panel-radius); }
 
 /* Safety sub-sections print as dark pills inside the safety chapter (p4-p5). */
 #furo-main-content h2:has(> .native-band) {
