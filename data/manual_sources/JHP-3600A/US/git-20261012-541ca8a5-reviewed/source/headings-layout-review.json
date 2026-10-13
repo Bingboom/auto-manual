@@ -1,0 +1,217 @@
+{
+  "native_source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+  "native_pages_visually_reviewed": [
+    4,
+    5,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    23,
+    36,
+    41,
+    42,
+    43,
+    56,
+    61,
+    62,
+    63,
+    64
+  ],
+  "locales": {
+    "en": {
+      "changed_nodes": [
+        {
+          "chapter": 13,
+          "node": 2,
+          "source_page": "page-16"
+        },
+        {
+          "chapter": 18,
+          "node": 1,
+          "source_page": "page-21"
+        },
+        {
+          "chapter": 18,
+          "node": 3,
+          "source_page": "page-21"
+        },
+        {
+          "chapter": 19,
+          "node": 1,
+          "source_page": "page-22"
+        },
+        {
+          "chapter": 19,
+          "node": 3,
+          "source_page": "page-22"
+        },
+        {
+          "chapter": 20,
+          "node": 7,
+          "source_page": "page-23"
+        },
+        {
+          "chapter": 21,
+          "node": 1,
+          "source_page": "page-64"
+        }
+      ],
+      "native_circle_title_restored": " EXITING PARALLEL MODE",
+      "native_warranty_title_capsules": [
+        "Limited Warranty",
+        "Warranty Period",
+        "Repair or replacement",
+        "Limited to Original Consumer Buyer",
+        "Exclusions",
+        "Interpretation Rights"
+      ],
+      "native_app_titles_without_circle": [
+        "1. Download the App and log in",
+        "2. Add device",
+        "3. Unbind the device",
+        "4. Notes"
+      ],
+      "contact_is_not_heading": "1-888-502-2236 (US)",
+      "availability_pairs_checked": 3,
+      "artwork_decision": "Existing artwork reused byte-identically; no extraction or changes.",
+      "source_wording_and_bold_spans_preserved": true
+    },
+    "fr": {
+      "changed_nodes": [
+        {
+          "chapter": 13,
+          "node": 2,
+          "source_page": "page-36"
+        },
+        {
+          "chapter": 18,
+          "node": 1,
+          "source_page": "page-41"
+        },
+        {
+          "chapter": 18,
+          "node": 3,
+          "source_page": "page-41"
+        },
+        {
+          "chapter": 19,
+          "node": 1,
+          "source_page": "page-42"
+        },
+        {
+          "chapter": 19,
+          "node": 3,
+          "source_page": "page-42"
+        },
+        {
+          "chapter": 19,
+          "node": 6,
+          "source_page": "page-42"
+        },
+        {
+          "chapter": 20,
+          "node": 3,
+          "source_page": "page-43"
+        },
+        {
+          "chapter": 21,
+          "node": 1,
+          "source_page": "page-64"
+        }
+      ],
+      "native_circle_title_restored": " QUITTER LE MODE PARALLÈLE",
+      "native_warranty_title_capsules": [
+        "Garantie limitée",
+        "Période de garantie",
+        "Échange",
+        "Limitée à l'acheteur et consommateur d'origine",
+        "Exclusions",
+        "Droits d'interprétation"
+      ],
+      "native_app_titles_without_circle": [
+        "1. Télécharger l’application et se connecter",
+        "2. Ajouter un appareil",
+        "3. Dissocier l’appareil",
+        "4. Remarques"
+      ],
+      "contact_is_not_heading": "1-888-502-2236 (US)",
+      "availability_pairs_checked": 3,
+      "artwork_decision": "Existing artwork reused byte-identically; no extraction or changes.",
+      "source_wording_and_bold_spans_preserved": true
+    },
+    "es": {
+      "changed_nodes": [
+        {
+          "chapter": 13,
+          "node": 2,
+          "source_page": "page-56"
+        },
+        {
+          "chapter": 18,
+          "node": 1,
+          "source_page": "page-61"
+        },
+        {
+          "chapter": 18,
+          "node": 3,
+          "source_page": "page-61"
+        },
+        {
+          "chapter": 19,
+          "node": 1,
+          "source_page": "page-62"
+        },
+        {
+          "chapter": 19,
+          "node": 3,
+          "source_page": "page-62"
+        },
+        {
+          "chapter": 20,
+          "node": 7,
+          "source_page": "page-63"
+        },
+        {
+          "chapter": 21,
+          "node": 1,
+          "source_page": "page-64"
+        }
+      ],
+      "native_circle_title_restored": " SALIR DEL MODO PARALELO",
+      "native_warranty_title_capsules": [
+        "Garantía limitada",
+        "Período de garantía",
+        "Reparación o reemplazo",
+        "Limitado al comprador consumidor original",
+        "Exclusiones",
+        "Derechos de interpretación"
+      ],
+      "native_app_titles_without_circle": [
+        "1. Descargar la aplicación e iniciar sesión",
+        "2. Añadir un dispositivo",
+        "3. Desvincular el dispositivo",
+        "4. Notas"
+      ],
+      "contact_is_not_heading": "1-888-502-2236 (US)",
+      "availability_pairs_checked": 3,
+      "artwork_decision": "Existing artwork reused byte-identically; no extraction or changes.",
+      "source_wording_and_bold_spans_preserved": true
+    }
+  },
+  "native_title_variants": {
+    "safety": 2,
+    "circle": 16,
+    "warranty": 6,
+    "app": 4
+  },
+  "artwork_decision": "No new assets; all frozen base art and cart icon bytes unchanged.",
+  "pending_operator_layout_acceptance": true
+}

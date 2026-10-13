@@ -1,0 +1,914 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "POWER ON/OFF"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AC OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "USB OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENERGY SAVING MODE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "LCD SCREEN "
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "KEY COMBINATION"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 1280,
+      "centered_labels": [
+        {
+          "figure": "ac-output",
+          "source_line": "0",
+          "text": "Prerequisite: The product is turned on.",
+          "horizontal_center_error_px": 0.00217437744140625,
+          "vertical_center_error_px": -0.0022788047790527344,
+          "frame_relative_to_art": [
+            0.04032447081601504,
+            0.042068703615308685,
+            0.4082022183320618,
+            0.06149819561017269
+          ]
+        },
+        {
+          "figure": "ac-output",
+          "source_line": "1",
+          "text": "AC Output Reset Button: When the Reset Button pops up, you need to remove the load  and press the Reset Button to reset.",
+          "horizontal_center_error_px": 0.0021667480469318434,
+          "vertical_center_error_px": -0.001953125,
+          "frame_relative_to_art": [
+            0.0488923794925652,
+            0.8430170044921962,
+            0.9082219898934832,
+            0.11786455291950187
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "source_line": "0",
+          "text": "Prerequisite: The product is powered on.",
+          "horizontal_center_error_px": 0.00215911865234375,
+          "vertical_center_error_px": -0.0022788047790527344,
+          "frame_relative_to_art": [
+            0.029017226228155092,
+            0.07026557377049181,
+            0.42301450592121137,
+            0.09621858350409836
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "en",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "POWER ON/OFF"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AC OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "USB OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENERGY SAVING MODE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "LCD SCREEN "
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "KEY COMBINATION"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 711,
+      "centered_labels": [
+        {
+          "figure": "ac-output",
+          "source_line": "0",
+          "text": "Prerequisite: The product is turned on.",
+          "horizontal_center_error_px": 0.002170562744140625,
+          "vertical_center_error_px": -0.0020079612731933594,
+          "frame_relative_to_art": [
+            0.04032134124541392,
+            0.04206689936562586,
+            0.4082048680757686,
+            0.06150072599539041
+          ]
+        },
+        {
+          "figure": "ac-output",
+          "source_line": "1",
+          "text": "AC Output Reset Button: When the Reset Button pops up, you need to remove the load  and press the Reset Button to reset.",
+          "horizontal_center_error_px": 2.288818359375e-05,
+          "vertical_center_error_px": -0.0023336410522460938,
+          "frame_relative_to_art": [
+            0.0488917888676645,
+            0.8430200140126621,
+            0.9082240113659016,
+            0.1178703765348145
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "source_line": "0",
+          "text": "Prerequisite: The product is powered on.",
+          "horizontal_center_error_px": 3.814697265625e-06,
+          "vertical_center_error_px": -0.0015196800231933594,
+          "frame_relative_to_art": [
+            0.029015515187279795,
+            0.07026150550306862,
+            0.4230130118650651,
+            0.09622303585662507
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "en",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "POWER ON/OFF"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AC OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "USB OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENERGY SAVING MODE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "LCD SCREEN "
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "KEY COMBINATION"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 390,
+      "centered_labels": [
+        {
+          "figure": "ac-output",
+          "source_line": "0",
+          "text": "Prerequisite: The product is turned on.",
+          "horizontal_center_error_px": 0.002166748046875,
+          "vertical_center_error_px": -5.245208740234375e-06,
+          "frame_relative_to_art": [
+            0.04032389521598816,
+            0.04206454303268045,
+            0.408203125,
+            0.06149886133933514
+          ]
+        },
+        {
+          "figure": "ac-output",
+          "source_line": "1",
+          "text": "AC Output Reset Button: When the Reset Button pops up, you need to remove the load  and press the Reset Button to reset.",
+          "horizontal_center_error_px": 0.002162933349609375,
+          "vertical_center_error_px": -2.86102294921875e-06,
+          "frame_relative_to_art": [
+            0.04888916015625,
+            0.8430137879938177,
+            0.9082235336303712,
+            0.117868829776555
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "source_line": "0",
+          "text": "Prerequisite: The product is powered on.",
+          "horizontal_center_error_px": 0.00217437744140625,
+          "vertical_center_error_px": -2.0503997802734375e-05,
+          "frame_relative_to_art": [
+            0.02901882529258728,
+            0.07025975674687313,
+            0.42301435470581056,
+            0.09621977310101525
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "es",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA CA"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA USB"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODO DE AHORRO DE ENERGÍA"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "PANTALLA LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 1280,
+      "centered_labels": [
+        {
+          "figure": "ac-output",
+          "source_line": "0",
+          "text": "Requisito previo: el producto está encendido.",
+          "horizontal_center_error_px": 0.0021514892578125,
+          "vertical_center_error_px": -0.0022788047790527344,
+          "frame_relative_to_art": [
+            0.042205693114363445,
+            0.03381389171631335,
+            0.46830938947738937,
+            0.06198544899306103
+          ]
+        },
+        {
+          "figure": "ac-output",
+          "source_line": "1",
+          "text": "Botón de reinicio de salida CA:Cuando el botón de reinicio se levante, necesita remover la carga y presionar el botón de reinicio para reiniciar.",
+          "horizontal_center_error_px": 0.00215911865234375,
+          "vertical_center_error_px": -0.002292633056640625,
+          "frame_relative_to_art": [
+            0.04561832959267149,
+            0.8557054242699926,
+            0.9082219898934832,
+            0.11880778916587564
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "source_line": "0",
+          "text": "Requisito previo:  el producto está encendido.",
+          "horizontal_center_error_px": 1.52587890625e-05,
+          "vertical_center_error_px": -0.0021567344665527344,
+          "frame_relative_to_art": [
+            0.03642339322878787,
+            0.049758207226734075,
+            0.4753525209065697,
+            0.09531576933441396
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "es",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA CA"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA USB"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODO DE AHORRO DE ENERGÍA"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "PANTALLA LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 711,
+      "centered_labels": [
+        {
+          "figure": "ac-output",
+          "source_line": "0",
+          "text": "Requisito previo: el producto está encendido.",
+          "horizontal_center_error_px": 0.002166748046875,
+          "vertical_center_error_px": -0.0020079612731933594,
+          "frame_relative_to_art": [
+            0.04220032145448741,
+            0.0338115545093917,
+            0.46830662050467464,
+            0.061988166812292265
+          ]
+        },
+        {
+          "figure": "ac-output",
+          "source_line": "1",
+          "text": "Botón de reinicio de salida CA:Cuando el botón de reinicio se levante, necesita remover la carga y presionar el botón de reinicio para reiniciar.",
+          "horizontal_center_error_px": 0.002162933349609375,
+          "vertical_center_error_px": -0.00013637542724609375,
+          "frame_relative_to_art": [
+            0.04561315778546825,
+            0.855709486387287,
+            0.9082240113659016,
+            0.11880459042736212
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "source_line": "0",
+          "text": "Requisito previo:  el producto está encendido.",
+          "horizontal_center_error_px": 0.002170562744140625,
+          "vertical_center_error_px": -0.0022521018981933594,
+          "frame_relative_to_art": [
+            0.03642278324744617,
+            0.049756197462661134,
+            0.4753495987188915,
+            0.09531929641706872
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "es",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA CA"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA USB"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODO DE AHORRO DE ENERGÍA"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "PANTALLA LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 390,
+      "centered_labels": [
+        {
+          "figure": "ac-output",
+          "source_line": "0",
+          "text": "Requisito previo: el producto está encendido.",
+          "horizontal_center_error_px": 0.002178192138671875,
+          "vertical_center_error_px": -5.245208740234375e-06,
+          "frame_relative_to_art": [
+            0.042202425003051755,
+            0.03381427177361986,
+            0.468309211730957,
+            0.061986417490100816
+          ]
+        },
+        {
+          "figure": "ac-output",
+          "source_line": "1",
+          "text": "Botón de reinicio de salida CA:Cuando el botón de reinicio se levante, necesita remover la carga y presionar el botón de reinicio para reiniciar.",
+          "horizontal_center_error_px": 0.002178192138671875,
+          "vertical_center_error_px": -0.0021772384643554688,
+          "frame_relative_to_art": [
+            0.04561361074447632,
+            0.8557057866551111,
+            0.9082235336303712,
+            0.11880328078409512
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "source_line": "0",
+          "text": "Requisito previo:  el producto está encendido.",
+          "horizontal_center_error_px": 0.0021820068359375,
+          "vertical_center_error_px": 1.0013580322265625e-05,
+          "frame_relative_to_art": [
+            0.0364244282245636,
+            0.049756823945541914,
+            0.4753486156463623,
+            0.09531648862953818
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "fr",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE CA MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE USB MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODE D’ÉCONOMIE D’ÉNERGIE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AFFICHAGE LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "FONCTIONNEMENT DES BOUTONS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 1280,
+      "centered_labels": [
+        {
+          "figure": "ac-output",
+          "source_line": "0",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 0.0,
+          "vertical_center_error_px": -0.0022788047790527344,
+          "frame_relative_to_art": [
+            0.04114958541449129,
+            0.03579316100243703,
+            0.3400419881131145,
+            0.06432788361139875
+          ]
+        },
+        {
+          "figure": "ac-output",
+          "source_line": "1",
+          "text": "Bouton de réinitialisation de la sortie CA:Lorsque le bouton de réinitialisation sort, vous devez retirer la charge et appuyer sur le bouton de réinitialisation pour réinitialiser.",
+          "horizontal_center_error_px": 0.002166748046875,
+          "vertical_center_error_px": -0.00189971923828125,
+          "frame_relative_to_art": [
+            0.05142049386390055,
+            0.8280979821068445,
+            0.9082219898934832,
+            0.13689768561150245
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "source_line": "0",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 1.52587890625e-05,
+          "vertical_center_error_px": -0.0013022422790527344,
+          "frame_relative_to_art": [
+            0.03885910107714167,
+            0.04449705989704553,
+            0.34120372978903185,
+            0.09748715508653798
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "fr",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE CA MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE USB MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODE D’ÉCONOMIE D’ÉNERGIE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AFFICHAGE LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "FONCTIONNEMENT DES BOUTONS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 711,
+      "centered_labels": [
+        {
+          "figure": "ac-output",
+          "source_line": "0",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 0.0,
+          "vertical_center_error_px": -0.0024962425231933594,
+          "frame_relative_to_art": [
+            0.041145794668530786,
+            0.03579786552812603,
+            0.3400439702500689,
+            0.06433112926127837
+          ]
+        },
+        {
+          "figure": "ac-output",
+          "source_line": "1",
+          "text": "Bouton de réinitialisation de la sortie CA:Lorsque le bouton de réinitialisation sort, vous devez retirer la charge et appuyer sur le bouton de réinitialisation pour réinitialiser.",
+          "horizontal_center_error_px": 0.00215911865234375,
+          "vertical_center_error_px": 0.00016117095947265625,
+          "frame_relative_to_art": [
+            0.05142265764769048,
+            0.8280986290409176,
+            0.9082240113659016,
+            0.13689701978710464
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "source_line": "0",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 0.002162933349609375,
+          "vertical_center_error_px": -0.0015196800231933594,
+          "frame_relative_to_art": [
+            0.03885778391341697,
+            0.044498881999764,
+            0.3412007462467917,
+            0.09749263846648522
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "fr",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE CA MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE USB MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODE D’ÉCONOMIE D’ÉNERGIE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AFFICHAGE LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "FONCTIONNEMENT DES BOUTONS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 390,
+      "centered_labels": [
+        {
+          "figure": "ac-output",
+          "source_line": "0",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 0.002174377441392039,
+          "vertical_center_error_px": -5.245208740234375e-06,
+          "frame_relative_to_art": [
+            0.04115126132965088,
+            0.035792952394438,
+            0.3400404453277588,
+            0.06432918379707481
+          ]
+        },
+        {
+          "figure": "ac-output",
+          "source_line": "1",
+          "text": "Bouton de réinitialisation de la sortie CA:Lorsque le bouton de réinitialisation sort, vous devez retirer la charge et appuyer sur le bouton de réinitialisation pour réinitialiser.",
+          "horizontal_center_error_px": 0.002178192138671875,
+          "vertical_center_error_px": 4.76837158203125e-06,
+          "frame_relative_to_art": [
+            0.051418733596801755,
+            0.828091876509328,
+            0.9082235336303712,
+            0.1368959450601437
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "source_line": "0",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 3.814697279835855e-06,
+          "vertical_center_error_px": 1.0013580322265625e-05,
+          "frame_relative_to_art": [
+            0.03885905146598816,
+            0.04448997440273038,
+            0.34120688438415525,
+            0.0974895744453925
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    }
+  ]
+}

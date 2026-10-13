@@ -1,0 +1,56 @@
+{
+  "en": {
+    "selected_text_lines": 723,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "inline_css_assets": [
+      "assets/shared-warning-triangle-white.svg"
+    ],
+    "native_cards": 3,
+    "editable_white_numbers": [
+      "1",
+      "2",
+      "3"
+    ],
+    "editable_native_captions": 3,
+    "prior_chapters_preserved": true,
+    "source_vector_elements_preserved": true,
+    "publication_eligible": false
+  },
+  "fr": {
+    "selected_text_lines": 874,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "inline_css_assets": [
+      "assets/shared-warning-triangle-white.svg"
+    ],
+    "native_cards": 3,
+    "editable_white_numbers": [
+      "1",
+      "2",
+      "3"
+    ],
+    "editable_native_captions": 3,
+    "prior_chapters_preserved": true,
+    "source_vector_elements_preserved": true,
+    "publication_eligible": false
+  },
+  "es": {
+    "selected_text_lines": 863,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "inline_css_assets": [
+      "assets/shared-warning-triangle-white.svg"
+    ],
+    "native_cards": 3,
+    "editable_white_numbers": [
+      "1",
+      "2",
+      "3"
+    ],
+    "editable_native_captions": 3,
+    "prior_chapters_preserved": true,
+    "source_vector_elements_preserved": true,
+    "publication_eligible": false
+  }
+}

@@ -1,0 +1,709 @@
+{
+  "en": {
+    "physical_page": 20,
+    "groups": [
+      {
+        "group": "general",
+        "title": "GENERAL INFO",
+        "source_ref": "native-pdf/page-20#spec-general",
+        "physical_rows": 7,
+        "label_rowspans": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "Product Name",
+            "Jackery HomePower 3600 Plus"
+          ],
+          [
+            "Model No.",
+            "JHP-3600A"
+          ],
+          [
+            "Capacity",
+            "80Ah / 44.8V DC (3584 Wh)"
+          ],
+          [
+            "Cell Chemistry",
+            "LiFePO₄"
+          ],
+          [
+            "Weight",
+            "About 77.16 lbs/35 kg"
+          ],
+          [
+            "Dimensions",
+            "15.2×12.2×19.3 in / 38.5×30.9×49.1 cm"
+          ],
+          [
+            "Cycle Life",
+            "6000 cycles to 70%+ capacity"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.311798095703125,
+          74.0531234741211,
+          340.7537841796875,
+          165.58212280273438
+        ],
+        "source_label_bbox": [
+          28.31200408935547,
+          74.0531234741211,
+          137.91000366210938,
+          165.58212280273438
+        ],
+        "label_ratio": 0.35077871878363354,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": []
+      },
+      {
+        "group": "input",
+        "title": "INPUT PORTS",
+        "source_ref": "native-pdf/page-20#spec-input",
+        "physical_rows": 4,
+        "label_rowspans": [
+          2,
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "1 × AC Input",
+            "Charge Mode : 100-120V~ 60Hz, 15A Max"
+          ],
+          [
+            "",
+            "Bypass Mode① : 120V~ 60Hz, 12A Max, 1440W"
+          ],
+          [
+            "2 × DC8020 Ports",
+            "12-16V⎓8A Max, Double to 8A Max;\n16-60V⎓12A Max, Double to 24A / 1000W Max"
+          ],
+          [
+            "1 × DC Expansion Port",
+            "36.4V-50.4V⎓100A Max"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.311981201171875,
+          187.48260498046875,
+          340.7539978027344,
+          251.23760986328125
+        ],
+        "source_label_bbox": [
+          28.31200408935547,
+          187.352294921875,
+          137.91000366210938,
+          251.04730224609375
+        ],
+        "label_ratio": 0.3507786845215421,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": [
+          {
+            "row": 2,
+            "column": 1,
+            "before": "16-60V"
+          }
+        ]
+      },
+      {
+        "group": "output",
+        "title": "OUTPUT PORTS",
+        "source_ref": "native-pdf/page-20#spec-output",
+        "physical_rows": 9,
+        "label_rowspans": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "4 × AC Output (NEMA 5-20R)",
+            "120V~ 60Hz, 20A Max, 2400W, 3600W in Total"
+          ],
+          [
+            "1 × AC Output (NEMA TT-30)",
+            "120V~ 60Hz, 30A Max, 3600W"
+          ],
+          [
+            "AC Total Output②",
+            "3600W Rated, 7200W Surge peak"
+          ],
+          [
+            "AC Output in Bypass Mode①",
+            "120V~ 60Hz, 12A Max, 1440W"
+          ],
+          [
+            "2 × USB-C Output",
+            "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+          ],
+          [
+            "2 × USB-A Output",
+            "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+          ],
+          [
+            "1 × AC Expansion Port③",
+            "240V~ 60Hz, 30A, 7200W Max, 14400W Surge peak"
+          ],
+          [
+            "1 × DC Expansion Port",
+            "36.4V-50.4V⎓60A Max"
+          ],
+          [
+            "Maximum Short Circuit\nCurrent and Duration",
+            "1160A/860μs"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.312225341796875,
+          272.8846130371094,
+          340.75421142578125,
+          398.01361083984375
+        ],
+        "source_label_bbox": [
+          28.31200408935547,
+          272.9833984375,
+          137.91000366210938,
+          397.8994140625
+        ],
+        "label_ratio": 0.35077871878363354,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": [
+          {
+            "row": 8,
+            "column": 0,
+            "before": "Current and Duration"
+          }
+        ]
+      },
+      {
+        "group": "temperature",
+        "title": "ENVIRONMENTAL OPERATING TEMPERATURE",
+        "source_ref": "native-pdf/page-20#spec-temperature",
+        "physical_rows": 2,
+        "label_rowspans": [
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "Charge Temperature",
+            "-4°F to 113°F / -20°C to 45°C"
+          ],
+          [
+            "Discharge Temperature",
+            "-4°F to 113°F / -20°C to 45°C"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.96258544921875,
+          421.28582763671875,
+          341.40460205078125,
+          447.6588134765625
+        ],
+        "source_label_bbox": [
+          28.962905883789062,
+          421.28570556640625,
+          133.46690368652344,
+          447.7947082519531
+        ],
+        "label_ratio": 0.3344748537326262,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": []
+      }
+    ],
+    "native_parameters_preserved": true,
+    "ac_input_label_group": "one original label spanning charging and bypass rows",
+    "shared_heading_styles": true,
+    "all_base_art_unchanged": true
+  },
+  "fr": {
+    "physical_page": 40,
+    "groups": [
+      {
+        "group": "general",
+        "title": "INFORMATIONS GÉNÉRALES",
+        "source_ref": "native-pdf/page-40#spec-general",
+        "physical_rows": 7,
+        "label_rowspans": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "Nom du produit",
+            "Jackery HomePower 3600 Plus"
+          ],
+          [
+            "N° modèle",
+            "JHP-3600A"
+          ],
+          [
+            "Capacité",
+            "80Ah / 44.8V DC (3584 Wh)"
+          ],
+          [
+            "Cellule Chimique",
+            "LiFePO₄"
+          ],
+          [
+            "Poids",
+            "Environ 77,16 lbs / 35 kg"
+          ],
+          [
+            "Dimensions",
+            "15,2×12,2×19,3 po / 38,5×30,9×49,1 cm"
+          ],
+          [
+            "Durée de vie",
+            "Capacité de 6000 cycles à 70 % ou plus"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.311798095703125,
+          74.7522201538086,
+          340.7537841796875,
+          166.28121948242188
+        ],
+        "source_label_bbox": [
+          28.31200408935547,
+          74.7522201538086,
+          137.91000366210938,
+          166.28121948242188
+        ],
+        "label_ratio": 0.35077871878363354,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": []
+      },
+      {
+        "group": "input",
+        "title": "PORTS D’ENTRÉE",
+        "source_ref": "native-pdf/page-40#spec-input",
+        "physical_rows": 4,
+        "label_rowspans": [
+          2,
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "1 × Entrée CA",
+            "Mode charge : 100-120V~ 60Hz, 15A Max"
+          ],
+          [
+            "",
+            "Mode dérivation① : 120V~ 60Hz, 12A Max, 1440W"
+          ],
+          [
+            "2 × Ports DC8020",
+            "12-16V⎓8A Max, double à 8A Max\n16-60V⎓12A Max, double à 24A/1000W Max"
+          ],
+          [
+            "1 × Port d’extension CC",
+            "36,4V-50,4V⎓100A Max"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.311981201171875,
+          188.55072021484375,
+          340.7539978027344,
+          254.4127197265625
+        ],
+        "source_label_bbox": [
+          28.31200408935547,
+          188.42041015625,
+          137.91000366210938,
+          254.222412109375
+        ],
+        "label_ratio": 0.3507786845215421,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": [
+          {
+            "row": 2,
+            "column": 1,
+            "before": "16-60V"
+          }
+        ]
+      },
+      {
+        "group": "output",
+        "title": "PORTS DE SORTIE",
+        "source_ref": "native-pdf/page-40#spec-output",
+        "physical_rows": 9,
+        "label_rowspans": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "4 × Sortie CA (NEMA 5-20R)",
+            "120V~ 60Hz, 20A Max, 2400W, 3600W au total"
+          ],
+          [
+            "1 × Sortie CA (NEMA TT-30)",
+            "120V~ 60Hz, 30A Max, 3600W"
+          ],
+          [
+            "Sortie totale CA②",
+            "3600W Rated, 7200W crête"
+          ],
+          [
+            "Sortie CA en mode dérivation①",
+            "120V~ 60Hz, 12A Max, 1440W"
+          ],
+          [
+            "2 × Sortie USB-C",
+            "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+          ],
+          [
+            "2 × Sortie USB-A",
+            "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1,5A"
+          ],
+          [
+            "1 × Port d’extension CA③",
+            "240V~ 60Hz, 30A, 7200W Max, 14400W crête"
+          ],
+          [
+            "1 × Port d’extension CC",
+            "36,4V-50,4V⎓60A Max"
+          ],
+          [
+            "Courant et durée maximum\ndu court-circuit",
+            "1160A/860μs"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.312225341796875,
+          276.8249206542969,
+          340.75421142578125,
+          403.263916015625
+        ],
+        "source_label_bbox": [
+          28.31200408935547,
+          276.9227294921875,
+          137.91000366210938,
+          403.14971923828125
+        ],
+        "label_ratio": 0.35077871878363354,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": [
+          {
+            "row": 8,
+            "column": 0,
+            "before": "du court-circuit"
+          }
+        ]
+      },
+      {
+        "group": "temperature",
+        "title": "TEMPÉRATURE DE FONCTIONNEMENT",
+        "source_ref": "native-pdf/page-40#spec-temperature",
+        "physical_rows": 2,
+        "label_rowspans": [
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "Température de charge",
+            "- 4 °F à 113 °F / - 20 °C à 45 °C"
+          ],
+          [
+            "Température de décharge",
+            "- 4 °F à 113 °F / - 20 °C à 45 °C"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.96258544921875,
+          428.1095275878906,
+          341.40460205078125,
+          454.4825134277344
+        ],
+        "source_label_bbox": [
+          28.96300506591797,
+          428.10931396484375,
+          137.91000366210938,
+          454.6183166503906
+        ],
+        "label_ratio": 0.34869509479297917,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": []
+      }
+    ],
+    "native_parameters_preserved": true,
+    "ac_input_label_group": "one original label spanning charging and bypass rows",
+    "shared_heading_styles": true,
+    "all_base_art_unchanged": true
+  },
+  "es": {
+    "physical_page": 60,
+    "groups": [
+      {
+        "group": "general",
+        "title": "INFORMACIÓN GENERAL",
+        "source_ref": "native-pdf/page-60#spec-general",
+        "physical_rows": 7,
+        "label_rowspans": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "Nombre del producto",
+            "Jackery HomePower 3600 Plus"
+          ],
+          [
+            "N de modelo",
+            "JHP-3600A"
+          ],
+          [
+            "Capacidad",
+            "80Ah / 44,8V DC (3584 Wh)"
+          ],
+          [
+            "Química Celular",
+            "LiFePO₄"
+          ],
+          [
+            "Peso",
+            "Aproximadamente 77,16 libras/35 kg"
+          ],
+          [
+            "Dimensiones",
+            "15,2×12,2×19,3 pulgadas / 38,5×30,9×49,1 cm"
+          ],
+          [
+            "Ciclo de vida",
+            "6000 ciclos de carga hasta 70 % + de capacidad"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.311798095703125,
+          75.50643157958984,
+          340.7537841796875,
+          167.03543090820312
+        ],
+        "source_label_bbox": [
+          28.31200408935547,
+          75.50643157958984,
+          137.91000366210938,
+          167.03543090820312
+        ],
+        "label_ratio": 0.35077871878363354,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": []
+      },
+      {
+        "group": "input",
+        "title": "PUERTOS DE ENTRADA",
+        "source_ref": "native-pdf/page-60#spec-input",
+        "physical_rows": 4,
+        "label_rowspans": [
+          2,
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "1 × Entrada CA",
+            "Modo de carga : 100-120V~ 60Hz, 15A Máx"
+          ],
+          [
+            "",
+            "Modo bypass① : 120V~ 60Hz, 12A Máx, 1440W"
+          ],
+          [
+            "2 × Puertos DC8020",
+            "12-16V⎓8A Máx, Double à 8A Máx\n16-60V⎓12A Máx, Double à 24A/1000W Máx"
+          ],
+          [
+            "1 × Puerto de expansión CC",
+            "36,4V-50,4V⎓100A Máx"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.311981201171875,
+          187.7045135498047,
+          340.7539978027344,
+          250.74151611328125
+        ],
+        "source_label_bbox": [
+          28.31200408935547,
+          187.57420349121094,
+          137.91000366210938,
+          250.55120849609375
+        ],
+        "label_ratio": 0.3507786845215421,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": [
+          {
+            "row": 2,
+            "column": 1,
+            "before": "16-60V"
+          }
+        ]
+      },
+      {
+        "group": "output",
+        "title": "PUERTOS DE SALIDA",
+        "source_ref": "native-pdf/page-60#spec-output",
+        "physical_rows": 9,
+        "label_rowspans": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "4 × Salidas CA (NEMA 5-20R)",
+            "120V~ 60Hz, 20A Máx, 2400W, 3600W en total"
+          ],
+          [
+            "1 × Salidas CA (NEMA TT-30)",
+            "120V~ 60Hz, 30A Máx, 3600W"
+          ],
+          [
+            "CA Salida total②",
+            "3600W nominales, 7200W pico de sobretensión"
+          ],
+          [
+            "Salida de CA en modo bypass①",
+            "120V~ 60Hz, 12A Máx, 1440W"
+          ],
+          [
+            "2 × Salida USB-C",
+            "100W Máx, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+          ],
+          [
+            "2 × Salida USB-A",
+            "18W Máx, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+          ],
+          [
+            "1 × Puerto de expansión CA③",
+            "240V~ 60Hz, 30A, 7200W Máx,\n14400W pico de sobretensión"
+          ],
+          [
+            "1 × Puerto de expansión CC",
+            "36,4V-50,4V⎓60A Máx"
+          ],
+          [
+            "Corriente máxima de\ncortocircuito y duración",
+            "1160A/860μs"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.31170654296875,
+          271.85479736328125,
+          340.75372314453125,
+          407.2588195800781
+        ],
+        "source_label_bbox": [
+          28.31200408935547,
+          271.95343017578125,
+          137.91000366210938,
+          407.4504089355469
+        ],
+        "label_ratio": 0.3507786845215421,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": [
+          {
+            "row": 6,
+            "column": 1,
+            "before": "14400W"
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "before": "cortocircuito y duración"
+          }
+        ]
+      },
+      {
+        "group": "temperature",
+        "title": "TEMPERATURA DE FUNCIONAMIENTO",
+        "source_ref": "native-pdf/page-60#spec-temperature",
+        "physical_rows": 2,
+        "label_rowspans": [
+          1,
+          1
+        ],
+        "native_rows": [
+          [
+            "Temperatura de carga",
+            "- 4 °F a 113 °F / - 20 °C a 45 °C"
+          ],
+          [
+            "Temperatura de descarga",
+            "- 4 °F a 113 °F / - 20 °C a 45 °C"
+          ]
+        ],
+        "source_outer_bbox": [
+          28.96258544921875,
+          425.7937316894531,
+          341.40460205078125,
+          452.1667175292969
+        ],
+        "source_label_bbox": [
+          28.96300506591797,
+          425.79351806640625,
+          137.91000366210938,
+          452.3025207519531
+        ],
+        "label_ratio": 0.34869509479297917,
+        "source_body_font_pt": 8.0,
+        "shared_component": "HB-TABLE-SPEC",
+        "line_breaks": []
+      }
+    ],
+    "native_parameters_preserved": true,
+    "ac_input_label_group": "one original label spanning charging and bypass rows",
+    "shared_heading_styles": true,
+    "all_base_art_unchanged": true
+  }
+}

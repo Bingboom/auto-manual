@@ -1,0 +1,586 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "width": 1280,
+      "callout": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "items": [
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 75.8203125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "This product does not support 0 ms switching. Do not connect it to equipment that requires a 0 ms switching power supply, such as data servers or workstations.",
+            "width": 498.029541015625,
+            "x": 574.0712280273438,
+            "y": 363.1119995117187
+          },
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 25.273439407348633,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Before use, please test compatibility with your device multiple times.",
+            "width": 498.029541015625,
+            "x": 574.0712280273438,
+            "y": 444.37066650390625
+          },
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 50.546878814697266,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Do not connect loads exceeding the maximum output power of the product. Otherwise, overload protection will be triggered.",
+            "width": 498.029541015625,
+            "x": 574.0712280273438,
+            "y": 475.0824890136719
+          }
+        ],
+        "label": {
+          "display": "table-cell",
+          "height": 188.75001525878903,
+          "text": "CAUTION",
+          "width": 104.58333587646484,
+          "x": 433.1727600097656,
+          "y": 349.99566650390625
+        },
+        "pageOverflow": 0,
+        "table": {
+          "height": 192.6389007568359,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 348.0512390136719
+        },
+        "ulCount": 1,
+        "width": 1280
+      }
+    },
+    {
+      "lang": "en",
+      "width": 711,
+      "callout": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "items": [
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 72.91667175292969,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "This product does not support 0 ms switching. Do not connect it to equipment that requires a 0 ms switching power supply, such as data servers or workstations.",
+            "width": 516.154541015625,
+            "x": 162.2960205078125,
+            "y": 365.998291015625
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 24.30555725097656,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Before use, please test compatibility with your device multiple times.",
+            "width": 516.154541015625,
+            "x": 162.2960205078125,
+            "y": 444.3533325195313
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 48.611114501953125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Do not connect loads exceeding the maximum output power of the product. Otherwise, overload protection will be triggered.",
+            "width": 516.154541015625,
+            "x": 162.2960205078125,
+            "y": 474.0972595214844
+          }
+        ],
+        "label": {
+          "display": "table-cell",
+          "height": 182.94271850585935,
+          "text": "CAUTION",
+          "width": 108.03820037841795,
+          "x": 17.94270896911621,
+          "y": 352.8819580078125
+        },
+        "pageOverflow": 0,
+        "table": {
+          "height": 186.83160400390625,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 350.9375305175781
+        },
+        "ulCount": 1,
+        "width": 711
+      }
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "callout": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "items": [
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 121.5277862548828,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "This product does not support 0 ms switching. Do not connect it to equipment that requires a 0 ms switching power supply, such as data servers or workstations.",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 330.6684265136719
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 48.611114501953125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Before use, please test compatibility with your device multiple times.",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 457.6345825195313
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 97.22222900390624,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Do not connect loads exceeding the maximum output power of the product. Otherwise, overload protection will be triggered.",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 511.6840515136719
+          }
+        ],
+        "label": {
+          "display": "block",
+          "height": 50.5381965637207,
+          "text": "CAUTION",
+          "width": 354.1145935058594,
+          "x": 17.94270896911621,
+          "y": 267.013916015625
+        },
+        "pageOverflow": 0,
+        "table": {
+          "height": 358.8975830078125,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 265.0694580078125
+        },
+        "ulCount": 1,
+        "width": 390
+      }
+    },
+    {
+      "lang": "fr",
+      "width": 1280,
+      "callout": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "items": [
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 50.546878814697266,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Ce produit ne prend pas en charge un basculement instantané (0 ms).",
+            "width": 496.8055725097656,
+            "x": 575.295166015625,
+            "y": 309.8090515136719
+          },
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 75.8203125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Ne le connectez pas à des équipements nécessitant une alimentation vec commutation en 0 ms, tels que des serveurs de données ou des stations de travail.",
+            "width": 496.8055725097656,
+            "x": 575.295166015625,
+            "y": 365.7942810058594
+          },
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 50.546878814697266,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Avant toute utilisation, testez plusieurs fois la compatibilité avec votre appareil.",
+            "width": 496.8055725097656,
+            "x": 575.295166015625,
+            "y": 447.052978515625
+          },
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 75.8203125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Ne connectez pas de charges dépassant la puissance de sortie maximale du produit. Sinon, la protection contre les surcharges sera déclenchée.",
+            "width": 496.8055725097656,
+            "x": 575.295166015625,
+            "y": 503.0382080078125
+          }
+        ],
+        "label": {
+          "display": "table-cell",
+          "height": 295.2821350097656,
+          "text": "ATTENTION",
+          "width": 105.80729675292967,
+          "x": 433.1727600097656,
+          "y": 296.6927185058594
+        },
+        "pageOverflow": 0,
+        "table": {
+          "height": 299.1710205078125,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 294.748291015625
+        },
+        "ulCount": 1,
+        "width": 1280
+      }
+    },
+    {
+      "lang": "fr",
+      "width": 711,
+      "callout": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "items": [
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 24.30555725097656,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Ce produit ne prend pas en charge un basculement instantané (0 ms).",
+            "width": 516.154541015625,
+            "x": 162.2960205078125,
+            "y": 326.8750305175781
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 72.91667175292969,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Ne le connectez pas à des équipements nécessitant une alimentation vec commutation en 0 ms, tels que des serveurs de données ou des stations de travail.",
+            "width": 516.154541015625,
+            "x": 162.2960205078125,
+            "y": 356.6189270019531
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 48.611114501953125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Avant toute utilisation, testez plusieurs fois la compatibilité avec votre appareil.",
+            "width": 516.154541015625,
+            "x": 162.2960205078125,
+            "y": 434.9739685058594
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 72.91667175292969,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Ne connectez pas de charges dépassant la puissance de sortie maximale du produit. Sinon, la protection contre les surcharges sera déclenchée.",
+            "width": 516.154541015625,
+            "x": 162.2960205078125,
+            "y": 489.0234680175781
+          }
+        ],
+        "label": {
+          "display": "table-cell",
+          "height": 261.2977600097656,
+          "text": "ATTENTION",
+          "width": 108.03820037841795,
+          "x": 17.94270896911621,
+          "y": 313.7586975097656
+        },
+        "pageOverflow": 0,
+        "table": {
+          "height": 265.1866455078125,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 311.8142395019531
+        },
+        "ulCount": 1,
+        "width": 711
+      }
+    },
+    {
+      "lang": "fr",
+      "width": 390,
+      "callout": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "items": [
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 48.611114501953125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Ce produit ne prend pas en charge un basculement instantané (0 ms).",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 303.537353515625
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 121.5277862548828,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Ne le connectez pas à des équipements nécessitant une alimentation vec commutation en 0 ms, tels que des serveurs de données ou des stations de travail.",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 357.5868225097656
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 48.611114501953125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Avant toute utilisation, testez plusieurs fois la compatibilité avec votre appareil.",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 484.552978515625
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 97.22222900390624,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Ne connectez pas de charges dépassant la puissance de sortie maximale du produit. Sinon, la protection contre les surcharges sera déclenchée.",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 538.6024780273438
+          }
+        ],
+        "label": {
+          "display": "block",
+          "height": 50.5381965637207,
+          "text": "ATTENTION",
+          "width": 354.1145935058594,
+          "x": 17.94270896911621,
+          "y": 239.88282775878903
+        },
+        "pageOverflow": 0,
+        "table": {
+          "height": 412.9470825195313,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 237.9383850097656
+        },
+        "ulCount": 1,
+        "width": 390
+      }
+    },
+    {
+      "lang": "es",
+      "width": 1280,
+      "callout": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "items": [
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 101.09375762939452,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación con conmutación de 0 ms, como servidores de datos o estaciones de trabajo.",
+            "width": 480.4383850097656,
+            "x": 591.662353515625,
+            "y": 325.3428955078125
+          },
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 50.546878814697266,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.",
+            "width": 480.4383850097656,
+            "x": 591.662353515625,
+            "y": 431.8750305175781
+          },
+          {
+            "display": "list-item",
+            "fontSize": "16px",
+            "height": 75.8203125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "No conectes cargas que excedan la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.",
+            "width": 480.4383850097656,
+            "x": 591.662353515625,
+            "y": 487.8602600097656
+          }
+        ],
+        "label": {
+          "display": "table-cell",
+          "height": 264.5703125,
+          "text": "PRECAUCIÓN",
+          "width": 122.17448425292967,
+          "x": 433.1727600097656,
+          "y": 312.2265625
+        },
+        "pageOverflow": 0,
+        "table": {
+          "height": 268.459228515625,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 310.2821350097656
+        },
+        "ulCount": 1,
+        "width": 1280
+      }
+    },
+    {
+      "lang": "es",
+      "width": 711,
+      "callout": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "items": [
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 72.91667175292969,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación con conmutación de 0 ms, como servidores de datos o estaciones de trabajo.",
+            "width": 504.0147705078125,
+            "x": 174.43577575683594,
+            "y": 341.8836975097656
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 48.611114501953125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.",
+            "width": 504.0147705078125,
+            "x": 174.43577575683594,
+            "y": 420.2387390136719
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 72.91667175292969,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "No conectes cargas que excedan la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.",
+            "width": 504.0147705078125,
+            "x": 174.43577575683594,
+            "y": 474.2882080078125
+          }
+        ],
+        "label": {
+          "display": "table-cell",
+          "height": 231.5538330078125,
+          "text": "PRECAUCIÓN",
+          "width": 120.1779556274414,
+          "x": 17.94270896911621,
+          "y": 328.7673645019531
+        },
+        "pageOverflow": 0,
+        "table": {
+          "height": 235.44271850585935,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 326.82293701171875
+        },
+        "ulCount": 1,
+        "width": 711
+      }
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "callout": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "items": [
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 121.5277862548828,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación con conmutación de 0 ms, como servidores de datos o estaciones de trabajo.",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 330.57293701171875
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 48.611114501953125,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 457.5390930175781
+          },
+          {
+            "display": "list-item",
+            "fontSize": "15.68px",
+            "height": 97.22222900390624,
+            "listStyleType": "disc",
+            "tag": "LI",
+            "text": "No conectes cargas que excedan la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.",
+            "width": 303.08160400390625,
+            "x": 54.257816314697266,
+            "y": 511.5885620117187
+          }
+        ],
+        "label": {
+          "display": "block",
+          "height": 50.5381965637207,
+          "text": "PRECAUCIÓN",
+          "width": 354.1145935058594,
+          "x": 17.94270896911621,
+          "y": 266.9184265136719
+        },
+        "pageOverflow": 0,
+        "table": {
+          "height": 358.8975830078125,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 264.9739685058594
+        },
+        "ulCount": 1,
+        "width": 390
+      }
+    }
+  ],
+  "previous_USB_energy_LCD_key_geometry_preserved": true,
+  "regression_comparison": {
+    "method": "Compare all geometry, typography and semantic fields except absolute page positions and deferred lazy loading.",
+    "before_sha256": "c05ff2bc7fe5db1626cd45e2887e5cbf3d5669b3cd4f97a0e2f86496e9eecc61",
+    "after_sha256": "b4359bd61b255698797a476d5108b89a2c0ff96c499ecf3f9ed555908c80c512",
+    "passed_checks": 9
+  },
+  "operator_layout_acceptance": "pending combined review"
+}

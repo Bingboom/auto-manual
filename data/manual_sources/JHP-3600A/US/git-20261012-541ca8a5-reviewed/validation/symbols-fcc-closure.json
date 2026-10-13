@@ -1,0 +1,44 @@
+{
+  "en": {
+    "inline_css_assets": [
+      "assets/shared-warning-triangle-white.svg"
+    ],
+    "missing_inline_css_assets": 0,
+    "shared_signal_components": 1,
+    "shared_symbol_icon_components": 1,
+    "shared_fcc_components": 1,
+    "fcc_semantic_bullets": 4,
+    "symbol_panel_rows": [
+      6,
+      5
+    ]
+  },
+  "fr": {
+    "inline_css_assets": [
+      "assets/shared-warning-triangle-white.svg"
+    ],
+    "missing_inline_css_assets": 0,
+    "shared_signal_components": 1,
+    "shared_symbol_icon_components": 1,
+    "shared_fcc_components": 1,
+    "fcc_semantic_bullets": 4,
+    "symbol_panel_rows": [
+      6,
+      5
+    ]
+  },
+  "es": {
+    "inline_css_assets": [
+      "assets/shared-warning-triangle-white.svg"
+    ],
+    "missing_inline_css_assets": 0,
+    "shared_signal_components": 1,
+    "shared_symbol_icon_components": 1,
+    "shared_fcc_components": 1,
+    "fcc_semantic_bullets": 4,
+    "symbol_panel_rows": [
+      6,
+      5
+    ]
+  }
+}

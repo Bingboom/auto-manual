@@ -1,0 +1,334 @@
+[
+  {
+    "asset": "app-connect-native-p23.svg",
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+    "physical_page": 23,
+    "crop": [
+      54.256900787353516,
+      140.26278686523438,
+      313.96771240234375,
+      303.6897888183594
+    ],
+    "operator": "Preserve original target SVG; exclude only source-matched neighboring callout paths via native_svg drawing mapping",
+    "drawing_indices": [
+      0,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      21,
+      22
+    ],
+    "excluded_neighbor_callout_drawings": [
+      {
+        "index": 19,
+        "bbox": [
+          32.597808837890625,
+          303.0484619140625,
+          338.6708068847656,
+          330.43145751953125
+        ],
+        "fill": [
+          0.920058012008667,
+          0.9229419231414795,
+          0.9258258938789368
+        ]
+      }
+    ],
+    "embedded_phone_images": [
+      {
+        "xref": 6618,
+        "bbox": [
+          245.82843017578125,
+          141.7976531982422,
+          312.1903076171875,
+          299.4735107421875
+        ],
+        "width": 750,
+        "height": 1782
+      },
+      {
+        "xref": 6619,
+        "bbox": [
+          150.6798095703125,
+          141.5560760498047,
+          217.13015747070312,
+          285.4432373046875
+        ],
+        "width": 750,
+        "height": 1624
+      },
+      {
+        "xref": 6620,
+        "bbox": [
+          55.804832458496094,
+          141.8530731201172,
+          122.28616333007812,
+          285.80731201171875
+        ],
+        "width": 750,
+        "height": 1624
+      }
+    ],
+    "external_text_ids": [
+      "p23-b12-l0-0",
+      "p23-b13-l0-0",
+      "p23-b13-l1-0",
+      "p23-b13-l2-0",
+      "p23-b22-l0-0"
+    ],
+    "preserve": "Original bitmap UI plus native overprinted interface text, full phone frames, defs, clipping, opacity, all transforms, crop and live caption geometry.",
+    "sha256": "ec9c0a323d7e66a8cb23b7e9c03b77febf20582dd423529924d7a37176d9bfbd",
+    "publication_eligible": false,
+    "removed_paths": [
+      {
+        "native_drawing_index": 19,
+        "native_path_d_sha256": "66285d0cc81da0a5a5130f4a54307f19f6e4d2157eb7c082711643f40800b064",
+        "original_target_path_sha256": "1a4ac80c837f095fdaa0cf6c0551a4734cdff60af75ceba21ff383be7cf0c7f3",
+        "original_target_path": "<path transform=\"matrix(1,0,0,-1,279.2199,190.16869)\" d=\"M0 0H-295.685C-298.553 0-300.879 2.325-300.879 5.194V22.189C-300.879 25.058-298.553 27.383-295.685 27.383H0C2.868 27.383 5.194 25.058 5.194 22.189V5.194C5.194 2.325 2.868 0 0 0\" fill=\"#ebecec\" fill-rule=\"evenodd\"/>"
+      }
+    ],
+    "all_other_original_svg_bytes_preserved": true
+  },
+  {
+    "asset": "app-connect-native-p43.svg",
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+    "physical_page": 43,
+    "crop": [
+      62.10940170288086,
+      145.69879150390625,
+      305.234375,
+      299.830810546875
+    ],
+    "operator": "Preserve original target SVG; exclude only source-matched neighboring callout paths via native_svg drawing mapping",
+    "drawing_indices": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      21,
+      22
+    ],
+    "excluded_neighbor_callout_drawings": [
+      {
+        "index": 18,
+        "bbox": [
+          31.751598358154297,
+          299.4761962890625,
+          83.03759765625,
+          315.55218505859375
+        ],
+        "fill": [
+          0.8615701794624329,
+          0.8662699460983276,
+          0.8712291121482849
+        ]
+      },
+      {
+        "index": 19,
+        "bbox": [
+          31.751007080078125,
+          297.4991149902344,
+          337.822998046875,
+          322.27911376953125
+        ],
+        "fill": [
+          0.920058012008667,
+          0.9229419231414795,
+          0.9258258938789368
+        ]
+      },
+      {
+        "index": 20,
+        "bbox": [
+          33.194400787353516,
+          299.73541259765625,
+          81.59440612792969,
+          319.9634094238281
+        ],
+        "fill": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "embedded_phone_images": [
+      {
+        "xref": 3535,
+        "bbox": [
+          241.41604614257812,
+          147.19932556152344,
+          303.5069885253906,
+          294.7274169921875
+        ],
+        "width": 750,
+        "height": 1782
+      },
+      {
+        "xref": 3536,
+        "bbox": [
+          152.3910369873047,
+          146.97328186035156,
+          214.56475830078125,
+          281.60009765625
+        ],
+        "width": 750,
+        "height": 1624
+      },
+      {
+        "xref": 3537,
+        "bbox": [
+          63.62205505371094,
+          147.25119018554688,
+          125.82475280761719,
+          281.9407653808594
+        ],
+        "width": 750,
+        "height": 1624
+      }
+    ],
+    "external_text_ids": [
+      "p43-b12-l0-0",
+      "p43-b13-l0-0",
+      "p43-b13-l1-0",
+      "p43-b13-l2-0"
+    ],
+    "preserve": "Original bitmap UI plus native overprinted interface text, full phone frames, defs, clipping, opacity, all transforms, crop and live caption geometry.",
+    "sha256": "831d0016f6bc34ee4d5ffc416b2658c4b972d3197f1513b6d73274c0cf35c5ea",
+    "publication_eligible": false,
+    "removed_paths": [
+      {
+        "native_drawing_index": 18,
+        "native_path_d_sha256": "3e7cf255b691f2affd3124f55f380abaffb0489b783a6152151e6af94d3717f2",
+        "original_target_path_sha256": "3ecc22692758dd31aad2c2c3b00545723c4a2fc1f8b9625ed1a3fb91f18e8260",
+        "original_target_path": "<path transform=\"matrix(1,0,0,-1,20.928189,169.85341)\" d=\"M0 0H-46.121C-48.974 0-51.286 2.312-51.286 5.165V10.912C-51.286 13.764-48.974 16.076-46.121 16.076H0Z\" fill=\"#dcddde\"/>"
+      },
+      {
+        "native_drawing_index": 19,
+        "native_path_d_sha256": "4910d968f9eb6f9a7d9f11f87b775e12761ffc5c3fb403a08a476f47ffb8e2d1",
+        "original_target_path_sha256": "b93d28c338508d5a7e869f84cd8ee88b59771a8162a8853b8ed324e10be3890f",
+        "original_target_path": "<path transform=\"matrix(1,0,0,-1,270.7286,176.5803)\" d=\"M0 0H-296.102C-298.855 0-301.087 2.232-301.087 4.985V19.795C-301.087 22.548-298.855 24.78-296.102 24.78H0C2.753 24.78 4.985 22.548 4.985 19.795V4.985C4.985 2.232 2.753 0 0 0\" fill=\"#ebecec\" fill-rule=\"evenodd\"/>"
+      },
+      {
+        "native_drawing_index": 20,
+        "native_path_d_sha256": "86ac1aabb81997c6a4a859763dcf0d851d4bc408f8d2629c1cd6913363aea12b",
+        "original_target_path_sha256": "9c3ce49b574111b7b9a12b7e95cb1a6afaee56b58b79b0979f62fd9382d444f7",
+        "original_target_path": "<path transform=\"matrix(1,0,0,-1,-28.915009,170.33261)\" d=\"M0 0V12.365C0 14.536 1.76 16.296 3.932 16.296H48.4V-3.932H3.932C1.76-3.932 0-2.171 0 0\" fill=\"#ffffff\"/>"
+      }
+    ],
+    "all_other_original_svg_bytes_preserved": true
+  },
+  {
+    "asset": "app-connect-native-p63.svg",
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+    "physical_page": 63,
+    "crop": [
+      73.11139678955078,
+      155.38458251953125,
+      295.6427001953125,
+      297.9745788574219
+    ],
+    "operator": "Preserve original target SVG; exclude only source-matched neighboring callout paths via native_svg drawing mapping",
+    "drawing_indices": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "excluded_neighbor_callout_drawings": [
+      {
+        "index": 21,
+        "bbox": [
+          31.750823974609375,
+          297.74951171875,
+          337.82281494140625,
+          322.7705078125
+        ],
+        "fill": [
+          0.920058012008667,
+          0.9229419231414795,
+          0.9258258938789368
+        ]
+      }
+    ],
+    "embedded_phone_images": [
+      {
+        "xref": 587,
+        "bbox": [
+          237.189208984375,
+          156.84234619140625,
+          293.9770812988281,
+          291.7703552246094
+        ],
+        "width": 750,
+        "height": 1782
+      },
+      {
+        "xref": 588,
+        "bbox": [
+          155.76763916015625,
+          156.63560485839844,
+          212.6312255859375,
+          279.76422119140625
+        ],
+        "width": 750,
+        "height": 1624
+      },
+      {
+        "xref": 589,
+        "bbox": [
+          74.58024597167969,
+          156.88980102539062,
+          131.4703369140625,
+          280.0758056640625
+        ],
+        "width": 750,
+        "height": 1624
+      }
+    ],
+    "external_text_ids": [
+      "p63-b1-l0-0",
+      "p63-b4-l0-0",
+      "p63-b4-l1-0",
+      "p63-b4-l2-0"
+    ],
+    "preserve": "Original bitmap UI plus native overprinted interface text, full phone frames, defs, clipping, opacity, all transforms, crop and live caption geometry.",
+    "sha256": "a9aeec153711196cef93a16c4e1e450d397702b879c9e3f545aa3379e3c9b620",
+    "publication_eligible": false,
+    "removed_paths": [
+      {
+        "native_drawing_index": 21,
+        "native_path_d_sha256": "02c2a24d4057e64e96266f98070e3ce647c1d009a274797a1adeada4f0675a00",
+        "original_target_path_sha256": "afb28418226ab386addf96867b924c2d503b64e6b200c7e4f9fa07d0b0503485",
+        "original_target_path": "<path transform=\"matrix(1,0,0,-1,259.76243,167.38591)\" d=\"M0 0H-296.174C-298.907 0-301.123 2.216-301.123 4.949V20.072C-301.123 22.805-298.907 25.021-296.174 25.021H0C2.733 25.021 4.949 22.805 4.949 20.072V4.949C4.949 2.216 2.733 0 0 0\" fill=\"#ebecec\" fill-rule=\"evenodd\"/>"
+      }
+    ],
+    "all_other_original_svg_bytes_preserved": true
+  }
+]

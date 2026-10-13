@@ -1,0 +1,57 @@
+[
+  {
+    "asset_ref": "assets/shared-symbol_warning_triangle.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.012956
+  },
+  {
+    "asset_ref": "assets/shared-symbol_read_manual.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.009391
+  },
+  {
+    "asset_ref": "assets/shared-symbol_electric_shock.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.00869
+  },
+  {
+    "asset_ref": "assets/shared-symbol_battery_charging.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.010586
+  },
+  {
+    "asset_ref": "assets/shared-symbol_explosive_material.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 1e-06
+  },
+  {
+    "asset_ref": "assets/shared-symbol_heavy_object.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.01368
+  },
+  {
+    "asset_ref": "assets/shared-symbol_do_not_dismantle.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.010512
+  },
+  {
+    "asset_ref": "assets/shared-symbol_no_open_flame.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.008233
+  },
+  {
+    "asset_ref": "assets/shared-symbol_keep_away_from_children.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.007844
+  },
+  {
+    "asset_ref": "assets/shared-symbol_li_ion.svg",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.013987
+  },
+  {
+    "asset_ref": "assets/shared-symbol_weee-native.png",
+    "physical_page": 25,
+    "max_mean_channel_error": 0.018307
+  }
+]

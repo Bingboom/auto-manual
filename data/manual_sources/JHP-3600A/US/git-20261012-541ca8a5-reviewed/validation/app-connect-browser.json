@@ -1,0 +1,1119 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Download the App and log in"
+        },
+        {
+          "marker": "none",
+          "text": "2. Add device"
+        },
+        {
+          "marker": "none",
+          "text": "3. Unbind the device"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notes"
+        }
+      ],
+      "art": {
+        "complete": true,
+        "naturalHeight": 163,
+        "naturalWidth": 260,
+        "src": "assets/app-connect-native-p23.svg"
+      },
+      "canvas": {
+        "clientWidth": 547,
+        "figureWidth": 547,
+        "minWidth": "0px",
+        "overflow": "visible",
+        "rect": {
+          "height": 344.4184265136719,
+          "width": 547.3350830078125,
+          "x": 486.3281555175781,
+          "y": 722.756103515625
+        },
+        "scrollWidth": 547
+      },
+      "downloadColumns": 2,
+      "headingCount": 28,
+      "labels": [
+        {
+          "clipped": false,
+          "line": "0",
+          "rect": {
+            "height": 18.88020896911621,
+            "width": 254.1666717529297,
+            "x": 488.4375305175781,
+            "y": 1045.7596435546875
+          },
+          "text": "The above screenshots are for reference only."
+        },
+        {
+          "clipped": false,
+          "line": "1",
+          "rect": {
+            "height": 19.38802146911621,
+            "width": 19.53559112548828,
+            "x": 952.6910400390624,
+            "y": 1033.0426025390625
+          },
+          "text": "2.5"
+        },
+        {
+          "clipped": false,
+          "line": "2",
+          "rect": {
+            "height": 19.38802146911621,
+            "width": 19.40972328186035,
+            "x": 552.7604370117188,
+            "y": 1033.0426025390625
+          },
+          "text": "2.3"
+        },
+        {
+          "clipped": false,
+          "line": "3",
+          "rect": {
+            "height": 19.38802146911621,
+            "width": 20.039064407348633,
+            "x": 752.1571655273438,
+            "y": 1033.0426025390625
+          },
+          "text": "2.4"
+        },
+        {
+          "clipped": false,
+          "line": "4",
+          "rect": {
+            "height": 12.144097328186035,
+            "width": 18.26388931274414,
+            "x": 521.8229370117188,
+            "y": 924.8134155273438
+          },
+          "text": "3600"
+        }
+      ],
+      "nextCallout": {
+        "clipped": false,
+        "rect": {
+          "height": 131.2152862548828,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 1083.1728515625
+        },
+        "text": "CAUTIONThe Jackery app can connect to only one power station via Bluetooth at a time. Returning  to the device list automatically disconnects Bluetooth. Tap the power station in the list  again to reconnect automatically."
+      },
+      "pageOverflow": 0,
+      "plusCount": 1,
+      "steps": [
+        {
+          "text": "2.3",
+          "x": 552.7604370117188,
+          "y": 1033.0426025390625
+        },
+        {
+          "text": "2.4",
+          "x": 752.1571655273438,
+          "y": 1033.0426025390625
+        },
+        {
+          "text": "2.5",
+          "x": 952.6910400390624,
+          "y": 1033.0426025390625
+        }
+      ],
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 1280
+    },
+    {
+      "lang": "en",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Download the App and log in"
+        },
+        {
+          "marker": "none",
+          "text": "2. Add device"
+        },
+        {
+          "marker": "none",
+          "text": "3. Unbind the device"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notes"
+        }
+      ],
+      "art": {
+        "complete": true,
+        "naturalHeight": 163,
+        "naturalWidth": 260,
+        "src": "assets/app-connect-native-p23.svg"
+      },
+      "canvas": {
+        "clientWidth": 679,
+        "figureWidth": 679,
+        "minWidth": "0px",
+        "overflow": "visible",
+        "rect": {
+          "height": 427.33941650390625,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -171.4322967529297
+        },
+        "scrollWidth": 679
+      },
+      "downloadColumns": 2,
+      "headingCount": 28,
+      "labels": [
+        {
+          "clipped": false,
+          "line": "0",
+          "rect": {
+            "height": 23.42881965637207,
+            "width": 315.3602600097656,
+            "x": 18.61545181274414,
+            "y": 229.33595275878903
+          },
+          "text": "The above screenshots are for reference only."
+        },
+        {
+          "clipped": false,
+          "line": "1",
+          "rect": {
+            "height": 24.05381965637207,
+            "width": 24.236112594604492,
+            "x": 594.6484375,
+            "y": 213.55470275878903
+          },
+          "text": "2.5"
+        },
+        {
+          "clipped": false,
+          "line": "2",
+          "rect": {
+            "height": 24.05381965637207,
+            "width": 24.079862594604492,
+            "x": 98.42448425292967,
+            "y": 213.55470275878903
+          },
+          "text": "2.3"
+        },
+        {
+          "clipped": false,
+          "line": "3",
+          "rect": {
+            "height": 24.05381965637207,
+            "width": 24.86545181274414,
+            "x": 345.8290100097656,
+            "y": 213.55470275878903
+          },
+          "text": "2.4"
+        },
+        {
+          "clipped": false,
+          "line": "4",
+          "rect": {
+            "height": 15.065104484558104,
+            "width": 22.66059112548828,
+            "x": 60.039066314697266,
+            "y": 79.27517700195312
+          },
+          "text": "3600"
+        }
+      ],
+      "nextCallout": {
+        "clipped": false,
+        "rect": {
+          "height": 103.03820037841795,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 271.9053955078125
+        },
+        "text": "CAUTIONThe Jackery app can connect to only one power station via Bluetooth at a time. Returning  to the device list automatically disconnects Bluetooth. Tap the power station in the list  again to reconnect automatically."
+      },
+      "pageOverflow": 0,
+      "plusCount": 1,
+      "steps": [
+        {
+          "text": "2.3",
+          "x": 98.42448425292967,
+          "y": 213.55470275878903
+        },
+        {
+          "text": "2.4",
+          "x": 345.8290100097656,
+          "y": 213.55470275878903
+        },
+        {
+          "text": "2.5",
+          "x": 594.6484375,
+          "y": 213.55470275878903
+        }
+      ],
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 711
+    },
+    {
+      "lang": "en",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Download the App and log in"
+        },
+        {
+          "marker": "none",
+          "text": "2. Add device"
+        },
+        {
+          "marker": "none",
+          "text": "3. Unbind the device"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notes"
+        }
+      ],
+      "art": {
+        "complete": true,
+        "naturalHeight": 163,
+        "naturalWidth": 260,
+        "src": "assets/app-connect-native-p23.svg"
+      },
+      "canvas": {
+        "clientWidth": 358,
+        "figureWidth": 358,
+        "minWidth": "0px",
+        "overflow": "visible",
+        "rect": {
+          "height": 225.2777862548828,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -171.38890075683594
+        },
+        "scrollWidth": 358
+      },
+      "downloadColumns": 2,
+      "headingCount": 28,
+      "labels": [
+        {
+          "clipped": false,
+          "line": "0",
+          "rect": {
+            "height": 12.34809112548828,
+            "width": 166.24566650390625,
+            "x": 17.37413215637207,
+            "y": 39.878475189208984
+          },
+          "text": "The above screenshots are for reference only."
+        },
+        {
+          "clipped": false,
+          "line": "1",
+          "rect": {
+            "height": 12.67795181274414,
+            "width": 12.77777862548828,
+            "x": 321.037353515625,
+            "y": 31.562501907348633
+          },
+          "text": "2.5"
+        },
+        {
+          "clipped": false,
+          "line": "2",
+          "rect": {
+            "height": 12.67795181274414,
+            "width": 12.695313453674316,
+            "x": 59.448787689208984,
+            "y": 31.562501907348633
+          },
+          "text": "2.3"
+        },
+        {
+          "clipped": false,
+          "line": "3",
+          "rect": {
+            "height": 12.67795181274414,
+            "width": 13.10763931274414,
+            "x": 189.8741455078125,
+            "y": 31.562501907348633
+          },
+          "text": "2.4"
+        },
+        {
+          "clipped": false,
+          "line": "4",
+          "rect": {
+            "height": 7.942708492279053,
+            "width": 11.94444465637207,
+            "x": 39.214412689208984,
+            "y": -39.22743225097656
+          },
+          "text": "3600"
+        }
+      ],
+      "nextCallout": {
+        "clipped": false,
+        "rect": {
+          "height": 202.18751525878903,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 69.88715362548828
+        },
+        "text": "CAUTIONThe Jackery app can connect to only one power station via Bluetooth at a time. Returning  to the device list automatically disconnects Bluetooth. Tap the power station in the list  again to reconnect automatically."
+      },
+      "pageOverflow": 0,
+      "plusCount": 1,
+      "steps": [
+        {
+          "text": "2.3",
+          "x": 59.448787689208984,
+          "y": 31.562501907348633
+        },
+        {
+          "text": "2.4",
+          "x": 189.8741455078125,
+          "y": 31.562501907348633
+        },
+        {
+          "text": "2.5",
+          "x": 321.037353515625,
+          "y": 31.562501907348633
+        }
+      ],
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 390
+    },
+    {
+      "lang": "fr",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Télécharger l’application et se connecter"
+        },
+        {
+          "marker": "none",
+          "text": "2. Ajouter un appareil"
+        },
+        {
+          "marker": "none",
+          "text": "3. Dissocier l’appareil"
+        },
+        {
+          "marker": "none",
+          "text": "4. Remarques"
+        }
+      ],
+      "art": {
+        "complete": true,
+        "naturalHeight": 154,
+        "naturalWidth": 243,
+        "src": "assets/app-connect-native-p43.svg"
+      },
+      "canvas": {
+        "clientWidth": 512,
+        "figureWidth": 512,
+        "minWidth": "0px",
+        "overflow": "visible",
+        "rect": {
+          "height": 324.83074951171875,
+          "width": 512.3828125,
+          "x": 503.8020935058594,
+          "y": -804.0147705078125
+        },
+        "scrollWidth": 512
+      },
+      "downloadColumns": 2,
+      "headingCount": 28,
+      "labels": [
+        {
+          "clipped": false,
+          "line": "0",
+          "rect": {
+            "height": 18.88020896911621,
+            "width": 254.1666717529297,
+            "x": 507.4392700195313,
+            "y": -501.9835205078125
+          },
+          "text": "The above screenshots are for reference only."
+        },
+        {
+          "clipped": false,
+          "line": "1",
+          "rect": {
+            "height": 19.38802146911621,
+            "width": 19.53559112548828,
+            "x": 941.9097900390624,
+            "y": -515.31689453125
+          },
+          "text": "2.5"
+        },
+        {
+          "clipped": false,
+          "line": "2",
+          "rect": {
+            "height": 19.38802146911621,
+            "width": 19.40972328186035,
+            "x": 561.5147705078125,
+            "y": -515.31689453125
+          },
+          "text": "2.3"
+        },
+        {
+          "clipped": false,
+          "line": "3",
+          "rect": {
+            "height": 19.38802146911621,
+            "width": 20.039064407348633,
+            "x": 751.2630615234375,
+            "y": -515.31689453125
+          },
+          "text": "2.4"
+        }
+      ],
+      "nextCallout": {
+        "clipped": false,
+        "rect": {
+          "height": 156.4887237548828,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": -463.185791015625
+        },
+        "text": "ATTENTIONL’application Jackery ne peut se connecter qu’à une seule station d’énergie à la fois via  Bluetooth. Revenir à la liste des appareils déconnecte automatiquement le Bluetooth.  Touchez à nouveau la station d’énergie dans la liste pour vous reconnecter automatiquement."
+      },
+      "pageOverflow": 0,
+      "plusCount": 1,
+      "steps": [
+        {
+          "text": "2.3",
+          "x": 561.5147705078125,
+          "y": -515.31689453125
+        },
+        {
+          "text": "2.4",
+          "x": 751.2630615234375,
+          "y": -515.31689453125
+        },
+        {
+          "text": "2.5",
+          "x": 941.9097900390624,
+          "y": -515.31689453125
+        }
+      ],
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 1280
+    },
+    {
+      "lang": "fr",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Télécharger l’application et se connecter"
+        },
+        {
+          "marker": "none",
+          "text": "2. Ajouter un appareil"
+        },
+        {
+          "marker": "none",
+          "text": "3. Dissocier l’appareil"
+        },
+        {
+          "marker": "none",
+          "text": "4. Remarques"
+        }
+      ],
+      "art": {
+        "complete": true,
+        "naturalHeight": 154,
+        "naturalWidth": 243,
+        "src": "assets/app-connect-native-p43.svg"
+      },
+      "canvas": {
+        "clientWidth": 679,
+        "figureWidth": 679,
+        "minWidth": "0px",
+        "overflow": "visible",
+        "rect": {
+          "height": 430.529541015625,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -786.56689453125
+        },
+        "scrollWidth": 679
+      },
+      "downloadColumns": 2,
+      "headingCount": 28,
+      "labels": [
+        {
+          "clipped": false,
+          "line": "0",
+          "rect": {
+            "height": 25.026042938232425,
+            "width": 336.8750305175781,
+            "x": 20.820314407348633,
+            "y": -386.2543640136719
+          },
+          "text": "The above screenshots are for reference only."
+        },
+        {
+          "clipped": false,
+          "line": "1",
+          "rect": {
+            "height": 25.694446563720703,
+            "width": 25.889759063720703,
+            "x": 596.6710205078125,
+            "y": -403.927978515625
+          },
+          "text": "2.5"
+        },
+        {
+          "clipped": false,
+          "line": "2",
+          "rect": {
+            "height": 25.694446563720703,
+            "width": 25.72482681274414,
+            "x": 92.49132537841795,
+            "y": -403.927978515625
+          },
+          "text": "2.3"
+        },
+        {
+          "clipped": false,
+          "line": "3",
+          "rect": {
+            "height": 25.694446563720703,
+            "width": 26.562501907348633,
+            "x": 343.9844055175781,
+            "y": -403.927978515625
+          },
+          "text": "2.4"
+        }
+      ],
+      "nextCallout": {
+        "clipped": false,
+        "rect": {
+          "height": 127.34375762939452,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -340.0390930175781
+        },
+        "text": "ATTENTIONL’application Jackery ne peut se connecter qu’à une seule station d’énergie à la fois via  Bluetooth. Revenir à la liste des appareils déconnecte automatiquement le Bluetooth.  Touchez à nouveau la station d’énergie dans la liste pour vous reconnecter automatiquement."
+      },
+      "pageOverflow": 0,
+      "plusCount": 1,
+      "steps": [
+        {
+          "text": "2.3",
+          "x": 92.49132537841795,
+          "y": -403.927978515625
+        },
+        {
+          "text": "2.4",
+          "x": 343.9844055175781,
+          "y": -403.927978515625
+        },
+        {
+          "text": "2.5",
+          "x": 596.6710205078125,
+          "y": -403.927978515625
+        }
+      ],
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 711
+    },
+    {
+      "lang": "fr",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Télécharger l’application et se connecter"
+        },
+        {
+          "marker": "none",
+          "text": "2. Ajouter un appareil"
+        },
+        {
+          "marker": "none",
+          "text": "3. Dissocier l’appareil"
+        },
+        {
+          "marker": "none",
+          "text": "4. Remarques"
+        }
+      ],
+      "art": {
+        "complete": true,
+        "naturalHeight": 154,
+        "naturalWidth": 243,
+        "src": "assets/app-connect-native-p43.svg"
+      },
+      "canvas": {
+        "clientWidth": 358,
+        "figureWidth": 358,
+        "minWidth": "0px",
+        "overflow": "visible",
+        "rect": {
+          "height": 226.9574737548828,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 2386.3671875
+        },
+        "scrollWidth": 358
+      },
+      "downloadColumns": 2,
+      "headingCount": 28,
+      "labels": [
+        {
+          "clipped": false,
+          "line": "0",
+          "rect": {
+            "height": 13.190104484558104,
+            "width": 177.58680725097656,
+            "x": 18.541667938232425,
+            "y": 2597.39599609375
+          },
+          "text": "The above screenshots are for reference only."
+        },
+        {
+          "clipped": false,
+          "line": "1",
+          "rect": {
+            "height": 13.54600715637207,
+            "width": 13.645833969116213,
+            "x": 322.10504150390625,
+            "y": 2588.077392578125
+          },
+          "text": "2.5"
+        },
+        {
+          "clipped": false,
+          "line": "2",
+          "rect": {
+            "height": 13.54600715637207,
+            "width": 13.55902862548828,
+            "x": 56.3194465637207,
+            "y": 2588.077392578125
+          },
+          "text": "2.3"
+        },
+        {
+          "clipped": false,
+          "line": "3",
+          "rect": {
+            "height": 13.54600715637207,
+            "width": 14.001736640930176,
+            "x": 188.8975830078125,
+            "y": 2588.077392578125
+          },
+          "text": "2.4"
+        }
+      ],
+      "nextCallout": {
+        "clipped": false,
+        "rect": {
+          "height": 250.7986297607422,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 2629.322998046875
+        },
+        "text": "ATTENTIONL’application Jackery ne peut se connecter qu’à une seule station d’énergie à la fois via  Bluetooth. Revenir à la liste des appareils déconnecte automatiquement le Bluetooth.  Touchez à nouveau la station d’énergie dans la liste pour vous reconnecter automatiquement."
+      },
+      "pageOverflow": 0,
+      "plusCount": 1,
+      "steps": [
+        {
+          "text": "2.3",
+          "x": 56.3194465637207,
+          "y": 2588.077392578125
+        },
+        {
+          "text": "2.4",
+          "x": 188.8975830078125,
+          "y": 2588.077392578125
+        },
+        {
+          "text": "2.5",
+          "x": 322.10504150390625,
+          "y": 2588.077392578125
+        }
+      ],
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 390
+    },
+    {
+      "lang": "es",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Descargar la aplicación e iniciar sesión"
+        },
+        {
+          "marker": "none",
+          "text": "2. Añadir un dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "3. Desvincular el dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notas"
+        }
+      ],
+      "art": {
+        "complete": true,
+        "naturalHeight": 143,
+        "naturalWidth": 223,
+        "src": "assets/app-connect-native-p63.svg"
+      },
+      "canvas": {
+        "clientWidth": 469,
+        "figureWidth": 469,
+        "minWidth": "0px",
+        "overflow": "visible",
+        "rect": {
+          "height": 300.50347900390625,
+          "width": 468.9800720214844,
+          "x": 525.5034790039062,
+          "y": -779.8177490234375
+        },
+        "scrollWidth": 469
+      },
+      "downloadColumns": 2,
+      "headingCount": 28,
+      "labels": [
+        {
+          "clipped": false,
+          "line": "0",
+          "rect": {
+            "height": 18.88020896911621,
+            "width": 342.4305725097656,
+            "x": 525.7378540039062,
+            "y": -499.435791015625
+          },
+          "text": "Las capturas de pantalla anteriores sirven solo de referencia."
+        },
+        {
+          "clipped": false,
+          "line": "1",
+          "rect": {
+            "height": 19.38802146911621,
+            "width": 19.53559112548828,
+            "x": 926.60595703125,
+            "y": -513.8975830078125
+          },
+          "text": "2.5"
+        },
+        {
+          "clipped": false,
+          "line": "2",
+          "rect": {
+            "height": 19.38802146911621,
+            "width": 19.40538215637207,
+            "x": 579.34033203125,
+            "y": -513.8975830078125
+          },
+          "text": "2.3"
+        },
+        {
+          "clipped": false,
+          "line": "3",
+          "rect": {
+            "height": 19.38802146911621,
+            "width": 20.039064407348633,
+            "x": 750.3602905273438,
+            "y": -513.8975830078125
+          },
+          "text": "2.4"
+        }
+      ],
+      "nextCallout": {
+        "clipped": false,
+        "rect": {
+          "height": 156.4887237548828,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": -463.3160095214844
+        },
+        "text": "PRECAUCIÓNLa aplicación Jackery solo puede conectarse a una estación de energía a la vez mediante  Bluetooth. Regresar a la lista de dispositivos desconecta automáticamente Bluetooth.  Toque la estación de energía en la lista nuevamente para reconectarse automáticamente."
+      },
+      "pageOverflow": 0,
+      "plusCount": 1,
+      "steps": [
+        {
+          "text": "2.3",
+          "x": 579.34033203125,
+          "y": -513.8975830078125
+        },
+        {
+          "text": "2.4",
+          "x": 750.3602905273438,
+          "y": -513.8975830078125
+        },
+        {
+          "text": "2.5",
+          "x": 926.60595703125,
+          "y": -513.8975830078125
+        }
+      ],
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 1280
+    },
+    {
+      "lang": "es",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Descargar la aplicación e iniciar sesión"
+        },
+        {
+          "marker": "none",
+          "text": "2. Añadir un dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "3. Desvincular el dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notas"
+        }
+      ],
+      "art": {
+        "complete": true,
+        "naturalHeight": 143,
+        "naturalWidth": 223,
+        "src": "assets/app-connect-native-p63.svg"
+      },
+      "canvas": {
+        "clientWidth": 679,
+        "figureWidth": 679,
+        "minWidth": "0px",
+        "overflow": "visible",
+        "rect": {
+          "height": 435.1475830078125,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -791.3585205078125
+        },
+        "scrollWidth": 679
+      },
+      "downloadColumns": 2,
+      "headingCount": 28,
+      "labels": [
+        {
+          "clipped": false,
+          "line": "0",
+          "rect": {
+            "height": 27.33941078186035,
+            "width": 495.8637390136719,
+            "x": 16.336807250976562,
+            "y": -385.3428955078125
+          },
+          "text": "Las capturas de pantalla anteriores sirven solo de referencia."
+        },
+        {
+          "clipped": false,
+          "line": "1",
+          "rect": {
+            "height": 28.072917938232425,
+            "width": 28.28559112548828,
+            "x": 596.8229370117188,
+            "y": -406.2890930175781
+          },
+          "text": "2.5"
+        },
+        {
+          "clipped": false,
+          "line": "2",
+          "rect": {
+            "height": 28.072917938232425,
+            "width": 28.103300094604492,
+            "x": 93.95833587646484,
+            "y": -406.2890930175781
+          },
+          "text": "2.3"
+        },
+        {
+          "clipped": false,
+          "line": "3",
+          "rect": {
+            "height": 28.072917938232425,
+            "width": 29.01909828186035,
+            "x": 341.6102600097656,
+            "y": -406.2890930175781
+          },
+          "text": "2.4"
+        }
+      ],
+      "nextCallout": {
+        "clipped": false,
+        "rect": {
+          "height": 127.34375762939452,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -340.2126770019531
+        },
+        "text": "PRECAUCIÓNLa aplicación Jackery solo puede conectarse a una estación de energía a la vez mediante  Bluetooth. Regresar a la lista de dispositivos desconecta automáticamente Bluetooth.  Toque la estación de energía en la lista nuevamente para reconectarse automáticamente."
+      },
+      "pageOverflow": 0,
+      "plusCount": 1,
+      "steps": [
+        {
+          "text": "2.3",
+          "x": 93.95833587646484,
+          "y": -406.2890930175781
+        },
+        {
+          "text": "2.4",
+          "x": 341.6102600097656,
+          "y": -406.2890930175781
+        },
+        {
+          "text": "2.5",
+          "x": 596.8229370117188,
+          "y": -406.2890930175781
+        }
+      ],
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 711
+    },
+    {
+      "lang": "es",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Descargar la aplicación e iniciar sesión"
+        },
+        {
+          "marker": "none",
+          "text": "2. Añadir un dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "3. Desvincular el dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notas"
+        }
+      ],
+      "art": {
+        "complete": true,
+        "naturalHeight": 143,
+        "naturalWidth": 223,
+        "src": "assets/app-connect-native-p63.svg"
+      },
+      "canvas": {
+        "clientWidth": 358,
+        "figureWidth": 358,
+        "minWidth": "0px",
+        "overflow": "visible",
+        "rect": {
+          "height": 229.39236450195312,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 2419.370849609375
+        },
+        "scrollWidth": 358
+      },
+      "downloadColumns": 2,
+      "headingCount": 28,
+      "labels": [
+        {
+          "clipped": false,
+          "line": "0",
+          "rect": {
+            "height": 14.414063453674316,
+            "width": 261.40191650390625,
+            "x": 16.17621612548828,
+            "y": 2633.40283203125
+          },
+          "text": "Las capturas de pantalla anteriores sirven solo de referencia."
+        },
+        {
+          "clipped": false,
+          "line": "1",
+          "rect": {
+            "height": 14.800348281860352,
+            "width": 14.913195610046388,
+            "x": 322.1875305175781,
+            "y": 2622.361328125
+          },
+          "text": "2.5"
+        },
+        {
+          "clipped": false,
+          "line": "2",
+          "rect": {
+            "height": 14.800348281860352,
+            "width": 14.813368797302246,
+            "x": 57.092018127441406,
+            "y": 2622.361328125
+          },
+          "text": "2.3"
+        },
+        {
+          "clipped": false,
+          "line": "3",
+          "rect": {
+            "height": 14.800348281860352,
+            "width": 15.299479484558104,
+            "x": 187.6475830078125,
+            "y": 2622.361328125
+          },
+          "text": "2.4"
+        }
+      ],
+      "nextCallout": {
+        "clipped": false,
+        "rect": {
+          "height": 250.7986297607422,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 2664.761474609375
+        },
+        "text": "PRECAUCIÓNLa aplicación Jackery solo puede conectarse a una estación de energía a la vez mediante  Bluetooth. Regresar a la lista de dispositivos desconecta automáticamente Bluetooth.  Toque la estación de energía en la lista nuevamente para reconectarse automáticamente."
+      },
+      "pageOverflow": 0,
+      "plusCount": 1,
+      "steps": [
+        {
+          "text": "2.3",
+          "x": 57.092018127441406,
+          "y": 2622.361328125
+        },
+        {
+          "text": "2.4",
+          "x": 187.6475830078125,
+          "y": 2622.361328125
+        },
+        {
+          "text": "2.5",
+          "x": 322.1875305175781,
+          "y": 2622.361328125
+        }
+      ],
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 390
+    }
+  ],
+  "operator_acceptance": "pending combined review"
+}
