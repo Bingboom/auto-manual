@@ -2027,6 +2027,7 @@
       "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a"
     }
   ],
+  "publication_status": "operator-approved-git-only-release",
   "inputs": [
     {
       "path": "Jackery HomePower 3000 User Manual.pdf",
@@ -2035,8 +2036,8 @@
     },
     {
       "path": "README.md",
-      "size": 6933,
-      "sha256": "f112b35d7a69ea09eab1d0cb293c533c7f1ac28cb172a61bb545b4f53ed5de05"
+      "size": 7554,
+      "sha256": "91656b57c898c9a5090521cefa3acf1669f1fe3b2b879f5a0c6161a7606b3da0"
     },
     {
       "path": "assets/ac-charge.svg",
@@ -2374,14 +2375,19 @@
       "sha256": "46450ecc116fc8d95929e4637b8ddd116e38dddf3073a43c7e2e6227539e030a"
     },
     {
+      "path": "source/approval.json",
+      "size": 15848,
+      "sha256": "1e7c264dcb1150f4a8547044bcc2ebb4986dfe29f6c971963a3d8130f3fb93cc"
+    },
+    {
       "path": "source/asset_decisions.json",
       "size": 63479,
       "sha256": "79f5149e7a755e5d2b0522ed8d5c7cba85b3a6ad080e9885ff68c132935783b8"
     },
     {
       "path": "source/differences.md",
-      "size": 11201,
-      "sha256": "c56a9c94cd8bdc0207962c69708362fd7014c982b7dd24523a6205618bb4f7c4"
+      "size": 11519,
+      "sha256": "23f7dde326590338df8f153bd4a2876f8084b0684c5ae80cfefede1284781257"
     },
     {
       "path": "source/en/content.json",
@@ -2815,8 +2821,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 536154,
-      "sha256": "1329be719bdc6a9c0c97a2b06ed9382b8c558f96bb6428e5e67685380df2a124"
+      "size": 553843,
+      "sha256": "2b48ba823c0252c211f67504dc4282209b66d961f270f8ae594c4cae2aa0b4a5"
     },
     {
       "path": "web/en/manual_jhp3000d_us_en.md",
@@ -3155,8 +3161,8 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 553057,
-      "sha256": "69e5f5cd453958fee83df3f4a6721c2550f43a954441b6464c11937dff90e251"
+      "size": 570746,
+      "sha256": "8bfd614a0889100283f85aebba4d5344140ea2aa60f02d83e08efe90d966a0ab"
     },
     {
       "path": "web/es/manual_jhp3000d_us_es.md",
@@ -3495,8 +3501,8 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 554321,
-      "sha256": "50f320e8737606683b8553d48650b80711eaa02747d6cd172d54deac30bf102a"
+      "size": 572010,
+      "sha256": "153f73f77175b69d0b42772843f5f5ef75cfb92312e8d529413e848a6eb19236"
     },
     {
       "path": "web/fr/manual_jhp3000d_us_fr.md",

@@ -4,7 +4,11 @@ Operator instruction, 2026-10-13: 「把这个版面调整一下」 for the publ
 
 This edition fixes the Web layout of the [approved edition](../git-20261009-cebe4aab/README.md) (MA-278) against the same PDF: `Jackery HomePower 3000 User Manual.pdf`, SHA-256 `cebe4aab0a65d5fb2c36bb1867cdb6497e2a6db5251c46c61a33a530b862cf27`. English uses physical pages 4–21, French 22–39 and Spanish 40–57; p2 holds the three prefaces and p58 the shared back cover. The approved edition, its PDF and its release evidence remain immutable.
 
-**Status: candidate, pending operator review.** `source_manifest.json` has no `publication_status`, so `rebuild.py` marks the replayed IR as not publication-eligible. Publication needs the operator's acceptance of these exact inputs in `source/approval.json` and `publication_status: operator-approved-git-only-release`; any later input change invalidates that acceptance.
+**Status: `operator-approved-git-only-release`.** The operator reviewed candidate `ba07f25` with its chapter-by-chapter comparison page (print PDF beside the desktop and phone Web, all three languages). They asked for the shared style on the figure note boxes (「这个对话框太圆了 没有统一样式吗」), applied in `e5e8095`. After reviewing the updated page, they instructed 「上线提交发布」 on 2026-10-13.
+- `source/approval.json` binds the hash of every package input except `web/` and itself.
+- The rebuilt IR is publication-eligible.
+- The engineering PR is merged by operator review (AGENTS.md §8.6), not by an agent grant.
+- Any later input change invalidates the acceptance: `rebuild.py` then refuses until a new acceptance is recorded.
 
 ## What changed
 
@@ -23,6 +27,7 @@ The full table, with the PDF page and log action for each change, is `source/dif
   - one specification value per print line, and `®` at its print position;
   - print paragraphs in the warranty cards;
   - the p58 contact card with glyphs and QR code.
+- **Figure note boxes:** every grey note box in the figures has the shared panel radius, as printed (one corner radius for every box), instead of the one-line capsule.
 - **Artwork:**
   - the App steps 2.3–2.5 show this product's screens from print p21 (the approved edition reused another model's screens);
   - the p13 button faces are native (the approved table showed the p10 POWER panel as its POWER button, a `power.svg` name collision);
@@ -65,12 +70,14 @@ PYTHONDONTWRITEBYTECODE=1 python3 "$PKG/validate_replay.py" --evidence-dir tmp/j
 ```
 
 - **Unit tests:**
-  - identity, lineage and candidate status;
+  - identity, lineage and acceptance status;
   - cold replay equals the frozen `web/`;
   - the release admissions;
+  - the acceptance gate;
   - tamper rejection;
   - navigation equals the print TOC;
   - visible copy equals the approved copy plus the listed restorations;
+  - the shared tables and the warranty paragraphs;
   - artwork reuse;
   - derivation reproducibility.
 
@@ -79,7 +86,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 "$PKG/validate_replay.py" --evidence-dir tmp/j
 - **Browser gate:** runs at 1280×900, 768×1024 and 390×844. It checks overflow, broken images, labels outside their panel, label overlaps, inbox-card clipping and script errors.
 - **Cold replay:** compares every frozen file and rejects five classes of tampered input.
 
-After operator acceptance and the merge of the engineering PR, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction):
+After the operator merges the engineering PR, the Git-only transaction continues per [web publish pipeline §2.2](../../../../../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction):
 1. Seal `seal_frozen_web_evidence` per language at the merged `main` commit.
 2. Assemble from current Hello-Docs `main`.
 3. Open a `docs/publish/**`-only publish PR.

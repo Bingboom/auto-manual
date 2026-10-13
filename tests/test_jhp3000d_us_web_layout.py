@@ -174,7 +174,7 @@ class WebLayoutEditionTests(unittest.TestCase):
             self.assertFalse((PACKAGE / 'source/approval.json').exists())
             return
         approval = read(PACKAGE / 'source/approval.json')
-        self.assertTrue(approval['operator_quote'])
+        self.assertEqual(approval['operator_quote'], '上线提交发布')
         self.assertEqual(approval['target'], {key: manifest['target'][key]
                                               for key in ('model', 'region', 'technical_version')})
         self.assertEqual(approval['reviewed_inputs'], [

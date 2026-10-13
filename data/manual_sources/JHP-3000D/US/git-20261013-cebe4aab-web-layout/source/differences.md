@@ -4,6 +4,8 @@
 
 Operator request: 「把这个版面调整一下」 for the published JHP-3000D US manual (`JHP-3000D/US/en/md/manual_jhp3000d_us_en.html`). As for JHP-5000C, the scope is EN, FR and ES together (「英法西一起改」). Standing instructions: 「全部修，一次做完」 and 「封面和目录 不用体现在web版面上」. Layouts reuse the existing shared components (「线上有很多现成的 都是双栏的啊」「不需要你重新另写」).
 
+Review correction on 2026-10-13, on the first comparison page (POWER ON/OFF figure): 「这个对话框太圆了 没有统一样式吗」. The figure note boxes therefore take the shared panel radius instead of the one-line capsule. After reviewing the updated page, the operator instructed 「上线提交发布」.
+
 Wording rule: the visible copy stays the approved copy. The only text edits restore the PDF where the approved intake disagreed with it; they are listed one by one under [Copy restorations](#copy-restorations). Every other change is structure, weight, line breaks or artwork.
 
 Base: the approved edition `git-20261009-cebe4aab` (MA-278), same PDF (SHA-256 `cebe4aab…cf27`). It stays immutable. `derive_web_layout.py` regenerates this edition from it; each edit is logged in `source/<language>/web_layout.json` (`changes`, `copy_restorations`).
