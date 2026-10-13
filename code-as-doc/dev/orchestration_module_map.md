@@ -122,6 +122,13 @@ and asset CSVs, the review page counts and the line counts of the files
 JSON for `_static/system-data.js` to filter. `rtd_portal` only registers the
 page. See [system data page](rtd_manual_portal.md#system-data-page).
 
+[`tools/rtd/product_matrix.py`](../../tools/rtd/product_matrix.py) owns the
+read-only 产品矩阵 page context: it reads the publish manifest, the spec table
+of each model's published manual, the catalog names and navigation groups, the
+capability CSV and the curated `tools/rtd_portal_assets/product_matrix.json`.
+`rtd_portal` only registers the page. See
+[product matrix page](rtd_manual_portal.md#product-matrix-page).
+
 Internal frozen Web language projection lives in
 [`tools/web/language_bundle.py`](../../tools/web/language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.
