@@ -1,0 +1,664 @@
+{
+  "scope": "local US symbol and FCC correction; operator acceptance pending",
+  "zoom": "User 180% zoom preserved; actual CSS viewport widths measured",
+  "internalOverflowMethod": "element scrollWidth/clientWidth plus rendered visual review",
+  "checks": [
+    {
+      "language": "en",
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nWARNING",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nCAUTION",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nNOTE",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nTIP",
+          "weight": "700"
+        }
+      ],
+      "clippedText": [],
+      "fccColumns": "291.168px 291.172px",
+      "fccGray": "rgb(233, 231, 232)",
+      "fccListItems": 4,
+      "height": 1000,
+      "iconWidths": [
+        54.94791793823242,
+        54.94791793823242,
+        54.94791793823242,
+        54.94791793823242,
+        54.94791793823242,
+        54.94791793823242,
+        54.94791793823242,
+        54.94791793823242,
+        54.94791793823242,
+        54.94791793823242,
+        54.94791793823242
+      ],
+      "meaningWhite": "rgb(255, 255, 255)",
+      "missingChangedImages": [],
+      "overflow": 0,
+      "panelRowCounts": [
+        6,
+        5
+      ],
+      "panels": [
+        {
+          "height": 734.1927490234375,
+          "width": 320.76824951171875,
+          "x": 431.2283325195313,
+          "y": -316.7317810058594
+        },
+        {
+          "height": 734.1927490234375,
+          "width": 320.76824951171875,
+          "x": 767.9948120117188,
+          "y": -316.7317810058594
+        }
+      ],
+      "signalGray": "rgb(233, 231, 232)",
+      "signalRows": 4,
+      "symbolGray": "rgb(233, 231, 232)",
+      "triangle": "url(\"http://127.0.0.1:8941/US/en/assets/shared-warning-triangle-white.svg\")",
+      "width": 1280
+    },
+    {
+      "language": "en",
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nWARNING",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nCAUTION",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nNOTE",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nTIP",
+          "weight": "700"
+        }
+      ],
+      "clippedText": [],
+      "fccColumns": "314.757px 314.761px",
+      "fccGray": "rgb(233, 231, 232)",
+      "fccListItems": 4,
+      "height": 1000,
+      "iconWidths": [
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984
+      ],
+      "meaningWhite": "rgb(255, 255, 255)",
+      "missingChangedImages": [],
+      "overflow": 0,
+      "panelRowCounts": [
+        6,
+        5
+      ],
+      "panels": [
+        {
+          "height": 615.4600830078125,
+          "width": 332.756103515625,
+          "x": 15.99826431274414,
+          "y": -186.0373382568359
+        },
+        {
+          "height": 615.4600830078125,
+          "width": 332.76043701171875,
+          "x": 362.3524475097656,
+          "y": -186.0373382568359
+        }
+      ],
+      "signalGray": "rgb(233, 231, 232)",
+      "signalRows": 4,
+      "symbolGray": "rgb(233, 231, 232)",
+      "triangle": "url(\"http://127.0.0.1:8941/US/en/assets/shared-warning-triangle-white.svg\")",
+      "width": 711
+    },
+    {
+      "language": "en",
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nWARNING",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nCAUTION",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nNOTE",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nTIP",
+          "weight": "700"
+        }
+      ],
+      "clippedText": [],
+      "fccColumns": "326.007px",
+      "fccGray": "rgb(233, 231, 232)",
+      "fccListItems": 4,
+      "height": 1000,
+      "iconWidths": [
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242
+      ],
+      "meaningWhite": "rgb(255, 255, 255)",
+      "missingChangedImages": [],
+      "overflow": 0,
+      "panelRowCounts": [
+        6,
+        5
+      ],
+      "panels": [
+        {
+          "height": 491.6666870117187,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -682.9080200195312
+        },
+        {
+          "height": 606.40625,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -177.6432342529297
+        }
+      ],
+      "signalGray": "rgb(233, 231, 232)",
+      "signalRows": 4,
+      "symbolGray": "rgb(233, 231, 232)",
+      "triangle": "url(\"http://127.0.0.1:8941/US/en/assets/shared-warning-triangle-white.svg\")",
+      "width": 390
+    },
+    {
+      "language": "fr",
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nAVERTISSEMENT",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nATTENTION",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nREMARQUE",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nCONSEILS",
+          "weight": "700"
+        }
+      ],
+      "clippedText": [],
+      "fccColumns": "291.168px 291.172px",
+      "fccGray": "rgb(233, 231, 232)",
+      "fccListItems": 4,
+      "height": 1000,
+      "iconWidths": [
+        64.3185806274414,
+        64.3185806274414,
+        64.3185806274414,
+        64.3185806274414,
+        64.3185806274414,
+        64.3185806274414,
+        64.3185806274414,
+        64.3185806274414,
+        64.3185806274414,
+        64.3185806274414,
+        64.3185806274414
+      ],
+      "meaningWhite": "rgb(255, 255, 255)",
+      "missingChangedImages": [],
+      "overflow": 0,
+      "panelRowCounts": [
+        6,
+        5
+      ],
+      "panels": [
+        {
+          "height": 821.271728515625,
+          "width": 320.76824951171875,
+          "x": 431.2283325195313,
+          "y": -403.9062805175781
+        },
+        {
+          "height": 821.271728515625,
+          "width": 320.76824951171875,
+          "x": 767.9948120117188,
+          "y": -403.9062805175781
+        }
+      ],
+      "signalGray": "rgb(233, 231, 232)",
+      "signalRows": 4,
+      "symbolGray": "rgb(233, 231, 232)",
+      "triangle": "url(\"http://127.0.0.1:8941/US/fr/assets/shared-warning-triangle-white.svg\")",
+      "width": 1280
+    },
+    {
+      "language": "fr",
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nAVERTISSEMENT",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nATTENTION",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nREMARQUE",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nCONSEILS",
+          "weight": "700"
+        }
+      ],
+      "clippedText": [],
+      "fccColumns": "314.757px 314.761px",
+      "fccGray": "rgb(233, 231, 232)",
+      "fccListItems": 4,
+      "height": 1000,
+      "iconWidths": [
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984
+      ],
+      "meaningWhite": "rgb(255, 255, 255)",
+      "missingChangedImages": [],
+      "overflow": 0,
+      "panelRowCounts": [
+        6,
+        5
+      ],
+      "panels": [
+        {
+          "height": 615.4600830078125,
+          "width": 332.756103515625,
+          "x": 15.99826431274414,
+          "y": -185.82899475097656
+        },
+        {
+          "height": 615.4600830078125,
+          "width": 332.76043701171875,
+          "x": 362.3524475097656,
+          "y": -185.82899475097656
+        }
+      ],
+      "signalGray": "rgb(233, 231, 232)",
+      "signalRows": 4,
+      "symbolGray": "rgb(233, 231, 232)",
+      "triangle": "url(\"http://127.0.0.1:8941/US/fr/assets/shared-warning-triangle-white.svg\")",
+      "width": 711
+    },
+    {
+      "language": "fr",
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nAVERTISSEMENT",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nATTENTION",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nREMARQUE",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nCONSEILS",
+          "weight": "700"
+        }
+      ],
+      "clippedText": [],
+      "fccColumns": "326.007px",
+      "fccGray": "rgb(233, 231, 232)",
+      "fccListItems": 4,
+      "height": 1000,
+      "iconWidths": [
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242
+      ],
+      "meaningWhite": "rgb(255, 255, 255)",
+      "missingChangedImages": [],
+      "overflow": 0,
+      "panelRowCounts": [
+        6,
+        5
+      ],
+      "panels": [
+        {
+          "height": 491.6666870117187,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -683.029541015625
+        },
+        {
+          "height": 606.40625,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -177.7647705078125
+        }
+      ],
+      "signalGray": "rgb(233, 231, 232)",
+      "signalRows": 4,
+      "symbolGray": "rgb(233, 231, 232)",
+      "triangle": "url(\"http://127.0.0.1:8941/US/fr/assets/shared-warning-triangle-white.svg\")",
+      "width": 390
+    },
+    {
+      "language": "es",
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nADVERTENCIA",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nPRECAUCIÓN",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nNOTA",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nCONSEJOS",
+          "weight": "700"
+        }
+      ],
+      "clippedText": [],
+      "fccColumns": "291.168px 291.172px",
+      "fccGray": "rgb(233, 231, 232)",
+      "fccListItems": 4,
+      "height": 1000,
+      "iconWidths": [
+        60.36458587646485,
+        60.36458587646485,
+        60.36458587646485,
+        60.36458587646485,
+        60.36458587646485,
+        60.36458587646485,
+        60.36458587646485,
+        60.36458587646485,
+        60.36458587646485,
+        60.36458587646485,
+        60.36458587646485
+      ],
+      "meaningWhite": "rgb(255, 255, 255)",
+      "missingChangedImages": [],
+      "overflow": 0,
+      "panelRowCounts": [
+        6,
+        5
+      ],
+      "panels": [
+        {
+          "height": 809.4097900390625,
+          "width": 320.76824951171875,
+          "x": 431.2283325195313,
+          "y": -392.0008850097656
+        },
+        {
+          "height": 809.4097900390625,
+          "width": 320.76824951171875,
+          "x": 767.9948120117188,
+          "y": -392.0008850097656
+        }
+      ],
+      "signalGray": "rgb(233, 231, 232)",
+      "signalRows": 4,
+      "symbolGray": "rgb(233, 231, 232)",
+      "triangle": "url(\"http://127.0.0.1:8941/US/es/assets/shared-warning-triangle-white.svg\")",
+      "width": 1280
+    },
+    {
+      "language": "es",
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nADVERTENCIA",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nPRECAUCIÓN",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nNOTA",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nCONSEJOS",
+          "weight": "700"
+        }
+      ],
+      "clippedText": [],
+      "fccColumns": "314.757px 314.761px",
+      "fccGray": "rgb(233, 231, 232)",
+      "fccListItems": 4,
+      "height": 1000,
+      "iconWidths": [
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984,
+        55.034725189208984
+      ],
+      "meaningWhite": "rgb(255, 255, 255)",
+      "missingChangedImages": [],
+      "overflow": 0,
+      "panelRowCounts": [
+        6,
+        5
+      ],
+      "panels": [
+        {
+          "height": 633.8932495117188,
+          "width": 332.756103515625,
+          "x": 15.99826431274414,
+          "y": -204.4184112548828
+        },
+        {
+          "height": 633.8932495117188,
+          "width": 332.76043701171875,
+          "x": 362.3524475097656,
+          "y": -204.4184112548828
+        }
+      ],
+      "signalGray": "rgb(233, 231, 232)",
+      "signalRows": 4,
+      "symbolGray": "rgb(233, 231, 232)",
+      "triangle": "url(\"http://127.0.0.1:8941/US/es/assets/shared-warning-triangle-white.svg\")",
+      "width": 711
+    },
+    {
+      "language": "es",
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nADVERTENCIA",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nPRECAUCIÓN",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nNOTA",
+          "weight": "700"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "color": "rgb(255, 255, 255)",
+          "label": "⚠\nCONSEJOS",
+          "weight": "700"
+        }
+      ],
+      "clippedText": [],
+      "fccColumns": "326.007px",
+      "fccGray": "rgb(233, 231, 232)",
+      "fccListItems": 4,
+      "height": 1000,
+      "iconWidths": [
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242,
+        60.65104293823242
+      ],
+      "meaningWhite": "rgb(255, 255, 255)",
+      "missingChangedImages": [],
+      "overflow": 0,
+      "panelRowCounts": [
+        6,
+        5
+      ],
+      "panels": [
+        {
+          "height": 491.6666870117187,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -683.05126953125
+        },
+        {
+          "height": 606.40625,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -177.78646850585938
+        }
+      ],
+      "signalGray": "rgb(233, 231, 232)",
+      "signalRows": 4,
+      "symbolGray": "rgb(233, 231, 232)",
+      "triangle": "url(\"http://127.0.0.1:8941/US/es/assets/shared-warning-triangle-white.svg\")",
+      "width": 390
+    }
+  ]
+}

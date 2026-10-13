@@ -1,0 +1,1302 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "address": {
+        "clipped": false,
+        "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+      },
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Download the App and log in"
+        },
+        {
+          "marker": "none",
+          "text": "2. Add device"
+        },
+        {
+          "marker": "none",
+          "text": "3. Unbind the device"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notes"
+        }
+      ],
+      "card": {
+        "overflow": 0,
+        "rect": {
+          "height": 113.2638931274414,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 506.9791870117187
+        }
+      },
+      "footerSectionMatches": 1,
+      "headingCount": 28,
+      "images": [
+        {
+          "complete": true,
+          "naturalWidth": 18,
+          "rect": {
+            "height": 34.0234375,
+            "width": 33.645835876464844,
+            "x": 444.05816650390625,
+            "y": 567.23095703125
+          },
+          "src": "assets/shared-contact-phone.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 9,
+          "rect": {
+            "height": 16.796875,
+            "width": 24.40538215637207,
+            "x": 832.7301025390625,
+            "y": 563.8455200195312
+          },
+          "src": "assets/shared-contact-mail.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 11,
+          "rect": {
+            "height": 16.796875,
+            "width": 20.611980438232425,
+            "x": 832.7301025390625,
+            "y": 587.8428955078125
+          },
+          "src": "assets/shared-contact-web.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 30,
+          "rect": {
+            "height": 60.737850189208984,
+            "width": 60.737850189208984,
+            "x": 1022.3958740234376,
+            "y": 553.8759155273438
+          },
+          "src": "assets/contact-qr-native-p64.svg"
+        }
+      ],
+      "links": {
+        "clipped": false,
+        "email": "hello@jackery.com",
+        "rect": {
+          "height": 47.99479293823242,
+          "width": 180.03907775878906,
+          "x": 815.8984985351562,
+          "y": 560.2474365234375
+        },
+        "website": "www.jackery.com"
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "border": "0.833333px",
+        "direction": "row",
+        "overflow": 0,
+        "radius": "12px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 577.5390625,
+          "x": 431.2283325195313,
+          "y": 548.24658203125
+        }
+      },
+      "phone": {
+        "clipped": false,
+        "marker": "none",
+        "numberWeight": "700",
+        "rect": {
+          "height": 41.697052001953125,
+          "width": 294.787353515625,
+          "x": 444.05816650390625,
+          "y": 563.3941040039062
+        },
+        "text": "1-888-502-2236 (US)"
+      },
+      "qr": {
+        "background": "rgb(255, 255, 255)",
+        "border": "0.833333px",
+        "radius": "8.8px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 71.99652862548828,
+          "x": 1016.7665405273438,
+          "y": 548.24658203125
+        }
+      },
+      "regionWeight": "400",
+      "targets": [
+        "tel:+18885022236",
+        "mailto:hello@jackery.com",
+        "https://www.jackery.com"
+      ],
+      "title": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(52, 48, 49)",
+        "padding": "0px",
+        "text": "JACKERY INC."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 1280,
+      "lang": "en"
+    },
+    {
+      "address": {
+        "clipped": false,
+        "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+      },
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Download the App and log in"
+        },
+        {
+          "marker": "none",
+          "text": "2. Add device"
+        },
+        {
+          "marker": "none",
+          "text": "3. Unbind the device"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notes"
+        }
+      ],
+      "card": {
+        "overflow": 0,
+        "rect": {
+          "height": 112.29601287841795,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 534.513916015625
+        }
+      },
+      "footerSectionMatches": 1,
+      "headingCount": 28,
+      "images": [
+        {
+          "complete": true,
+          "naturalWidth": 18,
+          "rect": {
+            "height": 34.956600189208984,
+            "width": 34.5703125,
+            "x": 28.828126907348633,
+            "y": 593.3290405273438
+          },
+          "src": "assets/shared-contact-phone.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 9,
+          "rect": {
+            "height": 16.462675094604492,
+            "width": 23.91927146911621,
+            "x": 442.248291015625,
+            "y": 590.8203125
+          },
+          "src": "assets/shared-contact-mail.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 11,
+          "rect": {
+            "height": 16.462675094604492,
+            "width": 20.20399475097656,
+            "x": 442.248291015625,
+            "y": 614.34033203125
+          },
+          "src": "assets/shared-contact-web.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 30,
+          "rect": {
+            "height": 60.737850189208984,
+            "width": 60.737850189208984,
+            "x": 628.7456665039062,
+            "y": 580.4427490234375
+          },
+          "src": "assets/contact-qr-native-p64.svg"
+        }
+      ],
+      "links": {
+        "clipped": false,
+        "email": "hello@jackery.com",
+        "rect": {
+          "height": 47.03993225097656,
+          "width": 176.87066650390625,
+          "x": 425.4166870117187,
+          "y": 587.2916870117188
+        },
+        "website": "www.jackery.com"
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "border": "0.833333px",
+        "direction": "row",
+        "overflow": 0,
+        "radius": "12px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 599.1189575195312,
+          "x": 15.99826431274414,
+          "y": 574.8134155273438
+        }
+      },
+      "phone": {
+        "clipped": false,
+        "marker": "none",
+        "numberWeight": "700",
+        "rect": {
+          "height": 42.556427001953125,
+          "width": 302.717041015625,
+          "x": 28.828126907348633,
+          "y": 589.53125
+        },
+        "text": "1-888-502-2236 (US)"
+      },
+      "qr": {
+        "background": "rgb(255, 255, 255)",
+        "border": "0.833333px",
+        "radius": "8.8px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 71.99652862548828,
+          "x": 623.1163330078125,
+          "y": 574.8134155273438
+        }
+      },
+      "regionWeight": "400",
+      "targets": [
+        "tel:+18885022236",
+        "mailto:hello@jackery.com",
+        "https://www.jackery.com"
+      ],
+      "title": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(52, 48, 49)",
+        "padding": "0px",
+        "text": "JACKERY INC."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 711,
+      "lang": "en"
+    },
+    {
+      "address": {
+        "clipped": false,
+        "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+      },
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Download the App and log in"
+        },
+        {
+          "marker": "none",
+          "text": "2. Add device"
+        },
+        {
+          "marker": "none",
+          "text": "3. Unbind the device"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notes"
+        }
+      ],
+      "card": {
+        "overflow": 0,
+        "rect": {
+          "height": 142.36546325683594,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 704.5616455078125
+        }
+      },
+      "footerSectionMatches": 1,
+      "headingCount": 28,
+      "images": [
+        {
+          "complete": true,
+          "naturalWidth": 18,
+          "rect": {
+            "height": 22.99913215637207,
+            "width": 22.74305725097656,
+            "x": 26.42795181274414,
+            "y": 758.5938110351562
+          },
+          "src": "assets/shared-contact-phone.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 9,
+          "rect": {
+            "height": 14.696181297302246,
+            "width": 21.354167938232425,
+            "x": 26.42795181274414,
+            "y": 796.84033203125
+          },
+          "src": "assets/shared-contact-mail.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 11,
+          "rect": {
+            "height": 14.696181297302246,
+            "width": 18.033855438232425,
+            "x": 26.42795181274414,
+            "y": 817.8428955078125
+          },
+          "src": "assets/shared-contact-web.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 30,
+          "rect": {
+            "height": 60.737850189208984,
+            "width": 60.737850189208984,
+            "x": 307.6345520019531,
+            "y": 765.5252075195312
+          },
+          "src": "assets/contact-qr-native-p64.svg"
+        }
+      ],
+      "links": {
+        "clipped": false,
+        "email": "hello@jackery.com",
+        "rect": {
+          "height": 42.00521087646485,
+          "width": 143.5069580078125,
+          "x": 26.42795181274414,
+          "y": 793.6892700195312
+        },
+        "website": "www.jackery.com"
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "border": "0.833333px",
+        "direction": "column",
+        "overflow": 0,
+        "radius": "12px",
+        "rect": {
+          "height": 102.06597900390624,
+          "width": 278.0078125,
+          "x": 15.99826431274414,
+          "y": 744.8611450195312
+        }
+      },
+      "phone": {
+        "clipped": false,
+        "marker": "none",
+        "numberWeight": "700",
+        "rect": {
+          "height": 27.999134063720703,
+          "width": 200.8072967529297,
+          "x": 26.42795181274414,
+          "y": 756.0938110351562
+        },
+        "text": "1-888-502-2236 (US)"
+      },
+      "qr": {
+        "background": "rgb(255, 255, 255)",
+        "border": "0.833333px",
+        "radius": "8.8px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 71.99652862548828,
+          "x": 302.0052185058594,
+          "y": 759.8958740234375
+        }
+      },
+      "regionWeight": "400",
+      "targets": [
+        "tel:+18885022236",
+        "mailto:hello@jackery.com",
+        "https://www.jackery.com"
+      ],
+      "title": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(52, 48, 49)",
+        "padding": "0px",
+        "text": "JACKERY INC."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 390,
+      "lang": "en"
+    },
+    {
+      "address": {
+        "clipped": false,
+        "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+      },
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Télécharger l’application et se connecter"
+        },
+        {
+          "marker": "none",
+          "text": "2. Ajouter un appareil"
+        },
+        {
+          "marker": "none",
+          "text": "3. Dissocier l’appareil"
+        },
+        {
+          "marker": "none",
+          "text": "4. Remarques"
+        }
+      ],
+      "card": {
+        "overflow": 0,
+        "rect": {
+          "height": 113.2638931274414,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 17755.3359375
+        }
+      },
+      "footerSectionMatches": 1,
+      "headingCount": 28,
+      "images": [
+        {
+          "complete": true,
+          "naturalWidth": 18,
+          "rect": {
+            "height": 34.0234375,
+            "width": 33.645835876464844,
+            "x": 444.05816650390625,
+            "y": 17815.5859375
+          },
+          "src": "assets/shared-contact-phone.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 9,
+          "rect": {
+            "height": 16.796875,
+            "width": 24.40538215637207,
+            "x": 832.7301025390625,
+            "y": 17812.201171875
+          },
+          "src": "assets/shared-contact-mail.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 11,
+          "rect": {
+            "height": 16.796875,
+            "width": 20.611980438232425,
+            "x": 832.7301025390625,
+            "y": 17836.19921875
+          },
+          "src": "assets/shared-contact-web.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 30,
+          "rect": {
+            "height": 60.737850189208984,
+            "width": 60.737850189208984,
+            "x": 1022.3958740234376,
+            "y": 17802.232421875
+          },
+          "src": "assets/contact-qr-native-p64.svg"
+        }
+      ],
+      "links": {
+        "clipped": false,
+        "email": "hello@jackery.com",
+        "rect": {
+          "height": 47.99479293823242,
+          "width": 180.03907775878906,
+          "x": 815.8984985351562,
+          "y": 17808.603515625
+        },
+        "website": "www.jackery.com"
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "border": "0.833333px",
+        "direction": "row",
+        "overflow": 0,
+        "radius": "12px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 577.5390625,
+          "x": 431.2283325195313,
+          "y": 17796.6015625
+        }
+      },
+      "phone": {
+        "clipped": false,
+        "marker": "none",
+        "numberWeight": "700",
+        "rect": {
+          "height": 41.697052001953125,
+          "width": 294.787353515625,
+          "x": 444.05816650390625,
+          "y": 17811.75
+        },
+        "text": "1-888-502-2236 (US)"
+      },
+      "qr": {
+        "background": "rgb(255, 255, 255)",
+        "border": "0.833333px",
+        "radius": "8.8px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 71.99652862548828,
+          "x": 1016.7665405273438,
+          "y": 17796.6015625
+        }
+      },
+      "regionWeight": "400",
+      "targets": [
+        "tel:+18885022236",
+        "mailto:hello@jackery.com",
+        "https://www.jackery.com"
+      ],
+      "title": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(52, 48, 49)",
+        "padding": "0px",
+        "text": "JACKERY INC."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 1280,
+      "lang": "fr"
+    },
+    {
+      "address": {
+        "clipped": false,
+        "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+      },
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Télécharger l’application et se connecter"
+        },
+        {
+          "marker": "none",
+          "text": "2. Ajouter un appareil"
+        },
+        {
+          "marker": "none",
+          "text": "3. Dissocier l’appareil"
+        },
+        {
+          "marker": "none",
+          "text": "4. Remarques"
+        }
+      ],
+      "card": {
+        "overflow": 0,
+        "rect": {
+          "height": 112.29601287841795,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 534.375
+        }
+      },
+      "footerSectionMatches": 1,
+      "headingCount": 28,
+      "images": [
+        {
+          "complete": true,
+          "naturalWidth": 18,
+          "rect": {
+            "height": 34.956600189208984,
+            "width": 34.5703125,
+            "x": 28.828126907348633,
+            "y": 593.1901245117188
+          },
+          "src": "assets/shared-contact-phone.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 9,
+          "rect": {
+            "height": 16.462675094604492,
+            "width": 23.91927146911621,
+            "x": 442.248291015625,
+            "y": 590.6814575195312
+          },
+          "src": "assets/shared-contact-mail.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 11,
+          "rect": {
+            "height": 16.462675094604492,
+            "width": 20.20399475097656,
+            "x": 442.248291015625,
+            "y": 614.201416015625
+          },
+          "src": "assets/shared-contact-web.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 30,
+          "rect": {
+            "height": 60.737850189208984,
+            "width": 60.737850189208984,
+            "x": 628.7456665039062,
+            "y": 580.3038330078125
+          },
+          "src": "assets/contact-qr-native-p64.svg"
+        }
+      ],
+      "links": {
+        "clipped": false,
+        "email": "hello@jackery.com",
+        "rect": {
+          "height": 47.03993225097656,
+          "width": 176.87066650390625,
+          "x": 425.4166870117187,
+          "y": 587.15283203125
+        },
+        "website": "www.jackery.com"
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "border": "0.833333px",
+        "direction": "row",
+        "overflow": 0,
+        "radius": "12px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 599.1189575195312,
+          "x": 15.99826431274414,
+          "y": 574.6744995117188
+        }
+      },
+      "phone": {
+        "clipped": false,
+        "marker": "none",
+        "numberWeight": "700",
+        "rect": {
+          "height": 42.556427001953125,
+          "width": 302.717041015625,
+          "x": 28.828126907348633,
+          "y": 589.3923950195312
+        },
+        "text": "1-888-502-2236 (US)"
+      },
+      "qr": {
+        "background": "rgb(255, 255, 255)",
+        "border": "0.833333px",
+        "radius": "8.8px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 71.99652862548828,
+          "x": 623.1163330078125,
+          "y": 574.6744995117188
+        }
+      },
+      "regionWeight": "400",
+      "targets": [
+        "tel:+18885022236",
+        "mailto:hello@jackery.com",
+        "https://www.jackery.com"
+      ],
+      "title": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(52, 48, 49)",
+        "padding": "0px",
+        "text": "JACKERY INC."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 711,
+      "lang": "fr"
+    },
+    {
+      "address": {
+        "clipped": false,
+        "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+      },
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Télécharger l’application et se connecter"
+        },
+        {
+          "marker": "none",
+          "text": "2. Ajouter un appareil"
+        },
+        {
+          "marker": "none",
+          "text": "3. Dissocier l’appareil"
+        },
+        {
+          "marker": "none",
+          "text": "4. Remarques"
+        }
+      ],
+      "card": {
+        "overflow": 0,
+        "rect": {
+          "height": 142.36546325683594,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 504.2752075195313
+        }
+      },
+      "footerSectionMatches": 1,
+      "headingCount": 28,
+      "images": [
+        {
+          "complete": true,
+          "naturalWidth": 18,
+          "rect": {
+            "height": 22.99913215637207,
+            "width": 22.74305725097656,
+            "x": 26.42795181274414,
+            "y": 558.3073120117188
+          },
+          "src": "assets/shared-contact-phone.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 9,
+          "rect": {
+            "height": 14.696181297302246,
+            "width": 21.354167938232425,
+            "x": 26.42795181274414,
+            "y": 596.5538330078125
+          },
+          "src": "assets/shared-contact-mail.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 11,
+          "rect": {
+            "height": 14.696181297302246,
+            "width": 18.033855438232425,
+            "x": 26.42795181274414,
+            "y": 617.5564575195312
+          },
+          "src": "assets/shared-contact-web.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 30,
+          "rect": {
+            "height": 60.737850189208984,
+            "width": 60.737850189208984,
+            "x": 307.6345520019531,
+            "y": 565.23876953125
+          },
+          "src": "assets/contact-qr-native-p64.svg"
+        }
+      ],
+      "links": {
+        "clipped": false,
+        "email": "hello@jackery.com",
+        "rect": {
+          "height": 42.00521087646485,
+          "width": 143.5069580078125,
+          "x": 26.42795181274414,
+          "y": 593.40283203125
+        },
+        "website": "www.jackery.com"
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "border": "0.833333px",
+        "direction": "column",
+        "overflow": 0,
+        "radius": "12px",
+        "rect": {
+          "height": 102.06597900390624,
+          "width": 278.0078125,
+          "x": 15.99826431274414,
+          "y": 544.57470703125
+        }
+      },
+      "phone": {
+        "clipped": false,
+        "marker": "none",
+        "numberWeight": "700",
+        "rect": {
+          "height": 27.999134063720703,
+          "width": 200.8072967529297,
+          "x": 26.42795181274414,
+          "y": 555.8073120117188
+        },
+        "text": "1-888-502-2236 (US)"
+      },
+      "qr": {
+        "background": "rgb(255, 255, 255)",
+        "border": "0.833333px",
+        "radius": "8.8px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 71.99652862548828,
+          "x": 302.0052185058594,
+          "y": 559.609375
+        }
+      },
+      "regionWeight": "400",
+      "targets": [
+        "tel:+18885022236",
+        "mailto:hello@jackery.com",
+        "https://www.jackery.com"
+      ],
+      "title": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(52, 48, 49)",
+        "padding": "0px",
+        "text": "JACKERY INC."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 390,
+      "lang": "fr"
+    },
+    {
+      "address": {
+        "clipped": false,
+        "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+      },
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Descargar la aplicación e iniciar sesión"
+        },
+        {
+          "marker": "none",
+          "text": "2. Añadir un dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "3. Desvincular el dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notas"
+        }
+      ],
+      "card": {
+        "overflow": 0,
+        "rect": {
+          "height": 113.2638931274414,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 24315.759765625
+        }
+      },
+      "footerSectionMatches": 1,
+      "headingCount": 28,
+      "images": [
+        {
+          "complete": true,
+          "naturalWidth": 18,
+          "rect": {
+            "height": 34.0234375,
+            "width": 33.645835876464844,
+            "x": 444.05816650390625,
+            "y": 24376.01171875
+          },
+          "src": "assets/shared-contact-phone.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 9,
+          "rect": {
+            "height": 16.796875,
+            "width": 24.40538215637207,
+            "x": 832.7301025390625,
+            "y": 24372.626953125
+          },
+          "src": "assets/shared-contact-mail.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 11,
+          "rect": {
+            "height": 16.796875,
+            "width": 20.611980438232425,
+            "x": 832.7301025390625,
+            "y": 24396.625
+          },
+          "src": "assets/shared-contact-web.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 30,
+          "rect": {
+            "height": 60.737850189208984,
+            "width": 60.737850189208984,
+            "x": 1022.3958740234376,
+            "y": 24362.658203125
+          },
+          "src": "assets/contact-qr-native-p64.svg"
+        }
+      ],
+      "links": {
+        "clipped": false,
+        "email": "hello@jackery.com",
+        "rect": {
+          "height": 47.99479293823242,
+          "width": 180.03907775878906,
+          "x": 815.8984985351562,
+          "y": 24369.029296875
+        },
+        "website": "www.jackery.com"
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "border": "0.833333px",
+        "direction": "row",
+        "overflow": 0,
+        "radius": "12px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 577.5390625,
+          "x": 431.2283325195313,
+          "y": 24357.02734375
+        }
+      },
+      "phone": {
+        "clipped": false,
+        "marker": "none",
+        "numberWeight": "700",
+        "rect": {
+          "height": 41.697052001953125,
+          "width": 294.787353515625,
+          "x": 444.05816650390625,
+          "y": 24372.17578125
+        },
+        "text": "1-888-502-2236 (US)"
+      },
+      "qr": {
+        "background": "rgb(255, 255, 255)",
+        "border": "0.833333px",
+        "radius": "8.8px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 71.99652862548828,
+          "x": 1016.7665405273438,
+          "y": 24357.02734375
+        }
+      },
+      "regionWeight": "400",
+      "targets": [
+        "tel:+18885022236",
+        "mailto:hello@jackery.com",
+        "https://www.jackery.com"
+      ],
+      "title": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(52, 48, 49)",
+        "padding": "0px",
+        "text": "JACKERY INC."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 1280,
+      "lang": "es"
+    },
+    {
+      "address": {
+        "clipped": false,
+        "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+      },
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Descargar la aplicación e iniciar sesión"
+        },
+        {
+          "marker": "none",
+          "text": "2. Añadir un dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "3. Desvincular el dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notas"
+        }
+      ],
+      "card": {
+        "overflow": 0,
+        "rect": {
+          "height": 112.29601287841795,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 534.4791870117188
+        }
+      },
+      "footerSectionMatches": 1,
+      "headingCount": 28,
+      "images": [
+        {
+          "complete": true,
+          "naturalWidth": 18,
+          "rect": {
+            "height": 34.956600189208984,
+            "width": 34.5703125,
+            "x": 28.828126907348633,
+            "y": 593.2943115234375
+          },
+          "src": "assets/shared-contact-phone.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 9,
+          "rect": {
+            "height": 16.462675094604492,
+            "width": 23.91927146911621,
+            "x": 442.248291015625,
+            "y": 590.78564453125
+          },
+          "src": "assets/shared-contact-mail.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 11,
+          "rect": {
+            "height": 16.462675094604492,
+            "width": 20.20399475097656,
+            "x": 442.248291015625,
+            "y": 614.3056030273438
+          },
+          "src": "assets/shared-contact-web.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 30,
+          "rect": {
+            "height": 60.737850189208984,
+            "width": 60.737850189208984,
+            "x": 628.7456665039062,
+            "y": 580.4080200195312
+          },
+          "src": "assets/contact-qr-native-p64.svg"
+        }
+      ],
+      "links": {
+        "clipped": false,
+        "email": "hello@jackery.com",
+        "rect": {
+          "height": 47.03993225097656,
+          "width": 176.87066650390625,
+          "x": 425.4166870117187,
+          "y": 587.2569580078125
+        },
+        "website": "www.jackery.com"
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "border": "0.833333px",
+        "direction": "row",
+        "overflow": 0,
+        "radius": "12px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 599.1189575195312,
+          "x": 15.99826431274414,
+          "y": 574.7786865234375
+        }
+      },
+      "phone": {
+        "clipped": false,
+        "marker": "none",
+        "numberWeight": "700",
+        "rect": {
+          "height": 42.556427001953125,
+          "width": 302.717041015625,
+          "x": 28.828126907348633,
+          "y": 589.49658203125
+        },
+        "text": "1-888-502-2236 (US)"
+      },
+      "qr": {
+        "background": "rgb(255, 255, 255)",
+        "border": "0.833333px",
+        "radius": "8.8px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 71.99652862548828,
+          "x": 623.1163330078125,
+          "y": 574.7786865234375
+        }
+      },
+      "regionWeight": "400",
+      "targets": [
+        "tel:+18885022236",
+        "mailto:hello@jackery.com",
+        "https://www.jackery.com"
+      ],
+      "title": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(52, 48, 49)",
+        "padding": "0px",
+        "text": "JACKERY INC."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 711,
+      "lang": "es"
+    },
+    {
+      "address": {
+        "clipped": false,
+        "text": "5310 Bunche Dr., Fremont, CA 94538-8301"
+      },
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Descargar la aplicación e iniciar sesión"
+        },
+        {
+          "marker": "none",
+          "text": "2. Añadir un dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "3. Desvincular el dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notas"
+        }
+      ],
+      "card": {
+        "overflow": 0,
+        "rect": {
+          "height": 142.36546325683594,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 6803.04736328125
+        }
+      },
+      "footerSectionMatches": 1,
+      "headingCount": 28,
+      "images": [
+        {
+          "complete": true,
+          "naturalWidth": 18,
+          "rect": {
+            "height": 22.99913215637207,
+            "width": 22.74305725097656,
+            "x": 26.42795181274414,
+            "y": 6857.0791015625
+          },
+          "src": "assets/shared-contact-phone.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 9,
+          "rect": {
+            "height": 14.696181297302246,
+            "width": 21.354167938232425,
+            "x": 26.42795181274414,
+            "y": 6895.32568359375
+          },
+          "src": "assets/shared-contact-mail.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 11,
+          "rect": {
+            "height": 14.696181297302246,
+            "width": 18.033855438232425,
+            "x": 26.42795181274414,
+            "y": 6916.32861328125
+          },
+          "src": "assets/shared-contact-web.svg"
+        },
+        {
+          "complete": true,
+          "naturalWidth": 30,
+          "rect": {
+            "height": 60.737850189208984,
+            "width": 60.737850189208984,
+            "x": 307.6345520019531,
+            "y": 6864.0107421875
+          },
+          "src": "assets/contact-qr-native-p64.svg"
+        }
+      ],
+      "links": {
+        "clipped": false,
+        "email": "hello@jackery.com",
+        "rect": {
+          "height": 42.00521087646485,
+          "width": 143.5069580078125,
+          "x": 26.42795181274414,
+          "y": 6892.1748046875
+        },
+        "website": "www.jackery.com"
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "border": "0.833333px",
+        "direction": "column",
+        "overflow": 0,
+        "radius": "12px",
+        "rect": {
+          "height": 102.06597900390624,
+          "width": 278.0078125,
+          "x": 15.99826431274414,
+          "y": 6843.3466796875
+        }
+      },
+      "phone": {
+        "clipped": false,
+        "marker": "none",
+        "numberWeight": "700",
+        "rect": {
+          "height": 27.999134063720703,
+          "width": 200.8072967529297,
+          "x": 26.42795181274414,
+          "y": 6854.5791015625
+        },
+        "text": "1-888-502-2236 (US)"
+      },
+      "qr": {
+        "background": "rgb(255, 255, 255)",
+        "border": "0.833333px",
+        "radius": "8.8px",
+        "rect": {
+          "height": 71.99652862548828,
+          "width": 71.99652862548828,
+          "x": 302.0052185058594,
+          "y": 6858.38134765625
+        }
+      },
+      "regionWeight": "400",
+      "targets": [
+        "tel:+18885022236",
+        "mailto:hello@jackery.com",
+        "https://www.jackery.com"
+      ],
+      "title": {
+        "bg": "rgba(0, 0, 0, 0)",
+        "color": "rgb(52, 48, 49)",
+        "padding": "0px",
+        "text": "JACKERY INC."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 390,
+      "lang": "es"
+    }
+  ],
+  "operator_acceptance": "pending combined review"
+}

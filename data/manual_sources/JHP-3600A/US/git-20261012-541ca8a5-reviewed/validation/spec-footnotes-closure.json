@@ -1,0 +1,80 @@
+{
+  "en": {
+    "source_text_lines_audited": 723,
+    "required_text_lines": 722,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "registered_terms_with_native_SUP": 2,
+    "registered_marks_moved_not_deleted": 2,
+    "semantic_native_footnote_items": 3,
+    "native_circled_table_references_unchanged": 4,
+    "native_trademark_line_verified_without_inserted_SUP": {
+      "source_line_id": "p20-b48-l0-0",
+      "selector": ".ht-spec-trademark",
+      "comparison": "Remove only the two separately traced SUP marks from this paragraph; retain every source word and the two original marks in their native positions.",
+      "separate_registered_mark_source_line_ids": [
+        "p20-b48-l1-0",
+        "p20-b48-l2-0"
+      ]
+    },
+    "source_change_only_one_notes_node": true,
+    "markdown_change_only_reviewed_node_and_targeted_css": true,
+    "other_body_text_lists_tables_headings_and_components_preserved": true,
+    "artwork_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  },
+  "fr": {
+    "source_text_lines_audited": 874,
+    "required_text_lines": 873,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "registered_terms_with_native_SUP": 2,
+    "registered_marks_moved_not_deleted": 2,
+    "semantic_native_footnote_items": 3,
+    "native_circled_table_references_unchanged": 4,
+    "native_trademark_line_verified_without_inserted_SUP": {
+      "source_line_id": "p40-b34-l0-0",
+      "selector": ".ht-spec-trademark",
+      "comparison": "Remove only the two separately traced SUP marks from this paragraph; retain every source word and the two original marks in their native positions.",
+      "separate_registered_mark_source_line_ids": [
+        "p40-b34-l1-0",
+        "p40-b34-l2-0"
+      ]
+    },
+    "source_change_only_one_notes_node": true,
+    "markdown_change_only_reviewed_node_and_targeted_css": true,
+    "other_body_text_lists_tables_headings_and_components_preserved": true,
+    "artwork_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  },
+  "es": {
+    "source_text_lines_audited": 863,
+    "required_text_lines": 862,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "registered_terms_with_native_SUP": 2,
+    "registered_marks_moved_not_deleted": 2,
+    "semantic_native_footnote_items": 3,
+    "native_circled_table_references_unchanged": 4,
+    "native_trademark_line_verified_without_inserted_SUP": {
+      "source_line_id": "p60-b2-l0-0",
+      "selector": ".ht-spec-trademark",
+      "comparison": "Remove only the two separately traced SUP marks from this paragraph; retain every source word and the two original marks in their native positions.",
+      "separate_registered_mark_source_line_ids": [
+        "p60-b2-l1-0",
+        "p60-b2-l2-0"
+      ]
+    },
+    "source_change_only_one_notes_node": true,
+    "markdown_change_only_reviewed_node_and_targeted_css": true,
+    "other_body_text_lists_tables_headings_and_components_preserved": true,
+    "artwork_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  }
+}

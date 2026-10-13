@@ -1,0 +1,47 @@
+{
+  "en": {
+    "source_text_lines_audited": 723,
+    "required_text_lines": 722,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "retained_live_labels": 2,
+    "semantic_caution_items": 2,
+    "source_change_only_one_figure_node": true,
+    "markdown_change_only_reviewed_node_and_targeted_css": true,
+    "other_body_text_and_lists_preserved": true,
+    "artwork_byte_identical": true,
+    "publication_eligible": false,
+    "fresh_rebuild_files_byte_identical": 110
+  },
+  "fr": {
+    "source_text_lines_audited": 874,
+    "required_text_lines": 873,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "retained_live_labels": 2,
+    "semantic_caution_items": 2,
+    "source_change_only_one_figure_node": true,
+    "markdown_change_only_reviewed_node_and_targeted_css": true,
+    "other_body_text_and_lists_preserved": true,
+    "artwork_byte_identical": true,
+    "publication_eligible": false,
+    "fresh_rebuild_files_byte_identical": 110
+  },
+  "es": {
+    "source_text_lines_audited": 863,
+    "required_text_lines": 862,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "retained_live_labels": 2,
+    "semantic_caution_items": 2,
+    "source_change_only_one_figure_node": true,
+    "markdown_change_only_reviewed_node_and_targeted_css": true,
+    "other_body_text_and_lists_preserved": true,
+    "artwork_byte_identical": true,
+    "publication_eligible": false,
+    "fresh_rebuild_files_byte_identical": 110
+  }
+}

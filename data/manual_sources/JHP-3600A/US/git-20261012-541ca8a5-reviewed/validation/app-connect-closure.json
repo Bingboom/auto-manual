@@ -1,0 +1,71 @@
+{
+  "en": {
+    "source_text_lines_audited": 723,
+    "required_text_lines": 722,
+    "missing_required_text_lines": 0,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_resources": 0,
+    "native_phone_count": 3,
+    "native_step_order": [
+      "2.3",
+      "2.4",
+      "2.5"
+    ],
+    "all_native_live_labels_and_positions_preserved": true,
+    "native_overprinted_ui_text_preserved": true,
+    "only_source_bound_neighbor_paths_removed": 1,
+    "all_other_original_svg_bytes_preserved": true,
+    "dense_canvas_removed": true,
+    "all36_phone_edges_verified_at_12x": true,
+    "source_and_markdown_change_only_one_app_connect_node": true,
+    "other_body_headings_lists_tables_and_previous_app_fixes_preserved": true,
+    "cold_replay_byte_identical_source_files": 119,
+    "publication_eligible": false
+  },
+  "fr": {
+    "source_text_lines_audited": 874,
+    "required_text_lines": 873,
+    "missing_required_text_lines": 0,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_resources": 0,
+    "native_phone_count": 3,
+    "native_step_order": [
+      "2.3",
+      "2.4",
+      "2.5"
+    ],
+    "all_native_live_labels_and_positions_preserved": true,
+    "native_overprinted_ui_text_preserved": true,
+    "only_source_bound_neighbor_paths_removed": 3,
+    "all_other_original_svg_bytes_preserved": true,
+    "dense_canvas_removed": true,
+    "all36_phone_edges_verified_at_12x": true,
+    "source_and_markdown_change_only_one_app_connect_node": true,
+    "other_body_headings_lists_tables_and_previous_app_fixes_preserved": true,
+    "cold_replay_byte_identical_source_files": 119,
+    "publication_eligible": false
+  },
+  "es": {
+    "source_text_lines_audited": 863,
+    "required_text_lines": 862,
+    "missing_required_text_lines": 0,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_resources": 0,
+    "native_phone_count": 3,
+    "native_step_order": [
+      "2.3",
+      "2.4",
+      "2.5"
+    ],
+    "all_native_live_labels_and_positions_preserved": true,
+    "native_overprinted_ui_text_preserved": true,
+    "only_source_bound_neighbor_paths_removed": 1,
+    "all_other_original_svg_bytes_preserved": true,
+    "dense_canvas_removed": true,
+    "all36_phone_edges_verified_at_12x": true,
+    "source_and_markdown_change_only_one_app_connect_node": true,
+    "other_body_headings_lists_tables_and_previous_app_fixes_preserved": true,
+    "cold_replay_byte_identical_source_files": 119,
+    "publication_eligible": false
+  }
+}

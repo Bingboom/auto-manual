@@ -1,0 +1,130 @@
+{
+  "scope": "US EN/FR/ES energy-saving explanation and following existing notes",
+  "native_gray_layout": {
+    "en": {
+      "physical_page": 11,
+      "asset": "energy-saving-p11.svg",
+      "art_crop": [
+        28.482220458984376,
+        283.4373291015625,
+        342.61720581054686,
+        468.35631103515624
+      ],
+      "gray_frame": [
+        40.40399169921875,
+        290.6539001464844,
+        330.6960144042969,
+        346.2698974609375
+      ],
+      "line_count": 6,
+      "font_size_pt": 6.0,
+      "baseline_spacing_pt": 7.998016357421875,
+      "native_line_height": 1.3330027262369792,
+      "left_padding_cqw": 2.679837856530159,
+      "native_text_bbox": [
+        48.82229995727539,
+        294.65277099609375,
+        326.70513916015625,
+        341.8428039550781
+      ],
+      "native_copy": [
+        "To prevent unnecessary battery consumption from forgetting to turn oﬀ the output, the product ",
+        "enables Energy Saving Mode by default. If no device is connected or the connected device's power ",
+        "consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product ",
+        "will automatically turn oﬀ the outputs.",
+        "To disable the energy saving mode, press and hold both the AC power button and main power ",
+        "button for more than 3 seconds. The product will not automatically turn oﬀ the AC or DC output."
+      ]
+    },
+    "fr": {
+      "physical_page": 31,
+      "asset": "energy-saving-p31.svg",
+      "art_crop": [
+        27.716717529296876,
+        298.91669921875,
+        341.85170288085936,
+        495.35768432617186
+      ],
+      "gray_frame": [
+        39.6387939453125,
+        305.13299560546875,
+        329.9297790527344,
+        376.510009765625
+      ],
+      "line_count": 9,
+      "font_size_pt": 6.0,
+      "baseline_spacing_pt": 7.5,
+      "native_line_height": 1.25,
+      "left_padding_cqw": 3.313864409325926,
+      "native_text_bbox": [
+        50.04880142211914,
+        305.97760009765625,
+        323.7490234375,
+        373.1776123046875
+      ],
+      "native_copy": [
+        "Pour éviter une consommation inutile de la batterie due à l’oubli de désactiver la sortie, le produit ",
+        "active par défaut le Mode d’Économie d’Énergie.  Lorsque la sortie CA ou USB est activée, l'icône du ",
+        "mode Économie d'énergie s'aﬃchera sur l'écran LCD. Si aucun appareil n’est connecté ou si la ",
+        "consommation de l’appareil connecté est inférieure à un certain seuil (Sortie CA de 25 W ou sortie ",
+        "USB de 2 W) pendant 12 heures, l’appareil désactivera automatiquement toutes les sorties. Veuillez ",
+        "conﬁgurer la durée du mode Économie d'énergie dans l'application Jackery.",
+        "Pour désactiver le mode d'économie d'énergie, appuyez et maintenez enfoncé à la fois le bouton ",
+        "d'alimentation CA et le bouton d'alimentation principal pendant plus de 3 secondes. Le produit ",
+        "n'éteindra pas automatiquement la sortie CA ou CC."
+      ]
+    },
+    "es": {
+      "physical_page": 51,
+      "asset": "energy-saving-p51.svg",
+      "art_crop": [
+        27.716717529296876,
+        297.2249267578125,
+        341.85170288085936,
+        497.66591186523436
+      ],
+      "gray_frame": [
+        39.63848876953125,
+        305.5296936035156,
+        329.93048095703125,
+        375.8627014160156
+      ],
+      "line_count": 9,
+      "font_size_pt": 6.0,
+      "baseline_spacing_pt": 7.0019989013671875,
+      "native_line_height": 1.1669998168945312,
+      "left_padding_cqw": 2.6797747103455367,
+      "native_text_bbox": [
+        48.05659866333008,
+        308.98388671875,
+        326.28497314453125,
+        372.19989013671875
+      ],
+      "native_copy": [
+        "Para evitar el consumo innecesario de batería al olvidar apagar la salida, el producto activa por ",
+        "defecto el Modo de Ahorro de Energía. Cuando la salida de CA o USB está encendida, el ícono del ",
+        "modo de Ahorro de Energía se mostrará en la pantalla LCD. Si no hay ningún dispositivo conectado o ",
+        "si el consumo del dispositivo conectado está por debajo de un cierto umbral (salida de CA de 25W o ",
+        "salida USB de 2W) durante 12 horas, el dispositivo apagará automáticamente todas las salidas. ",
+        "Conﬁgure la duración del modo de Ahorro de Energía en la aplicación Jackery. ",
+        "Para desactivar el modo de ahorro de energía, presione y mantenga presionados el botón de ",
+        "energía CA y el botón de encendido principal durante más de 3 segundos. El producto no apagará ",
+        "automáticamente la salida CA o CC."
+      ]
+    }
+  },
+  "change": "Restore native baseline spacing and left inset; center the live paragraph vertically. Keep note native text scale, line breaks and compact gap.",
+  "component": "Existing HB-SPECIAL-REFERENCE-FIGURE and HB-CALLOUT-STRIP",
+  "note_container": "Nonvisual inline-size container; shared callout still draws the original single panel.",
+  "preserved": [
+    "All base art bytes",
+    "Figure/frame dimensions and other labels",
+    "All wording",
+    "Source order and native language differences",
+    "Prior layout corrections"
+  ],
+  "browser_evidence": "validation/energy-saving-browser.json",
+  "closure": "validation/energy-saving-closure.json",
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review"
+}

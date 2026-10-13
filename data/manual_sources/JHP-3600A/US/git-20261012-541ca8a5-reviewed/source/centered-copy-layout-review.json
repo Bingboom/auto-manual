@@ -1,0 +1,321 @@
+{
+  "scope": "Native EN/FR/ES accessory captions/availability, parallel title, notice title centering, and remaining prose item lists",
+  "locales": {
+    "en": {
+      "source_page": 14,
+      "nodes": [
+        [
+          11,
+          4
+        ],
+        [
+          12,
+          0
+        ]
+      ],
+      "caption_wording_and_base_art_unchanged": true,
+      "native_icon_paths_match_existing_svg_under_translation": true,
+      "shopping_cart": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/sold-separately-cart.svg",
+      "shopping_cart_sha256": "89744f531fea551626f23111830ea30ab3284267b1ec65997f33b83e0519db68",
+      "source_circle_rect": [
+        280.201416015625,
+        413.2707824707031,
+        299.01141357421875,
+        432.0807800292969
+      ],
+      "badge_fill": "#a7a9ac",
+      "parallel_heading": "connections-parallel",
+      "native_lists_preserved": true,
+      "prose_list_repairs": [
+        {
+          "source_node": [
+            12,
+            3
+          ],
+          "lists": [
+            {
+              "key": "parallel-steps",
+              "ordered": true,
+              "items": 4,
+              "text": [
+                "Ensure that both HP3600 Plus units are powered off. ",
+                "Use one Jackery Connector to connect both units via the AC EXPANSION PORT. ",
+                "Turn on both units.  ",
+                "Within 1 minute, press the AC power button on each unit in sequence to enable AC output."
+              ]
+            },
+            {
+              "key": "parallel-result",
+              "ordered": false,
+              "items": 2,
+              "text": [
+                "If the connection is successful, the display will show a solid parallel icon. ",
+                "If the setup fails, the display shows the FA code. Press the AC power button on each unit again in sequence."
+              ]
+            }
+          ],
+          "copy_and_emphasis_preserved": true
+        },
+        {
+          "source_node": [
+            18,
+            3
+          ],
+          "lists": [
+            {
+              "key": "warranty-exclusions",
+              "ordered": false,
+              "items": 4,
+              "text": [
+                "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer  use as authorized in Jackery's current product literature.",
+                "Attempted repair by anyone other than an authorized facility.",
+                "Any product purchased through an online auction house.",
+                "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within  seven days after you purchase the product and at least once every 6 months thereafter."
+              ]
+            }
+          ],
+          "copy_and_emphasis_preserved": true
+        },
+        {
+          "source_node": [
+            20,
+            7
+          ],
+          "lists": [
+            {
+              "key": "app-wireless-1",
+              "ordered": false,
+              "items": 2,
+              "text": [
+                "Wi-Fi and Bluetooth are automatically turned on after the device is on, and the Wi-Fi and  Bluetooth icons on the screen light up. ",
+                "Hold the USB power button and the AC power button at the same time until the Wi-Fi & Bluetooth  icons on the screen light up."
+              ]
+            },
+            {
+              "key": "app-wireless-2",
+              "ordered": false,
+              "items": 2,
+              "text": [
+                "Hold the USB power button and AC power button at the same time until the Wi-Fi & Bluetooth icons  on the screen are oﬀ. ",
+                "Wi-Fi and Bluetooth will be automatically turned oﬀ if no device is connected within 2 hours."
+              ]
+            }
+          ],
+          "copy_and_emphasis_preserved": true
+        }
+      ]
+    },
+    "fr": {
+      "source_page": 34,
+      "nodes": [
+        [
+          11,
+          4
+        ],
+        [
+          12,
+          0
+        ]
+      ],
+      "caption_wording_and_base_art_unchanged": true,
+      "native_icon_paths_match_existing_svg_under_translation": true,
+      "shopping_cart": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/sold-separately-cart.svg",
+      "shopping_cart_sha256": "89744f531fea551626f23111830ea30ab3284267b1ec65997f33b83e0519db68",
+      "source_circle_rect": [
+        280.7391052246094,
+        371.9449157714844,
+        299.5491027832031,
+        390.7549133300781
+      ],
+      "badge_fill": "#a7a9ac",
+      "parallel_heading": "connections-parallel",
+      "native_lists_preserved": true,
+      "prose_list_repairs": [
+        {
+          "source_node": [
+            12,
+            3
+          ],
+          "lists": [
+            {
+              "key": "parallel-steps",
+              "ordered": true,
+              "items": 4,
+              "text": [
+                "Assurez-vous que les deux unités HomePower 3600 Plus sont éteintes. ",
+                "Utilisez un connecteur Jackery pour relier les deux unités via le Port d’extension CA. ",
+                "Allumez les deux unités. ",
+                "Dans un délai d'une minute, appuyez sur le bouton d'alimentation CA de chaque unité en séquence pour activer  la sortie CA."
+              ]
+            },
+            {
+              "key": "parallel-result",
+              "ordered": false,
+              "items": 2,
+              "text": [
+                "Si la connexion est réussie, l'écran affichera une icône de mode parallèle fixe. ",
+                "Si la configuration échoue, l'écran affichera le code FA. Appuyez à nouveau sur le bouton d'alimentation CA  de chaque unité en séquence."
+              ]
+            }
+          ],
+          "copy_and_emphasis_preserved": true
+        },
+        {
+          "source_node": [
+            18,
+            3
+          ],
+          "lists": [
+            {
+              "key": "warranty-exclusions",
+              "ordered": false,
+              "items": 4,
+              "text": [
+                "Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre  utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle  du produit de Jackery.",
+                "À une réparation tentée par quelqu'un d'autre qu'un établissement agréé.",
+                "Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne.",
+                "La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé  les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois  par la suite."
+              ]
+            }
+          ],
+          "copy_and_emphasis_preserved": true
+        },
+        {
+          "source_node": [
+            20,
+            3
+          ],
+          "lists": [
+            {
+              "key": "app-wireless-1",
+              "ordered": false,
+              "items": 2,
+              "text": [
+                "Le Wi-Fi et le Bluetooth sont automatiquement activés, une fois l’appareil allumé. Leurs icônes  s’allument sur l’écran. ",
+                "Appuyez simultanément sur le bouton d’alimentation USB et le bouton d’alimentation CA jusqu’à ce  que les icônes Wi-Fi et Bluetooth s’allument sur l’écran."
+              ]
+            },
+            {
+              "key": "app-wireless-2",
+              "ordered": false,
+              "items": 2,
+              "text": [
+                "Appuyez simultanément sur le bouton d’alimentation USB et le bouton d’alimentation CA jusqu’à ce  que les icônes Wi-Fi et Bluetooth s’éteignent de l’écran. ",
+                "Le Wi-Fi et le Bluetooth sont automatiquement désactivés si aucun appareil n'est connecté dans les  2 heures."
+              ]
+            }
+          ],
+          "copy_and_emphasis_preserved": true
+        }
+      ]
+    },
+    "es": {
+      "source_page": 54,
+      "nodes": [
+        [
+          11,
+          4
+        ],
+        [
+          12,
+          0
+        ]
+      ],
+      "caption_wording_and_base_art_unchanged": true,
+      "native_icon_paths_match_existing_svg_under_translation": true,
+      "shopping_cart": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/sold-separately-cart.svg",
+      "shopping_cart_sha256": "89744f531fea551626f23111830ea30ab3284267b1ec65997f33b83e0519db68",
+      "source_circle_rect": [
+        274.0257263183594,
+        369.84759521484375,
+        292.8357238769531,
+        388.6575927734375
+      ],
+      "badge_fill": "#a7a9ac",
+      "parallel_heading": "connections-parallel",
+      "native_lists_preserved": true,
+      "prose_list_repairs": [
+        {
+          "source_node": [
+            12,
+            3
+          ],
+          "lists": [
+            {
+              "key": "parallel-steps",
+              "ordered": true,
+              "items": 4,
+              "text": [
+                "Asegúrese de que ambas unidades HomePower 3600 Plus estén apagadas. ",
+                "Utilice un conector Jackery para conectar ambas unidades a través del PUERTO DE EXPANSIÓN CA. ",
+                "Encienda ambas unidades. ",
+                "En no más de 1 minuto, presione en secuencia el botón de energía CA en cada unidad para habilitar la salida CA."
+              ]
+            },
+            {
+              "key": "parallel-result",
+              "ordered": false,
+              "items": 2,
+              "text": [
+                "Si la conexión es exitosa, la pantalla mostrará un ícono paralelo sólido. ",
+                "Si la configuración falla, la pantalla mostrará el código FA. Presione nuevamente en secuencia el botón de  energía CA en cada unidad."
+              ]
+            }
+          ],
+          "copy_and_emphasis_preserved": true
+        },
+        {
+          "source_node": [
+            18,
+            3
+          ],
+          "lists": [
+            {
+              "key": "warranty-exclusions",
+              "ordered": false,
+              "items": 4,
+              "text": [
+                "Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal  del consumidor según lo autorizado en los folletos actuales del producto de Jackery.",
+                "Intento de reparación por cualquier persona que no sea un centro autorizado.",
+                "Cualquier producto adquirido a través de una casa de subastas en línea.",
+                "La garantía de Jackery no se aplica a la célula de la batería a menos que usted la cargue completa- mente en los siete días siguientes a la compra del producto y, a partir de entonces, al menos una vez  cada 6 meses."
+              ]
+            }
+          ],
+          "copy_and_emphasis_preserved": true
+        },
+        {
+          "source_node": [
+            20,
+            7
+          ],
+          "lists": [
+            {
+              "key": "app-wireless-1",
+              "ordered": false,
+              "items": 2,
+              "text": [
+                " El wiﬁ y el Bluetooth se encienden automáticamente al encender el dispositivo y se iluminan los iconos  de wiﬁ y Bluetooth de la pantalla; ",
+                " Pulse el botón de energía USB y el botón de energía CA al mismo tiempo hasta que se enciendan los  iconos de wiﬁ y Bluetooth en la pantalla;"
+              ]
+            },
+            {
+              "key": "app-wireless-2",
+              "ordered": false,
+              "items": 2,
+              "text": [
+                " Pulse el botón de energía USB y el botón de energía CA al mismo tiempo hasta que se apaguen los  iconos de wiﬁ y Bluetooth en la pantalla;",
+                " El Wi-Fi y el Bluetooth se apagarán automáticamente si se conecta ningún dispositivo en 2 horas;"
+              ]
+            }
+          ],
+          "copy_and_emphasis_preserved": true
+        }
+      ]
+    }
+  },
+  "existing_artwork_byte_identical": true,
+  "capsule_background": "CSS only",
+  "operator_acceptance": "pending combined layout review",
+  "publication_eligible": false
+}

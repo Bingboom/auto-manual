@@ -1,0 +1,377 @@
+{
+  "scope": "App step2.3/2.4/2.5 phone composition only in EN/FR/ES; native UI, geometry, live captions and prose remain intact.",
+  "publication_eligible": false,
+  "reuse_decision": {
+    "inventoried_roots": [
+      "target assets",
+      "same-model/region other locales",
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets",
+      "data/asset_recipes"
+    ],
+    "candidates": [
+      {
+        "path": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_connect_result_steps.png",
+        "sha256": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3",
+        "content_verdict": "First two panels broadly similar; third panel and scan-device label show Explorer1000 with80% and different outputs."
+      },
+      {
+        "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_connect_result_steps.png",
+        "sha256": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3",
+        "content_verdict": "First two panels broadly similar; third panel and scan-device label show Explorer1000 with80% and different outputs."
+      },
+      {
+        "path": "docs/renderers/web/assets/je3600a_eu_shared/app_connect_result.png",
+        "sha256": "a1dfd4b71a46c7d832ee2622e4ff2c19dada15fbed2c6267e4d89f97257d304c",
+        "content_verdict": "Third panel shows Explorer3600Plus and scan label E3600Plus; target source uses HomePower3600Plus and native scan3600."
+      }
+    ],
+    "decision": "reuse original target artwork with source-bound neighboring path removal",
+    "extraction_reason": "Original target artwork is native-correct except neighboring CAUTION paths; retain every other original SVG byte. A generic vector selection was rejected because it would omit PDF overprinted UI text.",
+    "background_policy": "Preserve all original phone and UI content. Remove only paths bound by native drawing index, exact path geometry and source-to-crop matrix; no repaint, recrop or splitting.",
+    "source_path": "Jackery HomePower 3600 Plus Portable Power Station User Manual-3600C.pdf",
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e"
+  },
+  "locales": {
+    "en": {
+      "physical_page": 23,
+      "chapter_index": 20,
+      "node_index": 5,
+      "old_asset_ref": "assets/app-connect-p23.svg",
+      "asset_ref": "assets/app-connect-native-p23.svg",
+      "sha256": "ec9c0a323d7e66a8cb23b7e9c03b77febf20582dd423529924d7a37176d9bfbd",
+      "crop_unchanged": [
+        54.256900787353516,
+        140.26278686523438,
+        313.96771240234375,
+        303.6897888183594
+      ],
+      "native_captions": [
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.2333cqw\">The above screenshots are for reference only.</span>",
+          "text": "The above screenshots are for reference only."
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.3103cqw\">2.5</span>",
+          "text": "2.5"
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.3103cqw\">2.3</span>",
+          "text": "2.3"
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.3103cqw\">2.4</span>",
+          "text": "2.4"
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:1.1703cqw\"><strong>3600</strong></span>",
+          "text": "3600"
+        }
+      ],
+      "native_labels": [
+        {
+          "line": 0,
+          "rect": [
+            0.3853902971272824,
+            93.78237055140671,
+            46.437423039997384,
+            5.482564905429812
+          ]
+        },
+        {
+          "line": 1,
+          "rect": [
+            85.2066998806183,
+            90.08999890946629,
+            3.569350446378113,
+            5.629432160586319
+          ]
+        },
+        {
+          "line": 2,
+          "rect": [
+            12.137733598068472,
+            90.08999890946629,
+            3.5462517048100684,
+            5.629432160586319
+          ]
+        },
+        {
+          "line": 3,
+          "rect": [
+            48.5682533075625,
+            90.08999890946629,
+            3.661763038550002,
+            5.629432160586319
+          ]
+        },
+        {
+          "line": 4,
+          "rect": [
+            6.485175127487765,
+            58.66722214171859,
+            3.3371380306679197,
+            3.5262053011889805
+          ]
+        }
+      ],
+      "phone_bboxes": [
+        [
+          245.82843017578125,
+          141.7976531982422,
+          312.1903076171875,
+          299.4735107421875
+        ],
+        [
+          150.6798095703125,
+          141.5560760498047,
+          217.13015747070312,
+          285.4432373046875
+        ],
+        [
+          55.804832458496094,
+          141.8530731201172,
+          122.28616333007812,
+          285.80731201171875
+        ]
+      ],
+      "neighbor_callout_top": 303.0484619140625,
+      "excluded_neighbor_drawing_indices": [
+        19
+      ],
+      "removed_source_bound_paths": [
+        {
+          "native_drawing_index": 19,
+          "native_path_d_sha256": "66285d0cc81da0a5a5130f4a54307f19f6e4d2157eb7c082711643f40800b064",
+          "original_target_path_sha256": "1a4ac80c837f095fdaa0cf6c0551a4734cdff60af75ceba21ff383be7cf0c7f3",
+          "original_target_path": "<path transform=\"matrix(1,0,0,-1,279.2199,190.16869)\" d=\"M0 0H-295.685C-298.553 0-300.879 2.325-300.879 5.194V22.189C-300.879 25.058-298.553 27.383-295.685 27.383H0C2.868 27.383 5.194 25.058 5.194 22.189V5.194C5.194 2.325 2.868 0 0 0\" fill=\"#ebecec\" fill-rule=\"evenodd\"/>"
+        }
+      ],
+      "all_other_original_svg_bytes_preserved": true
+    },
+    "fr": {
+      "physical_page": 43,
+      "chapter_index": 20,
+      "node_index": 1,
+      "old_asset_ref": "assets/app-connect-p43.svg",
+      "asset_ref": "assets/app-connect-native-p43.svg",
+      "sha256": "831d0016f6bc34ee4d5ffc416b2658c4b972d3197f1513b6d73274c0cf35c5ea",
+      "crop_unchanged": [
+        62.10940170288086,
+        145.69879150390625,
+        305.234375,
+        299.830810546875
+      ],
+      "native_captions": [
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.3856cqw\">The above screenshots are for reference only.</span>",
+          "text": "The above screenshots are for reference only."
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.4679cqw\">2.5</span>",
+          "text": "2.5"
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.4679cqw\">2.3</span>",
+          "text": "2.3"
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.4679cqw\">2.4</span>",
+          "text": "2.4"
+        }
+      ],
+      "native_labels": [
+        {
+          "line": 0,
+          "rect": [
+            0.7105387313375379,
+            92.98205875819062,
+            49.60536373873982,
+            5.813192813999451
+          ]
+        },
+        {
+          "line": 1,
+          "rect": [
+            85.50449712258433,
+            88.87692110914391,
+            3.812849370411311,
+            5.968916948052487
+          ]
+        },
+        {
+          "line": 2,
+          "rect": [
+            11.26366589458493,
+            88.87692110914391,
+            3.7881748466938703,
+            5.968916948052487
+          ]
+        },
+        {
+          "line": 3,
+          "rect": [
+            48.29647016079534,
+            88.87692110914391,
+            3.9115662936089763,
+            5.968916948052487
+          ]
+        }
+      ],
+      "phone_bboxes": [
+        [
+          241.41604614257812,
+          147.19932556152344,
+          303.5069885253906,
+          294.7274169921875
+        ],
+        [
+          152.3910369873047,
+          146.97328186035156,
+          214.56475830078125,
+          281.60009765625
+        ],
+        [
+          63.62205505371094,
+          147.25119018554688,
+          125.82475280761719,
+          281.9407653808594
+        ]
+      ],
+      "neighbor_callout_top": 297.4991149902344,
+      "excluded_neighbor_drawing_indices": [
+        18,
+        19,
+        20
+      ],
+      "removed_source_bound_paths": [
+        {
+          "native_drawing_index": 18,
+          "native_path_d_sha256": "3e7cf255b691f2affd3124f55f380abaffb0489b783a6152151e6af94d3717f2",
+          "original_target_path_sha256": "3ecc22692758dd31aad2c2c3b00545723c4a2fc1f8b9625ed1a3fb91f18e8260",
+          "original_target_path": "<path transform=\"matrix(1,0,0,-1,20.928189,169.85341)\" d=\"M0 0H-46.121C-48.974 0-51.286 2.312-51.286 5.165V10.912C-51.286 13.764-48.974 16.076-46.121 16.076H0Z\" fill=\"#dcddde\"/>"
+        },
+        {
+          "native_drawing_index": 19,
+          "native_path_d_sha256": "4910d968f9eb6f9a7d9f11f87b775e12761ffc5c3fb403a08a476f47ffb8e2d1",
+          "original_target_path_sha256": "b93d28c338508d5a7e869f84cd8ee88b59771a8162a8853b8ed324e10be3890f",
+          "original_target_path": "<path transform=\"matrix(1,0,0,-1,270.7286,176.5803)\" d=\"M0 0H-296.102C-298.855 0-301.087 2.232-301.087 4.985V19.795C-301.087 22.548-298.855 24.78-296.102 24.78H0C2.753 24.78 4.985 22.548 4.985 19.795V4.985C4.985 2.232 2.753 0 0 0\" fill=\"#ebecec\" fill-rule=\"evenodd\"/>"
+        },
+        {
+          "native_drawing_index": 20,
+          "native_path_d_sha256": "86ac1aabb81997c6a4a859763dcf0d851d4bc408f8d2629c1cd6913363aea12b",
+          "original_target_path_sha256": "9c3ce49b574111b7b9a12b7e95cb1a6afaee56b58b79b0979f62fd9382d444f7",
+          "original_target_path": "<path transform=\"matrix(1,0,0,-1,-28.915009,170.33261)\" d=\"M0 0V12.365C0 14.536 1.76 16.296 3.932 16.296H48.4V-3.932H3.932C1.76-3.932 0-2.171 0 0\" fill=\"#ffffff\"/>"
+        }
+      ],
+      "all_other_original_svg_bytes_preserved": true
+    },
+    "es": {
+      "physical_page": 63,
+      "chapter_index": 20,
+      "node_index": 5,
+      "old_asset_ref": "assets/app-connect-p63.svg",
+      "asset_ref": "assets/app-connect-native-p63.svg",
+      "sha256": "a9aeec153711196cef93a16c4e1e450d397702b879c9e3f545aa3379e3c9b620",
+      "crop_unchanged": [
+        73.11139678955078,
+        155.38458251953125,
+        295.6427001953125,
+        297.9745788574219
+      ],
+      "native_captions": [
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.6064cqw\">Las capturas de pantalla anteriores sirven solo de referencia.</span>",
+          "text": "Las capturas de pantalla anteriores sirven solo de referencia."
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.6962cqw\">2.5</span>",
+          "text": "2.5"
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.6962cqw\">2.3</span>",
+          "text": "2.3"
+        },
+        {
+          "html": "<span class=\"ht-source-line\" style=\"font-size:2.6962cqw\">2.4</span>",
+          "text": "2.4"
+        }
+      ],
+      "native_labels": [
+        {
+          "line": 0,
+          "rect": [
+            0.05001778855959569,
+            93.30550174653695,
+            73.01659103314658,
+            6.283744782380063
+          ]
+        },
+        {
+          "line": 1,
+          "rect": [
+            85.52688369566488,
+            88.49177583458912,
+            4.1657011268967645,
+            6.45207408886546
+          ]
+        },
+        {
+          "line": 2,
+          "rect": [
+            11.47977330891859,
+            88.49177583458912,
+            4.138743153667339,
+            6.45207408886546
+          ]
+        },
+        {
+          "line": 3,
+          "rect": [
+            47.94655018682873,
+            88.49177583458912,
+            4.2735535905685555,
+            6.45207408886546
+          ]
+        }
+      ],
+      "phone_bboxes": [
+        [
+          237.189208984375,
+          156.84234619140625,
+          293.9770812988281,
+          291.7703552246094
+        ],
+        [
+          155.76763916015625,
+          156.63560485839844,
+          212.6312255859375,
+          279.76422119140625
+        ],
+        [
+          74.58024597167969,
+          156.88980102539062,
+          131.4703369140625,
+          280.0758056640625
+        ]
+      ],
+      "neighbor_callout_top": 297.74951171875,
+      "excluded_neighbor_drawing_indices": [
+        21
+      ],
+      "removed_source_bound_paths": [
+        {
+          "native_drawing_index": 21,
+          "native_path_d_sha256": "02c2a24d4057e64e96266f98070e3ce647c1d009a274797a1adeada4f0675a00",
+          "original_target_path_sha256": "afb28418226ab386addf96867b924c2d503b64e6b200c7e4f9fa07d0b0503485",
+          "original_target_path": "<path transform=\"matrix(1,0,0,-1,259.76243,167.38591)\" d=\"M0 0H-296.174C-298.907 0-301.123 2.216-301.123 4.949V20.072C-301.123 22.805-298.907 25.021-296.174 25.021H0C2.733 25.021 4.949 22.805 4.949 20.072V4.949C4.949 2.216 2.733 0 0 0\" fill=\"#ebecec\" fill-rule=\"evenodd\"/>"
+        }
+      ],
+      "all_other_original_svg_bytes_preserved": true
+    }
+  },
+  "responsive_policy": "Use ordinary figure canvas without dense640px minimum; native trio stays in one row with existing native caption positions."
+}

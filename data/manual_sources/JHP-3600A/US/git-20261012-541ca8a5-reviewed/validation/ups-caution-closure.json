@@ -1,0 +1,51 @@
+{
+  "en": {
+    "selected_text_lines": 723,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_ups_caution_node": true,
+    "markdown_change_only_ups_caution_block": true,
+    "manual_ir_change_only_ups_caution_and_content_hashes": true,
+    "native_wording_preserved": true,
+    "semantic_list_items": 3,
+    "source_marker_rows_verified_as_semantic_bullets": [
+      "p13-b3-l0-0",
+      "p13-b3-l2-0",
+      "p13-b3-l3-0"
+    ],
+    "publication_eligible": false
+  },
+  "fr": {
+    "selected_text_lines": 874,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_ups_caution_node": true,
+    "markdown_change_only_ups_caution_block": true,
+    "manual_ir_change_only_ups_caution_and_content_hashes": true,
+    "native_wording_preserved": true,
+    "semantic_list_items": 4,
+    "source_marker_rows_verified_as_semantic_bullets": [
+      "p33-b6-l0-0",
+      "p33-b6-l1-0",
+      "p33-b6-l3-0",
+      "p33-b6-l4-0"
+    ],
+    "publication_eligible": false
+  },
+  "es": {
+    "selected_text_lines": 863,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_ups_caution_node": true,
+    "markdown_change_only_ups_caution_block": true,
+    "manual_ir_change_only_ups_caution_and_content_hashes": true,
+    "native_wording_preserved": true,
+    "semantic_list_items": 3,
+    "source_marker_rows_verified_as_semantic_bullets": [
+      "p53-b6-l0-0",
+      "p53-b6-l3-0",
+      "p53-b6-l4-0"
+    ],
+    "publication_eligible": false
+  }
+}

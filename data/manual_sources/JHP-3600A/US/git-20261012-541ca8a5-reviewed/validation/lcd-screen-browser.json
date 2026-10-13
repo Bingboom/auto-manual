@@ -1,0 +1,2773 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "clipped": [],
+      "columns": [
+        97.15711975097656,
+        92.23524475097656,
+        184.4357757568359
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [],
+      "image": {
+        "height": 358.93231201171875,
+        "width": 248.4939422607422,
+        "x": 440.0694580078125,
+        "y": 840.5252075195312
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 376.55816650390625,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 831.7144775390625
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.4677px",
+              "fontWeight": "400",
+              "text": "Shortly On"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Turn on"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button or when the product is charging."
+            }
+          ],
+          "height": 58.24653244018555
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Turn oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button."
+            }
+          ],
+          "height": 32.64323043823242
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Auto-oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "The LCD turns oﬀ automatically and enters sleep mode after 2 minutes of inactivity."
+            }
+          ],
+          "height": 56.35416793823242
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.4677px",
+              "fontWeight": "400",
+              "text": "Steady On (in charging or discharging state)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Turn on"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button twice when the product is powered on."
+            }
+          ],
+          "height": 63.554691314697266
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Turn oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button."
+            }
+          ],
+          "height": 35.091148376464844
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Auto-oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "The LCD turns oﬀ automatically after 2 hours of inactivity."
+            }
+          ],
+          "height": 63.7413215637207
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 658,
+        "height": 380.5555725097656,
+        "scrollWidth": 658,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 831.7144775390625
+      },
+      "table": {
+        "height": 309.631103515625,
+        "width": 373.8281555175781,
+        "x": 693.2986450195312,
+        "y": 866.4366455078125
+      },
+      "tablePanel": {
+        "height": 313.5199890136719,
+        "width": 377.717041015625,
+        "x": 691.3541870117188,
+        "y": 864.4922485351562
+      },
+      "width": 1280
+    },
+    {
+      "lang": "en",
+      "clipped": [],
+      "columns": [
+        100.3949737548828,
+        95.31250762939452,
+        190.5902862548828
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [],
+      "image": {
+        "height": 370.8333435058594,
+        "width": 256.6970520019531,
+        "x": 25.065105438232425,
+        "y": 521.5147705078125
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 388.9149475097656,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 512.4783325195312
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Shortly On"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Turn on"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button or when the product is charging."
+            }
+          ],
+          "height": 60.19965744018555
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Turn oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button."
+            }
+          ],
+          "height": 33.73698043823242
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Auto-oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "The LCD turns oﬀ automatically and enters sleep mode after 2 minutes of inactivity."
+            }
+          ],
+          "height": 58.24653244018555
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Steady On (in charging or discharging state)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Turn on"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button twice when the product is powered on."
+            }
+          ],
+          "height": 65.6857681274414
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Turn oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button."
+            }
+          ],
+          "height": 36.27170181274414
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Auto-oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "The LCD turns oﬀ automatically after 2 hours of inactivity."
+            }
+          ],
+          "height": 65.88542175292969
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 679,
+        "height": 392.912353515625,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 512.4783325195312
+      },
+      "table": {
+        "height": 320.02606201171875,
+        "width": 386.2977600097656,
+        "x": 286.5928955078125,
+        "y": 548.2205200195312
+      },
+      "tablePanel": {
+        "height": 323.9149475097656,
+        "width": 390.1866455078125,
+        "x": 284.6484375,
+        "y": 546.2760620117188
+      },
+      "width": 711
+    },
+    {
+      "lang": "en",
+      "clipped": [],
+      "columns": [
+        94.52257537841795,
+        89.73524475097656,
+        179.4401092529297
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [],
+      "image": {
+        "height": 349.2621765136719,
+        "width": 241.8272705078125,
+        "x": 24.65277862548828,
+        "y": 573.5330200195312
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 366.5147705078125,
+        "width": 640,
+        "x": 15.99826431274414,
+        "y": 564.9088745117188
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.0797px",
+              "fontWeight": "400",
+              "text": "Shortly On"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Turn on"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button or when the product is charging."
+            }
+          ],
+          "height": 56.65364837646485
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Turn oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button."
+            }
+          ],
+          "height": 31.75347328186035
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Auto-oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "The LCD turns oﬀ automatically and enters sleep mode after 2 minutes of inactivity."
+            }
+          ],
+          "height": 54.81771087646485
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.0797px",
+              "fontWeight": "400",
+              "text": "Steady On (in charging or discharging state)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Turn on"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button twice when the product is powered on."
+            }
+          ],
+          "height": 61.818580627441406
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Turn oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button."
+            }
+          ],
+          "height": 34.1319465637207
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Auto-oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "The LCD turns oﬀ automatically after 2 hours of inactivity."
+            }
+          ],
+          "height": 62.00521087646485
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 358,
+        "height": 370.5121765136719,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 564.9088745117188
+      },
+      "table": {
+        "height": 301.1805725097656,
+        "width": 363.6979370117187,
+        "x": 271.1458435058594,
+        "y": 598.7977905273438
+      },
+      "tablePanel": {
+        "height": 305.0694580078125,
+        "width": 367.5868225097656,
+        "x": 269.201416015625,
+        "y": 596.8533325195312
+      },
+      "width": 390
+    },
+    {
+      "lang": "fr",
+      "clipped": [],
+      "columns": [
+        97.15711975097656,
+        92.23524475097656,
+        184.4357757568359
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [],
+      "image": {
+        "height": 427.0616455078125,
+        "width": 248.6632080078125,
+        "x": 440.0694580078125,
+        "y": -1910.1302490234375
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 444.709228515625,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": -1918.94970703125
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.4677px",
+              "fontWeight": "400",
+              "text": "Allumer en discontinu"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Allumer"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge."
+            }
+          ],
+          "height": 62.30903244018555
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Éteindre"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal."
+            }
+          ],
+          "height": 49.314239501953125
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Arrêt automatique"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité."
+            }
+          ],
+          "height": 71.62760925292969
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.4677px",
+              "fontWeight": "400",
+              "text": "Allumer en continu(en cours de charge ou de décharge)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Allumer"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Appuyez deux fois sur le bouton d'alimentation principal lorsque  le produit est allumé."
+            }
+          ],
+          "height": 74.96527862548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Éteindre"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal."
+            }
+          ],
+          "height": 48.65451431274414
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Arrêt automatique"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "L'écran LCD s'éteint automatiquement après 2 heures d'inactivité."
+            }
+          ],
+          "height": 64.50086975097656
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 658,
+        "height": 448.70660400390625,
+        "scrollWidth": 658,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": -1918.94970703125
+      },
+      "table": {
+        "height": 371.3715515136719,
+        "width": 373.8281555175781,
+        "x": 692.287353515625,
+        "y": -1882.2266845703125
+      },
+      "tablePanel": {
+        "height": 375.2604370117187,
+        "width": 377.717041015625,
+        "x": 690.3428955078125,
+        "y": -1884.171142578125
+      },
+      "width": 1280
+    },
+    {
+      "lang": "fr",
+      "clipped": [],
+      "columns": [
+        100.3949737548828,
+        95.31250762939452,
+        190.5902862548828
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [],
+      "image": {
+        "height": 441.1979370117187,
+        "width": 256.87066650390625,
+        "x": 25.065105438232425,
+        "y": -2291.49755859375
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 459.3012390136719,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": -2300.546875
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Allumer en discontinu"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Allumer"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge."
+            }
+          ],
+          "height": 64.39236450195312
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Éteindre"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal."
+            }
+          ],
+          "height": 50.96354293823242
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Arrêt automatique"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité."
+            }
+          ],
+          "height": 74.0234375
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Allumer en continu(en cours de charge ou de décharge)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Allumer"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Appuyez deux fois sur le bouton d'alimentation principal lorsque  le produit est allumé."
+            }
+          ],
+          "height": 77.47396087646484
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Éteindre"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal."
+            }
+          ],
+          "height": 50.28211975097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Arrêt automatique"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "L'écran LCD s'éteint automatiquement après 2 heures d'inactivité."
+            }
+          ],
+          "height": 66.65798950195312
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 679,
+        "height": 463.2986450195313,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": -2300.546875
+      },
+      "table": {
+        "height": 383.7934265136719,
+        "width": 386.2977600097656,
+        "x": 285.546875,
+        "y": -2262.73876953125
+      },
+      "tablePanel": {
+        "height": 387.6823120117187,
+        "width": 390.1866455078125,
+        "x": 283.6024475097656,
+        "y": -2264.683349609375
+      },
+      "width": 711
+    },
+    {
+      "lang": "fr",
+      "clipped": [],
+      "columns": [
+        94.52257537841795,
+        89.73524475097656,
+        179.4401092529297
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [],
+      "image": {
+        "height": 415.5729370117187,
+        "width": 241.99220275878903,
+        "x": 24.65277862548828,
+        "y": -2626.909912109375
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 432.84722900390625,
+        "width": 640,
+        "x": 15.99826431274414,
+        "y": -2635.542724609375
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.0797px",
+              "fontWeight": "400",
+              "text": "Allumer en discontinu"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Allumer"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge."
+            }
+          ],
+          "height": 60.61198043823242
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Éteindre"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal."
+            }
+          ],
+          "height": 47.97309112548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Arrêt automatique"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité."
+            }
+          ],
+          "height": 69.67882537841797
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.0797px",
+              "fontWeight": "400",
+              "text": "Allumer en continu(en cours de charge ou de décharge)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Allumer"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Appuyez deux fois sur le bouton d'alimentation principal lorsque  le produit est allumé."
+            }
+          ],
+          "height": 72.9296875
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Éteindre"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal."
+            }
+          ],
+          "height": 47.33073043823242
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Arrêt automatique"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "L'écran LCD s'éteint automatiquement après 2 heures d'inactivité."
+            }
+          ],
+          "height": 62.751739501953125
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 358,
+        "height": 436.8446350097656,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": -2635.542724609375
+      },
+      "table": {
+        "height": 361.2760620117187,
+        "width": 363.6979370117187,
+        "x": 270.1606140136719,
+        "y": -2599.705078125
+      },
+      "tablePanel": {
+        "height": 365.1649475097656,
+        "width": 367.5868225097656,
+        "x": 268.2161560058594,
+        "y": -2601.6494140625
+      },
+      "width": 390
+    },
+    {
+      "lang": "es",
+      "clipped": [],
+      "columns": [
+        97.15711975097656,
+        92.23524475097656,
+        184.4357757568359
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [
+        "assets/shared-fcc-mark.svg"
+      ],
+      "image": {
+        "height": 427.0616455078125,
+        "width": 248.6632080078125,
+        "x": 440.0694580078125,
+        "y": -2090.421142578125
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 444.709228515625,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": -2099.240478515625
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.4677px",
+              "fontWeight": "400",
+              "text": "En breve"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Encender"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Presione el botón de encendido principal o cuando el producto se esté cargando."
+            }
+          ],
+          "height": 60.251739501953125
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Apagar"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Presione el botón de encendido principal."
+            }
+          ],
+          "height": 43.64583587646485
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Apagado automático"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad."
+            }
+          ],
+          "height": 63.09461975097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.4677px",
+              "fontWeight": "400",
+              "text": "Estable en (durante el estado de carga o descarga)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Encender"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Presione dos veces el botón de encendido principal cuando el producto esté encendida."
+            }
+          ],
+          "height": 55.603302001953125
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Apagar"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Presione el botón de energía principal."
+            }
+          ],
+          "height": 41.501739501953125
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "Apagado automático"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.0564px",
+              "fontWeight": "400",
+              "text": "La pantalla LCD se apaga automáticamente después de 2 horas de inactividad."
+            }
+          ],
+          "height": 58.1553840637207
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 658,
+        "height": 448.70660400390625,
+        "scrollWidth": 658,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": -2099.240478515625
+      },
+      "table": {
+        "height": 322.25262451171875,
+        "width": 373.8281555175781,
+        "x": 690.2517700195312,
+        "y": -2042.100830078125
+      },
+      "tablePanel": {
+        "height": 326.1415100097656,
+        "width": 377.717041015625,
+        "x": 688.3073120117188,
+        "y": -2044.0452880859375
+      },
+      "width": 1280
+    },
+    {
+      "lang": "es",
+      "clipped": [],
+      "columns": [
+        100.3949737548828,
+        95.31250762939452,
+        190.5902862548828
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [
+        "assets/shared-fcc-mark.svg"
+      ],
+      "image": {
+        "height": 441.1979370117187,
+        "width": 256.87066650390625,
+        "x": 25.065105438232425,
+        "y": -2568.984619140625
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 459.3012390136719,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": -2578.033935546875
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "En breve"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Encender"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Presione el botón de encendido principal o cuando el producto se esté cargando."
+            }
+          ],
+          "height": 62.27430725097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Apagar"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Presione el botón de encendido principal."
+            }
+          ],
+          "height": 45.1085090637207
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Apagado automático"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad."
+            }
+          ],
+          "height": 65.20833587646484
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Estable en (durante el estado de carga o descarga)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Encender"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Presione dos veces el botón de encendido principal cuando el producto esté encendida."
+            }
+          ],
+          "height": 57.46961975097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Apagar"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Presione el botón de energía principal."
+            }
+          ],
+          "height": 42.89496612548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Apagado automático"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "La pantalla LCD se apaga automáticamente después de 2 horas de inactividad."
+            }
+          ],
+          "height": 60.095489501953125
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 679,
+        "height": 463.2986450195313,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": -2578.033935546875
+      },
+      "table": {
+        "height": 333.0512390136719,
+        "width": 386.2977600097656,
+        "x": 283.4461975097656,
+        "y": -2519.127685546875
+      },
+      "tablePanel": {
+        "height": 336.94012451171875,
+        "width": 390.1866455078125,
+        "x": 281.5017395019531,
+        "y": -2521.072265625
+      },
+      "width": 711
+    },
+    {
+      "lang": "es",
+      "clipped": [],
+      "columns": [
+        94.52257537841795,
+        89.73524475097656,
+        179.4401092529297
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [
+        "assets/shared-fcc-mark.svg"
+      ],
+      "image": {
+        "height": 415.5729370117187,
+        "width": 241.99220275878903,
+        "x": 24.65277862548828,
+        "y": -3048.615478515625
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 432.84722900390625,
+        "width": 640,
+        "x": 15.99826431274414,
+        "y": -3057.248291015625
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.0797px",
+              "fontWeight": "400",
+              "text": "En breve"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Encender"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Presione el botón de encendido principal o cuando el producto se esté cargando."
+            }
+          ],
+          "height": 58.611114501953125
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Apagar"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Presione el botón de encendido principal."
+            }
+          ],
+          "height": 42.456600189208984
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Apagado automático"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad."
+            }
+          ],
+          "height": 61.37586975097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.0797px",
+              "fontWeight": "400",
+              "text": "Estable en (durante el estado de carga o descarga)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Encender"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Presione dos veces el botón de encendido principal cuando el producto esté encendida."
+            }
+          ],
+          "height": 54.0928840637207
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Apagar"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Presione el botón de energía principal."
+            }
+          ],
+          "height": 40.37326431274414
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "Apagado automático"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "11.733px",
+              "fontWeight": "400",
+              "text": "La pantalla LCD se apaga automáticamente después de 2 horas de inactividad."
+            }
+          ],
+          "height": 56.56684112548828
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 358,
+        "height": 436.8446350097656,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": -3057.248291015625
+      },
+      "table": {
+        "height": 313.4765625,
+        "width": 363.6979370117187,
+        "x": 268.1770935058594,
+        "y": -3001.541015625
+      },
+      "tablePanel": {
+        "height": 317.365478515625,
+        "width": 367.5868225097656,
+        "x": 266.232666015625,
+        "y": -3003.4853515625
+      },
+      "width": 390
+    }
+  ],
+  "before": [
+    {
+      "lang": "en",
+      "columns": "247.378px 371.076px",
+      "image": {
+        "height": 605.5338745117188,
+        "width": 247.37847900390625,
+        "x": 442.76910400390625,
+        "y": -2161.18505859375
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 628.615478515625,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": -2172.725830078125
+      },
+      "table": {
+        "height": 588.671875,
+        "width": 363.0121765136719,
+        "x": 710.177978515625,
+        "y": -2157.15283203125
+      },
+      "width": 1280
+    },
+    {
+      "lang": "en",
+      "columns": "656.033px",
+      "image": {
+        "height": 958.9019775390624,
+        "width": 656.0330200195312,
+        "x": 27.539064407348633,
+        "y": -2460.703125
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 1389.4532470703125,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": -2472.244140625
+      },
+      "table": {
+        "height": 374.6094055175781,
+        "width": 647.9688110351562,
+        "x": 31.57118225097656,
+        "y": -1481.7708740234375
+      },
+      "width": 711
+    },
+    {
+      "lang": "en",
+      "columns": "334.922px",
+      "image": {
+        "height": 493.0078430175781,
+        "width": 334.9219055175781,
+        "x": 27.539064407348633,
+        "y": -2067.994873046875
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 923.55908203125,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": -2079.53564453125
+      },
+      "table": {
+        "height": 374.6094055175781,
+        "width": 575.998291015625,
+        "x": 31.57118225097656,
+        "y": -1554.9566650390625
+      },
+      "width": 390
+    },
+    {
+      "lang": "fr",
+      "columns": "247.378px 371.076px",
+      "image": {
+        "height": 861.7838745117188,
+        "width": 247.37847900390625,
+        "x": 442.76910400390625,
+        "y": 10406.203125
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 884.865478515625,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 10394.662109375
+      },
+      "table": {
+        "height": 844.9219360351562,
+        "width": 366.4236145019531,
+        "x": 710.177978515625,
+        "y": 10410.2353515625
+      },
+      "width": 1280
+    },
+    {
+      "lang": "fr",
+      "columns": "656.033px",
+      "image": {
+        "height": 1136.9921875,
+        "width": 656.0330200195312,
+        "x": 27.539064407348633,
+        "y": 6549.32763671875
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 1527.560791015625,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 6537.78662109375
+      },
+      "table": {
+        "height": 334.6267395019531,
+        "width": 647.9688110351562,
+        "x": 31.57118225097656,
+        "y": 7706.35009765625
+      },
+      "width": 711
+    },
+    {
+      "lang": "fr",
+      "columns": "334.922px",
+      "image": {
+        "height": 583.927978515625,
+        "width": 334.9219055175781,
+        "x": 27.539064407348633,
+        "y": 4115.44287109375
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 1074.453125,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 4103.90234375
+      },
+      "table": {
+        "height": 434.5833435058594,
+        "width": 575.998291015625,
+        "x": 31.57118225097656,
+        "y": 4719.4013671875
+      },
+      "width": 390
+    },
+    {
+      "lang": "es",
+      "columns": "247.378px 371.076px",
+      "image": {
+        "height": 840.4297485351562,
+        "width": 247.37847900390625,
+        "x": 442.76910400390625,
+        "y": 10565.0791015625
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 863.5113525390625,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 10553.5380859375
+      },
+      "table": {
+        "height": 823.5677490234375,
+        "width": 363.0121765136719,
+        "x": 710.177978515625,
+        "y": 10569.1103515625
+      },
+      "width": 1280
+    },
+    {
+      "lang": "es",
+      "columns": "656.033px",
+      "image": {
+        "height": 1136.9921875,
+        "width": 656.0330200195312,
+        "x": 27.539064407348633,
+        "y": 7549.61865234375
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 1547.5521240234375,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 7538.07763671875
+      },
+      "table": {
+        "height": 354.6180725097656,
+        "width": 647.9688110351562,
+        "x": 31.57118225097656,
+        "y": 8706.640625
+      },
+      "width": 711
+    },
+    {
+      "lang": "es",
+      "columns": "334.922px",
+      "image": {
+        "height": 583.927978515625,
+        "width": 334.9219055175781,
+        "x": 27.539064407348633,
+        "y": 5399.0107421875
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 1054.4619140625,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 5387.4697265625
+      },
+      "table": {
+        "height": 414.592041015625,
+        "width": 575.998291015625,
+        "x": 31.57118225097656,
+        "y": 6002.96923828125
+      },
+      "width": 390
+    }
+  ],
+  "visual_checks": [
+    {
+      "lang": "en",
+      "clipped": [],
+      "columns": [
+        100.3949737548828,
+        95.31250762939452,
+        190.5902862548828
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [],
+      "image": {
+        "height": 370.8333435058594,
+        "width": 256.6970520019531,
+        "x": 25.065105438232425,
+        "y": 141.79254150390625
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 388.9149475097656,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 132.75608825683594
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Shortly On"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Turn on"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button or when the product is charging."
+            }
+          ],
+          "height": 60.19965744018555
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Turn oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button."
+            }
+          ],
+          "height": 33.73698043823242
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Auto-oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "The LCD turns oﬀ automatically and enters sleep mode after 2 minutes of inactivity."
+            }
+          ],
+          "height": 58.24653244018555
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Steady On (in charging or discharging state)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Turn on"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button twice when the product is powered on."
+            }
+          ],
+          "height": 65.6857681274414
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Turn oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Press the Main Power Button."
+            }
+          ],
+          "height": 36.27170181274414
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Auto-oﬀ"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "The LCD turns oﬀ automatically after 2 hours of inactivity."
+            }
+          ],
+          "height": 65.88542175292969
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 679,
+        "height": 392.912353515625,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 132.75608825683594
+      },
+      "table": {
+        "height": 320.02606201171875,
+        "width": 386.2977600097656,
+        "x": 286.5928955078125,
+        "y": 168.49827575683594
+      },
+      "tablePanel": {
+        "height": 323.9149475097656,
+        "width": 390.1866455078125,
+        "x": 284.6484375,
+        "y": 166.5538330078125
+      },
+      "width": 711
+    },
+    {
+      "lang": "fr",
+      "clipped": [],
+      "columns": [
+        100.3949737548828,
+        95.31250762939452,
+        190.5902862548828
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [],
+      "image": {
+        "height": 441.1979370117187,
+        "width": 256.87066650390625,
+        "x": 25.065105438232425,
+        "y": 145.16928100585938
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 459.3012390136719,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 136.1197967529297
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Allumer en discontinu"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Allumer"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge."
+            }
+          ],
+          "height": 64.39236450195312
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Éteindre"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal."
+            }
+          ],
+          "height": 50.96354293823242
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Arrêt automatique"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité."
+            }
+          ],
+          "height": 74.0234375
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Allumer en continu(en cours de charge ou de décharge)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Allumer"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Appuyez deux fois sur le bouton d'alimentation principal lorsque  le produit est allumé."
+            }
+          ],
+          "height": 77.47396087646484
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Éteindre"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Appuyez sur le bouton d'alimentation principal."
+            }
+          ],
+          "height": 50.28211975097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Arrêt automatique"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "L'écran LCD s'éteint automatiquement après 2 heures d'inactivité."
+            }
+          ],
+          "height": 66.65798950195312
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 679,
+        "height": 463.2986450195313,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 136.1197967529297
+      },
+      "table": {
+        "height": 383.7934265136719,
+        "width": 386.2977600097656,
+        "x": 285.546875,
+        "y": 173.92796325683594
+      },
+      "tablePanel": {
+        "height": 387.6823120117187,
+        "width": 390.1866455078125,
+        "x": 283.6024475097656,
+        "y": 171.9835205078125
+      },
+      "width": 711
+    },
+    {
+      "lang": "es",
+      "clipped": [],
+      "columns": [
+        100.3949737548828,
+        95.31250762939452,
+        190.5902862548828
+      ],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-LCD-MODE",
+      "deferredLazyImages": [],
+      "image": {
+        "height": 441.1979370117187,
+        "width": 256.87066650390625,
+        "x": 25.065105438232425,
+        "y": 131.84896850585938
+      },
+      "pageOverflow": 0,
+      "panel": {
+        "height": 459.3012390136719,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 122.79948425292967
+      },
+      "rowSpans": [
+        3,
+        3
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "En breve"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Encender"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Presione el botón de encendido principal o cuando el producto se esté cargando."
+            }
+          ],
+          "height": 62.27430725097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Apagar"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Presione el botón de encendido principal."
+            }
+          ],
+          "height": 45.1085090637207
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Apagado automático"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad."
+            }
+          ],
+          "height": 65.20833587646484
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "14.9453px",
+              "fontWeight": "400",
+              "text": "Estable en (durante el estado de carga o descarga)"
+            },
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Encender"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Presione dos veces el botón de encendido principal cuando el producto esté encendida."
+            }
+          ],
+          "height": 57.46961975097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Apagar"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Presione el botón de energía principal."
+            }
+          ],
+          "height": 42.89496612548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "Apagado automático"
+            },
+            {
+              "bg": "rgb(255, 255, 255)",
+              "fontSize": "12.4544px",
+              "fontWeight": "400",
+              "text": "La pantalla LCD se apaga automáticamente después de 2 horas de inactividad."
+            }
+          ],
+          "height": 60.095489501953125
+        }
+      ],
+      "scrollWrapper": {
+        "clientWidth": 679,
+        "height": 463.2986450195313,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 122.79948425292967
+      },
+      "table": {
+        "height": 333.0512390136719,
+        "width": 386.2977600097656,
+        "x": 283.4461975097656,
+        "y": 181.7057342529297
+      },
+      "tablePanel": {
+        "height": 336.94012451171875,
+        "width": 390.1866455078125,
+        "x": 281.5017395019531,
+        "y": 179.76129150390625
+      },
+      "width": 711
+    }
+  ],
+  "mobile_horizontal_scroll": [
+    {
+      "lang": "en",
+      "width": 390,
+      "left": {
+        "clientWidth": 358,
+        "scrollLeft": 0,
+        "scrollWidth": 640,
+        "top": 115.46441650390624
+      },
+      "right": {
+        "clientWidth": 358,
+        "scrollLeft": 281.9444580078125,
+        "scrollWidth": 640
+      },
+      "after": {
+        "clipped": [],
+        "columns": [
+          94.52257537841795,
+          89.73524475097656,
+          179.4401092529297
+        ],
+        "completedImageErrors": [],
+        "component": "HB-TABLE-LCD-MODE",
+        "deferredLazyImages": [
+          "assets/shared-fcc-mark.svg"
+        ],
+        "image": {
+          "height": 349.2621765136719,
+          "width": 241.8272705078125,
+          "x": -257.29168701171875,
+          "y": 124.08854675292967
+        },
+        "pageOverflow": 0,
+        "panel": {
+          "height": 366.5147705078125,
+          "width": 640,
+          "x": -265.9461975097656,
+          "y": 115.46441650390624
+        },
+        "rowSpans": [
+          3,
+          3
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "14.0797px",
+                "fontWeight": "400",
+                "text": "Shortly On"
+              },
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Turn on"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Press the Main Power Button or when the product is charging."
+              }
+            ],
+            "height": 56.65364837646485
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Turn oﬀ"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Press the Main Power Button."
+              }
+            ],
+            "height": 31.75347328186035
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Auto-oﬀ"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "The LCD turns oﬀ automatically and enters sleep mode after 2 minutes of inactivity."
+              }
+            ],
+            "height": 54.81771087646485
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "14.0797px",
+                "fontWeight": "400",
+                "text": "Steady On (in charging or discharging state)"
+              },
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Turn on"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Press the Main Power Button twice when the product is powered on."
+              }
+            ],
+            "height": 61.818580627441406
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Turn oﬀ"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Press the Main Power Button."
+              }
+            ],
+            "height": 34.1319465637207
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Auto-oﬀ"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "The LCD turns oﬀ automatically after 2 hours of inactivity."
+              }
+            ],
+            "height": 62.00521087646485
+          }
+        ],
+        "scrollWrapper": {
+          "clientWidth": 358,
+          "height": 370.5121765136719,
+          "scrollWidth": 640,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 115.46441650390624
+        },
+        "table": {
+          "height": 301.1805725097656,
+          "width": 363.6979370117187,
+          "x": -10.798611640930176,
+          "y": 149.35330200195312
+        },
+        "tablePanel": {
+          "height": 305.0694580078125,
+          "width": 367.5868225097656,
+          "x": -12.743056297302246,
+          "y": 147.4088592529297
+        },
+        "width": 390
+      }
+    },
+    {
+      "lang": "fr",
+      "width": 390,
+      "left": {
+        "clientWidth": 358,
+        "scrollLeft": 0,
+        "scrollWidth": 640,
+        "top": 121.67969512939452
+      },
+      "right": {
+        "clientWidth": 358,
+        "scrollLeft": 281.9444580078125,
+        "scrollWidth": 640
+      },
+      "after": {
+        "clipped": [],
+        "columns": [
+          94.52257537841795,
+          89.73524475097656,
+          179.4401092529297
+        ],
+        "completedImageErrors": [],
+        "component": "HB-TABLE-LCD-MODE",
+        "deferredLazyImages": [
+          "assets/shared-fcc-mark.svg"
+        ],
+        "image": {
+          "height": 415.5729370117187,
+          "width": 241.99220275878903,
+          "x": -257.29168701171875,
+          "y": 130.3125
+        },
+        "pageOverflow": 0,
+        "panel": {
+          "height": 432.84722900390625,
+          "width": 640,
+          "x": -265.9461975097656,
+          "y": 121.67969512939452
+        },
+        "rowSpans": [
+          3,
+          3
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "14.0797px",
+                "fontWeight": "400",
+                "text": "Allumer en discontinu"
+              },
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Allumer"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Appuyez sur le bouton d'alimentation principal ou lorsque le produit est en charge."
+              }
+            ],
+            "height": 60.61198043823242
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Éteindre"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Appuyez sur le bouton d'alimentation principal."
+              }
+            ],
+            "height": 47.97309112548828
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Arrêt automatique"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité."
+              }
+            ],
+            "height": 69.67882537841797
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "14.0797px",
+                "fontWeight": "400",
+                "text": "Allumer en continu(en cours de charge ou de décharge)"
+              },
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Allumer"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Appuyez deux fois sur le bouton d'alimentation principal lorsque  le produit est allumé."
+              }
+            ],
+            "height": 72.9296875
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Éteindre"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Appuyez sur le bouton d'alimentation principal."
+              }
+            ],
+            "height": 47.33073043823242
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Arrêt automatique"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "L'écran LCD s'éteint automatiquement après 2 heures d'inactivité."
+              }
+            ],
+            "height": 62.751739501953125
+          }
+        ],
+        "scrollWrapper": {
+          "clientWidth": 358,
+          "height": 436.8446350097656,
+          "scrollWidth": 640,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 121.67969512939452
+        },
+        "table": {
+          "height": 361.2760620117187,
+          "width": 363.6979370117187,
+          "x": -11.783854484558104,
+          "y": 157.51736450195312
+        },
+        "tablePanel": {
+          "height": 365.1649475097656,
+          "width": 367.5868225097656,
+          "x": -13.728299140930176,
+          "y": 155.5729217529297
+        },
+        "width": 390
+      }
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "left": {
+        "clientWidth": 358,
+        "scrollLeft": 0,
+        "scrollWidth": 640,
+        "top": 139.69618225097656
+      },
+      "right": {
+        "clientWidth": 358,
+        "scrollLeft": 281.9444580078125,
+        "scrollWidth": 640
+      },
+      "after": {
+        "clipped": [],
+        "columns": [
+          94.52257537841795,
+          89.73524475097656,
+          179.4401092529297
+        ],
+        "completedImageErrors": [],
+        "component": "HB-TABLE-LCD-MODE",
+        "deferredLazyImages": [
+          "assets/shared-fcc-mark.svg"
+        ],
+        "image": {
+          "height": 415.5729370117187,
+          "width": 241.99220275878903,
+          "x": -257.29168701171875,
+          "y": 148.32899475097656
+        },
+        "pageOverflow": 0,
+        "panel": {
+          "height": 432.84722900390625,
+          "width": 640,
+          "x": -265.9461975097656,
+          "y": 139.69618225097656
+        },
+        "rowSpans": [
+          3,
+          3
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "14.0797px",
+                "fontWeight": "400",
+                "text": "En breve"
+              },
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Encender"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Presione el botón de encendido principal o cuando el producto se esté cargando."
+              }
+            ],
+            "height": 58.611114501953125
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Apagar"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Presione el botón de encendido principal."
+              }
+            ],
+            "height": 42.456600189208984
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Apagado automático"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "La pantalla LCD se apaga automáticamente y entra en modo de suspensión después de 2 minutos de inactividad."
+              }
+            ],
+            "height": 61.37586975097656
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "14.0797px",
+                "fontWeight": "400",
+                "text": "Estable en (durante el estado de carga o descarga)"
+              },
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Encender"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Presione dos veces el botón de encendido principal cuando el producto esté encendida."
+              }
+            ],
+            "height": 54.0928840637207
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Apagar"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Presione el botón de energía principal."
+              }
+            ],
+            "height": 40.37326431274414
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "Apagado automático"
+              },
+              {
+                "bg": "rgb(255, 255, 255)",
+                "fontSize": "11.733px",
+                "fontWeight": "400",
+                "text": "La pantalla LCD se apaga automáticamente después de 2 horas de inactividad."
+              }
+            ],
+            "height": 56.56684112548828
+          }
+        ],
+        "scrollWrapper": {
+          "clientWidth": 358,
+          "height": 436.8446350097656,
+          "scrollWidth": 640,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 139.69618225097656
+        },
+        "table": {
+          "height": 313.4765625,
+          "width": 363.6979370117187,
+          "x": -13.767361640930176,
+          "y": 195.40365600585935
+        },
+        "tablePanel": {
+          "height": 317.365478515625,
+          "width": 367.5868225097656,
+          "x": -15.711806297302246,
+          "y": 193.4592132568359
+        },
+        "width": 390
+      }
+    }
+  ],
+  "previous_operation_heading_list_label_and_energy_note_geometry_preserved": true,
+  "operator_layout_acceptance": "pending combined review"
+}

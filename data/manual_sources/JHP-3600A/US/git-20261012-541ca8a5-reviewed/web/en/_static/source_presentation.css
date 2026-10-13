@@ -1,0 +1,354 @@
+/* Source geometry. Heading, table, callout and breakpoint tokens are shared. */
+.ht-figure {max-width:760px;margin:1rem auto;min-width:0;}
+.ht-figure .hb-reference-figure {max-width:none;margin:0;}
+#furo-main-content .ht-figure img {width:100% !important;height:auto !important;max-height:none;}
+#furo-main-content .ht-figure .hb-reference-live-label {display:block;padding:0;line-height:1.1;text-align:left;white-space:normal;overflow:visible;}
+.ht-source-line {display:block;line-height:1.12;white-space:nowrap;}
+#furo-main-content .ht-figure .hb-reference-live-pill {border-radius:var(--hb-panel-radius);padding:.4% 1%;box-sizing:border-box;}
+#furo-main-content .ht-native-table {width:100%;}
+#furo-main-content .ht-native-table td {vertical-align:middle;}
+#furo-main-content .ht-native-table p {margin:.2rem 0;}
+#furo-main-content .ht-native-table img {display:inline-block;max-width:2.5rem;width:auto;max-height:2.5rem;height:auto;vertical-align:middle;margin:.15rem;}
+#furo-main-content .ht-number {text-align:center;}
+@media(max-width:760px) {
+ .ht-dense {overflow-x:auto;padding-bottom:.5rem;}
+ .ht-dense > .hb-reference-figure {min-width:640px;}
+}
+
+
+.ht-figure {max-width:min(760px,var(--ht-native-width,100%));}
+@media(max-width:760px){.ht-figure {max-width:100%;}}
+
+
+/* Native safety subbar: shared heading tokens, full-round source geometry. */
+#furo-main-content h2.ht-safety-subbar {padding:.35rem .7rem;border-radius:999px;background:var(--hb-brand-dark);color:var(--hb-paper);}
+#furo-main-content h2.ht-safety-subbar::before {display:none;}
+
+/* Keep the native notice label-to-body scale; shared warning frame owns the panel. */
+#furo-main-content .ht-native-danger .manual-callout-body {font-size:.78rem;line-height:1.18;}
+#furo-main-content .ht-native-danger .hb-warning-lockup {font-size:1.58rem;}
+
+/* Native symbol panels use the registered shared components and existing tokens. */
+#furo-main-content .ht-native-symbols :is(.hb-symbol-signal-label-heading,.hb-symbol-signal-label-cell,.hb-symbol-icon-heading,.hb-symbol-icon) {background:var(--hb-surface-strong) !important;}
+#furo-main-content .ht-native-symbols .hb-symbol-signal-meaning-heading {background:var(--hb-paper) !important;}
+#furo-main-content .ht-native-symbols .hb-signal-badge {width:100%;}
+#furo-main-content .ht-native-symbols .hb-signal-icon {display:block;width:1em;height:1em;font-size:inherit;color:transparent;background:var(--ht-symbol-triangle) center/contain no-repeat;}
+#furo-main-content .ht-native-symbols .hb-signal-label {flex:1;text-align:center;}
+@media(min-width:600px) {
+ .ht-native-symbols .hb-symbol-pair-grid {grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;}
+ #furo-main-content .ht-native-symbols .hb-symbol-panel-table {height:100%;}
+ #furo-main-content .ht-native-symbols .hb-signal-badge {font-size:1.3rem;min-height:2.6rem;}
+ #furo-main-content .ht-native-symbols .hb-symbol-signal-col-label {width:24%;}
+ #furo-main-content :is(.ht-symbols-fr,.ht-symbols-es) .hb-symbol-signal-col-label {width:33%;}
+ #furo-main-content .ht-native-symbols .hb-symbol-signal-col-meaning {width:auto;}
+}
+
+/* Native FCC grouping retains explicit source columns and float-around mark. */
+#furo-main-content .ht-native-fcc .hb-fcc-composition {background:var(--hb-surface-strong);}
+#furo-main-content .ht-native-fcc .hb-fcc-opening {display:block;}
+#furo-main-content .ht-native-fcc .hb-fcc-opening::after {content:"";display:block;clear:both;}
+#furo-main-content .ht-native-fcc .hb-fcc-mark {float:left;width:clamp(3.8rem,20%,5rem) !important;margin:0 .8rem .35rem 0 !important;}
+#furo-main-content .ht-native-fcc .hb-fcc-column > p {white-space:pre-line;}
+#furo-main-content .ht-native-fcc .hb-fcc-column ul {display:block;}
+@media(min-width:600px) {.ht-native-fcc .hb-fcc-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem;}}
+
+/* Native inbox keeps the source's three unequal cards and existing base art.
+   Shared inbox cards and markers draw all empty frames and number circles. */
+#furo-main-content .ht-native-inbox {margin-top:2.5rem;}
+#furo-main-content .ht-native-inbox .ht-inbox-frame {width:100%;min-height:0;padding:0;overflow:visible;border-width:max(1px,.322489cqw);border-radius:var(--ht-inbox-radius);background:transparent;}
+#furo-main-content .ht-native-inbox .ht-inbox-number {width:4.397129cqw;height:4.397129cqw;font-size:3.480574cqw;font-weight:500;line-height:1;}
+#furo-main-content .ht-native-inbox .ht-inbox-label {text-align:center;}
+
+/* Shared LCD catalog owns gray cells, round numbers, grid and scroll.
+   Local geometry follows the native 6/11/23/60 column proportions. */
+#furo-main-content .ht-native-lcd .hb-lcd-col-name {width:23%;}
+#furo-main-content .ht-native-lcd .hb-lcd-col-description {width:60%;}
+#furo-main-content .ht-native-lcd table.hb-lcd-icon-table {table-layout:fixed;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art {width:2rem!important;height:2rem!important;mix-blend-mode:normal;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-battery-saving-bars.svg"] {width:2.000000rem!important;height:2.000000rem!important;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-self-powered-bar.svg"] {width:2.000000rem!important;height:2.000000rem!important;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-ac-wall-charging-circle.svg"] {width:2.000000rem!important;height:2.000000rem!important;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-car-charging-circle.svg"] {width:2.000000rem!important;height:2.000000rem!important;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-solar-charging-pill.svg"] {width:2.898500rem!important;height:2.898500rem!important;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-low-battery-outline.svg"] {width:2.782750rem!important;height:2.782750rem!important;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-high-temperature-triangle.svg"] {width:2.481750rem!important;height:2.481750rem!important;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-low-temperature-triangle.svg"] {width:2.481750rem!important;height:2.481750rem!important;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-energy-saving-pill.svg"] {width:2.484250rem!important;height:2.484250rem!important;}
+
+/* Native LCD tone binds shared table tokens; other components keep their theme. */
+#furo-main-content .ht-native-lcd {--hb-line:var(--hb-brand-dark);--hb-surface:#e5e5e5;}
+
+/* The admitted shared PNG stays byte-identical. Its transparent alpha margins
+   are clipped in CSS so the native capsule ink is 2.5rem wide and centered. */
+#furo-main-content .ht-native-lcd .hb-lcd-icon:has(img[src$="lcd-connected-batteries-pill.png"]) {position:relative;}
+#furo-main-content .ht-native-lcd .hb-lcd-icon-art[src$="lcd-connected-batteries-pill.png"] {position:absolute;left:50%;top:50%;width:3.866667rem!important;height:2.933333rem!important;max-width:none;object-fit:fill;transform:translate(-41.810345%,-64.204545%);clip-path:inset(39.015152% 25.862069% 10.606061% 9.482759%);}
+
+/* Center each editable paragraph as one block inside its native gray frame. */
+#furo-main-content .ht-figure[data-native-figure="power"] .hb-reference-live-pill {display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+
+/* Native AC/USB prerequisite capsules share the centered live-copy treatment. */
+#furo-main-content .ht-figure:is([data-native-figure="ac-output"],[data-native-figure="usb-output"]) .hb-reference-live-pill[data-source-line="0"] {display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-radius:999px;}
+
+/* Center the editable AC reset explanation inside its existing native frame. */
+#furo-main-content .ht-figure[data-native-figure="ac-output"] .hb-reference-live-pill[data-source-line="1"] {display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+
+/* Native energy-saving copy: measured left inset and per-language baselines. */
+#furo-main-content .ht-figure[data-native-figure="energy-saving"] {margin-bottom:.375rem;}
+#furo-main-content .ht-figure[data-native-figure="energy-saving"] .hb-reference-live-pill[data-source-line="0"] {display:flex;flex-direction:column;align-items:stretch;justify-content:center;text-align:left;padding:0 1cqw 0 2.6798cqw;}
+#furo-main-content .ht-figure[data-native-figure="energy-saving"] .hb-reference-live-pill[data-source-line="0"] .ht-source-line {line-height:1.333003;}
+html[lang="fr"] #furo-main-content .ht-figure[data-native-figure="energy-saving"] .hb-reference-live-pill[data-source-line="0"] {padding-left:3.3139cqw;}
+html[lang="fr"] #furo-main-content .ht-figure[data-native-figure="energy-saving"] .hb-reference-live-pill[data-source-line="0"] .ht-source-line {line-height:1.25;}
+html[lang="es"] #furo-main-content .ht-figure[data-native-figure="energy-saving"] .hb-reference-live-pill[data-source-line="0"] .ht-source-line {line-height:1.167;}
+
+/* The following registered note keeps the source figure's text scale and gap. */
+#furo-main-content .ht-energy-note {container-type:inline-size;max-width:760px;margin:0 auto 1.35rem;}
+#furo-main-content .ht-energy-note table.manual-callout-table {margin:0 !important;}
+#furo-main-content .ht-energy-note table.manual-callout-table .manual-callout-label {width:16.75% !important;font-size:2.5391cqw;padding:1cqw !important;}
+#furo-main-content .ht-energy-note table.manual-callout-table .manual-callout-body {font-size:1.91cqw;line-height:1.333003;padding:1cqw 1.2154cqw !important;}
+#furo-main-content .ht-energy-note table.manual-callout-table :is(p,.line-block) {margin:0;}
+@media(max-width:520px) {
+ #furo-main-content .ht-energy-note table.manual-callout-table .manual-callout-label {width:100% !important;font-size:1rem;padding:.625rem .75rem !important;}
+ #furo-main-content .ht-energy-note table.manual-callout-table .manual-callout-body {font-size:.875rem;line-height:1.4;padding:.625rem .75rem !important;}
+}
+
+/* Native LCD mode: registered shared art/table composition, measured source geometry.
+   Scroll the complete panel on phones; never enlarge the illustration into a full-width row. */
+#furo-main-content .ht-lcd-pair {display:block;margin:1rem 0;overflow-x:auto;padding-bottom:.25rem;-webkit-overflow-scrolling:touch;}
+#furo-main-content .ht-lcd-pair .hb-lcd-mode-composition {display:block;position:relative;container-type:inline-size;box-sizing:border-box;width:100%;min-width:640px;max-width:none;margin:0;padding:0;border-width:2px;--hb-surface:var(--hb-surface-strong);}
+#furo-main-content .ht-lcd-pair .hb-lcd-mode-art-panel {position:absolute;}
+#furo-main-content .ht-lcd-pair .hb-lcd-mode-art {width:100%!important;height:100%!important;max-height:none;object-fit:contain;}
+#furo-main-content .ht-lcd-pair .hb-lcd-mode-table-panel {position:absolute;box-sizing:border-box;overflow:hidden;border-radius:1.1cqw;}
+#furo-main-content .ht-lcd-pair table.hb-lcd-mode-table {height:100%;min-width:0;table-layout:fixed;line-height:1.2;}
+#furo-main-content .ht-lcd-pair table.hb-lcd-mode-table td {padding:0 1.2cqw!important;font-weight:400;}
+#furo-main-content .ht-lcd-pair table.hb-lcd-mode-table .hb-lcd-mode-state {padding:0 1.6cqw!important;line-height:1;}
+#furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(4) > td[rowspan] {border-bottom:0!important;}
+#furo-main-content .ht-lcd-pair table.hb-lcd-mode-table p {margin:0;}
+#furo-main-content .ht-lcd-pair table.hb-lcd-mode-table .ht-source-line {line-height:inherit;}
+html[lang="en"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-composition {aspect-ratio:312.734985/179.098007;}
+html[lang="en"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-art-panel {left:1.055207%;top:1.842567%;width:38.017102%;height:96.314867%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-table-panel {left:39.499253%;top:8.274130%;width:57.786625%;height:84.128800%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table {font-size:1.844501cqw;}
+html[lang="en"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-state {font-size:2.213408cqw;}
+html[lang="en"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-col-state {width:25.990011%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-col-action {width:24.673950%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-col-copy {width:49.336038%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(1) {height:18.811594%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(2) {height:10.543089%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(3) {height:18.201417%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(4) {height:20.526353%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(5) {height:11.334015%;}
+html[lang="en"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(6) {height:20.583531%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-composition {aspect-ratio:312.735016/211.511993;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-art-panel {left:1.055206%;top:1.560195%;width:38.042782%;height:96.879610%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-table-panel {left:39.344454%;top:7.448839%;width:57.786620%;height:85.128509%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table {font-size:1.844501cqw;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-state {font-size:2.213407cqw;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-col-state {width:25.990028%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-col-action {width:24.673942%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-col-copy {width:49.336030%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(1) {height:16.778134%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(2) {height:13.279791%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(3) {height:19.287342%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(4) {height:20.187054%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(5) {height:13.102014%;}
+html[lang="fr"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(6) {height:17.365665%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-composition {aspect-ratio:312.735016/211.511993;}
+html[lang="es"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-art-panel {left:1.055206%;top:1.560195%;width:38.042782%;height:96.879610%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-table-panel {left:39.032813%;top:12.080835%;width:57.786620%;height:73.985875%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table {font-size:1.844501cqw;}
+html[lang="es"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-state {font-size:2.213407cqw;}
+html[lang="es"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-col-state {width:25.990028%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-col-action {width:24.673942%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair .hb-lcd-mode-col-copy {width:49.336030%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(1) {height:18.698304%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(2) {height:13.545102%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(3) {height:19.579602%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(4) {height:17.255910%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(5) {height:12.879694%;}
+html[lang="es"] #furo-main-content .ht-lcd-pair table.hb-lcd-mode-table tr:nth-child(6) {height:18.041388%;}
+
+/* Native key combinations bind the shared table, button-pair and CSS clock.
+   The source-specific dimensions scale as one complete panel on phones. */
+#furo-main-content .ht-native-key {overflow-x:auto;margin:.85rem 0 1.65rem;padding-bottom:.25rem;-webkit-overflow-scrolling:touch;}
+#furo-main-content .ht-native-key .hb-key-combination-composition {container-type:inline-size;box-sizing:border-box;width:100%;min-width:640px;max-width:none;margin:0;overflow:hidden;--hb-surface:var(--hb-surface-strong);}
+#furo-main-content .ht-native-key table.hb-key-combination-table {height:100%;min-width:0!important;line-height:1.3;}
+#furo-main-content .ht-native-key table.hb-key-combination-table :is(th,td) {padding:0 1.65cqw!important;}
+#furo-main-content .ht-native-key table.hb-key-combination-table th {font-size:2.112cqw;line-height:1.2;}
+#furo-main-content .ht-native-key table.hb-key-combination-table .hb-key-buttons {padding:0 1.3cqw!important;}
+#furo-main-content .ht-native-key .hb-key-button-pair {gap:.5cqw;grid-template-columns:minmax(0,1fr) 4cqw minmax(0,1fr);}
+#furo-main-content .ht-native-key .hb-key-button {gap:.38cqw;}
+#furo-main-content .ht-native-key .hb-key-button img {width:7.8739cqw!important;height:7.8739cqw!important;max-width:none;max-height:none;}
+#furo-main-content .ht-native-key .hb-key-button-plus {height:7.8739cqw;font-size:5.3cqw;color:var(--hb-ink);}
+#furo-main-content .ht-native-key .ht-key-caption {display:flex;flex-direction:column;justify-content:center;line-height:1.1;white-space:nowrap;}
+#furo-main-content .ht-native-key .hb-key-duration {font-size:2.24086cqw;margin-bottom:1.2cqw;}
+#furo-main-content .ht-native-key table.hb-key-combination-table p {margin:0;}
+#furo-main-content .ht-native-key .ht-source-line {line-height:inherit;}
+html[lang="es"] #furo-main-content .ht-native-key .ht-key-caption {min-height:3.522cqw;}
+html[lang="en"] #furo-main-content .ht-native-key .hb-key-combination-composition {aspect-ratio:312.437256/141.269501;}
+html[lang="en"] #furo-main-content .ht-native-key table.hb-key-combination-table {font-size:1.920386cqw;}
+html[lang="en"] #furo-main-content .ht-native-key .ht-key-caption {font-size:1.760353cqw;}
+html[lang="en"] #furo-main-content .ht-native-key .hb-key-operation p {font-size:1.760353cqw;}
+html[lang="en"] #furo-main-content .ht-native-key .hb-key-col-buttons {width:41.138086%;}
+html[lang="en"] #furo-main-content .ht-native-key .hb-key-col-operation {width:29.068412%;}
+html[lang="en"] #furo-main-content .ht-native-key .hb-key-col-function {width:29.793502%;}
+html[lang="en"] #furo-main-content .ht-native-key thead {height:10.308808%;}
+html[lang="en"] #furo-main-content .ht-native-key tbody tr:nth-child(1) {height:29.287214%;}
+html[lang="en"] #furo-main-content .ht-native-key tbody tr:nth-child(2) {height:29.287214%;}
+html[lang="en"] #furo-main-content .ht-native-key tbody tr:nth-child(3) {height:31.116763%;}
+html[lang="fr"] #furo-main-content .ht-native-key .hb-key-combination-composition {aspect-ratio:312.391576/141.269501;}
+html[lang="fr"] #furo-main-content .ht-native-key table.hb-key-combination-table {font-size:1.920666cqw;}
+html[lang="fr"] #furo-main-content .ht-native-key .ht-key-caption {font-size:1.600555cqw;}
+html[lang="fr"] #furo-main-content .ht-native-key .hb-key-operation p {font-size:1.760611cqw;}
+html[lang="fr"] #furo-main-content .ht-native-key .hb-key-col-buttons {width:41.263735%;}
+html[lang="fr"] #furo-main-content .ht-native-key .hb-key-col-operation {width:29.072536%;}
+html[lang="fr"] #furo-main-content .ht-native-key .hb-key-col-function {width:29.663729%;}
+html[lang="fr"] #furo-main-content .ht-native-key thead {height:10.308808%;}
+html[lang="fr"] #furo-main-content .ht-native-key tbody tr:nth-child(1) {height:29.287214%;}
+html[lang="fr"] #furo-main-content .ht-native-key tbody tr:nth-child(2) {height:29.287214%;}
+html[lang="fr"] #furo-main-content .ht-native-key tbody tr:nth-child(3) {height:31.116763%;}
+html[lang="es"] #furo-main-content .ht-native-key .hb-key-combination-composition {aspect-ratio:312.395337/141.269501;}
+html[lang="es"] #furo-main-content .ht-native-key table.hb-key-combination-table {font-size:1.920643cqw;}
+html[lang="es"] #furo-main-content .ht-native-key .ht-key-caption {font-size:1.600536cqw;}
+html[lang="es"] #furo-main-content .ht-native-key .hb-key-operation p {font-size:1.920643cqw;}
+html[lang="es"] #furo-main-content .ht-native-key .hb-key-col-buttons {width:41.474304%;}
+html[lang="es"] #furo-main-content .ht-native-key .hb-key-col-operation {width:29.072186%;}
+html[lang="es"] #furo-main-content .ht-native-key .hb-key-col-function {width:29.453510%;}
+html[lang="es"] #furo-main-content .ht-native-key thead {height:10.308808%;}
+html[lang="es"] #furo-main-content .ht-native-key tbody tr:nth-child(1) {height:29.287214%;}
+html[lang="es"] #furo-main-content .ht-native-key tbody tr:nth-child(2) {height:29.287214%;}
+html[lang="es"] #furo-main-content .ht-native-key tbody tr:nth-child(3) {height:31.116763%;}
+
+/* Native specification typography and desktop column proportions.
+   The registered HB-TABLE-SPEC owns palette, frame, grid and mobile wrapping. */
+.ht-native-specification {container-type:inline-size;}
+#furo-main-content .ht-native-specification table.hb-spec-table {
+  font-size:max(14px,var(--ht-spec-font-size));line-height:1.2;
+}
+#furo-main-content .ht-native-specification table.hb-spec-table :is(th,td) {
+  padding:max(5px,.80cqw) max(7px,1.152cqw) max(3px,.544cqw) !important;
+}
+#furo-main-content .ht-native-specification table.hb-spec-table .hb-spec-label {
+  font-weight:400;background:var(--hb-surface-strong) !important;
+}
+#furo-main-content .ht-native-specification h2 {margin-top:.5rem;}
+#furo-main-content .ht-spec-general h2 {margin-top:0;}
+.ht-native-specification .hb-spec-table-composition {margin-bottom:.72rem;}
+@media(min-width:600px) {
+  #furo-main-content .ht-native-specification .hb-spec-col-label {width:var(--ht-spec-label-width) !important;}
+  #furo-main-content .ht-native-specification .hb-spec-col-value {width:var(--ht-spec-value-width) !important;}
+}
+
+/* Native troubleshooting scale and hanging step lines; the registered
+   HB-TABLE-TROUBLESHOOTING owns frame, grid, alignment and narrow-screen scroll. */
+.ht-native-troubleshooting {container-type:inline-size;}
+#furo-main-content .ht-native-troubleshooting table.hb-troubleshooting-table {
+  font-size:max(14px,1.920643cqw);line-height:1.167;
+}
+#furo-main-content .ht-native-troubleshooting table.hb-troubleshooting-table :is(th,td) {
+  padding:max(4px,.55cqw) max(7px,1.43cqw) !important;
+}
+#furo-main-content .ht-native-troubleshooting table.hb-troubleshooting-table .hb-troubleshooting-code {
+  font-size:max(18px,2.560857cqw);background:var(--hb-surface-strong) !important;
+}
+#furo-main-content .ht-native-troubleshooting table.hb-troubleshooting-table thead :is(.hb-troubleshooting-code,.hb-troubleshooting-measures) {
+  font-size:max(14px,2.112707cqw);
+}
+#furo-main-content .ht-native-troubleshooting .ht-troubleshooting-step {
+  padding-left:1.1em;text-indent:-1.1em;
+}
+
+/* Native unlabelled storage panel, with shared palette and semantic list styles. */
+.ht-native-storage {
+  box-sizing:border-box;background:var(--hb-surface);border-radius:1.15rem;
+  padding:.65rem .8rem;line-height:1.35;
+}
+#furo-main-content .ht-native-storage :is(p,ul) {margin:0;}
+#furo-main-content .ht-native-storage ul {padding-left:1.15em;}
+#furo-main-content .ht-native-storage li {margin:0;}
+
+/* Source title and availability pairs retain their marker on narrow screens. */
+#furo-main-content h2.ht-availability-heading {align-items:center;}
+#furo-main-content h2.ht-availability-heading > .hb-heading-title {max-width:calc(100% - 1.3rem);}
+
+/* Native accessory captions and availability text center within their own areas.
+   Reused transparent cart artwork sits over a CSS capsule; the base art is unchanged. */
+#furo-main-content .ht-figure[data-native-figure="battery-accessories"] .hb-reference-live-label {display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+#furo-main-content .ht-figure[data-native-figure="battery-accessories"] .hb-reference-live-pill {padding:0 .8cqw 0 var(--ht-sold-copy-inset);border-radius:999px 0 0 999px;}
+#furo-main-content .ht-figure[data-native-figure="battery-accessories"] .hb-reference-live-pill::before {content:"";position:absolute;width:7.318736cqw;height:7.636944cqw;left:2.308465cqw;top:50%;transform:translateY(-43.83585%);background:var(--ht-accessory-cart) center/contain no-repeat;}
+/* Notice titles remain centered when the shared mobile layout stacks the cells.
+   Body prose and semantic item lists keep their native reading alignment. */
+#furo-main-content table.manual-callout-table .manual-callout-label {text-align:center;vertical-align:middle!important;}
+
+/* Native parallel instructions form a compact step list followed by two bullets. */
+#furo-main-content :is([data-native-list="parallel-steps"],[data-native-list="parallel-result"]) > li,
+#furo-main-content :is([data-native-list="parallel-steps"],[data-native-list="parallel-result"]) > li > p {margin:0;}
+#furo-main-content [data-native-list="parallel-steps"] {margin-bottom:.375rem;}
+
+/* Native parallel caution keeps its two bullets contiguous with hanging text. */
+#furo-main-content table[data-native-list="parallel-caution"] .manual-callout-body li {margin:0;}
+
+/* Native charging-temperature notice retains a compact two-item list. */
+#furo-main-content table[data-native-list="charging-temperature"] .manual-callout-body li {margin:0;}
+
+/* Native warranty titles use white copy on compact dark labels, without circles. */
+#furo-main-content h2.ht-native-warranty-title {display:inline-flex;width:fit-content;max-width:100%;margin:1.25rem 0 .4rem;padding:.3rem .65rem;border-radius:.42rem;background:var(--hb-brand-dark);color:var(--hb-paper);font-size:clamp(.94rem,1.6vw,1.08rem);line-height:1.15;text-transform:none;}
+#furo-main-content h2.ht-native-warranty-title::before {display:none;}
+/* App steps retain their native numbering and title case; the number is the marker. */
+#furo-main-content h2.ht-native-app-title {font-size:clamp(1.1rem,1.9vw,1.3rem);text-transform:none;}
+#furo-main-content h2.ht-native-app-title::before {display:none;}
+/* The contact telephone is emphasized body copy, not a section heading. */
+#furo-main-content p.ht-native-contact-phone {margin:.7rem 0;font-size:1.35rem;font-weight:700;line-height:1.25;}
+
+/* Native specification notes keep live trademark superscripts and separate circled items. */
+#furo-main-content .ht-native-spec-notes :is(.manual-spec-note,.manual-spec-footnote) {color:var(--hb-text);}
+#furo-main-content .ht-spec-trademark {margin:.75rem 0 .65rem;}
+#furo-main-content .ht-registered-term {white-space:nowrap;}
+#furo-main-content .ht-spec-trademark sup {font-size:.65em;line-height:0;vertical-align:super;}
+#furo-main-content ol.ht-spec-footnotes {list-style:none;padding:0;margin:0;}
+#furo-main-content ol.ht-spec-footnotes li {margin:0;}
+#furo-main-content ol.ht-spec-footnotes li > p {margin:0;padding-left:1.1em;text-indent:-1.1em;}
+
+/* Native warranty composition: existing registered cards own prose and numeral styles. */
+#furo-main-content .ht-native-warranty-section {position:relative;box-sizing:border-box;width:100%;margin:1.8rem 0 1rem;padding:1.05rem 1rem .82rem;border:2px solid var(--hb-line-soft);border-radius:.88rem;background:var(--hb-paper);}
+#furo-main-content .ht-native-warranty-section > h2.ht-native-warranty-title {position:relative;display:flex;max-width:100%;margin:-1.92rem 0 .5rem;}
+#furo-main-content .ht-native-warranty-section > figure {margin:0;}
+@media(max-width:760px){
+ #furo-main-content .ht-native-warranty-section {padding:1.05rem .75rem .72rem;border-radius:.7rem;}
+ #furo-main-content .ht-native-warranty-section > h2.ht-native-warranty-title {margin:-1.92rem 0 .5rem;}
+}
+
+/* Native App download keeps two columns, full frames, and flowing selectable copy. */
+#furo-main-content .ht-native-app-download .hb-app-download-grid {grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(1rem,4vw,3rem);}
+#furo-main-content .ht-native-app-download .hb-app-download-art-frame {min-height:7rem;place-items:start;align-items:start;}
+#furo-main-content .ht-native-app-download .hb-app-download-art {margin:0!important;}
+#furo-main-content .ht-native-app-download .hb-app-download-art-store {width:min(100%,9.5rem)!important;max-width:9.5rem!important;}
+#furo-main-content .ht-native-app-download .hb-app-download-art-qr {width:min(100%,6.5rem)!important;max-width:6.5rem!important;}
+#furo-main-content .ht-native-app-download .hb-app-download-copy {font-size:clamp(.875rem,1.6vw,1rem);line-height:1.35;}
+#furo-main-content .ht-native-app-plus-step .ht-native-app-plus {display:inline-block;width:1.25em;height:1.25em;margin:0 .15em;vertical-align:-.25em;}
+/* Full two-phone art scales to the reading column without a dense scroll canvas. */
+#furo-main-content .ht-native-app-phones {overflow:visible;padding-bottom:0;}
+@media(max-width:760px){#furo-main-content .ht-native-app-phones {max-width:min(100%,28rem);}}
+#furo-main-content .ht-native-app-download .ht-source-line {display:inline;white-space:normal;line-height:inherit;}
+
+/* Native contact footer: plain company title and one editable contact panel with QR. */
+#furo-main-content section:has(> .ht-native-contact-card) > h1 {background:none;color:var(--hb-text);border-radius:0;padding:0;margin-bottom:.25rem;font-size:1.55rem;line-height:1.2;}
+#furo-main-content .ht-native-contact-card {container-type:inline-size;margin:0 0 1rem;}
+#furo-main-content .ht-contact-address {margin:.25rem 0 .75rem;}
+#furo-main-content .ht-contact-row {display:grid;grid-template-columns:minmax(0,1fr) 4.5rem;gap:.5rem;align-items:stretch;}
+#furo-main-content .ht-contact-panel {display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.65rem .75rem;border:1px solid var(--hb-line-soft);border-radius:.75rem;background:var(--hb-paper);min-width:0;}
+#furo-main-content .ht-contact-phone {display:flex;align-items:center;gap:.3rem;margin:0;font-size:clamp(1.25rem,4.5cqw,1.9rem);line-height:1.4;white-space:nowrap;}
+#furo-main-content .ht-contact-region {font-size:.55em;font-weight:400;}
+#furo-main-content .ht-contact-links {position:relative;padding-left:1rem;border-left:1px solid var(--hb-line-soft);flex-shrink:0;}
+#furo-main-content .ht-contact-links::before {content:"";position:absolute;left:-3px;top:calc(50% - 3px);width:5px;height:5px;border-right:1px solid var(--hb-line-soft);border-top:1px solid var(--hb-line-soft);background:var(--hb-paper);transform:rotate(45deg);}
+#furo-main-content .ht-contact-links p {display:flex;align-items:center;gap:.35rem;margin:0;line-height:1.5;white-space:nowrap;}
+#furo-main-content .ht-native-contact-card a {color:inherit;text-decoration:none;}
+#furo-main-content .ht-contact-glyph {display:block;flex-shrink:0;width:auto!important;height:1.05em!important;margin:0!important;max-width:none;}
+#furo-main-content .ht-contact-phone .ht-contact-glyph {height:1.15em!important;}
+#furo-main-content .ht-contact-qr {display:grid;place-items:center;padding:.3rem;border:1px solid var(--hb-line-soft);border-radius:.55rem;background:#fff;}
+#furo-main-content .ht-contact-qr img {display:block;width:100%!important;height:auto!important;margin:0!important;max-width:100%;}
+@media(max-width:600px){
+ #furo-main-content .ht-contact-panel {flex-direction:column;align-items:flex-start;justify-content:center;gap:.6rem;padding:.65rem .6rem;}
+ #furo-main-content .ht-contact-links {border-left:0;padding-left:0;font-size:.875rem;}
+ #furo-main-content .ht-contact-links::before {display:none;}
+ #furo-main-content .ht-contact-qr {align-self:center;aspect-ratio:1;box-sizing:border-box;}
+}
