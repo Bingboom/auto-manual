@@ -35,8 +35,8 @@ Status: active · Owner: 夏冰 · Created: 2026-10-12
    三个包的 README 都写明不写 phase2、Base 或队列，内容基于共享的 Manual IR 与 ComponentSpec 生成。
    书已经印出来时，原生转换比"录结构化数据 + 写槽位模板"便宜，也更忠实于原书。
 3. **网页侧的复用已下沉到组件层。** [`frozen_web_component_coverage.py`](../../../tools/web/frozen_web_component_coverage.py)
-   按 9 个语义章节做共享组件准入（[Web 发布契约](../web_publish_pipeline.md)
-   "Native multilingual shared-component admission"），起到了轻量"语义骨架"的作用。
+   按 9 个语义章节做共享组件准入（[Web 发布契约 · 共享组件准入](../web_publish_pipeline/shared-component-admission.md)），
+   起到了轻量"语义骨架"的作用。
 4. **剩余路线成本高，用户看不到收益。**
    - R4a 要冻结并可能改名已提交的评审派生物和已批准版式 pin，按 Milestone M 的 M-pre.3，每一项都要操作者确认；
    - R6 要改 Base schema，并以 T-K4 备份恢复证据为前提；
