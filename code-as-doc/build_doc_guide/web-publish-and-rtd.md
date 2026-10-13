@@ -23,11 +23,11 @@ group opacity; SVG cannot use fill overrides or stroke suppression.
 
 生产完成触发、冻结快照审核与线上哈希确认见 [工作台数据持续更新](../dev/workspace_data_refresh.md)。
 
-设计系统 `/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal.md#design-system-page)。
+设计系统 `/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#design-system-page)。
 
-系统数据 `/workspace/data/index.html` 在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/`、`data/asset_registry.csv` 与 `git ls-files`，汇总已发布网页说明书、机型能力、素材注册情况和各目录代码与文档行数，页面内可按区域和机型筛选；见 [RTD portal](../dev/rtd_manual_portal.md#system-data-page)。
+系统数据 `/workspace/data/index.html` 在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/`、`data/asset_registry.csv` 与 `git ls-files`，汇总已发布网页说明书、机型能力、素材注册情况和各目录代码与文档行数，页面内可按区域和机型筛选；见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#system-data-page)。
 
-产品矩阵 `/products/matrix.html` 在构建时读取发布清单、各型号已发布网页说明书的规格表、说明书资料库目录与导航分组和 `data/model_capabilities.csv`，按产品线 × 容量排列电源与电池，并列出配套产品、规格对照、功能矩阵和说明书写明的搭配关系；说明书没有写明的归类和搭配维护在 `tools/rtd_portal_assets/product_matrix.json`，见 [RTD portal](../dev/rtd_manual_portal.md#product-matrix-page)。
+产品矩阵 `/products/matrix.html` 在构建时读取发布清单、各型号已发布网页说明书的规格表、说明书资料库目录与导航分组和 `data/model_capabilities.csv`，按产品线 × 容量排列电源与电池，并列出配套产品、规格对照、功能矩阵和说明书写明的搭配关系；说明书没有写明的归类和搭配维护在 `tools/rtd_portal_assets/product_matrix.json`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page)。
 
 说明书工作台 `/workspace/deliverables/index.html` 由现有 RTD portal 构建时聚合发布目录、交付与语料快照、组件定义与明确目标绑定。首页采用结论优先布局：常用工作入口、生产规模及交付入口条形图、三类资产关系图、投入与回流简况；完整列表、工作地图和统计证据折叠展示，锚点导航自动展开目标；配置引用不等于实际消费。指标口径、来源时间、SHA-256 和对象列表可展开核验。无事件历史时显示 Not tracked yet，读取失败显示 Unavailable；详见 [工作台统计契约](../dev/workspace_production_evidence.md)。
 
@@ -38,7 +38,7 @@ Verified single-language pages omit a duplicate plain leading language label at 
 
 JBP-3600A EU/en 装箱清单使用纯插图，边框与编号由 Web 组件生成；见[修复与发布边界](../reviews/jbp3600a-inbox-artwork-20260915.md)。
 
-RTD catalog cards may use explicit model/market artwork overrides or a static illustration fallback when packing-list artwork is missing; see [catalog artwork](../dev/rtd_manual_portal.md#accessory-catalog-artwork-2026-09-15).
+RTD catalog cards may use explicit model/market artwork overrides or a static illustration fallback when packing-list artwork is missing; see [catalog artwork](../dev/rtd_manual_portal/manual-center.md#accessory-catalog-artwork-2026-09-15).
 
 RTD [locale navigation](../dev/rtd_locale_navigation.md) consumes only frozen publication
 metadata; it does not query live data during a Sphinx build.
@@ -74,7 +74,7 @@ sealed inventory covers them. Unknown files are not silently copied or ignored
 by evidence verification; print artifacts and symlinks remain prohibited.
 
 Frozen Web source storage is bounded separately from served output and network
-inventories. The [Git-only release contract](../dev/web_publish_pipeline.md#22-git-only-transaction)
+inventories. The [Git-only release contract](../dev/web_publish_pipeline/input-paths.md#22-git-only-transaction)
 sets the 1152 MiB / 20,000-file source budgets. Served output and online verification
 retain 512 MiB / 10,000-file budgets; all inventories keep the 32 MiB per-file limit.
 
@@ -117,7 +117,7 @@ Web Publish / Read the Docs note:
 - [`.github/workflows/feishu-build-queue.yml`](../../.github/workflows/feishu-build-queue.yml) owns print Publish only; it no longer builds a Vercel candidate or writes `HTML_link`
 - [`.github/workflows/feishu-web-publish-queue.yml`](../../.github/workflows/feishu-web-publish-queue.yml) runs only on the Hello-Docs business plane, consumes `Workflow_action=Web Publish`, pushes frozen sources to the `Hello-Docs/publish:docs/publish/` candidate, rejects any PR diff outside `docs/publish/**`, and opens or updates `publish -> main`; after the merge, [`web-publish-receipt.yml`](../../.github/workflows/web-publish-receipt.yml) verifies the live deployment and writes the deterministic canonical nested RTD page (for example `https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html`) to `HTML_link`; the root-level alias (for example `/manual_je1000f_us.html`) stays the countable printed/QR entry layer and is no longer the registered value
 - [`.github/workflows/verify-web-deployment.yml`](../../.github/workflows/verify-web-deployment.yml) is the independent daily cross-check, also on the Hello-Docs business plane: [`tools/verify_web_deployment_targets.py`](../../tools/verify_web_deployment_targets.py) runs the full deployment-receipt verification (frozen-source bytes plus the expected `readthedocs-project-slug`) for every target in `docs/publish/publish_manifest.json`, so a wrong-site deployment or later link drift fails the run and opens the `web-deployment-verify` sentinel issue
-- An authorized Git-only Web release uses committed source plus `source_manifest.json`, exact-ref `check`/Web MyST/strict Sphinx evidence, real release metadata, and the same assembler against a candidate copied from current `Hello-Docs/main:docs/publish/**`. It creates no queue or online-table writes. Both input paths use the same `docs/publish/**`-only PR and RTD outlet; Git-only completion is proven by commits, hashes, metadata, and real URLs instead of `HTML_link` readback. See [`dev/web_publish_pipeline.md`](../dev/web_publish_pipeline.md#22-git-only-transaction)
+- An authorized Git-only Web release uses committed source plus `source_manifest.json`, exact-ref `check`/Web MyST/strict Sphinx evidence, real release metadata, and the same assembler against a candidate copied from current `Hello-Docs/main:docs/publish/**`. It creates no queue or online-table writes. Both input paths use the same `docs/publish/**`-only PR and RTD outlet; Git-only completion is proven by commits, hashes, metadata, and real URLs instead of `HTML_link` readback. See [`dev/web_publish_pipeline.md`](../dev/web_publish_pipeline/input-paths.md#22-git-only-transaction)
 - Web Publish verification artifacts expire after 7 days; the generated `publish` branch is the durable candidate and `Hello-Docs/main:docs/publish/**` is the production snapshot. Print Publish artifacts retain their 14-day CI inspection window, and the nightly phase2 backup retains 90 days
 - [`.readthedocs.yaml`](../../.readthedocs.yaml) builds `docs/publish/web/` when the frozen Web Publish snapshot exists on `main`. Its review/fixture command is only a bootstrap fallback before the first merged snapshot
 - RTD builds from a bare clone with no Feishu credentials. The project listens to `Hello-Docs/main`; it renders the PR-merged MyST source and never runs live `sync-data`
@@ -163,10 +163,10 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 历史数字带日期，页面中的历史叙述与阶段日期统一精确到月；记录更新、数据快照和构建时间保留原有精度。
 合入与线上验收分别记录。维护后运行
 `python -m tools.rtd.system_workspace check`，详见
-[系统建设页契约](../dev/rtd_manual_portal.md#system-workspace-page)。
+[系统建设页契约](../dev/rtd_manual_portal/system-workspace.md#system-workspace-page)。
 
 两个界面共用 RTD 项目的可见性设置，详见
-[Personal workspace entry](../dev/rtd_manual_portal.md#personal-workspace-entry)。
+[Personal workspace entry](../dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry)。
 
 同一构建还生成 `/workspace/system/` 系统建设页：状态来自
 `tools/rtd_portal_assets/system_workspace.yaml`，数量来自
@@ -176,7 +176,7 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 “系统架构”标签（`/workspace/system/#tab-architecture`）展示人的入口、AI 能力入口与企业数据入口，围绕同一套可信内容和文档生产体系。现有多维表展示产品信息、内容模块、规格参数、多语言内容及业务维护与评审，经数据校验与快照进入 auto-manual；系统共用多维表、Git 原稿和批准素材，以及 Shared IR（共享底稿）与样式组件，支持文档生产、专业文件处理和内容查询。内容权威、组装、渲染与发布是其中的文档生产链路。MCP 与 PLM／ERP 同步及字段映射接入用虚线及“未来方向”标注；当前 Agent／Bot 单独列出。MCP 仅作为规划中的协议适配层，正式图稿修改保留人工批准。Shared IR（共享底稿）的 Web 整本与样式复用已有基础，机读语料目前仍从已发布 HTML 派生；已有基础按现有文件预翻译、AI 图稿与页码处理、PDF 标注、回写及构建技能列出，钩子标明触发与启用条件。架构视图也读取原有演进史摘要，不另建台账。
 
 修改状态配置后运行 `python -m tools.rtd.system_workspace check`（加 `--online` 可再核对 PR 与链接）。
-构建同时生成页面版本回执 `_static/system-workspace-revision.json`。「入口与数据来源」内可展开「页面版本与更新」，页首与演变引言不再显示版本信息及辅助跳转提示。main 经镜像同步、RTD 成功构建后，已打开页面会检测已发布版本并提供刷新入口；提交版本属于 RTD 构建仓库，不能把镜像成功当作线上更新成功。详见 [Published version and refresh](../dev/rtd_manual_portal.md#published-version-and-refresh)。
+构建同时生成页面版本回执 `_static/system-workspace-revision.json`。「入口与数据来源」内可展开「页面版本与更新」，页首与演变引言不再显示版本信息及辅助跳转提示。main 经镜像同步、RTD 成功构建后，已打开页面会检测已发布版本并提供刷新入口；提交版本属于 RTD 构建仓库，不能把镜像成功当作线上更新成功。详见 [Published version and refresh](../dev/rtd_manual_portal/system-workspace.md#published-version-and-refresh)。
 页内“语言资产”块优先读取 Hello-Docs `docs/knowledge/workspace-data` 汇总快照，工程快照作为迁移基线。
 资产批次完成后复用 `python -m tools.rtd.system_workspace corpus-export` 的读取逻辑，通过 Workspace Data Refresh 导出并提交内容 PR；
 导出会把往月汇总数带进快照的 `history`，页面据此显示与上期的对比。
@@ -184,12 +184,12 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 页内“技能与钩子”块在构建时读取 `.agents/skills`、`.claude/skills`、`.claude/settings.json` 与 `.githooks/pre-push`，
 按重点线列出技能，标出未登记的技能和没有测试的钩子；`check` 对这些缺口给出警告。
 各数据的来源、快照、多少天算过期和取不到时的显示，统一登记在 `tools/rtd_portal_assets/source_registry.yaml`，系统建设页和交付物页都从这里读取，系统建设页底部公开列出“数据来源”表；详见
-[Source registry](../dev/rtd_manual_portal.md#source-registry)。
+[Source registry](../dev/rtd_manual_portal/system-workspace.md#source-registry)。
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
-[System workspace page](../dev/rtd_manual_portal.md#system-workspace-page)。
+[System workspace page](../dev/rtd_manual_portal/system-workspace.md#system-workspace-page)。
 
-同一构建还生成 `/workspace/deliverables/` 说明书工作台：首页提供常用工作入口、生产规模图表、三类资产管理入口与投入/回流简况。“更多工作入口”折叠区保留“结构化数据 + 模板与骨架 → 构建与发布 → 多格式交付物”地图，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。下方交付物矩阵按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接；手机端保留矩阵并横向滚动。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，正式交付写回并读回成功后每批自动刷新一次，候选数据通过 Hello-Docs 内容 PR 审核；手动補做统一使用 Workspace Data Refresh。飞书链接需要登录才能打开，但地址在公开页上可见。详见 [Deliverables page](../dev/rtd_manual_portal.md#deliverables-page)。
+同一构建还生成 `/workspace/deliverables/` 说明书工作台：首页提供常用工作入口、生产规模图表、三类资产管理入口与投入/回流简况。“更多工作入口”折叠区保留“结构化数据 + 模板与骨架 → 构建与发布 → 多格式交付物”地图，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。下方交付物矩阵按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接；手机端保留矩阵并横向滚动。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，正式交付写回并读回成功后每批自动刷新一次，候选数据通过 Hello-Docs 内容 PR 审核；手动補做统一使用 Workspace Data Refresh。飞书链接需要登录才能打开，但地址在公开页上可见。详见 [Deliverables page](../dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)。
 
 RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
 构建结束或失败后清除缓存，下次构建仍重新校验。见
-[目录构建校验](../dev/rtd_manual_portal.md#catalog-validation-during-a-build)。
+[目录构建校验](../dev/rtd_manual_portal/manual-center.md#catalog-validation-during-a-build)。

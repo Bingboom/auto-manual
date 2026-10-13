@@ -41,7 +41,7 @@ HTTP 状态/耗时/是否完整渲染。URL 清单取自 [rev01_url_map.csv](rev
    + 入口/统计决策**——这是它排第一但不能立即开工的唯一原因。
 2. **日规 · JE-1000F JP**：评审到发布全流程有完整记录，日文配置被每日测试覆盖。
    注意：#1186 撤除时一并回退了门户的 ja/JP 注册，重做时按
-   [web_publish_pipeline.md §3.1](../web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)
+   [web_publish_pipeline.md §3.1](../web_publish_pipeline/hosting-boundaries.md#31-hosting-convergence-and-legacy-entry-review)
    的三处注册契约执行（`language_labels` 缺失会使聚合构建整体失败）。
 3. **韩规 · JE-3000C KR**（后位）：REV-04 证实装配计划仍为 candidate、共享页 manifest
    无封面/封底条目、publish_manifest 无 KR 目标——先修构建声明再谈开线。

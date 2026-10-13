@@ -1,0 +1,277 @@
+# RTD portal: workspace entry and knowledge-base pages
+
+Status: active · Part of the [RTD manual-center entrance](../rtd_manual_portal.md); its index lists the
+other portal surfaces. Add new notes for this surface here, not to the hub.
+
+## Personal workspace entry
+
+The manual-center root remains independent. The portal extension also builds
+`/workspace/` as a neutral Chinese entry page for two separately maintained
+personal interfaces:
+
+- **AI 分享** opens the bundled beginner-facing AI sharing package at
+  `/ai-share/00_打开分享.html`.
+- **工作资料** opens the manual library for product, region, language
+  and manual-content search.
+
+The sharing package is owned by **Hello-Docs** under
+`docs/knowledge/ai-share/`; it must not be committed to auto-manual.
+The extension reads that directory and copies it into the RTD HTML output.
+For isolated local previews, set the Sphinx config `rtd_knowledge_dir` to the
+Hello-Docs knowledge directory. HTML pages retain their `noindex,nofollow` metadata.
+The engineering sync preserves both `docs/publish/` and `docs/knowledge/`.
+Deploy that sync protection before merging content into Hello-Docs main.
+Maintain sharing content through a Hello-Docs content PR; keep templates and
+build code in auto-manual.
+Relative links between the main share, demonstrations, reference pages and SVG
+figures therefore keep working without another host. The two interfaces share
+the RTD project's visibility settings; the workspace path is navigation, not a
+separate access-control boundary.
+
+The workspace itself exists in every portal build; knowledge pages link back
+to the manual center, but the manual-center homepage does not link into the
+workspace. The system page lives inside it. The sharing package is an
+optional entry. Without `ai-share/00_打开分享.html`, the workspace hides the
+share navigation link, card, search box and update line, and the system page
+hides its share link. Nothing else changes. With the package present, both
+pages are byte-identical to the earlier behaviour.
+
+Rollback: revert the portal extension's RTD activation and rebuild. Frozen
+content, QR aliases and nested manual URLs are unchanged.
+
+## Deliverables page
+
+`/workspace/deliverables/` (说明书工作台) is the production navigation surface.
+The stable URL is retained. Its compact work map follows the README:
+**structured data + templates/skeletons → build/publish → multi-format outputs**.
+Selecting a node reveals its work destinations, operating guides and next step.
+The data/template inputs visibly converge before the build stage. The system
+workspace remains the capability/progress view; this page links to it.
+
+`tools/rtd_portal_assets/manual_workbench.html` owns the curated navigation links,
+using business destinations from `user-guide/two_plane_map.md` and the README's
+existing authoritative guides. Templates/configuration link to auto-manual;
+business Actions and PRs link to Hello-Docs. Feishu links require the user's
+existing access. This is navigation only: it does not launch jobs, access live
+APIs, invent per-target review links or duplicate capability status. Changes to
+business coordinates must update the authoritative topology and this entry map.
+
+All links and panels are rendered at build time. `manual-workbench.js` only
+switches the selected panel, using native buttons and `aria-pressed`; without
+JavaScript, every panel stays visible. Styling is scoped to the workbench and
+reuses the workspace shell. The hero provides a direct matrix anchor.
+
+Below the map, the unchanged delivery data is grouped by model, with one row
+per region and one column per format:
+
+| Column | What it links to | Source |
+| --- | --- | --- |
+| 网页手册 | each language edition's page on this site | `docs/publish/publish_manifest.json`, read at build time |
+| 印刷交付包 (IDML + PDF) | the Publish handoff ZIP in the Feishu wiki | the build table's `idml_file` column, through the snapshot |
+| Word 云文档 | the Draft Word output, imported as a Feishu cloud doc | the build table's `飞书云文档` column, through the snapshot |
+
+- Each cell holds one chip per language, with its version. 整本 marks a
+  whole-book document that carries all its languages in one file.
+- The PDF has no link of its own: it ships inside the handoff ZIP, and the
+  publish tree refuses PDF files.
+- Two selects filter the table by model and by region. On a phone, the table
+  remains a matrix in a keyboard-focusable horizontal scroll region, with the
+  region column pinned. Long version identifiers wrap instead of widening the page.
+- Product names come from the manual center. A model that the manual center
+  does not list shows its code only. The build table's own product names are
+  not used, because some of them are wrong or empty.
+
+The Feishu links open only for signed-in Feishu users, but their addresses are
+public on this page. The operator chose this on 2026-09-25 (「直接放飞书链接」).
+The page accepts only https links on a Feishu or Lark host.
+
+### Refreshing the Feishu snapshot
+
+RTD never reads Feishu, so the two Feishu columns come from
+`tools/rtd_portal_assets/deliverables_snapshot.json`, the snapshot of the
+source registry's `deliverables_feishu` domain. Refresh it through a PR
+after new Draft or Publish builds:
+
+```bash
+python -m tools.rtd.deliverables export --cli-bin "lark-cli --profile prod" --as bot
+python -m tools.rtd.deliverables check
+```
+
+`export` is read-only. It reads two tables in the base named by
+`$FEISHU_PHASE2_BASE_TOKEN`:
+
+- the build table, `$FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID`;
+- the Document_key table, `$FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` (the
+  model-capabilities table is the Document_key table).
+
+It keeps the highest version for each model, region, language and format. It
+skips rows without a resolvable key or without a Feishu link. A missing column
+fails the export instead of silently dropping a format.
+
+### Failure behaviour
+
+- Without a publish manifest, the web column is empty and the page says
+  发布清单当前不可读.
+- An unreadable or unsound snapshot empties the two Feishu columns only, with a
+  Sphinx warning.
+- A snapshot older than the registry's limit (45 days) shows 待复核, and
+  `check` warns about it.
+- The page always renders. The workspace and system pages link to it from their
+  sidebars, and the workspace's 最近更新 list links to it too.
+
+## Design system page
+
+`/workspace/design/index.html` (设计系统) shows the manual's visual rules in six
+tabs: 概览, 颜色, 字体, 组件, 图标与素材 and 印刷规格. It is an internal 知识库
+page; the public manual library does not link to it.
+
+- **Values are live.** At build time `tools/rtd/design_system.py` reads the
+  stylesheet that `tools/web/stylesheets.py` assembles
+  (`tools/rtd/design_system_css.py`). Colours, contrast ratios, type sizes and
+  the 760px overrides come from the declarations of named selectors. A small
+  line under the counts gives the versions in use: the stylesheet's SHA-256 and
+  the print table's token hash. A stylesheet change appears on the next RTD
+  build without editing the page.
+- **Previews are live.** Each component preview is an iframe document that
+  loads that same stylesheet, copied to `/workspace/design/web_manual.css`, and
+  wraps its markup in `#furo-main-content`. Art is copied from the repository's
+  shared asset folders, and per-target art is a labelled placeholder SVG. Frames
+  size themselves to their content (`_static/design-system.js`); without
+  JavaScript they keep their declared height.
+- **The asset library is live.** `tools/rtd/design_assets.py` lists the 图标与素材
+  groups from the shared symbol and button manifests
+  (`docs/renderers/web/assets/shared/{symbols,buttons}/manifest.json`), the
+  shared LCD folder, and named files from the Word and LaTeX asset folders. The
+  files are copied to `/workspace/design/assets/<group>/`; each tile shows the
+  file's format, size, PNG dimensions and alpha channel, or the colours an SVG
+  uses.
+- **Print values are live.** `tools/rtd/design_print.py` reads
+  `data/layout_params.csv` through `tools.render_contract.load_layout_tokens`:
+  page geometry, type sizes and leading, CMYK swatches and component geometry.
+  It shows base values only: `lang_*` density overrides and the IDML overlay
+  tables a config may add are not applied. The base tokens are also written as
+  CSS custom properties to `/workspace/design/print/tokens.css` for an
+  actual-size odd-page preview (`print/page.html`). Weights are not in the
+  table; the LaTeX modules and IDML styles own them.
+- **Notes are data.** The Chinese text, the selectors and keys each value comes
+  from and the preview markup live in `tools/rtd_portal_assets/design_system/`
+  (`content.yaml`, `previews/<id>.html`, `print_page.html`, `print_page.css`).
+  Previews may use only `asset:<group>/<file>` art and `slot:<w>:<h>:<label>`
+  placeholders: no remote, data or absolute URLs. The print preview may use only
+  tokens the table defines.
+- **Drift fails closed.** The build fails the page, and
+  `tests/test_rtd_design_system.py` fails first, when any of these happen:
+  - a selector, a component's `requires` class or an asset no longer exists;
+  - an asset note names a file or key that no longer exists;
+  - a shown or copied file carries a hash the symbol manifest has withdrawn;
+  - a print key, a print colour's screen token, or a token the print preview
+    uses is gone.
+
+  A failed page is skipped with a Sphinx warning and its sidebar entry
+  disappears, rather than showing stale rules. Additions, such as a new symbol
+  or a new CSV row, do not fail; they appear in the gallery, or wait for a
+  label in `content.yaml`.
+
+## System data page
+
+`/workspace/data/index.html` (系统数据) counts what the repository holds about
+the manuals and lets a reader narrow every card by region and model. It is an
+internal 知识库 page; the public manual library does not link to it.
+
+- **Rows are read at build time.** `tools/rtd/system_data.py` reads
+  `docs/publish/publish_manifest.json` (one row per published Web route, as the
+  deliverables page reads it), `data/model_capabilities.csv`,
+  `data/model_languages.csv`, the RST page count under
+  `docs/_review/<model>/<region>` and `data/asset_registry.csv` (category,
+  status without its leading mark, model, region). For 工程规模 it lists the
+  checkout with `git ls-files` and counts the lines of every tracked `.py`,
+  `.md`, `.rst`, `.yaml`/`.yml` and `.csv` file per top-level directory and
+  file type. Nothing is snapshotted or committed for the page; a data change
+  appears on the next RTD build.
+- **Cards:** headline counts (published Web manuals, models, languages, targets
+  with review pages, assets and their 成品 share); 发布 (a model × language
+  matrix, per-language and per-region bars and the sortable, searchable
+  publication table); 机型能力 (the target × capability matrix and each
+  capability's coverage); 素材 (assets by status, category and model);
+  工程规模 (lines per top-level directory, top 10, as bars split by file type,
+  with fixed colours per type).
+- **Filters are client-side.** The rows travel as one JSON block
+  (`<` escaped) and `_static/system-data.js` filters and counts them. A region
+  dropdown, a model dropdown and clicks on a model (matrix rows, capability
+  rows, asset bars, table rows) or a region bar narrow every card; clicking the
+  same item again clears it. The selection is kept in the URL query
+  (`?region=EU&model=JE-1000F`). An asset whose model or region is `ALL` counts
+  under every model or region. 工程规模 is whole-repository data and does not
+  follow the filters. Git history (branches, commits) is not shown: RTD clones
+  shallowly, so it is not reliable at build time; `git ls-files` lists every
+  tracked file in a shallow clone too.
+- **Without JavaScript** the whole-repository counts and the publication table
+  still render; the charts show a note instead.
+- **Failure:** without a readable publish manifest the 发布 cards show 无数据,
+  and without git (or outside a checkout) the 工程规模 card does; the other
+  cards still render. A CSV missing a column, a capability value
+  other than `TRUE`/`FALSE`, a target key that is not `<model>_<region>`, or an
+  asset row without status, model or region skips the page with a Sphinx
+  warning and hides its sidebar entry; `tests/test_rtd_system_data.py` fails
+  first. The counting functions have Node tests in
+  `tests/system_data_ui.test.mjs`.
+
+## Product matrix page
+
+`/products/matrix.html` (产品矩阵) lays out the products the published Web
+manuals describe. It is an internal 知识库 page listed under 产品知识; the
+public manual library does not link to it.
+
+- **Read at build time.** `tools/rtd/product_matrix.py` reads the publish
+  manifest (each model's markets, languages and routes), then one published
+  manual per model: English first, then `language_order` and `region_order` in
+  `tools/rtd_portal_assets/product_matrix.json`. From the table after its
+  SPECIFICATIONS / 仕様 / 规格 / 規格 heading it takes capacity, AC rated and
+  surge output (a Total row wins over the largest single port), cycle life,
+  weight, solar STC power, IP rating and output power, as the manual prints
+  them. Names come from the manual-center catalog without the model code or the
+  manual-type suffix; product lines come from the `navigation` groups in
+  `settings.json`; capability switches from `data/model_capabilities.csv`.
+  Nothing is snapshotted; a published manual change appears on the next build.
+- **Curated config.** `product_matrix.json` holds only what no manual states:
+  the lines and accessory groups (navigation ids, or a new title), `assign` for
+  models the navigation does not list (shown with *), `tiers` (capacity
+  columns), `names` and `notes` overrides, `companions` (products without a
+  manual of their own, cited from another manual) and `pairings` (partners a
+  manual names). A companion or pairing partner is shown only while the cited
+  manual's text still contains its `match` text (or its label).
+- **Sections:** headline counts (models with Web manuals, Web manuals, power
+  stations and batteries, accessories; 更多型号持续维护中 when the capability
+  table has models without a Web manual), a market filter, the line × capacity
+  grid, accessory groups, the capability matrix (all / some / no regions), the
+  sortable spec table, pairings and data sources.
+- **JavaScript** (`_static/product-matrix.js`) only dims what a market has no
+  Web manual for and sorts the spec table; without it every product shows and
+  the filter stays hidden. Node tests: `tests/product_matrix_ui.test.mjs`.
+- **Failure:** without a readable publish manifest the page and its links are
+  skipped quietly (the bootstrap build has none). A config naming an unknown
+  group or tier shape, or a malformed capability CSV, skips the page with a
+  Sphinx warning. A model with no group, an unreadable manual, a missing
+  capacity or a pairing the manual no longer names is a Sphinx warning while
+  the page still renders (an unplaced model is listed under 其他).
+  `tests/test_rtd_product_matrix.py` covers the parsing and the rules.
+
+## 产品知识
+
+按操作者 2026-10-06 的最终选择，产品知识、市场与政策和产品案例与说明书共用现有 `ht-doc` 公开 RTD 项目，无需登录。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；直接分享知识页链接即可访问。
+
+`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`；适用产品复用首页 `settings.json` 的 `navigation` 定位分组。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。
+
+通用知识不构成某型号内部电路、芯片或跨产品兼容性的认定，也不把教程中的算例当作产品实测。标签和型号过滤只控制阅读范围；技术值、操作和兼容条件仍以对应地区说明书为准。未启用 JavaScript 时全部知识条目与来源链接可读。工程面的模板、交互和课程词条与业务面的 `docs/knowledge/**` 个人分享文章分别维护。
+
+产品知识采用纵向列表，每项将可访问的 SVG 功能示意与原理、产品应用、限制和来源放在一起；AC 输出单独说明共享功率、启动冲击、输出匹配、升功率、保护与旁路切换。示意图不代表某型号内部电路。
+
+AC 教学图使用可访问的静态 SVG 电气示意：H 桥、LC 滤波、并联负载和联锁切换。低压升压、隔离、体二极管与接地等未展开，不能当成实际产品原理图。JHP-3600C US 的备电案例独立呈现，来源链接指向正式发布的 Read the Docs 说明书；分相、旁路、ATS/MTS 与级联条件按说明书描述。
+
+## 市场与政策
+
+`/market/policy.html` 与产品知识并列，用纵向列表记录“政策变化 → 原理解释 → 产品影响”。国家、主题、资料状态和关键词可组合筛选。每条记录显示适用地区和时间；“政策要点已核实”只表示政策事实已查官方出处，产品影响单独标注为分析判断。官方出处以简短参考链接呈现；页面不展示原始资料截图、整理流程或核对过程说明，未经核实的信息仍保留状态标识。
+
+工程面的 `tools/rtd/market_policy.py` 读取业务内容目录下的 `market-policy/records.json`（`schema_version: 1`）。默认业务目录为 Hello-Docs 的 `docs/knowledge/`，本地预览可用 `rtd_knowledge_dir` 指向临时目录。该快照及原始截图不放入 auto-manual；当前未接入飞书多维表，也不在线读取飞书。
+
+记录保留 `id`、国家/地区、标题、时间、`verified`/`unverified`/`demand` 状态、标签、变化、原理、影响和核对日期；可选 `boundary` 记录必要的适用条件，不填时页面不显示该段；`sources` 保存出处类型、标题、HTTPS 链接和核对范围，但页面只展示标题与链接。已核实记录至少需要一条官方出处，`demand` 只代表业务需求依据，其第一段显示“需求变化”。未核实线索和业务需求可用非空 `evidence_note` 保存录入依据，该字段不在页面显示，也不能代替已核实政策的官方出处。`knowledge` 关联产品知识锚点。可选 `flow`、`image` 和 `image_alt` 不在页面渲染；源图只参与本地审阅校验，构建不复制到网站，本次业务快照不上传原始截图。缺少快照显示空页；记录无效则构建失败。未启用 JavaScript 时全部记录与参考链接仍可读。

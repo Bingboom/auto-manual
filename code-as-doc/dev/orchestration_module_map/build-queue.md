@@ -1,0 +1,151 @@
+# Orchestration module map: build queue modules (§5)
+
+Status: active · Part of the [orchestration module map](../orchestration_module_map.md); its index lists the other
+module families. Update this page in the same PR that moves a boundary here; do not add
+module notes to the hub.
+
+## 5. Build Queue Modules
+
+[`tools/build_queue/process_build_queue.py`](../../../tools/build_queue/process_build_queue.py) should stay orchestration-first. Its public names are listed in `__all__`. Services look facade names up dynamically (`module.<name>`, `queue_dep(..., "<name>")`), so check those lookups before deleting a re-export. It delegates to:
+
+- [`tools/build_queue/process_build_queue_main.py`](../../../tools/build_queue/process_build_queue_main.py)
+  - CLI bootstrap and data-root normalization for the queue entrypoint
+- [`tools/build_queue/process_build_queue_services.py`](../../../tools/build_queue/process_build_queue_services.py)
+  - wrapper-compatible service grouping for queue entrypoint helpers
+  - optional queue dependencies are forwarded to existing session/build callbacks; omitted dependencies preserve facade compatibility lookups
+- [`tools/build_queue/process_build_queue_deps.py`](../../../tools/build_queue/process_build_queue_deps.py)
+  - `QueueDeps` owns the external client factory, command runner, and Git worktree prepare/remove callbacks
+  - `default_queue_deps(module)` resolves the current facade names when defaults are requested; this first dependency seam does not include a clock
+  - optional run-scoped overrides (session preflight/link binding/identity, snapshot sync, document build, artifact destination, DingTalk mirror, artifact publish, cloud-doc import/finalize) replace the facade name for one `process_build_queue(..., deps=...)` call; `queue_dep()` falls back to the facade name when a field is `None`. `resolve_wiki_destination`, `upload_word_to_drive` and `move_drive_file_to_wiki` are also looked up inside the artifact-destination and publish services, so when `deps` sets one of them those two services run against `FacadeOverrides(module, ...)` (the facade with the names replaced) instead of the facade itself
+  - `QueueDeps.resolve_config_path_for_task` (optional) replaces the config-path resolver for both record grouping (`queue_bound_records.group_pending_queue_records(..., resolve_config_path_for_task=...)`) and group processing, so a run sees one resolver end to end
+  - `QueueDeps.clock` (optional) is the group processor's clock: `process_queue_record_group(clock=...)` takes the started-at stamp, claim expiry and built-at time from it (default `queue_group_processing.utc_now`). `queue_claims`, `queue_bound_records` and `queue_session` read no clock; `queue_transitions` already takes `now=`
+- [`tools/build_queue/process_review_start_queue.py`](../../../tools/build_queue/process_review_start_queue.py)
+  - review-start facade accepts the existing `ReviewStartRuntimeDeps` object and builds its default instance per invocation; tests override fields with `replace(default_review_start_deps(), ...)` instead of patching facade names
+- [`tools/build_queue/process_review_start_queue_runtime.py`](../../../tools/build_queue/process_review_start_queue_runtime.py)
+  - existing review-start runtime dependency container and orchestration; no duplicate container or clock dependency is introduced
+- [`tools/build_queue/contract.py`](../../../tools/build_queue/contract.py)
+  - canonical queue contract constants
+  - shared queue dataclasses
+  - binding / record / wiki destination type definitions
+- [`tools/build_queue/delivery.py`](../../../tools/build_queue/delivery.py)
+  - phase-aware Agent delivery contract: Draft cloud doc, Publish IDML handoff, Web HTML
+  - `delivery_kind / delivery_url / delivery_ready` derivation and queue-row serialization
+  - strips the retired public `document_link` name while preserving internal binding compatibility
+- [`tools/web/document_link_actions.py`](../../../tools/web/document_link_actions.py)
+  - normalized queue action vocabulary
+  - legacy `Doc_phase` compatibility mapping
+- [`tools/web/document_link_queue.py`](../../../tools/web/document_link_queue.py)
+  - row parsing
+  - row filtering
+  - record binding
+  - queue preflight helpers
+- [`tools/build_queue/bound_binding.py`](../../../tools/build_queue/bound_binding.py)
+  - queue preflight and Document_link binding adapters
+  - repo entrypoint-facing access to environment-backed binding resolution
+- [`tools/build_queue/bound_records.py`](../../../tools/build_queue/bound_records.py)
+  - queue record/action facade adapters
+  - repo-root-aware config resolution that forwards the parsed model/region target into grouping and execution
+- [`tools/build_queue/config_resolution.py`](../../../tools/build_queue/config_resolution.py)
+  - shared Start Review / Draft / Publish / Preview config resolver
+  - exact declared model/region target override plus generic regional fallback
+  - queue `Build_family` language-range matching through `build.language_family`, while `build.family_id` remains the internal config identity
+  - target-only config exclusion from model-less fallback and fail-closed ambiguity handling
+- [`tools/build_queue/runtime.py`](../../../tools/build_queue/runtime.py)
+  - worktree/runtime helpers
+  - generated path and review/runtime input helpers, including subprocess-scoped environment overlays
+- [`tools/build_queue/build_execution.py`](../../../tools/build_queue/build_execution.py)
+  - queue-triggered `build.py` command assembly
+  - phase2 sync-before-build execution
+  - worktree-scoped draft/print-publish/Web-Publish build orchestration
+  - exact review commit/path provenance injection for versioned print Publish
+  - review-input commit epoch injection for deterministic Web `check` / `md` / `html`
+  - IDML source parity with the earlier print render (`review-asis` for approved-reference targets)
+- [`tools/build_queue/orchestration.py`](../../../tools/build_queue/orchestration.py)
+  - top-level queue session flow
+  - dry-run vs real-run branch control
+  - post-sync pending-state reload
+- [`tools/build_queue/group_processing.py`](../../../tools/build_queue/group_processing.py)
+  - per-group queue processing
+  - verified-claim acquisition before build/upload side effects
+  - started/success/failure writeback orchestration
+  - drive/wiki delivery for print tasks and frozen Web metadata handoff for Web Publish
+  - Web terminal-success writeback only after version metadata and latest pointer succeed
+  - delivery-outbox side channel on publish (env-gated, `delivery_outbox=*` row notes)
+- [`tools/delivery_outbox.py`](../../../tools/delivery_outbox.py)
+  - atomic outbox job assembly (`.partial` staging, verify, rename) for the DingTalk hand-off
+  - immutable `delivery_manifest.json` with per-file digests and a `delivery_key` idempotency handle
+  - the queue's single entry point `drop_publish_delivery_outbox` never raises: outcomes are row status notes
+  - `--manifest` CLI for verifying one dropped job by hand
+- [`tools/dingtalk_delivery_map.py`](../../../tools/dingtalk_delivery_map.py)
+  - `(model, region)` to DingTalk 项目代码 / 安规 / 文案语言集合 lookup over `data/dingtalk_delivery_map.csv`
+  - `DeliveryTargetNotMapped` (skip) kept distinct from malformed-map `RuntimeError` (fail-closed)
+- [`tools/build_queue/claims.py`](../../../tools/build_queue/claims.py)
+  - bounded lease write across every row in a document group
+  - no-view readback and exact-token ownership verification before dispatch
+- [`tools/build_queue/dry_run.py`](../../../tools/build_queue/dry_run.py)
+  - dry-run preview payload assembly
+  - grouped queue preview output formatting
+- [`tools/build_queue/grouping.py`](../../../tools/build_queue/grouping.py)
+  - grouped record bucketing rules
+  - document-key vs record-id grouping strategy
+- [`tools/build_queue/session.py`](../../../tools/build_queue/session.py)
+  - queue-session bootstrap and preflight
+  - pending-record fetch/select/group state with active sibling-lease exclusion
+  - wiki destination reporting for a processing session
+- [`tools/feishu_record_transport.py`](../../../tools/feishu_record_transport.py)
+  - shared `lark-cli` JSON subprocess boundary for queue, build-listener, spec-master, and schema callers
+  - bounded 429 retry/backoff, shared pagination policy, and Feishu response validation
+  - existing F6/F8 record transport adapters
+- [`tools/spec_master_rebuild.py`](../../../tools/spec_master_rebuild.py)
+  - spec-master field/record orchestration
+  - compatibility wrapper over the shared `lark-cli` base-command transport
+- [`tools/bitable_schema.py`](../../../tools/bitable_schema.py)
+  - tenant schema and reference-row orchestration
+  - profile/identity routing and compatibility wrapper over the shared transport
+- [`tools/build_queue/lark_ops.py`](../../../tools/build_queue/lark_ops.py)
+  - Drive/Wiki remote I/O helpers and the compatibility wrapper for shared queue transport
+- [`tools/build_queue/bound_lark_ops.py`](../../../tools/build_queue/bound_lark_ops.py)
+  - repo-root-aware Lark transport adapters used by queue entrypoints
+  - bound CLI upload/node lookup helpers that still allow entrypoint-level patching
+- [`tools/build_queue/outputs.py`](../../../tools/build_queue/outputs.py)
+  - separate print-publish and Web-Publish asset staging
+  - atomic immutable snapshot/manifest copy-out plus generic release/output path helpers
+  - exact-hash Web version seal, immutable version metadata, and atomic latest pointer
+- [`tools/build_queue/bound_outputs.py`](../../../tools/build_queue/bound_outputs.py)
+  - repo-root-aware queue output adapters
+  - bound output/release helpers that keep `process_build_queue.ROOT` patchable
+- [`tools/build_queue/bound_runtime.py`](../../../tools/build_queue/bound_runtime.py)
+  - repo-root-aware command/worktree adapters for queue entrypoints
+  - bound `build.py` command builders and worktree helpers that keep entrypoint compatibility names stable
+- [`tools/build_queue/writeback.py`](../../../tools/build_queue/writeback.py)
+  - queue result formatting
+  - row writeback payload assembly
+  - `pending -> running -> success/failed` payload expectations documented in
+    [`queue_state_model.md`](../queue_state_model.md)
+- [`tools/build_queue/transitions.py`](../../../tools/build_queue/transitions.py)
+  - explicit queue transition payload model for running, success, failure, and writeback-failed states
+  - queue-claim parsing, expiry checks, and exact-token ownership checks
+  - focused test target for queue writeback semantics before live Feishu/Lark transport is involved
+- [`tools/publish_branch_assembly.py`](../../../tools/publish_branch_assembly.py)
+  - validates versioned Web Publish metadata and copies only the frozen MyST source
+  - preserves other published targets, rebuilds the aggregate Sphinx source, and writes the SHA-256 inventory
+- [`tools/publication_withdrawal.py`](../../../tools/publication_withdrawal.py)
+  - explicit local withdrawal/restoration ledger, pinned-source digest and stale-manifest guard
+  - blocks ordinary reentry of withdrawn versions and reuses assembly/promotion for action candidates
+- [`tools/write_web_publish_html_link.py`](../../../tools/write_web_publish_html_link.py)
+  - derives the deterministic canonical nested Read the Docs page from Web Publish metadata
+  - writes `HTML_link` only for the queue record ids bound to each frozen target
+- [`tools/verify_web_deployment_targets.py`](../../../tools/verify_web_deployment_targets.py)
+  - read-only scheduled cross-check of every `publish_manifest.json` target against the live RTD site
+  - full frozen-source `verify_deployment` per target with `--publish-root`, or remote manifest + served project-slug checks without one
+  - fails closed on unreachable pages, drifted bytes, and wrong-site (foreign project slug) deployments
+  - one shared paced/caching `FetchSession` for the catalog (`--rps`), so per-target attribution replays bytes instead of re-fetching each closure
+  - `--asset-scope markup` (default) bounds a sweep to ~65 requests; referenced binaries must still exist in the receipt, `full` re-downloads them all
+  - separates rate-limited (`throttled`, exit 75, undecided) from mismatched (exit 1); never silently passes a 429
+- [`tools/ops_catalog_sync.py`](../../../tools/ops_catalog_sync.py)
+  - `sync` (M2): idempotent machine-column upsert of the ops catalog sheet 「说明书目录」 from `publish_manifest.json` keyed by (model, region, lang); human columns are never written on existing rows; dry-run by default, `--write` applies per row with same-row readback and per-row failure isolation
+  - `reconcile` (M1): read-only manifest ↔ ops sheet ↔ `Document_link.HTML_link` three-face cross-check; differences classified against the committed whitelist `data/ops_catalog_reconcile_whitelist.json` (new diff → exit 1, known diff → listed, exit 0)
+  - contract in [`web_publish_pipeline.md`](../web_publish_pipeline.md) §2.3
+- [`tools/utils/log.py`](../../../tools/utils/log.py)
+  - console lines for unattended queue runs: `get_logger(name)` / `get_logger(name, stream="stderr")` write each message verbatim to the stream current at emit time, filtered by `AUTO_MANUAL_LOG_LEVEL`
+  - migrated so far: the review-start queue (`tools/build_queue/process_review_start_queue*.py`); output relayed from child processes stays a plain `print`

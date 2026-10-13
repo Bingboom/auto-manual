@@ -161,9 +161,12 @@ docs that predate the rule are listed in [`../data/doc_lifecycle_baseline.txt`](
 Rule 7:
 Hub guides are indexes. [`build_doc_guide.md`](build_doc_guide.md),
 [`../user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md),
-[`next_optimization_checklist.md`](next_optimization_checklist.md) (one page per milestone) and
+[`next_optimization_checklist.md`](next_optimization_checklist.md) (one page per milestone),
 [`STYLE_DEFINITION.md`](../docs/renderers/contracts/STYLE_DEFINITION.md) (which keeps the §1 binding
-table and §8 that tests read) list their pages with a one-line "read it when"; behavior
+table and §8 that tests read), [`../user-guide/quick_start_guide.md`](../user-guide/quick_start_guide.md),
+[`dev/orchestration_module_map.md`](dev/orchestration_module_map.md),
+[`dev/rtd_manual_portal.md`](dev/rtd_manual_portal.md) and
+[`dev/web_publish_pipeline.md`](dev/web_publish_pipeline.md) list their pages with a one-line "read it when"; behavior
 notes go to the owning page, and a page past ~400 lines is split. Logs and registries keep recent or live entries in the main file and
 move older ones to their `*_archive.md` file. `python -m tools.check_maintainability_guardrails`
 caps the line counts of these hubs and live files.

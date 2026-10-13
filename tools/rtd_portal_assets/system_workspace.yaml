@@ -12,7 +12,7 @@
 #   url:<https-url>           page answering 200 (verified with --online)
 #   rev:<REV-nn>=<status>     execution-ledger row and the status it had when verified
 #   ack:<who> <YYYY-MM-DD>「…」 operator confirmation; never an entry's only evidence
-# See code-as-doc/dev/rtd_manual_portal.md#system-workspace-page for the rules.
+# See code-as-doc/dev/rtd_manual_portal/system-workspace.md#system-workspace-page for the rules.
 #
 # Where each figure comes from, how often entries are re-reviewed, the snapshot
 # files and what shows when a source cannot be read are registered once, in
