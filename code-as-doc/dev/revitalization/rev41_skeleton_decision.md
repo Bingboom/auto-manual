@@ -17,7 +17,7 @@ Status: active · Owner: 夏冰 · Created: 2026-10-12
 | [骨架库设计](../../architecture/Product_Skeleton_Library_Design.md)（Phase B，2026-08-20 起待批） | 修改：三层模型（Blueprint / Product Manual Plan / Resolved Manifest）、稳定 `slot_id` 和 generate-then-verify 作为现行机制保留；"用骨架扩大覆盖、语料 58/58 重建、`page_registry` 成为唯一组合权威"不再是当前目标，改为满足 §4 条件后的候选目标 |
 | [需求文档](../../architecture/product_skeleton_library_requirements.md) | 不再推进定稿；剩余退出目标随本决定暂缓 |
 | 已建成的骨架单元 `bp-intl`、`bp-jp`、`charger-intl`、`solar-intl` | 保留：在用目标照常构建、修订和维护，相关测试继续作为回归护栏 |
-| REV-42：便携电源 MAIN@INTL 骨架（[PR #1101](https://github.com/Bingboom/auto-manual/pull/1101)） | 暂缓；PR 不按原样合入，关闭还是冻结为参考由操作者另定（§5） |
+| REV-42：便携电源 MAIN@INTL 骨架（[PR #1101](https://github.com/Bingboom/auto-manual/pull/1101)） | 暂缓；PR 已于 2026-10-13 关闭（§5），分支 `feat/main-intl-web-skeleton` 保留，作为 T1 的参考 |
 | REV-43：按清单扩大骨架覆盖 | 暂缓 |
 | Milestone M R4a–R6（原 M0–M9 铺开积压） | 暂缓，期间不开工 |
 | [Workstream M](../../optimization_project.md)（`page_registry` 唯一组合权威） | next → deferred |
@@ -78,11 +78,11 @@ Draft 跟踪 PR [#974](https://github.com/Bingboom/auto-manual/pull/974) 停在 
 
 另外，无论是否触发，[D23](../machine_readable_knowledge_governance.md) 的 1.0 基线重发完成后复评一次。
 
-## 5. 待操作者另定（本 PR 不改）
+## 5. 后续事项
 
-- PR #1101：关闭，或冻结为 T1 的参考。
-- PR #974：刷新分支、回填 R3c 并把 R4a–R6 标为暂缓；或以本文为准关闭。该分支不属于本 PR，未推送。
-- [MA-023](../merge_authorizations.md)：仍为"生效"，允许 R4a→R6 的 PR 全绿即合。暂缓期间没有可合入的对象；
+- PR #1101：已定。2026-10-13 按操作者原话「#1101 关掉」关闭；分支 `feat/main-intl-web-skeleton` 保留，作为 T1 的参考。
+- PR #974（待操作者定）：刷新分支、回填 R3c 并把 R4a–R6 标为暂缓；或以本文为准关闭。该分支不属于本 PR，未推送。
+- [MA-023](../merge_authorizations.md)（待操作者定）：仍为"生效"，允许 R4a→R6 的 PR 全绿即合。暂缓期间没有可合入的对象；
   是否撤销或收窄，要有操作者原话后再改登记表。
 - `next_optimization_checklist.md` 的 Milestone M 一节：在审 PR [#1509](https://github.com/Bingboom/auto-manual/pull/1509)
   正在拆页，本 PR 不改；拆页合入后，可在 Milestone M 页加一行指向本文。
