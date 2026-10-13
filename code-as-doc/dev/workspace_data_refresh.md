@@ -86,6 +86,9 @@ python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledge
 - 部署回执新增 `workspace_revision`、两类快照及状态文件哈希。
   Workspace Data Verify 检查 mainline 身份、目标 RTD 构建成功、线上回执版本、快照哈希、
   页面字节及页面引用的快照哈希。未完成最后一步不能称为“工作台已更新”。
+  网站在 Read the Docs for Business 上，其构建接口只认令牌：Hello-Docs 配置了
+  `READTHEDOCS_API_TOKEN` 密钥时才查目标构建状态；未配置时跳过这一步（记为
+  `Not checked`），由线上回执必须等于本次版本来判定，构建失败只会表现为等待超时。
 - 线上核验只在相关 main 合入或人工补做时触发，最多 20 次、间隔 30 秒等待目标构建，
   没有 schedule，不轮询飞书，不重建说明书。失败记录最后到达阶段，可单独补做。
 - 已发布的失败状态仍然显示旧数字；任务日志先立即反映刷新失败，静态页面的失败状态

@@ -44,7 +44,11 @@ Feishu credentials or runs the receiver.
   channel; activation is a separate settings change once the operator
   creates the Web Analytics site and provides its token. Activated
   2026-09-15 for the `ht-doc.readthedocs.io` Web Analytics site (custom
-  domain deferred): the committed token is that site's public identifier,
+  domain deferred). Since 2026-10-13 the site is served from
+  `ht-docs-ht-manuals.readthedocs-hosted.com`; the Cloudflare site must cover
+  that hostname (edit its hostname, or create a site for it and replace the
+  token), which is a dashboard change outside this repository. The committed
+  token is that site's public identifier,
   embedded verbatim in every rendered page by design — not a Cloudflare
   API credential. Token self-service: Cloudflare → Analytics → Web
   Analytics → Manage site → Install JS Snippet. Collection starts after

@@ -168,7 +168,7 @@ to a valid earlier website deployment intentionally follows that deployed versio
        "entries": {
          "auto-manual-control-layer": {
            "config": {
-             "manualQueryBaseUrl": "https://ht-doc.readthedocs.io"
+             "manualQueryBaseUrl": "https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest"
            }
          }
        }

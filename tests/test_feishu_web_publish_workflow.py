@@ -5,6 +5,8 @@ import unittest
 
 import yaml
 
+from tools.rtd.deployment_receipt import DEFAULT_RTD_BASE_URL
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "feishu-web-publish-queue.yml"
@@ -80,8 +82,8 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertIn("--pending", pending)
         self.assertIn("AUTO_MANUAL_RTD_BASE_URL", pending)
         rtd_base_url = str(self.job["env"]["AUTO_MANUAL_RTD_BASE_URL"])
-        self.assertIn("https://ht-doc.readthedocs.io", rtd_base_url)
-        self.assertNotIn("/en/latest", rtd_base_url)
+        # The workflow fallback is the serving root the tools default to, version prefix included.
+        self.assertIn(f"'{DEFAULT_RTD_BASE_URL}'", rtd_base_url)
 
     def test_build_time_lane_never_writes_html_link_directly(self) -> None:
         # The queue lane must not carry a direct writeback step any more; the
