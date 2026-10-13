@@ -1,6 +1,6 @@
 # Requirements: Product Skeleton Library (说明书骨架库 · 类 DITA 产线改造)
 
-Status: draft requirements — pending operator finalization · Owner: 夏冰 · Drafted 2026-08-20
+Status: draft requirements — not finalized; the remaining exit targets are deferred by the REV-41 decision (2026-10-12, [record](../dev/revitalization/rev41_skeleton_decision.md)) · Owner: 夏冰 · Drafted 2026-08-20
 
 Scope of this file: *what* the skeleton-library program must deliver and *why*,
 the phase gates, the operator inputs, and the acceptance criteria. The

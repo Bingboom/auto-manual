@@ -1,0 +1,7954 @@
+[
+  {
+    "id": "p2-b26-l0-0",
+    "physical_page": 2,
+    "text": "1",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      341.00201416015625,
+      506.31488037109375,
+      344.4460144042969,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p2-b27-l0-0",
+    "physical_page": 2,
+    "text": "自购买日起享质保 3年 + 注册延保 2 年",
+    "bbox": [
+      31.393600463867188,
+      104.89399719238281,
+      152.318603515625,
+      112.96499633789062
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "registration"
+  },
+  {
+    "id": "p2-b28-l0-0",
+    "physical_page": 2,
+    "text": "电小二售后专家技术支持",
+    "bbox": [
+      31.393600463867188,
+      116.89198303222656,
+      108.39360046386719,
+      124.96298217773438
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "registration"
+  },
+  {
+    "id": "p2-b29-l0-0",
+    "physical_page": 2,
+    "text": "真伪查询服务",
+    "bbox": [
+      31.393600463867188,
+      128.8899688720703,
+      73.39360046386719,
+      136.96096801757812
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "registration"
+  },
+  {
+    "id": "p2-b30-l0-0",
+    "physical_page": 2,
+    "text": "售后维修进度实时查看",
+    "bbox": [
+      31.393600463867188,
+      140.88795471191406,
+      101.39360046386719,
+      148.95895385742188
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "registration"
+  },
+  {
+    "id": "p2-b34-l0-0",
+    "physical_page": 2,
+    "text": "1.打开微信，点击“发现”中的“扫一扫”",
+    "bbox": [
+      162.08790588378906,
+      104.12840270996094,
+      293.638916015625,
+      112.19940185546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "registration"
+  },
+  {
+    "id": "p2-b35-l0-0",
+    "physical_page": 2,
+    "text": "2.扫描右方的二维码",
+    "bbox": [
+      162.08790588378906,
+      122.12541198730469,
+      224.48590087890625,
+      130.1964111328125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "registration"
+  },
+  {
+    "id": "p2-b36-l0-0",
+    "physical_page": 2,
+    "text": "3.按照提示完成注册激活",
+    "bbox": [
+      162.08790588378906,
+      140.12242126464844,
+      238.51390075683594,
+      148.19342041015625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "registration"
+  },
+  {
+    "id": "p2-b33-l0-0",
+    "physical_page": 2,
+    "text": "使用注意安全事项",
+    "bbox": [
+      35.830101013183594,
+      236.09718322753906,
+      131.83010864257812,
+      250.6291961669922
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p2-b33-l0-0"
+  },
+  {
+    "id": "p2-b16-l0-0",
+    "physical_page": 2,
+    "text": "使使用本产品时，应始终遵循基本注意事项，包括:",
+    "bbox": [
+      28.261699676513672,
+      261.6033020019531,
+      207.13369750976562,
+      271.1393127441406
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "16"
+  },
+  {
+    "id": "p2-b0-l0-0",
+    "physical_page": 2,
+    "text": "•使用本产品之前，请阅读所有说明。",
+    "bbox": [
+      28.261699676513672,
+      276.0752868652344,
+      161.93370056152344,
+      286.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "0"
+  },
+  {
+    "id": "p2-b1-l0-0",
+    "physical_page": 2,
+    "text": "•为了降低风险，当在儿童附近使用本产品时，需要进行密切监督。",
+    "bbox": [
+      28.261699676513672,
+      290.0752868652344,
+      265.9337158203125,
+      300.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p2-b2-l0-0",
+    "physical_page": 2,
+    "text": "•使用非专业产品制造商推荐或销售的配件可能会导致触电的风险。",
+    "bbox": [
+      28.261699676513672,
+      304.0752868652344,
+      265.9337158203125,
+      314.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p2-b3-l0-0",
+    "physical_page": 2,
+    "text": "•产品在未使用时，请将电源插头拔出产品插座。",
+    "bbox": [
+      28.261699676513672,
+      318.0752868652344,
+      201.93370056152344,
+      328.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p2-b4-l0-0",
+    "physical_page": 2,
+    "text": "•禁止对产品进行拆机，产品拆机后可能会导致火灾、爆炸或触电等不可预测的风险。",
+    "bbox": [
+      28.261699676513672,
+      332.0752868652344,
+      329.9337158203125,
+      342.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "4"
+  },
+  {
+    "id": "p2-b5-l0-0",
+    "physical_page": 2,
+    "text": "•禁止使用损坏的电线或插头，或损坏的输出电缆来使用产品，有触电的危险。",
+    "bbox": [
+      28.261699676513672,
+      346.0752868652344,
+      305.9337158203125,
+      356.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "5"
+  },
+  {
+    "id": "p2-b6-l0-0",
+    "physical_page": 2,
+    "text": "•请在通风良好的地方对产品进行充电，请勿以任何方式限制产品的通风。",
+    "bbox": [
+      28.261699676513672,
+      360.0752868652344,
+      289.9337158203125,
+      370.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "6"
+  },
+  {
+    "id": "p2-b7-l0-0",
+    "physical_page": 2,
+    "text": "•请将产品放置在干燥的地方，不得淋雨，不得使产品进水，这会有触电风险（非预定仅",
+    "bbox": [
+      28.261699676513672,
+      374.0752868652344,
+      337.9337158203125,
+      384.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "7"
+  },
+  {
+    "id": "p2-b8-l0-0",
+    "physical_page": 2,
+    "text": "在室外安装使用）。",
+    "bbox": [
+      33.93370056152344,
+      389.23529052734375,
+      105.93370056152344,
+      398.45928955078125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "8"
+  },
+  {
+    "id": "p2-b9-l0-0",
+    "physical_page": 2,
+    "text": "•禁止将产品撞击或投入火中，这可能导致产品发生起火，爆炸等安全事故。",
+    "bbox": [
+      28.261699676513672,
+      402.0752868652344,
+      297.9337158203125,
+      412.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "9"
+  },
+  {
+    "id": "p2-b10-l0-0",
+    "physical_page": 2,
+    "text": "•禁止在高温下（直热的阳光下或很热的汽车车内）使用或放置产品，否则可能会引起内",
+    "bbox": [
+      28.261699676513672,
+      416.0752868652344,
+      337.9337158203125,
+      426.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "10"
+  },
+  {
+    "id": "p2-b11-l0-0",
+    "physical_page": 2,
+    "text": "部电池过热，起火或功能失效，寿命减短等风险。",
+    "bbox": [
+      33.93370056152344,
+      431.23529052734375,
+      209.93370056152344,
+      440.45928955078125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "11"
+  },
+  {
+    "id": "p2-b12-l0-0",
+    "physical_page": 2,
+    "text": "•首次使用时，请在使用前将设备充满电。如果本产品在电量耗尽的情况下长时间（3 个",
+    "bbox": [
+      28.261699676513672,
+      444.0752868652344,
+      337.0857238769531,
+      454.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "12"
+  },
+  {
+    "id": "p2-b13-l0-0",
+    "physical_page": 2,
+    "text": "月 - 6个月）存放，其性能会下降，甚至无法充电。",
+    "bbox": [
+      33.93370056152344,
+      459.23529052734375,
+      216.5177001953125,
+      468.45928955078125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "13"
+  },
+  {
+    "id": "p2-b14-l0-0",
+    "physical_page": 2,
+    "text": "•使用本产品时必须接地，接地可以在发生故障时减少触电风险，本产品配备带设备接地",
+    "bbox": [
+      28.261699676513672,
+      472.0752868652344,
+      337.9337158203125,
+      482.8512878417969
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "14"
+  },
+  {
+    "id": "p2-b15-l0-0",
+    "physical_page": 2,
+    "text": "线和接地插头的电源线，必须根据当地法规和规范正确地安装和连接插头至接地插座。",
+    "bbox": [
+      33.93370056152344,
+      487.23529052734375,
+      337.9337158203125,
+      496.45928955078125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "15"
+  },
+  {
+    "id": "p2-b17-l0-0",
+    "physical_page": 2,
+    "text": "感谢您选择购买电小二产品。在使用之前请您务必仔细阅读本用户指南，按照指引正确使",
+    "bbox": [
+      27.141698837280273,
+      26.451297760009766,
+      339.1416931152344,
+      35.675296783447266
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "17"
+  },
+  {
+    "id": "p2-b18-l0-0",
+    "physical_page": 2,
+    "text": "用并妥善保管。",
+    "bbox": [
+      27.141698837280273,
+      40.451297760009766,
+      83.1417007446289,
+      49.675296783447266
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "18"
+  },
+  {
+    "id": "p2-b19-l0-0",
+    "physical_page": 2,
+    "text": "在遵从法律法规的情况下，本公司享有对本文档及本产品所有相关文档的最终解释权。如",
+    "bbox": [
+      27.141698837280273,
+      54.451297760009766,
+      339.1416931152344,
+      63.675296783447266
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "19"
+  },
+  {
+    "id": "p2-b20-l0-0",
+    "physical_page": 2,
+    "text": "有更新改版或终止请以官方发布最新通知为准。",
+    "bbox": [
+      27.141698837280273,
+      68.4512939453125,
+      195.14169311523438,
+      77.67530059814453
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "20"
+  },
+  {
+    "id": "p2-b21-l0-0",
+    "physical_page": 2,
+    "text": "您现在可以通过微信注册您的产品，激活质保服务。注册过程轻松快速，注册后您将享有：",
+    "bbox": [
+      27.14550018310547,
+      82.45068359375,
+      343.94561767578125,
+      91.67469024658203
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "21"
+  },
+  {
+    "id": "p2-b22-l0-0",
+    "physical_page": 2,
+    "text": "如您未能成功注册，您可以联系电小二官方服务热线 400-668-9293 或联系在线客服",
+    "bbox": [
+      27.14550018310547,
+      161.01068115234375,
+      338.2334899902344,
+      170.54669189453125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "22"
+  },
+  {
+    "id": "p2-b23-l0-0",
+    "physical_page": 2,
+    "text": "进行注册，产品具体保修条款和注册细则，请登录 电小二户外电源服务小程序 查看。",
+    "bbox": [
+      27.145492553710938,
+      175.01068115234375,
+      327.5775146484375,
+      184.54669189453125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "23"
+  },
+  {
+    "id": "p2-b24-l0-0",
+    "physical_page": 2,
+    "text": "以下情况不在保修范围内：产品使用后外观损坏；自行拆机或维修；因人为原因造成产品",
+    "bbox": [
+      27.145492553710938,
+      189.01068115234375,
+      339.1455078125,
+      198.23468017578125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "24"
+  },
+  {
+    "id": "p2-b25-l0-0",
+    "physical_page": 2,
+    "text": "性能故障；由于自然灾害、雷电、事故等不可抗拒的因素造成的损害。",
+    "bbox": [
+      27.145492553710938,
+      203.01068115234375,
+      275.1455078125,
+      212.23468017578125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "25"
+  },
+  {
+    "id": "p3-b4-l0-0",
+    "physical_page": 3,
+    "text": "2",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      21.687999725341797,
+      506.31488037109375,
+      25.979000091552734,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p3-b0-l0-0",
+    "physical_page": 3,
+    "text": "便携式储能电源",
+    "bbox": [
+      49.88869857788086,
+      163.4467010498047,
+      98.88870239257812,
+      171.5177001953125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "inbox"
+  },
+  {
+    "id": "p3-b1-l0-0",
+    "physical_page": 3,
+    "text": "3600 Plus",
+    "bbox": [
+      57.203697204589844,
+      173.44969177246094,
+      91.56669616699219,
+      181.52069091796875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "inbox"
+  },
+  {
+    "id": "p3-b1-l1-0",
+    "physical_page": 3,
+    "text": "AC电源线",
+    "bbox": [
+      168.720703125,
+      163.4467010498047,
+      200.4376983642578,
+      171.5177001953125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "inbox"
+  },
+  {
+    "id": "p3-b1-l2-0",
+    "physical_page": 3,
+    "text": "用户指南",
+    "bbox": [
+      278.9902038574219,
+      163.4467010498047,
+      306.9902038574219,
+      171.5177001953125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "inbox"
+  },
+  {
+    "id": "p3-b2-l0-0",
+    "physical_page": 3,
+    "text": "* 配套AC电源线仅用于本设备。",
+    "bbox": [
+      36.076202392578125,
+      203.7596893310547,
+      135.9031982421875,
+      211.8306884765625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "inbox"
+  },
+  {
+    "id": "p3-b3-l0-0",
+    "physical_page": 3,
+    "text": "* 车载充电线需单独购买，请前往电小二官网选购或联系电小二售后客服寻求帮助。",
+    "bbox": [
+      36.076202392578125,
+      215.75767517089844,
+      293.18621826171875,
+      223.82867431640625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "inbox"
+  },
+  {
+    "id": "p3-b7-l0-0",
+    "physical_page": 3,
+    "text": "1",
+    "bbox": [
+      38.07709884643555,
+      57.64691162109375,
+      41.96162796020508,
+      70.88268280029297
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "inbox"
+  },
+  {
+    "id": "p3-b7-l1-0",
+    "physical_page": 3,
+    "text": "3",
+    "bbox": [
+      254.45309448242188,
+      57.64691162109375,
+      260.2908020019531,
+      70.88268280029297
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "inbox"
+  },
+  {
+    "id": "p3-b7-l2-0",
+    "physical_page": 3,
+    "text": "2",
+    "bbox": [
+      146.49220275878906,
+      57.64691162109375,
+      152.24261474609375,
+      70.88268280029297
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "inbox"
+  },
+  {
+    "id": "p3-b8-l0-0",
+    "physical_page": 3,
+    "text": "正面",
+    "bbox": [
+      38.83689880371094,
+      292.4648132324219,
+      54.83689880371094,
+      302.0008239746094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b9-l0-0",
+    "physical_page": 3,
+    "text": "5V⎓3A, 9V⎓3A, 12V⎓3A,  ",
+    "bbox": [
+      27.307100296020508,
+      373.21478271484375,
+      93.20210266113281,
+      384.65478515625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b9-l1-0",
+    "physical_page": 3,
+    "text": "15V⎓3A, 20V⎓5A，最大100W",
+    "bbox": [
+      27.302093505859375,
+      379.414794921875,
+      100.16210174560547,
+      390.85479736328125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b10-l0-0",
+    "physical_page": 3,
+    "text": "5-6V⎓3A，6-9V⎓2A，",
+    "bbox": [
+      27.302093505859375,
+      404.96978759765625,
+      85.61209869384766,
+      416.4097900390625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b10-l1-0",
+    "physical_page": 3,
+    "text": "9-12V⎓1.5A，最大18W",
+    "bbox": [
+      27.302093505859375,
+      411.1697998046875,
+      83.68209838867188,
+      422.60980224609375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b11-l0-0",
+    "physical_page": 3,
+    "text": "AC输出按键",
+    "bbox": [
+      302.4237976074219,
+      426.6217956542969,
+      339.1683044433594,
+      434.36981201171875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b11-l1-0",
+    "physical_page": 3,
+    "text": "USB输出按键",
+    "bbox": [
+      27.332500457763672,
+      428.14617919921875,
+      69.50450134277344,
+      435.8941955566406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b12-l0-0",
+    "physical_page": 3,
+    "text": "USB-C 100W 输出端口",
+    "bbox": [
+      27.332500457763672,
+      367.7156982421875,
+      102.70649719238281,
+      375.4637145996094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b13-l0-0",
+    "physical_page": 3,
+    "text": "USB-A 18W 输出端口",
+    "bbox": [
+      27.332500457763672,
+      399.533203125,
+      97.98749542236328,
+      407.2812194824219
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b14-l0-0",
+    "physical_page": 3,
+    "text": "LCD 显示屏",
+    "bbox": [
+      302.3995056152344,
+      315.6051940917969,
+      339.1634826660156,
+      323.35321044921875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b15-l0-0",
+    "physical_page": 3,
+    "text": "AC输出端口",
+    "bbox": [
+      302.4255065917969,
+      348.93719482421875,
+      339.1700134277344,
+      356.6852111816406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b15-l1-0",
+    "physical_page": 3,
+    "text": "总电源开关键",
+    "bbox": [
+      27.33251953125,
+      352.99969482421875,
+      66.33251953125,
+      360.7477111816406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b15-l2-0",
+    "physical_page": 3,
+    "text": "220V ~ 50Hz，16A，额定3600W",
+    "bbox": [
+      264.37939453125,
+      357.6039123535156,
+      338.240234375,
+      363.3689270019531
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b16-l0-0",
+    "physical_page": 3,
+    "text": "AC输出端口",
+    "bbox": [
+      302.4237976074219,
+      398.2467956542969,
+      339.1683044433594,
+      405.99481201171875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b17-l0-0",
+    "physical_page": 3,
+    "text": "220V ~ 50Hz，10A，额定2200W",
+    "bbox": [
+      264.96630859375,
+      406.9150085449219,
+      338.90228271484375,
+      412.6800231933594
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-front"
+  },
+  {
+    "id": "p3-b5-l0-0",
+    "physical_page": 3,
+    "text": "包装清单",
+    "bbox": [
+      35.68550109863281,
+      28.935110092163086,
+      83.68550109863281,
+      43.46710968017578
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p3-b5-l0-0"
+  },
+  {
+    "id": "p3-b6-l0-0",
+    "physical_page": 3,
+    "text": "产品介绍",
+    "bbox": [
+      35.68550109863281,
+      251.0670928955078,
+      83.68550109863281,
+      265.5990905761719
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p3-b6-l0-0"
+  },
+  {
+    "id": "p4-b0-l0-0",
+    "physical_page": 4,
+    "text": "3",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      338.3901062011719,
+      506.31390380859375,
+      342.7091064453125,
+      514.3849487304688
+    ]
+  },
+  {
+    "id": "p4-b1-l0-0",
+    "physical_page": 4,
+    "text": "AC总输出",
+    "bbox": [
+      306.6899108886719,
+      85.58759307861328,
+      336.9344177246094,
+      93.33558654785156
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b2-l0-0",
+    "physical_page": 4,
+    "text": "4口合计3600W (瞬时最大7200W)",
+    "bbox": [
+      262.65869140625,
+      94.39881134033203,
+      336.26373291015625,
+      100.16381072998047
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b3-l0-0",
+    "physical_page": 4,
+    "text": "右侧面",
+    "bbox": [
+      48.05659866333008,
+      158.47259521484375,
+      72.05659484863281,
+      168.00860595703125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b4-l0-0",
+    "physical_page": 4,
+    "text": "AC输入端口",
+    "bbox": [
+      305.279296875,
+      319.50457763671875,
+      342.0237731933594,
+      327.2525939941406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b5-l0-0",
+    "physical_page": 4,
+    "text": "DC输入端口（DC8020）",
+    "bbox": [
+      265.87628173828125,
+      276.37060546875,
+      344.688720703125,
+      284.1186218261719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b6-l0-0",
+    "physical_page": 4,
+    "text": "220V-240V~ 50Hz， 最大10A",
+    "bbox": [
+      273.04541015625,
+      329.1487731933594,
+      341.1504821777344,
+      334.9137878417969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b7-l0-0",
+    "physical_page": 4,
+    "text": "光伏：16V-60V⎓12A，",
+    "bbox": [
+      289.341064453125,
+      282.46881103515625,
+      341.8523864746094,
+      293.9088134765625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b7-l1-0",
+    "physical_page": 4,
+    "text": "双路最大24A/最大1000W",
+    "bbox": [
+      287.0453186035156,
+      291.68878173828125,
+      341.85992431640625,
+      297.45379638671875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b7-l2-0",
+    "physical_page": 4,
+    "text": "车充：12V-16V⎓最大8A，",
+    "bbox": [
+      282.8340759277344,
+      294.8687744140625,
+      341.8570861816406,
+      306.30877685546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b8-l0-0",
+    "physical_page": 4,
+    "text": "双路最大8A",
+    "bbox": [
+      316.73992919921875,
+      304.0887756347656,
+      341.8617858886719,
+      309.8537902832031
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b9-l0-0",
+    "physical_page": 4,
+    "text": "加电包连接端口",
+    "bbox": [
+      30.783199310302734,
+      290.19207763671875,
+      76.283203125,
+      297.9400939941406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b10-l0-0",
+    "physical_page": 4,
+    "text": "输入：36.4V-50.4V，最大100A",
+    "bbox": [
+      30.995100021362305,
+      299.66009521484375,
+      101.15653991699219,
+      305.42510986328125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b10-l1-0",
+    "physical_page": 4,
+    "text": "输出：36.4V-50.4V，最大60A",
+    "bbox": [
+      30.995100021362305,
+      305.8600769042969,
+      98.77157592773438,
+      311.6250915527344
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b11-l0-0",
+    "physical_page": 4,
+    "text": "输出：220V~50Hz，额定3500W",
+    "bbox": [
+      30.12649917602539,
+      267.58929443359375,
+      102.14239501953125,
+      273.35430908203125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b11-l1-0",
+    "physical_page": 4,
+    "text": "并机端口",
+    "bbox": [
+      30.12649917602539,
+      258.6647033691406,
+      56.12649917602539,
+      266.4127197265625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b12-l0-0",
+    "physical_page": 4,
+    "text": "固定轮",
+    "bbox": [
+      30.12649917602539,
+      381.0553894042969,
+      49.62649917602539,
+      388.80340576171875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p4-b13-l0-0",
+    "physical_page": 4,
+    "text": "可伸缩手柄",
+    "bbox": [
+      29.676300048828125,
+      197.1685791015625,
+      62.176300048828125,
+      204.9165802001953
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "overview-side"
+  },
+  {
+    "id": "p5-b1-l0-0",
+    "physical_page": 5,
+    "text": "4",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      25.97410011291504,
+      506.31488037109375,
+      30.34910011291504,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p5-b27-l0-0",
+    "physical_page": 5,
+    "text": "21",
+    "bbox": [
+      320.5307922363281,
+      125.04178619384766,
+      325.3749084472656,
+      131.96194458007812
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b28-l0-0",
+    "physical_page": 5,
+    "text": "22",
+    "bbox": [
+      319.9555969238281,
+      143.1685028076172,
+      326.3155822753906,
+      150.36849975585938
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b29-l0-0",
+    "physical_page": 5,
+    "text": "9",
+    "bbox": [
+      29.010299682617188,
+      125.96647644042969,
+      32.29751968383789,
+      133.40924072265625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b30-l0-0",
+    "physical_page": 5,
+    "text": "10",
+    "bbox": [
+      27.31707191467285,
+      144.8896942138672,
+      33.519371032714844,
+      152.33245849609375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b31-l0-0",
+    "physical_page": 5,
+    "text": "1",
+    "bbox": [
+      81.30189514160156,
+      60.40196228027344,
+      83.41067504882812,
+      67.84471893310547
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b32-l0-0",
+    "physical_page": 5,
+    "text": "11",
+    "bbox": [
+      80.63960266113281,
+      208.6696014404297,
+      85.0432357788086,
+      216.11236572265625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b33-l0-0",
+    "physical_page": 5,
+    "text": "2",
+    "bbox": [
+      92.57080078125,
+      60.40599060058594,
+      95.82701110839844,
+      67.84874725341797
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b34-l0-0",
+    "physical_page": 5,
+    "text": "12",
+    "bbox": [
+      92.99019622802734,
+      208.6578826904297,
+      98.541259765625,
+      216.10064697265625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b34-l1-0",
+    "physical_page": 5,
+    "text": "13",
+    "bbox": [
+      108.43949890136719,
+      208.66868591308594,
+      114.02156829833984,
+      216.1114501953125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b34-l2-0",
+    "physical_page": 5,
+    "text": "14",
+    "bbox": [
+      158.5791015625,
+      209.42649841308594,
+      164.47128295898438,
+      216.8692626953125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b34-l3-0",
+    "physical_page": 5,
+    "text": "15",
+    "bbox": [
+      172.91110229492188,
+      209.5006866455078,
+      178.55519104003906,
+      216.94345092773438
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b34-l4-0",
+    "physical_page": 5,
+    "text": "16",
+    "bbox": [
+      185.30369567871094,
+      209.5006866455078,
+      190.88575744628906,
+      216.94345092773438
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b34-l5-0",
+    "physical_page": 5,
+    "text": "18",
+    "bbox": [
+      237.5106964111328,
+      209.5787811279297,
+      243.0803680419922,
+      217.02154541015625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b34-l6-0",
+    "physical_page": 5,
+    "text": "19",
+    "bbox": [
+      250.6519012451172,
+      209.5787811279297,
+      256.10992431640625,
+      217.02154541015625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b34-l7-0",
+    "physical_page": 5,
+    "text": "20",
+    "bbox": [
+      265.0805969238281,
+      209.57730102539062,
+      271.77960205078125,
+      216.53729248046875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b35-l0-0",
+    "physical_page": 5,
+    "text": "3",
+    "bbox": [
+      104.35399627685547,
+      60.40599060058594,
+      107.6412124633789,
+      67.84874725341797
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b35-l1-0",
+    "physical_page": 5,
+    "text": "4",
+    "bbox": [
+      114.9009017944336,
+      60.40599060058594,
+      118.49823760986328,
+      67.84874725341797
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b35-l2-0",
+    "physical_page": 5,
+    "text": "5",
+    "bbox": [
+      126.30709838867188,
+      60.40599060058594,
+      129.65634155273438,
+      67.84874725341797
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b35-l3-0",
+    "physical_page": 5,
+    "text": "7",
+    "bbox": [
+      202.99020385742188,
+      60.40599060058594,
+      206.02932739257812,
+      67.84874725341797
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b35-l4-0",
+    "physical_page": 5,
+    "text": "8 ",
+    "bbox": [
+      251.86279296875,
+      60.71159362792969,
+      256.998291015625,
+      68.15435028076172
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b35-l5-0",
+    "physical_page": 5,
+    "text": "6",
+    "bbox": [
+      174.9066925048828,
+      60.48017883300781,
+      178.19390869140625,
+      67.92293548583984
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b36-l0-0",
+    "physical_page": 5,
+    "text": "17",
+    "bbox": [
+      220.47850036621094,
+      209.4987030029297,
+      225.6884307861328,
+      216.94146728515625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "lcd-map"
+  },
+  {
+    "id": "p5-b2-l0-0",
+    "physical_page": 5,
+    "text": "点亮：蓝牙已连接。",
+    "bbox": [
+      134.18649291992188,
+      294.54046630859375,
+      197.18649291992188,
+      302.6114807128906
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b3-l0-0",
+    "physical_page": 5,
+    "text": "闪烁：准备连接蓝牙。",
+    "bbox": [
+      134.18649291992188,
+      305.8804931640625,
+      204.18649291992188,
+      313.9515075683594
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b4-l0-0",
+    "physical_page": 5,
+    "text": "熄灭：蓝牙未连接。",
+    "bbox": [
+      134.18649291992188,
+      317.220458984375,
+      197.18649291992188,
+      325.2914733886719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b5-l0-0",
+    "physical_page": 5,
+    "text": "点亮：自发自用模式已开启，最大化利用太阳能，减少",
+    "bbox": [
+      134.7744903564453,
+      454.82647705078125,
+      302.77447509765625,
+      462.8974914550781
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b5-l1-0",
+    "physical_page": 5,
+    "text": "电网电力消耗，减少用电成本。",
+    "bbox": [
+      134.7744903564453,
+      464.8294677734375,
+      232.7744903564453,
+      472.9004821777344
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b5-l2-0",
+    "physical_page": 5,
+    "text": "熄灭：自发自用模式未开启/已关闭。",
+    "bbox": [
+      134.7744903564453,
+      474.83245849609375,
+      248.85348510742188,
+      482.9034729003906
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b5-l3-0",
+    "physical_page": 5,
+    "text": "（请在 APP 中开启/关闭该功能，关机可记忆保存）。",
+    "bbox": [
+      134.7744903564453,
+      484.8354797363281,
+      303.1734619140625,
+      492.906494140625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b6-l0-0",
+    "physical_page": 5,
+    "text": "1",
+    "bbox": [
+      35.23830032348633,
+      259.4396057128906,
+      37.601470947265625,
+      267.78021240234375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b7-l0-0",
+    "physical_page": 5,
+    "text": "2",
+    "bbox": [
+      34.595699310302734,
+      303.080322265625,
+      38.244712829589844,
+      311.4209289550781
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b8-l0-0",
+    "physical_page": 5,
+    "text": "3",
+    "bbox": [
+      34.5791015625,
+      355.9562072753906,
+      38.26286697387695,
+      364.29681396484375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b9-l0-0",
+    "physical_page": 5,
+    "text": "4",
+    "bbox": [
+      34.59669876098633,
+      437.48211669921875,
+      38.62799072265625,
+      445.8227233886719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b10-l0-0",
+    "physical_page": 5,
+    "text": "Wi-Fi",
+    "bbox": [
+      76.6406021118164,
+      258.7861022949219,
+      101.26460266113281,
+      268.3221130371094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b11-l0-0",
+    "physical_page": 5,
+    "text": "Bluetooth",
+    "bbox": [
+      76.6406021118164,
+      303.1221008300781,
+      119.92060089111328,
+      312.6581115722656
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b12-l0-0",
+    "physical_page": 5,
+    "text": "静音充电模式",
+    "bbox": [
+      76.6406021118164,
+      356.3381042480469,
+      124.6406021118164,
+      365.8741149902344
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b13-l0-0",
+    "physical_page": 5,
+    "text": "节省电池模式",
+    "bbox": [
+      76.6406021118164,
+      416.2021179199219,
+      124.6406021118164,
+      425.7381286621094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b14-l0-0",
+    "physical_page": 5,
+    "text": "自发自用模式",
+    "bbox": [
+      73.52059936523438,
+      469.6260986328125,
+      121.52059936523438,
+      479.162109375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b15-l0-0",
+    "physical_page": 5,
+    "text": "点亮：静音充电模式已开启。",
+    "bbox": [
+      134.18649291992188,
+      342.18206787109375,
+      225.18649291992188,
+      350.2530822753906
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b16-l0-0",
+    "physical_page": 5,
+    "text": "充电功率降低，充电速度变慢，同时显著降低充电时的噪音。",
+    "bbox": [
+      134.18649291992188,
+      353.5220947265625,
+      323.1864929199219,
+      361.5931091308594
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b17-l0-0",
+    "physical_page": 5,
+    "text": "熄灭：静音充电模式未开启/已关闭。",
+    "bbox": [
+      134.18649291992188,
+      364.862060546875,
+      248.26548767089844,
+      372.9330749511719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b18-l0-0",
+    "physical_page": 5,
+    "text": "（请在 APP 中开启/关闭该功能，关机可记忆保存）。",
+    "bbox": [
+      134.18649291992188,
+      376.20208740234375,
+      302.5854797363281,
+      384.2731018066406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b19-l0-0",
+    "physical_page": 5,
+    "text": "点亮：节省电池模式已开启，通过限制电池的最大可用容量来延",
+    "bbox": [
+      134.18649291992188,
+      391.39208984375,
+      330.1864929199219,
+      399.4631042480469
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b20-l0-0",
+    "physical_page": 5,
+    "text": "长电池使用寿命。",
+    "bbox": [
+      134.18649291992188,
+      402.7320556640625,
+      190.18649291992188,
+      410.8030700683594
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b21-l0-0",
+    "physical_page": 5,
+    "text": "熄灭：节省电池模式未开启/已关闭。",
+    "bbox": [
+      134.18649291992188,
+      414.07208251953125,
+      248.26548767089844,
+      422.1430969238281
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b22-l0-0",
+    "physical_page": 5,
+    "text": "（请在 APP 中开启/关闭该功能，关机可记忆保存）。",
+    "bbox": [
+      134.18649291992188,
+      425.41204833984375,
+      302.5854797363281,
+      433.4830627441406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b23-l0-0",
+    "physical_page": 5,
+    "text": "注：开启后偶尔会满充满放，用于校准SOC。",
+    "bbox": [
+      134.18649291992188,
+      436.7520751953125,
+      277.00048828125,
+      444.8230895996094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b24-l0-0",
+    "physical_page": 5,
+    "text": "点亮：Wi-Fi 已连接。",
+    "bbox": [
+      134.18649291992188,
+      245.49107360839844,
+      204.78848266601562,
+      253.56207275390625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b25-l0-0",
+    "physical_page": 5,
+    "text": "闪烁：准备连接 Wi-Fi。",
+    "bbox": [
+      134.18649291992188,
+      256.8310546875,
+      211.78848266601562,
+      264.9020690917969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b26-l0-0",
+    "physical_page": 5,
+    "text": "熄灭：Wi-Fi 未连接。",
+    "bbox": [
+      134.18649291992188,
+      268.1710510253906,
+      204.78848266601562,
+      276.2420654296875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p5-b0-l0-0",
+    "physical_page": 5,
+    "text": "显示屏界面",
+    "bbox": [
+      33.9541015625,
+      29.09139060974121,
+      93.9541015625,
+      43.623390197753906
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p5-b0-l0-0"
+  },
+  {
+    "id": "p6-b11-l0-0",
+    "physical_page": 6,
+    "text": "5",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      335.96728515625,
+      506.01409912109375,
+      340.1812744140625,
+      514.0851440429688
+    ]
+  },
+  {
+    "id": "p6-b0-l0-0",
+    "physical_page": 6,
+    "text": "7",
+    "bbox": [
+      36.03030014038086,
+      134.91671752929688,
+      39.4360466003418,
+      143.25732421875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b1-l0-0",
+    "physical_page": 6,
+    "text": "8",
+    "bbox": [
+      35.874000549316406,
+      173.20962524414062,
+      39.68287658691406,
+      181.55023193359375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b2-l0-0",
+    "physical_page": 6,
+    "text": "9",
+    "bbox": [
+      35.75199890136719,
+      209.934326171875,
+      39.43576431274414,
+      218.27493286132812
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b3-l0-0",
+    "physical_page": 6,
+    "text": "10",
+    "bbox": [
+      34.408199310302734,
+      245.60220336914062,
+      41.358699798583984,
+      253.94281005859375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b4-l0-0",
+    "physical_page": 6,
+    "text": "11",
+    "bbox": [
+      34.98630142211914,
+      282.29461669921875,
+      39.92115783691406,
+      290.6352233886719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b5-l0-0",
+    "physical_page": 6,
+    "text": "12",
+    "bbox": [
+      34.51369857788086,
+      318.26239013671875,
+      40.734397888183594,
+      326.6029968261719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b6-l0-0",
+    "physical_page": 6,
+    "text": "13",
+    "bbox": [
+      34.40140151977539,
+      355.6589050292969,
+      40.65685272216797,
+      363.99951171875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b7-l0-0",
+    "physical_page": 6,
+    "text": "14",
+    "bbox": [
+      34.283199310302734,
+      392.1716003417969,
+      40.88617706298828,
+      400.51220703125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b8-l0-0",
+    "physical_page": 6,
+    "text": "15",
+    "bbox": [
+      34.5088005065918,
+      433.0583190917969,
+      40.69474411010742,
+      441.39892578125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b9-l0-0",
+    "physical_page": 6,
+    "text": "6",
+    "bbox": [
+      35.86869812011719,
+      94.53192901611328,
+      39.55246353149414,
+      102.87252807617188
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b10-l0-0",
+    "physical_page": 6,
+    "text": "5",
+    "bbox": [
+      35.59769821166992,
+      47.164710998535156,
+      39.35096740722656,
+      55.50531005859375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b12-l0-0",
+    "physical_page": 6,
+    "text": "自定义便携式储能电源 3600 Plus的充电计划，适用于电",
+    "bbox": [
+      154.6688995361328,
+      33.23478698730469,
+      330.97088623046875,
+      41.3057861328125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b12-l1-0",
+    "physical_page": 6,
+    "text": "价有波动的情况，可根据电价峰谷时间段制定充电计划，",
+    "bbox": [
+      154.6688995361328,
+      43.23777770996094,
+      329.66888427734375,
+      51.30877685546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b12-l2-0",
+    "physical_page": 6,
+    "text": "减少用电成本。",
+    "bbox": [
+      154.6688995361328,
+      53.24076843261719,
+      203.6688995361328,
+      61.311767578125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b12-l3-0",
+    "physical_page": 6,
+    "text": "（请在 APP 中开启/关闭该功能，关机可记忆保存）。",
+    "bbox": [
+      154.6688995361328,
+      63.24375915527344,
+      323.06787109375,
+      71.31475830078125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b13-l0-0",
+    "physical_page": 6,
+    "text": "点亮：AC输出打开，设备已成功并机。",
+    "bbox": [
+      154.6688995361328,
+      91.63575744628906,
+      277.3858947753906,
+      99.70675659179688
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b13-l1-0",
+    "physical_page": 6,
+    "text": "闪烁：AC输出打开，设备未成功并机。",
+    "bbox": [
+      154.6688995361328,
+      101.63874816894531,
+      277.3858947753906,
+      109.70974731445312
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b14-l0-0",
+    "physical_page": 6,
+    "text": "充电计划",
+    "bbox": [
+      88.61910247802734,
+      48.875003814697266,
+      120.61910247802734,
+      58.41100311279297
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b15-l0-0",
+    "physical_page": 6,
+    "text": "并机模式",
+    "bbox": [
+      88.61910247802734,
+      96.05099487304688,
+      120.61910247802734,
+      105.58699798583984
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b16-l0-0",
+    "physical_page": 6,
+    "text": "16",
+    "bbox": [
+      34.75680160522461,
+      472.7477111816406,
+      40.45621109008789,
+      481.08831787109375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b17-l0-0",
+    "physical_page": 6,
+    "text": "显示当前充电功率。",
+    "bbox": [
+      154.66990661621094,
+      210.19190979003906,
+      217.66990661621094,
+      218.26290893554688
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b18-l0-0",
+    "physical_page": 6,
+    "text": "产品通过市电进行充电。",
+    "bbox": [
+      154.66990661621094,
+      282.2709045410156,
+      231.66990661621094,
+      290.3419189453125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b19-l0-0",
+    "physical_page": 6,
+    "text": "当本产品处于充电状态时，该图标顺时针转动；",
+    "bbox": [
+      154.66990661621094,
+      386.3749084472656,
+      301.669921875,
+      394.4459228515625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b19-l1-0",
+    "physical_page": 6,
+    "text": "当产品处于放电状态时，该图标显示当前电量。",
+    "bbox": [
+      154.66990661621094,
+      396.3778991699219,
+      301.669921875,
+      404.44891357421875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b20-l0-0",
+    "physical_page": 6,
+    "text": "点亮：当前电池电量低于 20%。",
+    "bbox": [
+      154.66990661621094,
+      422.5509033203125,
+      256.49188232421875,
+      430.6219177246094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b20-l1-0",
+    "physical_page": 6,
+    "text": "闪烁：当前电池电量低于 5%。",
+    "bbox": [
+      154.66990661621094,
+      432.55389404296875,
+      252.03990173339844,
+      440.6249084472656
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b20-l2-0",
+    "physical_page": 6,
+    "text": "熄灭：设备正在充电中。",
+    "bbox": [
+      154.66990661621094,
+      442.556884765625,
+      231.66990661621094,
+      450.6278991699219
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b21-l0-0",
+    "physical_page": 6,
+    "text": "产品通过 DC 输入端口（DC8020）连接太阳能板进行",
+    "bbox": [
+      154.66990661621094,
+      351.3258972167969,
+      324.307861328125,
+      359.39691162109375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b21-l1-0",
+    "physical_page": 6,
+    "text": "充电。",
+    "bbox": [
+      154.66990661621094,
+      361.32891845703125,
+      175.66990661621094,
+      369.3999328613281
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b22-l0-0",
+    "physical_page": 6,
+    "text": "产品通过 DC 输入端口（DC8020）连接 12V 车载充电线",
+    "bbox": [
+      154.66990661621094,
+      314.764892578125,
+      334.1988830566406,
+      322.8359069824219
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b22-l1-0",
+    "physical_page": 6,
+    "text": "进行充电。",
+    "bbox": [
+      154.66990661621094,
+      324.7679138183594,
+      189.66990661621094,
+      332.83892822265625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b23-l0-0",
+    "physical_page": 6,
+    "text": "太阳能（绿色",
+    "bbox": [
+      88.61910247802734,
+      350.01458740234375,
+      136.61911010742188,
+      359.55059814453125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b23-l1-0",
+    "physical_page": 6,
+    "text": "能源）充电接入",
+    "bbox": [
+      88.61910247802734,
+      361.01458740234375,
+      144.61911010742188,
+      370.55059814453125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b24-l0-0",
+    "physical_page": 6,
+    "text": "车充充电接入",
+    "bbox": [
+      88.61910247802734,
+      318.8465881347656,
+      136.61911010742188,
+      328.3825988769531
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b25-l0-0",
+    "physical_page": 6,
+    "text": "市电充电接入",
+    "bbox": [
+      88.61910247802734,
+      282.1585998535156,
+      136.61911010742188,
+      291.6946105957031
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b26-l0-0",
+    "physical_page": 6,
+    "text": "充电功率显示",
+    "bbox": [
+      88.61910247802734,
+      210.07858276367188,
+      136.61911010742188,
+      219.61459350585938
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b27-l0-0",
+    "physical_page": 6,
+    "text": "剩余充电时间",
+    "bbox": [
+      88.61910247802734,
+      245.05459594726562,
+      136.61911010742188,
+      254.59060668945312
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b28-l0-0",
+    "physical_page": 6,
+    "text": "低电量提醒",
+    "bbox": [
+      88.61910247802734,
+      433.3905944824219,
+      128.61911010742188,
+      442.9266052246094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b29-l0-0",
+    "physical_page": 6,
+    "text": "电池电量图标",
+    "bbox": [
+      88.61910247802734,
+      392.32659912109375,
+      136.61911010742188,
+      401.86260986328125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b30-l0-0",
+    "physical_page": 6,
+    "text": "显示剩余充电时间。",
+    "bbox": [
+      154.66940307617188,
+      245.10398864746094,
+      217.10934448242188,
+      253.17498779296875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b31-l0-0",
+    "physical_page": 6,
+    "text": "交流输出符号",
+    "bbox": [
+      88.61910247802734,
+      135.31149291992188,
+      136.61911010742188,
+      144.84750366210938
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b31-l1-0",
+    "physical_page": 6,
+    "text": "AC输出（纯正弦波）已开启。",
+    "bbox": [
+      154.66940307617188,
+      135.3568878173828,
+      248.476318359375,
+      143.42788696289062
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b32-l0-0",
+    "physical_page": 6,
+    "text": "显示AC输出口的输出电压和频率。",
+    "bbox": [
+      154.66940307617188,
+      174.18589782714844,
+      263.38641357421875,
+      182.25689697265625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b32-l1-0",
+    "physical_page": 6,
+    "text": "输出电压和频率",
+    "bbox": [
+      88.61910247802734,
+      173.14059448242188,
+      144.61911010742188,
+      182.67660522460938
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b33-l0-0",
+    "physical_page": 6,
+    "text": "显示当前电池电量。",
+    "bbox": [
+      154.6688995361328,
+      473.01116943359375,
+      217.6688995361328,
+      481.0821838378906
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p6-b33-l1-0",
+    "physical_page": 6,
+    "text": "电池电量百分比",
+    "bbox": [
+      88.61910247802734,
+      472.4248046875,
+      144.61911010742188,
+      481.9608154296875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b0-l0-0",
+    "physical_page": 7,
+    "text": "6",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      25.234899520874023,
+      506.01507568359375,
+      29.497900009155273,
+      514.0861206054688
+    ]
+  },
+  {
+    "id": "p7-b1-l0-0",
+    "physical_page": 7,
+    "text": "20",
+    "bbox": [
+      33.72169876098633,
+      215.62570190429688,
+      41.88853454589844,
+      223.96630859375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b2-l0-0",
+    "physical_page": 7,
+    "text": "17",
+    "bbox": [
+      34.61819839477539,
+      46.175514221191406,
+      40.59563064575195,
+      54.51611328125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b3-l0-0",
+    "physical_page": 7,
+    "text": "18",
+    "bbox": [
+      34.41600036621094,
+      89.15790557861328,
+      40.79656219482422,
+      97.49850463867188
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b4-l0-0",
+    "physical_page": 7,
+    "text": "19",
+    "bbox": [
+      34.47850036621094,
+      151.01431274414062,
+      40.733951568603516,
+      159.35491943359375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b5-l0-0",
+    "physical_page": 7,
+    "text": "21",
+    "bbox": [
+      34.49610137939453,
+      257.6091003417969,
+      40.716800689697266,
+      265.94970703125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b6-l0-0",
+    "physical_page": 7,
+    "text": "22",
+    "bbox": [
+      33.86130142211914,
+      298.0181884765625,
+      41.36784362792969,
+      306.3587951660156
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b7-l0-0",
+    "physical_page": 7,
+    "text": "如果屏幕上出现         ，请勿担心，环境温度恢复后",
+    "bbox": [
+      154.08299255371094,
+      168.2528839111328,
+      311.533935546875,
+      176.32388305664062
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b7-l1-0",
+    "physical_page": 7,
+    "text": "自动恢复。",
+    "bbox": [
+      154.08299255371094,
+      178.25587463378906,
+      189.08299255371094,
+      186.32687377929688
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b8-l0-0",
+    "physical_page": 7,
+    "text": "产品发生故障，请参考故障代码模块内容了解详情。",
+    "bbox": [
+      154.08299255371094,
+      90.02088928222656,
+      315.0830078125,
+      98.09188842773438
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b9-l0-0",
+    "physical_page": 7,
+    "text": "如果屏幕上出现         ，请勿担心，电池降温后可自",
+    "bbox": [
+      154.08299255371094,
+      127.49189758300781,
+      311.533935546875,
+      135.56289672851562
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b9-l1-0",
+    "physical_page": 7,
+    "text": "行恢复。",
+    "bbox": [
+      154.08299255371094,
+      137.49488830566406,
+      182.08299255371094,
+      145.56588745117188
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b10-l0-0",
+    "physical_page": 7,
+    "text": "AC 输出按键 或USB 输出按键时打开时：",
+    "bbox": [
+      154.08299255371094,
+      207.0539093017578,
+      284.66796875,
+      215.12490844726562
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b10-l1-0",
+    "physical_page": 7,
+    "text": "点亮：节能模式开启。",
+    "bbox": [
+      154.08299255371094,
+      217.5539093017578,
+      224.08299255371094,
+      225.62490844726562
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b10-l2-0",
+    "physical_page": 7,
+    "text": "熄灭：节能模式关闭。",
+    "bbox": [
+      154.08299255371094,
+      228.0539093017578,
+      224.08299255371094,
+      236.12490844726562
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b11-l0-0",
+    "physical_page": 7,
+    "text": "显示当前放电功率。",
+    "bbox": [
+      154.08200073242188,
+      258.2035827636719,
+      217.08200073242188,
+      266.27459716796875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b11-l1-0",
+    "physical_page": 7,
+    "text": "放电功率显示",
+    "bbox": [
+      89.77050018310547,
+      257.44818115234375,
+      137.7705078125,
+      266.98419189453125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b12-l0-0",
+    "physical_page": 7,
+    "text": "节能模式",
+    "bbox": [
+      89.77050018310547,
+      215.98419189453125,
+      121.77050018310547,
+      225.52020263671875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b13-l0-0",
+    "physical_page": 7,
+    "text": "低温警告",
+    "bbox": [
+      90.4104995727539,
+      173.50418090820312,
+      122.4104995727539,
+      183.04019165039062
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b14-l0-0",
+    "physical_page": 7,
+    "text": "高温警告",
+    "bbox": [
+      90.17849731445312,
+      132.42416381835938,
+      122.17849731445312,
+      141.96017456054688
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b15-l0-0",
+    "physical_page": 7,
+    "text": "故障代码",
+    "bbox": [
+      89.76249694824219,
+      89.91217041015625,
+      121.76249694824219,
+      99.44817352294922
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b16-l0-0",
+    "physical_page": 7,
+    "text": "剩余放电时间",
+    "bbox": [
+      89.77050018310547,
+      297.3486022949219,
+      137.7705078125,
+      306.8846130371094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b16-l1-0",
+    "physical_page": 7,
+    "text": "显示剩余放电时间。",
+    "bbox": [
+      154.08200073242188,
+      298.09906005859375,
+      217.08200073242188,
+      306.1700744628906
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b17-l0-0",
+    "physical_page": 7,
+    "text": "加电包接入",
+    "bbox": [
+      90.57230377197266,
+      40.180606842041016,
+      135.21231079101562,
+      49.71660614013672
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b17-l1-0",
+    "physical_page": 7,
+    "text": "及数量",
+    "bbox": [
+      90.57230377197266,
+      52.180606842041016,
+      114.57230377197266,
+      61.71660614013672
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p7-b17-l2-0",
+    "physical_page": 7,
+    "text": "显示加电包的接入状态及数量。",
+    "bbox": [
+      154.08200073242188,
+      48.17430114746094,
+      252.08200073242188,
+      56.24530029296875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-indicators"
+  },
+  {
+    "id": "p8-b1-l0-0",
+    "physical_page": 8,
+    "text": "7",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      336.97021484375,
+      506.01409912109375,
+      341.2052001953125,
+      514.0851440429688
+    ]
+  },
+  {
+    "id": "p8-b2-l0-0",
+    "physical_page": 8,
+    "text": "开机",
+    "bbox": [
+      261.9053039550781,
+      106.68598937988281,
+      275.9053039550781,
+      115.02999114990234
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b3-l0-0",
+    "physical_page": 8,
+    "text": "关机",
+    "bbox": [
+      261.9053039550781,
+      126.88798522949219,
+      275.9053039550781,
+      135.2319793701172
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b4-l0-0",
+    "physical_page": 8,
+    "text": "短按一次",
+    "bbox": [
+      261.9053039550781,
+      115.81849670410156,
+      283.9053039550781,
+      122.15999603271484
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b7-l0-0",
+    "physical_page": 8,
+    "text": "长按3秒",
+    "bbox": [
+      261.9064025878906,
+      135.46690368652344,
+      281.7998962402344,
+      141.80841064453125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b8-l0-0",
+    "physical_page": 8,
+    "text": "3s",
+    "bbox": [
+      273.8955078125,
+      145.43115234375,
+      279.9997253417969,
+      152.87535095214844
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b9-l0-0",
+    "physical_page": 8,
+    "text": "* 本产品的默认待机时间为2小时，若产品无任何充电",
+    "bbox": [
+      161.7061004638672,
+      177.0756072998047,
+      325.10711669921875,
+      185.1466064453125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b9-l1-0",
+    "physical_page": 8,
+    "text": "输入或放电输出，2小时后将自动关机，自动关机时",
+    "bbox": [
+      165.70309448242188,
+      186.07762145996094,
+      323.99407958984375,
+      194.14862060546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b9-l2-0",
+    "physical_page": 8,
+    "text": "间可以在App上设置。",
+    "bbox": [
+      165.70309448242188,
+      195.0796356201172,
+      235.50709533691406,
+      203.150634765625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b12-l0-0",
+    "physical_page": 8,
+    "text": "总电源开关键",
+    "bbox": [
+      164.10940551757812,
+      83.76560974121094,
+      206.10940551757812,
+      92.10961151123047
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b13-l0-0",
+    "physical_page": 8,
+    "text": "节能模式下，开启AC或USB输出，若产品无任何充电输入或放电输出，12小时后将关闭AC",
+    "bbox": [
+      43.583404541015625,
+      226.15260314941406,
+      326.80340576171875,
+      234.22360229492188
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b14-l0-0",
+    "physical_page": 8,
+    "text": "或USB输出（节能模式时间可以在App 上设置）。",
+    "bbox": [
+      43.583404541015625,
+      237.1496124267578,
+      201.3773956298828,
+      245.22061157226562
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "power"
+  },
+  {
+    "id": "p8-b5-l0-0",
+    "physical_page": 8,
+    "text": "开启",
+    "bbox": [
+      278.6924133300781,
+      334.98577880859375,
+      292.6924133300781,
+      343.3298034667969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "ac-output"
+  },
+  {
+    "id": "p8-b5-l1-0",
+    "physical_page": 8,
+    "text": "短按一次",
+    "bbox": [
+      278.6924133300781,
+      344.1183166503906,
+      300.6924133300781,
+      350.4598083496094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "ac-output"
+  },
+  {
+    "id": "p8-b6-l0-0",
+    "physical_page": 8,
+    "text": "关闭",
+    "bbox": [
+      278.6924133300781,
+      360.71136474609375,
+      292.6924133300781,
+      369.0553894042969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "ac-output"
+  },
+  {
+    "id": "p8-b6-l1-0",
+    "physical_page": 8,
+    "text": "短按一次",
+    "bbox": [
+      278.6924133300781,
+      369.84393310546875,
+      300.6924133300781,
+      376.1854248046875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "ac-output"
+  },
+  {
+    "id": "p8-b15-l0-0",
+    "physical_page": 8,
+    "text": "确保总电源开关键已打开。",
+    "bbox": [
+      38.97269821166992,
+      305.38079833984375,
+      122.97270202636719,
+      313.4518127441406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "ac-output"
+  },
+  {
+    "id": "p8-b0-l0-0",
+    "physical_page": 8,
+    "text": "产品使用",
+    "bbox": [
+      35.362300872802734,
+      28.302297592163086,
+      83.3623046875,
+      42.83429718017578
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p8-b0-l0-0"
+  },
+  {
+    "id": "p8-b10-l0-0",
+    "physical_page": 8,
+    "text": "电源开机/关机",
+    "bbox": [
+      38.272499084472656,
+      52.57079315185547,
+      95.11650085449219,
+      63.29879379272461
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p8-b10-l0-0"
+  },
+  {
+    "id": "p8-b11-l0-0",
+    "physical_page": 8,
+    "text": "AC输出开/关",
+    "bbox": [
+      37.492698669433594,
+      275.3052062988281,
+      91.21370697021484,
+      286.033203125
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p8-b11-l0-0"
+  },
+  {
+    "id": "p9-b0-l0-0",
+    "physical_page": 9,
+    "text": "8",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      27.97800064086914,
+      506.01409912109375,
+      32.32500076293945,
+      514.0851440429688
+    ]
+  },
+  {
+    "id": "p9-b1-l0-0",
+    "physical_page": 9,
+    "text": "开启",
+    "bbox": [
+      284.3778991699219,
+      80.05610656738281,
+      298.3778991699219,
+      88.40010833740234
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "usb-output"
+  },
+  {
+    "id": "p9-b1-l1-0",
+    "physical_page": 9,
+    "text": "短按一次",
+    "bbox": [
+      284.3778991699219,
+      89.18858337402344,
+      306.3778991699219,
+      95.53008270263672
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "usb-output"
+  },
+  {
+    "id": "p9-b2-l0-0",
+    "physical_page": 9,
+    "text": "关闭",
+    "bbox": [
+      284.3778991699219,
+      105.78169250488281,
+      298.3778991699219,
+      114.12569427490234
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "usb-output"
+  },
+  {
+    "id": "p9-b2-l1-0",
+    "physical_page": 9,
+    "text": "短按一次",
+    "bbox": [
+      284.3778991699219,
+      114.91419982910156,
+      306.3778991699219,
+      121.25569915771484
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "usb-output"
+  },
+  {
+    "id": "p9-b3-l0-0",
+    "physical_page": 9,
+    "text": "确保总电源开关键已打开。",
+    "bbox": [
+      40.727500915527344,
+      62.76020812988281,
+      124.72750091552734,
+      70.83120727539062
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "usb-output"
+  },
+  {
+    "id": "p9-b6-l0-0",
+    "physical_page": 9,
+    "text": "屏幕",
+    "bbox": [
+      201.12600708007812,
+      374.3863830566406,
+      213.5260009765625,
+      381.77679443359375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b6-l1-0",
+    "physical_page": 9,
+    "text": "短亮",
+    "bbox": [
+      201.12600708007812,
+      383.4817810058594,
+      213.5260009765625,
+      390.8721923828125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b7-l0-0",
+    "physical_page": 9,
+    "text": "屏幕",
+    "bbox": [
+      201.12600708007812,
+      442.62359619140625,
+      213.5260009765625,
+      450.0140075683594
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b7-l1-0",
+    "physical_page": 9,
+    "text": "常亮",
+    "bbox": [
+      201.12600708007812,
+      451.718994140625,
+      213.5260009765625,
+      459.1094055175781
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b8-l0-0",
+    "physical_page": 9,
+    "text": "关闭",
+    "bbox": [
+      228.4246063232422,
+      373.9399719238281,
+      240.82460021972656,
+      381.0885925292969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b9-l0-0",
+    "physical_page": 9,
+    "text": "自动关闭",
+    "bbox": [
+      228.4246063232422,
+      462.0295715332031,
+      253.22459411621094,
+      469.1781921386719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b10-l0-0",
+    "physical_page": 9,
+    "text": "关闭",
+    "bbox": [
+      228.4246063232422,
+      437.3163757324219,
+      240.82460021972656,
+      444.4649963378906
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b11-l0-0",
+    "physical_page": 9,
+    "text": "打开",
+    "bbox": [
+      228.4268035888672,
+      420.8960876464844,
+      240.4525909423828,
+      428.0447082519531
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b12-l0-0",
+    "physical_page": 9,
+    "text": "自动关闭",
+    "bbox": [
+      228.4268035888672,
+      395.1890869140625,
+      253.22679138183594,
+      402.33770751953125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b13-l0-0",
+    "physical_page": 9,
+    "text": "短按总电源开关键",
+    "bbox": [
+      274.2001953125,
+      355.0640869140625,
+      323.80029296875,
+      362.21270751953125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b13-l1-0",
+    "physical_page": 9,
+    "text": "或有充电输入。",
+    "bbox": [
+      274.2001953125,
+      362.06390380859375,
+      317.60028076171875,
+      369.2125244140625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b14-l0-0",
+    "physical_page": 9,
+    "text": "2分钟后显示屏将",
+    "bbox": [
+      274.2001953125,
+      386.5662841796875,
+      321.40087890625,
+      393.71490478515625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b14-l1-0",
+    "physical_page": 9,
+    "text": "自动熄灭，进入休",
+    "bbox": [
+      274.2001953125,
+      394.56427001953125,
+      323.80029296875,
+      401.712890625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b14-l2-0",
+    "physical_page": 9,
+    "text": "眠模式。",
+    "bbox": [
+      274.2001953125,
+      402.5622863769531,
+      299.000244140625,
+      409.7109069824219
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b15-l0-0",
+    "physical_page": 9,
+    "text": "开机状态下，双击",
+    "bbox": [
+      274.2001953125,
+      416.66729736328125,
+      322.7153015136719,
+      423.81591796875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b15-l1-0",
+    "physical_page": 9,
+    "text": "总电源开关键。",
+    "bbox": [
+      274.2001953125,
+      424.665283203125,
+      316.6702880859375,
+      431.81390380859375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b16-l0-0",
+    "physical_page": 9,
+    "text": "在常亮模式下，无",
+    "bbox": [
+      274.2001953125,
+      449.1614990234375,
+      323.80029296875,
+      456.31011962890625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b16-l1-0",
+    "physical_page": 9,
+    "text": "充放电情况，屏幕",
+    "bbox": [
+      274.2001953125,
+      457.15948486328125,
+      323.80029296875,
+      464.30810546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b16-l2-0",
+    "physical_page": 9,
+    "text": "将在 2 小时后自动",
+    "bbox": [
+      274.2001953125,
+      465.1575012207031,
+      324.835693359375,
+      472.3061218261719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b16-l3-0",
+    "physical_page": 9,
+    "text": "熄灭。",
+    "bbox": [
+      274.2001953125,
+      473.1554870605469,
+      292.80023193359375,
+      480.3041076660156
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b17-l0-0",
+    "physical_page": 9,
+    "text": "短按总电源开关键。",
+    "bbox": [
+      274.2001953125,
+      437.4559020996094,
+      330.00030517578125,
+      444.6045227050781
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b18-l0-0",
+    "physical_page": 9,
+    "text": "短按总电源开关键。",
+    "bbox": [
+      274.2001953125,
+      373.92449951171875,
+      330.00030517578125,
+      381.0731201171875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b19-l0-0",
+    "physical_page": 9,
+    "text": "打开",
+    "bbox": [
+      228.42559814453125,
+      358.2384948730469,
+      240.82559204101562,
+      365.3871154785156
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b20-l0-0",
+    "physical_page": 9,
+    "text": "操作",
+    "bbox": [
+      228.42559814453125,
+      342.4284973144531,
+      240.82559204101562,
+      349.5771179199219
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b20-l1-0",
+    "physical_page": 9,
+    "text": "说明",
+    "bbox": [
+      274.2001953125,
+      342.4284973144531,
+      286.6002197265625,
+      349.5771179199219
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b20-l2-0",
+    "physical_page": 9,
+    "text": "分类",
+    "bbox": [
+      201.1269989013672,
+      342.4284973144531,
+      213.52699279785156,
+      349.5771179199219
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "lcd-mode"
+  },
+  {
+    "id": "p9-b21-l0-0",
+    "physical_page": 9,
+    "text": "注意",
+    "bbox": [
+      34.727500915527344,
+      262.88330078125,
+      48.727500915527344,
+      271.2273254394531
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p9-b21-l0-0"
+  },
+  {
+    "id": "p9-b22-l0-0",
+    "physical_page": 9,
+    "text": "•USB-C 100W输出端口属于 PS3 高功率端口，用户设备或配件连接到这些端口存在火灾",
+    "bbox": [
+      56.601600646972656,
+      236.00299072265625,
+      332.9840087890625,
+      245.43199157714844
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p9-b21-l0-0"
+  },
+  {
+    "id": "p9-b22-l1-0",
+    "physical_page": 9,
+    "text": "风险；使用这些端口前，应确保所连接的设备或配件具备防火安全措施。",
+    "bbox": [
+      62.26795959472656,
+      247.02098083496094,
+      281.7879333496094,
+      255.09197998046875
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p9-b21-l0-0"
+  },
+  {
+    "id": "p9-b22-l2-0",
+    "physical_page": 9,
+    "text": "•仅将便携式电源连接到符合GB4943.1第 6.3、6.4 和 6.5 条款（或其它等效标准）的设备",
+    "bbox": [
+      56.601600646972656,
+      256.00897216796875,
+      333.7591857910156,
+      265.4379577636719
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p9-b21-l0-0"
+  },
+  {
+    "id": "p9-b22-l3-0",
+    "physical_page": 9,
+    "text": "或配件。",
+    "bbox": [
+      62.26795959472656,
+      267.0269775390625,
+      89.70796203613281,
+      275.0979919433594
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p9-b21-l0-0"
+  },
+  {
+    "id": "p9-b22-l4-0",
+    "physical_page": 9,
+    "text": "•此外，为了实现最大输出功率，请使用电小二官方USB-C to USB-C 5A 数据线（20V ",
+    "bbox": [
+      56.601600646972656,
+      276.0149841308594,
+      330.88836669921875,
+      285.4439697265625
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p9-b21-l0-0"
+  },
+  {
+    "id": "p9-b22-l5-0",
+    "physical_page": 9,
+    "text": "DC/5A，100W）。",
+    "bbox": [
+      62.26795959472656,
+      287.032958984375,
+      124.09028625488281,
+      295.1039733886719
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p9-b21-l0-0"
+  },
+  {
+    "id": "p9-b4-l0-0",
+    "physical_page": 9,
+    "text": "屏幕显示",
+    "bbox": [
+      43.104000091552734,
+      307.03662109375,
+      79.10400390625,
+      317.7646179199219
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p9-b4-l0-0"
+  },
+  {
+    "id": "p9-b5-l0-0",
+    "physical_page": 9,
+    "text": "USB输出开 / 关",
+    "bbox": [
+      40.083499908447266,
+      28.905784606933594,
+      106.30549621582031,
+      39.633785247802734
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p9-b5-l0-0"
+  },
+  {
+    "id": "p10-b28-l0-0",
+    "physical_page": 10,
+    "text": "9",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      335.19781494140625,
+      506.31488037109375,
+      339.600830078125,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p10-b1-l0-0",
+    "physical_page": 10,
+    "text": "在AC输出按键开启状态下，同时长按AC输出按键与总电源开关键，持续按压直至节能图标显",
+    "bbox": [
+      40.59379959106445,
+      109.15278625488281,
+      322.27899169921875,
+      117.22378540039062
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "energy-saving"
+  },
+  {
+    "id": "p10-b1-l1-0",
+    "physical_page": 10,
+    "text": "示（开启）与隐藏（关闭）状态切换。",
+    "bbox": [
+      40.59379959106445,
+      118.15480041503906,
+      157.21380615234375,
+      126.22579956054688
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "energy-saving"
+  },
+  {
+    "id": "p10-b26-l0-0",
+    "physical_page": 10,
+    "text": "3s",
+    "bbox": [
+      210.52200317382812,
+      232.462890625,
+      217.41000366210938,
+      240.86288452148438
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "energy-saving"
+  },
+  {
+    "id": "p10-b26-l1-0",
+    "physical_page": 10,
+    "text": "长按3秒",
+    "bbox": [
+      225.63279724121094,
+      238.66549682617188,
+      247.3347930908203,
+      245.58349609375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "energy-saving"
+  },
+  {
+    "id": "p10-b26-l2-0",
+    "physical_page": 10,
+    "text": "开启/关闭",
+    "bbox": [
+      221.56399536132812,
+      228.1601104736328,
+      251.7760009765625,
+      236.5041046142578
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "energy-saving"
+  },
+  {
+    "id": "p10-b27-l0-0",
+    "physical_page": 10,
+    "text": "总电源开关键",
+    "bbox": [
+      178.98880004882812,
+      193.94300842285156,
+      211.98880004882812,
+      200.28451538085938
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "energy-saving"
+  },
+  {
+    "id": "p10-b27-l1-0",
+    "physical_page": 10,
+    "text": "AC输出按键",
+    "bbox": [
+      263.58428955078125,
+      193.94300842285156,
+      294.0047912597656,
+      200.28451538085938
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "energy-saving"
+  },
+  {
+    "id": "p10-b10-l0-0",
+    "physical_page": 10,
+    "text": "3s",
+    "bbox": [
+      202.9232940673828,
+      372.62548828125,
+      209.81129455566406,
+      381.0254821777344
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b11-l0-0",
+    "physical_page": 10,
+    "text": "3s",
+    "bbox": [
+      203.00979614257812,
+      465.2994079589844,
+      209.89779663085938,
+      473.69940185546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b12-l0-0",
+    "physical_page": 10,
+    "text": "1s",
+    "bbox": [
+      203.09669494628906,
+      418.8291015625,
+      208.65469360351562,
+      427.2290954589844
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b13-l0-0",
+    "physical_page": 10,
+    "text": "总电源开关键",
+    "bbox": [
+      42.26459884643555,
+      392.0369873046875,
+      78.26460266113281,
+      398.9549865722656
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b14-l0-0",
+    "physical_page": 10,
+    "text": "总电源开关键",
+    "bbox": [
+      42.26459884643555,
+      483.1109924316406,
+      78.26460266113281,
+      490.02899169921875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b15-l0-0",
+    "physical_page": 10,
+    "text": " AC 输出按键",
+    "bbox": [
+      106.5845947265625,
+      392.0369873046875,
+      143.0946044921875,
+      398.9549865722656
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b16-l0-0",
+    "physical_page": 10,
+    "text": " AC 输出按键",
+    "bbox": [
+      106.5845947265625,
+      438.6929931640625,
+      143.0946044921875,
+      445.6109924316406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b17-l0-0",
+    "physical_page": 10,
+    "text": "USB输出按键",
+    "bbox": [
+      107.0645980834961,
+      483.3210144042969,
+      144.82260131835938,
+      490.239013671875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b18-l0-0",
+    "physical_page": 10,
+    "text": "USB输出按键",
+    "bbox": [
+      42.426597595214844,
+      438.6929931640625,
+      80.18460083007812,
+      445.6109924316406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b19-l0-0",
+    "physical_page": 10,
+    "text": "长按3秒",
+    "bbox": [
+      189.9906005859375,
+      385.9110107421875,
+      211.69259643554688,
+      392.8290100097656
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b20-l0-0",
+    "physical_page": 10,
+    "text": "长按3秒",
+    "bbox": [
+      190.07460021972656,
+      477.51300048828125,
+      211.77659606933594,
+      484.4309997558594
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b21-l0-0",
+    "physical_page": 10,
+    "text": "长按1秒",
+    "bbox": [
+      190.15859985351562,
+      432.74102783203125,
+      211.110595703125,
+      439.6590270996094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b22-l0-0",
+    "physical_page": 10,
+    "text": "切换节能模式",
+    "bbox": [
+      275.47259521484375,
+      378.531005859375,
+      311.47259521484375,
+      385.4490051269531
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b23-l0-0",
+    "physical_page": 10,
+    "text": "Wi-Fi&蓝牙重置",
+    "bbox": [
+      270.6905822753906,
+      471.27899169921875,
+      316.25457763671875,
+      478.1969909667969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b24-l0-0",
+    "physical_page": 10,
+    "text": "Wi-Fi＆蓝牙开关",
+    "bbox": [
+      270.048583984375,
+      425.2230224609375,
+      316.902587890625,
+      432.1410217285156
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b25-l0-0",
+    "physical_page": 10,
+    "text": "按键",
+    "bbox": [
+      82.41940307617188,
+      345.80169677734375,
+      96.41940307617188,
+      354.1457214355469
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b25-l1-0",
+    "physical_page": 10,
+    "text": "操作",
+    "bbox": [
+      193.72640991210938,
+      345.80169677734375,
+      207.72640991210938,
+      354.1457214355469
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b25-l2-0",
+    "physical_page": 10,
+    "text": "功能",
+    "bbox": [
+      286.4833984375,
+      345.80169677734375,
+      300.4833984375,
+      354.1457214355469
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "key-combination"
+  },
+  {
+    "id": "p10-b9-l0-0",
+    "physical_page": 10,
+    "text": "节能模式在设备重新上电后会恢复至上次的状态。如需更改模式，需手动切换。",
+    "bbox": [
+      91.20800018310547,
+      297.39959716796875,
+      318.7080078125,
+      304.89410400390625
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p10-b9-l1-0"
+  },
+  {
+    "id": "p10-b9-l1-0",
+    "physical_page": 10,
+    "text": "说明",
+    "bbox": [
+      47.18360137939453,
+      296.58941650390625,
+      65.18360137939453,
+      307.3174133300781
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p10-b9-l1-0"
+  },
+  {
+    "id": "p10-b0-l0-0",
+    "physical_page": 10,
+    "text": "组合按键",
+    "bbox": [
+      40.08789825439453,
+      319.6162109375,
+      76.08789825439453,
+      330.3442077636719
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p10-b0-l0-0"
+  },
+  {
+    "id": "p10-b2-l0-0",
+    "physical_page": 10,
+    "text": "节能模式",
+    "bbox": [
+      40.7666015625,
+      28.836387634277344,
+      76.7666015625,
+      39.564388275146484
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p10-b2-l0-0"
+  },
+  {
+    "id": "p10-b3-l0-0",
+    "physical_page": 10,
+    "text": "为防止因忘记关闭输出而造成电池电量的额外消耗，产品默认开启节能模式。当未连接设备，或已连",
+    "bbox": [
+      29.182600021362305,
+      47.38771057128906,
+      337.1826171875,
+      55.458709716796875
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p10-b4-l0-0",
+    "physical_page": 10,
+    "text": "接设备的功率低于设定值（AC 输出 25W；USB输出 2W）时，产品将在 12 小时后关闭输出。AC",
+    "bbox": [
+      29.182600021362305,
+      58.38471984863281,
+      335.4955749511719,
+      66.45571899414062
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "4"
+  },
+  {
+    "id": "p10-b5-l0-0",
+    "physical_page": 10,
+    "text": "或DC输出开启状态下，屏幕将显示节能图标“12H”。该图标的显示时长将根据app设定的节能时",
+    "bbox": [
+      29.182600021362305,
+      69.38172912597656,
+      332.77960205078125,
+      77.45272827148438
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "5"
+  },
+  {
+    "id": "p10-b6-l0-0",
+    "physical_page": 10,
+    "text": "间而变化。",
+    "bbox": [
+      29.182600021362305,
+      80.37873840332031,
+      64.18260192871094,
+      88.44973754882812
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "6"
+  },
+  {
+    "id": "p10-b7-l0-0",
+    "physical_page": 10,
+    "text": "※ 使用交流25W及直流2W以下低功耗设备时，请关闭节能模式以避免输出中途自动关闭。关闭节能",
+    "bbox": [
+      30.55459976196289,
+      264.9267272949219,
+      339.8916015625,
+      272.99774169921875
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "7"
+  },
+  {
+    "id": "p10-b8-l0-0",
+    "physical_page": 10,
+    "text": "模式后，屏幕将不再显示“12H”图标。此时，输出不会自动关闭。",
+    "bbox": [
+      30.55459976196289,
+      275.9237060546875,
+      239.8966064453125,
+      283.9947204589844
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "8"
+  },
+  {
+    "id": "p11-b0-l0-0",
+    "physical_page": 11,
+    "text": "10",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      22.555200576782227,
+      506.31488037109375,
+      30.206201553344727,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p11-b9-l0-0",
+    "physical_page": 11,
+    "text": "* 确保总电源开关键已打开。",
+    "bbox": [
+      166.87789916992188,
+      249.87449645996094,
+      255.98789978027344,
+      257.94549560546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "ups"
+  },
+  {
+    "id": "p11-b4-l0-0",
+    "physical_page": 11,
+    "text": "注意",
+    "bbox": [
+      36.2421989440918,
+      351.82659912109375,
+      50.2421989440918,
+      360.1706237792969
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p11-b4-l0-0"
+  },
+  {
+    "id": "p11-b5-l0-0",
+    "physical_page": 11,
+    "text": "•本产品不支持0ms切换，请勿接到要求0ms切换供电的设备上，例如数据服务器或工作",
+    "bbox": [
+      58.1171989440918,
+      333.67559814453125,
+      331.6492004394531,
+      343.1045837402344
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p11-b4-l0-0"
+  },
+  {
+    "id": "p11-b6-l0-0",
+    "physical_page": 11,
+    "text": "站，请充分测试确认兼容性后使用。",
+    "bbox": [
+      63.787200927734375,
+      345.68756103515625,
+      175.78720092773438,
+      353.7585754394531
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p11-b4-l0-0"
+  },
+  {
+    "id": "p11-b7-l0-0",
+    "physical_page": 11,
+    "text": "•使用UPS功能连接负载时，请勿超出设备最大输出功率，以防触发过载保护。",
+    "bbox": [
+      58.11720275878906,
+      355.6695861816406,
+      303.7821960449219,
+      365.09857177734375
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p11-b4-l0-0"
+  },
+  {
+    "id": "p11-b8-l0-0",
+    "physical_page": 11,
+    "text": "•因未按说明操作导致设备异常或数据丢失，本公司不承担相关责任。",
+    "bbox": [
+      58.11720275878906,
+      366.6665954589844,
+      273.7872009277344,
+      376.0955810546875
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p11-b4-l0-0"
+  },
+  {
+    "id": "p11-b3-l0-0",
+    "physical_page": 11,
+    "text": "不间断电源（UPS）",
+    "bbox": [
+      36.190399169921875,
+      31.436086654663086,
+      149.77040100097656,
+      45.96808624267578
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p11-b3-l0-0"
+  },
+  {
+    "id": "p11-b1-l0-0",
+    "physical_page": 11,
+    "text": "本产品通过AC电源线连接电网，电器可以使用本产品的交流输出端口工作（此时交流电来自电网，",
+    "bbox": [
+      29.401199340820312,
+      57.40492248535156,
+      334.1181945800781,
+      65.47592163085938
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p11-b2-l0-0",
+    "physical_page": 11,
+    "text": "而不是电池），当电网突然断电后，本产品可以在10 ms内自动换为本产品电池供电模式。",
+    "bbox": [
+      29.401199340820312,
+      69.40290832519531,
+      308.7152099609375,
+      77.47390747070312
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p12-b0-l0-0",
+    "physical_page": 12,
+    "text": "11",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      333.3716125488281,
+      506.31390380859375,
+      340.09161376953125,
+      514.3849487304688
+    ]
+  },
+  {
+    "id": "p12-b9-l0-0",
+    "physical_page": 12,
+    "text": "间隔至少200mm距离",
+    "bbox": [
+      108.26860046386719,
+      268.7695007324219,
+      165.1666259765625,
+      275.6875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "battery-stack"
+  },
+  {
+    "id": "p12-b9-l1-0",
+    "physical_page": 12,
+    "text": "间隔至少200mm距离",
+    "bbox": [
+      196.5946044921875,
+      268.7695007324219,
+      253.4926300048828,
+      275.6875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "battery-stack"
+  },
+  {
+    "id": "p12-b10-l0-0",
+    "physical_page": 12,
+    "text": "加电包连接线",
+    "bbox": [
+      138.88479614257812,
+      445.69189453125,
+      180.0447998046875,
+      453.7629089355469
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "battery-accessories"
+  },
+  {
+    "id": "p12-b10-l1-0",
+    "physical_page": 12,
+    "text": "加电包 3600",
+    "bbox": [
+      54.59779357910156,
+      445.69189453125,
+      93.69280242919922,
+      453.7629089355469
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "battery-accessories"
+  },
+  {
+    "id": "p12-b10-l2-0",
+    "physical_page": 12,
+    "text": "用户指南",
+    "bbox": [
+      214.55479431152344,
+      445.69189453125,
+      242.05079650878906,
+      453.7629089355469
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "battery-accessories"
+  },
+  {
+    "id": "p12-b11-l0-0",
+    "physical_page": 12,
+    "text": "单独售卖",
+    "bbox": [
+      293.6806945800781,
+      421.00927734375,
+      333.6806945800781,
+      433.1192932128906
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "battery-accessories"
+  },
+  {
+    "id": "p12-b5-l0-0",
+    "physical_page": 12,
+    "text": "注意",
+    "bbox": [
+      35.7578010559082,
+      341.66937255859375,
+      49.7578010559082,
+      350.0133972167969
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p12-b5-l0-0"
+  },
+  {
+    "id": "p12-b6-l0-0",
+    "physical_page": 12,
+    "text": "•在便携式储能电源 3600 Plus连接加电包之前，请确保所有设备的电源处于关闭状态。",
+    "bbox": [
+      57.6328010559082,
+      329.2234191894531,
+      330.60479736328125,
+      338.65240478515625
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p12-b5-l0-0"
+  },
+  {
+    "id": "p12-b7-l0-0",
+    "physical_page": 12,
+    "text": "•为保证设备的正常运行，请勿堵塞设备两侧的进气口和排气口。建议进气口和排气口外",
+    "bbox": [
+      57.63280487060547,
+      341.2214050292969,
+      329.30279541015625,
+      350.650390625
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p12-b5-l0-0"
+  },
+  {
+    "id": "p12-b8-l0-0",
+    "physical_page": 12,
+    "text": "部至少留出200mm的空间，以保证设备充分散热。",
+    "bbox": [
+      63.30280303955078,
+      354.234375,
+      222.36380004882812,
+      362.3053894042969
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p12-b5-l0-0"
+  },
+  {
+    "id": "p12-b3-l0-0",
+    "physical_page": 12,
+    "text": "连接",
+    "bbox": [
+      37.375999450683594,
+      32.49181365966797,
+      61.375999450683594,
+      47.02381134033203
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p12-b3-l0-0"
+  },
+  {
+    "id": "p12-b4-l0-0",
+    "physical_page": 12,
+    "text": "与加电包连接（单独售卖）",
+    "bbox": [
+      27.145000457763672,
+      62.56688690185547,
+      135.14500427246094,
+      73.46588897705078
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p12-b4-l0-0"
+  },
+  {
+    "id": "p12-b1-l0-0",
+    "physical_page": 12,
+    "text": "本产品最多搭载5个加电包，可满足大容量的需求。",
+    "bbox": [
+      27.6466064453125,
+      78.59288024902344,
+      185.860595703125,
+      86.66387939453125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p12-b2-l0-0",
+    "physical_page": 12,
+    "text": "关于加电包的使用说明，详见加电包 3600说明书。",
+    "bbox": [
+      27.6466064453125,
+      90.59086608886719,
+      186.9176025390625,
+      98.661865234375
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p13-b0-l0-0",
+    "physical_page": 13,
+    "text": "12",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      28.34469985961914,
+      506.31390380859375,
+      35.91170120239258,
+      514.3849487304688
+    ]
+  },
+  {
+    "id": "p13-b16-l0-0",
+    "physical_page": 13,
+    "text": "Jackery Explorer 2000 Plus",
+    "bbox": [
+      63.250999450683594,
+      356.9463195800781,
+      154.0996856689453,
+      365.85968017578125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "parallel"
+  },
+  {
+    "id": "p13-b17-l0-0",
+    "physical_page": 13,
+    "text": "便携式储能电源 3600 Plus",
+    "bbox": [
+      69.2333984375,
+      388.44427490234375,
+      154.535400390625,
+      396.5152893066406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "parallel"
+  },
+  {
+    "id": "p13-b18-l0-0",
+    "physical_page": 13,
+    "text": "电小二并机排插",
+    "bbox": [
+      180.28140258789062,
+      412.06927490234375,
+      229.28140258789062,
+      420.1402893066406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "parallel"
+  },
+  {
+    "id": "p13-b19-l0-0",
+    "physical_page": 13,
+    "text": "并机端口",
+    "bbox": [
+      194.95309448242188,
+      230.72628784179688,
+      220.95309448242188,
+      238.31829833984375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "parallel"
+  },
+  {
+    "id": "p13-b9-l0-0",
+    "physical_page": 13,
+    "text": "注意",
+    "bbox": [
+      35.53219985961914,
+      472.7884826660156,
+      49.53219985961914,
+      481.13250732421875
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b9-l0-0"
+  },
+  {
+    "id": "p13-b10-l0-0",
+    "physical_page": 13,
+    "text": "•并机成功后，请勿在并机AC输出工作时断开并机连接线，否则其他设备可能触发过载保护。",
+    "bbox": [
+      55.360801696777344,
+      461.5503845214844,
+      339.06964111328125,
+      470.9793701171875
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b9-l0-0"
+  },
+  {
+    "id": "p13-b10-l1-0",
+    "physical_page": 13,
+    "text": "•设备AC输出口工作（AC输出按钮指示灯亮），请勿触摸并机连接线端口。并机连接线端口",
+    "bbox": [
+      55.360801696777344,
+      471.55340576171875,
+      335.8523254394531,
+      480.9823913574219
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b9-l0-0"
+  },
+  {
+    "id": "p13-b10-l2-0",
+    "physical_page": 13,
+    "text": "电压为220V，有触电风险。",
+    "bbox": [
+      61.02716064453125,
+      482.5713806152344,
+      147.49745178222656,
+      490.64239501953125
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b9-l0-0"
+  },
+  {
+    "id": "p13-b11-l0-0",
+    "physical_page": 13,
+    "text": "说明",
+    "bbox": [
+      35.84859848022461,
+      72.82270812988281,
+      49.84859848022461,
+      81.16670989990234
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b11-l0-0"
+  },
+  {
+    "id": "p13-b12-l0-0",
+    "physical_page": 13,
+    "text": "•并机插排单独售卖，请到电小二官网进行购买。",
+    "bbox": [
+      57.72359848022461,
+      65.26971435546875,
+      210.3936004638672,
+      74.69871520996094
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b11-l0-0"
+  },
+  {
+    "id": "p13-b13-l0-0",
+    "physical_page": 13,
+    "text": "•设备并机运行期间，仅支持太阳能充电，不支持市电充电。",
+    "bbox": [
+      57.723602294921875,
+      77.2677001953125,
+      245.3936004638672,
+      86.69670104980469
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b11-l0-0"
+  },
+  {
+    "id": "p13-b14-l0-0",
+    "physical_page": 13,
+    "text": "提示",
+    "bbox": [
+      35.84859848022461,
+      108.81590270996094,
+      49.84859848022461,
+      117.15990447998047
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b14-l0-0"
+  },
+  {
+    "id": "p13-b14-l1-0",
+    "physical_page": 13,
+    "text": "在连接并机插排前，请确保设备的AC输出已关闭（AC输出按键的指示灯熄灭），以防激",
+    "bbox": [
+      57.72359848022461,
+      103.69889831542969,
+      331.1575927734375,
+      111.7698974609375
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b14-l0-0"
+  },
+  {
+    "id": "p13-b15-l0-0",
+    "physical_page": 13,
+    "text": "活AC输出时损坏设备。",
+    "bbox": [
+      57.72359848022461,
+      115.69688415527344,
+      131.44061279296875,
+      123.76788330078125
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p13-b14-l0-0"
+  },
+  {
+    "id": "p13-b8-l0-0",
+    "physical_page": 13,
+    "text": "并机连接",
+    "bbox": [
+      37.95800018310547,
+      32.49181365966797,
+      85.95800018310547,
+      47.02381134033203
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p13-b8-l0-0"
+  },
+  {
+    "id": "p13-b1-l0-0",
+    "physical_page": 13,
+    "text": "1. 确保所有设备的电源处于关闭状态。",
+    "bbox": [
+      28.792699813842773,
+      134.8308868408203,
+      148.28269958496094,
+      142.90188598632812
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p13-b2-l0-0",
+    "physical_page": 13,
+    "text": "2. 用并机连接器连接每个设备的并机端口。",
+    "bbox": [
+      28.792699813842773,
+      146.82887268066406,
+      163.12969970703125,
+      154.89987182617188
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p13-b3-l0-0",
+    "physical_page": 13,
+    "text": "3. 按下主电源按钮，将设备开机。",
+    "bbox": [
+      28.792699813842773,
+      158.8268585205078,
+      135.15769958496094,
+      166.89785766601562
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p13-b4-l0-0",
+    "physical_page": 13,
+    "text": "4. 1分钟内，依次按下每个设备的AC输出按键启动交流输出。",
+    "bbox": [
+      28.792699813842773,
+      170.82484436035156,
+      219.37469482421875,
+      178.89584350585938
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "4"
+  },
+  {
+    "id": "p13-b5-l0-0",
+    "physical_page": 13,
+    "text": "•连接成功时，LCD屏幕        图标点亮。",
+    "bbox": [
+      28.792699813842773,
+      181.80783081054688,
+      156.53573608398438,
+      191.23683166503906
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "5"
+  },
+  {
+    "id": "p13-b6-l0-0",
+    "physical_page": 13,
+    "text": "•连接失败时，LCD显示屏显示对应的故障代码         。再次按下每个设备上的AC输出按键可尝试解",
+    "bbox": [
+      28.792699813842773,
+      193.80581665039062,
+      337.191650390625,
+      203.2348175048828
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "6"
+  },
+  {
+    "id": "p13-b7-l0-0",
+    "physical_page": 13,
+    "text": "决此故障。",
+    "bbox": [
+      34.46269989013672,
+      206.8188018798828,
+      69.46269989013672,
+      214.88980102539062
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "7"
+  },
+  {
+    "id": "p14-b0-l0-0",
+    "physical_page": 14,
+    "text": "13",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      334.341796875,
+      506.31488037109375,
+      341.9367980957031,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p14-b8-l0-0",
+    "physical_page": 14,
+    "text": "电小二并机排插",
+    "bbox": [
+      114.6073989868164,
+      82.69480895996094,
+      163.60739135742188,
+      90.76580810546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "parallel-interrupted"
+  },
+  {
+    "id": "p14-b5-l0-0",
+    "physical_page": 14,
+    "text": "1. 断开所有负载。",
+    "bbox": [
+      46.39649963378906,
+      348.3255615234375,
+      102.8864974975586,
+      356.3965759277344
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "parallel-exit"
+  },
+  {
+    "id": "p14-b6-l0-0",
+    "physical_page": 14,
+    "text": "2. 关闭所有设备的AC输出。",
+    "bbox": [
+      46.39649963378906,
+      409.29559326171875,
+      135.45050048828125,
+      417.3666076660156
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "parallel-exit"
+  },
+  {
+    "id": "p14-b7-l0-0",
+    "physical_page": 14,
+    "text": "3. 移除设备上的并机连接线。",
+    "bbox": [
+      46.39649963378906,
+      479.4285888671875,
+      138.76150512695312,
+      487.4996032714844
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "parallel-exit"
+  },
+  {
+    "id": "p14-b9-l0-0",
+    "physical_page": 14,
+    "text": "大功率设备",
+    "bbox": [
+      288.05340576171875,
+      322.8437805175781,
+      323.05340576171875,
+      330.914794921875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "parallel-exit"
+  },
+  {
+    "id": "p14-b1-l0-0",
+    "physical_page": 14,
+    "text": "如果按下任一设备的交流输出按钮，或因故障中断AC输出，所有设备都将立即停止AC输出，系统自",
+    "bbox": [
+      27.795400619506836,
+      33.73429870605469,
+      336.2293701171875,
+      41.8052978515625
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p14-b2-l0-0",
+    "physical_page": 14,
+    "text": "动退出并机模式。其他设备LCD显示屏上的并机图标闪烁，代表并机连接失败。",
+    "bbox": [
+      27.795400619506836,
+      45.73228454589844,
+      274.3564147949219,
+      53.80328369140625
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p14-b3-l0-0",
+    "physical_page": 14,
+    "text": "再次按下每个设备上的AC输出按键，恢复并机输出。",
+    "bbox": [
+      27.795400619506836,
+      57.73027038574219,
+      192.5124053955078,
+      65.80126953125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p14-b4-l0-0",
+    "physical_page": 14,
+    "text": "退出并机模式",
+    "bbox": [
+      41.37009811401367,
+      262.95849609375,
+      95.37010192871094,
+      273.6864929199219
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p14-b4-l0-0"
+  },
+  {
+    "id": "p15-b0-l0-0",
+    "physical_page": 15,
+    "text": "14",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      29.56100082397461,
+      506.31488037109375,
+      37.21200180053711,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p15-b15-l0-0",
+    "physical_page": 15,
+    "text": "SolarSaga 200 × 2",
+    "bbox": [
+      261.7655944824219,
+      482.2334289550781,
+      308.6260070800781,
+      488.9573974609375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "charging-solar"
+  },
+  {
+    "id": "p15-b10-l0-0",
+    "physical_page": 15,
+    "text": "提示",
+    "bbox": [
+      37.575199127197266,
+      133.6097869873047,
+      51.575199127197266,
+      141.9537811279297
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p15-b10-l0-0"
+  },
+  {
+    "id": "p15-b11-l0-0",
+    "physical_page": 15,
+    "text": "•产品充放电环境温度为 -20℃~45℃，超出此温度范围会限制产品充放电，甚至无法充放电。",
+    "bbox": [
+      58.27149963378906,
+      126.2764892578125,
+      342.64691162109375,
+      135.7054901123047
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p15-b10-l0-0"
+  },
+  {
+    "id": "p15-b12-l0-0",
+    "physical_page": 15,
+    "text": "•产品的充电功率和电池能量会因温度的变化有所差异。",
+    "bbox": [
+      58.27149963378906,
+      138.2764892578125,
+      231.94149780273438,
+      147.7054901123047
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p15-b10-l0-0"
+  },
+  {
+    "id": "p15-b13-l0-0",
+    "physical_page": 15,
+    "text": "注意",
+    "bbox": [
+      38.39059829711914,
+      305.0218811035156,
+      52.39059829711914,
+      313.36590576171875
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p15-b13-l0-0"
+  },
+  {
+    "id": "p15-b13-l1-0",
+    "physical_page": 15,
+    "text": "请确保 AC 充电线插头牢固且完全插入产品的 AC 输入接口，避免因插入不完全引发电流",
+    "bbox": [
+      59.446598052978516,
+      299.764892578125,
+      333.6365966796875,
+      307.8359069824219
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p15-b13-l0-0"
+  },
+  {
+    "id": "p15-b14-l0-0",
+    "physical_page": 15,
+    "text": "不稳、发热或接触不良等问题，影响设备正常运行。",
+    "bbox": [
+      59.446598052978516,
+      310.7618713378906,
+      220.44659423828125,
+      318.8328857421875
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p15-b13-l0-0"
+  },
+  {
+    "id": "p15-b5-l0-0",
+    "physical_page": 15,
+    "text": "充电方式",
+    "bbox": [
+      38.91019821166992,
+      32.49181365966797,
+      86.91020202636719,
+      47.02381134033203
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p15-b5-l0-0"
+  },
+  {
+    "id": "p15-b1-l0-0",
+    "physical_page": 15,
+    "text": "绿色能源优先模式：本产品倡导优先使用绿色能源，本产品支持太阳能充电与市电充电同时使用。当",
+    "bbox": [
+      30.354999542236328,
+      62.25730895996094,
+      338.35498046875,
+      70.60131072998047
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p15-b2-l0-0",
+    "physical_page": 15,
+    "text": "同时开启市电充电与太阳能充电时，产品会优先太阳能充电且太阳能充电与市电充电同时以电池最大",
+    "bbox": [
+      30.354999542236328,
+      74.25529479980469,
+      338.35498046875,
+      82.3262939453125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p15-b3-l0-0",
+    "physical_page": 15,
+    "text": "允许功率充电。",
+    "bbox": [
+      30.354999542236328,
+      86.25328063964844,
+      79.35499572753906,
+      94.32427978515625
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p15-b7-l0-0",
+    "physical_page": 15,
+    "text": "首次使用前请先将本设备充满电！",
+    "bbox": [
+      51.289100646972656,
+      105.34960174560547,
+      186.28909301757812,
+      116.24860382080078
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p15-b7-l0-0"
+  },
+  {
+    "id": "p15-b9-l0-0",
+    "physical_page": 15,
+    "text": "太阳能充电",
+    "bbox": [
+      42.02880096435547,
+      327.2427062988281,
+      87.02880096435547,
+      337.970703125
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p15-b9-l0-0"
+  },
+  {
+    "id": "p15-b4-l0-0",
+    "physical_page": 15,
+    "text": "本产品有两个DC8020 直流输入端口，最大支持1000W输入，可搭配电小二SolarSaga 系列太阳能",
+    "bbox": [
+      30.739999771118164,
+      342.208251953125,
+      340.4549865722656,
+      350.2792663574219
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "4"
+  },
+  {
+    "id": "p15-b4-l1-0",
+    "physical_page": 15,
+    "text": "板使用。",
+    "bbox": [
+      30.739999771118164,
+      352.21124267578125,
+      58.73999786376953,
+      360.2822570800781
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "4"
+  },
+  {
+    "id": "p15-b8-l0-0",
+    "physical_page": 15,
+    "text": "市电充电",
+    "bbox": [
+      42.53860092163086,
+      158.97119140625,
+      78.53860473632812,
+      169.69918823242188
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p15-b8-l0-0"
+  },
+  {
+    "id": "p15-b6-l0-0",
+    "physical_page": 15,
+    "text": "请使用官方标配的AC电源线。",
+    "bbox": [
+      29.85740089416504,
+      174.54978942871094,
+      122.39041137695312,
+      182.62078857421875
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "6"
+  },
+  {
+    "id": "p16-b0-l0-0",
+    "physical_page": 16,
+    "text": "15",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      333.6947937011719,
+      506.31390380859375,
+      341.1847839355469,
+      514.3849487304688
+    ]
+  },
+  {
+    "id": "p16-b12-l0-0",
+    "physical_page": 16,
+    "text": "SolarSaga 200 × 4",
+    "bbox": [
+      252.6855010986328,
+      254.81983947753906,
+      299.85406494140625,
+      261.5437927246094
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "charging-solar-four"
+  },
+  {
+    "id": "p16-b13-l0-0",
+    "physical_page": 16,
+    "text": "太阳能串联转接盒（单独售卖）",
+    "bbox": [
+      161.09959411621094,
+      270.86907958984375,
+      259.099609375,
+      278.9400939941406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "charging-solar-four"
+  },
+  {
+    "id": "p16-b6-l0-0",
+    "physical_page": 16,
+    "text": "注意",
+    "bbox": [
+      35.98139953613281,
+      331.31976318359375,
+      49.98139953613281,
+      339.6637878417969
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p16-b6-l0-0"
+  },
+  {
+    "id": "p16-b6-l1-0",
+    "physical_page": 16,
+    "text": "单个DC8020输入端口请勿连接两个以上光伏板。",
+    "bbox": [
+      56.16239929199219,
+      331.56475830078125,
+      210.7364044189453,
+      339.6357727050781
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p16-b6-l0-0"
+  },
+  {
+    "id": "p16-b7-l0-0",
+    "physical_page": 16,
+    "text": "注意",
+    "bbox": [
+      36.14550018310547,
+      381.9544677734375,
+      50.14550018310547,
+      390.2984924316406
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p16-b7-l0-0"
+  },
+  {
+    "id": "p16-b8-l0-0",
+    "physical_page": 16,
+    "text": "同时连接到两个DC输入端口的电源，其电压必须保持一致，否则可能导致产品异常或损坏。",
+    "bbox": [
+      56.15850067138672,
+      358.91748046875,
+      340.3445129394531,
+      366.9884948730469
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p16-b7-l0-0"
+  },
+  {
+    "id": "p16-b8-l1-0",
+    "physical_page": 16,
+    "text": "例如：",
+    "bbox": [
+      56.15850067138672,
+      368.92047119140625,
+      77.15850067138672,
+      376.9914855957031
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p16-b7-l0-0"
+  },
+  {
+    "id": "p16-b9-l0-0",
+    "physical_page": 16,
+    "text": "•连接太阳能板至两个DC8020输入端口时，请使用相同型号的太阳能板，并确保连接的数",
+    "bbox": [
+      56.15850067138672,
+      379.90350341796875,
+      335.4024963378906,
+      389.3324890136719
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p16-b7-l0-0"
+  },
+  {
+    "id": "p16-b10-l0-0",
+    "physical_page": 16,
+    "text": "量一致。",
+    "bbox": [
+      61.82849884033203,
+      392.91650390625,
+      89.82849884033203,
+      400.9875183105469
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p16-b7-l0-0"
+  },
+  {
+    "id": "p16-b11-l0-0",
+    "physical_page": 16,
+    "text": "•给产品充电时，请勿同时使用车载充电与光伏充电，否则可能烧坏车内保险丝或无法充电。",
+    "bbox": [
+      56.15850067138672,
+      403.8995056152344,
+      341.8284912109375,
+      413.3284912109375
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p16-b7-l0-0"
+  },
+  {
+    "id": "p16-b1-l0-0",
+    "physical_page": 16,
+    "text": "建议使用电小二的太阳能板为本产品充电。请确保所用太阳能板的开路电压（Voc）在3600 Plus的直",
+    "bbox": [
+      30.178699493408203,
+      432.28759765625,
+      340.6813659667969,
+      440.3586120605469
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p16-b2-l0-0",
+    "physical_page": 16,
+    "text": "流输入电压范围内（16V -60V）。因使用第三方太阳能板或配件而导致的任何损坏或损失，电小二",
+    "bbox": [
+      30.175384521484375,
+      443.6275634765625,
+      338.09136962890625,
+      451.6985778808594
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p16-b3-l0-0",
+    "physical_page": 16,
+    "text": "概不负责。",
+    "bbox": [
+      30.175384521484375,
+      454.96759033203125,
+      65.17538452148438,
+      463.0386047363281
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p16-b4-l0-0",
+    "physical_page": 16,
+    "text": "如果单个DC8020直流输入端口需要同时连接两个太阳能板，请参考下图，需使用太阳能串联转接盒",
+    "bbox": [
+      28.719385147094727,
+      32.58061218261719,
+      337.29339599609375,
+      40.651611328125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "4"
+  },
+  {
+    "id": "p16-b5-l0-0",
+    "physical_page": 16,
+    "text": "（单独售卖）。",
+    "bbox": [
+      28.719385147094727,
+      43.92060852050781,
+      77.7193832397461,
+      51.991607666015625
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "5"
+  },
+  {
+    "id": "p17-b0-l0-0",
+    "physical_page": 17,
+    "text": "16",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      26.779800415039062,
+      506.31390380859375,
+      34.31880187988281,
+      514.3849487304688
+    ]
+  },
+  {
+    "id": "p17-b18-l0-0",
+    "physical_page": 17,
+    "text": "车辆",
+    "bbox": [
+      254.9647979736328,
+      99.01998901367188,
+      270.96478271484375,
+      108.2439956665039
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "charging-car"
+  },
+  {
+    "id": "p17-b19-l0-0",
+    "physical_page": 17,
+    "text": "*车载充电线需单独购买。",
+    "bbox": [
+      224.2899932861328,
+      193.8588104248047,
+      304.46099853515625,
+      201.9298095703125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "charging-car"
+  },
+  {
+    "id": "p17-b12-l0-0",
+    "physical_page": 17,
+    "text": "•请在汽车点火启动后使用车充充电，以免造成汽车电瓶亏电无法启动。",
+    "bbox": [
+      79.01069641113281,
+      242.3599853515625,
+      301.6806945800781,
+      251.7889862060547
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p17-b17-l0-0"
+  },
+  {
+    "id": "p17-b13-l0-0",
+    "physical_page": 17,
+    "text": "•汽车在行驶过程中，路况颠簸，禁止使用车充充电，防止车充接触不良，引起接",
+    "bbox": [
+      79.01069641113281,
+      253.35699462890625,
+      329.6806945800781,
+      262.7859802246094
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p17-b17-l0-0"
+  },
+  {
+    "id": "p17-b14-l0-0",
+    "physical_page": 17,
+    "text": "触点烧坏。若因不按规范操作而造成损失，本公司不予承担相应责任。",
+    "bbox": [
+      84.68069458007812,
+      265.36895751953125,
+      301.6806945800781,
+      273.4399719238281
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p17-b17-l0-0"
+  },
+  {
+    "id": "p17-b15-l0-0",
+    "physical_page": 17,
+    "text": "•车充充电只支持 12V 车型，不支持 24V 车型，请勿使用 24V 车型的车给本产品",
+    "bbox": [
+      79.01069641113281,
+      275.3509826660156,
+      333.2156677246094,
+      284.77996826171875
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p17-b17-l0-0"
+  },
+  {
+    "id": "p17-b16-l0-0",
+    "physical_page": 17,
+    "text": "充电以免造成人身伤害及财产损失。",
+    "bbox": [
+      84.68069458007812,
+      287.36297607421875,
+      196.68069458007812,
+      295.4339904785156
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p17-b17-l0-0"
+  },
+  {
+    "id": "p17-b17-l0-0",
+    "physical_page": 17,
+    "text": "注意",
+    "bbox": [
+      44.06840133666992,
+      263.0093078613281,
+      62.06840133666992,
+      273.7373046875
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p17-b17-l0-0"
+  },
+  {
+    "id": "p17-b1-l0-0",
+    "physical_page": 17,
+    "text": "存储",
+    "bbox": [
+      30.334999084472656,
+      328.3345031738281,
+      54.334999084472656,
+      342.8664855957031
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p17-b1-l0-0"
+  },
+  {
+    "id": "p17-b11-l0-0",
+    "physical_page": 17,
+    "text": "车充充电",
+    "bbox": [
+      37.7661018371582,
+      28.52880096435547,
+      73.76609802246094,
+      39.25680160522461
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p17-b11-l0-0"
+  },
+  {
+    "id": "p17-b2-l0-0",
+    "physical_page": 17,
+    "text": "本产品适用 12V 车型车充口对本产品进行充电，请确保汽车车充口和车充线的点烟器接触良好，确保",
+    "bbox": [
+      25.629899978637695,
+      42.45549011230469,
+      336.5209045410156,
+      50.5264892578125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p17-b3-l0-0",
+    "physical_page": 17,
+    "text": "点烟器完全插入到位。",
+    "bbox": [
+      25.629899978637695,
+      54.45347595214844,
+      95.62989807128906,
+      62.52447509765625
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p17-b4-l0-0",
+    "physical_page": 17,
+    "text": "请将产品存放在干燥、清洁、通风良好的环境中。存储温度和湿度要求如下：",
+    "bbox": [
+      25.664899826049805,
+      357.4694519042969,
+      263.6649169921875,
+      365.54046630859375
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "4"
+  },
+  {
+    "id": "p17-b5-l0-0",
+    "physical_page": 17,
+    "text": "•1 个月： -20℃ ～ 45℃（0 - 60%RH）",
+    "bbox": [
+      25.664899826049805,
+      367.4514465332031,
+      160.3238983154297,
+      376.88043212890625
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "5"
+  },
+  {
+    "id": "p17-b6-l0-0",
+    "physical_page": 17,
+    "text": "•3 个月： 0℃ ～ 45℃（0 - 60%RH）",
+    "bbox": [
+      25.664899826049805,
+      378.4484558105469,
+      152.28790283203125,
+      387.87744140625
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "6"
+  },
+  {
+    "id": "p17-b7-l0-0",
+    "physical_page": 17,
+    "text": "•12 个月： 0℃ ～ 25℃（0 - 60%RH）",
+    "bbox": [
+      25.664899826049805,
+      389.4454650878906,
+      155.61990356445312,
+      398.87445068359375
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "7"
+  },
+  {
+    "id": "p17-b8-l0-0",
+    "physical_page": 17,
+    "text": "若产品在电量耗尽的情况下长时间（3～6 个月）存放，可能会导致无法再次充电。为避免此情况并保",
+    "bbox": [
+      25.664899826049805,
+      401.45745849609375,
+      337.1859130859375,
+      409.5284729003906
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "8"
+  },
+  {
+    "id": "p17-b9-l0-0",
+    "physical_page": 17,
+    "text": "持电池健康，建议每隔三个月检查并为产品充电一次，并在 6～12 个月内至少进行一次完整的充放电",
+    "bbox": [
+      25.664899826049805,
+      412.4544372558594,
+      337.19287109375,
+      420.93145751953125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "9"
+  },
+  {
+    "id": "p17-b10-l0-0",
+    "physical_page": 17,
+    "text": "循环。",
+    "bbox": [
+      25.664899826049805,
+      423.4514465332031,
+      46.66490173339844,
+      431.928466796875
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "10"
+  },
+  {
+    "id": "p18-b0-l0-0",
+    "physical_page": 18,
+    "text": "17",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      333.51611328125,
+      506.31488037109375,
+      341.027099609375,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p18-b2-l0-0",
+    "physical_page": 18,
+    "text": "故障代码",
+    "bbox": [
+      38.591800689697266,
+      87.24699401855469,
+      66.591796875,
+      95.3179931640625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b2-l1-0",
+    "physical_page": 18,
+    "text": "处理方法",
+    "bbox": [
+      80.5498046875,
+      87.24699401855469,
+      108.5498046875,
+      95.3179931640625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b3-l0-0",
+    "physical_page": 18,
+    "text": "1. 待电网恢复正常后再通过交流墙插为产品充电。",
+    "bbox": [
+      80.66180419921875,
+      203.30699157714844,
+      235.1518096923828,
+      211.37799072265625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b3-l1-0",
+    "physical_page": 18,
+    "text": "2. 检查进风口和出风口是否堵塞；确保产品两侧有 20 厘米的间隙。",
+    "bbox": [
+      80.66180419921875,
+      213.3099822998047,
+      290.54278564453125,
+      221.3809814453125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b3-l2-0",
+    "physical_page": 18,
+    "text": "3. 将产品放置在避免阳光直射、环境温度低于45℃的地方。",
+    "bbox": [
+      80.66180419921875,
+      223.31297302246094,
+      265.6158142089844,
+      231.38397216796875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b3-l3-0",
+    "physical_page": 18,
+    "text": "4. 断开产品连接的所有负载，保持产品空闲待机，等待故障消失。检查负载的启动",
+    "bbox": [
+      80.66180419921875,
+      233.3159637451172,
+      335.9714050292969,
+      241.386962890625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b3-l4-0",
+    "physical_page": 18,
+    "text": "功率是否超出本产品的输出范围。",
+    "bbox": [
+      80.66180419921875,
+      243.31895446777344,
+      185.66180419921875,
+      251.38995361328125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b3-l5-0",
+    "physical_page": 18,
+    "text": "5. 重启产品。",
+    "bbox": [
+      80.66180419921875,
+      253.3219451904297,
+      123.92180633544922,
+      261.3929443359375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b4-l0-0",
+    "physical_page": 18,
+    "text": "1. 移除连接到产品的所有太阳能板。",
+    "bbox": [
+      80.66180419921875,
+      269.9049377441406,
+      193.1518096923828,
+      277.9759521484375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b4-l1-0",
+    "physical_page": 18,
+    "text": "2.检查连接到产品的太阳能板的开路电压（V   ）。产品允许的最大直流输入电压为 ",
+    "bbox": [
+      80.66180419921875,
+      279.907958984375,
+      338.6474914550781,
+      287.9789733886719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b4-l2-0",
+    "physical_page": 18,
+    "text": "60V。",
+    "bbox": [
+      80.66180419921875,
+      289.91094970703125,
+      101.57780456542969,
+      297.9819641113281
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b4-l3-0",
+    "physical_page": 18,
+    "text": "3. 重启产品，保持产品空闲待机，等待故障消失。",
+    "bbox": [
+      80.66180419921875,
+      299.9139404296875,
+      236.0268096923828,
+      307.9849548339844
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b5-l0-0",
+    "physical_page": 18,
+    "text": "请联系经销商或电小二客户支持。",
+    "bbox": [
+      80.66180419921875,
+      317.637939453125,
+      185.66180419921875,
+      325.7089538574219
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b6-l0-0",
+    "physical_page": 18,
+    "text": "移除连接到产品 USB 端口的负载，等待故障消失。",
+    "bbox": [
+      80.66180419921875,
+      331.97393798828125,
+      240.59078979492188,
+      340.0449523925781
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b6-l1-0",
+    "physical_page": 18,
+    "text": "F9",
+    "bbox": [
+      46.76169967651367,
+      324.21600341796875,
+      55.617698669433594,
+      347.0639953613281
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b7-l0-0",
+    "physical_page": 18,
+    "text": "重启产品。",
+    "bbox": [
+      80.6572036743164,
+      367.8592834472656,
+      115.6572036743164,
+      375.9302978515625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b7-l1-0",
+    "physical_page": 18,
+    "text": "FC",
+    "bbox": [
+      46.76169967651367,
+      360.2471923828125,
+      56.19369888305664,
+      383.0951843261719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b8-l0-0",
+    "physical_page": 18,
+    "text": "1. 关闭两台设备的交流输出。",
+    "bbox": [
+      80.6572036743164,
+      344.33587646484375,
+      172.147216796875,
+      352.4068908691406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b8-l1-0",
+    "physical_page": 18,
+    "text": "2. 在 1 分钟内依次再次按下每台设备的交流电源按钮。",
+    "bbox": [
+      80.6572036743164,
+      354.3388671875,
+      250.31622314453125,
+      362.4098815917969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b8-l2-0",
+    "physical_page": 18,
+    "text": "FA",
+    "bbox": [
+      46.76169967651367,
+      342.28338623046875,
+      55.69770050048828,
+      365.1313781738281
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b9-l0-0",
+    "physical_page": 18,
+    "text": "F8",
+    "bbox": [
+      46.76169967651367,
+      309.8594055175781,
+      55.617698669433594,
+      332.7073974609375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b10-l0-0",
+    "physical_page": 18,
+    "text": "F6",
+    "bbox": [
+      46.76169967651367,
+      220.57139587402344,
+      55.617698669433594,
+      243.41940307617188
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b11-l0-0",
+    "physical_page": 18,
+    "text": "通过太阳能板或交流墙充为产品充电，直至故障消失。",
+    "bbox": [
+      80.65769958496094,
+      187.00828552246094,
+      248.65769958496094,
+      195.07928466796875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b11-l1-0",
+    "physical_page": 18,
+    "text": "F5",
+    "bbox": [
+      46.762699127197266,
+      178.6505889892578,
+      55.61869812011719,
+      201.49859619140625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b12-l0-0",
+    "physical_page": 18,
+    "text": "将产品连接负载，放电直至故障消失。",
+    "bbox": [
+      80.65769958496094,
+      170.3813018798828,
+      199.65769958496094,
+      178.45230102539062
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b12-l1-0",
+    "physical_page": 18,
+    "text": "F4",
+    "bbox": [
+      46.762699127197266,
+      162.1925811767578,
+      55.61869812011719,
+      185.04058837890625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b13-l0-0",
+    "physical_page": 18,
+    "text": "F3",
+    "bbox": [
+      46.762699127197266,
+      145.73658752441406,
+      55.61869812011719,
+      168.5845947265625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b14-l0-0",
+    "physical_page": 18,
+    "text": "F2",
+    "bbox": [
+      46.762699127197266,
+      129.2805938720703,
+      55.61869812011719,
+      152.12860107421875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b15-l0-0",
+    "physical_page": 18,
+    "text": "重启产品。",
+    "bbox": [
+      80.65769958496094,
+      104.60249328613281,
+      115.65769958496094,
+      112.67349243164062
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b16-l0-0",
+    "physical_page": 18,
+    "text": "重启产品。",
+    "bbox": [
+      80.65769958496094,
+      120.66749572753906,
+      115.65769958496094,
+      128.73849487304688
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b17-l0-0",
+    "physical_page": 18,
+    "text": "重启产品。",
+    "bbox": [
+      80.65769958496094,
+      137.22950744628906,
+      115.65769958496094,
+      145.30050659179688
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b18-l0-0",
+    "physical_page": 18,
+    "text": "重启产品。",
+    "bbox": [
+      80.65769958496094,
+      153.9455108642578,
+      115.65769958496094,
+      162.01651000976562
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b19-l0-0",
+    "physical_page": 18,
+    "text": "F1",
+    "bbox": [
+      46.76219940185547,
+      112.81999969482422,
+      55.61819839477539,
+      135.66799926757812
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b20-l0-0",
+    "physical_page": 18,
+    "text": "F0",
+    "bbox": [
+      46.76219940185547,
+      96.36400604248047,
+      55.61819839477539,
+      119.21200561523438
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b21-l0-0",
+    "physical_page": 18,
+    "text": "F7",
+    "bbox": [
+      46.76219940185547,
+      279.364013671875,
+      55.61819839477539,
+      302.2120056152344
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b24-l0-0",
+    "physical_page": 18,
+    "text": "oc",
+    "bbox": [
+      217.5186004638672,
+      282.89117431640625,
+      224.4364013671875,
+      289.5882568359375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "troubleshooting"
+  },
+  {
+    "id": "p18-b1-l0-0",
+    "physical_page": 18,
+    "text": "故障处理",
+    "bbox": [
+      37.85060119628906,
+      31.965383529663086,
+      85.85060119628906,
+      46.49738311767578
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p18-b1-l0-0"
+  },
+  {
+    "id": "p18-b22-l0-0",
+    "physical_page": 18,
+    "text": "如果出现以下任一故障代码，请按照所列的处理方法进行处理。如故障仍然存在，请联系电小二客",
+    "bbox": [
+      32.625999450683594,
+      58.60008239746094,
+      333.6260070800781,
+      66.67108154296875
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "22"
+  },
+  {
+    "id": "p18-b23-l0-0",
+    "physical_page": 18,
+    "text": "户支持。",
+    "bbox": [
+      32.625999450683594,
+      69.59709167480469,
+      60.625999450683594,
+      77.6680908203125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "23"
+  },
+  {
+    "id": "p19-b0-l0-0",
+    "physical_page": 19,
+    "text": "18",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      29.456100463867188,
+      506.31390380859375,
+      37.0791015625,
+      514.3849487304688
+    ]
+  },
+  {
+    "id": "p19-b16-l0-0",
+    "physical_page": 19,
+    "text": "便携式储能电源",
+    "bbox": [
+      119.60379791259766,
+      76.14836120605469,
+      172.10379028320312,
+      84.90836334228516
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b17-l0-0",
+    "physical_page": 19,
+    "text": "JE-3600A",
+    "bbox": [
+      119.60379791259766,
+      90.1733627319336,
+      158.4088134765625,
+      98.82086181640625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b18-l0-0",
+    "physical_page": 19,
+    "text": "磷酸铁锂电芯",
+    "bbox": [
+      119.60379791259766,
+      104.17586517333984,
+      164.60379028320312,
+      112.8233642578125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b19-l0-0",
+    "physical_page": 19,
+    "text": "3584 Wh",
+    "bbox": [
+      119.60379791259766,
+      118.1783676147461,
+      152.67880249023438,
+      126.82586669921875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b20-l0-0",
+    "physical_page": 19,
+    "text": "2795 Wh",
+    "bbox": [
+      119.60379791259766,
+      132.18087768554688,
+      152.5587921142578,
+      140.828369140625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b21-l0-0",
+    "physical_page": 19,
+    "text": "约385×309×491 mm",
+    "bbox": [
+      119.60379791259766,
+      146.18338012695312,
+      199.05880737304688,
+      154.83087158203125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b22-l0-0",
+    "physical_page": 19,
+    "text": "约 35 kg",
+    "bbox": [
+      119.60379791259766,
+      160.18588256835938,
+      149.36380004882812,
+      168.8333740234375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b23-l0-0",
+    "physical_page": 19,
+    "text": "6000 次循环，≥70%SOH",
+    "bbox": [
+      119.60379791259766,
+      174.18838500976562,
+      212.7838134765625,
+      182.83587646484375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b29-l0-0",
+    "physical_page": 19,
+    "text": "名称",
+    "bbox": [
+      36.60350036621094,
+      75.67888641357422,
+      51.60350036621094,
+      84.32638549804688
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b30-l0-0",
+    "physical_page": 19,
+    "text": "型号",
+    "bbox": [
+      36.60350036621094,
+      89.68138885498047,
+      51.60350036621094,
+      98.32888793945312
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b31-l0-0",
+    "physical_page": 19,
+    "text": "电芯类型",
+    "bbox": [
+      36.60350036621094,
+      103.68389129638672,
+      66.60350036621094,
+      112.33139038085938
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b32-l0-0",
+    "physical_page": 19,
+    "text": "电池能量",
+    "bbox": [
+      36.60350036621094,
+      117.68639373779297,
+      66.60350036621094,
+      126.33389282226562
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b33-l0-0",
+    "physical_page": 19,
+    "text": "AC 额定输出能量",
+    "bbox": [
+      36.60350036621094,
+      131.68890380859375,
+      95.16349792480469,
+      140.33639526367188
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b34-l0-0",
+    "physical_page": 19,
+    "text": "尺寸",
+    "bbox": [
+      36.60350036621094,
+      145.69140625,
+      51.60350036621094,
+      154.33889770507812
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b35-l0-0",
+    "physical_page": 19,
+    "text": "重量",
+    "bbox": [
+      36.60350036621094,
+      159.69390869140625,
+      51.60350036621094,
+      168.34140014648438
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b36-l0-0",
+    "physical_page": 19,
+    "text": "循环寿命",
+    "bbox": [
+      36.60350036621094,
+      173.6964111328125,
+      66.60350036621094,
+      182.34390258789062
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-0"
+  },
+  {
+    "id": "p19-b14-l0-0",
+    "physical_page": 19,
+    "text": "220V-240V~ 50Hz, 最大10A",
+    "bbox": [
+      119.60379791259766,
+      213.7958984375,
+      223.13380432128906,
+      222.44338989257812
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-1"
+  },
+  {
+    "id": "p19-b15-l0-0",
+    "physical_page": 19,
+    "text": "36.4V-50.4V，最大100A",
+    "bbox": [
+      119.60379791259766,
+      250.72589111328125,
+      209.19131469726562,
+      259.3733825683594
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-1"
+  },
+  {
+    "id": "p19-b37-l0-0",
+    "physical_page": 19,
+    "text": "1 × AC",
+    "bbox": [
+      36.60449981689453,
+      213.793701171875,
+      63.43199920654297,
+      222.44119262695312
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-1"
+  },
+  {
+    "id": "p19-b38-l0-0",
+    "physical_page": 19,
+    "text": "2 × DC输入(8020端口)",
+    "bbox": [
+      36.60449981689453,
+      232.79119873046875,
+      112.99201202392578,
+      241.43869018554688
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-1"
+  },
+  {
+    "id": "p19-b39-l0-0",
+    "physical_page": 19,
+    "text": "加电包连接端口",
+    "bbox": [
+      36.60449981689453,
+      250.79119873046875,
+      89.10449981689453,
+      259.4386901855469
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-1"
+  },
+  {
+    "id": "p19-b50-l0-0",
+    "physical_page": 19,
+    "text": "光伏：16V-60V⎓12A，双路最大24A/最大1000W",
+    "bbox": [
+      119.61399841308594,
+      223.5347900390625,
+      291.071533203125,
+      240.6947784423828
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-1"
+  },
+  {
+    "id": "p19-b50-l1-0",
+    "physical_page": 19,
+    "text": "车充：12V-16V⎓最大8A，双路最大8A",
+    "bbox": [
+      119.61399841308594,
+      233.53228759765625,
+      254.04400634765625,
+      250.69227600097656
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-1"
+  },
+  {
+    "id": "p19-b6-l0-0",
+    "physical_page": 19,
+    "text": "220V~ 50Hz，16.36A，额定3600W",
+    "bbox": [
+      119.61129760742188,
+      288.9983825683594,
+      246.9838409423828,
+      297.6458740234375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b7-l0-0",
+    "physical_page": 19,
+    "text": "额定3600W，瞬时最大7200W",
+    "bbox": [
+      119.61129760742188,
+      303.73590087890625,
+      224.8363037109375,
+      312.3833923339844
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b8-l0-0",
+    "physical_page": 19,
+    "text": "220V-240V~ 50Hz，最大10A",
+    "bbox": [
+      119.61129760742188,
+      318.4734191894531,
+      226.33631896972656,
+      327.12091064453125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b9-l0-0",
+    "physical_page": 19,
+    "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W",
+    "bbox": [
+      119.61129760742188,
+      330.56341552734375,
+      322.4788513183594,
+      347.7234191894531
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b10-l0-0",
+    "physical_page": 19,
+    "text": "5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W",
+    "bbox": [
+      119.60379028320312,
+      345.31591796875,
+      282.0613098144531,
+      362.4759216308594
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b11-l0-0",
+    "physical_page": 19,
+    "text": "220V~ 50Hz，额定3500W",
+    "bbox": [
+      119.60379791259766,
+      365.16839599609375,
+      214.23880004882812,
+      373.8158874511719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b12-l0-0",
+    "physical_page": 19,
+    "text": "220V~ 50Hz，32A，最大7000W，瞬时最大14000W",
+    "bbox": [
+      119.60379791259766,
+      380.4533996582031,
+      304.2838134765625,
+      389.10089111328125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b13-l0-0",
+    "physical_page": 19,
+    "text": "36.4V-50.4V，最大60A",
+    "bbox": [
+      119.60379791259766,
+      394.91339111328125,
+      205.38131713867188,
+      403.5608825683594
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b40-l0-0",
+    "physical_page": 19,
+    "text": "4 × AC输出",
+    "bbox": [
+      36.60449981689453,
+      288.9886779785156,
+      79.42949676513672,
+      297.63616943359375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b41-l0-0",
+    "physical_page": 19,
+    "text": "AC总输出",
+    "bbox": [
+      36.60449981689453,
+      303.7261962890625,
+      70.58699798583984,
+      312.3736877441406
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b42-l0-0",
+    "physical_page": 19,
+    "text": "AC旁路输出①",
+    "bbox": [
+      36.60449981689453,
+      318.4637145996094,
+      82.46089935302734,
+      327.1112060546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b43-l0-0",
+    "physical_page": 19,
+    "text": "2 × USB-C 100W",
+    "bbox": [
+      36.604000091552734,
+      335.09539794921875,
+      103.97650146484375,
+      343.7428894042969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b44-l0-0",
+    "physical_page": 19,
+    "text": "2 × USB-A 18W",
+    "bbox": [
+      36.604000091552734,
+      350.09539794921875,
+      98.72650146484375,
+      358.7428894042969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b45-l0-0",
+    "physical_page": 19,
+    "text": "并机端口",
+    "bbox": [
+      36.604000091552734,
+      365.09539794921875,
+      66.60400390625,
+      373.7428894042969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b46-l0-0",
+    "physical_page": 19,
+    "text": "AC并机输出②",
+    "bbox": [
+      36.604000091552734,
+      380.2904052734375,
+      82.46089935302734,
+      388.9378967285156
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b47-l0-0",
+    "physical_page": 19,
+    "text": "加电包连接端口",
+    "bbox": [
+      36.604000091552734,
+      394.74481201171875,
+      89.10400390625,
+      403.3923034667969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-2"
+  },
+  {
+    "id": "p19-b4-l0-0",
+    "physical_page": 19,
+    "text": "-20°C ~ 45°C",
+    "bbox": [
+      119.61129760742188,
+      429.5184020996094,
+      169.60629272460938,
+      450.9383850097656
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-3"
+  },
+  {
+    "id": "p19-b5-l0-0",
+    "physical_page": 19,
+    "text": "-20°C ~ 45°C",
+    "bbox": [
+      119.61129760742188,
+      443.5209045410156,
+      169.60629272460938,
+      464.9408874511719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-3"
+  },
+  {
+    "id": "p19-b48-l0-0",
+    "physical_page": 19,
+    "text": "充电温度",
+    "bbox": [
+      36.604000091552734,
+      436.2123107910156,
+      66.60400390625,
+      444.85980224609375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-3"
+  },
+  {
+    "id": "p19-b49-l0-0",
+    "physical_page": 19,
+    "text": "放电温度",
+    "bbox": [
+      36.604000091552734,
+      450.2148132324219,
+      66.60400390625,
+      458.8623046875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-table-cell",
+    "block": "spec-3"
+  },
+  {
+    "id": "p19-b24-l0-0",
+    "physical_page": 19,
+    "text": "技术参数",
+    "bbox": [
+      36.32709884643555,
+      31.436086654663086,
+      84.32710266113281,
+      45.96808624267578
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p19-b24-l0-0"
+  },
+  {
+    "id": "p19-b1-l0-0",
+    "physical_page": 19,
+    "text": "※USB Type-C® 和 USB-C® 是 USB Implementers Forum 的注册商标。",
+    "bbox": [
+      29.076200485229492,
+      462.2091064453125,
+      256.3875427246094,
+      481.0587158203125
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p19-b2-l0-0",
+    "physical_page": 19,
+    "text": "①：产品支持边充边放。",
+    "bbox": [
+      29.076200485229492,
+      479.2568664550781,
+      101.67618560791016,
+      486.8666687011719
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p19-b3-l0-0",
+    "physical_page": 19,
+    "text": "②：产品支持两台设备并机。",
+    "bbox": [
+      29.076200485229492,
+      490.25909423828125,
+      114.87618255615234,
+      497.868896484375
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p19-b25-l0-0",
+    "physical_page": 19,
+    "text": "基本规格",
+    "bbox": [
+      40.9453010559082,
+      57.93309783935547,
+      75.34809875488281,
+      68.83209991455078
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p19-b25-l0-0"
+  },
+  {
+    "id": "p19-b26-l0-0",
+    "physical_page": 19,
+    "text": "输入",
+    "bbox": [
+      40.9453010559082,
+      196.18209838867188,
+      58.412166595458984,
+      207.08108520507812
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p19-b26-l0-0"
+  },
+  {
+    "id": "p19-b27-l0-0",
+    "physical_page": 19,
+    "text": "输出",
+    "bbox": [
+      40.9453010559082,
+      271.818115234375,
+      58.412166595458984,
+      282.71710205078125
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p19-b27-l0-0"
+  },
+  {
+    "id": "p19-b28-l0-0",
+    "physical_page": 19,
+    "text": "工作环境温度",
+    "bbox": [
+      40.9453010559082,
+      417.7261047363281,
+      92.28402709960938,
+      428.6250915527344
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p19-b28-l0-0"
+  },
+  {
+    "id": "p20-b14-l0-0",
+    "physical_page": 20,
+    "text": "19",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      333.56298828125,
+      506.31488037109375,
+      341.24200439453125,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p20-b1-l0-0",
+    "physical_page": 20,
+    "text": "在App Store或者国内各大应用市场搜索",
+    "bbox": [
+      41.70069885253906,
+      77.27539825439453,
+      175.7286834716797,
+      85.69229888916016
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-download"
+  },
+  {
+    "id": "p20-b2-l0-0",
+    "physical_page": 20,
+    "text": "    “电小二”App安装并注册登录。",
+    "bbox": [
+      28.385498046875,
+      91.4520034790039,
+      148.54348754882812,
+      99.86890411376953
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-download"
+  },
+  {
+    "id": "p20-b3-l0-0",
+    "physical_page": 20,
+    "text": "      或扫描右边二维码下载电小二App。",
+    "bbox": [
+      28.385498046875,
+      105.6213150024414,
+      160.32571411132812,
+      114.03821563720703
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-download"
+  },
+  {
+    "id": "p20-b9-l0-0",
+    "physical_page": 20,
+    "text": "2.1",
+    "bbox": [
+      121.4375,
+      364.9832763671875,
+      128.2213134765625,
+      370.54638671875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-add"
+  },
+  {
+    "id": "p20-b9-l1-0",
+    "physical_page": 20,
+    "text": "2.2",
+    "bbox": [
+      234.56692504882812,
+      364.9832763671875,
+      241.93453979492188,
+      370.54638671875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-add"
+  },
+  {
+    "id": "p20-b16-l0-0",
+    "physical_page": 20,
+    "text": "AC输出按键",
+    "bbox": [
+      265.6025085449219,
+      461.6322937011719,
+      304.3194885253906,
+      469.70330810546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-controls"
+  },
+  {
+    "id": "p20-b17-l0-0",
+    "physical_page": 20,
+    "text": "总电源开关键",
+    "bbox": [
+      51.521514892578125,
+      435.102294921875,
+      93.52151489257812,
+      443.1733093261719
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-controls"
+  },
+  {
+    "id": "p20-b18-l0-0",
+    "physical_page": 20,
+    "text": "USB输出按键",
+    "bbox": [
+      51.521514892578125,
+      461.8282775878906,
+      95.57251739501953,
+      469.8992919921875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-controls"
+  },
+  {
+    "id": "p20-b15-l0-0",
+    "physical_page": 20,
+    "text": "APP操作说明书",
+    "bbox": [
+      35.53219985961914,
+      31.436086654663086,
+      124.16419982910156,
+      45.96808624267578
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p20-b15-l0-0"
+  },
+  {
+    "id": "p20-b0-l0-0",
+    "physical_page": 20,
+    "text": "1. 下载并登录App",
+    "bbox": [
+      28.388200759887695,
+      60.68558883666992,
+      112.28819274902344,
+      72.6055908203125
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p20-b0-l0-0"
+  },
+  {
+    "id": "p20-b4-l0-0",
+    "physical_page": 20,
+    "text": "2. 添加设备",
+    "bbox": [
+      28.388200759887695,
+      137.90721130371094,
+      81.54820251464844,
+      149.82720947265625
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p20-b4-l0-0"
+  },
+  {
+    "id": "p20-b5-l0-0",
+    "physical_page": 20,
+    "text": "2.1 在App内点击       添加设备。",
+    "bbox": [
+      37.26020050048828,
+      153.87060546875,
+      156.04421997070312,
+      163.2786102294922
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "5"
+  },
+  {
+    "id": "p20-b6-l0-0",
+    "physical_page": 20,
+    "text": "2.2 长按设备上的“总电源开关键”开机，设备上的Wi-Fi和蓝牙图标闪烁后表示设备已",
+    "bbox": [
+      36.33219909667969,
+      167.90261840820312,
+      346.1081848144531,
+      177.3106231689453
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "6"
+  },
+  {
+    "id": "p20-b7-l0-0",
+    "physical_page": 20,
+    "text": "进入配网模式，在App内点击“图标已快闪”按钮并允许应用连接附近的设备和打开蓝",
+    "bbox": [
+      36.332183837890625,
+      182.07861328125,
+      343.0921936035156,
+      191.4866180419922
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "7"
+  },
+  {
+    "id": "p20-b8-l0-0",
+    "physical_page": 20,
+    "text": "牙权限。",
+    "bbox": [
+      36.332183837890625,
+      196.25460815429688,
+      68.33218383789062,
+      205.66261291503906
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "8"
+  },
+  {
+    "id": "p20-b19-l0-0",
+    "physical_page": 20,
+    "text": "备注",
+    "bbox": [
+      43.02439880371094,
+      386.42242431640625,
+      61.02439880371094,
+      397.1504211425781
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p20-b19-l0-0"
+  },
+  {
+    "id": "p20-b19-l1-0",
+    "physical_page": 20,
+    "text": "打开设备，如果两小时内未连接到APP，设备会自动关闭Wi-Fi和蓝牙。",
+    "bbox": [
+      83.19380187988281,
+      387.39306640625,
+      321.86737060546875,
+      395.8099670410156
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "19"
+  },
+  {
+    "id": "p21-b0-l0-0",
+    "physical_page": 21,
+    "text": "20",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      26.972700119018555,
+      506.31488037109375,
+      35.470699310302734,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p21-b7-l0-0",
+    "physical_page": 21,
+    "text": "2.5",
+    "bbox": [
+      281.7466125488281,
+      354.6869812011719,
+      292.35858154296875,
+      362.75799560546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-connect"
+  },
+  {
+    "id": "p21-b7-l1-0",
+    "physical_page": 21,
+    "text": "2.3",
+    "bbox": [
+      67.95960998535156,
+      354.6869812011719,
+      78.6766128540039,
+      362.75799560546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-connect"
+  },
+  {
+    "id": "p21-b7-l2-0",
+    "physical_page": 21,
+    "text": "2.4",
+    "bbox": [
+      174.80059814453125,
+      354.6869812011719,
+      185.57359313964844,
+      362.75799560546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-connect"
+  },
+  {
+    "id": "p21-b12-l0-0",
+    "physical_page": 21,
+    "text": "3600 Plus",
+    "bbox": [
+      256.7284851074219,
+      192.66207885742188,
+      272.2545166015625,
+      202.6580810546875
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-connect"
+  },
+  {
+    "id": "p21-b13-l0-0",
+    "physical_page": 21,
+    "text": "800W",
+    "bbox": [
+      263.1162109375,
+      272.9356994628906,
+      274.834228515625,
+      285.7786865234375
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-connect"
+  },
+  {
+    "id": "p21-b14-l0-0",
+    "physical_page": 21,
+    "text": "1000W",
+    "bbox": [
+      262.1172180175781,
+      290.7557067871094,
+      276.4002380371094,
+      303.59869384765625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-connect"
+  },
+  {
+    "id": "p21-b15-l0-0",
+    "physical_page": 21,
+    "text": "1000 Lite",
+    "bbox": [
+      50.67679977416992,
+      298.6961975097656,
+      65.2966537475586,
+      308.69219970703125
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "app-connect"
+  },
+  {
+    "id": "p21-b23-l0-0",
+    "physical_page": 21,
+    "text": "App 通过蓝牙与储能设备连接，每次仅支持一台设备。连接后返回设备列表时，蓝牙",
+    "bbox": [
+      83.85060119628906,
+      390.7437744140625,
+      325.9691162109375,
+      398.23828125
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p21-b24-l1-0"
+  },
+  {
+    "id": "p21-b24-l0-0",
+    "physical_page": 21,
+    "text": "连接将自动断开。再次点击储能设备图标时，App 会自动重新连接。",
+    "bbox": [
+      83.85060119628906,
+      400.74078369140625,
+      280.4691162109375,
+      408.23529052734375
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p21-b24-l1-0"
+  },
+  {
+    "id": "p21-b24-l1-0",
+    "physical_page": 21,
+    "text": "注意",
+    "bbox": [
+      47.27830123901367,
+      395.39788818359375,
+      65.27830505371094,
+      406.1258850097656
+    ],
+    "origin": "native-text",
+    "web_role": "shared-callout",
+    "block": "p21-b24-l1-0"
+  },
+  {
+    "id": "p21-b1-l0-0",
+    "physical_page": 21,
+    "text": "图片仅供参考",
+    "bbox": [
+      28.37969970703125,
+      368.58990478515625,
+      70.37969970703125,
+      376.6609191894531
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p21-b2-l0-0",
+    "physical_page": 21,
+    "text": "3. 解绑设备",
+    "bbox": [
+      28.379899978637695,
+      446.7773742675781,
+      81.65989685058594,
+      458.6973876953125
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p21-b2-l0-0"
+  },
+  {
+    "id": "p21-b3-l0-0",
+    "physical_page": 21,
+    "text": "     点击设备主界面右上角的设置按钮进入设置页面，点击页面最下方的解除绑定按钮解",
+    "bbox": [
+      28.379899978637695,
+      462.5673828125,
+      335.45989990234375,
+      471.7913818359375
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p21-b4-l0-0",
+    "physical_page": 21,
+    "text": "     绑设备。",
+    "bbox": [
+      28.379899978637695,
+      476.5673828125,
+      71.45989990234375,
+      485.7913818359375
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "4"
+  },
+  {
+    "id": "p21-b16-l0-0",
+    "physical_page": 21,
+    "text": "2.3 点击搜索到的设备图标后App通过蓝牙自动连接设备。",
+    "bbox": [
+      28.22410011291504,
+      28.06100845336914,
+      236.5920867919922,
+      37.46900939941406
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "16"
+  },
+  {
+    "id": "p21-b17-l0-0",
+    "physical_page": 21,
+    "text": "如果在绑定过程中提示“设备已被绑定”，可通过以下两种方式连接:",
+    "bbox": [
+      85.89649963378906,
+      49.639408111572266,
+      282.8529968261719,
+      57.133907318115234
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "17"
+  },
+  {
+    "id": "p21-b18-l0-0",
+    "physical_page": 21,
+    "text": "•设备拥有者通过App将此设备分享给其他用户；",
+    "bbox": [
+      85.89649963378906,
+      59.176910400390625,
+      238.37049865722656,
+      68.60591125488281
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "18"
+  },
+  {
+    "id": "p21-b21-l0-0",
+    "physical_page": 21,
+    "text": "备注",
+    "bbox": [
+      47.27830123901367,
+      65.2221908569336,
+      65.27830505371094,
+      75.95018768310547
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p21-b21-l0-0"
+  },
+  {
+    "id": "p21-b19-l0-0",
+    "physical_page": 21,
+    "text": "•同时长按“总电源开关按键”和“USB输出按键”重置设备Wi-Fi后可重新绑",
+    "bbox": [
+      85.89649963378906,
+      70.17391967773438,
+      330.2804870605469,
+      79.60292053222656
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "19"
+  },
+  {
+    "id": "p21-b20-l0-0",
+    "physical_page": 21,
+    "text": "定设备。",
+    "bbox": [
+      91.56649780273438,
+      82.18592834472656,
+      119.56649780273438,
+      90.25692749023438
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "20"
+  },
+  {
+    "id": "p21-b5-l0-0",
+    "physical_page": 21,
+    "text": "2.4 设备连接成功后输入设备将要连接的Wi-Fi名称和密码，设备自动连接到Wi-Fi网络。",
+    "bbox": [
+      28.379899978637695,
+      110.52737426757812,
+      347.20391845703125,
+      119.93537902832031
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "5"
+  },
+  {
+    "id": "p21-b22-l1-0",
+    "physical_page": 21,
+    "text": "备注",
+    "bbox": [
+      47.10060119628906,
+      133.84420776367188,
+      65.10060119628906,
+      144.57220458984375
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p21-b22-l1-0"
+  },
+  {
+    "id": "p21-b22-l0-0",
+    "physical_page": 21,
+    "text": "请选择2.4GHz频段的Wi-Fi网络，设备不支持5GHz频段的Wi-Fi网络。",
+    "bbox": [
+      83.8510971069336,
+      135.19308471679688,
+      293.027587890625,
+      142.68759155273438
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "22"
+  },
+  {
+    "id": "p21-b6-l0-0",
+    "physical_page": 21,
+    "text": "2.5 设备添加成功后进入设备主页面，设备上的Wi-Fi图标会常亮。",
+    "bbox": [
+      28.379899978637695,
+      164.1513671875,
+      267.44390869140625,
+      173.5593719482422
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "6"
+  },
+  {
+    "id": "p22-b0-l0-0",
+    "physical_page": 22,
+    "text": "21",
+    "web_role": "paper-footer-or-on-product-micro-engraving",
+    "bbox": [
+      324.3257141113281,
+      506.31488037109375,
+      331.8927001953125,
+      514.3859252929688
+    ]
+  },
+  {
+    "id": "p22-b4-l0-0",
+    "physical_page": 22,
+    "text": "4. 其他说明",
+    "bbox": [
+      28.34670066833496,
+      27.989788055419922,
+      81.73670196533203,
+      39.9097900390625
+    ],
+    "origin": "native-text",
+    "web_role": "heading",
+    "block": "p22-b4-l0-0"
+  },
+  {
+    "id": "p22-b5-l0-0",
+    "physical_page": 22,
+    "text": "4.1 打开Wi-Fi&蓝牙：",
+    "bbox": [
+      39.44269943237305,
+      43.95309829711914,
+      124.16270446777344,
+      53.36109924316406
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "5"
+  },
+  {
+    "id": "p22-b1-l0-0",
+    "physical_page": 22,
+    "text": "开机后自动打开Wi-Fi&蓝牙，屏幕上的Wi-Fi&蓝牙图标点亮表示Wi-Fi&蓝牙已",
+    "bbox": [
+      50.7578010559082,
+      59.503910064697266,
+      337.0137634277344,
+      68.72791290283203
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "1"
+  },
+  {
+    "id": "p22-b2-l0-0",
+    "physical_page": 22,
+    "text": "被打开。",
+    "bbox": [
+      50.7578010559082,
+      73.67990112304688,
+      82.75779724121094,
+      82.9039077758789
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "2"
+  },
+  {
+    "id": "p22-b3-l0-0",
+    "physical_page": 22,
+    "text": "同时长按“AC输出按键”和“USB输出按键”1秒手动打开Wi-Fi和蓝牙。",
+    "bbox": [
+      50.7578010559082,
+      87.85589599609375,
+      315.7578125,
+      97.07990264892578
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "3"
+  },
+  {
+    "id": "p22-b8-l0-0",
+    "physical_page": 22,
+    "text": "4.2 关闭Wi-Fi&蓝牙：",
+    "bbox": [
+      39.354698181152344,
+      105.76107788085938,
+      125.10670471191406,
+      115.16908264160156
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "8"
+  },
+  {
+    "id": "p22-b6-l0-0",
+    "physical_page": 22,
+    "text": "两小时内未连接WiFi或蓝牙，设备上的Wi-Fi&蓝牙会自动关闭。",
+    "bbox": [
+      50.762699127197266,
+      121.16909790039062,
+      285.8267517089844,
+      130.39309692382812
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "6"
+  },
+  {
+    "id": "p22-b7-l0-0",
+    "physical_page": 22,
+    "text": "同时长按“ AC输出按键”和“USB输出按键”1秒手动关闭Wi-Fi和蓝牙。",
+    "bbox": [
+      50.762699127197266,
+      135.3450927734375,
+      323.8987731933594,
+      144.569091796875
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "7"
+  },
+  {
+    "id": "p22-b11-l0-0",
+    "physical_page": 22,
+    "text": "4.3 重置Wi-Fi&蓝牙：",
+    "bbox": [
+      39.906700134277344,
+      158.50509643554688,
+      125.72270965576172,
+      167.91310119628906
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "11"
+  },
+  {
+    "id": "p22-b9-l0-0",
+    "physical_page": 22,
+    "text": "同时长按“总电源开关按键”和“USB输出按键”将重置 Wi-Fi和蓝牙，同时清",
+    "bbox": [
+      50.762699127197266,
+      175.06509399414062,
+      333.7947082519531,
+      184.28909301757812
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "9"
+  },
+  {
+    "id": "p22-b10-l0-0",
+    "physical_page": 22,
+    "text": "除App中的自定义设置。",
+    "bbox": [
+      50.762699127197266,
+      189.2410888671875,
+      138.5386962890625,
+      198.465087890625
+    ],
+    "origin": "native-text",
+    "web_role": "body",
+    "block": "10"
+  },
+  {
+    "id": "p23-b0-l0-0",
+    "physical_page": 23,
+    "text": "广东电小二科技有限公司",
+    "bbox": [
+      126.49019622802734,
+      313.30328369140625,
+      254.8520050048828,
+      323.71856689453125
+    ],
+    "web_role": "css-certificate-reconstructed"
+  },
+  {
+    "id": "p23-b1-l0-0",
+    "physical_page": 23,
+    "text": "检验员：",
+    "bbox": [
+      126.39986419677734,
+      244.29867553710938,
+      163.8876495361328,
+      254.71395874023438
+    ],
+    "web_role": "css-certificate-reconstructed"
+  },
+  {
+    "id": "p23-b2-l0-0",
+    "physical_page": 23,
+    "text": "检验日期：",
+    "bbox": [
+      126.39986419677734,
+      285.63458251953125,
+      173.3725128173828,
+      296.04986572265625
+    ],
+    "web_role": "css-certificate-reconstructed"
+  },
+  {
+    "id": "p23-b3-l0-0",
+    "physical_page": 23,
+    "text": "QC",
+    "bbox": [
+      194.56790161132812,
+      232.36770629882812,
+      207.81590270996094,
+      241.59170532226562
+    ],
+    "web_role": "css-certificate-reconstructed"
+  },
+  {
+    "id": "p23-b4-l0-0",
+    "physical_page": 23,
+    "text": "PASS",
+    "bbox": [
+      189.055908203125,
+      245.22369384765625,
+      212.60792541503906,
+      254.44769287109375
+    ],
+    "web_role": "css-certificate-reconstructed"
+  },
+  {
+    "id": "p23-b5-l0-0",
+    "physical_page": 23,
+    "text": "01",
+    "bbox": [
+      196.5839080810547,
+      257.7356872558594,
+      205.51991271972656,
+      266.9596862792969
+    ],
+    "web_role": "css-certificate-reconstructed"
+  },
+  {
+    "id": "p23-b6-l0-0",
+    "physical_page": 23,
+    "text": "合格证",
+    "bbox": [
+      164.0850067138672,
+      199.89163208007812,
+      214.6709442138672,
+      218.73489379882812
+    ],
+    "web_role": "css-certificate-reconstructed"
+  },
+  {
+    "id": "p23-b7-l0-0",
+    "physical_page": 23,
+    "text": "关注官方品牌公众号",
+    "bbox": [
+      30.834999084472656,
+      483.6004333496094,
+      69.94900512695312,
+      488.61138916015625
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "manufacturer-qr"
+  },
+  {
+    "id": "p23-b7-l1-0",
+    "physical_page": 23,
+    "text": "获取更多资讯服务",
+    "bbox": [
+      30.834999084472656,
+      489.60223388671875,
+      69.80123138427734,
+      494.6131896972656
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "manufacturer-qr"
+  },
+  {
+    "id": "p23-b8-l0-0",
+    "physical_page": 23,
+    "text": "制造商/生产厂：深圳市华宝新能源股份有限公司",
+    "bbox": [
+      77.54389953613281,
+      468.44708251953125,
+      264.9575500488281,
+      478.5934753417969
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "manufacturer-qr"
+  },
+  {
+    "id": "p23-b9-l0-0",
+    "physical_page": 23,
+    "text": "地址：深圳市龙华区大浪街道同胜社区华繁路东侧嘉安达科技工业园",
+    "bbox": [
+      77.54389953613281,
+      484.44549560546875,
+      341.5438537597656,
+      494.5918884277344
+    ],
+    "origin": "native-text",
+    "web_role": "editable-figure-label",
+    "block": "manufacturer-qr"
+  }
+]

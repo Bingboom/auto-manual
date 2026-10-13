@@ -1,0 +1,162 @@
+{
+  "scope": "CN only, local candidate pending operator acceptance",
+  "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+  "pdf_pages_visually_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "changes": [
+    {
+      "page": "page-9",
+      "kind": "callout-list",
+      "items": 3
+    },
+    {
+      "page": "page-11",
+      "kind": "callout-list",
+      "items": 3
+    },
+    {
+      "page": "page-12",
+      "kind": "callout-list",
+      "items": 2
+    },
+    {
+      "page": "page-13",
+      "kind": "callout-list",
+      "items": 2
+    },
+    {
+      "page": "page-13",
+      "kind": "callout-list",
+      "items": 2
+    },
+    {
+      "page": "page-15",
+      "kind": "callout-list",
+      "items": 2
+    },
+    {
+      "page": "page-16",
+      "kind": "callout-list",
+      "items": 2
+    },
+    {
+      "page": "page-17",
+      "kind": "callout-list",
+      "items": 3
+    }
+  ],
+  "native_lists_restored": [
+    "safety12",
+    "UPS3",
+    "USB3",
+    "battery2",
+    "parallel2/4/2/2",
+    "temperature2",
+    "DC2",
+    "car3",
+    "storage3",
+    "app-binding2"
+  ],
+  "source_text_exceptions": [
+    {
+      "physical_page": 18,
+      "source_bbox": [
+        217.5186,
+        282.8912,
+        224.4364,
+        289.5883
+      ],
+      "old": "V   ... 为 oc 60V",
+      "new": "V<sub>oc</sub> ... 为60V",
+      "reason": "Restore geometric subscript reading order, not wording change."
+    }
+  ],
+  "asset_reuse_decisions": [
+    {
+      "slot": "app-qr",
+      "candidates": [
+        "existing target embedded image_19",
+        "Jackery shared QR"
+      ],
+      "decision": "reuse existing target PNG bytes",
+      "reason": "电小二 identity differs from Jackery. Existing400px QR has full source data; old SVG crop clips top and retains adjacent headings."
+    },
+    {
+      "slot": "app-plus",
+      "candidates": [
+        "docs/templates/word_template/common_assets/app/add_device_plus.svg"
+      ],
+      "decision": "byte-identical shared reuse",
+      "reason": "Same transparent native plus icon; restore missing source glyph."
+    },
+    {
+      "slot": "sold-separately-cart",
+      "candidates": [
+        "manual_sources/JHP-3600A/US/git-20261012-541ca8a5/assets/sold-separately-cart.svg"
+      ],
+      "decision": "byte-identical existing reuse",
+      "reason": "Source CN12 has identical white cart in gray capsule. Title remains ordinary parenthesized source text."
+    },
+    {
+      "slot": "app-phones",
+      "candidates": [
+        "existing app-add-p20.svg",
+        "existing embedded phone PNGs",
+        "US/JP phone panels"
+      ],
+      "decision": "retain target native full phone layers with native_art_svg",
+      "reason": "Existing crop contains adjacent note content. Single PNG omits overlay photo xref179. Retain source clipped images177/178/179 and frames; remove only adjacent material."
+    },
+    {
+      "slot": "manufacturer-qr",
+      "candidates": [
+        "existing target embedded1280px PNG"
+      ],
+      "decision": "byte-identical target PNG reuse",
+      "reason": "Existing SVG clips QR top; preserve full bitmap and flow original selectable manufacturer text."
+    },
+    {
+      "slot": "key-button-glyphs",
+      "candidates": [
+        "existing horizontal button-power/ac/dc_usb.svg",
+        "US verified vertical glyphs",
+        "common operation PNG panels"
+      ],
+      "decision": "byte-identical verified US vertical glyph reuse",
+      "reason": "CN PDF10 uses same upright POWER/AC/USB glyph shapes. Existing horizontal assets mismatch. Common panels contain wrong model; no extraction needed."
+    },
+    {
+      "slot": "key-duration-clock",
+      "candidates": [
+        "manual_sources/JE-3600A/JP/git-20261012-fd06cd04/assets/native-key-clock.svg"
+      ],
+      "decision": "byte-identical reviewed existing glyph reuse",
+      "reason": "CN PDF10 shows same gray clock-circle/white-hand glyph. JP native selection has verified transparent corners."
+    }
+  ],
+  "retained_source_typo": "使使用本产品时",
+  "operator_acceptance": "pending"
+}

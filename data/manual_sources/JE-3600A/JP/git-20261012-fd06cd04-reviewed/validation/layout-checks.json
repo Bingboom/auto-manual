@@ -1,0 +1,347 @@
+{
+  "scope": "local-only candidate; operator combined layout acceptance pending",
+  "source_pdf_sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6",
+  "source_pdf_pages": 30,
+  "strict_sphinx": "pass: python3 -m sphinx -b html -n -W --keep-going",
+  "manual_ir": "validated by source-local adapter",
+  "cold_rebuild_byte_parity": true,
+  "selected_text_lines": 878,
+  "missing_selected_text_lines": 0,
+  "native_subscript_order_exception": "JP PDF25 two registered-trademark superscripts",
+  "missing_local_resources": 0,
+  "css_url_closure": true,
+  "unchanged_prior_asset_count": 67,
+  "browser_checks": {
+    "desktop": {
+      "brokenImages": [],
+      "calloutItems": [
+        {
+          "items": 0,
+          "label": "ご注意"
+        },
+        {
+          "items": 0,
+          "label": "説明"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 2,
+          "label": "説明"
+        },
+        {
+          "items": 0,
+          "label": "ご使用前の確認"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 3,
+          "label": "ご注意"
+        },
+        {
+          "items": 0,
+          "label": "ご注意"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 0,
+          "label": "備考"
+        },
+        {
+          "items": 2,
+          "label": "備考"
+        },
+        {
+          "items": 0,
+          "label": "備考"
+        },
+        {
+          "items": 0,
+          "label": "備考"
+        }
+      ],
+      "cellOverflow": [],
+      "height": 889,
+      "labelCollisions": [],
+      "labelOverflow": [],
+      "labels": 145,
+      "pageOverflow": 0,
+      "rawBullets": [],
+      "scrollableFigures": [],
+      "tables": [
+        {
+          "rows": 4,
+          "section": "id2"
+        },
+        {
+          "rows": 5,
+          "section": "id3"
+        },
+        {
+          "rows": 5,
+          "section": "id3"
+        },
+        {
+          "rows": 2,
+          "section": "id3"
+        },
+        {
+          "rows": 1,
+          "section": "id3"
+        },
+        {
+          "rows": 4,
+          "section": "id3"
+        },
+        {
+          "rows": 4,
+          "section": "id3"
+        },
+        {
+          "rows": 6,
+          "section": "id3"
+        },
+        {
+          "rows": 5,
+          "section": "id3"
+        },
+        {
+          "rows": 8,
+          "section": "id8"
+        },
+        {
+          "rows": 16,
+          "section": "id8"
+        },
+        {
+          "rows": 3,
+          "section": "id9"
+        },
+        {
+          "rows": 6,
+          "section": "id9"
+        },
+        {
+          "rows": 4,
+          "section": "id9"
+        },
+        {
+          "rows": 10,
+          "section": "id12"
+        },
+        {
+          "rows": 6,
+          "section": "id13"
+        },
+        {
+          "rows": 5,
+          "section": "id13"
+        },
+        {
+          "rows": 8,
+          "section": "id13"
+        },
+        {
+          "rows": 3,
+          "section": "id13"
+        }
+      ],
+      "unexpectedClipping": [],
+      "width": 1280
+    },
+    "mobile": {
+      "brokenImages": [],
+      "calloutItems": [
+        {
+          "items": 0,
+          "label": "ご注意"
+        },
+        {
+          "items": 0,
+          "label": "説明"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 2,
+          "label": "説明"
+        },
+        {
+          "items": 0,
+          "label": "ご使用前の確認"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 3,
+          "label": "ご注意"
+        },
+        {
+          "items": 0,
+          "label": "ご注意"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 2,
+          "label": "ご注意"
+        },
+        {
+          "items": 0,
+          "label": "備考"
+        },
+        {
+          "items": 2,
+          "label": "備考"
+        },
+        {
+          "items": 0,
+          "label": "備考"
+        },
+        {
+          "items": 0,
+          "label": "備考"
+        }
+      ],
+      "cellOverflow": [],
+      "height": 844,
+      "labelCollisions": [],
+      "labelOverflow": [],
+      "labels": 145,
+      "pageOverflow": 0,
+      "rawBullets": [],
+      "scrollableFigures": [
+        "inbox",
+        "overview",
+        "lcd-map",
+        "power",
+        "ac-output",
+        "frequency",
+        "usb-output",
+        "energy-saving",
+        "ups",
+        "battery-stack",
+        "battery-accessories",
+        "parallel",
+        "parallel-interrupted",
+        "parallel-exit",
+        "charging-ac",
+        "charging-solar",
+        "charging-solar-four",
+        "charging-car",
+        "app-download",
+        "app-controls",
+        "app-download-reminder"
+      ],
+      "tables": [
+        {
+          "rows": 4,
+          "section": "id2"
+        },
+        {
+          "rows": 5,
+          "section": "id3"
+        },
+        {
+          "rows": 5,
+          "section": "id3"
+        },
+        {
+          "rows": 2,
+          "section": "id3"
+        },
+        {
+          "rows": 1,
+          "section": "id3"
+        },
+        {
+          "rows": 4,
+          "section": "id3"
+        },
+        {
+          "rows": 4,
+          "section": "id3"
+        },
+        {
+          "rows": 6,
+          "section": "id3"
+        },
+        {
+          "rows": 5,
+          "section": "id3"
+        },
+        {
+          "rows": 8,
+          "section": "id8"
+        },
+        {
+          "rows": 16,
+          "section": "id8"
+        },
+        {
+          "rows": 3,
+          "section": "id9"
+        },
+        {
+          "rows": 6,
+          "section": "id9"
+        },
+        {
+          "rows": 4,
+          "section": "id9"
+        },
+        {
+          "rows": 10,
+          "section": "id12"
+        },
+        {
+          "rows": 6,
+          "section": "id13"
+        },
+        {
+          "rows": 5,
+          "section": "id13"
+        },
+        {
+          "rows": 8,
+          "section": "id13"
+        },
+        {
+          "rows": 3,
+          "section": "id13"
+        }
+      ],
+      "unexpectedClipping": [],
+      "width": 390
+    }
+  },
+  "html_sha256": "281c7b9f83636212368e81d6daa950be91b5d103c286901b89245543c2bb148a",
+  "markdown_sha256": "67e614b6e7f5ff91c35851cdf8fbbecdab7633bda92d55fcb051c539bbf7d901",
+  "manual_ir_sha256": "f7a4e6896a9d5db69fd0ac0e458d0c324dc0fa88208d135c6a1449751dbc77f3"
+}

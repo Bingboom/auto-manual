@@ -1,0 +1,48 @@
+{
+  "scope": "local candidate only; operator combined layout acceptance pending",
+  "source_pdf_sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6",
+  "local_checks": {
+    "ja": {
+      "ir_validation": "pass",
+      "strict_sphinx": "pass (-b html -n -W --keep-going)",
+      "selected_text_ledger_lines": 878,
+      "missing_selected_text_lines": 0,
+      "missing_local_resources": 0,
+      "native_table_rows": [
+        4,
+        5,
+        5,
+        2,
+        1,
+        4,
+        4,
+        6,
+        5,
+        8,
+        16,
+        3,
+        6,
+        4,
+        10,
+        6,
+        5,
+        8,
+        3
+      ],
+      "html_sha256": "fd1d9d81d2146d2bd74c524e52e87e98ae927bd6f259892ac24dff1e53972380",
+      "markdown_sha256": "062989d21b1a3661d8c64a42c83bead2fc41d54d15bc964e43c82b78b996c79c",
+      "manual_ir_sha256": "396077485525d657d7c380fdadcd19452ce3e366a5ae97151d79f80073a83043"
+    }
+  },
+  "browser_checks": {
+    "widths": [
+      1280,
+      390
+    ],
+    "resource_loading": "pass",
+    "page_overflow": "none",
+    "live_label_internal_overflow": "none",
+    "acceptance": "pending operator"
+  },
+  "art_review": "Original panel arrangement, UPS outer edges, App phone frames and symbol/table correspondence reviewed against PDF. Standalone caption frames use CSS."
+}
