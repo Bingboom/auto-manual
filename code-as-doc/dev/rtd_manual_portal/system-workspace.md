@@ -12,7 +12,7 @@ change, long-term directions and cross-cutting maintenance history. The two
 panels remain directly accessible through the shared tabs without repeating a
 current-state overview or navigation-hint paragraphs. The evolution introduction
 shows only its title and narrative; update metadata and provenance are available
-under 「入口与数据来源」.
+under 「数据来源」.
 
 The 「系统架构」 tab (`#tab-architecture`) reads optional `architecture` from
 the same marked history summary as System Evolution. Each node has a status
@@ -119,25 +119,26 @@ frozen inputs only. The build never contacts Feishu or GitHub; browser version
 checks read only the already-published same-origin receipt.
 
 - `tools/rtd_portal_assets/system_workspace.yaml` is the curated status
-  contract: focus lanes, capability cards, production-flow links, gate labels
-  and entry links. It is maintained in auto-manual and reaches Hello-Docs
-  through the mirror.
-- `docs/publish/publish_manifest.json` is the source of the publication counts.
-  They use the REV-04 caliber, which is the vocabulary of the whole site: a
-  说明书 (unit 本) is one model × region and a 语言版本 (unit 个) is one
-  model × region × language. A repeated route, version or rebuild of one
-  identity counts once, and 份 is never a unit for language versions.
+  contract: focus lanes, capability cards, production-flow links and gate
+  labels. It is maintained in auto-manual and reaches Hello-Docs through the
+  mirror.
+- `docs/publish/publish_manifest.json` gives the publication counts, which
+  说明书工作台 owns; this page shows none and links there below its metric
+  row. The REV-04 caliber is the site's vocabulary: a 说明书 (unit 本) is one
+  model × region, a 语言版本 (unit 个) one model × region × language; a
+  repeated route, version or rebuild counts once, and 份 is never a unit.
   `publication_facts` in `tools/rtd/production_evidence.py` is the single
-  count: this page, 说明书工作台, 系统数据 and 产品矩阵 all take their figures
-  from it, and the 系统数据 filters recount the same identities in the browser.
-  This page's `publication_facts(path)` only reads the manifest and wraps it;
-  its `editions` key is the deduplicated `variants`.
+  count for 说明书工作台, 系统数据 and 产品矩阵 (whose filters recount the same
+  identities); this page wraps it for the `publications` and `regions` lane
+  metrics, with `editions` = `variants`.
 - The execution ledger named by `now_next.source` supplies REV statuses, the
   gate composition and each lane's progress. The page reads them and never
   restates a REV status.
 - The skeleton blueprints under `docs/manifests/skeletons/*/blueprint.yaml`
   say which product families already generate their manual structure from a
-  skeleton. The mirror carries them, so RTD reads the same files.
+  skeleton. The mirror carries them, so RTD reads the same files. A skeleton
+  is its `skeleton_id`: copies count once, and a blueprint without one makes
+  the figure 无数据. This page owns the figure.
 - The agent skills under `.agents/skills` and `.claude/skills`, the Claude Code
   hooks in `.claude/settings.json` and the steps of `.githooks/pre-push` feed
   the skills and hooks block; see [Skills and hooks](#skills-and-hooks).
@@ -182,12 +183,11 @@ Each lane in `focus.lanes` declares:
   lists, carries the lane's tag further down the page;
 - `items`: capability items shown with their status inside the lane;
 - `metrics`, computed at build time:
-  - `publications`: 网页说明书 (books) and their 语言版本 from the publish
-    manifest;
-  - `regions`: books per region (`books_by_region`), labelled by `focus.regions`;
   - `corpus`: sentence pairs, terms and approved share from the corpus snapshot;
-  - `skeletons`: blueprints per family, in `focus.skeleton_families` order, with
-    未建 for a declared family that has none;
+  - `skeletons`: distinct `skeleton_id`s per family, in
+    `focus.skeleton_families` order, with 未建 for a declared family that has none;
+  - `publications` (books, 语言版本) and `regions` (books per region): no
+    shipped lane lists them, since 说明书工作台 owns those counts;
 - progress: `gates` (ids from `now_next.gates`), `revs` (ledger rows, ranges
   allowed), or both. A lane with neither shows 尚未入执行台账, except a deferred
   design reference, which intentionally carries no execution progress.
@@ -213,8 +213,9 @@ success and served page. A webhook returning 200 is only trigger acceptance.
 `tools/rtd/workspace_revision.py` stamps the HTML and
 `_static/system-workspace-revision.json` with the same checkout SHA and UTC build
 time. On RTD the SHA belongs to the Hello-Docs checkout, not auto-manual/main.
-The system page's 「页面版本与更新」 disclosure sits inside 「入口与数据来源」;
-it no longer occupies the page header.
+The system page's 「页面版本与更新」 disclosure sits inside 「数据来源」;
+it no longer occupies the page header. The tab opens with a pointer to the
+daily entries (知识库首页, 说明书工作台「工作入口」).
 The page displays that identity. Its JS probes only the same-origin deployed
 receipt on entry, every minute while visible, and on returning to the tab.
 A different, later-built receipt offers **刷新到新版本**, preserving the URL anchor

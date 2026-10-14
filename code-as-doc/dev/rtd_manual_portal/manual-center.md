@@ -72,11 +72,12 @@ row (`.kpi-row`) and page tabs (`.page-tabs` /
 `.tab-panel`, wired by `site_script()`). Tabs are anchors over panels, so
 without JavaScript every panel shows; any in-page link or URL hash that
 points inside a panel opens that panel. 系统建设 tabs: 当前工作, 系统架构,
-能力与流程, 语言资产, 工具与工程规模, 系统演变, 入口与数据来源. The unfolded
+能力与流程, 语言资产, 工具与工程规模, 系统演变, 数据来源. The unfolded
 stage gates form the metric row inside 当前工作; other tabs do not repeat it.
+A pointer below the row leads to 说明书工作台, which owns the publication counts.
 说明书工作台 tabs: 交付物 (the deliverables matrix, open by
-default), 工作入口, 生产与资产, with web manuals, language editions, Word and
-print counts as the metric row. The 工作入口 tab draws the content-authority map (`manual_workbench.html`)
+default), 工作入口, 生产与资产, with web manuals (books per region beneath),
+language editions, Word and print counts as the metric row. The 工作入口 tab draws the content-authority map (`manual_workbench.html`)
 and states current maturity rather than a target architecture:
 CONTENT AUTHORITY 当前内容权威源 offers two alternatives, 01 结构化内容源
 (规格 · 文案 · 语料 · 资产) or 02 Git 原生说明书源 (RST · MyST · Components ·
