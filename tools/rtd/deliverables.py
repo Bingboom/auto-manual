@@ -14,7 +14,9 @@ model, one row per region and one column per format:
   ``source_registry.yaml``, which also fixes its freshness limit and fallback
   text; it is refreshed through a PR like the corpus snapshot. The links open
   only for signed-in Feishu users; the operator chose to list them on this
-  public page anyway (2026-09-25).
+  page anyway (2026-09-25, while the site was public). The site has been
+  private since 2026-10-13 (Read the Docs for Business), but the operator can
+  make it public at any time, so treat these addresses as published.
 
 Missing inputs never break the build: without a publish manifest the web
 column is empty, and an unreadable or unsound snapshot empties the Feishu
@@ -102,7 +104,8 @@ def feishu_url(value: object) -> str:
 
     The build table stores links as ``[url](url)`` text or as hyperlink
     objects. Anything that is not an https link on a Feishu or Lark host is
-    refused: these links are printed on a public page.
+    refused: these links are printed on a page whose site can be made public
+    at any time.
     """
     for match in _URL.finditer(_text(value)):
         url = match.group(0)
