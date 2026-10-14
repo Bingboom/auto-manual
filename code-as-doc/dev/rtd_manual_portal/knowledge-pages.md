@@ -33,10 +33,11 @@ workspace path is navigation, not a separate access-control boundary.
 The workspace exists in every combined portal build; knowledge pages link back
 to the manual center, but the manual-center homepage does not link into the
 workspace. The system page lives inside it. The sharing package is an
-optional entry. Without `ai-share/00_打开分享.html`, the workspace hides the
-share navigation link, card, search box and update line, and the system page
-hides its share link. Nothing else changes. With the package present, both
-pages are byte-identical to the earlier behaviour.
+optional entry. Without `ai-share/00_打开分享.html`, the 概览 page
+(`workspace/index.html`) hides its 分享资料 section (`#shares`, the share card)
+and the share line of its 最近更新 section (`#updates`). Nothing else changes.
+分享资料 and 最近更新 are sections of the 概览 page, not sidebar entries: the
+sidebar lists pages only, so each entry is marked current on its own page.
 
 Rollback: revert the portal extension's RTD activation and rebuild. Frozen
 content, QR aliases and nested manual URLs are unchanged.

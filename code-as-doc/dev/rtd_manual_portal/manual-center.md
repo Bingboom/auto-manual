@@ -54,10 +54,13 @@ shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 both shell macros: its sidebar contains only 说明书资料库 and 搜索说明书正文,
 and its top bar keeps the breadcrumb and region selector. It has no internal
 knowledge links or 知识库 / 工作资料 switch. Internal pages retain their
-知识库 group (产品知识, 产品矩阵, 市场与政策, 概览, 分享资料, 系统建设, 说明书工作台, 设计系统,
-系统数据, 最近更新) and the page switch. Optional entries follow the same rules as before: 分享资料 only
-with the sharing package, 系统建设, 设计系统, 系统数据 and 产品矩阵 only when their context builds (each computed once
-per build and shared with the sidebar). Page stylesheets style only what
+知识库 group (产品知识, 产品矩阵, 市场与政策, 概览, 系统建设, 说明书工作台, 设计系统,
+系统数据) and the page switch. Every sidebar entry is a page and carries
+`aria-current="page"` on that page; 分享资料 and 最近更新 are sections of the
+概览 page (`workspace/index.html#shares`, `#updates`), not sidebar entries.
+Optional entries follow the same rules as before: 系统建设, 设计系统, 系统数据 and
+产品矩阵 only when their context builds (each computed once per build and shared
+with the sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.
 The Furo search page and manual pages keep their theme.
 
