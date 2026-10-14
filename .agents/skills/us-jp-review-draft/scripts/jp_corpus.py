@@ -1,7 +1,7 @@
 """Search existing Japanese corpus: published JP Web manuals, JP RST templates and Translation_Memory dumps.
 
   # 1. sentence pool from every RTD JP manual (+ templates); short labels such as 「認証：」 are kept
-  python3 -I jp_corpus.py pool --out pool.json [--rtd-root https://ht-doc.readthedocs.io] [--templates docs/templates/page_jp]
+  python3 -I jp_corpus.py pool --out pool.json [--rtd-root https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest] [--templates docs/templates/page_jp]
   # 2. regex search in the pool
   python3 -I jp_corpus.py grep pool.json '並列|拡張ポート' 'バイパス'
   # 3. TM: dump the tables first with feishu_api.py bitable-dump, then
@@ -19,6 +19,7 @@ import json
 import re
 import sys
 import urllib.request
+from urllib.parse import urljoin
 from pathlib import Path
 
 JP = re.compile(r"[぀-ヿ一-鿿]")
@@ -41,7 +42,7 @@ def build_pool(rtd_root: str, templates: str | None, extra: list[str]) -> dict[s
     docs: dict[str, str] = {}
     root = fetch(rtd_root.rstrip("/") + "/")
     for href in sorted(set(re.findall(r'href="([^"]*/JP/ja/[^"]*\.html)"', root))):
-        url = href if href.startswith("http") else rtd_root.rstrip("/") + "/" + href.lstrip("/")
+        url = urljoin(rtd_root.rstrip("/") + "/", href)
         docs[href.split("/")[0] or url] = html_text(fetch(url))
     for path in extra:
         docs[Path(path).name] = html_text(Path(path).read_text(encoding="utf-8"))
@@ -87,7 +88,7 @@ def main() -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("pool")
     p.add_argument("--out", required=True)
-    p.add_argument("--rtd-root", default="https://ht-doc.readthedocs.io")
+    p.add_argument("--rtd-root", default="https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest")
     p.add_argument("--templates", default="docs/templates/page_jp")
     p.add_argument("--extra", nargs="*", default=[], help="local JP manual .html/.md files")
     g = sub.add_parser("grep")

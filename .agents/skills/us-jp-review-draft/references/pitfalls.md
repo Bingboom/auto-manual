@@ -16,3 +16,13 @@
 | US value leaks into JP text | convenience fill | US values only in orange notes; JP text uses JP spec values or magenta TBC |
 | New Japanese term proposed as final | no corpus term | US English label + optional candidate in an orange note |
 | Two US spec chapters counted twice | annex reprints the main spec table | list annex ids in `duplicates.json` |
+
+## RTD moved to the private Read the Docs domain (2026-10)
+
+Since main #1514 / #1520 the manuals live under `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/<MODEL>/<REGION>/<lang>/md/...`;
+the old `ht-doc.readthedocs.io` paths answer 404. Some cloud environments' network
+policy does not allow the new host (proxy answers 403 to CONNECT): ask the operator
+to add it under the environment's allowed domains, and meanwhile use the reviewed
+JP packages in the repo (`data/manual_sources/<MODEL>/JP/*-reviewed/web/ja/*.md`)
+via `jp_corpus.py pool --extra ...` or a previously fetched copy.
+

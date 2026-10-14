@@ -17,7 +17,7 @@ the repo. The only live write is the operator-requested Feishu wiki upload.
 
 ## Inputs (ask for what is missing)
 
-- US source: the RTD page (e.g. `https://ht-doc.readthedocs.io/<MODEL>/US/en/md/...html`)
+- US source: the RTD page (e.g. `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/<MODEL>/US/en/md/...html`)
   or its frozen package under `data/manual_sources/<MODEL>/US/`.
 - Existing draft, if continuing: a Feishu wiki link to the draft zip.
 - JP spec sheet (规格书, often screenshots): ratings, ports, box contents, options, notes.

@@ -1,6 +1,6 @@
 # JP web-manual styling
 
-Reference page: `https://ht-doc.readthedocs.io/JE-1000F/JP/ja/md/manual_je1000f_jp.html`.
+Reference page: `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/JE-1000F/JP/ja/md/manual_je1000f_jp.html`.
 Shared components (H1 dark bar, ● H2, spec tables, callout tables, warranty
 cards, LCD and troubleshooting tables) come from `_static/web_manual.css`, which
 the draft links as `assets/source-manual.css`. JP-only components (safety band,

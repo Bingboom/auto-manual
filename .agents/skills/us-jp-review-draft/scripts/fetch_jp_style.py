@@ -1,6 +1,6 @@
 """Fetch the JP web-manual component CSS from a published JP manual (default: JE-1000F JP).
 
-  python3 -I fetch_jp_style.py <out_dir> [--url https://ht-doc.readthedocs.io/JE-1000F/JP/ja/md/manual_je1000f_jp.html]
+  python3 -I fetch_jp_style.py <out_dir> [--url https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/JE-1000F/JP/ja/md/manual_je1000f_jp.html]
 
 Writes jp-manual-components.css (the page's inline <style> blocks: safety band,
 signal table, symbol/warning panels, inbox cards, usage heading …) and
@@ -16,7 +16,7 @@ import re
 import urllib.request
 from pathlib import Path
 
-RTD = "https://ht-doc.readthedocs.io"
+RTD = "https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest"
 
 
 def fetch(url: str) -> str:

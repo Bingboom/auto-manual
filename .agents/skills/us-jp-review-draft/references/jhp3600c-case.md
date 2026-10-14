@@ -1,6 +1,6 @@
 # Case: JHP-3600C (HomePower 3600 Pro Max) JP review draft, 2026-10
 
-Source: `https://ht-doc.readthedocs.io/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html`.
+Source: `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html`.
 Draft in Feishu wiki space 便携资料开发工作台 (`7649591386208717774`): original
 `JHP-3600C-JP-English-Draft.zip` (v0.14), v0.19 uploaded alongside.
 
