@@ -1,0 +1,3290 @@
+{
+  "title": "Jackery Battery Pack 3600 · JBP-3600A",
+  "model": "JBP-3600A",
+  "region": "US",
+  "language": "fr",
+  "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c",
+  "chapters": [
+    {
+      "id": "safety",
+      "title": "INFORMATIONS DE SÉCURITÉ IMPORTANTES",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-safety",
+          "children": [
+            {
+              "kind": "text",
+              "text": "INFORMATIONS DE SÉCURITÉ IMPORTANTES"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "strong",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "Les précautions de base doivent être respectées lors de l'utilisation de ce produit, y compris :"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "Veuillez lire toutes les instructions avant d'utiliser ce produit."
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "Une surveillance délicate est nécessaire lors de l'utilisation de ce produit à proximité d'enfants afin de réduire les risques."
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "L'utilisation d'accessoires recommandés ou vendus par des fabricants de produits non professionnels peut entraîner un risque d'électrocution."
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "Lorsque le produit n'est pas utilisé, veuillez débrancher l'alimentation de la prise du produit."
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "Ne pas démonter le produit, ce qui pourrait entraîner des risques imprévisibles tels qu'un incendie, une explosion ou un choc électrique."
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "N'utilisez pas le produit avec des cordons ou des prises endommagés, ou des câbles de sortie endommagés, ce qui pourrait provoquer un choc électrique."
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "Charger le produit dans un endroit bien ventilé et ne pas restreindre la ventilation de quelque manière que ce soit."
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "Placez le produit dans un endroit ventilé et sec afin d'éviter que la pluie et l'eau ne provoquent un choc électrique."
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "N'exposez pas le produit au feu ou à des températures élevées (sous la lumière directe du soleil ou dans un véhicule soumis à une forte chaleur), ce qui pourrait provoquer des accidents tels qu'un incendie ou une explosion."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "symbols",
+      "title": "SIGNIFICATION DES SYMBOLES",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-symbols",
+          "children": [
+            {
+              "kind": "text",
+              "text": "SIGNIFICATION DES SYMBOLES"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-SYMBOL-SIGNAL",
+            "variant": "localized-badges",
+            "source_ref": "native-pdf/symbols/1",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "Signal words"
+              },
+              {
+                "role": "headers",
+                "content_kind": "ordered_headers",
+                "content": [
+                  {
+                    "content_html": "Symbole",
+                    "content_text": "Symbole"
+                  },
+                  {
+                    "content_html": "Signification",
+                    "content_text": "Signification"
+                  }
+                ]
+              },
+              {
+                "role": "rows",
+                "content_kind": "ordered_rows",
+                "content": [
+                  {
+                    "label": "AVERTISSEMENT",
+                    "show_icon": true,
+                    "meaning_html": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.",
+                    "meaning_text": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels."
+                  },
+                  {
+                    "label": "ATTENTION",
+                    "show_icon": true,
+                    "meaning_html": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.",
+                    "meaning_text": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels."
+                  },
+                  {
+                    "label": "REMARQUE",
+                    "show_icon": true,
+                    "meaning_html": "Pratiques dangereuses pouvant entraîner des dommages à l&#x27;équipement, une perte de données, une détérioration des performances ou des résultats inattendus.",
+                    "meaning_text": "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus."
+                  },
+                  {
+                    "label": "CONSEILS",
+                    "show_icon": true,
+                    "meaning_html": "Complémente les informations importantes ou les conseils d&#x27;utilisation dans le texte.",
+                    "meaning_text": "Complémente les informations importantes ou les conseils d'utilisation dans le texte."
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.symbol-signal"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-SYMBOL-ICON",
+            "variant": "two-panel-responsive",
+            "source_ref": "native-pdf/symbols/2",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "Meaning of symbols"
+              },
+              {
+                "role": "headers",
+                "content_kind": "ordered_headers",
+                "content": [
+                  {
+                    "content_html": "Symbole",
+                    "content_text": "Symbole"
+                  },
+                  {
+                    "content_html": "Signification",
+                    "content_text": "Signification"
+                  },
+                  {
+                    "content_html": "Symbole",
+                    "content_text": "Symbole"
+                  },
+                  {
+                    "content_html": "Signification",
+                    "content_text": "Signification"
+                  }
+                ]
+              },
+              {
+                "role": "panels",
+                "content_kind": "ordered_panels",
+                "content": [
+                  [
+                    {
+                      "asset_index": 0,
+                      "icon_alt": "Mlise en garde! Le non-respect des messages d'avertissement peut entraîner des blessures.",
+                      "meaning_html": "Mlise en garde! Le non-respect des messages d&#x27;avertissement peut entraîner des blessures.",
+                      "meaning_text": "Mlise en garde! Le non-respect des messages d'avertissement peut entraîner des blessures."
+                    },
+                    {
+                      "asset_index": 1,
+                      "icon_alt": "Lire le manuel de l'opérateur",
+                      "meaning_html": "Lire le manuel de l&#x27;opérateur",
+                      "meaning_text": "Lire le manuel de l'opérateur"
+                    },
+                    {
+                      "asset_index": 2,
+                      "icon_alt": "Risque de choc électrique",
+                      "meaning_html": "Risque de choc électrique",
+                      "meaning_text": "Risque de choc électrique"
+                    },
+                    {
+                      "asset_index": 3,
+                      "icon_alt": "Chargement de la batterie",
+                      "meaning_html": "Chargement de la batterie",
+                      "meaning_text": "Chargement de la batterie"
+                    },
+                    {
+                      "asset_index": 4,
+                      "icon_alt": "Matière explosive",
+                      "meaning_html": "Matière explosive",
+                      "meaning_text": "Matière explosive"
+                    },
+                    {
+                      "asset_index": 5,
+                      "icon_alt": "Objet lourd",
+                      "meaning_html": "Objet lourd",
+                      "meaning_text": "Objet lourd"
+                    }
+                  ],
+                  [
+                    {
+                      "asset_index": 6,
+                      "icon_alt": "Ne démontez pas le produit.",
+                      "meaning_html": "Ne démontez pas le produit.",
+                      "meaning_text": "Ne démontez pas le produit."
+                    },
+                    {
+                      "asset_index": 7,
+                      "icon_alt": "Ne pas fumer ni utiliser de flamme nue",
+                      "meaning_html": "Ne pas fumer ni utiliser de flamme nue",
+                      "meaning_text": "Ne pas fumer ni utiliser de flamme nue"
+                    },
+                    {
+                      "asset_index": 8,
+                      "icon_alt": "Les enfants ne sont pas admis",
+                      "meaning_html": "Les enfants ne sont pas admis",
+                      "meaning_text": "Les enfants ne sont pas admis"
+                    },
+                    {
+                      "asset_index": 9,
+                      "icon_alt": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.",
+                      "meaning_html": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.",
+                      "meaning_text": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée."
+                    },
+                    {
+                      "asset_index": 10,
+                      "icon_alt": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+                      "meaning_html": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères.<br>Il doit être apporté à un point de collecte désigné pour un recyclage approprié.<br>Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+                      "meaning_text": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit."
+                    }
+                  ]
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_warning_triangle.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_read_manual.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_electric_shock.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_battery_charging.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_heavy_object.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_no_open_flame.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_keep_away_from_children.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_li_ion_htp017.svg",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "icons",
+                "asset_ref": "assets/symbol_weee.png",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.table.symbol-icon"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-fcc"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-FCC",
+                "variant": "two-column",
+                "source_ref": "native-pdf/symbols/3",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "FCC"
+                  },
+                  {
+                    "role": "opening_copy",
+                    "content_kind": "line_items",
+                    "content": []
+                  },
+                  {
+                    "role": "body_blocks",
+                    "content_kind": "ordered_blocks",
+                    "content": [
+                      {
+                        "kind": "paragraph",
+                        "label": "REMARQUE :",
+                        "text": "Cet équipement a été testé et déclaré conforme aux limites concernant les appareils numériques de classe B, conformément à la partie 15 du règlement de la FCC."
+                      },
+                      {
+                        "kind": "paragraph",
+                        "label": "",
+                        "text": "Ces limites sont conçues pour offrir une protection raisonnable contre les interférences dangereuses dans le cadre d'une installation résidentielle. Cet équipement génère, utilise et émet des ondes radios qui peuvent, si cet équipement n'est pas installé et utilisé conformément aux instructions, perturber les communications radios. Toutefois, il n'y a aucune garantie qu'aucune interférence ne se produise lors d'une installation particulière. Si cet équipement trouble la réception de la radio ou de la télévision, ce qui peut être déterminé en éteignant et en allumant cet équipement, l'utilisateur est encouragé à tenter de corriger ces interférences en essayant une ou plusieurs des mesures suivantes :"
+                      },
+                      {
+                        "kind": "list",
+                        "items": [
+                          "Réorientez ou déplacez l'antenne de réception.",
+                          "Éloignez l'équipement du récepteur.",
+                          "Connectez l'équipement à une prise d'un autre circuit que celui auquel le récepteur est connecté.",
+                          "Consultez le revendeur ou bien demandez de l'aide à un technicien de radio/télévision expérimenté."
+                        ]
+                      },
+                      {
+                        "kind": "paragraph",
+                        "label": "MODIFICATION:",
+                        "text": "Tout changement ou modification non expressément approuvé par le titulaire de cet appareil pourrait annuler l'autorisation de l'utilisateur à utiliser l'appareil."
+                      }
+                    ]
+                  },
+                  {
+                    "role": "column_break",
+                    "content_kind": "block_index",
+                    "content": 2
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "compliance_mark",
+                    "asset_ref": "assets/fcc_mark.svg",
+                    "locale_policy": "shared"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.fcc"
+                ],
+                "metadata": {},
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "REMARQUE : Cet équipement a été testé et déclaré conforme aux limites concernant les appareils numériques de classe B, conformément à la partie 15 du règlement de la FCC."
+                    }
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "Ces limites sont conçues pour offrir une protection raisonnable contre les interférences dangereuses dans le cadre d'une installation résidentielle. Cet équipement génère, utilise et émet des ondes radios qui peuvent, si cet équipement n'est pas installé et utilisé conformément aux instructions, perturber les communications radios. Toutefois, il n'y a aucune garantie qu'aucune interférence ne se produise lors d'une installation particulière. Si cet équipement trouble la réception de la radio ou de la télévision, ce qui peut être déterminé en éteignant et en allumant cet équipement, l'utilisateur est encouragé à tenter de corriger ces interférences en essayant une ou plusieurs des mesures suivantes :"
+                    }
+                  ]
+                },
+                {
+                  "kind": "list",
+                  "ordered": false,
+                  "children": [
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Réorientez ou déplacez l'antenne de réception."
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Éloignez l'équipement du récepteur."
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Connectez l'équipement à une prise d'un autre circuit que celui auquel le récepteur est connecté."
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "list_item",
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "Consultez le revendeur ou bien demandez de l'aide à un technicien de radio/télévision expérimenté."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kind": "paragraph",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "MODIFICATION: Tout changement ou modification non expressément approuvé par le titulaire de cet appareil pourrait annuler l'autorisation de l'utilisateur à utiliser l'appareil."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "in-the-box",
+      "title": "CONTENU DE LA BOÎTE",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-in-the-box",
+          "children": [
+            {
+              "kind": "text",
+              "text": "CONTENU DE LA BOÎTE"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-INBOX",
+            "variant": "responsive-card-grid",
+            "source_ref": "native-pdf/in-the-box/4",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "CONTENU DE LA BOÎTE"
+              },
+              {
+                "role": "cards",
+                "content_kind": "ordered_cards",
+                "content": [
+                  {
+                    "number": 1,
+                    "image_asset_role": "card_art",
+                    "alt": "Jackery Battery Pack 3600",
+                    "label": "Jackery Battery Pack 3600"
+                  },
+                  {
+                    "number": 2,
+                    "image_asset_role": "card_art",
+                    "alt": "Câble de rallonge",
+                    "label": "Câble de rallonge"
+                  },
+                  {
+                    "number": 3,
+                    "image_asset_role": "card_art",
+                    "alt": "Manuel d’utilisation",
+                    "label": "Manuel d’utilisation"
+                  }
+                ]
+              },
+              {
+                "role": "tip_label",
+                "content_kind": "inline_text",
+                "content": ""
+              },
+              {
+                "role": "tip_body",
+                "content_kind": "rich_text",
+                "content": ""
+              }
+            ],
+            "assets": [
+              {
+                "role": "card_art",
+                "asset_ref": "assets/fr-inbox-unit.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_art",
+                "asset_ref": "assets/fr-inbox-cable.png",
+                "locale_policy": "shared"
+              },
+              {
+                "role": "card_art",
+                "asset_ref": "assets/fr-inbox-manual.png",
+                "locale_policy": "shared"
+              }
+            ],
+            "token_roles": [
+              "component.special.inbox"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/fr-inbox-unit.png",
+                              "alt": "Jackery Battery Pack 3600"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Jackery Battery Pack 3600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/fr-inbox-cable.png",
+                              "alt": "Câble de rallonge"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Câble de rallonge"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "image",
+                              "source": "assets/fr-inbox-manual.png",
+                              "alt": "Manuel d’utilisation"
+                            },
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Manuel d’utilisation"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "product-overview",
+      "title": "APERÇU DU PRODUIT",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-product-overview",
+          "children": [
+            {
+              "kind": "text",
+              "text": "APERÇU DU PRODUIT"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "VUE DE FACE"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-overview-front native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-13/overview-front",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "overview-front"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "Front view: LCD display and POWER button"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/fr-overview-front.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "overview-front",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "3b8a386afe760754d905aeaf227db833f579ca615ea7ea8563a1e4fe907eeb37",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/fr-overview-front.png",
+                  "alt": "Front view: LCD display and POWER button"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "VUE LATÉRALE GAUCHE"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-overview-left native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-13/overview-left",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "overview-left"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/fr-overview-left.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "overview-left",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "bfcc1c09df1ca41e5f77386db0c28da3ea8d4833398e80e819d1989aefe1fa5f",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/fr-overview-left.png",
+                  "alt": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "lcd-display",
+      "title": "AFFICHAGE LCD",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-lcd-display",
+          "children": [
+            {
+              "kind": "text",
+              "text": "AFFICHAGE LCD"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-lcd-display native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-14/lcd-display",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "lcd-display"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "LCD display: power percentage or fault code, and the charging indicator"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/fr-lcd-display.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "lcd-display",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "afbd65d1b59ea63a74a80c875eac7c6073098ecea14355586605cec61d9956d4",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/fr-lcd-display.png",
+                  "alt": "LCD display: power percentage or fault code, and the charging indicator"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-REFERENCE",
+            "variant": "lcd-descriptions",
+            "source_ref": "native-pdf/lcd-display/5",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "AFFICHAGE LCD"
+              },
+              {
+                "role": "headers",
+                "content_kind": "ordered_headers",
+                "content": []
+              },
+              {
+                "role": "rows",
+                "content_kind": "ordered_rows",
+                "content": [
+                  [
+                    {
+                      "html": "<strong>Pourcentage de</strong><br><strong>puissance/code</strong><br><strong>d’erreur</strong>",
+                      "text": "Pourcentage de\npuissance/code\nd’erreur"
+                    },
+                    {
+                      "html": "L’affichage de la puissance représente le pourcentage de la valeur actuelle de la puissance. En cas de défaillance du système, le code d’erreur correspondant (F0-FF) s’affiche. Si le code FF s’affiche, retirez la charge et le dispositif peut se rétablir de lui-même. Si ce n&#x27;est pas le cas, veuillez contacter le service à la clientèle de Jackery. Si un autre code apparaît, veuillez contacter notre service à la clientèle.",
+                      "text": "L’affichage de la puissance représente le pourcentage de la valeur actuelle de la puissance. En cas de défaillance du système, le code d’erreur correspondant (F0-FF) s’affiche. Si le code FF s’affiche, retirez la charge et le dispositif peut se rétablir de lui-même. Si ce n'est pas le cas, veuillez contacter le service à la clientèle de Jackery. Si un autre code apparaît, veuillez contacter notre service à la clientèle."
+                    }
+                  ],
+                  [
+                    {
+                      "html": "<strong>Témoin de charge</strong>",
+                      "text": "Témoin de charge"
+                    },
+                    {
+                      "html": "Le témoin s’affiche pendant la charge et disparaît lorsque l’appareil est complètement chargé.",
+                      "text": "Le témoin s’affiche pendant la charge et disparaît lorsque l’appareil est complètement chargé."
+                    }
+                  ]
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.reference"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "title": "FONCTIONNEMENT",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-operations",
+          "children": [
+            {
+              "kind": "text",
+              "text": "FONCTIONNEMENT"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "MARCHE/ARRÊT"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-power-on-off native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-14/power-on-off",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "power-on-off"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "POWER button: press once to turn on; press and hold for 3 s to turn off"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/fr-power-on-off.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "power-on-off",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "94ac08852423403f669617e9674b7d1adf0f60bd5d59012850c671571b6ebfe8",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/fr-power-on-off.png",
+                  "alt": "POWER button: press once to turn on; press and hold for 3 s to turn off"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "note",
+            "source_ref": "native-pdf/operations/note-70",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "Remarques"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "Lorsque vous utilisez le Jackery HomePower 3600 Plus, vous pouvez contrôler la mise sous tension ou hors tension du Jackery Battery Pack 3600 via le « bouton d’alimentation principale » du Jackery HomePower 3600 Plus.\nLe dispositif s’éteint automatiquement s’il n’est pas chargé ou si aucune charge n’est connectée pendant 2 heures."
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Remarques"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Lorsque vous utilisez le Jackery HomePower 3600 Plus, vous pouvez contrôler la mise sous tension ou hors tension du Jackery Battery Pack 3600 via le « bouton d’alimentation principale » du Jackery HomePower 3600 Plus."
+                                },
+                                {
+                                  "kind": "line_break"
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "Le dispositif s’éteint automatiquement s’il n’est pas chargé ou si aucune charge n’est connectée pendant 2 heures."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "ACTIVATION/DÉSACTIVATION DE L’ÉCRAN LCD"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-lcd-on-off native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-14/lcd-on-off",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "lcd-on-off"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "Pressing the POWER button switches the LCD display on or off"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "none"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/lcd-on-off.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "lcd-on-off",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "4f07316fdbc9b269e3bb8ece6af3191e88e91b49d5d22c006339be020740bdca",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/lcd-on-off.png",
+                  "alt": "Pressing the POWER button switches the LCD display on or off"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "Lorsque vous appuyez sur le « bouton d’alimentation principale » ou lorsque vous chargez le produit, l’écran LCD s’allume, et lorsque vous appuyez à nouveau sur ce bouton, l’écran LCD s’éteint."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "title": "DÉPANNAGE",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-troubleshooting",
+          "children": [
+            {
+              "kind": "text",
+              "text": "DÉPANNAGE"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives indiquées pour résoudre le problème.Si l'erreur persiste, veuillez contacter le service à la clientèle de Jackery."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-fit-phone"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-TABLE-TROUBLESHOOTING",
+                "variant": "two-column",
+                "source_ref": "native-pdf/troubleshooting/6",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "headers",
+                    "content_kind": "ordered_headers",
+                    "content": [
+                      {
+                        "content_html": "Code d&#x27;erreur",
+                        "content_text": "Code d'erreur"
+                      },
+                      {
+                        "content_html": "Mesures correctives",
+                        "content_text": "Mesures correctives"
+                      }
+                    ]
+                  },
+                  {
+                    "role": "rows",
+                    "content_kind": "ordered_rows",
+                    "content": [
+                      {
+                        "code_html": "<strong>F0</strong>",
+                        "code_text": "F0",
+                        "measures_html": "Redémarrez le produit.",
+                        "measures_text": "Redémarrez le produit."
+                      },
+                      {
+                        "code_html": "<strong>F1, F2</strong>",
+                        "code_text": "F1, F2",
+                        "measures_html": "Contacter le service à la clientèle de Jackery.",
+                        "measures_text": "Contacter le service à la clientèle de Jackery."
+                      },
+                      {
+                        "code_html": "<strong>F3</strong>",
+                        "code_text": "F3",
+                        "measures_html": "Redémarrez le produit.",
+                        "measures_text": "Redémarrez le produit."
+                      },
+                      {
+                        "code_html": "<strong>F4</strong>",
+                        "code_text": "F4",
+                        "measures_html": "Connectez le produit à des charges pour décharger sa batterie jusqu&#x27;à ce que l&#x27;erreur disparaisse.",
+                        "measures_text": "Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse."
+                      },
+                      {
+                        "code_html": "<strong>F5</strong>",
+                        "code_text": "F5",
+                        "measures_html": "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu&#x27;à ce que l&#x27;erreur disparaisse.",
+                        "measures_text": "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse."
+                      },
+                      {
+                        "code_html": "<strong>F6-F9,</strong><br><strong>FA, FC, FE</strong>",
+                        "code_text": "F6-F9, FA, FC, FE",
+                        "measures_html": "Contacter le service à la clientèle de Jackery.",
+                        "measures_text": "Contacter le service à la clientèle de Jackery."
+                      },
+                      {
+                        "code_html": "<strong>FF</strong>",
+                        "code_text": "FF",
+                        "measures_html": "Placez le produit dans un environnement à température appropriée et attendez que l&#x27;erreur disparaisse.",
+                        "measures_text": "Placez le produit dans un environnement à température appropriée et attendez que l'erreur disparaisse."
+                      }
+                    ]
+                  }
+                ],
+                "assets": [],
+                "token_roles": [
+                  "component.table.troubleshooting"
+                ],
+                "metadata": {},
+                "schema_version": "component-spec/v1"
+              }
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "connections",
+      "title": "CONNEXIONS",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-connections",
+          "children": [
+            {
+              "kind": "text",
+              "text": "CONNEXIONS"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "Pour répondre à des besoins de capacité accrue, jusqu’à 5 dispositifs peuvent être utilisés avec le Jackery HomePower 3600 Plus."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "caution",
+            "source_ref": "native-pdf/connections/caution-95",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "Important"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 3600 Plus au(x) Jackery Battery Pack 3600.\nPour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (≈200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate."
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Important"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 3600 Plus au(x) Jackery Battery Pack 3600."
+                                },
+                                {
+                                  "kind": "line_break"
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (≈200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-clearance native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-15/clearance",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "clearance"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "Battery packs connected to the Jackery HomePower 3600 Plus, with at least 0.66 ft (≈200 mm) of space between the vents and any objects"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/fr-clearance.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "clearance",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "f9ebd1504950935fee1743cd4fd3356ab515d08fee52d3c9317a47e2fe9e8806",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/fr-clearance.png",
+                  "alt": "Battery packs connected to the Jackery HomePower 3600 Plus, with at least 0.66 ft (≈200 mm) of space between the vents and any objects"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-stacking native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-16/stacking",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "stacking"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "Correct: up to three battery packs in one tower. Incorrect: four battery packs in one tower"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "none"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/fr-stacking.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "stacking",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "cc6cfb4fceb0bb982ee2dc3cf920dd54ba485d6900ba0b9b6bd1e892bcb86bc9",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/fr-stacking.png",
+                  "alt": "Correct: up to three battery packs in one tower. Incorrect: four battery packs in one tower"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "note",
+            "source_ref": "native-pdf/connections/note-99",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "Remarques"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "L’apparition de l’icône\nsur l’écran LCD (Jackery HomePower 3600 Plus) signifie que la connexion entre l’unité de batterie et le Jackery HomePower 3600 Plus est réussie.\nLors de l'utilisation du produit, ne superposez pas plus de trois blocs-batterie dans une même tour pour éviter qu'ils ne tombent et ne causent des blessures.\nVeuillez ne pas empiler le dispositif sur le Jackery HomePower 3600 Plus."
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Remarques"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "L’apparition de l’icône"
+                                },
+                                {
+                                  "kind": "image",
+                                  "source": "assets/inline-connection-icon.svg",
+                                  "alt": "battery pack connection icon (HomePower 3600 Plus LCD)",
+                                  "presentation": {
+                                    "html": {
+                                      "attributes": {
+                                        "class": "native-inline-control"
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "sur l’écran LCD (Jackery HomePower 3600 Plus) signifie que la connexion entre l’unité de batterie et le Jackery HomePower 3600 Plus est réussie."
+                                },
+                                {
+                                  "kind": "line_break"
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "Lors de l'utilisation du produit, ne superposez pas plus de trois blocs-batterie dans une même tour pour éviter qu'ils ne tombent et ne causent des blessures."
+                                },
+                                {
+                                  "kind": "line_break"
+                                },
+                                {
+                                  "kind": "text",
+                                  "text": "Veuillez ne pas empiler le dispositif sur le Jackery HomePower 3600 Plus."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-locking native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-16/locking",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "locking"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "Expansion cable connections, with the steps to lock and unlock the cable terminal"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/fr-locking.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "locking",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "0920e155c9a022d8aa07133c7e0086b334a6fbdb474d063b7ef2938621dd6457",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/fr-locking.png",
+                  "alt": "Expansion cable connections, with the steps to lock and unlock the cable terminal"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "charging",
+      "title": "CHARGE",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-charging",
+          "children": [
+            {
+              "kind": "text",
+              "text": "CHARGE"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "CHARGEMENT PAR PRISE MURALE CA"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "En cas de charge murale, ce dispositif doit être utilisé avec le Jackery HomePower 3600 Plus."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-CALLOUT-STRIP",
+            "variant": "warning",
+            "source_ref": "native-pdf/charging/warning-105",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "label",
+                "content_kind": "inline_text",
+                "content": "Avertissement"
+              },
+              {
+                "role": "body",
+                "content_kind": "rich_text",
+                "content": "Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 3600 Plus au(x) Battery Pack 3600."
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.callout"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-callout-table manual-callout-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-label"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Avertissement"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "presentation": {
+                            "html": {
+                              "attributes": {
+                                "class": "manual-callout-body"
+                              }
+                            }
+                          },
+                          "children": [
+                            {
+                              "kind": "paragraph",
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 3600 Plus au(x) Battery Pack 3600."
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-ac-charging native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-17/ac-charging",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "ac-charging"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "Charging via an AC wall outlet through the Jackery HomePower 3600 Plus"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/fr-ac-charging.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "ac-charging",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "4d3dbf0cc8876dcebd28f7539ac76e5057d9b92072665e48b4dd419d40965776",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/fr-ac-charging.png",
+                  "alt": "Charging via an AC wall outlet through the Jackery HomePower 3600 Plus"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "CHARGEMENT PAR PANNEAUX SOLAIRES "
+            },
+            {
+              "kind": "inline_group",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "native-sold-separately"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "VENDU SÉPARÉMENT"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "Rechargez votre dispositif à l’aide de panneaux solaires et du Jackery HomePower 3600 Plus, comme indiqué dans la figure ci-dessous.Pour plus d’informations, veuillez vous reporter au manuel d’utilisation du Jackery HomePower 3600 Plus."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "group",
+          "role": "container",
+          "presentation": {
+            "html": {
+              "attributes": {
+                "class": "native-figure native-solar-charging native-wide"
+              }
+            }
+          },
+          "children": [
+            {
+              "kind": "component",
+              "component_spec": {
+                "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                "variant": "semantic-fallback",
+                "source_ref": "native-pdf/page-17/solar-charging",
+                "language": "fr",
+                "slots": [
+                  {
+                    "role": "reference_id",
+                    "content_kind": "inline_text",
+                    "content": "solar-charging"
+                  },
+                  {
+                    "role": "accessibility_label",
+                    "content_kind": "inline_text",
+                    "content": "Charging via solar panels through the Jackery HomePower 3600 Plus"
+                  },
+                  {
+                    "role": "caption_mode",
+                    "content_kind": "inline_text",
+                    "content": "embedded"
+                  },
+                  {
+                    "role": "caption_layout",
+                    "content_kind": "inline_text",
+                    "content": "equal"
+                  }
+                ],
+                "assets": [
+                  {
+                    "role": "source_art",
+                    "asset_ref": "assets/fr-solar-charging.png",
+                    "locale_policy": "exact"
+                  }
+                ],
+                "token_roles": [
+                  "component.special.reference-figure"
+                ],
+                "metadata": {
+                  "image_key": "solar-charging",
+                  "web_replace_key": "",
+                  "source_fragment_sha256": "ae8652bbb44b687ec73b0ca6182bbbaab160d69087ff621c9e193f0e25b612b4",
+                  "capture_following_lines": 0
+                },
+                "schema_version": "component-spec/v1"
+              },
+              "carrier_flow": [
+                {
+                  "kind": "image",
+                  "source": "assets/fr-solar-charging.png",
+                  "alt": "Charging via solar panels through the Jackery HomePower 3600 Plus"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "storage",
+      "title": "STOCKAGE",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-storage",
+          "children": [
+            {
+              "kind": "text",
+              "text": "STOCKAGE"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "Conservez le produit dans un endroit propre et sec avec une ventilation adéquate.Température et humidité de stockage :"
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "1 mois : -4°F à 113°F / -20 à 45°C (0-60% HR)"
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "3 mois : 32°F à 113°F / 0 à 45°C (0-60% HR)"
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "12 mois : 32°F à 77°F / 0 à 25°C (0-60% HR)"
+            },
+            {
+              "kind": "line_break"
+            },
+            {
+              "kind": "text",
+              "text": "Si ce produit est stocké pendant une longue période (3 à 6 mois) avec la batterie déchargée, il peut devenir impossible de le recharger. Pour éviter cela et préserver la santé de la batterie, il est recommandé de vérifier et de recharger le produit tous les trois mois, et d'effectuer un cycle de charge et de décharge complet au moins une fois tous les 6 à 12 mois."
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        }
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "SPÉCIFICATIONS",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-specifications",
+          "children": [
+            {
+              "kind": "text",
+              "text": "SPÉCIFICATIONS"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "source_ref": "native-pdf/specifications/7",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "content": "INFORMATIONS GÉNÉRALES"
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "content": [
+                  {
+                    "label": "Nom du produit",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "Jackery Battery Pack 3600",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "N° modèle",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "JBP-3600A",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "Capacité",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "80Ah / 44.8Vdc (3584 Wh)",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "Cellule Chimique",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "LiFePO₄",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "Poids",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "Environ 55.1 lbs/25 kg",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "Dimensions",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "14,8 x 12,5 x 9,0 po/37,5 x 31,7x 22,9 cm",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "Durée de vie",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "Capacité de 6000 cycles à 70 % ou plus",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-spec-section hb-spec-group"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-spec-section-text"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "INFORMATIONS GÉNÉRALES"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Nom du produit"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Jackery Battery Pack 3600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "N° modèle"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "JBP-3600A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Capacité"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "80Ah / 44.8Vdc (3584 Wh)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Cellule Chimique"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "LiFePO₄"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Poids"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Environ 55.1 lbs/25 kg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Dimensions"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "14,8 x 12,5 x 9,0 po/37,5 x 31,7x 22,9 cm"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Durée de vie"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Capacité de 6000 cycles à 70 % ou plus"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "source_ref": "native-pdf/specifications/8",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "content": "PORTS D’ENTRÉE/SORTIE"
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "content": [
+                  {
+                    "label": "Port d’extension CC (Entrée)",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "36,4V-50,4V⎓60A Max",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "Port d’extension CC (Sortie)",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "36,4V-50,4V⎓100A Max",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "Courant et durée maximum du court-circuit",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "1160A/860μs",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-spec-section hb-spec-group"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-spec-section-text"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "PORTS D’ENTRÉE/SORTIE"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Port d’extension CC (Entrée)"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "36,4V-50,4V⎓60A Max"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Port d’extension CC (Sortie)"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "36,4V-50,4V⎓100A Max"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Courant et durée maximum du court-circuit"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "1160A/860μs"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-TABLE-SPEC",
+            "variant": "vertical",
+            "source_ref": "native-pdf/specifications/9",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "section_title",
+                "content_kind": "inline_text",
+                "content": "TEMPÉRATURE DE FONCTIONNEMENT"
+              },
+              {
+                "role": "rows",
+                "content_kind": "structured_rows",
+                "content": [
+                  {
+                    "label": "Température de charge",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "-4°F à 113°F / -20°C à 45°C",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  },
+                  {
+                    "label": "Température de décharge",
+                    "label_rowspan": 1,
+                    "values": [
+                      {
+                        "text": "-4°F à 113°F / -20°C à 45°C",
+                        "references": []
+                      }
+                    ],
+                    "references": []
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "hb-spec-section hb-spec-group"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "inline_group",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "hb-spec-section-text"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "TEMPÉRATURE DE FONCTIONNEMENT"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "table",
+              "presentation": {
+                "html": {
+                  "attributes": {
+                    "class": "manual-table"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "kind": "table_body",
+                  "children": [
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Température de charge"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "-4°F à 113°F / -20°C à 45°C"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "table_row",
+                      "children": [
+                        {
+                          "kind": "table_cell",
+                          "header": true,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "Température de décharge"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "table_cell",
+                          "header": false,
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "-4°F à 113°F / -20°C à 45°C"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "title": "GARANTIE",
+      "nodes": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "anchor": "native-warranty",
+          "children": [
+            {
+              "kind": "text",
+              "text": "GARANTIE"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-WARRANTY-LEAD",
+            "variant": "intro-panel",
+            "source_ref": "native-pdf/warranty/10",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "GARANTIE"
+              },
+              {
+                "role": "lead",
+                "content_kind": "rich_text",
+                "content": "<strong>Nous ne fournissons notre garantie qu&#x27;aux clients qui achètent sur le site officiel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux.</strong>"
+              },
+              {
+                "role": "local_note",
+                "content_kind": "rich_text",
+                "content": "*La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux."
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.warranty.lead"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "Garantie limitée"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-WARRANTY-SECTION",
+            "variant": "rounded-card",
+            "source_ref": "native-pdf/warranty/11",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "title",
+                "content_kind": "inline_text",
+                "content": "Garantie limitée"
+              },
+              {
+                "role": "section_index",
+                "content_kind": "block_index",
+                "content": 1
+              },
+              {
+                "role": "blocks",
+                "content_kind": "ordered_blocks",
+                "content": [
+                  {
+                    "kind": "paragraph",
+                    "html": "<p>Jackery Inc. garantit à l&#x27;acheteur et consommateur d&#x27;origine que le produit de Jackery sera exempt de tout défaut de fabrication et de matériaux dans le cadre d&#x27;une utilisation normale pendant toute la durée de la période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve des exceptions énoncées ci-dessous.</p>",
+                    "text": "Jackery Inc. garantit à l'acheteur et consommateur d'origine que le produit de Jackery sera exempt de tout défaut de fabrication et de matériaux dans le cadre d'une utilisation normale pendant toute la durée de la période de garantie applicable identifiée dans la section « Période de garantie » ci-dessous, sous réserve des exceptions énoncées ci-dessous."
+                  },
+                  {
+                    "kind": "paragraph",
+                    "html": "<p>Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous n&#x27;assumerons pas et nous n&#x27;autorisons personne à assumer pour nous toute autre responsabilité en lien avec la vente de nos produits.</p>",
+                    "text": "Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous n'assumerons pas et nous n'autorisons personne à assumer pour nous toute autre responsabilité en lien avec la vente de nos produits."
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.warranty.section"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "Période de garantie"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-WARRANTY-YEARS",
+            "variant": "numeric-badges",
+            "source_ref": "native-pdf/warranty/12",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "title",
+                "content_kind": "inline_text",
+                "content": "Période de garantie"
+              },
+              {
+                "role": "periods",
+                "content_kind": "ordered_periods",
+                "content": [
+                  {
+                    "number": "3",
+                    "unit": "ANS",
+                    "label": "Garantie standard",
+                    "body_html": "La période de garantie standard du Jackery Battery Pack 3600 est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d&#x27;achat par l&#x27;acheteur et consommateur d&#x27;origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d&#x27;établir la date de début de la période de garantie.",
+                    "body_text": "La période de garantie standard du Jackery Battery Pack 3600 est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire afin d'établir la date de début de la période de garantie."
+                  },
+                  {
+                    "number": "2",
+                    "unit": "ANS",
+                    "label": "Garantie prolongée",
+                    "body_html": "Pour activer l&#x27;extension de garantie, vous devez enregistrer votre produit en ligne ou bien contacter notre service client à hello@jackery.com afin de prolonger la durée de la garantie standard.",
+                    "body_text": "Pour activer l'extension de garantie, vous devez enregistrer votre produit en ligne ou bien contacter notre service client à hello@jackery.com afin de prolonger la durée de la garantie standard."
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.warranty.years"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "Réparation ou remplacement"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-WARRANTY-SECTION",
+            "variant": "rounded-card",
+            "source_ref": "native-pdf/warranty/13",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "title",
+                "content_kind": "inline_text",
+                "content": "Réparation ou remplacement"
+              },
+              {
+                "role": "section_index",
+                "content_kind": "block_index",
+                "content": 3
+              },
+              {
+                "role": "blocks",
+                "content_kind": "ordered_blocks",
+                "content": [
+                  {
+                    "kind": "paragraph",
+                    "html": "<p>Jackery remplacera (aux frais de Jackery) tout produit de Jackery qui ne fonctionne plus en raison d&#x27;un défaut de fabrication ou de matériau pendant la période de garantie applicable. Un produit remplacé reprend la garantie restante du produit d&#x27;origine.</p>",
+                    "text": "Jackery remplacera (aux frais de Jackery) tout produit de Jackery qui ne fonctionne plus en raison d'un défaut de fabrication ou de matériau pendant la période de garantie applicable. Un produit remplacé reprend la garantie restante du produit d'origine."
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.warranty.section"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "Limitée à l'acheteur et consommateur d'origine"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-WARRANTY-SECTION",
+            "variant": "rounded-card",
+            "source_ref": "native-pdf/warranty/14",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "title",
+                "content_kind": "inline_text",
+                "content": "Limitée à l'acheteur et consommateur d'origine"
+              },
+              {
+                "role": "section_index",
+                "content_kind": "block_index",
+                "content": 4
+              },
+              {
+                "role": "blocks",
+                "content_kind": "ordered_blocks",
+                "content": [
+                  {
+                    "kind": "paragraph",
+                    "html": "<p>Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d&#x27;un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d&#x27;achat d&#x27;origine.</p>",
+                    "text": "Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d'achat d'origine."
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.warranty.section"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "Exclusions"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-WARRANTY-SECTION",
+            "variant": "rounded-card",
+            "source_ref": "native-pdf/warranty/15",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "title",
+                "content_kind": "inline_text",
+                "content": "Exclusions"
+              },
+              {
+                "role": "section_index",
+                "content_kind": "block_index",
+                "content": 5
+              },
+              {
+                "role": "blocks",
+                "content_kind": "ordered_blocks",
+                "content": [
+                  {
+                    "kind": "paragraph",
+                    "html": "<p>La garantie de Jackery ne s&#x27;applique pas à :</p>",
+                    "text": "La garantie de Jackery ne s'applique pas à :"
+                  },
+                  {
+                    "kind": "list",
+                    "html": "<ul><li>Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre utilisation qui n&#x27;est pas une utilisation normale de ce produit et autorisée par la documentation actuelle du produit de Jackery.</li><li>À une réparation tentée par quelqu&#x27;un d&#x27;autre qu&#x27;un établissement agréé.</li><li>Tout autre produit acheté par l&#x27;intermédiaire d&#x27;une vente aux enchères en ligne.</li><li>La garantie de Jackery ne s&#x27;applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé les cellules de la batterie dans les sept jours suivant l&#x27;achat du produit et au moins une fois tous les 6 mois par la suite.</li></ul>",
+                    "items": [
+                      "Une utilisation incorrecte, abusée, modifiée, aux dégâts provoqués par un accident ou toute autre utilisation qui n'est pas une utilisation normale de ce produit et autorisée par la documentation actuelle du produit de Jackery.",
+                      "À une réparation tentée par quelqu'un d'autre qu'un établissement agréé.",
+                      "Tout autre produit acheté par l'intermédiaire d'une vente aux enchères en ligne.",
+                      "La garantie de Jackery ne s'applique pas aux cellules de la batterie, sauf si vous avez entièrement chargé les cellules de la batterie dans les sept jours suivant l'achat du produit et au moins une fois tous les 6 mois par la suite."
+                    ]
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.warranty.section"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "Droits d'interprétation"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-WARRANTY-SECTION",
+            "variant": "rounded-card",
+            "source_ref": "native-pdf/warranty/16",
+            "language": "fr",
+            "slots": [
+              {
+                "role": "title",
+                "content_kind": "inline_text",
+                "content": "Droits d'interprétation"
+              },
+              {
+                "role": "section_index",
+                "content_kind": "block_index",
+                "content": 6
+              },
+              {
+                "role": "blocks",
+                "content_kind": "ordered_blocks",
+                "content": [
+                  {
+                    "kind": "paragraph",
+                    "html": "<p>Jackery Inc. se réserve le droit d&#x27;interpréter de manière définitive la politique après-vente des clients ci-dessus.</p>",
+                    "text": "Jackery Inc. se réserve le droit d'interpréter de manière définitive la politique après-vente des clients ci-dessus."
+                  }
+                ]
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.warranty.section"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          }
+        }
+      ]
+    }
+  ]
+}
