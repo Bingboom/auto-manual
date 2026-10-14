@@ -24,7 +24,7 @@ domains:
     authority: "file:hello-docs:docs/publish/publish_manifest.json"
     read: build
     fallback: 发布清单当前不可读
-    used_by: 系统建设页的发布数字、说明书工作台的网页手册列、现在就能用、系统数据、产品矩阵
+    used_by: 说明书工作台的网页手册列与发布规模、系统数据、产品矩阵
 
   - id: ledger
     label: 执行进度

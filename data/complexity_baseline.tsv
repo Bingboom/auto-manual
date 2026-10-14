@@ -190,7 +190,7 @@ tools/rtd/portal.py	page_context	33
 tools/rtd/source_registry.py	registry_problems	32
 tools/rtd/system_tooling.py	tooling_view	22
 tools/rtd/system_workspace.py	_focus_findings	39
-tools/rtd/system_workspace.py	build_context	34
+tools/rtd/system_workspace.py	build_context	31
 tools/rtd/system_workspace.py	check_contract	31
 tools/rtd/system_workspace.py	parse_evidence	22
 tools/schema_drift.py	_source_contract_base_issues	35

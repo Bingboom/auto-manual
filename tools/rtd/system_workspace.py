@@ -7,8 +7,9 @@ from:
 - ``tools/rtd_portal_assets/system_workspace.yaml``: the curated status
   contract (current-focus lanes, capability cards, flow links, gate labels);
   every entry carries evidence refs;
-- ``docs/publish/publish_manifest.json``: the published-target catalog and the
-  source of the publication counts;
+- ``docs/publish/publish_manifest.json``: the published-target catalog behind
+  the ``publications`` and ``regions`` lane metrics; the shipped lanes leave
+  those counts to 说明书工作台 and point there;
 - the execution ledger named by ``now_next.source``: REV statuses, the
   composition of the G1-G4 gates and the progress of each focus lane;
 - the corpus snapshot registered as the ``corpus`` domain of
@@ -108,7 +109,6 @@ _REV = re.compile(r"REV-\d+")
 _REV_ROW = re.compile(r"^\|[^|]*?(REV-\d+)\s*\|")
 _GATE_ROW = re.compile(r"^\|\s*(G\d+|IDML)\b[^|]*\|([^|]*)\|")
 _REV_RANGE = re.compile(r"REV-(\d+)[–-](\d+)")
-_DOCNAME = re.compile(r"^[A-Za-z0-9_.-]+(/[A-Za-z0-9_.-]+)*$")
 
 
 class ContractError(ValueError):
@@ -411,20 +411,6 @@ def _now_next_findings(contract: dict[str, Any], ledger: Ledger | None, out: lis
     return now_next
 
 
-def _working_today_findings(contract: dict[str, Any], out: list[Finding]) -> None:
-    for entry in contract.get("working_today") or []:
-        where = f"working_today.{entry.get('id')}"
-        has_page, has_publication = "page" in entry, "publication" in entry
-        if has_page == has_publication:
-            _error(out, where, "needs exactly one of page / publication")
-        elif has_page and not _is_docname(entry["page"]):
-            _error(out, where, f"page must be a site docname: {entry['page']!r}")
-        elif has_publication:
-            publication = entry["publication"] or {}
-            if not all(publication.get(k) for k in ("model", "region", "lang")):
-                _error(out, where, "publication needs model, region and lang")
-
-
 def _corpus_findings(corpus: Any, out: list[Finding]) -> None:
     languages = corpus.get("languages") if isinstance(corpus, dict) else None
     codes = [str(lang.get("code")) for lang in languages or [] if isinstance(lang, dict)]
@@ -443,7 +429,6 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
         if link.get("mode") not in modes:
             _error(out, f"flow#{index}", f"mode {link.get('mode')!r} not in vocabulary")
     now_next = _now_next_findings(contract, ledger, out)
-    _working_today_findings(contract, out)
     corpus = contract.get("corpus")
     if corpus is not None:
         _corpus_findings(corpus, out)
@@ -540,11 +525,6 @@ def drift_reasons(entry: dict[str, Any], *, contract: dict[str, Any], root: Path
             elif current != second:
                 reasons.append(f"{first} 在台账中已变为 {current}（记录为 {second}）")
     return reasons
-
-
-def _is_docname(value: object) -> bool:
-    text = str(value)
-    return bool(_DOCNAME.fullmatch(text)) and not {".", ".."} & set(text.split("/"))
 
 
 def _checkable(repo: str, root: Path) -> bool:
@@ -987,21 +967,6 @@ def _gate_and_now_views(contract: dict[str, Any], ledger: Ledger | None, lanes: 
     return gates, now
 
 
-def _working_view(entry: dict[str, Any], facts: dict[str, Any] | None) -> dict[str, Any]:
-    view = {"label": entry["label"], "note": entry.get("note") or "", "docname": "", "meta": ""}
-    if "page" in entry:
-        view["docname"] = entry["page"]
-        return view
-    wanted = entry["publication"]
-    match = next((t for t in (facts or {}).get("targets", [])
-                  if (t.get("model"), t.get("region"), t.get("lang"))
-                  == (wanted["model"], wanted["region"], wanted["lang"])), None)
-    if match and match.get("route") and match.get("manual"):
-        view["docname"] = f"{match['route']}/{PurePosixPath(match['manual']).stem}"
-        view["meta"] = f"版本 {match.get('version') or '未标注'}"
-    return view
-
-
 def _lane_view(lane: dict[str, Any], *, ledger: Ledger | None, gates_by_id: dict[str, Any], ledger_url: str,
                focus: dict[str, Any], facts: dict[str, Any] | None, corpus_block: dict[str, Any] | None,
                skeletons: list[dict[str, str]] | None, items_by_ref: dict[str, dict[str, Any]]) -> dict[str, Any]:
@@ -1078,8 +1043,6 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
 
     gates, now = _gate_and_now_views(contract, ledger, lanes, ledger_url)
 
-    working = [_working_view(entry, facts) for entry in contract.get("working_today") or []]
-
     corpus_block = corpus_view(contract, corpus, today, int(registry["corpus"]["stale_after_days"])) if corpus else None
     gates_by_id = {gate["id"]: gate for gate in gates}
 
@@ -1117,11 +1080,9 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "flow": flow,
         "gates": gates,
         "now": now,
-        "working": working,
         "stale_after_days": review_days,
         "verified_on": contract["verified_on"].isoformat(),
         "build_date": today.isoformat(),
-        "last_published": (facts or {}).get("last_published", ""),
         "ledger_url": ledger_url,
         "corpus_enabled": bool(contract.get("corpus")),
         "corpus": corpus_block,
