@@ -1,5 +1,4 @@
 /* Deliverables page; layered on workspace.css (shell, sidebar) and system-workspace.css (hero, tiles, badges). */
-.dl-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
 .dl-toolbar { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; margin-bottom: 12px; }
 .dl-select { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: #5d636e; }
 .dl-select select { font: inherit; font-size: 13px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; max-width: 280px; }
@@ -43,7 +42,6 @@
   .dl-region { font-weight: 600; }
 }
 @media (max-width: 660px) {
-  .dl-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dl-select { width: 100%; }
   /* A select is as wide as its longest option unless told it may shrink. */
   .dl-select select { flex: 1 1 0; width: 0; min-width: 0; max-width: none; }

@@ -95,10 +95,6 @@
 .deliverables .dl-section-title { display: flex; gap: 12px; align-items: baseline; justify-content: space-between; margin-bottom: 15px; flex-wrap: wrap; }
 .dl-section-title h2 { margin: 0; font-size: 20px; font-weight: 600; }
 .dl-section-title p { color: var(--wb-subtle); font-size:13px; margin: 0; }
-.deliverables .dl-tiles { gap: 0; border: 1px solid var(--line); border-radius: 10px; background: #fff; overflow: hidden; }
-.deliverables .dl-tiles .sw-tile { border: 0; border-radius: 0; padding: 14px 18px; gap: 5px; }
-.deliverables .dl-tiles .sw-tile + .sw-tile { border-left: 1px solid var(--line); }
-.deliverables .dl-tiles .sw-tile strong { font-size: 25px; }
 .deliverables .dl-select select:focus-visible { outline: 3px solid #f19d70; outline-offset: 3px; }
 /* Keep the deliverables as a matrix at every width. Long version IDs may wrap. */
 .deliverables .dl-chip { white-space: normal; overflow-wrap: anywhere; }
@@ -149,11 +145,8 @@
   .wb-reference-bar { padding: 12px 18px; }
   .wb-resources { gap: 20px 16px; }
   .wb-resource p { min-height: 0; }
-  .deliverables .dl-tiles .sw-tile { padding: 12px; }
 }
 @media (max-width: 660px) {
-  .deliverables .dl-tiles .sw-tile:nth-child(3) { border-left: 0; }
-  .deliverables .dl-tiles .sw-tile:nth-child(n+3) { border-top: 1px solid var(--line); }
   .wb-resource-links > a, .wb-reference-bar > a { min-height: 32px; display: inline-flex; align-items: center; }
   .wb-resource-links { gap: 2px; }
   .wb-surface-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
