@@ -1,119 +1,104 @@
 # Auto-Manual
 
+<!-- 本文件只放工作流路线图、快速开始、编辑面和导航（AGENTS.md §5）。机制和契约写进权威页面，这里最多留一行指针，不追加功能说明。 -->
+
 *One source of truth — every market's manual, in every format.*
 
 Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产，转换为可评审、
 可追溯的多语言说明书，并同源输出 PDF、DOCX、IDML、HTML、Markdown 和 ZIP。
+不同格式可以采用不同排版，但同一冻结包不分叉文案、规格、法务内容、术语或资产身份。
+
+本仓库是工程面：代码只在这里修改，合入 `main` 后单向同步到业务面 Hello-Docs；
+队列构建、评审分支和网页说明书发布在业务面运行，不要直接修改 Hello-Docs 的工程树。
+两个仓库、新旧飞书 base 与 TM-B 语料库的关系见[双平面地图](user-guide/two_plane_map.md)。
 
 ## 工作流路线图
 
-系统建设页新增三类访问入口的[架构视图](code-as-doc/dev/rtd_manual_portal/system-workspace.md#system-workspace-page)，与演进史共用记录。
-[设计规范页](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#design-system-page)汇总网页版的颜色、字体与组件、共享图标素材和印刷规格，取值和预览在构建时读自仓库。
-[说明书工作台「数据统计」](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)：发布、机型能力（只列已发布型号）与素材登记，可按区域和机型筛选。
-[产品矩阵页](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page)按产品线、容量和发布市场排列已发布说明书里的产品，附规格、功能与搭配对照。
-说明书工作台提供工作入口、三类资产管理与生产复用证据；统计边界见 [工作台统计契约](code-as-doc/dev/workspace_production_evidence.md)，生产后刷新与补做见 [数据持续更新](code-as-doc/dev/workspace_data_refresh.md)。
-
-说明书资料库按冻结发布记录提供[独立语言切换](code-as-doc/dev/rtd_locale_navigation.md)，区分已验证单语与语言身份待核验的旧出版物。
-
-Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。
-说明书网页化先按[素材复用与背景规则](docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)盘点已有素材，确认不能复用后再提取；新外部冻结稿的符号表须通过原稿图形与真实透明度准入，停用旧错误素材并按共用图形变体复用。
-Git-only 显式撤回、恢复与独立回执见[操作说明](code-as-doc/dev/web_publication_withdrawal.md)。
-外部原稿按源文件哈希登记章节准入，见 [Git-only 发布流程](code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction)。冻结源库与输出的独立容量、数量预算也由该契约维护。
-FridgeGuard US 英法西三语的冻结源、共享组件与发布验收见[录入记录](code-as-doc/reviews/je1000e_sil_us_en_web_intake.md)。
-SlimPower H1 日规日文的批准快照、回放与来源边界见[Git-only 发布源](manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-no-cover-reviewed/README.md)。
-封存源辅助文件的复制边界和原稿版式回放见[构建指南](code-as-doc/build_doc_guide/web-publish-and-rtd.md)。
-Web 资源池的图片与内嵌 CSS 引用边界也见[构建指南](code-as-doc/build_doc_guide/web-publish-and-rtd.md)。
-
-Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。
-JE-1000F/EU 新增四语按[原生 PDF 与共享 IR 接入](code-as-doc/dev/four_language_shared_ir_alignment.md)维护；原稿与勘误保留，正文、表格和图内标签使用网页组件。
-冻结目录也可运行[只读线上链接检查](code-as-doc/dev/manual_operations_online_health.md)，HTTP成功不等于版本验收。
-
-Web profile 配合显式 `--lang` 会冻结完整配置语言源，再将所选语言投影为
-`check`、Markdown 和 HTML 共用的规范 RST；边界见[说明](code-as-doc/dev/web_language_projection.md)。
-JE-1000F US 的三语前言仅在 Web 投影中拆分，IDML/Word/PDF 仍保留三语；配置边界见[构建指南](code-as-doc/build_doc_guide/config-and-manifests.md)。
-这项本地构建能力不代表已接通独立语言发布。
-审稿语言裁剪同时清理生成页副本和目录引用，原审稿文件保留；见[构建指南](code-as-doc/build_doc_guide/quality-gates.md)。
-Web 队列支持显式语言的单语配置，约束与未释放的发布门禁见[队列契约](code-as-doc/dev/web_publish_locale_queue.md)。
-
 ![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)
 
-内容源 → 冻结输入 → 构建检查 → 评审回写 → 多格式输出 → 发布追踪。
-
-## 视频演示
-
-<!-- VIDEO_SLOT_START -->
-> 视频位已预留。视频就绪后，可用一张封面图链接到 GitHub、Bilibili 或其他播放页。
-<!-- VIDEO_SLOT_END -->
+1. **源表**：结构化数据在飞书 phase2 源表维护，`sync-data` 把它拉成本地快照 `data/phase2/`。见[数据层](user-guide/hello_auto-doc/data-layer.md)。
+2. **模板**：共享页面、配方和 manifest 在 `docs/templates/`、`docs/manifests/`，由 config 族加 `--model`/`--region` 选定目标。见[页面与配方](code-as-doc/generated_page_authoring.md)、[config 与 manifest](code-as-doc/build_doc_guide/config-and-manifests.md)。
+3. **构建与检查**：`build.py` 读取快照和 manifest 组装页面，`check` 在 Word/Web 导出前运行质量门禁。见[构建流水线](user-guide/hello_auto-doc/build-pipeline.md)、[check 门禁](code-as-doc/build_doc_guide/quality-gates.md)。
+4. **评审与回写**：Start Review 开评审分支并生成 `docs/_review/` 评审包，Build Draft Package 把它出成飞书云文档，评审者的修改回写到评审包。见[Review、出包与 Publish](user-guide/quick_start_guide/review-and-publish.md)、[云文档回写](code-as-doc/build_doc_guide/backport.md)。
+5. **发布**：Publish 从评审分支出印刷交付包、PDF 和 DOCX，Web Publish 独立发布网页说明书；验收读 `delivery_ready / delivery_url` 并回读飞书，触发不等于完成。见[队列与交付](user-guide/hello_auto-doc/queues-and-delivery.md)、[Web 发布契约](code-as-doc/dev/web_publish_pipeline.md)。
+6. **发布追溯**：`release-manifest` 和快照归档把每个版本绑定到输入与产物，`diff-report` 给出版本差异。见[发布产物](code-as-doc/build_doc_guide/review-preview-and-release.md)、[版本追踪](user-guide/hello_auto-doc/version-tracking.md)。
 
 ## 快速开始
 
-[`build.py`](build.py) 是统一入口。最小 US/EN 验证路径：
+[`build.py`](build.py) 是统一入口。用 `scripts/setup_dev_env.sh`（Windows：`scripts/setup_dev_env.ps1`）
+按锁定版本搭建环境，TeX、pandoc 和字体见[环境准备](user-guide/hello_auto-doc/environment-setup.md)；
+`doctor` 会列出本机还缺什么。没有飞书凭据时，检查用 CI 同款测试夹具 `--data-root tests/fixtures/phase2`：
 
 ```bash
 python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
-python build.py doctor --data-plane --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
-python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
-python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
+python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2
 ```
 
-`check` 会在进入 Word/Web 导出前校验 FCC 的目标语言、结构和受控分栏标记；
-manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
+正式出包需要 `sync-data` 拉下的真实快照（不要用测试夹具）和 `doctor` 无报错的 TeX、pandoc。
+`publish` 从 `docs/_review/` 评审包构建，本地还没有评审包时先运行 `review`：
 
-## 只记住四条规则
+```bash
+python build.py review --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py publish --config configs/config.ja.yaml --model JE-1000F --region JP
+python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US
+python build.py release-manifest --config configs/config.ja.yaml --model JE-1000F --region JP
+```
 
-- **修改源头，不修改生成物：** 共享内容在 `docs/templates/`，结构化数据在飞书源表，
-  评审后的目标专属修改在 `docs/_review/`；不要手改 `docs/_build/`。
-- **一个冻结包，多种输出：** 不同格式可以采用不同排版，但不能分叉文案、规格、
-  法务内容、术语或资产身份。
-- **代码只改工程面：** `auto-manual/main` 单向同步到 `Hello-Docs/main`；不要直接
-  修改 Hello-Docs 的工程树。
-- **触发不等于完成：** 队列验收读取阶段化 `delivery_ready / delivery_url`（Draft
-  云文档、Publish IDML 交付包、Web HTML），并核对提交、产物和飞书回读；不读取已退役的 `Document link`。
+本地自测可改用 `python scripts/local_build.py <action> …`，把 `docs/_build` 和 `reports/` 生成物放到 `.tmp/staging/`。
+更多动作、参数和 config 选择见[构建命令](user-guide/hello_auto-doc/build-commands.md)；
+提交前的验证组合以 [AGENTS.md §8.5](AGENTS.md#85-local-validation-before-pr) 为准。
 
-## 文档入口
+## 编辑面
 
-JE-100C/EU 九语 Web 本地构建与源稿差异记录见[构建指南](code-as-doc/build_doc_guide/web-target-notes.md#je-100ceu-nine-language-web-source)。
+- **共享内容**：模板、配方和 manifest 改 `docs/templates/`、`docs/manifests/`。
+- **结构化数据**：改飞书 phase2 源表；`data/phase2/` 是 `sync-data` 写入的本地镜像（只有 `page_registry.csv` 入库），表结构变更先经操作者确认。
+- **评审开始后**：目标专属修改改 `docs/_review/<model>/<region>/`，云文档回写也只写这里。
+- **生成物**：`docs/_build/` 只由构建写入，不要手改；它和 `reports/` 下的验证产物也不要随手清理。
+- **知识库页面**：新增或明显改动知识库页面时，在 [`tools/rtd_portal_assets/knowledge_updates.yaml`](tools/rtd_portal_assets/knowledge_updates.yaml) 加一条带合入日期的「最近更新」。
 
-| 想了解什么 | 从这里开始 |
-| --- | --- |
-| 第一次接手项目 | [`ONBOARDING.md`](ONBOARDING.md) |
-| 完整命令和运维流程 | [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md) |
-| 说明书资料库首页与目录缩略图替换 | [`RTD manual center`](code-as-doc/dev/rtd_manual_portal.md) |
-| Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`Web 发布与原生多语共享组件准入`](code-as-doc/dev/web_publish_pipeline.md)；[`欧规共享组件存量迁移`](code-as-doc/dev/eu_shared_component_rollout_2026-09.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md)；[`RTD 部署回执与严格读取`](code-as-doc/dev/rtd_deployment_receipt.md) |
-| RTD 说明书资料库：US/EU/UK/CN/JP 地区筛选、发布链接与构建排查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
-| 现有钉钉机器人查询已发布欧规产品信息 | [`欧规说明书查询与启用`](code-as-doc/dev/eu_manual_query.md) |
-| RTD 知识库：首页、产品与市场、说明书生产（同项目私有站点，登录后直达，说明书资料库不提供入口） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry) |
-| RTD 系统建设页：当前工作、系统架构、能力、工具与工程规模、系统演变 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/system-workspace.md#system-workspace-page) |
-| RTD 说明书工作台：交付物矩阵（各型号网页手册、印刷交付包与 Word 云文档）、数据统计、工作入口与生产证据 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#deliverables-page) |
-| RTD 手册反馈：售后邮箱入口与发布后健康检查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
-| 产品改进建议：网页表单与飞书机器人代提交 | [`VOC 接入`](code-as-doc/dev/product_voc.md) |
-| RTD 访问统计（默认关闭，Cloudflare Web Analytics） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
-| RTD 页面元数据：标题/hreflang/canonical 按发布身份派生 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
-| 说明书产线盘活、发布入口整合与中长期计划 | [盘活与演进方案](code-as-doc/manual_production_revitalization_plan.md)；[逐项执行台账](code-as-doc/dev/manual_revitalization_execution.md) |
-| 手册运营能力规划与第 0 步决策清单 | [`code-as-doc/manual_operations_growth_plan.md`](code-as-doc/manual_operations_growth_plan.md) |
-| 当前工作流和编辑规则 | [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) |
-| 复用已有样式和完整组件 | [`code-as-doc/dev/style_component_usage_guide.md`](code-as-doc/dev/style_component_usage_guide.md) |
-| 规格书结构化入库 | [`.agents/skills/spec-sheet-structured-intake/SKILL.md`](.agents/skills/spec-sheet-structured-intake/SKILL.md) |
-| 工程面、业务面与飞书 Base | [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) |
-| 最短上手示例 | [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) |
-| 公共 IR 的调用方与迁移边界 | [`Shared-source plan`](code-as-doc/dev/latex_indesign_same_source_plan.md) |
-| 整本 IR → Web 收口与加电包日语验收 | [`执行目标与证据`](code-as-doc/dev/ir_document_closeout.md) |
-| JS-100I 欧规 Web 目标与九语候选验收 | [`英语实现记录`](code-as-doc/dev/js100i_eu_en_web_acceptance.md) · [`九语候选记录`](code-as-doc/reviews/js100i_eu_nine_language_2026-09.md) |
-| JBP-3600A / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md) |
-| JE-2000F / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/je2000f_eu_en_web_intake_2026-09.md) |
-| JE-2000E / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/je2000e_eu_en_web_intake_2026-09.md) |
-| ManualIR v2 中立 flow、v1 兼容与后续组件边界 | [`ManualIR v2 plan`](code-as-doc/dev/manual_ir_v2_neutral_flow_plan.md) |
-| Web 共享层、产品骨架与目标差异如何继承 | [`Web presentation overlay`](code-as-doc/dev/web_presentation_overlay_plan_2026-09.md) |
-| 长期架构边界 | [`System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md) |
-| AI Agent 操作规则 | [`AGENTS.md`](AGENTS.md) |
-| 钉钉悟空 MCP Bridge 源码与部署 | [`agent/wukong-bridge/README.md`](agent/wukong-bridge/README.md) |
+各层分工见[该改哪一层](user-guide/hello_auto-doc/source-of-truth.md)。
 
-README 只保留路线图、视频位和最短入口；详细机制由上表中的权威文档维护。
+## 导航
 
-Prepared EU Web admission and legacy migration debt: [shared-component admission](code-as-doc/dev/prepared_component_admission.md).
+### 网站：说明书资料库与知识库
 
-中规/日规审核源的纯文字清单、LCD 表和 App 接入规则见 [构建说明](code-as-doc/build_doc_guide/web-component-admission.md)。
+网页说明书和知识库同在一个私有 Read the Docs 项目
+（[`ht-docs-ht-manuals.readthedocs-hosted.com`](https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/)，登录后访问）。
+说明书资料库不链接知识库，知识库各页可以回到说明书资料库；「工作资料」只是站点名。
 
-旧版 RST 网页表格的共享组件声明见 [样式定义](docs/renderers/contracts/STYLE_DEFINITION/appendix-b-boundaries.md#authored-text-references-hb-table-reference)。
+| 侧栏分组 | 页面 | 内容 | 权威页面 |
+| --- | --- | --- | --- |
+| 说明书 | 说明书资料库、搜索说明书正文 | 按型号、产品名称或关键词查找已发布的网页说明书，并搜索正文 | [`manual-center.md`](code-as-doc/dev/rtd_manual_portal/manual-center.md) · [`rtd_locale_navigation.md`](code-as-doc/dev/rtd_locale_navigation.md) · [`maintenance-and-checks.md`](code-as-doc/dev/rtd_manual_portal/maintenance-and-checks.md) |
+| 知识库 | 首页 | 产品与市场、说明书生产两组入口，分享资料与「最近更新」 | [`knowledge-pages.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry) |
+| 产品与市场 | 产品知识 | 参数、逆变、充电、扩容与备电的必要知识 | [`knowledge-pages.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#产品知识) |
+| 产品与市场 | 产品矩阵 | 按产品线、容量和市场排列的产品，附规格与功能对照 | [`knowledge-pages.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page) |
+| 产品与市场 | 市场与政策 | 各地政策变化、背后原理和对产品的影响 | [`knowledge-pages.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#市场与政策) |
+| 说明书生产 | 说明书工作台 | 交付物矩阵、数据统计、工作入口、生产与资产 | [`knowledge-pages.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#deliverables-page) |
+| 说明书生产 | 系统建设 | 当前重点、已有能力、证据与阶段进度；工程规模在「工具与工程规模」 | [`system-workspace.md`](code-as-doc/dev/rtd_manual_portal/system-workspace.md#system-workspace-page) |
+| 说明书生产 | 设计规范 | 网页说明书的颜色、字体与组件，图标和印刷规格 | [`knowledge-pages.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#design-system-page) |
+| 说明书生产 | 系统数据 | 指引页：统计已并入说明书工作台「数据统计」，工程规模并入系统建设「工具与工程规模」 | [`knowledge-pages.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#system-data-page) |
 
-Intake preparation: [source-copy work packets and shared-art review](code-as-doc/dev/manual_intake_assistance.md) enumerate pending work without approving a baseline or publishing.
+### 文档与工具
+
+| 读者 | 想了解什么 | 从这里开始 |
+| --- | --- | --- |
+| 操作者 | 第一次接手：第一小时与金路径 | [`ONBOARDING.md`](ONBOARDING.md) |
+| 操作者 | 最短上手示例与平时该改哪里 | [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) |
+| 操作者 | 当前工作流与编辑规则（按主题分页） | [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) |
+| 操作者 | 仓库、飞书 base 与租户 | [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) |
+| 操作者 | 回写、台账与仪表的日常操作 | [`user-guide/closed_loop_ops_guide.md`](user-guide/closed_loop_ops_guide.md) |
+| 维护者 | 维护者文档地图 | [`code-as-doc/README.md`](code-as-doc/README.md) |
+| 维护者 | 命令与运维语义（按主题分页） | [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md) |
+| 维护者 | Web 发布：队列与 Git-only 输入、冻结快照、RTD 部署与撤回 | [`code-as-doc/dev/web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md) |
+| 维护者 | 某个 Web 目标的接入与验收记录 | [构建指南](code-as-doc/build_doc_guide/web-target-notes.md) · [工作流指南](user-guide/hello_auto-doc/web-target-notes.md) · [`code-as-doc/reviews/`](code-as-doc/reviews) |
+| 维护者 | 样式契约与可复用组件 | [`STYLE_DEFINITION.md`](docs/renderers/contracts/STYLE_DEFINITION.md) · [组件使用指南](code-as-doc/dev/style_component_usage_guide.md) |
+| 维护者 | 整本 IR 与 Web 共享层设计 | [ManualIR v2](code-as-doc/dev/manual_ir_v2_neutral_flow_plan.md) · [Web presentation overlay](code-as-doc/dev/web_presentation_overlay_plan_2026-09.md) · [Shared-source plan](code-as-doc/dev/latex_indesign_same_source_plan.md) |
+| 维护者 | 长期架构边界与执行路线 | [`System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md) · [`optimization_project.md`](code-as-doc/optimization_project.md) |
+| 维护者 | 说明书产线盘活与运营规划 | [盘活与演进方案](code-as-doc/manual_production_revitalization_plan.md) · [逐项执行台账](code-as-doc/dev/manual_revitalization_execution.md) · [运营能力规划](code-as-doc/manual_operations_growth_plan.md) |
+| AI agent | 操作规则、分支、提交与验证 | [`AGENTS.md`](AGENTS.md) |
+| 工具 | 技能清单（Codex / Claude Code） | [`.agents/skills/README.md`](.agents/skills/README.md) · [`.claude/skills/README.md`](.claude/skills/README.md) |
+| 工具 | 规格书结构化入库 | [`spec-sheet-structured-intake`](.agents/skills/spec-sheet-structured-intake/SKILL.md) |
+| 工具 | OpenClaw/BlockClaw、飞书 IM、钉钉与悟空 MCP Bridge | [集成指南](user-guide/hello_auto-doc/integrations.md) · [`agent/wukong-bridge/README.md`](agent/wukong-bridge/README.md) |
+| 工具 | 钉钉机器人查询已发布欧规产品信息 | [欧规说明书查询与启用](code-as-doc/dev/eu_manual_query.md) |
+| 工具 | 产品改进建议：网页表单与飞书机器人代提交 | [VOC 接入](code-as-doc/dev/product_voc.md) |
