@@ -23,6 +23,13 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-10-14
+    title: 系统建设 · 工具与工程规模
+    note: 工程规模从系统数据页移入此标签页，与技能和钩子放在一起
+    page: system
+    anchor: codebase
+    evidence: "pr:auto-manual#1542"
+
   - date: 2026-10-12
     title: 产品矩阵
     note: 新页面：从已发布说明书整理产品线、容量和市场，可对照规格与功能
