@@ -38,7 +38,7 @@
     <p class="sd-scope" id="sd-scope" hidden></p>
 
     <div class="kpi-row" id="sd-kpis">
-      <div class="kpi"><span>已上线网页说明书</span><strong data-kpi="manuals">{{ count(summary.manuals) }}</strong><em>每份 = 一个 机型/区域/语言</em></div>
+      <div class="kpi"><span>网页语言版本</span><strong><span data-kpi="variants">{{ count(summary.variants) }}</span>{% if summary.variants is not none %}<small>个</small>{% endif %}</strong><em>合 <b data-kpi="books">{{ count(summary.books) }}</b> 本说明书（型号×区域）</em></div>
       <div class="kpi"><span>覆盖机型</span><strong data-kpi="models">{{ count(summary.models) }}</strong><em>分布在 <b data-kpi="regions">{{ count(summary.regions) }}</b> 个区域</em></div>
       <div class="kpi"><span>发布语言</span><strong data-kpi="languages">{{ count(summary.languages) }}</strong><em>按语言代码去重</em></div>
       <div class="kpi"><span>机型/区域目标</span><strong data-kpi="targets">{{ count(summary.targets) }}</strong><em>其中 <b data-kpi="review_targets">{{ count(summary.review_targets) }}</b> 个有评审页面</em></div>
@@ -51,16 +51,16 @@
       <p class="sd-empty">无数据：本次构建没有可读的发布清单（docs/publish/publish_manifest.json）。</p>
       {%- else %}
       <article class="sd-card" id="sd-matrix-card">
-        <header><h3>机型 × 语言发布矩阵</h3><p>实心格表示该机型已有这一语言的网页说明书，右侧为份数。点击一行即按该机型筛选。</p></header>
+        <header><h3>机型 × 语言发布矩阵</h3><p>实心格表示该机型已有这一语言的网页说明书，右侧为语言版本数。点击一行即按该机型筛选。</p></header>
         <div class="sd-chart" id="sd-matrix">{{ fallback() }}</div>
       </article>
       <div class="sd-grid">
         <article class="sd-card" id="sd-langs-card">
-          <header><h3>按语言</h3><p>每种语言的网页说明书份数。</p></header>
+          <header><h3>按语言</h3><p>每种语言的语言版本个数。</p></header>
           <div class="sd-chart" id="sd-langs">{{ fallback() }}</div>
         </article>
         <article class="sd-card" id="sd-regions-card">
-          <header><h3>按区域</h3><p>每个区域的网页说明书份数；点击即按该区域筛选。</p></header>
+          <header><h3>按区域</h3><p>每个区域的语言版本个数；点击即按该区域筛选。</p></header>
           <div class="sd-chart" id="sd-regions">{{ fallback() }}</div>
         </article>
       </div>
@@ -68,7 +68,7 @@
         <header><h3>已发布网页说明书</h3><p>按构建日期倒序；点表头排序，点一行按该机型筛选。</p></header>
         <div class="sd-tools">
           <input class="sd-search" id="sd-search" type="search" placeholder="搜索机型、区域、语言、版本…" aria-label="搜索已发布说明书" hidden>
-          <span class="sd-count" id="sd-count">{{ published|length }} 份</span>
+          <span class="sd-count" id="sd-count">{{ published|length }} 个语言版本</span>
         </div>
         <div class="sd-table-wrap">
           <table class="sd-table" id="sd-table">

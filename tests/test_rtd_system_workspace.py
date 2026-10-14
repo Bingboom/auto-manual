@@ -255,9 +255,15 @@ class SystemWorkspaceContractTests(unittest.TestCase):
 
     def test_publication_facts_count_books_by_model_and_region(self):
         path = self.root / "publish_manifest.json"
-        path.write_text(json.dumps(manifest()), encoding="utf-8")
+        data = manifest()
+        # A second route of one language version is no further edition.
+        data["targets"].append(dict(data["targets"][0], route="JE-TEST/US/en/legacy"))
+        path.write_text(json.dumps(data), encoding="utf-8")
         facts = sw.publication_facts(path)
-        self.assertEqual((facts["books"], facts["editions"], facts["last_published"]), (2, 3, "2026-09-22"))
+        self.assertEqual((facts["books"], facts["editions"], facts["variants"], facts["last_published"]),
+                         (2, 3, 3, "2026-09-22"))
+        self.assertEqual(facts["books_by_region"], {"EU": 1, "US": 1})
+        self.assertEqual(len(facts["targets"]), 4)
         path.write_text("not json", encoding="utf-8")
         self.assertIsNone(sw.publication_facts(path))
         path.write_text(json.dumps({"targets": []}), encoding="utf-8")
@@ -321,7 +327,7 @@ class SystemWorkspaceContextTests(unittest.TestCase):
     def test_lane_figures_come_from_the_manifest_and_the_blueprints(self):
         lanes = self.lanes(self.context())
         self.assertEqual([(m["label"], m["value"], m["unit"], m["sub"]) for m in lanes["web"]["metrics"]], [
-            ("在线手册", "2", "本", "3 个语言版"),
+            ("网页说明书", "2", "本", "3 个语言版本"),
             ("覆盖区域", "2", "个", "EU 1 本 · 美规 1 本"),  # unlabelled region codes show as they are
         ])
         (skeleton,) = lanes["sk"]["metrics"]
@@ -738,7 +744,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn(f'data-revision="{receipt["revision"]}"', page)
             self.assertIn(f'data-built-at="{receipt["built_at"]}"', page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.js").is_file())
-            self.assertIn("1 个语言版", page)
+            self.assertIn("1 个语言版本", page)
             self.assertIn("美规 1 本", page)
             self.assertIn("便携电源", page)  # a declared skeleton family, built or not
             self.assertIn('href="#cap-web_publishing"', page)

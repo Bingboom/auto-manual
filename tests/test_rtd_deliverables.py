@@ -203,15 +203,6 @@ class ViewTests(unittest.TestCase):
         self.assertEqual(first["rows"][0]["print"], [])
         self.assertEqual([r["code"] for r in view["regions"]], ["EU", "US", "JP", "pt-BR"])
 
-    def test_tiles_count_each_format(self):
-        tiles = {tile["label"]: (tile["value"], tile["sub"]) for tile in self.view()["tiles"]}
-        self.assertEqual(tiles, {
-            "型号": ("3", "5 个型号 × 区域"),
-            "网页": ("4", "覆盖 3 个型号 × 区域"),
-            "印刷交付包": ("2", "覆盖 2 个型号 × 区域"),
-            "Word 云文档": ("2", "覆盖 2 个型号 × 区域"),
-        })
-
     def test_staleness_and_missing_inputs(self):
         view = self.view()
         self.assertEqual((view["snapshot_date"], view["stale"], view["last_published"]), ("2026-09-25", [], "2026-09-24"))

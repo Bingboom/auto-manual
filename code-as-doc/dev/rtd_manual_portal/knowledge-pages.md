@@ -225,10 +225,11 @@ internal 知识库 page; the public manual library does not link to it.
   `.md`, `.rst`, `.yaml`/`.yml` and `.csv` file per top-level directory and
   file type. Nothing is snapshotted or committed for the page; a data change
   appears on the next RTD build.
-- **Cards:** headline counts (published Web manuals, models, languages, targets
-  with review pages, assets and their 成品 share); 发布 (a model × language
-  matrix, per-language and per-region bars and the sortable, searchable
-  publication table); 机型能力 (the target × capability matrix and each
+- **Cards:** headline counts (网页语言版本 N 个 with the 合 M 本说明书（型号×区域）
+  they make up, models, languages, targets with review pages, assets and their
+  成品 share); 发布 (a model × language matrix, per-language and per-region bars
+  and the sortable, searchable publication table, all counted in 语言版本, one
+  table row per route); 机型能力 (the target × capability matrix and each
   capability's coverage); 素材 (assets by status, category and model);
   工程规模 (lines per top-level directory, top 10, as bars split by file type,
   with fixed colours per type).
@@ -238,8 +239,13 @@ internal 知识库 page; the public manual library does not link to it.
   rows, asset bars, table rows) or a region bar narrow every card; clicking the
   same item again clears it. The selection is kept in the URL query
   (`?region=EU&model=JE-1000F`). An asset whose model or region is `ALL` counts
-  under every model or region. 工程规模 is whole-repository data and does not
-  follow the filters. Git history (branches, commits) is not shown: RTD clones
+  under every model or region. The headline 语言版本 and 说明书 are distinct
+  model × region × language and model × region identities: the build takes them
+  from `production_evidence.publication_facts`, the counting every page shares
+  (see [System workspace](system-workspace.md)), and a filter recounts the same
+  identities, so a repeated route counts once. 工程规模 is whole-repository
+  data and does not follow the filters. Git history (branches, commits) is not
+  shown: RTD clones
   shallowly, so it is not reliable at build time; `git ls-files` lists every
   tracked file in a shallow clone too.
 - **Without JavaScript** the whole-repository counts and the publication table
@@ -295,8 +301,9 @@ public manual library does not link to it.
   into 专用场景备电. `same_as` must name a navigation-listed model and takes no
   line of its own; it is for one product's market versions, never for products
   that merely share a platform.
-- **Sections:** headline counts (models with Web manuals, Web manuals, power
-  stations and batteries, accessories; 更多型号持续维护中 when the capability
+- **Sections:** headline counts (models with Web manuals, with 共 N 本网页说明书 ·
+  M 个语言版本 from `production_evidence.publication_facts`; power stations and
+  batteries; accessories; 更多型号持续维护中 when the capability
   table has models without a Web manual), a market filter, the line × capacity
   grid, accessory groups, the capability matrix (all / some / no regions), the
   sortable spec table, pairings and data sources.

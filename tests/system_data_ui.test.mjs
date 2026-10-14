@@ -34,7 +34,8 @@ const plain = value => JSON.parse(JSON.stringify(value));
 
 test('without a filter the counts cover every row', () => {
   const counts = load().summary(data, all);
-  assert.equal(counts.manuals, 4);
+  assert.equal(counts.variants, 4);
+  assert.equal(counts.books, 3);
   assert.equal(counts.models, 2);
   assert.equal(counts.languages, 2);
   assert.equal(counts.regions, 2);
@@ -47,20 +48,34 @@ test('without a filter the counts cover every row', () => {
 test('region and model filters narrow every count; shared assets stay in', () => {
   const model = load();
   const counts = model.summary(data, {region: 'EU', model: 'A'});
-  assert.equal(counts.manuals, 2);
+  assert.equal(counts.variants, 2);
+  assert.equal(counts.books, 1);
   assert.equal(counts.targets, 1);
   // A's EU asset plus the ALL/ALL asset; B's US asset is out.
   assert.equal(counts.assets, 2);
   assert.equal(model.summary(data, {region: 'US', model: ''}).assets, 2);
-  assert.equal(model.summary(data, {region: 'JP', model: ''}).manuals, 0);
+  assert.equal(model.summary(data, {region: 'JP', model: ''}).variants, 0);
+  assert.equal(model.summary(data, {region: 'JP', model: ''}).books, 0);
   assert.equal(model.summary(data, {region: 'JP', model: ''}).ready_share, 1);
 });
 
 test('a missing publish manifest keeps the publication counts empty', () => {
   const counts = load().summary({...data, published: null}, all);
-  assert.equal(counts.manuals, null);
+  assert.equal(counts.variants, null);
+  assert.equal(counts.books, null);
   assert.equal(counts.languages, null);
   assert.equal(counts.targets, 3);
+});
+
+test('a repeated route counts once, and a filter recounts language versions and books together', () => {
+  const model = load();
+  const aliased = {...data, published: [...data.published, {model: 'A', region: 'EU', lang: 'en'}]};
+  const counts = model.summary(aliased, all);
+  assert.deepEqual([counts.variants, counts.books], [4, 3]);
+  const eu = model.summary(aliased, {region: 'EU', model: ''});
+  assert.deepEqual([eu.variants, eu.books], [3, 2]);
+  const a = model.summary(aliased, {region: '', model: 'A'});
+  assert.deepEqual([a.variants, a.books], [3, 2]);
 });
 
 test('the matrix keeps every model of the region and orders languages by use', () => {

@@ -123,8 +123,15 @@ checks read only the already-published same-origin receipt.
   and entry links. It is maintained in auto-manual and reaches Hello-Docs
   through the mirror.
 - `docs/publish/publish_manifest.json` is the source of the publication counts.
-  It uses the REV-04 caliber: a book is one model × region, and language
-  editions are counted separately.
+  They use the REV-04 caliber, which is the vocabulary of the whole site: a
+  说明书 (unit 本) is one model × region and a 语言版本 (unit 个) is one
+  model × region × language. A repeated route, version or rebuild of one
+  identity counts once, and 份 is never a unit for language versions.
+  `publication_facts` in `tools/rtd/production_evidence.py` is the single
+  count: this page, 说明书工作台, 系统数据 and 产品矩阵 all take their figures
+  from it, and the 系统数据 filters recount the same identities in the browser.
+  This page's `publication_facts(path)` only reads the manifest and wraps it;
+  its `editions` key is the deduplicated `variants`.
 - The execution ledger named by `now_next.source` supplies REV statuses, the
   gate composition and each lane's progress. The page reads them and never
   restates a REV status.
@@ -173,8 +180,9 @@ Each lane in `focus.lanes` declares:
   lists, carries the lane's tag further down the page;
 - `items`: capability items shown with their status inside the lane;
 - `metrics`, computed at build time:
-  - `publications`: books and language editions from the publish manifest;
-  - `regions`: books per region, labelled by `focus.regions`;
+  - `publications`: 网页说明书 (books) and their 语言版本 from the publish
+    manifest;
+  - `regions`: books per region (`books_by_region`), labelled by `focus.regions`;
   - `corpus`: sentence pairs, terms and approved share from the corpus snapshot;
   - `skeletons`: blueprints per family, in `focus.skeleton_families` order, with
     未建 for a declared family that has none;

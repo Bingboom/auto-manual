@@ -345,11 +345,6 @@ def deliverables_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, 
 
     rows = [row for entry in models.values() for row in entry["rows"]]
 
-    def coverage(fmt: str) -> dict[str, str]:
-        count = sum(len(row[fmt]) for row in rows)
-        covered = sum(1 for row in rows if row[fmt])
-        return {"label": FORMAT_LABELS[fmt], "value": str(count), "sub": f"覆盖 {covered} 个型号 × 区域"}
-
     stale: list[str] = []
     exported = ""
     if snapshot is not None:
@@ -360,8 +355,6 @@ def deliverables_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, 
     built = sorted(item["date"] for row in rows for item in row["web"] if item["date"])
     return {
         "models": list(models.values()),
-        "tiles": [{"label": "型号", "value": str(len(models)), "sub": f"{len(rows)} 个型号 × 区域"},
-                  coverage("web"), coverage("print"), coverage("word")],
         "regions": [{"code": region, "label": region_label(region)}
                     for region in sorted({row["region"] for row in rows}, key=region_rank)],
         "snapshot_date": exported,

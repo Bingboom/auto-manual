@@ -226,7 +226,15 @@ def load_ledger(contract: dict[str, Any], root: Path) -> Ledger | None:
 
 
 def publication_facts(manifest_path: Path) -> dict[str, Any] | None:
-    """Counts from the frozen publish manifest (REV-04: a book is one model x region)."""
+    """Counts from the frozen publish manifest (REV-04: a book is one model x region).
+
+    The counting is ``production_evidence.publication_facts``, shared by every
+    page; ``editions`` is its deduplicated ``variants`` under the key this page
+    has always read.
+    """
+    # Imported here: production_evidence imports this module at load time.
+    from tools.rtd.production_evidence import publication_facts as count_publications
+
     try:
         data = json.loads(manifest_path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -237,13 +245,8 @@ def publication_facts(manifest_path: Path) -> dict[str, Any] | None:
     editions = [t for t in targets if isinstance(t, dict) and t.get("model") and t.get("region")]
     if not editions:
         return None
-    built = sorted(str(t.get("built_at") or "")[:10] for t in editions if t.get("built_at"))
-    return {
-        "books": len({(t["model"], t["region"]) for t in editions}),
-        "editions": len(editions),
-        "last_published": built[-1] if built else "",
-        "targets": editions,
-    }
+    facts = count_publications(editions)
+    return {**facts, "editions": facts["variants"], "targets": editions}
 
 
 def skeleton_facts(root: Path) -> list[dict[str, str]] | None:
@@ -929,15 +932,13 @@ def lane_metrics(name: str, *, focus: dict[str, Any], facts: dict[str, Any] | No
     """The figures one focus lane shows; each source missing renders as 无数据, never as zero."""
     if name == "publications":
         if not facts:
-            return [_metric("在线手册")]
-        return [_metric("在线手册", facts["books"], "本", f"{facts['editions']} 个语言版")]
+            return [_metric("网页说明书")]
+        return [_metric("网页说明书", facts["books"], "本", f"{facts['variants']} 个语言版本")]
     if name == "regions":
         if not facts:
             return [_metric("覆盖区域")]
         labels = focus.get("regions") or {}
-        books: dict[str, int] = {}
-        for _model, region in {(t["model"], t["region"]) for t in facts["targets"]}:
-            books[region] = books.get(region, 0) + 1
+        books = facts["books_by_region"]
         order = sorted(books, key=lambda region: (-books[region], region))
         sub = " · ".join(f"{labels.get(region, region)} {books[region]} 本" for region in order)
         return [_metric("覆盖区域", len(books), "个", sub)]
