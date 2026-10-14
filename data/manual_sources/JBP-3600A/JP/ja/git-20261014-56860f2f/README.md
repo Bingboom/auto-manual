@@ -26,7 +26,7 @@ Each panel is read as one page in panel-local PDF points. The cover and contents
 - `source/extract_assets.py` acquires every asset from its recorded decision in `source/figures.json` (reuse, 4x panel crop, native vector glyph or embedded image). `--check` verifies the recorded hashes.
 - `rebuild.py` verifies the archived PDF, every inventoried input and the pinned shared repository inputs, then replays through the shared Manual IR APIs.
 
-Component inventory: HB-CALLOUT-STRIP 4, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 10, HB-WARRANTY-SECTION 6.
+Component inventory: HB-CALLOUT-STRIP 4, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 10, HB-TABLE-TROUBLESHOOTING 1, HB-WARRANTY-SECTION 6.
 
 ## Print fidelity
 
@@ -37,13 +37,26 @@ Component inventory: HB-CALLOUT-STRIP 4, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENC
 | 説明 and ご注意 boxes, the p07 警告 box | Shared callout strip; the 警告 box uses the shared warning lockup |
 | Symbol table (8 rows) | Native grid; shared native-v1 symbols, matched to the print by raster comparison and side-by-side review |
 | Inbox cards ①②③ | Shared inbox component |
-| LCD, troubleshooting and specification tables | Native grids, as printed: only troubleshooting has a header row; 保存温度 keeps its three lines; LiFePO4 keeps its subscript |
+| Troubleshooting table | Shared troubleshooting component, as in JBP-2000B / JBP-3600A EU, with the print's エラーコード / 対処方法 header row |
+| LCD and specification tables | Native grids, as printed, with no header row; 保存温度 keeps its three lines; LiFePO4 keeps its subscript |
 | Warranty cards (保証期間 … 保証内容) | Shared warranty sections. The grey introduction and the grey 免責事項 panel stay grey panels. |
 | Figures | Complete panels; words printed in the art stay in the art; alt text carries the caption and labels; no visible captions |
 
 All two- and three-column tables fit a 390 px phone, and none scrolls at any width from 320 to 1920 px (`audit/browser-validation.json`).
 
 Print-source wording is kept as printed. Examples: "Jackery Explorer 3600 Plus" exists only as hidden 0.8 pt art text inside the illustrations, and the warranty intro says "Jackery ポータブル電源製品" in a battery-pack manual. Nothing is corrected here.
+
+## JBP-2000B reference
+
+Operator, 2026-10-14: 「用JBP-2000B的参考」. JBP-2000B EU and JBP-3600A EU are the layout and structure references. Content stays as printed. Where following them would change printed content, the print wins and the difference is listed here:
+
+- **Troubleshooting:** uses the shared troubleshooting component, as in the reference.
+- **Signal-word table:** stays a native grid. The shared signal component always renders a header row (記号 / 意味), which the JP print does not have.
+- **LCD table:** stays a native grid. The shared LCD icon component adds an icon to each row, which the JP print table does not have.
+- **Specification table:** stays a native grid. The shared spec component needs a printed group title; the JP print has one untitled table, not the reference's three groups.
+- **Symbol table:** stays a native grid of shared native-v1 symbols. The shared symbol component needs source-bound symbol admission, and its vector mapper (`tools/asset_pipeline/native_svg.py`) fails on this Illustrator sheet. A shared fix needs operator approval.
+- **Chapter order:** follows the print, which puts 充電方法 before トラブルシューティング. The print has no STORAGE chapter.
+- **Figures:** text-free art with live labels, as in the reference, is pending the operator's choice between raster text-free art and a shared vector fix.
 
 ## Artwork reuse
 

@@ -232,8 +232,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 6850,
-      "sha256": "20047e40b33d89ae98543b152078be83709b7b932425a1d8643c6e33c76f564a"
+      "size": 8384,
+      "sha256": "5eea94a488df9f236a62b82b28d93c0faa83c181a356419f6f1fa3957a2344f4"
     },
     {
       "path": "assets/ac-charging.png",
@@ -382,8 +382,8 @@
     },
     {
       "path": "audit/validation.zh.md",
-      "size": 1943,
-      "sha256": "6a9d3b589933128cb743a89fc9d33389da9b6ce2a4f4966ba0d1cfd41afd4bc9"
+      "size": 1988,
+      "sha256": "542e29d6ce37cc727f272b158ef665cb10070f22b9a5e19cd386bc011a9727a9"
     },
     {
       "path": "rebuild.py",
@@ -402,13 +402,13 @@
     },
     {
       "path": "source/intake.py",
-      "size": 16929,
-      "sha256": "c7932adcf3291588321f6e9d9ae932b4361aa74a5dce1c3ee62b1361c49bd807"
+      "size": 17108,
+      "sha256": "4a57196807497be1bc0ac98363f056a1cdc9e74491efbe15d6e029b40a080c04"
     },
     {
       "path": "source/ja/content.json",
-      "size": 152351,
-      "sha256": "684b64611043af227f4f068cd687480a79dfb3f26290799c2e3b707e46fd81ff"
+      "size": 140284,
+      "sha256": "853480be81c52bfd462e3ac391d4da8224eac3eabf89d6bab99abf0b5b6abf45"
     },
     {
       "path": "source/ja/coverage.json",
@@ -427,8 +427,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 4016,
-      "sha256": "5a3c5e4a0c6007f2713cb9711cf024b5742351fce67e769179d06e3e7217d0a1"
+      "size": 4041,
+      "sha256": "df98a1b4f4a1821dd2800d29bfe760dd5876a76661ad124a8fb1bd8d27629ede"
     },
     {
       "path": "source/refresh_manifest.py",
@@ -447,8 +447,8 @@
     },
     {
       "path": "web/ja/_static/source_presentation.css",
-      "size": 4016,
-      "sha256": "5a3c5e4a0c6007f2713cb9711cf024b5742351fce67e769179d06e3e7217d0a1"
+      "size": 4041,
+      "sha256": "df98a1b4f4a1821dd2800d29bfe760dd5876a76661ad124a8fb1bd8d27629ede"
     },
     {
       "path": "web/ja/_static/web_manual.css",
@@ -597,13 +597,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 238001,
-      "sha256": "89027577e85f658280f3ef8bd0b222542f46438dab6d1b4936041232e564fe55"
+      "size": 225245,
+      "sha256": "bbe0a030cf75c7ef401d3129aa1142921f167e73fed1a565f0bd59985384c75c"
     },
     {
       "path": "web/ja/manual_jbp3600a_jp_ja.md",
-      "size": 32227,
-      "sha256": "21f8a4de7e6697220e4de590f78c86c6019dc667813204020407150965e38887"
+      "size": 33112,
+      "sha256": "2aae33de1feb9eec5c2072ff7b569e12a0f5940a8af78838540e163388bb97b5"
     }
   ],
   "repo_inputs": [

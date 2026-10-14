@@ -28,8 +28,8 @@
     "assets/contact-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "e425b7caf6f70b88223ddd45aa8912b1a4718f3bccc4122ff5c647e870d62f04",
-  "content_sha256": "eca2af3e44a6c0c5d33e53a5b91f749acbeb429f8d1946887462037ae4f68815",
+  "bundle_sha256": "e6e4ba57fd94cb8d5a10b271979db5c5379d9d1c7b5640eb5e230b5633f3fe2d",
+  "content_sha256": "ec5bec9b573be970b93c39166b11fced2f07d858c1a1ad780386befeadd422e0",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -66,6 +66,7 @@
       "HB-CALLOUT-STRIP": 4,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 10,
+      "HB-TABLE-TROUBLESHOOTING": 1,
       "HB-WARRANTY-SECTION": 6
     },
     "component_registry": {
@@ -1885,7 +1886,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "5a3c5e4a0c6007f2713cb9711cf024b5742351fce67e769179d06e3e7217d0a1"
+      "sha256": "df98a1b4f4a1821dd2800d29bfe760dd5876a76661ad124a8fb1bd8d27629ede"
     },
     "title": "Jackery Battery Pack 3600 取扱説明書 · JBP-3600A",
     "web_contract": {
@@ -4840,485 +4841,122 @@
         {
           "asset_refs": [],
           "block_id": "troubleshooting:block-0003",
-          "content_sha256": "f751bcd9c8cbf3fd1fffe9db40b573aa772c038e0d2331c88148d6954e8ec73a",
+          "content_sha256": "b95a3ebb5fce8a27c9bb657370180471f681c6f452f3a5d8cafbf0576d7e3859",
           "kind": "flow",
           "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "エラーコード"
-                              }
-                            ],
-                            "header": true,
-                            "kind": "table_cell",
-                            "scope": "col"
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "対処方法"
-                              }
-                            ],
-                            "header": true,
-                            "kind": "table_cell",
-                            "scope": "col"
-                          }
-                        ],
-                        "kind": "table_row"
-                      }
-                    ],
-                    "kind": "table_head"
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F0"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "製品を再起動してください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F1"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Jackeryカスタマーサポートまでご連絡ください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F2"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Jackeryカスタマーサポートまでご連絡ください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F3"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "製品を再起動してください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F4"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "製品に負荷を接続してバッテリーを放電し、エラーが消えるまで続けてください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F5"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "ソーラーパネルまたはAC電源コンセントを使用して、エラーが消えるまで製品を充電してください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F6"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Jackeryカスタマーサポートまでご連絡ください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F7"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Jackeryカスタマーサポートまでご連絡ください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F8"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Jackeryカスタマーサポートまでご連絡ください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "F9"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Jackeryカスタマーサポートまでご連絡ください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "FA"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Jackeryカスタマーサポートまでご連絡ください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "FC"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "Jackeryカスタマーサポートまでご連絡ください。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      },
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "FF"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-code"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "製品を適切な温度環境に置き、障害が解消するまで待機します。"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
-                      }
-                    ],
-                    "kind": "table_body"
-                  }
-                ],
-                "kind": "table",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "manual-table native-print-grid native-trouble native-fit"
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-TABLE-TROUBLESHOOTING",
+              "language": "ja",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": [
+                    {
+                      "content_html": "エラーコード",
+                      "content_text": "エラーコード"
+                    },
+                    {
+                      "content_html": "対処方法",
+                      "content_text": "対処方法"
                     }
-                  }
+                  ],
+                  "content_kind": "ordered_headers",
+                  "role": "headers"
+                },
+                {
+                  "content": [
+                    {
+                      "code_html": "F0",
+                      "code_text": "F0",
+                      "measures_html": "製品を再起動してください。",
+                      "measures_text": "製品を再起動してください。"
+                    },
+                    {
+                      "code_html": "F1",
+                      "code_text": "F1",
+                      "measures_html": "Jackeryカスタマーサポートまでご連絡ください。",
+                      "measures_text": "Jackeryカスタマーサポートまでご連絡ください。"
+                    },
+                    {
+                      "code_html": "F2",
+                      "code_text": "F2",
+                      "measures_html": "Jackeryカスタマーサポートまでご連絡ください。",
+                      "measures_text": "Jackeryカスタマーサポートまでご連絡ください。"
+                    },
+                    {
+                      "code_html": "F3",
+                      "code_text": "F3",
+                      "measures_html": "製品を再起動してください。",
+                      "measures_text": "製品を再起動してください。"
+                    },
+                    {
+                      "code_html": "F4",
+                      "code_text": "F4",
+                      "measures_html": "製品に負荷を接続してバッテリーを放電し、エラーが消えるまで続けてください。",
+                      "measures_text": "製品に負荷を接続してバッテリーを放電し、エラーが消えるまで続けてください。"
+                    },
+                    {
+                      "code_html": "F5",
+                      "code_text": "F5",
+                      "measures_html": "ソーラーパネルまたはAC電源コンセントを使用して、エラーが消えるまで製品を充電してください。",
+                      "measures_text": "ソーラーパネルまたはAC電源コンセントを使用して、エラーが消えるまで製品を充電してください。"
+                    },
+                    {
+                      "code_html": "F6",
+                      "code_text": "F6",
+                      "measures_html": "Jackeryカスタマーサポートまでご連絡ください。",
+                      "measures_text": "Jackeryカスタマーサポートまでご連絡ください。"
+                    },
+                    {
+                      "code_html": "F7",
+                      "code_text": "F7",
+                      "measures_html": "Jackeryカスタマーサポートまでご連絡ください。",
+                      "measures_text": "Jackeryカスタマーサポートまでご連絡ください。"
+                    },
+                    {
+                      "code_html": "F8",
+                      "code_text": "F8",
+                      "measures_html": "Jackeryカスタマーサポートまでご連絡ください。",
+                      "measures_text": "Jackeryカスタマーサポートまでご連絡ください。"
+                    },
+                    {
+                      "code_html": "F9",
+                      "code_text": "F9",
+                      "measures_html": "Jackeryカスタマーサポートまでご連絡ください。",
+                      "measures_text": "Jackeryカスタマーサポートまでご連絡ください。"
+                    },
+                    {
+                      "code_html": "FA",
+                      "code_text": "FA",
+                      "measures_html": "Jackeryカスタマーサポートまでご連絡ください。",
+                      "measures_text": "Jackeryカスタマーサポートまでご連絡ください。"
+                    },
+                    {
+                      "code_html": "FC",
+                      "code_text": "FC",
+                      "measures_html": "Jackeryカスタマーサポートまでご連絡ください。",
+                      "measures_text": "Jackeryカスタマーサポートまでご連絡ください。"
+                    },
+                    {
+                      "code_html": "FF",
+                      "code_text": "FF",
+                      "measures_html": "製品を適切な温度環境に置き、障害が解消するまで待機します。",
+                      "measures_text": "製品を適切な温度環境に置き、障害が解消するまで待機します。"
+                    }
+                  ],
+                  "content_kind": "ordered_rows",
+                  "role": "rows"
                 }
-              }
-            ],
-            "kind": "group",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "table-wrapper docutils container native-table-wrap"
-                }
-              }
+              ],
+              "source_ref": "native-pdf/troubleshooting",
+              "token_roles": [
+                "component.table.troubleshooting"
+              ],
+              "variant": "two-column"
             },
-            "role": "container",
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/troubleshooting#block-3"
@@ -5329,7 +4967,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#troubleshooting",
       "source_ref": "native-pdf/troubleshooting",
-      "source_sha256": "d2de9bc19266458454f2fac63a876580c725a7d859d0fca5ecd80b19095275dd"
+      "source_sha256": "bf0b0c2d3ae12265215006c6a35a51dd2e6a16ee2772a1981f54cd99a9c900e8"
     },
     {
       "blocks": [

@@ -21,6 +21,7 @@ from tools.component_specs.warranty import warranty_section_component_spec  # no
 from tools.manual_ir.flow import flow_nodes_to_html  # noqa: E402
 from tools.web.frozen_ai_flow import callout as shared_callout  # noqa: E402
 from tools.web.frozen_ai_flow import node, root, text  # noqa: E402
+from tools.web.frozen_ai_table_components import troubleshooting_flow  # noqa: E402
 
 FULL = 337.2  # right edge of the print's full-width text frame
 TRIANGLE = "assets/signal-triangle.svg"
@@ -250,13 +251,14 @@ def make():
     # ---- 08 トラブルシューティング, 主な仕様 ---------------------------------------------------
     n.chapter("troubleshooting", 10, [30, 25, 345, 46])
     n.add(*n.prose(10, [25, 52, 345, 72], right=FULL))
-    head = [[cell(n.t(10, [28, 76, 70, 88]), header=True, scope="col"),
-             cell(n.t(10, [70, 76, 340, 88]), header=True, scope="col")]]
+    # Shared troubleshooting table (as JBP-2000B / JBP-3600A EU); the print has its header row.
+    headings = [n.t(10, [28, 76, 70, 88]), n.t(10, [70, 76, 340, 88])]
     bounds = [88, 99, 110, 121, 132, 143, 160.5, 171.5, 182.5, 194, 205, 216, 227.5, 239.3]
-    rows = [[cell(n.t(10, [28, y0, 70, y1]), cls="native-code"),
-             cell(inline(n.prose(10, [70, y0, 340, y1], right=313.0)))]  # column text frame
+    rows = [{"code": n.t(10, [28, y0, 70, y1]),
+             "action": plain(n.prose(10, [70, y0, 340, y1], right=313.0)[0])}  # column text frame
             for y0, y1 in zip(bounds[:-1], bounds[1:], strict=True)]
-    n.add(grid(head, rows, "native-print-grid native-trouble native-fit"))
+    n.add(*troubleshooting_flow({"rows": rows}, headings=headings,
+                                source_ref="native-pdf/troubleshooting", language=LANGUAGE))
     n.chapter("specifications", 10, [30, 250, 345, 270])
     bounds = [275, 290.7, 305.7, 320.7, 335.7, 350.7, 365.7, 380.7, 395.7, 410.7, 453.3]
     rows = []

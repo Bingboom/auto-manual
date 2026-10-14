@@ -35,7 +35,6 @@
 #furo-main-content table.native-symbols td.native-symbol-cell { width: 5rem; text-align: center; }
 #furo-main-content table.native-symbols td.native-symbol-cell img { width: 2.2rem !important; height: auto; margin: 0 !important; }
 #furo-main-content table.native-lcd td.native-key { width: 34%; }
-#furo-main-content table.native-trouble :is(td.native-code, th:first-child) { width: 6.5rem; text-align: center; font-weight: 700; }
 #furo-main-content table.native-spec td.native-key { width: 34%; font-weight: 500; }
 
 /* p08 certification line: the mark sits in the value column, larger, as printed. */
@@ -51,12 +50,14 @@
 #furo-main-content img.native-contact-icon { width: 1.6rem !important; height: 1.6rem !important; margin: 0 !important; flex: none; }
 .native-contact .native-figure { flex: none; }
 
-/* Two- and three-column tables fit the phone. */
+/* Two- and three-column tables fit the phone; the shared troubleshooting table would scroll below 40rem. */
 @media (max-width: 760px) {
   #furo-main-content table.native-fit { min-width: 0 !important; }
+  #furo-main-content table.hb-troubleshooting-table { min-width: 0 !important; }
+  #furo-main-content .hb-troubleshooting-col-code { width: 24%; }
+  #furo-main-content .hb-troubleshooting-col-measures { width: 76%; }
   #furo-main-content table.native-signal td.native-signal-label { width: 5.2rem; font-size: 1rem; }
   #furo-main-content table.native-symbols td.native-symbol-cell { width: 3.4rem; }
-  #furo-main-content table.native-trouble :is(td.native-code, th:first-child) { width: 5.8rem; white-space: nowrap; }
 }
 @media (max-width: 420px) {
   #furo-main-content table.native-print-grid :is(td, th) { padding: 0.42rem 0.4rem !important; }
@@ -163,7 +164,7 @@
 
 <p>次のいずれかのエラーコードが表示された場合は、記載されている対処方法に従って問題を解決してください。問題が解決しない場合は、Jackeryカスタマーサポートまでご連絡ください。</p>
 
-<div class="table-wrapper docutils container native-table-wrap"><table class="manual-table native-print-grid native-trouble native-fit"><thead><tr><th scope="col">エラーコード</th><th scope="col">対処方法</th></tr></thead><tbody><tr><td class="native-code">F0</td><td>製品を再起動してください。</td></tr><tr><td class="native-code">F1</td><td>Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="native-code">F2</td><td>Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="native-code">F3</td><td>製品を再起動してください。</td></tr><tr><td class="native-code">F4</td><td>製品に負荷を接続してバッテリーを放電し、エラーが消えるまで続けてください。</td></tr><tr><td class="native-code">F5</td><td>ソーラーパネルまたはAC電源コンセントを使用して、エラーが消えるまで製品を充電してください。</td></tr><tr><td class="native-code">F6</td><td>Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="native-code">F7</td><td>Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="native-code">F8</td><td>Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="native-code">F9</td><td>Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="native-code">FA</td><td>Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="native-code">FC</td><td>Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="native-code">FF</td><td>製品を適切な温度環境に置き、障害が解消するまで待機します。</td></tr></tbody></table></div>
+<figure aria-label="エラーコード / 対処方法" class="hb-troubleshooting-composition" data-component-id="HB-TABLE-TROUBLESHOOTING" tabindex="0"><table class="hb-troubleshooting-table"><colgroup><col class="hb-troubleshooting-col-code"/><col class="hb-troubleshooting-col-measures"/></colgroup><thead><tr><th class="hb-troubleshooting-code" scope="col">エラーコード</th><th class="hb-troubleshooting-measures" scope="col">対処方法</th></tr></thead><tbody><tr><td class="hb-troubleshooting-code">F0</td><td class="hb-troubleshooting-measures">製品を再起動してください。</td></tr><tr><td class="hb-troubleshooting-code">F1</td><td class="hb-troubleshooting-measures">Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="hb-troubleshooting-code">F2</td><td class="hb-troubleshooting-measures">Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="hb-troubleshooting-code">F3</td><td class="hb-troubleshooting-measures">製品を再起動してください。</td></tr><tr><td class="hb-troubleshooting-code">F4</td><td class="hb-troubleshooting-measures">製品に負荷を接続してバッテリーを放電し、エラーが消えるまで続けてください。</td></tr><tr><td class="hb-troubleshooting-code">F5</td><td class="hb-troubleshooting-measures">ソーラーパネルまたはAC電源コンセントを使用して、エラーが消えるまで製品を充電してください。</td></tr><tr><td class="hb-troubleshooting-code">F6</td><td class="hb-troubleshooting-measures">Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="hb-troubleshooting-code">F7</td><td class="hb-troubleshooting-measures">Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="hb-troubleshooting-code">F8</td><td class="hb-troubleshooting-measures">Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="hb-troubleshooting-code">F9</td><td class="hb-troubleshooting-measures">Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="hb-troubleshooting-code">FA</td><td class="hb-troubleshooting-measures">Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="hb-troubleshooting-code">FC</td><td class="hb-troubleshooting-measures">Jackeryカスタマーサポートまでご連絡ください。</td></tr><tr><td class="hb-troubleshooting-code">FF</td><td class="hb-troubleshooting-measures">製品を適切な温度環境に置き、障害が解消するまで待機します。</td></tr></tbody></table></figure>
 
 <span id="native-specifications"></span>
 

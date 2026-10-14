@@ -8,7 +8,7 @@
 | 美术复现 | `python3 $PKG/source/extract_assets.py --check` | 26/26 与记录哈希一致 |
 | 词覆盖门 | `python3 $PKG/source/intake.py` | 10 章，问题 0；整张图纸 588 词全部分类 |
 | ruff | `python -m ruff check build.py integrations tools tests scripts` 与 `ruff check $PKG` | 通过 |
-| 包测试 | `python -m unittest tests.test_jbp3600a_jp_ja_web` | 13 项通过（含 intake 复现、美术复现、冷重放、准入、篡改拒绝） |
+| 包测试 | `python -m unittest tests.test_jbp3600a_jp_ja_web` | 13 项通过（含 intake 复现、美术复现、冷重放、准入、篡改拒绝）；故障表改为共享组件后复测通过 |
 | 全量测试 | `python -m unittest` | 5472 项；本包测试在清单刷新后全部通过；唯一无关失败为 `test_bitable_schema_cli` 帮助文本 golden（本地 Python 3.13 的 argparse 换行，CI 为 3.12），与本改动无关 |
 | 维护性守卫 | `python -m tools.check_maintainability_guardrails` | 通过 |
 | 文档链接 | `python -m tools.check_doc_link_integrity` | 0 断链 |

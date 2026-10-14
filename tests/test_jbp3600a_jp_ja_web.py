@@ -30,7 +30,7 @@ CHAPTERS = [
     ('troubleshooting', 'トラブルシューティング'), ('specifications', '主な仕様'), ('warranty', '保証について'),
 ]
 COMPONENTS = {'HB-CALLOUT-STRIP': 4, 'HB-SPECIAL-INBOX': 1, 'HB-SPECIAL-REFERENCE-FIGURE': 10,
-              'HB-WARRANTY-SECTION': 6}
+              'HB-TABLE-TROUBLESHOOTING': 1, 'HB-WARRANTY-SECTION': 6}
 # Cover, contents and the production metadata around the panels stay out of the Web body.
 ABSENT = ['目次', 'お買い上げありがとうございます', '国内専用', 'HTP0113600A', '16-0102-000060', '第一次发行',
           '成品尺寸', '折页', '产品料号']
@@ -254,7 +254,8 @@ class Jbp3600aJpJaWebTests(unittest.TestCase):
         self.assertEqual([c.get_text(strip=True) for c in signal.select('td.native-signal-label')],
                          ['警告', '注意', '説明', 'ヒント'])
         self.assertEqual(len(soup.select('table.native-symbols tbody > tr')), 8)
-        trouble = soup.select_one('table.native-trouble')
+        # The shared troubleshooting table (JBP-2000B reference) carries the print's own header row.
+        trouble = soup.select_one('table.hb-troubleshooting-table')
         self.assertEqual([c.get_text(strip=True) for c in trouble.select('thead th')], ['エラーコード', '対処方法'])
         self.assertEqual(len(trouble.select('tbody > tr')), 13)
         spec = soup.select_one('table.native-spec')

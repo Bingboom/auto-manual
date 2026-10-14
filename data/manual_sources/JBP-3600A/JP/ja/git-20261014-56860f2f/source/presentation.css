@@ -34,7 +34,6 @@
 #furo-main-content table.native-symbols td.native-symbol-cell { width: 5rem; text-align: center; }
 #furo-main-content table.native-symbols td.native-symbol-cell img { width: 2.2rem !important; height: auto; margin: 0 !important; }
 #furo-main-content table.native-lcd td.native-key { width: 34%; }
-#furo-main-content table.native-trouble :is(td.native-code, th:first-child) { width: 6.5rem; text-align: center; font-weight: 700; }
 #furo-main-content table.native-spec td.native-key { width: 34%; font-weight: 500; }
 
 /* p08 certification line: the mark sits in the value column, larger, as printed. */
@@ -50,12 +49,14 @@
 #furo-main-content img.native-contact-icon { width: 1.6rem !important; height: 1.6rem !important; margin: 0 !important; flex: none; }
 .native-contact .native-figure { flex: none; }
 
-/* Two- and three-column tables fit the phone. */
+/* Two- and three-column tables fit the phone; the shared troubleshooting table would scroll below 40rem. */
 @media (max-width: 760px) {
   #furo-main-content table.native-fit { min-width: 0 !important; }
+  #furo-main-content table.hb-troubleshooting-table { min-width: 0 !important; }
+  #furo-main-content .hb-troubleshooting-col-code { width: 24%; }
+  #furo-main-content .hb-troubleshooting-col-measures { width: 76%; }
   #furo-main-content table.native-signal td.native-signal-label { width: 5.2rem; font-size: 1rem; }
   #furo-main-content table.native-symbols td.native-symbol-cell { width: 3.4rem; }
-  #furo-main-content table.native-trouble :is(td.native-code, th:first-child) { width: 5.8rem; white-space: nowrap; }
 }
 @media (max-width: 420px) {
   #furo-main-content table.native-print-grid :is(td, th) { padding: 0.42rem 0.4rem !important; }
