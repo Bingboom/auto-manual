@@ -255,9 +255,15 @@ class SystemWorkspaceContractTests(unittest.TestCase):
 
     def test_publication_facts_count_books_by_model_and_region(self):
         path = self.root / "publish_manifest.json"
-        path.write_text(json.dumps(manifest()), encoding="utf-8")
+        data = manifest()
+        # A second route of one language version is no further edition.
+        data["targets"].append(dict(data["targets"][0], route="JE-TEST/US/en/legacy"))
+        path.write_text(json.dumps(data), encoding="utf-8")
         facts = sw.publication_facts(path)
-        self.assertEqual((facts["books"], facts["editions"], facts["last_published"]), (2, 3, "2026-09-22"))
+        self.assertEqual((facts["books"], facts["editions"], facts["variants"], facts["last_published"]),
+                         (2, 3, 3, "2026-09-22"))
+        self.assertEqual(facts["books_by_region"], {"EU": 1, "US": 1})
+        self.assertEqual(len(facts["targets"]), 4)
         path.write_text("not json", encoding="utf-8")
         self.assertIsNone(sw.publication_facts(path))
         path.write_text(json.dumps({"targets": []}), encoding="utf-8")
@@ -321,7 +327,7 @@ class SystemWorkspaceContextTests(unittest.TestCase):
     def test_lane_figures_come_from_the_manifest_and_the_blueprints(self):
         lanes = self.lanes(self.context())
         self.assertEqual([(m["label"], m["value"], m["unit"], m["sub"]) for m in lanes["web"]["metrics"]], [
-            ("在线手册", "2", "本", "3 个语言版"),
+            ("网页说明书", "2", "本", "3 个语言版本"),
             ("覆盖区域", "2", "个", "EU 1 本 · 美规 1 本"),  # unlabelled region codes show as they are
         ])
         (skeleton,) = lanes["sk"]["metrics"]
@@ -676,6 +682,17 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
                 self.assertRaises(SystemExit):
             sw.main(["check", "--today", "24/09/2026"])
 
+    def assert_no_sidebar_links_to_overview_sections(self, site: Path) -> None:
+        """No page's sidebar links to 分享资料 (#shares) or 最近更新 (#updates): both are 概览 page sections."""
+        checked = []
+        for path in site.rglob("*.html"):
+            text = path.read_text(encoding="utf-8")
+            if 'id="app-sidebar"' in text:
+                checked.append(path.relative_to(site).as_posix())
+                for section in ("#shares", "#updates"):
+                    self.assertNotIn(f'{section}" class="app-nav-link', text, path)
+        self.assertIn("workspace/system/index.html", checked)
+
     def test_real_sphinx_renders_the_page_and_drops_only_it_on_contract_error(self):
         with TemporaryDirectory() as temp:
             base = Path(temp)
@@ -728,7 +745,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn(f'data-revision="{receipt["revision"]}"', page)
             self.assertIn(f'data-built-at="{receipt["built_at"]}"', page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.js").is_file())
-            self.assertIn("1 个语言版", page)
+            self.assertIn("1 个语言版本", page)
             self.assertIn("美规 1 本", page)
             self.assertIn("便携电源", page)  # a declared skeleton family, built or not
             self.assertIn('href="#cap-web_publishing"', page)
@@ -758,11 +775,16 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             # Snapshot freshness wording comes from the registry, not a fixed cadence.
             self.assertIn(f"超过 {shipped_registry['corpus']['stale_after_days']} 天显示待复核", page)
             self.assertNotIn("按月快照", page)
-            self.assertIn('#shares" class="app-nav-link"', page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="system/index.html"', workspace)
             self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
+            # 分享资料 and 最近更新 stay as sections of the 概览 page, without a search box or filters.
+            self.assertIn('id="shares"', workspace)
+            self.assertIn('id="updates"', workspace)
+            for removed in ('id="search"', 'class="filter-bar"'):
+                self.assertNotIn(removed, workspace)
+            self.assert_no_sidebar_links_to_overview_sections(base / "good")
 
             # The workspace and its system page do not depend on the AI sharing package.
             share.rename(base / "share-aside")
@@ -772,10 +794,11 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('href="system/index.html"', workspace)
             for absent in ("ai-share", 'id="shares"', 'id="search"', 'href="#shares"'):
                 self.assertNotIn(absent, workspace)
+            self.assertIn('id="updates"', workspace)
             self.assertIn('document.querySelector(".app-menu")', workspace)
             page = (base / "no-share" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             self.assertIn("当前重点", page)
-            self.assertNotIn('#shares" class="app-nav-link"', page)
+            self.assert_no_sidebar_links_to_overview_sections(base / "no-share")
             self.assertFalse((base / "no-share" / "ai-share").exists())
             (base / "share-aside").rename(share)
 

@@ -45,8 +45,9 @@ Existing capabilities name actual repository skills for file pretranslation,
 AI-file diagnosis/renumbering, PDF QC annotations, backport and builds. Hook
 entries distinguish Claude PostToolUse configuration from Git pre-push scripts
 that require core.hooksPath activation. The installed PDF multilingual audit
-skill is explicitly local, outside mirror distribution. Personal Product Knowledge
-and Market Policy pages are not part of this architecture view. Future access and
+skill is explicitly local, outside mirror distribution. The 产品知识 and 市场与政策
+pages are knowledge-base pages for product readers and are not part of this
+architecture view. Future access and
 cross-format IR directions extend the existing stages without fabricated dates;
 review-experience accumulation remains the knowledge-feedback direction.
 
@@ -122,8 +123,15 @@ checks read only the already-published same-origin receipt.
   and entry links. It is maintained in auto-manual and reaches Hello-Docs
   through the mirror.
 - `docs/publish/publish_manifest.json` is the source of the publication counts.
-  It uses the REV-04 caliber: a book is one model × region, and language
-  editions are counted separately.
+  They use the REV-04 caliber, which is the vocabulary of the whole site: a
+  说明书 (unit 本) is one model × region and a 语言版本 (unit 个) is one
+  model × region × language. A repeated route, version or rebuild of one
+  identity counts once, and 份 is never a unit for language versions.
+  `publication_facts` in `tools/rtd/production_evidence.py` is the single
+  count: this page, 说明书工作台, 系统数据 and 产品矩阵 all take their figures
+  from it, and the 系统数据 filters recount the same identities in the browser.
+  This page's `publication_facts(path)` only reads the manifest and wraps it;
+  its `editions` key is the deduplicated `variants`.
 - The execution ledger named by `now_next.source` supplies REV statuses, the
   gate composition and each lane's progress. The page reads them and never
   restates a REV status.
@@ -137,12 +145,17 @@ checks read only the already-published same-origin receipt.
   every data domain on the page, it records where the fact is decided, how it
   is read, how fresh it must be and what shows without it. The page takes its
   snapshot names, freshness limits and fallback text from it, and lists it
-  publicly as 数据来源; see [Source registry](#source-registry).
+  as 数据来源; see [Source registry](#source-registry).
 
-The page is public, on the same RTD project as the manuals. `noindex` is not
-access control, so the contract holds only publishable facts. Gap narratives
-and resource needs belong to the Feishu internal page, not this file. The
-workspace sidebar shows the entry only when the page was built.
+The page is built only by the combined RTD project, which also serves the
+manuals; the manuals-only public project leaves it out (see
+[site role](knowledge-pages.md#public-manuals-project-site-role)). Since
+2026-10-13 the combined site has been private (Read the Docs for Business,
+login required), but the operator can make it public at any time, and
+`noindex` is not access control. The contract and the page therefore hold only
+publishable facts. Gap narratives and resource needs belong to the Feishu
+internal page, not this file. The workspace sidebar shows the entry only when
+the page was built.
 
 ### Current focus
 
@@ -167,8 +180,9 @@ Each lane in `focus.lanes` declares:
   lists, carries the lane's tag further down the page;
 - `items`: capability items shown with their status inside the lane;
 - `metrics`, computed at build time:
-  - `publications`: books and language editions from the publish manifest;
-  - `regions`: books per region, labelled by `focus.regions`;
+  - `publications`: 网页说明书 (books) and their 语言版本 from the publish
+    manifest;
+  - `regions`: books per region (`books_by_region`), labelled by `focus.regions`;
   - `corpus`: sentence pairs, terms and approved share from the corpus snapshot;
   - `skeletons`: blueprints per family, in `focus.skeleton_families` order, with
     未建 for a declared family that has none;
@@ -298,7 +312,7 @@ records:
 - The system page and the deliverables page take snapshot names, freshness
   limits and fallback text from the registry. None of them is written in page
   code or in the status contract any more.
-- The system page lists every domain publicly under 数据来源, with each
+- The system page lists every domain under 数据来源, with each
   snapshot's date, and 待复核 once a snapshot is past its limit.
 - `check` fails on an unsound registry, an unregistered page domain, or a
   `file:auto-manual:` authority that does not exist. It warns about a stale or

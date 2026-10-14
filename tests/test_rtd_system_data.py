@@ -59,7 +59,7 @@ class SystemDataTests(unittest.TestCase):
     def test_counts_and_rows_come_from_the_repository_files(self):
         context = self.context()
         self.assertEqual(context["summary"], {
-            "manuals": 3, "models": 2, "languages": 3, "regions": 2, "targets": 3,
+            "variants": 3, "books": 2, "models": 2, "languages": 3, "regions": 2, "targets": 3,
             "review_targets": 1, "assets": 3, "ready_share": "33.3%",
         })
         self.assertEqual(context["built_on"], "2026-10-09")
@@ -81,10 +81,21 @@ class SystemDataTests(unittest.TestCase):
     def test_a_missing_manifest_leaves_only_the_publication_cards_empty(self):
         context = self.context(self.root / "missing.json")
         self.assertIsNone(context["published"])
-        self.assertIsNone(context["summary"]["manuals"])
+        self.assertEqual((context["summary"]["variants"], context["summary"]["books"]), (None, None))
         self.assertEqual(context["summary"]["targets"], 3)
         self.assertIsNone(json.loads(context["data_json"])["published"])
         self.assertEqual(read_published(self.root / "missing.json"), (None, ""))
+
+    def test_the_headline_counts_each_language_version_and_book_once(self):
+        # A second route of one language version (a legacy alias) is one more table row, not one more version.
+        path = manifest(self.root / "aliased.json", [
+            target("JE-A", "EU", "en"), {**target("JE-A", "EU", "en"), "route": "JE-A/EU/en/legacy"},
+            target("JE-A", "EU", "fr"), target("JE-B", "JP", "ja"),
+        ])
+        context = self.context(path)
+        self.assertEqual(len(context["published"]), 4)
+        self.assertEqual((context["summary"]["variants"], context["summary"]["books"], context["summary"]["models"]),
+                         (3, 2, 2))
 
     def test_the_json_block_cannot_close_its_script_element(self):
         path = self.paths.data_dir / "model_capabilities.csv"
@@ -149,7 +160,7 @@ class SystemDataTests(unittest.TestCase):
         context = self.context(files=None)
         self.assertIsNone(context["codebase_total"])
         self.assertIsNone(json.loads(context["data_json"])["codebase"])
-        self.assertEqual(context["summary"]["manuals"], 3)
+        self.assertEqual(context["summary"]["variants"], 3)
         # Outside a checkout git has nothing to list.
         self.assertIsNone(tracked_files(self.root))
 

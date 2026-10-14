@@ -1,6 +1,8 @@
 # System Workspace status contract: the curated half of /workspace/system/.
 #
-# Public page, public repository — write only what may be published. Internal
+# The page's site is private for now (Read the Docs for Business, since
+# 2026-10-13), but the operator can make it public at any time, and this file
+# sits in a public repository — write only what may be published. Internal
 # framing (gap narrative, resource needs) belongs to the Feishu internal page.
 # Numbers never appear in this file: every figure on the page is computed at
 # build time from docs/publish/publish_manifest.json, the execution ledger, the
@@ -373,7 +375,7 @@ capabilities:
       - id: source_registry
         label: 来源登记（SSOT）
         status: validated
-        note: 每项事实以哪里为准、多久算过期、取不到时怎么显示，登记在一份文件里；系统建设页和交付物页按它取数，并在页面底部公开列出
+        note: 每项事实以哪里为准、多久算过期、取不到时怎么显示，登记在一份文件里；系统建设页和交付物页按它取数，并在页面底部列出
         evidence:
           - "file:auto-manual:tools/rtd_portal_assets/source_registry.yaml"
           - "file:auto-manual:code-as-doc/dev/ssot_source_registry_design.md"

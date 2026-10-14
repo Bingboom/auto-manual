@@ -33,7 +33,7 @@ from collections.abc import Callable, Iterable
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from tools.rtd.production_evidence import read_publications
+from tools.rtd.production_evidence import publication_facts, read_publications
 from tools.utils.path_utils import Paths, PathSegments, repo_root
 
 PAGE = "workspace/data/index"
@@ -195,11 +195,16 @@ def _facets(*groups: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[s
 
 def summary(published: list[dict[str, str]] | None, targets: list[dict[str, Any]],
             assets: list[dict[str, str]]) -> dict[str, Any]:
-    """The whole-repository counts the page shows before (or without) any filter."""
+    """The whole-repository counts the page shows before (or without) any filter.
+
+    语言版本 and 说明书 are counted as on every other page; the table lists one row per route.
+    """
     ready = sum(1 for asset in assets if asset["status"] == "成品")
+    web = publication_facts(published) if published is not None else None
     return {
-        "manuals": len(published) if published is not None else None,
-        "models": len({row["model"] for row in published}) if published is not None else None,
+        "variants": web["variants"] if web is not None else None,
+        "books": web["books"] if web is not None else None,
+        "models": web["models"] if web is not None else None,
         "languages": len({row["lang"] for row in published}) if published is not None else None,
         "regions": len({row["region"] for row in published}) if published is not None else None,
         "targets": len(targets),

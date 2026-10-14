@@ -24,9 +24,11 @@
     const published = data.published ? data.published.filter(row => fits(row, sel)) : null;
     const targets = data.targets.filter(row => fits(row, sel));
     const assets = data.assets.filter(row => assetFits(row, sel));
-    const distinct = key => (published ? new Set(published.map(row => row[key])).size : null);
+    // Distinct identities, as production_evidence.publication_facts counts them for every page:
+    // 语言版本 = model × region × language, 说明书 = model × region; a repeated route counts once.
+    const distinct = (...keys) => (published ? new Set(published.map(row => keys.map(key => row[key]).join('\u0000'))).size : null);
     return {
-      manuals: published ? published.length : null,
+      variants: distinct('model', 'region', 'lang'), books: distinct('model', 'region'),
       models: distinct('model'), languages: distinct('lang'), regions: distinct('region'),
       targets: targets.length,
       review_targets: targets.filter(row => row.review_pages > 0).length,
@@ -220,7 +222,7 @@
           width: cell - 3, height: rowHeight - 4, rx: 3,
         });
         tip(rect, found
-          ? [`${entry.model} · ${languageName(code)}`, `区域：${[...found.regions].sort().join(' · ')}`, `说明书：${found.manuals} 份`]
+          ? [`${entry.model} · ${languageName(code)}`, `区域：${[...found.regions].sort().join(' · ')}`, `语言版本：${found.manuals} 个`]
           : [`${entry.model} · ${languageName(code)}`, '未发布']);
         row.appendChild(rect);
       });
@@ -282,7 +284,7 @@
       const published = data.published.filter(row => fits(row, sel));
       const langs = countBy(published, 'lang').map(item => ({...item, value: item.n}));
       const box = $('sd-langs');
-      if (box) bars(box, langs, {format: n => number.format(n), title: item => [languageName(item.label), `${item.value} 份`]});
+      if (box) bars(box, langs, {format: n => number.format(n), title: item => [languageName(item.label), `${item.value} 个语言版本`]});
       const regions = countBy(data.published.filter(row => sel.model === '' || row.model === sel.model), 'region')
         .map(item => ({...item, value: item.n}));
       const regionBox = $('sd-regions');
@@ -292,7 +294,7 @@
           picked: item => item.label === sel.region,
           dim: item => sel.region !== '' && item.label !== sel.region,
           onClick: item => setSelection({region: sel.region === item.label ? '' : item.label}),
-          title: item => [item.label, `${item.value} 份`],
+          title: item => [item.label, `${item.value} 个语言版本`],
         });
       }
     }
@@ -399,7 +401,7 @@
       row.hidden = !visible;
       if (visible) shown += 1;
     }
-    $('sd-count').textContent = shown === rows.length ? `${rows.length} 份` : `${shown} / ${rows.length} 份`;
+    $('sd-count').textContent = shown === rows.length ? `${rows.length} 个语言版本` : `${shown} / ${rows.length} 个语言版本`;
   };
   const sortTable = () => {
     const {column, direction} = sortState;

@@ -11,6 +11,9 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 from unittest.mock import patch
+from urllib.parse import urljoin, urlsplit
+
+from bs4 import BeautifulSoup
 
 from tools.rtd import portal as rtd_portal
 from tools.rtd.alias_entry import alias_head_markup, forward_markers
@@ -280,6 +283,51 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('manual-search.css', search_page)
         self.assertTrue((self.root / "after" / "_static" / "manual-search.css").is_file())
         self.assertNotIn("manual-search-title", (self.root / "before" / "search.html").read_text())
+
+    def test_real_sphinx_sidebar_links_only_pages_and_marks_the_current_one(self):
+        root = self.assemble()
+        assets = self.root / "portal-assets"
+        shutil.copytree(rtd_portal.ASSETS, assets)
+        (assets / "settings.json").write_text(json.dumps(dict(self.settings, product_voc_endpoint="")))
+        share = self.root / "knowledge" / "ai-share"
+        share.mkdir(parents=True)
+        (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
+        # A publish manifest makes the optional product matrix page build as well.
+        target = {"model": "JE-1000F", "region": "US", "lang": "en", "route": "JE-1000F/US/en/md",
+                  "manual": "manual_je1000f_us.md", "version": "9.9", "built_at": "2026-09-20T00:00:00+00:00"}
+        (self.root / "publish_manifest.json").write_text(json.dumps({"targets": [target]}))
+        with (root / "conf.py").open("a") as conf:
+            conf.write(f"\nfrom pathlib import Path\nfrom tools.rtd import portal\nportal.ASSETS = Path({str(assets)!r})\n")
+            conf.write(f"rtd_knowledge_dir = {str(self.root / 'knowledge')!r}\n")
+        out = self.root / "site"
+        result = subprocess.run(
+            [sys.executable, "-m", "sphinx", "-q", "-b", "html", "-D", "extensions=myst_parser,tools.rtd.portal",
+             str(root), str(out)],
+            cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True, check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        sidebars = {}
+        for path in sorted(out.rglob("*.html")):
+            sidebar = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser").select_one("#app-sidebar")
+            if sidebar:
+                sidebars[path.relative_to(out).as_posix()] = sidebar
+        internal = {page for page, sidebar in sidebars.items()
+                    if "知识库" in [group.get_text() for group in sidebar.select(".app-nav-group")]}
+        self.assertEqual({"products/knowledge.html", "products/matrix.html", "market/policy.html",
+                          "workspace/index.html", "workspace/system/index.html", "workspace/deliverables/index.html",
+                          "workspace/design/index.html", "workspace/data/index.html"} - internal, set())
+        site = "https://site.invalid/"
+        for page, sidebar in sidebars.items():
+            links = sidebar.select("a.app-nav-link")
+            for link in links:
+                # Entries are pages; a page's sections (概览's 分享资料, 最近更新) are not sidebar links.
+                self.assertEqual(urlsplit(link["href"]).fragment, "", (page, link["href"]))
+                self.assertTrue((out / urljoin(site + page, link["href"]).removeprefix(site)).is_file(),
+                                (page, link["href"]))
+            to_self = [link.get_text() for link in links if urljoin(site + page, link["href"]) == site + page]
+            current = [link.get_text() for link in links if link.get("aria-current") == "page"]
+            self.assertEqual(len(to_self), 1, (page, to_self))
+            self.assertEqual(current, to_self, page)
 
 
 if __name__ == "__main__":
