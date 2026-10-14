@@ -1,4 +1,4 @@
-# Jackery Smart Transfer Switch — JA-TS02A
+# Jackery Smart Transfer Switch · JA-TS02A
 
 ```{toctree}
 :maxdepth: 2

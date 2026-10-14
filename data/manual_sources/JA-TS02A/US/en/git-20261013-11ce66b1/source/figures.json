@@ -254,6 +254,10 @@
     "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
     "background_strategy": "Retain complete artwork/panel; no background removal",
     "caption": "Permissible cable entry locations",
+    "printed_notes": [
+      "Please shut off the power before working on the wiring.",
+      "Do not drill outside designated area."
+    ],
     "max_width": 680,
     "local_path": "assets/cable-entry.png",
     "sha256": "a082f0ffd2de4fb6f600d68f16fab2d7439ad00a439e46a695f122339672c669",
@@ -280,6 +284,9 @@
     "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
     "background_strategy": "Retain complete artwork/panel; no background removal",
     "caption": "Electrical panel and Smart Transfer Switch",
+    "printed_notes": [
+      "Only single-pole and two-pole breakers, no tandem breakers."
+    ],
     "max_width": 680,
     "local_path": "assets/grid-preparation.png",
     "sha256": "bbceedf49fa03e97e73e44319351853bac0e61e3aefbf5a592ca20bb1c173f5f",
@@ -853,54 +860,117 @@
     "sha256": "54c57e5ecc98f1cf0e0edc1562f88f93e403a5fcecd5b309303de4089b316430"
   },
   {
-    "slot": "symbol/warning_triangle.png",
+    "slot": "symbol/symbol_warning_triangle.svg",
     "inventories_checked": [
       "data/manual_sources/JA-TS02A",
       "docs/renderers/web/assets/shared",
       "docs/templates/word_template/common_assets",
       "docs/renderers/latex/assets"
     ],
-    "identity_check": "Standard safety pictogram matched by meaning to US source symbol table.",
-    "decision": "reuse byte-identical shared asset",
-    "reason": "not applicable",
-    "source": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
-    "background_strategy": "Retain shared pictogram bytes",
+    "identity_check": "Compared with the print's p5 symbol table drawing: same outline pictogram on white.",
+    "decision": "reuse shared symbol (native-v1)",
+    "reason": "The print draws a thin black outline on white; the shared native-v1 symbol has the same drawing. The earlier grey-tile PNG did not match the print.",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "background_strategy": "Retain shared symbol bytes",
     "meaning": "Caution",
-    "local_path": "assets/symbol_warning_triangle.png",
-    "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c"
+    "local_path": "assets/symbol_warning_triangle.svg",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "source_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
   },
   {
-    "slot": "symbol/electric_shock.png",
+    "slot": "symbol/symbol_electric_shock.svg",
     "inventories_checked": [
       "data/manual_sources/JA-TS02A",
       "docs/renderers/web/assets/shared",
       "docs/templates/word_template/common_assets",
       "docs/renderers/latex/assets"
     ],
-    "identity_check": "Standard safety pictogram matched by meaning to US source symbol table.",
-    "decision": "reuse byte-identical shared asset",
-    "reason": "not applicable",
-    "source": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
-    "background_strategy": "Retain shared pictogram bytes",
+    "identity_check": "Compared with the print's p5 symbol table drawing: same outline pictogram on white.",
+    "decision": "reuse shared symbol (native-v1)",
+    "reason": "The print draws a thin black outline on white; the shared native-v1 symbol has the same drawing. The earlier grey-tile PNG did not match the print.",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+    "background_strategy": "Retain shared symbol bytes",
     "meaning": "Electric shock",
-    "local_path": "assets/symbol_electric_shock.png",
-    "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f"
+    "local_path": "assets/symbol_electric_shock.svg",
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+    "source_sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
   },
   {
-    "slot": "symbol/read_manual_operator.png",
+    "slot": "symbol/symbol_read_manual.svg",
     "inventories_checked": [
       "data/manual_sources/JA-TS02A",
       "docs/renderers/web/assets/shared",
       "docs/templates/word_template/common_assets",
       "docs/renderers/latex/assets"
     ],
-    "identity_check": "Standard safety pictogram matched by meaning to US source symbol table.",
-    "decision": "reuse byte-identical shared asset",
-    "reason": "not applicable",
-    "source": "docs/templates/word_template/common_assets/symbols/read_manual_operator.png",
-    "background_strategy": "Retain shared pictogram bytes",
+    "identity_check": "Compared with the print's p5 symbol table drawing: same outline pictogram on white.",
+    "decision": "reuse shared symbol (native-v1)",
+    "reason": "The print draws a thin black outline on white; the shared native-v1 symbol has the same drawing. The earlier grey-tile PNG did not match the print.",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "background_strategy": "Retain shared symbol bytes",
     "meaning": "Read the operating instructions",
-    "local_path": "assets/symbol_read_manual_operator.png",
-    "sha256": "c7a2c7dc6ddd9bb4724d9607df666243fc3bbeaa20a669d00de8f1d1a8463b47"
+    "local_path": "assets/symbol_read_manual.svg",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "source_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+  },
+  {
+    "slot": "symbol/symbol_warning_triangle_yellow.svg",
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "identity_check": "Print p11, p15 and p20 WARNING lockups: yellow-filled triangle with a black border and exclamation mark, set beside the signal word.",
+    "decision": "native-source-glyph",
+    "reason": "The shared warning triangles are outline, tinted, grey or white (native-v1 symbol_warning_triangle.svg, symbol_warning_triangle_gray_jp.svg, h1-jp-warning_triangle.svg; common_assets warning_triangle_dark.svg/_white.svg); none has the print's yellow fill.",
+    "source_page": 11,
+    "drawing_indices": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "bbox": [
+      24.3,
+      87.6,
+      48.8,
+      109.0
+    ],
+    "background_strategy": "Vector paths only; standalone transparent",
+    "meaning": "Warning",
+    "local_path": "assets/symbol_warning_triangle_yellow.svg",
+    "sha256": "3ba1bfd9a4945818636df78a2defae7ec5eada00f0ca135d29e9b1d962109808"
+  },
+  {
+    "slot": "symbol/symbol_ingestion_hazard.svg",
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "identity_check": "Print p5: yellow warning triangle above a button cell, left of the ingestion-hazard bullet list.",
+    "decision": "native-source-glyph",
+    "reason": "No shared coin-battery ingestion glyph. JHP-5000C's symbol_ingestion_hazard.svg draws an outline triangle; this print fills it yellow.",
+    "source_page": 5,
+    "drawing_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "bbox": [
+      29.0,
+      141.0,
+      57.3,
+      176.5
+    ],
+    "background_strategy": "Vector paths only; standalone transparent",
+    "meaning": "Ingestion hazard (button cell)",
+    "local_path": "assets/symbol_ingestion_hazard.svg",
+    "sha256": "2a662f93bc1f99aa0f5590f5676616dc7fdaa2aa26aaba38f30cc9fb11708ee5"
   }
 ]
