@@ -9,7 +9,7 @@
 </details>
 <div class="kpi-row" aria-label="交付规模">
   {%- for item in production.overview if item.id in kpi_names %}
-  <a class="kpi" href="#deliverables"><span>{{ kpi_names[item.id][0] }}</span><strong>{% if item.value is none %}—{% else %}{{ item.display|e }}<small>{{ kpi_names[item.id][1] }}</small>{% endif %}</strong>{% if item.value is none %}<em>暂时无法读取</em>{% elif item.id == 'manuals' and books_by_region %}<em>{{ books_by_region|join(' · ')|e }}</em>{% endif %}</a>
+  <a class="kpi" href="#deliverables"><span>{{ kpi_names[item.id][0] }}</span><strong>{% if item.value is none %}—{% else %}{{ item.display|e }}<small>{{ kpi_names[item.id][1] }}</small>{% endif %}</strong>{% if item.value is none %}<em>暂时无法读取</em>{% elif item.id == 'manuals' and books_by_region %}<em class="sw-kpi-regions">{% for region in books_by_region %}<span>{{ region|e }}</span>{% if not loop.last %} · {% endif %}{% endfor %}</em>{% endif %}</a>
   {%- endfor %}
 </div>
 {% if production.alerts %}<details class="ws-alert"><summary>有 {{ production.alerts|length }} 项数据需要复核</summary><ul>{% for alert in production.alerts %}<li>{{ alert|e }}</li>{% endfor %}</ul></details>{% endif %}

@@ -15,6 +15,8 @@
 /* Pointer: one line naming the page that owns a fact (系统建设 and 说明书工作台). */
 .sw-pointer { margin: 12px 0 20px; font-size: 13px; line-height: 1.7; color: #6c727d; }
 .sw-pointer a { color: #c4520a; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+/* 说明书工作台's 网页说明书 KPI: books per region; a region and its count stay on one line. */
+.sw-kpi-regions span { white-space: nowrap; }
 
 /* Tiles (language assets) */
 .sw-tile { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 16px 15px; display: flex; flex-direction: column; gap: 8px; }
