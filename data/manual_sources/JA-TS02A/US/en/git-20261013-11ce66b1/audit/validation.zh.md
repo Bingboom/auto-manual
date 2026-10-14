@@ -23,7 +23,7 @@
 - 冷重放：web/en 与新重放的输出逐字节一致。
 - 篡改测试：改动 source/presentation.css 后，重放在写出任何文件之前就报错；恢复后哈希与清单一致。
 - 严格 Sphinx：python -m sphinx -n -W --keep-going -b html，成功。
-- 发布准入（本地）：组件、符号资产、图框三项准入通过。require_publishable_manual_ir 因待审（pending source review）按预期拒绝。
+- 发布准入（本地）：组件、符号资产、图框三项准入通过。操作员验收后，require_publishable_manual_ir 也通过（验收前因待审按预期拒绝）。
 - 浏览器（结果记在 browser-validation.json）：
   - 1280：表格都在版心内。
   - 768：没有横向滚动。
@@ -31,8 +31,8 @@
   - 320：线缆、LED、扭矩表各在自己的框内滚动。
   - 各宽度下页面本身都不溢出，没有缺图，没有脚本错误。
 - 测试：tests/test_ja_ts02a_us_en_web.py。
-- 改动范围：只改 data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/** 和本包的测试。
+- 改动范围：版面修正（PR #1523）只改 data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/** 和本包的测试；验收另改产品矩阵配置（JA-TS02A 不再列为“无独立说明书”）和合入授权登记。
   - 没有改共用代码、CLI、配置、schema 或工作流。
   - 没有写在线表、队列、资产或链接字段。
 
-本候选未合入、未发布。发布前需要操作员验收这些输入（source/approval.json），并另行授权合入和发布。
+操作员已于 2026-10-14 验收发布（「上线，授权你合入」）。source/approval.json 绑定全部源输入；合入和发布按 MA-302 执行。
