@@ -1,0 +1,914 @@
+[
+  {
+    "slot": "inbox-unit",
+    "panel": 5,
+    "bbox": [
+      30,
+      88,
+      129,
+      180
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A EU inbox card 1 vs JP p03 card 1, side by side",
+    "decision": "reuse byte-identical",
+    "reason": "Same JBP-3600A front view as the printed card 1 art.",
+    "background_strategy": "Existing file unchanged",
+    "caption": "本体",
+    "local_path": "assets/inbox-unit.png",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44/inbox_unit_clean.png"
+    },
+    "sha256": "4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44"
+  },
+  {
+    "slot": "inbox-cable",
+    "panel": 5,
+    "bbox": [
+      134,
+      88,
+      234,
+      180
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A EU inbox card 2 vs JP p03 card 2, side by side",
+    "decision": "reuse byte-identical",
+    "reason": "Same JBP-3600A expansion cable as the printed card 2 art.",
+    "background_strategy": "Existing file unchanged",
+    "caption": "拡張ケーブル",
+    "local_path": "assets/inbox-cable.png",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7/inbox_cable_clean.png"
+    },
+    "sha256": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7"
+  },
+  {
+    "slot": "inbox-manual",
+    "panel": 5,
+    "bbox": [
+      266.5,
+      107.5,
+      311.6,
+      171.3
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print panel",
+    "decision": "extract complete source panel",
+    "reason": "The printed card 3 is a thumbnail of this Japanese manual's cover; the EU card is a generic document glyph and JBP-5000A's is the 5000 Plus cover.",
+    "background_strategy": "Retain complete panel as printed; no background removal",
+    "caption": "取扱説明書",
+    "local_path": "assets/inbox-manual.png",
+    "acquisition": {
+      "kind": "crop",
+      "scale": 4
+    },
+    "sha256": "655e35072d6a9411514f98b8bd1bf74a4ce603e28b498142cc14093d4a5ce582"
+  },
+  {
+    "slot": "overview",
+    "panel": 5,
+    "bbox": [
+      26,
+      365,
+      342,
+      478
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print panel",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "The JP print shows a three-quarter view with five Japanese leader labels; the EU overview is two English-labelled orthographic views. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
+    "background_strategy": "Retain complete panel as printed; no background removal",
+    "caption": "各部の名称：ハンドル、DC 拡張ポート B（接続拡張ケーブルのプラグBに接続）、DC 拡張ポート A（接続拡張ケーブルのプラグAに接続）、主電源ボタン、ディスプレイ",
+    "local_path": "assets/overview.png",
+    "acquisition": {
+      "kind": "textless-crop",
+      "scale": 4,
+      "operator": "redact_text (label spans only; graphics and images preserved)"
+    },
+    "sha256": "8ba643b25af0dd48bee6bf3356aeb2740ca74bc67591c7d7859af5adc2262f8e",
+    "live_labels": [
+      {
+        "text": "ハンドル"
+      },
+      {
+        "text": "DC 拡張ポート B"
+      },
+      {
+        "text": "接続拡張ケーブル"
+      },
+      {
+        "text": "のプラグBに接続"
+      },
+      {
+        "text": "DC 拡張ポート A"
+      },
+      {
+        "text": "接続拡張ケーブル"
+      },
+      {
+        "text": "のプラグAに接続"
+      },
+      {
+        "text": "主電源ボタン"
+      },
+      {
+        "text": "ディスプレイ"
+      }
+    ],
+    "panel_fill": "#ffffff"
+  },
+  {
+    "slot": "lcd-map",
+    "panel": 6,
+    "bbox": [
+      34,
+      55,
+      334,
+      106
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print panel",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "EU lcd_annotated.png carries English labels baked into the art. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
+    "background_strategy": "Retain complete panel as printed; no background removal",
+    "caption": "液晶画面：バッテリー残量(%)/エラーコード、充電マーク",
+    "local_path": "assets/lcd-map.png",
+    "acquisition": {
+      "kind": "textless-crop",
+      "scale": 4,
+      "operator": "redact_text (label spans only; graphics and images preserved)"
+    },
+    "sha256": "205a464ff7bd7a33c94e344e4d8fc96801ca7ea49ecfc336135cb75fefa288a4",
+    "live_labels": [
+      {
+        "text": "バッテリー残量(%)/"
+      },
+      {
+        "text": "エラーコード"
+      },
+      {
+        "text": "充電マーク"
+      }
+    ],
+    "panel_fill": "#ffffff"
+  },
+  {
+    "slot": "power-on-off",
+    "panel": 6,
+    "bbox": [
+      40,
+      236,
+      300,
+      312
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print panel",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "EU power_native.png has the same unit and zoom but no オフ/オン labels or 3s clock; the JP panel keeps them. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
+    "background_strategy": "Retain complete panel as printed; no background removal",
+    "caption": "主電源ボタンのオン/オフ：オフ 1回押す、オン 3秒（3s）",
+    "local_path": "assets/power-on-off.png",
+    "acquisition": {
+      "kind": "textless-crop",
+      "scale": 4,
+      "operator": "redact_text (label spans only; graphics and images preserved)"
+    },
+    "sha256": "7ec573ce419ebadf61414f3263e2f940461823251a93b3e59fdd20f4d9d77766",
+    "live_labels": [
+      {
+        "text": "オフ"
+      },
+      {
+        "text": "1回押す"
+      },
+      {
+        "text": "オン"
+      },
+      {
+        "text": "3秒"
+      },
+      {
+        "text": "3s"
+      }
+    ],
+    "panel_fill": "#ffffff"
+  },
+  {
+    "slot": "lcd-control",
+    "panel": 6,
+    "bbox": [
+      36,
+      385,
+      300,
+      467
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A EU lcd_control_clean vs JP p04 lower panel, side by side",
+    "decision": "reuse byte-identical",
+    "reason": "Same unit and zoomed button art as the JP p04 LCD panel, which prints no words in the art.",
+    "background_strategy": "Existing file unchanged",
+    "caption": "LCDディスプレイのオン/オフ：主電源ボタンを押す",
+    "local_path": "assets/lcd-control.png",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b/lcd_control_clean.png"
+    },
+    "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+  },
+  {
+    "slot": "clearance",
+    "panel": 7,
+    "bbox": [
+      29,
+      145.5,
+      342.5,
+      303.5
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print panel",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "EU clearance_native.png lacks the printed ≥ 20cm dimensions. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
+    "background_strategy": "Retain complete panel as printed; no background removal",
+    "caption": "ポータブル電源とバッテリーパックの設置：壁との間隔 ≥ 20cm",
+    "local_path": "assets/clearance.png",
+    "acquisition": {
+      "kind": "textless-crop",
+      "scale": 4,
+      "operator": "redact_text (label spans only; graphics and images preserved)"
+    },
+    "sha256": "701c0417897c204181002613ed6ef30a7947e0216705bf4f8de70a71761d8df3",
+    "live_labels": [
+      {
+        "text": "≥ 20cm"
+      },
+      {
+        "text": "≥ 20cm"
+      }
+    ],
+    "panel_fill": "#ffffff",
+    "mobile_labels": "overlay"
+  },
+  {
+    "slot": "stacking",
+    "panel": 7,
+    "bbox": [
+      29.1,
+      312.9,
+      340.3,
+      484.0
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A EU stacking_clean vs JP p05 lower panel, side by side",
+    "decision": "reuse byte-identical",
+    "reason": "Same check/cross stacking panel as JP p05; no words in the art.",
+    "background_strategy": "Existing file unchanged",
+    "caption": "バッテリーパックの積み重ね：3台は可、4台は不可",
+    "local_path": "assets/stacking.png",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en/assets/ir/5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce/stacking_clean.png"
+    },
+    "sha256": "5b84e47c6733afc981d143914e74974c5e92df43804c12b163f533330917c2ce"
+  },
+  {
+    "slot": "locking",
+    "panel": 8,
+    "bbox": [
+      27.5,
+      100.5,
+      340.5,
+      336
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print panel",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "The JP panel prints ロック / ロック解除 tags; EU locking_native.png has no tags. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
+    "background_strategy": "Retain complete panel as printed; no background removal",
+    "caption": "拡張ケーブルのロック（①②）とロック解除（①②）",
+    "local_path": "assets/locking.png",
+    "acquisition": {
+      "kind": "textless-crop",
+      "scale": 4,
+      "operator": "redact_text (label spans only; graphics and images preserved)"
+    },
+    "sha256": "6c84e9f17dc7997935f5e1f0c9a8d5d47643cdd28ee7f56d2a7f8d8cf43d817b",
+    "live_labels": [
+      {
+        "text": "ロック",
+        "color": "#ffffff"
+      },
+      {
+        "text": "ロック解除",
+        "color": "#ffffff"
+      }
+    ],
+    "panel_fill": "#ffffff",
+    "mobile_labels": "overlay"
+  },
+  {
+    "slot": "ac-charging",
+    "panel": 9,
+    "bbox": [
+      28.3,
+      113.9,
+      340.4,
+      278.9
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print panel",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "Japanese outlet and plug with Japanese labels; EU ac_charging.png shows an EU outlet without labels. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
+    "background_strategy": "Retain complete panel as printed; no background removal",
+    "caption": "AC充電：ACケーブル、拡張ケーブル",
+    "local_path": "assets/ac-charging.png",
+    "acquisition": {
+      "kind": "textless-crop",
+      "scale": 4,
+      "operator": "redact_text (label spans only; graphics and images preserved)"
+    },
+    "sha256": "2d1410fc14a8d9fce9a638884e1beb5a81e4fbdfacaf73b2f8f3bcc02974ac5a",
+    "live_labels": [
+      {
+        "text": "ACケーブル"
+      },
+      {
+        "text": "拡張ケーブル"
+      }
+    ],
+    "panel_fill": "#ffffff",
+    "mobile_labels": "overlay"
+  },
+  {
+    "slot": "solar-charging",
+    "panel": 9,
+    "bbox": [
+      28.3,
+      325.4,
+      340.5,
+      496.4
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print panel",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "JP panel prints SolarSaga 200 and 拡張ケーブル labels; EU solar_charging.png has none. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
+    "background_strategy": "Retain complete panel as printed; no background removal",
+    "caption": "ソーラー充電：SolarSaga 200、拡張ケーブル",
+    "local_path": "assets/solar-charging.png",
+    "acquisition": {
+      "kind": "textless-crop",
+      "scale": 4,
+      "operator": "redact_text (label spans only; graphics and images preserved)"
+    },
+    "sha256": "c5a343a12435906925bb4a1b0a56d063c6fa5d9436899fe0a6d9b495856892f4",
+    "live_labels": [
+      {
+        "text": "SolarSaga 200"
+      },
+      {
+        "text": "拡張ケーブル"
+      }
+    ],
+    "panel_fill": "#f2f2f3",
+    "mobile_labels": "overlay"
+  },
+  {
+    "slot": "contact-qr",
+    "panel": 12,
+    "bbox": [
+      304,
+      456,
+      339,
+      491
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP p10 QR code",
+    "decision": "extract the embedded source image losslessly",
+    "reason": "The sheet's only raster image; no inventoried copy.",
+    "background_strategy": "Embedded image as stored; no re-rendering",
+    "caption": "QRコード",
+    "local_path": "assets/contact-qr.png",
+    "acquisition": {
+      "kind": "embedded-image",
+      "xref": 13559
+    },
+    "sha256": "c9cfeb8a54c17052ad5c3da695f3bbf2968d46f0d46d6c1b06a876704c940089"
+  },
+  {
+    "slot": "inline-connected-batteries",
+    "panel": 8,
+    "bbox": [
+      212.5,
+      33.5,
+      228.3,
+      43.6
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print glyph",
+    "decision": "extract native vector glyph",
+    "reason": "Printed as an outlined icon; JBP-5000A connected-batteries.svg and JE-3600A lcd-connected-batteries-native.svg are filled dark badges.",
+    "background_strategy": "Transparent canvas; only the glyph's own paths",
+    "caption": "バッテリーパック接続アイコン",
+    "local_path": "assets/inline-connected-batteries.svg",
+    "acquisition": {
+      "kind": "vector",
+      "drawing_indices": [
+        21112,
+        21113,
+        21114,
+        21116,
+        21118
+      ],
+      "clipped_fill_indices": [
+        21115,
+        21117,
+        21119
+      ]
+    },
+    "sha256": "e4607588b69108b167043b72689dcab41606b78268c7f2b2b78ae9620819ab9e"
+  },
+  {
+    "slot": "symbol-warning",
+    "panel": 4,
+    "bbox": [
+      29.5,
+      55.2,
+      67,
+      92.1
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JP p02 row glyph vs symbol_warning_triangle.svg",
+    "decision": "reuse shared native-v1 symbol",
+    "reason": "Print glyph matches the shared symbol (raster comparison and side-by-side review).",
+    "background_strategy": "Shared transparent symbol unchanged",
+    "caption": "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。",
+    "local_path": "assets/symbol-warning.svg",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg"
+    },
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+  },
+  {
+    "slot": "symbol-read-manual",
+    "panel": 4,
+    "bbox": [
+      29.5,
+      95.1,
+      67,
+      129.4
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JP p02 row glyph vs symbol_read_manual_gray_jp.svg",
+    "decision": "reuse shared native-v1 symbol",
+    "reason": "Print glyph matches the shared symbol (raster comparison and side-by-side review).",
+    "background_strategy": "Shared transparent symbol unchanged",
+    "caption": "操作の前に取扱説明書をお読みください。",
+    "local_path": "assets/symbol-read-manual.svg",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_gray_jp.svg"
+    },
+    "sha256": "94568bcf403d86a49206c4728223b1f8a53642f4bff01a3abc0d1a1569fc7440"
+  },
+  {
+    "slot": "symbol-no-open-flame",
+    "panel": 4,
+    "bbox": [
+      29.5,
+      132.4,
+      67,
+      169.5
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JP p02 row glyph vs symbol_no_open_flame_gray_jp.svg",
+    "decision": "reuse shared native-v1 symbol",
+    "reason": "Print glyph matches the shared symbol (raster comparison and side-by-side review).",
+    "background_strategy": "Shared transparent symbol unchanged",
+    "caption": "本製品を火気の近くに置かないでください。",
+    "local_path": "assets/symbol-no-open-flame.svg",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg"
+    },
+    "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee"
+  },
+  {
+    "slot": "symbol-children",
+    "panel": 4,
+    "bbox": [
+      29.5,
+      172.5,
+      67,
+      209.6
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JP p02 row glyph vs symbol_keep_away_from_children_gray_jp.svg",
+    "decision": "reuse shared native-v1 symbol",
+    "reason": "Print glyph matches the shared symbol (raster comparison and side-by-side review).",
+    "background_strategy": "Shared transparent symbol unchanged",
+    "caption": "小さなお子様の手の届かない場所に保管してください。",
+    "local_path": "assets/symbol-children.svg",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg"
+    },
+    "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817"
+  },
+  {
+    "slot": "symbol-do-not-dismantle",
+    "panel": 4,
+    "bbox": [
+      29.5,
+      212.6,
+      67,
+      251.8
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JP p02 row glyph vs screwdriver-prohibited-tw-477dfbd7.svg",
+    "decision": "reuse shared native-v1 symbol",
+    "reason": "Print glyph matches the shared symbol (raster comparison and side-by-side review).",
+    "background_strategy": "Shared transparent symbol unchanged",
+    "caption": "製品を分解、改造を禁止する記号",
+    "local_path": "assets/symbol-do-not-dismantle.svg",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg"
+    },
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b"
+  },
+  {
+    "slot": "symbol-li-ion",
+    "panel": 4,
+    "bbox": [
+      29.5,
+      254.8,
+      67,
+      304.2
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JP p02 row glyph vs symbol_li_ion.svg",
+    "decision": "reuse shared native-v1 symbol",
+    "reason": "Print glyph matches the shared symbol (raster comparison and side-by-side review).",
+    "background_strategy": "Shared transparent symbol unchanged",
+    "caption": "充電式電池のリサイクルについて",
+    "local_path": "assets/symbol-li-ion.svg",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg"
+    },
+    "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+  },
+  {
+    "slot": "symbol-weee",
+    "panel": 4,
+    "bbox": [
+      29.5,
+      307.2,
+      67,
+      362.0
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JP p02 row glyph vs symbol_weee.png",
+    "decision": "reuse shared native-v1 symbol",
+    "reason": "Print glyph matches the shared symbol (raster comparison and side-by-side review).",
+    "background_strategy": "Shared transparent symbol unchanged",
+    "caption": "廃棄物の分別回収",
+    "local_path": "assets/symbol-weee.png",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png"
+    },
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+  },
+  {
+    "slot": "symbol-battery-weee",
+    "panel": 4,
+    "bbox": [
+      29.5,
+      365.0,
+      67,
+      438.8
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JP p02 row glyph vs symbol_battery_weee.png",
+    "decision": "reuse shared native-v1 symbol",
+    "reason": "Print glyph matches the shared symbol (raster comparison and side-by-side review).",
+    "background_strategy": "Shared transparent symbol unchanged",
+    "caption": "電池および蓄電池の分別回収",
+    "local_path": "assets/symbol-battery-weee.png",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_weee.png"
+    },
+    "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+  },
+  {
+    "slot": "signal-triangle",
+    "panel": 3,
+    "bbox": [
+      35,
+      336,
+      58,
+      357
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JP p01/p07 triangles vs symbol_warning_triangle_gray_jp.svg",
+    "decision": "reuse shared native-v1 symbol",
+    "reason": "Filled triangle of the p01 警告/注意 labels and the p07 警告 lockup matches the shared JP battery-pack glyph.",
+    "background_strategy": "Shared transparent symbol unchanged",
+    "caption": "",
+    "local_path": "assets/signal-triangle.svg",
+    "acquisition": {
+      "kind": "reuse",
+      "from": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle_gray_jp.svg"
+    },
+    "sha256": "25010027afb12cdffa2ee29be0da86b358e6c05bd7e2deab0e1f975eaed0eeb0"
+  },
+  {
+    "slot": "contact-web",
+    "panel": 12,
+    "bbox": [
+      27.5,
+      442,
+      42.5,
+      457
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print glyph",
+    "decision": "extract native vector glyph",
+    "reason": "Filled dark contact icon; the JE-3600A JP shared-contact icons are outline drawings.",
+    "background_strategy": "Transparent canvas; only the glyph's own paths",
+    "caption": "",
+    "local_path": "assets/contact-web.svg",
+    "acquisition": {
+      "kind": "vector",
+      "drawing_indices": [
+        50123,
+        50130,
+        50131,
+        50132
+      ]
+    },
+    "sha256": "2c4d470d4f577c01118466cc854af167b93000cfe9d13cf40ce00e85f2cee544"
+  },
+  {
+    "slot": "contact-mail",
+    "panel": 12,
+    "bbox": [
+      27.7,
+      460.9,
+      42.7,
+      475.9
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print glyph",
+    "decision": "extract native vector glyph",
+    "reason": "Filled dark contact icon; the JE-3600A JP shared-contact icons are outline drawings.",
+    "background_strategy": "Transparent canvas; only the glyph's own paths",
+    "caption": "",
+    "local_path": "assets/contact-mail.svg",
+    "acquisition": {
+      "kind": "vector",
+      "drawing_indices": [
+        50125,
+        50126,
+        50127
+      ]
+    },
+    "sha256": "1a42b5d8e05eda711169a072dde0429081b304ab0400279ffacf2efd3511f101"
+  },
+  {
+    "slot": "contact-phone",
+    "panel": 12,
+    "bbox": [
+      27.7,
+      480.5,
+      42.7,
+      495.5
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JBP-3600A (none before this package)",
+      "manual_sources/JBP-3600A/EU (published JBP-3600A EU English Web)",
+      "data/manual_sources/JBP-5000A/JP",
+      "data/manual_sources/JE-3600A/JP",
+      "docs/renderers/web/assets/shared/symbols/native-v1",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "identity_check": "JBP-3600A JP print glyph",
+    "decision": "extract native vector glyph",
+    "reason": "Filled dark contact icon; the JE-3600A JP shared-contact icons are outline drawings.",
+    "background_strategy": "Transparent canvas; only the glyph's own paths",
+    "caption": "",
+    "local_path": "assets/contact-phone.svg",
+    "acquisition": {
+      "kind": "vector",
+      "drawing_indices": [
+        50129,
+        50133
+      ]
+    },
+    "sha256": "9954c40325a22638360f402a4c8c5f9274abd784f364bfe75edb8419dfdbd36e"
+  }
+]

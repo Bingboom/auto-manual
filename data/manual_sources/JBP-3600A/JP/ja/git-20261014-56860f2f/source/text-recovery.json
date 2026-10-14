@@ -1,0 +1,24 @@
+[
+  {
+    "panel": 10,
+    "bbox": [
+      136.1,
+      459.0,
+      167.6,
+      466.4
+    ],
+    "text": "UN38.3",
+    "reason": "Visible certification mark drawn as outlines; absent from the text layer (6 drawings)."
+  },
+  {
+    "panel": 5,
+    "bbox": [
+      29.9,
+      290.9,
+      36.9,
+      298.0
+    ],
+    "text": "■",
+    "reason": "Visible square marker drawn as a filled path before the bold notice; absent from the text layer."
+  }
+]
