@@ -346,6 +346,20 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn('machine_surface_manifest.json', surface.select_one('[data-surface-note]').text)
             self.assertIn('说明书工作台', workspace)
             self.assertIn('说明书工作台', system)
+            # This page owns the publication counts: its 网页说明书 KPI carries the books per region.
+            kpis = {kpi.span.text: kpi for kpi in soup.select('.kpi-row a.kpi')}
+            self.assertEqual(kpis['网页说明书'].em.text, '美规 1')
+            self.assertIsNone(kpis['语言版本'].em)
+            # Both snapshot freshness spans stay here for Workspace Data Verify; the rules sit on 系统建设.
+            for kind in ('deliverables', 'corpus'):
+                self.assertIsNotNone(soup.select_one(f'[data-workspace-source="{kind}"]'), kind)
+            self.assertTrue(soup.select('.page-meta a[href="../system/index.html#sources"]'))
+            # Corpus and skeleton totals belong to 系统建设: the asset cards and the ledger point there.
+            for anchor in ('#tab-corpus', '#lane-skeletons'):
+                for where in ('.pe-library', '.pe-table'):
+                    self.assertTrue(soup.select(f'{where} a[href="../system/index.html{anchor}"]'), (where, anchor))
+            self.assertEqual([row.b.text for row in soup.select('#asset-growth tbody tr') if row.b],
+                             ['Shared Components', 'Structured Specs', 'Artwork Assets'])
 
             # An unsound snapshot empties only the Feishu columns.
             (assets / SNAPSHOT_NAME).write_text("{not json", encoding="utf-8")

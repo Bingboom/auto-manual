@@ -48,10 +48,11 @@ hero:
 
 # Current focus decides the page order: lanes marked now come first, next
 # after, and the cards and gates they name carry the lane's tag. A lane's
-# figures come from the publish manifest (publications: books by model x
-# region, REV-04 caliber; regions), the corpus snapshot or the skeleton
-# blueprints; its progress from the ledger gates or rows it lists. The focus
-# is the operator's call: re-confirm it whenever verified_on moves.
+# figures come from the corpus snapshot or the skeleton blueprints (one
+# skeleton per skeleton_id); its progress from the ledger gates or rows it
+# lists. Publication counts (publications, regions) belong to 说明书工作台, so
+# no lane lists them; the page points there instead. The focus is the
+# operator's call: re-confirm it whenever verified_on moves.
 focus:
   note: 一条交付主线，语料与 SSOT 随实际需求补齐。先完成发布基线和真实维护，再逐步扩展共享与覆盖。
   evidence:
@@ -65,7 +66,6 @@ focus:
       goal: 先收口发布基线，再用真实修订验证发布、恢复与维护全过程
       action: 收口 REV-07 → 完成 REV-09 修订、发布与恢复演练 → 验收 G1 → 开始 G2 维护试点
       card: web_publishing
-      metrics: [publications, regions]
       gates: [G1, G2]
     - id: corpus
       horizon: support
@@ -498,16 +498,6 @@ now_next:
     REV-07: 发布登记幂等与失败重试
     REV-09: 代表目标修订、发布与恢复演练
     REV-39: Shared IR（共享底稿）：共用内容结构边界摸底
-
-working_today:
-  - id: manual_center
-    label: 说明书资料库
-    note: 按产品、市场、语言浏览网页说明书
-    page: index
-  - id: knowledge
-    label: 知识库与 AI 分享
-    note: 分享资料与实践记录
-    page: workspace/index
 
 # Skills and hooks: read from the tree at build time (.agents/skills,
 # .claude/skills, .claude/settings.json, .githooks/pre-push); nothing is

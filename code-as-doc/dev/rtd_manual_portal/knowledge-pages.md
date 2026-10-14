@@ -99,6 +99,17 @@ Selecting a node reveals its work destinations, operating guides and next step.
 The 生产与资产 tab holds the production evidence. The system workspace remains
 the capability/progress view; this page links to it.
 
+Each fact has one page. This page owns what is published or in production
+now, so the 网页说明书 key metric carries the books per region (欧规 n · 美规 n,
+largest first, labelled by the system contract's `focus.regions`); 系统建设
+shows no publication count and links here. 系统建设 owns the corpus and
+skeleton totals: the 语料库 and 模板与骨架 cards and the asset ledger keep their
+maintenance links and adoption status and point to 系统建设「语言资产」
+(`#tab-corpus`) and 「骨架扩展」 (`#lane-skeletons`). The 数据更新时间
+disclosure keeps both snapshot freshness spans that Workspace Data Verify reads
+and links the registry's rules (系统建设「数据来源」, `#sources`). The pointers
+show only when the system page is built.
+
 `tools/rtd_portal_assets/manual_workbench.html` owns the curated navigation links,
 using business destinations from `user-guide/two_plane_map.md` and the README's
 existing authoritative guides. Templates/configuration link to auto-manual;
