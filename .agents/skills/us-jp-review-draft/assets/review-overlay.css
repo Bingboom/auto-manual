@@ -106,7 +106,8 @@ html body #furo-main-content #jp-review-appendix > h1 { color: #fff !important; 
 html body #furo-main-content #jp-review-appendix :is(p, li, h2, td, th) { color: #8a4b08 !important; }
 html body #furo-main-content #jp-review-appendix table { min-width: 0; }
 .hide-notes #furo-main-content .jp-review, .hide-notes .us-review-figure figcaption, .hide-notes #jp-review-appendix, .hide-notes .toc a[href="#jp-review-appendix"] { display: none !important; }
-.hide-zh #furo-main-content .zh-translation { display: none !important; }
+/* Repeated class beats the forced display:inline on warranty-card heading glosses. */
+html body.hide-zh #furo-main-content .zh-translation.zh-translation.zh-translation.zh-translation { display: none !important; }
 html body.only-changes #furo-main-content :is(.us-difference, .jp-parameter) { background: #fff0f7; outline: 1px solid #e8a8c4; outline-offset: 2px; }
 html body.only-changes #furo-main-content .en-new { background: #ecfdf5; outline: 1px solid #a7f3d0; outline-offset: 2px; }
 
@@ -182,3 +183,7 @@ html body #furo-main-content h2.jp-safety-band { display: block !important; min-
 html body #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child > .zh-translation {
   display: inline !important; flex-basis: auto !important; margin: 0 0 0 .5rem !important; font-size: 11.5px !important;
 }
+
+/* Grid tables with a merged last column: the cell left of it in the next row is a :last-child and loses its right border. */
+html body #furo-main-content table.jp-grid-table tr:has(> td[rowspan]:last-child) + tr > *:last-child { border-right: 1.25px solid var(--hb-brand-dark) !important; }
+html body #furo-main-content table.jp-grid-table tbody tr:nth-last-child(2) > td[rowspan="2"] { border-bottom: 0 !important; }
