@@ -57,7 +57,7 @@ shell owns tab navigation. It neither writes history nor infers execution status
 See [system workspace](../rtd_manual_portal/system-workspace.md#system-workspace-page).
 
 [`tools/rtd/design_system.py`](../../../tools/rtd/design_system.py) owns the
-read-only 设计系统 page context and its build-finished writer. Each reader
+read-only 设计规范 page context and its build-finished writer. Each reader
 covers one source:
 
 - [`design_system_css.py`](../../../tools/rtd/design_system_css.py) reads the live

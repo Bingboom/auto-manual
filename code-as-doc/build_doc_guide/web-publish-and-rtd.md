@@ -23,7 +23,7 @@ group opacity; SVG cannot use fill overrides or stroke suppression.
 
 生产完成触发、冻结快照审核与线上哈希确认见 [工作台数据持续更新](../dev/workspace_data_refresh.md)。
 
-设计系统 `/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#design-system-page)。
+设计规范（原“设计系统”）`/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#design-system-page)。
 
 系统数据 `/workspace/data/index.html` 在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/`、`data/asset_registry.csv` 与 `git ls-files`，汇总已发布网页说明书、机型能力、素材注册情况和各目录代码与文档行数，页面内可按区域和机型筛选；见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#system-data-page)。
 
@@ -153,10 +153,11 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 离线读取已封存的语料，写出不入库的 `manual-observations.json`（警示、安全、合规条目及其主题，以及跨产品、跨语言的比较），见[知识观察方案](../dev/machine_readable_knowledge_observation.md) §6。
 知识发现台账是 Hello-Docs 的业务内容 `docs/knowledge/governance/findings.json`，经内容 PR 维护；`python -m tools.manual_knowledge.findings check --ledger <文件>` 只读校验并汇总。重新发布并重跑观察后，同一命令的 `verify --observations <产物>` 核验台账，`propose` 列出台账尚未覆盖的候选条目，`coverage` 给出知识 × 版本的覆盖矩阵；三者都在产物旁写报告，只有 `verify --write` 回写核验字段。`bindings --corpus <manual-knowledge.json>` 列出台账各版本的编辑入口，标出尚未写明绑定的 `unclassified` 版本。见[知识治理方案](../dev/machine_readable_knowledge_governance.md) §6。
 
-同一个构建还会生成知识库入口页 `/workspace/`，并从 Hello-Docs 的
+同一个构建还会生成知识库首页 `/workspace/`，并从 Hello-Docs 的
 `docs/knowledge/ai-share/` 读取分享包，复制到
-`/ai-share/`。入口页的“分享资料”（`#shares`）放分享卡片，“最近更新”（`#updates`）列出
+`/ai-share/`。首页的“分享资料”（`#shares`）放分享卡片，“最近更新”（`#updates`）列出
 新加入的知识库页面，并链接到说明书资料库。分享包是可选的：缺失时 `/workspace/` 与系统建设页照常生成，只隐藏分享入口。
+知识库各页侧栏在“说明书”组后分“知识库”（首页）、“产品与市场”（产品知识、产品矩阵、市场与政策）和“说明书生产”（说明书工作台、系统建设、设计规范、系统数据）三组，顶部切换为“知识库 / 说明书资料库”；“工作资料”只作站点名，说明书资料库根页不变。
 系统建设页的「当前工作」标签集中展示任务优先级、完成数量、台账进度和下一步安排，
 保留原有 `#tab-progress` 链接。「系统演变」展示历史阶段、变化原因和未排期的长期方向，
 另以贯穿全过程的横向路标记录多轮维护与重构，不重复展示当前状态概览与任务进度。
@@ -187,7 +188,7 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 柱状图是语料库句对覆盖（各语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率，页面在图下写明。
 页内“技能与钩子”块在构建时读取 `.agents/skills`、`.claude/skills`、`.claude/settings.json` 与 `.githooks/pre-push`，
 按重点线列出技能，标出未登记的技能和没有测试的钩子；`check` 对这些缺口给出警告。
-各数据的来源、快照、多少天算过期和取不到时的显示，统一登记在 `tools/rtd_portal_assets/source_registry.yaml`，系统建设页和交付物页都从这里读取，系统建设页底部列出“数据来源”表；详见
+各数据的来源、快照、多少天算过期和取不到时的显示，统一登记在 `tools/rtd_portal_assets/source_registry.yaml`，系统建设页和说明书工作台都从这里读取，系统建设页底部列出“数据来源”表；详见
 [Source registry](../dev/rtd_manual_portal/system-workspace.md#source-registry)。
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](../dev/rtd_manual_portal/system-workspace.md#system-workspace-page)。
