@@ -24,6 +24,13 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-10-14
+    title: 说明书工作台 · 数据统计
+    note: 系统数据页的发布统计、机型能力（只列已发布型号）和素材登记并入此标签页，原页改为指引
+    page: deliverables
+    anchor: statistics
+    evidence: "pr:auto-manual#1545"
+
+  - date: 2026-10-14
     title: 说明书工作台 · 发布规模与生产证据
     note: 工作台与系统建设各管一类事实：发布规模、各区本数和生产证据在工作台，语料与骨架总数在系统建设
     page: deliverables
