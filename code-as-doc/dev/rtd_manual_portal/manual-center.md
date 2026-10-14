@@ -48,7 +48,7 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库 overview, 系统建设, 说明书工作台, 设计系统, 系统数据, 产品矩阵)
+Every portal page (manual library root, 知识库 overview, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计系统, 系统数据, 产品矩阵)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. The public manual library passes `internal=false` to
 both shell macros: its sidebar contains only 说明书资料库 and 搜索说明书正文,

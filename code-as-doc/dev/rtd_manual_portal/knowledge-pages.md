@@ -5,14 +5,16 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 
 ## Personal workspace entry
 
-The manual-center root remains independent. The portal extension also builds
-`/workspace/` as a neutral Chinese entry page for two separately maintained
-personal interfaces:
+The manual library root (说明书资料库) remains independent. The portal extension
+also builds `/workspace/` (知识库 · 概览) as the knowledge-base entry page:
 
-- **AI 分享** opens the bundled beginner-facing AI sharing package at
-  `/ai-share/00_打开分享.html`.
-- **工作资料** opens the manual library for product, region, language
-  and manual-content search.
+- **分享资料** (`#shares`) holds the share card for the bundled
+  beginner-facing AI sharing package at `/ai-share/00_打开分享.html`, with
+  its search box and category filters.
+- **最近更新** (`#updates`) lists the newest knowledge-base entries: the
+  sharing package and, when built, 说明书工作台, 设计系统, 系统数据 and 产品矩阵.
+- The page header and the last 最近更新 entry link to the manual library
+  (labelled 工作资料) for product, region, language and manual-content search.
 
 The sharing package is owned by **Hello-Docs** under
 `docs/knowledge/ai-share/`; it must not be committed to auto-manual.
@@ -24,9 +26,9 @@ Deploy that sync protection before merging content into Hello-Docs main.
 Maintain sharing content through a Hello-Docs content PR; keep templates and
 build code in auto-manual.
 Relative links between the main share, demonstrations, reference pages and SVG
-figures therefore keep working without another host. The two interfaces share
-the RTD project's visibility settings; the workspace path is navigation, not a
-separate access-control boundary.
+figures therefore keep working without another host. The workspace, sharing
+package and manual library share the RTD project's visibility settings; the
+workspace path is navigation, not a separate access-control boundary.
 
 The workspace exists in every combined portal build; knowledge pages link back
 to the manual center, but the manual-center homepage does not link into the
@@ -67,11 +69,16 @@ site keep linking to the manuals inside the same private site.
 ## Deliverables page
 
 `/workspace/deliverables/` (说明书工作台) is the production navigation surface.
-The stable URL is retained. Its compact work map follows the README:
-**structured data + templates/skeletons → build/publish → multi-format outputs**.
+The stable URL is retained. Below the hero, the key-metric row (网页说明书,
+语言版本, Word 云文档, 印刷交付包) sits above three tabs: **交付物** (the
+deliverables matrix, open by default), **工作入口** and **生产与资产**; see
+[Page layout](manual-center.md#page-layout). The 工作入口 tab draws the work map
+**Content Authority → Source Binding → Assembly / IR → Human + Machine Surface**:
+either content authority (structured sources or a Git-native manual source)
+passes through source binding into assembly, which derives both surfaces.
 Selecting a node reveals its work destinations, operating guides and next step.
-The data/template inputs visibly converge before the build stage. The system
-workspace remains the capability/progress view; this page links to it.
+The 生产与资产 tab holds the production evidence. The system workspace remains
+the capability/progress view; this page links to it.
 
 `tools/rtd_portal_assets/manual_workbench.html` owns the curated navigation links,
 using business destinations from `user-guide/two_plane_map.md` and the README's
@@ -84,10 +91,11 @@ business coordinates must update the authoritative topology and this entry map.
 All links and panels are rendered at build time. `manual-workbench.js` only
 switches the selected panel, using native buttons and `aria-pressed`; without
 JavaScript, every panel stays visible. Styling is scoped to the workbench and
-reuses the workspace shell. The hero provides a direct matrix anchor.
+reuses the workspace shell. The key-metric cards link to `#deliverables`, the
+交付物 tab that holds the matrix.
 
-Below the map, the unchanged delivery data is grouped by model, with one row
-per region and one column per format:
+In the 交付物 tab, the delivery data is grouped by model, with one row per
+region and one column per format:
 
 | Column | What it links to | Source |
 | --- | --- | --- |
@@ -106,9 +114,12 @@ per region and one column per format:
   does not list shows its code only. The build table's own product names are
   not used, because some of them are wrong or empty.
 
-The Feishu links open only for signed-in Feishu users, but their addresses are
-public on this page. The operator chose this on 2026-09-25 (「直接放飞书链接」).
-The page accepts only https links on a Feishu or Lark host.
+The Feishu links open only for signed-in Feishu users, but anyone who can open
+this page sees their addresses. The operator chose this on 2026-09-25
+(「直接放飞书链接」), while the site was public. Since 2026-10-13 the site has
+been private (Read the Docs for Business), but the operator can make it public
+at any time, so treat these addresses as published. The page accepts only
+https links on a Feishu or Lark host.
 
 ### Refreshing the Feishu snapshot
 
@@ -301,7 +312,7 @@ public manual library does not link to it.
 
 ## 产品知识
 
-产品知识、市场与政策和产品案例与说明书共用同一个 RTD 项目（2026-10-06 定为同项目发布）。2026-10-13 起 Hello-Docs 转为私有仓库，站点改由 Read the Docs for Business 托管于 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`，访问需要登录并具备项目权限；页面路径须带 `/en/latest/` 前缀，例如 `/en/latest/products/knowledge.html`。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；分享知识页直达链接给有权限的人。
+产品知识（产品案例是其末节）、市场与政策都与说明书共用同一个 RTD 项目（2026-10-06 定为同项目发布）。2026-10-13 起 Hello-Docs 转为私有仓库，站点改由 Read the Docs for Business 托管于 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`，访问需要登录并具备项目权限；页面路径须带 `/en/latest/` 前缀，例如 `/en/latest/products/knowledge.html`。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；分享知识页直达链接给有权限的人。
 
 `/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`；适用产品复用首页 `settings.json` 的 `navigation` 定位分组。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。
 

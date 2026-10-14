@@ -4,8 +4,10 @@
 #
 # The system and deliverables pages read snapshot names, freshness limits and
 # fallback text from here instead of hardcoding them; the system page lists
-# every domain publicly as 数据来源; agents look up a fact's authority here.
-# Name Feishu sources by their environment variables, never by token.
+# every domain as 数据来源; agents look up a fact's authority here.
+# Name Feishu sources by their environment variables, never by token. This
+# file sits in a public repository, and the pages' site, private since
+# 2026-10-13 (Read the Docs for Business), can be made public at any time.
 #
 #   authority        where the fact is decided: a file:<repo>:<path> ref, or text
 #   read             build (read at build time) | snapshot (a committed JSON file)
