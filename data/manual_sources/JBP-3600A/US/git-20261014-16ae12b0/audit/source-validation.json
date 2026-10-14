@@ -26,7 +26,7 @@
     "component": true,
     "symbol_asset": true,
     "caption_frame": true,
-    "publishable": "not applicable: Git-only candidate (publication_eligible false)"
+    "publishable": "passed after operator acceptance (source/approval.json)"
   },
   "layout_reference": "JBP-2000B / JBP-3600A EU Web (chapter set, components, figure style); operator kept the print order (TROUBLESHOOTING before CONNECTIONS)",
   "languages": {

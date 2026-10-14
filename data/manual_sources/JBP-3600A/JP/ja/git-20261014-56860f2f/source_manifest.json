@@ -229,12 +229,12 @@
     ]
   },
   "source_authority": "operator-supplied production drawing PDF; native visible Japanese panel content; no translation or product adaptation",
-  "publication_status": "git-only-source-candidate",
+  "publication_status": "operator-approved-git-only-release",
   "inputs": [
     {
       "path": "README.md",
-      "size": 9461,
-      "sha256": "c551f2d9d04de6c7f9f1cddea72c1721a738002073d3cee417129f166f06b8e3"
+      "size": 9658,
+      "sha256": "0c2be1d8737568c1d00d7189edd237ce82e8bc5bcf44ad2b67e612aca25b4610"
     },
     {
       "path": "assets/ac-charging.png",
@@ -383,13 +383,18 @@
     },
     {
       "path": "audit/validation.zh.md",
-      "size": 2112,
-      "sha256": "c6195bd2115fe6248d1c3c4c85c9a95a20ff069b77e8c6a729209251018b2970"
+      "size": 2285,
+      "sha256": "f3d451b29b40339eb0f2b6803635b271aab616e1bbf68ed4e4c860950fa66aeb"
     },
     {
       "path": "rebuild.py",
       "size": 7847,
       "sha256": "ea96adfdf26c492675d7f3a50ca2a1b64c5c41cdec718bc97c0c0ed97e109431"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 7991,
+      "sha256": "9d88418576661e9573b638324df11b11e6594c2f49da608ab22fc47f62152371"
     },
     {
       "path": "source/extract_assets.py",
@@ -598,8 +603,8 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 261930,
-      "sha256": "0e37d3cf4e932b47b0c4d8e22ddf9049af7ed8bf86bd432289ac777d44f65494"
+      "size": 270741,
+      "sha256": "f2b4ecbb11ba2b78220113608451101bb83ed2c1e259846fc1bcf49382ced157"
     },
     {
       "path": "web/ja/manual_jbp3600a_jp_ja.md",

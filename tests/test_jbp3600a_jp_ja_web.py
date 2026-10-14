@@ -1,4 +1,4 @@
-"""JBP-3600A JP Japanese Git-only candidate: sheet identity, word coverage, artwork, shared-IR replay."""
+"""JBP-3600A JP Japanese Git-only release: sheet identity, word coverage, artwork, acceptance, shared-IR replay."""
 from __future__ import annotations
 
 from contextlib import redirect_stdout
@@ -126,14 +126,38 @@ class Jbp3600aJpJaWebTests(unittest.TestCase):
         files = sorted(path for path in inventory(PACKAGE) if path != 'source_manifest.json')
         self.assertEqual(sorted(row['path'] for row in manifest['inputs']), files)
 
-    def test_candidate_is_not_publishable(self):
+    def test_the_operator_acceptance_binds_every_source_input(self):
         manifest = read(PACKAGE / 'source_manifest.json')
-        self.assertEqual(manifest['publication_status'], 'git-only-source-candidate')
-        self.assertFalse((PACKAGE / 'source/approval.json').exists())
+        self.assertEqual(manifest['publication_status'], 'operator-approved-git-only-release')
+        approval = read(PACKAGE / 'source/approval.json')
+        self.assertEqual(approval['target'], {key: manifest['target'][key]
+                                              for key in ('model', 'region', 'technical_version')})
+        self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
+        # Everything but the frozen web/ outputs and the acceptance itself.
+        self.assertEqual(approval['reviewed_inputs'],
+                         [row for row in manifest['inputs']
+                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+        self.assertEqual((approval['operator_quote'], approval['merge_authorization']),
+                         ('合入了，上线授权你合入', 'MA-303'))
         metadata = read(PACKAGE / 'web/ja' / PathSegments.MANUAL_IR_JSON)['metadata']
-        self.assertIs(metadata['publication_eligible'], False)
-        self.assertTrue(metadata['pending_source_review'])
-        self.assertIsNone(metadata['operator_source_acceptance'])
+        self.assertIs(metadata['publication_eligible'], True)
+        self.assertEqual(metadata['pending_source_review'], [])
+        self.assertEqual(metadata['operator_source_acceptance'], approval)
+
+    def test_an_acceptance_that_misses_an_input_is_refused_before_output(self):
+        source = self.fixture()
+        path = source / 'source/approval.json'
+        approval = read(path)
+        approval['reviewed_inputs'] = approval['reviewed_inputs'][1:]
+        write(path, approval)
+        manifest = read(source / 'source_manifest.json')
+        row = next(row for row in manifest['inputs'] if row['path'] == 'source/approval.json')
+        row.update(size=path.stat().st_size, sha256=file_sha256(path))
+        write(source / 'source_manifest.json', manifest)
+        with mock.patch.object(rebuild_module, 'SOURCE_ROOT', source):
+            with self.assertRaisesRegex(ValueError, 'operator acceptance does not cover these source inputs'):
+                rebuild(self.root / 'output')
+        self.assertFalse((self.root / 'output').exists())
 
     def test_every_word_on_the_sheet_is_classified(self):
         coverage = read(PACKAGE / 'source/ja/coverage.json')
@@ -196,8 +220,7 @@ class Jbp3600aJpJaWebTests(unittest.TestCase):
         require_fresh_component_admission(web, model='JBP-3600A', region='JP', language='ja')
         require_symbol_asset_admission(web, PACKAGE, manifest, 'ja')
         require_caption_frame_admission(web)
-        with self.assertRaisesRegex(Exception, 'pending source review'):
-            require_publishable_manual_ir(web)
+        require_publishable_manual_ir(web)
 
     def test_changed_inputs_are_rejected_before_output(self):
         for relative in ['source/ja/content.json', 'assets/signal-triangle.svg', 'source/presentation.css']:

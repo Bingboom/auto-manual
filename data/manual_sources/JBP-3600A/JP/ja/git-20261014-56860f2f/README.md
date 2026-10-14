@@ -2,7 +2,7 @@
 
 This package freezes the supplied Japanese production drawing for the Jackery Battery Pack 3600 (model JBP-3600A, internal code HTP0113600A, part number 16-0102-000060, printed version V0.1). It converts the printed manual pages 01–10 into a Japanese Web edition.
 
-**Status: Git-only source candidate.** It has no `source/approval.json`, and the replayed IR is `publication_eligible: false`. It waits for the operator's layout review, a separate merge decision and a separate release authorization. No merge authorization covers it.
+**Status: operator-accepted Git-only release.** After the layout review (PR #1528), the operator accepted this edition for release on 2026-10-14 (「合入了，上线授权你合入」), keeping the defaults of the three points listed for their decision. `source/approval.json` binds that acceptance to these exact source inputs, and the replayed IR is `publication_eligible: true`. Merge and release run under MA-303 in `code-as-doc/dev/merge_authorizations.md`.
 
 ## The source is one production sheet
 
