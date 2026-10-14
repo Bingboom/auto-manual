@@ -1,4 +1,4 @@
-# JBP-3600A JP 日文 Git-only 候选 —— 验证记录（2026-10-14）
+# JBP-3600A JP 日文 Git-only 发布版 —— 验证记录（2026-10-14）
 
 环境：Python 3.13，`requirements.lock` 固定版本（PyMuPDF 1.28.0 / MuPDF 1.29.0、Sphinx 8.2.3）。
 
@@ -15,7 +15,7 @@
 | 严格 Sphinx | `python -m sphinx -n -W --keep-going -b html web/ja <out>` | 0 警告 |
 | 冷重放字节一致 | `rebuild.py --output <新目录>` 与 `web/ja` 全文件哈希比较 | 一致 |
 | 篡改拒绝 | 改动 content.json / 资产 / presentation.css / PDF 任一字节 | 均在写出前拒绝 |
-| 准入 | component、symbol、caption-frame admission | 通过；`require_publishable_manual_ir` 按预期拒绝（候选未批准） |
+| 准入 | component、symbol、caption-frame admission | 通过；操作员验收后 `require_publishable_manual_ir` 也通过（验收前按预期拒绝） |
 | 浏览器宽度扫描 | 320–1920 px 共 14 档（`audit/browser-validation.json`） | 无页面溢出、无坏图、无脚本错误、表格无横向滚动 |
 
-状态：`publication_status: git-only-source-candidate`；无 `source/approval.json`；IR `publication_eligible: false`。
+状态：`publication_status: operator-approved-git-only-release`。操作员已于 2026-10-14 验收上线（「合入了，上线授权你合入」），`source/approval.json` 绑定全部源输入，IR `publication_eligible: true`；合入和发布按 MA-303 执行。
