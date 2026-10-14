@@ -11,6 +11,8 @@ import json
 from pathlib import Path
 import sys
 
+from bs4 import BeautifulSoup
+
 REPO = next(p for p in Path(__file__).resolve().parents if (p / "build.py").is_file())
 sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -23,6 +25,7 @@ from tools.component_specs.inbox_adapters import web_inbox_projection  # noqa: E
 from tools.component_specs.manual_tables import (  # noqa: E402
     symbol_icon_component_spec, symbol_signal_component_spec, troubleshooting_component_spec,
 )
+from tools.component_specs.reference_table import reference_table_component_spec  # noqa: E402
 from tools.component_specs.spec_table import spec_table_component_spec  # noqa: E402
 from tools.component_specs.warranty import (  # noqa: E402
     warranty_lead_component_spec, warranty_section_component_spec, warranty_years_component_spec,
@@ -44,17 +47,6 @@ def cell(children, *, header=False, cls=None, **fields):
         children = [text(children)]
     extra = {"presentation": attrs(cls)} if cls else {}
     return node("table_cell", children, header=header, **fields, **extra)
-
-
-def grid(head_rows, body_rows, css):
-    """A native table in the shared scroll wrapper; head rows become <thead>."""
-    parts = []
-    if head_rows:
-        parts.append(node("table_head", [node("table_row", r) for r in head_rows]))
-    parts.append(node("table_body", [node("table_row", r) for r in body_rows]))
-    table_node = node("table", parts, presentation=attrs("manual-table " + css))
-    return node("group", [table_node], role="container",
-                presentation=attrs("table-wrapper docutils container native-table-wrap"))
 
 
 def group(children, css):
@@ -202,29 +194,30 @@ def make():
     n.add(n.comp(inbox_component_spec, inbox_carrier, accessibility_label=n.current["title"], cards=cards,
                  tip_label="", tip_body="", require_tip=False, variant="responsive-card-grid"))
     n.chapter("product-overview", 5, [25, 325, 345, 350])
-    views = []
+    # Stacked views, as on the JBP-2000B and JBP-3600A EU Web manuals.
     for box, slot in [([35, 362, 150, 376], "overview-front"), ([160, 362, 345, 376], "overview-left")]:
-        views.append(group([heading(n.t(5, box), level=3), n.figure(slot, width="view")], "native-view"))
-    n.add(group(views, "native-views " + "native-views-pair"))
+        n.add(heading(n.t(5, box), level=3), n.figure(slot, width="wide"))
 
     # ---- p6 LCD DISPLAY, OPERATIONS --------------------------------------------------
     n.chapter("lcd-display", 6, [25, 28, 345, 50])
     n.add(n.figure("lcd-display", width="wide"))
+    # The shared LCD description table the JBP-3600A EU Web uses; no header row, as printed.
     rows = []
     for y0, y1 in [(113, 156), (156, 171)]:
-        name = n.prose(6, [30, y0, 105, y1], right=104.0)
-        rows.append([cell(name[0]["children"], cls="native-lcd-name"),
-                     cell(n.prose(6, [105, y0, 341, y1], right=336.0)[0]["children"])])
-    n.add(grid([], rows, "native-print-grid native-lcd-table native-fit"))
+        # The shared table reads the text back from the HTML, one text run per line.
+        rows.append([{"html": flow_markup(b),
+                      "text": BeautifulSoup(flow_markup(b), "html.parser").get_text("\n", strip=True)}
+                     for b in (n.prose(6, [30, y0, 105, y1], right=104.0, every_line=True)[0],
+                               n.prose(6, [105, y0, 341, y1], right=336.0)[0])])
+    n.add(n.comp(reference_table_component_spec, lambda spec: None, variant="lcd-descriptions",
+                 label=n.current["title"], headers=[], rows=rows))
     n.chapter("operations", 6, [25, 182, 345, 203])
     n.h(6, [35, 208, 345, 224])                                  # POWER ON/OFF
-    note = callout(n, n.t(6, [36, 311, 78, 353]), n.prose(6, [78, 311, 336, 353], right=326.0), variant="note")
-    n.add(group([n.figure("power-on-off", width="wide"), note], "native-frame"))
+    n.add(n.figure("power-on-off", width="wide"))
+    n.add(callout(n, n.t(6, [36, 311, 78, 353]), n.prose(6, [78, 311, 336, 353], right=326.0), variant="note"))
     n.h(6, [35, 362, 345, 378])                                  # LCD DISPLAY ON/OFF
-    strip = n.prose(6, [35, 468, 341, 490], right=336.0)
-    for block in strip:
-        block["presentation"] = attrs("native-strip")
-    n.add(group([n.figure("lcd-on-off", width="wide"), *strip], "native-frame"))
+    n.add(n.figure("lcd-on-off", width="wide"))
+    n.add(*n.prose(6, [35, 468, 341, 490], right=336.0))
 
     # ---- p7-8 TROUBLESHOOTING, CONNECTIONS ------------------------------------------
     n.chapter("troubleshooting", 7, [25, 28, 345, 50])
@@ -262,7 +255,7 @@ def make():
 
     # ---- p10 STORAGE, SPECIFICATIONS -------------------------------------------------
     n.chapter("storage", 10, [25, 28, 345, 50])
-    n.add(group(n.prose(10, [28, 59, 340, 131], right=334.5), "native-panel"))
+    n.add(*n.prose(10, [28, 59, 340, 131], right=334.5))
     n.chapter("specifications", 10, [25, 160, 345, 182])
     tables = [([35, 186, 345, 202], [(204, 215.5), (215.5, 226.5), (226.5, 237.5), (237.5, 248.5),
                                       (248.5, 259.5), (259.5, 270.5), (270.5, 282)]),

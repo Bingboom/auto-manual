@@ -1560,8 +1560,8 @@
     },
     {
       "path": "README.md",
-      "size": 5396,
-      "sha256": "7b39d5e4df34a6e6c6d976189fd0f415f9cb091c664d5254caa486e42a0b06dd"
+      "size": 5966,
+      "sha256": "4b2c103c4cf8564334a5c596553354811a55fe789fcaa317b014ccae2d846569"
     },
     {
       "path": "assets/ac-charging.png",
@@ -1700,23 +1700,23 @@
     },
     {
       "path": "audit/browser-validation.json",
-      "size": 1434,
-      "sha256": "37322bd334c433f32121ad27b2e4db46205beacd956750016c0bcf52540fa804"
+      "size": 1437,
+      "sha256": "687b0a222e88bf2bc949817a104e3274ee3db3aea2b8eb35e0531aa4a42f5265"
     },
     {
       "path": "audit/discovery.zh.md",
-      "size": 1873,
-      "sha256": "a5787ca4c05c2751ffaa0ed0fb9eaceced1b2ac823cfcf15544547a84d785d6a"
+      "size": 2494,
+      "sha256": "991ea75c53c8e243ac2e65a3e3a1fdc6cac4993f770da26b05c9145550fc19c5"
     },
     {
       "path": "audit/source-validation.json",
-      "size": 1058,
-      "sha256": "dec658d8bfa02a57f682ab66d446b1eee251fd72235b0e79f74f5be63b768c28"
+      "size": 1246,
+      "sha256": "42bfc8cd46381f1bee976b014577afac4e08377b5924cf5b8181a70c1ccfa12e"
     },
     {
       "path": "audit/validation.zh.md",
-      "size": 2031,
-      "sha256": "45dceb50bbe68673af7e4f3cec5b913a4d5de806cf8a4fb9e8c435606ac178ac"
+      "size": 2054,
+      "sha256": "6df96bca0471dc69c05eba0748c477e3b4f802d89de43f7e41c434932dcebc74"
     },
     {
       "path": "rebuild.py",
@@ -1725,13 +1725,13 @@
     },
     {
       "path": "source/en/content.json",
-      "size": 126001,
-      "sha256": "aef3edfc4a1afdd57738c0f2a58e02693adc7b95d180b26eeed4c5c55f394650"
+      "size": 120201,
+      "sha256": "adb64e16aeb60527821cbba68aa77e4ad8a7b7c24e068ad799f171b05b712753"
     },
     {
       "path": "source/en/coverage.json",
-      "size": 55271,
-      "sha256": "5943b6a0f1dea7361d8dcfd7656b74ad088c8ec627a4a35dd5e63b3fefa069c5"
+      "size": 55352,
+      "sha256": "fdebde2e748f6ae53591250d8c933132f567895106fa39d6d23ddefab1c9f387"
     },
     {
       "path": "source/extract_assets.py",
@@ -1750,8 +1750,8 @@
     },
     {
       "path": "source/intake.py",
-      "size": 16696,
-      "sha256": "8e3d8655c1313bd9aae865de294b6bf38a934deca4d7cdf285a1d9129ec79b55"
+      "size": 16449,
+      "sha256": "bd5deefb8e3387082f12d1496f48f7379a84c1843117e67da3b0669ceaa8ab87"
     },
     {
       "path": "source/native.py",
@@ -1760,8 +1760,8 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 3234,
-      "sha256": "cfbce25f82a017a8bd8afc01bde45e67ceb31229bc5c2cf70f51b06d25bf25bb"
+      "size": 1849,
+      "sha256": "41703f1e6bee53adb4b9bcad8f733e2fe69553b875b84aab229345151043abaf"
     },
     {
       "path": "source/refresh_manifest.py",
@@ -1785,8 +1785,8 @@
     },
     {
       "path": "web/en/_static/source_presentation.css",
-      "size": 3234,
-      "sha256": "cfbce25f82a017a8bd8afc01bde45e67ceb31229bc5c2cf70f51b06d25bf25bb"
+      "size": 1849,
+      "sha256": "41703f1e6bee53adb4b9bcad8f733e2fe69553b875b84aab229345151043abaf"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -1935,13 +1935,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 209762,
-      "sha256": "cafa3c5c751bbe37d5de678960938969be67f33e83546fcbded53c682b09406e"
+      "size": 205750,
+      "sha256": "c00aad262bde287e366e02c88f3f9d3f7255dd51ebb801a8c86a5469e479a3a1"
     },
     {
       "path": "web/en/manual_jbp3600a_us_en.md",
-      "size": 32608,
-      "sha256": "6573e1028acfd7bcd0e8d3d4d304746bc1f84fc878514727014972c64cc1b85f"
+      "size": 31060,
+      "sha256": "7e3791a580818f2ca65c48d14670ab588dfd0e58f8b2ca43635ad438e3a1c65b"
     }
   ]
 }

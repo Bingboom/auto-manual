@@ -1,6 +1,6 @@
 {
   "build": "strict Sphinx (python -m sphinx -n -W --keep-going -b html) of web/en",
-  "browser": "Chromium 1194 (Playwright), full-page after scrolling to load lazy images",
+  "browser": "Chromium 1194 (Playwright), full-page after loading and decoding every image",
   "viewports": {
     "320": {
       "cssViewport": {

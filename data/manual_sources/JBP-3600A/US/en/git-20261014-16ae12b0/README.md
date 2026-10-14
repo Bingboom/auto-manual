@@ -2,6 +2,8 @@
 
 This package freezes the supplied US Jackery Battery Pack 3600 User Manual (model JBP-3600A, 28 pages, no printed manual-version string) and converts only the printed English pages 01–08, physical PDF pages 4–11. The printed cover, the US/FR/ES preface, the global contents, the French and Spanish bodies and the back cover stay in the archived PDF and are not repeated in the Web body (「封面和目录 不用体现在web版面上」).
 
+**Layout reference: JBP-2000B** (operator, 2026-10-14: 「用JBP-2000B的参考」). Chapter set, heading treatment, components and figure style follow the published JBP-2000B and JBP-3600A EU English Web manuals; JA-TS02A remains the method reference for the frozen intake. Wording stays as printed in the US source (US contact, FCC, US warranty). One difference is kept for the operator to decide: the US print sets TROUBLESHOOTING before CONNECTIONS, the references the other way round.
+
 **Status: Git-only source candidate for the operator's layout review.** There is no `source/approval.json`; the replayed IR is `publication_eligible: false`. Acceptance, merge and any release need separate operator decisions.
 
 ## Print fidelity
@@ -12,11 +14,11 @@ This package freezes the supplied US Jackery Battery Pack 3600 User Manual (mode
 | Outlined text | 48 visible lines are vector outlines with no text layer (the safety list, the FCC measures, the NOTE/CAUTION/NOTES bodies, STORAGE, the warranty exclusions). `source/text-recovery.json` restores them from source pixels with their glyph-path boxes; their statement starts are reviewed, because the lines share one indent. |
 | Bold, headings | Bold print runs are `strong`; chapter titles and subheadings keep print case. |
 | Lists | Only STORAGE prints bullet marks, so only it is a list. Unmarked printed statements stay lines. |
-| Tables | The LCD table has no header row, as printed. Troubleshooting codes keep their printed line (F6-F9, / FA, FC, FE). All two-column tables fit the phone at 390 px. |
+| Tables | The LCD table is the shared LCD description table (as on the EU Web), with no header row, as printed. Troubleshooting codes keep their printed line (F6-F9, / FA, FC, FE). All two-column tables fit the phone at 390 px. |
 | Callouts | NOTE, CAUTION, NOTES and Warning (print case) use the shared callout strip. The p8 NOTES sentence keeps its inline LCD icon as a native vector. |
 | Figures | Complete panels with no visible caption; the caption is the alt text and words printed in the art stay in the art. |
 
-Shared components: HB-CALLOUT-STRIP 4, HB-SPECIAL-FCC 1, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 10, HB-TABLE-SPEC 3, HB-TABLE-SYMBOL-ICON 1, HB-TABLE-SYMBOL-SIGNAL 1, HB-TABLE-TROUBLESHOOTING 1, HB-WARRANTY-LEAD 1, HB-WARRANTY-SECTION 5, HB-WARRANTY-YEARS 1. `source/presentation.css` holds only this source's geometry.
+Shared components: HB-CALLOUT-STRIP 4, HB-SPECIAL-FCC 1, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 10, HB-TABLE-REFERENCE 1, HB-TABLE-SPEC 3, HB-TABLE-SYMBOL-ICON 1, HB-TABLE-SYMBOL-SIGNAL 1, HB-TABLE-TROUBLESHOOTING 1, HB-WARRANTY-LEAD 1, HB-WARRANTY-SECTION 5, HB-WARRANTY-YEARS 1. `source/presentation.css` holds only this source's geometry.
 
 Known shared-component behaviour, kept rather than changed in the shared renderer:
 - The FCC component runs the two left-column paragraphs ("NOTE: … FCC Rules." and "These limits …") into one paragraph. The four measures are its list; the source stylesheet hides list marks, which the print does not show.

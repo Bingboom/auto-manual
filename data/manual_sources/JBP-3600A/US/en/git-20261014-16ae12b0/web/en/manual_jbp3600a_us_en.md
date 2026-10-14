@@ -1,45 +1,19 @@
 <style>
-/* JBP-3600A US source geometry only. Shared Web theme owns headings, callouts, tables and figures. */
+/* JBP-3600A US source geometry only. Shared Web theme owns headings, callouts, tables and figures;
+   layout follows the JBP-2000B and JBP-3600A EU Web manuals. */
 
 /* Figures: the print's own art width; no visible caption (the art carries its labels). */
 .native-figure { max-width: 680px; margin: 1rem auto; min-width: 0; }
 .native-figure .hb-reference-figure { margin: 0; max-width: none; }
 #furo-main-content .native-figure img { width: 100% !important; height: auto !important; max-height: none; }
 
-/* p5 front and left side views: side by side as printed, stacked on phones. */
-.native-views { display: grid; grid-template-columns: minmax(0, 0.68fr) minmax(0, 1fr); gap: 1.2rem; align-items: start; margin: 1rem 0; }
-.native-views > * { min-width: 0; }
-.native-view .native-figure { margin: 0.4rem 0 0; }
-.native-view > :first-child { margin-top: 0; }
-@media (max-width: 760px) {
-  .native-views { grid-template-columns: minmax(0, 1fr); }
-}
-
 /* p5 FCC measures: printed as indented lines without marks. */
 #furo-main-content .native-fcc .hb-fcc-column ul { list-style: none; padding-left: 0.6em; }
 #furo-main-content .native-fcc .hb-fcc-column ul > li { margin: 0; }
 #furo-main-content .native-fcc .hb-fcc-column ul > li > p { margin: 0; }
 
-/* p6 operation panels: the print frames the art with its note or strip. */
-.native-frame {
-  margin: 1rem 0; padding: 0.75rem; border: 1.5px solid var(--hb-line-soft); border-radius: var(--hb-panel-radius);
-}
-.native-frame > .native-figure { margin: 0 auto 0.6rem; }
-.native-frame > :last-child { margin-bottom: 0; }
-#furo-main-content .native-frame > p.native-strip,
-#furo-main-content .native-panel {
-  padding: 0.55rem 0.9rem; border-radius: var(--hb-panel-radius); background: var(--hb-surface);
-}
-#furo-main-content .native-panel { margin: 1rem 0; padding: 0.7rem 1rem; }
-.native-panel > :first-child { margin-top: 0; }
-.native-panel > :last-child { margin-bottom: 0; }
-
-/* p6 LCD table: bold names in a tinted first column, as printed. */
-#furo-main-content table.native-print-grid td { vertical-align: middle; padding: 0.42rem 0.6rem !important; }
-#furo-main-content table.native-lcd-table td.native-lcd-name { width: 30%; background: var(--hb-surface); }
 /* Two-column tables fit the phone (the print's troubleshooting table has two columns). */
 @media (max-width: 760px) {
-  #furo-main-content table.native-fit,
   #furo-main-content .native-fit-phone table { min-width: 0 !important; }
   #furo-main-content .native-fit-phone col.hb-troubleshooting-col-code { width: 5.4rem !important; }
 }
@@ -89,7 +63,13 @@
 
 ## PRODUCT OVERVIEW
 
-<div class="native-views native-views-pair"><div class="native-view"><h3>FRONT VIEW</h3><div class="native-figure native-overview-front native-view"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="overview-front" data-source-fragment-sha256="3b8a386afe760754d905aeaf227db833f579ca615ea7ea8563a1e4fe907eeb37" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="overview-front.semantic"><img alt="Front view: LCD display and POWER button" class="hb-reference-art hb-composite-art" src="assets/overview-front.png"/></div></figure></div></div><div class="native-view"><h3>LEFT SIDE VIEW</h3><div class="native-figure native-overview-left native-view"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="overview-left" data-source-fragment-sha256="bfcc1c09df1ca41e5f77386db0c28da3ea8d4833398e80e819d1989aefe1fa5f" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="overview-left.semantic"><img alt="Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)" class="hb-reference-art hb-composite-art" src="assets/overview-left.png"/></div></figure></div></div></div>
+### FRONT VIEW
+
+<div class="native-figure native-overview-front native-wide"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="overview-front" data-source-fragment-sha256="3b8a386afe760754d905aeaf227db833f579ca615ea7ea8563a1e4fe907eeb37" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="overview-front.semantic"><img alt="Front view: LCD display and POWER button" class="hb-reference-art hb-composite-art" src="assets/overview-front.png"/></div></figure></div>
+
+### LEFT SIDE VIEW
+
+<div class="native-figure native-overview-left native-wide"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="overview-left" data-source-fragment-sha256="bfcc1c09df1ca41e5f77386db0c28da3ea8d4833398e80e819d1989aefe1fa5f" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="overview-left.semantic"><img alt="Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)" class="hb-reference-art hb-composite-art" src="assets/overview-left.png"/></div></figure></div>
 
 <span id="native-lcd-display"></span>
 
@@ -97,7 +77,7 @@
 
 <div class="native-figure native-lcd-display native-wide"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="lcd-display" data-source-fragment-sha256="afbd65d1b59ea63a74a80c875eac7c6073098ecea14355586605cec61d9956d4" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="lcd-display.semantic"><img alt="LCD display: power percentage or fault code, and the charging indicator" class="hb-reference-art hb-composite-art" src="assets/lcd-display.png"/></div></figure></div>
 
-<div class="table-wrapper docutils container native-table-wrap"><table class="manual-table native-print-grid native-lcd-table native-fit"><tbody><tr><td class="native-lcd-name"><strong>Power Percentage/ Fault Code</strong></td><td>The display shows the current power percentage.<br/>When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.</td></tr><tr><td class="native-lcd-name"><strong>Charging Indicator</strong></td><td>The indicator is displayed when charging and disappears when it is fully charged.</td></tr></tbody></table></div>
+<figure aria-label="LCD DISPLAY" class="hb-reference-composition hb-reference-lcd-descriptions" data-component-id="HB-TABLE-REFERENCE" data-component-variant="lcd-descriptions" tabindex="0"><table class="hb-reference-table"><tbody><tr><td><strong>Power Percentage/</strong><br/><strong>Fault Code</strong></td><td>The display shows the current power percentage.<br/>When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.</td></tr><tr><td><strong>Charging Indicator</strong></td><td>The indicator is displayed when charging and disappears when it is fully charged.</td></tr></tbody></table></figure>
 
 <span id="native-operations"></span>
 
@@ -105,11 +85,15 @@
 
 ### POWER ON/OFF
 
-<div class="native-frame"><div class="native-figure native-power-on-off native-wide"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="power-on-off" data-source-fragment-sha256="94ac08852423403f669617e9674b7d1adf0f60bd5d59012850c671571b6ebfe8" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="power-on-off.semantic"><img alt="POWER button: press once to turn on; press and hold for 3 s to turn off" class="hb-reference-art hb-composite-art" src="assets/power-on-off.png"/></div></figure></div><table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">NOTE</td><td class="manual-callout-body"><p>When using with Jackery HomePower 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery HomePower 3600 Plus.<br/>The product will automatically shut down if it is not charged or no loads are connected for 2 hours.</p></td></tr></tbody></table></div>
+<div class="native-figure native-power-on-off native-wide"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="power-on-off" data-source-fragment-sha256="94ac08852423403f669617e9674b7d1adf0f60bd5d59012850c671571b6ebfe8" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="power-on-off.semantic"><img alt="POWER button: press once to turn on; press and hold for 3 s to turn off" class="hb-reference-art hb-composite-art" src="assets/power-on-off.png"/></div></figure></div>
+
+<table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">NOTE</td><td class="manual-callout-body"><p>When using with Jackery HomePower 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery HomePower 3600 Plus.<br/>The product will automatically shut down if it is not charged or no loads are connected for 2 hours.</p></td></tr></tbody></table>
 
 ### LCD DISPLAY ON/OFF
 
-<div class="native-frame"><div class="native-figure native-lcd-on-off native-wide"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="lcd-on-off" data-source-fragment-sha256="4f07316fdbc9b269e3bb8ece6af3191e88e91b49d5d22c006339be020740bdca"><div class="hb-reference-semantic" data-reference-id="lcd-on-off.semantic"><img alt="Pressing the POWER button switches the LCD display on or off" class="hb-reference-art hb-composite-art" src="assets/lcd-on-off.png"/></div></figure></div><p class="native-strip">When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.</p></div>
+<div class="native-figure native-lcd-on-off native-wide"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="lcd-on-off" data-source-fragment-sha256="4f07316fdbc9b269e3bb8ece6af3191e88e91b49d5d22c006339be020740bdca"><div class="hb-reference-semantic" data-reference-id="lcd-on-off.semantic"><img alt="Pressing the POWER button switches the LCD display on or off" class="hb-reference-art hb-composite-art" src="assets/lcd-on-off.png"/></div></figure></div>
+
+<p>When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.</p>
 
 <span id="native-troubleshooting"></span>
 
@@ -157,7 +141,11 @@
 
 ## STORAGE
 
-<div class="native-panel"><p>Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:</p><ul class="native-bullets"><li>1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)</li><li>3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH)</li><li>12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)</li></ul><p>If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.</p></div>
+<p>Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:</p>
+
+<ul class="native-bullets"><li>1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)</li><li>3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH)</li><li>12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)</li></ul>
+
+<p>If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.</p>
 
 <span id="native-specifications"></span>
 

@@ -1,44 +1,18 @@
-/* JBP-3600A US source geometry only. Shared Web theme owns headings, callouts, tables and figures. */
+/* JBP-3600A US source geometry only. Shared Web theme owns headings, callouts, tables and figures;
+   layout follows the JBP-2000B and JBP-3600A EU Web manuals. */
 
 /* Figures: the print's own art width; no visible caption (the art carries its labels). */
 .native-figure { max-width: 680px; margin: 1rem auto; min-width: 0; }
 .native-figure .hb-reference-figure { margin: 0; max-width: none; }
 #furo-main-content .native-figure img { width: 100% !important; height: auto !important; max-height: none; }
 
-/* p5 front and left side views: side by side as printed, stacked on phones. */
-.native-views { display: grid; grid-template-columns: minmax(0, 0.68fr) minmax(0, 1fr); gap: 1.2rem; align-items: start; margin: 1rem 0; }
-.native-views > * { min-width: 0; }
-.native-view .native-figure { margin: 0.4rem 0 0; }
-.native-view > :first-child { margin-top: 0; }
-@media (max-width: 760px) {
-  .native-views { grid-template-columns: minmax(0, 1fr); }
-}
-
 /* p5 FCC measures: printed as indented lines without marks. */
 #furo-main-content .native-fcc .hb-fcc-column ul { list-style: none; padding-left: 0.6em; }
 #furo-main-content .native-fcc .hb-fcc-column ul > li { margin: 0; }
 #furo-main-content .native-fcc .hb-fcc-column ul > li > p { margin: 0; }
 
-/* p6 operation panels: the print frames the art with its note or strip. */
-.native-frame {
-  margin: 1rem 0; padding: 0.75rem; border: 1.5px solid var(--hb-line-soft); border-radius: var(--hb-panel-radius);
-}
-.native-frame > .native-figure { margin: 0 auto 0.6rem; }
-.native-frame > :last-child { margin-bottom: 0; }
-#furo-main-content .native-frame > p.native-strip,
-#furo-main-content .native-panel {
-  padding: 0.55rem 0.9rem; border-radius: var(--hb-panel-radius); background: var(--hb-surface);
-}
-#furo-main-content .native-panel { margin: 1rem 0; padding: 0.7rem 1rem; }
-.native-panel > :first-child { margin-top: 0; }
-.native-panel > :last-child { margin-bottom: 0; }
-
-/* p6 LCD table: bold names in a tinted first column, as printed. */
-#furo-main-content table.native-print-grid td { vertical-align: middle; padding: 0.42rem 0.6rem !important; }
-#furo-main-content table.native-lcd-table td.native-lcd-name { width: 30%; background: var(--hb-surface); }
 /* Two-column tables fit the phone (the print's troubleshooting table has two columns). */
 @media (max-width: 760px) {
-  #furo-main-content table.native-fit,
   #furo-main-content .native-fit-phone table { min-width: 0 !important; }
   #furo-main-content .native-fit-phone col.hb-troubleshooting-col-code { width: 5.4rem !important; }
 }

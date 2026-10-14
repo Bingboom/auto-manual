@@ -28,8 +28,8 @@
     "assets/solar-charging.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "e75fb564a8647dbe53a3e85199f4d7f9aba7cb24411cc95730e6bec447f3f05a",
-  "content_sha256": "d8c5b30753d231fb63c2bb31627965f0da2cb2ee53d6bcebf734a24884ba22ff",
+  "bundle_sha256": "f5a7ed2352b48ac3d08ddae49047737268517f6e923b9bbdc2ad09a21f17bbf2",
+  "content_sha256": "fa4d2022cd404955b4d0e0c02c944a4703565b74e1c134b71cbd7169367c9914",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -61,12 +61,13 @@
       "assets/symbol_warning_triangle.svg": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
       "assets/symbol_weee.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
     },
-    "block_count": 57,
+    "block_count": 64,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 4,
       "HB-SPECIAL-FCC": 1,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 10,
+      "HB-TABLE-REFERENCE": 1,
       "HB-TABLE-SPEC": 3,
       "HB-TABLE-SYMBOL-ICON": 1,
       "HB-TABLE-SYMBOL-SIGNAL": 1,
@@ -1887,7 +1888,7 @@
     },
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
-      "sha256": "cfbce25f82a017a8bd8afc01bde45e67ceb31229bc5c2cf70f51b06d25bf25bb"
+      "sha256": "41703f1e6bee53adb4b9bcad8f733e2fe69553b875b84aab229345151043abaf"
     },
     "title": "Jackery Battery Pack 3600 · JBP-3600A",
     "web_contract": {
@@ -2854,210 +2855,196 @@
           "source_ref": "native-pdf/product-overview#block-1"
         },
         {
-          "asset_refs": [
-            "assets/overview-front.png",
-            "assets/overview-left.png"
-          ],
+          "asset_refs": [],
           "block_id": "product-overview:block-0002",
-          "content_sha256": "5ab384a5abcab01e8cb683303aa657c9f06caf557736c563207610120675e291",
+          "content_sha256": "9552216f57762d52704af3b9e5e8a32854be5dd68c79162222ecbb20083fa934",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "FRONT VIEW"
-                      }
-                    ],
-                    "kind": "heading",
-                    "level": 3
-                  },
-                  {
-                    "children": [
-                      {
-                        "carrier_flow": [
-                          {
-                            "alt": "Front view: LCD display and POWER button",
-                            "kind": "image",
-                            "source": "assets/overview-front.png"
-                          }
-                        ],
-                        "component_spec": {
-                          "assets": [
-                            {
-                              "asset_ref": "assets/overview-front.png",
-                              "locale_policy": "exact",
-                              "role": "source_art"
-                            }
-                          ],
-                          "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
-                          "language": "en",
-                          "metadata": {
-                            "capture_following_lines": 0,
-                            "image_key": "overview-front",
-                            "source_fragment_sha256": "3b8a386afe760754d905aeaf227db833f579ca615ea7ea8563a1e4fe907eeb37",
-                            "web_replace_key": ""
-                          },
-                          "schema_version": "component-spec/v1",
-                          "slots": [
-                            {
-                              "content": "overview-front",
-                              "content_kind": "inline_text",
-                              "role": "reference_id"
-                            },
-                            {
-                              "content": "Front view: LCD display and POWER button",
-                              "content_kind": "inline_text",
-                              "role": "accessibility_label"
-                            },
-                            {
-                              "content": "embedded",
-                              "content_kind": "inline_text",
-                              "role": "caption_mode"
-                            },
-                            {
-                              "content": "equal",
-                              "content_kind": "inline_text",
-                              "role": "caption_layout"
-                            }
-                          ],
-                          "source_ref": "native-pdf/page-5/overview-front",
-                          "token_roles": [
-                            "component.special.reference-figure"
-                          ],
-                          "variant": "semantic-fallback"
-                        },
-                        "kind": "component"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "native-figure native-overview-front native-view"
-                        }
-                      }
-                    },
-                    "role": "container"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-view"
-                    }
-                  }
-                },
-                "role": "container"
-              },
+                "kind": "text",
+                "text": "FRONT VIEW"
+              }
+            ],
+            "kind": "heading",
+            "level": 3,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/product-overview#block-2"
+        },
+        {
+          "asset_refs": [
+            "assets/overview-front.png"
+          ],
+          "block_id": "product-overview:block-0003",
+          "content_sha256": "4c91ab01ebf942bcfecd509c91b11a5c569ce53f1f821cc99c99162fa306f02b",
+          "kind": "flow",
+          "payload": {
+            "children": [
               {
-                "children": [
+                "carrier_flow": [
                   {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "LEFT SIDE VIEW"
-                      }
-                    ],
-                    "kind": "heading",
-                    "level": 3
-                  },
-                  {
-                    "children": [
-                      {
-                        "carrier_flow": [
-                          {
-                            "alt": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)",
-                            "kind": "image",
-                            "source": "assets/overview-left.png"
-                          }
-                        ],
-                        "component_spec": {
-                          "assets": [
-                            {
-                              "asset_ref": "assets/overview-left.png",
-                              "locale_policy": "exact",
-                              "role": "source_art"
-                            }
-                          ],
-                          "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
-                          "language": "en",
-                          "metadata": {
-                            "capture_following_lines": 0,
-                            "image_key": "overview-left",
-                            "source_fragment_sha256": "bfcc1c09df1ca41e5f77386db0c28da3ea8d4833398e80e819d1989aefe1fa5f",
-                            "web_replace_key": ""
-                          },
-                          "schema_version": "component-spec/v1",
-                          "slots": [
-                            {
-                              "content": "overview-left",
-                              "content_kind": "inline_text",
-                              "role": "reference_id"
-                            },
-                            {
-                              "content": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)",
-                              "content_kind": "inline_text",
-                              "role": "accessibility_label"
-                            },
-                            {
-                              "content": "embedded",
-                              "content_kind": "inline_text",
-                              "role": "caption_mode"
-                            },
-                            {
-                              "content": "equal",
-                              "content_kind": "inline_text",
-                              "role": "caption_layout"
-                            }
-                          ],
-                          "source_ref": "native-pdf/page-5/overview-left",
-                          "token_roles": [
-                            "component.special.reference-figure"
-                          ],
-                          "variant": "semantic-fallback"
-                        },
-                        "kind": "component"
-                      }
-                    ],
-                    "kind": "group",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "native-figure native-overview-left native-view"
-                        }
-                      }
-                    },
-                    "role": "container"
+                    "alt": "Front view: LCD display and POWER button",
+                    "kind": "image",
+                    "source": "assets/overview-front.png"
                   }
                 ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-view"
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/overview-front.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
                     }
-                  }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "capture_following_lines": 0,
+                    "image_key": "overview-front",
+                    "source_fragment_sha256": "3b8a386afe760754d905aeaf227db833f579ca615ea7ea8563a1e4fe907eeb37",
+                    "web_replace_key": ""
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "overview-front",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "Front view: LCD display and POWER button",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "embedded",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    }
+                  ],
+                  "source_ref": "native-pdf/page-5/overview-front",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
                 },
-                "role": "container"
+                "kind": "component"
               }
             ],
             "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-views native-views-pair"
+                  "class": "native-figure native-overview-front native-wide"
                 }
               }
             },
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/product-overview#block-2"
+          "source_ref": "native-pdf/product-overview#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "product-overview:block-0004",
+          "content_sha256": "316aa8a926b1b514f99da973c2e89d3802b0ca990a3761bd827d2ec814a2bcf3",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "LEFT SIDE VIEW"
+              }
+            ],
+            "kind": "heading",
+            "level": 3,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/product-overview#block-4"
+        },
+        {
+          "asset_refs": [
+            "assets/overview-left.png"
+          ],
+          "block_id": "product-overview:block-0005",
+          "content_sha256": "74aab29f5ff456351c85422d360d7e103015e619f708d7ddf1cac56ebebe3569",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "carrier_flow": [
+                  {
+                    "alt": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)",
+                    "kind": "image",
+                    "source": "assets/overview-left.png"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/overview-left.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "capture_following_lines": 0,
+                    "image_key": "overview-left",
+                    "source_fragment_sha256": "bfcc1c09df1ca41e5f77386db0c28da3ea8d4833398e80e819d1989aefe1fa5f",
+                    "web_replace_key": ""
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "overview-left",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
+                    },
+                    {
+                      "content": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "embedded",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
+                    }
+                  ],
+                  "source_ref": "native-pdf/page-5/overview-left",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
+                },
+                "kind": "component"
+              }
+            ],
+            "kind": "group",
+            "presentation": {
+              "html": {
+                "attributes": {
+                  "class": "native-figure native-overview-left native-wide"
+                }
+              }
+            },
+            "role": "container",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/product-overview#block-5"
         }
       ],
       "language": "en",
@@ -3065,7 +3052,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#product-overview",
       "source_ref": "native-pdf/product-overview",
-      "source_sha256": "eb95924abcf68bbabbd60a061febf1d44fa1851a6b10fe99114368304bb954e5"
+      "source_sha256": "973832a337315af61324801ecf8ae4078c9f63e17a36400d30a8555f35894063"
     },
     {
       "blocks": [
@@ -3169,118 +3156,60 @@
         {
           "asset_refs": [],
           "block_id": "lcd-display:block-0003",
-          "content_sha256": "1c9b5295929a1a5863d31ff26f9fa9f2ef5684e481c3628fddebdc3063b5ea8a",
+          "content_sha256": "f9d128450e7befb4029ac0e562404f3c4efb008b8ad02287728d8ac290641e73",
           "kind": "flow",
           "payload": {
-            "children": [
-              {
-                "children": [
-                  {
-                    "children": [
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-TABLE-REFERENCE",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "LCD DISPLAY",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": [],
+                  "content_kind": "ordered_headers",
+                  "role": "headers"
+                },
+                {
+                  "content": [
+                    [
                       {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "children": [
-                                  {
-                                    "kind": "text",
-                                    "text": "Power Percentage/ Fault Code"
-                                  }
-                                ],
-                                "kind": "strong"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-lcd-name"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "The display shows the current power percentage."
-                              },
-                              {
-                                "kind": "line_break"
-                              },
-                              {
-                                "kind": "text",
-                                "text": "When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
+                        "html": "<strong>Power Percentage/</strong><br><strong>Fault Code</strong>",
+                        "text": "Power Percentage/\nFault Code"
                       },
                       {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "children": [
-                                  {
-                                    "kind": "text",
-                                    "text": "Charging Indicator"
-                                  }
-                                ],
-                                "kind": "strong"
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell",
-                            "presentation": {
-                              "html": {
-                                "attributes": {
-                                  "class": "native-lcd-name"
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "children": [
-                              {
-                                "kind": "text",
-                                "text": "The indicator is displayed when charging and disappears when it is fully charged."
-                              }
-                            ],
-                            "header": false,
-                            "kind": "table_cell"
-                          }
-                        ],
-                        "kind": "table_row"
+                        "html": "The display shows the current power percentage.<br>When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.",
+                        "text": "The display shows the current power percentage.\nWhen the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support."
                       }
                     ],
-                    "kind": "table_body"
-                  }
-                ],
-                "kind": "table",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "manual-table native-print-grid native-lcd-table native-fit"
-                    }
-                  }
+                    [
+                      {
+                        "html": "<strong>Charging Indicator</strong>",
+                        "text": "Charging Indicator"
+                      },
+                      {
+                        "html": "The indicator is displayed when charging and disappears when it is fully charged.",
+                        "text": "The indicator is displayed when charging and disappears when it is fully charged."
+                      }
+                    ]
+                  ],
+                  "content_kind": "ordered_rows",
+                  "role": "rows"
                 }
-              }
-            ],
-            "kind": "group",
-            "presentation": {
-              "html": {
-                "attributes": {
-                  "class": "table-wrapper docutils container native-table-wrap"
-                }
-              }
+              ],
+              "source_ref": "native-pdf/lcd-display/5",
+              "token_roles": [
+                "component.table.reference"
+              ],
+              "variant": "lcd-descriptions"
             },
-            "role": "container",
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/lcd-display#block-3"
@@ -3291,7 +3220,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#lcd-display",
       "source_ref": "native-pdf/lcd-display",
-      "source_sha256": "15fbe1a1f8a683345723a7ea179474ef6f1b89556eaa473686e8599b866d5f48"
+      "source_sha256": "1654340b1615fcc23cd01ce58dad3f64d551011e8c7bffd754e547ee9814eb84"
     },
     {
       "blocks": [
@@ -3337,172 +3266,62 @@
             "assets/power-on-off.png"
           ],
           "block_id": "operations:block-0003",
-          "content_sha256": "d827f9a1e9d6ab516e279da398a193aa20ec08e3848816a05e88ca3ab64681bb",
+          "content_sha256": "4b07cadae6633da5655b694270878110ce1539e38e14d92a4ea5b2acd178ea1a",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "children": [
-                  {
-                    "carrier_flow": [
-                      {
-                        "alt": "POWER button: press once to turn on; press and hold for 3 s to turn off",
-                        "kind": "image",
-                        "source": "assets/power-on-off.png"
-                      }
-                    ],
-                    "component_spec": {
-                      "assets": [
-                        {
-                          "asset_ref": "assets/power-on-off.png",
-                          "locale_policy": "exact",
-                          "role": "source_art"
-                        }
-                      ],
-                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
-                      "language": "en",
-                      "metadata": {
-                        "capture_following_lines": 0,
-                        "image_key": "power-on-off",
-                        "source_fragment_sha256": "94ac08852423403f669617e9674b7d1adf0f60bd5d59012850c671571b6ebfe8",
-                        "web_replace_key": ""
-                      },
-                      "schema_version": "component-spec/v1",
-                      "slots": [
-                        {
-                          "content": "power-on-off",
-                          "content_kind": "inline_text",
-                          "role": "reference_id"
-                        },
-                        {
-                          "content": "POWER button: press once to turn on; press and hold for 3 s to turn off",
-                          "content_kind": "inline_text",
-                          "role": "accessibility_label"
-                        },
-                        {
-                          "content": "embedded",
-                          "content_kind": "inline_text",
-                          "role": "caption_mode"
-                        },
-                        {
-                          "content": "equal",
-                          "content_kind": "inline_text",
-                          "role": "caption_layout"
-                        }
-                      ],
-                      "source_ref": "native-pdf/page-6/power-on-off",
-                      "token_roles": [
-                        "component.special.reference-figure"
-                      ],
-                      "variant": "semantic-fallback"
-                    },
-                    "kind": "component"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-figure native-power-on-off native-wide"
-                    }
-                  }
-                },
-                "role": "container"
-              },
-              {
                 "carrier_flow": [
                   {
-                    "children": [
-                      {
-                        "children": [
-                          {
-                            "children": [
-                              {
-                                "children": [
-                                  {
-                                    "kind": "text",
-                                    "text": "NOTE"
-                                  }
-                                ],
-                                "header": false,
-                                "kind": "table_cell",
-                                "presentation": {
-                                  "html": {
-                                    "attributes": {
-                                      "class": "manual-callout-label"
-                                    }
-                                  }
-                                }
-                              },
-                              {
-                                "children": [
-                                  {
-                                    "children": [
-                                      {
-                                        "kind": "text",
-                                        "text": "When using with Jackery HomePower 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery HomePower 3600 Plus."
-                                      },
-                                      {
-                                        "kind": "line_break"
-                                      },
-                                      {
-                                        "kind": "text",
-                                        "text": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours."
-                                      }
-                                    ],
-                                    "kind": "paragraph"
-                                  }
-                                ],
-                                "header": false,
-                                "kind": "table_cell",
-                                "presentation": {
-                                  "html": {
-                                    "attributes": {
-                                      "class": "manual-callout-body"
-                                    }
-                                  }
-                                }
-                              }
-                            ],
-                            "kind": "table_row"
-                          }
-                        ],
-                        "kind": "table_body"
-                      }
-                    ],
-                    "kind": "table",
-                    "presentation": {
-                      "html": {
-                        "attributes": {
-                          "class": "manual-callout-table manual-callout-table"
-                        }
-                      }
-                    }
+                    "alt": "POWER button: press once to turn on; press and hold for 3 s to turn off",
+                    "kind": "image",
+                    "source": "assets/power-on-off.png"
                   }
                 ],
                 "component_spec": {
-                  "assets": [],
-                  "component_id": "HB-CALLOUT-STRIP",
+                  "assets": [
+                    {
+                      "asset_ref": "assets/power-on-off.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
                   "language": "en",
-                  "metadata": {},
+                  "metadata": {
+                    "capture_following_lines": 0,
+                    "image_key": "power-on-off",
+                    "source_fragment_sha256": "94ac08852423403f669617e9674b7d1adf0f60bd5d59012850c671571b6ebfe8",
+                    "web_replace_key": ""
+                  },
                   "schema_version": "component-spec/v1",
                   "slots": [
                     {
-                      "content": "NOTE",
+                      "content": "power-on-off",
                       "content_kind": "inline_text",
-                      "role": "label"
+                      "role": "reference_id"
                     },
                     {
-                      "content": "When using with Jackery HomePower 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery HomePower 3600 Plus.\nThe product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
-                      "content_kind": "rich_text",
-                      "role": "body"
+                      "content": "POWER button: press once to turn on; press and hold for 3 s to turn off",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "embedded",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
                     }
                   ],
-                  "source_ref": "native-pdf/operations/note-68",
+                  "source_ref": "native-pdf/page-6/power-on-off",
                   "token_roles": [
-                    "component.callout"
+                    "component.special.reference-figure"
                   ],
-                  "variant": "note"
+                  "variant": "semantic-fallback"
                 },
                 "kind": "component"
               }
@@ -3511,7 +3330,7 @@
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-frame"
+                  "class": "native-figure native-power-on-off native-wide"
                 }
               }
             },
@@ -3523,6 +3342,111 @@
         {
           "asset_refs": [],
           "block_id": "operations:block-0004",
+          "content_sha256": "e20a8c9652ff13cab74a0ee38836024cb89a8c9395ff1b3f9126814071c89fd6",
+          "kind": "flow",
+          "payload": {
+            "carrier_flow": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "kind": "text",
+                                "text": "NOTE"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "manual-callout-label"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "kind": "text",
+                                    "text": "When using with Jackery HomePower 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery HomePower 3600 Plus."
+                                  },
+                                  {
+                                    "kind": "line_break"
+                                  },
+                                  {
+                                    "kind": "text",
+                                    "text": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours."
+                                  }
+                                ],
+                                "kind": "paragraph"
+                              }
+                            ],
+                            "header": false,
+                            "kind": "table_cell",
+                            "presentation": {
+                              "html": {
+                                "attributes": {
+                                  "class": "manual-callout-body"
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "kind": "table_row"
+                      }
+                    ],
+                    "kind": "table_body"
+                  }
+                ],
+                "kind": "table",
+                "presentation": {
+                  "html": {
+                    "attributes": {
+                      "class": "manual-callout-table manual-callout-table"
+                    }
+                  }
+                }
+              }
+            ],
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-CALLOUT-STRIP",
+              "language": "en",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "NOTE",
+                  "content_kind": "inline_text",
+                  "role": "label"
+                },
+                {
+                  "content": "When using with Jackery HomePower 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery HomePower 3600 Plus.\nThe product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+                  "content_kind": "rich_text",
+                  "role": "body"
+                }
+              ],
+              "source_ref": "native-pdf/operations/note-69",
+              "token_roles": [
+                "component.callout"
+              ],
+              "variant": "note"
+            },
+            "kind": "component",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/operations#block-4"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "operations:block-0005",
           "content_sha256": "d01aeec38abb15e3ed7d12bb528f880e18a13928a915a6649ce67ee0383176c0",
           "kind": "flow",
           "payload": {
@@ -3536,114 +3460,102 @@
             "level": 3,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/operations#block-4"
+          "source_ref": "native-pdf/operations#block-5"
         },
         {
           "asset_refs": [
             "assets/lcd-on-off.png"
           ],
-          "block_id": "operations:block-0005",
-          "content_sha256": "1ac269eded9b212e7af61a1af7ef117e70c63317439d33fcba4345d00ad80198",
+          "block_id": "operations:block-0006",
+          "content_sha256": "62e22eac5e5af1fb736b4b00ea5cbe7483eeb0f922727954ff8a29c425cc4cdc",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "children": [
+                "carrier_flow": [
                   {
-                    "carrier_flow": [
-                      {
-                        "alt": "Pressing the POWER button switches the LCD display on or off",
-                        "kind": "image",
-                        "source": "assets/lcd-on-off.png"
-                      }
-                    ],
-                    "component_spec": {
-                      "assets": [
-                        {
-                          "asset_ref": "assets/lcd-on-off.png",
-                          "locale_policy": "exact",
-                          "role": "source_art"
-                        }
-                      ],
-                      "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
-                      "language": "en",
-                      "metadata": {
-                        "capture_following_lines": 0,
-                        "image_key": "lcd-on-off",
-                        "source_fragment_sha256": "4f07316fdbc9b269e3bb8ece6af3191e88e91b49d5d22c006339be020740bdca",
-                        "web_replace_key": ""
-                      },
-                      "schema_version": "component-spec/v1",
-                      "slots": [
-                        {
-                          "content": "lcd-on-off",
-                          "content_kind": "inline_text",
-                          "role": "reference_id"
-                        },
-                        {
-                          "content": "Pressing the POWER button switches the LCD display on or off",
-                          "content_kind": "inline_text",
-                          "role": "accessibility_label"
-                        },
-                        {
-                          "content": "none",
-                          "content_kind": "inline_text",
-                          "role": "caption_mode"
-                        },
-                        {
-                          "content": "equal",
-                          "content_kind": "inline_text",
-                          "role": "caption_layout"
-                        }
-                      ],
-                      "source_ref": "native-pdf/page-6/lcd-on-off",
-                      "token_roles": [
-                        "component.special.reference-figure"
-                      ],
-                      "variant": "semantic-fallback"
+                    "alt": "Pressing the POWER button switches the LCD display on or off",
+                    "kind": "image",
+                    "source": "assets/lcd-on-off.png"
+                  }
+                ],
+                "component_spec": {
+                  "assets": [
+                    {
+                      "asset_ref": "assets/lcd-on-off.png",
+                      "locale_policy": "exact",
+                      "role": "source_art"
+                    }
+                  ],
+                  "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
+                  "language": "en",
+                  "metadata": {
+                    "capture_following_lines": 0,
+                    "image_key": "lcd-on-off",
+                    "source_fragment_sha256": "4f07316fdbc9b269e3bb8ece6af3191e88e91b49d5d22c006339be020740bdca",
+                    "web_replace_key": ""
+                  },
+                  "schema_version": "component-spec/v1",
+                  "slots": [
+                    {
+                      "content": "lcd-on-off",
+                      "content_kind": "inline_text",
+                      "role": "reference_id"
                     },
-                    "kind": "component"
-                  }
-                ],
-                "kind": "group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-figure native-lcd-on-off native-wide"
+                    {
+                      "content": "Pressing the POWER button switches the LCD display on or off",
+                      "content_kind": "inline_text",
+                      "role": "accessibility_label"
+                    },
+                    {
+                      "content": "none",
+                      "content_kind": "inline_text",
+                      "role": "caption_mode"
+                    },
+                    {
+                      "content": "equal",
+                      "content_kind": "inline_text",
+                      "role": "caption_layout"
                     }
-                  }
+                  ],
+                  "source_ref": "native-pdf/page-6/lcd-on-off",
+                  "token_roles": [
+                    "component.special.reference-figure"
+                  ],
+                  "variant": "semantic-fallback"
                 },
-                "role": "container"
-              },
-              {
-                "children": [
-                  {
-                    "kind": "text",
-                    "text": "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off."
-                  }
-                ],
-                "kind": "paragraph",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-strip"
-                    }
-                  }
-                }
+                "kind": "component"
               }
             ],
             "kind": "group",
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-frame"
+                  "class": "native-figure native-lcd-on-off native-wide"
                 }
               }
             },
             "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/operations#block-5"
+          "source_ref": "native-pdf/operations#block-6"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "operations:block-0007",
+          "content_sha256": "3cd0b9aa2ef07d763cb606e803b37a0db0156cc0d8cb4f5cdae99a7993cf3c61",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/operations#block-7"
         }
       ],
       "language": "en",
@@ -3651,7 +3563,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#operations",
       "source_ref": "native-pdf/operations",
-      "source_sha256": "0c6b38299275248101bf534f09459b58f8cacd53d9e29dcdb126b1774002883a"
+      "source_sha256": "d9129fbc97fc0b3d19c62a4a4102bfb98d959001a7ede6e258c0d6cb29e5e441"
     },
     {
       "blocks": [
@@ -3694,7 +3606,7 @@
         {
           "asset_refs": [],
           "block_id": "troubleshooting:block-0003",
-          "content_sha256": "916d5a2bb2ea36594acf00c7c70a98b04beea165bd127b43e3d48d9f5137019c",
+          "content_sha256": "9f74466e697efc8f864e51d71a7c6e8a701287bddd0047875bcff6ea07aff84b",
           "kind": "flow",
           "payload": {
             "children": [
@@ -3769,7 +3681,7 @@
                       "role": "rows"
                     }
                   ],
-                  "source_ref": "native-pdf/troubleshooting/5",
+                  "source_ref": "native-pdf/troubleshooting/6",
                   "token_roles": [
                     "component.table.troubleshooting"
                   ],
@@ -3797,7 +3709,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#troubleshooting",
       "source_ref": "native-pdf/troubleshooting",
-      "source_sha256": "7209327cad452955773cc53994810e6feeed7425111f94bc66e2736229c4c1c4"
+      "source_sha256": "6b8e32fca42677192b04bd7892c969d2e011fbc3911eacbccb02a9a72530c77c"
     },
     {
       "blocks": [
@@ -4707,7 +4619,24 @@
         {
           "asset_refs": [],
           "block_id": "storage:block-0002",
-          "content_sha256": "f414376c44c8cc0eba2eb170f34d61f4d50c06ddb47846ab3f950e3021f85d8e",
+          "content_sha256": "c3f81359feaf53a2fdfd1f7b032fd0518f9a3905939b031135befebaae4c48c3",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:"
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/storage#block-2"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "storage:block-0003",
+          "content_sha256": "ee20313a7e897c189927a5da1dc02eb29519b2384fc15367488f69e15c414585",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4715,73 +4644,59 @@
                 "children": [
                   {
                     "kind": "text",
-                    "text": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:"
+                    "text": "1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)"
                   }
                 ],
-                "kind": "paragraph"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH)"
-                      }
-                    ],
-                    "kind": "list_item"
-                  },
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH)"
-                      }
-                    ],
-                    "kind": "list_item"
-                  },
-                  {
-                    "children": [
-                      {
-                        "kind": "text",
-                        "text": "12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)"
-                      }
-                    ],
-                    "kind": "list_item"
-                  }
-                ],
-                "kind": "list",
-                "ordered": false,
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-bullets"
-                    }
-                  }
-                }
+                "kind": "list_item"
               },
               {
                 "children": [
                   {
                     "kind": "text",
-                    "text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months."
+                    "text": "3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH)"
                   }
                 ],
-                "kind": "paragraph"
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH)"
+                  }
+                ],
+                "kind": "list_item"
               }
             ],
-            "kind": "group",
+            "kind": "list",
+            "ordered": false,
             "presentation": {
               "html": {
                 "attributes": {
-                  "class": "native-panel"
+                  "class": "native-bullets"
                 }
               }
             },
-            "role": "container",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/storage#block-2"
+          "source_ref": "native-pdf/storage#block-3"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "storage:block-0004",
+          "content_sha256": "9bf3318139e2157c7c0c11cce33ac6069f6aaa725e6cde2fa656a67b0058992f",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/storage#block-4"
         }
       ],
       "language": "en",
@@ -4789,7 +4704,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#storage",
       "source_ref": "native-pdf/storage",
-      "source_sha256": "09bd83c37015f3322b68d5907cb3357914eac1b557d7ed15cd2315a023c5d094"
+      "source_sha256": "3b1e6ba053c8138fce9dfe96c5f6305310aa4546bc665d7ea1441c4353682fb4"
     },
     {
       "blocks": [
@@ -4815,7 +4730,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0002",
-          "content_sha256": "c6152b8f219104650a423ddac7d2c2c58f2b3c31250d045da6d1f836a3779846",
+          "content_sha256": "a7e4113beeaa14ef43b440c5e5b165b63da580b878846e9df15714d899efdd10",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -5137,7 +5052,7 @@
                   "role": "rows"
                 }
               ],
-              "source_ref": "native-pdf/specifications/6",
+              "source_ref": "native-pdf/specifications/7",
               "token_roles": [
                 "component.table.spec"
               ],
@@ -5151,7 +5066,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0003",
-          "content_sha256": "0c0bc36e1acee10be3516b18cad6e879a88a7b0804ec5e92d90865b08d64cd40",
+          "content_sha256": "bed1d8c613dd863527382888d6a757419e727827b4027f63c01e25a5a78a699e",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -5329,7 +5244,7 @@
                   "role": "rows"
                 }
               ],
-              "source_ref": "native-pdf/specifications/7",
+              "source_ref": "native-pdf/specifications/8",
               "token_roles": [
                 "component.table.spec"
               ],
@@ -5343,7 +5258,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0004",
-          "content_sha256": "36f229f6909a8984f6acf3d85aa0c0ee4f4a36107d4f5a94b9b5cfa4d8b6951d",
+          "content_sha256": "da4c1c522738efb6040cd27d9438908d1414247df0c4c55ff4f3a12e64fddd1e",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -5485,7 +5400,7 @@
                   "role": "rows"
                 }
               ],
-              "source_ref": "native-pdf/specifications/8",
+              "source_ref": "native-pdf/specifications/9",
               "token_roles": [
                 "component.table.spec"
               ],
@@ -5502,7 +5417,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#specifications",
       "source_ref": "native-pdf/specifications",
-      "source_sha256": "e2de9fe542c54e49c93dabdfca727804a9b05d9b239d34e4706d8257a6016ba3"
+      "source_sha256": "b0bc5010fcb93d707b7b3cef497961de3d6464a282301ccb6c3f2d16759b1b50"
     },
     {
       "blocks": [
@@ -5528,7 +5443,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0002",
-          "content_sha256": "bf60bab7fa2536c393913c4b247a54390fb8c8fcd02371e62a3546d81ee1366a",
+          "content_sha256": "2e4217f3f8abd776d14f097edddc4bdd03007fe226d13ec9e3d80bf8b42fbd60",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -5554,7 +5469,7 @@
                   "role": "local_note"
                 }
               ],
-              "source_ref": "native-pdf/warranty/9",
+              "source_ref": "native-pdf/warranty/10",
               "token_roles": [
                 "component.warranty.lead"
               ],
@@ -5586,7 +5501,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0004",
-          "content_sha256": "bb6e21fe65da8e0da3dd69d751a382cfa49bc3328722e61cdb340fb6c0396289",
+          "content_sha256": "032ab88c8d67eacbba3e6c3884d2cd81a7cafd5035739b05122cb3f5334168d5",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -5623,7 +5538,7 @@
                   "role": "blocks"
                 }
               ],
-              "source_ref": "native-pdf/warranty/10",
+              "source_ref": "native-pdf/warranty/11",
               "token_roles": [
                 "component.warranty.section"
               ],
@@ -5655,7 +5570,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0006",
-          "content_sha256": "e29c10159fb245c1910c535fa137dd3b83ae9600d27a16fe0199c154cb287ac0",
+          "content_sha256": "dcb402789064a899dbc6cef0b505ef2dfbf82f5c084609210f78117ebb2ee44c",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -5691,7 +5606,7 @@
                   "role": "periods"
                 }
               ],
-              "source_ref": "native-pdf/warranty/11",
+              "source_ref": "native-pdf/warranty/12",
               "token_roles": [
                 "component.warranty.years"
               ],
@@ -5723,7 +5638,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0008",
-          "content_sha256": "17482a73b60a86a302f2d96cff7cd2e13197d43a1674834010b395d4951eec96",
+          "content_sha256": "80834ad110640be03242c9d7cb7d0d8fa92efdc5e34e11b2569194125dc90dab",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -5755,7 +5670,7 @@
                   "role": "blocks"
                 }
               ],
-              "source_ref": "native-pdf/warranty/12",
+              "source_ref": "native-pdf/warranty/13",
               "token_roles": [
                 "component.warranty.section"
               ],
@@ -5787,7 +5702,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0010",
-          "content_sha256": "aff7145c6b66558a24e250d5301153d50d8af7300bc7ad3b8c6352e73d943180",
+          "content_sha256": "a05a8cf30428a2559340f6c871ce9a34f1c46640c114c53a1abb34837d505ac2",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -5819,7 +5734,7 @@
                   "role": "blocks"
                 }
               ],
-              "source_ref": "native-pdf/warranty/13",
+              "source_ref": "native-pdf/warranty/14",
               "token_roles": [
                 "component.warranty.section"
               ],
@@ -5851,7 +5766,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0012",
-          "content_sha256": "ec05e2926ece6f06ff8deb2c337f654e8fe9bd84f7f7c10cab19e3e9e1e788da",
+          "content_sha256": "af1d766d9f1168ac952f00266ec741a2cd743dbab80153895eba490a44bf4e4a",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -5883,7 +5798,7 @@
                   "role": "blocks"
                 }
               ],
-              "source_ref": "native-pdf/warranty/14",
+              "source_ref": "native-pdf/warranty/15",
               "token_roles": [
                 "component.warranty.section"
               ],
@@ -5915,7 +5830,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0014",
-          "content_sha256": "472e5b2885028498648b54f82faad8984f8b88821bf097cf77a139239e0b8b48",
+          "content_sha256": "c961ea44aec263419e806578b47f3bde94202c7aa78002434b5228b6f6fb4ec7",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -5947,7 +5862,7 @@
                   "role": "blocks"
                 }
               ],
-              "source_ref": "native-pdf/warranty/15",
+              "source_ref": "native-pdf/warranty/16",
               "token_roles": [
                 "component.warranty.section"
               ],
@@ -5964,7 +5879,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#warranty",
       "source_ref": "native-pdf/warranty",
-      "source_sha256": "8f10a7fd462284bd10cdb1d24b902655008cdff2b3732376a088a48c173289ff"
+      "source_sha256": "5eca75f85268ec9286d016d5dc38c3b09d44c95f9ae0cf50f8071c84fccc4b4b"
     }
   ],
   "region": "US",

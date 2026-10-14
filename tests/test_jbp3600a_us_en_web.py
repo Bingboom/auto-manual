@@ -24,6 +24,8 @@ PDF = 'Jackery Battery Pack 3600 User Manual.pdf'
 SOURCE_SHA = '16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c'
 MARKDOWN = PACKAGE / 'web/en/manual_jbp3600a_us_en.md'
 # Printed English pages 01-08 (PDF 4-11); the cover, preface and contents are not in the Web body.
+# Chapter set and order follow the JBP-2000B / JBP-3600A EU Web manuals, except that the US
+# print sets TROUBLESHOOTING before CONNECTIONS; the print order is kept.
 CHAPTERS = [
     ('safety', 'IMPORTANT SAFETY INFORMATION'), ('symbols', 'MEANING OF SYMBOLS'),
     ('in-the-box', "WHAT'S IN THE BOX"), ('product-overview', 'PRODUCT OVERVIEW'),
@@ -32,7 +34,7 @@ CHAPTERS = [
     ('specifications', 'SPECIFICATIONS'), ('warranty', 'WARRANTY'),
 ]
 COMPONENTS = {'HB-CALLOUT-STRIP': 4, 'HB-SPECIAL-FCC': 1, 'HB-SPECIAL-INBOX': 1,
-              'HB-SPECIAL-REFERENCE-FIGURE': 10, 'HB-TABLE-SPEC': 3, 'HB-TABLE-SYMBOL-ICON': 1,
+              'HB-SPECIAL-REFERENCE-FIGURE': 10, 'HB-TABLE-REFERENCE': 1, 'HB-TABLE-SPEC': 3, 'HB-TABLE-SYMBOL-ICON': 1,
               'HB-TABLE-SYMBOL-SIGNAL': 1, 'HB-TABLE-TROUBLESHOOTING': 1, 'HB-WARRANTY-LEAD': 1,
               'HB-WARRANTY-SECTION': 5, 'HB-WARRANTY-YEARS': 1}
 # Pixel-identical artwork reused unchanged from the published JBP-3600A EU English Web manual.
@@ -220,6 +222,10 @@ class JbpUsEnWebTests(unittest.TestCase):
         # The FCC figure sits in a source group so the MEANING OF SYMBOLS heading stays visible.
         self.assertIsNotNone(soup.select_one('div.native-fcc > figure.hb-fcc-composition'))
         self.assertEqual(len(soup.select('div.native-fcc .hb-fcc-column-right li')), 4)
+        # Layout follows the JBP-2000B / JBP-3600A EU Web manuals: stacked views, shared LCD table.
+        lcd = soup.select_one('figure.hb-reference-lcd-descriptions')
+        self.assertEqual(lcd.select_one('td').decode_contents(), '<strong>Power Percentage/</strong><br/><strong>Fault Code</strong>')
+        self.assertFalse(soup.select('.native-frame, .native-panel, .native-views'))
 
     def test_print_line_breaks_and_bold_survive(self):
         soup = page()
