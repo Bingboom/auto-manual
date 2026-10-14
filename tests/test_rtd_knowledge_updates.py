@@ -7,6 +7,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import yaml
+from bs4 import BeautifulSoup
+from jinja2 import Environment, FileSystemLoader
 
 from tools.rtd import knowledge_updates as ku
 from tools.rtd import design_system, market_policy, product_learning, product_matrix, system_data
@@ -121,6 +123,42 @@ class UpdatesViewTests(unittest.TestCase):
         self.assertIsNone(view[0]["docname"])
         self.assertEqual([row["title"] for row in ku.updates_view(entries, built, limit=2)], ["share", "s10"])
         self.assertEqual(ku.updates_view(entries, {}), [])
+
+
+class HomeTemplateTests(unittest.TestCase):
+    def render(self, **context):
+        base = {"share_entry": "", "system_entry": True, "deliverables_entry": True, "design_entry": True,
+                "data_entry": True, "matrix_entry": True, "updates": []}
+        template = Environment(loader=FileSystemLoader(ASSETS)).get_template("workspace_portal.html")
+        page = template.render(**{**base, **context}, pathto=lambda name, *args: name)
+        return BeautifulSoup(page, "html.parser")
+
+    def test_cards_follow_the_entries_and_carry_no_numbers(self):
+        soup = self.render(matrix_entry=False, system_entry=False)
+        groups = [(s.h2.text, [c.strong.text for c in s.select(".home-card")]) for s in soup.select(".home-group")]
+        self.assertEqual(groups, [("产品与市场", ["产品知识", "市场与政策"]),
+                                  ("说明书生产", ["说明书工作台", "设计规范", "系统数据"])])
+        self.assertFalse(re.search(r"\d", "".join(c.text for c in soup.select(".home-card"))))
+        self.assertIsNone(soup.select_one("#shares"))
+
+    def test_rows_link_their_page_and_undated_rows_say_so(self):
+        updates = [{"date": "2026-10-04", "title": "工作入口", "note": "n", "page": "deliverables",
+                    "docname": DELIVERABLES_PAGE, "anchor": "work-map"},
+                   {"date": "2026-09-22", "title": "分享", "note": "n", "page": "share", "docname": None, "anchor": ""},
+                   {"date": "", "title": "无日期", "note": "n", "page": "system", "docname": SYSTEM_PAGE, "anchor": ""}]
+        soup = self.render(share_entry="../ai-share/00_打开分享.html", updates=updates)
+        rows = soup.select("#updates .updates-list > a")
+        self.assertEqual([a["href"] for a in rows],
+                         [f"{DELIVERABLES_PAGE}#work-map", "../ai-share/00_打开分享.html", SYSTEM_PAGE])
+        self.assertEqual([a.time["datetime"] for a in rows[:2]], ["2026-10-04", "2026-09-22"])
+        self.assertIsNone(rows[2].time)
+        self.assertEqual(rows[2].select_one(".updates-undated").text, "日期未记录")
+        self.assertIsNotNone(soup.select_one("#shares .share-card"))
+
+    def test_no_rows_shows_the_empty_note(self):
+        soup = self.render()
+        self.assertIsNone(soup.select_one("#updates .updates-list"))
+        self.assertEqual(soup.select_one("#updates .updates-empty").text, "暂无更新记录。")
 
 
 if __name__ == "__main__":
