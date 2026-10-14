@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 from tools.rtd import system_data
 from tools.rtd.system_data import (
-    SystemDataError, read_assets, read_published, read_targets, review_page_counts,
+    SystemDataError, published_targets, read_assets, read_published, read_targets, review_page_counts,
     system_data_context, system_data_page_context,
 )
 from tools.utils.path_utils import Paths, repo_root
@@ -77,12 +77,30 @@ class SystemDataTests(unittest.TestCase):
         self.assertEqual(payload["assets"][1], {"category": "图标", "status": "隔离", "model": "ALL", "region": "ALL"})
         self.assertEqual(payload["language_labels"], {"en": "English", "ja": "日本語"})
 
-    def test_a_missing_manifest_leaves_only_the_publication_cards_empty(self):
+    def test_capability_rows_list_only_published_models(self):
+        # JE-C has no published 说明书, so its target drops out; JE-A keeps JE-A_US beside its published JE-A_EU.
+        (self.paths.data_dir / "model_capabilities.csv").write_text(CAPABILITIES + "JE-C_EU,P3,TRUE,TRUE\n",
+                                                                     encoding="utf-8")
+        context = self.context()
+        self.assertEqual([row["key"] for row in json.loads(context["data_json"])["targets"]],
+                         ["JE-A_EU", "JE-A_US", "JE-B_JP"])
+        self.assertEqual((context["summary"]["targets"], context["summary"]["review_targets"]), (3, 1))
+        self.assertNotIn("JE-C", context["models"])
+        rows = [{"model": "JE-A"}, {"model": "JE-C"}]
+        self.assertEqual(published_targets(rows, [target("JE-A", "EU", "en")]), [{"model": "JE-A"}])
+        # An empty catalog publishes no model; no catalog leaves the published models unknown.
+        self.assertEqual(published_targets(rows, []), [])
+        self.assertIsNone(published_targets(rows, None))
+
+    def test_a_missing_manifest_leaves_the_publication_and_capability_cards_empty(self):
         context = self.context(self.root / "missing.json")
         self.assertIsNone(context["published"])
+        self.assertIsNone(context["targets"])
         self.assertEqual((context["summary"]["variants"], context["summary"]["books"]), (None, None))
-        self.assertEqual(context["summary"]["targets"], 3)
-        self.assertIsNone(json.loads(context["data_json"])["published"])
+        self.assertEqual((context["summary"]["targets"], context["summary"]["review_targets"]), (None, None))
+        self.assertEqual(context["summary"]["assets"], 3)
+        payload = json.loads(context["data_json"])
+        self.assertEqual((payload["published"], payload["targets"]), (None, None))
         self.assertEqual(read_published(self.root / "missing.json"), (None, ""))
 
     def test_the_headline_counts_each_language_version_and_book_once(self):

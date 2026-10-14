@@ -310,7 +310,9 @@ class RealSphinxTests(unittest.TestCase):
                              ['deliverables', 'statistics', 'work-entries', 'production-evidence'])
             statistics = soup.select_one('#statistics.tab-panel.system-data')
             payload = json.loads(statistics.select_one('script#system-data-json').string)
+            # Capability rows list published models only: JE-1000F, in every region of the capability table.
             self.assertTrue(payload['targets'])
+            self.assertEqual({row['model'] for row in payload['targets']}, {'JE-1000F'})
             # The page summary above the tabs owns 网页说明书 / 语言版本; the tab counts the rest.
             self.assertEqual([kpi.span.text for kpi in statistics.select('.kpi')],
                              ['覆盖机型', '发布语言', '机型/区域目标', '素材登记'])
@@ -373,6 +375,7 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn("发布清单和飞书快照当前都不可读", page)
             self.assertIn("网页手册：发布清单当前不可读", page)
             self.assertIn("无数据：本次构建没有可读的发布清单", page)
+            self.assertIn("无数据：发布清单当前不可读，无法确定已发布型号。", page)
             manifest.write_text(json.dumps({"targets": []}), encoding="utf-8")
             (assets / SNAPSHOT_NAME).write_text(json.dumps({"schema": dl.SNAPSHOT_SCHEMA,
                 "exported_at": "2026-09-25", "documents": []}), encoding="utf-8")

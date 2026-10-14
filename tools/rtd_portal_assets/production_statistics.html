@@ -72,9 +72,12 @@
 <section class="sd-section" id="capabilities" aria-labelledby="capabilities-title">
   <h2 id="capabilities-title">机型能力</h2>
   <p class="sd-note">读自 <code>data/model_capabilities.csv</code>（sync-data 镜像）：能力开关决定说明书里出现哪些章节。</p>
+  {%- if statistics.targets is none %}
+  <p class="sd-empty">无数据：{{ fallbacks.publications|e }}，无法确定已发布型号。</p>
+  {%- else %}
   <div class="sd-grid sd-grid-wide">
     <article class="sd-card" id="sd-caps-card">
-      <header><h3>能力矩阵</h3><p>每行一个 机型_区域 目标，悬停查看项目号、语言和评审页数；点击按该机型筛选。</p></header>
+      <header><h3>能力矩阵</h3><p>每行一个已发布型号的 机型_区域 目标，悬停查看项目号、语言和评审页数；点击按该机型筛选。</p></header>
       <div class="sd-legend"><span><i class="sd-swatch is-on"></i>支持</span><span><i class="sd-swatch"></i>不支持</span><span><i class="sd-swatch is-review"></i>有评审页面</span></div>
       <div class="sd-chart" id="sd-caps">{{ fallback() }}</div>
     </article>
@@ -83,6 +86,7 @@
       <div class="sd-chart" id="sd-coverage">{{ fallback() }}</div>
     </article>
   </div>
+  {%- endif %}
 </section>
 
 <section class="sd-section" id="assets" aria-labelledby="assets-title">

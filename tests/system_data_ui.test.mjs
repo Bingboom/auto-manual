@@ -59,12 +59,15 @@ test('region and model filters narrow every count; shared assets stay in', () =>
   assert.equal(model.summary(data, {region: 'JP', model: ''}).ready_share, 1);
 });
 
-test('a missing publish manifest keeps the publication counts empty', () => {
-  const counts = load().summary({...data, published: null}, all);
+test('a missing publish manifest keeps the publication and capability counts empty', () => {
+  // Targets list published models only, so without a manifest they are null as well.
+  const counts = load().summary({...data, published: null, targets: null}, all);
   assert.equal(counts.variants, null);
   assert.equal(counts.books, null);
   assert.equal(counts.languages, null);
-  assert.equal(counts.targets, 3);
+  assert.equal(counts.targets, null);
+  assert.equal(counts.review_targets, null);
+  assert.equal(counts.assets, 3);
 });
 
 test('a repeated route counts once, and a filter recounts language versions and books together', () => {
@@ -90,6 +93,7 @@ test('coverage is the supported share of the filtered targets', () => {
   assert.deepEqual(plain(model.coverage(data, all).map(c => [c.label, c.supported, c.targets])), [['UPS', 2, 3], ['LED', 1, 3]]);
   assert.deepEqual(plain(model.coverage(data, {region: '', model: 'A'}).map(c => c.share)), [1, 0.5]);
   assert.deepEqual(plain(model.coverage(data, {region: 'JP', model: ''}).map(c => c.targets)), [0, 0]);
+  assert.deepEqual(plain(model.coverage({...data, targets: null}, all)), []);
 });
 
 test('counts are ordered by size, then label', () => {
