@@ -45,7 +45,7 @@ from tools.build_queue.contract import (  # noqa: E402
     LANG_FIELD,
     VERSION_FIELD,
 )
-from tools.rtd.production_evidence import production_context, read_publications  # noqa: E402
+from tools.rtd.production_evidence import production_context, publication_facts, read_publications  # noqa: E402
 from tools.rtd.source_registry import PAGE_DOMAINS, load_registry, stale_reason  # noqa: E402
 from tools.rtd.system_workspace import (  # noqa: E402
     CONTRACT_NAME,
@@ -391,9 +391,14 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
         snapshot, problems = load_snapshot(snapshot_path(assets, str(domain["snapshot"])))
     if problems:
         logger.warning("Deliverables page shows no Feishu links: %s", "; ".join(problems[:3]))
+    labels = region_labels(assets)
     view = deliverables_view(targets, snapshot, names=names,
-                             labels=region_labels(assets), language_order=language_order, today=today,
+                             labels=labels, language_order=language_order, today=today,
                              feishu_domain=domain)
+    # The 网页说明书 KPI's sub-line, largest region first: this page owns the publication counts.
+    books = publication_facts(targets or [])["books_by_region"]
+    view["books_by_region"] = [f"{labels.get(region, region)} {books[region]}"
+                               for region in sorted(books, key=lambda code: (-books[code], code))]
     from tools.workspace_freshness import freshness
     view["freshness"] = freshness(repo_root(), registry or {}, today)
     view["page_built_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")

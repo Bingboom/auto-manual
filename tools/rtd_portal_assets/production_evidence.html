@@ -46,9 +46,9 @@
   <details class="pe-details pe-secondary"><summary>为什么暂不展示节省工时或投入下降比例？</summary><p>新增内容、既有内容覆盖、人工介入和返工指标状态：Not tracked yet。范围：当前冻结输入，截至 {{ production.as_of|e }} UTC。缺少逐交付的内容单位、人工处理记录与可比样本，不具备可靠分母。</p><p>文本段落、结构化字段、图片与组件不能合成一个复用百分比；Agent 执行次数和同一目标的重复构建也不能代表效率提升。</p><a href="{{ production.guide|e }}">查看需要补充的记录 ↗</a></details>
 </section>
 <section class="sw-section pe-section pe-layer" id="backflow" aria-labelledby="pe-backflow-title">
-  <header class="pe-header"><div><span class="pe-step">04 · 回流再利用</span><h2 id="pe-backflow-title">上次的修订，帮到了后来的哪份说明书？</h2></div></header>
+  <header class="pe-header"><div><span class="pe-step">04 · 回流再利用</span><h2 id="pe-backflow-title">上次的修订，帮到了后来的哪本说明书？</h2></div></header>
   <div class="pe-finding pe-pending"><span class="pe-tag">尚未证明再次复用</span><h3>当前还没有能从头核验的再利用案例</h3><p>当前输入尚不能把一次修订与后续交付关联起来。一个可确认的案例，需要能连续回答这三个问题：</p>
-    <ol class="pe-chain"><li><span>修订</span><b>当时改了什么？</b><small>找到评审意见或修订记录</small></li><li><span>回流</span><b>更新了哪项共用内容？</b><small>找到对应资产及修订版本</small></li><li><span>再次采用</span><b>后来哪份手册用了它？</b><small>找到后续交付和使用证据</small></li></ol>
+    <ol class="pe-chain"><li><span>修订</span><b>当时改了什么？</b><small>找到评审意见或修订记录</small></li><li><span>回流</span><b>更新了哪项共用内容？</b><small>找到对应资产及修订版本</small></li><li><span>再次采用</span><b>后来哪本说明书用了它？</b><small>找到后续交付和使用证据</small></li></ol>
   </div>
   <details class="pe-details pe-secondary"><summary>查看闭环证据缺口</summary><p>范围：本次页面的冻结输入；截至 {{ production.as_of|e }} UTC。以下指标均为 Not tracked yet，不能解释为没有修订或没有复用。</p><ul>{% for label in production.backflow %}<li>{{ label|e }}：Not tracked yet</li>{% endfor %}</ul><p>每条链须具备修订 ID、资产 ID 与版本、后续消费记录、Manual / Variant、时间与证据入口。原目标后续版本采用和其他目标采用分别记录。工程台账的完成状态、各阶段数量不能证明它们属于同一条生产链。</p><a href="{{ production.guide|e }}">查看关联记录的补充计划 ↗</a></details>
 </section>
