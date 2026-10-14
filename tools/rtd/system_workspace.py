@@ -49,6 +49,7 @@ import yaml
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 
+from tools.rtd.production_evidence import publication_facts as count_publications  # noqa: E402
 from tools.rtd.system_evolution import evolution_view
 from tools.rtd.system_tooling import (  # noqa: E402
     codebase_rows,
@@ -237,9 +238,6 @@ def publication_facts(manifest_path: Path) -> dict[str, Any] | None:
     page; ``editions`` is its deduplicated ``variants`` under the key this page
     has always read.
     """
-    # Imported here: production_evidence imports this module at load time.
-    from tools.rtd.production_evidence import publication_facts as count_publications
-
     try:
         data = json.loads(manifest_path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -255,8 +253,11 @@ def publication_facts(manifest_path: Path) -> dict[str, Any] | None:
 
 
 def skeleton_facts(root: Path) -> list[dict[str, str]] | None:
-    """One ``{id, family}`` per skeleton cell; None (no data) when there is none or one is unreadable.
+    """One ``{id, family}`` per blueprint; None (no data) when there is none or one is unreadable.
 
+    A skeleton is its declared ``skeleton_id``: a copied blueprint repeats an
+    id and adds no skeleton (``lane_metrics`` counts distinct ids), and a
+    blueprint without one is unreadable rather than named after its folder.
     An unreadable blueprint makes the whole count unknown rather than one
     lower: the page never shows a number it cannot stand behind.
     """
@@ -266,11 +267,11 @@ def skeleton_facts(root: Path) -> list[dict[str, str]] | None:
             data = yaml.safe_load(path.read_text(encoding="utf-8"))
         except (OSError, yaml.YAMLError):
             return None
-        if not isinstance(data, dict) or data.get("schema_version") != SKELETON_SCHEMA \
-                or not data.get("skeleton_family"):
+        identity = data.get("skeleton_id") if isinstance(data, dict) else None
+        if not isinstance(identity, str) or not identity.strip() \
+                or data.get("schema_version") != SKELETON_SCHEMA or not data.get("skeleton_family"):
             return None
-        cells.append({"id": str(data.get("skeleton_id") or path.parent.name),
-                      "family": str(data["skeleton_family"])})
+        cells.append({"id": identity.strip(), "family": str(data["skeleton_family"])})
     return cells or None
 
 
@@ -937,13 +938,14 @@ def lane_metrics(name: str, *, focus: dict[str, Any], facts: dict[str, Any] | No
     if not skeletons:
         return [_metric("产品骨架")]
     declared = {str(entry["family"]): str(entry["label"]) for entry in focus.get("skeleton_families") or []}
-    counts: dict[str, int] = {}
+    # One skeleton per skeleton_id, in total and per family: copies of a blueprint add none.
+    ids: dict[str, set[str]] = {}
     for cell in skeletons:
-        counts[cell["family"]] = counts.get(cell["family"], 0) + 1
-    families = [*declared, *sorted(set(counts) - set(declared))]
-    sub = " · ".join(f"{declared.get(family, family)} {counts[family]}" if family in counts
+        ids.setdefault(cell["family"], set()).add(cell["id"])
+    families = [*declared, *sorted(set(ids) - set(declared))]
+    sub = " · ".join(f"{declared.get(family, family)} {len(ids[family])}" if family in ids
                      else f"{declared[family]} 未建" for family in families)
-    return [_metric("产品骨架", len(skeletons), "个", sub)]
+    return [_metric("产品骨架", len({cell["id"] for cell in skeletons}), "个", sub)]
 
 
 def _lane_tag(lane: dict[str, Any]) -> dict[str, str]:

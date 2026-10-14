@@ -10,8 +10,7 @@ from urllib.parse import quote
 
 from tools.component_specs.overview_instance import load_overview_instance_registry, resolve_overview_instance
 from tools.component_specs.registry import load_component_registry
-from tools.rtd.system_workspace import CONTRACT_NAME, load_contract, load_corpus
-from tools.utils.path_utils import Paths, skeletons_of
+from tools.utils.path_utils import Paths
 from tools.workspace_snapshot import snapshot_path
 
 NOT_TRACKED = "Not tracked yet"
@@ -155,25 +154,8 @@ def component_references(paths: Paths) -> tuple[list[dict[str, str]] | None, int
         return None, total
 
 
-def skeleton_total(root: Path) -> int | None:
-    """Count declared identities only; a copied file or fallback filename is not a new asset."""
-    directory = skeletons_of(root)
-    if not directory.is_dir():
-        return None
-    try:
-        identities = set()
-        for path in directory.glob("*/blueprint.yaml"):
-            item = load_contract(path)
-            identity = item.get("skeleton_id")
-            if item.get("schema_version") != "skeleton-blueprint/v1" or not isinstance(identity, str) or not identity.strip():
-                return None
-            identities.add(identity)
-        return len(identities)
-    except ValueError:
-        return None
-
-
-def asset_metrics(root: Path, assets: Path, registry, today: dt.date) -> tuple[list[dict[str, Any]], list, dict[str, Any], list[str]]:
+def asset_metrics(root: Path, today: dt.date) -> tuple[list[dict[str, Any]], list, dict[str, Any]]:
+    """The asset ledger this page keeps; corpus and skeleton totals belong to 系统建设, which the page links."""
     paths = Paths(root=root)
     inspected = today.isoformat() + " · 构建时读取；非资产创建时间"
     component_source = source(paths.component_registry_contract, root, date=inspected)
@@ -181,23 +163,6 @@ def asset_metrics(root: Path, assets: Path, registry, today: dt.date) -> tuple[l
     relationships, total = component_references(paths)
     rows = [metric("components", "Shared Components", total, unit="component ID",
                    rule="Component Registry 的唯一 component ID；登记量", sources=[component_source], state=UNAVAILABLE)]
-    rows.append(metric("skeletons", "Skeletons", skeleton_total(root),
-                       unit="skeleton ID", rule="按 blueprint.skeleton_id 去重；登记量", state=UNAVAILABLE,
-                       sources=[source(p, root, date=inspected) for p in sorted(skeletons_of(root).glob('*/blueprint.yaml'))]))
-    corpus_domain = (registry or {}).get("corpus")
-    corpus = None
-    corpus_source = []
-    if corpus_domain:
-        corpus_path = snapshot_path(assets, corpus_domain["snapshot"])
-        try:
-            corpus, _ = load_corpus(load_contract(assets / CONTRACT_NAME), assets, corpus_domain["snapshot"])
-        except (ValueError, KeyError, TypeError):
-            pass
-        corpus_source = [source(corpus_path, root, date=(corpus or {}).get("exported_at", ""))]
-    for key, label in (("sentence_pairs", "Translation Pairs"), ("terms", "Terms")):
-        rows.append(metric(key, label, corpus[key]["total"] if corpus else None, unit="快照记录行",
-                           rule="快照 total；跨语言列不重复累加", sources=corpus_source, state=UNAVAILABLE,
-                           limitation="含各状态记录；不宣称按文本去重，不能证明最终采用"))
     for key, label, unit in (("specs", "Structured Specs", "结构化字段"), ("artwork", "Artwork Assets", "资产 ID")):
         rows.append(metric(key, label, None, unit=unit, rule="需先确定规范资产身份与排除范围", sources=[],
                            limitation="尚未建立完整、可去重的资产口径"))
@@ -207,10 +172,7 @@ def asset_metrics(root: Path, assets: Path, registry, today: dt.date) -> tuple[l
                               sources=[component_source, instance_source], scope="Overview 明确绑定实例",
                               limitation="配置引用覆盖；不证明进入生产输出，不等于跨语言复用")
     rows[0]["references"] = reference_metric
-    alerts = []
-    if corpus and corpus_domain and (today - dt.date.fromisoformat(corpus["exported_at"])).days > corpus_domain["stale_after_days"]:
-        alerts.append("语料快照超过来源规定的新鲜度期限，需刷新后复核。")
-    return rows, relationships or [], reference_metric, alerts
+    return rows, relationships or [], reference_metric
 
 
 def activity_windows(today: dt.date) -> list[dict[str, Any]]:
@@ -226,8 +188,8 @@ def production_context(*, root: Path, assets: Path, manifest: Path, snapshot, re
     delivery_source = source(snapshot_path(assets, domain.get("snapshot", "deliverables_snapshot.json")), root,
                              date=(snapshot or {}).get("exported_at", ""))
     overview = production_metrics(targets, snapshot, web_source, delivery_source)
-    asset_rows, relationships, reference, alerts = asset_metrics(root, assets, registry, today)
-    alerts += delivery_stale
+    asset_rows, relationships, reference = asset_metrics(root, today)
+    alerts = list(delivery_stale)
     if targets is None:
         alerts.append("发布目录 Unavailable：不能确认当前网页目标规模。")
     if snapshot is None:

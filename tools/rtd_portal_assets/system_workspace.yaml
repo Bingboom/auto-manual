@@ -48,11 +48,11 @@ hero:
 
 # Current focus decides the page order: lanes marked now come first, next
 # after, and the cards and gates they name carry the lane's tag. A lane's
-# figures come from the corpus snapshot or the skeleton blueprints; its
-# progress from the ledger gates or rows it lists. Publication counts
-# (publications, regions) belong to 说明书工作台, so no lane lists them; the
-# page points there instead. The focus is the operator's call: re-confirm it
-# whenever verified_on moves.
+# figures come from the corpus snapshot or the skeleton blueprints (one
+# skeleton per skeleton_id); its progress from the ledger gates or rows it
+# lists. Publication counts (publications, regions) belong to 说明书工作台, so
+# no lane lists them; the page points there instead. The focus is the
+# operator's call: re-confirm it whenever verified_on moves.
 focus:
   note: 一条交付主线，语料与 SSOT 随实际需求补齐。先完成发布基线和真实维护，再逐步扩展共享与覆盖。
   evidence:

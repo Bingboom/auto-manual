@@ -637,6 +637,22 @@ class SkeletonFactsTests(unittest.TestCase):
                 write_blueprint(self.root, "broken", "X", text)
                 self.assertIsNone(sw.skeleton_facts(self.root))
 
+    def test_copies_share_one_skeleton_and_a_missing_id_is_not_a_folder_name(self):
+        for name in ("original", "renamed-copy"):
+            write_blueprint(self.root, name, "BP",
+                            f"schema_version: {sw.SKELETON_SCHEMA}\nskeleton_id: same\nskeleton_family: BP\n")
+        cells = sw.skeleton_facts(self.root)
+        self.assertEqual(cells, [{"id": "same", "family": "BP"}, {"id": "same", "family": "BP"}])
+        focus = {"skeleton_families": [{"family": "BP", "label": "电池包"}]}
+        (metric,) = sw.lane_metrics("skeletons", focus=focus, facts=None, corpus=None, skeletons=cells)
+        self.assertEqual((metric["value"], metric["sub"]), ("1", "电池包 1"))
+        for text in (f"schema_version: {sw.SKELETON_SCHEMA}\nskeleton_family: BP\n",
+                     f"schema_version: {sw.SKELETON_SCHEMA}\nskeleton_id: ' '\nskeleton_family: BP\n",
+                     f"schema_version: {sw.SKELETON_SCHEMA}\nskeleton_id: 7\nskeleton_family: BP\n"):
+            with self.subTest(text):
+                write_blueprint(self.root, "renamed-copy", "BP", text)
+                self.assertIsNone(sw.skeleton_facts(self.root))
+
     def test_shipped_blueprints_are_readable(self):
         cells = sw.skeleton_facts(REPO)
         self.assertTrue(cells)
