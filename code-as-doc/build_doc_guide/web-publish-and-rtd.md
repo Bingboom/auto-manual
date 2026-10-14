@@ -59,7 +59,7 @@ Exact frozen-source/served-asset identity can be checked with the
 [Git-only deployment receipt](../dev/rtd_deployment_receipt.md), emitted by the
 existing frozen Sphinx portal build. Reads use an internal unique cache probe and
 bounded retries for incomplete transport; served source and asset hashes remain
-exact. Frozen-source inventory has a separate 1280 MiB storage budget; served output and fetched-byte budgets are 768 MiB. This check performs no link writeback. The aggregate preflight must load `myst_parser,tools.rtd.portal` so it exercises the same knowledge export and deployment receipt callbacks as RTD.
+exact. Frozen-source inventory has a separate 1536 MiB storage budget; served output and fetched-byte budgets are 768 MiB. This check performs no link writeback. The aggregate preflight must load `myst_parser,tools.rtd.portal` so it exercises the same knowledge export and deployment receipt callbacks as RTD.
 
 Web profile plus an explicit `--lang` uses the
 [frozen language projection](../dev/web_language_projection.md): it keeps the complete
@@ -75,7 +75,7 @@ by evidence verification; print artifacts and symlinks remain prohibited.
 
 Frozen Web source storage is bounded separately from served output and network
 inventories. The [Git-only release contract](../dev/web_publish_pipeline/input-paths.md#22-git-only-transaction)
-sets the 1280 MiB / 20,000-file source budgets. Served output and online verification
+sets the 1536 MiB / 20,000-file source budgets. Served output and online verification
 have 768 MiB / 10,000-file budgets; all inventories keep the 32 MiB per-file limit.
 
 RTD renders the frozen Web snapshot with the root-only portal extension:
