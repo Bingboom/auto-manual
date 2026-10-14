@@ -6,14 +6,33 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 ## Personal workspace entry
 
 The manual library root (说明书资料库) remains independent. The portal extension
-also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page:
+also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page, in one
+column from top to bottom:
 
+- The page header links to the manual library (labelled 说明书资料库) for
+  product, region, language and manual-content search.
+- **Entry cards** in the sidebar's two groups after 知识库: 产品与市场
+  (`#products`: 产品知识, 产品矩阵, 市场与政策) and 说明书生产 (`#production`:
+  说明书工作台, 系统建设, 设计规范, 系统数据). A card has the sidebar entry's glyph
+  and label and one line on what the page holds, and shows only when its sidebar
+  entry does, so it never links to a page this build skipped. Cards carry no
+  counts; those stay on their own pages. The sidebar test in
+  `tests/test_rtd_portal.py` pins the cards to the sidebar's groups and order.
 - **分享资料** (`#shares`) holds the share card for the bundled
   beginner-facing AI sharing package at `/ai-share/00_打开分享.html`.
-- **最近更新** (`#updates`) lists the newest knowledge-base entries: the
-  sharing package and, when built, 说明书工作台, 设计规范, 系统数据 and 产品矩阵.
-- The page header and the last 最近更新 entry link to the manual library
-  (labelled 说明书资料库) for product, region, language and manual-content search.
+- **最近更新** (`#updates`) lists dated changes, `YYYY-MM-DD · title / note`, from
+  `tools/rtd_portal_assets/knowledge_updates.yaml`
+  (`tools/rtd/knowledge_updates.py` reads it): the newest 8 entries whose page
+  this build made, newest first, ties in file order. The date is the change's
+  merge day, as `git log --date=short` shows the squash commit on main, and each
+  entry cites `pr:<repo>#<n>` as evidence for reviewers (not shown). The list is
+  curated because no build-time source carries per-page change dates: snapshot
+  and manifest dates measure freshness, which 说明书工作台 and 系统建设 already
+  show. An entry without a valid (unquoted) date reads 日期未记录 and sorts last;
+  one with an unknown page, an empty title or note, or a bad anchor is dropped.
+  Both log `Knowledge home update skipped`, and the build date is never shown
+  instead. An unreadable file leaves 暂无更新记录。 A PR that adds a knowledge
+  page, or changes one in a way readers should notice, adds its entry there.
 
 The sharing package is owned by **Hello-Docs** under
 `docs/knowledge/ai-share/`; it must not be committed to auto-manual.
@@ -34,7 +53,7 @@ to the manual center, but the manual-center homepage does not link into the
 workspace. The system page lives inside it. The sharing package is an
 optional entry. Without `ai-share/00_打开分享.html`, the 知识库首页
 (`workspace/index.html`) hides its 分享资料 section (`#shares`, the share card)
-and the share line of its 最近更新 section (`#updates`). Nothing else changes.
+and the 最近更新 rows (`#updates`) that link to the package. Nothing else changes.
 分享资料 and 最近更新 are sections of the 知识库首页, not sidebar entries: the
 sidebar lists pages only, so each entry is marked current on its own page.
 
@@ -154,7 +173,7 @@ fails the export instead of silently dropping a format.
   in `source_registry.yaml` shows 待复核, and
   `check` warns about it.
 - The page always renders. Every knowledge page lists it first under 说明书生产,
-  and the 知识库首页's 最近更新 list links to it too.
+  and the 知识库首页 links to it from its 说明书生产 group too.
 
 ## Design system page
 
