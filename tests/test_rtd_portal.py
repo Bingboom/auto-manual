@@ -343,6 +343,20 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
                          {"index.html": manuals, **dict.fromkeys(pages, knowledge)})
         site = "https://site.invalid/"
+        home = BeautifulSoup((out / "workspace" / "index.html").read_text(encoding="utf-8"), "html.parser")
+        # The 知识库首页 cards mirror the sidebar's groups after 知识库, in its order (every page is built here).
+        self.assertEqual([(s.h2.text, [c.strong.text for c in s.select(".home-card")])
+                          for s in home.select(".home-group")], knowledge[2:])
+        # Each 最近更新 row is dated and links to a page, and an id on it, that this build made.
+        rows = home.select("#updates a")
+        self.assertTrue(rows)
+        for row in rows:
+            self.assertIsNotNone(row.select_one("time[datetime]"), row["href"])
+            url = urlsplit(urljoin(site + "workspace/index.html", row["href"]))
+            target = out / url.path.removeprefix("/")
+            self.assertTrue(target.is_file(), row["href"])
+            if url.fragment:
+                self.assertIn(f'id="{url.fragment}"', target.read_text(encoding="utf-8"), row["href"])
         for page, sidebar in sidebars.items():
             links = sidebar.select("a.app-nav-link")
             for link in links:

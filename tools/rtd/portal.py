@@ -19,6 +19,7 @@ from tools.rtd.design_system import (
     PAGE as DESIGN_PAGE, TEMPLATE as DESIGN_TEMPLATE, design_page_context, template_context, write_design_system,
 )
 from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
+from tools.rtd.knowledge_updates import PAGES as UPDATE_PAGES, load_updates, updates_view
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE, product_matrix_page_context
 from tools.rtd.page_metadata import (
@@ -370,6 +371,12 @@ def collect_workspace_pages(app):
         sphinx_logging.getLogger(__name__).warning(
             "Market policy record %s links to unknown product knowledge topic #%s", record, anchor)
     yield MARKET_PAGE, {**market, "site_nav": site_nav(app)}, MARKET_TEMPLATE
+    entries, problems = load_updates(ASSETS)
+    for problem in problems:
+        sphinx_logging.getLogger(__name__).warning("Knowledge home update skipped: %s", problem)
+    # 最近更新 links only to what this build made; the other pages always build.
+    built = {**dict.fromkeys(UPDATE_PAGES, True), "share": has_share, "product-matrix": matrix is not None,
+             "system": system is not None, "design-system": design is not None, "system-data": data is not None}
     yield "workspace/index", {
         "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
         "system_entry": system is not None,
@@ -377,6 +384,7 @@ def collect_workspace_pages(app):
         "design_entry": design is not None,
         "data_entry": data is not None,
         "matrix_entry": matrix is not None,
+        "updates": updates_view(entries, built),
     }, "workspace_portal.html"
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
