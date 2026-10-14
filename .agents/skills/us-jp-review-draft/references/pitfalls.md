@@ -16,6 +16,7 @@
 | US value leaks into JP text | convenience fill | US values only in orange notes; JP text uses JP spec values or magenta TBC |
 | New Japanese term proposed as final | no corpus term | US English label + optional candidate in an orange note |
 | Two US spec chapters counted twice | annex reprints the main spec table | list annex ids in `duplicates.json` |
+| LCD table mixes 「オン／オフ」 and 「点灯時／消灯時」 | the shared LCD icons source table is itself mixed (JPD-01) | write 点灯時／点滅時／消灯時 in the draft; see `source-data-debt.md` |
 
 ## RTD moved to the private Read the Docs domain (2026-10)
 

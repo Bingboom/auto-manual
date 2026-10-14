@@ -85,6 +85,8 @@ the repo. The only live write is the operator-requested Feishu wiki upload.
   read-back (node + SHA-256). The repo's lark/Bitable discipline still applies:
   `.agents/skills/lark-cli-bitable-ops/SKILL.md`.
 - Known pitfalls and their fixes: `references/pitfalls.md`.
+- Source-data errors found while drafting (fix the draft, record the debt,
+  never write the live Base unasked): `references/source-data-debt.md`.
 
 ## Resources
 
