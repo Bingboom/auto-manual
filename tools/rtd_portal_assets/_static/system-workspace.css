@@ -180,7 +180,7 @@
 .sw-code-type-4 { background: #c2477a; }
 @media (max-width: 560px) {
   .sw-code { padding: 14px 14px 12px; }
-  .sw-code-bars li { grid-template-columns: 72px minmax(0, 1fr) 56px; gap: 8px; }
+  .sw-code-bars li { grid-template-columns: 96px minmax(0, 1fr) 56px; gap: 8px; }
 }
 
 /* Flow */
