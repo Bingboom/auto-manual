@@ -13,6 +13,7 @@
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 <body class="app system-workspace">
 {%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
+{%- macro num(value) -%}{{ '{:,}'.format(value) }}{%- endmacro -%}
 {%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
 {%- macro evidence_links(rows) -%}
 {%- for ev in rows %}
@@ -75,7 +76,7 @@
       {% if evolution and evolution.architecture %}<a role="tab" href="#tab-architecture" data-tab="tab-architecture">系统架构</a>{% endif %}
       <a role="tab" href="#tab-capabilities" data-tab="tab-capabilities">能力与流程</a>
       {%- if corpus_enabled %}<a role="tab" href="#tab-corpus" data-tab="tab-corpus">语言资产</a>{% endif %}
-      {%- if tooling %}<a role="tab" href="#tab-tooling" data-tab="tab-tooling">技能与钩子</a>{% endif %}
+      {%- if tooling %}<a role="tab" href="#tab-tooling" data-tab="tab-tooling">工具与工程规模</a>{% endif %}
       {% if evolution %}<a role="tab" href="#tab-evolution" data-tab="tab-evolution">系统演变</a>{% endif %}
       <a role="tab" href="#tab-sources" data-tab="tab-sources">入口与数据来源</a>
     </nav>
@@ -262,7 +263,7 @@
     </div>
 
     {%- if tooling %}
-    <div class="tab-panel" id="tab-tooling" role="tabpanel" aria-label="技能与钩子">
+    <div class="tab-panel" id="tab-tooling" role="tabpanel" aria-label="工具与工程规模">
     <section class="sw-section" id="tooling">
       <div class="section-header"><div>
         <h2>技能与钩子</h2>
@@ -303,6 +304,25 @@
         </table>
       </div>
       <p class="sw-hooks-note">git 钩子要在本机设置 <code>core.hooksPath</code> 才会运行；Claude Code 钩子随项目设置生效。</p>
+    </section>
+    <section class="sw-section" id="codebase">
+      <div class="section-header"><div>
+        <h2>工程规模</h2>
+        <p>git 跟踪的 <code>.py</code> / <code>.md</code> / <code>.rst</code> / <code>.yaml</code> / <code>.csv</code> 文件，按顶层目录和文件类型统计行数，列出行数最多的 10 个目录；全仓库数据，每次构建时重新统计。</p>
+      </div></div>
+      {%- if codebase %}
+      <div class="sw-code">
+        <div class="sw-code-legend">{% for kind in codebase.types %}<span><i class="sw-code-type-{{ loop.index0 }}"></i>{{ kind|e }}</span>{% endfor %}</div>
+        <ul class="sw-code-bars" aria-label="各顶层目录的行数，按文件类型分段">
+          {%- for area in codebase.areas %}
+          <li title="{{ area.area|e }} · {{ num(area.files) }} 个文件、{{ num(area.lines) }} 行{% for part in area.parts %}&#10;{{ part.type|e }}：{{ num(part.lines) }} 行（{{ num(part.files) }} 个文件）{% endfor %}"><span class="sw-code-area">{{ area.area|e }}</span><span class="sw-code-track" aria-hidden="true">{% for part in area.parts %}<i class="sw-code-type-{{ part.index }}" style="width:{{ part.percent }}%"></i>{% endfor %}</span><span class="sw-code-value">{{ num(area.lines) }}</span></li>
+          {%- endfor %}
+        </ul>
+        <p class="sw-code-total">共 {{ num(codebase.files) }} 个文件、{{ num(codebase.lines) }} 行；悬停一行查看该目录各类型的文件数和行数。</p>
+      </div>
+      {%- else %}
+      <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.codebase|e }}。</p></div>
+      {%- endif %}
     </section>
     </div>
     {%- endif %}

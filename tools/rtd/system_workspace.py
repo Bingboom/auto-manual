@@ -17,6 +17,8 @@ from:
   ``corpus-export`` and committed like any other frozen input;
 - the skeleton blueprints under ``docs/manifests/skeletons``: which product
   families already generate their manual structure from a skeleton;
+- ``git ls-files`` in the checkout: the tracked files whose lines the
+  工程规模 section counts per top-level directory and file type;
 - the source registry (``source_registry.yaml``, REV-44): every snapshot name,
   freshness limit and fallback text the page shows, listed on the page as
   数据来源.
@@ -48,11 +50,14 @@ _REPO_ROOT = Path(__file__).resolve().parents[2]
 
 from tools.rtd.system_evolution import evolution_view
 from tools.rtd.system_tooling import (  # noqa: E402
+    codebase_rows,
+    codebase_view,
     hook_facts,
     skill_facts,
     tooling_findings,
     tooling_problems,
     tooling_view,
+    tracked_files,
 )
 from tools.rtd.source_registry import (  # noqa: E402
     REGISTRY_NAME,
@@ -1037,7 +1042,8 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
                   corpus: dict[str, Any] | None = None,
                   skeletons: list[dict[str, str]] | None = None,
                   skills: list[dict[str, Any]] | None = None,
-                  hooks: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+                  hooks: list[dict[str, Any]] | None = None,
+                  codebase: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     repositories = {k: str(v).rstrip("/") for k, v in (contract.get("repositories") or {}).items()}
     ledger_repo, ledger_path = ledger_ref(contract)
     ledger_url = f"{repositories[ledger_repo]}/blob/main/{ledger_path}"
@@ -1120,6 +1126,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "corpus_enabled": bool(contract.get("corpus")),
         "corpus": corpus_block,
         "tooling": tooling,
+        "codebase": codebase_view(codebase),
         "fallbacks": {domain_id: domain["fallback"] for domain_id, domain in registry.items()},
         "sources": sources_view(registry, assets=assets, today=today,
                                 link=lambda ref: evidence_view(ref, repositories, ledger_url)),
@@ -1171,7 +1178,8 @@ def system_page_context(app, assets: Path) -> dict[str, Any] | None:
         logger.warning("System workspace corpus block shows no data: %s", "; ".join(problems[:3]))
     return build_context(contract, root=root, ledger=ledger, facts=facts, today=today,
                          registry=registry, assets=assets, corpus=corpus,
-                         skeletons=skeleton_facts(root), skills=skill_facts(root), hooks=hook_facts(root))
+                         skeletons=skeleton_facts(root), skills=skill_facts(root), hooks=hook_facts(root),
+                         codebase=codebase_rows(root, tracked_files(root)))
 
 
 # --- CLI ----------------------------------------------------------------------
