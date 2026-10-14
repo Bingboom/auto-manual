@@ -1,0 +1,2399 @@
+[
+  {
+    "slot": "package-list",
+    "language": "fr",
+    "physical_page": 28,
+    "english_page": 6,
+    "bbox": [
+      26,
+      306,
+      343,
+      502
+    ],
+    "caption": "Liste des paquets",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (package-list, PDF p6); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      25.333,
+      307.0,
+      340.333,
+      503.0
+    ],
+    "english_differing_pixel_share": 0.04639,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-package-list.png",
+    "render_scale": 3,
+    "sha256": "0919185f98a40a44fbc13f48547524d552abb556ffd6ebbec59c26527c67b082",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "optional-tools",
+    "language": "fr",
+    "physical_page": 29,
+    "english_page": 7,
+    "bbox": [
+      26,
+      58,
+      345,
+      147
+    ],
+    "caption": "Composants d'installation optionnels",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (optional-tools, PDF p7); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      28.0,
+      59.667,
+      345.0,
+      142.667
+    ],
+    "english_differing_pixel_share": 0.06938,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-optional-tools.png",
+    "render_scale": 3,
+    "sha256": "d2b7e11a754097c9479fbe257f4ca966498095f2c68e61f08a38c2dcd838fa22",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "dimensions",
+    "language": "fr",
+    "physical_page": 30,
+    "english_page": 8,
+    "bbox": [
+      36,
+      66,
+      332,
+      262
+    ],
+    "caption": "Dimensions",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (dimensions, PDF p8); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      38.0,
+      66.667,
+      351.0,
+      262.667
+    ],
+    "english_differing_pixel_share": 0.0085,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-dimensions.png",
+    "render_scale": 3,
+    "sha256": "76a9a42a8240b5b78d60b401b6a7b669a49471904f1efb6d9549be273e8fcbe7",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "covered-overview",
+    "language": "fr",
+    "physical_page": 30,
+    "english_page": 8,
+    "bbox": [
+      26,
+      313,
+      343,
+      456
+    ],
+    "caption": "Avec le couvercle de la Façade installé",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (covered-overview, PDF p8); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      28.0,
+      299.667,
+      342.0,
+      464.667
+    ],
+    "english_differing_pixel_share": 0.04963,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-covered-overview.png",
+    "render_scale": 3,
+    "sha256": "865c5219ad01cf28095923f74339ff1b55dd2dec6541b9ac1234168837b3d7b5",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "uncovered-overview",
+    "language": "fr",
+    "physical_page": 31,
+    "english_page": 9,
+    "bbox": [
+      25,
+      364,
+      343,
+      505
+    ],
+    "caption": "Avec la Couverture de la Façade Enlevée",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (uncovered-overview, PDF p9); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      26.0,
+      366.333,
+      341.0,
+      513.333
+    ],
+    "english_differing_pixel_share": 0.03754,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-uncovered-overview.png",
+    "render_scale": 3,
+    "sha256": "98469ee218a31defdfabccae9e286ba3c06e1bffe6eca07ebc9b950ee2354021",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "system-overview",
+    "language": "fr",
+    "physical_page": 32,
+    "english_page": 10,
+    "bbox": [
+      27,
+      289,
+      343,
+      510
+    ],
+    "exclude": [
+      [
+        28,
+        505.5,
+        48,
+        516
+      ]
+    ],
+    "exclude_reason": "The printed folio (30) sits under the last art label; its area is left blank in the crop.",
+    "caption": "Vue d'ensemble du système",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (system-overview, PDF p10); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      14.0,
+      296.333,
+      330.0,
+      507.333
+    ],
+    "english_differing_pixel_share": 0.02663,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-system-overview.png",
+    "render_scale": 3,
+    "sha256": "10a31affbf596863435369050bca12a358149fce4e49c89357be0441c765f2f0",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "mounting-brackets",
+    "language": "fr",
+    "physical_page": 33,
+    "english_page": 11,
+    "bbox": [
+      152,
+      260,
+      345,
+      370
+    ],
+    "caption": "Fixer les supports muraux",
+    "caption_source": "editorial",
+    "max_width": 400,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (mounting-brackets, PDF p11); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      154.667,
+      255.333,
+      347.667,
+      380.833
+    ],
+    "english_differing_pixel_share": 0.04583,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-mounting-brackets.png",
+    "render_scale": 3,
+    "sha256": "f0d6df9f0f98baab16e3818b26eb66a531a58ed2c7f348cb8f818161cc573d43",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "mounting-template",
+    "language": "fr",
+    "physical_page": 33,
+    "english_page": 11,
+    "bbox": [
+      25,
+      399,
+      336,
+      506
+    ],
+    "caption": "Positions du gabarit de marquage",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (mounting-template, PDF p11); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      31.333,
+      393.0,
+      350.333,
+      502.0
+    ],
+    "english_differing_pixel_share": 0.04059,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-mounting-template.png",
+    "render_scale": 3,
+    "sha256": "db751105e894d305d0e885397f4b313429ebfef2adb8ee8ae8bb0b345558af4a",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "mounting-fasteners",
+    "language": "fr",
+    "physical_page": 34,
+    "english_page": 12,
+    "bbox": [
+      27,
+      45,
+      344,
+      140
+    ],
+    "caption": "Fixer le Smart Transfer Switch",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (mounting-fasteners, PDF p12); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      26.667,
+      45.0,
+      343.667,
+      154.0
+    ],
+    "english_differing_pixel_share": 0.01846,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-mounting-fasteners.png",
+    "render_scale": 3,
+    "sha256": "a83caee99e79b826d2827b832d545e2eb0280670d835be6b73297057cedf1a36",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "cable-entry",
+    "language": "fr",
+    "physical_page": 34,
+    "english_page": 12,
+    "bbox": [
+      27,
+      192,
+      343,
+      370
+    ],
+    "caption": "Choix de l'entrée de câble",
+    "caption_source": "printed heading",
+    "printed_notes": [
+      "Veuillez couper l'alimentation avant de travailler sur le câblage.",
+      "Ne percez pas en dehors de la one désignée."
+    ],
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (cable-entry, PDF p12); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.0,
+      192.667,
+      343.0,
+      364.667
+    ],
+    "english_differing_pixel_share": 0.01396,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-cable-entry.png",
+    "render_scale": 3,
+    "sha256": "feb2310c0e4939184da90058080ee055d26ce96373b9244ac38f834375b39bf3",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "grid-preparation",
+    "language": "fr",
+    "physical_page": 35,
+    "english_page": 13,
+    "bbox": [
+      27,
+      21,
+      343,
+      175
+    ],
+    "caption": "Panneau principal et Smart Transfer Switch",
+    "caption_source": "editorial",
+    "printed_notes": [
+      "Seulement des disjoncteurs monophasés et biphasés, pas de disjoncteurs jumelés."
+    ],
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (grid-preparation, PDF p13); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.0,
+      21.0,
+      343.0,
+      172.0
+    ],
+    "english_differing_pixel_share": 0.01447,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-grid-preparation.png",
+    "render_scale": 3,
+    "sha256": "4eeb8867cbecdc78ff8219b7a3b39f9b6bf7b5d13833ebfe5a6ec0c1d489e63e",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "grid-wiring",
+    "language": "fr",
+    "physical_page": 35,
+    "english_page": 13,
+    "bbox": [
+      27,
+      333,
+      343,
+      501
+    ],
+    "caption": "Raccordement des conducteurs du réseau",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (grid-wiring, PDF p13); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.0,
+      340.0,
+      343.0,
+      500.0
+    ],
+    "english_differing_pixel_share": 0.01955,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-grid-wiring.png",
+    "render_scale": 3,
+    "sha256": "de9427469c18d2df9d35fc742d9ec3074f687d0d0f9bb1a40f634baab94107e0",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "load-wiring",
+    "language": "fr",
+    "physical_page": 36,
+    "english_page": 14,
+    "bbox": [
+      24,
+      200,
+      345,
+      384
+    ],
+    "caption": "Raccordement des Conducteurs de Charge de la Maison",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (load-wiring, PDF p14); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      25.667,
+      205.0,
+      343.667,
+      380.0
+    ],
+    "english_differing_pixel_share": 0.07454,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-load-wiring.png",
+    "render_scale": 3,
+    "sha256": "a8a8dc8288555595b9473d26493e466a4672ac19b9486bb30f1ba5258dbea312",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "external-emergency-stop",
+    "language": "fr",
+    "physical_page": 37,
+    "english_page": 15,
+    "bbox": [
+      25,
+      86,
+      345,
+      226
+    ],
+    "caption": "Bouton d'arrêt d'urgence - raccordements intérieur et extérieur",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (external-emergency-stop, PDF p15); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      34.667,
+      88.333,
+      354.667,
+      218.333
+    ],
+    "english_differing_pixel_share": 0.02487,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-external-emergency-stop.png",
+    "render_scale": 3,
+    "sha256": "2e6a331540c4c12efaba0f785b44f6bff9c8fea1c8c1ef4605eac52db8e222e4",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "deadfront-installation",
+    "language": "fr",
+    "physical_page": 37,
+    "english_page": 15,
+    "bbox": [
+      29.333,
+      342.667,
+      348.333,
+      504.667
+    ],
+    "caption": "Installation du Couvercle de la Façade",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (deadfront-installation, PDF p15); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      29.333,
+      342.667,
+      348.333,
+      504.667
+    ],
+    "english_differing_pixel_share": 0.0004,
+    "decision": "share the English panel (identical art)",
+    "reason": "The crop matches the accepted English panel within antialiasing.",
+    "local_path": "assets/deadfront-installation.png",
+    "sha256": "8226827b9e72290fbe0d68220f8346f421fb3f2f7cc3dab5a6e30da2351afc3d",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "power-station-connections",
+    "language": "fr",
+    "physical_page": 38,
+    "english_page": 16,
+    "bbox": [
+      27,
+      55,
+      345,
+      256
+    ],
+    "caption": "Connexion avec la centrale électrique - deux unités maximum",
+    "caption_source": "editorial",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (power-station-connections, PDF p16); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      25.667,
+      54.667,
+      342.667,
+      253.667
+    ],
+    "english_differing_pixel_share": 0.03306,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-power-station-connections.png",
+    "render_scale": 3,
+    "sha256": "b906b8648318f505a46cbe102c172905c7d62d1b702f11a1af908e476904f469",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "locking-panel",
+    "language": "fr",
+    "physical_page": 38,
+    "english_page": 16,
+    "bbox": [
+      27,
+      328,
+      344,
+      447.5
+    ],
+    "caption": "Verrouillage du panneau",
+    "caption_source": "printed heading",
+    "max_width": 420,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (locking-panel, PDF p16); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      22.333,
+      325.0,
+      339.333,
+      444.0
+    ],
+    "english_differing_pixel_share": 0.0028,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-locking-panel.png",
+    "render_scale": 3,
+    "sha256": "c62a67e17c67d37fe766dd8520f388a266eb4d9365eb38bbc084ab746e6999c0",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-store-badges",
+    "language": "fr",
+    "physical_page": 39,
+    "english_page": 17,
+    "bbox": [
+      27,
+      78,
+      182,
+      105
+    ],
+    "caption": "App Store et Google Play",
+    "caption_source": "editorial",
+    "max_width": 220,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-store-badges, PDF p17); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.333,
+      78.0,
+      182.333,
+      105.0
+    ],
+    "english_differing_pixel_share": 0.01094,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-store-badges.png",
+    "render_scale": 3,
+    "sha256": "17ddb4358c78068b1f6c5303d4cda77a7886087b3acd317f07bc42401cdf2357",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-download-qr",
+    "language": "fr",
+    "physical_page": 39,
+    "english_page": 17,
+    "bbox": [
+      27,
+      123,
+      81,
+      179
+    ],
+    "caption": "Code QR de téléchargement de l'application",
+    "caption_source": "editorial",
+    "max_width": 150,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-download-qr, PDF p17); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.333,
+      123.333,
+      81.333,
+      178.333
+    ],
+    "english_differing_pixel_share": 0.11279,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-download-qr.png",
+    "render_scale": 3,
+    "sha256": "1b0b7242a937d65710b285f147b8128159a267f58954fb9cd4692929378ca46d",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "iot-pairing",
+    "language": "fr",
+    "physical_page": 39,
+    "english_page": 17,
+    "bbox": [
+      171.0,
+      189.0,
+      345.0,
+      320.0
+    ],
+    "caption": "Appui sur le bouton IoT",
+    "caption_source": "editorial",
+    "max_width": 420,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (iot-pairing, PDF p17); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      171.0,
+      189.0,
+      345.0,
+      320.0
+    ],
+    "english_differing_pixel_share": 0.0,
+    "decision": "share the English panel (identical art)",
+    "reason": "The crop matches the accepted English panel within antialiasing.",
+    "local_path": "assets/iot-pairing.png",
+    "sha256": "5b57169d52289a355eefc42f86ecb04b19fdf996ecc76e57b2bb24db96130ff6",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-add-device",
+    "language": "fr",
+    "physical_page": 39,
+    "english_page": 17,
+    "bbox": [
+      153,
+      331,
+      244,
+      497
+    ],
+    "caption": "Ajouter un appareil dans l'application Jackery",
+    "caption_source": "editorial",
+    "max_width": 260,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-add-device, PDF p17); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      152.333,
+      331.333,
+      243.333,
+      497.333
+    ],
+    "english_differing_pixel_share": 0.02154,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-add-device.png",
+    "render_scale": 3,
+    "sha256": "793772142c3fb28641aed2a75f07c8566165e752721263a3efa2151067ff0a17",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-wifi",
+    "language": "fr",
+    "physical_page": 40,
+    "english_page": 18,
+    "bbox": [
+      27,
+      56,
+      344,
+      258
+    ],
+    "caption": "Connecter le Smart Transfer Switch au Wi-Fi",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-wifi, PDF p18); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.333,
+      55.0,
+      344.333,
+      257.0
+    ],
+    "english_differing_pixel_share": 0.02668,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-wifi.png",
+    "render_scale": 3,
+    "sha256": "fdbf0182f970d7a315c1bb5e22f73265b3a3580c99510bc6653c54d1860b1b70",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-voltage-menu",
+    "language": "fr",
+    "physical_page": 40,
+    "english_page": 18,
+    "bbox": [
+      27,
+      297,
+      344,
+      486
+    ],
+    "caption": "Configuration de tension",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-voltage-menu, PDF p18); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      31.333,
+      296.333,
+      348.333,
+      485.333
+    ],
+    "english_differing_pixel_share": 0.03419,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-voltage-menu.png",
+    "render_scale": 3,
+    "sha256": "6503361697c0d1b6d84f2fc7169a6eba9f846dce71a37c3cd06977deb59b8dc9",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-voltage-settings",
+    "language": "fr",
+    "physical_page": 41,
+    "english_page": 19,
+    "bbox": [
+      21,
+      66,
+      344,
+      194
+    ],
+    "caption": "Régler et enregistrer la tension du circuit",
+    "caption_source": "editorial",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-voltage-settings, PDF p19); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      22.667,
+      68.333,
+      339.667,
+      190.333
+    ],
+    "english_differing_pixel_share": 0.05398,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-voltage-settings.png",
+    "render_scale": 3,
+    "sha256": "7d2c4f2ba678b7a26b2a1d4817b4963d6360b6a65f6ff4c09bf3a28a853ca21a",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-circuit-list",
+    "language": "fr",
+    "physical_page": 41,
+    "english_page": 19,
+    "bbox": [
+      27,
+      228,
+      344,
+      354
+    ],
+    "caption": "Sélectionner un circuit",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-circuit-list, PDF p19); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.667,
+      239.0,
+      344.667,
+      366.0
+    ],
+    "english_differing_pixel_share": 0.02854,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-circuit-list.png",
+    "render_scale": 3,
+    "sha256": "9a4e85cb3b7d05c33b350c6d395cb1a66364c3ce808febcfe121c2be2ddac76e",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-circuit-name",
+    "language": "fr",
+    "physical_page": 41,
+    "english_page": 19,
+    "bbox": [
+      22,
+      378,
+      344,
+      503
+    ],
+    "caption": "Modifier le nom du circuit",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-circuit-name, PDF p19); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      22.667,
+      381.667,
+      339.667,
+      505.667
+    ],
+    "english_differing_pixel_share": 0.04401,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-circuit-name.png",
+    "render_scale": 3,
+    "sha256": "3d7c058090c793c4d7049493a2b57ef4423248da48a6b6e7aa020e1f82e0aafb",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-dashboard",
+    "language": "fr",
+    "physical_page": 42,
+    "english_page": 20,
+    "bbox": [
+      70,
+      72,
+      157,
+      262
+    ],
+    "caption": "Tableau de bord",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-dashboard, PDF p20); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      60.333,
+      73.0,
+      161.333,
+      268.0
+    ],
+    "english_differing_pixel_share": 0.07317,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-dashboard.png",
+    "render_scale": 3,
+    "sha256": "2fe1a2fc5622a9681770796c5494f4521fa2afee806467a5b5afc0f2a1227966",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-circuits",
+    "language": "fr",
+    "physical_page": 42,
+    "english_page": 20,
+    "bbox": [
+      68,
+      286,
+      292,
+      476
+    ],
+    "caption": "Circuits",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-circuits, PDF p20); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      67.0,
+      306.667,
+      334.0,
+      492.667
+    ],
+    "english_differing_pixel_share": 0.1436,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-circuits.png",
+    "render_scale": 3,
+    "sha256": "1c97831aa0ed371213654d117754a37e4307891db27b780638e415624c2cd56c",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-working-modes",
+    "language": "fr",
+    "physical_page": 43,
+    "english_page": 21,
+    "bbox": [
+      40,
+      63,
+      134,
+      267
+    ],
+    "caption": "Modes de fonctionnement",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-working-modes, PDF p21); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      38.0,
+      42.333,
+      136.0,
+      249.333
+    ],
+    "english_differing_pixel_share": 0.07311,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-working-modes.png",
+    "render_scale": 3,
+    "sha256": "dc9842593f98c690bdeced0eff580679bff00afaddffc921a6dfe2eddb4ea784",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-backup-only",
+    "language": "fr",
+    "physical_page": 44,
+    "english_page": 22,
+    "bbox": [
+      50,
+      60,
+      144,
+      265
+    ],
+    "caption": "Mode alimentation de secours",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-backup-only, PDF p22); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      47.333,
+      61.333,
+      146.333,
+      270.333
+    ],
+    "english_differing_pixel_share": 0.09014,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-backup-only.png",
+    "render_scale": 3,
+    "sha256": "ba97e23fe5230dc2e8a92dae727938270d39d3966339f84d907788c7cb9f0d71",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-backup-priority",
+    "language": "fr",
+    "physical_page": 44,
+    "english_page": 22,
+    "bbox": [
+      50,
+      296,
+      144,
+      502
+    ],
+    "caption": "Priorité secours",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-backup-priority, PDF p22); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      49.333,
+      292.333,
+      161.333,
+      496.733
+    ],
+    "english_differing_pixel_share": 0.0652,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-backup-priority.png",
+    "render_scale": 3,
+    "sha256": "d90a7a4c4adc6b3731e5d5c4f2dc3b718e418706463775e779a1f1107024aed7",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-ups-mode",
+    "language": "fr",
+    "physical_page": 45,
+    "english_page": 23,
+    "bbox": [
+      48,
+      68,
+      142,
+      272
+    ],
+    "caption": "Mode UPS",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-ups-mode, PDF p23); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      48.333,
+      65.0,
+      152.333,
+      268.0
+    ],
+    "english_differing_pixel_share": 0.11806,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/fr-app-ups-mode.png",
+    "render_scale": 3,
+    "sha256": "37ff97d0a98ed415c36ec6e009cb094da9aaee5d766fb1f28aab81770b1906b0",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "package-list",
+    "language": "es",
+    "physical_page": 50,
+    "english_page": 6,
+    "bbox": [
+      26,
+      306,
+      343,
+      502
+    ],
+    "caption": "Lista de paquetes",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (package-list, PDF p6); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.667,
+      306.0,
+      342.667,
+      502.0
+    ],
+    "english_differing_pixel_share": 0.04215,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-package-list.png",
+    "render_scale": 3,
+    "sha256": "007fbfdfc09b7b4c7fb99869c7a5cf6f7dfbbd676fea0463b08b2c6851f4f78f",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "optional-tools",
+    "language": "es",
+    "physical_page": 51,
+    "english_page": 7,
+    "bbox": [
+      26,
+      50,
+      345,
+      145
+    ],
+    "caption": "Componentes de instalación opcionales",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (optional-tools, PDF p7); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      28.0,
+      57.0,
+      345.0,
+      140.0
+    ],
+    "english_differing_pixel_share": 0.07989,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-optional-tools.png",
+    "render_scale": 3,
+    "sha256": "4171e2cf8d38e26b5548a662ce31e9b11901f81266ceea38d21b7e40572e90b3",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "dimensions",
+    "language": "es",
+    "physical_page": 52,
+    "english_page": 8,
+    "bbox": [
+      45,
+      62,
+      335,
+      258
+    ],
+    "caption": "Dimensiones",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (dimensions, PDF p8); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      46.667,
+      63.333,
+      359.667,
+      259.333
+    ],
+    "english_differing_pixel_share": 0.01091,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-dimensions.png",
+    "render_scale": 3,
+    "sha256": "f6f9b8688bffd71f99dc3508941d4e223ed4709332a36cc531da0a4d8982fb7d",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "covered-overview",
+    "language": "es",
+    "physical_page": 52,
+    "english_page": 8,
+    "bbox": [
+      26,
+      306.5,
+      343,
+      446
+    ],
+    "caption": "Con Cubierta de Frente Muerto Instalada",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (covered-overview, PDF p8); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      29.333,
+      292.0,
+      343.333,
+      457.0
+    ],
+    "english_differing_pixel_share": 0.04428,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-covered-overview.png",
+    "render_scale": 3,
+    "sha256": "ae0baa43fc12178c66c303872f9246e2d63f5c7a5c6514dd5fcfd939d2c80790",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "uncovered-overview",
+    "language": "es",
+    "physical_page": 53,
+    "english_page": 9,
+    "bbox": [
+      26,
+      366,
+      343,
+      505
+    ],
+    "caption": "Con Cubierta de Frente Muerto Retirada",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (uncovered-overview, PDF p9); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      30.0,
+      367.667,
+      345.0,
+      514.667
+    ],
+    "english_differing_pixel_share": 0.04733,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-uncovered-overview.png",
+    "render_scale": 3,
+    "sha256": "7f1b76b8270837ab91ce8bc1c12e6b30f8394c997d8c2dfeda66a103b7784256",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "system-overview",
+    "language": "es",
+    "physical_page": 54,
+    "english_page": 10,
+    "bbox": [
+      27,
+      287,
+      343,
+      503
+    ],
+    "caption": "Descripción General del Sistema",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (system-overview, PDF p10); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      13.0,
+      289.0,
+      329.0,
+      500.0
+    ],
+    "english_differing_pixel_share": 0.02179,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-system-overview.png",
+    "render_scale": 3,
+    "sha256": "847a2eb5ecb15814cb97f021649a57cab8a8fb3ec6b2de6edd3ce8048c0b9377",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "mounting-brackets",
+    "language": "es",
+    "physical_page": 55,
+    "english_page": 11,
+    "bbox": [
+      152,
+      258,
+      345,
+      372
+    ],
+    "caption": "Instalar los soportes de pared",
+    "caption_source": "editorial",
+    "max_width": 400,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (mounting-brackets, PDF p11); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      152.667,
+      253.333,
+      345.667,
+      378.833
+    ],
+    "english_differing_pixel_share": 0.03862,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-mounting-brackets.png",
+    "render_scale": 3,
+    "sha256": "7f102a84f5d365b6aee576a555f92672663df327890353fa3eeeb9c69e11ae84",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "mounting-template",
+    "language": "es",
+    "physical_page": 55,
+    "english_page": 11,
+    "bbox": [
+      25,
+      400,
+      336,
+      506
+    ],
+    "caption": "Posiciones de la plantilla de marcado",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (mounting-template, PDF p11); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      38.0,
+      395.667,
+      357.0,
+      504.667
+    ],
+    "english_differing_pixel_share": 0.0417,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-mounting-template.png",
+    "render_scale": 3,
+    "sha256": "7751ccadde5e4728f3dfc1cbe48fd30af91ec2f5972a9e8bc34ef8aa48596256",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "mounting-fasteners",
+    "language": "es",
+    "physical_page": 56,
+    "english_page": 12,
+    "bbox": [
+      27,
+      43,
+      346,
+      140
+    ],
+    "caption": "Fijar el Smart Transfer Switch",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (mounting-fasteners, PDF p12); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      30.333,
+      43.667,
+      347.333,
+      152.667
+    ],
+    "english_differing_pixel_share": 0.01616,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-mounting-fasteners.png",
+    "render_scale": 3,
+    "sha256": "9f71a9a0f3be5dbba5a1a5b83a879c51b0e5f471526e929e0fb24d2963f709ca",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "cable-entry",
+    "language": "es",
+    "physical_page": 56,
+    "english_page": 12,
+    "bbox": [
+      27,
+      206,
+      343,
+      380
+    ],
+    "exclude": [
+      [
+        25,
+        366,
+        120,
+        381
+      ]
+    ],
+    "exclude_reason": "The Conexiones Eléctricas heading shares a print band with the art note; its area is left blank in the crop and the heading stays live copy.",
+    "caption": "Selección de Entrada de Cables",
+    "caption_source": "printed heading",
+    "printed_notes": [
+      "Por favor, apague la energía antes de trabajar en el cableado.",
+      "No perfore fuera del área designada."
+    ],
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (cable-entry, PDF p12); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.0,
+      203.0,
+      343.0,
+      375.0
+    ],
+    "english_differing_pixel_share": 0.02573,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-cable-entry.png",
+    "render_scale": 3,
+    "sha256": "2cdc8d23846d5ddc75534f9940783f9e9964d0415b89a8447ff19e1955e354df",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "grid-preparation",
+    "language": "es",
+    "physical_page": 57,
+    "english_page": 13,
+    "bbox": [
+      27,
+      28,
+      343,
+      180
+    ],
+    "caption": "Panel principal y Smart Transfer Switch",
+    "caption_source": "editorial",
+    "printed_notes": [
+      "Solo disyuntores unipolares y bipolares, no disyuntores en tándem."
+    ],
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (grid-preparation, PDF p13); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.0,
+      27.667,
+      343.0,
+      178.667
+    ],
+    "english_differing_pixel_share": 0.01387,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-grid-preparation.png",
+    "render_scale": 3,
+    "sha256": "7e043a077f8b6eab48f1d65637ea82ba37f400373072842e6d6614fc0ce18fc7",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "grid-wiring",
+    "language": "es",
+    "physical_page": 57,
+    "english_page": 13,
+    "bbox": [
+      27,
+      338,
+      343,
+      503
+    ],
+    "caption": "Conexión de Conductores de la Red",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (grid-wiring, PDF p13); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.0,
+      340.333,
+      343.0,
+      500.333
+    ],
+    "english_differing_pixel_share": 0.01812,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-grid-wiring.png",
+    "render_scale": 3,
+    "sha256": "7072b9778ee36201330f38938a351d3a255d8d15ebccdf715415aa93e9ec9843",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "load-wiring",
+    "language": "es",
+    "physical_page": 58,
+    "english_page": 14,
+    "bbox": [
+      18,
+      202,
+      345,
+      376
+    ],
+    "caption": "Conexión de Conductores de Carga Doméstica",
+    "caption_source": "printed heading",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (load-wiring, PDF p14); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      18.667,
+      200.667,
+      336.667,
+      375.667
+    ],
+    "english_differing_pixel_share": 0.06688,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-load-wiring.png",
+    "render_scale": 3,
+    "sha256": "8517448a5c34ba2035340c38c8dc7ac85b4b00ca332f5c8e039863aceee9278a",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "external-emergency-stop",
+    "language": "es",
+    "physical_page": 59,
+    "english_page": 15,
+    "bbox": [
+      25,
+      88,
+      345,
+      229
+    ],
+    "caption": "Botón de parada de emergencia - conexiones interior y exterior",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (external-emergency-stop, PDF p15); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      34.667,
+      92.667,
+      354.667,
+      222.667
+    ],
+    "english_differing_pixel_share": 0.00742,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-external-emergency-stop.png",
+    "render_scale": 3,
+    "sha256": "b027be0c2aa30fe436a497b9cf97f0d88fbbbe81e41fee015da48d822706efb0",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "deadfront-installation",
+    "language": "es",
+    "physical_page": 59,
+    "english_page": 15,
+    "bbox": [
+      25,
+      337,
+      336,
+      503
+    ],
+    "caption": "Instalación de Cubierta de Frente Muerto",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (deadfront-installation, PDF p15); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      25.0,
+      337.333,
+      344.0,
+      499.333
+    ],
+    "english_differing_pixel_share": 0.00749,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-deadfront-installation.png",
+    "render_scale": 3,
+    "sha256": "785419249318c5954a36ff8c9d2455b5b27275fbe9b26d8c6ed8ef0dca436301",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "power-station-connections",
+    "language": "es",
+    "physical_page": 60,
+    "english_page": 16,
+    "bbox": [
+      27,
+      52,
+      345,
+      254
+    ],
+    "caption": "Conexión con Estación de Energía - máximo dos unidades",
+    "caption_source": "editorial",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (power-station-connections, PDF p16); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      26.0,
+      51.0,
+      343.0,
+      250.0
+    ],
+    "english_differing_pixel_share": 0.02577,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-power-station-connections.png",
+    "render_scale": 3,
+    "sha256": "5f08fbc0e70ceb93d542efc2c80aa8ceb456e5870b9155a3b501732725679cb2",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "locking-panel",
+    "language": "es",
+    "physical_page": 60,
+    "english_page": 16,
+    "bbox": [
+      27,
+      322,
+      344,
+      446
+    ],
+    "caption": "Bloqueo del Panel",
+    "caption_source": "printed heading",
+    "max_width": 420,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (locking-panel, PDF p16); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      25.333,
+      320.667,
+      342.333,
+      439.667
+    ],
+    "english_differing_pixel_share": 0.01323,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-locking-panel.png",
+    "render_scale": 3,
+    "sha256": "42d8ab77108992db6dd589acd8301e3faf9a5f33cacc2cdffaa77af83662e4dc",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-store-badges",
+    "language": "es",
+    "physical_page": 61,
+    "english_page": 17,
+    "bbox": [
+      30.667,
+      86.0,
+      185.667,
+      113.0
+    ],
+    "caption": "App Store y Google Play",
+    "caption_source": "editorial",
+    "max_width": 220,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-store-badges, PDF p17); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      30.667,
+      86.0,
+      185.667,
+      113.0
+    ],
+    "english_differing_pixel_share": 3e-05,
+    "decision": "share the English panel (identical art)",
+    "reason": "The crop matches the accepted English panel within antialiasing.",
+    "local_path": "assets/app-store-badges.png",
+    "sha256": "11a6eeda9f87362e2f4adddfdb385ef5985b7c1f4b7a0d1dcf6a1051b30e26e1",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-download-qr",
+    "language": "es",
+    "physical_page": 61,
+    "english_page": 17,
+    "bbox": [
+      31,
+      131,
+      85,
+      188
+    ],
+    "caption": "Código QR de descarga de la aplicación",
+    "caption_source": "editorial",
+    "max_width": 150,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-download-qr, PDF p17); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      30.667,
+      131.667,
+      84.667,
+      186.667
+    ],
+    "english_differing_pixel_share": 0.02884,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-download-qr.png",
+    "render_scale": 3,
+    "sha256": "8a254015173e94a05a6e12babf4ebb4db9bce1a31aa0441d8e56420f394f5637",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "iot-pairing",
+    "language": "es",
+    "physical_page": 61,
+    "english_page": 17,
+    "bbox": [
+      180,
+      197,
+      354,
+      328
+    ],
+    "caption": "Pulsación del botón de IoT",
+    "caption_source": "editorial",
+    "max_width": 420,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (iot-pairing, PDF p17); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      179.667,
+      197.0,
+      353.667,
+      328.0
+    ],
+    "english_differing_pixel_share": 0.00771,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-iot-pairing.png",
+    "render_scale": 3,
+    "sha256": "f026596db4941c40a0ee985265f42ae5b7831fffe6441cae88058e1f4a3daed7",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-add-device",
+    "language": "es",
+    "physical_page": 61,
+    "english_page": 17,
+    "bbox": [
+      156,
+      334,
+      247,
+      500
+    ],
+    "caption": "Añadir un dispositivo en la aplicación Jackery",
+    "caption_source": "editorial",
+    "max_width": 260,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-add-device, PDF p17); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      156.0,
+      333.667,
+      247.0,
+      499.667
+    ],
+    "english_differing_pixel_share": 0.02229,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-add-device.png",
+    "render_scale": 3,
+    "sha256": "cf76da2aa61f1a1cd0ad5a25c2695a688189e8607dcadfca00eedafda469b343",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-wifi",
+    "language": "es",
+    "physical_page": 62,
+    "english_page": 18,
+    "bbox": [
+      27,
+      66,
+      344,
+      270
+    ],
+    "caption": "Conectar el Smart Transfer Switch al Wi-Fi",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-wifi, PDF p18); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      27.333,
+      67.0,
+      344.333,
+      269.0
+    ],
+    "english_differing_pixel_share": 0.02421,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-wifi.png",
+    "render_scale": 3,
+    "sha256": "38f20f4a329bb72abab77cd70713e76d27f70189fdefb46d23571d1cb65e2d7a",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-voltage-menu",
+    "language": "es",
+    "physical_page": 62,
+    "english_page": 18,
+    "bbox": [
+      32,
+      301,
+      349,
+      490
+    ],
+    "caption": "Configuración de voltaje",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-voltage-menu, PDF p18); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      32.333,
+      300.333,
+      349.333,
+      489.333
+    ],
+    "english_differing_pixel_share": 0.03222,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-voltage-menu.png",
+    "render_scale": 3,
+    "sha256": "68b7f7c72a99f06a765fe91e878f9db0e82feedf952269cbc8ca210e4313f5de",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-voltage-settings",
+    "language": "es",
+    "physical_page": 63,
+    "english_page": 19,
+    "bbox": [
+      25,
+      62,
+      345,
+      190
+    ],
+    "caption": "Ajustar y guardar el voltaje del circuito",
+    "caption_source": "editorial",
+    "max_width": 680,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-voltage-settings, PDF p19); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      25.0,
+      63.667,
+      342.0,
+      185.667
+    ],
+    "english_differing_pixel_share": 0.054,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-voltage-settings.png",
+    "render_scale": 3,
+    "sha256": "e552c6de2f4643a09b126107e13ddae04f61738d6e669497aad891a9dc701b3f",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-circuit-list",
+    "language": "es",
+    "physical_page": 63,
+    "english_page": 19,
+    "bbox": [
+      27,
+      222,
+      344,
+      349
+    ],
+    "caption": "Seleccionar un circuito",
+    "caption_source": "editorial",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-circuit-list, PDF p19); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      29.667,
+      234.0,
+      346.667,
+      361.0
+    ],
+    "english_differing_pixel_share": 0.0323,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-circuit-list.png",
+    "render_scale": 3,
+    "sha256": "bb899ed9bc4430ea0d8eb6c7c1e3ae2ac9f642fe65e2ee9bcb75c17de6c53750",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-circuit-name",
+    "language": "es",
+    "physical_page": 63,
+    "english_page": 19,
+    "bbox": [
+      26,
+      372,
+      344,
+      502
+    ],
+    "caption": "Editar el nombre del circuito",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-circuit-name, PDF p19); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      26.333,
+      378.0,
+      343.333,
+      502.0
+    ],
+    "english_differing_pixel_share": 0.04126,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-circuit-name.png",
+    "render_scale": 3,
+    "sha256": "e9eb91090e629e86c49315f5a5f39421fe8c14c14eb8e86e3a59a7c66a720a6b",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-dashboard",
+    "language": "es",
+    "physical_page": 64,
+    "english_page": 20,
+    "bbox": [
+      52,
+      65,
+      145,
+      265
+    ],
+    "caption": "Tablero",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-dashboard, PDF p20); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      46.0,
+      69.667,
+      147.0,
+      264.667
+    ],
+    "english_differing_pixel_share": 0.05962,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-dashboard.png",
+    "render_scale": 3,
+    "sha256": "a36076ce58e18cd46eb4fd6f213ddb90ea8eb870c7383104d7b6e86c3a37f095",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-circuits",
+    "language": "es",
+    "physical_page": 64,
+    "english_page": 20,
+    "bbox": [
+      52,
+      285,
+      277,
+      490
+    ],
+    "caption": "Circuitos",
+    "caption_source": "printed heading",
+    "max_width": 620,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-circuits, PDF p20); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      49.667,
+      297.667,
+      316.667,
+      483.667
+    ],
+    "english_differing_pixel_share": 0.18546,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-circuits.png",
+    "render_scale": 3,
+    "sha256": "ea2885d11317907c578aa712f6b69824a3436e0b4947284f76bff4749dacfc9c",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-working-modes",
+    "language": "es",
+    "physical_page": 66,
+    "english_page": 21,
+    "bbox": [
+      49,
+      62,
+      142,
+      263
+    ],
+    "caption": "Modos de funcionamiento",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-working-modes, PDF p21); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      46.0,
+      47.0,
+      144.0,
+      254.0
+    ],
+    "english_differing_pixel_share": 0.08758,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-working-modes.png",
+    "render_scale": 3,
+    "sha256": "f75b746797c2bea9b75f37310e8ef5a112c3d4111e9ba2a243a39e20d760ffb6",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-backup-only",
+    "language": "es",
+    "physical_page": 67,
+    "english_page": 22,
+    "bbox": [
+      57,
+      57,
+      152,
+      263
+    ],
+    "caption": "Modo respaldo",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-backup-only, PDF p22); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      54.667,
+      59.333,
+      153.667,
+      268.333
+    ],
+    "english_differing_pixel_share": 0.08289,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-backup-only.png",
+    "render_scale": 3,
+    "sha256": "94d8c853e7aa6ab2de44e824248cdf51f0bcdb4f382007b4ddd2fd7ed522db9a",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-backup-priority",
+    "language": "es",
+    "physical_page": 67,
+    "english_page": 22,
+    "bbox": [
+      57,
+      301,
+      152,
+      503
+    ],
+    "caption": "Prioridad de respaldo",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-backup-priority, PDF p22); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      56.667,
+      308.0,
+      168.667,
+      512.4
+    ],
+    "english_differing_pixel_share": 0.07478,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-backup-priority.png",
+    "render_scale": 3,
+    "sha256": "f360e028b42218851908349a08676dab117b16044db8c6ec9860fcba016f6c62",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  },
+  {
+    "slot": "app-ups-mode",
+    "language": "es",
+    "physical_page": 68,
+    "english_page": 23,
+    "bbox": [
+      59,
+      63,
+      152,
+      265
+    ],
+    "caption": "Modo UPS",
+    "caption_source": "printed heading",
+    "max_width": 270,
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/assets",
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Same panel as the accepted English edition (app-ups-mode, PDF p23); compared with the English crop at the matched offset.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "english_match_bbox": [
+      59.333,
+      61.667,
+      163.333,
+      264.667
+    ],
+    "english_differing_pixel_share": 0.12307,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "reason": "Printed labels are translated, or the art sits at a sub-point offset; the English file would show other wording or other pixels.",
+    "local_path": "assets/es-app-ups-mode.png",
+    "render_scale": 3,
+    "sha256": "89f7628b209aa25d41d96e9acdbba4dab2b56544ab55954ab2f0a57cd796d507",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3"
+  }
+]
