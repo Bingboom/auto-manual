@@ -156,7 +156,7 @@ class SystemEvolutionTests(unittest.TestCase):
         registry = {**REGISTRY, "evolution": self.domain}
         context = workspace.build_context(contract, root=self.root, ledger=None, facts=None,
                                           today=dt.date(2026, 10, 4), registry=registry, assets=ASSETS)
-        context.update(pathto=lambda path, *args: path, has_share=False, deliverables_entry=False,
+        context.update(pathto=lambda path, *args: path, deliverables_entry=False,
                        workspace_revision={"revision": "", "short_revision": "preview", "built_at": ""})
         template = Environment(loader=FileSystemLoader(ASSETS)).get_template("system_workspace.html")
         page = template.render(**context)

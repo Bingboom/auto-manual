@@ -324,9 +324,8 @@ def site_nav(app) -> dict:
     """Optional sidebar entries for the shared site shell (see _site_shell.html)."""
     if manuals_only(app):
         # The public shell hides internal entries; do not build their contexts at all.
-        return dict.fromkeys(("share", "system", "deliverables", "design", "data", "matrix"), False)
+        return dict.fromkeys(("system", "deliverables", "design", "data", "matrix"), False)
     return {
-        "share": (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file(),
         "system": cached_system_context(app) is not None,
         "deliverables": True,
         "design": cached_design_context(app) is not None,
@@ -382,10 +381,10 @@ def collect_workspace_pages(app):
     if system is not None:
         from tools.rtd.workspace_revision import page_revision
 
-        yield SYSTEM_PAGE, {**system, "has_share": has_share, "deliverables_entry": True,
+        yield SYSTEM_PAGE, {**system, "deliverables_entry": True,
                             "design_entry": design is not None, "data_entry": data is not None,
                             "matrix_entry": matrix is not None, "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
-    yield DELIVERABLES_PAGE, {**deliverables, "has_share": has_share, "system_entry": system is not None,
+    yield DELIVERABLES_PAGE, {**deliverables, "system_entry": system is not None,
                               "design_entry": design is not None, "data_entry": data is not None,
                               "matrix_entry": matrix is not None}, DELIVERABLES_TEMPLATE
     if design is not None:

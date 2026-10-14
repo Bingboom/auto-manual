@@ -137,7 +137,7 @@ def print_page_document(markup: str) -> str:
         '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
         '<meta name="robots" content="noindex,nofollow">\n'
-        "<title>印刷页 · 设计系统预览</title>\n"
+        "<title>印刷页 · 设计规范预览</title>\n"
         '<link rel="stylesheet" href="tokens.css">\n<link rel="stylesheet" href="page.css">\n'
         f'</head>\n<body class="ds-print">\n<main class="pp-stage">\n{markup}</main>\n</body>\n</html>\n'
     )
