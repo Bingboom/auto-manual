@@ -1,0 +1,142 @@
+[
+  {
+    "slot": "inline-add-device",
+    "physical_page": 17,
+    "bbox": [
+      57,
+      335,
+      69,
+      347
+    ],
+    "meaning": "Add device",
+    "inventories_checked": [
+      "docs/renderers/web/assets/shared/buttons",
+      "docs/templates/word_template/common_assets/app"
+    ],
+    "decision": "extract source-specific inline App control",
+    "reason": "Source circles include exact STS control face/outline; generic power/AC/DC buttons do not match this App UI.",
+    "background_strategy": "Retain source circular icon; alpha render outside source drawing.",
+    "local_path": "assets/inline-add-device.png",
+    "sha256": "4e520c727876b84293a37cff9bf08fe1e71ffefda176fe38a54f23d41ab2c3e3"
+  },
+  {
+    "slot": "inline-settings",
+    "physical_page": 18,
+    "bbox": [
+      48,
+      278,
+      60,
+      290
+    ],
+    "meaning": "Settings",
+    "inventories_checked": [
+      "docs/renderers/web/assets/shared/buttons",
+      "docs/templates/word_template/common_assets/app"
+    ],
+    "decision": "extract source-specific inline App control",
+    "reason": "Source circles include exact STS control face/outline; generic power/AC/DC buttons do not match this App UI.",
+    "background_strategy": "Retain source circular icon; alpha render outside source drawing.",
+    "local_path": "assets/inline-settings.png",
+    "sha256": "841f078d6aa2add1ac18e1cb3735754bdde17b629e9936e69cce463dc578978d"
+  },
+  {
+    "slot": "inline-voltage-config",
+    "physical_page": 18,
+    "bbox": [
+      287,
+      279,
+      299,
+      291
+    ],
+    "meaning": "Voltage configuration",
+    "inventories_checked": [
+      "docs/renderers/web/assets/shared/buttons",
+      "docs/templates/word_template/common_assets/app"
+    ],
+    "decision": "extract source-specific inline App control",
+    "reason": "Source circles include exact STS control face/outline; generic power/AC/DC buttons do not match this App UI.",
+    "background_strategy": "Retain source circular icon; alpha render outside source drawing.",
+    "local_path": "assets/inline-voltage-config.png",
+    "sha256": "e93f10afdf54a3e1f3179edb5d4a3e5377b539a01c4b990b78bf92b150d336b0"
+  },
+  {
+    "slot": "inline-edit",
+    "physical_page": 19,
+    "bbox": [
+      50,
+      27,
+      62,
+      39
+    ],
+    "meaning": "Edit",
+    "inventories_checked": [
+      "docs/renderers/web/assets/shared/buttons",
+      "docs/templates/word_template/common_assets/app"
+    ],
+    "decision": "extract source-specific inline App control",
+    "reason": "Source circles include exact STS control face/outline; generic power/AC/DC buttons do not match this App UI.",
+    "background_strategy": "Retain source circular icon; alpha render outside source drawing.",
+    "local_path": "assets/inline-edit.png",
+    "sha256": "11c966d28e83d003bc47c87036074ff9e15d5a4d298e66045861ff18b2d009fb"
+  },
+  {
+    "slot": "inline-link-circuits",
+    "physical_page": 19,
+    "bbox": [
+      186,
+      27,
+      198,
+      39
+    ],
+    "meaning": "Link circuits",
+    "inventories_checked": [
+      "docs/renderers/web/assets/shared/buttons",
+      "docs/templates/word_template/common_assets/app"
+    ],
+    "decision": "extract source-specific inline App control",
+    "reason": "Source circles include exact STS control face/outline; generic power/AC/DC buttons do not match this App UI.",
+    "background_strategy": "Retain source circular icon; alpha render outside source drawing.",
+    "local_path": "assets/inline-link-circuits.png",
+    "sha256": "c18d9aaaba0bedda5649c4811bf874195fab2acb47b18bafc2854cd9d391f43b"
+  },
+  {
+    "slot": "inline-save",
+    "physical_page": 19,
+    "bbox": [
+      251,
+      39,
+      263,
+      51
+    ],
+    "meaning": "Save",
+    "inventories_checked": [
+      "docs/renderers/web/assets/shared/buttons",
+      "docs/templates/word_template/common_assets/app"
+    ],
+    "decision": "extract source-specific inline App control",
+    "reason": "Source circles include exact STS control face/outline; generic power/AC/DC buttons do not match this App UI.",
+    "background_strategy": "Retain source circular icon; alpha render outside source drawing.",
+    "local_path": "assets/inline-save.png",
+    "sha256": "d9562c75be4ee1db93c20541ff9692b12051581bc581456e24000140eb03f442"
+  },
+  {
+    "slot": "inline-edit-name",
+    "physical_page": 19,
+    "bbox": [
+      141,
+      355,
+      153,
+      367
+    ],
+    "meaning": "Edit circuit name",
+    "inventories_checked": [
+      "docs/renderers/web/assets/shared/buttons",
+      "docs/templates/word_template/common_assets/app"
+    ],
+    "decision": "extract source-specific inline App control",
+    "reason": "Source circles include exact STS control face/outline; generic power/AC/DC buttons do not match this App UI.",
+    "background_strategy": "Retain source circular icon; alpha render outside source drawing.",
+    "local_path": "assets/inline-edit-name.png",
+    "sha256": "d9836a340efa452417ace01660c453f26fe44950daebe4cf059e2345e65a0c5b"
+  }
+]

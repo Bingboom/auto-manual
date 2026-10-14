@@ -1,0 +1,87 @@
+{
+  "build": "strict Sphinx (python -m sphinx -n -W --keep-going -b html) of web/en",
+  "viewports": {
+    "1280": {
+      "cssViewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "pageOverflow": false,
+      "scrollSurfaces": [],
+      "missingImages": [],
+      "scriptErrors": []
+    },
+    "768": {
+      "cssViewport": {
+        "width": 768,
+        "height": 900
+      },
+      "pageOverflow": false,
+      "scrollSurfaces": [],
+      "missingImages": [],
+      "scriptErrors": []
+    },
+    "390": {
+      "cssViewport": {
+        "width": 390,
+        "height": 900
+      },
+      "pageOverflow": false,
+      "scrollSurfaces": [
+        "native-torque"
+      ],
+      "missingImages": [],
+      "scriptErrors": []
+    },
+    "320": {
+      "cssViewport": {
+        "width": 320,
+        "height": 900
+      },
+      "pageOverflow": false,
+      "scrollSurfaces": [
+        "native-cables",
+        "native-torque"
+      ],
+      "missingImages": [],
+      "scriptErrors": []
+    }
+  },
+  "width_sweep": {
+    "widths": [
+      320,
+      360,
+      390,
+      414,
+      600,
+      700,
+      760,
+      761,
+      768,
+      800,
+      900,
+      1000,
+      1100,
+      1200,
+      1280,
+      1366,
+      1440,
+      1920
+    ],
+    "pageOverflow": false,
+    "scroll_surfaces": {
+      "700-1920": [],
+      "360-600": [
+        "native-torque"
+      ],
+      "320": [
+        "native-cables",
+        "native-torque"
+      ]
+    }
+  },
+  "figures": 32,
+  "tables": 5,
+  "callout_strips": 5,
+  "inline_controls": 7
+}

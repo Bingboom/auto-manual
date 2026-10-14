@@ -1,0 +1,976 @@
+[
+  {
+    "slot": "package-list",
+    "physical_page": 6,
+    "bbox": [
+      28,
+      304,
+      343,
+      500
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Package list",
+    "max_width": 620,
+    "local_path": "assets/package-list.png",
+    "sha256": "326906d27c9fbc9851191b4221fed5ce558fc34ee1fe4b88e852cf6cc48d1d12",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "2*Wall Bracket 4*M4 Phillips Flat Head Screw (secure wall brackets to Smart Transfer Switch) Circuit Label Quick Guide Jackery Smart Transfer Switch Marking-off Template Power Input/Output Cable AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME 1 2 3 Model: JA-TS02A Contact us: hello@jackery.com 1-888-502-2236(US) USER MANUAL Jackery Smart Transfer Switch Version: JAK-UM-V1.0 AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME User Manual 4 5 6 7 8 Upward A scale of 1:1 Unit: mm Marking hole Marking hole Marking hole M6 tapped hole Marking hole M6 tapped hole M6 tapped hole M6 tapped hole 1 1 2 2 3 3 6 6 10 10 11 11 4 4 5 5 7 7 8 8 9 9 12 12 1 1 2 2 3 3 6 6 10 10 11 11 4 4 5 5 7 7 8 8 9 9 12 12 1 1 2 2 3 3 6 6 10 10 11 11 4 4 5 5 7 7 8 8 9 9 12 12 Circuit Label | étiquette de circuit | etiqueta de circuito | etiqueta de circuito HomePower Energy System Quick Guide"
+  },
+  {
+    "slot": "optional-tools",
+    "physical_page": 7,
+    "bbox": [
+      28,
+      44,
+      345,
+      127
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Optional installation components",
+    "max_width": 620,
+    "local_path": "assets/optional-tools.png",
+    "sha256": "db3532e54976425d8a5fbb8a71136f303b9079273b7b1cf99025dbbf420d035c",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "100A branch breaker 30A max branch breaker Conductor Connector Cable Screw Emergency stop button * Optional *"
+  },
+  {
+    "slot": "dimensions",
+    "physical_page": 8,
+    "bbox": [
+      28,
+      68,
+      341,
+      264
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Dimensions",
+    "max_width": 620,
+    "local_path": "assets/dimensions.png",
+    "sha256": "7e0a5fb6bb44de7977b0bbabc3d4fe7cbb546560bac5f7c404cf02cb12eac1ab",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "20cm 37.4cm 56cm 59.8cm AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME"
+  },
+  {
+    "slot": "covered-overview",
+    "physical_page": 8,
+    "bbox": [
+      28,
+      308,
+      342,
+      473
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "With deadfront cover installed",
+    "max_width": 680,
+    "local_path": "assets/covered-overview.png",
+    "sha256": "2a336501ebb8d1e57332100faf40a2f2819a895544980b2316bd2eaed997eac5",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "Main Circuit Breaker (Grid) Branch Circuit Breaker Deadfront Cover IoT Button with Indicator Error Indicator AC2 Power Input/Output Port AC1 Power Input/Output Port Emergency Stop Button Power Station Indicator Door Grid Indicator Door Clasp"
+  },
+  {
+    "slot": "uncovered-overview",
+    "physical_page": 9,
+    "bbox": [
+      27,
+      345,
+      342,
+      492
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "With deadfront cover removed",
+    "max_width": 680,
+    "local_path": "assets/uncovered-overview.png",
+    "sha256": "4bb84b651ee57db33560488d4c7e6b01132cdb6299abda6e07ad5d08d5b83b77",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "Grid Supply (L1, L2) Grid Neutral Lugs Load Neutral Bus Bar 6 Loads (Branch Circuits) (L2) Load Ground Bus Bar Grid Ground Lugs Load Ground Bus Bar 6 Loads (Branch Circuits) (L1) Load Neutral Bus Bar"
+  },
+  {
+    "slot": "system-overview",
+    "physical_page": 10,
+    "bbox": [
+      27,
+      287,
+      343,
+      498
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "System overview",
+    "max_width": 680,
+    "local_path": "assets/system-overview.png",
+    "sha256": "4c066caaacabb3f3a9572b601f87b5a37390b9ff72832e212416fc72d0f921fd",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME Cloud Service App Router Grid Home Loads Electrical Panel Jackery Smart Transfer Switch Jackery Explorer 5000 Plus Backup Loads * AC Wi-Fi Bluetooth"
+  },
+  {
+    "slot": "mounting-brackets",
+    "physical_page": 11,
+    "bbox": [
+      150,
+      233.5,
+      343,
+      359
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Attach the wall brackets",
+    "max_width": 400,
+    "local_path": "assets/mounting-brackets.png",
+    "sha256": "c926f7355c74481f0ec58590ee3ab7ecc8f87371b2bdc13140d393c9b82d8ef6",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "",
+    "boundary_review": "Expanded to retain the entire upper bracket/IoT housing/screenshot outer frame. Verified against the original full page."
+  },
+  {
+    "slot": "mounting-template",
+    "physical_page": 11,
+    "bbox": [
+      25,
+      390,
+      344,
+      499
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Marking-off template positions",
+    "max_width": 620,
+    "local_path": "assets/mounting-template.png",
+    "sha256": "963ffa0f2526f9c50ca47a5463a0939dc73aaf3a85ac2c2f44272c02dc7847fa",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "6\"(15.4cm) 22.6\"(57.4cm) 6\"(15.4cm) 22.6\"(57.4cm)"
+  },
+  {
+    "slot": "mounting-fasteners",
+    "physical_page": 12,
+    "bbox": [
+      27,
+      45,
+      344,
+      154
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Fasten the Smart Transfer Switch",
+    "max_width": 620,
+    "local_path": "assets/mounting-fasteners.png",
+    "sha256": "e1253a59b0da6e3c46bd002431da39c6e79a0f2cb2e4abd9860282bcd78d40fd",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "1 2 3"
+  },
+  {
+    "slot": "cable-entry",
+    "physical_page": 12,
+    "bbox": [
+      27,
+      212,
+      343,
+      384
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Permissible cable entry locations",
+    "printed_notes": [
+      "Please shut off the power before working on the wiring.",
+      "Do not drill outside designated area."
+    ],
+    "max_width": 680,
+    "local_path": "assets/cable-entry.png",
+    "sha256": "a082f0ffd2de4fb6f600d68f16fab2d7439ad00a439e46a695f122339672c669",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "Do not drill outside designated area. 2\"(55mm) 2\"(55mm) 4\"(102mm) 3.7\"(95mm) 1 2 3 Please shut off the power before working on the wiring."
+  },
+  {
+    "slot": "grid-preparation",
+    "physical_page": 13,
+    "bbox": [
+      27,
+      27,
+      343,
+      178
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Electrical panel and Smart Transfer Switch",
+    "printed_notes": [
+      "Only single-pole and two-pole breakers, no tandem breakers."
+    ],
+    "max_width": 680,
+    "local_path": "assets/grid-preparation.png",
+    "sha256": "bbceedf49fa03e97e73e44319351853bac0e61e3aefbf5a592ca20bb1c173f5f",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "Electrical Panel Jackery Smart Transfer Switch OFF N A B L1 L1 L2 L1 L2 GRID 1 2 3 4 5 6 7 8 9 10 11 12 L2 L2 L2 L1 L1 N N N 30A Max Only single-pole and two-pole breakers, no tandem breakers."
+  },
+  {
+    "slot": "grid-wiring",
+    "physical_page": 13,
+    "bbox": [
+      27,
+      340,
+      343,
+      500
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Grid conductor connections",
+    "max_width": 680,
+    "local_path": "assets/grid-wiring.png",
+    "sha256": "12713d2f1f131d54d5253d6c1e9c8ed8d491741fe671b5756e9e7e2866092bd3",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "Jackery Smart Transfer Switch Electrical Panel OFF N A B L1 L1 L2 L1 L2 GRID 1 2 3 4 5 6 7 8 9 10 11 12 L2 L2 L2 L1 L1 N N N 100A 100A A B 2 AWG 2 AWG 2 AWG L2 N L1 GND 6 AWG"
+  },
+  {
+    "slot": "load-wiring",
+    "physical_page": 14,
+    "bbox": [
+      27,
+      200,
+      345,
+      375
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Home load conductor connections",
+    "max_width": 680,
+    "local_path": "assets/load-wiring.png",
+    "sha256": "928a08d7c5c02e917e0445bba2c96610b45fd649d23d670ddad65e58120a548b",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "Electrical Panel Jackery Smart Transfer Switch L1 L1 L2 L1 L2 GRID 1 2 3 4 5 6 7 8 9 10 11 12 L2 L2 L2 L1 L1 N N N A B to refrigerator or 120V Circuits OFF N A B to well pump or 240V Circuits A&B 1 1 1 1 5 9 1 14 AWG - 10 AWG 14 AWG - 10 AWG 14 AWG - 10 AWG 14 AWG - 10 AWG L1 L2 N GND Label circuits in the sub-panel and STS for easy installation."
+  },
+  {
+    "slot": "external-emergency-stop",
+    "physical_page": 15,
+    "bbox": [
+      25,
+      89,
+      345,
+      219
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Emergency stop button - indoor and outdoor connections",
+    "max_width": 620,
+    "local_path": "assets/external-emergency-stop.png",
+    "sha256": "b66f3f5947c8e5f9f8815a67c36bbc1dc521d006a81d34a75c6b4191e5c155a4",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "Indoor Outdoor Emergency Stop Button"
+  },
+  {
+    "slot": "deadfront-installation",
+    "physical_page": 15,
+    "bbox": [
+      25,
+      337,
+      344,
+      499
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Install the deadfront cover",
+    "max_width": 620,
+    "local_path": "assets/deadfront-installation.png",
+    "sha256": "8226827b9e72290fbe0d68220f8346f421fb3f2f7cc3dab5a6e30da2351afc3d",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "1 2 3"
+  },
+  {
+    "slot": "power-station-connections",
+    "physical_page": 16,
+    "bbox": [
+      27,
+      53,
+      344,
+      252
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Power station connections - maximum two units",
+    "max_width": 680,
+    "local_path": "assets/power-station-connections.png",
+    "sha256": "fb02e9dbf816aab9a7cbaa5c173a3c707606744c40ff4ac0b41256ab39be4121",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "Power Input/Output Cable Lock Unlock AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME 1 2 1 2"
+  },
+  {
+    "slot": "locking-panel",
+    "physical_page": 16,
+    "bbox": [
+      27,
+      314,
+      344,
+      433
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Lock the panel",
+    "max_width": 420,
+    "local_path": "assets/locking-panel.png",
+    "sha256": "1ec992619d23382a4ae37cbf0984c461ad20225c5e31de93d58b58aeafde91e1",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": ""
+  },
+  {
+    "slot": "app-store-badges",
+    "physical_page": 17,
+    "bbox": [
+      35,
+      78,
+      190,
+      105
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "App Store and Google Play",
+    "max_width": 220,
+    "local_path": "assets/app-store-badges.png",
+    "sha256": "11a6eeda9f87362e2f4adddfdb385ef5985b7c1f4b7a0d1dcf6a1051b30e26e1",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": ""
+  },
+  {
+    "slot": "app-download-qr",
+    "physical_page": 17,
+    "bbox": [
+      35,
+      123,
+      89,
+      178
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "App download QR code",
+    "max_width": 150,
+    "local_path": "assets/app-download-qr.png",
+    "sha256": "60eee0e1760a0ec7773da42e6eebe1fbb5c773f00e8571c034756111430d878c",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": ""
+  },
+  {
+    "slot": "iot-pairing",
+    "physical_page": 17,
+    "bbox": [
+      170,
+      189,
+      344,
+      320
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "IoT button pairing operation",
+    "max_width": 420,
+    "local_path": "assets/iot-pairing.png",
+    "sha256": "5b57169d52289a355eefc42f86ecb04b19fdf996ecc76e57b2bb24db96130ff6",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME",
+    "boundary_review": "Expanded to retain the entire upper bracket/IoT housing/screenshot outer frame. Verified against the original full page."
+  },
+  {
+    "slot": "app-add-device",
+    "physical_page": 17,
+    "bbox": [
+      162,
+      330,
+      253,
+      496
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Add a device in the Jackery App",
+    "max_width": 260,
+    "local_path": "assets/app-add-device.png",
+    "sha256": "8ec50a9045ad8870de7796f8ce6d76f0e3cc79e3f4a159754e1942695ef89231",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": ""
+  },
+  {
+    "slot": "app-wifi",
+    "physical_page": 18,
+    "bbox": [
+      27,
+      52,
+      344,
+      254
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Connect the Smart Transfer Switch to Wi-Fi",
+    "max_width": 620,
+    "local_path": "assets/app-wifi.png",
+    "sha256": "f8d235f7edeaf6428b5c7379b547b76bf2d6427efd4a8aee29bdab6eb1b370c8",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "2.4 GHz 5 GHz"
+  },
+  {
+    "slot": "app-voltage-menu",
+    "physical_page": 18,
+    "bbox": [
+      27,
+      296,
+      344,
+      485
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Open voltage configuration",
+    "max_width": 620,
+    "local_path": "assets/app-voltage-menu.png",
+    "sha256": "77529b6211d52838673d4109db68311f82497af4963ab2a48049b5c5ade256a2",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "Working modes Backup-only mode Voltage configuration Voltage configuration"
+  },
+  {
+    "slot": "app-voltage-settings",
+    "physical_page": 19,
+    "bbox": [
+      27,
+      66,
+      344,
+      188
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Set and save the circuit voltage",
+    "max_width": 680,
+    "local_path": "assets/app-voltage-settings.png",
+    "sha256": "9345aabe484e0428a8d68fa479eeac2369d4afb55a123925f6577751061ef77e",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "1 2 3 Combine 2 single-pole circuits to create a 2-pole circuit, doubling the voltage. Voltage configuration Combine 2 single-pole circuits to create a 2-pole circuit, doubling the voltage. Voltage configuration Combine 2 single-pole circuits to create a 2-pole circuit, doubling the voltage. Voltage configuration Combine 2 single-pole circuits to create a 2-pole circuit, doubling the voltage."
+  },
+  {
+    "slot": "app-circuit-list",
+    "physical_page": 19,
+    "bbox": [
+      27,
+      222,
+      344,
+      349
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Select a circuit",
+    "max_width": 620,
+    "local_path": "assets/app-circuit-list.png",
+    "sha256": "43ac840e01564e36966d51deea6a91b5396dadea009aa63ad550658de52717d6",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "1 2 Circuit 1 Circuit 1"
+  },
+  {
+    "slot": "app-circuit-name",
+    "physical_page": 19,
+    "bbox": [
+      27,
+      375,
+      344,
+      499
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Edit the circuit name",
+    "max_width": 620,
+    "local_path": "assets/app-circuit-name.png",
+    "sha256": "76d31949f6dcc327935b90308723761ff1f0265349c782d893966c58f293552b",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "1 2 Circuit 1"
+  },
+  {
+    "slot": "app-dashboard",
+    "physical_page": 20,
+    "bbox": [
+      52,
+      71,
+      153,
+      266
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Dashboard",
+    "max_width": 270,
+    "local_path": "assets/app-dashboard.png",
+    "sha256": "0e6b96bdb245522c3a60ff8506256427b144dd65c48c4bfef64e762b9c579ec8",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": ""
+  },
+  {
+    "slot": "app-circuits",
+    "physical_page": 20,
+    "bbox": [
+      51,
+      294,
+      318,
+      480
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Circuit list and circuit name editor",
+    "max_width": 620,
+    "local_path": "assets/app-circuits.png",
+    "sha256": "cb62dd9e2971abf8b5393068207123e951c4fe42143ce0de3247bfad596b5e36",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": ""
+  },
+  {
+    "slot": "app-working-modes",
+    "physical_page": 21,
+    "bbox": [
+      52,
+      55,
+      150,
+      262
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Working modes",
+    "max_width": 270,
+    "local_path": "assets/app-working-modes.png",
+    "sha256": "d95cd41a97bd723d640dbf8b7442b7495269d0a37eadaa6271f445fcee78fa08",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": ""
+  },
+  {
+    "slot": "app-backup-only",
+    "physical_page": 22,
+    "bbox": [
+      52,
+      50,
+      151,
+      259
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Backup-only mode",
+    "max_width": 270,
+    "local_path": "assets/app-backup-only.png",
+    "sha256": "30cb6329780ce3fbae9e3026a791a15f16ca21bae35b0e65e876b35f802fe30b",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": ""
+  },
+  {
+    "slot": "app-backup-priority",
+    "physical_page": 22,
+    "bbox": [
+      54,
+      299,
+      166,
+      503.4
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "Backup priority",
+    "max_width": 270,
+    "local_path": "assets/app-backup-priority.png",
+    "sha256": "b8743364742a36f406ef79f2776768f543f9082ebe71754896e8ae4c1a105957",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": "",
+    "boundary_review": "Expanded to retain the entire upper bracket/IoT housing/screenshot outer frame. Verified against the original full page.",
+    "source_frame_note": "The source screenshot resource itself ends at the beginning of the No-power section; retain its complete available resource/frame, without inventing continuation."
+  },
+  {
+    "slot": "app-ups-mode",
+    "physical_page": 23,
+    "bbox": [
+      55,
+      53,
+      159,
+      256
+    ],
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "JA-TS02A / US hardware or source STS App screens; no existing same-model panel in current remote tree. Portable power station, JHP and JE model diagrams rejected.",
+    "decision": "extract complete source illustration or screenshot frame",
+    "reason": "No matching same-model source panel or same STS interface frame found. Source region excludes surrounding prose and tables.",
+    "background_strategy": "Retain complete artwork/panel; no background removal",
+    "caption": "UPS mode",
+    "max_width": 270,
+    "local_path": "assets/app-ups-mode.png",
+    "sha256": "260761da35742866a0b29b3f9db4c1f3007a935e1abd04da040f0d7754a1e100",
+    "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+    "labels": ""
+  },
+  {
+    "slot": "symbol/grounding.png",
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Standard safety pictogram matched by meaning to US source symbol table.",
+    "decision": "reuse byte-identical shared asset",
+    "reason": "not applicable",
+    "source": "docs/templates/word_template/common_assets/symbols/grounding.png",
+    "background_strategy": "Retain shared pictogram bytes",
+    "meaning": "Protective earth",
+    "local_path": "assets/symbol_grounding.png",
+    "sha256": "54c57e5ecc98f1cf0e0edc1562f88f93e403a5fcecd5b309303de4089b316430"
+  },
+  {
+    "slot": "symbol/symbol_warning_triangle.svg",
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Compared with the print's p5 symbol table drawing: same outline pictogram on white.",
+    "decision": "reuse shared symbol (native-v1)",
+    "reason": "The print draws a thin black outline on white; the shared native-v1 symbol has the same drawing. The earlier grey-tile PNG did not match the print.",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "background_strategy": "Retain shared symbol bytes",
+    "meaning": "Caution",
+    "local_path": "assets/symbol_warning_triangle.svg",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "source_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+  },
+  {
+    "slot": "symbol/symbol_electric_shock.svg",
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Compared with the print's p5 symbol table drawing: same outline pictogram on white.",
+    "decision": "reuse shared symbol (native-v1)",
+    "reason": "The print draws a thin black outline on white; the shared native-v1 symbol has the same drawing. The earlier grey-tile PNG did not match the print.",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+    "background_strategy": "Retain shared symbol bytes",
+    "meaning": "Electric shock",
+    "local_path": "assets/symbol_electric_shock.svg",
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+    "source_sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+  },
+  {
+    "slot": "symbol/symbol_read_manual.svg",
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "identity_check": "Compared with the print's p5 symbol table drawing: same outline pictogram on white.",
+    "decision": "reuse shared symbol (native-v1)",
+    "reason": "The print draws a thin black outline on white; the shared native-v1 symbol has the same drawing. The earlier grey-tile PNG did not match the print.",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "background_strategy": "Retain shared symbol bytes",
+    "meaning": "Read the operating instructions",
+    "local_path": "assets/symbol_read_manual.svg",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "source_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+  },
+  {
+    "slot": "symbol/symbol_warning_triangle_yellow.svg",
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "identity_check": "Print p11, p15 and p20 WARNING lockups: yellow-filled triangle with a black border and exclamation mark, set beside the signal word.",
+    "decision": "native-source-glyph",
+    "reason": "The shared warning triangles are outline, tinted, grey or white (native-v1 symbol_warning_triangle.svg, symbol_warning_triangle_gray_jp.svg, h1-jp-warning_triangle.svg; common_assets warning_triangle_dark.svg/_white.svg); none has the print's yellow fill.",
+    "source_page": 11,
+    "drawing_indices": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "bbox": [
+      24.3,
+      87.6,
+      48.8,
+      109.0
+    ],
+    "background_strategy": "Vector paths only; standalone transparent",
+    "meaning": "Warning",
+    "local_path": "assets/symbol_warning_triangle_yellow.svg",
+    "sha256": "3ba1bfd9a4945818636df78a2defae7ec5eada00f0ca135d29e9b1d962109808"
+  },
+  {
+    "slot": "symbol/symbol_ingestion_hazard.svg",
+    "inventories_checked": [
+      "data/manual_sources/JA-TS02A",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/templates/word_template/common_assets/symbols",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "identity_check": "Print p5: yellow warning triangle above a button cell, left of the ingestion-hazard bullet list.",
+    "decision": "native-source-glyph",
+    "reason": "No shared coin-battery ingestion glyph. JHP-5000C's symbol_ingestion_hazard.svg draws an outline triangle; this print fills it yellow.",
+    "source_page": 5,
+    "drawing_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "bbox": [
+      29.0,
+      141.0,
+      57.3,
+      176.5
+    ],
+    "background_strategy": "Vector paths only; standalone transparent",
+    "meaning": "Ingestion hazard (button cell)",
+    "local_path": "assets/symbol_ingestion_hazard.svg",
+    "sha256": "2a662f93bc1f99aa0f5590f5676616dc7fdaa2aa26aaba38f30cc9fb11708ee5"
+  }
+]
