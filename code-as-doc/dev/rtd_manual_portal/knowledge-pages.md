@@ -13,7 +13,7 @@ column from top to bottom:
   product, region, language and manual-content search.
 - **Entry cards** in the sidebar's two groups after 知识库: 产品与市场
   (`#products`: 产品知识, 产品矩阵, 市场与政策) and 说明书生产 (`#production`:
-  说明书工作台, 系统建设, 设计规范, 系统数据). A card has the sidebar entry's glyph
+  说明书工作台, 系统建设, 设计规范). A card has the sidebar entry's glyph
   and label and one line on what the page holds, and shows only when its sidebar
   entry does, so it never links to a page this build skipped. Cards carry no
   counts; those stay on their own pages. The sidebar test in
@@ -302,15 +302,22 @@ library does not link to it.
 
 ## System data page
 
-`/workspace/data/index.html` (系统数据) is a pointer page until the operator
-confirms its removal. Its statistics moved to the 说明书工作台 tab
-[数据统计](#数据统计), and its 工程规模 to the 系统建设 tab 工具与工程规模 (see
-[Engineering scale](system-workspace.md#engineering-scale)). The page keeps the
-site shell and its place last under 说明书生产, and links both places. A small
-script carries a shared `?region=&model=` query over to the 工作台 link, so an
-old filtered link still opens the same view. The page reads no data and is
-always built; its sidebar entry and home card still show only while the
-statistics context builds.
+The standalone 系统数据 page and its sidebar/home entries have been removed.
+Its statistics live in the 说明书工作台 tab [数据统计](#数据统计), and its
+工程规模 in the 系统建设 tab 工具与工程规模 (see
+[Engineering scale](system-workspace.md#engineering-scale)).
+
+In combined builds, `/workspace/data/` and `/workspace/data/index.html` still
+serve a minimal `moved_page.html` compatibility redirect. It uses
+`location.replace` to open `../deliverables/index.html#statistics`, preserving
+the complete query string (including `region`, `model`, encoding and repeated
+parameters). Old fragments are replaced by `#statistics` so the tab opens.
+The visible target link is updated before navigation; without JavaScript it
+remains a clickable, unfiltered fallback. The redirect has no site shell or
+data dependency and is built even if statistics are unavailable. The manuals
+role emits neither the redirect nor any workspace pages. Historical update
+entries now link directly to the workbench statistics tab; the retired
+`system-data` update-page key is removed.
 
 ## Product matrix page
 

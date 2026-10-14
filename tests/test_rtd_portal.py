@@ -256,13 +256,15 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('href="../web_manual.css"', (design_root / "previews" / "title-l1.html").read_text())
         self.assertIn("--page_paperwidth:", (design_root / "print" / "tokens.css").read_text())
         self.assertTrue((design_root / "assets" / "symbols" / "symbol_warning_triangle.svg").is_file())
-        self.assertIn('href="data/index.html"', workspace)
-        self.assertIn('href="../data/index.html"', design)
+        self.assertNotIn('href="data/index.html"', workspace)
+        self.assertNotIn('href="../data/index.html"', design)
         data_page = (self.root / "after" / "workspace" / "data" / "index.html").read_text()
-        self.assertIn('aria-current="page"><i aria-hidden="true">▥</i><span>系统数据</span>', data_page)
-        # 系统数据 is a pointer page: its statistics moved to the 工作台's 数据统计 tab.
-        self.assertEqual([a["href"] for a in BeautifulSoup(data_page, "html.parser").select(".sd-moved a")],
-                         ["../deliverables/index.html#statistics", "../system/index.html#codebase"])
+        # The old URL is a minimal redirect, with a usable fallback when JavaScript is off.
+        moved = BeautifulSoup(data_page, "html.parser")
+        self.assertEqual(moved.select_one("#moved-target")["href"], "../deliverables/index.html#statistics")
+        self.assertIsNone(moved.select_one("#app-sidebar"))
+        self.assertIsNotNone(moved.select_one("noscript"))
+        self.assertIn("location.replace(target.href)", data_page)
         self.assertNotIn("system-data-json", data_page)
         workbench = (self.root / "after" / "workspace" / "deliverables" / "index.html").read_text()
         self.assertIn('<script type="application/json" id="system-data-json">', workbench)
@@ -341,10 +343,10 @@ class RtdPortalTests(unittest.TestCase):
 
         manuals = [("说明书", ["说明书资料库", "搜索说明书正文"])]
         knowledge = [*manuals, ("知识库", ["首页"]), ("产品与市场", ["产品知识", "产品矩阵", "市场与政策"]),
-                     ("说明书生产", ["说明书工作台", "系统建设", "设计规范", "系统数据"])]
+                     ("说明书生产", ["说明书工作台", "系统建设", "设计规范"])]
         pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html", "workspace/index.html",
                  "workspace/system/index.html", "workspace/deliverables/index.html",
-                 "workspace/design/index.html", "workspace/data/index.html")
+                 "workspace/design/index.html")
         self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
                          {"index.html": manuals, **dict.fromkeys(pages, knowledge)})
         site = "https://site.invalid/"

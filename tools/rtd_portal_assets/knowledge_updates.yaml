@@ -13,7 +13,7 @@
 #   title     the row's bold line
 #   note      one line: what changed
 #   page      where the row links: share | product-knowledge | product-matrix |
-#             market-policy | deliverables | system | design-system | system-data
+#             market-policy | deliverables | system | design-system
 #             (hidden while that page, or the share package, is not built)
 #   anchor    optional lower-case id on that page, such as work-map
 #   evidence  pr:<repo>#<n>, or a list of them, for reviewers; never shown
@@ -52,7 +52,8 @@ updates:
   - date: 2026-10-10
     title: 系统数据
     note: 新页面：统计已发布网页说明书、机型能力与素材登记，可按区域和机型筛选
-    page: system-data
+    page: deliverables
+    anchor: statistics
     evidence: "pr:auto-manual#1482"
 
   - date: 2026-10-10

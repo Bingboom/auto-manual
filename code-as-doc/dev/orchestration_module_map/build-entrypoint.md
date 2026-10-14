@@ -84,8 +84,8 @@ context of the 说明书工作台 数据统计 tab: it reads the publish manifes
 capability, language and asset CSVs and the review page counts, keeps the
 capability rows of published models only (`published_targets`), and hands the
 rows to the tab as JSON for `_static/system-data.js` to filter. `rtd_portal`
-passes it to the deliverables page as `statistics` and still builds the 系统数据
-pointer page from its `PAGE` and `TEMPLATE`; `product_matrix.py` reuses
+passes it to the deliverables page as `statistics` and builds a minimal
+`moved_page.html` redirect for the retired `/workspace/data/` URL; `product_matrix.py` reuses
 `read_targets`. See [数据统计](../rtd_manual_portal/knowledge-pages.md#数据统计).
 
 [`tools/rtd/product_matrix.py`](../../../tools/rtd/product_matrix.py) owns the

@@ -25,7 +25,7 @@ group opacity; SVG cannot use fill overrides or stroke suppression.
 
 设计规范（原“设计系统”）`/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#design-system-page)。
 
-说明书工作台的“数据统计”标签（`/workspace/deliverables/index.html#statistics`）在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 与 `data/asset_registry.csv`，汇总已发布网页说明书、机型能力（只列至少有一本已发布说明书的型号）和素材登记情况，可按区域和机型筛选；系统数据 `/workspace/data/index.html` 暂为指向该标签的说明页，确认后下线。见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#数据统计)。
+说明书工作台的“数据统计”标签（`/workspace/deliverables/index.html#statistics`）在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 与 `data/asset_registry.csv`，汇总已发布网页说明书、机型能力（只列至少有一本已发布说明书的型号）和素材登记情况，可按区域和机型筛选；原系统数据页已移除，`/workspace/data/`（含 `index.html`）自动跳转到该标签并保留全部查询参数；停用 JavaScript 时提供可点击的目标链接。见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#数据统计)。
 
 产品矩阵 `/products/matrix.html` 在构建时读取发布清单、各型号已发布网页说明书的规格表、说明书资料库目录与导航分组和 `data/model_capabilities.csv`，按产品线 × 容量排列电源与电池，并列出配套产品、规格对照、功能矩阵和说明书写明的搭配关系；说明书没有写明的归类和搭配维护在 `tools/rtd_portal_assets/product_matrix.json`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page)。
 
@@ -159,7 +159,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 “分享资料”（`#shares`）放分享卡片；“最近更新”（`#updates`）读取 `tools/rtd_portal_assets/knowledge_updates.yaml`，从新到旧列出最多 8 条已生成页面的改动，
 日期为合入当天，缺日期的条目显示“日期未记录”并排在最后，有问题的条目不显示，均在构建时告警。新增或明显改动知识库页面的 PR 在该文件加一条带日期和 `pr:` 证据的记录，
 见[知识库首页](../dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry)。分享包是可选的：缺失时 `/workspace/` 与系统建设页照常生成，只隐藏分享入口。
-知识库各页侧栏在“说明书”组后分“知识库”（首页）、“产品与市场”（产品知识、产品矩阵、市场与政策）和“说明书生产”（说明书工作台、系统建设、设计规范、系统数据）三组，顶部切换为“知识库 / 说明书资料库”；“工作资料”只作站点名，说明书资料库根页不变。
+知识库各页侧栏在“说明书”组后分“知识库”（首页）、“产品与市场”（产品知识、产品矩阵、市场与政策）和“说明书生产”（说明书工作台、系统建设、设计规范）三组，顶部切换为“知识库 / 说明书资料库”；“工作资料”只作站点名，说明书资料库根页不变。
 系统建设页的「当前工作」标签集中展示任务优先级、完成数量、台账进度和下一步安排，
 保留原有 `#tab-progress` 链接。「系统演变」展示历史阶段、变化原因和未排期的长期方向，
 另以贯穿全过程的横向路标记录多轮维护与重构，不重复展示当前状态概览与任务进度。
