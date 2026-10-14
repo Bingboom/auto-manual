@@ -43,9 +43,9 @@
 </div></div></article>
 {% endfor %}
 </section>
-<section class="backup-example" aria-labelledby="backup-example-title">
+{% if backup_case %}<section class="backup-example" aria-labelledby="backup-example-title">
 <h2 id="backup-example-title">HomePower 3600 Pro Max：从插座备电走向家庭回路备电</h2>
-<p>来源：<a href="{{ pathto('JHP-3600C/US/en/md/manual_jhp3600c_us_en') }}">HomePower 3600 Pro Max 说明书（美规 · 英文）</a>。图仅说明典型电气关系，不还原该产品内部电路。</p>
+<p>来源：<a href="{{ pathto(backup_case.url[:-5]) }}">HomePower 3600 Pro Max 说明书（美规 · 英文）</a>。图仅说明典型电气关系，不还原该产品内部电路。</p>
 <ol class="backup-lessons">
 <li><h3>120V 与 240V：先看接在哪两条导线上</h3>
 <figure class="principle-figure"><img class="circuit-art" src="{{ pathto('_static/circuit-split-phase.svg', 1) }}" alt="典型中心抽头交流源，L1–N 与 L2–N 各 120V，L1–L2 为 240V"><figcaption>中心抽头绕组是解释分相电压的教学例子。说明书只声明隔离式逆变，不据此推定其内部采用图中绕组。</figcaption></figure>
@@ -59,7 +59,7 @@
 <li><h3>扩容与主机级联：增加的是 Wh 还是 W？</h3>
 <p>增加电池主要增加储能。说明书中的两台主机级联并联连接，还要求 AC 扩展连接与专用并联通信；第二台 NEMA 14-50R 输出可达系统合计 8000W。多台交流源协同需要频率、相位、电压与功率控制，不能直接把普通 AC 插座并在一起。</p>
 <p>家庭回路备电还涉及 ATS/MTS、接地与中性线、保护和 EPO 急停。说明书声明 EPO 会停止全部 AC/DC 输入输出；具体安装与操作应阅读该系统及切换装置的完整说明书。</p></li>
-</ol></section>
+</ol></section>{% endif %}
 <div id="learning-empty" hidden><h2>当前筛选没有相关知识</h2><p>换一个标签，或查看全部知识。</p><button type="button" id="learning-reset">清除筛选</button></div>
 <footer class="learning-footer"><p>本页解释通用功能原理，不推定各型号的芯片、内部电路或未确认的兼容关系。操作、技术值和适用条件，以对应地区的已发布说明书为准。</p><noscript><p>未启用 JavaScript：全部知识条目和各区域说明书链接仍可直接阅读。</p></noscript><a href="{{ pathto('index') }}">查找完整说明书 →</a></footer>
 </main>

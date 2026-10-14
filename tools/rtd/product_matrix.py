@@ -209,6 +209,38 @@ def load_config(assets: Path, settings: dict[str, Any]) -> dict[str, Any]:
     return {**config, "lines": lines, "accessories": accessories, "assign": assign}
 
 
+def positioning_groups(assets: Path, settings: dict[str, Any]) -> dict[str, set[str]]:
+    """Each group id with the models placed there: navigation, the config's lines and groups, then ``assign``.
+
+    The 产品知识 page reads this, so a model the navigation does not list still
+    finds its knowledge. A navigation-listed model keeps its navigation group and
+    a ``same_as`` model joins the groups of the model it names, as on the matrix page.
+    Only the config is read: an evidence line keeps its assigned models here, and
+    the quote is checked where the manual is read. Any missing, unreadable or
+    malformed config raises ProductMatrixError.
+    """
+    try:
+        config = load_config(assets, settings)
+    except ProductMatrixError:
+        raise
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+        raise ProductMatrixError(f"{CONFIG} is unreadable or malformed: {type(exc).__name__}: {exc}") from exc
+    groups = {group["id"]: set(group["models"]) for rows in (settings.get("navigation") or {}).values() for group in rows}
+    for entry in config["lines"] + config["accessories"]:
+        groups.setdefault(entry["id"], set()).update(entry["models"])
+    placed = set().union(*groups.values())
+    for model, entry in config["assign"].items():
+        if model in placed:
+            continue
+        if "same_as" in entry:
+            keys = [key for key, members in groups.items() if entry["same_as"] in members]
+        else:
+            keys = [entry["line"]]
+        for key in keys:
+            groups[key].add(model)
+    return groups
+
+
 def _order(values: Iterable[str], preferred: list[str]) -> list[str]:
     rank = {value: index for index, value in enumerate(preferred)}
     return sorted(set(values), key=lambda value: (rank.get(value, len(rank)), value))
@@ -517,6 +549,6 @@ def product_matrix_page_context(app, assets: Path, settings: dict[str, Any],
 
 __all__ = [
     "PAGE", "ProductMatrixError", "TEMPLATE", "capability_rows", "display_name", "load_config", "matrix_context",
-    "number", "pairings", "plain_text", "positioning", "product_matrix_page_context", "read_products",
-    "read_specs", "spec_pairs", "spec_rows",
+    "number", "pairings", "plain_text", "positioning", "positioning_groups", "product_matrix_page_context",
+    "read_products", "read_specs", "spec_pairs", "spec_rows",
 ]

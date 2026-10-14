@@ -322,13 +322,13 @@ public manual library does not link to it.
 
 产品知识（产品案例是其末节）、市场与政策都与说明书共用同一个 RTD 项目（2026-10-06 定为同项目发布）。2026-10-13 起 Hello-Docs 转为私有仓库，站点改由 Read the Docs for Business 托管于 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`，访问需要登录并具备项目权限；页面路径须带 `/en/latest/` 前缀，例如 `/en/latest/products/knowledge.html`。知识库可以跳转到说明书，说明书首页、侧栏和顶部不提供知识库入口；分享知识页直达链接给有权限的人。
 
-`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`；适用产品复用首页 `settings.json` 的 `navigation` 定位分组。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。
+`/products/knowledge.html` 提供围绕已发布产品的最少必要技术知识，按标签、型号和区域筛选。通用功能原理、常见误区与阅读提示维护在 `tools/rtd_portal_assets/product_knowledge.json`。适用产品取产品矩阵的定位层（`tools/rtd/product_matrix.py` 的 `positioning_groups`）：首页 `navigation` 分组加上 `product_matrix.json` 的产品线与 `assign`（备电线的说明书证据句只在产品矩阵页核对），导航未收录的已发布型号因此也有对应知识，型号选择只列出至少有一项知识的产品。`product_matrix.json` 缺失或格式有误时，知识页只用 `navigation` 分组并给出 Sphinx 警告，条目引用的其他分组（如 `homebackup`）按空组处理并在警告中列出，构建不中断。每项的说明书入口只从当前冻结发布目录取得，优先现有英文页，缺少英文时使用实际可用语言，不拼接或猜测型号路径。
 
 通用知识不构成某型号内部电路、芯片或跨产品兼容性的认定，也不把教程中的算例当作产品实测。标签和型号过滤只控制阅读范围；技术值、操作和兼容条件仍以对应地区说明书为准。未启用 JavaScript 时全部知识条目与来源链接可读。工程面的模板、交互和课程词条与业务面的 `docs/knowledge/**` 个人分享文章分别维护。
 
 产品知识采用纵向列表，每项将可访问的 SVG 功能示意与原理、产品应用、限制和来源放在一起；AC 输出单独说明共享功率、启动冲击、输出匹配、升功率、保护与旁路切换。示意图不代表某型号内部电路。
 
-AC 教学图使用可访问的静态 SVG 电气示意：H 桥、LC 滤波、并联负载和联锁切换。低压升压、隔离、体二极管与接地等未展开，不能当成实际产品原理图。JHP-3600C US 的备电案例独立呈现，来源链接指向正式发布的 Read the Docs 说明书；分相、旁路、ATS/MTS 与级联条件按说明书描述。
+AC 教学图使用可访问的静态 SVG 电气示意：H 桥、LC 滤波、并联负载和联锁切换。低压升压、隔离、体二极管与接地等未展开，不能当成实际产品原理图。JHP-3600C US 的备电案例独立呈现，来源链接与知识条目一样从冻结发布目录取得，目录中没有 JHP-3600C/US 时整段不显示；分相、旁路、ATS/MTS 与级联条件按说明书描述。
 
 ## 市场与政策
 

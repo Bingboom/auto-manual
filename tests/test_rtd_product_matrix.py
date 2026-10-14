@@ -10,7 +10,7 @@ from unittest.mock import patch
 from tools.rtd import product_matrix
 from tools.rtd.portal import ASSETS
 from tools.rtd.product_matrix import (
-    ProductMatrixError, display_name, evidence_excerpt, load_config, matrix_context, number,
+    ProductMatrixError, display_name, evidence_excerpt, load_config, matrix_context, number, positioning_groups,
     product_matrix_page_context, read_specs, spec_pairs,
 )
 from tools.utils.path_utils import Paths
@@ -112,6 +112,22 @@ class ConfigTests(unittest.TestCase):
         for config in broken:
             with self.subTest(config=config), self.assertRaises(ProductMatrixError):
                 load_config(self.write(config), SETTINGS)
+
+    def test_positioning_groups_add_the_config_lines_and_assignments_to_the_navigation(self):
+        config = {**CONFIG, "assign": {**CONFIG["assign"], "JX-Q": {"same_as": "JE-A"}, "JE-A": "solar"}}
+        # The evidence line keeps JE-H (no manual is read here); a navigation-listed model keeps its own group.
+        self.assertEqual(positioning_groups(self.write(config), SETTINGS),
+                         {"appliance": {"JE-A", "JX-Q"}, "solar": {"JS-S"}, "home": {"JE-H"}})
+
+    def test_positioning_groups_report_any_unusable_config_as_a_matrix_error(self):
+        for raw in ("{not json", "[]", json.dumps({**CONFIG, "assign": ["JE-H"]}), None):
+            with self.subTest(raw=raw), self.assertRaises(ProductMatrixError):
+                folder = self.write(CONFIG)
+                if raw is None:
+                    (folder / "product_matrix.json").unlink()
+                else:
+                    (folder / "product_matrix.json").write_text(raw, encoding="utf-8")
+                positioning_groups(folder, SETTINGS)
 
 
 class MatrixContextTests(unittest.TestCase):
