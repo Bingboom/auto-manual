@@ -141,6 +141,8 @@ checks read only the already-published same-origin receipt.
 - The agent skills under `.agents/skills` and `.claude/skills`, the Claude Code
   hooks in `.claude/settings.json` and the steps of `.githooks/pre-push` feed
   the skills and hooks block; see [Skills and hooks](#skills-and-hooks).
+- `git ls-files` lists the checkout's tracked files for the 工程规模 block; see
+  [Engineering scale](#engineering-scale).
 - `tools/rtd_portal_assets/source_registry.yaml` is the source registry. For
   every data domain on the page, it records where the fact is decided, how it
   is read, how fresh it must be and what shows without it. The page takes its
@@ -291,6 +293,25 @@ none of it is hand-listed.
 
 `check` warns about unregistered copies, frontmatter gaps, missing hook scripts
 and hooks without tests. A lane mapping that names a missing skill is an error.
+
+### Engineering scale
+
+The 工程规模 block (`#codebase`) follows 技能与钩子 in the 工具与工程规模 tab.
+At build time `tools/rtd/system_tooling.py` lists the checkout with
+`git ls-files` and counts the lines of every tracked `.py`, `.md`, `.rst`,
+`.yaml`/`.yml` and `.csv` file per top-level directory and file type, as an
+editor counts them. Root files count as (根目录); links and listed files missing
+from disk (a sparse checkout) are skipped. Nothing is snapshotted or committed
+for it; a change appears on the next RTD build.
+
+- The block draws the 10 directories with the most lines as server-rendered
+  bars split by file type, one fixed colour per type, measured against the
+  largest directory; the totals below the bars cover the whole repository.
+- Git history (branches, commits) is not shown: RTD clones shallowly, so it is
+  not reliable at build time; `git ls-files` lists every tracked file in a
+  shallow clone too.
+- Without git, or outside a checkout, the block shows 无数据 with the
+  registry's `codebase` fallback; the rest of the page still renders.
 
 ### Source registry
 

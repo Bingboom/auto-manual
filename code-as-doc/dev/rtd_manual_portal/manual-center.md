@@ -72,7 +72,7 @@ row (`.kpi-row`) and page tabs (`.page-tabs` /
 `.tab-panel`, wired by `site_script()`). Tabs are anchors over panels, so
 without JavaScript every panel shows; any in-page link or URL hash that
 points inside a panel opens that panel. 系统建设 tabs: 当前工作, 系统架构,
-能力与流程, 语言资产, 技能与钩子, 系统演变, 入口与数据来源. The unfolded
+能力与流程, 语言资产, 工具与工程规模, 系统演变, 入口与数据来源. The unfolded
 stage gates form the metric row inside 当前工作; other tabs do not repeat it.
 说明书工作台 tabs: 交付物 (the deliverables matrix, open by
 default), 工作入口, 生产与资产, with web manuals, language editions, Word and

@@ -25,7 +25,7 @@ group opacity; SVG cannot use fill overrides or stroke suppression.
 
 设计规范（原“设计系统”）`/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#design-system-page)。
 
-系统数据 `/workspace/data/index.html` 在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/`、`data/asset_registry.csv` 与 `git ls-files`，汇总已发布网页说明书、机型能力、素材注册情况和各目录代码与文档行数，页面内可按区域和机型筛选；见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#system-data-page)。
+系统数据 `/workspace/data/index.html` 在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 与 `data/asset_registry.csv`，汇总已发布网页说明书、机型能力和素材注册情况，页面内可按区域和机型筛选；见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#system-data-page)。
 
 产品矩阵 `/products/matrix.html` 在构建时读取发布清单、各型号已发布网页说明书的规格表、说明书资料库目录与导航分组和 `data/model_capabilities.csv`，按产品线 × 容量排列电源与电池，并列出配套产品、规格对照、功能矩阵和说明书写明的搭配关系；说明书没有写明的归类和搭配维护在 `tools/rtd_portal_assets/product_matrix.json`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page)。
 
@@ -186,8 +186,9 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 资产批次完成后复用 `python -m tools.rtd.system_workspace corpus-export` 的读取逻辑，通过 Workspace Data Refresh 导出并提交内容 PR；
 导出会把往月汇总数带进快照的 `history`，页面据此显示与上期的对比。
 柱状图是语料库句对覆盖（各语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率，页面在图下写明。
-页内“技能与钩子”块在构建时读取 `.agents/skills`、`.claude/skills`、`.claude/settings.json` 与 `.githooks/pre-push`，
+页内“工具与工程规模”标签先列“技能与钩子”块：构建时读取 `.agents/skills`、`.claude/skills`、`.claude/settings.json` 与 `.githooks/pre-push`，
 按重点线列出技能，标出未登记的技能和没有测试的钩子；`check` 对这些缺口给出警告。
+同一标签的“工程规模”块在构建时用 `git ls-files` 按顶层目录和文件类型统计代码与文档行数（行数最多的 10 个目录），拿不到 git 文件清单时显示无数据；详见 [Engineering scale](../dev/rtd_manual_portal/system-workspace.md#engineering-scale)。
 各数据的来源、快照、多少天算过期和取不到时的显示，统一登记在 `tools/rtd_portal_assets/source_registry.yaml`，系统建设页和说明书工作台都从这里读取，系统建设页底部列出“数据来源”表；详见
 [Source registry](../dev/rtd_manual_portal/system-workspace.md#source-registry)。
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见

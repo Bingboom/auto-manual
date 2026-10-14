@@ -215,26 +215,22 @@ library does not link to it.
 `/workspace/data/index.html` (系统数据) counts what the repository holds about
 the manuals and lets a reader narrow every card by region and model. It is
 listed last under 说明书生产 until it is folded into 说明书工作台; the public manual
-library does not link to it.
+library does not link to it. 工程规模 is on the 系统建设 page; see
+[Engineering scale](system-workspace.md#engineering-scale).
 
 - **Rows are read at build time.** `tools/rtd/system_data.py` reads
   `docs/publish/publish_manifest.json` (one row per published Web route, as the
   deliverables page reads it), `data/model_capabilities.csv`,
   `data/model_languages.csv`, the RST page count under
   `docs/_review/<model>/<region>` and `data/asset_registry.csv` (category,
-  status without its leading mark, model, region). For 工程规模 it lists the
-  checkout with `git ls-files` and counts the lines of every tracked `.py`,
-  `.md`, `.rst`, `.yaml`/`.yml` and `.csv` file per top-level directory and
-  file type. Nothing is snapshotted or committed for the page; a data change
-  appears on the next RTD build.
+  status without its leading mark, model, region). Nothing is snapshotted or
+  committed for the page; a data change appears on the next RTD build.
 - **Cards:** headline counts (网页语言版本 N 个 with the 合 M 本说明书（型号×区域）
   they make up, models, languages, targets with review pages, assets and their
   成品 share); 发布 (a model × language matrix, per-language and per-region bars
   and the sortable, searchable publication table, all counted in 语言版本, one
   table row per route); 机型能力 (the target × capability matrix and each
-  capability's coverage); 素材 (assets by status, category and model);
-  工程规模 (lines per top-level directory, top 10, as bars split by file type,
-  with fixed colours per type).
+  capability's coverage); 素材 (assets by status, category and model).
 - **Filters are client-side.** The rows travel as one JSON block
   (`<` escaped) and `_static/system-data.js` filters and counts them. A region
   dropdown, a model dropdown and clicks on a model (matrix rows, capability
@@ -245,16 +241,11 @@ library does not link to it.
   model × region × language and model × region identities: the build takes them
   from `production_evidence.publication_facts`, the counting every page shares
   (see [System workspace](system-workspace.md)), and a filter recounts the same
-  identities, so a repeated route counts once. 工程规模 is whole-repository
-  data and does not follow the filters. Git history (branches, commits) is not
-  shown: RTD clones
-  shallowly, so it is not reliable at build time; `git ls-files` lists every
-  tracked file in a shallow clone too.
+  identities, so a repeated route counts once.
 - **Without JavaScript** the whole-repository counts and the publication table
   still render; the charts show a note instead.
-- **Failure:** without a readable publish manifest the 发布 cards show 无数据,
-  and without git (or outside a checkout) the 工程规模 card does; the other
-  cards still render. A CSV missing a column, a capability value
+- **Failure:** without a readable publish manifest the 发布 cards show 无数据;
+  the other cards still render. A CSV missing a column, a capability value
   other than `TRUE`/`FALSE`, a target key that is not `<model>_<region>`, or an
   asset row without status, model or region skips the page with a Sphinx
   warning and hides its sidebar entry; `tests/test_rtd_system_data.py` fails
