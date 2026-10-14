@@ -1,0 +1,102 @@
+/* JA-TS02A source geometry only (French and Spanish; same rules as the accepted English edition).
+   Shared Web theme owns headings, callouts, tables and figures. */
+
+/* Figures: the print's own art width; no visible caption (the art carries its labels). */
+.native-figure { max-width: 680px; margin: 1rem auto; min-width: 0; }
+.native-figure .hb-reference-figure { margin: 0; max-width: none; }
+#furo-main-content .native-figure img { width: 100% !important; height: auto !important; max-height: none; }
+.native-art { max-width: 400px; }
+.native-narrow { max-width: 420px; }
+.native-phone { max-width: 260px; }
+
+/* Print text beside its figure (steps, App screens): one reading unit, stacked on phones. */
+.native-media { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2rem; align-items: start; margin: 1rem 0; }
+.native-media-art-first { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+.native-media > * { min-width: 0; }
+.native-media .native-figure { margin: 0 auto; }
+.native-media-copy > :first-child { margin-top: 0; }
+@media (max-width: 760px) {
+  .native-media, .native-media-art-first { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* p17 indicator states: two printed lines in one grey panel. */
+#furo-main-content p.native-status-panel {
+  display: inline-block; margin: 0.6rem 0; padding: 0.45rem 0.9rem;
+  border-radius: var(--hb-panel-radius); background: var(--hb-surface);
+}
+
+/* Inline App controls at text size. */
+#furo-main-content img.native-inline-control {
+  display: inline-block; width: 1.25em !important; height: 1.25em !important;
+  margin: 0 0.1em !important; vertical-align: -0.22em; object-fit: contain;
+}
+
+/* p5 ingestion hazard: the print's icon column beside its bullet list. */
+.native-ingestion { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 0.6rem; align-items: start; margin: 0.8rem 0; }
+#furo-main-content .native-ingestion > img { width: 2.2rem !important; height: auto; margin: 0.2rem 0 0 !important; }
+.native-ingestion > ul { margin: 0; }
+
+/* Warning lockups: the print draws the triangle and signal word without a frame. */
+#furo-main-content table.native-lockup-open { border-color: var(--hb-line-soft) !important; }
+
+/* Tables the print rules as a full grid: white header cells, semibold as printed. */
+#furo-main-content table.native-print-grid th { background: var(--hb-paper) !important; font-weight: 600; }
+/* Header cells the French and Spanish prints set in regular weight. */
+#furo-main-content table.native-print-grid th.native-head-regular { font-weight: 400; }
+#furo-main-content table.native-print-grid td { vertical-align: middle; }
+#furo-main-content table.native-print-grid :is(td, th)[rowspan] { vertical-align: middle; }
+#furo-main-content table.native-symbols td.native-symbol-cell { width: 5.5rem; text-align: center; }
+#furo-main-content table.native-symbols td.native-symbol-cell img { width: 2.1rem !important; height: auto; margin: 0 !important; }
+
+/* p6 specifications: open rules, regular labels, no fill, as printed. */
+#furo-main-content table.native-spec-rules { border-top: 1.5px solid var(--hb-text) !important; border-bottom: 1.5px solid var(--hb-text) !important; }
+#furo-main-content table.native-spec-rules td { border-left: 0 !important; padding-top: 0.42rem !important; padding-bottom: 0.42rem !important; }
+#furo-main-content table.native-spec-rules td:first-child { width: 48%; }
+
+/* p7 cables: wire colour swatches beside the colour names. */
+#furo-main-content td.native-wire::after {
+  content: ""; display: inline-block; width: 1.4em; height: 0.36em; margin-left: 0.45em;
+  border-radius: 0.18em; vertical-align: 0.15em; border: 1px solid var(--hb-text);
+}
+#furo-main-content td.native-wire-black::after { background: #1f1f1f; }
+#furo-main-content td.native-wire-red::after { background: #c8352b; border-color: #c8352b; }
+#furo-main-content td.native-wire-white::after { background: #ffffff; }
+#furo-main-content td.native-wire-green::after { background: #4f9d5d; border-color: #4f9d5d; }
+#furo-main-content table.native-cables td:not(.native-cable-group) { text-align: center; }
+
+/* p14 torque: centred cells and unbroken values, as printed. */
+#furo-main-content table.native-torque :is(td, th) { text-align: center; white-space: nowrap; }
+/* French and Spanish headers print on two lines (Longueur de / la bande); values stay unbroken. */
+#furo-main-content table.native-torque th { white-space: normal; }
+
+/* Spanish torque values (pulgadas-libra) are longer than the desktop text column: they wrap there; phones scroll. */
+@media (min-width: 761px) {
+  #furo-main-content table.native-torque:lang(es) td { white-space: normal; }
+}
+
+/* Two- and three-column tables fit a phone; only the wide torque table scrolls. */
+@media (max-width: 760px) {
+  #furo-main-content table.native-fit { min-width: 0 !important; }
+  #furo-main-content table.native-led, #furo-main-content table.native-cables { min-width: 0 !important; }
+}
+
+/* Print case for subheadings (the print sets them in bold title case); shared markers stay. */
+#furo-main-content h2:not(.hb-spec-section), #furo-main-content :is(h3, h4) { text-transform: none; }
+
+/* Room for two-digit step numbers (the print's 1-24 safety list). */
+#furo-main-content ol.native-steps { padding-left: 2.4em; }
+
+/* Print-grid tables are compact, as printed. */
+#furo-main-content table.native-print-grid :is(td, th) { padding: 0.42rem 0.6rem !important; }
+#furo-main-content table.native-cables td:not(.native-cable-group),
+#furo-main-content table.native-led td:nth-last-child(2) { white-space: nowrap; }
+/* Six unbroken columns fit the desktop text column (655 px at 1280) without scrolling. */
+#furo-main-content table.native-torque { font-size: 0.85rem; }
+#furo-main-content table.native-torque :is(td, th) { padding: 0.42rem 0.3rem !important; }
+@media (max-width: 760px) {
+  #furo-main-content table.native-cables td:not(.native-cable-group),
+  #furo-main-content table.native-led td:nth-last-child(2) { white-space: normal; }
+}
+@media (max-width: 420px) {
+  #furo-main-content table.native-print-grid:not(.native-torque) :is(td, th) { padding: 0.42rem 0.4rem !important; }
+}

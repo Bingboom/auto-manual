@@ -1,0 +1,466 @@
+[
+  {
+    "key": "grounding",
+    "language": "fr",
+    "english_asset": "assets/symbol_grounding.png",
+    "physical_page": 27,
+    "search_box": [
+      28,
+      283,
+      80,
+      304
+    ],
+    "use": "symbol table",
+    "drawing_indices": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "glyph_bbox": [
+      44.981597900390625,
+      289.1913146972656,
+      58.437599182128906,
+      302.6192932128906
+    ],
+    "english_asset_comparison": {
+      "max_mean_channel_error": 0.22309,
+      "passes_fixed_gate": false
+    },
+    "decision": "native-source-glyph (the English asset misses the fixed glyph gate against this print)",
+    "local_path": "assets/symbol_grounding-print.svg",
+    "sha256": "64d6515747798d90d31619de174b19d88a65262ff1974dcdcbdd7aae6873505c",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "key": "caution",
+    "language": "fr",
+    "english_asset": "assets/symbol_warning_triangle.svg",
+    "physical_page": 27,
+    "search_box": [
+      28,
+      304,
+      80,
+      327
+    ],
+    "use": "symbol table",
+    "drawing_indices": [
+      8,
+      9,
+      10
+    ],
+    "glyph_bbox": [
+      43.28129959106445,
+      310.0215148925781,
+      57.71730041503906,
+      324.1944885253906
+    ],
+    "english_asset_comparison": {
+      "max_mean_channel_error": 0.334865,
+      "passes_fixed_gate": false
+    },
+    "decision": "native-source-glyph (the English asset misses the fixed glyph gate against this print)",
+    "local_path": "assets/symbol_warning_triangle-print.svg",
+    "sha256": "b4d82cdcc622d3488525ebe5e780807f137ae565e62da8e12d4f9a51eed5e641",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "key": "electric-shock",
+    "language": "fr",
+    "english_asset": "assets/symbol_electric_shock.svg",
+    "physical_page": 27,
+    "search_box": [
+      28,
+      327,
+      80,
+      349
+    ],
+    "use": "symbol table",
+    "drawing_indices": [
+      6,
+      7
+    ],
+    "glyph_bbox": [
+      43.79029846191406,
+      333.4169921875,
+      58.22629928588867,
+      347.5899658203125
+    ],
+    "english_asset_comparison": {
+      "max_mean_channel_error": 0.344323,
+      "passes_fixed_gate": false
+    },
+    "decision": "native-source-glyph (the English asset misses the fixed glyph gate against this print)",
+    "local_path": "assets/symbol_electric_shock-print.svg",
+    "sha256": "d33edf86ce117fc851fae3d78a3a7bb6bb63ecb218ef31868f72e77fbabbc4a4",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "key": "read-manual",
+    "language": "fr",
+    "english_asset": "assets/symbol_read_manual.svg",
+    "physical_page": 27,
+    "search_box": [
+      28,
+      349,
+      80,
+      372
+    ],
+    "use": "symbol table",
+    "drawing_indices": [
+      11,
+      12,
+      13
+    ],
+    "glyph_bbox": [
+      41.26129913330078,
+      355.548095703125,
+      60.53230285644531,
+      370.0680847167969
+    ],
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.018977
+    },
+    "decision": "reuse the English asset (passes the fixed glyph gate against this page)",
+    "local_path": "assets/symbol_read_manual.svg",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+  },
+  {
+    "key": "ingestion-hazard",
+    "language": "fr",
+    "english_asset": "assets/symbol_ingestion_hazard.svg",
+    "physical_page": 27,
+    "search_box": [
+      24,
+      136,
+      64,
+      220
+    ],
+    "use": "ingestion hazard list",
+    "drawing_indices": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "glyph_bbox": [
+      30.871999740600586,
+      148.63150024414062,
+      58.97999954223633,
+      183.86520385742188
+    ],
+    "english_asset_comparison": {
+      "max_mean_channel_error": 0.027653,
+      "passes_fixed_gate": false
+    },
+    "decision": "native-source-glyph (the English asset misses the fixed glyph gate against this print)",
+    "local_path": "assets/symbol_ingestion_hazard-print.svg",
+    "sha256": "db1952a846dd27465f8963df1b743fdc1dd777b6328691958b95e1d82fe94e48",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "key": "lockup-installation-location",
+    "language": "fr",
+    "english_asset": "assets/symbol_warning_triangle_yellow.svg",
+    "physical_page": 33,
+    "search_box": [
+      18,
+      86,
+      50,
+      112
+    ],
+    "use": "warning lockup",
+    "drawing_indices": [
+      371,
+      372,
+      373,
+      374
+    ],
+    "glyph_bbox": [
+      24.42530059814453,
+      90.54560089111328,
+      48.718299865722656,
+      111.75959777832031
+    ],
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.004022
+    },
+    "decision": "reuse the English asset (passes the fixed glyph gate against this page)",
+    "local_path": "assets/symbol_warning_triangle_yellow.svg",
+    "sha256": "3ba1bfd9a4945818636df78a2defae7ec5eada00f0ca135d29e9b1d962109808"
+  },
+  {
+    "key": "lockup-surface-mounting",
+    "language": "fr",
+    "english_asset": "assets/symbol_warning_triangle_yellow.svg",
+    "physical_page": 33,
+    "search_box": [
+      18,
+      234,
+      52,
+      262
+    ],
+    "use": "warning lockup",
+    "drawing_indices": [
+      367,
+      368,
+      369,
+      370
+    ],
+    "glyph_bbox": [
+      25.388099670410156,
+      239.03469848632812,
+      49.68109893798828,
+      260.24871826171875
+    ],
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.004023
+    },
+    "decision": "reuse the English asset (passes the fixed glyph gate against this page)",
+    "local_path": "assets/symbol_warning_triangle_yellow.svg",
+    "sha256": "3ba1bfd9a4945818636df78a2defae7ec5eada00f0ca135d29e9b1d962109808"
+  },
+  {
+    "key": "grounding",
+    "language": "es",
+    "english_asset": "assets/symbol_grounding.png",
+    "physical_page": 49,
+    "search_box": [
+      28,
+      283,
+      80,
+      304
+    ],
+    "use": "symbol table",
+    "drawing_indices": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "glyph_bbox": [
+      44.981597900390625,
+      289.1913146972656,
+      58.437599182128906,
+      302.6192932128906
+    ],
+    "english_asset_comparison": {
+      "max_mean_channel_error": 0.22309,
+      "passes_fixed_gate": false
+    },
+    "decision": "native-source-glyph (the English asset misses the fixed glyph gate against this print)",
+    "local_path": "assets/symbol_grounding-print.svg",
+    "sha256": "64d6515747798d90d31619de174b19d88a65262ff1974dcdcbdd7aae6873505c",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "key": "caution",
+    "language": "es",
+    "english_asset": "assets/symbol_warning_triangle.svg",
+    "physical_page": 49,
+    "search_box": [
+      28,
+      304,
+      80,
+      327
+    ],
+    "use": "symbol table",
+    "drawing_indices": [
+      8,
+      9,
+      10
+    ],
+    "glyph_bbox": [
+      43.28129959106445,
+      310.0215148925781,
+      57.71730041503906,
+      324.1944885253906
+    ],
+    "english_asset_comparison": {
+      "max_mean_channel_error": 0.334865,
+      "passes_fixed_gate": false
+    },
+    "decision": "native-source-glyph (the English asset misses the fixed glyph gate against this print)",
+    "local_path": "assets/symbol_warning_triangle-print.svg",
+    "sha256": "b4d82cdcc622d3488525ebe5e780807f137ae565e62da8e12d4f9a51eed5e641",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "key": "electric-shock",
+    "language": "es",
+    "english_asset": "assets/symbol_electric_shock.svg",
+    "physical_page": 49,
+    "search_box": [
+      28,
+      327,
+      80,
+      349
+    ],
+    "use": "symbol table",
+    "drawing_indices": [
+      6,
+      7
+    ],
+    "glyph_bbox": [
+      43.79029846191406,
+      333.4169921875,
+      58.22629928588867,
+      347.5899658203125
+    ],
+    "english_asset_comparison": {
+      "max_mean_channel_error": 0.344323,
+      "passes_fixed_gate": false
+    },
+    "decision": "native-source-glyph (the English asset misses the fixed glyph gate against this print)",
+    "local_path": "assets/symbol_electric_shock-print.svg",
+    "sha256": "d33edf86ce117fc851fae3d78a3a7bb6bb63ecb218ef31868f72e77fbabbc4a4",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.0
+    }
+  },
+  {
+    "key": "read-manual",
+    "language": "es",
+    "english_asset": "assets/symbol_read_manual.svg",
+    "physical_page": 49,
+    "search_box": [
+      28,
+      349,
+      80,
+      372
+    ],
+    "use": "symbol table",
+    "drawing_indices": [
+      11,
+      12,
+      13
+    ],
+    "glyph_bbox": [
+      41.26129913330078,
+      355.548095703125,
+      60.53230285644531,
+      370.0680847167969
+    ],
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.018977
+    },
+    "decision": "reuse the English asset (passes the fixed glyph gate against this page)",
+    "local_path": "assets/symbol_read_manual.svg",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+  },
+  {
+    "key": "ingestion-hazard",
+    "language": "es",
+    "english_asset": "assets/symbol_ingestion_hazard.svg",
+    "physical_page": 49,
+    "search_box": [
+      24,
+      136,
+      64,
+      220
+    ],
+    "use": "ingestion hazard list",
+    "drawing_indices": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "glyph_bbox": [
+      30.84379768371582,
+      142.28887939453125,
+      58.95179748535156,
+      177.5225830078125
+    ],
+    "english_asset_comparison": {
+      "max_mean_channel_error": 0.027653,
+      "passes_fixed_gate": false
+    },
+    "decision": "native-source-glyph (the English asset misses the fixed glyph gate against this print)",
+    "local_path": "assets/symbol_ingestion_hazard-print.svg",
+    "sha256": "db1952a846dd27465f8963df1b743fdc1dd777b6328691958b95e1d82fe94e48",
+    "glyph_comparison": {
+      "max_mean_channel_error": 1e-06
+    }
+  },
+  {
+    "key": "lockup-installation-location",
+    "language": "es",
+    "english_asset": "assets/symbol_warning_triangle_yellow.svg",
+    "physical_page": 55,
+    "search_box": [
+      18,
+      86,
+      50,
+      112
+    ],
+    "use": "warning lockup",
+    "drawing_indices": [
+      371,
+      372,
+      373,
+      374
+    ],
+    "glyph_bbox": [
+      23.90890121459961,
+      86.47571563720703,
+      48.201900482177734,
+      107.68971252441406
+    ],
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.004023
+    },
+    "decision": "reuse the English asset (passes the fixed glyph gate against this page)",
+    "local_path": "assets/symbol_warning_triangle_yellow.svg",
+    "sha256": "3ba1bfd9a4945818636df78a2defae7ec5eada00f0ca135d29e9b1d962109808"
+  },
+  {
+    "key": "lockup-surface-mounting",
+    "language": "es",
+    "english_asset": "assets/symbol_warning_triangle_yellow.svg",
+    "physical_page": 55,
+    "search_box": [
+      18,
+      234,
+      52,
+      262
+    ],
+    "use": "warning lockup",
+    "drawing_indices": [
+      367,
+      368,
+      369,
+      370
+    ],
+    "glyph_bbox": [
+      24.87179946899414,
+      236.548095703125,
+      49.164798736572266,
+      257.7621154785156
+    ],
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.004022
+    },
+    "decision": "reuse the English asset (passes the fixed glyph gate against this page)",
+    "local_path": "assets/symbol_warning_triangle_yellow.svg",
+    "sha256": "3ba1bfd9a4945818636df78a2defae7ec5eada00f0ca135d29e9b1d962109808"
+  }
+]

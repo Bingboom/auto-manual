@@ -1,0 +1,240 @@
+[
+  {
+    "slot": "inline-add-device",
+    "language": "fr",
+    "physical_page": 39,
+    "bbox": [
+      76.67,
+      335.0,
+      88.67,
+      347.0
+    ],
+    "meaning": "Ajouter un appareil",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 3.81e-06,
+    "local_path": "assets/inline-add-device.png",
+    "sha256": "4e520c727876b84293a37cff9bf08fe1e71ffefda176fe38a54f23d41ab2c3e3"
+  },
+  {
+    "slot": "inline-settings",
+    "language": "fr",
+    "physical_page": 40,
+    "bbox": [
+      74.33,
+      271.67,
+      86.33,
+      283.67
+    ],
+    "meaning": "Paramètres",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 3.81e-06,
+    "local_path": "assets/inline-settings.png",
+    "sha256": "841f078d6aa2add1ac18e1cb3735754bdde17b629e9936e69cce463dc578978d"
+  },
+  {
+    "slot": "inline-voltage-config",
+    "language": "fr",
+    "physical_page": 40,
+    "bbox": [
+      214.33,
+      282.67,
+      226.33,
+      294.67
+    ],
+    "meaning": "Configuration de tension",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 1.53e-05,
+    "local_path": "assets/inline-voltage-config.png",
+    "sha256": "e93f10afdf54a3e1f3179edb5d4a3e5377b539a01c4b990b78bf92b150d336b0"
+  },
+  {
+    "slot": "inline-edit",
+    "language": "fr",
+    "physical_page": 41,
+    "bbox": [
+      72.33,
+      31.33,
+      84.33,
+      43.33
+    ],
+    "meaning": "Modifier",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 3.81e-06,
+    "local_path": "assets/inline-edit.png",
+    "sha256": "11c966d28e83d003bc47c87036074ff9e15d5a4d298e66045861ff18b2d009fb"
+  },
+  {
+    "slot": "inline-link-circuits",
+    "language": "fr",
+    "physical_page": 41,
+    "bbox": [
+      198.67,
+      32.0,
+      210.67,
+      44.0
+    ],
+    "meaning": "Relier les circuits",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 0.0,
+    "local_path": "assets/inline-link-circuits.png",
+    "sha256": "c18d9aaaba0bedda5649c4811bf874195fab2acb47b18bafc2854cd9d391f43b"
+  },
+  {
+    "slot": "inline-save",
+    "language": "fr",
+    "physical_page": 41,
+    "bbox": [
+      216.67,
+      44.33,
+      228.67,
+      56.33
+    ],
+    "meaning": "Enregistrer",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 1.53e-05,
+    "local_path": "assets/inline-save.png",
+    "sha256": "d9562c75be4ee1db93c20541ff9692b12051581bc581456e24000140eb03f442"
+  },
+  {
+    "slot": "inline-edit-name",
+    "language": "fr",
+    "physical_page": 41,
+    "bbox": [
+      178.0,
+      361.67,
+      190.0,
+      373.67
+    ],
+    "meaning": "Modifier le nom du circuit",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 0.0,
+    "local_path": "assets/inline-edit-name.png",
+    "sha256": "d9836a340efa452417ace01660c453f26fe44950daebe4cf059e2345e65a0c5b"
+  },
+  {
+    "slot": "inline-add-device",
+    "language": "es",
+    "physical_page": 61,
+    "bbox": [
+      58.0,
+      343.67,
+      70.0,
+      355.67
+    ],
+    "meaning": "Añadir dispositivo",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 0.0,
+    "local_path": "assets/inline-add-device.png",
+    "sha256": "4e520c727876b84293a37cff9bf08fe1e71ffefda176fe38a54f23d41ab2c3e3"
+  },
+  {
+    "slot": "inline-settings",
+    "language": "es",
+    "physical_page": 62,
+    "bbox": [
+      54.0,
+      289.0,
+      66.0,
+      301.0
+    ],
+    "meaning": "Ajustes",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 0.0,
+    "local_path": "assets/inline-settings.png",
+    "sha256": "841f078d6aa2add1ac18e1cb3735754bdde17b629e9936e69cce463dc578978d"
+  },
+  {
+    "slot": "inline-voltage-config",
+    "language": "es",
+    "physical_page": 62,
+    "bbox": [
+      314.0,
+      288.33,
+      326.0,
+      300.33
+    ],
+    "meaning": "Configuración de voltaje",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 0.0,
+    "local_path": "assets/inline-voltage-config.png",
+    "sha256": "e93f10afdf54a3e1f3179edb5d4a3e5377b539a01c4b990b78bf92b150d336b0"
+  },
+  {
+    "slot": "inline-edit",
+    "language": "es",
+    "physical_page": 63,
+    "bbox": [
+      55.33,
+      28.33,
+      67.33,
+      40.33
+    ],
+    "meaning": "Editar",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 3.81e-06,
+    "local_path": "assets/inline-edit.png",
+    "sha256": "11c966d28e83d003bc47c87036074ff9e15d5a4d298e66045861ff18b2d009fb"
+  },
+  {
+    "slot": "inline-link-circuits",
+    "language": "es",
+    "physical_page": 63,
+    "bbox": [
+      220.67,
+      28.33,
+      232.67,
+      40.33
+    ],
+    "meaning": "Vincular circuitos",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 0.0,
+    "local_path": "assets/inline-link-circuits.png",
+    "sha256": "c18d9aaaba0bedda5649c4811bf874195fab2acb47b18bafc2854cd9d391f43b"
+  },
+  {
+    "slot": "inline-save",
+    "language": "es",
+    "physical_page": 63,
+    "bbox": [
+      262.33,
+      40.33,
+      274.33,
+      52.33
+    ],
+    "meaning": "Guardar",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 1.53e-05,
+    "local_path": "assets/inline-save.png",
+    "sha256": "d9562c75be4ee1db93c20541ff9692b12051581bc581456e24000140eb03f442"
+  },
+  {
+    "slot": "inline-edit-name",
+    "language": "es",
+    "physical_page": 63,
+    "bbox": [
+      159.33,
+      355.67,
+      171.33,
+      367.67
+    ],
+    "meaning": "Editar el nombre del circuito",
+    "meaning_source": "editorial",
+    "decision": "share the English inline control (vector-identical source drawing)",
+    "vector_max_delta_pt": 0.0,
+    "local_path": "assets/inline-edit-name.png",
+    "sha256": "d9836a340efa452417ace01660c453f26fe44950daebe4cf059e2345e65a0c5b"
+  }
+]

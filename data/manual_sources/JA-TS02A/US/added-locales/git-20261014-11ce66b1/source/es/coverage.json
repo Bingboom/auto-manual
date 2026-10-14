@@ -1,0 +1,10012 @@
+{
+  "schema": "native-word-coverage/v1",
+  "language": "es",
+  "pages": [
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69
+  ],
+  "duplicate_pages": {
+    "65": 64
+  },
+  "classified_word_count": 5257,
+  "unmapped": [],
+  "duplicate_live_copy": [],
+  "unused_recoveries": [],
+  "unused_split_words": [],
+  "word_joins": [
+    [
+      "concesion-",
+      "ario",
+      48,
+      340.3
+    ],
+    [
+      "recomien-",
+      "da",
+      48,
+      425.8
+    ],
+    [
+      "instruc-",
+      "ciones",
+      49,
+      238.8
+    ]
+  ],
+  "print_line_breaks": [
+    [
+      47,
+      105.2,
+      " lugar accesible para futuras consultas.",
+      "De acuerdo con las leyes y regulaciones,"
+    ],
+    [
+      47,
+      127.2,
+      " este producto corresponde a la Empresa.",
+      "Tenga en cuenta que no se realizarán not"
+    ],
+    [
+      48,
+      330.8,
+      "dan causar un funcionamiento no deseado.",
+      "MODIFICACIÓN: Cualquier cambio o modific"
+    ],
+    [
+      48,
+      349.8,
+      " del usuario para operar el dispositivo.",
+      "NOTA: Este equipo ha sido probado y se h"
+    ],
+    [
+      48,
+      444.8,
+      "medidas:",
+      "-- Reorientar o reubicar la antena recep"
+    ],
+    [
+      48,
+      454.3,
+      "orientar o reubicar la antena receptora.",
+      "-- Aumentar la separación entre el equip"
+    ],
+    [
+      48,
+      463.8,
+      "eparación entre el equipo y el receptor.",
+      "-- Conectar el equipo a una toma de corr"
+    ],
+    [
+      48,
+      482.8,
+      "receptor.",
+      "-- Consultar al distribuidor o a un técn"
+    ],
+    [
+      49,
+      40.9,
+      "o de licencia de la Industria de Canadá.",
+      "El funcionamiento está sujeto a las sigu"
+    ],
+    [
+      49,
+      50.4,
+      "sujeto a las siguientes dos condiciones:",
+      "(1) este dispositivo no debe causar inte"
+    ],
+    [
+      49,
+      78.9,
+      "dispositivo.",
+      "Este aparato digital de Clase B cumple c"
+    ],
+    [
+      49,
+      104.0,
+      "Declaración de RF de IC:",
+      "Al utilizar el producto, mantenga una di"
+    ],
+    [
+      55,
+      26.5,
+      "e, conecta tu dispositivo con Bluetooth.",
+      "* Si el Wi-Fi y el Bluetooth del disposi"
+    ],
+    [
+      56,
+      457.0,
+      "Transfer Switch.",
+      "*La instalación del disyuntor derivado d"
+    ],
+    [
+      56,
+      478.0,
+      "en la imagen.",
+      "*Los disyuntores en el interruptor de tr"
+    ],
+    [
+      59,
+      49.0,
+      "arada de emergencia normalmente abierto.",
+      "Instalar en un lugar externo de fácil ac"
+    ],
+    [
+      59,
+      245.0,
+      "Advertencia",
+      "*Confirme que todas las conexiones estén"
+    ],
+    [
+      59,
+      255.0,
+      "n correctas, seguras y puestas a tierra.",
+      "*Confirme que todos los tornillos estén "
+    ],
+    [
+      59,
+      265.0,
+      "que todos los tornillos estén apretados.",
+      "*Utilice un multímetro en la configuraci"
+    ],
+    [
+      59,
+      285.0,
+      "esté en cortocircuito con el neutro.",
+      "*Utilice un multímetro en la configuraci"
+    ],
+    [
+      60,
+      284.6,
+      "posición APAGADO.",
+      "Para energizar, enciende el disyuntor pr"
+    ],
+    [
+      60,
+      481.2,
+      "Square D-HOM y HOMT, Eaton-BR",
+      "El STS no es compatible con los interrup"
+    ],
+    [
+      61,
+      283.0,
+      "Parpadeando - listo para conectar",
+      "Fijo - conectado con éxito"
+    ],
+    [
+      64,
+      85.3,
+      "la red.",
+      "Consulte la fuente de energía actual del"
+    ],
+    [
+      66,
+      137.8,
+      "activar en cualquier modo.",
+      "*Durante un corte de energía, el nivel d"
+    ],
+    [
+      66,
+      291.6,
+      "l máximo la energía solar para su hogar.",
+      "En este modo, la estación de energía se "
+    ],
+    [
+      66,
+      375.1,
+      "los costes de electricidad.",
+      "Función de carga: Establece el período d"
+    ],
+    [
+      66,
+      385.6,
+      "de carga: Establece el período de carga.",
+      "Función de descarga: Establece el períod"
+    ],
+    [
+      66,
+      406.4,
+      " la reserva de respaldo, se descargarán.",
+      "Cuando la estación de energía está conec"
+    ],
+    [
+      68,
+      158.6,
+      "suministro de la red eléctrica.",
+      "En modo sin UPS, el tiempo de conmutació"
+    ],
+    [
+      68,
+      193.7,
+      "estación de energía está encendida.",
+      "*El STS permanecerá encendido cuando est"
+    ],
+    [
+      69,
+      142.6,
+      "establecidas a continuación.",
+      "Esta declaración de garantía establece l"
+    ],
+    [
+      69,
+      369.8,
+      "La garantía de Jackery no se aplica a:",
+      "Mal uso, abuso, modificaciones, daños po"
+    ],
+    [
+      69,
+      391.8,
+      "entación actual del producto de Jackery.",
+      "Reparaciones intentadas por alguien que "
+    ],
+    [
+      69,
+      402.8,
+      "ue no sea de una instalación autorizada.",
+      "Cualquier producto comprado a través de "
+    ],
+    [
+      69,
+      413.8,
+      "través de una casa de subastas en línea.",
+      "La garantía de Jackery no se aplica a la"
+    ]
+  ],
+  "selections": [
+    {
+      "page": 47,
+      "bbox": [
+        0,
+        20,
+        369,
+        50
+      ],
+      "purpose": "printed-header",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw": "ES Modelo: JA-TS02A Español"
+    },
+    {
+      "page": 47,
+      "bbox": [
+        25,
+        50,
+        345,
+        70
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        5,
+        6,
+        7
+      ],
+      "raw": "INSTRUCCIONES DE SEGURIDAD"
+    },
+    {
+      "page": 47,
+      "bbox": [
+        25,
+        70,
+        345,
+        82
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        8,
+        9,
+        10
+      ],
+      "raw": "Descargo de Responsabilidad"
+    },
+    {
+      "page": 47,
+      "bbox": [
+        25,
+        82,
+        345,
+        162
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "raw": "Felicitaciones por su nuevo Jackery Smart Transfer Switch. Antes de utilizar el producto, lea cuidadosamente este manual, especialmente las precauciones relevantes para asegurar un uso adecuado. Mantenga este manual en un lugar accesible para futuras consultas. De acuerdo con las leyes y regulaciones, el derecho de interpretación final de este documento y todos los documentos relacionados con este producto corresponde a la Empresa. Tenga en cuenta que no se realizarán notificaciones adicionales en caso de actualizaciones, revisiones o terminaciones."
+    },
+    {
+      "page": 47,
+      "bbox": [
+        25,
+        162,
+        345,
+        177
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        90
+      ],
+      "raw": "Advertencia"
+    },
+    {
+      "page": 47,
+      "bbox": [
+        25,
+        177,
+        345,
+        503
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438
+      ],
+      "raw": "1. La instalación o el mantenimiento de este producto debe ser realizado únicamente por personal eléctrico cualificado. 2. Antes de la instalación, operación o mantenimiento de este producto, lea detenidamente el manual de instrucciones. 3. La instalación de este producto debe cumplir con las normas locales, normas nacionales de seguridad eléctrica e instrucciones del fabricante. 4. Las especificaciones de los cables proporcionados por el usuario deben cumplir con los requisitos de la Guía de Instalación y con las normativas locales. 5. Los cables de CA son cables de alta tensión. Riesgo de muerte o lesiones graves por descarga eléctrica. 6. Existe una alta posibilidad de descarga eléctrica o quemaduras graves debido a la alta tensión en el producto. 7. Utilice equipo de protección personal (PPE) adecuado y siga las prácticas seguras de trabajo eléctrico. 8. No toque los cables expuestos con las manos. 9. Tenga cuidado para evitar lesiones al mover objetos pesados. Use equipo de protección personal como guantes y zapatos protectores al mover manualmente el producto. 10. No instale ni opere el equipo en condiciones meteorológicas extremas como rayos, nieve, lluvia intensa, viento fuerte, etc. 11. No instale ni opere el producto en un área donde se almacenen materiales inflamables o explosivos. 12. Inspeccione el producto y los cables en busca de daños antes de la instalación. No instale el producto ni los cables si están dañados de alguna manera. 13. Apague toda la energía que suministra este producto antes de la instalación. Desconecte cada circuito individualmente antes del mantenimiento. 14. Siempre utilice un dispositivo de detección de voltaje correctamente calibrado para confirmar que la energía está apagada. 15. Durante el proceso de perforación, cubra el producto interior para evitar que los desechos caigan en el producto y limpie los desechos después de la perforación para evitar interferencias con el equipo. 16. No dañe, manche ni cubra las etiquetas de advertencia en el dispositivo. Todas las etiquetas deben ser visibles después de la instalación. 17. Antes de operar el producto, verifique las conexiones eléctricas para asegurar que el producto esté correctamente y permanentemente conectado a tierra."
+    },
+    {
+      "page": 48,
+      "bbox": [
+        25,
+        24,
+        345,
+        166
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450,
+        451,
+        452,
+        453,
+        454,
+        455,
+        456,
+        457,
+        458,
+        459,
+        460,
+        461,
+        462,
+        463,
+        464,
+        465,
+        466,
+        467,
+        468,
+        469,
+        470,
+        471,
+        472,
+        473,
+        474,
+        475,
+        476,
+        477,
+        478,
+        479,
+        480,
+        481,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535
+      ],
+      "raw": "18. No coloque ningún objeto sobre el producto durante su funcionamiento. 19. Para desenergizar completamente el producto, asegúrese de que todos los disyuntores principales y derivados estén apagados y desconecte físicamente todas las cargas. No hacerlo puede representar un riesgo de descarga eléctrica. 20. No coloque ni instale objetos inflamables o potencialmente explosivos cerca del producto o en atmósferas explosivas. 21. No inserte objetos extraños en ninguna parte del equipo. 22. No conecte a circuitos que puedan ser conmutados de forma remota los sistemas de soporte vital, equipos médicos, ni ningún otro equipo donde la falla del producto pueda causar lesiones a personas o pérdida de vidas. 23. Instale el producto en un lugar que evite daños por inundaciones. Asegúrese de que no haya fuentes de agua arriba o cerca del producto, incluidos bajantes, aspersores o grifos. 24. Si es necesario, reemplace todos los dispositivos, puertas y cubiertas antes de encender la alimentación."
+    },
+    {
+      "page": 48,
+      "bbox": [
+        25,
+        166,
+        345,
+        182
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2
+      ],
+      "raw": "Precaución"
+    },
+    {
+      "page": 48,
+      "bbox": [
+        25,
+        182,
+        345,
+        286
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120
+      ],
+      "raw": "1. En caso de daños en el cable, debe ser reemplazado por el fabricante, servicio al cliente o personal calificado para evitar un riesgo de seguridad. 2. No utilice disolventes para limpiar el producto. 3. El producto debe ser desechado de acuerdo con los códigos y regulaciones locales. 4. Este producto no está destinado a ser utilizado como desconexión de servicio. 5. No utilice partes o accesorios que no sean los especificados para su uso con el producto. 6. Al instalar el producto, los tornillos deben ser apretados con una herramienta especial de acuerdo con el par especificado. 7. Mantenga el producto fuera del alcance de niños o animales. 8. Este producto está diseñado únicamente para uso residencial."
+    },
+    {
+      "page": 48,
+      "bbox": [
+        25,
+        286,
+        345,
+        301
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        121,
+        122,
+        123,
+        124
+      ],
+      "raw": "Declaración de la FCC"
+    },
+    {
+      "page": 48,
+      "bbox": [
+        25,
+        301,
+        345,
+        503
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382
+      ],
+      "raw": "Este dispositivo cumple con la parte 15 de las Reglas de la FCC. El funcionamiento está sujeto a las siguientes dos condiciones: (1) Este dispositivo no debe causar interferencias dañinas, y (2) este dispositivo debe aceptar cualquier interferencia recibida, incluidas las interferencias que puedan causar un funcionamiento no deseado. MODIFICACIÓN: Cualquier cambio o modificación no expresamente aprobado por el concesion- ario de este dispositivo podría anular la autoridad del usuario para operar el dispositivo. NOTA: Este equipo ha sido probado y se ha encontrado que cumple con los límites para un dispositivo digital Clase B, en virtud de la parte 15 de las Reglas de la FCC. Estos límites están diseñados para proporcionar una protección razonable contra interferencias perjudiciales en una instalación residencial. Este equipo genera, utiliza y puede irradiar energía de radiofrecuencia y, si no se instala y utiliza de acuerdo con las instrucciones, puede causar interferencias perjudiciales a las comunicaciones por radio. Sin embargo, no hay garantía de que no ocurran interferencias en una instalación particular. Si este equipo causa interferencias perjudiciales a la recepción de radio o televisión, lo cual puede determinarse apagando y encendiendo el equipo, se recomien- da al usuario que intente corregir las interferencias mediante una o más de las siguientes medidas: -- Reorientar o reubicar la antena receptora. -- Aumentar la separación entre el equipo y el receptor. -- Conectar el equipo a una toma de corriente en un circuito diferente al que está conectado el receptor. -- Consultar al distribuidor o a un técnico experimentado en radio/TV para obtener ayuda."
+    },
+    {
+      "page": 49,
+      "bbox": [
+        25,
+        26,
+        345,
+        40
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        24,
+        25
+      ],
+      "raw": "Advertencia IC"
+    },
+    {
+      "page": 49,
+      "bbox": [
+        25,
+        40,
+        345,
+        135
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113
+      ],
+      "raw": "Este dispositivo cumple con el estándar RSS exento de licencia de la Industria de Canadá. El funcionamiento está sujeto a las siguientes dos condiciones: (1) este dispositivo no debe causar interferencias y (2) este dispositivo debe aceptar cualquier interferencia, incluidas las interferencias que puedan causar un funcionamiento no deseado del dispositivo. Este aparato digital de Clase B cumple con lCES-003 de Canadá. Declaración de RF de IC: Al utilizar el producto, mantenga una distancia de 20 cm del cuerpo para cumplir con los requisitos de exposición a RF."
+    },
+    {
+      "page": 49,
+      "bbox": [
+        24,
+        135,
+        64,
+        220
+      ],
+      "purpose": "native-symbol/ingestion-hazard",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 49,
+      "bbox": [
+        64,
+        137,
+        345,
+        220
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218
+      ],
+      "raw": "• PELIGRO DE INGESTIÓN: Este producto contiene una pila de botón o batería tipo moneda. • La MUERTE o lesiones graves pueden ocurrir si se ingiere. • Una pila de botón o batería tipo moneda ingerida puede causar Quemaduras Químicas Internas en tan solo 2 horas. • MANTENGA las baterías nuevas y usadas FUERA DEL ALCANCE de los NIÑOS. • Busque atención médica inmediata si se sospecha que una batería fue ingerida o introducida en cualquier parte del cuerpo."
+    },
+    {
+      "page": 49,
+      "bbox": [
+        25,
+        222,
+        345,
+        237
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4
+      ],
+      "raw": "Signiﬁcado de símbolos"
+    },
+    {
+      "page": 49,
+      "bbox": [
+        25,
+        237,
+        345,
+        262
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "raw": "Las siguientes tablas explican el significado de los símbolos utilizados en el manual de instruc- ciones y su embalaje."
+    },
+    {
+      "page": 49,
+      "bbox": [
+        28,
+        268,
+        80,
+        284
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        128
+      ],
+      "raw": "Símbolo"
+    },
+    {
+      "page": 49,
+      "bbox": [
+        80,
+        268,
+        345,
+        284
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        129
+      ],
+      "raw": "Significado"
+    },
+    {
+      "page": 49,
+      "bbox": [
+        80,
+        283,
+        345,
+        304
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123
+      ],
+      "raw": "La posición para conectar el cable de tierra de protección."
+    },
+    {
+      "page": 49,
+      "bbox": [
+        80,
+        304,
+        345,
+        327
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        124,
+        125,
+        126,
+        127
+      ],
+      "raw": "Precaución, riesgo de peligro."
+    },
+    {
+      "page": 49,
+      "bbox": [
+        80,
+        327,
+        345,
+        349
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        130,
+        131,
+        132,
+        133,
+        134
+      ],
+      "raw": "Precaución, riesgo de descarga eléctrica."
+    },
+    {
+      "page": 49,
+      "bbox": [
+        80,
+        349,
+        345,
+        372
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        135,
+        136,
+        137,
+        138,
+        139
+      ],
+      "raw": "Consulte las instrucciones de operación."
+    },
+    {
+      "page": 50,
+      "bbox": [
+        25,
+        24,
+        345,
+        45
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        31
+      ],
+      "raw": "ESPECIFICACIONES"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        49.5,
+        175,
+        61.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        32,
+        33,
+        34
+      ],
+      "raw": "Nombre del producto"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        49.5,
+        345,
+        61.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        83,
+        84,
+        85,
+        86
+      ],
+      "raw": "Jackery Smart Transfer Switch"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        61.5,
+        175,
+        73.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        35,
+        36,
+        37
+      ],
+      "raw": "Número de Modelo"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        61.5,
+        345,
+        73.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        87
+      ],
+      "raw": "JA-TS02A"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        73.5,
+        175,
+        85.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        38,
+        39,
+        40
+      ],
+      "raw": "Voltaje CA (Nominal)"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        73.5,
+        345,
+        85.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        88,
+        89
+      ],
+      "raw": "120V/240V~ 60Hz"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        85.5,
+        175,
+        97.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        41,
+        42,
+        43
+      ],
+      "raw": "Tipo de Alimentación"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        85.5,
+        345,
+        97.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        90,
+        91
+      ],
+      "raw": "Fase Dividida"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        97.5,
+        175,
+        109.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "raw": "Corriente de Entrada Máxima"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        97.5,
+        345,
+        109.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "raw": "Red de 100A / Estación de Energía de 60A"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        109.5,
+        175,
+        121.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "raw": "Corriente de Salida Máxima"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        109.5,
+        345,
+        121.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110
+      ],
+      "raw": "Carga Doméstica de 60A / Estación de Energía de 33,4A"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        121.5,
+        175,
+        133.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "raw": "Corriente Máxima de Cortocircuito de Entrada"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        121.5,
+        345,
+        133.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        111
+      ],
+      "raw": "10KA"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        133.5,
+        175,
+        145.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        58,
+        59,
+        60
+      ],
+      "raw": "Categoría de Sobretensión"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        133.5,
+        345,
+        145.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        112
+      ],
+      "raw": "IV"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        145.5,
+        175,
+        157.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        61
+      ],
+      "raw": "UPS"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        145.5,
+        345,
+        157.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        113
+      ],
+      "raw": "≤20ms"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        157.5,
+        175,
+        169.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "raw": "Tipo de Caja (Panel de Distribución)"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        157.5,
+        345,
+        169.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        114,
+        115,
+        116
+      ],
+      "raw": "NEMA Tipo 1"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        169.5,
+        175,
+        181.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        68,
+        69,
+        70,
+        71,
+        72
+      ],
+      "raw": "Número de Ramas de Carga"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        169.5,
+        345,
+        181.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        117
+      ],
+      "raw": "12"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        181.5,
+        175,
+        193.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        73,
+        74
+      ],
+      "raw": "Circuito Principal"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        181.5,
+        345,
+        193.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        118,
+        119
+      ],
+      "raw": "2 AWG"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        193.5,
+        175,
+        205.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        75,
+        76
+      ],
+      "raw": "Circuito Derivado"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        193.5,
+        345,
+        205.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        120,
+        121,
+        122,
+        123,
+        124,
+        125
+      ],
+      "raw": "14 AWG 12 AWG 10 AWG"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        205.5,
+        175,
+        217.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        77
+      ],
+      "raw": "Comunicación"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        205.5,
+        345,
+        217.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        126,
+        127,
+        128
+      ],
+      "raw": "Wi-Fi y Bluetooth"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        217.5,
+        175,
+        229.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        78,
+        79,
+        80
+      ],
+      "raw": "Temperatura de Funcionamiento"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        217.5,
+        345,
+        229.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        129,
+        130
+      ],
+      "raw": "-20°C~40°C (-4°F~104°F)"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        229.5,
+        175,
+        241.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        81
+      ],
+      "raw": "Dimensiones"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        229.5,
+        345,
+        241.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142
+      ],
+      "raw": "22 x 14,7 x 7,87 pulgadas/ 56 x 37,4 x 20 cm"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        241.5,
+        175,
+        253.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        82
+      ],
+      "raw": "Peso"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        175,
+        241.5,
+        345,
+        253.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        143,
+        144,
+        145,
+        146
+      ],
+      "raw": "Aproximadamente 25,57 libras/11,6 kg"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        25,
+        253.5,
+        345,
+        278
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "raw": "* Cuando utilice el producto, asegúrese de que esté conectado a una tensión de red de fase partida de 240 V."
+    },
+    {
+      "page": 50,
+      "bbox": [
+        25,
+        285,
+        345,
+        306
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        212,
+        213,
+        214
+      ],
+      "raw": "LISTA DE PAQUETES"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        26,
+        306,
+        343,
+        502
+      ],
+      "purpose": "embedded-art/package-list",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340
+      ],
+      "raw": "Guía rápida 8 HomePower Energy System Quick Guide Upward A scale of 1:1 Unit: mm Marking hole Marking hole Marking hole M6 tapped hole Marking hole M6 tapped hole M6 tapped hole M6 tapped hole Model: JA-TS02A Contact us: hello@jackery.com 1-888-502-2236(US) USER MANUAL Jackery Smart Transfer Switch Version: JAK-UM-V1.0 AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME Jackery Smart Transfer Switch AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME Plantilla de Marcado Entrada/Salida de Energía Cable Manual de Usuario 1 2 3 4 2 Soporte de Pared 4 Tornillos de Cabeza Plana Phillips M4 (fije los soportes de pared al Smart Transfer Switch) 5 6 etiqueta de circuito 7 1 1 2 2 3 3 6 6 10 10 11 11 4 4 5 5 7 7 8 8 9 9 12 12 1 1 2 2 3 3 6 6 10 10 11 11 4 4 5 5 7 7 8 8 9 9 12 12 1 1 2 2 3 3 6 6 10 10 11 11 4 4 5 5 7 7 8 8 9 9 12 12 Circuit Label | étiquette de circuit | etiqueta de circuito | etiqueta de circuito"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        25,
+        28,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        22,
+        23,
+        24
+      ],
+      "raw": "LO QUE NECESITAS"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        26,
+        50,
+        345,
+        145
+      ],
+      "purpose": "embedded-art/optional-tools",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        75
+      ],
+      "raw": "Interruptor de ramiﬁcación de 100A Interruptor de ramiﬁcación máx. 30A Conductor Conector Cable Tornillo Botón de paro de emergencia * Opcionale"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        25,
+        153,
+        345,
+        170
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        74
+      ],
+      "raw": "Opcionales"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        30,
+        170,
+        172,
+        185
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        76
+      ],
+      "raw": "Cable"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        170,
+        225,
+        185
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        93
+      ],
+      "raw": "Color"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        225,
+        170,
+        270,
+        185
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        134
+      ],
+      "raw": "Corriente"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        170,
+        345,
+        185
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        135
+      ],
+      "raw": "Calibre"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        30,
+        185,
+        145,
+        233
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        77,
+        78,
+        79,
+        80,
+        81
+      ],
+      "raw": "Red (Conecte al Panel Principal)"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        225,
+        185,
+        270,
+        233
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        89,
+        90
+      ],
+      "raw": "100A Máx"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        145,
+        185,
+        172,
+        197
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        94
+      ],
+      "raw": "L1"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        185,
+        225,
+        197
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        102
+      ],
+      "raw": "Negro"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        185,
+        345,
+        197
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        110,
+        111
+      ],
+      "raw": "2 AWG"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        145,
+        197,
+        172,
+        209
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        95
+      ],
+      "raw": "L2"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        197,
+        225,
+        209
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        103
+      ],
+      "raw": "Rojo"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        197,
+        345,
+        209
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        112,
+        113
+      ],
+      "raw": "2 AWG"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        145,
+        209,
+        172,
+        221
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        96
+      ],
+      "raw": "N"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        209,
+        225,
+        221
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        104
+      ],
+      "raw": "Blanco"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        209,
+        345,
+        221
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        114,
+        115
+      ],
+      "raw": "2 AWG"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        145,
+        221,
+        172,
+        233
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        97
+      ],
+      "raw": "GND"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        221,
+        225,
+        233
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        105
+      ],
+      "raw": "Verde"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        221,
+        345,
+        233
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        116,
+        117
+      ],
+      "raw": "6 AWG"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        30,
+        233,
+        145,
+        282
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88
+      ],
+      "raw": "Cargas Domésticas (Conecte a 12 Circuitos Derivados)"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        225,
+        233,
+        270,
+        282
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        91,
+        92
+      ],
+      "raw": "30A Máx"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        145,
+        233,
+        172,
+        245
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        98
+      ],
+      "raw": "L1"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        233,
+        225,
+        245
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        106
+      ],
+      "raw": "Negro"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        233,
+        345,
+        245
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        118,
+        119,
+        120,
+        121
+      ],
+      "raw": "14 AWG -10 AWG"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        145,
+        245,
+        172,
+        257
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        99
+      ],
+      "raw": "L2"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        245,
+        225,
+        257
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        107
+      ],
+      "raw": "Rojo"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        245,
+        345,
+        257
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        122,
+        123,
+        124,
+        125
+      ],
+      "raw": "14 AWG -10 AWG"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        145,
+        257,
+        172,
+        269.3
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        100
+      ],
+      "raw": "N"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        257,
+        225,
+        269.3
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        108
+      ],
+      "raw": "Blanco"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        257,
+        345,
+        269.3
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        126,
+        127,
+        128,
+        129
+      ],
+      "raw": "14 AWG -10 AWG"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        145,
+        269.3,
+        172,
+        282
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        101
+      ],
+      "raw": "GND"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        269.3,
+        225,
+        282
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        109
+      ],
+      "raw": "Verde"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        269.3,
+        345,
+        282
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        130,
+        131,
+        132,
+        133
+      ],
+      "raw": "14 AWG -10 AWG"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        30,
+        282,
+        145,
+        322
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "raw": "Circuito de parada de emergencia (Conectar al botón de parada de emergencia)"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        145,
+        282,
+        172,
+        322
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        69
+      ],
+      "raw": "/"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        172,
+        282,
+        225,
+        322
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        68
+      ],
+      "raw": "/"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        225,
+        282,
+        270,
+        322
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        70,
+        71
+      ],
+      "raw": "2A Máx"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        270,
+        282,
+        345,
+        322
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72,
+        73
+      ],
+      "raw": "24 AWG"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        25,
+        322,
+        345,
+        352
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "raw": "*Prepare un disyuntor derivado de 100A y 2 polos para instalarlo en el cuadro de distribución de la vivienda. Este interruptor se utilizará para conectar con el Smart Transfer Switch (STS)."
+    },
+    {
+      "page": 52,
+      "bbox": [
+        25,
+        30,
+        345,
+        51
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        82,
+        83,
+        84
+      ],
+      "raw": "DESCRIPCIÓN DEL PRODUCTO"
+    },
+    {
+      "page": 52,
+      "bbox": [
+        25,
+        51,
+        345,
+        62
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        71
+      ],
+      "raw": "Dimensiones"
+    },
+    {
+      "page": 52,
+      "bbox": [
+        45,
+        62,
+        335,
+        258
+      ],
+      "purpose": "embedded-art/dimensions",
+      "word_ids": [
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70
+      ],
+      "raw": "20cm 37.4cm 56cm 59.8cm AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME"
+    },
+    {
+      "page": 52,
+      "bbox": [
+        25,
+        258,
+        345,
+        274
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81
+      ],
+      "raw": "*Las figuras son solo para referencia, consulte el producto real."
+    },
+    {
+      "page": 52,
+      "bbox": [
+        25,
+        293,
+        345,
+        306.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "raw": "Con Cubierta de Frente Muerto Instalada"
+    },
+    {
+      "page": 52,
+      "bbox": [
+        26,
+        306.5,
+        343,
+        446
+      ],
+      "purpose": "embedded-art/covered-overview",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56
+      ],
+      "raw": "Disyuntor Principal (Red) Disyuntor de Circuito Derivado Cubierta de Frente Muerto Botón de IoT con Indicador Indicador de Error Puerto de Entrada/ Salida de Energía AC2 Puerto de Entrada/Salida de Energía AC1 Botón de Parada de Emergencia Indicador de Estación de Energía Puerta Indicador de Red pestillo de puerta"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        20,
+        28,
+        345,
+        41
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "raw": "Botón de IoT con Indicador"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        20,
+        41,
+        345,
+        104
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120
+      ],
+      "raw": "• Pulse brevemente el botón para encender/apagar el Bluetooth y el Wi-Fi. • Mantenga pulsado el botón durante 5 segundos para reiniciar el Bluetooth y el Wi-Fi (el Interruptor de Transferencia Automática conservará la configuración anterior). *Encienda el Wi-Fi y el Bluetooth. Si no se emparejan en dos horas, se apagarán automáticamente."
+    },
+    {
+      "page": 53,
+      "bbox": [
+        20,
+        104,
+        345,
+        115.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "raw": "Botón de Parada de Emergencia"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        20,
+        115.5,
+        345,
+        138
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139
+      ],
+      "raw": "En caso de emergencia, este botón puede ser activado manualmente para apagar inmediatamente la salida de todo el sistema."
+    },
+    {
+      "page": 53,
+      "bbox": [
+        20,
+        138,
+        345,
+        150.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        140,
+        141
+      ],
+      "raw": "Indicadores LED"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        30,
+        150.5,
+        82,
+        164
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        142
+      ],
+      "raw": "Indicador"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        150.5,
+        142,
+        164
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        157
+      ],
+      "raw": "Estado"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        150.5,
+        345,
+        164
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        198
+      ],
+      "raw": "Descripción"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        30,
+        164,
+        82,
+        212
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        143,
+        144,
+        145
+      ],
+      "raw": "Indicador de Red"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        164,
+        142,
+        185
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        160,
+        161
+      ],
+      "raw": "Azul intermitente"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        164,
+        345,
+        185
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212
+      ],
+      "raw": "Presencia de energía de la red, no suministra carga a los dispositivos del hogar."
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        185,
+        142,
+        200
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        158,
+        159
+      ],
+      "raw": "Azul Sólido"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        185,
+        345,
+        200
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221
+      ],
+      "raw": "La energía de la red suministra cargas al hogar"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        200,
+        142,
+        212
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        164
+      ],
+      "raw": "Apagado"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        200,
+        345,
+        212
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        222,
+        223,
+        224,
+        225,
+        226
+      ],
+      "raw": "Sin energía de la red."
+    },
+    {
+      "page": 53,
+      "bbox": [
+        30,
+        212,
+        82,
+        280.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        146,
+        147,
+        148,
+        149,
+        150
+      ],
+      "raw": "Estación de Energía Indicador (AC1/AC2)"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        212,
+        142,
+        232
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        263,
+        264
+      ],
+      "raw": "Verde intermitente"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        212,
+        345,
+        232
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281
+      ],
+      "raw": "La estación de energía está conectada y en espera, no suministra energía a las cargas del hogar."
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        232,
+        142,
+        268
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        227,
+        228
+      ],
+      "raw": "Verde Sólido"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        232,
+        345,
+        268
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262
+      ],
+      "raw": "La estación de energía está conectada y suministrando energía a las cargas del hogar. En el STS, el suministro de energía a las cargas del hogar depende de la conﬁguración de puesta en marcha."
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        268,
+        142,
+        280.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        195
+      ],
+      "raw": "Apagado"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        268,
+        345,
+        280.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        168,
+        169,
+        170,
+        171,
+        172
+      ],
+      "raw": "Estación de Energía No Conectada"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        30,
+        280.5,
+        82,
+        325
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        151,
+        152,
+        153
+      ],
+      "raw": "Indicador de IoT"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        280.5,
+        142,
+        300
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        162,
+        163
+      ],
+      "raw": "Verde intermitente"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        280.5,
+        345,
+        300
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        173,
+        174,
+        175,
+        176,
+        177,
+        178
+      ],
+      "raw": "Wi-Fi y Bluetooth Encendidos, No Emparejados"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        300,
+        142,
+        313.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        165,
+        166
+      ],
+      "raw": "Verde Sólido"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        300,
+        345,
+        313.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        179,
+        180,
+        181,
+        182,
+        183
+      ],
+      "raw": "Wi-Fi y Bluetooth Encendidos, Emparejados"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        313.5,
+        142,
+        325
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        167
+      ],
+      "raw": "Apagado"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        313.5,
+        345,
+        325
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        184,
+        185,
+        186,
+        187
+      ],
+      "raw": "Wi-Fi y Bluetooth Apagados"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        30,
+        325,
+        82,
+        349
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        154,
+        155,
+        156
+      ],
+      "raw": "Indicador de Error"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        325,
+        142,
+        336.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        188,
+        189
+      ],
+      "raw": "Rojo Sólido"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        325,
+        345,
+        336.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        190,
+        191,
+        192,
+        193
+      ],
+      "raw": "Mal Funcionamiento del Producto"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        82,
+        336.8,
+        142,
+        349
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        194
+      ],
+      "raw": "Apagado"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        142,
+        336.8,
+        345,
+        349
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        196,
+        197
+      ],
+      "raw": "Operación Normal"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        20,
+        352,
+        345,
+        366
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "raw": "Con Cubierta de Frente Muerto Retirada"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        26,
+        366,
+        343,
+        505
+      ],
+      "purpose": "embedded-art/uncovered-overview",
+      "word_ids": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "raw": "Suministro de la Red (L1, L2) Terminales Neutros de la Red Barra Colectora de Neutro de Carga 6 Cargas (Circuitos Derivados) (L2) Barra Colectora de Tierra de Carga Terminales de Tierra de la Red Barra Colectora de Tierra de Carga 6 Cargas (Circuitos Derivados) (L1) Barra Colectora de Neutro de Carga"
+    },
+    {
+      "page": 54,
+      "bbox": [
+        20,
+        28,
+        345,
+        40
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        43,
+        44,
+        45,
+        46
+      ],
+      "raw": "Modo de respaldo normal"
+    },
+    {
+      "page": 54,
+      "bbox": [
+        20,
+        40,
+        345,
+        76
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99
+      ],
+      "raw": "La función UPS está desactivada por defecto. En caso de un apagón, la estación de energía portátil alimentará automáticamente las cargas del hogar con la energía almacenada en 5 segundos. En caso de un apagón, la estación de energía portátil alimentará automáticamente las cargas del hogar con la energía almacenada entre 5 segundos."
+    },
+    {
+      "page": 54,
+      "bbox": [
+        30,
+        79,
+        98,
+        104
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        218
+      ],
+      "raw": "PRECAUCIÓN"
+    },
+    {
+      "page": 54,
+      "bbox": [
+        98,
+        79,
+        345,
+        104
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217
+      ],
+      "raw": "La estación de energía debe permanecer encendida; de lo contrario, el STS no podrá cambiar a la energía de la batería después de un apagón."
+    },
+    {
+      "page": 54,
+      "bbox": [
+        20,
+        107,
+        345,
+        118
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        100,
+        101
+      ],
+      "raw": "Modo UPS"
+    },
+    {
+      "page": 54,
+      "bbox": [
+        20,
+        118,
+        345,
+        186
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192
+      ],
+      "raw": "En este modo, la función UPS está activada. Durante un apagón, el sistema cambia automáticamente a la energía de la batería en 20 milisegundos. • La estación de energía portátil permanece activa en todo momento y consume continuamente una pequeña cantidad de energía, incluso cuando no está en uso. • Si la estación de energía está siendo cargada por el STS, el tiempo de cambio puede exceder los 20 milisegundos. • Cuando se restablezca el suministro eléctrico de la red, el sistema cambiará automáticamente de vuelta a la alimentación por red."
+    },
+    {
+      "page": 54,
+      "bbox": [
+        30,
+        190,
+        98,
+        245
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        275
+      ],
+      "raw": "PRECAUCIÓN"
+    },
+    {
+      "page": 54,
+      "bbox": [
+        98,
+        190,
+        345,
+        245
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274
+      ],
+      "raw": "La función UPS solo puede funcionar si el STS está conectado exitosamente al Jackery Explorer 5000 Plus o al Jackery HomePower 5000 Plus. Antes de usar el modo UPS, asegúrese de lo siguiente: 1. La función UPS está habilitada en la aplicación Jackery. 2. La estación de energía portátil está encendida y no se está cargando."
+    },
+    {
+      "page": 54,
+      "bbox": [
+        20,
+        255,
+        345,
+        274.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2
+      ],
+      "raw": "PRE-INSTALACIÓN"
+    },
+    {
+      "page": 54,
+      "bbox": [
+        20,
+        274.6,
+        345,
+        287
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "raw": "Descripción General del Sistema"
+    },
+    {
+      "page": 54,
+      "bbox": [
+        27,
+        287,
+        343,
+        503
+      ],
+      "purpose": "embedded-art/system-overview",
+      "word_ids": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "raw": "AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME Jackery Smart Transfer Switch Jackery Explorer 5000 Plus Servicio en la Nube Aplicación Router Red Cargas Domésticas Panel Principal Cargas de Respaldo * CA Wi-Fi Bluetooth"
+    },
+    {
+      "page": 55,
+      "bbox": [
+        20,
+        22,
+        345,
+        60
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "raw": "* Si no hay Wi-Fi disponible, conecta tu dispositivo con Bluetooth. * Si el Wi-Fi y el Bluetooth del dispositivo están activados y no se han conectado a la aplicación Jackery en dos horas, ambos se apagarán automáticamente."
+    },
+    {
+      "page": 55,
+      "bbox": [
+        20,
+        60,
+        345,
+        72.65
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        80,
+        81,
+        82
+      ],
+      "raw": "Ubicación de Instalación"
+    },
+    {
+      "page": 55,
+      "bbox": [
+        20,
+        72.65,
+        345,
+        88
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "raw": "Instale el Jackery Smart Transfer Switch en interiores."
+    },
+    {
+      "page": 55,
+      "bbox": [
+        18,
+        86,
+        50,
+        109
+      ],
+      "purpose": "native-symbol/warning-triangle",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 55,
+      "bbox": [
+        50,
+        88,
+        150,
+        108
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        153
+      ],
+      "raw": "Advertencia"
+    },
+    {
+      "page": 55,
+      "bbox": [
+        20,
+        108,
+        345,
+        172
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152
+      ],
+      "raw": "• Asegúrese de que el producto esté ubicado en un lugar seco y bien ventilado. • Asegúrese de que la puerta se abra a un ángulo de al menos 90 grados. • El personal de instalación debe usar guantes aislantes, gafas de seguridad y zapatos con suela de goma. • Antes de la instalación, asegúrese de que el disyuntor principal y todos los circuitos derivados estén apagados."
+    },
+    {
+      "page": 55,
+      "bbox": [
+        20,
+        172,
+        345,
+        191
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        83,
+        84,
+        85
+      ],
+      "raw": "GUÍA DE INSTALACIÓN"
+    },
+    {
+      "page": 55,
+      "bbox": [
+        20,
+        191,
+        345,
+        220.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "raw": "Los detalles a continuación son pautas generales para el espacio de instalación y no se garantiza su aplicabilidad. Consulte con su AHJ local o su compañía de servicios públicos antes de usar."
+    },
+    {
+      "page": 55,
+      "bbox": [
+        20,
+        220.5,
+        345,
+        234
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        218,
+        219,
+        220
+      ],
+      "raw": "Montaje en Superﬁcie"
+    },
+    {
+      "page": 55,
+      "bbox": [
+        18,
+        234,
+        52,
+        259
+      ],
+      "purpose": "native-symbol/warning-triangle",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 55,
+      "bbox": [
+        52,
+        234,
+        345,
+        259
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167
+      ],
+      "raw": "Advertencia: El producto no es impermeable y está diseñado específicamente para uso en interiores."
+    },
+    {
+      "page": 55,
+      "bbox": [
+        152,
+        258,
+        345,
+        372
+      ],
+      "purpose": "embedded-art/mounting-brackets",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 55,
+      "bbox": [
+        20,
+        260,
+        150,
+        325
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198
+      ],
+      "raw": "1. Instale los soportes de pared superiores e inferiores en la parte posterior del Smart Transfer Switch con 4 tornillos M4. Apriete todos los tornillos con un par de 0.8 N·m."
+    },
+    {
+      "page": 55,
+      "bbox": [
+        20,
+        372,
+        345,
+        399
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217
+      ],
+      "raw": "2. Fije la plantilla en la superficie de montaje y marque cuidadosamente cada ubicación del agujero con un lápiz."
+    },
+    {
+      "page": 55,
+      "bbox": [
+        25,
+        400,
+        336,
+        506
+      ],
+      "purpose": "embedded-art/mounting-template",
+      "word_ids": [
+        221,
+        222,
+        223,
+        224
+      ],
+      "raw": "6\"(15.4cm) 22.6\"(57.4cm) 6\"(15.4cm) 22.6\"(57.4cm)"
+    },
+    {
+      "page": 56,
+      "bbox": [
+        20,
+        24,
+        345,
+        43
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "raw": "3. Fije el Smart Transfer Switch con 4 pernos de expansión M6 o tornillos M6."
+    },
+    {
+      "page": 56,
+      "bbox": [
+        27,
+        43,
+        346,
+        140
+      ],
+      "purpose": "embedded-art/mounting-fasteners",
+      "word_ids": [
+        2,
+        3,
+        4
+      ],
+      "raw": "1 2 3"
+    },
+    {
+      "page": 56,
+      "bbox": [
+        20,
+        156,
+        345,
+        171
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        166,
+        167,
+        168,
+        169,
+        170
+      ],
+      "raw": "Selección de Entrada de Cables"
+    },
+    {
+      "page": 56,
+      "bbox": [
+        20,
+        171,
+        345,
+        206
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165
+      ],
+      "raw": "• Durante el proceso de perforación, cubra el equipo interior para evitar que los desechos caigan dentro del equipo. • Quite los desechos después de la perforación para evitar interferencias con el equipo."
+    },
+    {
+      "page": 56,
+      "bbox": [
+        27,
+        206,
+        343,
+        380
+      ],
+      "purpose": "embedded-art/cable-entry",
+      "word_ids": [
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194
+      ],
+      "raw": "2\"(55mm) 2\"(55mm) 4\"(102mm) 3.7\"(95mm) 1 2 3 Por favor, apague la energía antes de trabajar en el cableado. No perfore fuera del área designada."
+    },
+    {
+      "page": 56,
+      "bbox": [
+        20,
+        366,
+        130,
+        381
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        131,
+        132
+      ],
+      "raw": "Conexiones Eléctricas"
+    },
+    {
+      "page": 56,
+      "bbox": [
+        20,
+        381,
+        345,
+        503
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      "raw": "Advertencia • Riesgo de descarga eléctrica. Antes de realizar el cableado, asegúrese de que la energía esté apagada. Asegúrese de que los disyuntores principales y derivados estén apagados. • Asegúrese de que los conductos estén instalados antes de realizar el cableado entre el panel principal y el Jackery Smart Transfer Switch para mejorar la seguridad y proteger los cables de daños. *Como se muestra en la imagen, puede mover los disyuntores del panel principal al Smart Transfer Switch. *La instalación del disyuntor derivado de 100A y 2 polos en el panel principal es como se muestra en la imagen. *Los disyuntores en el interruptor de transferencia no deben exceder los 30A."
+    },
+    {
+      "page": 57,
+      "bbox": [
+        27,
+        28,
+        343,
+        180
+      ],
+      "purpose": "embedded-art/grid-preparation",
+      "word_ids": [
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264
+      ],
+      "raw": "Panel principal Jackery Smart Transfer Switch OFF N A B L1 L1 L2 L1 L2 GRID 1 2 3 4 5 6 7 8 9 10 11 12 L2 L2 L2 L1 L1 N N N 30A Max Solo disyuntores unipolares y bipolares, no disyuntores en tándem."
+    },
+    {
+      "page": 57,
+      "bbox": [
+        20,
+        180,
+        345,
+        193
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        172,
+        173,
+        174,
+        175,
+        176,
+        177
+      ],
+      "raw": "Conexión de Conductores de la Red"
+    },
+    {
+      "page": 57,
+      "bbox": [
+        20,
+        193,
+        345,
+        338
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171
+      ],
+      "raw": "1. Asegúrese de que todos los disyuntores derivados y el disyuntor principal estén apagados. 2. Retire la cubierta tanto del panel principal como del Smart Transfer Switch. 3. Retire el orificio ciego del panel eléctrico y taladre los orificios de entrada de cables permitidos en el Smart Transfer Switch. 4. Instale un conducto(no incluido) entre el panel principal y el Smart Transfer Switch. 5. Tire de los cables precableados del panel principal agrupados a través del conducto. 6. Instale un disyuntor derivado compatible de 100A y 2 polos(no incluido) en el panel principal. 7. Ubique el cable de TIERRA del panel principal y conéctelo a los terminales de tierra de la red del Smart Transfer Switch. 8. Ubique el cable de NEUTRO del panel principal y conéctelo a los terminales neutros de la red del Smart Transfer Switch. 9. Ubique los cables VIVOS del disyuntor derivado de 100A agregado al panel principal y conéctelos al Smart Transfer Switch. Instale la cubierta de la fuente de alimentación del Smart Transfer Switch."
+    },
+    {
+      "page": 57,
+      "bbox": [
+        27,
+        338,
+        343,
+        503
+      ],
+      "purpose": "embedded-art/grid-wiring",
+      "word_ids": [
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276
+      ],
+      "raw": "Jackery Smart Transfer Switch Panel principal OFF N A B L1 L1 L2 L1 L2 GRID 1 2 3 4 5 6 7 8 9 10 11 12 L2 L2 L2 L1 L1 N N N 100A 100A A B 2 AWG 2 AWG 2 AWG L2 N L1 GND 6 AWG"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        15,
+        24,
+        345,
+        38
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        181,
+        182,
+        183,
+        184,
+        185,
+        186
+      ],
+      "raw": "Conexión de Conductores de Carga Doméstica"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        15,
+        38,
+        345,
+        198
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180
+      ],
+      "raw": "1. Seleccione un circuito derivado del panel principal para ser alimentado por el Smart Transfer Switch durante un corte de energía; cuando no haya corte de energía, los circuitos seleccionados serán alimentados por la red eléctrica. 2. Apague el disyuntor seleccionado en el panel principal. 3. Retire el cable VIVO del disyuntor seleccionado. 4. Retire el cable NEUTRO del circuito seleccionado de la barra colectora NEUTRO. 5. Retire el cable TIERRA del disyuntor seleccionado de la barra colectora de tierra. 6. Conecte el cable VIVO retirado del panel principal al disyuntor en el Smart Transfer Switch. 7. Conecte el cable NEUTRO retirado del panel principal a la barra colectora neutra en el Smart Transfer Switch. 8. El cable de tierra del panel eléctrico no necesita estar conectado al STS. 9. Etiquete el disyuntor en la cubierta del Smart Transfer Switch. 10. Repite el proceso para cada circuito. *La carga doméstica admite la conexión simultánea de circuitos de 120V y 240V, con un máximo de 12 circuitos para 120V y 6 circuitos para 240V."
+    },
+    {
+      "page": 58,
+      "bbox": [
+        18,
+        202,
+        345,
+        376
+      ],
+      "purpose": "embedded-art/load-wiring",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361
+      ],
+      "raw": "Jackery Smart Transfer Switch Panel principal L1 L1 L2 L1 L2 GRID 1 2 3 4 5 6 7 8 9 10 11 12 L2 L2 L2 L1 L1 N N N A B Al refrigerador o circuitos de 120V OFF N A B A la bomba de pozo o circuitos de 240V A y B. 1 1 1 1 5 9 1 14 AWG - 10 AWG 14 AWG - 10 AWG 14 AWG - 10 AWG 14 AWG - 10 AWG L1 L2 N GND Etiquete los circuitos en el subpanel y en el STS para una instalación fácil."
+    },
+    {
+      "page": 58,
+      "bbox": [
+        15,
+        389,
+        345,
+        405
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        262,
+        263,
+        264,
+        265,
+        266
+      ],
+      "raw": "Par de Apriete del Conductor"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        15,
+        405,
+        36,
+        425
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        219
+      ],
+      "raw": "Red"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        36,
+        405,
+        108,
+        425
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        229
+      ],
+      "raw": "Par"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        108,
+        405,
+        161,
+        425
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        222,
+        223,
+        224
+      ],
+      "raw": "Longitud de Desforre"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        161,
+        405,
+        206,
+        425
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        220,
+        221
+      ],
+      "raw": "Carga Doméstica"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        206,
+        405,
+        278,
+        425
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        228
+      ],
+      "raw": "Par"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        278,
+        405,
+        345,
+        425
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        225,
+        226,
+        227
+      ],
+      "raw": "Longitud de Desforre"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        15,
+        425,
+        36,
+        442
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        230
+      ],
+      "raw": "L1"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        36,
+        425,
+        108,
+        442
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        238,
+        239,
+        240
+      ],
+      "raw": "30.98 pulgadas-libra/3.5 N·m"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        108,
+        425,
+        161,
+        442
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        187,
+        188,
+        189,
+        190
+      ],
+      "raw": "0.47 pulgada (12 mm)"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        161,
+        425,
+        206,
+        442
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        234
+      ],
+      "raw": "L1"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        206,
+        425,
+        278,
+        442
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        250,
+        251,
+        252
+      ],
+      "raw": "20.36 pulgadas-libra/2.3 N·m"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        278,
+        425,
+        345,
+        442
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        203,
+        204,
+        205,
+        206
+      ],
+      "raw": "0.39 pulgada (10 mm)"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        15,
+        442,
+        36,
+        461
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        231
+      ],
+      "raw": "L2"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        36,
+        442,
+        108,
+        461
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        241,
+        242,
+        243
+      ],
+      "raw": "30.98 pulgadas-libra/3.5 N·m"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        108,
+        442,
+        161,
+        461
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        191,
+        192,
+        193,
+        194
+      ],
+      "raw": "0.47 pulgada (12 mm)"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        161,
+        442,
+        206,
+        461
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        235
+      ],
+      "raw": "L2"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        206,
+        442,
+        278,
+        461
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        253,
+        254,
+        255
+      ],
+      "raw": "20.36 pulgadas-libra/2.3 N·m"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        278,
+        442,
+        345,
+        461
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        207,
+        208,
+        209,
+        210
+      ],
+      "raw": "0.39 pulgada (10 mm)"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        15,
+        461,
+        36,
+        479
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        232
+      ],
+      "raw": "N"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        36,
+        461,
+        108,
+        479
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        244,
+        245,
+        246
+      ],
+      "raw": "46.02 pulgadas-libra/5.2 N·m"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        108,
+        461,
+        161,
+        479
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        195,
+        196,
+        197,
+        198
+      ],
+      "raw": "0.47 pulgada (12 mm)"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        161,
+        461,
+        206,
+        479
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        236
+      ],
+      "raw": "N"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        206,
+        461,
+        278,
+        479
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        256,
+        257,
+        258
+      ],
+      "raw": "17.7 pulgadas-libra/2.0 N·m"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        278,
+        461,
+        345,
+        479
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        211,
+        212,
+        213,
+        214
+      ],
+      "raw": "0.47 pulgada (12 mm)"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        15,
+        479,
+        36,
+        497
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        233
+      ],
+      "raw": "GND"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        36,
+        479,
+        108,
+        497
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        247,
+        248,
+        249
+      ],
+      "raw": "46.02 pulgadas-libra/5.2 N·m"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        108,
+        479,
+        161,
+        497
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        199,
+        200,
+        201,
+        202
+      ],
+      "raw": "0.79 pulgada (20 mm)"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        161,
+        479,
+        206,
+        497
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        237
+      ],
+      "raw": "GND"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        206,
+        479,
+        278,
+        497
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        259,
+        260,
+        261
+      ],
+      "raw": "17.7 pulgadas-libra/2.0 N·m"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        278,
+        479,
+        345,
+        497
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        215,
+        216,
+        217,
+        218
+      ],
+      "raw": "0.47 pulgada (12 mm)"
+    },
+    {
+      "page": 59,
+      "bbox": [
+        20,
+        30,
+        345,
+        45
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139
+      ],
+      "raw": "Instalar el botón de parada de emergencia (opcional)"
+    },
+    {
+      "page": 59,
+      "bbox": [
+        20,
+        45,
+        345,
+        88
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131
+      ],
+      "raw": "*Asegúrese de comprar un botón de parada de emergencia normalmente abierto. Instalar en un lugar externo de fácil acceso. Esto permite desconectar inmediatamente la alimentación de las cargas del STS en caso de emergencia."
+    },
+    {
+      "page": 59,
+      "bbox": [
+        25,
+        88,
+        345,
+        229
+      ],
+      "purpose": "embedded-art/external-emergency-stop",
+      "word_ids": [
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149
+      ],
+      "raw": "botão de parada de emergência Interior Exterior"
+    },
+    {
+      "page": 59,
+      "bbox": [
+        20,
+        231,
+        345,
+        244.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        92,
+        93,
+        94,
+        95,
+        96,
+        97
+      ],
+      "raw": "Instalación de Cubierta de Frente Muerto"
+    },
+    {
+      "page": 59,
+      "bbox": [
+        20,
+        244.5,
+        345,
+        314
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64
+      ],
+      "raw": "Advertencia *Confirme que todas las conexiones estén correctas, seguras y puestas a tierra. *Confirme que todos los tornillos estén apretados. *Utilice un multímetro en la configuración de continuidad para asegurarse de que el cable vivo no esté en cortocircuito con el neutro. *Utilice un multímetro en la configuración de continuidad para asegurarse de que el cable vivo no esté en cortocircuito con tierra."
+    },
+    {
+      "page": 59,
+      "bbox": [
+        20,
+        314,
+        345,
+        337
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91
+      ],
+      "raw": "Primero, retire los recortes para las cargas domésticas, llene cualquier espacio abierto no utilizado en la cubierta y luego apriete los tornillos para asegurar el frente muerto."
+    },
+    {
+      "page": 59,
+      "bbox": [
+        25,
+        337,
+        336,
+        503
+      ],
+      "purpose": "embedded-art/deadfront-installation",
+      "word_ids": [
+        140,
+        141,
+        142
+      ],
+      "raw": "1 2 3"
+    },
+    {
+      "page": 60,
+      "bbox": [
+        20,
+        24,
+        345,
+        37
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "raw": "Conexión con Estación de Energía"
+    },
+    {
+      "page": 60,
+      "bbox": [
+        20,
+        37,
+        345,
+        52
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "raw": "Para Jackery Explorer 5000 Plus(Máx. 2 unidades)"
+    },
+    {
+      "page": 60,
+      "bbox": [
+        27,
+        52,
+        345,
+        254
+      ],
+      "purpose": "embedded-art/power-station-connections",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        16,
+        17,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "raw": "AC2 ERROR IOT GRID AC1 Smart Transfer Switch POWER PAUSE/RESUME 1 2 1 2 Bloquear Desbloquear Cable de Entrada/ Salida de Energía"
+    },
+    {
+      "page": 60,
+      "bbox": [
+        20,
+        256,
+        345,
+        272
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        65
+      ],
+      "raw": "Energizando"
+    },
+    {
+      "page": 60,
+      "bbox": [
+        20,
+        272,
+        345,
+        308
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64
+      ],
+      "raw": "Antes de la energización, asegúrese de que los disyuntores principales y derivados estén en la posición APAGADO. Para energizar, enciende el disyuntor principal y luego enciende cada disyuntor derivado."
+    },
+    {
+      "page": 60,
+      "bbox": [
+        20,
+        308,
+        345,
+        322
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        112,
+        113,
+        114
+      ],
+      "raw": "Bloqueo del Panel"
+    },
+    {
+      "page": 60,
+      "bbox": [
+        27,
+        322,
+        344,
+        446
+      ],
+      "purpose": "embedded-art/locking-panel",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 60,
+      "bbox": [
+        20,
+        446,
+        345,
+        458.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        110,
+        111
+      ],
+      "raw": "Disyuntores Recomendados"
+    },
+    {
+      "page": 60,
+      "bbox": [
+        20,
+        458.5,
+        345,
+        503
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109
+      ],
+      "raw": "Disyuntores de 15A, disyuntores de 20A, disyuntores de 30A; no interruptores tandem ni cuádruples. Marcas y modelos de disyuntores compatibles: GE - THQL, Siemens - Tipo QP, Square D-HOM y HOMT, Eaton-BR El STS no es compatible con los interruptores automáticos de neutro enchufable."
+    },
+    {
+      "page": 61,
+      "bbox": [
+        25,
+        28,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "raw": "USO DE LA APLICACIÓN DE JACKERY"
+    },
+    {
+      "page": 61,
+      "bbox": [
+        25,
+        50,
+        345,
+        61.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "raw": "Para descargar la aplicación e iniciar sesión"
+    },
+    {
+      "page": 61,
+      "bbox": [
+        30.667,
+        86.0,
+        185.667,
+        113.0
+      ],
+      "purpose": "embedded-art/app-store-badges",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 61,
+      "bbox": [
+        31,
+        131,
+        85,
+        188
+      ],
+      "purpose": "embedded-art/app-download-qr",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 61,
+      "bbox": [
+        25,
+        61.5,
+        345,
+        86
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "raw": "Método 1: Busca \"Jackery\" en Google Play o App Store para instalar la aplicación. Después, podrá registrarte e iniciar sesión."
+    },
+    {
+      "page": 61,
+      "bbox": [
+        25,
+        115,
+        345,
+        131
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "raw": "Alternativamente, escanee el código QR a continuación para descargar e instalar la aplicación."
+    },
+    {
+      "page": 61,
+      "bbox": [
+        25,
+        190,
+        345,
+        204
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        48,
+        49,
+        50
+      ],
+      "raw": "Añadir un dispositivo"
+    },
+    {
+      "page": 61,
+      "bbox": [
+        25,
+        204,
+        175,
+        264
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70
+      ],
+      "raw": "1. Presiona el botón de IoT para activar el Wi-Fi y Bluetooth; la luz indicadora de IoT comenzará a parpadear."
+    },
+    {
+      "page": 61,
+      "bbox": [
+        25,
+        278,
+        178,
+        306
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129
+      ],
+      "raw": "Parpadeando - listo para conectar Fijo - conectado con éxito"
+    },
+    {
+      "page": 61,
+      "bbox": [
+        180,
+        197,
+        354,
+        328
+      ],
+      "purpose": "embedded-art/iot-pairing",
+      "word_ids": [
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109
+      ],
+      "raw": "AC2 ERROR IOT RED AC1 Smart Transfer Switch POTENCIA PAUSAR/REANU DAR ERROR IOT RED"
+    },
+    {
+      "page": 61,
+      "bbox": [
+        25,
+        340,
+        160,
+        412
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95
+      ],
+      "raw": "2. Pulsa en la aplicación para agregar tu dispositivo. Esto permite que la aplicación se conecte a dispositivos cercanos y habilite los permisos de Bluetooth"
+    },
+    {
+      "page": 61,
+      "bbox": [
+        156,
+        334,
+        247,
+        500
+      ],
+      "purpose": "embedded-art/app-add-device",
+      "word_ids": [
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119
+      ],
+      "raw": "Mi(s) dispositivo(s) En línea Smart Transfer Switch Explorer 5000 Plus"
+    },
+    {
+      "page": 62,
+      "bbox": [
+        20,
+        35,
+        345,
+        62
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "raw": "3. Pulsa el icono Smart Transfer Switch (STS) en la aplicación para entrar en la página principal de STS y conectar el dispositivo a la red Wi-Fi."
+    },
+    {
+      "page": 62,
+      "bbox": [
+        27,
+        66,
+        344,
+        270
+      ],
+      "purpose": "embedded-art/app-wifi",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123
+      ],
+      "raw": "2.4 GHz 5 GHz Analizando dispositivo... Escanear Asegúrate de que tu dispositivo es detectable y está cerca de tu teléfono. Dispositivo(s) disponible(s) escaneado(s) Smart Transfer Switch 5000 Plus Añadir dispositivos Generador Smart Transfer Switch Seleccionar red Wi-Fi Selecciona Wi-Fi 2.4 GHz Por favor, si usas Wi-Fi 5 GHz, cámbialo a 2.4 GHz Wi-Fi Lista Wi-Fi Actualizando Recordar contraseña Aceptar Una de las razones comunes para el fallo de inicio de sesión es el uso de una contraseña Wi-Fi incorrecta. Por favor, revisa la contraseña."
+    },
+    {
+      "page": 62,
+      "bbox": [
+        20,
+        273,
+        345,
+        289
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        6,
+        7,
+        8
+      ],
+      "raw": "Configuración de voltaje"
+    },
+    {
+      "page": 62,
+      "bbox": [
+        20,
+        289,
+        185,
+        305
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "raw": "1. Pulsa en la página principal de STS."
+    },
+    {
+      "page": 62,
+      "bbox": [
+        185,
+        289,
+        345,
+        305
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        184,
+        185,
+        186,
+        187,
+        188
+      ],
+      "raw": "2. Seleccionar Configuración de voltaje"
+    },
+    {
+      "page": 62,
+      "bbox": [
+        32,
+        301,
+        349,
+        490
+      ],
+      "purpose": "embedded-art/app-voltage-menu",
+      "word_ids": [
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        189,
+        190,
+        191
+      ],
+      "raw": "Smart Transfer Switch Red Inicio Hoy Hoy Hoy Hoy Generación Consumo Red Estación de energia Configuración General Editar nombre del dispositivo Smart Transfer Switch Configuración de voltaje Uso de energía Modos de trabajo Modo de solo copia de seguridad Prioridad de respaldo Modo UPS Otros Número de dispositivo: T02408207850001 Copiar Actualización de firmware Especificaciones del dispositivo Manual del usuario Desvincular Configuración de voltaj"
+    },
+    {
+      "page": 63,
+      "bbox": [
+        20,
+        26,
+        345,
+        62
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153
+      ],
+      "raw": "3. Pulsa en la esquina superior derecha. Después, pulsa para ajustar el voltaje a 240 V de acuerdo con la conexión real del circuito STS. Finalmente, pulsa para guardar los ajustes."
+    },
+    {
+      "page": 63,
+      "bbox": [
+        25,
+        62,
+        345,
+        190
+      ],
+      "purpose": "embedded-art/app-voltage-settings",
+      "word_ids": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        121,
+        122
+      ],
+      "raw": "Configuración de voltaje Combine 2 circuitos unipolares para crear un circuito bipolar, duplicando el voltaje. Circuito 1 Secadora Circuito 3 Secadora Circuito 5 Circuito 6 Ci it 7 Ci it 8 Configuración de voltaje Circuito 1 Secadora Circuito 3 Secadora Circuito 5 Circuito 6 Combine 2 circuitos unipolares para crear un circuito bipolar, duplicando el voltaje. Configuración de voltaje Circuito 1 Secadora Circuito 3 Cancelar fase partida Circuito 5 Circuito 6 Combine 2 circuitos unipolares para crear un circuito bipolar, duplicando el voltaje. 1 2 3"
+    },
+    {
+      "page": 63,
+      "bbox": [
+        20,
+        196,
+        345,
+        209
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw": "Editar el nombre del circuito"
+    },
+    {
+      "page": 63,
+      "bbox": [
+        20,
+        209,
+        345,
+        222
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "raw": "1. Pulsa 'circuitos' en la página principal del STS para entrar en la página principal de circuitos."
+    },
+    {
+      "page": 63,
+      "bbox": [
+        27,
+        222,
+        344,
+        349
+      ],
+      "purpose": "embedded-art/app-circuit-list",
+      "word_ids": [
+        117,
+        118,
+        154,
+        155
+      ],
+      "raw": "1 2 Circuit 1"
+    },
+    {
+      "page": 63,
+      "bbox": [
+        20,
+        353,
+        345,
+        371
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "raw": "2. Selecciona el circuito deseado y pulsa para editar su nombre."
+    },
+    {
+      "page": 63,
+      "bbox": [
+        26,
+        372,
+        344,
+        502
+      ],
+      "purpose": "embedded-art/app-circuit-name",
+      "word_ids": [
+        119,
+        120
+      ],
+      "raw": "1 2"
+    },
+    {
+      "page": 64,
+      "bbox": [
+        35,
+        22,
+        345,
+        43.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "raw": "GUÍA DE INICIO RÁPIDO DE LA APLICACIÓN JACKERY"
+    },
+    {
+      "page": 64,
+      "bbox": [
+        45,
+        43.5,
+        345,
+        63
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        30
+      ],
+      "raw": "Tablero"
+    },
+    {
+      "page": 64,
+      "bbox": [
+        52,
+        65,
+        145,
+        265
+      ],
+      "purpose": "embedded-art/app-dashboard",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 64,
+      "bbox": [
+        160,
+        63,
+        345,
+        185
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104
+      ],
+      "raw": "Observe y monitoree el consumo eléctrico en tiempo real del hogar, la estación de energía y la red. Consulte la fuente de energía actual del hogar. Cambie manualmente la fuente de energía del hogar a la estación de energía bajo las siguientes condiciones: 1. La batería de la estación de energía supera la reserva de respaldo. 2. El modo «Solo Respaldo» está desactivado. Generación de energía solar diaria y consumo eléctrico del hogar."
+    },
+    {
+      "page": 64,
+      "bbox": [
+        45,
+        262,
+        345,
+        285
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        31
+      ],
+      "raw": "Circuitos"
+    },
+    {
+      "page": 64,
+      "bbox": [
+        52,
+        285,
+        277,
+        490
+      ],
+      "purpose": "embedded-art/app-circuits",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 64,
+      "bbox": [
+        45,
+        490,
+        345,
+        505.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "raw": "Encienda o apague manualmente cada circuito doméstico, cámbieles el nombre y consulte el consumo histórico de energía de cada circuito."
+    },
+    {
+      "page": 66,
+      "bbox": [
+        40,
+        28,
+        345,
+        52
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        269,
+        270,
+        271
+      ],
+      "raw": "Modos de funcionamiento"
+    },
+    {
+      "page": 66,
+      "bbox": [
+        150,
+        62,
+        345,
+        74
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "raw": "Establecer la reserva de respaldo"
+    },
+    {
+      "page": 66,
+      "bbox": [
+        150,
+        74,
+        345,
+        172
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79
+      ],
+      "raw": "Cuando la estación de energía se esté descargando, la batería se descargará hasta alcanzar la reserva de respaldo. Durante un corte de energía, se descargará hasta llegar al límite de descarga (0%). Puede modiﬁcar el nivel en Conﬁguraciones > Modos de funcionamiento. *La conﬁguración de reserva de respaldo se puede activar en cualquier modo. *Durante un corte de energía, el nivel de la reserva de respaldo se descargará a 0% en cualquier modo."
+    },
+    {
+      "page": 66,
+      "bbox": [
+        150,
+        182,
+        345,
+        193
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        234,
+        235,
+        236,
+        237
+      ],
+      "raw": "Modo de carga automática"
+    },
+    {
+      "page": 66,
+      "bbox": [
+        150,
+        193,
+        345,
+        250
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268
+      ],
+      "raw": "Se utiliza comúnmente para la energía de respaldo doméstica diaria. La estación de energía se recargará automáticamente al 100% cuando AC1 o AC2 estén por debajo de la reserva de respaldo."
+    },
+    {
+      "page": 66,
+      "bbox": [
+        49,
+        62,
+        142,
+        263
+      ],
+      "purpose": "embedded-art/app-working-modes",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 66,
+      "bbox": [
+        40,
+        278,
+        345,
+        290
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        80,
+        81
+      ],
+      "raw": "Modo autoalimentación"
+    },
+    {
+      "page": 66,
+      "bbox": [
+        40,
+        290,
+        345,
+        342
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      "raw": "Aproveche al máximo la energía solar para su hogar. En este modo, la estación de energía se carga exclusivamente con energía solar. Dos horas después de alcanzar la carga completa, empezará a suministrar energía al hogar. Si no está completamente cargada, solo suministrará energía al hogar durante la noche."
+    },
+    {
+      "page": 66,
+      "bbox": [
+        40,
+        342,
+        345,
+        353
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        131,
+        132,
+        133,
+        134,
+        135
+      ],
+      "raw": "*Plan de carga y descarga"
+    },
+    {
+      "page": 66,
+      "bbox": [
+        40,
+        353,
+        345,
+        450
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233
+      ],
+      "raw": "Idóneo para situaciones con tarifas eléctricas ﬂuctuantes, ya que permite planes de carga y descarga según las horas de mayor y menor consumo eléctrico, lo que reduce los costes de electricidad. Función de carga: Establece el período de carga. Función de descarga: Establece el período de descargar. En este período, si las baterías exceden la reserva de respaldo, se descargarán. Cuando la estación de energía está conectada al Smart Transfer Switch, desactiva temporalmente el Modo de ahorro de batería, el Apagado automático, el Modo de ahorro de energía, el Modo de carga silenciosa y el Plan de carga."
+    },
+    {
+      "page": 67,
+      "bbox": [
+        45,
+        24,
+        345,
+        48
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        152,
+        153
+      ],
+      "raw": "Modo respaldo"
+    },
+    {
+      "page": 67,
+      "bbox": [
+        57,
+        57,
+        152,
+        263
+      ],
+      "purpose": "embedded-art/app-backup-only",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 67,
+      "bbox": [
+        160,
+        60,
+        345,
+        170
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "raw": "Cuando se habilita el modo de solo respaldo, la red eléctrica suministrará energía al hogar mientras carga la estación de energía por completo, la cual solo suministrará energía durante un corte de energía. El plan de carga-descarga y el modo autoalimentación se desactivarán temporalmente. El cambio manual a la estación de energía no está disponible en modo de solo reserva."
+    },
+    {
+      "page": 67,
+      "bbox": [
+        45,
+        270,
+        345,
+        295
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        154,
+        155,
+        156
+      ],
+      "raw": "Prioridad de respaldo"
+    },
+    {
+      "page": 67,
+      "bbox": [
+        57,
+        301,
+        152,
+        503
+      ],
+      "purpose": "embedded-art/app-backup-priority",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 67,
+      "bbox": [
+        160,
+        300,
+        345,
+        490
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151
+      ],
+      "raw": "Durante un corte de energía, el sistema prioriza el suministro de energía de batería a los circuitos domésticos. Clasiﬁque sus circuitos domésticos en 3 niveles: necesarios, deseables, y sin suministro de energía. Prioridades de circuitos 1. Circuitos esenciales: mientras haya energía en las baterías, se suministrará a estos circuitos. 2. Circuitos deseables: estos circuitos recibirán energía cuando el nivel de batería sea igual o superior al porcentaje que se haya establecido. 3. Circuitos no prioritarios: estos circuitos no recibirán energía cuando se utilice la batería durante un corte de energía."
+    },
+    {
+      "page": 68,
+      "bbox": [
+        45,
+        24,
+        345,
+        46
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3
+      ],
+      "raw": "Modo UPS"
+    },
+    {
+      "page": 68,
+      "bbox": [
+        59,
+        63,
+        152,
+        265
+      ],
+      "purpose": "embedded-art/app-ups-mode",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 68,
+      "bbox": [
+        160,
+        60,
+        345,
+        252
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108
+      ],
+      "raw": "Cuando el modo UPS está activado, si se produce un corte de energía, el STS cambiará automáticamente al suministro de la estación de energía dentro de 20 ms. Si el STS está cargando la estación de energía en ese momento, el tiempo de conmutación será superior a 20 ms y, una vez se restablezca la energía, cambiará automáticamente al suministro de la red eléctrica. En modo sin UPS, el tiempo de conmutación es de aproximadamente 5 segundos solo si la estación de energía está encendida. *El STS permanecerá encendido cuando esté conectado a la estación de energía, por lo que se recomienda no apagarla manualmente."
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        24,
+        345,
+        43
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        7
+      ],
+      "raw": "GARANTÍA"
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        43,
+        345,
+        66
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "raw": "Solo ofrecemos nuestra garantía a clientes que compren a través del sitio web oficial de Jackery, plataformas de terceros de marca Jackery o distribuidores locales autorizados."
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        66,
+        345,
+        92
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "raw": "*El período de garantía y los detalles pueden variar según las leyes, regulaciones y distribuidores autorizados locales."
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        95.5,
+        345,
+        108.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        344,
+        345
+      ],
+      "raw": "Garantía Limitada"
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        108.5,
+        345,
+        191
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      "raw": "Jackery Inc. garantiza al comprador consumidor original que el producto de Jackery estará libre de defectos de fabricación y material bajo uso normal durante el período de garantía aplicable identificado en la sección 'Período de Garantía' a continuación, sujeto a las exclusiones establecidas a continuación. Esta declaración de garantía establece la obligación total y exclusiva de garantía de Jackery. No asumiremos, ni autorizaremos a nadie a asumir por nosotros, ninguna otra responsabilidad en relación con la venta de nuestros productos."
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        191,
+        345,
+        204
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2
+      ],
+      "raw": "Período de Garantía"
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        204,
+        345,
+        264.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197
+      ],
+      "raw": "Garantía Estándar de 5 Años: El período de garantía estándar para Jackery Smart Transfer Switch es de 5 años. En cada caso, el período de garantía se mide a partir de la fecha de compra por el comprador consumidor original. Se requiere el recibo de venta de la primera compra del consumidor u otra prueba documental razonable para establecer la fecha de inicio del período de garantía."
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        264.5,
+        345,
+        277.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        3,
+        4,
+        5
+      ],
+      "raw": "Reparación o reemplazo"
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        277.5,
+        345,
+        316
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239
+      ],
+      "raw": "Jackery reparará o reemplazará (a expensas de Jackery) cualquier producto de Jackery que no funcione durante el período de garantía aplicable debido a un defecto de fabricación o material. El producto reparado/reemplazado asume la garantía restante de la fecha de compra original."
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        316,
+        345,
+        329
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        366,
+        367,
+        368,
+        369,
+        370
+      ],
+      "raw": "Limitada al Comprador Consumidor Original"
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        329,
+        345,
+        355.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365
+      ],
+      "raw": "La garantía del producto de Jackery está limitada al comprador consumidor original y no es transferible a ningún propietario posterior."
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        355.5,
+        345,
+        368.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        6
+      ],
+      "raw": "Exclusiones"
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        368.5,
+        345,
+        459.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343
+      ],
+      "raw": "La garantía de Jackery no se aplica a: Mal uso, abuso, modificaciones, daños por accidente o uso para algo diferente al uso normal del consumidor autorizado en la documentación actual del producto de Jackery. Reparaciones intentadas por alguien que no sea de una instalación autorizada. Cualquier producto comprado a través de una casa de subastas en línea. La garantía de Jackery no se aplica a la celda de batería a menos que la celda de batería esté completamente cargada por usted dentro de los siete días posteriores a la compra del producto y al menos una vez cada 6 meses a partir de entonces."
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        459.5,
+        345,
+        472.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        386,
+        387,
+        388
+      ],
+      "raw": "Derechos de Interpretación"
+    },
+    {
+      "page": 69,
+      "bbox": [
+        20,
+        472.5,
+        345,
+        503
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385
+      ],
+      "raw": "Jackery Inc. se reserva el derecho de interpretación final de la política de postventa anterior."
+    },
+    {
+      "page": 65,
+      "bbox": [
+        0,
+        0,
+        369,
+        526
+      ],
+      "purpose": "duplicate-print-page/64",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104
+      ],
+      "raw": "ES 62 GUÍA DE INICIO RÁPIDO DE LA APLICACIÓN JACKERY Encienda o apague manualmente cada circuito doméstico, cámbieles el nombre y consulte el consumo histórico de energía de cada circuito. Tablero Circuitos Observe y monitoree el consumo eléctrico en tiempo real del hogar, la estación de energía y la red. Consulte la fuente de energía actual del hogar. Cambie manualmente la fuente de energía del hogar a la estación de energía bajo las siguientes condiciones: 1. La batería de la estación de energía supera la reserva de respaldo. 2. El modo «Solo Respaldo» está desactivado. Generación de energía solar diaria y consumo eléctrico del hogar."
+    },
+    {
+      "page": 47,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 47,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "45"
+    },
+    {
+      "page": 48,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        1
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 48,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "46"
+    },
+    {
+      "page": 49,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        1
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 49,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "47"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        29
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 50,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        30
+      ],
+      "raw": "48"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        20
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 51,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        21
+      ],
+      "raw": "49"
+    },
+    {
+      "page": 52,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 52,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "50"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 53,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "51"
+    },
+    {
+      "page": 54,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 54,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "52"
+    },
+    {
+      "page": 55,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        32
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 55,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        33
+      ],
+      "raw": "53"
+    },
+    {
+      "page": 56,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 56,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "54"
+    },
+    {
+      "page": 57,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        1
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 57,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "55"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 58,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "56"
+    },
+    {
+      "page": 59,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 59,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "57"
+    },
+    {
+      "page": 60,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        14
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 60,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        15
+      ],
+      "raw": "58"
+    },
+    {
+      "page": 61,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        1
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 61,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "59"
+    },
+    {
+      "page": 62,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        5
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 62,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        4
+      ],
+      "raw": "60"
+    },
+    {
+      "page": 63,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        156
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 63,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        157
+      ],
+      "raw": "61"
+    },
+    {
+      "page": 64,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 64,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "raw": "62 consulte el consumo histórico de energía de cada circuito."
+    },
+    {
+      "page": 65,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 65,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "raw": "62 consulte el consumo histórico de energía de cada circuito."
+    },
+    {
+      "page": 66,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 66,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "63"
+    },
+    {
+      "page": 67,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 67,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "64"
+    },
+    {
+      "page": 68,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        0
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 68,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "65"
+    },
+    {
+      "page": 69,
+      "bbox": [
+        0,
+        0,
+        369,
+        22
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        389
+      ],
+      "raw": "ES"
+    },
+    {
+      "page": 69,
+      "bbox": [
+        0,
+        503,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        390
+      ],
+      "raw": "66"
+    }
+  ]
+}
