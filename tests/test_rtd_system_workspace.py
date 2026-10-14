@@ -675,6 +675,17 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
                 self.assertRaises(SystemExit):
             sw.main(["check", "--today", "24/09/2026"])
 
+    def assert_no_sidebar_links_to_overview_sections(self, site: Path) -> None:
+        """No page's sidebar links to 分享资料 (#shares) or 最近更新 (#updates): both are 概览 page sections."""
+        checked = []
+        for path in site.rglob("*.html"):
+            text = path.read_text(encoding="utf-8")
+            if 'id="app-sidebar"' in text:
+                checked.append(path.relative_to(site).as_posix())
+                for section in ("#shares", "#updates"):
+                    self.assertNotIn(f'{section}" class="app-nav-link', text, path)
+        self.assertIn("workspace/system/index.html", checked)
+
     def test_real_sphinx_renders_the_page_and_drops_only_it_on_contract_error(self):
         with TemporaryDirectory() as temp:
             base = Path(temp)
@@ -754,11 +765,16 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             # Corpus coverage must not read as manual localization completion.
             self.assertIn("语料库句对覆盖", page)
             self.assertIn("不是说明书的翻译完成率", page)
-            self.assertIn('#shares" class="app-nav-link"', page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="system/index.html"', workspace)
             self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
+            # 分享资料 and 最近更新 stay as sections of the 概览 page, without a search box or filters.
+            self.assertIn('id="shares"', workspace)
+            self.assertIn('id="updates"', workspace)
+            for removed in ('id="search"', 'class="filter-bar"'):
+                self.assertNotIn(removed, workspace)
+            self.assert_no_sidebar_links_to_overview_sections(base / "good")
 
             # The workspace and its system page do not depend on the AI sharing package.
             share.rename(base / "share-aside")
@@ -768,10 +784,11 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('href="system/index.html"', workspace)
             for absent in ("ai-share", 'id="shares"', 'id="search"', 'href="#shares"'):
                 self.assertNotIn(absent, workspace)
+            self.assertIn('id="updates"', workspace)
             self.assertIn('document.querySelector(".app-menu")', workspace)
             page = (base / "no-share" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             self.assertIn("当前重点", page)
-            self.assertNotIn('#shares" class="app-nav-link"', page)
+            self.assert_no_sidebar_links_to_overview_sections(base / "no-share")
             self.assertFalse((base / "no-share" / "ai-share").exists())
             (base / "share-aside").rename(share)
 

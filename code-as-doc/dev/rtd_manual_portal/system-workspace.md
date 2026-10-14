@@ -45,8 +45,9 @@ Existing capabilities name actual repository skills for file pretranslation,
 AI-file diagnosis/renumbering, PDF QC annotations, backport and builds. Hook
 entries distinguish Claude PostToolUse configuration from Git pre-push scripts
 that require core.hooksPath activation. The installed PDF multilingual audit
-skill is explicitly local, outside mirror distribution. Personal Product Knowledge
-and Market Policy pages are not part of this architecture view. Future access and
+skill is explicitly local, outside mirror distribution. The 产品知识 and 市场与政策
+pages are knowledge-base pages for product readers and are not part of this
+architecture view. Future access and
 cross-format IR directions extend the existing stages without fabricated dates;
 review-experience accumulation remains the knowledge-feedback direction.
 
@@ -137,12 +138,17 @@ checks read only the already-published same-origin receipt.
   every data domain on the page, it records where the fact is decided, how it
   is read, how fresh it must be and what shows without it. The page takes its
   snapshot names, freshness limits and fallback text from it, and lists it
-  publicly as 数据来源; see [Source registry](#source-registry).
+  as 数据来源; see [Source registry](#source-registry).
 
-The page is public, on the same RTD project as the manuals. `noindex` is not
-access control, so the contract holds only publishable facts. Gap narratives
-and resource needs belong to the Feishu internal page, not this file. The
-workspace sidebar shows the entry only when the page was built.
+The page is built only by the combined RTD project, which also serves the
+manuals; the manuals-only public project leaves it out (see
+[site role](knowledge-pages.md#public-manuals-project-site-role)). Since
+2026-10-13 the combined site has been private (Read the Docs for Business,
+login required), but the operator can make it public at any time, and
+`noindex` is not access control. The contract and the page therefore hold only
+publishable facts. Gap narratives and resource needs belong to the Feishu
+internal page, not this file. The workspace sidebar shows the entry only when
+the page was built.
 
 ### Current focus
 
@@ -298,7 +304,7 @@ records:
 - The system page and the deliverables page take snapshot names, freshness
   limits and fallback text from the registry. None of them is written in page
   code or in the status contract any more.
-- The system page lists every domain publicly under 数据来源, with each
+- The system page lists every domain under 数据来源, with each
   snapshot's date, and 待复核 once a snapshot is past its limit.
 - `check` fails on an unsound registry, an unregistered page domain, or a
   `file:auto-manual:` authority that does not exist. It warns about a stale or
