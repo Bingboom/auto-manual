@@ -215,6 +215,9 @@ class RtdPortalTests(unittest.TestCase):
         self.assertNotIn("AI 分享与说明书", page)
 
         workspace = (self.root / "after" / "workspace" / "index.html").read_text()
+        # The site sidebar links every page to these two sections (#updates, and #shares with a share package).
+        self.assertIn('id="updates"', workspace)
+        self.assertIn('id="shares"', workspace)
         self.assertIn("知识库", workspace)
         self.assertNotIn("我的知识库", workspace)
         self.assertIn("分享资料", workspace)
