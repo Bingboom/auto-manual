@@ -89,8 +89,9 @@ site keep linking to the manuals inside the same private site.
 
 `/workspace/deliverables/` (说明书工作台) is the production navigation surface.
 The stable URL is retained. Below the hero, the key-metric row (网页说明书,
-语言版本, Word 云文档, 印刷交付包) sits above three tabs: **交付物** (the
-deliverables matrix, open by default), **工作入口** and **生产与资产**; see
+语言版本, Word 云文档, 印刷交付包) sits above four tabs: **交付物** (the
+deliverables matrix, open by default), **数据统计** (see [数据统计](#数据统计)),
+**工作入口** and **生产与资产**; see
 [Page layout](manual-center.md#page-layout). The 工作入口 tab draws the work map
 **Content Authority → Source Binding → Assembly / IR → Human + Machine Surface**:
 either content authority (structured sources or a Git-native manual source)
@@ -186,6 +187,65 @@ fails the export instead of silently dropping a format.
 - The page always renders. Every knowledge page lists it first under 说明书生产,
   and the 知识库首页 links to it from its 说明书生产 group too.
 
+### 数据统计
+
+The 数据统计 tab (`#statistics`, after 交付物) holds what the 系统数据 page
+counted: what the repository holds about the manuals, narrowed by region and
+model. `production_statistics.html` renders it from the context that
+`tools/rtd/system_data.py` builds once per build; the page receives it as
+`statistics`, a separate key because this page's own `regions` and `models`
+have another shape. The tab loads `_static/system-data.js` and
+`_static/system-data.css`.
+
+- **Rows are read at build time.** `tools/rtd/system_data.py` reads
+  `docs/publish/publish_manifest.json` (one row per published Web route, as the
+  交付物 tab reads it), `data/model_capabilities.csv`,
+  `data/model_languages.csv`, the RST page count under
+  `docs/_review/<model>/<region>` and `data/asset_registry.csv` (category,
+  status without its leading mark, model, region). Nothing is snapshotted or
+  committed for the tab; a data change appears on the next RTD build.
+- **Cards:** headline counts (models with Web manuals and their regions,
+  languages, targets with review pages, asset registry entries and their 成品
+  share; 网页说明书 and 语言版本 stay in the key-metric row above the tabs);
+  发布 (a model × language matrix, per-language and per-region bars and the
+  sortable, searchable publication table, all counted in 语言版本, one table row
+  per route); 机型能力 (the target × capability matrix and each capability's
+  coverage); 素材 (registry entries by status, category and model).
+- **Published models only.** The 机型能力 cards list the targets of models
+  with at least one published 说明书 (`published_targets`, which reads the
+  models off `production_evidence.publication_facts`): every region of such a
+  model stays, and an unpublished model drops out. On the 2026-10-12 manifest
+  29 of 37 targets (9 of 16 models) remain. The 产品矩阵 page's 功能矩阵 is not
+  filtered; it still lists every model of the capability table.
+- **Asset counts are registry entries.** 素材登记 counts the rows of
+  `data/asset_registry.csv`, not deduplicated artwork; the 生产与资产 tab's
+  Artwork Assets stays Not tracked yet.
+- **Filters are client-side.** The rows travel as one JSON block
+  (`<` escaped) and `_static/system-data.js` filters and counts them. A region
+  dropdown, a model dropdown and clicks on a model (matrix rows, capability
+  rows, asset bars, table rows) or a region bar narrow every card; clicking the
+  same item again clears it. The selection is kept in the URL query
+  (`?region=EU&model=JE-1000F#statistics`). An asset whose model or region is
+  `ALL` counts under every model or region. The headline counts are distinct
+  models, regions and languages, so a repeated route counts once; 语言版本 and
+  说明书 stay with the key-metric row, which takes them from
+  `production_evidence.publication_facts`, the counting every page shares (see
+  [System workspace](system-workspace.md)).
+  The script fills only the tab's own counts. The tab is hidden at load, so
+  its charts first draw at a 260px fallback; a `ResizeObserver` on the panel
+  redraws them when the tab opens or its width changes.
+- **Without JavaScript** the whole-repository counts and the publication table
+  still render; the charts show a note instead.
+- **Failure:** without a readable publish manifest the 发布 cards show 无数据,
+  and so do the 机型能力 cards (无数据：发布清单当前不可读，无法确定已发布型号), since
+  the published models are unknown; the other cards still render. A CSV
+  missing a column, a capability value other than `TRUE`/`FALSE`, a target key
+  that is not `<model>_<region>`, or an asset row without status, model or
+  region leaves the tab with 机型能力表或素材登记表不可读，构建日志有告警 and the
+  Sphinx warning `Workbench statistics show no data`; the rest of the page
+  renders. `tests/test_rtd_system_data.py` fails first. The counting functions
+  have Node tests in `tests/system_data_ui.test.mjs`.
+
 ## Design system page
 
 `/workspace/design/index.html` (设计规范; URL, template and module keep the
@@ -242,45 +302,15 @@ library does not link to it.
 
 ## System data page
 
-`/workspace/data/index.html` (系统数据) counts what the repository holds about
-the manuals and lets a reader narrow every card by region and model. It is
-listed last under 说明书生产 until it is folded into 说明书工作台; the public manual
-library does not link to it. 工程规模 is on the 系统建设 page; see
-[Engineering scale](system-workspace.md#engineering-scale).
-
-- **Rows are read at build time.** `tools/rtd/system_data.py` reads
-  `docs/publish/publish_manifest.json` (one row per published Web route, as the
-  deliverables page reads it), `data/model_capabilities.csv`,
-  `data/model_languages.csv`, the RST page count under
-  `docs/_review/<model>/<region>` and `data/asset_registry.csv` (category,
-  status without its leading mark, model, region). Nothing is snapshotted or
-  committed for the page; a data change appears on the next RTD build.
-- **Cards:** headline counts (网页语言版本 N 个 with the 合 M 本说明书（型号×区域）
-  they make up, models, languages, targets with review pages, assets and their
-  成品 share); 发布 (a model × language matrix, per-language and per-region bars
-  and the sortable, searchable publication table, all counted in 语言版本, one
-  table row per route); 机型能力 (the target × capability matrix and each
-  capability's coverage); 素材 (assets by status, category and model).
-- **Filters are client-side.** The rows travel as one JSON block
-  (`<` escaped) and `_static/system-data.js` filters and counts them. A region
-  dropdown, a model dropdown and clicks on a model (matrix rows, capability
-  rows, asset bars, table rows) or a region bar narrow every card; clicking the
-  same item again clears it. The selection is kept in the URL query
-  (`?region=EU&model=JE-1000F`). An asset whose model or region is `ALL` counts
-  under every model or region. The headline 语言版本 and 说明书 are distinct
-  model × region × language and model × region identities: the build takes them
-  from `production_evidence.publication_facts`, the counting every page shares
-  (see [System workspace](system-workspace.md)), and a filter recounts the same
-  identities, so a repeated route counts once.
-- **Without JavaScript** the whole-repository counts and the publication table
-  still render; the charts show a note instead.
-- **Failure:** without a readable publish manifest the 发布 cards show 无数据;
-  the other cards still render. A CSV missing a column, a capability value
-  other than `TRUE`/`FALSE`, a target key that is not `<model>_<region>`, or an
-  asset row without status, model or region skips the page with a Sphinx
-  warning and hides its sidebar entry; `tests/test_rtd_system_data.py` fails
-  first. The counting functions have Node tests in
-  `tests/system_data_ui.test.mjs`.
+`/workspace/data/index.html` (系统数据) is a pointer page until the operator
+confirms its removal. Its statistics moved to the 说明书工作台 tab
+[数据统计](#数据统计), and its 工程规模 to the 系统建设 tab 工具与工程规模 (see
+[Engineering scale](system-workspace.md#engineering-scale)). The page keeps the
+site shell and its place last under 说明书生产, and links both places. A small
+script carries a shared `?region=&model=` query over to the 工作台 link, so an
+old filtered link still opens the same view. The page reads no data and is
+always built; its sidebar entry and home card still show only while the
+statistics context builds.
 
 ## Product matrix page
 

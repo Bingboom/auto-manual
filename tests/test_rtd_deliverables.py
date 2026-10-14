@@ -305,6 +305,20 @@ class RealSphinxTests(unittest.TestCase):
             for card in soup.select('[data-metric]'):
                 self.assertTrue(card.select('details'))
             self.assertTrue(soup.select('.pe-attention a[href]'))
+            # 数据统计: the statistics moved from 系统数据, with their own JSON block, script and filters.
+            self.assertEqual([tab['data-tab'] for tab in soup.select('.page-tabs [data-tab]')],
+                             ['deliverables', 'statistics', 'work-entries', 'production-evidence'])
+            statistics = soup.select_one('#statistics.tab-panel.system-data')
+            payload = json.loads(statistics.select_one('script#system-data-json').string)
+            # Capability rows list published models only: JE-1000F, in every region of the capability table.
+            self.assertTrue(payload['targets'])
+            self.assertEqual({row['model'] for row in payload['targets']}, {'JE-1000F'})
+            # The page summary above the tabs owns 网页说明书 / 语言版本; the tab counts the rest.
+            self.assertEqual([kpi.span.text for kpi in statistics.select('.kpi')],
+                             ['覆盖机型', '发布语言', '机型/区域目标', '素材登记'])
+            self.assertEqual(len(statistics.select('#sd-table tbody tr')), 1)
+            self.assertIsNotNone(soup.select_one('head script[src="../../_static/system-data.js"]'))
+            self.assertTrue((base / "good" / "_static" / "system-data.js").is_file())
 
             self.assertEqual(len(soup.select('.dl-table a[target="_blank"][rel="noopener"]')), 4)
             self.assertIn('<option value="JE-1800B">JE-1800B</option>', page)
@@ -374,12 +388,24 @@ class RealSphinxTests(unittest.TestCase):
             _, page = build("nothing")
             self.assertIn("发布清单和飞书快照当前都不可读", page)
             self.assertIn("网页手册：发布清单当前不可读", page)
+            self.assertIn("无数据：本次构建没有可读的发布清单", page)
+            self.assertIn("无数据：发布清单当前不可读，无法确定已发布型号。", page)
             manifest.write_text(json.dumps({"targets": []}), encoding="utf-8")
             (assets / SNAPSHOT_NAME).write_text(json.dumps({"schema": dl.SNAPSHOT_SCHEMA,
                 "exported_at": "2026-09-25", "documents": []}), encoding="utf-8")
             _, page = build("empty")
             self.assertIn("当前有效快照没有交付物", page)
             self.assertNotIn("发布清单和飞书快照当前都不可读", page)
+
+            # An unreadable capability table empties only the 数据统计 tab; 系统数据 stays a pointer page.
+            with (web / "conf.py").open("a", encoding="utf-8") as conf:
+                conf.write("from tools.rtd import system_data\nsystem_data.CAPABILITIES_CSV = 'missing.csv'\n")
+            result, page = build("no-statistics")
+            self.assertIn("Workbench statistics show no data", result.stderr)
+            self.assertIn("机型能力表或素材登记表不可读，构建日志有告警。", page)
+            self.assertNotIn("system-data-json", page)
+            self.assertIn("当前有效快照没有交付物", page)
+            self.assertTrue((base / "no-statistics" / "workspace" / "data" / "index.html").is_file())
 
 
 

@@ -59,6 +59,8 @@ Node UI、完整 unittest、维护门禁、文档链接检查和 Sphinx 页面�
   近 7 / 30 天采用 UTC、截至本次构建日零点的半开区间 [开始, 结束)。
   没有完整事件账本的指标显示 Not tracked yet；不读取文件 mtime 推算事件。
 - 快照读取失败单独显示 Unavailable；注册数不等于实际消费，链接数不等于逐格式文件数。
+- “数据统计”标签的素材数是 `data/asset_registry.csv` 的登记条目，不是去重后的插图资产数；
+  “生产与资产”的 Artwork Assets 在确定规范资产身份前仍为 Not tracked yet。
 
 ## 后续记录缺口
 

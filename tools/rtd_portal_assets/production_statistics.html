@@ -1,0 +1,112 @@
+{#- 说明书工作台「数据统计」 (#statistics): the statistics moved from 系统数据 (P2a②).
+    Context: `statistics` from tools/rtd/system_data.py, namespaced because this page's own
+    `regions` and `models` have another shape. _static/system-data.js filters the rows of the
+    JSON block below by region and model and draws the charts; without JavaScript the
+    whole-repository counts and the publication table still show. -#}
+{%- macro count(value) -%}{% if value is none %}—{% else %}{{ '{:,}'.format(value) }}{% endif %}{%- endmacro -%}
+{%- macro fallback() -%}<p class="sd-fallback">启用 JavaScript 后显示图表。</p>{%- endmacro -%}
+<div class="sd-filters" id="sd-filters" hidden>
+  <label class="sd-select">区域
+    <select id="sd-region"><option value="">全部区域</option>{% for region in statistics.regions %}<option value="{{ region.code|e }}">{{ region.code|e }}</option>{% endfor %}</select>
+  </label>
+  <label class="sd-select">机型
+    <select id="sd-model"><option value="">全部机型</option>{% for model in statistics.models %}<option value="{{ model|e }}">{{ model|e }}</option>{% endfor %}</select>
+  </label>
+  <button type="button" class="sd-reset" id="sd-reset" hidden>清除筛选</button>
+  <span class="sd-hint">也可以点击图表或表格里的机型，再点一次取消。</span>
+</div>
+<p class="sd-scope" id="sd-scope" hidden></p>
+
+<div class="kpi-row" id="sd-kpis">
+  <div class="kpi"><span>覆盖机型</span><strong data-kpi="models">{{ count(statistics.summary.models) }}</strong><em>分布在 <b data-kpi="regions">{{ count(statistics.summary.regions) }}</b> 个区域</em></div>
+  <div class="kpi"><span>发布语言</span><strong data-kpi="languages">{{ count(statistics.summary.languages) }}</strong><em>按语言代码去重</em></div>
+  <div class="kpi"><span>机型/区域目标</span><strong data-kpi="targets">{{ count(statistics.summary.targets) }}</strong><em>其中 <b data-kpi="review_targets">{{ count(statistics.summary.review_targets) }}</b> 个有评审页面</em></div>
+  <div class="kpi"><span>素材登记</span><strong data-kpi="assets">{{ count(statistics.summary.assets) }}</strong><em><b data-kpi="ready_share">{{ statistics.summary.ready_share or '—' }}</b> 为成品</em></div>
+</div>
+
+<section class="sd-section" id="publishing" aria-labelledby="publishing-title">
+  <h2 id="publishing-title">发布</h2>
+  {%- if statistics.published is none %}
+  <p class="sd-empty">无数据：本次构建没有可读的发布清单（docs/publish/publish_manifest.json）。</p>
+  {%- else %}
+  <article class="sd-card" id="sd-matrix-card">
+    <header><h3>机型 × 语言发布矩阵</h3><p>实心格表示该机型已有这一语言的网页说明书，右侧为语言版本数。点击一行即按该机型筛选。</p></header>
+    <div class="sd-chart" id="sd-matrix">{{ fallback() }}</div>
+  </article>
+  <div class="sd-grid">
+    <article class="sd-card" id="sd-langs-card">
+      <header><h3>按语言</h3><p>每种语言的语言版本个数。</p></header>
+      <div class="sd-chart" id="sd-langs">{{ fallback() }}</div>
+    </article>
+    <article class="sd-card" id="sd-regions-card">
+      <header><h3>按区域</h3><p>每个区域的语言版本个数；点击即按该区域筛选。</p></header>
+      <div class="sd-chart" id="sd-regions">{{ fallback() }}</div>
+    </article>
+  </div>
+  <article class="sd-card" id="sd-table-card">
+    <header><h3>已发布网页说明书</h3><p>按构建日期倒序；点表头排序，点一行按该机型筛选。</p></header>
+    <div class="sd-tools">
+      <input class="sd-search" id="sd-search" type="search" placeholder="搜索机型、区域、语言、版本…" aria-label="搜索已发布说明书" hidden>
+      <span class="sd-count" id="sd-count">{{ statistics.published|length }} 个语言版本</span>
+    </div>
+    <div class="sd-table-wrap">
+      <table class="sd-table" id="sd-table">
+        <thead><tr>
+          <th><button type="button" data-sort="0">机型</button></th>
+          <th><button type="button" data-sort="1">区域</button></th>
+          <th><button type="button" data-sort="2">语言</button></th>
+          <th class="sd-wide"><button type="button" data-sort="3">版本</button></th>
+          <th><button type="button" data-sort="4" aria-sort="descending">构建日期</button></th>
+        </tr></thead>
+        <tbody>
+          {%- for row in statistics.published %}
+          <tr data-model="{{ row.model|e }}" data-region="{{ row.region|e }}"><td class="sd-key"><a href="{{ pathto(row.docname)|e }}">{{ row.model|e }}</a></td><td>{{ row.region|e }}</td><td>{{ row.lang|e }}</td><td class="sd-wide">{{ row.version|e }}</td><td>{{ row.built_on|e }}</td></tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </article>
+  {%- endif %}
+</section>
+
+<section class="sd-section" id="capabilities" aria-labelledby="capabilities-title">
+  <h2 id="capabilities-title">机型能力</h2>
+  <p class="sd-note">读自 <code>data/model_capabilities.csv</code>（sync-data 镜像）：能力开关决定说明书里出现哪些章节。</p>
+  {%- if statistics.targets is none %}
+  <p class="sd-empty">无数据：{{ fallbacks.publications|e }}，无法确定已发布型号。</p>
+  {%- else %}
+  <div class="sd-grid sd-grid-wide">
+    <article class="sd-card" id="sd-caps-card">
+      <header><h3>能力矩阵</h3><p>每行一个已发布型号的 机型_区域 目标，悬停查看项目号、语言和评审页数；点击按该机型筛选。</p></header>
+      <div class="sd-legend"><span><i class="sd-swatch is-on"></i>支持</span><span><i class="sd-swatch"></i>不支持</span><span><i class="sd-swatch is-review"></i>有评审页面</span></div>
+      <div class="sd-chart" id="sd-caps">{{ fallback() }}</div>
+    </article>
+    <article class="sd-card" id="sd-coverage-card">
+      <header><h3>能力覆盖率</h3><p>支持该能力的目标占当前筛选下全部目标的比例。</p></header>
+      <div class="sd-chart" id="sd-coverage">{{ fallback() }}</div>
+    </article>
+  </div>
+  {%- endif %}
+</section>
+
+<section class="sd-section" id="assets" aria-labelledby="assets-title">
+  <h2 id="assets-title">素材</h2>
+  <p class="sd-note">读自 <code>data/asset_registry.csv</code>：登记条目，不是去重后的插图资产数（见「生产与资产」Artwork Assets：Not tracked yet）。按区域或机型筛选时，适用范围为 ALL 的通用素材也计入。</p>
+  <div class="sd-grid">
+    <article class="sd-card" id="sd-status-card">
+      <header><h3>按状态</h3><p>隔离与缺失需要处理。</p></header>
+      <div class="sd-chart" id="sd-status">{{ fallback() }}</div>
+    </article>
+    <article class="sd-card" id="sd-category-card">
+      <header><h3>按类别</h3><p>素材条目数。</p></header>
+      <div class="sd-chart" id="sd-category">{{ fallback() }}</div>
+    </article>
+    <article class="sd-card" id="sd-asset-models-card">
+      <header><h3>按适用机型（前 12）</h3><p>ALL 为各机型通用素材；点击机型即筛选。</p></header>
+      <div class="sd-chart" id="sd-asset-models">{{ fallback() }}</div>
+    </article>
+  </div>
+</section>
+
+<p class="sd-footer">每次构建时读取 <code>docs/publish/publish_manifest.json</code>{% if statistics.built_on %}（构建于 {{ statistics.built_on|e }}）{% endif %}、<code>data/model_capabilities.csv</code>、<code>data/model_languages.csv</code>、<code>docs/_review/</code> 和 <code>data/asset_registry.csv</code>；页面不另存数据。</p>
+<script type="application/json" id="system-data-json">{{ statistics.data_json }}</script>

@@ -1,7 +1,8 @@
 'use strict';
-// 系统数据 page: filter the build-time rows by region and model and redraw every
-// card. The rows come from the page's JSON block; without JavaScript the
-// whole-repository counts and the publication table stay as rendered.
+// 说明书工作台「数据统计」 tab: filter the build-time rows by region and model and
+// redraw every card. The rows come from the tab's JSON block; without JavaScript
+// the whole-repository counts and the publication table stay as rendered.
+// The tab is hidden at load, so its charts redraw whenever its width changes.
 // The counting functions are pure and exposed as SystemDataModel for tests.
 (() => {
   const SHARED = 'ALL';
@@ -20,9 +21,10 @@
       .sort((a, b) => b.n - a.n || String(a.label).localeCompare(String(b.label)));
   };
 
+  // Without a publish manifest both published and targets (published models only) are null.
   const summary = (data, sel) => {
     const published = data.published ? data.published.filter(row => fits(row, sel)) : null;
-    const targets = data.targets.filter(row => fits(row, sel));
+    const targets = data.targets ? data.targets.filter(row => fits(row, sel)) : null;
     const assets = data.assets.filter(row => assetFits(row, sel));
     // Distinct identities, as production_evidence.publication_facts counts them for every page:
     // 语言版本 = model × region × language, 说明书 = model × region; a repeated route counts once.
@@ -30,8 +32,8 @@
     return {
       variants: distinct('model', 'region', 'lang'), books: distinct('model', 'region'),
       models: distinct('model'), languages: distinct('lang'), regions: distinct('region'),
-      targets: targets.length,
-      review_targets: targets.filter(row => row.review_pages > 0).length,
+      targets: targets ? targets.length : null,
+      review_targets: targets ? targets.filter(row => row.review_pages > 0).length : null,
       assets: assets.length,
       ready_share: assets.length ? assets.filter(row => row.status === READY).length / assets.length : null,
     };
@@ -56,6 +58,7 @@
   };
 
   const coverage = (data, sel) => {
+    if (!data.targets) return [];
     const targets = data.targets.filter(row => fits(row, sel));
     return data.capabilities.map((name, index) => {
       const supported = targets.filter(row => row.caps[index] === 1).length;
@@ -77,6 +80,8 @@
 
   const NS = 'http://www.w3.org/2000/svg';
   const $ = id => document.getElementById(id);
+  // The tab panel that holds the JSON block; its KPIs are the only [data-kpi] this script fills.
+  const panel = source.closest('.tab-panel') || document.body;
   const number = new Intl.NumberFormat('zh-CN');
   const percent = new Intl.NumberFormat('zh-CN', {style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1});
   const languageName = code => (data.language_labels[code] ? `${code} · ${data.language_labels[code]}` : code);
@@ -219,7 +224,7 @@
 
   const drawCapabilities = () => {
     const box = $('sd-caps');
-    if (!box) return;
+    if (!box || !data.targets) return;
     const targets = data.targets.filter(row => fits(row, sel))
       .sort((a, b) => a.model.localeCompare(b.model) || a.region.localeCompare(b.region));
     if (!targets.length) {
@@ -325,7 +330,7 @@
 
   const fillCounts = () => {
     const counts = summary(data, sel);
-    document.querySelectorAll('[data-kpi]').forEach(node => {
+    panel.querySelectorAll('[data-kpi]').forEach(node => {
       const value = counts[node.dataset.kpi];
       node.textContent = value === null || value === undefined ? '—'
         : node.dataset.kpi === 'ready_share' ? percent.format(value) : number.format(value);
@@ -399,12 +404,15 @@
   }
 
   render();
+  // A hidden tab has no width, so its first charts fall back to 260px and unmeasured labels:
+  // redraw when the panel shows or changes width (height changes, from drawing included, do not count).
   let pending = 0;
-  let lastWidth = document.documentElement.clientWidth;
-  window.addEventListener('resize', () => {
-    if (document.documentElement.clientWidth === lastWidth) return;
-    lastWidth = document.documentElement.clientWidth;
+  let lastWidth = panel.clientWidth;
+  new ResizeObserver(() => {
+    const width = panel.clientWidth;
+    if (!width || width === lastWidth) return;
+    lastWidth = width;
     cancelAnimationFrame(pending);
     pending = requestAnimationFrame(render);
-  });
+  }).observe(panel);
 })();

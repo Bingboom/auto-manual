@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="说明书工作台：生产结果、资产引用与回流复用证据，按目标查找多格式交付物。">
+  <meta name="description" content="说明书工作台：生产结果、资产引用与回流复用证据和数据统计，按目标查找多格式交付物。">
   <title>说明书工作台</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
@@ -12,8 +12,10 @@
   <link rel="stylesheet" href="{{ pathto('_static/deliverables.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/manual-workbench.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/production-evidence.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/system-data.css', 1) }}">
   <script defer src="{{ pathto('_static/manual-workbench.js', 1) }}"></script>
   <script defer src="{{ pathto('_static/machine-surface-stats.js', 1) }}"></script>
+  <script defer src="{{ pathto('_static/system-data.js', 1) }}"></script>
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 <body class="app system-workspace deliverables">
@@ -35,6 +37,7 @@
 
     <nav class="page-tabs" role="tablist" aria-label="工作台分类">
       <a role="tab" href="#deliverables" data-tab="deliverables" aria-selected="true">交付物</a>
+      <a role="tab" href="#statistics" data-tab="statistics">数据统计</a>
       <a role="tab" href="#work-entries" data-tab="work-entries">工作入口</a>
       <a role="tab" href="#production-evidence" data-tab="production-evidence">生产与资产</a>
     </nav>
@@ -80,6 +83,11 @@
     </section>
     </div>
 
+    {#- The statistics moved from 系统数据; `statistics` is None when a capability or asset CSV is unreadable. #}
+    <div class="tab-panel system-data" id="statistics" role="tabpanel" aria-label="数据统计">
+      {% if statistics %}{% include 'production_statistics.html' %}{% else %}<div class="empty-state"><h3>无数据</h3><p>机型能力表或素材登记表不可读，构建日志有告警。</p></div>{% endif %}
+    </div>
+
     <div class="tab-panel" id="work-entries" role="tabpanel" aria-label="工作入口">
       {% include 'manual_workbench.html' %}
     </div>
@@ -93,7 +101,7 @@
 
     <footer>
       <span>页面构建日期 {{ build_date|e }}</span>
-      <span>数据来源：发布清单 · 飞书文档构建表快照</span>
+      <span>数据来源：发布清单 · 飞书文档构建表快照 · 机型能力与素材登记</span>
     </footer>
   </main>
 </div>

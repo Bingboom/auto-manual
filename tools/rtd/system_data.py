@@ -1,12 +1,14 @@
-"""Build-time 系统数据 page: published manuals, model capabilities and assets, filterable by region and model.
+"""Build-time 数据统计 of 说明书工作台: published manuals, model capabilities and assets, filterable by region and model.
 
-``/workspace/data/`` reads, at build time and from the repository only:
+The 数据统计 tab of ``/workspace/deliverables/`` reads, at build time and from
+the repository only:
 
 - ``docs/publish/publish_manifest.json``: one row per published Web route
-  (model, region, language, version, build date), as the deliverables page
+  (model, region, language, version, build date), as the deliverables matrix
   reads it;
 - ``data/model_capabilities.csv``: the capability switches of every
-  ``<model>_<region>`` target;
+  ``<model>_<region>`` target; the tab lists the targets of published models
+  only (a model with at least one published 说明书);
 - ``data/model_languages.csv``: the languages registered for a target;
 - ``docs/_review/<model>/<region>``: the review pages on this commit;
 - ``data/asset_registry.csv``: category, status, model and region of every
@@ -15,9 +17,10 @@
 The rows travel to the browser as one JSON block; ``_static/system-data.js``
 filters them by region and model and draws the charts. Without JavaScript the
 whole-repository counts and the publication table still show. A missing
-publish manifest shows the publication cards as 无数据; an unreadable or
-malformed CSV is an authoring error that skips the page (and its sidebar entry)
-with a Sphinx warning.
+publish manifest shows the publication and capability cards as 无数据, since
+the published models are unknown; an unreadable or malformed CSV is an
+authoring error that empties the tab with a Sphinx warning.
+``/workspace/data/`` (系统数据) is a pointer page to the tab until it is removed.
 """
 from __future__ import annotations
 
@@ -145,11 +148,26 @@ def _facets(*groups: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[s
     return [{"code": code, "rows": count} for code, count in ordered], sorted(models)
 
 
-def summary(published: list[dict[str, str]] | None, targets: list[dict[str, Any]],
+def published_targets(targets: list[dict[str, Any]],
+                      published: list[dict[str, str]] | None) -> list[dict[str, Any]] | None:
+    """The targets of published models, or None without a publish manifest.
+
+    A model is published when it has at least one 说明书 (model × region) in the
+    manifest, counted by ``publication_facts``; all its targets stay, an
+    unpublished model's drop out.
+    """
+    if published is None:
+        return None
+    models = {model for model, _region in publication_facts(published)["book_ids"]}
+    return [target for target in targets if target["model"] in models]
+
+
+def summary(published: list[dict[str, str]] | None, targets: list[dict[str, Any]] | None,
             assets: list[dict[str, str]]) -> dict[str, Any]:
-    """The whole-repository counts the page shows before (or without) any filter.
+    """The whole-repository counts the tab shows before (or without) any filter.
 
     语言版本 and 说明书 are counted as on every other page; the table lists one row per route.
+    Without a publish manifest the publication counts and the published-model targets are None.
     """
     ready = sum(1 for asset in assets if asset["status"] == "成品")
     web = publication_facts(published) if published is not None else None
@@ -159,8 +177,8 @@ def summary(published: list[dict[str, str]] | None, targets: list[dict[str, Any]
         "models": web["models"] if web is not None else None,
         "languages": len({row["lang"] for row in published}) if published is not None else None,
         "regions": len({row["region"] for row in published}) if published is not None else None,
-        "targets": len(targets),
-        "review_targets": sum(1 for target in targets if target["review_pages"]),
+        "targets": len(targets) if targets is not None else None,
+        "review_targets": sum(1 for target in targets if target["review_pages"]) if targets is not None else None,
         "assets": len(assets),
         "ready_share": f"{ready / len(assets):.1%}" if assets else None,
     }
@@ -168,13 +186,15 @@ def summary(published: list[dict[str, str]] | None, targets: list[dict[str, Any]
 
 def system_data_context(root: Path, manifest: Path, language_labels: dict[str, str]) -> dict[str, Any]:
     paths = Paths(root)
-    names, targets = read_targets(
+    names, every_target = read_targets(
         paths.data_dir / CAPABILITIES_CSV, paths.data_dir / LANGUAGES_CSV, paths.review_dir,
     )
     assets = read_assets(paths.data_dir / ASSET_REGISTRY_CSV)
     published, built_on = read_published(manifest)
-    regions, models = _facets(published or [], targets, assets)
-    used_languages = sorted({row["lang"] for row in published or []} | {code for t in targets for code in t["langs"]})
+    targets = published_targets(every_target, published)
+    regions, models = _facets(published or [], targets or [], assets)
+    registered = {code for target in targets or [] for code in target["langs"]}
+    used_languages = sorted({row["lang"] for row in published or []} | registered)
     payload = {
         "capabilities": names,
         "published": [{key: row[key] for key in ("model", "region", "lang")} for row in published]
@@ -184,7 +204,7 @@ def system_data_context(root: Path, manifest: Path, language_labels: dict[str, s
     }
     return {
         "summary": summary(published, targets, assets),
-        "published": published, "built_on": built_on,
+        "published": published, "built_on": built_on, "targets": targets,
         "capability_count": len(names), "regions": regions, "models": models,
         # Safe inside <script type="application/json">: no "<" survives to close the element.
         "data_json": json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c"),
@@ -192,18 +212,18 @@ def system_data_context(root: Path, manifest: Path, language_labels: dict[str, s
 
 
 def system_data_page_context(app, settings: dict[str, Any]) -> dict[str, Any] | None:
-    """Context for PAGE, or None (with a warning) when the committed data has drifted."""
+    """Context for the workbench 数据统计 tab, or None (with a warning) when the committed data has drifted."""
     from sphinx.util import logging as sphinx_logging
 
     manifest = Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON
     try:
         return system_data_context(repo_root(), manifest, dict(settings.get("language_labels") or {}))
     except (ValueError, OSError, KeyError, csv.Error) as exc:
-        sphinx_logging.getLogger(__name__).warning("System data page skipped: %s", exc)
+        sphinx_logging.getLogger(__name__).warning("Workbench statistics show no data: %s", exc)
         return None
 
 
 __all__ = [
-    "PAGE", "SystemDataError", "TEMPLATE", "read_assets", "read_published", "read_targets",
+    "PAGE", "SystemDataError", "TEMPLATE", "published_targets", "read_assets", "read_published", "read_targets",
     "review_page_counts", "summary", "system_data_context", "system_data_page_context",
 ]

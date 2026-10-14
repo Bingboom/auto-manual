@@ -128,9 +128,9 @@ checks read only the already-published same-origin receipt.
   model × region, a 语言版本 (unit 个) one model × region × language; a
   repeated route, version or rebuild counts once, and 份 is never a unit.
   `publication_facts` in `tools/rtd/production_evidence.py` is the single
-  count for 说明书工作台, 系统数据 and 产品矩阵 (whose filters recount the same
-  identities); this page wraps it for the `publications` and `regions` lane
-  metrics, with `editions` = `variants`.
+  count for 说明书工作台 (its 数据统计 tab included, whose filters recount
+  distinct values in the browser) and 产品矩阵; this page wraps it for the
+  `publications` and `regions` lane metrics, with `editions` = `variants`.
 - The execution ledger named by `now_next.source` supplies REV statuses, the
   gate composition and each lane's progress. The page reads them and never
   restates a REV status.

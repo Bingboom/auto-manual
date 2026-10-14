@@ -25,11 +25,11 @@ group opacity; SVG cannot use fill overrides or stroke suppression.
 
 设计规范（原“设计系统”）`/workspace/design/index.html` 由同一 portal 在构建时读取 `tools/web/stylesheets.py` 拼装的 `web_manual.css`，生成颜色、字体与组件预览；“图标与素材”分页列出共享素材清单与目录里的文件，“印刷规格”分页读取 `data/layout_params.csv`。说明与预览标记维护在 `tools/rtd_portal_assets/design_system/`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#design-system-page)。
 
-系统数据 `/workspace/data/index.html` 在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 与 `data/asset_registry.csv`，汇总已发布网页说明书、机型能力和素材注册情况，页面内可按区域和机型筛选；见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#system-data-page)。
+说明书工作台的“数据统计”标签（`/workspace/deliverables/index.html#statistics`）在构建时读取发布清单 `docs/publish/publish_manifest.json`、`data/model_capabilities.csv`、`data/model_languages.csv`、`docs/_review/` 与 `data/asset_registry.csv`，汇总已发布网页说明书、机型能力（只列至少有一本已发布说明书的型号）和素材登记情况，可按区域和机型筛选；系统数据 `/workspace/data/index.html` 暂为指向该标签的说明页，确认后下线。见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#数据统计)。
 
 产品矩阵 `/products/matrix.html` 在构建时读取发布清单、各型号已发布网页说明书的规格表、说明书资料库目录与导航分组和 `data/model_capabilities.csv`，按产品线 × 容量排列电源与电池，并列出配套产品、规格对照、功能矩阵和说明书写明的搭配关系；说明书没有写明的归类和搭配维护在 `tools/rtd_portal_assets/product_matrix.json`，见 [RTD portal](../dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page)。
 
-说明书工作台 `/workspace/deliverables/index.html` 由现有 RTD portal 构建时聚合发布目录、交付与语料快照、组件定义与明确目标绑定。页首四张规模卡（网页说明书、语言版本、Word 云文档、印刷交付包）链到交付物矩阵，其下分三个标签：“交付物”（默认打开，交付物矩阵）、“工作入口”（内容权威源工作地图）和“生产与资产”（交付关注、生产规模、资产管理与消费、生产投入与回流再利用，周期活动和资产总览收在“更多数据”折叠区）。锚点链接会切到目标所在标签并展开折叠；配置引用不等于实际消费。指标口径、来源时间、SHA-256 和对象列表可展开核验。无事件历史时显示 Not tracked yet，读取失败显示 Unavailable；详见 [工作台统计契约](../dev/workspace_production_evidence.md)。
+说明书工作台 `/workspace/deliverables/index.html` 由现有 RTD portal 构建时聚合发布目录、交付与语料快照、组件定义与明确目标绑定。页首四张规模卡（网页说明书、语言版本、Word 云文档、印刷交付包）链到交付物矩阵，其下分四个标签：“交付物”（默认打开，交付物矩阵）、“数据统计”（发布、机型能力与素材登记，可按区域和机型筛选）、“工作入口”（内容权威源工作地图）和“生产与资产”（交付关注、生产规模、资产管理与消费、生产投入与回流再利用，周期活动和资产总览收在“更多数据”折叠区）。锚点链接会切到目标所在标签并展开折叠；配置引用不等于实际消费。指标口径、来源时间、SHA-256 和对象列表可展开核验。无事件历史时显示 Not tracked yet，读取失败显示 Unavailable；详见 [工作台统计契约](../dev/workspace_production_evidence.md)。
 
 Web 引用块在深色站点主题下仍使用配对的浅底深字；源稿要求左侧灰标签、右侧白正文时，可在 `manual-callout-table` 上使用 `hb-callout-label-shaded`。已发布内容的结构勘误须更新冻结源并重新发布，修改模板本身不会改变线上快照。
 JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](../reviews/jbp3600a-overview-lcd-20260916.md)。
@@ -195,7 +195,7 @@ RTD 构建经来源登记读取，不手改网页。摘要区分已完成、持�
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](../dev/rtd_manual_portal/system-workspace.md#system-workspace-page)。
 
-同一构建还生成 `/workspace/deliverables/` 说明书工作台：页首四张规模卡下分“交付物”“工作入口”“生产与资产”三个标签，默认打开“交付物”。“工作入口”标签是“Content Authority → Source Binding → Assembly / IR → Human + Machine Surface”工作地图，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。“交付物”标签的交付物矩阵按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接；手机端保留矩阵并横向滚动。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，正式交付写回并读回成功后每批自动刷新一次，候选数据通过 Hello-Docs 内容 PR 审核；手动補做统一使用 Workspace Data Refresh。飞书链接需要登录才能打开，但能打开本页的人都看得到地址；站点当前私有（Read the Docs for Business，2026-10-13 起），操作者可随时改为公开，所以按已公开处理。详见 [Deliverables page](../dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)。
+同一构建还生成 `/workspace/deliverables/` 说明书工作台：页首四张规模卡下分“交付物”“数据统计”“工作入口”“生产与资产”四个标签，默认打开“交付物”。“工作入口”标签是“Content Authority → Source Binding → Assembly / IR → Human + Machine Surface”工作地图，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。“交付物”标签的交付物矩阵按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接；手机端保留矩阵并横向滚动。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，正式交付写回并读回成功后每批自动刷新一次，候选数据通过 Hello-Docs 内容 PR 审核；手动補做统一使用 Workspace Data Refresh。飞书链接需要登录才能打开，但能打开本页的人都看得到地址；站点当前私有（Read the Docs for Business，2026-10-13 起），操作者可随时改为公开，所以按已公开处理。详见 [Deliverables page](../dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)。
 
 RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
 构建结束或失败后清除缓存，下次构建仍重新校验。见
