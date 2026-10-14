@@ -39,7 +39,7 @@ def freshness(root: Path, registry: dict, today: dt.date) -> list[dict]:
                 raise ValueError("unavailable snapshot")
             date = dt.date.fromisoformat(payload["exported_at"])
             row.update(date=date.isoformat(), hash=hashlib.sha256(path.read_bytes()).hexdigest(),
-                       state="待更新" if (today - date).days > registry[domain]["stale_after_days"] else "有效")
+                       state="待复核" if (today - date).days > registry[domain]["stale_after_days"] else "有效")
             status_path = data_dir(root) / (kind + "-status.json")
             if status_path.exists():
                 status = json.loads(status_path.read_text())

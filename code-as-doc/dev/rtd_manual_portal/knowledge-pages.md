@@ -139,7 +139,8 @@ fails the export instead of silently dropping a format.
   发布清单当前不可读.
 - An unreadable or unsound snapshot empties the two Feishu columns only, with a
   Sphinx warning.
-- A snapshot older than the registry's limit (45 days) shows 待复核, and
+- A snapshot older than the `deliverables_feishu` domain's `stale_after_days`
+  in `source_registry.yaml` shows 待复核, and
   `check` warns about it.
 - The page always renders. The workspace and system pages link to it from their
   sidebars, and the workspace's 最近更新 list links to it too.

@@ -115,7 +115,7 @@ class FreshnessTests(unittest.TestCase):
             snap.atomic_json(path, snapshot())
             registry = {"deliverables_feishu": {"stale_after_days": 3}, "corpus": {"stale_after_days": 7}}
             rows = freshness(root, registry, dt.date(2026, 10, 2))
-            self.assertEqual(rows[0]["state"], "待更新")
+            self.assertEqual(rows[0]["state"], "待复核")
             self.assertEqual(rows[1]["state"], "Unavailable")
             snap.atomic_json(path.parent / "deliverables-status.json", {"status": "failed"})
             rows = freshness(root, registry, dt.date(2026, 10, 2))
