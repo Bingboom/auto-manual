@@ -112,6 +112,76 @@ class HookFactsTests(unittest.TestCase):
             "tooling.skill_lanes: unknown focus lane 'tm'", "tooling.skill_lanes.web must be a list of skill names"])
 
 
+class CodebaseTests(unittest.TestCase):
+    def setUp(self) -> None:
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.root = Path(temp.name)
+
+    def test_code_size_counts_lines_per_directory_and_file_type(self) -> None:
+        files = {
+            "tools/a.py": "x\ny\n", "tools/b.py": "z", "docs/page.md": "a\n", "README.md": "a\nb\n",
+            "data/t.csv": "h\n1\n2\n", "configs/c.yml": "k: v\n", "image.png": "png",
+        }
+        for name, text in files.items():
+            write(self.root, name, text)
+        # A listed file missing from disk (a sparse checkout) is skipped, as is any other suffix.
+        rows = tooling.codebase_rows(self.root, [*files, "tools/missing.py"])
+        self.assertEqual(tooling.TYPE_ORDER, ["Python", "Markdown 文档", "RST 模板/页面", "YAML 配置", "CSV 数据"])
+        self.assertEqual(rows, [
+            {"area": "data", "type": "CSV 数据", "files": 1, "lines": 3},
+            {"area": "tools", "type": "Python", "files": 2, "lines": 3},
+            {"area": "(根目录)", "type": "Markdown 文档", "files": 1, "lines": 2},
+            {"area": "configs", "type": "YAML 配置", "files": 1, "lines": 1},
+            {"area": "docs", "type": "Markdown 文档", "files": 1, "lines": 1},
+        ])
+        view = tooling.codebase_view(rows)
+        self.assertEqual((view["files"], view["lines"]), (6, 10))
+        self.assertEqual(view["types"], tooling.TYPE_ORDER)
+
+    def test_without_a_git_file_list_the_section_has_no_data(self) -> None:
+        self.assertIsNone(tooling.codebase_rows(self.root, None))
+        self.assertIsNone(tooling.codebase_view(None))
+        self.assertIsNone(tooling.codebase_view([]))
+        # Outside a checkout git has nothing to list.
+        self.assertIsNone(tooling.tracked_files(self.root))
+
+    def test_lines_are_counted_like_an_editor(self) -> None:
+        self.assertEqual([tooling.count_lines(data) for data in (b"", b"a", b"a\n", b"a\nb", b"\n\n")],
+                         [0, 1, 1, 2, 2])
+
+    @unittest.skipUnless((repo_root() / ".git").exists(), "needs a git checkout")
+    def test_the_checkout_lists_its_tracked_files(self) -> None:
+        self.assertIn("tools/rtd/system_tooling.py", tooling.tracked_files(repo_root()))
+
+    def test_view_groups_directories_largest_first_in_file_type_order(self) -> None:
+        rows = [
+            {"area": "docs", "type": "Markdown 文档", "files": 2, "lines": 50},
+            {"area": "tools", "type": "Python", "files": 3, "lines": 80},
+            {"area": "docs", "type": "Python", "files": 1, "lines": 40},
+        ]
+        view = tooling.codebase_view(rows)
+        self.assertEqual([(a["area"], a["files"], a["lines"]) for a in view["areas"]], [("docs", 3, 90), ("tools", 3, 80)])
+        self.assertEqual([(p["type"], p["lines"]) for p in view["areas"][0]["parts"]],
+                         [("Python", 40), ("Markdown 文档", 50)])
+        # Each part is measured against the largest directory, whose bar fills the track;
+        # its index is the type's place in TYPE_ORDER, which fixes the colour.
+        self.assertEqual([(p["index"], p["percent"]) for p in view["areas"][0]["parts"]], [(0, 44.4), (1, 55.6)])
+        self.assertEqual([(p["index"], p["percent"]) for p in view["areas"][1]["parts"]], [(0, 88.9)])
+
+    def test_view_keeps_the_top_directories_but_totals_every_row(self) -> None:
+        rows = [
+            {"area": "b", "type": "Python", "files": 1, "lines": 10},
+            {"area": "a", "type": "CSV 数据", "files": 2, "lines": 10},
+            {"area": "c", "type": "Python", "files": 4, "lines": 5},
+        ]
+        view = tooling.codebase_view(rows, top=2)
+        # Equal line counts fall back to the directory name.
+        self.assertEqual([a["area"] for a in view["areas"]], ["a", "b"])
+        self.assertEqual((view["files"], view["lines"]), (7, 25))
+        self.assertEqual(view["areas"][0]["parts"][0]["index"], 4)
+
+
 class ShippedToolingTests(unittest.TestCase):
     def test_the_tree_has_readable_skills_and_hooks(self) -> None:
         root = repo_root()
