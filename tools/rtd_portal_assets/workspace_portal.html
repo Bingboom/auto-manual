@@ -4,24 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="知识库：分享资料、工作资料与实践记录。">
+  <meta name="description" content="知识库：分享资料、说明书资料库与实践记录。">
   <title>知识库</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
 </head>
 {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
 <body class="app">
-{{ site_sidebar('overview', {'share': share_entry, 'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry, 'data': data_entry, 'matrix': matrix_entry}) }}
+{{ site_sidebar('overview', {'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry, 'data': data_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">
-  {{ site_topbar('知识库', '概览') }}
+  {{ site_topbar('知识库', '首页') }}
 
   <main id="home">
     <section class="intro page-head">
       <div>
         <h1>知识库</h1>
-        <p>分享资料、工作资料和实践记录，在这里连接。</p>
+        <p>分享资料、说明书资料库和实践记录，在这里连接。</p>
       </div>
-      <a class="text-link" href="{{ pathto('index') }}">进入工作资料 <span>↗</span></a>
+      <a class="text-link" href="{{ pathto('index') }}">进入说明书资料库 <span>↗</span></a>
     </section>
 
     <div class="content-layout">
@@ -44,19 +44,19 @@
         </section>{% endif %}
 
         <section id="updates">
-          <div class="section-header"><div><h2>最近更新</h2><p>新加入的分享资料和工作资料入口。</p></div></div>
+          <div class="section-header"><div><h2>最近更新</h2><p>新加入的分享资料和知识库页面。</p></div></div>
           <div class="updates-list">
             {% if share_entry %}<a href="{{ share_entry|e }}"><span class="update-icon">✦</span><span><strong>AI 使用知识分享</strong><small>已加入分享稿与配套示例</small></span><em>分享资料</em><b>→</b></a>{% endif %}
             {% if deliverables_entry %}<a href="{{ pathto('workspace/deliverables/index') }}"><span class="update-icon">▦</span><span><strong>说明书工作台</strong><small>数据与模板入口、构建指引和多格式交付物矩阵</small></span><em>交付</em><b>→</b></a>{% endif %}
-            {% if design_entry %}<a href="{{ pathto('workspace/design/index') }}"><span class="update-icon">◐</span><span><strong>设计系统</strong><small>说明书网页版的颜色、字体与组件，取自当前样式表</small></span><em>规范</em><b>→</b></a>{% endif %}
+            {% if design_entry %}<a href="{{ pathto('workspace/design/index') }}"><span class="update-icon">◐</span><span><strong>设计规范</strong><small>说明书网页版的颜色、字体与组件，取自当前样式表</small></span><em>规范</em><b>→</b></a>{% endif %}
             {% if data_entry %}<a href="{{ pathto('workspace/data/index') }}"><span class="update-icon">▥</span><span><strong>系统数据</strong><small>已发布手册、机型能力与素材注册的统计，可按区域和机型筛选</small></span><em>数据</em><b>→</b></a>{% endif %}
             {% if matrix_entry %}<a href="{{ pathto('products/matrix') }}"><span class="update-icon">⊞</span><span><strong>产品矩阵</strong><small>已发布说明书里的产品，按产品线、容量和市场排列，附规格与功能对照</small></span><em>产品</em><b>→</b></a>{% endif %}
-            <a href="{{ pathto('index') }}"><span class="update-icon">▤</span><span><strong>工作资料</strong><small>查看产品说明书等已交付资料</small></span><em>交付</em><b>→</b></a>
+            <a href="{{ pathto('index') }}"><span class="update-icon">▤</span><span><strong>说明书资料库</strong><small>查看产品说明书等已交付资料</small></span><em>交付</em><b>→</b></a>
           </div>
         </section>
       </div>
     </div>
-    <footer><span>知识库</span><span>分享资料与工作资料入口</span></footer>
+    <footer><span>知识库</span><span>分享资料与说明书资料库入口</span></footer>
   </main>
 </div>
 

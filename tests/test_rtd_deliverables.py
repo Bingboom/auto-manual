@@ -284,6 +284,7 @@ class RealSphinxTests(unittest.TestCase):
 
             _, page = build("good")
             self.assertIn("<h1>说明书工作台", page)
+            self.assertIn("打开说明书资料库", page)
             self.assertIn('<tbody data-model="JE-1000F">', page)
             self.assertIn('<tr data-region="pt-BR">', page)
             # Web manuals link to their page on this site; Feishu links open in a new tab.

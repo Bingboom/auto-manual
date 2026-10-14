@@ -127,6 +127,12 @@ class RtdPortalTests(unittest.TestCase):
             self.assertFalse((out / internal).exists(), internal)
         self.assertNotIn("业务资料", "".join(p.read_text(errors="ignore") for p in out.rglob("*.html")))
         self.assertIn("说明书资料库", (out / "index.html").read_text())
+        shells = [p.relative_to(out).as_posix() for p in out.rglob("*.html")
+                  if 'id="app-sidebar"' in p.read_text(errors="ignore")]
+        self.assertEqual(shells, ["index.html"])
+        root_page = BeautifulSoup((out / "index.html").read_text(), "html.parser")
+        self.assertEqual([g.get_text() for g in root_page.select(".app-nav-group")], ["说明书"])
+        self.assertIsNone(root_page.select_one(".app-switch"))
         self.assertTrue((out / "JE-TEST/EU/md/manual_EU.html").is_file())
         alias = (out / "manual_EU.html").read_text()
         self.assertIn('href="https://manuals.example.com/en/latest/JE-TEST/EU/md/manual_EU.html"', alias)
@@ -218,7 +224,7 @@ class RtdPortalTests(unittest.TestCase):
         self.assertNotIn("AI 分享与说明书", page)
 
         workspace = (self.root / "after" / "workspace" / "index.html").read_text()
-        # The docs link these 概览 sections as workspace/index.html#updates and, with a share package, #shares.
+        # The docs link these 知识库首页 sections as workspace/index.html#updates and, with a share package, #shares.
         self.assertIn('id="updates"', workspace)
         self.assertIn('id="shares"', workspace)
         self.assertIn("知识库", workspace)
@@ -227,7 +233,8 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('href="../products/knowledge.html"', workspace)
         self.assertIn('href="../market/policy.html"', workspace)
         self.assertIn(">知识库</a>", workspace)
-        self.assertIn(">工作资料</a>", workspace)
+        self.assertIn(">说明书资料库</a>", workspace)
+        self.assertEqual(workspace.count("工作资料"), 1)  # the brand only
         self.assertNotIn("内部版", workspace)
         self.assertNotIn("对外版", workspace)
         self.assertNotIn("Jackery", workspace)
@@ -236,7 +243,8 @@ class RtdPortalTests(unittest.TestCase):
         design = (design_root / "index.html").read_text()
         for tab in ("overview", "colors", "type", "components", "assets", "print"):
             self.assertIn(f'data-tab="{tab}"', design)
-        self.assertIn('aria-current="page"><i aria-hidden="true">◐</i><span>设计系统</span>', design)
+        self.assertIn('aria-current="page"><i aria-hidden="true">◐</i><span>设计规范</span>', design)
+        self.assertIn("<title>设计规范</title>", design)
         self.assertIn('src="previews/title-l1.html"', design)
         self.assertIn('src="assets/symbols/symbol_warning_triangle.svg"', design)
         self.assertIn('src="print/page.html"', design)
@@ -269,6 +277,8 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn("返回说明书资料库", knowledge_page)
         # This frozen catalog has no JHP-3600C/US manual, so the HomePower case is left out.
         self.assertNotIn('class="backup-example"', knowledge_page)
+        self.assertIn("<title>产品知识</title>", knowledge_page)
+        self.assertIn("知识库 <span>/</span> <b>产品知识</b>", knowledge_page)
         self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
         self.assertIn('href="../index.html"', workspace)
         self.assertTrue(
@@ -316,16 +326,28 @@ class RtdPortalTests(unittest.TestCase):
             sidebar = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser").select_one("#app-sidebar")
             if sidebar:
                 sidebars[path.relative_to(out).as_posix()] = sidebar
-        internal = {page for page, sidebar in sidebars.items()
-                    if "知识库" in [group.get_text() for group in sidebar.select(".app-nav-group")]}
-        self.assertEqual({"products/knowledge.html", "products/matrix.html", "market/policy.html",
-                          "workspace/index.html", "workspace/system/index.html", "workspace/deliverables/index.html",
-                          "workspace/design/index.html", "workspace/data/index.html"} - internal, set())
+        def outline(sidebar):
+            groups = []
+            for node in sidebar.select(".app-nav-group, a.app-nav-link"):
+                if "app-nav-group" in node["class"]:
+                    groups.append((node.get_text(), []))
+                else:
+                    groups[-1][1].append(node.span.get_text())
+            return groups
+
+        manuals = [("说明书", ["说明书资料库", "搜索说明书正文"])]
+        knowledge = [*manuals, ("知识库", ["首页"]), ("产品与市场", ["产品知识", "产品矩阵", "市场与政策"]),
+                     ("说明书生产", ["说明书工作台", "系统建设", "设计规范", "系统数据"])]
+        pages = ("products/knowledge.html", "products/matrix.html", "market/policy.html", "workspace/index.html",
+                 "workspace/system/index.html", "workspace/deliverables/index.html",
+                 "workspace/design/index.html", "workspace/data/index.html")
+        self.assertEqual({page: outline(sidebar) for page, sidebar in sidebars.items()},
+                         {"index.html": manuals, **dict.fromkeys(pages, knowledge)})
         site = "https://site.invalid/"
         for page, sidebar in sidebars.items():
             links = sidebar.select("a.app-nav-link")
             for link in links:
-                # Entries are pages; a page's sections (概览's 分享资料, 最近更新) are not sidebar links.
+                # Entries are pages; a page's sections (知识库首页's 分享资料, 最近更新) are not sidebar links.
                 self.assertEqual(urlsplit(link["href"]).fragment, "", (page, link["href"]))
                 self.assertTrue((out / urljoin(site + page, link["href"]).removeprefix(site)).is_file(),
                                 (page, link["href"]))
