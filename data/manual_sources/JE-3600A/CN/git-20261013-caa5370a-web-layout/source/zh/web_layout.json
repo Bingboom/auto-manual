@@ -1,0 +1,1088 @@
+{
+ "schema_version": "je3600a-web-layout-changes/v1",
+ "region": "CN",
+ "language": "zh",
+ "approved_source": "../git-20261012-caa5370a-reviewed/source/zh/content.json",
+ "changes": [
+  {
+   "chapter": "page-12",
+   "action": "plain-title",
+   "title": "与加电包连接（单独售卖）"
+  },
+  {
+   "chapter": "page-15",
+   "action": "print-warning-line",
+   "text": "首次使用前请先将本设备充满电！",
+   "heading_removed": true
+  },
+  {
+   "chapter": "page-16",
+   "action": "print-subscript",
+   "text": "Voc"
+  },
+  {
+   "chapter": "page-13",
+   "action": "hidden-print-label-removed",
+   "figure": "pdf/page-13/parallel",
+   "label": "Jackery Explorer 2000 Plus"
+  },
+  {
+   "chapter": "page-20",
+   "action": "art-crop-sliver-removed",
+   "art": "assets/app-controls-p20-web.svg",
+   "removed_paths": 2,
+   "box": "备注 box above"
+  },
+  {
+   "chapter": "page-5",
+   "action": "native-lcd-glyph",
+   "entry": "节省电池模式",
+   "art": "assets/lcd-battery-saving-native.svg",
+   "replaced": "lcd-battery-saving.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-5",
+   "action": "native-lcd-glyph",
+   "entry": "自发自用模式",
+   "art": "assets/lcd-self-powered-native.svg",
+   "replaced": "lcd-self-powered.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-6",
+   "action": "native-lcd-glyph",
+   "entry": "市电充电接入",
+   "art": "assets/lcd-ac-wall-charging-native.svg",
+   "replaced": "lcd-ac-wall-charging.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-6",
+   "action": "native-lcd-glyph",
+   "entry": "车充充电接入",
+   "art": "assets/lcd-car-charging-native.svg",
+   "replaced": "lcd-car-charging.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-6",
+   "action": "native-lcd-glyph",
+   "entry": "太阳能（绿色",
+   "art": "assets/lcd-solar-charging-native.svg",
+   "replaced": "lcd-solar-charging.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-7",
+   "action": "native-lcd-glyph",
+   "entry": "加电包接入",
+   "art": "assets/lcd-connected-batteries-native.svg",
+   "replaced": "lcd-connected-batteries.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-7",
+   "action": "native-lcd-glyph",
+   "entry": "高温警告",
+   "art": "assets/lcd-high-temperature-native.svg",
+   "replaced": "lcd-high-temperature.png",
+   "references": 2
+  },
+  {
+   "chapter": "page-7",
+   "action": "native-lcd-glyph",
+   "entry": "低温警告",
+   "art": "assets/lcd-low-temperature-native.svg",
+   "replaced": "lcd-low-temperature.png",
+   "references": 2
+  },
+  {
+   "chapter": "page-5",
+   "action": "one-glossary-table",
+   "rows": 24,
+   "print_parts": 3
+  },
+  {
+   "chapter": "page-5",
+   "action": "lcd-name-note-lines",
+   "notes": 0
+  },
+  {
+   "chapter": "page-9",
+   "action": "lcd-mode-columns"
+  },
+  {
+   "chapter": "page-5",
+   "action": "lcd-glyph-print-height",
+   "sized": 16,
+   "native": 8
+  },
+  {
+   "chapter": "page-19",
+   "action": "print-superscripts",
+   "marks": 4
+  },
+  {
+   "chapter": "page-19",
+   "action": "spec-label-column",
+   "tables": 4
+  },
+  {
+   "chapter": "*",
+   "action": "inline-glyph-placeholders",
+   "count": 2
+  },
+  {
+   "chapter": "*",
+   "action": "print-line-breaks",
+   "count": 17,
+   "breaks": [
+    {
+     "chapter": "page-2",
+     "lines": [
+      "p2-b20-l0-0",
+      "p2-b21-l0-0"
+     ],
+     "at": "以官方发布最新通知为准。|您现在可以通过微信注册您"
+    },
+    {
+     "chapter": "page-2",
+     "lines": [
+      "p2-b18-l0-0",
+      "p2-b19-l0-0"
+     ],
+     "at": "用并妥善保管。|在遵从法律法规的情况下，"
+    },
+    {
+     "chapter": "page-2",
+     "lines": [
+      "p2-b23-l0-0",
+      "p2-b24-l0-0"
+     ],
+     "at": "户外电源服务小程序查看。|以下情况不在保修范围内："
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p5-b15-l0-0",
+      "p5-b16-l0-0"
+     ],
+     "at": "亮：静音充电模式已开启。|充电功率降低，充电速度变"
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p5-b17-l0-0",
+      "p5-b18-l0-0"
+     ],
+     "at": "充电模式未开启/已关闭。|（请在APP中开启/关闭"
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p5-b22-l0-0",
+      "p5-b23-l0-0"
+     ],
+     "at": "功能，关机可记忆保存）。|注：开启后偶尔会满充满放"
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p5-b21-l0-0",
+      "p5-b22-l0-0"
+     ],
+     "at": "电池模式未开启/已关闭。|（请在APP中开启/关闭"
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p5-b5-l2-0",
+      "p5-b5-l3-0"
+     ],
+     "at": "自用模式未开启/已关闭。|（请在APP中开启/关闭"
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p6-b12-l2-0",
+      "p6-b12-l3-0"
+     ],
+     "at": "减少用电成本。|（请在APP中开启/关闭"
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p6-b19-l0-0",
+      "p6-b19-l1-0"
+     ],
+     "at": "态时，该图标顺时针转动；|当产品处于放电状态时，该"
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p7-b10-l0-0",
+      "p7-b10-l1-0"
+     ],
+     "at": "USB输出按键时打开时：|点亮：节能模式开启。"
+    },
+    {
+     "chapter": "page-9",
+     "lines": [
+      "p9-b6-l0-0",
+      "p9-b6-l1-0"
+     ],
+     "at": "屏幕|短亮"
+    },
+    {
+     "chapter": "page-9",
+     "lines": [
+      "p9-b7-l0-0",
+      "p9-b7-l1-0"
+     ],
+     "at": "屏幕|常亮"
+    },
+    {
+     "chapter": "page-12",
+     "lines": [
+      "p12-b1-l0-0",
+      "p12-b2-l0-0"
+     ],
+     "at": "包，可满足大容量的需求。|关于加电包的使用说明，详"
+    },
+    {
+     "chapter": "page-14",
+     "lines": [
+      "p14-b2-l0-0",
+      "p14-b3-l0-0"
+     ],
+     "at": "闪烁，代表并机连接失败。|再次按下每个设备上的AC"
+    },
+    {
+     "chapter": "page-22",
+     "lines": [
+      "p22-b2-l0-0",
+      "p22-b3-l0-0"
+     ],
+     "at": "被打开。|同时长按“AC输出按键”"
+    },
+    {
+     "chapter": "page-22",
+     "lines": [
+      "p22-b6-l0-0",
+      "p22-b7-l0-0"
+     ],
+     "at": "-Fi&蓝牙会自动关闭。|同时长按“AC输出按键”"
+    }
+   ]
+  },
+  {
+   "chapter": "*",
+   "action": "print-wrap-spaces",
+   "count": 41,
+   "soft_latin_wraps_kept": 34
+  },
+  {
+   "chapter": "*",
+   "action": "print-weights",
+   "count": 87,
+   "containers": [
+    {
+     "chapter": "page-2",
+     "text": "400-668-9293电小二户外电源服务小程序"
+    },
+    {
+     "chapter": "page-2",
+     "text": "使使用本产品时，应始终遵循基本注意事项，包括:"
+    },
+    {
+     "chapter": "page-3",
+     "text": "正面"
+    },
+    {
+     "chapter": "page-3",
+     "text": "AC输出按键"
+    },
+    {
+     "chapter": "page-3",
+     "text": "USB输出按键"
+    },
+    {
+     "chapter": "page-3",
+     "text": "USB-C100W输出端口"
+    },
+    {
+     "chapter": "page-3",
+     "text": "USB-A18W输出端口"
+    },
+    {
+     "chapter": "page-3",
+     "text": "LCD显示屏"
+    },
+    {
+     "chapter": "page-3",
+     "text": "AC输出端口"
+    },
+    {
+     "chapter": "page-3",
+     "text": "总电源开关键"
+    },
+    {
+     "chapter": "page-3",
+     "text": "AC输出端口"
+    },
+    {
+     "chapter": "page-4",
+     "text": "AC总输出"
+    },
+    {
+     "chapter": "page-4",
+     "text": "右侧面"
+    },
+    {
+     "chapter": "page-4",
+     "text": "AC输入端口"
+    },
+    {
+     "chapter": "page-4",
+     "text": "DC输入端口（DC8020）"
+    },
+    {
+     "chapter": "page-4",
+     "text": "加电包连接端口"
+    },
+    {
+     "chapter": "page-4",
+     "text": "并机端口"
+    },
+    {
+     "chapter": "page-4",
+     "text": "固定轮"
+    },
+    {
+     "chapter": "page-4",
+     "text": "可伸缩手柄"
+    },
+    {
+     "chapter": "page-5",
+     "text": "Wi-Fi"
+    },
+    {
+     "chapter": "page-5",
+     "text": "点亮："
+    },
+    {
+     "chapter": "page-5",
+     "text": "闪烁："
+    },
+    {
+     "chapter": "page-5",
+     "text": "熄灭："
+    },
+    {
+     "chapter": "page-5",
+     "text": "Bluetooth"
+    },
+    {
+     "chapter": "page-5",
+     "text": "点亮："
+    },
+    {
+     "chapter": "page-5",
+     "text": "闪烁："
+    },
+    {
+     "chapter": "page-5",
+     "text": "熄灭："
+    },
+    {
+     "chapter": "page-5",
+     "text": "静音充电模式"
+    },
+    {
+     "chapter": "page-5",
+     "text": "点亮："
+    },
+    {
+     "chapter": "page-5",
+     "text": "熄灭："
+    },
+    {
+     "chapter": "page-5",
+     "text": "节省电池模式"
+    },
+    {
+     "chapter": "page-5",
+     "text": "点亮："
+    },
+    {
+     "chapter": "page-5",
+     "text": "熄灭："
+    },
+    {
+     "chapter": "page-5",
+     "text": "自发自用模式"
+    },
+    {
+     "chapter": "page-5",
+     "text": "点亮："
+    },
+    {
+     "chapter": "page-5",
+     "text": "熄灭："
+    },
+    {
+     "chapter": "page-5",
+     "text": "充电计划"
+    },
+    {
+     "chapter": "page-5",
+     "text": "并机模式"
+    },
+    {
+     "chapter": "page-5",
+     "text": "点亮："
+    },
+    {
+     "chapter": "page-5",
+     "text": "闪烁："
+    },
+    {
+     "chapter": "page-5",
+     "text": "交流输出符号"
+    },
+    {
+     "chapter": "page-5",
+     "text": "输出电压和频率"
+    },
+    {
+     "chapter": "page-5",
+     "text": "充电功率显示"
+    },
+    {
+     "chapter": "page-5",
+     "text": "剩余充电时间"
+    },
+    {
+     "chapter": "page-5",
+     "text": "市电充电接入"
+    },
+    {
+     "chapter": "page-5",
+     "text": "车充充电接入"
+    },
+    {
+     "chapter": "page-5",
+     "text": "太阳能（绿色能源）充电接入"
+    },
+    {
+     "chapter": "page-5",
+     "text": "电池电量图标"
+    },
+    {
+     "chapter": "page-5",
+     "text": "低电量提醒"
+    },
+    {
+     "chapter": "page-5",
+     "text": "点亮："
+    },
+    {
+     "chapter": "page-5",
+     "text": "闪烁："
+    },
+    {
+     "chapter": "page-5",
+     "text": "熄灭："
+    },
+    {
+     "chapter": "page-5",
+     "text": "电池电量百分比"
+    },
+    {
+     "chapter": "page-5",
+     "text": "加电包接入及数量"
+    },
+    {
+     "chapter": "page-5",
+     "text": "故障代码"
+    },
+    {
+     "chapter": "page-5",
+     "text": "高温警告"
+    },
+    {
+     "chapter": "page-5",
+     "text": "低温警告"
+    },
+    {
+     "chapter": "page-5",
+     "text": "节能模式"
+    },
+    {
+     "chapter": "page-5",
+     "text": "点亮："
+    },
+    {
+     "chapter": "page-5",
+     "text": "熄灭："
+    },
+    {
+     "chapter": "page-5",
+     "text": "放电功率显示"
+    },
+    {
+     "chapter": "page-5",
+     "text": "剩余放电时间"
+    },
+    {
+     "chapter": "page-8",
+     "text": "开机"
+    },
+    {
+     "chapter": "page-8",
+     "text": "关机"
+    },
+    {
+     "chapter": "page-8",
+     "text": "总电源开关键"
+    },
+    {
+     "chapter": "page-8",
+     "text": "开启"
+    },
+    {
+     "chapter": "page-8",
+     "text": "关闭"
+    },
+    {
+     "chapter": "page-9",
+     "text": "开启"
+    },
+    {
+     "chapter": "page-9",
+     "text": "关闭"
+    },
+    {
+     "chapter": "page-9",
+     "text": "屏幕短亮"
+    },
+    {
+     "chapter": "page-9",
+     "text": "屏幕常亮"
+    },
+    {
+     "chapter": "page-10",
+     "text": "开启/关闭"
+    },
+    {
+     "chapter": "page-10",
+     "text": "按键"
+    },
+    {
+     "chapter": "page-10",
+     "text": "操作"
+    },
+    {
+     "chapter": "page-10",
+     "text": "功能"
+    },
+    {
+     "chapter": "page-12",
+     "text": "单独售卖"
+    },
+    {
+     "chapter": "page-13",
+     "text": "并机端口"
+    },
+    {
+     "chapter": "page-15",
+     "text": "绿色能源优先模式："
+    },
+    {
+     "chapter": "page-17",
+     "text": "6～12个月内至少进行一次完整的充放电循环。"
+    },
+    {
+     "chapter": "page-20",
+     "text": "2.1在App内点击添加设备。"
+    },
+    {
+     "chapter": "page-20",
+     "text": "2.2长按设备上的“总电源开关键”开机，设备上的Wi-Fi和蓝牙图标闪烁后表示设"
+    },
+    {
+     "chapter": "page-21",
+     "text": "2.3点击搜索到的设备图标后App通过蓝牙自动连接设备。"
+    },
+    {
+     "chapter": "page-21",
+     "text": "2.4设备连接成功后输入设备将要连接的Wi-Fi名称和密码，设备自动连接到Wi-"
+    },
+    {
+     "chapter": "page-21",
+     "text": "2.5设备添加成功后进入设备主页面，设备上的Wi-Fi图标会常亮。"
+    },
+    {
+     "chapter": "page-22",
+     "text": "4.1打开Wi-Fi&蓝牙："
+    },
+    {
+     "chapter": "page-22",
+     "text": "4.2关闭Wi-Fi&蓝牙："
+    },
+    {
+     "chapter": "page-22",
+     "text": "4.3重置Wi-Fi&蓝牙："
+    }
+   ]
+  },
+  {
+   "chapter": "*",
+   "action": "reference-figures-rebound",
+   "figures": [
+    "pdf/page-3/overview-front",
+    "pdf/page-4/overview-side",
+    "pdf/page-8/power",
+    "pdf/page-8/ac-output",
+    "pdf/page-9/usb-output",
+    "pdf/page-10/energy-saving",
+    "pdf/page-12/battery-accessories",
+    "pdf/page-13/parallel"
+   ]
+  }
+ ],
+ "copy_restorations": [
+  {
+   "chapter": "page-13",
+   "kind": "hidden-print-text",
+   "approved": "Jackery Explorer 2000 Plus",
+   "pdf": "",
+   "reason": "painted over by the device drawing in print; not visible"
+  },
+  {
+   "chapter": "page-5",
+   "kind": "inline-glyph-placeholder",
+   "approved": "         ，请勿",
+   "pdf": "，请勿担心，电池降温后可",
+   "glyph": "assets/lcd-high-temperature-native.svg"
+  },
+  {
+   "chapter": "page-5",
+   "kind": "inline-glyph-placeholder",
+   "approved": "         ，请勿",
+   "pdf": "，请勿担心，环境温度恢复",
+   "glyph": "assets/lcd-low-temperature-native.svg"
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "亮：静音充电模式已开启。 充电功率降低，充电速度变",
+   "pdf": "亮：静音充电模式已开启。充电功率降低，充电速度变",
+   "lines": [
+    "p5-b15-l0-0",
+    "p5-b16-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "充电模式未开启/已关闭。 （请在APP中开启/关闭",
+   "pdf": "充电模式未开启/已关闭。（请在APP中开启/关闭",
+   "lines": [
+    "p5-b17-l0-0",
+    "p5-b18-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "制电池的最大可用容量来延 长电池使用寿命。",
+   "pdf": "制电池的最大可用容量来延长电池使用寿命。",
+   "lines": [
+    "p5-b19-l0-0",
+    "p5-b20-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "功能，关机可记忆保存）。 注：开启后偶尔会满充满放",
+   "pdf": "功能，关机可记忆保存）。注：开启后偶尔会满充满放",
+   "lines": [
+    "p5-b22-l0-0",
+    "p5-b23-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "电池模式未开启/已关闭。 （请在APP中开启/关闭",
+   "pdf": "电池模式未开启/已关闭。（请在APP中开启/关闭",
+   "lines": [
+    "p5-b21-l0-0",
+    "p5-b22-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "，最大化利用太阳能，减少 电网电力消耗，减少用电成",
+   "pdf": "，最大化利用太阳能，减少电网电力消耗，减少用电成",
+   "lines": [
+    "p5-b5-l0-0",
+    "p5-b5-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "自用模式未开启/已关闭。 （请在APP中开启/关闭",
+   "pdf": "自用模式未开启/已关闭。（请在APP中开启/关闭",
+   "lines": [
+    "p5-b5-l2-0",
+    "p5-b5-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "减少用电成本。 （请在APP中开启/关闭",
+   "pdf": "减少用电成本。（请在APP中开启/关闭",
+   "lines": [
+    "p6-b12-l2-0",
+    "p6-b12-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "峰谷时间段制定充电计划， 减少用电成本。",
+   "pdf": "峰谷时间段制定充电计划，减少用电成本。",
+   "lines": [
+    "p6-b12-l1-0",
+    "p6-b12-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "us的充电计划，适用于电 价有波动的情况，可根据电",
+   "pdf": "us的充电计划，适用于电价有波动的情况，可根据电",
+   "lines": [
+    "p6-b12-l0-0",
+    "p6-b12-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "0）连接12V车载充电线 进行充电。",
+   "pdf": "0）连接12V车载充电线进行充电。",
+   "lines": [
+    "p6-b22-l0-0",
+    "p6-b22-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "太阳能（绿色 能源）充电接入",
+   "pdf": "太阳能（绿色能源）充电接入",
+   "lines": [
+    "p6-b23-l0-0",
+    "p6-b23-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "020）连接太阳能板进行 充电。",
+   "pdf": "020）连接太阳能板进行充电。",
+   "lines": [
+    "p6-b21-l0-0",
+    "p6-b21-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "态时，该图标顺时针转动； 当产品处于放电状态时，该",
+   "pdf": "态时，该图标顺时针转动；当产品处于放电状态时，该",
+   "lines": [
+    "p6-b19-l0-0",
+    "p6-b19-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "加电包接入 及数量",
+   "pdf": "加电包接入及数量",
+   "lines": [
+    "p7-b17-l0-0",
+    "p7-b17-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "请勿担心，电池降温后可自 行恢复。",
+   "pdf": "请勿担心，电池降温后可自行恢复。",
+   "lines": [
+    "p7-b9-l0-0",
+    "p7-b9-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "请勿担心，环境温度恢复后 自动恢复。",
+   "pdf": "请勿担心，环境温度恢复后自动恢复。",
+   "lines": [
+    "p7-b7-l0-0",
+    "p7-b7-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "USB输出按键时打开时： 点亮：节能模式开启。",
+   "pdf": "USB输出按键时打开时：点亮：节能模式开启。",
+   "lines": [
+    "p7-b10-l0-0",
+    "p7-b10-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "件连接到这些端口存在火灾 风险；使用这些端口前，应",
+   "pdf": "件连接到这些端口存在火灾风险；使用这些端口前，应",
+   "lines": [
+    "p9-b22-l0-0",
+    "p9-b22-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "（或其它等效标准）的设备 或配件。",
+   "pdf": "（或其它等效标准）的设备或配件。",
+   "lines": [
+    "p9-b22-l2-0",
+    "p9-b22-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "屏幕 短亮",
+   "pdf": "屏幕短亮",
+   "lines": [
+    "p9-b6-l0-0",
+    "p9-b6-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "短按总电源开关键 或有充电输入。",
+   "pdf": "短按总电源开关键或有充电输入。",
+   "lines": [
+    "p9-b13-l0-0",
+    "p9-b13-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "自动熄灭，进入休 眠模式。",
+   "pdf": "自动熄灭，进入休眠模式。",
+   "lines": [
+    "p9-b14-l1-0",
+    "p9-b14-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "2分钟后显示屏将 自动熄灭，进入休",
+   "pdf": "2分钟后显示屏将自动熄灭，进入休",
+   "lines": [
+    "p9-b14-l0-0",
+    "p9-b14-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "屏幕 常亮",
+   "pdf": "屏幕常亮",
+   "lines": [
+    "p9-b7-l0-0",
+    "p9-b7-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "开机状态下，双击 总电源开关键。",
+   "pdf": "开机状态下，双击总电源开关键。",
+   "lines": [
+    "p9-b15-l0-0",
+    "p9-b15-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "将在2小时后自动 熄灭。",
+   "pdf": "将在2小时后自动熄灭。",
+   "lines": [
+    "p9-b16-l2-0",
+    "p9-b16-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "充放电情况，屏幕 将在2小时后自动",
+   "pdf": "充放电情况，屏幕将在2小时后自动",
+   "lines": [
+    "p9-b16-l1-0",
+    "p9-b16-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-9",
+   "kind": "print-wrap-space",
+   "approved": "在常亮模式下，无 充放电情况，屏幕",
+   "pdf": "在常亮模式下，无充放电情况，屏幕",
+   "lines": [
+    "p9-b16-l0-0",
+    "p9-b16-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-11",
+   "kind": "print-wrap-space",
+   "approved": "上，例如数据服务器或工作 站，请充分测试确认兼容性",
+   "pdf": "上，例如数据服务器或工作站，请充分测试确认兼容性",
+   "lines": [
+    "p11-b5-l0-0",
+    "p11-b6-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-12",
+   "kind": "print-wrap-space",
+   "approved": "口。建议进气口和排气口外 部至少留出200mm的空",
+   "pdf": "口。建议进气口和排气口外部至少留出200mm的空",
+   "lines": [
+    "p12-b7-l0-0",
+    "p12-b8-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-13",
+   "kind": "print-wrap-space",
+   "approved": "键的指示灯熄灭），以防激 活AC输出时损坏设备。",
+   "pdf": "键的指示灯熄灭），以防激活AC输出时损坏设备。",
+   "lines": [
+    "p13-b14-l1-0",
+    "p13-b15-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-13",
+   "kind": "print-wrap-space",
+   "approved": "接线端口。并机连接线端口 电压为220V，有触电风",
+   "pdf": "接线端口。并机连接线端口电压为220V，有触电风",
+   "lines": [
+    "p13-b10-l1-0",
+    "p13-b10-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-15",
+   "kind": "print-wrap-space",
+   "approved": "避免因插入不完全引发电流 不稳、发热或接触不良等问",
+   "pdf": "避免因插入不完全引发电流不稳、发热或接触不良等问",
+   "lines": [
+    "p15-b13-l1-0",
+    "p15-b14-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-16",
+   "kind": "print-wrap-space",
+   "approved": "可能导致产品异常或损坏。 例如：",
+   "pdf": "可能导致产品异常或损坏。例如：",
+   "lines": [
+    "p16-b8-l0-0",
+    "p16-b8-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-16",
+   "kind": "print-wrap-space",
+   "approved": "太阳能板，并确保连接的数 量一致。",
+   "pdf": "太阳能板，并确保连接的数量一致。",
+   "lines": [
+    "p16-b9-l0-0",
+    "p16-b10-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-17",
+   "kind": "print-wrap-space",
+   "approved": "防止车充接触不良，引起接 触点烧坏。若因不按规范操",
+   "pdf": "防止车充接触不良，引起接触点烧坏。若因不按规范操",
+   "lines": [
+    "p17-b13-l0-0",
+    "p17-b14-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-17",
+   "kind": "print-wrap-space",
+   "approved": "用24V车型的车给本产品 充电以免造成人身伤害及财",
+   "pdf": "用24V车型的车给本产品充电以免造成人身伤害及财",
+   "lines": [
+    "p17-b15-l0-0",
+    "p17-b16-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-18",
+   "kind": "print-wrap-space",
+   "approved": "故障消失。检查负载的启动 功率是否超出本产品的输出",
+   "pdf": "故障消失。检查负载的启动功率是否超出本产品的输出",
+   "lines": [
+    "p18-b3-l3-0",
+    "p18-b3-l4-0"
+   ]
+  },
+  {
+   "chapter": "page-21",
+   "kind": "print-wrap-space",
+   "approved": "接后返回设备列表时，蓝牙 连接将自动断开。再次点击",
+   "pdf": "接后返回设备列表时，蓝牙连接将自动断开。再次点击",
+   "lines": [
+    "p21-b23-l0-0",
+    "p21-b24-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-21",
+   "kind": "print-wrap-space",
+   "approved": "面最下方的解除绑定按钮解 绑设备。",
+   "pdf": "面最下方的解除绑定按钮解绑设备。",
+   "lines": [
+    "p21-b3-l0-0",
+    "p21-b4-l0-0"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+  "source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+  "body_pages": 22,
+  "chapters": 11,
+  "components": {
+    "HB-CALLOUT-STRIP": 5,
+    "HB-SPECIAL-APP": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 30,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 6
+  },
+  "native_tables": 5,
+  "figures": 32,
+  "shared_symbols": 4,
+  "source_symbol_glyphs": 2,
+  "inline_controls": 7,
+  "classified_words": 4410,
+  "unmapped_words": 0,
+  "duplicate_live_copy": 0,
+  "text_recoveries_used": 5,
+  "split_words_joined": 2,
+  "print_line_breaks": 37,
+  "cold_replay_byte_parity": true,
+  "input_tamper_rejected": true,
+  "frozen_input_hashes": true,
+  "release_admissions": {
+    "component": true,
+    "symbol_asset": true,
+    "caption_frame": true,
+    "publishable": "passed after operator acceptance (source/approval.json)"
+  }
+}

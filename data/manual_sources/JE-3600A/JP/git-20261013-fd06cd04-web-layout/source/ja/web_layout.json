@@ -1,0 +1,2184 @@
+{
+ "schema_version": "je3600a-web-layout-changes/v1",
+ "region": "JP",
+ "language": "ja",
+ "approved_source": "../git-20261012-fd06cd04-reviewed/source/ja/content.json",
+ "changes": [
+  {
+   "chapter": "preface",
+   "action": "printed-cover-removed",
+   "headings": [
+    "Jackery ポータブル電源 3600 Plus",
+    "国内専用/For use only in Japan"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "action": "print-pill-title",
+   "title": "絵表示について"
+  },
+  {
+   "chapter": "page-3",
+   "action": "print-pill-title",
+   "title": "絵表示の説明"
+  },
+  {
+   "chapter": "page-3",
+   "action": "signal-label-column",
+   "label": "説明"
+  },
+  {
+   "chapter": "page-3",
+   "action": "signal-label-column",
+   "label": "ヒント"
+  },
+  {
+   "chapter": "page-5",
+   "action": "print-grid",
+   "columns": 3,
+   "items": 5
+  },
+  {
+   "chapter": "page-6",
+   "action": "signal-lockup",
+   "label": "ご注意"
+  },
+  {
+   "chapter": "page-8",
+   "action": "print-square-note"
+  },
+  {
+   "chapter": "page-8",
+   "action": "print-outline-panel"
+  },
+  {
+   "chapter": "page-16",
+   "action": "print-grey-panel"
+  },
+  {
+   "chapter": "page-18",
+   "action": "inline-icon-position",
+   "icon": "assets/native-inline-parallel-connected-p18.svg"
+  },
+  {
+   "chapter": "page-18",
+   "action": "print-bullets",
+   "callout": "ご使用前の確認",
+   "items": 2
+  },
+  {
+   "chapter": "page-21",
+   "action": "print-grey-panel",
+   "title": "■ 必要なアクセサリー",
+   "heading_removed": true
+  },
+  {
+   "chapter": "page-22",
+   "action": "print-nested-list",
+   "items": 2
+  },
+  {
+   "chapter": "page-22",
+   "action": "print-subscript",
+   "text": "VOC"
+  },
+  {
+   "chapter": "page-26",
+   "action": "print-note-capsules",
+   "count": 4
+  },
+  {
+   "chapter": "page-29",
+   "action": "print-bullets",
+   "lead": "4.1",
+   "items": 2
+  },
+  {
+   "chapter": "page-18",
+   "action": "hidden-print-label-removed",
+   "figure": "pdf/page-18/parallel",
+   "label": "Jackery Explorer 2000 Plus"
+  },
+  {
+   "chapter": "page-14",
+   "action": "in-text-glyph",
+   "glyph": "assets/native-energy-saving-12h-p14.svg",
+   "art": "assets/energy-saving-p14-web.svg",
+   "removed_paths": 24,
+   "heading": true
+  },
+  {
+   "chapter": "page-28",
+   "action": "art-crop-sliver-removed",
+   "art": "assets/app-phones-native-p28-web.svg",
+   "removed_paths": 1,
+   "box": "備考 box below"
+  },
+  {
+   "chapter": "page-10",
+   "action": "native-lcd-glyph",
+   "entry": "バッテリー節約モード",
+   "art": "assets/lcd-battery-saving-native.svg",
+   "replaced": "lcd-battery-saving.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-10",
+   "action": "native-lcd-glyph",
+   "entry": "自家発電モード",
+   "art": "assets/lcd-self-powered-native.svg",
+   "replaced": "lcd-self-powered.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-11",
+   "action": "native-lcd-glyph",
+   "entry": "AC入力電力表示",
+   "art": "assets/lcd-ac-wall-charging-native.svg",
+   "replaced": "lcd-ac-wall-charging.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-11",
+   "action": "native-lcd-glyph",
+   "entry": "シガーソケット入力電",
+   "art": "assets/lcd-car-charging-native.svg",
+   "replaced": "lcd-car-charging.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-11",
+   "action": "native-lcd-glyph",
+   "entry": "ソーラー(グリーンエネ",
+   "art": "assets/lcd-solar-charging-native.svg",
+   "replaced": "lcd-solar-charging.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-11",
+   "action": "native-lcd-glyph",
+   "entry": "バッテリーパックインジ",
+   "art": "assets/lcd-connected-batteries-native.svg",
+   "replaced": "lcd-connected-batteries.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-11",
+   "action": "native-lcd-glyph",
+   "entry": "高温インジケーター",
+   "art": "assets/lcd-high-temperature-native.svg",
+   "replaced": "lcd-high-temperature.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-11",
+   "action": "native-lcd-glyph",
+   "entry": "低温インジケーター",
+   "art": "assets/lcd-low-temperature-native.svg",
+   "replaced": "lcd-low-temperature.png",
+   "references": 1
+  },
+  {
+   "chapter": "page-10",
+   "action": "one-glossary-table",
+   "rows": 24,
+   "print_parts": 2
+  },
+  {
+   "chapter": "page-10",
+   "action": "lcd-name-note-lines",
+   "notes": 4
+  },
+  {
+   "chapter": "page-15",
+   "action": "lcd-mode-columns"
+  },
+  {
+   "chapter": "page-10",
+   "action": "lcd-glyph-print-height",
+   "sized": 16,
+   "native": 8
+  },
+  {
+   "chapter": "page-25",
+   "action": "print-superscripts",
+   "marks": 3
+  },
+  {
+   "chapter": "page-25",
+   "action": "spec-label-column",
+   "tables": 4
+  },
+  {
+   "chapter": "*",
+   "action": "inline-glyph-placeholders",
+   "count": 0
+  },
+  {
+   "chapter": "*",
+   "action": "print-line-breaks",
+   "count": 37,
+   "breaks": [
+    {
+     "chapter": "page-3",
+     "lines": [
+      "p3-b11-l1-0",
+      "p3-b11-l2-0"
+     ],
+     "at": "るための表示です。|内容をよく理解してから本"
+    },
+    {
+     "chapter": "page-4",
+     "lines": [
+      "p4-b3-l4-0",
+      "p4-b3-l5-0"
+     ],
+     "at": "ださい。|充電池の取りはずしはお客"
+    },
+    {
+     "chapter": "page-4",
+     "lines": [
+      "p4-b3-l1-0",
+      "p4-b3-l2-0"
+     ],
+     "at": "内蔵しています。|この商品を廃棄する場合は"
+    },
+    {
+     "chapter": "page-4",
+     "lines": [
+      "p4-b4-l6-0",
+      "p4-b4-l7-0"
+     ],
+     "at": "環境保護に役立ちます。|本製品の廃棄やリサイクル"
+    },
+    {
+     "chapter": "page-4",
+     "lines": [
+      "p4-b4-l4-0",
+      "p4-b4-l5-0"
+     ],
+     "at": "す。|適切な廃棄およびリサイク"
+    },
+    {
+     "chapter": "page-4",
+     "lines": [
+      "p4-b14-l6-0",
+      "p4-b14-l7-0"
+     ],
+     "at": "れています。|使用済みの電池および蓄電"
+    },
+    {
+     "chapter": "page-4",
+     "lines": [
+      "p4-b14-l1-0",
+      "p4-b14-l2-0"
+     ],
+     "at": "に廃棄してはいけません。|消費者の皆様は、有害物質"
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p5-b7-l0-0",
+      "p5-b7-l1-0"
+     ],
+     "at": "や感電の原因になります。|すぐにAC充電ケーブルを"
+    },
+    {
+     "chapter": "page-5",
+     "lines": [
+      "p5-b8-l0-0",
+      "p5-b8-l1-0"
+     ],
+     "at": "ポートにご連絡ください。|お客様による修理は危険で"
+    },
+    {
+     "chapter": "page-6",
+     "lines": [
+      "p6-b6-l0-0",
+      "p6-b7-l0-0"
+     ],
+     "at": "遮断することがあります。|またAC出力ポート5つ搭"
+    },
+    {
+     "chapter": "page-6",
+     "lines": [
+      "p6-b4-l0-0",
+      "p6-b5-l0-0"
+     ],
+     "at": "可能範囲を指しています。|3000Wの出力を超えた"
+    },
+    {
+     "chapter": "page-6",
+     "lines": [
+      "p6-b3-l0-0",
+      "p6-b4-l0-0"
+     ],
+     "at": "の電力が必要となります。|定格出力3000Wは、一"
+    },
+    {
+     "chapter": "page-8",
+     "lines": [
+      "p8-b7-l0-0",
+      "p8-b7-l1-0"
+     ],
+     "at": "よりご購入いただけます。|サポートが必要な場合は、"
+    },
+    {
+     "chapter": "page-10",
+     "lines": [
+      "p10-b26-l2-0",
+      "p10-b26-l3-0"
+     ],
+     "at": "ドが無効になっています。|（Jackeryアプリで"
+    },
+    {
+     "chapter": "page-10",
+     "lines": [
+      "p10-b29-l0-0",
+      "p10-b29-l1-0"
+     ],
+     "at": "れます。）|この機能が有効な場合、本"
+    },
+    {
+     "chapter": "page-10",
+     "lines": [
+      "p10-b28-l1-0",
+      "p10-b28-l2-0"
+     ],
+     "at": "を延ばすことが可能です。|（Jackeryアプリで"
+    },
+    {
+     "chapter": "page-10",
+     "lines": [
+      "p10-b30-l3-0",
+      "p10-b30-l4-0"
+     ],
+     "at": "または未設定の状態です。|（Jackeryアプリで"
+    },
+    {
+     "chapter": "page-10",
+     "lines": [
+      "p11-b13-l0-0",
+      "p11-b13-l1-0"
+     ],
+     "at": "て出力をオンにしたとき：|アイコン表示：省エネモー"
+    },
+    {
+     "chapter": "page-16",
+     "lines": [
+      "p16-b15-l0-0",
+      "p16-b16-l0-0"
+     ],
+     "at": "らかじめご了承ください。|UPSとして使用している"
+    },
+    {
+     "chapter": "page-18",
+     "lines": [
+      "p18-b6-l0-0",
+      "p18-b7-l0-0"
+     ],
+     "at": "Aコードが表示されます。|その場合は、各ユニットの"
+    },
+    {
+     "chapter": "page-19",
+     "lines": [
+      "p19-b4-l0-0",
+      "p19-b5-l0-0"
+     ],
+     "at": "列接続の失敗を示します。|並列出力を再開するには、"
+    },
+    {
+     "chapter": "page-19",
+     "lines": [
+      "p19-b3-l0-0",
+      "p19-b4-l0-0"
+     ],
+     "at": "並列モードを終了します。|他のユニットは点滅する並"
+    },
+    {
+     "chapter": "page-19",
+     "lines": [
+      "p19-b2-l1-0",
+      "p19-b3-l0-0"
+     ],
+     "at": "出力を停止します。|システムが自動的に並列モ"
+    },
+    {
+     "chapter": "page-20",
+     "lines": [
+      "p20-b17-l0-0",
+      "p20-b17-l1-0"
+     ],
+     "at": "ンエネルギー優先モード:|本製品はグリーンエネルギ"
+    },
+    {
+     "chapter": "page-21",
+     "lines": [
+      "p21-b6-l1-0",
+      "p21-b6-l2-0"
+     ],
+     "at": "アクセサリーは不要です。|本製品のDC入力ポートは"
+    },
+    {
+     "chapter": "page-21",
+     "lines": [
+      "p21-b6-l0-0",
+      "p21-b6-l1-0"
+     ],
+     "at": "直接接続可能です。|追加のアクセサリーは不要"
+    },
+    {
+     "chapter": "page-22",
+     "lines": [
+      "p22-b6-l1-0",
+      "p22-b7-l0-0"
+     ],
+     "at": "となる可能性があります。|例："
+    },
+    {
+     "chapter": "page-22",
+     "lines": [
+      "p22-b5-l0-0",
+      "p22-b6-l0-0"
+     ],
+     "at": "電圧を一致させてください|2つのDC入力ポートに接"
+    },
+    {
+     "chapter": "page-23",
+     "lines": [
+      "p23-b4-l0-0",
+      "p23-b4-l1-0"
+     ],
+     "at": "の充電に対応しています。|ご使用の際は、以下にご注"
+    },
+    {
+     "chapter": "page-26",
+     "lines": [
+      "p26-b2-l0-0",
+      "p26-b3-l0-0"
+     ],
+     "at": "確にご案内するものです。|ご使用前に必ずご確認のう"
+    },
+    {
+     "chapter": "page-26",
+     "lines": [
+      "p26-b1-l0-0",
+      "p26-b2-l0-0"
+     ],
+     "at": "にありがとうございます。|本保証書は、Jacker"
+    },
+    {
+     "chapter": "page-26",
+     "lines": [
+      "p26-b11-l0-0",
+      "p26-b12-l0-0"
+     ],
+     "at": "は延長保証の対象外です。|詳細につきましては、公式"
+    },
+    {
+     "chapter": "page-26",
+     "lines": [
+      "p26-b13-l0-0",
+      "p26-b13-l1-0"
+     ],
+     "at": "購入チャネルについて|本保証は、Jackery"
+    },
+    {
+     "chapter": "page-26",
+     "lines": [
+      "p26-b14-l0-0",
+      "p26-b14-l1-0"
+     ],
+     "at": "保証提供地域|保証は、日本国内に在住の"
+    },
+    {
+     "chapter": "page-27",
+     "lines": [
+      "p27-b12-l2-0",
+      "p27-b12-l3-0"
+     ],
+     "at": "品）への交換にて対応いた|します。"
+    },
+    {
+     "chapter": "page-27",
+     "lines": [
+      "p27-b13-l0-0",
+      "p27-b13-l1-0"
+     ],
+     "at": "3.有償修理|以下に該当する場合は、有"
+    },
+    {
+     "chapter": "page-27",
+     "lines": [
+      "p27-b6-l1-0",
+      "p27-b7-l0-0"
+     ],
+     "at": "すようお願いいたします。|ご不明点がございましたら"
+    }
+   ]
+  },
+  {
+   "chapter": "*",
+   "action": "print-wrap-spaces",
+   "count": 153,
+   "soft_latin_wraps_kept": 69
+  },
+  {
+   "chapter": "*",
+   "action": "print-weights",
+   "count": 19,
+   "containers": [
+    {
+     "chapter": "page-8",
+     "text": "AC充電ケーブル"
+    },
+    {
+     "chapter": "page-8",
+     "text": "本体"
+    },
+    {
+     "chapter": "page-8",
+     "text": "取扱説明書一式"
+    },
+    {
+     "chapter": "page-8",
+     "text": "※付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+    },
+    {
+     "chapter": "page-8",
+     "text": "※AC充電ケーブルは、同梱されている本体以外には使用しないでください。"
+    },
+    {
+     "chapter": "page-8",
+     "text": "※シガーソケット充電ケーブルは別売りです。Jackery公式サイトよりご購入いた"
+    },
+    {
+     "chapter": "page-14",
+     "text": "出力ポートタイプ"
+    },
+    {
+     "chapter": "page-14",
+     "text": "電力設定値"
+    },
+    {
+     "chapter": "page-14",
+     "text": "デフォルト設定"
+    },
+    {
+     "chapter": "page-22",
+     "text": "OC"
+    },
+    {
+     "chapter": "page-27",
+     "text": "公式サイト:http://www.jackery.jp"
+    },
+    {
+     "chapter": "page-27",
+     "text": "カスタマーサポート:jackery.jp@jackery.com"
+    },
+    {
+     "chapter": "page-27",
+     "text": "お問い合わせ電話番号:050-3198-9007"
+    },
+    {
+     "chapter": "page-28",
+     "text": "2.1APPの右上にあるデバイス追加ボタンをクリックします；"
+    },
+    {
+     "chapter": "page-28",
+     "text": "2.2デバイスの主電源ボタンを長押しして電源をいれると、ディスプレー画面にWi-"
+    },
+    {
+     "chapter": "page-29",
+     "text": "2.3検出されたデバイスアイコンをクリックすると、アプリは自動的にBluetoo"
+    },
+    {
+     "chapter": "page-29",
+     "text": "2.4デバイスが正常に接続されると、デバイスが接続するWi-Fiの名前とパスワー"
+    },
+    {
+     "chapter": "page-29",
+     "text": "2.5デバイスのホーム画面でデバイスが正常に追加されると、デバイスのWi-Fiア"
+    },
+    {
+     "chapter": "page-29",
+     "text": "4.1Wi-FiとBluetoothをオンにするには（ディスプレーにWi-Fiと"
+    }
+   ]
+  },
+  {
+   "chapter": "*",
+   "action": "reference-figures-rebound",
+   "figures": [
+    "pdf/page-8/inbox",
+    "pdf/page-14/energy-saving",
+    "pdf/page-18/parallel"
+   ]
+  }
+ ],
+ "copy_restorations": [
+  {
+   "chapter": "page-5",
+   "kind": "print-order",
+   "approved": "煙が出ている、異臭がする / 落としたり、破損したとき / 異音がする / 電源コード(AC充電ケーブル)が傷んだとき / 内部に水や異物が入ったとき",
+   "pdf": "煙が出ている、異臭がする / 落としたり、破損したとき / 異音がする / 内部に水や異物が入ったとき / 電源コード(AC充電ケーブル)が傷んだとき"
+  },
+  {
+   "chapter": "page-18",
+   "kind": "print-icon-position",
+   "approved": "icon before 設定に失敗した場合は",
+   "pdf": "icon after 並列アイコンが点灯表示されます。"
+  },
+  {
+   "chapter": "page-18",
+   "kind": "hidden-print-text",
+   "approved": "Jackery Explorer 2000 Plus",
+   "pdf": "",
+   "reason": "painted over by the device drawing in print; not visible"
+  },
+  {
+   "chapter": "page-14",
+   "kind": "inline-glyph-placeholder",
+   "approved": "ネアイコン           ",
+   "pdf": "に省エネアイコン",
+   "glyph": "assets/native-energy-saving-12h-p14.svg"
+  },
+  {
+   "chapter": "page-14",
+   "kind": "inline-glyph-placeholder",
+   "approved": "の             アイ",
+   "pdf": "と、画面上のアイ",
+   "glyph": "assets/native-energy-saving-12h-p14.svg"
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "、人が死亡または重傷を負 う可能性が想定される内容",
+   "pdf": "、人が死亡または重傷を負う可能性が想定される内容",
+   "lines": [
+    "p3-b12-l0-0",
+    "p3-b13-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "、人が傷害を負う可能性が 想定される内容または物的",
+   "pdf": "、人が傷害を負う可能性が想定される内容または物的",
+   "lines": [
+    "p3-b14-l0-0",
+    "p3-b15-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "生する可能性があることを 示しています。",
+   "pdf": "生する可能性があることを示しています。",
+   "lines": [
+    "p3-b25-l0-0",
+    "p3-b26-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "、機器の損傷、データの消 失、性能の低下、または予",
+   "pdf": "、機器の損傷、データの消失、性能の低下、または予",
+   "lines": [
+    "p3-b24-l0-0",
+    "p3-b25-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "喚起するために、必ずお読 みください。",
+   "pdf": "喚起するために、必ずお読みください。",
+   "lines": [
+    "p3-b4-l1-0",
+    "p3-b4-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "的な危険やリスクについて 注意喚起するために、必ず",
+   "pdf": "的な危険やリスクについて注意喚起するために、必ず",
+   "lines": [
+    "p3-b4-l0-0",
+    "p3-b4-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "の前に取扱説明書をお読み ください。",
+   "pdf": "の前に取扱説明書をお読みください。",
+   "lines": [
+    "p3-b5-l0-0",
+    "p3-b5-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "品を火気の近くに置かない でください。",
+   "pdf": "品を火気の近くに置かないでください。",
+   "lines": [
+    "p3-b6-l0-0",
+    "p3-b6-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "なお子様の手の届かない場 所に保管してください。",
+   "pdf": "なお子様の手の届かない場所に保管してください。",
+   "lines": [
+    "p3-b7-l0-0",
+    "p3-b7-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "品を分解、改造を禁止する 記号",
+   "pdf": "品を分解、改造を禁止する記号",
+   "lines": [
+    "p3-b8-l0-0",
+    "p3-b8-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "ントから電源プラグを抜く 記号",
+   "pdf": "ントから電源プラグを抜く記号",
+   "lines": [
+    "p3-b0-l0-0",
+    "p3-b0-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-3",
+   "kind": "print-wrap-space",
+   "approved": "濡れた手で触れることを禁 止する記号",
+   "pdf": "濡れた手で触れることを禁止する記号",
+   "lines": [
+    "p3-b3-l0-0",
+    "p3-b3-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "の取りはずしはお客様自身 では行わないでください。",
+   "pdf": "の取りはずしはお客様自身では行わないでください。",
+   "lines": [
+    "p4-b3-l5-0",
+    "p4-b3-l6-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "ださい。 充電池の取りはずしはお客",
+   "pdf": "ださい。充電池の取りはずしはお客",
+   "lines": [
+    "p4-b3-l4-0",
+    "p4-b3-l5-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "タマーサポートにご連絡く ださい。",
+   "pdf": "タマーサポートにご連絡ください。",
+   "lines": [
+    "p4-b3-l3-0",
+    "p4-b3-l4-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "品を廃棄する場合は、当社 のカスタマーサポートにご",
+   "pdf": "品を廃棄する場合は、当社のカスタマーサポートにご",
+   "lines": [
+    "p4-b3-l2-0",
+    "p4-b3-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "内蔵しています。 この商品を廃棄する場合は",
+   "pdf": "内蔵しています。この商品を廃棄する場合は",
+   "lines": [
+    "p4-b3-l1-0",
+    "p4-b3-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "リサイクル可能な充電池を 内蔵しています。",
+   "pdf": "リサイクル可能な充電池を内蔵しています。",
+   "lines": [
+    "p4-b3-l0-0",
+    "p4-b3-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "処理業者、または販売店に お問い合わせください。",
+   "pdf": "処理業者、または販売店にお問い合わせください。",
+   "lines": [
+    "p4-b4-l9-0",
+    "p4-b4-l10-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "細は、お住まいの自治体、 廃棄物処理業者、または販",
+   "pdf": "細は、お住まいの自治体、廃棄物処理業者、または販",
+   "lines": [
+    "p4-b4-l8-0",
+    "p4-b4-l9-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "の廃棄やリサイクルについ ての詳細は、お住まいの自",
+   "pdf": "の廃棄やリサイクルについての詳細は、お住まいの自",
+   "lines": [
+    "p4-b4-l7-0",
+    "p4-b4-l8-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "環境保護に役立ちます。 本製品の廃棄やリサイクル",
+   "pdf": "環境保護に役立ちます。本製品の廃棄やリサイクル",
+   "lines": [
+    "p4-b4-l6-0",
+    "p4-b4-l7-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "廃棄およびリサイクルは、 環境保護に役立ちます。",
+   "pdf": "廃棄およびリサイクルは、環境保護に役立ちます。",
+   "lines": [
+    "p4-b4-l5-0",
+    "p4-b4-l6-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "す。 適切な廃棄およびリサイク",
+   "pdf": "す。適切な廃棄およびリサイク",
+   "lines": [
+    "p4-b4-l4-0",
+    "p4-b4-l5-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "要があることを示していま す。",
+   "pdf": "要があることを示しています。",
+   "lines": [
+    "p4-b4-l3-0",
+    "p4-b4-l4-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "めに指定の回収施設に持ち 込む必要があることを示し",
+   "pdf": "めに指定の回収施設に持ち込む必要があることを示し",
+   "lines": [
+    "p4-b4-l2-0",
+    "p4-b4-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "として廃棄せず、リサイク ルのために指定の回収施設",
+   "pdf": "として廃棄せず、リサイクルのために指定の回収施設",
+   "lines": [
+    "p4-b4-l1-0",
+    "p4-b4-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "ンボルは、本製品を一般家 庭ごみとして廃棄せず、リ",
+   "pdf": "ンボルは、本製品を一般家庭ごみとして廃棄せず、リ",
+   "lines": [
+    "p4-b4-l0-0",
+    "p4-b4-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "間の健康と環境への潜在的 な害を防ぎます。",
+   "pdf": "間の健康と環境への潜在的な害を防ぎます。",
+   "lines": [
+    "p4-b14-l12-0",
+    "p4-b14-l13-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "配慮したリサイクルを確保 し、人間の健康と環境への",
+   "pdf": "配慮したリサイクルを確保し、人間の健康と環境への",
+   "lines": [
+    "p4-b14-l11-0",
+    "p4-b14-l12-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "ください。適切な廃棄は環 境に配慮したリサイクルを",
+   "pdf": "ください。適切な廃棄は環境に配慮したリサイクルを",
+   "lines": [
+    "p4-b14-l10-0",
+    "p4-b14-l11-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "、または購入した小売店に お持ちください。適切な廃",
+   "pdf": "、または購入した小売店にお持ちください。適切な廃",
+   "lines": [
+    "p4-b14-l9-0",
+    "p4-b14-l10-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "の収集拠点、リサイクルセ ンター、または購入した小",
+   "pdf": "の収集拠点、リサイクルセンター、または購入した小",
+   "lines": [
+    "p4-b14-l8-0",
+    "p4-b14-l9-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "みの電池および蓄電池は、 お近くの収集拠点、リサイ",
+   "pdf": "みの電池および蓄電池は、お近くの収集拠点、リサイ",
+   "lines": [
+    "p4-b14-l7-0",
+    "p4-b14-l8-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "れています。 使用済みの電池および蓄電",
+   "pdf": "れています。使用済みの電池および蓄電",
+   "lines": [
+    "p4-b14-l6-0",
+    "p4-b14-l7-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "ることが法律で義務付けら れています。",
+   "pdf": "ることが法律で義務付けられています。",
+   "lines": [
+    "p4-b14-l5-0",
+    "p4-b14-l6-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "池を指定された収集場所で 廃棄することが法律で義務",
+   "pdf": "池を指定された収集場所で廃棄することが法律で義務",
+   "lines": [
+    "p4-b14-l4-0",
+    "p4-b14-l5-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "わらず、すべての電池およ び蓄電池を指定された収集",
+   "pdf": "わらず、すべての電池および蓄電池を指定された収集",
+   "lines": [
+    "p4-b14-l3-0",
+    "p4-b14-l4-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "の皆様は、有害物質の有無 にかかわらず、すべての電",
+   "pdf": "の皆様は、有害物質の有無にかかわらず、すべての電",
+   "lines": [
+    "p4-b14-l2-0",
+    "p4-b14-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "に廃棄してはいけません。 消費者の皆様は、有害物質",
+   "pdf": "に廃棄してはいけません。消費者の皆様は、有害物質",
+   "lines": [
+    "p4-b14-l1-0",
+    "p4-b14-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "よび蓄電池は家庭ごみと一 緒に廃棄してはいけません",
+   "pdf": "よび蓄電池は家庭ごみと一緒に廃棄してはいけません",
+   "lines": [
+    "p4-b14-l0-0",
+    "p4-b14-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "ど高温（45℃以上）にな る場所で使用したり、放置",
+   "pdf": "ど高温（45℃以上）になる場所で使用したり、放置",
+   "lines": [
+    "p4-b0-l1-0",
+    "p4-b0-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "ばや炎天下の車内、熱器具 の周辺など高温（45℃以",
+   "pdf": "ばや炎天下の車内、熱器具の周辺など高温（45℃以",
+   "lines": [
+    "p4-b0-l0-0",
+    "p4-b0-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "発火、破裂する原因になり ます。",
+   "pdf": "発火、破裂する原因になります。",
+   "lines": [
+    "p4-b0-l3-0",
+    "p4-b0-l4-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "撃を与えたり、投げつけた りしない",
+   "pdf": "撃を与えたり、投げつけたりしない",
+   "lines": [
+    "p4-b1-l0-0",
+    "p4-b1-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "発火、破裂する原因になり ます。",
+   "pdf": "発火、破裂する原因になります。",
+   "lines": [
+    "p4-b1-l2-0",
+    "p4-b1-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "ど、液体を入れたり、濡ら したりしない",
+   "pdf": "ど、液体を入れたり、濡らしたりしない",
+   "lines": [
+    "p4-b2-l0-0",
+    "p4-b2-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "た手で本体や接続するケー ブルを触らない",
+   "pdf": "た手で本体や接続するケーブルを触らない",
+   "lines": [
+    "p4-b9-l0-0",
+    "p4-b9-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "にケーブル以外の金属類を 差し込まない",
+   "pdf": "にケーブル以外の金属類を差し込まない",
+   "lines": [
+    "p4-b10-l0-0",
+    "p4-b10-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "りだしたら、電源プラグに ふれない(充電をしない)",
+   "pdf": "りだしたら、電源プラグにふれない(充電をしない)",
+   "lines": [
+    "p4-b11-l0-0",
+    "p4-b11-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "りが付着して火災や感電の 原因になります。",
+   "pdf": "りが付着して火災や感電の原因になります。",
+   "lines": [
+    "p4-b12-l2-0",
+    "p4-b12-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "みが不十分だと、発熱した りほこりが付着して火災や",
+   "pdf": "みが不十分だと、発熱したりほこりが付着して火災や",
+   "lines": [
+    "p4-b12-l1-0",
+    "p4-b12-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "続は必ず、電源プラグを電 源につなぐ前に行って下さ",
+   "pdf": "続は必ず、電源プラグを電源につなぐ前に行って下さ",
+   "lines": [
+    "p4-b6-l0-0",
+    "p4-b6-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "プラグを切り離してから行 って下さい。",
+   "pdf": "プラグを切り離してから行って下さい。",
+   "lines": [
+    "p4-b6-l3-0",
+    "p4-b6-l4-0"
+   ]
+  },
+  {
+   "chapter": "page-4",
+   "kind": "print-wrap-space",
+   "approved": "接地接続を外す場合は、必 ず電源プラグを切り離して",
+   "pdf": "接地接続を外す場合は、必ず電源プラグを切り離して",
+   "lines": [
+    "p4-b6-l2-0",
+    "p4-b6-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "。また、本製品に接続され ている機器もすべて外して",
+   "pdf": "。また、本製品に接続されている機器もすべて外して",
+   "lines": [
+    "p5-b7-l1-0",
+    "p5-b7-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "や感電の原因になります。 すぐにAC充電ケーブルを",
+   "pdf": "や感電の原因になります。すぐにAC充電ケーブルを",
+   "lines": [
+    "p5-b7-l0-0",
+    "p5-b7-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "なくなるまで本製品を水浸 しにしてください。",
+   "pdf": "なくなるまで本製品を水浸しにしてください。",
+   "lines": [
+    "p5-b9-l0-0",
+    "p5-b9-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "ポートにご連絡ください。 お客様による修理は危険で",
+   "pdf": "ポートにご連絡ください。お客様による修理は危険で",
+   "lines": [
+    "p5-b8-l0-0",
+    "p5-b8-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "を使用できるのは日本国内 のみです。",
+   "pdf": "を使用できるのは日本国内のみです。",
+   "lines": [
+    "p5-b10-l0-0",
+    "p5-b10-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "なような機器では、万が一 使用中に給電ができなくな",
+   "pdf": "なような機器では、万が一使用中に給電ができなくな",
+   "lines": [
+    "p5-b4-l1-0",
+    "p5-b4-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "人命/財産に重大な危険を 及ぼしうる用途でのご使用",
+   "pdf": "人命/財産に重大な危険を及ぼしうる用途でのご使用",
+   "lines": [
+    "p5-b4-l0-0",
+    "p5-b4-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "。落下して怪我をする場合 があります。",
+   "pdf": "。落下して怪我をする場合があります。",
+   "lines": [
+    "p5-b6-l1-0",
+    "p5-b6-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-5",
+   "kind": "print-wrap-space",
+   "approved": "lusを移動するときは、 積み重ねたり、上に他の物",
+   "pdf": "lusを移動するときは、積み重ねたり、上に他の物",
+   "lines": [
+    "p5-b6-l0-0",
+    "p5-b6-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-6",
+   "kind": "print-wrap-space",
+   "approved": "損傷するリスクがあります のでお控えください。",
+   "pdf": "損傷するリスクがありますのでお控えください。",
+   "lines": [
+    "p6-b26-l2-0",
+    "p6-b26-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-6",
+   "kind": "print-wrap-space",
+   "approved": "プした製品を繰り返し利用 することはポータブル電源",
+   "pdf": "プした製品を繰り返し利用することはポータブル電源",
+   "lines": [
+    "p6-b26-l1-0",
+    "p6-b26-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-6",
+   "kind": "print-wrap-space",
+   "approved": "に超える可能性のある製品 のご利用や、定格出力を超",
+   "pdf": "に超える可能性のある製品のご利用や、定格出力を超",
+   "lines": [
+    "p6-b26-l0-0",
+    "p6-b26-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-7",
+   "kind": "print-wrap-space",
+   "approved": "可能となり、本機の蓄電は -20°C~45°Cで行",
+   "pdf": "可能となり、本機の蓄電は-20°C~45°Cで行",
+   "lines": [
+    "p7-b17-l0-0",
+    "p7-b18-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "eryアプリで有効/無効 にできます",
+   "pdf": "eryアプリで有効/無効にできます",
+   "lines": [
+    "p10-b10-l1-0",
+    "p10-b10-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "、充電電力が低下し、充電 速度が低減します。",
+   "pdf": "、充電電力が低下し、充電速度が低減します。",
+   "lines": [
+    "p10-b26-l0-0",
+    "p10-b26-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "。電源オフ時も設定は保持 されます。）",
+   "pdf": "。電源オフ時も設定は保持されます。）",
+   "lines": [
+    "p10-b26-l3-0",
+    "p10-b27-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "ドが無効になっています。 （Jackeryアプリで",
+   "pdf": "ドが無効になっています。（Jackeryアプリで",
+   "lines": [
+    "p10-b26-l2-0",
+    "p10-b26-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "eryアプリで有効/無効 にできます",
+   "pdf": "eryアプリで有効/無効にできます",
+   "lines": [
+    "p10-b11-l1-0",
+    "p10-b11-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "を較正するために、時折フ ル充放電サイクルを実行し",
+   "pdf": "を較正するために、時折フル充放電サイクルを実行し",
+   "lines": [
+    "p10-b29-l1-0",
+    "p10-b29-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "れます。） この機能が有効な場合、本",
+   "pdf": "れます。）この機能が有効な場合、本",
+   "lines": [
+    "p10-b29-l0-0",
+    "p10-b29-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "電源オフ時も設定は保持さ れます。）",
+   "pdf": "電源オフ時も設定は保持されます。）",
+   "lines": [
+    "p10-b28-l2-0",
+    "p10-b29-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "を延ばすことが可能です。 （Jackeryアプリで",
+   "pdf": "を延ばすことが可能です。（Jackeryアプリで",
+   "lines": [
+    "p10-b28-l1-0",
+    "p10-b28-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "テリー残量が既定値に設定 されるため、バッテリーの",
+   "pdf": "テリー残量が既定値に設定されるため、バッテリーの",
+   "lines": [
+    "p10-b28-l0-0",
+    "p10-b28-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "eryアプリで設定してく ださい",
+   "pdf": "eryアプリで設定してください",
+   "lines": [
+    "p10-b12-l1-0",
+    "p10-b12-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "電力消費を削減して電気代 を節約します。",
+   "pdf": "電力消費を削減して電気代を節約します。",
+   "lines": [
+    "p10-b30-l1-0",
+    "p10-b30-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "ており、太陽光エネルギー の利用を最大化し、電力会",
+   "pdf": "ており、太陽光エネルギーの利用を最大化し、電力会",
+   "lines": [
+    "p10-b30-l0-0",
+    "p10-b30-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "電源オフ時も設定は保持さ れます。）",
+   "pdf": "電源オフ時も設定は保持されます。）",
+   "lines": [
+    "p10-b30-l4-0",
+    "p10-b31-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "または未設定の状態です。 （Jackeryアプリで",
+   "pdf": "または未設定の状態です。（Jackeryアプリで",
+   "lines": [
+    "p10-b30-l3-0",
+    "p10-b30-l4-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "eryアプリで設定してく ださい",
+   "pdf": "eryアプリで設定してください",
+   "lines": [
+    "p10-b13-l1-0",
+    "p10-b13-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "ださい。電源オフ時も設定 は保持されます。）",
+   "pdf": "ださい。電源オフ時も設定は保持されます。）",
+   "lines": [
+    "p10-b32-l4-0",
+    "p10-b32-l5-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "できます。 （Jackeryアプリで",
+   "pdf": "できます。（Jackeryアプリで",
+   "lines": [
+    "p10-b32-l3-0",
+    "p10-b32-l4-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "電気料金を削減することが できます。",
+   "pdf": "電気料金を削減することができます。",
+   "lines": [
+    "p10-b32-l2-0",
+    "p10-b32-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "オフピーク時間に基づいた 充電プランを選択。これに",
+   "pdf": "オフピーク時間に基づいた充電プランを選択。これに",
+   "lines": [
+    "p10-b32-l1-0",
+    "p10-b32-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "の充電時間をカスタマイズ することで、電気料金のピ",
+   "pdf": "の充電時間をカスタマイズすることで、電気料金のピ",
+   "lines": [
+    "p10-b32-l0-0",
+    "p10-b32-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "、並列接続は設定されてい ません。",
+   "pdf": "、並列接続は設定されていません。",
+   "lines": [
+    "p10-b35-l0-0",
+    "p10-b35-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "、並列接続は正常に設定さ れています。",
+   "pdf": "、並列接続は正常に設定されています。",
+   "lines": [
+    "p10-b35-l2-0",
+    "p10-b35-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "交流電源による出力マ ーク（正弦波)",
+   "pdf": "交流電源による出力マーク（正弦波)",
+   "lines": [
+    "p10-b9-l0-0",
+    "p10-b9-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "シガーソケット入力電 力表示",
+   "pdf": "シガーソケット入力電力表示",
+   "lines": [
+    "p11-b36-l0-0",
+    "p11-b36-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "8020入力ポートを介し て充電されています。",
+   "pdf": "8020入力ポートを介して充電されています。",
+   "lines": [
+    "p11-b44-l0-0",
+    "p11-b44-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "ソーラー(グリーンエネ ルギー)充電接続",
+   "pdf": "ソーラー(グリーンエネルギー)充電接続",
+   "lines": [
+    "p11-b38-l0-0",
+    "p11-b38-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "0入力ポートを介して充電 されています。",
+   "pdf": "0入力ポートを介して充電されています。",
+   "lines": [
+    "p11-b3-l0-0",
+    "p11-b3-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "スの充電時には、オレンジ 色の円は点灯したままにな",
+   "pdf": "スの充電時には、オレンジ色の円は点灯したままにな",
+   "lines": [
+    "p11-b6-l1-0",
+    "p11-b6-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "ンテージを囲むオレンジ色 の円が順番に点灯します。",
+   "pdf": "ンテージを囲むオレンジ色の円が順番に点灯します。",
+   "lines": [
+    "p11-b6-l0-0",
+    "p11-b6-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "バッテリーレベルパー セントタグ",
+   "pdf": "バッテリーレベルパーセントタグ",
+   "lines": [
+    "p11-b8-l0-0",
+    "p11-b8-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "バッテリーパックインジ ケータと接続された量",
+   "pdf": "バッテリーパックインジケータと接続された量",
+   "lines": [
+    "p11-b47-l0-0",
+    "p11-b47-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "ッテリーパックに接続され ていることを示します。",
+   "pdf": "ッテリーパックに接続されていることを示します。",
+   "lines": [
+    "p11-b2-l0-0",
+    "p11-b2-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "ては、トラブルシューティ ングのセクションを参照し",
+   "pdf": "ては、トラブルシューティングのセクションを参照し",
+   "lines": [
+    "p11-b0-l0-0",
+    "p11-b0-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "が通常の動作範囲に戻るま で、製品の機能が停止する",
+   "pdf": "が通常の動作範囲に戻るまで、製品の機能が停止する",
+   "lines": [
+    "p11-b10-l0-0",
+    "p11-b10-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "が通常の動作範囲に戻るま で、製品の機能が停止する",
+   "pdf": "が通常の動作範囲に戻るまで、製品の機能が停止する",
+   "lines": [
+    "p11-b11-l0-0",
+    "p11-b11-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "て出力をオンにしたとき： アイコン表示：省エネモー",
+   "pdf": "て出力をオンにしたとき：アイコン表示：省エネモー",
+   "lines": [
+    "p11-b13-l0-0",
+    "p11-b13-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-10",
+   "kind": "print-wrap-space",
+   "approved": "バッテリー使用可能 時間",
+   "pdf": "バッテリー使用可能時間",
+   "lines": [
+    "p11-b15-l0-0",
+    "p11-b15-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-14",
+   "kind": "print-wrap-space",
+   "approved": "には手動での切り替えが必 要です。",
+   "pdf": "には手動での切り替えが必要です。",
+   "lines": [
+    "p14-b16-l0-0",
+    "p14-b16-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-15",
+   "kind": "print-wrap-space",
+   "approved": "ボタンを押すか、充電入力 がある場合。",
+   "pdf": "ボタンを押すか、充電入力がある場合。",
+   "lines": [
+    "p15-b10-l0-0",
+    "p15-b10-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-15",
+   "kind": "print-wrap-space",
+   "approved": "LCDは自動的に消灯し、 スリープモードになります",
+   "pdf": "LCDは自動的に消灯し、スリープモードになります",
+   "lines": [
+    "p15-b12-l0-0",
+    "p15-b12-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-15",
+   "kind": "print-wrap-space",
+   "approved": "イスが起動している状態で 主電源ボタンを2回押しま",
+   "pdf": "イスが起動している状態で主電源ボタンを2回押しま",
+   "lines": [
+    "p15-b31-l0-0",
+    "p15-b31-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-15",
+   "kind": "print-wrap-space",
+   "approved": "間操作がないと自動的に消 灯します。",
+   "pdf": "間操作がないと自動的に消灯します。",
+   "lines": [
+    "p15-b33-l1-0",
+    "p15-b33-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-15",
+   "kind": "print-wrap-space",
+   "approved": "灯ディスプレイモードは、 2時間操作がないと自動的",
+   "pdf": "灯ディスプレイモードは、2時間操作がないと自動的",
+   "lines": [
+    "p15-b33-l0-0",
+    "p15-b33-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-15",
+   "kind": "print-wrap-space",
+   "approved": "モードのオン/オフを切り 替えます",
+   "pdf": "モードのオン/オフを切り替えます",
+   "lines": [
+    "p15-b24-l0-0",
+    "p15-b24-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-17",
+   "kind": "print-wrap-space",
+   "approved": "両方の電源がオフになって いることを確認してくださ",
+   "pdf": "両方の電源がオフになっていることを確認してくださ",
+   "lines": [
+    "p17-b8-l0-0",
+    "p17-b8-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-17",
+   "kind": "print-wrap-space",
+   "approved": "ことを確認してください。 適切な放熱を確保するため",
+   "pdf": "ことを確認してください。適切な放熱を確保するため",
+   "lines": [
+    "p17-b7-l1-0",
+    "p17-b7-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-18",
+   "kind": "print-wrap-space",
+   "approved": "ントからの充電には対応し ていません。",
+   "pdf": "ントからの充電には対応していません。",
+   "lines": [
+    "p18-b19-l1-0",
+    "p18-b19-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-18",
+   "kind": "print-wrap-space",
+   "approved": "。もう一方のユニートで過 負荷保護が作動する可能性",
+   "pdf": "。もう一方のユニートで過負荷保護が作動する可能性",
+   "lines": [
+    "p18-b10-l0-0",
+    "p18-b10-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-18",
+   "kind": "print-wrap-space",
+   "approved": "トに触れないでください。 このポートは200V高電",
+   "pdf": "トに触れないでください。このポートは200V高電",
+   "lines": [
+    "p18-b11-l0-0",
+    "p18-b12-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-20",
+   "kind": "print-wrap-space",
+   "approved": "~45℃です。上限・下限 温度を超えた場合、充放電",
+   "pdf": "~45℃です。上限・下限温度を超えた場合、充放電",
+   "lines": [
+    "p20-b6-l0-0",
+    "p20-b7-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-20",
+   "kind": "print-wrap-space",
+   "approved": "、充電できなくなる場合が あります。",
+   "pdf": "、充電できなくなる場合があります。",
+   "lines": [
+    "p20-b15-l0-0",
+    "p20-b15-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-20",
+   "kind": "print-wrap-space",
+   "approved": "定、発熱、接触不良などが 発生し、機器の正常な動作",
+   "pdf": "定、発熱、接触不良などが発生し、機器の正常な動作",
+   "lines": [
+    "p20-b11-l0-0",
+    "p20-b12-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-20",
+   "kind": "print-wrap-space",
+   "approved": "つ完全に差し込まれている ことを確認してください。",
+   "pdf": "つ完全に差し込まれていることを確認してください。",
+   "lines": [
+    "p20-b10-l0-0",
+    "p20-b11-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-21",
+   "kind": "print-wrap-space",
+   "approved": "）」を2個ご用意いただく 必要があります。",
+   "pdf": "）」を2個ご用意いただく必要があります。",
+   "lines": [
+    "p21-b5-l2-0",
+    "p21-b5-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-22",
+   "kind": "print-wrap-space",
+   "approved": "となる可能性があります。 例：",
+   "pdf": "となる可能性があります。例：",
+   "lines": [
+    "p22-b6-l1-0",
+    "p22-b7-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-22",
+   "kind": "print-wrap-space",
+   "approved": "圧が異なると、製品の異常 動作や故障の原因となる可",
+   "pdf": "圧が異なると、製品の異常動作や故障の原因となる可",
+   "lines": [
+    "p22-b6-l0-0",
+    "p22-b6-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-22",
+   "kind": "print-wrap-space",
+   "approved": "電圧を一致させてください 2つのDC入力ポートに接",
+   "pdf": "電圧を一致させてください2つのDC入力ポートに接",
+   "lines": [
+    "p22-b5-l0-0",
+    "p22-b6-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-22",
+   "kind": "print-wrap-space",
+   "approved": "接続すると、電圧が不均一 になり、製品が故障するお",
+   "pdf": "接続すると、電圧が不均一になり、製品が故障するお",
+   "lines": [
+    "p22-b8-l1-0",
+    "p22-b8-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-22",
+   "kind": "print-wrap-space",
+   "approved": "ckery製ソーラーパネ ルを使用し、接続する枚数",
+   "pdf": "ckery製ソーラーパネルを使用し、接続する枚数",
+   "lines": [
+    "p22-b8-l0-0",
+    "p22-b8-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-22",
+   "kind": "print-wrap-space",
+   "approved": "さい。車のヒューズが切れ たり、充電が正常に行われ",
+   "pdf": "さい。車のヒューズが切れたり、充電が正常に行われ",
+   "lines": [
+    "p22-b9-l0-0",
+    "p22-b9-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-23",
+   "kind": "print-wrap-space",
+   "approved": "でください。同時に使用す ると、車のヒューズが損傷",
+   "pdf": "でください。同時に使用すると、車のヒューズが損傷",
+   "lines": [
+    "p23-b6-l0-0",
+    "p23-b6-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-23",
+   "kind": "print-wrap-space",
+   "approved": "きません。人身傷害や物的 損害を避けるため、本製品",
+   "pdf": "きません。人身傷害や物的損害を避けるため、本製品",
+   "lines": [
+    "p23-b7-l0-0",
+    "p23-b7-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-24",
+   "kind": "print-wrap-space",
+   "approved": "消えるまで製品を充電して ください。",
+   "pdf": "消えるまで製品を充電してください。",
+   "lines": [
+    "p24-b15-l0-0",
+    "p24-b15-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-24",
+   "kind": "print-wrap-space",
+   "approved": "に20cmのスペースを確 保してください。",
+   "pdf": "に20cmのスペースを確保してください。",
+   "lines": [
+    "p24-b21-l0-0",
+    "p24-b21-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-24",
+   "kind": "print-wrap-space",
+   "approved": "満であることを確認してく ださい。",
+   "pdf": "満であることを確認してください。",
+   "lines": [
+    "p24-b22-l0-0",
+    "p24-b22-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-24",
+   "kind": "print-wrap-space",
+   "approved": "超えていないかをご確認く ださい。",
+   "pdf": "超えていないかをご確認ください。",
+   "lines": [
+    "p24-b23-l1-0",
+    "p24-b23-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-24",
+   "kind": "print-wrap-space",
+   "approved": "ーが消えるまで待ってくだ さい。ご使用の機器の起動",
+   "pdf": "ーが消えるまで待ってください。ご使用の機器の起動",
+   "lines": [
+    "p24-b23-l0-0",
+    "p24-b23-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-24",
+   "kind": "print-wrap-space",
+   "approved": "の開放電圧（Voc）を確 認してください。本製品の",
+   "pdf": "の開放電圧（Voc）を確認してください。本製品の",
+   "lines": [
+    "p24-b26-l0-0",
+    "p24-b26-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-24",
+   "kind": "print-wrap-space",
+   "approved": "さい。故障が消えるまで待 機してください。",
+   "pdf": "さい。故障が消えるまで待機してください。",
+   "lines": [
+    "p24-b12-l0-0",
+    "p24-b12-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-24",
+   "kind": "print-wrap-space",
+   "approved": "lusから切断し、再度接 続してください。",
+   "pdf": "lusから切断し、再度接続してください。",
+   "lines": [
+    "p24-b14-l1-0",
+    "p24-b14-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-26",
+   "kind": "print-wrap-space",
+   "approved": "購入チャネルについて 本保証は、Jackery",
+   "pdf": "購入チャネルについて本保証は、Jackery",
+   "lines": [
+    "p26-b13-l0-0",
+    "p26-b13-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-26",
+   "kind": "print-wrap-space",
+   "approved": "保証提供地域 保証は、日本国内に在住の",
+   "pdf": "保証提供地域保証は、日本国内に在住の",
+   "lines": [
+    "p26-b14-l0-0",
+    "p26-b14-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-26",
+   "kind": "print-wrap-space",
+   "approved": "かった使用）による故障・ 損傷",
+   "pdf": "かった使用）による故障・損傷",
+   "lines": [
+    "p26-b20-l2-0",
+    "p26-b20-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-27",
+   "kind": "print-wrap-space",
+   "approved": "同一製品の新品と交換いた します。",
+   "pdf": "同一製品の新品と交換いたします。",
+   "lines": [
+    "p27-b11-l1-0",
+    "p27-b11-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-27",
+   "kind": "print-wrap-space",
+   "approved": "品）への交換にて対応いた します。",
+   "pdf": "品）への交換にて対応いたします。",
+   "lines": [
+    "p27-b12-l2-0",
+    "p27-b12-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-27",
+   "kind": "print-wrap-space",
+   "approved": "（データの損失・逸失利益 など）に対して責任を負い",
+   "pdf": "（データの損失・逸失利益など）に対して責任を負い",
+   "lines": [
+    "p27-b2-l0-0",
+    "p27-b3-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-28",
+   "kind": "print-wrap-space",
+   "approved": "を同時長押しする必要があ ります。",
+   "pdf": "を同時長押しする必要があります。",
+   "lines": [
+    "p28-b3-l2-0",
+    "p28-b3-l3-0"
+   ]
+  },
+  {
+   "chapter": "page-28",
+   "kind": "print-wrap-space",
+   "approved": "othをオンにするには、 「USB出力ボタン」と「",
+   "pdf": "othをオンにするには、「USB出力ボタン」と「",
+   "lines": [
+    "p28-b3-l1-0",
+    "p28-b3-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-28",
+   "kind": "print-wrap-space",
+   "approved": "etoothをオフにしま す。再度Wi-FiとBl",
+   "pdf": "etoothをオフにします。再度Wi-FiとBl",
+   "lines": [
+    "p28-b3-l0-0",
+    "p28-b3-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-29",
+   "kind": "print-wrap-space",
+   "approved": "以下の2つの方法で接続で きます：",
+   "pdf": "以下の2つの方法で接続できます：",
+   "lines": [
+    "p29-b30-l0-0",
+    "p29-b30-l1-0"
+   ]
+  },
+  {
+   "chapter": "page-29",
+   "kind": "print-wrap-space",
+   "approved": "初期化され、システムが再 起動します。",
+   "pdf": "初期化され、システムが再起動します。",
+   "lines": [
+    "p29-b31-l1-0",
+    "p29-b31-l2-0"
+   ]
+  },
+  {
+   "chapter": "page-29",
+   "kind": "print-wrap-space",
+   "approved": "-Fiネットワークには対 応していません。",
+   "pdf": "-Fiネットワークには対応していません。",
+   "lines": [
+    "p29-b15-l0-0",
+    "p29-b16-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-29",
+   "kind": "print-wrap-space",
+   "approved": "もう一度タップすると、自 動的に再接続されます。",
+   "pdf": "もう一度タップすると、自動的に再接続されます。",
+   "lines": [
+    "p29-b28-l0-0",
+    "p29-b29-l0-0"
+   ]
+  },
+  {
+   "chapter": "page-29",
+   "kind": "print-wrap-space",
+   "approved": "ません。デバイスリストに 戻ると、自動的にBlue",
+   "pdf": "ません。デバイスリストに戻ると、自動的にBlue",
+   "lines": [
+    "p29-b27-l0-0",
+    "p29-b28-l0-0"
+   ]
+  }
+ ]
+}
