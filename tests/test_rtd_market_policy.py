@@ -3,8 +3,11 @@ import json
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from types import SimpleNamespace
+from unittest.mock import patch
 
-from tools.rtd.market_policy import market_context
+from tools.rtd import portal
+from tools.rtd.market_policy import PAGE, market_context, missing_knowledge_anchors
 
 
 class MarketPolicyTests(unittest.TestCase):
@@ -62,6 +65,34 @@ class MarketPolicyTests(unittest.TestCase):
             self.snapshot(folder, evidence_note="Operator recorded this requirement.")
             with self.assertRaisesRegex(ValueError, "tags and evidence"):
                 market_context(Path(folder))
+
+    def test_knowledge_anchors_must_name_an_existing_topic(self):
+        records = [{"id": "first", "knowledge": [{"id": "watts"}, {"id": "retired-topic"}]},
+                   {"id": "second"}]
+        self.assertEqual(missing_knowledge_anchors(records, {"watts"}), [("first", "retired-topic")])
+        self.assertEqual(missing_knowledge_anchors(records, {"watts", "retired-topic"}), [])
+
+    def test_unknown_knowledge_anchor_warns_and_the_page_still_renders(self):
+        settings = json.loads((portal.ASSETS / "settings.json").read_text(encoding="utf-8"))
+        topics = json.loads((portal.ASSETS / "product_knowledge.json").read_text(encoding="utf-8"))["topics"]
+        with TemporaryDirectory() as folder:
+            self.snapshot(folder, sources=[{"kind": "official", "url": "https://example.org/policy"}],
+                          knowledge=[{"id": topics[0]["id"], "title": "Known"},
+                                     {"id": "retired-topic", "title": "Renamed"}])
+            # Seed the per-build caches so only the knowledge pages read their inputs.
+            app = SimpleNamespace(
+                config=SimpleNamespace(rtd_site_role="combined", rtd_knowledge_dir=folder),
+                _rtd_portal_data=(settings, []), _rtd_system_context=None, _rtd_design_context=None,
+                _rtd_data_context=None, _rtd_matrix_context=None,
+            )
+            with patch.object(portal, "deliverables_page_context", return_value={}), \
+                    patch("sphinx.util.logging.getLogger") as get_logger:
+                pages = {name: context for name, context, _ in portal.collect_workspace_pages(app)}
+        self.assertEqual([record["id"] for record in pages[PAGE]["records"]], ["example-policy"])
+        warnings = [call.args[0] % call.args[1:] for call in get_logger.return_value.warning.call_args_list]
+        self.assertEqual(len(warnings), 1, warnings)
+        self.assertIn("example-policy", warnings[0])
+        self.assertIn("retired-topic", warnings[0])
 
 
 if __name__ == "__main__":

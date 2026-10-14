@@ -358,10 +358,19 @@ def collect_workspace_pages(app):
     deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
     from tools.rtd.product_learning import PAGE, TEMPLATE, learning_context
 
-    yield PAGE, {**learning_context(ASSETS, settings, products), "site_nav": site_nav(app)}, TEMPLATE
-    from tools.rtd.market_policy import PAGE as MARKET_PAGE, TEMPLATE as MARKET_TEMPLATE, market_context
+    learning = learning_context(ASSETS, settings, products)
+    yield PAGE, {**learning, "site_nav": site_nav(app)}, TEMPLATE
+    from sphinx.util import logging as sphinx_logging
+    from tools.rtd.market_policy import (
+        PAGE as MARKET_PAGE, TEMPLATE as MARKET_TEMPLATE, market_context, missing_knowledge_anchors,
+    )
 
-    yield MARKET_PAGE, {**market_context(workspace_content(app)), "site_nav": site_nav(app)}, MARKET_TEMPLATE
+    market = market_context(workspace_content(app))
+    # A renamed topic strands policy links; warn only, since malformed data already fails the build.
+    for record, anchor in missing_knowledge_anchors(market["records"], {t["id"] for t in learning["topics"]}):
+        sphinx_logging.getLogger(__name__).warning(
+            "Market policy record %s links to unknown product knowledge topic #%s", record, anchor)
+    yield MARKET_PAGE, {**market, "site_nav": site_nav(app)}, MARKET_TEMPLATE
     yield "workspace/index", {
         "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
         "system_entry": system is not None,

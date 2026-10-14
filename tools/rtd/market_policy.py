@@ -69,3 +69,9 @@ def market_context(knowledge_root: Path) -> dict:
         "countries": sorted({r["country"] for r in data["records"]}),
         "market_tags": list(dict.fromkeys(tag for r in data["records"] for tag in r["tags"])),
     }
+
+
+def missing_knowledge_anchors(records: list[dict], topic_ids: set[str]) -> list[tuple[str, str]]:
+    """(record id, anchor) for each ``products/knowledge#anchor`` link that names no topic."""
+    return [(record["id"], link["id"]) for record in records
+            for link in record.get("knowledge", []) if link["id"] not in topic_ids]
