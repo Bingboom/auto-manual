@@ -86,6 +86,7 @@ id = "generic-api-key"
 
   # JE-3600A CN/JP native timing glyph: verified SHA-256 of the SVG bytes.
   # Exact IR paths, field spelling and digest; actual credentials still fail.
+  # The web-layout editions reuse the same SVG bytes, so the same digest.
   [[rules.allowlists]]
   description = "JE-3600A native clock SVG content digest"
   condition = "AND"
@@ -93,6 +94,8 @@ id = "generic-api-key"
   paths = [
     '''^data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/web/zh/manual\.ir\.json$''',
     '''^data/manual_sources/JE-3600A/JP/git-20261012-fd06cd04-reviewed/web/ja/manual\.ir\.json$''',
+    '''^data/manual_sources/JE-3600A/CN/git-20261013-caa5370a-web-layout/web/zh/manual\.ir\.json$''',
+    '''^data/manual_sources/JE-3600A/JP/git-20261013-fd06cd04-web-layout/web/ja/manual\.ir\.json$''',
     '''^docs/publish/(?:sources/web|web)/JE-3600A/(?:CN/zh|JP/ja)/md/manual\.ir\.json$''',
   ]
   regexes = [

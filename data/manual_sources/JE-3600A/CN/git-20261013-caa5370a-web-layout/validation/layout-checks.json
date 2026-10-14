@@ -1,0 +1,53 @@
+{
+  "scope": "Evidence for candidate 16368b7, which the operator reviewed and accepted on 2026-10-13 (「上线发布」). The accepted rebuild changes only the Manual IR acceptance metadata.",
+  "source_pdf_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+  "source_pdf_pages": 23,
+  "strict_sphinx": "pass: python3 -m sphinx -b html -n -W --keep-going web/zh",
+  "cold_rebuild_byte_parity": true,
+  "unit_tests": "python3 -m unittest tests.test_je3600a_cn_jp_web_layout",
+  "browser_checks": {
+    "1280x900": {
+      "page_width": 1280,
+      "images": 65,
+      "broken_images": [],
+      "live_labels": 127,
+      "labels_outside_panel": [],
+      "label_overlaps": [],
+      "script_errors": [],
+      "chapters": 13,
+      "internal_scroll_surfaces": 0
+    },
+    "768x1024": {
+      "page_width": 768,
+      "images": 65,
+      "broken_images": [],
+      "live_labels": 127,
+      "labels_outside_panel": [],
+      "label_overlaps": [],
+      "script_errors": [],
+      "chapters": 13,
+      "internal_scroll_surfaces": 0
+    },
+    "390x844": {
+      "page_width": 390,
+      "images": 65,
+      "broken_images": [],
+      "live_labels": 127,
+      "labels_outside_panel": [],
+      "label_overlaps": [],
+      "script_errors": [],
+      "chapters": 13,
+      "internal_scroll_surfaces": 27
+    }
+  },
+  "reviewed_edition_at_390": {
+    "internal_scroll_surfaces": 29,
+    "chapters": 13,
+    "live_labels": 128
+  },
+  "reviewed_candidate": {
+    "git_ref": "16368b7",
+    "markdown_sha256": "5d94191faf074fc4a9d1ce1b95dfc4f79555516e4f3e85d6084a8ab67702d7d4",
+    "manual_ir_sha256": "82f8a29f98a86491bf1f72b8d903705c7b13b7b73d58f0f4d34a1ffaaa298e2f"
+  }
+}

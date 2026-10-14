@@ -5,6 +5,7 @@
 # (test_process_build_queue) stay in the fast tier even though they cross 4s.
 test_jhp5000c_us_web_layout                        # 112s (cold replay, admissions, derivation)
 test_jhp3000d_us_web_layout                        # 40s (admissions, derivation, cold replay)
+test_je3600a_cn_jp_web_layout                      # 37s (admissions, derivation, cold replay)
 test_web_presentation                              # 21.6s
 test_idml_rst_comments                             # 21.4s
 test_export_idml_golden                            # 18.7s
