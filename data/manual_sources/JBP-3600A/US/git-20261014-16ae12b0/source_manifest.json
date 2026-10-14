@@ -89,7 +89,7 @@
     "es": "web/es"
   },
   "source_authority": "operator-supplied original PDF; native visible English content; no translation or product adaptation",
-  "publication_status": "git-only-source-candidate",
+  "publication_status": "operator-approved-git-only-release",
   "validation_boundary": {
     "build_py_check": "Existing JE-1000F/US fixture regression only; does not validate JBP-3600A US or register it in phase2.",
     "native_body": [
@@ -2326,8 +2326,8 @@
     },
     {
       "path": "README.md",
-      "size": 8384,
-      "sha256": "508fc487071fcf4a24081eee7c8ff92818b86e473b6332ead439832b8ae0d2f9"
+      "size": 8584,
+      "sha256": "d2156c61f73601f53f828d14e6f2ab28a791ba4b202dafcb913d3d7984859c6e"
     },
     {
       "path": "assets/ac-charging.png",
@@ -2591,18 +2591,23 @@
     },
     {
       "path": "audit/source-validation.json",
-      "size": 3041,
-      "sha256": "6e6ae8adce386a6b9f20b734d1aa8328108f6891fb0972d1a364c75913e86881"
+      "size": 3033,
+      "sha256": "639d32ebce82a7699b85be77683bc4afc0383055206e903dc989ce767a8ffe58"
     },
     {
       "path": "audit/validation.zh.md",
-      "size": 2403,
-      "sha256": "562310fe89e2beaae1c0d88ac60628d824a3320ac132e56c1f7ff0784e596f9a"
+      "size": 2611,
+      "sha256": "fd6ae8a9f66635a45a50e23bdd80b4e41d6ce40c16f6b98b7b2ca95971b46139"
     },
     {
       "path": "rebuild.py",
       "size": 7826,
       "sha256": "44479d90cfba97a676706a6eec5cef1e355758a2f1d2e60c28cbf17806950c40"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 12901,
+      "sha256": "867b3368204df5df954677eda0a1245c421491f998b5c68ff2f9722366a3161b"
     },
     {
       "path": "source/en/content.json",
@@ -2836,8 +2841,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 205750,
-      "sha256": "c00aad262bde287e366e02c88f3f9d3f7255dd51ebb801a8c86a5469e479a3a1"
+      "size": 220079,
+      "sha256": "5411d54be048731a51e4986dee6cd6c7882df554f935d3dda51cdf5490584b07"
     },
     {
       "path": "web/en/manual_jbp3600a_us_en.md",
@@ -2996,8 +3001,8 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 208167,
-      "sha256": "bd7f1ca67d5234fab5a33e34b7db44ec212b6d8a4f3e8c4e8fe8e32109407e99"
+      "size": 222496,
+      "sha256": "6432a2a310850041fae15067b6f7075b1f4ffb95b9b9fdd09af521799c38025b"
     },
     {
       "path": "web/es/manual_jbp3600a_us_es.md",
@@ -3156,8 +3161,8 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 208784,
-      "sha256": "84ebce54e6b3adf64a09a35956d4843d3fbebade4465664d75a691c9e284e0b4"
+      "size": 223113,
+      "sha256": "b0f889b9f29f87753cff661a6bc4d7d25f29009a54a9152756e9e91842abe322"
     },
     {
       "path": "web/fr/manual_jbp3600a_us_fr.md",

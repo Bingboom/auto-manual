@@ -1,4 +1,4 @@
-"""JBP-3600A JP Japanese Git-only candidate: sheet identity, word coverage, artwork, shared-IR replay."""
+"""JBP-3600A JP Japanese Git-only release: sheet identity, word coverage, artwork, acceptance, shared-IR replay."""
 from __future__ import annotations
 
 from contextlib import redirect_stdout

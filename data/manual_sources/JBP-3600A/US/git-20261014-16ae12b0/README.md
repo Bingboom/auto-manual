@@ -10,7 +10,7 @@ This package freezes the supplied US Jackery Battery Pack 3600 User Manual (mode
 
 The printed cover, the US/FR/ES preface, the global contents and the back cover stay in the archived PDF and are not repeated in any Web body (「封面和目录 不用体现在web版面上」).
 
-**Status: Git-only source candidate for the operator's layout review.** There is no `source/approval.json`; every replayed IR is `publication_eligible: false`. Acceptance, merge and any release need separate operator decisions.
+**Status: operator-accepted Git-only release.** After the layout review (PR #1527, English, French and Spanish), the operator accepted this edition for release on 2026-10-14 (「合入了，上线授权你合入」). `source/approval.json` binds that acceptance to these exact source inputs, and every replayed IR is `publication_eligible: true`. Merge and release run under MA-303 in `code-as-doc/dev/merge_authorizations.md`.
 
 ## Operator decisions (2026-10-14)
 
