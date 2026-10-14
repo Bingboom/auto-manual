@@ -36,7 +36,7 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
-from tools.rtd.production_evidence import read_publications
+from tools.rtd.production_evidence import publication_facts, read_publications
 from tools.rtd.system_data import CAPABILITIES_CSV, LANGUAGES_CSV, read_targets
 from tools.utils.path_utils import Paths, PathSegments, repo_root
 
@@ -474,10 +474,11 @@ def matrix_context(root: Path, srcdir: Path, manifest: Path, assets: Path, setti
     capability_names, capabilities = capability_rows(root, products, config)
     line_ids = {line["id"] for line in config["lines"]}
     pending = [row["model"] for row in capabilities if row["model"] not in products]
+    web = publication_facts(targets)
     return {
         "built_on": built_at[:10],
         "facts": {
-            "models": len(products), "routes": len(targets),
+            "models": web["models"], "books": web["books"], "variants": web["variants"],
             "energy": sum(1 for p in products.values() if p["group"] in line_ids),
             "accessories": sum(1 for p in products.values() if p["group"] not in line_ids),
             "pending": len(pending),

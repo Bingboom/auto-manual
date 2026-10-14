@@ -127,8 +127,9 @@ class MatrixContextTests(unittest.TestCase):
         self.assets.mkdir()
         (self.assets / "product_matrix.json").write_text(json.dumps(CONFIG), encoding="utf-8")
         self.web = self.root / "docs" / "publish" / "web"
-        targets = [target("JE-A", "EU", "en"), target("JE-A", "US", "en"), target("JE-A", "JP", "ja"),
-                   target("JE-H", "US", "en"), target("JS-S", "EU", "en"), target("JX-Q", "EU", "en")]
+        targets = [target("JE-A", "EU", "en"), target("JE-A", "EU", "fr"), target("JE-A", "US", "en"),
+                   target("JE-A", "JP", "ja"), target("JE-H", "US", "en"), target("JS-S", "EU", "en"),
+                   target("JX-Q", "EU", "en")]
         manuals = {
             "JE-A": [("Capacity", "512 Wh"), ("AC Output", "500W Rated, 1000W Surge"), ("Weight", "5.7 kg")],
             "JE-H": [("Capacity", "3584 Wh"), ("Total AC Output", "4000W Rated, 8000W Surge"), ("Weight", "33.5 kg")],
@@ -156,7 +157,9 @@ class MatrixContextTests(unittest.TestCase):
 
     def test_products_are_placed_by_line_and_capacity_tier(self):
         context = self.context()
-        self.assertEqual(context["facts"], {"models": 4, "routes": 6, "energy": 2, "accessories": 2, "pending": 1})
+        # Six 说明书 (model × region), seven 语言版本: JE-A's EU book has two languages.
+        self.assertEqual(context["facts"], {"models": 4, "books": 6, "variants": 7, "energy": 2, "accessories": 2,
+                                            "pending": 1})
         self.assertEqual(context["built_on"], "2026-10-12")
         self.assertEqual(context["markets"], ["US", "EU", "JP"])
         self.assertEqual(context["tiers"], ["small", "large"])

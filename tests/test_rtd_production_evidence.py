@@ -9,7 +9,8 @@ import unittest
 
 from tools.rtd.production_evidence import (
     NOT_APPLICABLE, NOT_TRACKED, UNAVAILABLE, activity_windows,
-    component_references, metric, production_context, production_metrics, read_publications, skeleton_total,
+    component_references, metric, production_context, production_metrics, publication_facts, read_publications,
+    skeleton_total,
 )
 from tools.rtd.source_registry import load_registry
 from tools.rtd.deliverables import ASSETS, load_snapshot
@@ -38,6 +39,30 @@ class ProductionEvidenceTests(unittest.TestCase):
         self.assertEqual(results["print"]["value"], 1)
         self.assertEqual(results["idml"]["display"], NOT_TRACKED)
         self.assertEqual(results["pdf"]["display"], NOT_TRACKED)
+
+    def test_publication_facts_count_books_and_language_versions_once(self):
+        # A second route of one language version (a legacy alias) counts once.
+        aliased = [self.target, dict(self.target, route="M/EU/en/legacy", built_at="2026-10-12T07:00:00+00:00")]
+        facts = publication_facts(aliased)
+        self.assertEqual((facts["books"], facts["variants"], facts["models"]), (1, 1, 1))
+        self.assertEqual(facts["last_published"], "2026-10-12")
+        # Two languages of one book: one 说明书, two 语言版本.
+        facts = publication_facts([self.target, dict(self.target, lang="de")])
+        self.assertEqual((facts["books"], facts["variants"]), (1, 2))
+        self.assertEqual(facts["book_ids"], [("M", "EU")])
+        self.assertEqual(facts["variant_ids"], [("M", "EU", "de"), ("M", "EU", "en")])
+        catalog = [*aliased, dict(self.target, lang="de"), dict(self.target, region="US"),
+                   dict(self.target, model="N"), dict(self.target, model="N", lang="fr")]
+        facts = publication_facts(catalog)
+        self.assertEqual((facts["books"], facts["variants"], facts["models"]), (3, 5, 2))
+        self.assertEqual(facts["books_by_region"], {"EU": 2, "US": 1})
+        # The workbench KPI reads the same identities.
+        results = self.metrics(catalog, None)
+        self.assertEqual((results["manuals"]["value"], results["variants"]["value"]), (3, 5))
+        self.assertEqual(results["manuals"]["objects"], ["M / EU", "M / US", "N / EU"])
+        empty = publication_facts([])
+        self.assertEqual((empty["books"], empty["variants"], empty["models"], empty["books_by_region"],
+                          empty["last_published"]), (0, 0, 0, {}, ""))
 
     def test_unknown_language_does_not_invent_variant(self):
         docs = [dict(model="M", region="EU", lang="", formats={"word": {}})]

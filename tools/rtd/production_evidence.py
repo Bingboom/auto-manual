@@ -74,18 +74,37 @@ def _identities(rows: list[dict[str, Any]], keys: tuple[str, ...]) -> set[tuple[
     return {tuple(row[k] for k in keys) for row in rows if all(row.get(k) for k in keys)}
 
 
+def publication_facts(targets: list[dict[str, Any]]) -> dict[str, Any]:
+    """The one count of the Web catalog that every RTD page shows.
+
+    说明书 (unit 本) is one model × region; 语言版本 (unit 个) is one model ×
+    region × language. Repeated routes, versions and rebuilds of one identity
+    count once; a row without a model or region is no publication, one without
+    a language no language version. An empty catalog is all zeros.
+    """
+    books = _identities(targets, ("model", "region"))
+    variants = _identities(targets, ("model", "region", "lang"))
+    by_region: dict[str, int] = {}
+    for region in sorted(region for _model, region in books):
+        by_region[region] = by_region.get(region, 0) + 1
+    built = [str(t["built_at"])[:10] for t in targets if t.get("model") and t.get("region") and t.get("built_at")]
+    return {"books": len(books), "variants": len(variants), "models": len({model for model, _ in books}),
+            "books_by_region": by_region, "last_published": max(built, default=""),
+            "book_ids": sorted(books), "variant_ids": sorted(variants)}
+
+
 def production_metrics(targets: list[dict[str, Any]] | None, snapshot: dict[str, Any] | None,
                        web_source: dict[str, str], delivery_source: dict[str, str]) -> list[dict[str, Any]]:
-    web = targets or []
+    web = publication_facts(targets or [])
     documents = (snapshot or {}).get("documents", [])
     manual_keys = ("model", "region")
     variant_keys = (*manual_keys, "lang")
-    web_ids = _identities(web, variant_keys)
+    web_ids = set(web["variant_ids"])
     known_ids = web_ids | _identities(documents, variant_keys)
     complete = targets is not None and snapshot is not None
     metrics = []
     for key, label, ids, valid, sources in (
-        ("manuals", "Online Manuals", _identities(web, manual_keys), targets is not None, [web_source]),
+        ("manuals", "Online Manuals", set(web["book_ids"]), targets is not None, [web_source]),
         ("variants", "Language Variants", web_ids, targets is not None, [web_source]),
         ("targets", "Production Targets", known_ids, complete, [web_source, delivery_source]),
         ("published", "Published Targets", web_ids, targets is not None, [web_source]),
