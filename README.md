@@ -8,12 +8,12 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 ## 工作流路线图
 
 系统建设页新增三类访问入口的[架构视图](code-as-doc/dev/rtd_manual_portal/system-workspace.md#system-workspace-page)，与演进史共用记录。
-[设计系统页](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#design-system-page)汇总网页版的颜色、字体与组件、共享图标素材和印刷规格，取值和预览在构建时读自仓库。
+[设计规范页](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#design-system-page)汇总网页版的颜色、字体与组件、共享图标素材和印刷规格，取值和预览在构建时读自仓库。
 [系统数据页](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#system-data-page)统计已发布网页说明书、机型能力、素材注册与工程规模，可按区域和机型筛选。
 [产品矩阵页](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page)按产品线、容量和发布市场排列已发布说明书里的产品，附规格、功能与搭配对照。
 说明书工作台提供工作入口、三类资产管理与生产复用证据；统计边界见 [工作台统计契约](code-as-doc/dev/workspace_production_evidence.md)，生产后刷新与补做见 [数据持续更新](code-as-doc/dev/workspace_data_refresh.md)。
 
-手册中心按冻结发布记录提供[独立语言切换](code-as-doc/dev/rtd_locale_navigation.md)，区分已验证单语与语言身份待核验的旧出版物。
+说明书资料库按冻结发布记录提供[独立语言切换](code-as-doc/dev/rtd_locale_navigation.md)，区分已验证单语与语言身份待核验的旧出版物。
 
 Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。
 说明书网页化先按[素材复用与背景规则](docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)盘点已有素材，确认不能复用后再提取；新外部冻结稿的符号表须通过原稿图形与真实透明度准入，停用旧错误素材并按共用图形变体复用。
@@ -78,13 +78,13 @@ JE-100C/EU 九语 Web 本地构建与源稿差异记录见[构建指南](code-as
 | --- | --- |
 | 第一次接手项目 | [`ONBOARDING.md`](ONBOARDING.md) |
 | 完整命令和运维流程 | [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md) |
-| 手册中心首页与目录缩略图替换 | [`RTD manual center`](code-as-doc/dev/rtd_manual_portal.md) |
+| 说明书资料库首页与目录缩略图替换 | [`RTD manual center`](code-as-doc/dev/rtd_manual_portal.md) |
 | Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`Web 发布与原生多语共享组件准入`](code-as-doc/dev/web_publish_pipeline.md)；[`欧规共享组件存量迁移`](code-as-doc/dev/eu_shared_component_rollout_2026-09.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md)；[`RTD 部署回执与严格读取`](code-as-doc/dev/rtd_deployment_receipt.md) |
-| RTD 手册中心：US/EU/UK/CN/JP 地区筛选、发布链接与构建排查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
+| RTD 说明书资料库：US/EU/UK/CN/JP 地区筛选、发布链接与构建排查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
 | 现有钉钉机器人查询已发布欧规产品信息 | [`欧规说明书查询与启用`](code-as-doc/dev/eu_manual_query.md) |
-| RTD 知识库与工作资料（同项目私有站点，登录后直达，说明书首页不提供入口） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry) |
+| RTD 知识库：首页、产品与市场、说明书生产（同项目私有站点，登录后直达，说明书资料库不提供入口） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry) |
 | RTD 系统建设页：当前工作、系统架构、能力与系统演变 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/system-workspace.md#system-workspace-page) |
-| RTD 交付物页：各型号网页手册、印刷交付包与 Word 云文档的链接汇总 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#deliverables-page) |
+| RTD 说明书工作台：交付物矩阵（各型号网页手册、印刷交付包与 Word 云文档）、工作入口与生产证据 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#deliverables-page) |
 | RTD 手册反馈：售后邮箱入口与发布后健康检查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
 | 产品改进建议：网页表单与飞书机器人代提交 | [`VOC 接入`](code-as-doc/dev/product_voc.md) |
 | RTD 访问统计（默认关闭，Cloudflare Web Analytics） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |

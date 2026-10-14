@@ -154,7 +154,7 @@ manuals; the manuals-only public project leaves it out (see
 login required), but the operator can make it public at any time, and
 `noindex` is not access control. The contract and the page therefore hold only
 publishable facts. Gap narratives and resource needs belong to the Feishu
-internal page, not this file. The workspace sidebar shows the entry only when
+internal page, not this file. The sidebar lists it under 说明书生产 only when
 the page was built.
 
 ### Current focus

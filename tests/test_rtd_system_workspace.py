@@ -99,7 +99,7 @@ def contract() -> dict:
             "now_labels": {"REV-02": "在验项"},
         },
         "working_today": [
-            {"id": "center", "label": "手册中心", "page": "index"},
+            {"id": "center", "label": "说明书资料库", "page": "index"},
             {"id": "manual", "label": "代表手册", "publication": {"model": "JE-TEST", "region": "US", "lang": "en"}},
         ],
     }
@@ -683,7 +683,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             sw.main(["check", "--today", "24/09/2026"])
 
     def assert_no_sidebar_links_to_overview_sections(self, site: Path) -> None:
-        """No page's sidebar links to 分享资料 (#shares) or 最近更新 (#updates): both are 概览 page sections."""
+        """No page's sidebar links to 分享资料 (#shares) or 最近更新 (#updates): both are 知识库首页 sections."""
         checked = []
         for path in site.rglob("*.html"):
             text = path.read_text(encoding="utf-8")
@@ -749,6 +749,9 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn("美规 1 本", page)
             self.assertIn("便携电源", page)  # a declared skeleton family, built or not
             self.assertIn('href="#cap-web_publishing"', page)
+            # The shipped contract names the manual library as the site does.
+            self.assertIn("<h3>说明书资料库</h3>", page)
+            self.assertNotIn("手册中心", page)
             self.assertEqual(page.count('<details class="sw-more">'), 2)  # folded cards and gates
             # Skills and hooks come from this tree, not from the contract.
             self.assertIn('id="tooling"', page)
@@ -779,7 +782,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="system/index.html"', workspace)
             self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
-            # 分享资料 and 最近更新 stay as sections of the 概览 page, without a search box or filters.
+            # 分享资料 and 最近更新 stay as sections of the 知识库首页, without a search box or filters.
             self.assertIn('id="shares"', workspace)
             self.assertIn('id="updates"', workspace)
             for removed in ('id="search"', 'class="filter-bar"'):

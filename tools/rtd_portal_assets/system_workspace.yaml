@@ -116,12 +116,12 @@ capabilities:
     title: 网页发布
     en: Web Publishing
     status: available
-    summary: 在线手册按产品、市场、语言浏览；每次发布有版本和回执，每天自动校验
+    summary: 网页说明书按产品、市场、语言浏览；每次发布有版本和回执，每天自动校验
     items:
       - id: manual_center
-        label: 手册中心
+        label: 说明书资料库
         status: available
-        note: 按产品、区域、语言进入在线手册
+        note: 按产品、区域、语言进入网页说明书
         evidence:
           - "url:https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/"
           - "file:auto-manual:tools/rtd/portal.py"
@@ -134,7 +134,7 @@ capabilities:
       - id: locale_nav
         label: 语言切换
         status: available
-        note: 同一本手册在各语言版之间跳转
+        note: 同一本说明书在各语言版本之间跳转
         evidence:
           - "pr:auto-manual#1073"
       - id: receipt
@@ -156,7 +156,7 @@ capabilities:
       - id: qr_entry
         label: 印刷二维码入口
         status: available
-        note: 印刷手册上的二维码进入对应在线手册，可单独统计
+        note: 印刷说明书上的二维码进入对应网页说明书，可单独统计
         evidence:
           - "pr:auto-manual#1160"
       - id: analytics
@@ -220,7 +220,7 @@ capabilities:
         label: 网页手册
         short: 网页
         status: available
-        note: 在线手册由构建产出并发布
+        note: 网页说明书由构建产出并发布
         evidence:
           - "file:hello-docs:docs/publish/publish_manifest.json"
           - "pr:hello-docs#119"
@@ -375,7 +375,7 @@ capabilities:
       - id: source_registry
         label: 来源登记（SSOT）
         status: validated
-        note: 每项事实以哪里为准、多久算过期、取不到时怎么显示，登记在一份文件里；系统建设页和交付物页按它取数，并在页面底部列出
+        note: 每项事实以哪里为准、多久算过期、取不到时怎么显示，登记在一份文件里；系统建设页和说明书工作台按它取数，并在页面底部列出
         evidence:
           - "file:auto-manual:tools/rtd_portal_assets/source_registry.yaml"
           - "file:auto-manual:code-as-doc/dev/ssot_source_registry_design.md"
@@ -501,8 +501,8 @@ now_next:
 
 working_today:
   - id: manual_center
-    label: 手册中心
-    note: 按产品、市场、语言浏览在线手册
+    label: 说明书资料库
+    note: 按产品、市场、语言浏览网页说明书
     page: index
   - id: knowledge
     label: 知识库与 AI 分享

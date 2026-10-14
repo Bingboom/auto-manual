@@ -6,15 +6,14 @@ other portal surfaces. Add new notes for this surface here, not to the hub.
 ## Personal workspace entry
 
 The manual library root (说明书资料库) remains independent. The portal extension
-also builds `/workspace/` (知识库 · 概览) as the knowledge-base entry page:
+also builds `/workspace/` (知识库 · 首页) as the knowledge-base entry page:
 
 - **分享资料** (`#shares`) holds the share card for the bundled
-  beginner-facing AI sharing package at `/ai-share/00_打开分享.html`, with
-  its search box and category filters.
+  beginner-facing AI sharing package at `/ai-share/00_打开分享.html`.
 - **最近更新** (`#updates`) lists the newest knowledge-base entries: the
-  sharing package and, when built, 说明书工作台, 设计系统, 系统数据 and 产品矩阵.
+  sharing package and, when built, 说明书工作台, 设计规范, 系统数据 and 产品矩阵.
 - The page header and the last 最近更新 entry link to the manual library
-  (labelled 工作资料) for product, region, language and manual-content search.
+  (labelled 说明书资料库) for product, region, language and manual-content search.
 
 The sharing package is owned by **Hello-Docs** under
 `docs/knowledge/ai-share/`; it must not be committed to auto-manual.
@@ -33,10 +32,10 @@ workspace path is navigation, not a separate access-control boundary.
 The workspace exists in every combined portal build; knowledge pages link back
 to the manual center, but the manual-center homepage does not link into the
 workspace. The system page lives inside it. The sharing package is an
-optional entry. Without `ai-share/00_打开分享.html`, the 概览 page
+optional entry. Without `ai-share/00_打开分享.html`, the 知识库首页
 (`workspace/index.html`) hides its 分享资料 section (`#shares`, the share card)
 and the share line of its 最近更新 section (`#updates`). Nothing else changes.
-分享资料 and 最近更新 are sections of the 概览 page, not sidebar entries: the
+分享资料 and 最近更新 are sections of the 知识库首页, not sidebar entries: the
 sidebar lists pages only, so each entry is marked current on its own page.
 
 Rollback: revert the portal extension's RTD activation and rebuild. Frozen
@@ -154,14 +153,15 @@ fails the export instead of silently dropping a format.
 - A snapshot older than the `deliverables_feishu` domain's `stale_after_days`
   in `source_registry.yaml` shows 待复核, and
   `check` warns about it.
-- The page always renders. The workspace and system pages link to it from their
-  sidebars, and the workspace's 最近更新 list links to it too.
+- The page always renders. Every knowledge page lists it first under 说明书生产,
+  and the 知识库首页's 最近更新 list links to it too.
 
 ## Design system page
 
-`/workspace/design/index.html` (设计系统) shows the manual's visual rules in six
-tabs: 概览, 颜色, 字体, 组件, 图标与素材 and 印刷规格. It is an internal 知识库
-page; the public manual library does not link to it.
+`/workspace/design/index.html` (设计规范; URL, template and module keep the
+design-system name) shows the manual's visual rules in six tabs: 概览, 颜色, 字体,
+组件, 图标与素材 and 印刷规格. It is listed under 说明书生产; the public manual
+library does not link to it.
 
 - **Values are live.** At build time `tools/rtd/design_system.py` reads the
   stylesheet that `tools/web/stylesheets.py` assembles
@@ -213,8 +213,9 @@ page; the public manual library does not link to it.
 ## System data page
 
 `/workspace/data/index.html` (系统数据) counts what the repository holds about
-the manuals and lets a reader narrow every card by region and model. It is an
-internal 知识库 page; the public manual library does not link to it.
+the manuals and lets a reader narrow every card by region and model. It is
+listed last under 说明书生产 until it is folded into 说明书工作台; the public manual
+library does not link to it.
 
 - **Rows are read at build time.** `tools/rtd/system_data.py` reads
   `docs/publish/publish_manifest.json` (one row per published Web route, as the
@@ -263,7 +264,7 @@ internal 知识库 page; the public manual library does not link to it.
 ## Product matrix page
 
 `/products/matrix.html` (产品矩阵) lays out the products the published Web
-manuals describe. It is an internal 知识库 page listed under 产品知识; the
+manuals describe. It is listed under 产品与市场, after 产品知识; the
 public manual library does not link to it.
 
 - **Read at build time.** `tools/rtd/product_matrix.py` reads the publish
