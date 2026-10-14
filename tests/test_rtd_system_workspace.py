@@ -257,7 +257,6 @@ class SystemWorkspaceContractTests(unittest.TestCase):
         self.assertEqual((facts["books"], facts["editions"], facts["variants"], facts["last_published"]),
                          (2, 3, 3, "2026-09-22"))
         self.assertEqual(facts["books_by_region"], {"EU": 1, "US": 1})
-        self.assertEqual(len(facts["targets"]), 4)
         path.write_text("not json", encoding="utf-8")
         self.assertIsNone(sw.publication_facts(path))
         path.write_text(json.dumps({"targets": []}), encoding="utf-8")

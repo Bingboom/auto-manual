@@ -249,7 +249,7 @@ def publication_facts(manifest_path: Path) -> dict[str, Any] | None:
     if not editions:
         return None
     facts = count_publications(editions)
-    return {**facts, "editions": facts["variants"], "targets": editions}
+    return {**facts, "editions": facts["variants"]}
 
 
 def skeleton_facts(root: Path) -> list[dict[str, str]] | None:
