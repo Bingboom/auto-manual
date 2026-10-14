@@ -1,0 +1,753 @@
+[
+  {
+    "language": "en",
+    "slot": "lcd-display",
+    "physical_page": 6,
+    "bbox": [
+      27,
+      54,
+      342,
+      110
+    ],
+    "decision": "reuse published JBP-3600A EU English Web artwork unchanged",
+    "source": "docs/renderers/web/assets/jbp3600a_eu_en/lcd_annotated.png",
+    "identity_check": "Template match on the US print at 4x: NCC 1.0000, mean absolute difference 0.23/255, no pixel off by more than 60. Same JBP-3600A LCD, same labels and geometry.",
+    "caption": "LCD display: power percentage or fault code, and the charging indicator",
+    "local_path": "assets/lcd-display.png",
+    "sha256": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "power-on-off",
+    "physical_page": 6,
+    "bbox": [
+      35,
+      232,
+      334,
+      309
+    ],
+    "decision": "reuse published JBP-3600A EU English Web artwork unchanged",
+    "source": "docs/renderers/web/assets/jbp3600a_eu_en/power_annotated.png",
+    "identity_check": "Template match on the US print at 4x: NCC 0.9999, mean absolute difference 0.29/255, no pixel off by more than 60. Same unit, hand and On/Off labels.",
+    "caption": "POWER button: press once to turn on; press and hold for 3 s to turn off",
+    "local_path": "assets/power-on-off.png",
+    "sha256": "e919bf869023cc58ac590446c5c60c9db8d481fec1fdfd70b78ec3df9873ca3a",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "lcd-on-off",
+    "physical_page": 6,
+    "bbox": [
+      35,
+      387,
+      334,
+      466
+    ],
+    "decision": "reuse published JBP-3600A EU English Web artwork unchanged",
+    "source": "docs/renderers/web/assets/jbp3600a_eu_en/lcd_control_clean.png",
+    "identity_check": "Template match on the US print at 4x: NCC 0.9999, mean absolute difference 0.27/255, no pixel off by more than 60.",
+    "caption": "Pressing the POWER button switches the LCD display on or off",
+    "local_path": "assets/lcd-on-off.png",
+    "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "inbox-unit",
+    "physical_page": 5,
+    "bbox": [
+      31,
+      218,
+      122,
+      287
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/inbox_unit_clean.png (NCC 0.887: heavier strokes and a different base band from another source)",
+    "caption": "Jackery Battery Pack 3600",
+    "local_path": "assets/inbox-unit.png",
+    "render_scale": 4,
+    "sha256": "ac33348ca5819ff78537dcfe500d33b1151c48c0584845cb227545677b63d65f",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "inbox-cable",
+    "physical_page": 5,
+    "bbox": [
+      138,
+      218,
+      229,
+      287
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/inbox_cable_clean.png (NCC 0.870: different stroke weight and crop)",
+    "caption": "Expansion Cable",
+    "local_path": "assets/inbox-cable.png",
+    "render_scale": 4,
+    "sha256": "5e92b1169949dbf559dfceb62809ed043ecb998eb1abca17445639e3f110ffcd",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "inbox-manual",
+    "physical_page": 5,
+    "bbox": [
+      247,
+      218,
+      338,
+      287
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/inbox_manual_clean.png (generic document icon; the US print draws the US manual cover)",
+    "caption": "User Manual",
+    "local_path": "assets/inbox-manual.png",
+    "render_scale": 4,
+    "sha256": "1756fa617412cca4369e3c3d8e6b4ba218daa2bd3ec164ff902de4e037a3dd30",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "overview-front",
+    "physical_page": 5,
+    "bbox": [
+      28,
+      376,
+      152,
+      488
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/overview_front.png (NCC 0.678: same unit, but the US print sets the POWER button label and leader lower)",
+    "caption": "Front view: LCD display and POWER button",
+    "local_path": "assets/overview-front.png",
+    "render_scale": 4,
+    "sha256": "3e44498208a19c5b5d7d6f3f346b7b5d9cd287c3084a4ca5da8d8e58ad88a615",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "overview-left",
+    "physical_page": 5,
+    "bbox": [
+      156,
+      376,
+      341,
+      488
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/overview_left.png (NCC 0.608: US label and leader geometry differs)",
+    "caption": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)",
+    "local_path": "assets/overview-left.png",
+    "render_scale": 4,
+    "sha256": "69f9770b77807aea10b3b4121240ce5a20516e130630b35be9674ae4c0d48681",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "clearance",
+    "physical_page": 7,
+    "bbox": [
+      29,
+      340,
+      341,
+      496
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/clearance_native.png (NCC 0.698: EU host Explorer 3600 Plus; the US print shows the HomePower 3600 Plus with US outlets)",
+    "caption": "Battery packs connected to the Jackery HomePower 3600 Plus, with at least 0.66 ft (≈200 mm) of space between the vents and any objects",
+    "local_path": "assets/clearance.png",
+    "render_scale": 4,
+    "sha256": "d60d36f56a2e60b6351ae65dd16d8b0998ce188e3c1bcf954662dbe059e08e87",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "stacking",
+    "physical_page": 8,
+    "bbox": [
+      27,
+      26,
+      341,
+      191
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/stacking_clean.png (NCC 0.869: EU host product)",
+    "caption": "Correct: up to three battery packs in one tower. Incorrect: four battery packs in one tower",
+    "local_path": "assets/stacking.png",
+    "render_scale": 4,
+    "sha256": "0892351866842b3611dba05f38ebc91e79747e12b7a999988ff895284ef5d4e6",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "locking",
+    "physical_page": 8,
+    "bbox": [
+      27,
+      258,
+      341,
+      497
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/locking_clean.png (NCC 0.965: identical lock/unlock steps, but the EU host product differs)",
+    "caption": "Expansion cable connections, with the steps to lock and unlock the cable terminal",
+    "local_path": "assets/locking.png",
+    "render_scale": 4,
+    "sha256": "b1b5972c9a90078a4e5f811cf8d1fc2dfbd47b133c51f3020065129bf0bf7ce1",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "ac-charging",
+    "physical_page": 9,
+    "bbox": [
+      27,
+      116,
+      341,
+      271
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/ac_charging.png (NCC 0.915: EU wall plug and host product)",
+    "caption": "Charging via an AC wall outlet through the Jackery HomePower 3600 Plus",
+    "local_path": "assets/ac-charging.png",
+    "render_scale": 4,
+    "sha256": "6fb50d379245fc84f920f07570cd6fd463b9d56ed3456af5874b81ecaa6a4433",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "en",
+    "slot": "solar-charging",
+    "physical_page": 9,
+    "bbox": [
+      27,
+      321,
+      340,
+      497
+    ],
+    "decision": "extract complete source illustration",
+    "rejected": "docs/renderers/web/assets/jbp3600a_eu_en/solar_charging.png (NCC 0.965: EU host product)",
+    "caption": "Charging via solar panels through the Jackery HomePower 3600 Plus",
+    "local_path": "assets/solar-charging.png",
+    "render_scale": 4,
+    "sha256": "0ce6a7f27a16e4d2c6221b0e0635a2048b1f4aa98bf9d97f30a825c87417b1ba",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "lcd-display",
+    "physical_page": 14,
+    "bbox": [
+      27.0,
+      54.0,
+      342.0,
+      110.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "LCD display: power percentage or fault code, and the charging indicator",
+    "local_path": "assets/fr-lcd-display.png",
+    "differing_pixel_share": 0.03068,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "LCD display: power percentage or fault code, and the charging indicator",
+    "sha256": "e941291a403c77eb01b4717c7e56cf98fb3932d239c3f38c0ad8888c67af42ae",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "lcd-display",
+    "physical_page": 22,
+    "bbox": [
+      27.0,
+      54.0,
+      342.0,
+      110.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "LCD display: power percentage or fault code, and the charging indicator",
+    "local_path": "assets/es-lcd-display.png",
+    "differing_pixel_share": 0.03182,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "LCD display: power percentage or fault code, and the charging indicator",
+    "sha256": "81825a7130de300b936dc9199102b3623e6efe4266b2a52ab09cb05909970cd1",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "power-on-off",
+    "physical_page": 14,
+    "bbox": [
+      35.0,
+      232.0,
+      334.0,
+      309.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "POWER button: press once to turn on; press and hold for 3 s to turn off",
+    "local_path": "assets/fr-power-on-off.png",
+    "differing_pixel_share": 0.02673,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "POWER button: press once to turn on; press and hold for 3 s to turn off",
+    "sha256": "9843f132bba06bb198f57baf0bef0fc80e5fad651563c15e3fae7a4c7844a284",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "power-on-off",
+    "physical_page": 22,
+    "bbox": [
+      35.0,
+      232.0,
+      334.0,
+      309.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "POWER button: press once to turn on; press and hold for 3 s to turn off",
+    "local_path": "assets/es-power-on-off.png",
+    "differing_pixel_share": 0.0322,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "POWER button: press once to turn on; press and hold for 3 s to turn off",
+    "sha256": "0e22d872ac48744a15c08dd314732e7130d297a374b3e3c5725040b944234888",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "lcd-on-off",
+    "physical_page": 14,
+    "bbox": [
+      35.0,
+      394.0,
+      334.0,
+      473.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Pressing the POWER button switches the LCD display on or off",
+    "local_path": "assets/lcd-on-off.png",
+    "differing_pixel_share": 0.0,
+    "decision": "share the English panel (identical art)",
+    "caption": "Pressing the POWER button switches the LCD display on or off",
+    "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "lcd-on-off",
+    "physical_page": 22,
+    "bbox": [
+      35,
+      387.5,
+      334,
+      462.5
+    ],
+    "located_by": "the page's own panel frame (art between the printed ordinal or panel edge and the label)",
+    "caption_en": "Pressing the POWER button switches the LCD display on or off",
+    "local_path": "assets/es-lcd-on-off.png",
+    "differing_pixel_share": 1.0,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Pressing the POWER button switches the LCD display on or off",
+    "sha256": "9b05d6fa16f146b645dfda38651381dc614745673b009d0a3d8f35210844eb3c",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "inbox-unit",
+    "physical_page": 13,
+    "bbox": [
+      31,
+      222,
+      122,
+      286.5
+    ],
+    "located_by": "the page's own panel frame (art between the printed ordinal or panel edge and the label)",
+    "caption_en": "Jackery Battery Pack 3600",
+    "local_path": "assets/fr-inbox-unit.png",
+    "differing_pixel_share": 1.0,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Jackery Battery Pack 3600",
+    "sha256": "f45ed65bcab51c978dffc5629ffda4a6da8e455195e8cc36bd341ecaafb61d80",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "inbox-unit",
+    "physical_page": 21,
+    "bbox": [
+      30.3,
+      211,
+      121.4,
+      283.5
+    ],
+    "located_by": "the page's own panel frame (art between the printed ordinal or panel edge and the label)",
+    "caption_en": "Jackery Battery Pack 3600",
+    "local_path": "assets/es-inbox-unit.png",
+    "differing_pixel_share": 1.0,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Jackery Battery Pack 3600",
+    "sha256": "db8d02d9f86341fac0e26bcf7fdc83c7ff0ef8f6c55248723eaa5ae9632f50e4",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "inbox-cable",
+    "physical_page": 13,
+    "bbox": [
+      138,
+      222,
+      229,
+      286.5
+    ],
+    "located_by": "the page's own panel frame (art between the printed ordinal or panel edge and the label)",
+    "caption_en": "Expansion Cable",
+    "local_path": "assets/fr-inbox-cable.png",
+    "differing_pixel_share": 1.0,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Expansion Cable",
+    "sha256": "7ff24db5347a4a67ff270baf2775a5e0c3d3067e52958e9779ff38dc7e617a03",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "inbox-cable",
+    "physical_page": 21,
+    "bbox": [
+      137.3,
+      211,
+      228.4,
+      283.5
+    ],
+    "located_by": "the page's own panel frame (art between the printed ordinal or panel edge and the label)",
+    "caption_en": "Expansion Cable",
+    "local_path": "assets/es-inbox-cable.png",
+    "differing_pixel_share": 1.0,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Expansion Cable",
+    "sha256": "6f46200d48f1e6382aca322f4924ef3bb51df96d18ffdbe2401371fa26a0858d",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "inbox-manual",
+    "physical_page": 13,
+    "bbox": [
+      247,
+      222,
+      338,
+      286.5
+    ],
+    "located_by": "the page's own panel frame (art between the printed ordinal or panel edge and the label)",
+    "caption_en": "User Manual",
+    "local_path": "assets/fr-inbox-manual.png",
+    "differing_pixel_share": 1.0,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "User Manual",
+    "sha256": "1eba5f07bdfa7318a8bd594b47c47c86b275d293558b76712aee398091426bd0",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "inbox-manual",
+    "physical_page": 21,
+    "bbox": [
+      246.3,
+      211,
+      337.3,
+      283.5
+    ],
+    "located_by": "the page's own panel frame (art between the printed ordinal or panel edge and the label)",
+    "caption_en": "User Manual",
+    "local_path": "assets/es-inbox-manual.png",
+    "differing_pixel_share": 1.0,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "User Manual",
+    "sha256": "cc82330e608f15b31322f9d367fcf40d82916f30734f50748f8c5b502ef77a3a",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "overview-front",
+    "physical_page": 13,
+    "bbox": [
+      28.0,
+      378.0,
+      152.0,
+      490.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Front view: LCD display and POWER button",
+    "local_path": "assets/fr-overview-front.png",
+    "differing_pixel_share": 0.01236,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Front view: LCD display and POWER button",
+    "sha256": "acb7df6dd66060ea31bfea25a4785abd42f485bfb40e0e65aef479801ff9a377",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "overview-front",
+    "physical_page": 21,
+    "bbox": [
+      28.0,
+      379.25,
+      152.0,
+      491.25
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Front view: LCD display and POWER button",
+    "local_path": "assets/es-overview-front.png",
+    "differing_pixel_share": 0.03757,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Front view: LCD display and POWER button",
+    "sha256": "70f784456ec2020037be45a50ad03f298f8d96291750543d781a12303595b60c",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "overview-left",
+    "physical_page": 13,
+    "bbox": [
+      156.0,
+      378.0,
+      341.0,
+      490.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)",
+    "local_path": "assets/fr-overview-left.png",
+    "differing_pixel_share": 0.04806,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)",
+    "sha256": "78b53389b68f5014997c61def40cc71525fc83414d0a9f20795df6238badaa8f",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "overview-left",
+    "physical_page": 21,
+    "bbox": [
+      156.0,
+      379.25,
+      341.0,
+      491.25
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)",
+    "local_path": "assets/es-overview-left.png",
+    "differing_pixel_share": 0.0552,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Left side view: handle, DC Expansion Port A (connect to Expansion Cable Terminal A) and DC Expansion Port B (connect to Expansion Cable Terminal B)",
+    "sha256": "a16e44fbf676cdb7864e3476324dca9c4f36b87f6932eaccc2a3f23393751920",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "clearance",
+    "physical_page": 15,
+    "bbox": [
+      28.1,
+      333.1,
+      340,
+      497
+    ],
+    "located_by": "the page's own panel frame (art between the printed ordinal or panel edge and the label)",
+    "caption_en": "Battery packs connected to the Jackery HomePower 3600 Plus, with at least 0.66 ft (≈200 mm) of space between the vents and any objects",
+    "local_path": "assets/fr-clearance.png",
+    "differing_pixel_share": 1.0,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Battery packs connected to the Jackery HomePower 3600 Plus, with at least 0.66 ft (≈200 mm) of space between the vents and any objects",
+    "sha256": "d82f13abe86c08ff5996130e2d99c5b9ad11b07206ac5d9d9d3b861548be49f3",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "clearance",
+    "physical_page": 23,
+    "bbox": [
+      28.2,
+      329.2,
+      340.1,
+      493.2
+    ],
+    "located_by": "the page's own panel frame (art between the printed ordinal or panel edge and the label)",
+    "caption_en": "Battery packs connected to the Jackery HomePower 3600 Plus, with at least 0.66 ft (≈200 mm) of space between the vents and any objects",
+    "local_path": "assets/es-clearance.png",
+    "differing_pixel_share": 1.0,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Battery packs connected to the Jackery HomePower 3600 Plus, with at least 0.66 ft (≈200 mm) of space between the vents and any objects",
+    "sha256": "e2cefe0e67edbb1ea37fba5b03e9c0a5ae81ce04a8ef5844fc0003c84539bda3",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "stacking",
+    "physical_page": 16,
+    "bbox": [
+      27.0,
+      27.5,
+      341.0,
+      192.5
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Correct: up to three battery packs in one tower. Incorrect: four battery packs in one tower",
+    "local_path": "assets/fr-stacking.png",
+    "differing_pixel_share": 0.00871,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Correct: up to three battery packs in one tower. Incorrect: four battery packs in one tower",
+    "sha256": "c6c73c7d1efaba4c1b42c3e5ed82edd1adba1946f37504e0e461c0dfe97ee5d6",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "stacking",
+    "physical_page": 24,
+    "bbox": [
+      27.0,
+      27.25,
+      341.0,
+      192.25
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Correct: up to three battery packs in one tower. Incorrect: four battery packs in one tower",
+    "local_path": "assets/stacking.png",
+    "differing_pixel_share": 0.0006,
+    "decision": "share the English panel (identical art)",
+    "caption": "Correct: up to three battery packs in one tower. Incorrect: four battery packs in one tower",
+    "sha256": "0892351866842b3611dba05f38ebc91e79747e12b7a999988ff895284ef5d4e6",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "locking",
+    "physical_page": 16,
+    "bbox": [
+      28.5,
+      258.25,
+      342.5,
+      497.25
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Expansion cable connections, with the steps to lock and unlock the cable terminal",
+    "local_path": "assets/fr-locking.png",
+    "differing_pixel_share": 0.0251,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Expansion cable connections, with the steps to lock and unlock the cable terminal",
+    "sha256": "e504c12c4ab930f312791b513fd60c7b2443a95a2718f66e61e7edef7129fd70",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "locking",
+    "physical_page": 24,
+    "bbox": [
+      28.75,
+      253.25,
+      342.75,
+      492.25
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Expansion cable connections, with the steps to lock and unlock the cable terminal",
+    "local_path": "assets/es-locking.png",
+    "differing_pixel_share": 0.02363,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Expansion cable connections, with the steps to lock and unlock the cable terminal",
+    "sha256": "e42c8870fb9b7db002f123b7a77f1446a96ad41cc500c8d222ed8500baba6473",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "ac-charging",
+    "physical_page": 17,
+    "bbox": [
+      27.0,
+      114.0,
+      341.0,
+      269.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Charging via an AC wall outlet through the Jackery HomePower 3600 Plus",
+    "local_path": "assets/fr-ac-charging.png",
+    "differing_pixel_share": 0.00215,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Charging via an AC wall outlet through the Jackery HomePower 3600 Plus",
+    "sha256": "eaa2a291d01b9a5c694e8c4dcc1e7b991bc0b2008db1f750f1dd0d67ac993532",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "ac-charging",
+    "physical_page": 25,
+    "bbox": [
+      26.5,
+      109.25,
+      340.5,
+      264.25
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Charging via an AC wall outlet through the Jackery HomePower 3600 Plus",
+    "local_path": "assets/es-ac-charging.png",
+    "differing_pixel_share": 0.00929,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Charging via an AC wall outlet through the Jackery HomePower 3600 Plus",
+    "sha256": "c9b77952151a39b499c46e14f39711e941ece6b6b50528532796cfcbb5afbfdf",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "fr",
+    "slot": "solar-charging",
+    "physical_page": 17,
+    "bbox": [
+      28.0,
+      323.0,
+      341.0,
+      499.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Charging via solar panels through the Jackery HomePower 3600 Plus",
+    "local_path": "assets/fr-solar-charging.png",
+    "differing_pixel_share": 0.01705,
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "render_scale": 4,
+    "caption": "Charging via solar panels through the Jackery HomePower 3600 Plus",
+    "sha256": "53c4a43913830a19ad330142b43edcc0db09c6582ea3ad79ef629fd8e9f4e53b",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  },
+  {
+    "language": "es",
+    "slot": "solar-charging",
+    "physical_page": 25,
+    "bbox": [
+      27.5,
+      317.0,
+      340.5,
+      493.0
+    ],
+    "located_by": "template match of the English panel on this page (4x)",
+    "caption_en": "Charging via solar panels through the Jackery HomePower 3600 Plus",
+    "local_path": "assets/solar-charging.png",
+    "differing_pixel_share": 0.00082,
+    "decision": "share the English panel (identical art)",
+    "caption": "Charging via solar panels through the Jackery HomePower 3600 Plus",
+    "sha256": "0ce6a7f27a16e4d2c6221b0e0635a2048b1f4aa98bf9d97f30a825c87417b1ba",
+    "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c"
+  }
+]

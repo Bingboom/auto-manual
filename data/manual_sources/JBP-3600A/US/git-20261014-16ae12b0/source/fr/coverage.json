@@ -1,0 +1,3615 @@
+{
+  "schema": "native-word-coverage/v1",
+  "language": "fr",
+  "pages": [
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "classified_word_count": 1249,
+  "unmapped": [],
+  "duplicate_live_copy": [],
+  "unused_recoveries": [],
+  "unused_split_words": [],
+  "word_joins": [
+    [
+      "conformé-",
+      "ment",
+      13,
+      null
+    ]
+  ],
+  "print_line_breaks": [
+    [
+      12,
+      64.2,
+      "nstructions avant d'utiliser ce produit.",
+      "Une surveillance délicate est nécessaire"
+    ],
+    [
+      12,
+      78.4,
+      "risques.",
+      "L'utilisation d'accessoires recommandés "
+    ],
+    [
+      12,
+      92.2,
+      "entraîner un risque d'électrocution.",
+      "Lorsque le produit n'est pas utilisé, ve"
+    ],
+    [
+      12,
+      99.2,
+      "r l'alimentation de la prise du produit.",
+      "Ne pas démonter le produit, ce qui pourr"
+    ],
+    [
+      12,
+      113.2,
+      "ou un choc électrique.",
+      "N'utilisez pas le produit avec des cordo"
+    ],
+    [
+      12,
+      127.2,
+      "i pourrait provoquer un choc électrique.",
+      "Charger le produit dans un endroit bien "
+    ],
+    [
+      12,
+      134.2,
+      "tilation de quelque manière que ce soit.",
+      "Placez le produit dans un endroit ventil"
+    ],
+    [
+      12,
+      141.2,
+      " l'eau ne provoquent un choc électrique.",
+      "N'exposez pas le produit au feu ou à des"
+    ],
+    [
+      12,
+      433.2,
+      "as être jeté avec les ordures ménagères.",
+      "Il doit être apporté à un point de colle"
+    ],
+    [
+      12,
+      446.8,
+      "désigné pour un recyclage approprié.",
+      "Une élimination et un recyclage corrects"
+    ],
+    [
+      13,
+      56.1,
+      "ntez ou déplacez l'antenne de réception.",
+      "Éloignez l'équipement du récepteur."
+    ],
+    [
+      13,
+      62.1,
+      "Éloignez l'équipement du récepteur.",
+      "Connectez l'équipement à une prise d'un "
+    ],
+    [
+      13,
+      77.1,
+      " celui auquel le récepteur est connecté.",
+      "Consultez le revendeur ou bien demandez "
+    ],
+    [
+      14,
+      123.2,
+      "Pourcentage de",
+      "puissance/code "
+    ],
+    [
+      14,
+      133.2,
+      "puissance/code",
+      "d’erreur"
+    ],
+    [
+      14,
+      338.7,
+      "cipale » du Jackery HomePower 3600 Plus.",
+      "Le dispositif s’éteint automatiquement s"
+    ],
+    [
+      15,
+      173.3,
+      "F6-F9,",
+      "FA, FC, FE"
+    ],
+    [
+      15,
+      292.2,
+      "au(x) Jackery Battery Pack 3600.",
+      "Pour assurer le bon fonctionnement du pr"
+    ],
+    [
+      16,
+      216.4,
+      "Jackery HomePower 3600 Plus est réussie.",
+      "Lors de l'utilisation du produit, ne sup"
+    ],
+    [
+      16,
+      231.6,
+      " ne tombent et ne causent des blessures.",
+      "Veuillez ne pas empiler le dispositif su"
+    ],
+    [
+      18,
+      73.5,
+      "stockage :",
+      "1 mois : -4°F à 113°F / -20 à 45°C (0-60"
+    ],
+    [
+      18,
+      80.9,
+      "s : -4°F à 113°F / -20 à 45°C (0-60% HR)",
+      "3 mois : 32°F à 113°F / 0 à 45°C (0-60% "
+    ],
+    [
+      18,
+      88.9,
+      "ois : 32°F à 113°F / 0 à 45°C (0-60% HR)",
+      "12 mois : 32°F à 77°F / 0 à 25°C (0-60% "
+    ],
+    [
+      18,
+      96.9,
+      "mois : 32°F à 77°F / 0 à 25°C (0-60% HR)",
+      "Si ce produit est stocké pendant une lon"
+    ]
+  ],
+  "selections": [
+    {
+      "page": 12,
+      "bbox": [
+        25,
+        28,
+        345,
+        51
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "raw": "INFORMATIONS DE SÉCURITÉ IMPORTANTES"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        25,
+        51,
+        345,
+        163
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "raw": "Les précautions de base doivent être respectées lors de l'utilisation de ce produit, y compris :"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        25,
+        165,
+        345,
+        190
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2
+      ],
+      "raw": "SIGNIFICATION DES SYMBOLES"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        194,
+        130,
+        209
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        24
+      ],
+      "raw": "Symbole"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        130,
+        194,
+        345,
+        209
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        25
+      ],
+      "raw": "Signiﬁcation"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        209,
+        130,
+        233
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        84
+      ],
+      "raw": "AVERTISSEMENT"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        130,
+        209,
+        345,
+        233
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83
+      ],
+      "raw": "Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        233,
+        130,
+        254
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        37
+      ],
+      "raw": "ATTENTION"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        130,
+        233,
+        345,
+        254
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "raw": "Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        254,
+        130,
+        279
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        58
+      ],
+      "raw": "REMARQUE"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        130,
+        254,
+        345,
+        279
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "raw": "Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        279,
+        130,
+        300
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        70
+      ],
+      "raw": "CONSEILS"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        130,
+        279,
+        345,
+        300
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69
+      ],
+      "raw": "Complémente les informations importantes ou les conseils d'utilisation dans le texte."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        304,
+        70,
+        320
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        85
+      ],
+      "raw": "Symbole"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        70,
+        304,
+        185,
+        320
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        86
+      ],
+      "raw": "Signiﬁcation"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        187,
+        304,
+        222,
+        320
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        117
+      ],
+      "raw": "Symbole"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        222,
+        304,
+        345,
+        320
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        118
+      ],
+      "raw": "Signiﬁcation"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        318,
+        68,
+        348
+      ],
+      "purpose": "native-symbol/warning/outline-triangle-tinted",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        72,
+        318,
+        180,
+        348
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "raw": "Mlise en garde! Le non-respect des messages d'avertissement peut entraîner des blessures."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        348,
+        68,
+        376
+      ],
+      "purpose": "native-symbol/read-manual/book-information",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        72,
+        348,
+        180,
+        376
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        99,
+        100,
+        101,
+        102,
+        103
+      ],
+      "raw": "Lire le manuel de l'opérateur"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        376,
+        68,
+        406
+      ],
+      "purpose": "native-symbol/electric-shock/bolt-triangle-tinted",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        72,
+        376,
+        180,
+        406
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        205,
+        206,
+        207,
+        208
+      ],
+      "raw": "Risque de choc électrique"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        406,
+        68,
+        436
+      ],
+      "purpose": "native-symbol/battery-charging/flame-battery-triangle-tinted",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        72,
+        406,
+        180,
+        436
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        209,
+        210,
+        211,
+        212
+      ],
+      "raw": "Chargement de la batterie"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        436,
+        68,
+        466
+      ],
+      "purpose": "native-symbol/explosive-material/burst-triangle-native-v2-3e3a39",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        72,
+        436,
+        180,
+        466
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        213,
+        214
+      ],
+      "raw": "Matière explosive"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        30,
+        466,
+        68,
+        498
+      ],
+      "purpose": "native-symbol/heavy-object/person-load-triangle-tinted",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        72,
+        466,
+        180,
+        498
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        215,
+        216
+      ],
+      "raw": "Objet lourd"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        189,
+        319,
+        222,
+        342
+      ],
+      "purpose": "native-symbol/do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        224,
+        319,
+        340,
+        342
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        104,
+        105,
+        106,
+        107,
+        108
+      ],
+      "raw": "Ne démontez pas le produit."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        189,
+        342,
+        222,
+        366
+      ],
+      "purpose": "native-symbol/no-open-flame/fire-match-prohibited",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        224,
+        342,
+        340,
+        366
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116
+      ],
+      "raw": "Ne pas fumer ni utiliser de ﬂamme nue"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        189,
+        366,
+        222,
+        392
+      ],
+      "purpose": "native-symbol/keep-away-from-children/adult-child-prohibited",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        224,
+        366,
+        340,
+        392
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        119,
+        120,
+        121,
+        122,
+        123,
+        124
+      ],
+      "raw": "Les enfants ne sont pas admis"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        189,
+        392,
+        222,
+        424
+      ],
+      "purpose": "native-symbol/li-ion/htp017-recycle-li-ion",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        224,
+        392,
+        340,
+        424
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144
+      ],
+      "raw": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        189,
+        424,
+        222,
+        498
+      ],
+      "purpose": "native-symbol/weee/crossed-bin-bar",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 12,
+      "bbox": [
+        224,
+        424,
+        340,
+        498
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204
+      ],
+      "raw": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit."
+    },
+    {
+      "page": 13,
+      "bbox": [
+        29,
+        30,
+        71,
+        68
+      ],
+      "purpose": "native-symbol/fcc",
+      "word_ids": [
+        91,
+        101,
+        102,
+        103
+      ],
+      "raw": "conformément Ces limites sont"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        60,
+        30,
+        190,
+        54
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "raw": "REMARQUE : Cet équipement a été testé et déclaré conforme aux limites concernant les appareils numériques de classe B,"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        30,
+        54,
+        190,
+        60.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "raw": "conformément à la partie 15 du règlement de la FCC."
+    },
+    {
+      "page": 13,
+      "bbox": [
+        30,
+        60.5,
+        190,
+        135
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188
+      ],
+      "raw": "Ces limites sont conçues pour offrir une protection raisonnable contre les interférences dangereuses dans le cadre d'une installation résidentielle. Cet équipement génère, utilise et émet des ondes radios qui peuvent, si cet équipement n'est pas installé et utilisé conformé- ment aux instructions, perturber les communications radios. Toutefois, il n'y a aucune garantie qu'aucune interférence ne se produise lors d'une installation particulière. Si cet équipement trouble la réception de la radio ou de la télévision, ce qui peut être déterminé en éteignant et en allumant cet équipement, l'utilisateur est"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        190,
+        33,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 13,
+      "bbox": [
+        193,
+        52,
+        345,
+        100
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 13,
+      "bbox": [
+        190,
+        100,
+        345,
+        131
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 13,
+      "bbox": [
+        25,
+        160,
+        345,
+        190
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "raw": "CONTENU DE LA BOÎTE"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        30,
+        196,
+        345,
+        222
+      ],
+      "purpose": "shared-inbox-live-ordinal",
+      "word_ids": [
+        50,
+        54,
+        57
+      ],
+      "raw": "1 2 3"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        31,
+        222,
+        122,
+        286.5
+      ],
+      "purpose": "embedded-art/inbox-unit",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 13,
+      "bbox": [
+        30,
+        282,
+        123,
+        300
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        46,
+        47,
+        48,
+        49
+      ],
+      "raw": "Jackery Battery Pack 3600"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        138,
+        222,
+        229,
+        286.5
+      ],
+      "purpose": "embedded-art/inbox-cable",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 13,
+      "bbox": [
+        137,
+        282,
+        230,
+        300
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        51,
+        52,
+        53
+      ],
+      "raw": "Câble de rallonge"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        247,
+        222,
+        338,
+        286.5
+      ],
+      "purpose": "embedded-art/inbox-manual",
+      "word_ids": [
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "raw": "Model: JBP-3600A hello@jackery.com www.jackery.com USER MANUAL Jackery Battery Pack 3600 1-888-502-2236 (US) CONTACT US:"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        246,
+        282,
+        339,
+        300
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        55,
+        56
+      ],
+      "raw": "Manuel d’utilisation"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        25,
+        325,
+        345,
+        360
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        43,
+        44,
+        45
+      ],
+      "raw": "APERÇU DU PRODUIT"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        35,
+        361,
+        162,
+        380
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        33,
+        34,
+        35
+      ],
+      "raw": "VUE DE FACE"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        28.0,
+        378.0,
+        152.0,
+        490.0
+      ],
+      "purpose": "embedded-art/overview-front",
+      "word_ids": [
+        1,
+        2,
+        3,
+        8,
+        9
+      ],
+      "raw": "Bouton d’alimentation principale Écran LCD"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        165,
+        361,
+        345,
+        380
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        36,
+        37,
+        38
+      ],
+      "raw": "VUE LATÉRALE GAUCHE"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        156.0,
+        378.0,
+        341.0,
+        490.0
+      ],
+      "purpose": "embedded-art/overview-left",
+      "word_ids": [
+        4,
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "raw": "Port d’extension CC B (Connexion à la borne B du câble de rallonge) (Connexion à la borne A du câble de rallonge) Port d’extension CC A Poignée"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        25,
+        28,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        97,
+        98
+      ],
+      "raw": "AFFICHAGE LCD"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        27.0,
+        54.0,
+        342.0,
+        110.0
+      ],
+      "purpose": "embedded-art/lcd-display",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "raw": "Pourcentage de puissance/code d’erreur Témoin de charge"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        30,
+        113,
+        105,
+        159
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "raw": "Pourcentage de puissance/code d’erreur"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        105,
+        113,
+        341,
+        159
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "raw": "L’affichage de la puissance représente le pourcentage de la valeur actuelle de la puissance. En cas de défaillance du système, le code d’erreur correspondant (F0-FF) s’affiche. Si le code FF s’affiche, retirez la charge et le dispositif peut se rétablir de lui-même. Si ce n'est pas le cas, veuillez contacter le service à la clientèle de Jackery. Si un autre code apparaît, veuillez contacter notre service à la clientèle."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        30,
+        159,
+        105,
+        180
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        94,
+        95,
+        96
+      ],
+      "raw": "Témoin de charge"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        105,
+        159,
+        341,
+        180
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93
+      ],
+      "raw": "Le témoin s’affiche pendant la charge et disparaît lorsque l’appareil est complètement chargé."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        25,
+        182,
+        345,
+        210
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        100
+      ],
+      "raw": "FONCTIONNEMENT"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        35,
+        210,
+        200,
+        228
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        99
+      ],
+      "raw": "MARCHE/ARRÊT"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        35.0,
+        232.0,
+        334.0,
+        309.0
+      ],
+      "purpose": "embedded-art/power-on-off",
+      "word_ids": [
+        105,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147
+      ],
+      "raw": "3s Marche Arrêt Appuyez une fois Appuyez et maintenez pendant 3 secondes"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        36,
+        315,
+        95,
+        365
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        148
+      ],
+      "raw": "Remarques"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        95,
+        315,
+        336,
+        365
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 14,
+      "bbox": [
+        35,
+        362,
+        345,
+        390
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        101,
+        102,
+        103,
+        104
+      ],
+      "raw": "ACTIVATION/DÉSACTIVATION DE L’ÉCRAN LCD"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        35.0,
+        394.0,
+        334.0,
+        473.0
+      ],
+      "purpose": "embedded-art/lcd-on-off",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 14,
+      "bbox": [
+        35,
+        473.5,
+        341,
+        492
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136
+      ],
+      "raw": "Lorsque vous appuyez sur le « bouton d’alimentation principale » ou lorsque vous chargez le produit, l’écran LCD s’allume, et lorsque vous appuyez à nouveau sur ce bouton, l’écran LCD s’éteint."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        25,
+        28,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        31
+      ],
+      "raw": "DÉPANNAGE"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        25,
+        50,
+        345,
+        75
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141
+      ],
+      "raw": "Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives indiquées pour résoudre le problème.Si l'erreur persiste, veuillez contacter le service à la clientèle de Jackery."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        78,
+        80,
+        93
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        32,
+        33
+      ],
+      "raw": "Code d'erreur"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        80,
+        78,
+        345,
+        93
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        34,
+        35
+      ],
+      "raw": "Mesures correctives"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        93,
+        80,
+        109
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        85
+      ],
+      "raw": "F0"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        80,
+        93,
+        341,
+        109
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        86,
+        87,
+        88
+      ],
+      "raw": "Redémarrez le produit."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        109,
+        80,
+        124
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        44,
+        45
+      ],
+      "raw": "F1, F2"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        80,
+        109,
+        341,
+        124
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84
+      ],
+      "raw": "Contacter le service à la clientèle de Jackery."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        124,
+        80,
+        139
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        43
+      ],
+      "raw": "F3"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        80,
+        124,
+        341,
+        139
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        97,
+        98,
+        99
+      ],
+      "raw": "Redémarrez le produit."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        139,
+        80,
+        154
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        42
+      ],
+      "raw": "F4"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        80,
+        139,
+        341,
+        154
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114
+      ],
+      "raw": "Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        154,
+        80,
+        169
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        41
+      ],
+      "raw": "F5"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        80,
+        154,
+        341,
+        169
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76
+      ],
+      "raw": "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        169,
+        80,
+        197
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        37,
+        38,
+        39,
+        40
+      ],
+      "raw": "F6-F9, FA, FC, FE"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        80,
+        169,
+        341,
+        197
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96
+      ],
+      "raw": "Contacter le service à la clientèle de Jackery."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        197,
+        80,
+        215
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        36
+      ],
+      "raw": "FF"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        80,
+        197,
+        341,
+        215
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "raw": "Placez le produit dans un environnement à température appropriée et attendez que l'erreur disparaisse."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        25,
+        232,
+        345,
+        256
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        29
+      ],
+      "raw": "CONNEXIONS"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        25,
+        256,
+        345,
+        282
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "raw": "Pour répondre à des besoins de capacité accrue, jusqu’à 5 dispositifs peuvent être utilisés avec le Jackery HomePower 3600 Plus."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        30,
+        282,
+        84,
+        325
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        30
+      ],
+      "raw": "Important"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        84,
+        282,
+        341,
+        325
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28.1,
+        333.1,
+        340,
+        497
+      ],
+      "purpose": "embedded-art/clearance",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        142,
+        143,
+        144
+      ],
+      "raw": "≥0.66 pied (≈200 mm) ≥0.66 pied (≈200 mm) HomePower 3600 Plus"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        27.0,
+        27.5,
+        341.0,
+        192.5
+      ],
+      "purpose": "embedded-art/stacking",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 16,
+      "bbox": [
+        86,
+        200,
+        341,
+        250
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 16,
+      "bbox": [
+        30,
+        200,
+        86,
+        250
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1
+      ],
+      "raw": "Remarques"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        28.5,
+        258.25,
+        342.5,
+        497.25
+      ],
+      "purpose": "embedded-art/locking",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "raw": "1 2 1 2 Verrouiller Déverrouiller HomePower 3600 Plus"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        25,
+        28,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        73
+      ],
+      "raw": "CHARGE"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        35,
+        52,
+        345,
+        67
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        74,
+        75,
+        76,
+        77,
+        78
+      ],
+      "raw": "CHARGEMENT PAR PRISE MURALE CA"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        25,
+        67,
+        345,
+        80
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72
+      ],
+      "raw": "En cas de charge murale, ce dispositif doit être utilisé avec le Jackery HomePower 3600 Plus."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        30,
+        82,
+        95,
+        110
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1
+      ],
+      "raw": "Avertissement"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        95,
+        82,
+        339,
+        110
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "raw": "Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 3600 Plus au(x) Battery Pack 3600."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        27.0,
+        114.0,
+        341.0,
+        269.0
+      ],
+      "purpose": "embedded-art/ac-charging",
+      "word_ids": [
+        81,
+        82,
+        83
+      ],
+      "raw": "HomePower 3600 Plus"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        35,
+        274,
+        195,
+        290
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        53,
+        54,
+        55,
+        56
+      ],
+      "raw": "CHARGEMENT PAR PANNEAUX SOLAIRES"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        195,
+        274,
+        270,
+        290
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        79,
+        80
+      ],
+      "raw": "VENDU SÉPARÉMENT"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        25,
+        290,
+        345,
+        318
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "raw": "Rechargez votre dispositif à l’aide de panneaux solaires et du Jackery HomePower 3600 Plus, comme indiqué dans la figure ci-dessous.Pour plus d’informations, veuillez vous reporter au manuel d’utilisation du Jackery HomePower 3600 Plus."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        28.0,
+        323.0,
+        341.0,
+        499.0
+      ],
+      "purpose": "embedded-art/solar-charging",
+      "word_ids": [
+        84,
+        85,
+        86
+      ],
+      "raw": "HomePower 3600 Plus"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        25,
+        28,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        95
+      ],
+      "raw": "STOCKAGE"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        59,
+        340,
+        137
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 18,
+      "bbox": [
+        25,
+        160,
+        345,
+        182
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1
+      ],
+      "raw": "SPÉCIFICATIONS"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        35,
+        186,
+        345,
+        202
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3
+      ],
+      "raw": "INFORMATIONS GÉNÉRALES"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        204,
+        180,
+        215.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        4,
+        5,
+        6
+      ],
+      "raw": "Nom du produit"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        204,
+        341,
+        215.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "raw": "Jackery Battery Pack 3600"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        215.5,
+        180,
+        226.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        7,
+        8
+      ],
+      "raw": "N° modèle"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        215.5,
+        341,
+        226.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        21
+      ],
+      "raw": "JBP-3600A"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        226.5,
+        180,
+        237.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        9
+      ],
+      "raw": "Capacité"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        226.5,
+        341,
+        237.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "raw": "80Ah / 44.8Vdc (3584 Wh)"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        237.5,
+        180,
+        248.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        10,
+        11
+      ],
+      "raw": "Cellule Chimique"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        237.5,
+        341,
+        248.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        27
+      ],
+      "raw": "LiFePO₄"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        248.5,
+        180,
+        259.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        12
+      ],
+      "raw": "Poids"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        248.5,
+        341,
+        259.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        28,
+        29,
+        30,
+        31
+      ],
+      "raw": "Environ 55.1 lbs/25 kg"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        259.5,
+        180,
+        270.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        13
+      ],
+      "raw": "Dimensions"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        259.5,
+        341,
+        270.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "raw": "14,8 x 12,5 x 9,0 po/37,5 x 31,7x 22,9 cm"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        270.5,
+        180,
+        282
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        14,
+        15,
+        16
+      ],
+      "raw": "Durée de vie"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        270.5,
+        341,
+        282
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "raw": "Capacité de 6000 cycles à 70 % ou plus"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        35,
+        292,
+        345,
+        308
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        51,
+        52
+      ],
+      "raw": "PORTS D’ENTRÉE/SORTIE"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        310,
+        180,
+        324
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        53,
+        54,
+        55,
+        56
+      ],
+      "raw": "Port d’extension CC (Entrée)"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        310,
+        341,
+        324
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        67,
+        68
+      ],
+      "raw": "36,4V-50,4V⎓60A Max"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        324,
+        180,
+        336
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        57,
+        58,
+        59,
+        60
+      ],
+      "raw": "Port d’extension CC (Sortie)"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        324,
+        341,
+        336
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        69,
+        70
+      ],
+      "raw": "36,4V-50,4V⎓100A Max"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        336,
+        180,
+        348
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "raw": "Courant et durée maximum du court-circuit"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        336,
+        341,
+        348
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        71
+      ],
+      "raw": "1160A/860μs"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        35,
+        362,
+        345,
+        381
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        92,
+        93,
+        94
+      ],
+      "raw": "TEMPÉRATURE DE FONCTIONNEMENT"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        383,
+        180,
+        395
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72,
+        73,
+        74
+      ],
+      "raw": "Température de charge"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        383,
+        341,
+        395
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84
+      ],
+      "raw": "-4°F à 113°F / -20°C à 45°C"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        395,
+        180,
+        409
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        75,
+        76,
+        77
+      ],
+      "raw": "Température de décharge"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        180,
+        395,
+        341,
+        409
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91
+      ],
+      "raw": "-4°F à 113°F / -20°C à 45°C"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        25,
+        28,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        117
+      ],
+      "raw": "GARANTIE"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        30,
+        54,
+        345,
+        85
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "raw": "Nous ne fournissons notre garantie qu'aux clients qui achètent sur le site oﬃciel de Jackery, sur des plateformes tierces portant la marque Jackery, ou auprès de revendeurs autorisés locaux."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        25,
+        85,
+        345,
+        98
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77
+      ],
+      "raw": "*La durée et les détails de la garantie peuvent varier en fonction des lois, réglementations et revendeurs autorisés locaux."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        97,
+        240,
+        112
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        269,
+        270
+      ],
+      "raw": "Garantie limitée"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        112,
+        341,
+        170
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208
+      ],
+      "raw": "Jackery Inc. garantit à l'acheteur et consommateur d'origine que le produit de Jackery sera exempt de tout défaut de fabrication et de matériaux dans le cadre d'une utilisation normale pendant toute la durée de la période de garantie applicable identiﬁée dans la section « Période de garantie » ci-dessous, sous réserve des exceptions énoncées ci-dessous. Cette déclaration de garantie énonce les obligations totales et exclusives de garantie de Jackery. Nous n'assumerons pas et nous n'autorisons personne à assumer pour nous toute autre responsabilité en lien avec la vente de nos produits."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        172,
+        240,
+        189
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        344,
+        345,
+        346
+      ],
+      "raw": "Période de garantie"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        187,
+        65,
+        219
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        350
+      ],
+      "raw": "3"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        55,
+        190,
+        115,
+        207
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        349
+      ],
+      "raw": "ANS"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        55,
+        207,
+        230,
+        219
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        347,
+        348
+      ],
+      "raw": "Garantie standard"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        219,
+        230,
+        265
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268
+      ],
+      "raw": "La période de garantie standard du Jackery Battery Pack 3600 est de 36 mois. Dans tous les cas, la période de garantie commence à compter de la date d'achat par l'acheteur et consommateur d'origine. La facture du premier achat du consommateur ou toute autre preuve documentaire raisonnable est nécessaire aﬁn d'établir la date de début de la période de garantie."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        232,
+        187,
+        262,
+        219
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        354
+      ],
+      "raw": "2"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        252,
+        190,
+        312,
+        207
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        353
+      ],
+      "raw": "ANS"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        252,
+        207,
+        341,
+        219
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        351,
+        352
+      ],
+      "raw": "Garantie prolongée"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        232,
+        219,
+        341,
+        265
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "raw": "Pour activer l'extension de garantie, vous devez enregistrer votre produit en ligne ou bien contacter notre service client à hello@jackery.com aﬁn de prolonger la durée de la garantie standard."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        270,
+        240,
+        287
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        271,
+        272,
+        273
+      ],
+      "raw": "Réparation ou remplacement"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        287,
+        341,
+        314
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116
+      ],
+      "raw": "Jackery remplacera (aux frais de Jackery) tout produit de Jackery qui ne fonctionne plus en raison d'un défaut de fabrication ou de matériau pendant la période de garantie applicable. Un produit remplacé reprend la garantie restante du produit d'origine."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        318,
+        240,
+        334
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        319,
+        320,
+        321,
+        322,
+        323,
+        324
+      ],
+      "raw": "Limitée à l'acheteur et consommateur d'origine"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        334,
+        341,
+        362
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318
+      ],
+      "raw": "Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéﬁcie de la garantie restante de la date d'achat d'origine."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        366,
+        240,
+        381
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        325
+      ],
+      "raw": "Exclusions"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        381,
+        341,
+        462
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        465,
+        240,
+        482
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        342,
+        343
+      ],
+      "raw": "Droits d'interprétation"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        482,
+        341,
+        498
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341
+      ],
+      "raw": "Jackery Inc. se réserve le droit d'interpréter de manière déﬁnitive la politique après-vente des clients ci-dessus."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        0,
+        500,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        23
+      ],
+      "raw": "09"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        0,
+        500,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "10"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        0,
+        500,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "11"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        0,
+        500,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "12"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        0,
+        500,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "13"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        0,
+        500,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "14"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        0,
+        500,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "15"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        0,
+        500,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "16"
+    }
+  ]
+}

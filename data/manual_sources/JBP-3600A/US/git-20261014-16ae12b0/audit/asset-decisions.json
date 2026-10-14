@@ -1,0 +1,1484 @@
+[
+  {
+    "language": "en",
+    "local_path": "assets/lcd-display.png",
+    "kind": "figure",
+    "physical_page": 6,
+    "bbox": [
+      27,
+      54,
+      342,
+      110
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse published JBP-3600A EU English Web artwork unchanged",
+    "evidence": "Template match on the US print at 4x: NCC 1.0000, mean absolute difference 0.23/255, no pixel off by more than 60. Same JBP-3600A LCD, same labels and geometry.",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/power-on-off.png",
+    "kind": "figure",
+    "physical_page": 6,
+    "bbox": [
+      35,
+      232,
+      334,
+      309
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse published JBP-3600A EU English Web artwork unchanged",
+    "evidence": "Template match on the US print at 4x: NCC 0.9999, mean absolute difference 0.29/255, no pixel off by more than 60. Same unit, hand and On/Off labels.",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "e919bf869023cc58ac590446c5c60c9db8d481fec1fdfd70b78ec3df9873ca3a"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/lcd-on-off.png",
+    "kind": "figure",
+    "physical_page": 6,
+    "bbox": [
+      35,
+      387,
+      334,
+      466
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse published JBP-3600A EU English Web artwork unchanged",
+    "evidence": "Template match on the US print at 4x: NCC 0.9999, mean absolute difference 0.27/255, no pixel off by more than 60.",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/inbox-unit.png",
+    "kind": "figure",
+    "physical_page": 5,
+    "bbox": [
+      31,
+      218,
+      122,
+      287
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/inbox_unit_clean.png (NCC 0.887: heavier strokes and a different base band from another source)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "ac33348ca5819ff78537dcfe500d33b1151c48c0584845cb227545677b63d65f"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/inbox-cable.png",
+    "kind": "figure",
+    "physical_page": 5,
+    "bbox": [
+      138,
+      218,
+      229,
+      287
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/inbox_cable_clean.png (NCC 0.870: different stroke weight and crop)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "5e92b1169949dbf559dfceb62809ed043ecb998eb1abca17445639e3f110ffcd"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/inbox-manual.png",
+    "kind": "figure",
+    "physical_page": 5,
+    "bbox": [
+      247,
+      218,
+      338,
+      287
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/inbox_manual_clean.png (generic document icon; the US print draws the US manual cover)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "1756fa617412cca4369e3c3d8e6b4ba218daa2bd3ec164ff902de4e037a3dd30"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/overview-front.png",
+    "kind": "figure",
+    "physical_page": 5,
+    "bbox": [
+      28,
+      376,
+      152,
+      488
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/overview_front.png (NCC 0.678: same unit, but the US print sets the POWER button label and leader lower)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "3e44498208a19c5b5d7d6f3f346b7b5d9cd287c3084a4ca5da8d8e58ad88a615"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/overview-left.png",
+    "kind": "figure",
+    "physical_page": 5,
+    "bbox": [
+      156,
+      376,
+      341,
+      488
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/overview_left.png (NCC 0.608: US label and leader geometry differs)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "69f9770b77807aea10b3b4121240ce5a20516e130630b35be9674ae4c0d48681"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/clearance.png",
+    "kind": "figure",
+    "physical_page": 7,
+    "bbox": [
+      29,
+      340,
+      341,
+      496
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/clearance_native.png (NCC 0.698: EU host Explorer 3600 Plus; the US print shows the HomePower 3600 Plus with US outlets)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "d60d36f56a2e60b6351ae65dd16d8b0998ce188e3c1bcf954662dbe059e08e87"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/stacking.png",
+    "kind": "figure",
+    "physical_page": 8,
+    "bbox": [
+      27,
+      26,
+      341,
+      191
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/stacking_clean.png (NCC 0.869: EU host product)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "0892351866842b3611dba05f38ebc91e79747e12b7a999988ff895284ef5d4e6"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/locking.png",
+    "kind": "figure",
+    "physical_page": 8,
+    "bbox": [
+      27,
+      258,
+      341,
+      497
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/locking_clean.png (NCC 0.965: identical lock/unlock steps, but the EU host product differs)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "b1b5972c9a90078a4e5f811cf8d1fc2dfbd47b133c51f3020065129bf0bf7ce1"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/ac-charging.png",
+    "kind": "figure",
+    "physical_page": 9,
+    "bbox": [
+      27,
+      116,
+      341,
+      271
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/ac_charging.png (NCC 0.915: EU wall plug and host product)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "6fb50d379245fc84f920f07570cd6fd463b9d56ed3456af5874b81ecaa6a4433"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/solar-charging.png",
+    "kind": "figure",
+    "physical_page": 9,
+    "bbox": [
+      27,
+      321,
+      340,
+      497
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration",
+    "evidence": "docs/renderers/web/assets/jbp3600a_eu_en/solar_charging.png (NCC 0.965: EU host product)",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "0ce6a7f27a16e4d2c6221b0e0635a2048b1f4aa98bf9d97f30a825c87417b1ba"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-lcd-display.png",
+    "kind": "figure",
+    "physical_page": 14,
+    "bbox": [
+      27.0,
+      54.0,
+      342.0,
+      110.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 3.07% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "e941291a403c77eb01b4717c7e56cf98fb3932d239c3f38c0ad8888c67af42ae"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-lcd-display.png",
+    "kind": "figure",
+    "physical_page": 22,
+    "bbox": [
+      27.0,
+      54.0,
+      342.0,
+      110.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 3.18% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "81825a7130de300b936dc9199102b3623e6efe4266b2a52ab09cb05909970cd1"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-power-on-off.png",
+    "kind": "figure",
+    "physical_page": 14,
+    "bbox": [
+      35.0,
+      232.0,
+      334.0,
+      309.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 2.67% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "9843f132bba06bb198f57baf0bef0fc80e5fad651563c15e3fae7a4c7844a284"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-power-on-off.png",
+    "kind": "figure",
+    "physical_page": 22,
+    "bbox": [
+      35.0,
+      232.0,
+      334.0,
+      309.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 3.22% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "0e22d872ac48744a15c08dd314732e7130d297a374b3e3c5725040b944234888"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/lcd-on-off.png",
+    "kind": "figure",
+    "physical_page": 14,
+    "bbox": [
+      35.0,
+      394.0,
+      334.0,
+      473.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "share the English panel (identical art)",
+    "evidence": "crop compared with the English panel: 0.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "54240ab23ef6adff591634df302821f22ace66a5beb086b35eb508c19a5ac60b"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-lcd-on-off.png",
+    "kind": "figure",
+    "physical_page": 22,
+    "bbox": [
+      35,
+      387.5,
+      334,
+      462.5
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 100.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "9b05d6fa16f146b645dfda38651381dc614745673b009d0a3d8f35210844eb3c"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-inbox-unit.png",
+    "kind": "figure",
+    "physical_page": 13,
+    "bbox": [
+      31,
+      222,
+      122,
+      286.5
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 100.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "f45ed65bcab51c978dffc5629ffda4a6da8e455195e8cc36bd341ecaafb61d80"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-inbox-unit.png",
+    "kind": "figure",
+    "physical_page": 21,
+    "bbox": [
+      30.3,
+      211,
+      121.4,
+      283.5
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 100.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "db8d02d9f86341fac0e26bcf7fdc83c7ff0ef8f6c55248723eaa5ae9632f50e4"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-inbox-cable.png",
+    "kind": "figure",
+    "physical_page": 13,
+    "bbox": [
+      138,
+      222,
+      229,
+      286.5
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 100.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "7ff24db5347a4a67ff270baf2775a5e0c3d3067e52958e9779ff38dc7e617a03"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-inbox-cable.png",
+    "kind": "figure",
+    "physical_page": 21,
+    "bbox": [
+      137.3,
+      211,
+      228.4,
+      283.5
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 100.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "6f46200d48f1e6382aca322f4924ef3bb51df96d18ffdbe2401371fa26a0858d"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-inbox-manual.png",
+    "kind": "figure",
+    "physical_page": 13,
+    "bbox": [
+      247,
+      222,
+      338,
+      286.5
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 100.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "1eba5f07bdfa7318a8bd594b47c47c86b275d293558b76712aee398091426bd0"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-inbox-manual.png",
+    "kind": "figure",
+    "physical_page": 21,
+    "bbox": [
+      246.3,
+      211,
+      337.3,
+      283.5
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 100.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "cc82330e608f15b31322f9d367fcf40d82916f30734f50748f8c5b502ef77a3a"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-overview-front.png",
+    "kind": "figure",
+    "physical_page": 13,
+    "bbox": [
+      28.0,
+      378.0,
+      152.0,
+      490.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 1.24% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "acb7df6dd66060ea31bfea25a4785abd42f485bfb40e0e65aef479801ff9a377"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-overview-front.png",
+    "kind": "figure",
+    "physical_page": 21,
+    "bbox": [
+      28.0,
+      379.25,
+      152.0,
+      491.25
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 3.76% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "70f784456ec2020037be45a50ad03f298f8d96291750543d781a12303595b60c"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-overview-left.png",
+    "kind": "figure",
+    "physical_page": 13,
+    "bbox": [
+      156.0,
+      378.0,
+      341.0,
+      490.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 4.81% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "78b53389b68f5014997c61def40cc71525fc83414d0a9f20795df6238badaa8f"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-overview-left.png",
+    "kind": "figure",
+    "physical_page": 21,
+    "bbox": [
+      156.0,
+      379.25,
+      341.0,
+      491.25
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 5.52% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "a16e44fbf676cdb7864e3476324dca9c4f36b87f6932eaccc2a3f23393751920"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-clearance.png",
+    "kind": "figure",
+    "physical_page": 15,
+    "bbox": [
+      28.1,
+      333.1,
+      340,
+      497
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 100.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "d82f13abe86c08ff5996130e2d99c5b9ad11b07206ac5d9d9d3b861548be49f3"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-clearance.png",
+    "kind": "figure",
+    "physical_page": 23,
+    "bbox": [
+      28.2,
+      329.2,
+      340.1,
+      493.2
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 100.00% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "e2cefe0e67edbb1ea37fba5b03e9c0a5ae81ce04a8ef5844fc0003c84539bda3"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-stacking.png",
+    "kind": "figure",
+    "physical_page": 16,
+    "bbox": [
+      27.0,
+      27.5,
+      341.0,
+      192.5
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 0.87% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "c6c73c7d1efaba4c1b42c3e5ed82edd1adba1946f37504e0e461c0dfe97ee5d6"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/stacking.png",
+    "kind": "figure",
+    "physical_page": 24,
+    "bbox": [
+      27.0,
+      27.25,
+      341.0,
+      192.25
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "share the English panel (identical art)",
+    "evidence": "crop compared with the English panel: 0.06% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "0892351866842b3611dba05f38ebc91e79747e12b7a999988ff895284ef5d4e6"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-locking.png",
+    "kind": "figure",
+    "physical_page": 16,
+    "bbox": [
+      28.5,
+      258.25,
+      342.5,
+      497.25
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 2.51% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "e504c12c4ab930f312791b513fd60c7b2443a95a2718f66e61e7edef7129fd70"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-locking.png",
+    "kind": "figure",
+    "physical_page": 24,
+    "bbox": [
+      28.75,
+      253.25,
+      342.75,
+      492.25
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 2.36% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "e42c8870fb9b7db002f123b7a77f1446a96ad41cc500c8d222ed8500baba6473"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-ac-charging.png",
+    "kind": "figure",
+    "physical_page": 17,
+    "bbox": [
+      27.0,
+      114.0,
+      341.0,
+      269.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 0.21% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "eaa2a291d01b9a5c694e8c4dcc1e7b991bc0b2008db1f750f1dd0d67ac993532"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/es-ac-charging.png",
+    "kind": "figure",
+    "physical_page": 25,
+    "bbox": [
+      26.5,
+      109.25,
+      340.5,
+      264.25
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 0.93% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "c9b77952151a39b499c46e14f39711e941ece6b6b50528532796cfcbb5afbfdf"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fr-solar-charging.png",
+    "kind": "figure",
+    "physical_page": 17,
+    "bbox": [
+      28.0,
+      323.0,
+      341.0,
+      499.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract complete source illustration (labels or art differ from the English panel)",
+    "evidence": "crop compared with the English panel: 1.70% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "53c4a43913830a19ad330142b43edcc0db09c6582ea3ad79ef629fd8e9f4e53b"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/solar-charging.png",
+    "kind": "figure",
+    "physical_page": 25,
+    "bbox": [
+      27.5,
+      317.0,
+      340.5,
+      493.0
+    ],
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "share the English panel (identical art)",
+    "evidence": "crop compared with the English panel: 0.08% of pixels differ by more than 60/255",
+    "background_strategy": "retain complete panel; no background removal",
+    "sha256": "0ce6a7f27a16e4d2c6221b0e0635a2048b1f4aa98bf9d97f30a825c87417b1ba"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_warning_triangle.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: warning/outline-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [788, 789, 790]: max mean channel error 0.010933 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_read_manual.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: read-manual/book-information",
+    "evidence": "fixed glyph comparison against the native drawings [836, 837, 838]: max mean channel error 0.018763 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_electric_shock.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: electric-shock/bolt-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [822, 823, 824]: max mean channel error 0.009962 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_battery_charging.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: battery-charging/flame-battery-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [825, 826, 827, 828, 829, 830, 831]: max mean channel error 0.012225 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: explosive-material/burst-triangle-native-v2-3e3a39",
+    "evidence": "fixed glyph comparison against the native drawings [832, 833, 834, 835]: max mean channel error 0.017078 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_heavy_object.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: heavy-object/person-load-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [845, 846, 847, 848, 849, 850, 851, 852]: max mean channel error 0.011486 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+    "evidence": "fixed glyph comparison against the native drawings [807, 808, 809]: max mean channel error 0.014729 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_no_open_flame.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: no-open-flame/fire-match-prohibited",
+    "evidence": "fixed glyph comparison against the native drawings [839, 840, 841, 842, 843, 844]: max mean channel error 0.002816 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_keep_away_from_children.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: keep-away-from-children/adult-child-prohibited",
+    "evidence": "fixed glyph comparison against the native drawings [853, 854, 855, 856]: max mean channel error 0.002832 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_li_ion_htp017.svg",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: li-ion/htp017-recycle-li-ion",
+    "evidence": "fixed glyph comparison against the native drawings [810, 811, 812, 813, 814, 815, 816, 817, 818]: max mean channel error 0.000465 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/symbol_weee.png",
+    "kind": "symbol",
+    "physical_page": 4,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: weee/crossed-bin-bar",
+    "evidence": "fixed glyph comparison against the native drawings [819, 820, 821]: max mean channel error 0.011649 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_warning_triangle.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: warning/outline-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [1025, 1026, 1027]: max mean channel error 0.010933 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_read_manual.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: read-manual/book-information",
+    "evidence": "fixed glyph comparison against the native drawings [1064, 1065, 1066]: max mean channel error 0.018763 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_electric_shock.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: electric-shock/bolt-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [1050, 1051, 1052]: max mean channel error 0.009957 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_battery_charging.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: battery-charging/flame-battery-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [1053, 1054, 1055, 1056, 1057, 1058, 1059]: max mean channel error 0.012221 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: explosive-material/burst-triangle-native-v2-3e3a39",
+    "evidence": "fixed glyph comparison against the native drawings [1060, 1061, 1062, 1063]: max mean channel error 0.017078 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_heavy_object.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: heavy-object/person-load-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [1073, 1074, 1075, 1076, 1077, 1078, 1079, 1080]: max mean channel error 0.011486 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+    "evidence": "fixed glyph comparison against the native drawings [1035, 1036, 1037]: max mean channel error 0.014727 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_no_open_flame.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: no-open-flame/fire-match-prohibited",
+    "evidence": "fixed glyph comparison against the native drawings [1067, 1068, 1069, 1070, 1071, 1072]: max mean channel error 0.002815 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_keep_away_from_children.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: keep-away-from-children/adult-child-prohibited",
+    "evidence": "fixed glyph comparison against the native drawings [1081, 1082, 1083, 1084]: max mean channel error 0.002834 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_li_ion_htp017.svg",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: li-ion/htp017-recycle-li-ion",
+    "evidence": "fixed glyph comparison against the native drawings [1038, 1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046]: max mean channel error 0.000472 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/symbol_weee.png",
+    "kind": "symbol",
+    "physical_page": 12,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: weee/crossed-bin-bar",
+    "evidence": "fixed glyph comparison against the native drawings [1047, 1048, 1049]: max mean channel error 0.011798 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_warning_triangle.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: warning/outline-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [903, 904, 905]: max mean channel error 0.010933 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_read_manual.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: read-manual/book-information",
+    "evidence": "fixed glyph comparison against the native drawings [942, 943, 944]: max mean channel error 0.018764 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_electric_shock.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: electric-shock/bolt-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [928, 929, 930]: max mean channel error 0.009962 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_battery_charging.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: battery-charging/flame-battery-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [931, 932, 933, 934, 935, 936, 937]: max mean channel error 0.012225 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: explosive-material/burst-triangle-native-v2-3e3a39",
+    "evidence": "fixed glyph comparison against the native drawings [938, 939, 940, 941]: max mean channel error 0.017077 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_heavy_object.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: heavy-object/person-load-triangle-tinted",
+    "evidence": "fixed glyph comparison against the native drawings [951, 952, 953, 954, 955, 956, 957, 958]: max mean channel error 0.011486 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+    "evidence": "fixed glyph comparison against the native drawings [913, 914, 915]: max mean channel error 0.014729 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_no_open_flame.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: no-open-flame/fire-match-prohibited",
+    "evidence": "fixed glyph comparison against the native drawings [945, 946, 947, 948, 949, 950]: max mean channel error 0.002818 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_keep_away_from_children.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: keep-away-from-children/adult-child-prohibited",
+    "evidence": "fixed glyph comparison against the native drawings [959, 960, 961, 962]: max mean channel error 0.002833 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_li_ion_htp017.svg",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: li-ion/htp017-recycle-li-ion",
+    "evidence": "fixed glyph comparison against the native drawings [916, 917, 918, 919, 920, 921, 922, 923, 924]: max mean channel error 0.000491 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/symbol_weee.png",
+    "kind": "symbol",
+    "physical_page": 20,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: weee/crossed-bin-bar",
+    "evidence": "fixed glyph comparison against the native drawings [925, 926, 927]: max mean channel error 0.011797 (gate 0.02); caption bound by pixel hash",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/inline-connection-icon.svg",
+    "kind": "inline glyph",
+    "physical_page": 8,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "extract native source vector glyph",
+    "evidence": "Inline LCD icon printed as vector outlines inside the p8 NOTES sentence; no shared or EU Web asset carries it (the EU Web page replaced it with the words \"connection icon\").",
+    "background_strategy": "transparent native paths",
+    "sha256": "3712585cb630b77884bc3d7d7f96cf57463fec74b7a406bacd279c9c740a94a8"
+  },
+  {
+    "language": "en",
+    "local_path": "assets/fcc_mark.svg",
+    "kind": "compliance mark",
+    "physical_page": 5,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: fcc/nested-c-native-dark",
+    "evidence": "fixed glyph comparison against the native FCC mark: max mean channel error 0.017123",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/inline-connection-icon.svg",
+    "kind": "inline glyph",
+    "physical_page": 16,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "share the English native glyph (fixed glyph comparison)",
+    "evidence": "printed pixels compared with the English icon: 1.84% differ (antialiasing)",
+    "background_strategy": "transparent native paths",
+    "sha256": "3712585cb630b77884bc3d7d7f96cf57463fec74b7a406bacd279c9c740a94a8"
+  },
+  {
+    "language": "fr",
+    "local_path": "assets/fcc_mark.svg",
+    "kind": "compliance mark",
+    "physical_page": 13,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: fcc/nested-c-native-dark",
+    "evidence": "fixed glyph comparison against the native FCC mark: max mean channel error 0.017115",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/inline-connection-icon.svg",
+    "kind": "inline glyph",
+    "physical_page": 24,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "share the English native glyph (fixed glyph comparison)",
+    "evidence": "printed pixels compared with the English icon: 1.22% differ (antialiasing)",
+    "background_strategy": "transparent native paths",
+    "sha256": "3712585cb630b77884bc3d7d7f96cf57463fec74b7a406bacd279c9c740a94a8"
+  },
+  {
+    "language": "es",
+    "local_path": "assets/fcc_mark.svg",
+    "kind": "compliance mark",
+    "physical_page": 21,
+    "inventories_checked": [
+      "docs/renderers/web/assets/jbp3600a_eu_en (published JBP-3600A EU English Web artwork)",
+      "docs/renderers/latex/assets (jbp3600a_* print-build artwork)",
+      "docs/renderers/web/assets/shared/symbols (native-v1 shared symbols)",
+      "data/manual_sources (other frozen packages)"
+    ],
+    "decision": "reuse shared symbol (native-v1) unchanged: fcc/nested-c-native-dark",
+    "evidence": "fixed glyph comparison against the native FCC mark: max mean channel error 0.017115",
+    "background_strategy": "retain shared symbol bytes",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe"
+  }
+]
