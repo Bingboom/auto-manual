@@ -1,0 +1,33 @@
+/* JBP-3600A US source geometry only. Shared Web theme owns headings, callouts, tables and figures;
+   layout follows the JBP-2000B and JBP-3600A EU Web manuals. */
+
+/* Figures: the print's own art width; no visible caption (the art carries its labels). */
+.native-figure { max-width: 680px; margin: 1rem auto; min-width: 0; }
+.native-figure .hb-reference-figure { margin: 0; max-width: none; }
+#furo-main-content .native-figure img { width: 100% !important; height: auto !important; max-height: none; }
+
+/* p5 FCC measures: printed as indented lines without marks. */
+#furo-main-content .native-fcc .hb-fcc-column ul { list-style: none; padding-left: 0.6em; }
+#furo-main-content .native-fcc .hb-fcc-column ul > li { margin: 0; }
+#furo-main-content .native-fcc .hb-fcc-column ul > li > p { margin: 0; }
+
+/* Two-column tables fit the phone (the print's troubleshooting table has two columns). */
+@media (max-width: 760px) {
+  #furo-main-content .native-fit-phone table { min-width: 0 !important; }
+  #furo-main-content .native-fit-phone col.hb-troubleshooting-col-code { width: 5.4rem !important; }
+}
+
+/* p9 SOLD SEPARATELY tag beside its subheading. */
+#furo-main-content .native-sold-separately {
+  display: inline-block; margin-left: 0.4em; padding: 0.1em 0.55em; border-radius: 0.3em;
+  background: var(--hb-text); color: var(--hb-paper); font-size: 0.72em; vertical-align: 0.12em; white-space: nowrap;
+}
+
+/* p8 inline LCD connection icon at text size. */
+#furo-main-content img.native-inline-control {
+  display: inline-block; width: auto !important; height: 1.15em !important;
+  margin: 0 0.3em !important; vertical-align: -0.2em;
+}
+
+/* Print case for subheadings (the print sets them in bold capitals or title case); shared markers stay. */
+#furo-main-content h2:not(.hb-spec-section), #furo-main-content :is(h3, h4) { text-transform: none; }

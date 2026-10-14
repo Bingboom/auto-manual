@@ -1,0 +1,1679 @@
+[
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "warning/outline-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "local_path": "assets/symbol_warning_triangle.svg",
+    "glyph_search_box": [
+      30,
+      320,
+      68,
+      350
+    ],
+    "caption_search_box": [
+      72,
+      320,
+      180,
+      350
+    ],
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "drawing_indices": [
+      788,
+      789,
+      790
+    ],
+    "glyph_bbox": [
+      37.83140182495117,
+      323.6785888671875,
+      59.61040115356445,
+      342.95458984375
+    ],
+    "caption_bbox": [
+      72.7734,
+      322.2566,
+      167.5088,
+      344.9766
+    ],
+    "row_bbox": [
+      36.8314,
+      321.2566,
+      168.5088,
+      345.9766
+    ],
+    "caption_text": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+    "caption_sha256": "9ea5173f61901975ab1843025a4999b548e07b272d511596533d79483495d192",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.010933
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "read-manual/book-information",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "local_path": "assets/symbol_read_manual.svg",
+    "glyph_search_box": [
+      30,
+      350,
+      68,
+      375
+    ],
+    "caption_search_box": [
+      72,
+      350,
+      180,
+      375
+    ],
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "drawing_indices": [
+      836,
+      837,
+      838
+    ],
+    "glyph_bbox": [
+      38.06060028076172,
+      354.2767028808594,
+      59.38159942626953,
+      370.3396911621094
+    ],
+    "caption_bbox": [
+      72.7734,
+      357.1502,
+      176.8905,
+      365.8702
+    ],
+    "row_bbox": [
+      37.0606,
+      353.2767,
+      177.8905,
+      371.3397
+    ],
+    "caption_text": "Read the user manual before operation.",
+    "caption_sha256": "73891f85c8140902fe931f39cd183ba9867a23de81011c418e82a1838d1aa29d",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.018763
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+    "local_path": "assets/symbol_electric_shock.svg",
+    "glyph_search_box": [
+      30,
+      377,
+      68,
+      405
+    ],
+    "caption_search_box": [
+      72,
+      377,
+      180,
+      405
+    ],
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+    "drawing_indices": [
+      822,
+      823,
+      824
+    ],
+    "glyph_bbox": [
+      38.29780197143555,
+      379.81451416015625,
+      60.10179901123047,
+      399.113525390625
+    ],
+    "caption_bbox": [
+      72.7734,
+      385.6021,
+      131.4542,
+      394.8021
+    ],
+    "row_bbox": [
+      37.2978,
+      378.8145,
+      132.4542,
+      400.1135
+    ],
+    "caption_text": "Risk of electric shock",
+    "caption_sha256": "3bea088969834279897fba2b890cbead2e6fe109e03061965c9ad6c4ab323fd6",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.009962
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+    "local_path": "assets/symbol_battery_charging.svg",
+    "glyph_search_box": [
+      30,
+      405,
+      68,
+      433
+    ],
+    "caption_search_box": [
+      72,
+      405,
+      180,
+      433
+    ],
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+    "drawing_indices": [
+      825,
+      826,
+      827,
+      828,
+      829,
+      830,
+      831
+    ],
+    "glyph_bbox": [
+      38.29780197143555,
+      407.7384948730469,
+      60.10179901123047,
+      427.0375061035156
+    ],
+    "caption_bbox": [
+      72.7734,
+      412.2481,
+      120.8522,
+      421.4481
+    ],
+    "row_bbox": [
+      37.2978,
+      406.7385,
+      121.8522,
+      428.0375
+    ],
+    "caption_text": "Battery charging",
+    "caption_sha256": "ea7a7871446e724b5b0f76aa30da9b1e5e4f96d87735559964a27588d1e4be50",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.012225
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+    "local_path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+    "glyph_search_box": [
+      30,
+      435,
+      68,
+      465
+    ],
+    "caption_search_box": [
+      72,
+      435,
+      180,
+      465
+    ],
+    "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+    "drawing_indices": [
+      832,
+      833,
+      834,
+      835
+    ],
+    "glyph_bbox": [
+      38.13479995727539,
+      437.80938720703125,
+      60.591800689697266,
+      457.3044128417969
+    ],
+    "caption_bbox": [
+      72.7734,
+      444.1621,
+      124.1648,
+      453.3621
+    ],
+    "row_bbox": [
+      37.1348,
+      436.8094,
+      125.1648,
+      458.3044
+    ],
+    "caption_text": "Explosive material",
+    "caption_sha256": "c8c5e21fb2351c3cfbb8e2aa4331ebdde8638e0efb2fd93f9a92f58fdf23aa0a",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.017078
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+    "local_path": "assets/symbol_heavy_object.svg",
+    "glyph_search_box": [
+      30,
+      467,
+      68,
+      498
+    ],
+    "caption_search_box": [
+      72,
+      467,
+      180,
+      498
+    ],
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+    "drawing_indices": [
+      845,
+      846,
+      847,
+      848,
+      849,
+      850,
+      851,
+      852
+    ],
+    "glyph_bbox": [
+      37.26709747314453,
+      469.998291015625,
+      59.72509765625,
+      489.4933166503906
+    ],
+    "caption_bbox": [
+      72.7725,
+      476.732,
+      111.5999,
+      485.932
+    ],
+    "row_bbox": [
+      36.2671,
+      468.9983,
+      112.5999,
+      490.4933
+    ],
+    "caption_text": "Heavy object",
+    "caption_sha256": "18691d94162b8adfbc19da36ca5d53cda51a664defba99fa6452c62c0be8b76b",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.011486
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+    "local_path": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "glyph_search_box": [
+      189,
+      321,
+      222,
+      348
+    ],
+    "caption_search_box": [
+      224,
+      321,
+      340,
+      348
+    ],
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+    "drawing_indices": [
+      807,
+      808,
+      809
+    ],
+    "glyph_bbox": [
+      195.75140380859375,
+      324.83209228515625,
+      213.89739990234375,
+      342.9660949707031
+    ],
+    "caption_bbox": [
+      228.6886,
+      330.0294,
+      307.7008,
+      338.7494
+    ],
+    "row_bbox": [
+      194.7514,
+      323.8321,
+      308.7008,
+      343.9661
+    ],
+    "caption_text": "Do not dismantle the product.",
+    "caption_sha256": "ef96c888b0d186422fa3546891c3023ea5c7d2845067e2ad5e8feafb4de50ddb",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.014729
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+    "local_path": "assets/symbol_no_open_flame.svg",
+    "glyph_search_box": [
+      189,
+      349,
+      222,
+      376
+    ],
+    "caption_search_box": [
+      224,
+      349,
+      340,
+      376
+    ],
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+    "drawing_indices": [
+      839,
+      840,
+      841,
+      842,
+      843,
+      844
+    ],
+    "glyph_bbox": [
+      195.7696990966797,
+      351.7012634277344,
+      215.03370666503906,
+      370.9632873535156
+    ],
+    "caption_bbox": [
+      228.6886,
+      357.3574,
+      314.2791,
+      366.0774
+    ],
+    "row_bbox": [
+      194.7697,
+      350.7013,
+      315.2791,
+      371.9633
+    ],
+    "caption_text": "Keep the product away from fire.",
+    "caption_sha256": "5510687b072705b3c5111a38cbe8a258aa785bebcaf3c0e3c856fe5a22db7e42",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.002816
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+    "local_path": "assets/symbol_keep_away_from_children.svg",
+    "glyph_search_box": [
+      189,
+      377,
+      222,
+      402
+    ],
+    "caption_search_box": [
+      224,
+      377,
+      340,
+      402
+    ],
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+    "drawing_indices": [
+      853,
+      854,
+      855,
+      856
+    ],
+    "glyph_bbox": [
+      195.77059936523438,
+      380.00286865234375,
+      215.03359985351562,
+      399.265869140625
+    ],
+    "caption_bbox": [
+      228.6895,
+      385.1473,
+      295.0507,
+      393.8673
+    ],
+    "row_bbox": [
+      194.7706,
+      379.0029,
+      296.0507,
+      400.2659
+    ],
+    "caption_text": "Keep away from children.",
+    "caption_sha256": "62272d1f4061ee5324eb5735598d9e8b1944e8cdab0101a6b418c85245a4aa43",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.002832
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "li-ion/htp017-recycle-li-ion",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_htp017.svg",
+    "local_path": "assets/symbol_li_ion_htp017.svg",
+    "glyph_search_box": [
+      189,
+      403,
+      222,
+      430
+    ],
+    "caption_search_box": [
+      224,
+      403,
+      340,
+      431
+    ],
+    "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66",
+    "drawing_indices": [
+      810,
+      811,
+      812,
+      813,
+      814,
+      815,
+      816,
+      817,
+      818
+    ],
+    "glyph_bbox": [
+      195.11219787597656,
+      406.8092956542969,
+      213.25579833984375,
+      427.1335754394531
+    ],
+    "caption_bbox": [
+      225.0047,
+      405.7049,
+      336.4861,
+      428.4249
+    ],
+    "row_bbox": [
+      194.1122,
+      404.7049,
+      337.4861,
+      429.4249
+    ],
+    "caption_text": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+    "caption_sha256": "bb200ed94f1e5e2b919b4f60170301eff2c550ce38982c4efb53d95d4ffb56c4",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.000465
+    }
+  },
+  {
+    "language": "en",
+    "physical_page": 4,
+    "shared_symbol_key": "weee/crossed-bin-bar",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+    "local_path": "assets/symbol_weee.png",
+    "glyph_search_box": [
+      189,
+      431,
+      222,
+      498
+    ],
+    "caption_search_box": [
+      224,
+      431,
+      340,
+      498
+    ],
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "drawing_indices": [
+      819,
+      820,
+      821
+    ],
+    "glyph_bbox": [
+      197.55340576171875,
+      451.60638427734375,
+      212.9853973388672,
+      474.3900146484375
+    ],
+    "caption_bbox": [
+      225.0047,
+      433.1113,
+      337.5614,
+      496.2185
+    ],
+    "row_bbox": [
+      196.5534,
+      432.1113,
+      338.5614,
+      497.2185
+    ],
+    "caption_text": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+    "caption_sha256": "27529c5dbac41d6c569f26c5a62d32fc2910e966060c3ddc48808c3e83cd2258",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.011649
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "warning/outline-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "local_path": "assets/symbol_warning_triangle.svg",
+    "glyph_search_box": [
+      30,
+      318,
+      68,
+      348
+    ],
+    "caption_search_box": [
+      72,
+      318,
+      180,
+      348
+    ],
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "drawing_indices": [
+      1025,
+      1026,
+      1027
+    ],
+    "glyph_bbox": [
+      37.470401763916016,
+      322.52239990234375,
+      59.2494010925293,
+      341.79840087890625
+    ],
+    "caption_bbox": [
+      72.2256,
+      321.1005,
+      163.9774,
+      343.8205
+    ],
+    "row_bbox": [
+      36.4704,
+      320.1005,
+      164.9774,
+      344.8205
+    ],
+    "caption_text": "Mlise en garde! Le non-respect des messages d'avertissement peut entraîner des blessures.",
+    "caption_sha256": "f9199a36fbe804f4f9d3bb245dedb83b4664b1db77515dc0322648e61e58acb3",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.010933
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "read-manual/book-information",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "local_path": "assets/symbol_read_manual.svg",
+    "glyph_search_box": [
+      30,
+      348,
+      68,
+      376
+    ],
+    "caption_search_box": [
+      72,
+      348,
+      180,
+      376
+    ],
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "drawing_indices": [
+      1064,
+      1065,
+      1066
+    ],
+    "glyph_bbox": [
+      37.8463020324707,
+      353.2947998046875,
+      59.167301177978516,
+      369.3577880859375
+    ],
+    "caption_bbox": [
+      72.2256,
+      356.3748,
+      146.2254,
+      365.0948
+    ],
+    "row_bbox": [
+      36.8463,
+      352.2948,
+      147.2254,
+      370.3578
+    ],
+    "caption_text": "Lire le manuel de l'opérateur",
+    "caption_sha256": "a6d36e1ccb1d47482810247800993ca0f7156f2dc9c167570796340e560d5985",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.018763
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+    "local_path": "assets/symbol_electric_shock.svg",
+    "glyph_search_box": [
+      30,
+      376,
+      68,
+      406
+    ],
+    "caption_search_box": [
+      72,
+      376,
+      180,
+      406
+    ],
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+    "drawing_indices": [
+      1050,
+      1051,
+      1052
+    ],
+    "glyph_bbox": [
+      37.75050354003906,
+      380.76385498046875,
+      59.55450439453125,
+      400.0628662109375
+    ],
+    "caption_bbox": [
+      72.2266,
+      387.5456,
+      145.446,
+      396.7456
+    ],
+    "row_bbox": [
+      36.7505,
+      379.7639,
+      146.446,
+      401.0629
+    ],
+    "caption_text": "Risque de choc électrique",
+    "caption_sha256": "a6af54f44b06d1d1c349aef7f90b1c684a99ef78db97eb960e01de9df0d43531",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.009957
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+    "local_path": "assets/symbol_battery_charging.svg",
+    "glyph_search_box": [
+      30,
+      406,
+      68,
+      436
+    ],
+    "caption_search_box": [
+      72,
+      406,
+      180,
+      436
+    ],
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+    "drawing_indices": [
+      1053,
+      1054,
+      1055,
+      1056,
+      1057,
+      1058,
+      1059
+    ],
+    "glyph_bbox": [
+      37.75050354003906,
+      411.98046875,
+      59.55450439453125,
+      431.27947998046875
+    ],
+    "caption_bbox": [
+      72.2266,
+      417.8096,
+      147.8466,
+      427.0096
+    ],
+    "row_bbox": [
+      36.7505,
+      410.9805,
+      148.8466,
+      432.2795
+    ],
+    "caption_text": "Chargement de la batterie",
+    "caption_sha256": "a28fd01e14b8e1d35c94ef265313cfada28b19dac065032bd42600924a4af722",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.012221
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+    "local_path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+    "glyph_search_box": [
+      30,
+      436,
+      68,
+      466
+    ],
+    "caption_search_box": [
+      72,
+      436,
+      180,
+      466
+    ],
+    "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+    "drawing_indices": [
+      1060,
+      1061,
+      1062,
+      1063
+    ],
+    "glyph_bbox": [
+      37.58759689331055,
+      442.8050537109375,
+      60.04459762573242,
+      462.3000793457031
+    ],
+    "caption_bbox": [
+      72.2266,
+      448.8176,
+      121.9854,
+      458.0176
+    ],
+    "row_bbox": [
+      36.5876,
+      441.8051,
+      122.9854,
+      463.3001
+    ],
+    "caption_text": "Matière explosive",
+    "caption_sha256": "866c668f29bad98b4d54ecc05ef63a85bd2b0c2c814436145f5458bc702e4cfe",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.017078
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+    "local_path": "assets/symbol_heavy_object.svg",
+    "glyph_search_box": [
+      30,
+      466,
+      68,
+      498
+    ],
+    "caption_search_box": [
+      72,
+      466,
+      180,
+      498
+    ],
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+    "drawing_indices": [
+      1073,
+      1074,
+      1075,
+      1076,
+      1077,
+      1078,
+      1079,
+      1080
+    ],
+    "glyph_bbox": [
+      36.71989822387695,
+      473.62164306640625,
+      59.17790222167969,
+      493.1166687011719
+    ],
+    "caption_bbox": [
+      72.2256,
+      478.3893,
+      105.059,
+      487.5893
+    ],
+    "row_bbox": [
+      35.7199,
+      472.6216,
+      106.059,
+      494.1167
+    ],
+    "caption_text": "Objet lourd",
+    "caption_sha256": "820b660791478451a24e22874cd2c4318ebb2b27b29e50dae4f8252609d9a6cf",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.011486
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+    "local_path": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "glyph_search_box": [
+      189,
+      319,
+      222,
+      342
+    ],
+    "caption_search_box": [
+      224,
+      319,
+      340,
+      342
+    ],
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+    "drawing_indices": [
+      1035,
+      1036,
+      1037
+    ],
+    "glyph_bbox": [
+      195.20420837402344,
+      321.5688781738281,
+      213.35020446777344,
+      339.702880859375
+    ],
+    "caption_bbox": [
+      224.4616,
+      326.7229,
+      298.7693,
+      335.4429
+    ],
+    "row_bbox": [
+      194.2042,
+      320.5689,
+      299.7693,
+      340.7029
+    ],
+    "caption_text": "Ne démontez pas le produit.",
+    "caption_sha256": "988743230dd43b397ee84d65cbb27d790953bce27089126541fa18eff561995c",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.014727
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+    "local_path": "assets/symbol_no_open_flame.svg",
+    "glyph_search_box": [
+      189,
+      342,
+      222,
+      366
+    ],
+    "caption_search_box": [
+      224,
+      342,
+      340,
+      366
+    ],
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+    "drawing_indices": [
+      1067,
+      1068,
+      1069,
+      1070,
+      1071,
+      1072
+    ],
+    "glyph_bbox": [
+      195.22250366210938,
+      344.53265380859375,
+      214.48651123046875,
+      363.794677734375
+    ],
+    "caption_bbox": [
+      224.4616,
+      349.8845,
+      323.7217,
+      358.6045
+    ],
+    "row_bbox": [
+      194.2225,
+      343.5327,
+      324.7217,
+      364.7947
+    ],
+    "caption_text": "Ne pas fumer ni utiliser de ﬂamme nue",
+    "caption_sha256": "081d6c5a9f3fb8e68c5e92615b78b956232a3e64c8157ee2881265a973cde221",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.002815
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+    "local_path": "assets/symbol_keep_away_from_children.svg",
+    "glyph_search_box": [
+      189,
+      366,
+      222,
+      392
+    ],
+    "caption_search_box": [
+      224,
+      366,
+      340,
+      392
+    ],
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+    "drawing_indices": [
+      1081,
+      1082,
+      1083,
+      1084
+    ],
+    "glyph_bbox": [
+      195.223388671875,
+      369.15777587890625,
+      214.48638916015625,
+      388.4207763671875
+    ],
+    "caption_bbox": [
+      224.458,
+      374.5145,
+      303.6484,
+      383.2345
+    ],
+    "row_bbox": [
+      194.2234,
+      368.1578,
+      304.6484,
+      389.4208
+    ],
+    "caption_text": "Les enfants ne sont pas admis",
+    "caption_sha256": "5c1c00f83a6bb955463058bc1aa1477367dc3b1c27684760d5743afdb7827f28",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.002834
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "li-ion/htp017-recycle-li-ion",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_htp017.svg",
+    "local_path": "assets/symbol_li_ion_htp017.svg",
+    "glyph_search_box": [
+      189,
+      392,
+      222,
+      424
+    ],
+    "caption_search_box": [
+      224,
+      392,
+      340,
+      424
+    ],
+    "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66",
+    "drawing_indices": [
+      1038,
+      1039,
+      1040,
+      1041,
+      1042,
+      1043,
+      1044,
+      1045,
+      1046
+    ],
+    "glyph_bbox": [
+      195.30929565429688,
+      397.3780822753906,
+      213.45289611816406,
+      417.7023620605469
+    ],
+    "caption_bbox": [
+      224.458,
+      392.8433,
+      329.2951,
+      422.5633
+    ],
+    "row_bbox": [
+      194.3093,
+      391.8433,
+      330.2951,
+      423.5633
+    ],
+    "caption_text": "Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.",
+    "caption_sha256": "49cc9fd07f88bbf490d7097f05db5e82ac08d4850eb85ecb470dfe994b484c6c",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.000472
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 12,
+    "shared_symbol_key": "weee/crossed-bin-bar",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+    "local_path": "assets/symbol_weee.png",
+    "glyph_search_box": [
+      189,
+      424,
+      222,
+      498
+    ],
+    "caption_search_box": [
+      224,
+      424,
+      340,
+      498
+    ],
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "drawing_indices": [
+      1047,
+      1048,
+      1049
+    ],
+    "glyph_bbox": [
+      197.00621032714844,
+      448.0651550292969,
+      212.43820190429688,
+      470.8489685058594
+    ],
+    "caption_bbox": [
+      224.458,
+      425.3681,
+      333.4795,
+      495.2737
+    ],
+    "row_bbox": [
+      196.0062,
+      424.3681,
+      334.4795,
+      496.2737
+    ],
+    "caption_text": "Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.",
+    "caption_sha256": "2aaeb451f3e1307a96c3b64427610b366b1e0d572c1f023ded193459b95234ab",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.011798
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "warning/outline-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "local_path": "assets/symbol_warning_triangle.svg",
+    "glyph_search_box": [
+      30,
+      318,
+      68,
+      348
+    ],
+    "caption_search_box": [
+      72,
+      318,
+      180,
+      348
+    ],
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "drawing_indices": [
+      903,
+      904,
+      905
+    ],
+    "glyph_bbox": [
+      37.47780227661133,
+      323.0430908203125,
+      59.25680160522461,
+      342.319091796875
+    ],
+    "caption_bbox": [
+      72.2334,
+      321.6209,
+      166.4654,
+      344.3409
+    ],
+    "row_bbox": [
+      36.4778,
+      320.6209,
+      167.4654,
+      345.3409
+    ],
+    "caption_text": "Precaución! El incumplimiento de los mensajes de advertencia puede provocar lesiones.",
+    "caption_sha256": "18ec2f76535aa8e0e1656e5e443518a220512eb0bcaea47f0d5441d2a85b4ca3",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.010933
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "read-manual/book-information",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "local_path": "assets/symbol_read_manual.svg",
+    "glyph_search_box": [
+      30,
+      348,
+      68,
+      376
+    ],
+    "caption_search_box": [
+      72,
+      348,
+      180,
+      376
+    ],
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "drawing_indices": [
+      942,
+      943,
+      944
+    ],
+    "glyph_bbox": [
+      37.853599548339844,
+      354.4364013671875,
+      59.174598693847656,
+      370.4993896484375
+    ],
+    "caption_bbox": [
+      72.2334,
+      358.2057,
+      145.0466,
+      366.9257
+    ],
+    "row_bbox": [
+      36.8536,
+      353.4364,
+      146.0466,
+      371.4994
+    ],
+    "caption_text": "Lea el manual del operador",
+    "caption_sha256": "b9dba1b52d18f61a9d20f852cbba82cb4f66c5952347f0e29f2113e97d4f8d89",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.018764
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "electric-shock/bolt-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+    "local_path": "assets/symbol_electric_shock.svg",
+    "glyph_search_box": [
+      30,
+      376,
+      68,
+      406
+    ],
+    "caption_search_box": [
+      72,
+      376,
+      180,
+      406
+    ],
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+    "drawing_indices": [
+      928,
+      929,
+      930
+    ],
+    "glyph_bbox": [
+      37.75790023803711,
+      382.5924072265625,
+      59.56189727783203,
+      401.89141845703125
+    ],
+    "caption_bbox": [
+      72.2334,
+      388.5103,
+      154.709,
+      397.7103
+    ],
+    "row_bbox": [
+      36.7579,
+      381.5924,
+      155.709,
+      402.8914
+    ],
+    "caption_text": "Riesgo de descarga eléctrica",
+    "caption_sha256": "dc5aa0fe37508a3538ac2d7b22fd3d0a44ca1a3270c9c82c3fab7465b73f7a87",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.009962
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "battery-charging/flame-battery-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+    "local_path": "assets/symbol_battery_charging.svg",
+    "glyph_search_box": [
+      30,
+      406,
+      68,
+      436
+    ],
+    "caption_search_box": [
+      72,
+      406,
+      180,
+      436
+    ],
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+    "drawing_indices": [
+      931,
+      932,
+      933,
+      934,
+      935,
+      936,
+      937
+    ],
+    "glyph_bbox": [
+      37.75790023803711,
+      412.48577880859375,
+      59.56189727783203,
+      431.7847900390625
+    ],
+    "caption_bbox": [
+      72.2334,
+      417.8083,
+      122.2874,
+      427.0083
+    ],
+    "row_bbox": [
+      36.7579,
+      411.4858,
+      123.2874,
+      432.7848
+    ],
+    "caption_text": "Carga de batería",
+    "caption_sha256": "108874d6338d0fa86624032404813683d41deed18aaebb1036b4065548eb5638",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.012225
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "explosive-material/burst-triangle-native-v2-3e3a39",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material_native_v2_3e3a39.svg",
+    "local_path": "assets/symbol_explosive_material_native_v2_3e3a39.svg",
+    "glyph_search_box": [
+      30,
+      436,
+      68,
+      466
+    ],
+    "caption_search_box": [
+      72,
+      436,
+      180,
+      466
+    ],
+    "sha256": "d4def93f853179fe0ea0cd7c4ba461da5a70d662d33a899bc48f7a2ef5553a1d",
+    "drawing_indices": [
+      938,
+      939,
+      940,
+      941
+    ],
+    "glyph_bbox": [
+      37.59489822387695,
+      441.40460205078125,
+      60.05189895629883,
+      460.8996276855469
+    ],
+    "caption_bbox": [
+      72.2334,
+      446.9863,
+      123.6722,
+      456.1863
+    ],
+    "row_bbox": [
+      36.5949,
+      440.4046,
+      124.6722,
+      461.8996
+    ],
+    "caption_text": "Material explosivo",
+    "caption_sha256": "5dc5afd7c61b12ceca85038147e6f95decb9035b648c2f73d207239fed22ba63",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.017077
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "heavy-object/person-load-triangle-tinted",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+    "local_path": "assets/symbol_heavy_object.svg",
+    "glyph_search_box": [
+      30,
+      466,
+      68,
+      498
+    ],
+    "caption_search_box": [
+      72,
+      466,
+      180,
+      498
+    ],
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+    "drawing_indices": [
+      951,
+      952,
+      953,
+      954,
+      955,
+      956,
+      957,
+      958
+    ],
+    "glyph_bbox": [
+      36.72719955444336,
+      471.8481750488281,
+      59.185203552246094,
+      491.34320068359375
+    ],
+    "caption_bbox": [
+      72.2324,
+      477.3834,
+      115.8844,
+      486.5834
+    ],
+    "row_bbox": [
+      35.7272,
+      470.8482,
+      116.8844,
+      492.3432
+    ],
+    "caption_text": "Objeto pesado",
+    "caption_sha256": "a0573266dd25ff0288656ff4a79a1d086c3acbc0b78fb1130f6a5505ef9d3956",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.011486
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+    "local_path": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+    "glyph_search_box": [
+      189,
+      319,
+      222,
+      343
+    ],
+    "caption_search_box": [
+      224,
+      319,
+      340,
+      343
+    ],
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+    "drawing_indices": [
+      913,
+      914,
+      915
+    ],
+    "glyph_bbox": [
+      195.84249877929688,
+      321.44061279296875,
+      213.98849487304688,
+      339.5746154785156
+    ],
+    "caption_bbox": [
+      225.0966,
+      326.1625,
+      290.1525,
+      334.8825
+    ],
+    "row_bbox": [
+      194.8425,
+      320.4406,
+      291.1525,
+      340.5746
+    ],
+    "caption_text": "No desarme el producto.",
+    "caption_sha256": "20d9597c663a36fcbedd41f3c5846ec4736cf2f8e95cdeccfc02e93d028d805e",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.014729
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+    "local_path": "assets/symbol_no_open_flame.svg",
+    "glyph_search_box": [
+      189,
+      343,
+      222,
+      368
+    ],
+    "caption_search_box": [
+      224,
+      343,
+      340,
+      368
+    ],
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+    "drawing_indices": [
+      945,
+      946,
+      947,
+      948,
+      949,
+      950
+    ],
+    "glyph_bbox": [
+      195.8607940673828,
+      345.7073059082031,
+      215.1248016357422,
+      364.9693298339844
+    ],
+    "caption_bbox": [
+      225.0966,
+      350.5225,
+      313.4598,
+      359.2425
+    ],
+    "row_bbox": [
+      194.8608,
+      344.7073,
+      314.4598,
+      365.9693
+    ],
+    "caption_text": "No fumar ni hacer llamas abiertas",
+    "caption_sha256": "d1b22c06294729c2f3515df999dc95142f1c4e0422a7d6c23664548d13a2ea82",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.002818
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+    "local_path": "assets/symbol_keep_away_from_children.svg",
+    "glyph_search_box": [
+      189,
+      368,
+      222,
+      394
+    ],
+    "caption_search_box": [
+      224,
+      368,
+      340,
+      394
+    ],
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+    "drawing_indices": [
+      959,
+      960,
+      961,
+      962
+    ],
+    "glyph_bbox": [
+      195.8616943359375,
+      370.9862060546875,
+      215.12469482421875,
+      390.24920654296875
+    ],
+    "caption_bbox": [
+      225.0967,
+      376.3435,
+      280.3291,
+      385.0635
+    ],
+    "row_bbox": [
+      194.8617,
+      369.9862,
+      281.3291,
+      391.2492
+    ],
+    "caption_text": "No se permiten niños",
+    "caption_sha256": "dc01bcd62713efa3b56e9358b4701dfeb97d03dc3fd38e98ee57bd20667aa193",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.002833
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "li-ion/htp017-recycle-li-ion",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_htp017.svg",
+    "local_path": "assets/symbol_li_ion_htp017.svg",
+    "glyph_search_box": [
+      189,
+      394,
+      222,
+      426
+    ],
+    "caption_search_box": [
+      224,
+      394,
+      340,
+      426
+    ],
+    "sha256": "b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66",
+    "drawing_indices": [
+      916,
+      917,
+      918,
+      919,
+      920,
+      921,
+      922,
+      923,
+      924
+    ],
+    "glyph_bbox": [
+      195.94760131835938,
+      399.20660400390625,
+      214.09120178222656,
+      419.5308837890625
+    ],
+    "caption_bbox": [
+      225.0967,
+      394.6723,
+      322.599,
+      424.3923
+    ],
+    "row_bbox": [
+      194.9476,
+      393.6723,
+      323.599,
+      425.3923
+    ],
+    "caption_text": "Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.",
+    "caption_sha256": "47bc29b62bb74eeada1eaf4e79fd4da4ac648b4b074eda12e7dc6a196677cebb",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.000491
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 20,
+    "shared_symbol_key": "weee/crossed-bin-bar",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+    "local_path": "assets/symbol_weee.png",
+    "glyph_search_box": [
+      189,
+      426,
+      222,
+      498
+    ],
+    "caption_search_box": [
+      224,
+      426,
+      340,
+      498
+    ],
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "drawing_indices": [
+      925,
+      926,
+      927
+    ],
+    "glyph_bbox": [
+      197.64450073242188,
+      447.0589904785156,
+      213.0764923095703,
+      469.8429870605469
+    ],
+    "caption_bbox": [
+      225.0967,
+      426.3627,
+      336.0832,
+      496.2683
+    ],
+    "row_bbox": [
+      196.6445,
+      425.3627,
+      337.0832,
+      497.2683
+    ],
+    "caption_text": "Este símbolo indica que el producto no debe desecharse con los residuos domésticos. En su lugar, debe llevarse a un punto de recogida designado para su correcto reciclaje. El desecho y reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su autoridad local, el servicio de gestión de residuos o el distribuidor del producto.",
+    "caption_sha256": "d52f0c339e169d16a56b4889e377701a6a79cb094bd2740c9aa999b1beb55283",
+    "caption_mode": "native-extractable-text",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.011797
+    }
+  }
+]

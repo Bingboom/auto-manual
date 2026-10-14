@@ -1,0 +1,192 @@
+{
+  "build": "strict Sphinx (python -m sphinx -n -W --keep-going -b html) of web/en, web/fr and web/es",
+  "browser": "Chromium 1194 (Playwright), full-page after loading and decoding every image",
+  "languages": {
+    "en": {
+      "320": {
+        "cssViewport": {
+          "width": 320,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "390": {
+        "cssViewport": {
+          "width": 390,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "768": {
+        "cssViewport": {
+          "width": 768,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "1024": {
+        "cssViewport": {
+          "width": 1024,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "1280": {
+        "cssViewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "1920": {
+        "cssViewport": {
+          "width": 1920,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      }
+    },
+    "fr": {
+      "320": {
+        "cssViewport": {
+          "width": 320,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "390": {
+        "cssViewport": {
+          "width": 390,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "768": {
+        "cssViewport": {
+          "width": 768,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "1024": {
+        "cssViewport": {
+          "width": 1024,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "1280": {
+        "cssViewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "1920": {
+        "cssViewport": {
+          "width": 1920,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      }
+    },
+    "es": {
+      "320": {
+        "cssViewport": {
+          "width": 320,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "390": {
+        "cssViewport": {
+          "width": 390,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "768": {
+        "cssViewport": {
+          "width": 768,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "1024": {
+        "cssViewport": {
+          "width": 1024,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "1280": {
+        "cssViewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      },
+      "1920": {
+        "cssViewport": {
+          "width": 1920,
+          "height": 900
+        },
+        "pageOverflow": false,
+        "scrollSurfaces": [],
+        "missingImages": [],
+        "scriptErrors": []
+      }
+    }
+  }
+}
