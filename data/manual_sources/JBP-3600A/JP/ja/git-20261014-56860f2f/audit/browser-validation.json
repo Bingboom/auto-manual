@@ -1,0 +1,140 @@
+{
+  "schema": "browser-width-sweep/v1",
+  "engine": "Chromium 1194 (Playwright, headless)",
+  "page": "web/ja built with python -m sphinx -n -W --keep-going -b html",
+  "date": "2026-10-14",
+  "checks": [
+    "document overflow (scrollWidth - clientWidth)",
+    "broken images",
+    "tables wider than their wrapper",
+    "script/console errors"
+  ],
+  "results": [
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 320,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 360,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 375,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 390,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 414,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 480,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 600,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 768,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 900,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 1024,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 1280,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 1440,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 1680,
+      "script_errors": []
+    },
+    {
+      "overflow": 0,
+      "broken": [],
+      "images": 28,
+      "scrolling_tables": 0,
+      "h2": 13,
+      "width": 1920,
+      "script_errors": []
+    }
+  ]
+}
