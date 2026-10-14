@@ -1,0 +1,643 @@
+[
+  {
+    "asset": "registration-p2.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 2,
+    "crop": [
+      28,
+      97,
+      341,
+      156
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p2-b27-l0-0",
+      "p2-b28-l0-0",
+      "p2-b29-l0-0",
+      "p2-b30-l0-0",
+      "p2-b34-l0-0",
+      "p2-b35-l0-0",
+      "p2-b36-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "inbox-p3.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 3,
+    "crop": [
+      28,
+      47,
+      341,
+      225
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p3-b0-l0-0",
+      "p3-b1-l0-0",
+      "p3-b1-l1-0",
+      "p3-b1-l2-0",
+      "p3-b2-l0-0",
+      "p3-b3-l0-0",
+      "p3-b7-l0-0",
+      "p3-b7-l1-0",
+      "p3-b7-l2-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "overview-front-p3.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 3,
+    "crop": [
+      26,
+      290,
+      343,
+      495
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p3-b8-l0-0",
+      "p3-b9-l0-0",
+      "p3-b9-l1-0",
+      "p3-b10-l0-0",
+      "p3-b10-l1-0",
+      "p3-b11-l0-0",
+      "p3-b11-l1-0",
+      "p3-b12-l0-0",
+      "p3-b13-l0-0",
+      "p3-b14-l0-0",
+      "p3-b15-l0-0",
+      "p3-b15-l1-0",
+      "p3-b15-l2-0",
+      "p3-b16-l0-0",
+      "p3-b17-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "overview-side-p4.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 4,
+    "crop": [
+      26,
+      48,
+      343,
+      495
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p4-b1-l0-0",
+      "p4-b2-l0-0",
+      "p4-b3-l0-0",
+      "p4-b4-l0-0",
+      "p4-b5-l0-0",
+      "p4-b6-l0-0",
+      "p4-b7-l0-0",
+      "p4-b7-l1-0",
+      "p4-b7-l2-0",
+      "p4-b8-l0-0",
+      "p4-b9-l0-0",
+      "p4-b10-l0-0",
+      "p4-b10-l1-0",
+      "p4-b11-l0-0",
+      "p4-b11-l1-0",
+      "p4-b12-l0-0",
+      "p4-b13-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "lcd-map-p5.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 5,
+    "crop": [
+      26,
+      53,
+      342,
+      225
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p5-b27-l0-0",
+      "p5-b28-l0-0",
+      "p5-b29-l0-0",
+      "p5-b30-l0-0",
+      "p5-b31-l0-0",
+      "p5-b32-l0-0",
+      "p5-b33-l0-0",
+      "p5-b34-l0-0",
+      "p5-b34-l1-0",
+      "p5-b34-l2-0",
+      "p5-b34-l3-0",
+      "p5-b34-l4-0",
+      "p5-b34-l5-0",
+      "p5-b34-l6-0",
+      "p5-b34-l7-0",
+      "p5-b35-l0-0",
+      "p5-b35-l1-0",
+      "p5-b35-l2-0",
+      "p5-b35-l3-0",
+      "p5-b35-l4-0",
+      "p5-b35-l5-0",
+      "p5-b36-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "power-p8.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 8,
+    "crop": [
+      26.127972412109376,
+      69.8966796875,
+      340.26298828125,
+      261.3186828613281
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [
+      {
+        "bbox": [
+          157.80868530273438,
+          172.29579162597656,
+          329.85968017578125,
+          206.31478881835938
+        ],
+        "fill": "#ebebec",
+        "line_ids": [
+          "p8-b9-l0-0",
+          "p8-b9-l1-0",
+          "p8-b9-l2-0"
+        ]
+      }
+    ],
+    "external_text_ids": [
+      "p8-b2-l0-0",
+      "p8-b3-l0-0",
+      "p8-b4-l0-0",
+      "p8-b7-l0-0",
+      "p8-b8-l0-0",
+      "p8-b9-l0-0",
+      "p8-b9-l1-0",
+      "p8-b9-l2-0",
+      "p8-b12-l0-0",
+      "p8-b13-l0-0",
+      "p8-b14-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "ac-output-p8.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 8,
+    "crop": [
+      26.305401611328126,
+      291.01282958984376,
+      340.4403869628906,
+      496.85380859375
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [
+      {
+        "bbox": [
+          34.29650115966797,
+          301.7643737792969,
+          127.03250122070312,
+          316.70037841796875
+        ],
+        "fill": "#f2f2f3",
+        "line_ids": [
+          "p8-b15-l0-0"
+        ]
+      }
+    ],
+    "external_text_ids": [
+      "p8-b5-l0-0",
+      "p8-b5-l1-0",
+      "p8-b6-l0-0",
+      "p8-b6-l1-0",
+      "p8-b15-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "usb-output-p9.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 9,
+    "crop": [
+      28.06129150390625,
+      50.59890441894531,
+      342.19630737304686,
+      230.130908203125
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [
+      {
+        "bbox": [
+          36.052001953125,
+          59.143802642822266,
+          128.78799438476562,
+          74.07980346679688
+        ],
+        "fill": "#f2f2f3",
+        "line_ids": [
+          "p9-b3-l0-0"
+        ]
+      }
+    ],
+    "external_text_ids": [
+      "p9-b1-l0-0",
+      "p9-b1-l1-0",
+      "p9-b2-l0-0",
+      "p9-b2-l1-0",
+      "p9-b3-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "lcd-screen-p9.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 9,
+    "crop": [
+      31.99451904296875,
+      324.78480224609376,
+      187.09185791015625,
+      492.85380859375
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "energy-saving-p10.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 10,
+    "crop": [
+      28.4837158203125,
+      95.35860900878906,
+      341.60670776367186,
+      259.78160400390624
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [
+      {
+        "bbox": [
+          35.917083740234375,
+          105.53590393066406,
+          330.3210754394531,
+          128.11090087890625
+        ],
+        "fill": "#f2f2f3",
+        "line_ids": [
+          "p10-b1-l0-0",
+          "p10-b1-l1-0"
+        ]
+      }
+    ],
+    "external_text_ids": [
+      "p10-b1-l0-0",
+      "p10-b1-l1-0",
+      "p10-b26-l0-0",
+      "p10-b26-l1-0",
+      "p10-b26-l2-0",
+      "p10-b27-l0-0",
+      "p10-b27-l1-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "ups-p11.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 11,
+    "crop": [
+      29.12379150390625,
+      85.58250122070312,
+      341.6938049316406,
+      322.15849609375
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p11-b9-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "battery-stack-p12.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 12,
+    "crop": [
+      27.714306640625,
+      106.92550354003906,
+      337.634326171875,
+      319.2274963378906
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p12-b9-l0-0",
+      "p12-b9-l1-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "battery-accessories-p12.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 12,
+    "crop": [
+      28.00068359375,
+      376.35419921875,
+      337.9786865234375,
+      472.85020751953124
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [
+      {
+        "bbox": [
+          262.74859619140625,
+          408.42431640625,
+          337.2785949707031,
+          442.2153015136719
+        ],
+        "fill": "#eeeeef",
+        "line_ids": [
+          "p12-b11-l0-0"
+        ]
+      }
+    ],
+    "external_text_ids": [
+      "p12-b10-l0-0",
+      "p12-b10-l1-0",
+      "p12-b10-l2-0",
+      "p12-b11-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "parallel-p13.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 13,
+    "crop": [
+      28.545391845703126,
+      224.1258972167969,
+      340.20839233398436,
+      441.9818908691406
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p13-b16-l0-0",
+      "p13-b17-l0-0",
+      "p13-b18-l0-0",
+      "p13-b19-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "parallel-interrupted-p14.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 14,
+    "crop": [
+      27.4845703125,
+      69.30590515136718,
+      340.5245849609375,
+      253.45289916992186
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p14-b8-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "parallel-exit-p14.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 14,
+    "crop": [
+      27.32471923828125,
+      279.89326171875,
+      341.45970458984374,
+      499.42528076171874
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p14-b5-l0-0",
+      "p14-b6-l0-0",
+      "p14-b7-l0-0",
+      "p14-b9-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "charging-ac-p15.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 15,
+    "crop": [
+      29.819195556640626,
+      186.98060302734376,
+      342.2172119140625,
+      294.1276123046875
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "charging-solar-p15.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 15,
+    "crop": [
+      30.15650634765625,
+      362.3791931152344,
+      343.1695129394531,
+      497.68019409179686
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p15-b15-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "charging-solar-four-p16.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 16,
+    "crop": [
+      28.85950927734375,
+      62.2285888671875,
+      342.99449462890624,
+      314.53758544921874
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [
+      {
+        "bbox": [
+          156.36050415039062,
+          269.39129638671875,
+          260.9905090332031,
+          280.55731201171875
+        ],
+        "fill": "#ffffff",
+        "line_ids": [
+          "p16-b13-l0-0"
+        ]
+      }
+    ],
+    "external_text_ids": [
+      "p16-b12-l0-0",
+      "p16-b13-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "charging-car-p17.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 17,
+    "crop": [
+      26.15198974609375,
+      66.40540771484375,
+      338.74498291015624,
+      233.48240966796874
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p17-b18-l0-0",
+      "p17-b19-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "app-download-p20.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 20,
+    "crop": [
+      27,
+      64,
+      343,
+      142
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p20-b1-l0-0",
+      "p20-b2-l0-0",
+      "p20-b3-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "app-add-p20.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 20,
+    "crop": [
+      90.35020446777344,
+      213.29840087890625,
+      273.6488952636719,
+      383.61968994140625
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p20-b9-l0-0",
+      "p20-b9-l1-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "app-controls-p20.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 20,
+    "crop": [
+      28,
+      398,
+      341,
+      498
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p20-b16-l0-0",
+      "p20-b17-l0-0",
+      "p20-b18-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "app-connect-p21.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 21,
+    "crop": [
+      29.91290283203125,
+      182.01290893554688,
+      330.45220947265625,
+      372.04888916015625
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p21-b7-l0-0",
+      "p21-b7-l1-0",
+      "p21-b7-l2-0",
+      "p21-b12-l0-0",
+      "p21-b13-l0-0",
+      "p21-b14-l0-0",
+      "p21-b15-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "manufacturer-qr-p23.svg",
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "physical_page": 23,
+    "crop": [
+      28,
+      438,
+      343,
+      498
+    ],
+    "operator": "redact_text (graphics preserved); remove_if_covered for named caption frames",
+    "caption_frames_removed": [],
+    "external_text_ids": [
+      "p23-b7-l0-0",
+      "p23-b7-l1-0",
+      "p23-b8-l0-0",
+      "p23-b9-l0-0"
+    ],
+    "preserve": "complete panel geometry, leaders, product shading and on-product engravings; all App phone edges"
+  },
+  {
+    "asset": "native-inline-parallel-connected-p13.svg",
+    "physical_page": 13,
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "crop": [
+      106.5,
+      178,
+      121,
+      192
+    ],
+    "operator": "copy native glyph vector paths inside named glyph bounds; excludes the surrounding table-cell fill by geometry"
+  },
+  {
+    "asset": "native-inline-parallel-fault-p13.svg",
+    "physical_page": 13,
+    "source_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+    "crop": [
+      177,
+      190,
+      193,
+      204
+    ],
+    "operator": "copy native glyph vector paths inside named glyph bounds; excludes the surrounding table-cell fill by geometry"
+  }
+]

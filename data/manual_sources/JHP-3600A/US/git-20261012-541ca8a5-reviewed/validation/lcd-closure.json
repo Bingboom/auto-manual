@@ -1,0 +1,68 @@
+{
+  "en": {
+    "selected_text_lines": 723,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "inline_css_assets": [
+      "assets/shared-warning-triangle-white.svg"
+    ],
+    "lcd_components": 2,
+    "source_row_groups": [
+      8,
+      16
+    ],
+    "source_rowspans": {
+      "4": "2",
+      "19": "2"
+    },
+    "icons": 24,
+    "source_specific_svg_variants": 9,
+    "byte_identical_existing_icons": 15,
+    "prior_chapters_preserved": true,
+    "publication_eligible": false
+  },
+  "fr": {
+    "selected_text_lines": 874,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "inline_css_assets": [
+      "assets/shared-warning-triangle-white.svg"
+    ],
+    "lcd_components": 2,
+    "source_row_groups": [
+      7,
+      17
+    ],
+    "source_rowspans": {
+      "4": "2",
+      "19": "2"
+    },
+    "icons": 24,
+    "source_specific_svg_variants": 9,
+    "byte_identical_existing_icons": 15,
+    "prior_chapters_preserved": true,
+    "publication_eligible": false
+  },
+  "es": {
+    "selected_text_lines": 863,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "inline_css_assets": [
+      "assets/shared-warning-triangle-white.svg"
+    ],
+    "lcd_components": 2,
+    "source_row_groups": [
+      7,
+      17
+    ],
+    "source_rowspans": {
+      "4": "2",
+      "19": "2"
+    },
+    "icons": 24,
+    "source_specific_svg_variants": 9,
+    "byte_identical_existing_icons": 15,
+    "prior_chapters_preserved": true,
+    "publication_eligible": false
+  }
+}

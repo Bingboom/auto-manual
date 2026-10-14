@@ -24,17 +24,20 @@ RECEIPT = "manual-deployment.json"
 SCHEMA = "manual-rtd-deployment/v1"
 # Single source of truth for the production RTD base URL; CLI defaults and
 # expected-project derivation reference this constant instead of restating it.
-DEFAULT_RTD_BASE_URL = "https://ht-doc.readthedocs.io"
+# The serving root, version prefix included: Read the Docs for Business serves under /en/latest/.
+DEFAULT_RTD_BASE_URL = "https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest"
 _PROJECT_SLUG = r"[A-Za-z0-9_.-]+"
 _PROJECT_SLUG_META = re.compile(
     rb'<meta name="readthedocs-project-slug" content="(' + _PROJECT_SLUG.encode("ascii") + rb')" />')
 MAX_FILES = 10000
 MAX_FILE_BYTES = 32 * 1024 * 1024
-MAX_TOTAL_BYTES = 512 * 1024 * 1024
+# Served output and online verification. Raised from 512 MiB on 2026-10-13: the published
+# site (mostly manual artwork under _static) reached 519.6 MiB and the receipt refused to build.
+MAX_TOTAL_BYTES = 768 * 1024 * 1024
 # Frozen inputs contain both self-contained sources and assembled Web copies.
 # Keep their storage and file-count budgets separate from served-output and
 # network budgets; normal catalog growth must not enlarge network traversal.
-MAX_SOURCE_TOTAL_BYTES = 1152 * 1024 * 1024
+MAX_SOURCE_TOTAL_BYTES = 1280 * 1024 * 1024
 MAX_SOURCE_FILES = 20000
 MAX_FETCH_ATTEMPTS = 3
 FETCH_BUDGET_SECONDS = 45
@@ -400,10 +403,13 @@ def _without_rtd_proxy_injection(path: str, data: bytes) -> bytes:
 
 
 def rtd_project_slug_from_base_url(base_url: str) -> str | None:
-    """Derive the expected project slug from a https://<slug>.readthedocs.io base URL.
+    """Derive the expected project slug from a Read the Docs default domain.
 
-    Returns None for any other host shape (custom domains, extra subdomains,
-    lookalike registrable domains); callers then have no derivable expectation.
+    Both https://<slug>.readthedocs.io (Community) and
+    https://<slug>.readthedocs-hosted.com (Business) qualify, with or without a
+    version prefix such as /en/latest. Returns None for any other host shape
+    (custom domains, extra subdomains, lookalike registrable domains); callers
+    then have no derivable expectation.
     """
     if not isinstance(base_url, str):
         return None
@@ -411,7 +417,8 @@ def rtd_project_slug_from_base_url(base_url: str) -> str | None:
         host = urlsplit(base_url).hostname or ""
     except ValueError:
         return None
-    match = re.fullmatch(r"([a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\.readthedocs\.io", host.lower())
+    match = re.fullmatch(r"([a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\.(?:readthedocs\.io|readthedocs-hosted\.com)",
+                         host.lower())
     return match.group(1) if match else None
 
 

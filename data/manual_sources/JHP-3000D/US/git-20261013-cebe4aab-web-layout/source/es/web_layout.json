@@ -1,0 +1,424 @@
+{
+ "schema_version": "jhp3000d-web-layout-changes/v1",
+ "language": "es",
+ "approved_source": "../git-20261009-cebe4aab/source/es/content.json",
+ "changes": [
+  {
+   "chapter": "*",
+   "action": "regular-state-words",
+   "removed": [
+    {
+     "chapter": "lcd",
+     "word": "Encendido",
+     "context": "Encendido: Wi-Fi conectado. Parpadeo: listo para conectarse al Wi-Fi. Apagado: Wi-Fi desconectado."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Parpadeo",
+     "context": "Encendido: Wi-Fi conectado. Parpadeo: listo para conectarse al Wi-Fi. Apagado: Wi-Fi desconectado."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Apagado",
+     "context": "Encendido: Wi-Fi conectado. Parpadeo: listo para conectarse al Wi-Fi. Apagado: Wi-Fi desconectado."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Encendido",
+     "context": "Encendido: Bluetooth conectado. Parpadeo: listo para conectarse al Bluetooth. Apagado: Bluetooth desconectado."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Parpadeo",
+     "context": "Encendido: Bluetooth conectado. Parpadeo: listo para conectarse al Bluetooth. Apagado: Bluetooth desconectado."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Apagado",
+     "context": "Encendido: Bluetooth conectado. Parpadeo: listo para conectarse al Bluetooth. Apagado: Bluetooth desconectado."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Encendido",
+     "context": "Encendido: el ruido durante la carga se minimiza significativamente, mientras que la potencia de carga se reduce y la ve"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Apagado",
+     "context": "Encendido: el ruido durante la carga se minimiza significativamente, mientras que la potencia de carga se reduce y la ve"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Encendido",
+     "context": "Encendido: limita la capacidad máxima utilizable de la batería para prolongar su vida útil. Apagado: el modo de ahorro d"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Apagado",
+     "context": "Encendido: limita la capacidad máxima utilizable de la batería para prolongar su vida útil. Apagado: el modo de ahorro d"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Encendido",
+     "context": "Encendido: El límite de potencia de carga está activado en la aplicación Jackery. Apagado: El límite de potencia de carg"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Apagado",
+     "context": "Encendido: El límite de potencia de carga está activado en la aplicación Jackery. Apagado: El límite de potencia de carg"
+    },
+    {
+     "chapter": "lcd",
+     "word": "On",
+     "context": "On: TOU mode is enabled (default backup SOC: 60%). During peak periods, when the stored energy exceeds the backup SOC, t"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Off",
+     "context": "On: TOU mode is enabled (default backup SOC: 60%). During peak periods, when the stored energy exceeds the backup SOC, t"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Encendido",
+     "context": "Encendido: El producto está en modo bypass, en el cual el tiempo de cambio de la energía de la red a la batería interna "
+    },
+    {
+     "chapter": "lcd",
+     "word": "Apagado",
+     "context": "Encendido: El producto está en modo bypass, en el cual el tiempo de cambio de la energía de la red a la batería interna "
+    },
+    {
+     "chapter": "lcd",
+     "word": "Encendido",
+     "context": "Encendido: el nivel de la batería está por debajo del 20 %. Parpadeo: el nivel de la batería está por debajo del 5 %. Ap"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Parpadeo",
+     "context": "Encendido: el nivel de la batería está por debajo del 20 %. Parpadeo: el nivel de la batería está por debajo del 5 %. Ap"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Apagado",
+     "context": "Encendido: el nivel de la batería está por debajo del 20 %. Parpadeo: el nivel de la batería está por debajo del 5 %. Ap"
+    },
+    {
+     "chapter": "lcd",
+     "word": "On",
+     "context": "On: A discharge timer is set. Off: No discharge timer is set. Enable/disable this feature in the Jackery App. The settin"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Off",
+     "context": "On: A discharge timer is set. Off: No discharge timer is set. Enable/disable this feature in the Jackery App. The settin"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Encendido",
+     "context": "Encendido: Modo de ahorro de energía activado. Apagado: Modo de ahorro de energía desactivado."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Apagado",
+     "context": "Encendido: Modo de ahorro de energía activado. Apagado: Modo de ahorro de energía desactivado."
+    },
+    {
+     "chapter": "operations",
+     "word": "encendido",
+     "context": "Botón de encendido principal"
+    },
+    {
+     "chapter": "operations",
+     "word": "encendido",
+     "context": "Botón de encendido principal"
+    },
+    {
+     "chapter": "app",
+     "word": "encendido",
+     "context": "Botón de encendido principal"
+    },
+    {
+     "chapter": "app",
+     "word": "encendido",
+     "context": "Botón deencendido principal"
+    }
+   ]
+  },
+  {
+   "chapter": "fcc",
+   "action": "unprinted-title-removed",
+   "title": "FCC",
+   "follows": "symbols"
+  },
+  {
+   "chapter": "safety",
+   "action": "print-pill-title",
+   "title": "INSTRUCCIONES DE USO"
+  },
+  {
+   "chapter": "safety",
+   "action": "plain-title",
+   "title": "INSTRUCCIONES PARA LA CONEXIÓN A TIERRA"
+  },
+  {
+   "chapter": "safety",
+   "action": "print-pill-title",
+   "title": "INSTRUCCIONES DE MANTENIMIENTO PARA EL USUARIO"
+  },
+  {
+   "chapter": "safety",
+   "action": "signal-lockup",
+   "label": "ADVERTENCIA",
+   "bold_body": true,
+   "print_lines": 1
+  },
+  {
+   "chapter": "safety",
+   "action": "signal-lockup",
+   "label": "PELIGRO",
+   "bold_body": true,
+   "print_lines": 2
+  },
+  {
+   "chapter": "lcd",
+   "action": "lcd-icon-print-structure",
+   "description_line_breaks": 19,
+   "shared_numbers": [
+    "21"
+   ]
+  },
+  {
+   "chapter": "operations",
+   "action": "shared-auto-resume",
+   "page": 47,
+   "conditions": [
+    3,
+    4
+   ]
+  },
+  {
+   "chapter": "operations",
+   "action": "shared-key-combinations",
+   "page": 49,
+   "names": [
+    [
+     "Botón de encendido principal",
+     "Botón de energía CA"
+    ],
+    [
+     "Botón de encendido principal",
+     "Botón de energía CC/USB"
+    ],
+    [
+     "Botón de energía CC/USB",
+     "Botón de energía CA"
+    ]
+   ],
+   "reordered_rows": [
+    2,
+    3
+   ],
+   "hold_times": [
+    "3s",
+    "3s",
+    "1s"
+   ]
+  },
+  {
+   "chapter": "troubleshooting",
+   "action": "stacked-fault-codes",
+   "codes": [
+    "F0 / F1 / F2 / F3"
+   ]
+  },
+  {
+   "chapter": "warranty",
+   "action": "warranty-print-paragraphs",
+   "component": "HB-WARRANTY-SECTION"
+  },
+  {
+   "chapter": "specifications",
+   "action": "spec-value-print-lines",
+   "table": "PUERTOS DE ENTRADA",
+   "values": [
+    "100-120 V~60 Hz, 15 A Máx Modo de derivación① : 100-120 V~60 Hz, 15 A Máx (reducido a 12 A después de 3 h)",
+    "12-16 V⎓8 A Máx, Doble a 8 A Máx 16-60 V⎓12 A Máx, Doble a 24 A/1000 W Máx"
+   ]
+  },
+  {
+   "chapter": "specifications",
+   "action": "trademark-note"
+  },
+  {
+   "chapter": "app",
+   "action": "soft-wrap-joined",
+   "text": "Haga clic en el botón «Configuración» situado en la esquina superior derecha de ",
+   "joined": "dispositivo para entrar en la página de "
+  },
+  {
+   "chapter": "app",
+   "action": "soft-wrap-joined",
+   "text": "Haga clic en el botón «Configuración» situado en la esquina superior derecha de ",
+   "joined": "situado en la parte inferior de la págin"
+  },
+  {
+   "chapter": "operations",
+   "action": "print-paragraph-break",
+   "starts": [
+    "Para evitar el consumo innecesario de ba",
+    "Para desactivar el modo de ahorro de ene"
+   ]
+  },
+  {
+   "chapter": "ups",
+   "action": "print-paragraph-break",
+   "starts": [
+    "Conecte el producto a una toma de corrie",
+    "Un sistema de alimentación ininterrumpid",
+    "En modo SAI, la salida de pico de la uni"
+   ]
+  },
+  {
+   "chapter": "charging",
+   "action": "print-paragraph-break",
+   "starts": [
+    "Energía renovable primero: Abogamos por ",
+    "Cuando la carga en la pared de CA y la c"
+   ]
+  },
+  {
+   "chapter": "charging",
+   "action": "print-paragraph-break",
+   "starts": [
+    "El Jackery HomePower 3000 cuenta con dos",
+    "Si se necesita conectar dos paneles sola"
+   ]
+  },
+  {
+   "chapter": "charging",
+   "action": "prose-pill",
+   "text": "Chargez complètement le produit avant sa première utilisatio"
+  },
+  {
+   "chapter": "safety",
+   "action": "shared-safety-two-columns",
+   "page": 40,
+   "label": "ADVERTENCIA",
+   "items_left_right": [
+    [
+     6,
+     5
+    ],
+    [
+     5,
+     9
+    ]
+   ],
+   "left_column_head": "GUARDE ESTAS INSTRUCCIONES"
+  },
+  {
+   "chapter": "*",
+   "action": "print-emphasis",
+   "items": [
+    {
+     "chapter": "charging",
+     "text": "Energía renovable primero: Abogamos por utilizar primero energía renov",
+     "bold": [
+      "Energía renovable primero:"
+     ]
+    },
+    {
+     "chapter": "contact",
+     "text": "hello@jackery.com www.jackery.com 1-888-502-2236 (US)",
+     "bold": [
+      "1-888-502-2236"
+     ]
+    }
+   ]
+  },
+  {
+   "chapter": "contact",
+   "action": "back-cover-card",
+   "company": "JACKERY INC."
+  },
+  {
+   "chapter": "operations",
+   "action": "standby-bubble-sentence-wrap",
+   "joined_before": [
+    "de"
+   ]
+  },
+  {
+   "chapter": "app",
+   "action": "native-app-screens",
+   "figure": "app_connect_result_steps",
+   "art": "assets/app-steps-2-3-to-2-5.png",
+   "replaced": "assets/app_connect_result_steps.png"
+  },
+  {
+   "chapter": "*",
+   "action": "reference-figures-rebound",
+   "figures": [
+    "native-pdf/page-10/power",
+    "native-pdf/page-12/energy",
+    "native-pdf/page-20/app-control"
+   ]
+  }
+ ],
+ "copy_restorations": [
+  {
+   "chapter": "fcc",
+   "kind": "unprinted-title",
+   "approved": "FCC",
+   "pdf": null
+  },
+  {
+   "chapter": "operations",
+   "kind": "table-row-boundary",
+   "approved": [
+    "Encendido/Reiniciar después de apagado o reinicio",
+    "SOC de la batería ≥ límite de descarga",
+    "+10 % después de alcanzar el límite",
+    "Actualización OTA completada"
+   ],
+   "pdf": [
+    "Encendido/Reiniciar después de apagado o reinicio",
+    "SOC de la batería ≥ límite de descarga +10 % después de alcanzar el límite",
+    "",
+    "Actualización OTA completada"
+   ]
+  },
+  {
+   "chapter": "operations",
+   "kind": "button-name-order",
+   "approved": [
+    "Botón de energía CC/USB Botón de encendido principal",
+    "Botón de energía CA Botón de energía CC/USB"
+   ],
+   "pdf": [
+    "Botón de encendido principal | Botón de energía CC/USB",
+    "Botón de energía CC/USB | Botón de energía CA"
+   ]
+  },
+  {
+   "chapter": "operations",
+   "kind": "print-hold-times",
+   "approved": null,
+   "pdf": [
+    "3s",
+    "3s",
+    "1s"
+   ]
+  },
+  {
+   "chapter": "troubleshooting",
+   "kind": "fault-code-separators",
+   "approved": [
+    "F0 / F1 / F2 / F3"
+   ],
+   "pdf": [
+    "F0 | F1 | F2 | F3"
+   ]
+  }
+ ]
+}

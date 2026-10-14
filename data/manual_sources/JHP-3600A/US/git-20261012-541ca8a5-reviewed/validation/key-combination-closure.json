@@ -1,0 +1,38 @@
+{
+  "en": {
+    "selected_text_lines": 723,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_existing_key_combination_node": true,
+    "native_caption_grouping_and_button_mapping_verified": true,
+    "markdown_change_only_scoped_css_and_key_combination_block": true,
+    "manual_ir_changes_only_block_inventory_and_scoped_hashes": true,
+    "all_other_source_nodes_and_previous_layout_corrections_preserved": true,
+    "publication_eligible": false,
+    "sealed_manifest_replay_byte_identical": true
+  },
+  "fr": {
+    "selected_text_lines": 874,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_existing_key_combination_node": true,
+    "native_caption_grouping_and_button_mapping_verified": true,
+    "markdown_change_only_scoped_css_and_key_combination_block": true,
+    "manual_ir_changes_only_block_inventory_and_scoped_hashes": true,
+    "all_other_source_nodes_and_previous_layout_corrections_preserved": true,
+    "publication_eligible": false,
+    "sealed_manifest_replay_byte_identical": true
+  },
+  "es": {
+    "selected_text_lines": 863,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_existing_key_combination_node": true,
+    "native_caption_grouping_and_button_mapping_verified": true,
+    "markdown_change_only_scoped_css_and_key_combination_block": true,
+    "manual_ir_changes_only_block_inventory_and_scoped_hashes": true,
+    "all_other_source_nodes_and_previous_layout_corrections_preserved": true,
+    "publication_eligible": false,
+    "sealed_manifest_replay_byte_identical": true
+  }
+}

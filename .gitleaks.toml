@@ -83,3 +83,18 @@ id = "generic-api-key"
   regexes = [
     '''^\s*"assets/key-(?:ac\.png": "ef294bfb3d07e47d38b0e58fb37456224d7a0f69fccb67a7fe605a4c97d163ea|power\.png": "04baf206fe8fdf1e1dc7e24bfbdab4ab98867edf96af6f5f1b7d10be518e2189)",?\s*$''',
   ]
+
+  # JE-3600A CN/JP native timing glyph: verified SHA-256 of the SVG bytes.
+  # Exact IR paths, field spelling and digest; actual credentials still fail.
+  [[rules.allowlists]]
+  description = "JE-3600A native clock SVG content digest"
+  condition = "AND"
+  regexTarget = "line"
+  paths = [
+    '''^data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/web/zh/manual\.ir\.json$''',
+    '''^data/manual_sources/JE-3600A/JP/git-20261012-fd06cd04-reviewed/web/ja/manual\.ir\.json$''',
+    '''^docs/publish/(?:sources/web|web)/JE-3600A/(?:CN/zh|JP/ja)/md/manual\.ir\.json$''',
+  ]
+  regexes = [
+    '''^\s*"assets/native-key-clock\.svg": "6868179c99f3f7e885860ddfee41e8aee1385f1ed713aa8fb19abba4039a6430",?\s*$''',
+  ]

@@ -3,7 +3,7 @@
 Status: active
 
 Shared intake rules for subsequent models, regions and reviewed RST sources
-live in [STYLE_DEFINITION §5](../../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工).
+live in [STYLE_DEFINITION §5](../../docs/renderers/contracts/STYLE_DEFINITION/figures-warranty-templates.md#新录入网页的图文分工).
 This report's EU package tests are evidence for those packages, not acceptance
 of a new CN/JP target. Each new target must bind its required components and
 art hashes and receive its own source/asset and desktop/mobile validation.

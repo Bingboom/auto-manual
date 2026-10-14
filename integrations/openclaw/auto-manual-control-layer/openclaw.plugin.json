@@ -10,7 +10,7 @@
     "properties": {
       "manualQueryBaseUrl": {
         "type": "string",
-        "description": "HTTPS origin of the published manual site. Query tools verify its deployment receipt and read only EU publications."
+        "description": "HTTPS root of the published manual site, with its version prefix if it has one (for example https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest). Query tools verify its deployment receipt and read only EU publications."
       },
       "githubToken": {
         "type": "string",

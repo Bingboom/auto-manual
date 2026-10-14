@@ -126,7 +126,7 @@ Solar art keeps its existing SolarSaga model/count caption as the human-readable
 Car/car-cable explanatory text belongs to native HTML and caption frames to shared CSS.
 Small LCD and safety symbols require real transparency. Match source-visible symbol semantics
 before reuse; retain count/style variants when their meaning differs. See the
-[Web artwork contract](../../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工).
+[Web artwork contract](../../docs/renderers/contracts/STYLE_DEFINITION/figures-warranty-templates.md#新录入网页的图文分工).
 
 ## Sol handoff and acceptance boundary
 

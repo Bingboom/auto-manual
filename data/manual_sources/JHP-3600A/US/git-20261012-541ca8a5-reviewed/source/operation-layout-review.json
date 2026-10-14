@@ -1,0 +1,168 @@
+{
+  "scope": "US EN/FR/ES six operation subtitles and AC/USB prerequisite labels",
+  "headings": {
+    "en": [
+      {
+        "key": "power",
+        "text": "POWER ON/OFF",
+        "source_page": "page-10",
+        "chapter_index": 7,
+        "node_index": 1,
+        "child_index": 0
+      },
+      {
+        "key": "ac-output",
+        "text": "AC OUTPUT ON/OFF",
+        "source_page": "page-10",
+        "chapter_index": 7,
+        "node_index": 3,
+        "child_index": 0
+      },
+      {
+        "key": "usb-output",
+        "text": "USB OUTPUT ON/OFF",
+        "source_page": "page-11",
+        "chapter_index": 8,
+        "node_index": 0,
+        "child_index": 0
+      },
+      {
+        "key": "energy-saving",
+        "text": "ENERGY SAVING MODE",
+        "source_page": "page-11",
+        "chapter_index": 8,
+        "node_index": 3,
+        "child_index": 0
+      },
+      {
+        "key": "lcd-screen",
+        "text": "LCD SCREEN ",
+        "source_page": "page-12",
+        "chapter_index": 9,
+        "node_index": 0,
+        "child_index": 0
+      },
+      {
+        "key": "key-combination",
+        "text": "KEY COMBINATION",
+        "source_page": "page-12",
+        "chapter_index": 9,
+        "node_index": 2,
+        "child_index": 1
+      }
+    ],
+    "fr": [
+      {
+        "key": "power",
+        "text": "MARCHE/ARRÊT",
+        "source_page": "page-30",
+        "chapter_index": 7,
+        "node_index": 1,
+        "child_index": 0
+      },
+      {
+        "key": "ac-output",
+        "text": "SORTIE CA MARCHE/ARRÊT",
+        "source_page": "page-30",
+        "chapter_index": 7,
+        "node_index": 3,
+        "child_index": 0
+      },
+      {
+        "key": "usb-output",
+        "text": "SORTIE USB MARCHE/ARRÊT",
+        "source_page": "page-31",
+        "chapter_index": 8,
+        "node_index": 0,
+        "child_index": 0
+      },
+      {
+        "key": "energy-saving",
+        "text": "MODE D’ÉCONOMIE D’ÉNERGIE",
+        "source_page": "page-31",
+        "chapter_index": 8,
+        "node_index": 3,
+        "child_index": 0
+      },
+      {
+        "key": "lcd-screen",
+        "text": "AFFICHAGE LCD",
+        "source_page": "page-32",
+        "chapter_index": 9,
+        "node_index": 1,
+        "child_index": 0
+      },
+      {
+        "key": "key-combination",
+        "text": "FONCTIONNEMENT DES BOUTONS",
+        "source_page": "page-32",
+        "chapter_index": 9,
+        "node_index": 3,
+        "child_index": 1
+      }
+    ],
+    "es": [
+      {
+        "key": "power",
+        "text": "ENCENDIDO/APAGADO",
+        "source_page": "page-50",
+        "chapter_index": 7,
+        "node_index": 1,
+        "child_index": 0
+      },
+      {
+        "key": "ac-output",
+        "text": "ENCENDER/APAGAR SALIDA CA",
+        "source_page": "page-50",
+        "chapter_index": 7,
+        "node_index": 3,
+        "child_index": 0
+      },
+      {
+        "key": "usb-output",
+        "text": "ENCENDER/APAGAR SALIDA USB",
+        "source_page": "page-51",
+        "chapter_index": 8,
+        "node_index": 0,
+        "child_index": 0
+      },
+      {
+        "key": "energy-saving",
+        "text": "MODO DE AHORRO DE ENERGÍA",
+        "source_page": "page-51",
+        "chapter_index": 8,
+        "node_index": 3,
+        "child_index": 0
+      },
+      {
+        "key": "lcd-screen",
+        "text": "PANTALLA LCD",
+        "source_page": "page-52",
+        "chapter_index": 9,
+        "node_index": 1,
+        "child_index": 0
+      },
+      {
+        "key": "key-combination",
+        "text": "COMBINACIONES DE TECLAS",
+        "source_page": "page-52",
+        "chapter_index": 9,
+        "node_index": 3,
+        "child_index": 1
+      }
+    ]
+  },
+  "shared_heading_contract": "HB-TITLE-L2: semantic h2 and shared circle marker",
+  "prerequisite_labels": "Existing source line 0, centered editable copy in native rounded capsules",
+  "artwork_decision": "Reuse all base artwork and other assets byte-identically; no extraction",
+  "preserved": [
+    "Heading copy and native order",
+    "All figure ComponentSpecs and carrier flow",
+    "Other labels and paragraph copy",
+    "Existing power-callout centering and prior corrections"
+  ],
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review",
+  "browser_evidence": "validation/operation-layout-browser.json",
+  "closure_evidence": "validation/operation-layout-closure.json"
+}

@@ -1,6 +1,6 @@
 # Product Skeleton Library Design
 
-Status: **Phase B design — pending operator approval** · Owner: 夏冰 · Created 2026-08-20, revised same day after the Phase A corpus audit and the Phase B remeasure round
+Status: **Phase B design — operator decision 2026-10-12 (REV-41): modified and deferred.** The built skeleton cells stay in use; new expansion waits for the restart conditions in the [decision record](../dev/revitalization/rev41_skeleton_decision.md) · Owner: 夏冰 · Created 2026-08-20, revised same day after the Phase A corpus audit and the Phase B remeasure round
 
 ## 1. Role
 

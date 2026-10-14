@@ -311,15 +311,23 @@ class RtdProjectSlugDerivationTests(unittest.TestCase):
     def test_derives_slug_from_rtd_io_base_urls(self):
         for base in ("https://ht-doc.readthedocs.io",
                      "https://ht-doc.readthedocs.io/",
-                     "https://HT-DOC.readthedocs.io/en/latest/",
-                     receipt.DEFAULT_RTD_BASE_URL):
+                     "https://HT-DOC.readthedocs.io/en/latest/"):
             with self.subTest(base=base):
                 self.assertEqual(receipt.rtd_project_slug_from_base_url(base), "ht-doc")
+
+    def test_derives_slug_from_business_hosted_base_urls(self):
+        for base in ("https://ht-docs-ht-manuals.readthedocs-hosted.com",
+                     "https://HT-DOCS-HT-MANUALS.readthedocs-hosted.com/en/latest/",
+                     receipt.DEFAULT_RTD_BASE_URL):
+            with self.subTest(base=base):
+                self.assertEqual(receipt.rtd_project_slug_from_base_url(base), "ht-docs-ht-manuals")
 
     def test_underivable_hosts_return_none(self):
         for base in ("https://example.org", "https://readthedocs.io",
                      "https://a.b.readthedocs.io", "https://evil-readthedocs.io",
                      "https://ht-doc.readthedocs.io.evil.org",
+                     "https://a.b.readthedocs-hosted.com", "https://evil-readthedocs-hosted.com",
+                     "https://x.readthedocs-hosted.com.evil.org",
                      "https://-bad.readthedocs.io", "not a url", "https://[", None):
             with self.subTest(base=base):
                 self.assertIsNone(receipt.rtd_project_slug_from_base_url(base))

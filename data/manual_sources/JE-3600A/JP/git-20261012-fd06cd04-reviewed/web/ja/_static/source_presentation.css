@@ -1,0 +1,146 @@
+/* Source geometry. Heading, table, callout and breakpoint tokens are shared. */
+.ht-figure {max-width:760px;margin:1rem auto;min-width:0;}
+.ht-figure .hb-reference-figure {max-width:none;margin:0;}
+#furo-main-content .ht-figure img {width:100% !important;height:auto !important;max-height:none;}
+#furo-main-content .ht-figure .hb-reference-live-label {display:block;padding:0;line-height:1.1;text-align:left;white-space:normal;overflow:visible;}
+.ht-source-line {display:block;line-height:1.12;white-space:nowrap;}
+#furo-main-content .ht-figure .hb-reference-live-pill {border-radius:var(--hb-panel-radius);padding:.4% 1%;box-sizing:border-box;}
+#furo-main-content .ht-native-table {width:100%;}
+#furo-main-content .ht-native-table td {vertical-align:middle;}
+#furo-main-content .ht-native-table p {margin:.2rem 0;}
+#furo-main-content .ht-native-table img {display:inline-block;max-width:2.5rem;width:auto;max-height:2.5rem;height:auto;vertical-align:middle;margin:.15rem;}
+#furo-main-content .ht-symbol-table img {display:block;width:30px;height:auto;max-height:40px;margin:auto;}
+.ht-symbol-cell {width:55px;text-align:center;}
+#furo-main-content .ht-number {text-align:center;}
+.ht-lcd-pair {display:grid;grid-template-columns:1fr 1.4fr;align-items:stretch;gap:1rem;}
+.ht-lcd-pair > .ht-figure {margin:0;}
+@media(max-width:760px) {
+ .ht-dense {overflow-x:auto;padding-bottom:.5rem;}
+ .ht-dense > .hb-reference-figure {min-width:640px;}
+ .ht-lcd-pair {grid-template-columns:1fr;}
+}
+.ht-lcd-pair {border:2px solid var(--hb-line-soft);border-radius:var(--hb-panel-radius);padding:.6rem;margin:1rem 0;grid-template-columns:1fr 1.5fr;}
+#furo-main-content .ht-lcd-pair .ht-figure img {height:100% !important;object-fit:contain;}
+#furo-main-content .ht-lcd-pair .table-wrapper {margin:0;}
+@media(max-width:760px) {.ht-lcd-pair {grid-template-columns:1fr;}}
+
+.ht-symbol-pair {display:grid;grid-template-columns:1fr 1fr;gap:.6rem;align-items:stretch;margin:1rem 0;}
+.ht-symbol-pair > .table-wrapper {margin:0;min-width:0;}
+#furo-main-content .ht-symbol-pair table {height:100%;width:100%;}
+#furo-main-content .ht-symbol-pair img {max-width:30px;max-height:40px;}
+@media(max-width:760px){.ht-symbol-pair {grid-template-columns:1fr;}}
+
+#furo-main-content .ht-native-table .ht-lcd-key {background:var(--hb-fill-muted,#eeeeef);}
+.ht-certificate {max-width:360px;border:1.5px solid var(--hb-line-soft);border-radius:var(--hb-panel-radius);padding:1.2rem;margin:2rem auto;}
+#furo-main-content .ht-certificate h2 {text-align:center;margin:0 0 1rem;}
+#furo-main-content .ht-certificate table {border:0;box-shadow:none;border-radius:0;width:100%;}
+#furo-main-content .ht-certificate td {border:0;padding:.6rem .25rem;vertical-align:middle;}
+#furo-main-content .ht-certificate .ht-certificate-line {border-bottom:1px solid currentColor;}
+.ht-qc-stamp {width:3.4rem;height:3.4rem;border:1px solid currentColor;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;line-height:1.1;margin:auto;}
+.ht-qc-line {text-align:center;}
+#furo-main-content .ht-certificate > p {text-align:center;margin-top:1.5rem;}
+
+.ht-figure {max-width:min(760px,var(--ht-native-width,100%));}
+#furo-main-content .ht-certificate h2 {display:block!important;text-align:center!important;padding:0!important;font-size:1.4rem!important;margin:0 0 1rem!important;}
+#furo-main-content .ht-certificate h2::before {display:none!important;}
+#furo-main-content .ht-certificate table.manual-table {border:0!important;box-shadow:none!important;}
+#furo-main-content .ht-certificate table.manual-table td {border:0!important;box-shadow:none!important;background:transparent!important;}
+#furo-main-content .ht-certificate table.manual-table td.ht-certificate-line {border-bottom:1px solid currentColor!important;}
+
+@media(max-width:760px){.ht-figure {max-width:100%;}}
+#furo-main-content .ht-native-table td:last-child img {max-height:1.2em;}
+
+#furo-main-content .ht-safety-table td:first-child {text-align:center;vertical-align:middle;background:var(--hb-fill-muted,#eeeeef);}
+#furo-main-content .ht-safety-table td:first-child img {width:30px;max-height:40px;height:auto;}
+
+#furo-main-content .ht-figure .table-wrapper {margin:0;}
+#furo-main-content .ht-figure table.ht-native-table {font-size:1.8cqw;width:100%;}
+#furo-main-content .ht-figure table.ht-native-table td, #furo-main-content .ht-figure table.ht-native-table th {font-size:inherit!important;line-height:1.2;padding:.6cqw!important;}
+
+#furo-main-content table.ht-signal-table td:first-child {width:22%;white-space:nowrap;}
+#furo-main-content table.ht-signal-table td:first-child p {display:inline-block;font-size:1.2em;}
+#furo-main-content table.ht-signal-table td:first-child img {margin-right:.4rem;}
+
+#furo-main-content .ht-recycle-glyph {width:30px;height:25px;overflow:hidden;margin:0 auto;}
+#furo-main-content .ht-recycle-glyph img {width:30px!important;height:auto!important;max-height:none!important;margin:0!important;}
+#furo-main-content img.ht-inline-symbol {display:inline-block!important;vertical-align:middle;height:1.6em!important;width:auto!important;max-height:1.6em!important;margin:0 .2em!important;}
+.ht-add-device-icon {display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;width:1.1em;height:1.1em;border-radius:50%;background:#c8c8ca;color:#666;margin:0 .25em;font-weight:normal;}
+
+#furo-main-content .ht-figure .hb-reference-live-label:has(table) .table-wrapper,
+#furo-main-content .ht-figure .hb-reference-live-label table.ht-native-table {height:100%;}
+#furo-main-content .ht-figure .hb-reference-live-pill:has(.ht-caption-source-line) {padding:0;}
+.ht-caption-key-pane {position:absolute;left:0;top:0;height:100%;background:white;border-radius:var(--hb-panel-radius) 0 0 var(--hb-panel-radius);}
+
+.ht-lcd-pair > .ht-figure {max-width:none;width:100%;height:100%;}
+
+/* JP native caption centres and original table roles. */
+#furo-main-content .ht-figure .hb-reference-live-label {display:flex;flex-direction:column;align-items:stretch;justify-content:center;}
+#furo-main-content .ht-figure .ht-source-line {flex-shrink:0;line-height:1.05;}
+.ht-label-right{text-align:right;}.ht-label-center{text-align:center;}.ht-label-left{text-align:left;}
+#furo-main-content .ht-figure .ht-inbox-number {color:#fff;font-weight:700;text-align:center;}
+#furo-main-content .ht-figure .ht-sold-label {display:flex;align-items:center;justify-content:center;gap:.3em;color:#fff;font-weight:700;}
+#furo-main-content .ht-figure img.ht-cart-glyph {width:1.7em!important;height:1.7em!important;display:inline-block;margin:0;}
+#furo-main-content .ht-native-table th {text-align:center;vertical-align:middle;}
+#furo-main-content .ht-lcd-icons td:nth-child(-n+3),#furo-main-content .ht-lcd-modes td:nth-child(-n+2) {text-align:center;vertical-align:middle;}
+#furo-main-content .ht-troubleshooting td:first-child,#furo-main-content .ht-troubleshooting th:first-child {width:17%;min-width:5em;text-align:center;vertical-align:middle;}
+#furo-main-content .ht-native-table ol,#furo-main-content .ht-native-table ul,#furo-main-content .manual-callout-body ul {padding-left:1.25em;margin:.25rem 0;}
+#furo-main-content .ht-native-table li,#furo-main-content .manual-callout-body li {margin:.35em 0;padding:0;}
+#furo-main-content .ht-native-table li p,#furo-main-content .manual-callout-body li p {margin:0;}
+#furo-main-content .ht-lcd-icons td:last-child p + p {margin-top:.4em;}
+#furo-main-content .ht-key-combinations td {text-align:center;vertical-align:middle;}
+.ht-key-pair {display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.5rem;}
+#furo-main-content .ht-key-pair img {width:2.7rem!important;height:2.7rem!important;max-width:none;max-height:none;display:block;margin:0 auto .25rem;}
+#furo-main-content .ht-key-pair p {font-size:.875em;line-height:1.25;}
+.ht-key-plus {font-size:1.5rem;font-weight:700;}
+#furo-main-content .ht-native-square-heading::before,#furo-main-content .ht-native-safety-heading::before {display:none;}
+#furo-main-content .ht-native-safety-heading {display:flex;gap:.35em;align-items:center;}
+#furo-main-content .ht-native-safety-heading img {display:inline-block;width:1.3em;height:1.3em;margin:0;}
+/* Original page26/27 warranty cards and prose lists, using registered cards. */
+#furo-main-content .ht-native-warranty-section {position:relative;margin:1.8rem 0 1rem;padding:1.05rem 1rem .82rem;border:2px solid var(--hb-line-soft);border-radius:var(--hb-panel-radius);background:var(--hb-paper);}
+#furo-main-content .ht-native-warranty-section > h2.ht-native-warranty-title {position:relative;display:inline-flex;max-width:100%;margin:-1.92rem 0 .5rem;padding:.25rem .65rem;background:var(--hb-brand-dark);color:var(--hb-paper);border-radius:var(--hb-panel-radius);font-size:1rem;}
+#furo-main-content .ht-native-warranty-section > h2::before {display:none;}
+#furo-main-content .ht-native-warranty-section > figure {margin:0;}
+#furo-main-content .ht-native-warranty-lead,#furo-main-content .ht-native-warranty-disclaimer {padding:1rem;background:var(--hb-fill-muted);border-radius:var(--hb-panel-radius);margin:1rem 0;}
+#furo-main-content .ht-native-warranty-disclaimer h2 {font-size:1rem;padding:0;margin:0 0 .5rem;}
+#furo-main-content .ht-native-warranty-disclaimer h2::before {display:none;}
+#furo-main-content .ht-native-warranty li p {margin:.2em 0;}
+/* Original source callout remains inside the USB panel; semantic bullets fit its rect. */
+#furo-main-content .ht-figure-callout-table {min-width:0!important;width:100%;height:100%;border-collapse:collapse;font-size:1.6808cqw;table-layout:fixed;margin:0;background:transparent;}
+#furo-main-content .ht-figure-callout-table td {padding:1cqw;vertical-align:middle;border:0;line-height:1.2;}
+#furo-main-content .ht-figure-callout-label {width:18.6%;text-align:center;background:#fff;font-weight:700;}
+#furo-main-content .ht-figure-callout-table p {font-size:inherit;line-height:inherit;margin:0;}
+#furo-main-content .ht-figure-callout-table ul {padding-left:1.2em;margin:0;}
+#furo-main-content .ht-figure-callout-table li {margin:.35em 0;font-size:inherit;line-height:1.2;}
+#furo-main-content img.ht-native-app-plus {display:inline-block;width:1.2em;height:1.2em;margin:0 .15em;vertical-align:-.2em;}
+#furo-main-content .ht-native-app-phones {overflow:visible;padding:0;}
+@media(max-width:760px){.ht-key-pair{gap:.2rem;}.ht-native-warranty-section{padding:1rem .75rem .75rem;}.ht-native-app-phones{max-width:100%;}}
+
+#furo-main-content [data-native-figure="battery-accessories"] .hb-reference-source-badge {width:var(--hb-width);max-width:var(--hb-width);}
+#furo-main-content .ht-native-warranty-lead,#furo-main-content .ht-native-warranty-disclaimer {background:var(--hb-fill-muted,#eeeeef);}
+#furo-main-content .ht-lcd-modes td:last-child {text-align:left;}
+#furo-main-content .ht-key-combinations tr:first-child > * {text-align:center;}
+
+/* Rowspan continuation cells keep their source prose alignment. */
+#furo-main-content .ht-safety-table td.ht-safety-body {text-align:left;background:var(--hb-paper,#fff);}
+#furo-main-content .ht-lcd-icons td:last-child {text-align:left;}
+
+/* Paired native clock/duration and original button-table column proportions. */
+#furo-main-content .ht-key-combinations td:first-child {width:43%;}
+#furo-main-content .ht-key-combinations td:nth-child(2) {width:22%;}
+#furo-main-content .ht-key-combinations img.ht-key-clock {display:inline-block;width:1em!important;height:1em!important;max-width:1em;max-height:1em;margin:0 .25em 0 0;vertical-align:-.1em;}
+#furo-main-content .ht-troubleshooting td:first-child,#furo-main-content .ht-troubleshooting th:first-child {white-space:nowrap;}
+
+/* Original source note/precaution panels keep their native grouping. */
+#furo-main-content .ht-native-note-panel {background:var(--hb-fill-muted,#eeeeef);border-radius:var(--hb-panel-radius);padding:.75rem 1rem;margin:1rem 0;}
+#furo-main-content .ht-native-note-panel p:first-child,#furo-main-content .ht-native-note-panel ul:first-child {margin-top:0;}
+#furo-main-content .ht-native-note-panel p:last-child,#furo-main-content .ht-native-note-panel ul:last-child {margin-bottom:0;}
+#furo-main-content .ht-native-precautions {border:2px solid var(--hb-line-soft);border-radius:var(--hb-panel-radius);padding:.75rem 1rem;margin:1rem 0;}
+#furo-main-content .ht-native-precautions h2 {font-size:1rem;margin:.5rem 0;}
+#furo-main-content .ht-native-precautions h2:not(:first-child) {border-top:1px solid var(--hb-line-soft);padding-top:.75rem;}
+#furo-main-content .ht-native-contact-footer {display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;margin:1.75rem 0;}
+#furo-main-content p.ht-native-contact-row {display:flex;gap:.4rem;align-items:center;background:var(--hb-fill-muted,#eeeeef);border-radius:.3rem;padding:.2rem .4rem;margin:0;max-width:100%;font-size:.875rem;}
+#furo-main-content .ht-native-contact-row a {color:inherit;text-decoration:none;overflow-wrap:anywhere;}
+#furo-main-content img.ht-contact-glyph {display:block;width:1.45em;height:1.45em;margin:0;flex-shrink:0;}
+
+/* Original gray table key fields remain distinct from flowing explanation cells. */
+#furo-main-content .ht-troubleshooting td:first-child,#furo-main-content .ht-lcd-modes td[rowspan] {background:var(--hb-fill-muted,#eeeeef);}

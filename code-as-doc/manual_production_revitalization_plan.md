@@ -49,7 +49,8 @@
   `manuals.jackery.com` 域名选择及首次响应时限；域名落地因 DNS 权限暂缓。
   这些决定不重新发起选择；当前在线采集与任务运行状态仍需独立核验。
 - [Web Publish 契约](dev/web_publish_pipeline.md)已有队列与 Git-only 共用冻结快照发布出口的机制。
-  当前代码的门户 `site_base_url` 和 Web Publish 工作流默认 URL 指向 `ht-doc.readthedocs.io`；
+  2026-10-13 起门户 `site_base_url`、Web Publish 工作流默认 URL 与回执/核验工具默认值均指向
+  `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`（#1514 及后续 PR）；
   实际仓库变量、RTD 后台分支配置及线上访问本次未核验。
 - 截图记载旧站构建 `33875158`（8 月 2 日，JE-1000F US 1.7），新站构建
   `34611273`（9 月 17 日，含 JE-1000F US 2.3）；这是操作者提供的调查记录，
@@ -116,7 +117,7 @@ Hello-Docs 发布 PR → 合入 `main` → HT-Doc 部署 → 线上版本与链�
 两种接入方式保留各自的来源和回执，不为 Git-only 补造队列历史，也不因为共用出口而授权在线表写入。
 
 HT-Manuals 兼容迁移是本轮首批任务，操作及证据要求由
-[发布入口整合检查](dev/web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)维护：
+[发布入口整合检查](dev/web_publish_pipeline/hosting-boundaries.md#31-hosting-convergence-and-legacy-entry-review)维护：
 
 1. 逐条建立旧 URL、新 URL、文档身份、内容版本、发布标识和处理结论的对应表。
 2. 只读核查 `HTML_link`、包材二维码、历史交付记录；经授权修改时保留原值并回读同一记录。

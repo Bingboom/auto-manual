@@ -1,0 +1,38 @@
+{
+  "en": {
+    "selected_text_lines": 723,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_existing_note_container_and_native_lines": true,
+    "markdown_change_only_scoped_css_and_note_block": true,
+    "manual_ir_change_only_note_and_content_stylesheet_hashes": true,
+    "native_figure_captions_all_other_source_nodes_preserved": true,
+    "note_component_identity_and_wording_preserved": true,
+    "base_art_byte_identical": true,
+    "publication_eligible": false
+  },
+  "fr": {
+    "selected_text_lines": 874,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_existing_note_container_and_native_lines": true,
+    "markdown_change_only_scoped_css_and_note_block": true,
+    "manual_ir_change_only_note_and_content_stylesheet_hashes": true,
+    "native_figure_captions_all_other_source_nodes_preserved": true,
+    "note_component_identity_and_wording_preserved": true,
+    "base_art_byte_identical": true,
+    "publication_eligible": false
+  },
+  "es": {
+    "selected_text_lines": 863,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "source_change_only_existing_note_container_and_native_lines": true,
+    "markdown_change_only_scoped_css_and_note_block": true,
+    "manual_ir_change_only_note_and_content_stylesheet_hashes": true,
+    "native_figure_captions_all_other_source_nodes_preserved": true,
+    "note_component_identity_and_wording_preserved": true,
+    "base_art_byte_identical": true,
+    "publication_eligible": false
+  }
+}

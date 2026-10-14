@@ -103,12 +103,12 @@ pairs and shared hold-duration clocks. Match product markings before choosing
 a shared button variant; function names alone do not establish artwork reuse.
 
 
-新增 Web 底图的独立说明框必须与说明文字一起移除，由共享 CSS 绘制；复用旧图也需先检查裸底图。新冻结候选封装会检查已声明 ReferenceFigure 填充文字框区域的底图哈希和真实像素，拒绝残留的对比色空框；同色、仅轮廓或未声明框仍须视觉核验。完整面板、产品表面与 App UI 按角色保留。详见[共用取图规范](../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+新增 Web 底图的独立说明框必须与说明文字一起移除，由共享 CSS 绘制；复用旧图也需先检查裸底图。新冻结候选封装会检查已声明 ReferenceFigure 填充文字框区域的底图哈希和真实像素，拒绝残留的对比色空框；同色、仅轮廓或未声明框仍须视觉核验。完整面板、产品表面与 App UI 按角色保留。详见[共用取图规范](../../docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)。
 
 原稿标题条内型号使用共享 `hb-heading-model`，整行图标警告使用
 `HB-CALLOUT-STRIP/warning` 的 `hb-source-warning-lockup` 声明；图内说明通过
 ReferenceFigure 源坐标保留在图内，不能移为图后段落。具体样式声明见
-[原稿标题型号与完整警告框](../../docs/renderers/contracts/STYLE_DEFINITION.md#原稿标题型号与完整警告框)。
+[原稿标题型号与完整警告框](../../docs/renderers/contracts/STYLE_DEFINITION/appendix-b-boundaries.md#原稿标题型号与完整警告框)。
 
 Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/list/image/paragraph 表达，使用共享 `hb-package-panel` 样式绘制完整外框、原生配件名称和 availability capsule。先复用已核对配件图；冻结副本必须与记录的共用源 hash 一致。旧整图标记 `superseded-do-not-reuse`，不参与当前原稿图片覆盖；微型文档封面替换为共用文档图标时单独记录 illustration-only omission，并保留原生配件名称。
 
@@ -118,7 +118,7 @@ Git-only 原稿的成组 PACKAGE LIST 可通过现有 Manual Flow 的 container/
 
 FCC Web 正文左右高度明显失衡时，可在现有 FCC 组件外声明共享 `hb-fcc-balanced-flow` 容器。桌面使用自动平衡的两栏文字流，FCC 标志左浮动并允许文字在其下方续排；手机回到单栏。DOM 保持开场、NOTE 正文、措施列表和 MODIFICATION 的原文顺序；不改 ComponentSpec 的印刷分栏点，也不按机型复制 renderer。
 
-JA-AD600A/EU 英文的五张说明图已分离需要翻译的文字，采用共用底图加原生标签；尺寸、单位、固定铭刻和 A–F 对应编号保留。各语替换文字时复用同一底图，详见[共用底图复核](../../docs/renderers/contracts/STYLE_DEFINITION.md#ja-ad600a-eu-共用底图复核)。
+JA-AD600A/EU 英文的五张说明图已分离需要翻译的文字，采用共用底图加原生标签；尺寸、单位、固定铭刻和 A–F 对应编号保留。各语替换文字时复用同一底图，详见[共用底图复核](../../docs/renderers/contracts/STYLE_DEFINITION/appendix-b-boundaries.md#ja-ad600a-eu-共用底图复核)。
 
 仅含一段声明的 FCC 可用 `hb-fcc-composition hb-fcc-statement` 复用完整 FCC 的浅灰圆角面板和紧凑正文，保持单栏和原稿内容；完整 FCC 的 NOTE / MODIFICATION 不应补入短声明。原生 H2 标题保留在 section 中，正文和左侧共用 FCC 标志由既有受保护 figure 通过原生 flow 输出；共享 CSS 将它们排在同一面板中。
 
@@ -137,6 +137,8 @@ JBP-1000B-WH / JP / ja 的 [Web 版式版本](../../manual_sources/JBP-1000B-WH/
 JA-AD500A-SIL / JP / ja（Jackery DC Input Module）的 [Web 版式候选](../../manual_sources/JA-AD500A-SIL/JP/ja/git-20261009-ac3a1f82-web-layout/README.md) 由包内 `derive_web_layout.py` 从已批准包 `git-20261008-ac3a1f82-reviewed`（MA-272）机械派生，已批准包与其发布凭据保持不变。沿用 JBP-1000B-WH JP 的规则：印刷封面标识行不进入 Web，页面从「お買い上げありがとうございます。」开始，导航即印刷的五个章节条；粗体、原稿换行、灰色面板与胶囊由页面局部 `source/presentation.css`（IR `source_stylesheet`）和 RST 标记实现，共享组件与共享 CSS 不改；同梱品说明书插图由共享资产管线重裁补全右边框，其余插图逐字节不变。日文措辞不变，由单元测试证明可见文字（含顺序）= 批准文字 − 封面行。操作者确认以仓库这份 PDF 为准、欢迎语保留、不加图标，审阅逐页对照后于 2026-10-09 指示“上线提交发布”；`approval.json` 绑定全部 `source/` 与 `assets/` 输入哈希。工程 PR 由操作者审核合入，合入后在实际 main 提交上封存 Git-only 发布证据并提交 Hello-Docs 发布 PR。
 
 JHP-5000C / US（英、法、西）的 [Web 版式候选](../../data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/README.md) 由包内 `derive_web_layout.py` 从已批准包 `git-20261009-051169dd`（MA-279）机械派生，已批准包与其发布凭据保持不变。按操作者“继续调一下 这个的版面”并三语一起改，沿用 JBP-1000B-WH JP 的规则：印刷封面与目录不进入 Web，三语导航均为印刷目录的 14 章。安全须知复用线上模板手册（如 JE-1000E-SIL）已发布的双栏结构：`hb-safety-instruction` 风险横幅、左栏顶部的 `hb-safety-lead` WARNING 引导框和按印刷分栏的 `manual-two-col-table`，样式全部来自共享 `web_safety_components.css`；DANGER 图文组合与胶囊标题复用共享三角符号；信号词表、LCD 图标表、LCD SCREEN 表、故障码、编号注意、保修段落、逐行规格值、® 位置、误吞警示与封底联系卡均按原稿重建。法语、西语中几何与英语不同的插图改用本语种页面的原稿面板，每种语言的 Web 只携带本语种引用的图稿。可见文字 = 批准文字 + 逐条登记的原稿恢复（英 9、法 9、西 16，见包内 `source/differences.md`），由单元测试证明；原稿自身的错语种与错拼按印刷保留并列出。操作者于 2026-10-10 审阅三语逐章对照（印刷页、电脑网页、手机）后指示“上线提交发布”，并要求安全须知改为线上现成的双栏版式（已复用，不另写样式），审阅渲染后确认“提交发布”；`approval.json` 绑定除 `web/` 外全部包内输入哈希；工程 PR 由操作者审核合入，合入后在实际 main 提交上逐语封存 Git-only 发布证据并提交 Hello-Docs 发布 PR。
+
+JHP-3000D / US（英、法、西）的 [Web 版式版本](../../data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/README.md) 由包内 `derive_web_layout.py` 从已批准包 `git-20261009-cebe4aab`（MA-278）机械派生，已批准包与其发布凭据保持不变。按操作者“把这个版面调整一下”，沿用 JHP-5000C 的做法三语一起改：印刷封面与目录不进入 Web，三语导航均为印刷目录的 13 章（FCC 声明是“符号含义”章内的无标题面板，封底联系卡收在“App 设置”章末）。安全须知复用线上现成的双栏结构（`hb-safety-instruction` 风险横幅、`hb-safety-lead` WARNING 引导框、按印刷分栏的 `manual-two-col-table`）；p13 按键组合改用共享 `HB-TABLE-KEY-COMBINATIONS`（原稿竖向按键图、印刷顺序与按住时长），p11 自动恢复条件改用共享 `HB-TABLE-AUTO-RESUME`；LCD 圈号与共用 ㉑ 号格、状态词字重、印刷段落与粗体、F0–F3 分行、逐行规格值、® 位置、保修段落和封底联系卡均按原稿重建。已发布版 p13 的 POWER 按键因 `power.svg` 重名显示成 p10 的 POWER 面板，App 步骤 2.3–2.5 误用其他型号截图；本版改用原稿按键与 p21 截图。可见文字 = 批准文字 + 逐条登记的原稿恢复（英、法、西各 5 条，见包内 `source/differences.md`），由单元测试证明；原稿自身问题按印刷保留并列出。操作者于 2026-10-13 审阅三语逐章对照（印刷页、电脑网页、手机）后要求插图说明框改用统一样式（已改用共享面板圆角 `--hb-panel-radius`，不另写样式），审阅更新后指示“上线提交发布”；`approval.json` 绑定除 `web/` 外全部包内输入哈希；工程 PR 由操作者审核合入，合入后在实际 main 提交上逐语封存 Git-only 发布证据并提交 Hello-Docs 发布 PR。
 
 台湾原生 Git-only Web 原稿使用 `zh-TW`（别名 `zh_tw` / `zh-Hant`），显示为繁體中文。共享语言注册将它设为 `sync_enabled=False`，与简体 `zh` 分开；离线整本 Manual IR 回放不会新增在线同步字段。
 

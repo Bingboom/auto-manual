@@ -160,6 +160,17 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "user-guide/hello_auto-doc.md": 65,
     "code-as-doc/dev/merge_authorizations.md": 150,
     "code-as-doc/code_optimization_log.md": 250,
+    # The optimization checklist (~40K tokens) and the style definition (~37K)
+    # became indexes the same way on 2026-10-12: milestones and sections live on
+    # their pages. STYLE_DEFINITION.md keeps §1 and §8 because tests read them.
+    "code-as-doc/next_optimization_checklist.md": 190,
+    "docs/renderers/contracts/STYLE_DEFINITION.md": 270,
+    # 2026-10-13: the module map, the RTD portal doc, the Web publish contract and the
+    # quick start (11-15K tokens each) became indexes too; notes go to their pages.
+    "code-as-doc/dev/orchestration_module_map.md": 100,
+    "code-as-doc/dev/rtd_manual_portal.md": 40,
+    "code-as-doc/dev/web_publish_pipeline.md": 70,
+    "user-guide/quick_start_guide.md": 110,
 }
 
 

@@ -209,7 +209,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Check machine-surface freshness against a deployment receipt")
     where = parser.add_mutually_exclusive_group(required=True)
     where.add_argument("--site", type=Path, help="built HTML output directory")
-    where.add_argument("--base-url", help="deployed site, e.g. https://ht-doc.readthedocs.io")
+    where.add_argument("--base-url", help="deployed site, e.g. https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest")
     parser.add_argument("--manifest", type=Path, help="cached manifest to judge instead of the deployed one")
     args = parser.parse_args(argv)
     read = deployment_reader(site=args.site, base_url=args.base_url)

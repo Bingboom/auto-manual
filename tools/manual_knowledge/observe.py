@@ -169,7 +169,7 @@ def main(argv: list[str] | None = None) -> int:
                                                  "EU machine corpus")
     where = parser.add_mutually_exclusive_group(required=True)
     where.add_argument("--site", type=Path, help="built HTML output directory")
-    where.add_argument("--base-url", help="deployed site, e.g. https://ht-doc.readthedocs.io")
+    where.add_argument("--base-url", help="deployed site, e.g. https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest")
     parser.add_argument("--output", type=Path,
                         help=f"file to write (default: reports/knowledge_observations/<source>/{ARTIFACT})")
     parser.add_argument("--previous", type=Path, help="earlier observation artifact to judge against this corpus")

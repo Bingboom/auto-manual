@@ -1,0 +1,281 @@
+{
+  "scope": "local-only candidate; operator combined layout acceptance pending",
+  "source_pdf_sha256": "caa5370acac00f053f8a62b02ea0cd60b5efe4fd5c7e7be56c65cc97493681bb",
+  "source_pdf_pages": 23,
+  "strict_sphinx": "pass: python3 -m sphinx -b html -n -W --keep-going",
+  "manual_ir": "validated by source-local adapter",
+  "cold_rebuild_byte_parity": true,
+  "selected_text_lines": 544,
+  "missing_selected_text_lines": 0,
+  "native_subscript_order_exception": "CN PDF18 VOC subscript only",
+  "missing_local_resources": 0,
+  "css_url_closure": true,
+  "unchanged_prior_asset_count": 54,
+  "browser_checks": {
+    "desktop": {
+      "brokenImages": [],
+      "calloutItems": [
+        {
+          "items": 3,
+          "label": "注意"
+        },
+        {
+          "items": 0,
+          "label": "说明"
+        },
+        {
+          "items": 3,
+          "label": "注意"
+        },
+        {
+          "items": 2,
+          "label": "注意"
+        },
+        {
+          "items": 2,
+          "label": "说明"
+        },
+        {
+          "items": 0,
+          "label": "提示"
+        },
+        {
+          "items": 2,
+          "label": "注意"
+        },
+        {
+          "items": 2,
+          "label": "提示"
+        },
+        {
+          "items": 0,
+          "label": "注意"
+        },
+        {
+          "items": 0,
+          "label": "注意"
+        },
+        {
+          "items": 2,
+          "label": "注意"
+        },
+        {
+          "items": 3,
+          "label": "注意"
+        },
+        {
+          "items": 0,
+          "label": "备注"
+        },
+        {
+          "items": 2,
+          "label": "备注"
+        },
+        {
+          "items": 0,
+          "label": "备注"
+        },
+        {
+          "items": 0,
+          "label": "注意"
+        }
+      ],
+      "cellOverflow": [],
+      "height": 889,
+      "labelCollisions": [],
+      "labelOverflow": [],
+      "labels": 128,
+      "pageOverflow": 0,
+      "rawBullets": [],
+      "scrollableFigures": [],
+      "tables": [
+        {
+          "rows": 5,
+          "section": "id4"
+        },
+        {
+          "rows": 12,
+          "section": "id4"
+        },
+        {
+          "rows": 7,
+          "section": "id4"
+        },
+        {
+          "rows": 7,
+          "section": "id5"
+        },
+        {
+          "rows": 4,
+          "section": "id5"
+        },
+        {
+          "rows": 13,
+          "section": "id10"
+        },
+        {
+          "rows": 8,
+          "section": "id11"
+        },
+        {
+          "rows": 3,
+          "section": "id11"
+        },
+        {
+          "rows": 8,
+          "section": "id11"
+        },
+        {
+          "rows": 2,
+          "section": "id11"
+        }
+      ],
+      "unexpectedClipping": [],
+      "width": 1280
+    },
+    "mobile": {
+      "brokenImages": [],
+      "calloutItems": [
+        {
+          "items": 3,
+          "label": "注意"
+        },
+        {
+          "items": 0,
+          "label": "说明"
+        },
+        {
+          "items": 3,
+          "label": "注意"
+        },
+        {
+          "items": 2,
+          "label": "注意"
+        },
+        {
+          "items": 2,
+          "label": "说明"
+        },
+        {
+          "items": 0,
+          "label": "提示"
+        },
+        {
+          "items": 2,
+          "label": "注意"
+        },
+        {
+          "items": 2,
+          "label": "提示"
+        },
+        {
+          "items": 0,
+          "label": "注意"
+        },
+        {
+          "items": 0,
+          "label": "注意"
+        },
+        {
+          "items": 2,
+          "label": "注意"
+        },
+        {
+          "items": 3,
+          "label": "注意"
+        },
+        {
+          "items": 0,
+          "label": "备注"
+        },
+        {
+          "items": 2,
+          "label": "备注"
+        },
+        {
+          "items": 0,
+          "label": "备注"
+        },
+        {
+          "items": 0,
+          "label": "注意"
+        }
+      ],
+      "cellOverflow": [],
+      "height": 844,
+      "labelCollisions": [],
+      "labelOverflow": [],
+      "labels": 128,
+      "pageOverflow": 0,
+      "rawBullets": [],
+      "scrollableFigures": [
+        "registration",
+        "inbox",
+        "overview-front",
+        "overview-side",
+        "lcd-map",
+        "power",
+        "ac-output",
+        "usb-output",
+        "energy-saving",
+        "ups",
+        "battery-stack",
+        "battery-accessories",
+        "parallel",
+        "parallel-interrupted",
+        "parallel-exit",
+        "charging-solar",
+        "charging-solar-four",
+        "charging-car",
+        "app-controls"
+      ],
+      "tables": [
+        {
+          "rows": 5,
+          "section": "id4"
+        },
+        {
+          "rows": 12,
+          "section": "id4"
+        },
+        {
+          "rows": 7,
+          "section": "id4"
+        },
+        {
+          "rows": 7,
+          "section": "id5"
+        },
+        {
+          "rows": 4,
+          "section": "id5"
+        },
+        {
+          "rows": 13,
+          "section": "id10"
+        },
+        {
+          "rows": 8,
+          "section": "id11"
+        },
+        {
+          "rows": 3,
+          "section": "id11"
+        },
+        {
+          "rows": 8,
+          "section": "id11"
+        },
+        {
+          "rows": 2,
+          "section": "id11"
+        }
+      ],
+      "unexpectedClipping": [],
+      "width": 390
+    }
+  },
+  "html_sha256": "53244501b684fdc4bacd690c973b904f053775b8c2ff403b896c55b6b5206994",
+  "markdown_sha256": "725fbe99cced5e10017e1d670993cbf84cb000ac455b65262c3965ab8e49ebaf",
+  "manual_ir_sha256": "6b6ca683462c9d3a93215ebb4d7b59fa690e88f96eefa61646193c0720f82b82"
+}

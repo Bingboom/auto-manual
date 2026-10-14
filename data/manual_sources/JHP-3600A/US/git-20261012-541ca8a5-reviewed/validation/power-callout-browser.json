@@ -1,0 +1,425 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "brokenImages": 0,
+      "clippedText": [],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 1280,
+      "callouts": [
+        {
+          "source_line": "0",
+          "text": "Default standby time: 2 hoursThe product will automatically shut down after 2hours of inactivity, with no charging or discharging.*The standby time can be set in the Jackery App.",
+          "native_frame_relative_to_art": [
+            0.4303216294662727,
+            0.5176410028522797,
+            0.5275056764338489,
+            0.21070505950376164
+          ],
+          "horizontal_center_error_px": 0.0022125244140625,
+          "vertical_center_error_px": -0.00228118896484375,
+          "native_font_sizes": [
+            "12.5588px",
+            "12.5588px",
+            "12.5588px",
+            "12.5588px"
+          ]
+        },
+        {
+          "source_line": "1",
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+          "native_frame_relative_to_art": [
+            0.04031788029554122,
+            0.790331137235504,
+            0.9240970685272109,
+            0.14982781510552026
+          ],
+          "horizontal_center_error_px": 0.0021820068359375,
+          "vertical_center_error_px": 0.0,
+          "native_font_sizes": [
+            "12.5588px",
+            "12.5588px"
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_labels_unchanged": true
+    },
+    {
+      "lang": "en",
+      "brokenImages": 0,
+      "clippedText": [],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 711,
+      "callouts": [
+        {
+          "source_line": "0",
+          "text": "Default standby time: 2 hoursThe product will automatically shut down after 2hours of inactivity, with no charging or discharging.*The standby time can be set in the Jackery App.",
+          "native_frame_relative_to_art": [
+            0.43032439495968855,
+            0.5176450890358353,
+            0.5275072003037042,
+            0.21070179784927817
+          ],
+          "horizontal_center_error_px": 0.002166748046875,
+          "vertical_center_error_px": -0.0021162033081054688,
+          "native_font_sizes": [
+            "12.971px",
+            "12.971px",
+            "12.971px",
+            "12.971px"
+          ]
+        },
+        {
+          "source_line": "1",
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+          "native_frame_relative_to_art": [
+            0.04032134124541392,
+            0.7903242501498289,
+            0.9240930798893536,
+            0.1498206007984168
+          ],
+          "horizontal_center_error_px": 0.002162933349609375,
+          "vertical_center_error_px": 0.00024318695068359375,
+          "native_font_sizes": [
+            "12.971px",
+            "12.971px"
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_labels_unchanged": true
+    },
+    {
+      "lang": "en",
+      "brokenImages": 0,
+      "clippedText": [],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 390,
+      "callouts": [
+        {
+          "source_line": "0",
+          "text": "Default standby time: 2 hoursThe product will automatically shut down after 2hours of inactivity, with no charging or discharging.*The standby time can be set in the Jackery App.",
+          "native_frame_relative_to_art": [
+            0.43032497763633726,
+            0.517636312287157,
+            0.5275065422058105,
+            0.21071187646348075
+          ],
+          "horizontal_center_error_px": 0.0021591186524005934,
+          "vertical_center_error_px": -0.00021839141845703125,
+          "native_font_sizes": [
+            "12.224px",
+            "12.224px",
+            "12.224px",
+            "12.224px"
+          ]
+        },
+        {
+          "source_line": "1",
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+          "native_frame_relative_to_art": [
+            0.04031711220741272,
+            0.7903301790767195,
+            0.9240926742553712,
+            0.14981942423892114
+          ],
+          "horizontal_center_error_px": 3.814697265625e-06,
+          "vertical_center_error_px": 0.00010776519775390625,
+          "native_font_sizes": [
+            "12.224px",
+            "12.224px"
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_labels_unchanged": true
+    },
+    {
+      "lang": "es",
+      "brokenImages": 0,
+      "clippedText": [],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 1280,
+      "callouts": [
+        {
+          "source_line": "0",
+          "text": "Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón de energía CA o USB está encendido, pero el producto no está cargando ni descargando.",
+          "native_frame_relative_to_art": [
+            0.04448299641076542,
+            0.781901077027774,
+            0.9108953277758228,
+            0.1619984219256243
+          ],
+          "horizontal_center_error_px": 0.00213623046875,
+          "vertical_center_error_px": -0.0021915435791015625,
+          "native_font_sizes": [
+            "12.5588px",
+            "12.5588px",
+            "12.5588px"
+          ]
+        },
+        {
+          "source_line": "1",
+          "text": "Tiempo de espera predeterminado: 2 horasEl producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga.*El tiempo en espera puede conﬁgurarse en la App de Jackery.",
+          "native_frame_relative_to_art": [
+            0.4325262978011146,
+            0.504532243042296,
+            0.5228521192097056,
+            0.2409353705509186
+          ],
+          "horizontal_center_error_px": 0.002197265625,
+          "vertical_center_error_px": 1.1444091796875e-05,
+          "native_font_sizes": [
+            "12.5588px",
+            "12.5588px",
+            "12.5588px",
+            "12.5588px",
+            "12.5588px"
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_labels_unchanged": true
+    },
+    {
+      "lang": "es",
+      "brokenImages": 0,
+      "clippedText": [],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 711,
+      "callouts": [
+        {
+          "source_line": "0",
+          "text": "Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón de energía CA o USB está encendido, pero el producto no está cargando ni descargando.",
+          "native_frame_relative_to_art": [
+            0.04448193987856503,
+            0.7818943469924422,
+            0.9108955338973744,
+            0.1620057551627475
+          ],
+          "horizontal_center_error_px": 0.002193450927734375,
+          "vertical_center_error_px": -5.435943603515625e-05,
+          "native_font_sizes": [
+            "12.971px",
+            "12.971px",
+            "12.971px"
+          ]
+        },
+        {
+          "source_line": "1",
+          "text": "Tiempo de espera predeterminado: 2 horasEl producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga.*El tiempo en espera puede conﬁgurarse en la App de Jackery.",
+          "native_frame_relative_to_art": [
+            0.4325293334971448,
+            0.504540508272635,
+            0.5228545269926682,
+            0.24093857529560875
+          ],
+          "horizontal_center_error_px": 0.0021820068359375,
+          "vertical_center_error_px": -0.0020208358764648438,
+          "native_font_sizes": [
+            "12.971px",
+            "12.971px",
+            "12.971px",
+            "12.971px",
+            "12.971px"
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_labels_unchanged": true
+    },
+    {
+      "lang": "es",
+      "brokenImages": 0,
+      "clippedText": [],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 390,
+      "callouts": [
+        {
+          "source_line": "0",
+          "text": "Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón de energía CA o USB está encendido, pero el producto no está cargando ni descargando.",
+          "native_frame_relative_to_art": [
+            0.0444810688495636,
+            0.7818984483174668,
+            0.910895538330078,
+            0.1620081590909531
+          ],
+          "horizontal_center_error_px": 0.00218963623046875,
+          "vertical_center_error_px": -0.0022115707397460938,
+          "native_font_sizes": [
+            "12.224px",
+            "12.224px",
+            "12.224px"
+          ]
+        },
+        {
+          "source_line": "1",
+          "text": "Tiempo de espera predeterminado: 2 horasEl producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga.*El tiempo en espera puede conﬁgurarse en la App de Jackery.",
+          "native_frame_relative_to_art": [
+            0.4325290620326996,
+            0.5045423812923766,
+            0.5228542804718017,
+            0.2409413503106572
+          ],
+          "horizontal_center_error_px": 0.002161026000919719,
+          "vertical_center_error_px": -0.0020494461059570312,
+          "native_font_sizes": [
+            "12.224px",
+            "12.224px",
+            "12.224px",
+            "12.224px",
+            "12.224px"
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_labels_unchanged": true
+    },
+    {
+      "lang": "fr",
+      "brokenImages": 0,
+      "clippedText": [],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 1280,
+      "callouts": [
+        {
+          "source_line": "0",
+          "text": "Temps de veille par défaut : 2 heuresLe produit s’éteindra automatiquement après 2 heures d’inactivité, sans charge ni décharge.*Le temps de veille peut être réglé dans l'application Jackery.",
+          "native_frame_relative_to_art": [
+            0.39481571094682666,
+            0.5360468485710242,
+            0.5599884025404507,
+            0.2182031338881135
+          ],
+          "horizontal_center_error_px": 0.0021820068359375,
+          "vertical_center_error_px": 0.000270843505859375,
+          "native_font_sizes": [
+            "12.5588px",
+            "12.5588px",
+            "12.5588px",
+            "12.5588px"
+          ]
+        },
+        {
+          "source_line": "1",
+          "text": "Lorsque le mode Économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton d'alimentation CA ou USB est allumé mais que le produit ne charge ni ne décharge.",
+          "native_frame_relative_to_art": [
+            0.04448299641076542,
+            0.8028131975465784,
+            0.9108953277758228,
+            0.1417666462783047
+          ],
+          "horizontal_center_error_px": 0.002166748046875,
+          "vertical_center_error_px": -0.0017375946044921875,
+          "native_font_sizes": [
+            "12.5588px",
+            "12.5588px"
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_labels_unchanged": true
+    },
+    {
+      "lang": "fr",
+      "brokenImages": 0,
+      "clippedText": [],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 711,
+      "callouts": [
+        {
+          "source_line": "0",
+          "text": "Temps de veille par défaut : 2 heuresLe produit s’éteindra automatiquement après 2 heures d’inactivité, sans charge ni décharge.*Le temps de veille peut être réglé dans l'application Jackery.",
+          "native_frame_relative_to_art": [
+            0.3948155690041912,
+            0.5360437612560712,
+            0.5599867129389049,
+            0.2182010758236439
+          ],
+          "horizontal_center_error_px": 0.002197265625,
+          "vertical_center_error_px": -0.0022268295288085938,
+          "native_font_sizes": [
+            "12.971px",
+            "12.971px",
+            "12.971px",
+            "12.971px"
+          ]
+        },
+        {
+          "source_line": "1",
+          "text": "Lorsque le mode Économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton d'alimentation CA ou USB est allumé mais que le produit ne charge ni ne décharge.",
+          "native_frame_relative_to_art": [
+            0.04448193987856503,
+            0.8028141271936241,
+            0.9108955338973744,
+            0.14177010686848518
+          ],
+          "horizontal_center_error_px": 3.814697265625e-06,
+          "vertical_center_error_px": -9.5367431640625e-07,
+          "native_font_sizes": [
+            "12.971px",
+            "12.971px"
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_labels_unchanged": true
+    },
+    {
+      "lang": "fr",
+      "brokenImages": 0,
+      "clippedText": [],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 390,
+      "callouts": [
+        {
+          "source_line": "0",
+          "text": "Temps de veille par défaut : 2 heuresLe produit s’éteindra automatiquement après 2 heures d’inactivité, sans charge ni décharge.*Le temps de veille peut être réglé dans l'application Jackery.",
+          "native_frame_relative_to_art": [
+            0.3948161065578461,
+            0.5360454291580982,
+            0.5599840164184571,
+            0.2182037393513702
+          ],
+          "horizontal_center_error_px": 0.002166748046875,
+          "vertical_center_error_px": -0.00011157989501953125,
+          "native_font_sizes": [
+            "12.224px",
+            "12.224px",
+            "12.224px",
+            "12.224px"
+          ]
+        },
+        {
+          "source_line": "1",
+          "text": "Lorsque le mode Économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton d'alimentation CA ou USB est allumé mais que le produit ne charge ni ne décharge.",
+          "native_frame_relative_to_art": [
+            0.0444810688495636,
+            0.8028222417292624,
+            0.910895538330078,
+            0.14176986872008085
+          ],
+          "horizontal_center_error_px": 0.002197265625,
+          "vertical_center_error_px": 0.0005960464477539062,
+          "native_font_sizes": [
+            "12.224px",
+            "12.224px"
+          ]
+        }
+      ],
+      "frame_and_art_geometry_unchanged": true,
+      "other_labels_unchanged": true
+    }
+  ]
+}

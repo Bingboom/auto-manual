@@ -6,16 +6,22 @@ const MAX_BYTES = 32 * 1024 * 1024;
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const hash = (value) => typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
 
-export function siteOrigin(value) {
+// The site root: one HTTPS origin, optionally with the version prefix it serves under (/en/latest).
+export function siteBase(value) {
   const url = new URL(value);
-  if (url.protocol !== "https:" || url.username || url.password || url.search || url.hash || url.pathname !== "/") {
-    throw new Error("manualQueryBaseUrl must be one HTTPS origin without a path or credentials.");
+  const segments = url.pathname.split("/").filter(Boolean);
+  const prefix = segments.length ? "/" + segments.join("/") : "";
+  if (url.protocol !== "https:" || url.username || url.password || url.search || url.hash
+      || ![prefix || "/", prefix + "/"].includes(url.pathname)
+      || segments.some((segment) => !/^[A-Za-z0-9_-][A-Za-z0-9_.-]*$/.test(segment))) {
+    throw new Error("manualQueryBaseUrl must be one HTTPS site root, optionally with a version path, without credentials.");
   }
-  return url.origin;
+  return url.origin + prefix;
 }
 
-async function fetchResponse(fetchImpl, origin, path) {
-  let url = new URL(path, origin + "/");
+async function fetchResponse(fetchImpl, base, path) {
+  const origin = new URL(base).origin;
+  let url = new URL(path, base + "/");
   const signal = AbortSignal.timeout(15000);
   for (let hops = 0; hops <= 5; hops++) {
     if (url.origin !== origin || url.username || url.password) throw new Error("Cross-origin query redirect refused.");
@@ -33,8 +39,9 @@ async function fetchResponse(fetchImpl, origin, path) {
   throw new Error("Too many manual query redirects.");
 }
 
-async function download(fetchImpl, origin, path) {
-  const response = await fetchResponse(fetchImpl, origin, path);
+async function download(fetchImpl, base, path) {
+  const origin = new URL(base).origin;
+  const response = await fetchResponse(fetchImpl, base, path);
   if (!response.ok) throw new Error(`Manual query publication unavailable (HTTP ${response.status}).`);
   if (response.url && new URL(response.url).origin !== origin) throw new Error("Cross-origin query response refused.");
   if (![null, "identity"].includes(response.headers.get("content-encoding"))) throw new Error("Encoded manual query response refused.");
@@ -102,7 +109,8 @@ export function validateCorpus(corpus, receipt) {
 }
 
 export function createKnowledgeClient({ baseUrl, fetchImpl = globalThis.fetch, now = Date.now, ttlMs = 60000 }) {
-  const origin = siteOrigin(baseUrl);
+  // Search resolves document URLs against `origin`, so it carries the version prefix too.
+  const origin = siteBase(baseUrl);
   let cache;
   let pending;
   async function refresh() {

@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-10-10
+Updated: 2026-10-13
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -21,6 +21,37 @@ For current rules, see:
 - [`code-as-doc/build_doc_guide.md`](build_doc_guide.md)
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+
+## 2026-10-13: Module map, RTD portal, Web publish and quick start split into pages
+
+The next tier of agent-facing docs (11–15K tokens each) followed the 2026-10-12 split:
+
+- `dev/orchestration_module_map.md` keeps the entrypoint rule (§1) and the maintenance
+  rules (§8); each module family (§2–§7, §9) is a page.
+- `dev/rtd_manual_portal.md` is an index over four pages: manual center, system
+  workspace, workspace and knowledge-base pages, maintenance and checks.
+- `dev/web_publish_pipeline.md` keeps the two release actions (§1); §1.1, §2, §3,
+  §4–§5 and the shared-component admission are pages. A compatibility anchor keeps the
+  §2.2 links in frozen source-package READMEs working without touching their approval
+  hashes.
+- `user-guide/quick_start_guide.md` keeps the core rule, §6 and §9; the rest is five pages.
+- Content moved verbatim; 42 deep links point at the owning page, and the
+  maintainability guardrails cap the four hubs.
+
+## 2026-10-12: Optimization checklist and style definition split into pages
+
+The next two largest agent-facing docs followed the 2026-10-10 split:
+
+- `next_optimization_checklist.md` (~40K tokens) keeps its update rules,
+  baseline, deferred list and success criteria plus an index; each milestone
+  (A–D, E to M, and the Milestone M slices) is a page under
+  `next_optimization_checklist/`.
+- `docs/renderers/contracts/STYLE_DEFINITION.md` (~37K) keeps the §1 binding
+  table and §8, which tests read, plus an index; §0, §2–§7, §9, §10, the
+  appendices and the Web artwork reuse rule are pages under `STYLE_DEFINITION/`.
+  The 30 deep links into moved sections, AGENTS.md §3 among them, point at
+  the pages.
+- Content moved verbatim; the maintainability guardrails cap both hubs.
 
 ## 2026-10-10: Agent-facing docs split for on-demand reading
 

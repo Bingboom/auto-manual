@@ -1,0 +1,143 @@
+{
+  "scope": "US EN/FR/ES native LCD screen illustration and six-row mode table",
+  "native_geometry": {
+    "en": {
+      "physical_page": 12,
+      "panel_rect_pt": [
+        28.807220458984375,
+        45.88200378417969,
+        341.5422058105469,
+        224.98001098632812
+      ],
+      "table_rect_pt": [
+        152.335205078125,
+        60.7008056640625,
+        333.05419921875,
+        211.37380981445312
+      ],
+      "artwork": "assets/lcd-screen-p12.svg",
+      "artwork_sha256": "d7a3fa714fcabd464175de67eb1c73ef92a1e25ece80b54a04f879bd4ce62bd4",
+      "artwork_width_pct": 38.01710237419128,
+      "artwork_height_pct": 96.31486686920499,
+      "artwork_left_pct": 1.0552065341491252,
+      "artwork_top_pct": 1.842566565397502,
+      "table_left_pct": 39.499253491027254,
+      "table_top_pct": 8.274129964582347,
+      "table_width_pct": 57.78662529152883,
+      "table_height_pct": 84.12879992591184,
+      "column_width_pct": [
+        25.990011482995033,
+        24.673950488027288,
+        49.336038028977676
+      ],
+      "row_height_pct": [
+        18.81159422051088,
+        10.543089446702448,
+        18.201416860752325,
+        20.52635341960398,
+        11.334015088957361,
+        20.583530963473006
+      ],
+      "body_font_cqw": 1.8445010831698818,
+      "state_font_cqw": 2.2134076426905547,
+      "asset_decision": "Reuse the existing admitted SVG unchanged; no extraction or crop."
+    },
+    "fr": {
+      "physical_page": 32,
+      "panel_rect_pt": [
+        28.726898193359375,
+        86.31539916992188,
+        341.4619140625,
+        297.827392578125
+      ],
+      "table_rect_pt": [
+        151.77078247070312,
+        102.07058715820312,
+        332.4897766113281,
+        282.1275939941406
+      ],
+      "artwork": "assets/lcd-screen-p32.svg",
+      "artwork_sha256": "23da3bad38a41294277646bd037c13b53e9cf27ae87e381aac76c85a7255d09d",
+      "artwork_width_pct": 38.042782473844625,
+      "artwork_height_pct": 96.87960957028923,
+      "artwork_left_pct": 1.0552064311790508,
+      "artwork_top_pct": 1.560195214855373,
+      "table_left_pct": 39.34445394142549,
+      "table_top_pct": 7.44883906317069,
+      "table_width_pct": 57.7866196525445,
+      "table_height_pct": 85.1285092323064,
+      "column_width_pct": [
+        25.990028369752437,
+        24.673942044648587,
+        49.33602958559897
+      ],
+      "row_height_pct": [
+        16.77813355280954,
+        13.27979081060889,
+        19.28734185882699,
+        20.187054203075604,
+        13.102014403804132,
+        17.365665170874838
+      ],
+      "body_font_cqw": 1.844500903178186,
+      "state_font_cqw": 2.2134074266999004,
+      "asset_decision": "Reuse the existing admitted SVG unchanged; no extraction or crop."
+    },
+    "es": {
+      "physical_page": 52,
+      "panel_rect_pt": [
+        28.0902099609375,
+        91.75338745117188,
+        340.8252258300781,
+        303.265380859375
+      ],
+      "table_rect_pt": [
+        150.15948486328125,
+        117.30580139160156,
+        330.87847900390625,
+        273.7947998046875
+      ],
+      "artwork": "assets/lcd-screen-p32.svg",
+      "artwork_sha256": "23da3bad38a41294277646bd037c13b53e9cf27ae87e381aac76c85a7255d09d",
+      "artwork_width_pct": 38.042782473844625,
+      "artwork_height_pct": 96.87960957028923,
+      "artwork_left_pct": 1.0552064311790508,
+      "artwork_top_pct": 1.560195214855373,
+      "table_left_pct": 39.03281331100507,
+      "table_top_pct": 12.080834532685502,
+      "table_width_pct": 57.7866196525445,
+      "table_height_pct": 73.98587469745665,
+      "column_width_pct": [
+        25.990028369752437,
+        24.673942044648587,
+        49.33602958559897
+      ],
+      "row_height_pct": [
+        18.698303561651745,
+        13.54510186225893,
+        19.579602020854235,
+        17.255910222479034,
+        12.87969388229703,
+        18.041388450459028
+      ],
+      "body_font_cqw": 1.844500903178186,
+      "state_font_cqw": 2.2134074266999004,
+      "asset_decision": "Reuse the existing admitted SVG unchanged; no extraction or crop."
+    }
+  },
+  "cause": "The source-local 760 px breakpoint stacked the pair and stretched its image; the ordinary table did not bind the registered LCD mode component.",
+  "change": "Bind existing native copy and art to HB-TABLE-LCD-MODE; preserve measured per-language complete-panel, art, table, row and column geometry. Scroll the whole panel on phones.",
+  "component": "HB-TABLE-LCD-MODE/two-state-three-action",
+  "preserved": [
+    "All artwork bytes",
+    "All native wording and line breaks",
+    "Two groups of three rows",
+    "Native locale-specific panel and table heights",
+    "Prior layout corrections"
+  ],
+  "asset_reuse": "Existing admitted p12 vector for EN and p32 vector for FR/ES; no new extraction, duplicate or recrop.",
+  "browser_evidence": "validation/lcd-screen-browser.json",
+  "closure": "validation/lcd-screen-closure.json",
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review"
+}

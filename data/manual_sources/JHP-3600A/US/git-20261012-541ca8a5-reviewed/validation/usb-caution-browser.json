@@ -1,0 +1,4767 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "brokenImages": 0,
+      "callout": {
+        "boldOpening": [
+          {
+            "fontWeight": "700",
+            "text": "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. "
+          }
+        ],
+        "clippedText": [],
+        "items": [
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 126.36719512939452,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 293.6111145019531
+            },
+            "tag": "LI",
+            "text": "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. If the  connected user device or accessory does not meet safety requirements, there may be a  fire risk. Before using these ports, ensure that the connected device or accessory has fire  safety protection.  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 75.8203125,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 425.4166870117187
+            },
+            "tag": "LI",
+            "text": "Only connect the Jackery HomePower 3600 Plus to devices or accessories that comply  with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 50.546878814697266,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 506.6753845214844
+            },
+            "tag": "LI",
+            "text": "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable  (20V DC/5A, 100W). ",
+            "userSelect": "auto"
+          }
+        ],
+        "label": "CAUTION",
+        "rect": {
+          "height": 293.732666015625,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 278.55035400390625
+        },
+        "selectable": true,
+        "ulCount": 1
+      },
+      "figures": [
+        {
+          "art": {
+            "height": 466.0113220214844,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -559.9696655273438
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.8147px",
+                  "rect": {
+                    "height": 16.6666259765625,
+                    "width": 240.82467651367188,
+                    "x": 471.5321350097656,
+                    "y": -534.6050415039062
+                  },
+                  "text": "Prerequisite: The product is turned on."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 28.658855438232425,
+                "width": 268.4071350097656,
+                "x": 457.7430725097656,
+                "y": -540.3646240234375
+              },
+              "relative": [
+                0.04032447081601504,
+                0.042069882377240624,
+                0.4082022183320618,
+                0.06149819561017269
+              ],
+              "text": "Prerequisite: The product is turned on.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "9.92px",
+              "display": "flex",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 15.277786254882812,
+                    "width": 142.81683349609375,
+                    "x": 690.5599365234375,
+                    "y": -154.55296325683594
+                  },
+                  "text": "AC Output Reset Button: "
+                },
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222900390625,
+                    "width": 560.4296875,
+                    "x": 481.7535095214844,
+                    "y": -140.20834350585938
+                  },
+                  "text": "When the Reset Button pops up, you need to remove the load  and press the Reset Button to reset."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 54.92621612548828,
+                "width": 597.1875,
+                "x": 463.3767700195313,
+                "y": -167.1137237548828
+              },
+              "relative": [
+                0.0488923794925652,
+                0.8430180195371931,
+                0.9082219898934832,
+                0.11786455291950187
+              ],
+              "text": "AC Output Reset Button: When the Reset Button pops up, you need to remove the load  and press the Reset Button to reset.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777099609375,
+                    "width": 28.654541015625,
+                    "x": 959.0755615234376,
+                    "y": -502.2265930175781
+                  },
+                  "text": "On"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 31.79253578186035,
+                "x": 959.0755615234376,
+                "y": -501.115478515625
+              },
+              "relative": [
+                0.802767071791839,
+                0.1262934702024373,
+                0.04835111269335172,
+                0.06458102233236515
+              ],
+              "text": "On",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777099609375,
+                    "width": 31.08502197265625,
+                    "x": 958.4679565429688,
+                    "y": -447.5303955078125
+                  },
+                  "text": "Oﬀ"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 32.378475189208984,
+                "x": 958.4679565429688,
+                "y": -446.4192810058594
+              },
+              "relative": [
+                0.8018430065620235,
+                0.24366443293463455,
+                0.049242228221555474,
+                0.06458102233236515
+              ],
+              "text": "Oﬀ",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222900390625,
+                    "width": 60.9244384765625,
+                    "x": 959.7656860351562,
+                    "y": -474.9175720214844
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 65.2560806274414,
+                "x": 959.7656860351562,
+                "y": -474.3619995117187
+              },
+              "relative": [
+                0.8038166353833534,
+                0.18370297452060244,
+                0.09924354980655894,
+                0.041315462462031584
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "5",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222900390625,
+                    "width": 60.9244384765625,
+                    "x": 959.7656860351562,
+                    "y": -420.6033325195313
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 65.2560806274414,
+                "x": 959.7656860351562,
+                "y": -420.0477600097656
+              },
+              "relative": [
+                0.8038166353833534,
+                0.30025430478946036,
+                0.09924354980655894,
+                0.041315462462031584
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            }
+          ],
+          "name": "ac-output"
+        },
+        {
+          "art": {
+            "height": 297.8515625,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -35.29948043823242
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.8147px",
+                  "rect": {
+                    "height": 16.666667938232422,
+                    "width": 255.12152099609375,
+                    "x": 461.818603515625,
+                    "y": -8.611111640930176
+                  },
+                  "text": "Prerequisite: The product is powered on."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 28.658855438232425,
+                "width": 278.146728515625,
+                "x": 450.30816650390625,
+                "y": -14.370660781860352
+              },
+              "relative": [
+                0.029017226228155092,
+                0.07026593878073771,
+                0.42301450592121137,
+                0.09621858350409836
+              ],
+              "text": "Prerequisite: The product is powered on.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777862548828,
+                    "width": 28.654541015625,
+                    "x": 978.6068115234376,
+                    "y": -1.4366320371627808
+                  },
+                  "text": "On"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 31.79253578186035,
+                "x": 978.6068115234376,
+                "y": -0.3255208432674408
+              },
+              "relative": [
+                0.8324708260400561,
+                0.11742076926309554,
+                0.04835111269335172,
+                0.1010418993340164
+              ],
+              "text": "On",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777862548828,
+                    "width": 31.08502197265625,
+                    "x": 977.9992065429688,
+                    "y": 53.259552001953125
+                  },
+                  "text": "Oﬀ"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 32.378475189208984,
+                "x": 977.9992065429688,
+                "y": 54.370662689208984
+              },
+              "relative": [
+                0.8315467608102405,
+                0.3010564805327869,
+                0.049242228221555474,
+                0.1010418993340164
+              ],
+              "text": "Oﬀ",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222137451172,
+                    "width": 60.92449951171875,
+                    "x": 979.2969360351562,
+                    "y": 25.86805725097656
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 65.2560806274414,
+                "x": 979.2969360351562,
+                "y": 26.423612594604492
+              },
+              "relative": [
+                0.8335203896315704,
+                0.20722769595286888,
+                0.09924354980655894,
+                0.0646411693135246
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222137451172,
+                    "width": 60.92449951171875,
+                    "x": 979.2969360351562,
+                    "y": 80.18663787841797
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 65.2560806274414,
+                "x": 979.2969360351562,
+                "y": 80.74219512939453
+              },
+              "relative": [
+                0.8335203896315704,
+                0.3895956582991803,
+                0.09924354980655894,
+                0.0646411693135246
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            }
+          ],
+          "name": "usb-output"
+        }
+      ],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "POWER ON/OFF"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AC OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "USB OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENERGY SAVING MODE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "LCD SCREEN "
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "KEY COMBINATION"
+        }
+      ],
+      "height": 889,
+      "pageOverflow": 0,
+      "powerCenters": [
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.0021820068359375,
+          "text": "Default standby time: 2 hoursThe product will automatically shut down after 2hours of inactivity, with no charging or discharging.*The standby time can be set in the Jackery App.",
+          "textAlign": "center",
+          "verticalCenterError": 0.3689537048339844
+        },
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002166748046875,
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+          "textAlign": "center",
+          "verticalCenterError": 0.22781753540039065
+        }
+      ],
+      "width": 1280,
+      "lang": "en",
+      "figure_geometry_and_prior_operation_layout_preserved": true
+    },
+    {
+      "brokenImages": 0,
+      "callout": {
+        "boldOpening": [
+          {
+            "fontWeight": "700",
+            "text": "Les ports USB-C de 140 W sont des ports de sortie haute puissance de type Source "
+          },
+          {
+            "fontWeight": "700",
+            "text": "d’alimentation 3 (PS3) selon USB-PD. "
+          }
+        ],
+        "clippedText": [],
+        "items": [
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 151.640625,
+              "width": 496.8055725097656,
+              "x": 575.295166015625,
+              "y": 278.5546875
+            },
+            "tag": "LI",
+            "text": "Les ports USB-C de 140 W sont des ports de sortie haute puissance de type Source  d’alimentation 3 (PS3) selon USB-PD. Si l'appareil utilisateur ou l'accessoire connecté ne  répond pas aux exigences de sécurité, il peut présenter un risque d'incendie. Avant  d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une  protection contre les incendies.  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 75.8203125,
+              "width": 496.8055725097656,
+              "x": 575.295166015625,
+              "y": 435.6336975097656
+            },
+            "tag": "LI",
+            "text": "Ne connectez le Jackery HomePower 3600 Plus qu'à des appareils ou accessoires  conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes  équivalentes).  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 50.546878814697266,
+              "width": 496.8055725097656,
+              "x": 575.295166015625,
+              "y": 516.8923950195312
+            },
+            "tag": "LI",
+            "text": "Pour obtenir la puissance de sortie maximale, utilisez le câble officiel Jackery USB-C  vers USB-C 5A (20 V CC/5A, 100 W). ",
+            "userSelect": "auto"
+          }
+        ],
+        "label": "ATTENTION",
+        "rect": {
+          "height": 319.006103515625,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 263.4939270019531
+        },
+        "selectable": true,
+        "ulCount": 1
+      },
+      "figures": [
+        {
+          "art": {
+            "height": 445.5121765136719,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -550.6510620117188
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.8147px",
+                  "rect": {
+                    "height": 16.6666259765625,
+                    "width": 204.3272705078125,
+                    "x": 467.9166870117187,
+                    "y": -528.9453125
+                  },
+                  "text": "Prérequis : Le produit est allumé."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 28.658855438232425,
+                "width": 223.58941650390625,
+                "x": 458.2856140136719,
+                "y": -534.7048950195312
+              },
+              "relative": [
+                0.04114958541449129,
+                0.03579288700249059,
+                0.3400419881131145,
+                0.06432788361139875
+              ],
+              "text": "Prérequis : Le produit est allumé.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "9.92px",
+              "display": "flex",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 15.277786254882812,
+                    "width": 238.359375,
+                    "x": 644.4531860351562,
+                    "y": -173.16407775878906
+                  },
+                  "text": "Bouton de réinitialisation de la sortie CA:"
+                },
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222900390625,
+                    "width": 554.3272705078125,
+                    "x": 486.467041015625,
+                    "y": -158.8194580078125
+                  },
+                  "text": "Lorsque le bouton de réinitialisation sort, vous devez retirer la charge et appuyer sur le bouton de "
+                },
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.722213745117188,
+                    "width": 174.12322998046875,
+                    "x": 676.5712280273438,
+                    "y": -144.7526092529297
+                  },
+                  "text": "réinitialisation pour réinitialiser."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 60.98958587646485,
+                "width": 597.1875,
+                "x": 465.0390930175781,
+                "y": -181.7230987548828
+              },
+              "relative": [
+                0.05142049386390055,
+                0.8280984958567441,
+                0.9082219898934832,
+                0.13689768561150245
+              ],
+              "text": "Bouton de réinitialisation de la sortie CA:Lorsque le bouton de réinitialisation sort, vous devez retirer la charge et appuyer sur le bouton de réinitialisation pour réinitialiser.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.277801513671875,
+                    "width": 72.5911865234375,
+                    "x": 960.7379150390624,
+                    "y": -510.7769470214844
+                  },
+                  "text": "Marche"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 76.2109375,
+                "x": 960.7379150390624,
+                "y": -509.6658325195313
+              },
+              "relative": [
+                0.8052952325752905,
+                0.0919957560148297,
+                0.11590404907654275,
+                0.06755255901222472
+              ],
+              "text": "Marche",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777099609375,
+                    "width": 48.39410400390625,
+                    "x": 960.1302490234376,
+                    "y": -456.0850830078125
+                  },
+                  "text": "Arrêt"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 52.243927001953125,
+                "x": 960.1302490234376,
+                "y": -454.9739685058594
+              },
+              "relative": [
+                0.8043710745212428,
+                0.21475752751490337,
+                0.07945424735374358,
+                0.06755255901222472
+              ],
+              "text": "Arrêt",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222900390625,
+                    "width": 97.0789794921875,
+                    "x": 961.427978515625,
+                    "y": -483.4722595214844
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 101.22396087646484,
+                "x": 961.427978515625,
+                "y": -482.9166870117187
+              },
+              "relative": [
+                0.8063447033425728,
+                0.15203709027674886,
+                0.15394466088476902,
+                0.04321649170742587
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "5",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.722198486328123,
+                    "width": 97.0789794921875,
+                    "x": 961.427978515625,
+                    "y": -429.1536560058594
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 101.22396087646484,
+                "x": 961.427978515625,
+                "y": -428.5981140136719
+              },
+              "relative": [
+                0.8063447033425728,
+                0.27396096994063035,
+                0.15394466088476902,
+                0.04321649170742587
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            }
+          ],
+          "name": "ac-output"
+        },
+        {
+          "art": {
+            "height": 293.9757080078125,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -46.480037689208984
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.8147px",
+                  "rect": {
+                    "height": 16.666667938232422,
+                    "width": 204.3272399902344,
+                    "x": 466.7925720214844,
+                    "y": -27.63888931274414
+                  },
+                  "text": "Prérequis : Le produit est allumé."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 28.658855438232425,
+                "width": 224.35330200195312,
+                "x": 456.779541015625,
+                "y": -33.3984375
+              },
+              "relative": [
+                0.03885910107714167,
+                0.04449891549835586,
+                0.34120372978903185,
+                0.09748715508653798
+              ],
+              "text": "Prérequis : Le produit est allumé.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777862548828,
+                    "width": 72.5911865234375,
+                    "x": 959.5833740234376,
+                    "y": -14.335938453674316
+                  },
+                  "text": "Marche"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 76.2109375,
+                "x": 959.5833740234376,
+                "y": -13.22482681274414
+              },
+              "relative": [
+                0.8035393694022928,
+                0.11312230898881304,
+                0.11590404907654275,
+                0.1023740628045522
+              ],
+              "text": "Marche",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777862548828,
+                    "width": 48.39404296875,
+                    "x": 958.9757690429688,
+                    "y": 40.36024475097656
+                  },
+                  "text": "Arrêt "
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 57.478302001953125,
+                "x": 958.9757690429688,
+                "y": 41.47135543823242
+              },
+              "relative": [
+                0.8026153041724771,
+                0.2991791183137624,
+                0.08741485349226574,
+                0.1023740628045522
+              ],
+              "text": "Arrêt ",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.722222328186035,
+                    "width": 97.07904052734376,
+                    "x": 960.2734985351562,
+                    "y": 12.968750953674316
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 101.22396087646484,
+                "x": 960.2734985351562,
+                "y": 13.524306297302246
+              },
+              "relative": [
+                0.8045889329938071,
+                0.2041132731447205,
+                0.15394466088476902,
+                0.06549341580750163
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222137451172,
+                    "width": 97.07904052734376,
+                    "x": 960.2734985351562,
+                    "y": 67.30035400390625
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 101.22396087646484,
+                "x": 960.2734985351562,
+                "y": 67.85590362548828
+              },
+              "relative": [
+                0.8045889329938071,
+                0.38892989522678095,
+                0.15394466088476902,
+                0.06549341580750163
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            }
+          ],
+          "name": "usb-output"
+        }
+      ],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE CA MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE USB MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODE D’ÉCONOMIE D’ÉNERGIE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AFFICHAGE LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "FONCTIONNEMENT DES BOUTONS"
+        }
+      ],
+      "height": 889,
+      "pageOverflow": 0,
+      "powerCenters": [
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.0021820068359375,
+          "text": "Temps de veille par défaut : 2 heuresLe produit s’éteindra automatiquement après 2 heures d’inactivité, sans charge ni décharge.*Le temps de veille peut être réglé dans l'application Jackery.",
+          "textAlign": "center",
+          "verticalCenterError": 0.36673736572265625
+        },
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002197265625,
+          "text": "Lorsque le mode Économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton d'alimentation CA ou USB est allumé mais que le produit ne charge ni ne décharge.",
+          "textAlign": "center",
+          "verticalCenterError": 0.2300434112548828
+        }
+      ],
+      "width": 1280,
+      "lang": "fr",
+      "figure_geometry_and_prior_operation_layout_preserved": true
+    },
+    {
+      "brokenImages": 0,
+      "callout": {
+        "boldOpening": [
+          {
+            "fontWeight": "700",
+            "text": "El puerto USB-C de 100 W es una salida de alta potencia de tipo Fuente de "
+          },
+          {
+            "fontWeight": "700",
+            "text": "Alimentación 3 (PS3) según USB-PD.  "
+          }
+        ],
+        "clippedText": [],
+        "items": [
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 151.640625,
+              "width": 480.4383850097656,
+              "x": 591.662353515625,
+              "y": 279.6137390136719
+            },
+            "tag": "LI",
+            "text": "El puerto USB-C de 100 W es una salida de alta potencia de tipo Fuente de  Alimentación 3 (PS3) según USB-PD.  Si el dispositivo del usuario o accesorio  conectado no cumple con los requisitos de seguridad, puede existir riesgo de  incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio  conectado tenga protección contra incendios.  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 75.8203125,
+              "width": 480.4383850097656,
+              "x": 591.662353515625,
+              "y": 436.6927185058594
+            },
+            "tag": "LI",
+            "text": "Solo conecte el Jackery HomePower 3600 Plus a dispositivos o accesorios que  cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otros estándares  equivalentes).  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 50.546878814697266,
+              "width": 480.4383850097656,
+              "x": 591.662353515625,
+              "y": 517.951416015625
+            },
+            "tag": "LI",
+            "text": "Para obtener la potencia máxima de salida, utilice el cable oficial Jackery USB-C  a USB-C de 5 A (20 V CC/5 A, 100W). ",
+            "userSelect": "auto"
+          }
+        ],
+        "label": "PRECAUCIÓN",
+        "rect": {
+          "height": 319.006103515625,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 264.552978515625
+        },
+        "selectable": true,
+        "ulCount": 1
+      },
+      "figures": [
+        {
+          "art": {
+            "height": 462.3481140136719,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -573.125
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.8147px",
+                  "rect": {
+                    "height": 16.66668701171875,
+                    "width": 286.8923645019531,
+                    "x": 469.4965515136719,
+                    "y": -551.7318115234375
+                  },
+                  "text": "Requisito previo: el producto está encendido."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 28.658855438232425,
+                "width": 307.9296875,
+                "x": 458.98004150390625,
+                "y": -557.4913330078125
+              },
+              "relative": [
+                0.042205693114363445,
+                0.033813627693796984,
+                0.46830938947738937,
+                0.06198544899306103
+              ],
+              "text": "Requisito previo: el producto está encendido.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "9.92px",
+              "display": "flex",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 15.27777099609375,
+                    "width": 178.71966552734375,
+                    "x": 670.4557495117188,
+                    "y": -171.96180725097656
+                  },
+                  "text": "Botón de reinicio de salida CA:"
+                },
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.722213745117188,
+                    "width": 554.7526245117188,
+                    "x": 482.4392700195313,
+                    "y": -157.6171875
+                  },
+                  "text": "Cuando el botón de reinicio se levante, necesita remover la carga y presionar el botón de reinicio "
+                },
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222900390625,
+                    "width": 77.20916748046875,
+                    "x": 721.2109985351562,
+                    "y": -143.55035400390625
+                  },
+                  "text": "para reiniciar."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 54.93055725097656,
+                "width": 597.1875,
+                "x": 461.2239685058594,
+                "y": -177.4913330078125
+              },
+              "relative": [
+                0.04561832959267149,
+                0.8557051602474762,
+                0.9082219898934832,
+                0.11880778916587564
+              ],
+              "text": "Botón de reinicio de salida CA:Cuando el botón de reinicio se levante, necesita remover la carga y presionar el botón de reinicio para reiniciar.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777099609375,
+                    "width": 102.1832275390625,
+                    "x": 959.0755615234376,
+                    "y": -511.8793640136719
+                  },
+                  "text": "Encendido"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 105.57726287841795,
+                "x": 959.0755615234376,
+                "y": -510.7682495117187
+              },
+              "relative": [
+                0.802767071791839,
+                0.13486969795758122,
+                0.1605653028218845,
+                0.06509270111073613
+              ],
+              "text": "Encendido",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777099609375,
+                    "width": 91.92706298828124,
+                    "x": 958.4679565429688,
+                    "y": -457.18316650390625
+                  },
+                  "text": "Apagado"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 95.06945037841795,
+                "x": 958.4679565429688,
+                "y": -456.0720825195313
+              },
+              "relative": [
+                0.8018430065620235,
+                0.2531705308892153,
+                0.14458468303634375,
+                0.06509270111073613
+              ],
+              "text": "Apagado",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222900390625,
+                    "width": 95.40802001953124,
+                    "x": 959.7656860351562,
+                    "y": -484.5746765136719
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 99.99132537841795,
+                "x": 959.7656860351562,
+                "y": -484.0191345214844
+              },
+              "relative": [
+                0.8038166353833534,
+                0.1927246219412084,
+                0.15207002910689443,
+                0.04164280700686716
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "5",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222900390625,
+                    "width": 95.40802001953124,
+                    "x": 959.7656860351562,
+                    "y": -430.2430725097656
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 99.99132537841795,
+                "x": 959.7656860351562,
+                "y": -429.6875305175781
+              },
+              "relative": [
+                0.8038166353833534,
+                0.3102369516277087,
+                0.15207002910689443,
+                0.04164280700686716
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            }
+          ],
+          "name": "ac-output"
+        },
+        {
+          "art": {
+            "height": 300.6727600097656,
+            "width": 657.5347290039062,
+            "x": 431.2283325195313,
+            "y": -52.11805725097656
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.8147px",
+                  "rect": {
+                    "height": 16.666667938232422,
+                    "width": 286.8923645019531,
+                    "x": 468.0121765136719,
+                    "y": -31.397571563720703
+                  },
+                  "text": "Requisito previo:  el producto está encendido."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 28.658855438232425,
+                "width": 312.560791015625,
+                "x": 455.177978515625,
+                "y": -37.15711975097656
+              },
+              "relative": [
+                0.03642339322878787,
+                0.049758207226734075,
+                0.4753525209065697,
+                0.09531576933441396
+              ],
+              "text": "Requisito previo:  el producto está encendido.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777862548828,
+                    "width": 102.18316650390624,
+                    "x": 961.4063110351562,
+                    "y": -18.103300094604492
+                  },
+                  "text": "Encendido"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 105.57726287841795,
+                "x": 961.4063110351562,
+                "y": -16.9921875
+              },
+              "relative": [
+                0.8063117507402037,
+                0.11682425022418293,
+                0.1605653028218845,
+                0.10009382823248444
+              ],
+              "text": "Encendido",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.9312px",
+                  "rect": {
+                    "height": 25.27777862548828,
+                    "width": 91.92706298828124,
+                    "x": 960.7986450195312,
+                    "y": 36.58854293823242
+                  },
+                  "text": "Apagado"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 30.095487594604492,
+                "width": 95.06945037841795,
+                "x": 960.7986450195312,
+                "y": 37.69965362548828
+              },
+              "relative": [
+                0.805387592686156,
+                0.2987224744720727,
+                0.14458468303634375,
+                0.10009382823248444
+              ],
+              "text": "Apagado",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.722222328186035,
+                    "width": 95.40802001953124,
+                    "x": 962.0963745117188,
+                    "y": 9.197049140930176
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 99.99132537841795,
+                "x": 962.0963745117188,
+                "y": 9.752604484558104
+              },
+              "relative": [
+                0.8073612215074859,
+                0.20577408386953697,
+                0.15207002910689443,
+                0.06403464444612479
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.5588px",
+                  "rect": {
+                    "height": 14.72222137451172,
+                    "width": 95.40802001953124,
+                    "x": 962.0963745117188,
+                    "y": 63.52864837646485
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.25347328186035,
+                "width": 99.99132537841795,
+                "x": 962.0963745117188,
+                "y": 64.0842056274414
+              },
+              "relative": [
+                0.8073612215074859,
+                0.3864741949840877,
+                0.15207002910689443,
+                0.06403464444612479
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            }
+          ],
+          "name": "usb-output"
+        }
+      ],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA CA"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA USB"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODO DE AHORRO DE ENERGÍA"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "PANTALLA LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS"
+        }
+      ],
+      "height": 889,
+      "pageOverflow": 0,
+      "powerCenters": [
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.00213623046875,
+          "text": "Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón de energía CA o USB está encendido, pero el producto no está cargando ni descargando.",
+          "textAlign": "center",
+          "verticalCenterError": 0.2300395965576172
+        },
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.0021820068359375,
+          "text": "Tiempo de espera predeterminado: 2 horasEl producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga.*El tiempo en espera puede conﬁgurarse en la App de Jackery.",
+          "textAlign": "center",
+          "verticalCenterError": 0.36678314208984375
+        }
+      ],
+      "width": 1280,
+      "lang": "es",
+      "figure_geometry_and_prior_operation_layout_preserved": true
+    },
+    {
+      "brokenImages": 0,
+      "callout": {
+        "boldOpening": [
+          {
+            "fontWeight": "700",
+            "text": "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. "
+          }
+        ],
+        "clippedText": [],
+        "items": [
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 97.22222900390624,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 302.2048645019531
+            },
+            "tag": "LI",
+            "text": "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. If the  connected user device or accessory does not meet safety requirements, there may be a  fire risk. Before using these ports, ensure that the connected device or accessory has fire  safety protection.  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 404.865478515625
+            },
+            "tag": "LI",
+            "text": "Only connect the Jackery HomePower 3600 Plus to devices or accessories that comply  with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 48.611114501953125,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 483.2205200195313
+            },
+            "tag": "LI",
+            "text": "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable  (20V DC/5A, 100W). ",
+            "userSelect": "auto"
+          }
+        ],
+        "label": "CAUTION",
+        "rect": {
+          "height": 259.748291015625,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 287.14410400390625
+        },
+        "selectable": true,
+        "ulCount": 1
+      },
+      "figures": [
+        {
+          "art": {
+            "height": 481.3064575195313,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -590.0955200195312
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "14.2681px",
+                  "rect": {
+                    "height": 17.5,
+                    "width": 248.71527099609375,
+                    "x": 57.63021087646485,
+                    "y": -563.87158203125
+                  },
+                  "text": "Prerequisite: The product is turned on."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 29.600696563720703,
+                "width": 277.2178955078125,
+                "x": 43.38107681274414,
+                "y": -569.84814453125
+              },
+              "relative": [
+                0.04032134124541392,
+                0.042067533422735386,
+                0.4082048680757686,
+                0.06150072599539041
+              ],
+              "text": "Prerequisite: The product is turned on.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "9.92px",
+              "display": "flex",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15.555557250976562,
+                    "width": 147.49130249023438,
+                    "x": 283.849853515625,
+                    "y": -171.06336975097656
+                  },
+                  "text": "AC Output Reset Button: "
+                },
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 578.7760620117188,
+                    "x": 68.20746612548828,
+                    "y": -156.25868225097656
+                  },
+                  "text": "When the Reset Button pops up, you need to remove the load  and press the Reset Button to reset."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 56.73177337646485,
+                "width": 616.7882080078125,
+                "x": 49.201393127441406,
+                "y": -184.34461975097656
+              },
+              "relative": [
+                0.0488917888676645,
+                0.8430198554983848,
+                0.9082240113659016,
+                0.1178703765348145
+              ],
+              "text": "AC Output Reset Button: When the Reset Button pops up, you need to remove the load  and press the Reset Button to reset.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111114501953125,
+                    "width": 29.59637451171875,
+                    "x": 561.1675415039062,
+                    "y": -530.4210205078125
+                  },
+                  "text": "On"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 32.83854293823242,
+                "x": 561.1675415039062,
+                "y": -529.3099365234375
+              },
+              "relative": [
+                0.8027647438385119,
+                0.12629289000060234,
+                0.04835493416955059,
+                0.06458477977611443
+              ],
+              "text": "On",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111114501953125,
+                    "width": 32.10504150390625,
+                    "x": 560.5425415039062,
+                    "y": -473.9323120117187
+                  },
+                  "text": "Oﬀ"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 33.44184112548828,
+                "x": 560.5425415039062,
+                "y": -472.8211975097656
+              },
+              "relative": [
+                0.8018444279185024,
+                0.2436583193048198,
+                0.049243294051541646,
+                0.06458477977611443
+              ],
+              "text": "Oﬀ",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 62.9166259765625,
+                    "x": 561.8837280273438,
+                    "y": -501.9574890136719
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 67.39583587646484,
+                "x": 561.8837280273438,
+                "y": -501.6797180175781
+              },
+              "relative": [
+                0.8038193324132571,
+                0.1836995964226498,
+                0.09924073711912716,
+                0.04131910826208116
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "5",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 62.9166259765625,
+                    "x": 561.8837280273438,
+                    "y": -445.8594055175781
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 67.39583587646484,
+                "x": 561.8837280273438,
+                "y": -445.58160400390625
+              },
+              "relative": [
+                0.8038193324132571,
+                0.3002534326266767,
+                0.09924073711912716,
+                0.04131910826208116
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            }
+          ],
+          "name": "ac-output"
+        },
+        {
+          "art": {
+            "height": 307.6258850097656,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -44.47916793823242
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "14.2681px",
+                  "rect": {
+                    "height": 17.5,
+                    "width": 263.4809265136719,
+                    "x": 47.59982681274414,
+                    "y": -16.88802146911621
+                  },
+                  "text": "Prerequisite: The product is powered on."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 29.600696563720703,
+                "width": 287.2743225097656,
+                "x": 35.703125,
+                "y": -22.86458396911621
+              },
+              "relative": [
+                0.029015515187279795,
+                0.07026256574094879,
+                0.4230130118650651,
+                0.09622303585662507
+              ],
+              "text": "Prerequisite: The product is powered on.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111112594604492,
+                    "width": 29.5963134765625,
+                    "x": 581.3411865234375,
+                    "y": -9.466146469116213
+                  },
+                  "text": "On"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 32.83854293823242,
+                "x": 581.3411865234375,
+                "y": -8.355034828186035
+              },
+              "relative": [
+                0.8324705465202621,
+                0.11742878239553745,
+                0.04835493416955059,
+                0.10104829625352854
+              ],
+              "text": "On",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.11111068725586,
+                    "width": 32.10504150390625,
+                    "x": 580.7161865234375,
+                    "y": 47.0225715637207
+                  },
+                  "text": "Oﬀ"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 33.44184112548828,
+                "x": 580.7161865234375,
+                "y": 48.13368225097656
+              },
+              "relative": [
+                0.8315502306002527,
+                0.3010567533556839,
+                0.049243294051541646,
+                0.10104829625352854
+              ],
+              "text": "Oﬀ",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 62.91668701171875,
+                    "x": 582.052978515625,
+                    "y": 18.99305725097656
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 67.39583587646484,
+                "x": 582.052978515625,
+                "y": 19.27083396911621
+              },
+              "relative": [
+                0.8335186641236948,
+                0.2072322421935491,
+                0.09924073711912716,
+                0.06464720491533721
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 62.91668701171875,
+                    "x": 582.052978515625,
+                    "y": 75.09548950195312
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 67.39583587646484,
+                "x": 582.052978515625,
+                "y": 75.3732681274414
+              },
+              "relative": [
+                0.8335186641236948,
+                0.3896045225903831,
+                0.09924073711912716,
+                0.06464720491533721
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            }
+          ],
+          "name": "usb-output"
+        }
+      ],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "POWER ON/OFF"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AC OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "USB OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENERGY SAVING MODE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "LCD SCREEN "
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "KEY COMBINATION"
+        }
+      ],
+      "height": 889,
+      "pageOverflow": 0,
+      "powerCenters": [
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002166748046875,
+          "text": "Default standby time: 2 hoursThe product will automatically shut down after 2hours of inactivity, with no charging or discharging.*The standby time can be set in the Jackery App.",
+          "textAlign": "center",
+          "verticalCenterError": 0.18225860595703125
+        },
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002147674560546875,
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+          "textAlign": "center",
+          "verticalCenterError": 0.04119682312011719
+        }
+      ],
+      "width": 711,
+      "lang": "en",
+      "figure_geometry_and_prior_operation_layout_preserved": true
+    },
+    {
+      "brokenImages": 0,
+      "callout": {
+        "boldOpening": [
+          {
+            "fontWeight": "700",
+            "text": "Les ports USB-C de 140 W sont des ports de sortie haute puissance de type Source "
+          },
+          {
+            "fontWeight": "700",
+            "text": "d’alimentation 3 (PS3) selon USB-PD. "
+          }
+        ],
+        "clippedText": [],
+        "items": [
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 145.83334350585938,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 291.4930725097656
+            },
+            "tag": "LI",
+            "text": "Les ports USB-C de 140 W sont des ports de sortie haute puissance de type Source  d’alimentation 3 (PS3) selon USB-PD. Si l'appareil utilisateur ou l'accessoire connecté ne  répond pas aux exigences de sécurité, il peut présenter un risque d'incendie. Avant  d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une  protection contre les incendies.  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 442.7647705078125
+            },
+            "tag": "LI",
+            "text": "Ne connectez le Jackery HomePower 3600 Plus qu'à des appareils ou accessoires  conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes  équivalentes).  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 48.611114501953125,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 521.1198120117188
+            },
+            "tag": "LI",
+            "text": "Pour obtenir la puissance de sortie maximale, utilisez le câble officiel Jackery USB-C  vers USB-C 5A (20 V CC/5A, 100 W). ",
+            "userSelect": "auto"
+          }
+        ],
+        "label": "ATTENTION",
+        "rect": {
+          "height": 308.359375,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 276.43231201171875
+        },
+        "selectable": true,
+        "ulCount": 1
+      },
+      "figures": [
+        {
+          "art": {
+            "height": 460.1302185058594,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -575.625
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "14.2681px",
+                  "rect": {
+                    "height": 17.5,
+                    "width": 211.02430725097656,
+                    "x": 53.89323043823242,
+                    "y": -553.1771240234375
+                  },
+                  "text": "Prérequis : Le produit est allumé."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 29.600696563720703,
+                "width": 230.9288330078125,
+                "x": 43.940975189208984,
+                "y": -559.1536865234375
+              },
+              "relative": [
+                0.041145794668530786,
+                0.03579706964269453,
+                0.3400439702500689,
+                0.06433112926127837
+              ],
+              "text": "Prérequis : Le produit est allumé.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "9.92px",
+              "display": "flex",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15.555557250976562,
+                    "width": 246.16319274902344,
+                    "x": 236.2326507568359,
+                    "y": -185.44271850585935
+                  },
+                  "text": "Bouton de réinitialisation de la sortie CA:"
+                },
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 572.4739990234375,
+                    "x": 73.07726287841797,
+                    "y": -170.63803100585938
+                  },
+                  "text": "Lorsque le bouton de réinitialisation sort, vous devez retirer la charge et appuyer sur le bouton de "
+                },
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 179.82205200195312,
+                    "x": 269.40106201171875,
+                    "y": -156.11111450195312
+                  },
+                  "text": "réinitialisation pour réinitialiser."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 62.990455627441406,
+                "width": 616.7882080078125,
+                "x": 50.920143127441406,
+                "y": -194.5920257568359
+              },
+              "relative": [
+                0.05142265764769048,
+                0.8280981316125229,
+                0.9082240113659016,
+                0.13689701978710464
+              ],
+              "text": "Bouton de réinitialisation de la sortie CA:Lorsque le bouton de réinitialisation sort, vous devez retirer la charge et appuyer sur le bouton de réinitialisation pour réinitialiser.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111083984375,
+                    "width": 74.96966552734375,
+                    "x": 562.8862915039062,
+                    "y": -534.4097290039062
+                  },
+                  "text": "Marche"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 78.7109375,
+                "x": 562.8862915039062,
+                "y": -533.2986450195312
+              },
+              "relative": [
+                0.8052956126185379,
+                0.09198777493447707,
+                0.1159022861761898,
+                0.06755711821027652
+              ],
+              "text": "Marche",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111114501953125,
+                    "width": 49.97833251953125,
+                    "x": 562.2569580078125,
+                    "y": -477.9210205078125
+                  },
+                  "text": "Arrêt"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 53.95833587646485,
+                "x": 562.2569580078125,
+                "y": -476.8099060058594
+              },
+              "relative": [
+                0.8043689156018174,
+                0.2147546281898508,
+                0.07945394483892404,
+                0.06755711821027652
+              ],
+              "text": "Arrêt",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 100.25604248046876,
+                    "x": 563.59814453125,
+                    "y": -505.9461975097656
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 104.54427337646484,
+                "x": 563.59814453125,
+                "y": -505.6684265136719
+              },
+              "relative": [
+                0.806343820096572,
+                0.15203646853165173,
+                0.1539420146146887,
+                0.0432207075859223
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "5",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 100.25604248046876,
+                    "x": 563.59814453125,
+                    "y": -449.8481140136719
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 104.54427337646484,
+                "x": 563.59814453125,
+                "y": -449.5703430175781
+              },
+              "relative": [
+                0.806343820096572,
+                0.2739543110029768,
+                0.1539420146146887,
+                0.0432207075859223
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            }
+          ],
+          "name": "ac-output"
+        },
+        {
+          "art": {
+            "height": 303.61981201171875,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -51.18489837646485
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "14.2681px",
+                  "rect": {
+                    "height": 17.5,
+                    "width": 211.0243225097656,
+                    "x": 52.730037689208984,
+                    "y": -31.697050094604492
+                  },
+                  "text": "Prérequis : Le produit est allumé."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 29.600696563720703,
+                "width": 231.71441650390625,
+                "x": 42.38715362548828,
+                "y": -37.673614501953125
+              },
+              "relative": [
+                0.03885778391341697,
+                0.04450066609615787,
+                0.3412007462467917,
+                0.09749263846648522
+              ],
+              "text": "Prérequis : Le produit est allumé.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111112594604492,
+                    "width": 74.9696044921875,
+                    "x": 561.6927490234375,
+                    "y": -17.947050094604492
+                  },
+                  "text": "Marche"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 78.7109375,
+                "x": 561.6927490234375,
+                "y": -16.8359375
+              },
+              "relative": [
+                0.8035381147849652,
+                0.1131314872006412,
+                0.1159022861761898,
+                0.10238156514806392
+              ],
+              "text": "Marche",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.11111068725586,
+                    "width": 49.978271484375,
+                    "x": 561.0634155273438,
+                    "y": 38.54166793823242
+                  },
+                  "text": "Arrêt "
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 59.36198043823242,
+                "x": 561.0634155273438,
+                "y": 39.65277862548828
+              },
+              "relative": [
+                0.8026114177682446,
+                0.2991823109305103,
+                0.08741084102495153,
+                0.10238156514806392
+              ],
+              "text": "Arrêt ",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 100.256103515625,
+                    "x": 562.404541015625,
+                    "y": 10.51215362548828
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 104.54427337646484,
+                "x": 562.404541015625,
+                "y": 10.789931297302246
+              },
+              "relative": [
+                0.8045862323883978,
+                0.2041198473285895,
+                0.1539420146146887,
+                0.06550018423936281
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 100.256103515625,
+                    "x": 562.404541015625,
+                    "y": 66.6232681274414
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 104.54427337646484,
+                "x": 562.404541015625,
+                "y": 66.90104675292969
+              },
+              "relative": [
+                0.8045862323883978,
+                0.3889270082442341,
+                0.1539420146146887,
+                0.06550018423936281
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            }
+          ],
+          "name": "usb-output"
+        }
+      ],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE CA MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE USB MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODE D’ÉCONOMIE D’ÉNERGIE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AFFICHAGE LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "FONCTIONNEMENT DES BOUTONS"
+        }
+      ],
+      "height": 889,
+      "pageOverflow": 0,
+      "powerCenters": [
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002197265625,
+          "text": "Temps de veille par défaut : 2 heuresLe produit s’éteindra automatiquement après 2 heures d’inactivité, sans charge ni décharge.*Le temps de veille peut être réglé dans l'application Jackery.",
+          "textAlign": "center",
+          "verticalCenterError": 0.1823081970214844
+        },
+        {
+          "display": "flex",
+          "horizontalCenterError": 3.814697265625e-06,
+          "text": "Lorsque le mode Économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton d'alimentation CA ou USB est allumé mais que le produit ne charge ni ne décharge.",
+          "textAlign": "center",
+          "verticalCenterError": 0.04119682312011719
+        }
+      ],
+      "width": 711,
+      "lang": "fr",
+      "figure_geometry_and_prior_operation_layout_preserved": true
+    },
+    {
+      "brokenImages": 0,
+      "callout": {
+        "boldOpening": [
+          {
+            "fontWeight": "700",
+            "text": "El puerto USB-C de 100 W es una salida de alta potencia de tipo Fuente de "
+          },
+          {
+            "fontWeight": "700",
+            "text": "Alimentación 3 (PS3) según USB-PD.  "
+          }
+        ],
+        "clippedText": [],
+        "items": [
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 145.83334350585938,
+              "width": 504.0147705078125,
+              "x": 174.43577575683594,
+              "y": 291.193603515625
+            },
+            "tag": "LI",
+            "text": "El puerto USB-C de 100 W es una salida de alta potencia de tipo Fuente de  Alimentación 3 (PS3) según USB-PD.  Si el dispositivo del usuario o accesorio  conectado no cumple con los requisitos de seguridad, puede existir riesgo de  incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio  conectado tenga protección contra incendios.  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 504.0147705078125,
+              "x": 174.43577575683594,
+              "y": 442.4653015136719
+            },
+            "tag": "LI",
+            "text": "Solo conecte el Jackery HomePower 3600 Plus a dispositivos o accesorios que  cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otros estándares  equivalentes).  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 48.611114501953125,
+              "width": 504.0147705078125,
+              "x": 174.43577575683594,
+              "y": 520.8203125
+            },
+            "tag": "LI",
+            "text": "Para obtener la potencia máxima de salida, utilice el cable oficial Jackery USB-C  a USB-C de 5 A (20 V CC/5 A, 100W). ",
+            "userSelect": "auto"
+          }
+        ],
+        "label": "PRECAUCIÓN",
+        "rect": {
+          "height": 308.359375,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 276.1328125
+        },
+        "selectable": true,
+        "ulCount": 1
+      },
+      "figures": [
+        {
+          "art": {
+            "height": 477.521728515625,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -600.23876953125
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "14.2681px",
+                  "rect": {
+                    "height": 17.5,
+                    "width": 296.2934265136719,
+                    "x": 55.525177001953125,
+                    "y": -578.1163330078125
+                  },
+                  "text": "Requisito previo: el producto está encendido."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 29.600696563720703,
+                "width": 318.03387451171875,
+                "x": 44.65711975097656,
+                "y": -584.0928955078125
+              },
+              "relative": [
+                0.04220032145448741,
+                0.03381181014239269,
+                0.46830662050467464,
+                0.061988166812292265
+              ],
+              "text": "Requisito previo: el producto está encendido.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "9.92px",
+              "display": "flex",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15.555557250976562,
+                    "width": 184.5703125,
+                    "x": 263.08160400390625,
+                    "y": -185.59896850585935
+                  },
+                  "text": "Botón de reinicio de salida CA:"
+                },
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 572.912353515625,
+                    "x": 68.91059112548828,
+                    "y": -170.79428100585938
+                  },
+                  "text": "Cuando el botón de reinicio se levante, necesita remover la carga y presionar el botón de reinicio "
+                },
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 79.73959350585938,
+                    "x": 315.4991455078125,
+                    "y": -156.26736450195312
+                  },
+                  "text": "para reiniciar."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 56.73177337646485,
+                "width": 616.7882080078125,
+                "x": 46.97482681274414,
+                "y": -191.61892700195312
+              },
+              "relative": [
+                0.04561315778546825,
+                0.8557094224790368,
+                0.9082240113659016,
+                0.11880459042736212
+              ],
+              "text": "Botón de reinicio de salida CA:Cuando el botón de reinicio se levante, necesita remover la carga y presionar el botón de reinicio para reiniciar.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111114501953125,
+                    "width": 105.53387451171876,
+                    "x": 561.1675415039062,
+                    "y": -536.9444580078125
+                  },
+                  "text": "Encendido"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 109.04080200195312,
+                "x": 561.1675415039062,
+                "y": -535.8333740234375
+              },
+              "relative": [
+                0.8027647438385119,
+                0.13487427202112143,
+                0.1605631776207928,
+                0.06509666410437188
+              ],
+              "text": "Encendido",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111114501953125,
+                    "width": 94.943603515625,
+                    "x": 560.5425415039062,
+                    "y": -480.4557495117187
+                  },
+                  "text": "Apagado"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 98.19010925292967,
+                "x": 560.5425415039062,
+                "y": -479.3446350097656
+              },
+              "relative": [
+                0.8018444279185024,
+                0.2531699131205683,
+                0.14458547317270107,
+                0.06509666410437188
+              ],
+              "text": "Apagado",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 98.532958984375,
+                    "x": 561.87939453125,
+                    "y": -508.4852600097656
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 103.27257537841795,
+                "x": 561.87939453125,
+                "y": -508.2074890136719
+              },
+              "relative": [
+                0.8038129513165461,
+                0.1927268960171867,
+                0.152069432353814,
+                0.041646594150401166
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "5",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 98.532958984375,
+                    "x": 561.87939453125,
+                    "y": -452.3698120117187
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 103.27257537841795,
+                "x": 561.87939453125,
+                "y": -452.092041015625
+              },
+              "relative": [
+                0.8038129513165461,
+                0.3102408113995958,
+                0.152069432353814,
+                0.041646594150401166
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            }
+          ],
+          "name": "ac-output"
+        },
+        {
+          "art": {
+            "height": 310.54254150390625,
+            "width": 679.1146240234375,
+            "x": 15.99826431274414,
+            "y": -58.40711975097656
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "14.2681px",
+                  "rect": {
+                    "height": 17.5,
+                    "width": 296.2934265136719,
+                    "x": 53.99305725097656,
+                    "y": -36.97916793823242
+                  },
+                  "text": "Requisito previo:  el producto está encendido."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 29.600696563720703,
+                "width": 322.8168640136719,
+                "x": 40.7335090637207,
+                "y": -42.95573043823242
+              },
+              "relative": [
+                0.03642278324744617,
+                0.049756111474826,
+                0.4753495987188915,
+                0.09531929641706872
+              ],
+              "text": "Requisito previo:  el producto está encendido.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111112594604492,
+                    "width": 105.53387451171876,
+                    "x": 563.576416015625,
+                    "y": -23.242189407348633
+                  },
+                  "text": "Encendido"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 109.04080200195312,
+                "x": 563.576416015625,
+                "y": -22.13107681274414
+              },
+              "relative": [
+                0.8063118247384155,
+                0.11681505136962408,
+                0.1605631776207928,
+                0.10009923733212472
+              ],
+              "text": "Encendido",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "21.6181px",
+                  "rect": {
+                    "height": 26.111114501953125,
+                    "width": 94.943603515625,
+                    "x": 562.9470825195312,
+                    "y": 33.24652862548828
+                  },
+                  "text": "Apagado"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 31.085071563720703,
+                "width": 98.19010925292967,
+                "x": 562.9470825195312,
+                "y": 34.35763931274414
+              },
+              "relative": [
+                0.805385127721695,
+                0.29871836114458356,
+                0.14458547317270107,
+                0.10009923733212472
+              ],
+              "text": "Apagado",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 15,
+                    "width": 98.53302001953124,
+                    "x": 564.2882080078125,
+                    "y": 5.217014312744141
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 103.27257537841795,
+                "x": 564.2882080078125,
+                "y": 5.4947919845581055
+              },
+              "relative": [
+                0.8073599423418482,
+                0.2057750652328285,
+                0.152069432353814,
+                0.06404002984318374
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.971px",
+                  "rect": {
+                    "height": 14.999996185302734,
+                    "width": 98.53302001953124,
+                    "x": 564.2882080078125,
+                    "y": 61.33246994018555
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 19.88715362548828,
+                "width": 103.27257537841795,
+                "x": 564.2882080078125,
+                "y": 61.61024475097656
+              },
+              "relative": [
+                0.8073599423418482,
+                0.38647640326741983,
+                0.152069432353814,
+                0.06404002984318374
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            }
+          ],
+          "name": "usb-output"
+        }
+      ],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA CA"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA USB"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODO DE AHORRO DE ENERGÍA"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "PANTALLA LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS"
+        }
+      ],
+      "height": 889,
+      "pageOverflow": 0,
+      "powerCenters": [
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002178192138671875,
+          "text": "Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón de energía CA o USB está encendido, pero el producto no está cargando ni descargando.",
+          "textAlign": "center",
+          "verticalCenterError": 0.04125022888183594
+        },
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.0021820068359375,
+          "text": "Tiempo de espera predeterminado: 2 horasEl producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga.*El tiempo en espera puede conﬁgurarse en la App de Jackery.",
+          "textAlign": "center",
+          "verticalCenterError": 0.1823158264160156
+        }
+      ],
+      "width": 711,
+      "lang": "es",
+      "figure_geometry_and_prior_operation_layout_preserved": true
+    },
+    {
+      "brokenImages": 0,
+      "callout": {
+        "boldOpening": [
+          {
+            "fontWeight": "700",
+            "text": "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. "
+          }
+        ],
+        "clippedText": [],
+        "items": [
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 170.13890075683594,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 281.1111145019531
+            },
+            "tag": "LI",
+            "text": "USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. If the  connected user device or accessory does not meet safety requirements, there may be a  fire risk. Before using these ports, ensure that the connected device or accessory has fire  safety protection.  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 121.5277862548828,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 456.6883850097656
+            },
+            "tag": "LI",
+            "text": "Only connect the Jackery HomePower 3600 Plus to devices or accessories that comply  with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards).  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 583.654541015625
+            },
+            "tag": "LI",
+            "text": "To obtain maximum output power, use the official Jackery USB-C to USB-C 5A cable  (20V DC/5A, 100W). ",
+            "userSelect": "auto"
+          }
+        ],
+        "label": "CAUTION",
+        "rect": {
+          "height": 456.1198120117187,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 215.5121612548828
+        },
+        "selectable": true,
+        "ulCount": 1
+      },
+      "figures": [
+        {
+          "art": {
+            "height": 453.5850830078125,
+            "width": 640,
+            "x": 15.99826431274414,
+            "y": -616.2890625
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.4464px",
+                  "rect": {
+                    "height": 16.388916015625,
+                    "width": 234.37936401367188,
+                    "x": 55.23871612548828,
+                    "y": -591.623291015625
+                  },
+                  "text": "Prerequisite: The product is turned on."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 27.89496612548828,
+                "width": 261.25,
+                "x": 41.80555725097656,
+                "y": -597.209228515625
+              },
+              "relative": [
+                0.04032389521598816,
+                0.04206450939226847,
+                0.408203125,
+                0.06149886133933514
+              ],
+              "text": "Prerequisite: The product is turned on.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "9.92px",
+              "display": "flex",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 15,
+                    "width": 138.9930419921875,
+                    "x": 268.420166015625,
+                    "y": -221.69705200195312
+                  },
+                  "text": "AC Output Reset Button: "
+                },
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166671752929688,
+                    "width": 545.4297485351562,
+                    "x": 65.20399475097656,
+                    "y": -207.45660400390625
+                  },
+                  "text": "When the Reset Button pops up, you need to remove the load  and press the Reset Button to reset."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 53.46354293823242,
+                "width": 581.2630615234375,
+                "x": 47.28732681274414,
+                "y": -233.9105987548828
+              },
+              "relative": [
+                0.04888916015625,
+                0.8430137543534058,
+                0.9082235336303712,
+                0.117868829776555
+              ],
+              "text": "AC Output Reset Button: When the Reset Button pops up, you need to remove the load  and press the Reset Button to reset.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.4444580078125,
+                    "width": 27.890625,
+                    "x": 529.77001953125,
+                    "y": -559.8350830078125
+                  },
+                  "text": "On"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 30.94618225097656,
+                "x": 529.77001953125,
+                "y": -559.0017700195312
+              },
+              "relative": [
+                0.8027683675289154,
+                0.1262988899471415,
+                0.04835340976715088,
+                0.06458002451847787
+              ],
+              "text": "On",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.4444580078125,
+                    "width": 30.256103515625,
+                    "x": 529.1796875,
+                    "y": -506.6015930175781
+                  },
+                  "text": "Oﬀ"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 31.514759063720703,
+                "x": 529.1796875,
+                "y": -505.7682495117187
+              },
+              "relative": [
+                0.8018459737300873,
+                0.24366059892313005,
+                0.0492418110370636,
+                0.06458002451847787
+              ],
+              "text": "Oﬀ",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.1666259765625,
+                    "width": 59.29254150390625,
+                    "x": 530.4427490234375,
+                    "y": -533.2421875
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 63.515628814697266,
+                "x": 530.4427490234375,
+                "y": -532.9644165039062
+              },
+              "relative": [
+                0.8038195073604584,
+                0.18370235071125252,
+                0.09924317002296448,
+                0.041318201057439254
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "5",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166656494140623,
+                    "width": 59.29254150390625,
+                    "x": 530.4427490234375,
+                    "y": -480.3776245117187
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 63.515628814697266,
+                "x": 530.4427490234375,
+                "y": -480.099853515625
+              },
+              "relative": [
+                0.8038195073604584,
+                0.30025063452545087,
+                0.09924317002296448,
+                0.041318201057439254
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            }
+          ],
+          "name": "ac-output"
+        },
+        {
+          "art": {
+            "height": 289.90887451171875,
+            "width": 640,
+            "x": 15.99826431274414,
+            "y": -98.39410400390624
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.4464px",
+                  "rect": {
+                    "height": 16.38888931274414,
+                    "width": 248.29428100585935,
+                    "x": 45.78559112548828,
+                    "y": -72.43923950195312
+                  },
+                  "text": "Prerequisite: The product is powered on."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 27.89496612548828,
+                "width": 270.72918701171875,
+                "x": 34.5703125,
+                "y": -78.02517700195312
+              },
+              "relative": [
+                0.02901882529258728,
+                0.07025975674687313,
+                0.42301435470581056,
+                0.09621977310101525
+              ],
+              "text": "Prerequisite: The product is powered on.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.444446563720703,
+                    "width": 27.890625,
+                    "x": 548.7803955078125,
+                    "y": -65.18663787841797
+                  },
+                  "text": "On"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.296876907348633,
+                "width": 30.94618225097656,
+                "x": 548.7803955078125,
+                "y": -64.35330200195312
+              },
+              "relative": [
+                0.8324720799922943,
+                0.11741897194174068,
+                0.04835340976715088,
+                0.10105546771099064
+              ],
+              "text": "On",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.444446563720703,
+                    "width": 30.256103515625,
+                    "x": 548.1901245117188,
+                    "y": -11.948784828186035
+                  },
+                  "text": "Oﬀ"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.296876907348633,
+                "width": 31.514759063720703,
+                "x": 548.1901245117188,
+                "y": -11.11545181274414
+              },
+              "relative": [
+                0.8315497815608979,
+                0.30105546902681696,
+                0.0492418110370636,
+                0.10105546771099064
+              ],
+              "text": "Oﬀ",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166666030883787,
+                    "width": 59.29254150390625,
+                    "x": 549.453125,
+                    "y": -38.59375
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 63.515628814697266,
+                "x": 549.453125,
+                "y": -38.315975189208984
+              },
+              "relative": [
+                0.8335232198238373,
+                0.20723107878599548,
+                0.09924317002296448,
+                0.06464555349655053
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166666984558104,
+                    "width": 59.29254150390625,
+                    "x": 549.453125,
+                    "y": 14.275174140930176
+                  },
+                  "text": "Press once"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 63.515628814697266,
+                "x": 549.453125,
+                "y": 14.55295181274414
+              },
+              "relative": [
+                0.8335232198238373,
+                0.389595027081811,
+                0.09924317002296448,
+                0.06464555349655053
+              ],
+              "text": "Press once",
+              "textAlign": "left"
+            }
+          ],
+          "name": "usb-output"
+        }
+      ],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "POWER ON/OFF"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AC OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "USB OUTPUT ON/OFF"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENERGY SAVING MODE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "LCD SCREEN "
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "KEY COMBINATION"
+        }
+      ],
+      "height": 889,
+      "pageOverflow": 0,
+      "powerCenters": [
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002166748046875,
+          "text": "Default standby time: 2 hoursThe product will automatically shut down after 2hours of inactivity, with no charging or discharging.*The standby time can be set in the Jackery App.",
+          "textAlign": "center",
+          "verticalCenterError": 0.3146820068359375
+        },
+        {
+          "display": "flex",
+          "horizontalCenterError": 2.6702880859375e-05,
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+          "textAlign": "center",
+          "verticalCenterError": 0.03685951232910156
+        }
+      ],
+      "width": 390,
+      "lang": "en",
+      "figure_geometry_and_prior_operation_layout_preserved": true
+    },
+    {
+      "brokenImages": 0,
+      "callout": {
+        "boldOpening": [
+          {
+            "fontWeight": "700",
+            "text": "Les ports USB-C de 140 W sont des ports de sortie haute puissance de type Source "
+          },
+          {
+            "fontWeight": "700",
+            "text": "d’alimentation 3 (PS3) selon USB-PD. "
+          }
+        ],
+        "clippedText": [],
+        "items": [
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 243.0555725097656,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 199.4053955078125
+            },
+            "tag": "LI",
+            "text": "Les ports USB-C de 140 W sont des ports de sortie haute puissance de type Source  d’alimentation 3 (PS3) selon USB-PD. Si l'appareil utilisateur ou l'accessoire connecté ne  répond pas aux exigences de sécurité, il peut présenter un risque d'incendie. Avant  d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une  protection contre les incendies.  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 121.5277862548828,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 447.8993225097656
+            },
+            "tag": "LI",
+            "text": "Ne connectez le Jackery HomePower 3600 Plus qu'à des appareils ou accessoires  conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes  équivalentes).  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 97.22222900390624,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 574.865478515625
+            },
+            "tag": "LI",
+            "text": "Pour obtenir la puissance de sortie maximale, utilisez le câble officiel Jackery USB-C  vers USB-C 5A (20 V CC/5A, 100 W). ",
+            "userSelect": "auto"
+          }
+        ],
+        "label": "ATTENTION",
+        "rect": {
+          "height": 553.342041015625,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 133.80642700195312
+        },
+        "selectable": true,
+        "ulCount": 1
+      },
+      "figures": [
+        {
+          "art": {
+            "height": 433.62847900390625,
+            "width": 640,
+            "x": 15.99826431274414,
+            "y": -674.26220703125
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.4464px",
+                  "rect": {
+                    "height": 16.38885498046875,
+                    "width": 198.86285400390625,
+                    "x": 51.714412689208984,
+                    "y": -653.1553955078125
+                  },
+                  "text": "Prérequis : Le produit est allumé."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 27.89496612548828,
+                "width": 217.6258850097656,
+                "x": 42.3350715637207,
+                "y": -658.7413330078125
+              },
+              "relative": [
+                0.04115126132965088,
+                0.03579302277168397,
+                0.3400404453277588,
+                0.06432918379707481
+              ],
+              "text": "Prérequis : Le produit est allumé.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "9.92px",
+              "display": "flex",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 15,
+                    "width": 231.97918701171875,
+                    "x": 223.5460205078125,
+                    "y": -306.857666015625
+                  },
+                  "text": "Bouton de réinitialisation de la sortie CA:"
+                },
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166656494140623,
+                    "width": 539.4921875,
+                    "x": 69.79167175292969,
+                    "y": -292.6171875
+                  },
+                  "text": "Lorsque le bouton de réinitialisation sort, vous devez retirer la charge et appuyer sur le bouton de "
+                },
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.16668701171875,
+                    "width": 169.46180725097656,
+                    "x": 254.80470275878903,
+                    "y": -278.93231201171875
+                  },
+                  "text": "réinitialisation pour réinitialiser."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 59.36198043823242,
+                "width": 581.2630615234375,
+                "x": 48.906253814697266,
+                "y": -315.177978515625
+              },
+              "relative": [
+                0.051418733596801755,
+                0.8280918941036395,
+                0.9082235336303712,
+                0.1368959450601437
+              ],
+              "text": "Bouton de réinitialisation de la sortie CA:Lorsque le bouton de réinitialisation sort, vous devez retirer la charge et appuyer sur le bouton de réinitialisation pour réinitialiser.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.4444580078125,
+                    "width": 70.65106201171875,
+                    "x": 531.388916015625,
+                    "y": -635.2040405273438
+                  },
+                  "text": "Marche"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 74.17535400390625,
+                "x": 531.388916015625,
+                "y": -634.3706665039062
+              },
+              "relative": [
+                0.8052978932857513,
+                0.09199474310123527,
+                0.11589899063110352,
+                0.06755214936331817
+              ],
+              "text": "Marche",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.4444580078125,
+                    "width": 47.1007080078125,
+                    "x": 530.7943115234375,
+                    "y": -581.9705200195312
+                  },
+                  "text": "Arrêt"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 50.8506965637207,
+                "x": 530.7943115234375,
+                "y": -581.13720703125
+              },
+              "relative": [
+                0.8043688237667084,
+                0.21475757361213607,
+                0.0794542133808136,
+                0.06755214936331817
+              ],
+              "text": "Arrêt",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.16668701171875,
+                    "width": 94.47918701171876,
+                    "x": 532.0616455078125,
+                    "y": -608.6111450195312
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 98.52430725097656,
+                "x": 532.0616455078125,
+                "y": -608.3333740234375
+              },
+              "relative": [
+                0.8063490331172943,
+                0.15203990558751698,
+                0.15394423007965088,
+                0.04321976199400696
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "5",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.16668701171875,
+                    "width": 94.47918701171876,
+                    "x": 532.0616455078125,
+                    "y": -555.74658203125
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 98.52430725097656,
+                "x": 532.0616455078125,
+                "y": -555.46875
+              },
+              "relative": [
+                0.8063490331172943,
+                0.2739521567036649,
+                0.15394423007965088,
+                0.04321976199400696
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            }
+          ],
+          "name": "ac-output"
+        },
+        {
+          "art": {
+            "height": 286.1328125,
+            "width": 640,
+            "x": 15.99826431274414,
+            "y": -176.32379150390625
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.4464px",
+                  "rect": {
+                    "height": 16.388885498046875,
+                    "width": 198.8585205078125,
+                    "x": 50.625003814697266,
+                    "y": -158.0078125
+                  },
+                  "text": "Prérequis : Le produit est allumé."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 27.89496612548828,
+                "width": 218.37240600585935,
+                "x": 40.86805725097656,
+                "y": -163.59376525878906
+              },
+              "relative": [
+                0.03885905146598816,
+                0.04448992107508532,
+                0.34120688438415525,
+                0.0974895744453925
+              ],
+              "text": "Prérequis : Le produit est allumé.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.44445037841797,
+                    "width": 70.65106201171875,
+                    "x": 530.2604370117188,
+                    "y": -144.78733825683594
+                  },
+                  "text": "Marche"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 74.1796875,
+                "x": 530.2604370117188,
+                "y": -143.95399475097656
+              },
+              "relative": [
+                0.8035346448421479,
+                0.11312857295221844,
+                0.11590576171875,
+                0.10237391344923208
+              ],
+              "text": "Marche",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.44445037841797,
+                    "width": 47.1007080078125,
+                    "x": 529.670166015625,
+                    "y": -91.55382537841795
+                  },
+                  "text": "Arrêt "
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 55.94184112548828,
+                "x": 529.670166015625,
+                "y": -90.72048950195312
+              },
+              "relative": [
+                0.8026123464107513,
+                0.2991733148464164,
+                0.08740912675857544,
+                0.10237391344923208
+              ],
+              "text": "Arrêt ",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166664123535156,
+                    "width": 94.47918701171876,
+                    "x": 530.9331665039062,
+                    "y": -118.19445037841795
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 98.52430725097656,
+                "x": 530.9331665039062,
+                "y": -117.91667175292967
+              },
+              "relative": [
+                0.8045857846736908,
+                0.20412590656996588,
+                0.15394423007965088,
+                0.06549867347482935
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166664123535156,
+                    "width": 94.47918701171876,
+                    "x": 530.9331665039062,
+                    "y": -65.31684112548828
+                  },
+                  "text": "Appuyez une fois"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 98.52430725097656,
+                "x": 530.9331665039062,
+                "y": -65.0390625
+              },
+              "relative": [
+                0.8045857846736908,
+                0.38892683447098975,
+                0.15394423007965088,
+                0.06549867347482935
+              ],
+              "text": "Appuyez une fois",
+              "textAlign": "left"
+            }
+          ],
+          "name": "usb-output"
+        }
+      ],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE CA MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE USB MARCHE/ARRÊT"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODE D’ÉCONOMIE D’ÉNERGIE"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AFFICHAGE LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "FONCTIONNEMENT DES BOUTONS"
+        }
+      ],
+      "height": 889,
+      "pageOverflow": 0,
+      "powerCenters": [
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002166748046875,
+          "text": "Temps de veille par défaut : 2 heuresLe produit s’éteindra automatiquement après 2 heures d’inactivité, sans charge ni décharge.*Le temps de veille peut être réglé dans l'application Jackery.",
+          "textAlign": "center",
+          "verticalCenterError": 0.314697265625
+        },
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002166748046875,
+          "text": "Lorsque le mode Économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton d'alimentation CA ou USB est allumé mais que le produit ne charge ni ne décharge.",
+          "textAlign": "center",
+          "verticalCenterError": 0.03692054748535156
+        }
+      ],
+      "width": 390,
+      "lang": "fr",
+      "imageResourceState": {
+        "completedImageErrors": [],
+        "deferredLazyImages": [
+          "assets/shared-fcc-mark.svg"
+        ],
+        "pendingNonLazyImages": []
+      },
+      "figure_geometry_and_prior_operation_layout_preserved": true
+    },
+    {
+      "brokenImages": 0,
+      "callout": {
+        "boldOpening": [
+          {
+            "fontWeight": "700",
+            "text": "El puerto USB-C de 100 W es una salida de alta potencia de tipo Fuente de "
+          },
+          {
+            "fontWeight": "700",
+            "text": "Alimentación 3 (PS3) según USB-PD.  "
+          }
+        ],
+        "clippedText": [],
+        "items": [
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 243.0555725097656,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 217.5868225097656
+            },
+            "tag": "LI",
+            "text": "El puerto USB-C de 100 W es una salida de alta potencia de tipo Fuente de  Alimentación 3 (PS3) según USB-PD.  Si el dispositivo del usuario o accesorio  conectado no cumple con los requisitos de seguridad, puede existir riesgo de  incendio. Antes de usar estos puertos, asegúrese de que el dispositivo o accesorio  conectado tenga protección contra incendios.  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 121.5277862548828,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 466.0807495117187
+            },
+            "tag": "LI",
+            "text": "Solo conecte el Jackery HomePower 3600 Plus a dispositivos o accesorios que  cumplan con las cláusulas 6.3, 6.4 y 6.5 de IEC/EN/UL 62368-1 (u otros estándares  equivalentes).  ",
+            "userSelect": "auto"
+          },
+          {
+            "display": "list-item",
+            "listStyleType": "disc",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 593.046875
+            },
+            "tag": "LI",
+            "text": "Para obtener la potencia máxima de salida, utilice el cable oficial Jackery USB-C  a USB-C de 5 A (20 V CC/5 A, 100W). ",
+            "userSelect": "auto"
+          }
+        ],
+        "label": "PRECAUCIÓN",
+        "rect": {
+          "height": 529.0364990234375,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 151.98785400390625
+        },
+        "selectable": true,
+        "ulCount": 1
+      },
+      "figures": [
+        {
+          "art": {
+            "height": 450.0173950195313,
+            "width": 640,
+            "x": 15.99826431274414,
+            "y": -678.9931030273438
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.4464px",
+                  "rect": {
+                    "height": 16.38885498046875,
+                    "width": 279.21875,
+                    "x": 53.25521087646485,
+                    "y": -658.1901245117188
+                  },
+                  "text": "Requisito previo: el producto está encendido."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 27.89496612548828,
+                "width": 299.7178955078125,
+                "x": 43.007816314697266,
+                "y": -663.7760620117188
+              },
+              "relative": [
+                0.042202425003051755,
+                0.03381433958783874,
+                0.468309211730957,
+                0.061986417490100816
+              ],
+              "text": "Requisito previo: el producto está encendido.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "9.92px",
+              "display": "flex",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 15,
+                    "width": 173.93666076660156,
+                    "x": 248.8541717529297,
+                    "y": -288.54168701171875
+                  },
+                  "text": "Botón de reinicio de salida CA:"
+                },
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.16668701171875,
+                    "width": 539.904541015625,
+                    "x": 65.86805725097656,
+                    "y": -274.3012390136719
+                  },
+                  "text": "Cuando el botón de reinicio se levante, necesita remover la carga y presionar el botón de reinicio "
+                },
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166671752929688,
+                    "width": 75.14321899414062,
+                    "x": 298.2508850097656,
+                    "y": -260.6163330078125
+                  },
+                  "text": "para reiniciar."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 53.46354293823242,
+                "width": 581.2630615234375,
+                "x": 45.190975189208984,
+                "y": -293.9106140136719
+              },
+              "relative": [
+                0.04561361074447632,
+                0.8557057866551111,
+                0.9082235336303712,
+                0.11880328078409512
+              ],
+              "text": "Botón de reinicio de salida CA:Cuando el botón de reinicio se levante, necesita remover la carga y presionar el botón de reinicio para reiniciar.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.4444580078125,
+                    "width": 99.45751953125,
+                    "x": 529.765625,
+                    "y": -619.1319580078125
+                  },
+                  "text": "Encendido"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 102.76042175292967,
+                "x": 529.765625,
+                "y": -618.2986450195312
+              },
+              "relative": [
+                0.8027615010738373,
+                0.13487135981749837,
+                0.16056315898895265,
+                0.06509200778914118
+              ],
+              "text": "Encendido",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.44439697265625,
+                    "width": 89.474853515625,
+                    "x": 529.1753540039062,
+                    "y": -565.8941040039062
+                  },
+                  "text": "Apagado"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 92.53472900390624,
+                "x": 529.1753540039062,
+                "y": -565.060791015625
+              },
+              "relative": [
+                0.8018392026424408,
+                0.2531731290226547,
+                0.1445855140686035,
+                0.06509200778914118
+              ],
+              "text": "Apagado",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.1666259765625,
+                    "width": 92.85589599609376,
+                    "x": 530.4384155273438,
+                    "y": -592.5390625
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 97.3263931274414,
+                "x": 530.4384155273438,
+                "y": -592.2612915039062
+              },
+              "relative": [
+                0.8038127362728119,
+                0.1927299088509084,
+                0.1520724892616272,
+                0.04164576717208604
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "5",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.16668701171875,
+                    "width": 92.85589599609376,
+                    "x": 530.4384155273438,
+                    "y": -539.6571655273438
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 97.3263931274414,
+                "x": 530.4384155273438,
+                "y": -539.37939453125
+              },
+              "relative": [
+                0.8038127362728119,
+                0.3102406930070656,
+                0.1520724892616272,
+                0.04164576717208604
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            }
+          ],
+          "name": "ac-output"
+        },
+        {
+          "art": {
+            "height": 292.65625,
+            "width": 640,
+            "x": 15.99826431274414,
+            "y": -164.66580200195312
+          },
+          "labels": [
+            {
+              "borderRadius": "999px",
+              "display": "flex",
+              "line": "0",
+              "lines": [
+                {
+                  "fontSize": "13.4464px",
+                  "rect": {
+                    "height": 16.388885498046875,
+                    "width": 279.21875,
+                    "x": 51.80989837646485,
+                    "y": -144.5182342529297
+                  },
+                  "text": "Requisito previo:  el producto está encendido."
+                }
+              ],
+              "pill": true,
+              "rect": {
+                "height": 27.89496612548828,
+                "width": 304.2231140136719,
+                "x": 39.30989837646485,
+                "y": -150.1041717529297
+              },
+              "relative": [
+                0.0364244282245636,
+                0.0497567718065937,
+                0.4753486156463623,
+                0.09531648862953818
+              ],
+              "text": "Requisito previo:  el producto está encendido.",
+              "textAlign": "center"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "1",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.44445037841797,
+                    "width": 99.45745849609376,
+                    "x": 532.03564453125,
+                    "y": -131.31077575683594
+                  },
+                  "text": "Encendido"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 102.76042175292967,
+                "x": 532.03564453125,
+                "y": -130.47743225097656
+              },
+              "relative": [
+                0.8063084065914154,
+                0.11682091105512547,
+                0.16056315898895265,
+                0.10009195355253936
+              ],
+              "text": "Encendido",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "2",
+              "lines": [
+                {
+                  "fontSize": "20.3731px",
+                  "rect": {
+                    "height": 24.444446563720703,
+                    "width": 89.474853515625,
+                    "x": 531.4453125,
+                    "y": -78.07726287841797
+                  },
+                  "text": "Apagado"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 29.29253578186035,
+                "width": 92.53472900390624,
+                "x": 531.4453125,
+                "y": -77.24392700195312
+              },
+              "relative": [
+                0.8053860127925873,
+                0.298718633208756,
+                0.1445855140686035,
+                0.10009195355253936
+              ],
+              "text": "Apagado",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "3",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166671752929688,
+                    "width": 92.85589599609376,
+                    "x": 532.7083740234375,
+                    "y": -104.72222900390624
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 97.3263931274414,
+                "x": 532.7083740234375,
+                "y": -104.44445037841795
+              },
+              "relative": [
+                0.8073595464229584,
+                0.20577504025126803,
+                0.1520724892616272,
+                0.06403867901803591
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            },
+            {
+              "borderRadius": "0px",
+              "display": "block",
+              "line": "4",
+              "lines": [
+                {
+                  "fontSize": "12.224px",
+                  "rect": {
+                    "height": 14.166664123535156,
+                    "width": 92.85589599609376,
+                    "x": 532.7083740234375,
+                    "y": -51.84027862548828
+                  },
+                  "text": "Presione una vez"
+                }
+              ],
+              "pill": false,
+              "rect": {
+                "height": 18.74131965637207,
+                "width": 97.3263931274414,
+                "x": 532.7083740234375,
+                "y": -51.562503814697266
+              },
+              "relative": [
+                0.8073595464229584,
+                0.3864714940728444,
+                0.1520724892616272,
+                0.06403867901803591
+              ],
+              "text": "Presione una vez",
+              "textAlign": "left"
+            }
+          ],
+          "name": "usb-output"
+        }
+      ],
+      "headings": [
+        {
+          "id": "operations-power",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO"
+        },
+        {
+          "id": "operations-ac-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA CA"
+        },
+        {
+          "id": "operations-usb-output",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA USB"
+        },
+        {
+          "id": "operations-energy-saving",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODO DE AHORRO DE ENERGÍA"
+        },
+        {
+          "id": "operations-lcd-screen",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "PANTALLA LCD"
+        },
+        {
+          "id": "operations-key-combination",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS"
+        }
+      ],
+      "height": 889,
+      "pageOverflow": 0,
+      "powerCenters": [
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.00218963623046875,
+          "text": "Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si el botón de energía CA o USB está encendido, pero el producto no está cargando ni descargando.",
+          "textAlign": "center",
+          "verticalCenterError": 0.03902626037597656
+        },
+        {
+          "display": "flex",
+          "horizontalCenterError": 0.002166748046875,
+          "text": "Tiempo de espera predeterminado: 2 horasEl producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga.*El tiempo en espera puede conﬁgurarse en la App de Jackery.",
+          "textAlign": "center",
+          "verticalCenterError": 0.3168487548828125
+        }
+      ],
+      "width": 390,
+      "lang": "es",
+      "figure_geometry_and_prior_operation_layout_preserved": true
+    }
+  ]
+}
