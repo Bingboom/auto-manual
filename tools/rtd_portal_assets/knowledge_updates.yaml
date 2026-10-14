@@ -24,6 +24,13 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-10-14
+    title: 说明书工作台 · 数据统计入口
+    note: 独立系统数据页已下线，旧链接自动转入此标签并保留筛选条件
+    page: deliverables
+    anchor: statistics
+    evidence: "pr:auto-manual#1546"
+
+  - date: 2026-10-14
     title: 说明书工作台 · 数据统计
     note: 系统数据页的发布统计、机型能力（只列已发布型号）和素材登记并入此标签页，原页改为指引
     page: deliverables
