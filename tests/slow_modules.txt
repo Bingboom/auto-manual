@@ -9,6 +9,7 @@ test_je3600a_cn_jp_web_layout                      # 37s (admissions, derivation
 test_web_presentation                              # 21.6s
 test_idml_rst_comments                             # 21.4s
 test_export_idml_golden                            # 18.7s
+test_jbp3600a_jp_ja_web                            # 18s (intake and artwork reproduction, cold replay)
 test_frozen_ai_table_components                    # 17.9s
 test_je3000c_0915_warnings                         # 15.7s
 test_ja_ts02a_us_en_web                            # 14s (intake reproduction, cold replay, admissions)
