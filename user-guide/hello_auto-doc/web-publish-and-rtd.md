@@ -64,14 +64,15 @@ OpenClaw 负责入库后的分析；分析结果先供人工审核。未验证�
 `q` 参数、静态索引和结果列表，不新增外部搜索服务。
 实现与边界见 [Manual Center](../../code-as-doc/dev/rtd_manual_portal.md)。
 
-说明书资料库只提供说明书查找和阅读，不放知识库链接。按操作者的最新发布选择，“产品知识”“市场与政策”“产品案例”在同一个 RTD 项目发布，通过直达链接访问；站点为私有的 Read the Docs for Business 项目（`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`），需要登录并具备项目权限；相应内容已录入飞书知识库多维表。产品知识用列表结合典型电气示意解释实际产品；市场与政策按“政策变化 → 原理解释 → 产品影响”阅读，可筛选国家、主题、核实状态和关键词。页面不展示原始资料截图或整理过程，原始截图也不复制到网站；当前内容通过审核后的快照发布，尚未接入多维表自动同步。数据边界见[市场与政策](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#市场与政策)。
+说明书资料库只提供说明书查找和阅读，不放知识库链接。按操作者的最新发布选择，“产品知识”（产品案例是其末节）和“市场与政策”在同一个 RTD 项目发布，通过直达链接访问；站点为私有的 Read the Docs for Business 项目（`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`），需要登录并具备项目权限；相应内容已录入飞书知识库多维表。产品知识用列表结合典型电气示意解释实际产品；市场与政策按“政策变化 → 原理解释 → 产品影响”阅读，可筛选国家、主题、核实状态和关键词。页面不展示原始资料截图或整理过程，原始截图也不复制到网站；当前内容通过审核后的快照发布，尚未接入多维表自动同步。数据边界见[市场与政策](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#市场与政策)。
 
 同一份冻结发布源可以供两个 RTD 项目构建：现有私有项目不设 `RTD_SITE_ROLE`（或设为 `combined`），照常生成说明书、知识库、工作资料和 AI 分享；另建的公开项目在后台环境变量里设 `RTD_SITE_ROLE=manuals`，只生成说明书资料库、说明书、短地址和搜索，再把它的 `latest` 版本设为公开。先确认公开项目第一次构建成功、页面里没有知识库内容，再改可见性。两个项目的规范链接各自取 RTD 提供的项目地址，公开站以后换域名不用改代码。详见[公开说明书项目](../../code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#public-manuals-project-site-role)。
 
-说明书中心和 AI 分享作为两个独立界面维护；`/workspace/` 是两者的个人内容
-入口。AI 分享稿及其演示、配图和参考资料保存在 Hello-Docs 的
-`docs/knowledge/ai-share/`，不放进 auto-manual。随同一次 RTD 构建发布到
-`/ai-share/`。两个界面共用 RTD 项目的可见性设置。AI 分享是可选入口：分享包缺失时，
+`/workspace/`（知识库 · 概览）是知识库的入口页：“分享资料”（`#shares`）放 AI 分享卡片，
+“最近更新”（`#updates`）列出新加入的知识库页面，页首的“进入工作资料”链接打开说明书资料库。
+AI 分享稿及其演示、配图和参考资料保存在 Hello-Docs 的
+`docs/knowledge/ai-share/`，不放进 auto-manual，随同一次 RTD 构建发布到
+`/ai-share/`。知识库、AI 分享与说明书资料库共用同一 RTD 项目的可见性设置。AI 分享是可选入口：分享包缺失时，
 `/workspace/` 和系统建设页照常生成，只是不显示分享入口。
 
 RTD 生成整站时会在本轮构建内复用已校验的目录，避免每生成一页都重复扫描
