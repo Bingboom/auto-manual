@@ -78,7 +78,7 @@
       {%- if corpus_enabled %}<a role="tab" href="#tab-corpus" data-tab="tab-corpus">语言资产</a>{% endif %}
       {%- if tooling %}<a role="tab" href="#tab-tooling" data-tab="tab-tooling">工具与工程规模</a>{% endif %}
       {% if evolution %}<a role="tab" href="#tab-evolution" data-tab="tab-evolution">系统演变</a>{% endif %}
-      <a role="tab" href="#tab-sources" data-tab="tab-sources">入口与数据来源</a>
+      <a role="tab" href="#tab-sources" data-tab="tab-sources">数据来源</a>
     </nav>
 
     <div class="tab-panel" id="tab-progress" role="tabpanel" aria-label="当前工作">
@@ -91,6 +91,7 @@
       {%- if corpus %}{% set pairs = corpus.tiles|first %}<div class="kpi"><span>语料{{ pairs.label|e }}</span><strong>{{ pairs.value|e }}</strong><em>翻译记忆库，快照 {{ corpus.exported_at|e }} · 超过 {{ corpus.stale_after_days }} 天显示待复核</em></div>{% endif %}
     </div>
     {%- endif %}
+    <p class="sw-pointer">发布规模、交付物与生产证据：<a href="{{ pathto('workspace/deliverables/index') }}">说明书工作台 →</a></p>
 
     {%- if focus %}
     <section class="sw-section" id="focus">
@@ -427,27 +428,8 @@
     </div>
     {% endif %}
 
-    <div class="tab-panel" id="tab-sources" role="tabpanel" aria-label="入口与数据来源">
-    <section class="sw-section" id="working">
-      <div class="section-header"><div>
-        <h2>现在就能用</h2>
-        <p>这些入口已经上线，可以直接打开。</p>
-      </div></div>
-      <div class="sw-open-grid">
-        {%- for row in working %}
-        {%- if row.docname %}
-        <a class="sw-open" href="{{ pathto(row.docname)|e }}">
-          <small>{{ row.meta|e }}</small><h3>{{ row.label|e }}</h3><p>{{ row.note|e }}</p><span>打开 <b>→</b></span>
-        </a>
-        {%- else %}
-        <div class="sw-open is-missing">
-          <small>无数据</small><h3>{{ row.label|e }}</h3><p>发布清单里没有找到这个入口。</p>
-        </div>
-        {%- endif %}
-        {%- endfor %}
-      </div>
-    </section>
-
+    <div class="tab-panel" id="tab-sources" role="tabpanel" aria-label="数据来源">
+    <p class="sw-pointer">日常入口见<a href="{{ pathto('workspace/index') }}">知识库首页</a>和<a href="{{ pathto('workspace/deliverables/index') }}#work-entries">说明书工作台「工作入口」</a>。</p>
     <section class="sw-section" id="sources">
       <div class="section-header"><div>
         <h2>数据来源</h2>
@@ -474,8 +456,8 @@
     </div>
 
     <footer>
-      <span>快照 {{ build_date|e }}{% if last_published %} · 最近发布 {{ last_published|e }}{% endif %}</span>
-      <span>数据来源：发布清单 · 执行台账 · 语料快照 · 骨架定义 · 状态配置（复核于 {{ verified_on|e }}）</span>
+      <span>快照 {{ build_date|e }}</span>
+      <span>数据来源：执行台账 · 语料快照 · 骨架定义 · 状态配置（复核于 {{ verified_on|e }}）</span>
     </footer>
   </main>
 </div>

@@ -24,6 +24,12 @@ schema: hello-docs-knowledge-updates/v1
 
 updates:
   - date: 2026-10-14
+    title: 说明书工作台 · 发布规模与生产证据
+    note: 工作台与系统建设各管一类事实：发布规模、各区本数和生产证据在工作台，语料与骨架总数在系统建设
+    page: deliverables
+    evidence: "pr:auto-manual#1544"
+
+  - date: 2026-10-14
     title: 系统建设 · 工具与工程规模
     note: 工程规模从系统数据页移入此标签页，与技能和钩子放在一起
     page: system

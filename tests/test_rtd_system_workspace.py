@@ -98,10 +98,6 @@ def contract() -> dict:
                       {"id": "G2", "label": "维护试点", "revs": ["REV-03"]}],
             "now_labels": {"REV-02": "在验项"},
         },
-        "working_today": [
-            {"id": "center", "label": "说明书资料库", "page": "index"},
-            {"id": "manual", "label": "代表手册", "publication": {"model": "JE-TEST", "region": "US", "lang": "en"}},
-        ],
     }
 
 
@@ -183,8 +179,6 @@ class SystemWorkspaceContractTests(unittest.TestCase):
             "does not name": lambda d: d["now_next"]["gates"][0].update(revs=["REV-01..REV-03"]),
             "no such gate": lambda d: d["now_next"]["gates"][1].update(id="G9"),
             "is not in the ledger": lambda d: d["now_next"].update(now_labels={"REV-99": "x"}),
-            "needs exactly one of page / publication": lambda d: d["working_today"][0].update(publication={}),
-            "must be a site docname": lambda d: d["working_today"][0].update(page="../outside"),
             "expected hello-docs-system-workspace": lambda d: d.update(schema="other/v0"),
         }
         for fragment, mutate in mutations.items():
@@ -263,7 +257,6 @@ class SystemWorkspaceContractTests(unittest.TestCase):
         self.assertEqual((facts["books"], facts["editions"], facts["variants"], facts["last_published"]),
                          (2, 3, 3, "2026-09-22"))
         self.assertEqual(facts["books_by_region"], {"EU": 1, "US": 1})
-        self.assertEqual(len(facts["targets"]), 4)
         path.write_text("not json", encoding="utf-8")
         self.assertIsNone(sw.publication_facts(path))
         path.write_text(json.dumps({"targets": []}), encoding="utf-8")
@@ -365,7 +358,6 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         view = self.context(facts=None, skeletons=None)
         lanes = self.lanes(view)
         self.assertEqual([m["no_data"] for lane in lanes.values() for m in lane["metrics"]], [True, True, True])
-        self.assertEqual(view["working"][1]["docname"], "")
         data = contract()
         del data["focus"]
         self.assertIsNone(self.context(data)["focus"])
@@ -392,11 +384,6 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         self.assertEqual(view["now"], [{"rev": "REV-02", "label": "在验项", "status": "verifying",
                                         "status_label": "在验",
                                         "href": "https://github.com/o/auto-manual/blob/main/ledger.md#rev-02"}])
-
-    def test_working_entries_link_site_pages_and_resolve_publications(self):
-        center, manual = self.context()["working"]
-        self.assertEqual(center["docname"], "index")
-        self.assertEqual((manual["docname"], manual["meta"]), ("JE-TEST/US/en/md/manual_je_test_us", "版本 9.9"))
 
     def test_evidence_links_map_every_kind(self):
         repos = {"auto-manual": "https://github.com/o/auto-manual", "hello-docs": "https://github.com/o/Hello-Docs"}
@@ -649,6 +636,22 @@ class SkeletonFactsTests(unittest.TestCase):
                 write_blueprint(self.root, "broken", "X", text)
                 self.assertIsNone(sw.skeleton_facts(self.root))
 
+    def test_copies_share_one_skeleton_and_a_missing_id_is_not_a_folder_name(self):
+        for name in ("original", "renamed-copy"):
+            write_blueprint(self.root, name, "BP",
+                            f"schema_version: {sw.SKELETON_SCHEMA}\nskeleton_id: same\nskeleton_family: BP\n")
+        cells = sw.skeleton_facts(self.root)
+        self.assertEqual(cells, [{"id": "same", "family": "BP"}, {"id": "same", "family": "BP"}])
+        focus = {"skeleton_families": [{"family": "BP", "label": "电池包"}]}
+        (metric,) = sw.lane_metrics("skeletons", focus=focus, facts=None, corpus=None, skeletons=cells)
+        self.assertEqual((metric["value"], metric["sub"]), ("1", "电池包 1"))
+        for text in (f"schema_version: {sw.SKELETON_SCHEMA}\nskeleton_family: BP\n",
+                     f"schema_version: {sw.SKELETON_SCHEMA}\nskeleton_id: ' '\nskeleton_family: BP\n",
+                     f"schema_version: {sw.SKELETON_SCHEMA}\nskeleton_id: 7\nskeleton_family: BP\n"):
+            with self.subTest(text):
+                write_blueprint(self.root, "renamed-copy", "BP", text)
+                self.assertIsNone(sw.skeleton_facts(self.root))
+
     def test_shipped_blueprints_are_readable(self):
         cells = sw.skeleton_facts(REPO)
         self.assertTrue(cells)
@@ -730,7 +733,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             page = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             headings = ("当前重点", "正在做与下一步", "语言资产", "能力地图", "生产流程与连接", "技能与钩子", "工程规模",
-                        "现在就能用", "数据来源")
+                        "数据来源")
             self.assertEqual([page.find(f"<h2>{h}</h2>") >= 0 for h in headings], [True] * len(headings))
             self.assertEqual(sorted(headings, key=lambda h: page.find(f"<h2>{h}</h2>")), list(headings))
             progress_panel = page.split('id="tab-progress"', 1)[1].split('id="tab-corpus"', 1)[0]
@@ -745,12 +748,17 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn(f'data-revision="{receipt["revision"]}"', page)
             self.assertIn(f'data-built-at="{receipt["built_at"]}"', page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.js").is_file())
-            self.assertIn("1 个语言版本", page)
-            self.assertIn("美规 1 本", page)
+            # Publication counts and the daily entries belong to 说明书工作台 and the 知识库首页: pointers only.
+            self.assertNotIn("个语言版本", page)
+            self.assertNotIn("美规 1 本", page)
+            self.assertIn('<p class="sw-pointer">发布规模、交付物与生产证据：<a href="../deliverables/index.html">', page)
+            self.assertIn('href="../deliverables/index.html#work-entries"', page)
+            self.assertIn('data-tab="tab-sources">数据来源</a>', page)
+            self.assertNotIn('id="working"', page)
             self.assertIn("便携电源", page)  # a declared skeleton family, built or not
             self.assertIn('href="#cap-web_publishing"', page)
             # The shipped contract names the manual library as the site does.
-            self.assertIn("<h3>说明书资料库</h3>", page)
+            self.assertIn("<b>说明书资料库</b>", page)
             self.assertNotIn("手册中心", page)
             self.assertEqual(page.count('<details class="sw-more">'), 2)  # folded cards and gates
             # Skills and hooks come from this tree, not from the contract.
