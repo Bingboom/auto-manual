@@ -44,6 +44,7 @@
       "groups": [
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated"
       ],
       "answer": "额定输出功率用于判断持续供电能力。冰箱、泵和电机等负载启动时可能出现更高的瞬时需求；能否启动还取决于电源的短时输出能力、持续时间与保护策略。",
@@ -68,6 +69,7 @@
         "portable",
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated",
         "battery"
       ],
@@ -92,6 +94,7 @@
         "portable",
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated",
         "battery"
       ],
@@ -116,6 +119,7 @@
         "portable",
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated",
         "battery"
       ],
@@ -139,6 +143,7 @@
       "groups": [
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated"
       ],
       "answer": "沿图读电路：DC 母线供给 H 桥。Q1/Q4 与 Q2/Q3 交替开关，让 A、B 两点间形成正负脉冲；PWM 调节脉冲，Lf 与 Cf 滤去高频分量，得到负载使用的交流。控制器采样输出电压、电流并调整驱动。同一桥臂上下开关不能同时导通，需死区。",
@@ -162,6 +167,7 @@
       "groups": [
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated"
       ],
       "answer": "先确认说明书给的是单个插座上限，还是所有 AC 插座合计上限。多个插座通常共享 AC 输出能力；同时使用时，各电器的实际输入功率之和必须满足 AC 总输出限制，也要满足单个插座的限制。",
@@ -184,6 +190,7 @@
       "groups": [
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated"
       ],
       "answer": "核对电器的输入电压范围、频率要求与电源的 AC 输出规格；需要特定波形的负载，还要检查波形要求。插头能插入只是机械条件。",
@@ -206,6 +213,7 @@
       "groups": [
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated"
       ],
       "answer": "部分产品提供升功率或类似模式，其工作方式和允许负载由型号决定；有的模式通过调整输出电压让特定负载工作。应分别阅读正常额定输出和该模式的条件。",
@@ -228,6 +236,7 @@
       "groups": [
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated"
       ],
       "answer": "输出停止可能与过载、温度、电量不足或低负载自动关机有关。先读取显示屏或 App 提示，再按对应故障说明处理；恢复条件和操作顺序依型号而异。",
@@ -251,6 +260,7 @@
         "portable",
         "appliance",
         "expandable",
+        "homebackup",
         "solar"
       ],
       "answer": "太阳能板输出随光照、角度、遮挡和温度变化。MPPT 用于寻找当时可获得的较大功率工作点，再由充电系统向电池供电。",
@@ -274,6 +284,7 @@
         "portable",
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated",
         "charger"
       ],
@@ -297,6 +308,7 @@
       ],
       "groups": [
         "expandable",
+        "homebackup",
         "battery"
       ],
       "answer": "扩容电池主要增加可储存的能量。是否改变主机可输出的功率，要看整个系统的设计和明确规格。",
@@ -320,6 +332,7 @@
       "groups": [
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated"
       ],
       "answer": "支持旁路的产品在规定条件下可由市电向 AC 负载供电；市电失效后，具备备电切换功能的产品才会按设计切换为电池供电。先确认是否支持，再检查切换时间和允许负载。",
@@ -344,6 +357,7 @@
         "portable",
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated",
         "solar",
         "charger",
@@ -370,6 +384,7 @@
         "portable",
         "appliance",
         "expandable",
+        "homebackup",
         "dedicated",
         "battery",
         "solar",
