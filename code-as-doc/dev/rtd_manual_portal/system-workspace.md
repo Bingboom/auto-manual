@@ -128,8 +128,8 @@ checks read only the already-published same-origin receipt.
   model × region × language. A repeated route, version or rebuild of one
   identity counts once, and 份 is never a unit for language versions.
   `publication_facts` in `tools/rtd/production_evidence.py` is the single
-  count: this page, 说明书工作台, 系统数据 and 产品矩阵 all take their figures
-  from it, and the 系统数据 filters recount the same identities in the browser.
+  count: this page, 说明书工作台 (its 数据统计 tab included) and 产品矩阵 all take
+  their figures from it, and the 数据统计 filters recount distinct values in the browser.
   This page's `publication_facts(path)` only reads the manifest and wraps it;
   its `editions` key is the deduplicated `variants`.
 - The execution ledger named by `now_next.source` supplies REV statuses, the

@@ -55,8 +55,8 @@ both shell macros: its sidebar contains only 说明书资料库 and 搜索说明
 and its top bar keeps the breadcrumb and region selector. It has no internal
 knowledge links or 知识库 / 说明书资料库 switch. Internal pages add three groups
 after 说明书: 知识库 (首页), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
-说明书生产 (说明书工作台, 系统建设, 设计规范, 系统数据 — 系统数据 stays last until it
-is folded into 说明书工作台), plus the switch. Their breadcrumb section is 知识库,
+说明书生产 (说明书工作台, 系统建设, 设计规范, 系统数据 — 系统数据 stays last as a
+pointer page to 说明书工作台「数据统计」 until it is removed), plus the switch. Their breadcrumb section is 知识库,
 and 工作资料 is only the brand. The root keeps 工作资料 as title, crumb and footer,
 and renders byte-identically in both roles. Every sidebar entry is a page and carries
 `aria-current="page"` on that page; 分享资料 and 最近更新 are sections of the
@@ -75,7 +75,7 @@ points inside a panel opens that panel. 系统建设 tabs: 当前工作, 系统�
 能力与流程, 语言资产, 工具与工程规模, 系统演变, 入口与数据来源. The unfolded
 stage gates form the metric row inside 当前工作; other tabs do not repeat it.
 说明书工作台 tabs: 交付物 (the deliverables matrix, open by
-default), 工作入口, 生产与资产, with web manuals, language editions, Word and
+default), 数据统计, 工作入口, 生产与资产, with web manuals, language editions, Word and
 print counts as the metric row. The 工作入口 tab draws the content-authority map (`manual_workbench.html`)
 and states current maturity rather than a target architecture:
 CONTENT AUTHORITY 当前内容权威源 offers two alternatives, 01 结构化内容源
