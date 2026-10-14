@@ -125,14 +125,14 @@ class SystemDataTests(unittest.TestCase):
                         self.context()
             (self.paths.data_dir / name).write_text(original, encoding="utf-8")
 
-    def test_the_page_drops_out_with_a_warning_on_drifted_data(self):
+    def test_drifted_data_leaves_the_workbench_tab_empty_with_a_warning(self):
         (self.paths.data_dir / "model_capabilities.csv").write_text("Document_key\nJE-A_EU\n", encoding="utf-8")
         app = SimpleNamespace(srcdir=str(self.root / "web"))
         with patch.object(system_data, "repo_root", return_value=self.root), \
                 patch("sphinx.util.logging.getLogger") as get_logger:
             self.assertIsNone(system_data_page_context(app, {}))
         get_logger.return_value.warning.assert_called_once()
-        self.assertIn("System data page skipped", get_logger.return_value.warning.call_args.args[0])
+        self.assertIn("Workbench statistics show no data", get_logger.return_value.warning.call_args.args[0])
 
     def test_review_pages_are_counted_per_model_and_region(self):
         self.assertEqual(dict(review_page_counts(self.paths.review_dir)), {"JE-A_EU": 2})

@@ -394,11 +394,11 @@ def collect_workspace_pages(app):
                             "matrix_entry": matrix is not None, "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
     yield DELIVERABLES_PAGE, {**deliverables, "system_entry": system is not None,
                               "design_entry": design is not None, "data_entry": data is not None,
-                              "matrix_entry": matrix is not None}, DELIVERABLES_TEMPLATE
+                              "matrix_entry": matrix is not None, "statistics": data}, DELIVERABLES_TEMPLATE
     if design is not None:
         yield DESIGN_PAGE, {**template_context(design), "site_nav": site_nav(app)}, DESIGN_TEMPLATE
-    if data is not None:
-        yield DATA_PAGE, {**data, "site_nav": site_nav(app)}, DATA_TEMPLATE
+    # 系统数据 is a pointer page now: its statistics are the 工作台's 数据统计 tab.
+    yield DATA_PAGE, {"site_nav": site_nav(app)}, DATA_TEMPLATE
     if matrix is not None:
         yield MATRIX_PAGE, {**matrix, "site_nav": site_nav(app)}, MATRIX_TEMPLATE
 

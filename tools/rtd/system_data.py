@@ -1,9 +1,10 @@
-"""Build-time 系统数据 page: published manuals, model capabilities and assets, filterable by region and model.
+"""Build-time 数据统计 of 说明书工作台: published manuals, model capabilities and assets, filterable by region and model.
 
-``/workspace/data/`` reads, at build time and from the repository only:
+The 数据统计 tab of ``/workspace/deliverables/`` reads, at build time and from
+the repository only:
 
 - ``docs/publish/publish_manifest.json``: one row per published Web route
-  (model, region, language, version, build date), as the deliverables page
+  (model, region, language, version, build date), as the deliverables matrix
   reads it;
 - ``data/model_capabilities.csv``: the capability switches of every
   ``<model>_<region>`` target;
@@ -16,8 +17,8 @@ The rows travel to the browser as one JSON block; ``_static/system-data.js``
 filters them by region and model and draws the charts. Without JavaScript the
 whole-repository counts and the publication table still show. A missing
 publish manifest shows the publication cards as 无数据; an unreadable or
-malformed CSV is an authoring error that skips the page (and its sidebar entry)
-with a Sphinx warning.
+malformed CSV is an authoring error that empties the tab with a Sphinx warning.
+``/workspace/data/`` (系统数据) is a pointer page to the tab until it is removed.
 """
 from __future__ import annotations
 
@@ -147,7 +148,7 @@ def _facets(*groups: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[s
 
 def summary(published: list[dict[str, str]] | None, targets: list[dict[str, Any]],
             assets: list[dict[str, str]]) -> dict[str, Any]:
-    """The whole-repository counts the page shows before (or without) any filter.
+    """The whole-repository counts the tab shows before (or without) any filter.
 
     语言版本 and 说明书 are counted as on every other page; the table lists one row per route.
     """
@@ -192,14 +193,14 @@ def system_data_context(root: Path, manifest: Path, language_labels: dict[str, s
 
 
 def system_data_page_context(app, settings: dict[str, Any]) -> dict[str, Any] | None:
-    """Context for PAGE, or None (with a warning) when the committed data has drifted."""
+    """Context for the workbench 数据统计 tab, or None (with a warning) when the committed data has drifted."""
     from sphinx.util import logging as sphinx_logging
 
     manifest = Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON
     try:
         return system_data_context(repo_root(), manifest, dict(settings.get("language_labels") or {}))
     except (ValueError, OSError, KeyError, csv.Error) as exc:
-        sphinx_logging.getLogger(__name__).warning("System data page skipped: %s", exc)
+        sphinx_logging.getLogger(__name__).warning("Workbench statistics show no data: %s", exc)
         return None
 
 

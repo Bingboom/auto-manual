@@ -1,4 +1,5 @@
-/* 系统数据 page. Owns only what sits inside .app-content (see site-shell.css). */
+/* 说明书工作台「数据统计」 tab (.tab-panel.system-data) and the 系统数据 pointer page (body.system-data).
+   Owns only what sits inside .app-content (see site-shell.css). */
 .system-data {--sd-cell:#eef0f3;--sd-muted:#c3c7ce;--sd-critical:#c8372d;--sd-review:#1f5fae}
 .system-data main {padding-bottom:32px}
 .system-data code {font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
@@ -69,6 +70,17 @@
 .sd-table tbody tr:hover td {background:#fafbfc}
 .sd-table .sd-key a {font-weight:600;color:var(--brand-strong);text-underline-offset:2px}
 .sd-footer {margin:32px 0 0;font-size:12.5px;line-height:1.8;color:var(--app-faint)}
+
+/* 系统数据 pointer page: where its blocks moved, until the page is removed. */
+.sd-moved {display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:12px;margin:24px 0 0}
+.sd-moved a {display:flex;gap:12px;align-items:center;min-width:0;padding:16px 18px;background:#fff;border:1px solid var(--app-line);
+  border-radius:12px;color:var(--app-ink);text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.sd-moved a:hover {border-color:#d3d6db;box-shadow:0 6px 18px #1d1f2312}
+.sd-moved a:focus-visible {outline:3px solid var(--brand);outline-offset:2px}
+.sd-moved span {flex:1;min-width:0}
+.sd-moved strong {display:block;font-size:15px;font-weight:650;line-height:1.5}
+.sd-moved small {display:block;margin-top:3px;font-size:13px;line-height:1.6;color:var(--app-muted)}
+.sd-moved b {color:var(--brand)}
 
 @media (max-width:640px) {
   .sd-table .sd-wide {display:none}

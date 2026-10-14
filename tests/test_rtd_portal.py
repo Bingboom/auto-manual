@@ -260,11 +260,16 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('href="../data/index.html"', design)
         data_page = (self.root / "after" / "workspace" / "data" / "index.html").read_text()
         self.assertIn('aria-current="page"><i aria-hidden="true">▥</i><span>系统数据</span>', data_page)
-        self.assertIn('<script type="application/json" id="system-data-json">', data_page)
+        # 系统数据 is a pointer page: its statistics moved to the 工作台's 数据统计 tab.
+        self.assertEqual([a["href"] for a in BeautifulSoup(data_page, "html.parser").select(".sd-moved a")],
+                         ["../deliverables/index.html#statistics", "../system/index.html#codebase"])
+        self.assertNotIn("system-data-json", data_page)
+        workbench = (self.root / "after" / "workspace" / "deliverables" / "index.html").read_text()
+        self.assertIn('<script type="application/json" id="system-data-json">', workbench)
         # This tree has no publish manifest: only the publication cards are empty.
-        self.assertIn("无数据：本次构建没有可读的发布清单", data_page)
+        self.assertIn("无数据：本次构建没有可读的发布清单", workbench)
         # 工程规模 moved to the 系统建设 page's 工具与工程规模 tab.
-        self.assertNotIn('sd-code', data_page)
+        self.assertNotIn('sd-code', workbench)
         self.assertNotIn("Jackery", data_page)
         self.assertTrue((self.root / "after" / "_static" / "system-data.js").is_file())
         # Without a publish manifest the product matrix and every link to it drop out.

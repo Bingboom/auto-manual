@@ -305,6 +305,18 @@ class RealSphinxTests(unittest.TestCase):
             for card in soup.select('[data-metric]'):
                 self.assertTrue(card.select('details'))
             self.assertTrue(soup.select('.pe-attention a[href]'))
+            # 数据统计: the statistics moved from 系统数据, with their own JSON block, script and filters.
+            self.assertEqual([tab['data-tab'] for tab in soup.select('.page-tabs [data-tab]')],
+                             ['deliverables', 'statistics', 'work-entries', 'production-evidence'])
+            statistics = soup.select_one('#statistics.tab-panel.system-data')
+            payload = json.loads(statistics.select_one('script#system-data-json').string)
+            self.assertTrue(payload['targets'])
+            # The page summary above the tabs owns 网页说明书 / 语言版本; the tab counts the rest.
+            self.assertEqual([kpi.span.text for kpi in statistics.select('.kpi')],
+                             ['覆盖机型', '发布语言', '机型/区域目标', '素材登记'])
+            self.assertEqual(len(statistics.select('#sd-table tbody tr')), 1)
+            self.assertIsNotNone(soup.select_one('head script[src="../../_static/system-data.js"]'))
+            self.assertTrue((base / "good" / "_static" / "system-data.js").is_file())
 
             self.assertEqual(len(soup.select('.dl-table a[target="_blank"][rel="noopener"]')), 4)
             self.assertIn('<option value="JE-1800B">JE-1800B</option>', page)
@@ -360,6 +372,7 @@ class RealSphinxTests(unittest.TestCase):
             _, page = build("nothing")
             self.assertIn("发布清单和飞书快照当前都不可读", page)
             self.assertIn("网页手册：发布清单当前不可读", page)
+            self.assertIn("无数据：本次构建没有可读的发布清单", page)
             manifest.write_text(json.dumps({"targets": []}), encoding="utf-8")
             (assets / SNAPSHOT_NAME).write_text(json.dumps({"schema": dl.SNAPSHOT_SCHEMA,
                 "exported_at": "2026-09-25", "documents": []}), encoding="utf-8")
