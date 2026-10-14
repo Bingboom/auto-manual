@@ -1,4 +1,4 @@
-# JA-TS02A / US / French · Spanish — Git-only source candidate
+# JA-TS02A / US / French · Spanish — Git-only Web release
 
 This package adds the French and Spanish Web editions of the Jackery Smart Transfer Switch manual (model JA-TS02A, printed version JAK-UM-V1.0) from the same supplied booklet as the accepted English edition. It converts the printed French and Spanish bodies only:
 
@@ -9,7 +9,7 @@ This package adds the French and Spanish Web editions of the Jackery Smart Trans
 
 The cover, global contents, English and Portuguese bodies and back cover stay in the archived PDF (「封面和目录 不用体现在web版面上」).
 
-**Status: Git-only source candidate for the operator's layout review.** There is no `source/approval.json`; both replayed IRs are `publication_eligible: false`. Merge, release and any Hello-Docs change each need a separate operator decision.
+**Status: operator-accepted Git-only release.** The operator reviewed the layout review page (print beside the desktop and phone Web per chapter, French and Spanish tabs) for candidate `d35efce`, which was merged as PR #1530 (`9ca45d81`) with decisions D1–D6 at their defaults. On 2026-10-14 the operator accepted both editions for release (「授权你合入」, in reply to the go-live prompt). `source/approval.json` binds that acceptance to these exact source inputs, and both replayed IRs are `publication_eligible: true`. Release runs under MA-307 in `code-as-doc/dev/merge_authorizations.md`.
 
 ## Package shape
 
@@ -60,7 +60,7 @@ for lang in fr es; do
 done
 ```
 
-To re-freeze: remove `web/`, run `source/refresh_manifest.py`, rebuild each language into `web/<lang>`, and run `source/refresh_manifest.py` again. `tests/test_ja_ts02a_us_fr_es_web.py` covers identity, coverage, intake reproduction, cold replay, admissions and the English package being untouched. `audit/browser-validation.json` records the Chromium sweep from 320 to 1920 px.
+To re-freeze: remove `web/`, run `source/refresh_manifest.py`, rebuild each language into `web/<lang>`, and run `source/refresh_manifest.py` again. `tests/test_ja_ts02a_us_fr_es_web.py` covers identity, the operator acceptance, coverage, intake reproduction, cold replay, admissions and the English package being untouched. `audit/browser-validation.json` records the Chromium sweep from 320 to 1920 px.
 
 ## Boundaries
 
