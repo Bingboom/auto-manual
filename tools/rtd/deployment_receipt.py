@@ -37,7 +37,9 @@ MAX_TOTAL_BYTES = 768 * 1024 * 1024
 # Frozen inputs contain both self-contained sources and assembled Web copies.
 # Keep their storage and file-count budgets separate from served-output and
 # network budgets; normal catalog growth must not enlarge network traversal.
-MAX_SOURCE_TOTAL_BYTES = 1280 * 1024 * 1024
+# Raised from 1280 MiB on 2026-10-14: the JBP-3600A US/JP release left the
+# publish tree at 1,261.6 MiB, 18.4 MiB below the cap.
+MAX_SOURCE_TOTAL_BYTES = 1536 * 1024 * 1024
 MAX_SOURCE_FILES = 20000
 MAX_FETCH_ATTEMPTS = 3
 FETCH_BUDGET_SECONDS = 45
