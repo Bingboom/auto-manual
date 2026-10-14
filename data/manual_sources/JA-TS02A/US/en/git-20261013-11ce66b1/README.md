@@ -2,7 +2,7 @@
 
 This package freezes the supplied Jackery Smart Transfer Switch PDF (model JA-TS02A, printed version JAK-UM-V1.0) and converts only printed English pages 01–22, physical PDF pages 3–24. The printed cover, global contents, non-English bodies and back cover stay in the archived PDF and are not repeated in the Web body.
 
-**Status: Git-only source candidate.** There is no `source/approval.json`. The replayed IR is `publication_eligible: false` and carries a pending source review. Publication needs the operator's acceptance of these exact inputs and a separate merge/release authorization.
+**Status: operator-accepted Git-only release.** After merging the layout fixes (PR #1523), the operator accepted this edition for release on 2026-10-14 (「上线，授权你合入」). `source/approval.json` binds that acceptance to these exact source inputs, and the replayed IR is `publication_eligible: true`. Merge and release run under MA-302 in `code-as-doc/dev/merge_authorizations.md`.
 
 ## Layout review fixes
 

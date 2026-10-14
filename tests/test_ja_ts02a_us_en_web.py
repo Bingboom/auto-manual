@@ -1,4 +1,4 @@
-"""JA-TS02A US English Git-only draft: archived PDF identity, word coverage, shared-IR replay."""
+"""JA-TS02A US English Git-only release: archived PDF identity, word coverage, acceptance, shared-IR replay."""
 from __future__ import annotations
 
 from contextlib import redirect_stdout
@@ -25,6 +25,7 @@ PACKAGE = ROOT / 'data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1'
 SOURCE_SHA = '11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3'
 MARKDOWN = PACKAGE / 'web/en/manual_jats02a_us_en.md'
 APPROVED_STATUS = 'operator-approved-git-only-release'
+ACCEPTANCE = {'operator_quote': '上线，授权你合入', 'merge_authorization': 'MA-302'}
 # Print pages 01-22 (PDF 3-24); the cover and contents are not part of the Web body.
 CHAPTERS = [
     ('safety', 'SAFETY INSTRUCTIONS'), ('specifications', 'SPECIFICATIONS'), ('package-list', 'PACKAGE LIST'),
@@ -71,7 +72,7 @@ def inventory(root: Path) -> dict[str, str]:
 
 
 def shared_inputs_drifted() -> list[str]:
-    """The draft pins its shared renderers; rebuilding against newer ones is refused."""
+    """The package pins its shared renderers; rebuilding against newer ones is refused."""
     return [row['path'] for row in read(PACKAGE / 'source_manifest.json')['repo_inputs']
             if not (ROOT / row['path']).is_file() or file_sha256(ROOT / row['path']) != row['sha256']]
 
@@ -114,7 +115,7 @@ class JaTs02aUsEnWebTests(unittest.TestCase):
         write(dest / 'source_manifest.json', manifest)
         return dest
 
-    def test_identity_archive_and_candidate_status(self):
+    def test_identity_and_archive(self):
         manifest = read(PACKAGE / 'source_manifest.json')
         self.assertEqual(manifest['target'], {'model': 'JA-TS02A', 'region': 'US', 'languages': ['en'],
                                               'technical_version': PACKAGE.name,
@@ -134,13 +135,38 @@ class JaTs02aUsEnWebTests(unittest.TestCase):
         self.assertEqual(sorted(row['path'] for row in manifest['inputs']), files)
         for relative in REMOVED:
             self.assertFalse((PACKAGE / relative).exists(), relative)
+
+    def test_the_operator_acceptance_binds_every_source_input(self):
+        manifest = read(PACKAGE / 'source_manifest.json')
+        self.assertEqual(manifest['publication_status'], APPROVED_STATUS)
+        approval = read(PACKAGE / 'source/approval.json')
+        self.assertEqual(approval['target'], {key: manifest['target'][key]
+                                              for key in ('model', 'region', 'technical_version')})
+        self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
+        # Everything but the frozen web/ outputs and the acceptance itself.
+        self.assertEqual(approval['reviewed_inputs'],
+                         [row for row in manifest['inputs']
+                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+        self.assertEqual({key: approval[key] for key in ACCEPTANCE}, ACCEPTANCE)
         metadata = read(PACKAGE / 'web/en' / PathSegments.MANUAL_IR_JSON)['metadata']
-        accepted = manifest.get('publication_status') == APPROVED_STATUS
-        self.assertIs(metadata['publication_eligible'], accepted)
-        self.assertEqual(bool(metadata['pending_source_review']), not accepted)
-        if not accepted:
-            self.assertNotIn('publication_status', manifest)
-            self.assertFalse((PACKAGE / 'source/approval.json').exists())
+        self.assertIs(metadata['publication_eligible'], True)
+        self.assertEqual(metadata['pending_source_review'], [])
+        self.assertEqual(metadata['operator_source_acceptance'], approval)
+
+    def test_an_acceptance_that_misses_an_input_is_refused_before_output(self):
+        source = self.fixture()
+        path = source / 'source/approval.json'
+        approval = read(path)
+        approval['reviewed_inputs'] = approval['reviewed_inputs'][1:]
+        write(path, approval)
+        manifest = read(source / 'source_manifest.json')
+        row = next(row for row in manifest['inputs'] if row['path'] == 'source/approval.json')
+        row.update(size=path.stat().st_size, sha256=file_sha256(path))
+        write(source / 'source_manifest.json', manifest)
+        with mock.patch.object(rebuild_module, 'SOURCE_ROOT', source):
+            with self.assertRaisesRegex(ValueError, 'operator acceptance does not cover these source inputs'):
+                rebuild(self.root / 'output')
+        self.assertFalse((self.root / 'output').exists())
 
     def test_every_english_body_word_is_classified(self):
         coverage = read(PACKAGE / 'source/en/coverage.json')
@@ -204,11 +230,7 @@ class JaTs02aUsEnWebTests(unittest.TestCase):
         require_fresh_component_admission(web, model='JA-TS02A', region='US', language='en')
         require_symbol_asset_admission(web, PACKAGE, manifest, 'en')
         require_caption_frame_admission(web)
-        if manifest.get('publication_status') == APPROVED_STATUS:
-            require_publishable_manual_ir(web)
-        else:
-            with self.assertRaisesRegex(RuntimeError, 'pending source review'):
-                require_publishable_manual_ir(web)
+        require_publishable_manual_ir(web)
 
     def test_changed_inputs_are_rejected_before_output(self):
         for relative in ['source/en/content.json', 'assets/symbol_warning_triangle_yellow.svg',

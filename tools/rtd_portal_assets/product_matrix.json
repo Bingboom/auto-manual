@@ -26,7 +26,8 @@
     "JBP-1000B-SIL": "battery",
     "JBP-1000B-WH": "battery",
     "JBP-5000A": "battery",
-    "JA-AD500A-SIL": "charger"
+    "JA-AD500A-SIL": "charger",
+    "JA-TS02A": "connect"
   },
   "names": {
     "JBP-1000B-SIL": "Battery Pack（FridgeGuard 用）",
@@ -36,7 +37,8 @@
     "JA-AD01A": "三口 GaN 快充 · 102 W",
     "JA-AD500A-SIL": "直流输入模块",
     "JA-CA05B": "连接指南",
-    "JA-CA3SA": "2–3 块太阳能板串联"
+    "JA-CA3SA": "2–3 块太阳能板串联",
+    "JA-TS02A": "家庭配电转换 · 12 路负载 · 约 11.6 kg"
   },
   "tiers": [
     {"label": "≈100–300 Wh", "below": 400},
@@ -48,8 +50,7 @@
   ],
   "capability_labels": {"AC/DC输出记忆恢复": "输出记忆恢复", "TOU/计划充电": "TOU / 计划充电"},
   "companions": [
-    {"title": "转换开关（无独立说明书）", "name": "Transfer Switch", "model": "JA-TS05A", "spec": "约 10.5 kg", "source": "JHP-3600C"},
-    {"title": "转换开关（无独立说明书）", "name": "Smart Transfer Switch", "model": "JA-TS02A", "spec": "约 11.6 kg", "source": "JHP-5000C"}
+    {"title": "转换开关（无独立说明书）", "name": "Transfer Switch", "model": "JA-TS05A", "spec": "约 10.5 kg", "source": "JHP-3600C"}
   ],
   "pairings": [
     {"model": "JE-1000H", "parts": ["Battery Pack 2000"]},

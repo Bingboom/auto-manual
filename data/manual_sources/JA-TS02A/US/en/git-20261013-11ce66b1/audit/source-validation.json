@@ -27,6 +27,6 @@
     "component": true,
     "symbol_asset": true,
     "caption_frame": true,
-    "publishable": "refused: pending source review (candidate)"
+    "publishable": "passed after operator acceptance (source/approval.json)"
   }
 }

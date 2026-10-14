@@ -175,11 +175,12 @@
     ]
   },
   "source_authority": "operator-supplied original PDF; native visible English content; no translation or product adaptation",
+  "publication_status": "operator-approved-git-only-release",
   "inputs": [
     {
       "path": "README.md",
-      "size": 6243,
-      "sha256": "3e0cb3c02fd84ddcb71848c32b29189309aeb8d68569d14e40be2915413ae3d7"
+      "size": 6367,
+      "sha256": "343b4346f17574e2b1757351aba4b9d1c282c7e0925cae9126636d39d3fd7a32"
     },
     {
       "path": "assets/app-add-device.png",
@@ -423,18 +424,23 @@
     },
     {
       "path": "audit/source-validation.json",
-      "size": 844,
-      "sha256": "c9c93c4d86ace700a4e023b80915119da10ea0b1a191a6311cc097143f6779ef"
+      "size": 857,
+      "sha256": "84b46e99c95c98d60c8193ab945c29be2338b42a912ffd3cfa9b65823da5f3aa"
     },
     {
       "path": "audit/validation.zh.md",
-      "size": 3015,
-      "sha256": "17115e4f70f0e730852ad94f01d4092a057a3838f419a7cf0b4e2cec63f018c7"
+      "size": 3185,
+      "sha256": "a52ce795653de8b8d929c0b2d96479e69961dc837753813d06c9e3b1bfa79cb8"
     },
     {
       "path": "rebuild.py",
       "size": 7779,
       "sha256": "63b5d12f679dad62c38e3e7d99fd042ce1577eb8629633263fbde4614baffeb5"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 11430,
+      "sha256": "a29c442cbd322c2dc4a90471a83f0719d1e55c70faee4514c7cdb534a1e7fecd"
     },
     {
       "path": "source/en/content.json",
@@ -748,8 +754,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 392642,
-      "sha256": "def66990ad14ebaf2a41e19867501561b0e7196624e84fb6d526c7d9139513e7"
+      "size": 405332,
+      "sha256": "a9611dd62719d46d543e1b05b27e262c202fda565f3c878fd79bc006d0fc2ee7"
     },
     {
       "path": "web/en/manual_jats02a_us_en.md",
