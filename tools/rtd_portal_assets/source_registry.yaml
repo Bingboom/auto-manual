@@ -103,8 +103,8 @@ domains:
     fallback: git 文件清单当前不可读
     used_by: 系统建设·工具与工程规模
 
-  # Sources of the 系统数据 and 产品矩阵 pages, and of the navigation groups the
-  # homepage and 产品知识 share. Those pages do not read this file; fallback says what they show.
+  # Sources of the 系统数据, 产品矩阵 and 知识库首页 pages, and of the navigation groups the
+  # manual-library homepage and 产品知识 share. Those pages do not read this file; fallback says what they show.
   - id: capability_table
     label: 机型能力与语言
     authority:
@@ -136,6 +136,13 @@ domains:
     read: build
     fallback: 该型号的规格显示为 —
     used_by: 产品矩阵
+
+  - id: knowledge_updates
+    label: 知识库更新记录
+    authority: "file:auto-manual:tools/rtd_portal_assets/knowledge_updates.yaml"
+    read: build
+    fallback: 有问题的条目不显示、缺日期的条目显示日期未记录，构建时告警；文件不可读时显示暂无更新记录
+    used_by: 知识库首页·最近更新
 
   - id: review_pages
     label: 评审页面

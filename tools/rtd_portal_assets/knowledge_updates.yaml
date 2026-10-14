@@ -1,0 +1,76 @@
+# 知识库首页「最近更新」(#updates): one entry per knowledge-page change a reader
+# should notice, newest first. tools/rtd/knowledge_updates.py reads this file;
+# the page shows the newest 8 entries whose page this build made.
+#
+# No build-time source carries per-page change dates (the data dates measure
+# freshness, which 说明书工作台 and 系统建设 already show), so the list is
+# curated: a PR that adds a knowledge page or changes one noticeably adds its
+# entry here, in the same PR.
+#
+#   date      the merge day, as `git log --date=short` shows the squash commit
+#             on main; write it unquoted (YYYY-MM-DD). Without one the row
+#             shows 日期未记录 and sorts last; the build date is never used.
+#   title     the row's bold line
+#   note      one line: what changed
+#   page      where the row links: share | product-knowledge | product-matrix |
+#             market-policy | deliverables | system | design-system | system-data
+#             (hidden while that page, or the share package, is not built)
+#   anchor    optional lower-case id on that page, such as work-map
+#   evidence  pr:<repo>#<n>, or a list of them, for reviewers; never shown
+#
+# An entry with an unknown page, an empty title or note, or a bad anchor is
+# dropped with a Sphinx warning; an unreadable file shows 暂无更新记录。
+schema: hello-docs-knowledge-updates/v1
+
+updates:
+  - date: 2026-10-14
+    title: 系统建设 · 工具与工程规模
+    note: 工程规模从系统数据页移入此标签页，与技能和钩子放在一起
+    page: system
+    anchor: codebase
+    evidence: "pr:auto-manual#1542"
+
+  - date: 2026-10-12
+    title: 产品矩阵
+    note: 新页面：从已发布说明书整理产品线、容量和市场，可对照规格与功能
+    page: product-matrix
+    evidence: "pr:auto-manual#1512"
+
+  - date: 2026-10-10
+    title: 系统数据
+    note: 新页面：统计已发布网页说明书、机型能力与素材登记，可按区域和机型筛选
+    page: system-data
+    evidence: "pr:auto-manual#1482"
+
+  - date: 2026-10-10
+    title: 设计规范
+    note: 新页面：颜色、字体与组件的数值和预览在构建时取自当前样式表
+    page: design-system
+    evidence: "pr:auto-manual#1472"
+
+  - date: 2026-10-07
+    title: 产品知识
+    note: 新页面：围绕已发布产品学习必要知识，再打开对应说明书核对
+    page: product-knowledge
+    evidence: "pr:auto-manual#1448"
+
+  - date: 2026-10-07
+    title: 市场与政策
+    note: 新页面：按「政策变化 → 原理解释 → 产品影响」阅读各地政策
+    page: market-policy
+    evidence: "pr:auto-manual#1448"
+
+  - date: 2026-10-04
+    title: 说明书工作台 · 工作入口
+    note: 工作地图按版本标出内容权威源，机读面显示本次部署的覆盖统计
+    page: deliverables
+    anchor: work-map
+    evidence:
+      - "pr:auto-manual#1431"
+      - "pr:auto-manual#1436"
+
+  - date: 2026-09-22
+    title: AI 使用知识分享
+    note: 已加入分享稿与配套示例
+    page: share
+    evidence: "pr:hello-docs#112"
