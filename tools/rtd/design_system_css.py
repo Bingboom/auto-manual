@@ -1,4 +1,4 @@
-"""Read declared values from the live Web stylesheet for the 设计系统 page.
+"""Read declared values from the live Web stylesheet for the 设计规范 page.
 
 A deliberately small reader: comments are dropped, top-level and grouping
 (@media / @supports / @container) rules are kept in cascade order, and every
