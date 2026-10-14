@@ -1044,12 +1044,54 @@
                   {
                     "role": "caption_mode",
                     "content_kind": "inline_text",
-                    "content": "embedded"
+                    "content": "live"
                   },
                   {
                     "role": "caption_layout",
                     "content_kind": "inline_text",
                     "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<strong>ハンドル</strong>",
+                        "text": "ハンドル"
+                      },
+                      {
+                        "html": "<strong>DC 拡張ポート B</strong>",
+                        "text": "DC 拡張ポート B"
+                      },
+                      {
+                        "html": "接続拡張ケーブル",
+                        "text": "接続拡張ケーブル"
+                      },
+                      {
+                        "html": "のプラグBに接続",
+                        "text": "のプラグBに接続"
+                      },
+                      {
+                        "html": "<strong>DC 拡張ポート A</strong>",
+                        "text": "DC 拡張ポート A"
+                      },
+                      {
+                        "html": "接続拡張ケーブル",
+                        "text": "接続拡張ケーブル"
+                      },
+                      {
+                        "html": "のプラグAに接続",
+                        "text": "のプラグAに接続"
+                      },
+                      {
+                        "html": "<strong>主電源ボタン</strong>",
+                        "text": "主電源ボタン"
+                      },
+                      {
+                        "html": "<strong>ディスプレイ</strong>",
+                        "text": "ディスプレイ"
+                      }
+                    ]
                   }
                 ],
                 "assets": [
@@ -1063,10 +1105,100 @@
                   "component.special.reference-figure"
                 ],
                 "metadata": {
-                  "image_key": "overview",
-                  "web_replace_key": "",
-                  "source_fragment_sha256": "8ead4d4d71567f941468fe2fe60080fef63690b380f6e1c76cf205b20e748756",
-                  "capture_following_lines": 0
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "8ba643b25af0dd48bee6bf3356aeb2740ca74bc67591c7d7859af5adc2262f8e",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          0.857,
+                          10.051,
+                          11.519,
+                          7.743
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          0.858,
+                          28.369,
+                          21.616,
+                          7.743
+                        ]
+                      },
+                      {
+                        "line": 2,
+                        "rect": [
+                          0.857,
+                          36.816,
+                          19.747,
+                          6.637
+                        ]
+                      },
+                      {
+                        "line": 3,
+                        "rect": [
+                          0.857,
+                          43.894,
+                          19.453,
+                          6.637
+                        ]
+                      },
+                      {
+                        "line": 4,
+                        "rect": [
+                          0.857,
+                          71.057,
+                          21.5,
+                          7.743
+                        ]
+                      },
+                      {
+                        "line": 5,
+                        "rect": [
+                          0.857,
+                          80.261,
+                          19.747,
+                          6.637
+                        ]
+                      },
+                      {
+                        "line": 6,
+                        "rect": [
+                          0.857,
+                          87.339,
+                          19.33,
+                          6.637
+                        ]
+                      },
+                      {
+                        "line": 7,
+                        "rect": [
+                          85.677,
+                          22.242,
+                          14.323,
+                          7.743
+                        ]
+                      },
+                      {
+                        "line": 8,
+                        "rect": [
+                          85.677,
+                          84.982,
+                          14.323,
+                          7.743
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "assets/overview.png",
+                  "web_replace_key": "reference.overview",
+                  "source_fragment_sha256": "8bacc47e5a44039555c25b3f9b2075aca36b45a04f11e917236195aee065c560",
+                  "capture_following_lines": 9
                 },
                 "schema_version": "component-spec/v1"
               },
@@ -1075,6 +1207,197 @@
                   "kind": "image",
                   "source": "assets/overview.png",
                   "alt": "各部の名称：ハンドル、DC 拡張ポート B（接続拡張ケーブルのプラグBに接続）、DC 拡張ポート A（接続拡張ケーブルのプラグAに接続）、主電源ボタン、ディスプレイ"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "ハンドル"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "DC 拡張ポート B"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "接続拡張ケーブル"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "のプラグBに接続"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "DC 拡張ポート A"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "接続拡張ケーブル"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "のプラグAに接続"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "主電源ボタン"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "ディスプレイ"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -1131,12 +1454,30 @@
                   {
                     "role": "caption_mode",
                     "content_kind": "inline_text",
-                    "content": "embedded"
+                    "content": "live"
                   },
                   {
                     "role": "caption_layout",
                     "content_kind": "inline_text",
                     "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<strong>バッテリー残量(%)/</strong>",
+                        "text": "バッテリー残量(%)/"
+                      },
+                      {
+                        "html": "<strong>エラーコード</strong>",
+                        "text": "エラーコード"
+                      },
+                      {
+                        "html": "<strong>充電マーク</strong>",
+                        "text": "充電マーク"
+                      }
+                    ]
                   }
                 ],
                 "assets": [
@@ -1150,10 +1491,46 @@
                   "component.special.reference-figure"
                 ],
                 "metadata": {
-                  "image_key": "lcd-map",
-                  "web_replace_key": "",
-                  "source_fragment_sha256": "1de371224d929f850acdb5e991ecffc933589c3060378283d40cea11344a1cea",
-                  "capture_following_lines": 0
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "205a464ff7bd7a33c94e344e4d8fc96801ca7ea49ecfc336135cb75fefa288a4",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          2.794,
+                          30.559,
+                          26.39,
+                          17.157
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          2.773,
+                          47.03,
+                          17.384,
+                          17.157
+                        ]
+                      },
+                      {
+                        "line": 2,
+                        "rect": [
+                          84.253,
+                          31.479,
+                          14.754,
+                          17.157
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "assets/lcd-map.png",
+                  "web_replace_key": "reference.lcd-map",
+                  "source_fragment_sha256": "3ddf9e499cbc0ef7f38b88edc6547136a680845b1a51e5ca7248e6cfc5459b4f",
+                  "capture_following_lines": 3
                 },
                 "schema_version": "component-spec/v1"
               },
@@ -1162,6 +1539,85 @@
                   "kind": "image",
                   "source": "assets/lcd-map.png",
                   "alt": "液晶画面：バッテリー残量(%)/エラーコード、充電マーク"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "バッテリー残量(%)/"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "エラーコード"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "充電マーク"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -1346,12 +1802,38 @@
                   {
                     "role": "caption_mode",
                     "content_kind": "inline_text",
-                    "content": "embedded"
+                    "content": "live"
                   },
                   {
                     "role": "caption_layout",
                     "content_kind": "inline_text",
                     "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<strong>オフ</strong>",
+                        "text": "オフ"
+                      },
+                      {
+                        "html": "1回押す",
+                        "text": "1回押す"
+                      },
+                      {
+                        "html": "<strong>オン</strong>",
+                        "text": "オン"
+                      },
+                      {
+                        "html": "3秒",
+                        "text": "3秒"
+                      },
+                      {
+                        "html": "3s",
+                        "text": "3s"
+                      }
+                    ]
                   }
                 ],
                 "assets": [
@@ -1365,10 +1847,64 @@
                   "component.special.reference-figure"
                 ],
                 "metadata": {
-                  "image_key": "power-on-off",
-                  "web_replace_key": "",
-                  "source_fragment_sha256": "4cbc075e3aa79fefb239b1c2d1dd334c386eb714b1ab39bd4f5a3f736c1a8d6b",
-                  "capture_following_lines": 0
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "7ec573ce419ebadf61414f3263e2f940461823251a93b3e59fdd20f4d9d77766",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          86.54,
+                          1.497,
+                          8.0,
+                          13.158
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          86.667,
+                          15.561,
+                          10.665,
+                          9.868
+                        ]
+                      },
+                      {
+                        "line": 2,
+                        "rect": [
+                          86.426,
+                          32.581,
+                          8.0,
+                          13.158
+                        ]
+                      },
+                      {
+                        "line": 3,
+                        "rect": [
+                          86.667,
+                          45.822,
+                          4.665,
+                          9.868
+                        ]
+                      },
+                      {
+                        "line": 4,
+                        "rect": [
+                          91.744,
+                          60.904,
+                          3.444,
+                          11.513
+                        ]
+                      }
+                    ]
+                  },
+                  "image_key": "assets/power-on-off.png",
+                  "web_replace_key": "reference.power-on-off",
+                  "source_fragment_sha256": "96cec672dd0f1ce2ff388902d3771e75e186f4d4e3fb0b890f417bd16c25b153",
+                  "capture_following_lines": 5
                 },
                 "schema_version": "component-spec/v1"
               },
@@ -1377,6 +1913,114 @@
                   "kind": "image",
                   "source": "assets/power-on-off.png",
                   "alt": "主電源ボタンのオン/オフ：オフ 1回押す、オン 3秒（3s）"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "オフ"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "1回押す"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "オン"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "3秒"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "3s"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -1388,7 +2032,7 @@
           "component_spec": {
             "component_id": "HB-CALLOUT-STRIP",
             "variant": "note",
-            "source_ref": "native-pdf/usage/note-54",
+            "source_ref": "native-pdf/usage/note-71",
             "language": "ja",
             "slots": [
               {
@@ -1640,7 +2284,7 @@
           "component_spec": {
             "component_id": "HB-CALLOUT-STRIP",
             "variant": "caution",
-            "source_ref": "native-pdf/power-station/caution-61",
+            "source_ref": "native-pdf/power-station/caution-78",
             "language": "ja",
             "slots": [
               {
@@ -1788,12 +2432,26 @@
                   {
                     "role": "caption_mode",
                     "content_kind": "inline_text",
-                    "content": "embedded"
+                    "content": "live"
                   },
                   {
                     "role": "caption_layout",
                     "content_kind": "inline_text",
                     "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "≥ 20cm",
+                        "text": "≥ 20cm"
+                      },
+                      {
+                        "html": "≥ 20cm",
+                        "text": "≥ 20cm"
+                      }
+                    ]
                   }
                 ],
                 "assets": [
@@ -1807,10 +2465,38 @@
                   "component.special.reference-figure"
                 ],
                 "metadata": {
-                  "image_key": "clearance",
-                  "web_replace_key": "",
-                  "source_fragment_sha256": "9bfbbe75d040b27a538d021c8ef9d7fa3d7cbc367c6902ad96f510c76c0b8a83",
-                  "capture_following_lines": 0
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "701c0417897c204181002613ed6ef30a7947e0216705bf4f8de70a71761d8df3",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          32.696,
+                          88.114,
+                          8.32,
+                          4.808
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          60.334,
+                          85.902,
+                          8.379,
+                          4.808
+                        ]
+                      }
+                    ],
+                    "mobile_labels": "overlay"
+                  },
+                  "image_key": "assets/clearance.png",
+                  "web_replace_key": "reference.clearance",
+                  "source_fragment_sha256": "4a1ba0c928d9bc392dc3bf7016df2b8436fe70690ee9387cdae82798c3a9dbae",
+                  "capture_following_lines": 2
                 },
                 "schema_version": "component-spec/v1"
               },
@@ -1819,6 +2505,53 @@
                   "kind": "image",
                   "source": "assets/clearance.png",
                   "alt": "ポータブル電源とバッテリーパックの設置：壁との間隔 ≥ 20cm"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "≥ 20cm"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "≥ 20cm"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -1899,7 +2632,7 @@
           "component_spec": {
             "component_id": "HB-CALLOUT-STRIP",
             "variant": "caution",
-            "source_ref": "native-pdf/power-station/caution-66",
+            "source_ref": "native-pdf/power-station/caution-85",
             "language": "ja",
             "slots": [
               {
@@ -2073,12 +2806,26 @@
                   {
                     "role": "caption_mode",
                     "content_kind": "inline_text",
-                    "content": "embedded"
+                    "content": "live"
                   },
                   {
                     "role": "caption_layout",
                     "content_kind": "inline_text",
                     "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "<strong>ロック</strong>",
+                        "text": "ロック"
+                      },
+                      {
+                        "html": "<strong>ロック解除</strong>",
+                        "text": "ロック解除"
+                      }
+                    ]
                   }
                 ],
                 "assets": [
@@ -2092,10 +2839,42 @@
                   "component.special.reference-figure"
                 ],
                 "metadata": {
-                  "image_key": "locking",
-                  "web_replace_key": "",
-                  "source_fragment_sha256": "85b96730855e43fb997bb4bd56d34b0df18e4d17c8bcb7513f159aabb62babec",
-                  "capture_following_lines": 0
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "6c84e9f17dc7997935f5e1f0c9a8d5d47643cdd28ee7f56d2a7f8d8cf43d817b",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          59.203,
+                          4.682,
+                          13.914,
+                          3.715
+                        ],
+                        "color": "#ffffff",
+                        "fill": "#404042"
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          59.203,
+                          53.591,
+                          23.385,
+                          3.715
+                        ],
+                        "color": "#ffffff",
+                        "fill": "#404042"
+                      }
+                    ],
+                    "mobile_labels": "overlay"
+                  },
+                  "image_key": "assets/locking.png",
+                  "web_replace_key": "reference.locking",
+                  "source_fragment_sha256": "333af3e448e6a0bae35b5e23fb5c360f5ecef91fd568334faf56e16e3a22a13f",
+                  "capture_following_lines": 2
                 },
                 "schema_version": "component-spec/v1"
               },
@@ -2104,6 +2883,63 @@
                   "kind": "image",
                   "source": "assets/locking.png",
                   "alt": "拡張ケーブルのロック（①②）とロック解除（①②）"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "ロック"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "strong",
+                          "children": [
+                            {
+                              "kind": "text",
+                              "text": "ロック解除"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -2154,7 +2990,7 @@
           "component_spec": {
             "component_id": "HB-CALLOUT-STRIP",
             "variant": "warning",
-            "source_ref": "native-pdf/charging/warning-72",
+            "source_ref": "native-pdf/charging/warning-93",
             "language": "ja",
             "slots": [
               {
@@ -2289,12 +3125,26 @@
                   {
                     "role": "caption_mode",
                     "content_kind": "inline_text",
-                    "content": "embedded"
+                    "content": "live"
                   },
                   {
                     "role": "caption_layout",
                     "content_kind": "inline_text",
                     "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "ACケーブル",
+                        "text": "ACケーブル"
+                      },
+                      {
+                        "html": "拡張ケーブル",
+                        "text": "拡張ケーブル"
+                      }
+                    ]
                   }
                 ],
                 "assets": [
@@ -2308,10 +3158,38 @@
                   "component.special.reference-figure"
                 ],
                 "metadata": {
-                  "image_key": "ac-charging",
-                  "web_replace_key": "",
-                  "source_fragment_sha256": "1bfdda96b6c964aa1587327899b3d1d82c70c9045492eba4ab494c1e071799aa",
-                  "capture_following_lines": 0
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "2d1410fc14a8d9fce9a638884e1beb5a81e4fbdfacaf73b2f8f3bcc02974ac5a",
+                    "panel_top": 0,
+                    "panel_fill": "#ffffff",
+                    "preserve_frame": true,
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          7.577,
+                          84.987,
+                          13.108,
+                          4.545
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          55.056,
+                          88.762,
+                          14.995,
+                          4.545
+                        ]
+                      }
+                    ],
+                    "mobile_labels": "overlay"
+                  },
+                  "image_key": "assets/ac-charging.png",
+                  "web_replace_key": "reference.ac-charging",
+                  "source_fragment_sha256": "784865e3b7ae57b18d36df7b6987b2588dec38bf2a8796b078759e88169d6de3",
+                  "capture_following_lines": 2
                 },
                 "schema_version": "component-spec/v1"
               },
@@ -2320,6 +3198,53 @@
                   "kind": "image",
                   "source": "assets/ac-charging.png",
                   "alt": "AC充電：ACケーブル、拡張ケーブル"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "ACケーブル"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "拡張ケーブル"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -2379,12 +3304,26 @@
                   {
                     "role": "caption_mode",
                     "content_kind": "inline_text",
-                    "content": "embedded"
+                    "content": "live"
                   },
                   {
                     "role": "caption_layout",
                     "content_kind": "inline_text",
                     "content": "equal"
+                  },
+                  {
+                    "role": "captions",
+                    "content_kind": "ordered_labels",
+                    "content": [
+                      {
+                        "html": "SolarSaga 200",
+                        "text": "SolarSaga 200"
+                      },
+                      {
+                        "html": "拡張ケーブル",
+                        "text": "拡張ケーブル"
+                      }
+                    ]
                   }
                 ],
                 "assets": [
@@ -2398,10 +3337,38 @@
                   "component.special.reference-figure"
                 ],
                 "metadata": {
-                  "image_key": "solar-charging",
-                  "web_replace_key": "",
-                  "source_fragment_sha256": "e5c3bb7b5a2482d5466cbe85f3b6deeeaa4ed742c7f931e03d7f12c77f619ad1",
-                  "capture_following_lines": 0
+                  "presentation_mode": "base-art-live-copy",
+                  "base_art_layout": {
+                    "art_sha256": "c5a343a12435906925bb4a1b0a56d063c6fa5d9436899fe0a6d9b495856892f4",
+                    "panel_top": 0,
+                    "panel_fill": "#f2f2f3",
+                    "preserve_frame": true,
+                    "labels": [
+                      {
+                        "line": 0,
+                        "rect": [
+                          6.408,
+                          33.738,
+                          17.092,
+                          4.386
+                        ]
+                      },
+                      {
+                        "line": 1,
+                        "rect": [
+                          78.659,
+                          78.342,
+                          14.99,
+                          4.386
+                        ]
+                      }
+                    ],
+                    "mobile_labels": "overlay"
+                  },
+                  "image_key": "assets/solar-charging.png",
+                  "web_replace_key": "reference.solar-charging",
+                  "source_fragment_sha256": "cc437aacdb795f1821253ce51dbe148138f81fe8ac4165f31383c81bcac0d3ac",
+                  "capture_following_lines": 2
                 },
                 "schema_version": "component-spec/v1"
               },
@@ -2410,6 +3377,53 @@
                   "kind": "image",
                   "source": "assets/solar-charging.png",
                   "alt": "ソーラー充電：SolarSaga 200、拡張ケーブル"
+                },
+                {
+                  "kind": "group",
+                  "role": "container",
+                  "presentation": {
+                    "html": {
+                      "attributes": {
+                        "class": "line-block"
+                      }
+                    }
+                  },
+                  "children": [
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "SolarSaga 200"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "group",
+                      "role": "container",
+                      "presentation": {
+                        "html": {
+                          "attributes": {
+                            "class": "line"
+                          }
+                        }
+                      },
+                      "children": [
+                        {
+                          "kind": "text",
+                          "text": "拡張ケーブル"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }

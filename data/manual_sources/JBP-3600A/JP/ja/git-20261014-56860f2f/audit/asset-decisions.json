@@ -95,11 +95,41 @@
       "docs/templates/word_template/common_assets"
     ],
     "identity_check": "JBP-3600A JP print panel",
-    "decision": "extract complete source panel",
-    "reason": "The JP print shows a three-quarter view with five Japanese leader labels; the EU overview is two English-labelled orthographic views.",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "The JP print shows a three-quarter view with five Japanese leader labels; the EU overview is two English-labelled orthographic views. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
     "background_strategy": "Retain complete panel as printed; no background removal",
     "caption": "各部の名称：ハンドル、DC 拡張ポート B（接続拡張ケーブルのプラグBに接続）、DC 拡張ポート A（接続拡張ケーブルのプラグAに接続）、主電源ボタン、ディスプレイ",
-    "acquisition_kind": "crop"
+    "live_labels": [
+      {
+        "text": "ハンドル"
+      },
+      {
+        "text": "DC 拡張ポート B"
+      },
+      {
+        "text": "接続拡張ケーブル"
+      },
+      {
+        "text": "のプラグBに接続"
+      },
+      {
+        "text": "DC 拡張ポート A"
+      },
+      {
+        "text": "接続拡張ケーブル"
+      },
+      {
+        "text": "のプラグAに接続"
+      },
+      {
+        "text": "主電源ボタン"
+      },
+      {
+        "text": "ディスプレイ"
+      }
+    ],
+    "panel_fill": "#ffffff",
+    "acquisition_kind": "textless-crop"
   },
   {
     "slot": "lcd-map",
@@ -120,11 +150,23 @@
       "docs/templates/word_template/common_assets"
     ],
     "identity_check": "JBP-3600A JP print panel",
-    "decision": "extract complete source panel",
-    "reason": "EU lcd_annotated.png carries English labels baked into the art.",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "EU lcd_annotated.png carries English labels baked into the art. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
     "background_strategy": "Retain complete panel as printed; no background removal",
     "caption": "液晶画面：バッテリー残量(%)/エラーコード、充電マーク",
-    "acquisition_kind": "crop"
+    "live_labels": [
+      {
+        "text": "バッテリー残量(%)/"
+      },
+      {
+        "text": "エラーコード"
+      },
+      {
+        "text": "充電マーク"
+      }
+    ],
+    "panel_fill": "#ffffff",
+    "acquisition_kind": "textless-crop"
   },
   {
     "slot": "power-on-off",
@@ -145,11 +187,29 @@
       "docs/templates/word_template/common_assets"
     ],
     "identity_check": "JBP-3600A JP print panel",
-    "decision": "extract complete source panel",
-    "reason": "EU power_native.png has the same unit and zoom but no オフ/オン labels or 3s clock; the JP panel keeps them.",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "EU power_native.png has the same unit and zoom but no オフ/オン labels or 3s clock; the JP panel keeps them. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
     "background_strategy": "Retain complete panel as printed; no background removal",
     "caption": "主電源ボタンのオン/オフ：オフ 1回押す、オン 3秒（3s）",
-    "acquisition_kind": "crop"
+    "live_labels": [
+      {
+        "text": "オフ"
+      },
+      {
+        "text": "1回押す"
+      },
+      {
+        "text": "オン"
+      },
+      {
+        "text": "3秒"
+      },
+      {
+        "text": "3s"
+      }
+    ],
+    "panel_fill": "#ffffff",
+    "acquisition_kind": "textless-crop"
   },
   {
     "slot": "lcd-control",
@@ -196,11 +256,21 @@
       "docs/templates/word_template/common_assets"
     ],
     "identity_check": "JBP-3600A JP print panel",
-    "decision": "extract complete source panel",
-    "reason": "EU clearance_native.png lacks the printed ≥ 20cm dimensions.",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "EU clearance_native.png lacks the printed ≥ 20cm dimensions. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
     "background_strategy": "Retain complete panel as printed; no background removal",
     "caption": "ポータブル電源とバッテリーパックの設置：壁との間隔 ≥ 20cm",
-    "acquisition_kind": "crop"
+    "live_labels": [
+      {
+        "text": "≥ 20cm"
+      },
+      {
+        "text": "≥ 20cm"
+      }
+    ],
+    "panel_fill": "#ffffff",
+    "mobile_labels": "overlay",
+    "acquisition_kind": "textless-crop"
   },
   {
     "slot": "stacking",
@@ -247,11 +317,23 @@
       "docs/templates/word_template/common_assets"
     ],
     "identity_check": "JBP-3600A JP print panel",
-    "decision": "extract complete source panel",
-    "reason": "The JP panel prints ロック / ロック解除 tags; EU locking_native.png has no tags.",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "The JP panel prints ロック / ロック解除 tags; EU locking_native.png has no tags. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
     "background_strategy": "Retain complete panel as printed; no background removal",
     "caption": "拡張ケーブルのロック（①②）とロック解除（①②）",
-    "acquisition_kind": "crop"
+    "live_labels": [
+      {
+        "text": "ロック",
+        "color": "#ffffff"
+      },
+      {
+        "text": "ロック解除",
+        "color": "#ffffff"
+      }
+    ],
+    "panel_fill": "#ffffff",
+    "mobile_labels": "overlay",
+    "acquisition_kind": "textless-crop"
   },
   {
     "slot": "ac-charging",
@@ -272,11 +354,21 @@
       "docs/templates/word_template/common_assets"
     ],
     "identity_check": "JBP-3600A JP print panel",
-    "decision": "extract complete source panel",
-    "reason": "Japanese outlet and plug with Japanese labels; EU ac_charging.png shows an EU outlet without labels.",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "Japanese outlet and plug with Japanese labels; EU ac_charging.png shows an EU outlet without labels. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
     "background_strategy": "Retain complete panel as printed; no background removal",
     "caption": "AC充電：ACケーブル、拡張ケーブル",
-    "acquisition_kind": "crop"
+    "live_labels": [
+      {
+        "text": "ACケーブル"
+      },
+      {
+        "text": "拡張ケーブル"
+      }
+    ],
+    "panel_fill": "#ffffff",
+    "mobile_labels": "overlay",
+    "acquisition_kind": "textless-crop"
   },
   {
     "slot": "solar-charging",
@@ -297,11 +389,21 @@
       "docs/templates/word_template/common_assets"
     ],
     "identity_check": "JBP-3600A JP print panel",
-    "decision": "extract complete source panel",
-    "reason": "JP panel prints SolarSaga 200 and 拡張ケーブル labels; EU solar_charging.png has none.",
+    "decision": "extract text-free complete source panel; printed labels become live copy",
+    "reason": "JP panel prints SolarSaga 200 and 拡張ケーブル labels; EU solar_charging.png has none. Operator 2026-10-14 (JBP-2000B reference, option a): text-free 4x raster art with live Japanese labels; product nameplate micro-text and step numbers stay in the art.",
     "background_strategy": "Retain complete panel as printed; no background removal",
     "caption": "ソーラー充電：SolarSaga 200、拡張ケーブル",
-    "acquisition_kind": "crop"
+    "live_labels": [
+      {
+        "text": "SolarSaga 200"
+      },
+      {
+        "text": "拡張ケーブル"
+      }
+    ],
+    "panel_fill": "#f2f2f3",
+    "mobile_labels": "overlay",
+    "acquisition_kind": "textless-crop"
   },
   {
     "slot": "contact-qr",

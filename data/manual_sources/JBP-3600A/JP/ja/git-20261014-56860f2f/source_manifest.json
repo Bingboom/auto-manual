@@ -215,7 +215,8 @@
     "Tables keep the print's structure; only the troubleshooting table has a printed header row.",
     "LiFePO4 keeps the print's subscript 4.",
     "Two visible marks drawn as outlines (UN38.3, the ■ before the p03 notice) are restored from source/text-recovery.json; heading disc markers and pills are left to the shared heading style.",
-    "Artwork words stay in the reviewed figure crops; the figures carry no visible caption."
+    "Labelled figures are text-free art (printed label lines removed with the redact_text operator, 4x raster) with those lines as live Japanese copy on their print positions; other artwork words stay in the art; no figure carries a visible caption.",
+    "Troubleshooting uses the shared troubleshooting table (JBP-2000B reference); tables the shared components would change (signal, LCD, symbols, specifications) stay native grids, as printed."
   ],
   "validation_boundary": {
     "build_py_check": "Existing JE-1000F/US fixture regression only; does not validate JBP-3600A/JP or register it in phase2.",
@@ -232,18 +233,18 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 8384,
-      "sha256": "5eea94a488df9f236a62b82b28d93c0faa83c181a356419f6f1fa3957a2344f4"
+      "size": 9461,
+      "sha256": "c551f2d9d04de6c7f9f1cddea72c1721a738002073d3cee417129f166f06b8e3"
     },
     {
       "path": "assets/ac-charging.png",
-      "size": 152173,
-      "sha256": "699019b49127dbaa01cd86acd0fb7e4e7120e4b877e886af54213513097dac98"
+      "size": 148377,
+      "sha256": "2d1410fc14a8d9fce9a638884e1beb5a81e4fbdfacaf73b2f8f3bcc02974ac5a"
     },
     {
       "path": "assets/clearance.png",
-      "size": 102801,
-      "sha256": "6df00e4ffee09e4a1ba9a34690b19f5d3007d0f2df28aadb1d5824c5fac1b4ec"
+      "size": 100248,
+      "sha256": "701c0417897c204181002613ed6ef30a7947e0216705bf4f8de70a71761d8df3"
     },
     {
       "path": "assets/contact-mail.svg",
@@ -292,23 +293,23 @@
     },
     {
       "path": "assets/lcd-map.png",
-      "size": 16319,
-      "sha256": "b8100b08e1afa8387b3fc8a871b2f0777ca6eb9a0096bcc8a37eb89618635857"
+      "size": 8551,
+      "sha256": "205a464ff7bd7a33c94e344e4d8fc96801ca7ea49ecfc336135cb75fefa288a4"
     },
     {
       "path": "assets/locking.png",
-      "size": 138642,
-      "sha256": "0b70964252ce336e9605bcbc5a81fa67d396693dbf126b58c3580b2b039b9cbd"
+      "size": 134895,
+      "sha256": "6c84e9f17dc7997935f5e1f0c9a8d5d47643cdd28ee7f56d2a7f8d8cf43d817b"
     },
     {
       "path": "assets/overview.png",
-      "size": 81696,
-      "sha256": "0b7753dc13b2bc2d792f077bcaa3434cf9283c16a871b35a4bc9706deca779ed"
+      "size": 54973,
+      "sha256": "8ba643b25af0dd48bee6bf3356aeb2740ca74bc67591c7d7859af5adc2262f8e"
     },
     {
       "path": "assets/power-on-off.png",
-      "size": 55768,
-      "sha256": "ce9329b0c75722c278d5c44df4840eb4e1cfcf338bf3d1e0ac2ea121d989ce29"
+      "size": 51278,
+      "sha256": "7ec573ce419ebadf61414f3263e2f940461823251a93b3e59fdd20f4d9d77766"
     },
     {
       "path": "assets/signal-triangle.svg",
@@ -317,8 +318,8 @@
     },
     {
       "path": "assets/solar-charging.png",
-      "size": 203776,
-      "sha256": "58b8ff7565166ce25b7a075e4abaff072959fce441a5fed6073080877de26a1b"
+      "size": 199763,
+      "sha256": "c5a343a12435906925bb4a1b0a56d063c6fa5d9436899fe0a6d9b495856892f4"
     },
     {
       "path": "assets/stacking.png",
@@ -367,8 +368,8 @@
     },
     {
       "path": "audit/asset-decisions.json",
-      "size": 25693,
-      "sha256": "d173c9a07ac98ca5f06a276a1774fd018a06eab2be7604c24d3057938bbbbee5"
+      "size": 29071,
+      "sha256": "54b1a13177e67acfab2127fad2defca0b0d4e8705378d7e074dc061732ba460e"
     },
     {
       "path": "audit/browser-validation.json",
@@ -377,13 +378,13 @@
     },
     {
       "path": "audit/discovery.zh.md",
-      "size": 2130,
-      "sha256": "5ee691bdf6c07cecf5465582824cfcb03c0f9f1dcd9e0bc8f52a112ab4f4596c"
+      "size": 2568,
+      "sha256": "822d521b088bbaf8574458bd275bee4c0f348329f030c190dd2e2c64364cb88b"
     },
     {
       "path": "audit/validation.zh.md",
-      "size": 1988,
-      "sha256": "542e29d6ce37cc727f272b158ef665cb10070f22b9a5e19cd386bc011a9727a9"
+      "size": 2112,
+      "sha256": "c6195bd2115fe6248d1c3c4c85c9a95a20ff069b77e8c6a729209251018b2970"
     },
     {
       "path": "rebuild.py",
@@ -392,13 +393,13 @@
     },
     {
       "path": "source/extract_assets.py",
-      "size": 5673,
-      "sha256": "c2668b8a6497d2535341a8afa5ad9e15f472ee09f269ad37c12087bca87e6306"
+      "size": 6790,
+      "sha256": "b384c3a35c5b78a9c61b14002923899fbb2b9dd9b4fccbd3dd30c0341ba24d99"
     },
     {
       "path": "source/figures.json",
-      "size": 30000,
-      "sha256": "00054215ff6eeada9044a1130ecc9768e4a6670018be638ed82dc735aaefc70a"
+      "size": 33959,
+      "sha256": "86190431bf1acb2dc4b6804f3c2154770106d880223c63dfd29fbbcc8e3a004f"
     },
     {
       "path": "source/intake.py",
@@ -407,18 +408,18 @@
     },
     {
       "path": "source/ja/content.json",
-      "size": 140284,
-      "sha256": "853480be81c52bfd462e3ac391d4da8224eac3eabf89d6bab99abf0b5b6abf45"
+      "size": 174941,
+      "sha256": "9e76e2cbdf9a69fdf6691005130092b9841471a88991229e5218821985c250f5"
     },
     {
       "path": "source/ja/coverage.json",
-      "size": 60270,
-      "sha256": "6f9f59e0a3e23f65fd9577ee835c42068a90019eca6d9a884ec23618028414d7"
+      "size": 65018,
+      "sha256": "7c9c4ce673d55925988a5af8e20976b7b22bf9a3ff69b34f661130977cee5963"
     },
     {
       "path": "source/native.py",
-      "size": 20268,
-      "sha256": "a7527f71b649ea015910b6562bb1dea806ffb7c786d907b834030d324816049e"
+      "size": 26206,
+      "sha256": "29c690dd259acf02d5f0079d6e486ae93a4a7141ba897f35a1b402073b1f5ece"
     },
     {
       "path": "source/pdf-archive/part-001.bin",
@@ -432,8 +433,8 @@
     },
     {
       "path": "source/refresh_manifest.py",
-      "size": 4152,
-      "sha256": "2b7d63332e144967d35316d2ac80bc5a86001de7918a9bfb9f3297aa301c06f4"
+      "size": 4527,
+      "sha256": "a13a551f7086ae8697be2b11d2b028ba55c441c5a1a2193c461b41032831004d"
     },
     {
       "path": "source/text-recovery.json",
@@ -457,13 +458,13 @@
     },
     {
       "path": "web/ja/assets/ac-charging.png",
-      "size": 152173,
-      "sha256": "699019b49127dbaa01cd86acd0fb7e4e7120e4b877e886af54213513097dac98"
+      "size": 148377,
+      "sha256": "2d1410fc14a8d9fce9a638884e1beb5a81e4fbdfacaf73b2f8f3bcc02974ac5a"
     },
     {
       "path": "web/ja/assets/clearance.png",
-      "size": 102801,
-      "sha256": "6df00e4ffee09e4a1ba9a34690b19f5d3007d0f2df28aadb1d5824c5fac1b4ec"
+      "size": 100248,
+      "sha256": "701c0417897c204181002613ed6ef30a7947e0216705bf4f8de70a71761d8df3"
     },
     {
       "path": "web/ja/assets/contact-mail.svg",
@@ -512,23 +513,23 @@
     },
     {
       "path": "web/ja/assets/lcd-map.png",
-      "size": 16319,
-      "sha256": "b8100b08e1afa8387b3fc8a871b2f0777ca6eb9a0096bcc8a37eb89618635857"
+      "size": 8551,
+      "sha256": "205a464ff7bd7a33c94e344e4d8fc96801ca7ea49ecfc336135cb75fefa288a4"
     },
     {
       "path": "web/ja/assets/locking.png",
-      "size": 138642,
-      "sha256": "0b70964252ce336e9605bcbc5a81fa67d396693dbf126b58c3580b2b039b9cbd"
+      "size": 134895,
+      "sha256": "6c84e9f17dc7997935f5e1f0c9a8d5d47643cdd28ee7f56d2a7f8d8cf43d817b"
     },
     {
       "path": "web/ja/assets/overview.png",
-      "size": 81696,
-      "sha256": "0b7753dc13b2bc2d792f077bcaa3434cf9283c16a871b35a4bc9706deca779ed"
+      "size": 54973,
+      "sha256": "8ba643b25af0dd48bee6bf3356aeb2740ca74bc67591c7d7859af5adc2262f8e"
     },
     {
       "path": "web/ja/assets/power-on-off.png",
-      "size": 55768,
-      "sha256": "ce9329b0c75722c278d5c44df4840eb4e1cfcf338bf3d1e0ac2ea121d989ce29"
+      "size": 51278,
+      "sha256": "7ec573ce419ebadf61414f3263e2f940461823251a93b3e59fdd20f4d9d77766"
     },
     {
       "path": "web/ja/assets/signal-triangle.svg",
@@ -537,8 +538,8 @@
     },
     {
       "path": "web/ja/assets/solar-charging.png",
-      "size": 203776,
-      "sha256": "58b8ff7565166ce25b7a075e4abaff072959fce441a5fed6073080877de26a1b"
+      "size": 199763,
+      "sha256": "c5a343a12435906925bb4a1b0a56d063c6fa5d9436899fe0a6d9b495856892f4"
     },
     {
       "path": "web/ja/assets/stacking.png",
@@ -597,13 +598,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 225245,
-      "sha256": "bbe0a030cf75c7ef401d3129aa1142921f167e73fed1a565f0bd59985384c75c"
+      "size": 261930,
+      "sha256": "0e37d3cf4e932b47b0c4d8e22ddf9049af7ed8bf86bd432289ac777d44f65494"
     },
     {
       "path": "web/ja/manual_jbp3600a_jp_ja.md",
-      "size": 33112,
-      "sha256": "2aae33de1feb9eec5c2072ff7b569e12a0f5940a8af78838540e163388bb97b5"
+      "size": 38642,
+      "sha256": "6678fd54223a853cf6e096fb1ddd64bb6abd1a9721c1be766e0f0a63d19df4d8"
     }
   ],
   "repo_inputs": [

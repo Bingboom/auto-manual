@@ -778,28 +778,144 @@
     {
       "panel": 5,
       "bbox": [
+        28.71,
+        370.37,
+        56.71,
+        390.33
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        43
+      ],
+      "raw": "ハンドル"
+    },
+    {
+      "panel": 5,
+      "bbox": [
+        28.71,
+        391.06,
+        81.25,
+        411.03
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        32,
+        33,
+        34
+      ],
+      "raw": "DC 拡張ポート B"
+    },
+    {
+      "panel": 5,
+      "bbox": [
+        28.71,
+        401.45,
+        76.71,
+        418.59
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        36
+      ],
+      "raw": "接続拡張ケーブル"
+    },
+    {
+      "panel": 5,
+      "bbox": [
+        28.71,
+        409.45,
+        75.99,
+        426.59
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        37
+      ],
+      "raw": "のプラグBに接続"
+    },
+    {
+      "panel": 5,
+      "bbox": [
+        28.71,
+        439.3,
+        80.97,
+        459.27
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        40,
+        41,
+        42
+      ],
+      "raw": "DC 拡張ポート A"
+    },
+    {
+      "panel": 5,
+      "bbox": [
+        28.71,
+        450.55,
+        76.71,
+        467.68
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        38
+      ],
+      "raw": "接続拡張ケーブル"
+    },
+    {
+      "panel": 5,
+      "bbox": [
+        28.71,
+        458.54,
+        75.7,
+        475.68
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        39
+      ],
+      "raw": "のプラグAに接続"
+    },
+    {
+      "panel": 5,
+      "bbox": [
+        296.74,
+        384.14,
+        338.74,
+        404.11
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        31
+      ],
+      "raw": "主電源ボタン"
+    },
+    {
+      "panel": 5,
+      "bbox": [
+        296.74,
+        455.04,
+        338.74,
+        475.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        35
+      ],
+      "raw": "ディスプレイ"
+    },
+    {
+      "panel": 5,
+      "bbox": [
         26,
         365,
         342,
         478
       ],
       "purpose": "embedded-art/overview",
-      "word_ids": [
-        31,
-        32,
-        33,
-        34,
-        35,
-        36,
-        37,
-        38,
-        39,
-        40,
-        41,
-        42,
-        43
-      ],
-      "raw": "主電源ボタン DC 拡張ポート B ディスプレイ 接続拡張ケーブル のプラグBに接続 接続拡張ケーブル のプラグAに接続 DC 拡張ポート A ハンドル"
+      "word_ids": [],
+      "raw": ""
     },
     {
       "panel": 6,
@@ -818,18 +934,56 @@
     {
       "panel": 6,
       "bbox": [
+        42.38,
+        64.59,
+        103.28,
+        84.56
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2
+      ],
+      "raw": "バッテリー残量(%)/"
+    },
+    {
+      "panel": 6,
+      "bbox": [
+        42.32,
+        72.99,
+        82.43,
+        92.96
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        3
+      ],
+      "raw": "エラーコード"
+    },
+    {
+      "panel": 6,
+      "bbox": [
+        286.76,
+        65.06,
+        320.8,
+        85.03
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        4
+      ],
+      "raw": "充電マーク"
+    },
+    {
+      "panel": 6,
+      "bbox": [
         34,
         55,
         334,
         106
       ],
       "purpose": "embedded-art/lcd-map",
-      "word_ids": [
-        2,
-        3,
-        4
-      ],
-      "raw": "バッテリー残量(%)/ エラーコード 充電マーク"
+      "word_ids": [],
+      "raw": ""
     },
     {
       "panel": 6,
@@ -922,20 +1076,84 @@
     {
       "panel": 6,
       "bbox": [
+        265.0,
+        230.29,
+        281.0,
+        253.11
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        16
+      ],
+      "raw": "オフ"
+    },
+    {
+      "panel": 6,
+      "bbox": [
+        265.33,
+        242.68,
+        286.66,
+        259.81
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        18
+      ],
+      "raw": "1回押す"
+    },
+    {
+      "panel": 6,
+      "bbox": [
+        264.71,
+        253.91,
+        280.71,
+        276.73
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        17
+      ],
+      "raw": "オン"
+    },
+    {
+      "panel": 6,
+      "bbox": [
+        265.33,
+        265.68,
+        274.66,
+        282.81
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        19
+      ],
+      "raw": "3秒"
+    },
+    {
+      "panel": 6,
+      "bbox": [
+        278.53,
+        282.22,
+        285.42,
+        290.62
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        20
+      ],
+      "raw": "3s"
+    },
+    {
+      "panel": 6,
+      "bbox": [
         40,
         236,
         300,
         312
       ],
       "purpose": "embedded-art/power-on-off",
-      "word_ids": [
-        16,
-        17,
-        18,
-        19,
-        20
-      ],
-      "raw": "オフ オン 1回押す 3秒 3s"
+      "word_ids": [],
+      "raw": ""
     },
     {
       "panel": 6,
@@ -1088,6 +1306,36 @@
     {
       "panel": 7,
       "bbox": [
+        131.5,
+        284.66,
+        151.56,
+        291.95
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        26,
+        27
+      ],
+      "raw": "≥ 20cm"
+    },
+    {
+      "panel": 7,
+      "bbox": [
+        218.15,
+        281.16,
+        238.35,
+        288.46
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        24,
+        25
+      ],
+      "raw": "≥ 20cm"
+    },
+    {
+      "panel": 7,
+      "bbox": [
         29,
         145.5,
         342.5,
@@ -1095,16 +1343,12 @@
       ],
       "purpose": "embedded-art/clearance",
       "word_ids": [
-        24,
-        25,
-        26,
-        27,
         28,
         29,
         30,
         31
       ],
-      "raw": "≥ 20cm ≥ 20cm Jackery Explorer 3600 Plus"
+      "raw": "Jackery Explorer 3600 Plus"
     },
     {
       "panel": 7,
@@ -1187,6 +1431,34 @@
     {
       "panel": 8,
       "bbox": [
+        212.81,
+        105.54,
+        232.6,
+        125.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        6
+      ],
+      "raw": "ロック"
+    },
+    {
+      "panel": 8,
+      "bbox": [
+        212.81,
+        220.72,
+        246.08,
+        240.68
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        7
+      ],
+      "raw": "ロック解除"
+    },
+    {
+      "panel": 8,
+      "bbox": [
         27.5,
         100.5,
         340.5,
@@ -1198,14 +1470,12 @@
         3,
         4,
         5,
-        6,
-        7,
         8,
         9,
         10,
         11
       ],
-      "raw": "1 2 1 2 ロック ロック解除 Jackery Explorer 3600 Plus"
+      "raw": "1 2 1 2 Jackery Explorer 3600 Plus"
     },
     {
       "panel": 9,
@@ -1287,6 +1557,34 @@
     {
       "panel": 9,
       "bbox": [
+        51.95,
+        248.98,
+        83.42,
+        266.12
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        30
+      ],
+      "raw": "ACケーブル"
+    },
+    {
+      "panel": 9,
+      "bbox": [
+        200.13,
+        255.21,
+        236.13,
+        272.34
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        31
+      ],
+      "raw": "拡張ケーブル"
+    },
+    {
+      "panel": 9,
+      "bbox": [
         28.3,
         113.9,
         340.4,
@@ -1297,11 +1595,9 @@
         26,
         27,
         28,
-        29,
-        30,
-        31
+        29
       ],
-      "raw": "Jackery Explorer 3600 Plus ACケーブル 拡張ケーブル"
+      "raw": "Jackery Explorer 3600 Plus"
     },
     {
       "panel": 9,
@@ -1355,6 +1651,35 @@
     {
       "panel": 9,
       "bbox": [
+        48.3,
+        377.94,
+        89.35,
+        395.08
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        32,
+        33
+      ],
+      "raw": "SolarSaga 200"
+    },
+    {
+      "panel": 9,
+      "bbox": [
+        273.87,
+        454.22,
+        309.87,
+        471.35
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        34
+      ],
+      "raw": "拡張ケーブル"
+    },
+    {
+      "panel": 9,
+      "bbox": [
         28.3,
         325.4,
         340.5,
@@ -1365,12 +1690,9 @@
         0,
         1,
         2,
-        3,
-        32,
-        33,
-        34
+        3
       ],
-      "raw": "Jackery Explorer 3600 Plus SolarSaga 200 拡張ケーブル"
+      "raw": "Jackery Explorer 3600 Plus"
     },
     {
       "panel": 10,

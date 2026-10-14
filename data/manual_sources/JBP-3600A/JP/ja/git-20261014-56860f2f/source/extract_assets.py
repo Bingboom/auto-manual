@@ -7,6 +7,9 @@ SHA-256 (``--check`` only verifies):
 * ``reuse``: a byte copy of an existing repository file (shared symbol or the
   published JBP-3600A EU artwork) whose print matches;
 * ``crop``: a complete print panel rendered from the archived sheet at 4x;
+* ``textless-crop``: the same panel with its printed label lines removed (the shared
+  pipeline's ``redact_text`` operator: text removed, line art and images kept),
+  the labels become live copy on the figure;
 * ``vector``: a small native glyph, its PDF paths written as a transparent SVG;
 * ``embedded-image``: the sheet's embedded raster image as PNG, its pixels unresampled
   (CMYK converted to RGB).
@@ -29,7 +32,7 @@ REPO = next(p for p in SOURCE.parents if (p / "build.py").is_file())
 sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from native import PANEL_ORIGINS, archived_pdf  # noqa: E402
+from native import PANEL_ORIGINS, archived_pdf, label_spans  # noqa: E402
 
 SCALE = 4.0  # 288 dpi: twice the 390 px phone column and the 1280 px desktop column.
 
@@ -86,9 +89,23 @@ def vector_svg(page, panel, box, indices, clipped=()):
             f'width="{width:.3f}" height="{height:.3f}">' + "".join(paths) + "</svg>\n").encode()
 
 
-def acquire(record, doc):
+def textless(data, record):
+    """Redact only the listed label spans on a fresh in-memory copy, then render the panel."""
+    with fitz.open(stream=data, filetype="pdf") as doc:
+        page = doc[0]
+        for span in label_spans(page, record["panel"], record["bbox"], record["live_labels"]):
+            page.add_redact_annot(span["rect"], fill=None, cross_out=False)
+        page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE, graphics=fitz.PDF_REDACT_LINE_ART_NONE,
+                              text=fitz.PDF_REDACT_TEXT_REMOVE)
+        pix = page.get_pixmap(matrix=fitz.Matrix(SCALE, SCALE), clip=panel_rect(record["panel"], record["bbox"]))
+        return pix.tobytes("png")
+
+
+def acquire(record, doc, data):
     recipe = record["acquisition"]
     page = doc[0]
+    if recipe["kind"] == "textless-crop":
+        return textless(data, record)
     if recipe["kind"] == "reuse":
         return (REPO / recipe["from"]).read_bytes()
     if recipe["kind"] == "crop":
@@ -106,22 +123,23 @@ def acquire(record, doc):
 
 
 def main(check):
-    _, doc = archived_pdf()
+    original, doc = archived_pdf()
+    data = b"".join((SOURCE / part["path"]).read_bytes() for part in original["archive_parts"])
     path = SOURCE / "source/figures.json"
     records = json.loads(path.read_text())
     failures = []
     for record in records:
-        data = acquire(record, doc)
-        digest = hashlib.sha256(data).hexdigest()
+        output = acquire(record, doc, data)
+        digest = hashlib.sha256(output).hexdigest()
         target = SOURCE / record["local_path"]
         if check:
-            if digest != record["sha256"] or not target.is_file() or target.read_bytes() != data:
+            if digest != record["sha256"] or not target.is_file() or target.read_bytes() != output:
                 failures.append(record["slot"])
             continue
         if record["acquisition"]["kind"] == "reuse":
             shutil.copyfile(REPO / record["acquisition"]["from"], target)
         else:
-            target.write_bytes(data)
+            target.write_bytes(output)
         record["sha256"] = digest
     if not check:
         path.write_text(json.dumps(records, ensure_ascii=False, indent=2) + "\n")

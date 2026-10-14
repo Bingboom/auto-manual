@@ -247,6 +247,23 @@ class Jbp3600aJpJaWebTests(unittest.TestCase):
         self.assertEqual(len(soup.select('figure.hb-warranty-card')), 6)
         self.assertEqual(soup.select_one('img.native-inline-glyph')['src'], 'assets/inline-connected-batteries.svg')
 
+    def test_labelled_figures_carry_live_labels_on_text_free_art(self):
+        soup = page()
+        records = {r['slot']: r for r in read(PACKAGE / 'source/figures.json')}
+        live = {slot: r for slot, r in records.items() if r.get('live_labels')}
+        self.assertEqual(set(live), {'overview', 'lcd-map', 'power-on-off', 'clearance', 'locking',
+                                     'ac-charging', 'solar-charging'})
+        for slot, record in live.items():
+            figure = soup.select_one(f'figure[data-reference-id="{slot}"]')
+            self.assertIn('hb-base-art-live-copy', figure['class'], slot)
+            labels = [label.get_text(strip=True) for label in figure.select('.hb-reference-live-label')]
+            self.assertEqual(sorted(labels), sorted(label['text'] for label in record['live_labels']), slot)
+            self.assertEqual(record['acquisition']['kind'], 'textless-crop')
+        # Left label column first, then the right one.
+        overview = soup.select_one('figure[data-reference-id="overview"]')
+        self.assertEqual([label.get_text(strip=True) for label in overview.select('.hb-reference-live-label')][-2:],
+                         ['主電源ボタン', 'ディスプレイ'])
+
     def test_tables_keep_the_print_structure(self):
         soup = page()
         signal = soup.select_one('table.native-signal')

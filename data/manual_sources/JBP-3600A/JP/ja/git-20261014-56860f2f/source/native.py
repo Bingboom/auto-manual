@@ -16,6 +16,7 @@ would still have fitted). Bold print runs stay strong.
 """
 from __future__ import annotations
 
+from copy import deepcopy
 import hashlib
 import json
 from pathlib import Path
@@ -89,6 +90,33 @@ def panel_of(bbox):
         if x <= cx < x + PANEL_SIZE[0] and y <= cy < y + PANEL_SIZE[1]:
             return index, x, y
     return SHEET, 0.0, 0.0
+
+
+def label_spans(page, panel, box, labels):
+    """The printed label lines a text-free figure carries as live copy, in source order.
+
+    Each listed label must match a whole native line inside the panel-local box,
+    exactly as many times as it is listed. Returns sheet-coordinate line rects.
+    """
+    x, y = PANEL_ORIGINS[panel - 1]
+    crop = fitz.Rect(box[0] + x, box[1] + y, box[2] + x, box[3] + y)
+    found = []
+    for block in page.get_text("dict", clip=crop)["blocks"]:
+        for line in block.get("lines", []):
+            spans = [span for span in line["spans"] if span["text"].strip()]
+            if not spans:
+                continue
+            rect = fitz.Rect(line["bbox"])
+            if crop.contains((rect.tl + rect.br) / 2):
+                found.append({"text": normalize("".join(span["text"] for span in line["spans"])).strip(),
+                              "rect": rect, "size": max(span["size"] for span in spans),
+                              "origin": spans[0]["origin"], "bold": all("Bold" in span["font"] for span in spans)})
+    found.sort(key=lambda s: (round(s["origin"][1], 0), s["rect"].x0))
+    wanted = [label["text"] for label in labels]
+    chosen = [s for s in found if s["text"] in wanted]
+    if sorted(s["text"] for s in chosen) != sorted(wanted):
+        raise ValueError(f"label spans differ in panel {panel} {box}: {[s['text'] for s in chosen]}")
+    return chosen
 
 
 class Line:
@@ -236,6 +264,8 @@ class Native:
 
     def figure(self, slot, *, width="regular"):
         g = self.figures[slot]
+        if g.get("live_labels"):
+            return self.live_figure(slot, width=width)
         printed = self.embedded(slot)
         path = SOURCE / g["local_path"]
         mode = "embedded" if printed else "none"
@@ -247,6 +277,71 @@ class Native:
             language=LANGUAGE, image_key=slot,
         )
         flow = [node("image", source=g["local_path"], alt=alt)]
+        return node("group", [reference_flow(spec, flow)], role="container",
+                    presentation=attrs(f"native-figure native-{slot} native-{width}"))
+
+    def live_figure(self, slot, *, width="regular"):
+        """Text-free art with its printed label lines as live copy on their print positions.
+
+        The shared base-art reference places each line on a rectangle given in percent of
+        the art; on phones the shared style stacks the lines under the art, in print order.
+        """
+        g = self.figures[slot]
+        p, box = g["panel"], g["bbox"]
+        x, y = PANEL_ORIGINS[p - 1]
+        # Reading order: the left label column top to bottom, then the right one.
+        middle = x + (box[0] + box[2]) / 2
+        spans = sorted(label_spans(self.doc[0], p, box, g["live_labels"]),
+                       key=lambda s: ((s["rect"].x0 + s["rect"].x1) / 2 >= middle, s["origin"][1], s["rect"].x0))
+        width_pt, height_pt = box[2] - box[0], box[3] - box[1]
+        label_ids = set()
+        captions, lines, rects = [], [], []
+        for index, span in enumerate(spans):
+            r = span["rect"]
+            ids = [i for i, w in enumerate(self.words[p])
+                   if r.x0 - x <= (w[0] + w[2]) / 2 < r.x1 - x and abs(w[1] - (r.y0 - y)) < 1.0]  # same line
+            label_ids.update(ids)
+            for i in ids:
+                self.used.setdefault((p, i), []).append("live-copy")
+            self.selections.append({"panel": p, "bbox": [round(r.x0 - x, 2), round(r.y0 - y, 2),
+                                                         round(r.x1 - x, 2), round(r.y1 - y, 2)],
+                                    "purpose": "live-copy", "word_ids": ids, "raw": span["text"]})
+            value = text(span["text"])
+            inline = node("strong", [value]) if span["bold"] else value
+            captions.append({"text": span["text"], "html": flow_nodes_to_html([root(deepcopy(inline))])})
+            lines.append(node("group", [inline], role="container", presentation=attrs("line")))
+            badge = "color" in g["live_labels"][[label["text"] for label in g["live_labels"]].index(span["text"])]
+            # Glyph box from the baseline: an em above it, a quarter below; room to grow rightwards.
+            top = span["origin"][1] - span["size"] * 0.95 - y
+            left = r.x0 - x
+            pct = [(left - box[0]) / width_pt * 100, (top - box[1]) / height_pt * 100,
+                   (r.x1 - r.x0) * (2.2 if badge else 1.3) / width_pt * 100, span["size"] * 1.25 / height_pt * 100]
+            pct[2] = min(pct[2], 100 - pct[0])
+            rect = {"line": index, "rect": [round(v, 3) for v in pct]}
+            if badge:  # the print's dark tag: a dark pill with white text, readable when stacked too
+                rect["color"] = g["live_labels"][0]["color"]
+                rect["fill"] = "#404042"
+            rects.append(rect)
+        rest = [i for i, w in enumerate(self.words[p]) if i not in label_ids
+                and box[0] <= (w[0] + w[2]) / 2 < box[2] and box[1] <= (w[1] + w[3]) / 2 < box[3]]
+        for i in rest:
+            self.used.setdefault((p, i), []).append("embedded-art/" + slot)
+        self.selections.append({"panel": p, "bbox": list(box), "purpose": "embedded-art/" + slot,
+                                "word_ids": rest, "raw": " ".join(self.words[p][i][4] for i in rest)})
+        path = SOURCE / g["local_path"]
+        layout = {"art_sha256": sha(path), "panel_top": 0, "panel_fill": g["panel_fill"],
+                  "preserve_frame": True, "labels": rects}
+        if g.get("mobile_labels"):  # short marks stay on the art at every width
+            layout["mobile_labels"] = g["mobile_labels"]
+        spec = reference_figure_component_spec(
+            reference_id=slot, accessibility_label=g["caption"], caption_mode="live", captions=captions,
+            adjacent_copy=None, source_art_ref=g["local_path"], source_art_locale_policy="exact",
+            source_fragment_sha256=sha(path), source_ref=f"native-pdf/panel-{p}/{slot}",
+            language=LANGUAGE, image_key=g["local_path"], web_replace_key="reference." + slot,
+            metadata={"presentation_mode": "base-art-live-copy", "base_art_layout": layout},
+        )
+        flow = [node("image", source=g["local_path"], alt=g["caption"]),
+                node("group", lines, role="container", presentation=attrs("line-block"))]
         return node("group", [reference_flow(spec, flow)], role="container",
                     presentation=attrs(f"native-figure native-{slot} native-{width}"))
 

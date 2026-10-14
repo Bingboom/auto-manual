@@ -36,7 +36,11 @@ NORMALIZATIONS = [
     "LiFePO4 keeps the print's subscript 4.",
     "Two visible marks drawn as outlines (UN38.3, the ■ before the p03 notice) are restored from "
     "source/text-recovery.json; heading disc markers and pills are left to the shared heading style.",
-    "Artwork words stay in the reviewed figure crops; the figures carry no visible caption.",
+    "Labelled figures are text-free art (printed label lines removed with the redact_text operator, 4x raster) "
+    "with those lines as live Japanese copy on their print positions; other artwork words stay in the art; "
+    "no figure carries a visible caption.",
+    "Troubleshooting uses the shared troubleshooting table (JBP-2000B reference); tables the shared components "
+    "would change (signal, LCD, symbols, specifications) stay native grids, as printed.",
 ]
 
 

@@ -13,6 +13,10 @@ This package freezes the supplied Japanese production drawing for the Jackery Ba
 - Reading order is left to right, top row first. Panel 1 is the cover and panel 2 the contents (JP 日本語 01-10). Panels 3–12 carry folios 01–10, so the set is complete.
 - Identity comes from the content: cover 型番：JBP-3600A, "Jackery Battery Pack 3600", 国内専用; specification 型番 JBP-3600A.
 
+The PDF is an Illustrator 26 master (PDF 1.6 with Illustrator editing data). Text comes from its live text objects, never OCR.
+
+Of its 22 optional-content layers (all named 图层 1), the page uses only one, and that one wraps the whole sheet; the other 21 are unused. The layers therefore do not separate the panels from the production frame; the drawn panel grid does.
+
 Each panel is read as one page in panel-local PDF points. The cover and contents are not in the Web body (operator: 「封面和目录 不用体现在web版面上」). Nor is the production metadata outside the panels: frame zone grid, title block, revision table (V0.1 第一次发行) and production notes. Every one of the sheet's 588 words is classified, each excluded region with its recorded reason (`source_manifest.json` → `excluded_pages`, `source/ja/coverage.json`).
 
 ## Reconstruction
@@ -23,7 +27,7 @@ Each panel is read as one page in panel-local PDF points. The cover and contents
   - Bold runs stay strong.
 - `source/intake.py` maps reviewed panel regions to shared flow nodes and components and writes `source/ja/content.json` and `source/ja/coverage.json`. The coverage gate refuses any unclassified word, any duplicate live copy and any unused text recovery.
 - `source/text-recovery.json` restores two visible marks drawn as outlines: UN38.3 and the ■ before the p03 notice.
-- `source/extract_assets.py` acquires every asset from its recorded decision in `source/figures.json` (reuse, 4x panel crop, native vector glyph or embedded image). `--check` verifies the recorded hashes.
+- `source/extract_assets.py` acquires every asset from its recorded decision in `source/figures.json` (reuse, 4x panel crop, 4x text-free panel, native vector glyph or embedded image). `--check` verifies the recorded hashes.
 - `rebuild.py` verifies the archived PDF, every inventoried input and the pinned shared repository inputs, then replays through the shared Manual IR APIs.
 
 Component inventory: HB-CALLOUT-STRIP 4, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENCE-FIGURE 10, HB-TABLE-TROUBLESHOOTING 1, HB-WARRANTY-SECTION 6.
@@ -40,7 +44,8 @@ Component inventory: HB-CALLOUT-STRIP 4, HB-SPECIAL-INBOX 1, HB-SPECIAL-REFERENC
 | Troubleshooting table | Shared troubleshooting component, as in JBP-2000B / JBP-3600A EU, with the print's エラーコード / 対処方法 header row |
 | LCD and specification tables | Native grids, as printed, with no header row; 保存温度 keeps its three lines; LiFePO4 keeps its subscript |
 | Warranty cards (保証期間 … 保証内容) | Shared warranty sections. The grey introduction and the grey 免責事項 panel stay grey panels. |
-| Figures | Complete panels; words printed in the art stay in the art; alt text carries the caption and labels; no visible captions |
+| Labelled figures (overview, LCD, on/off, clearance, lock, AC and solar charging) | Text-free art with the printed labels as live Japanese text on their print positions (shared base-art reference, as JBP-2000B / JBP-3600A EU). On phones, list-style labels stack under the art in reading order; short marks stay on the art. |
+| Other figures | Complete panels with no visible captions; alt text carries the caption |
 
 All two- and three-column tables fit a 390 px phone, and none scrolls at any width from 320 to 1920 px (`audit/browser-validation.json`).
 
@@ -54,9 +59,9 @@ Operator, 2026-10-14: 「用JBP-2000B的参考」. JBP-2000B EU and JBP-3600A EU
 - **Signal-word table:** stays a native grid. The shared signal component always renders a header row (記号 / 意味), which the JP print does not have.
 - **LCD table:** stays a native grid. The shared LCD icon component adds an icon to each row, which the JP print table does not have.
 - **Specification table:** stays a native grid. The shared spec component needs a printed group title; the JP print has one untitled table, not the reference's three groups.
-- **Symbol table:** stays a native grid of shared native-v1 symbols. The shared symbol component needs source-bound symbol admission, and its vector mapper (`tools/asset_pipeline/native_svg.py`) fails on this Illustrator sheet. A shared fix needs operator approval.
+- **Symbol table:** stays a native grid of shared native-v1 symbols (operator, option a). The shared symbol component needs source-bound symbol admission, and its vector mapper (`tools/asset_pipeline/native_svg.py`) fails on this Illustrator sheet, whose fills paint through glyph clip paths.
 - **Chapter order:** follows the print, which puts 充電方法 before トラブルシューティング. The print has no STORAGE chapter.
-- **Figures:** text-free art with live labels, as in the reference, is pending the operator's choice between raster text-free art and a shared vector fix.
+- **Figures:** text-free art with live labels, as in the reference. The operator chose option (a), 「不改共享工具」, on 2026-10-14, so the art is 4x raster PNG, not vector.
 
 ## Artwork reuse
 
@@ -65,7 +70,11 @@ Inventories were checked before extracting; decisions are in `source/figures.jso
 - **13 reused byte-identically:**
   - from the published JBP-3600A EU English Web, where the print matches: inbox unit, inbox cable, LCD on/off panel, stacking panel;
   - from the shared native-v1 library: eight symbols and the filled triangle.
-- **8 complete-panel crops**, where the JP print differs from every candidate: Japanese labels, the JP plug, the ≥ 20cm dimensions, the ロック tags, the オフ/オン labels, this manual's cover thumbnail.
+- **7 text-free panels**, where the JP print differs from every candidate: the JP plug, the ≥ 20cm dimensions, the ロック tags, the オフ/オン labels, the three-quarter overview, the LCD leaders.
+  - The printed label lines are removed on an in-memory copy with the shared pipeline's `redact_text` operator (text removed, line art and images kept), then rendered at 4x.
+  - The labels become live copy.
+  - Step numbers ①② and the 0.8 pt nameplate text stay in the art.
+- **1 complete-panel crop:** this manual's cover thumbnail on the inbox card.
 - **4 native vector glyphs:** the outlined ⊟×5 connection icon and the three filled contact icons. The existing JBP-5000A / JE-3600A versions are a dark badge and outline icons.
 - **1 embedded image:** the QR code.
 
