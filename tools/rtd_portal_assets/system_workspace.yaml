@@ -391,8 +391,8 @@ capabilities:
 
 corpus:
   # Counts only, from `python tools/rtd/system_workspace.py corpus-export`
-  # (read-only TM read); refresh monthly through a PR. The snapshot file and
-  # its freshness limit are the `corpus` domain of source_registry.yaml.
+  # (read-only TM read). 每批 TM 写回后由 Workspace Data Refresh 刷新；时限见
+  # source_registry.yaml。The snapshot file is named by its `corpus` domain.
   languages:
     - {code: en, label: 英语}
     - {code: zh, label: 简体中文}

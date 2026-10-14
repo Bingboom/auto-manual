@@ -728,6 +728,7 @@ def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.da
         ],
         "rows": rows,
         "exported_at": exported.isoformat(),
+        "stale_after_days": limit,
         "previous": last["exported_at"] if last else "",
         "stale": stale,
     }

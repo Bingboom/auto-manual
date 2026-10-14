@@ -87,7 +87,7 @@
       {%- for gate in gates|rejectattr('fold') %}
       <div class="kpi"><span>{{ gate.id|e }} · {{ gate.label|e }}</span><strong>{{ gate.done }}<small>/ {{ gate.total }}</small></strong><div class="kpi-bar" aria-hidden="true"><i style="width:{{ gate.percent }}%"></i></div><em>{{ gate.tally|e }}</em></div>
       {%- endfor %}
-      {%- if corpus %}{% set pairs = corpus.tiles|first %}<div class="kpi"><span>语料{{ pairs.label|e }}</span><strong>{{ pairs.value|e }}</strong><em>翻译记忆库，按月快照</em></div>{% endif %}
+      {%- if corpus %}{% set pairs = corpus.tiles|first %}<div class="kpi"><span>语料{{ pairs.label|e }}</span><strong>{{ pairs.value|e }}</strong><em>翻译记忆库，快照 {{ corpus.exported_at|e }} · 超过 {{ corpus.stale_after_days }} 天显示待复核</em></div>{% endif %}
     </div>
     {%- endif %}
 
@@ -189,7 +189,7 @@
     <section class="sw-section" id="language-assets">
       <div class="section-header"><div>
         <h2>语言资产</h2>
-        <p>翻译记忆库的规模与语料库句对覆盖，按月快照；不展示语料内容。</p>
+        <p>翻译记忆库的规模与语料库句对覆盖{% if corpus %}，快照 {{ corpus.exported_at|e }} · 超过 {{ corpus.stale_after_days }} 天显示待复核{% endif %}；不展示语料内容。</p>
       </div></div>
       {%- if corpus %}
       <div class="sw-corpus-tiles">

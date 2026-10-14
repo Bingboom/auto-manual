@@ -255,8 +255,8 @@ the same month replaces that month's figures. If the snapshot being replaced
 cannot be read or is malformed, the export stops, so history is never dropped.
 A language added to the contract later does not block the carry.
 
-A snapshot older than the `stale_after_days` of the source registry's `corpus`
-domain (45) shows 待复核. The registry also names the snapshot file. An
+A snapshot older than the `stale_after_days` of the `corpus` domain in
+`source_registry.yaml` shows 待复核. The registry also names the snapshot file. An
 unreadable or malformed snapshot shows 无数据 for this block only, with a
 Sphinx warning; the rest of the page still renders. `check` reports both
 cases.

@@ -539,6 +539,7 @@ class CorpusSnapshotTests(unittest.TestCase):
         self.assertEqual([t["value"] for t in view["tiles"]], ["10", "2", "2", "70%"])
         self.assertEqual(([t["delta"] for t in view["tiles"]], view["previous"]), (["", "", "", ""], ""))
         self.assertEqual(view["stale"], [])
+        self.assertEqual(view["stale_after_days"], 45)
         old = sw.corpus_view(corpus_contract(), corpus_snapshot(), TODAY + dt.timedelta(days=46), 45)
         self.assertEqual(old["stale"], ["语料快照已超过 45 天（导出于 2026-09-24）"])
 
@@ -771,6 +772,9 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             # Corpus coverage must not read as manual localization completion.
             self.assertIn("语料库句对覆盖", page)
             self.assertIn("不是说明书的翻译完成率", page)
+            # Snapshot freshness wording comes from the registry, not a fixed cadence.
+            self.assertIn(f"超过 {shipped_registry['corpus']['stale_after_days']} 天显示待复核", page)
+            self.assertNotIn("按月快照", page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="system/index.html"', workspace)
