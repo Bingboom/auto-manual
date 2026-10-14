@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Skills and hooks inventory for the system workspace page, read from the tree at build time.
+"""Skills, hooks and engineering scale for the system workspace page, read from the tree at build time.
 
 Nothing here is hand-listed. Skills come from ``.agents/skills/*/SKILL.md``
 (Codex) and ``.claude/skills/*/SKILL.md`` (Claude Code), merged by directory
@@ -8,13 +8,20 @@ in ``AGENTS.md``, Claude skills in ``.claude/skills/README.md``. Hooks come
 from ``.claude/settings.json`` and the steps of ``.githooks/pre-push``; a hook
 counts as tested when ``tests/test_<script>.py`` exists. The contract only maps
 skills to focus lanes (``tooling.skill_lanes``).
+
+The 工程规模 section counts the lines of the files ``git ls-files`` lists, per
+top-level directory and file type (a shallow clone still lists every tracked
+file). Without git, or outside a checkout, there is no file list and the
+section shows 无数据.
 """
 from __future__ import annotations
 
 import ast
 import json
 import re
-from pathlib import Path
+import subprocess
+from collections.abc import Iterable
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 import yaml
@@ -33,6 +40,13 @@ _CLAUDE_HOOK = re.compile(r"\.claude/hooks/([\w.-]+\.py)")
 _PRE_PUSH_STEP = re.compile(r'^\s*(?P<exec>exec\s+)?"\$\{python_cmd\}"\s+"\$\{repo_root\}/(?P<script>[\w./-]+\.py)"')
 _SENTENCE_END = re.compile(r"\.(?=\s|$)|。")
 _ABBREVIATIONS = ("e.g.", "i.e.", "etc.", "vs.", "cf.")
+# The file types the 工程规模 section counts, by suffix; their order fixes each type's colour.
+FILE_TYPES = {
+    ".py": "Python", ".md": "Markdown 文档", ".rst": "RST 模板/页面",
+    ".yaml": "YAML 配置", ".yml": "YAML 配置", ".csv": "CSV 数据",
+}
+TYPE_ORDER = list(dict.fromkeys(FILE_TYPES.values()))
+ROOT_AREA = "(根目录)"
 
 
 def _first_sentence(text: str) -> str:
@@ -206,3 +220,69 @@ def tooling_view(config: dict[str, Any], skills: list[dict[str, Any]], hooks: li
                    "trigger": f"{hook['event']} · {hook['matcher']}" if hook["matcher"] else hook["event"]}
                   for hook in hooks],
     }
+
+
+def tracked_files(root: Path) -> list[str] | None:
+    """Repository-relative paths git tracks; None without git or outside a checkout."""
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "-z"], capture_output=True, check=True, timeout=120,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return [name for name in result.stdout.decode("utf-8", "surrogateescape").split("\0") if name]
+
+
+def count_lines(data: bytes) -> int:
+    """Lines as an editor counts them: a last line without a newline still counts."""
+    return data.count(b"\n") + (1 if data and not data.endswith(b"\n") else 0)
+
+
+def codebase_rows(root: Path, files: Iterable[str] | None) -> list[dict[str, Any]] | None:
+    """Files and lines per top-level directory and file type, largest first; None without a file list."""
+    if files is None:
+        return None
+    totals: dict[tuple[str, str], list[int]] = {}
+    for name in files:
+        relative = PurePosixPath(name)
+        kind = FILE_TYPES.get(relative.suffix.lower())
+        path = root / relative
+        # A sparse or partial checkout may list files that are not on disk; links are not counted twice.
+        if kind is None or path.is_symlink() or not path.is_file():
+            continue
+        area = relative.parts[0] if len(relative.parts) > 1 else ROOT_AREA
+        entry = totals.setdefault((area, kind), [0, 0])
+        entry[0] += 1
+        entry[1] += count_lines(path.read_bytes())
+    ordered = sorted(totals.items(), key=lambda item: (-item[1][1], item[0]))
+    return [{"area": area, "type": kind, "files": files_, "lines": lines} for (area, kind), (files_, lines) in ordered]
+
+
+def codebase_view(rows: list[dict[str, Any]] | None, top: int = 10) -> dict[str, Any] | None:
+    """Page context for 工程规模: the ``top`` directories by lines, each one stacked bar of its file types.
+
+    Directories are sorted by lines, then name; a bar's parts follow ``TYPE_ORDER``, and each
+    part's ``percent`` is measured against the largest directory, so that bar fills the track.
+    The totals cover every directory, shown or not. None without rows to count.
+    """
+    if not rows:
+        return None
+    areas: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        area = areas.setdefault(row["area"], {"area": row["area"], "files": 0, "lines": 0, "parts": {}})
+        area["files"] += row["files"]
+        area["lines"] += row["lines"]
+        area["parts"][row["type"]] = row
+    shown = sorted(areas.values(), key=lambda area: (-area["lines"], area["area"]))[:top]
+    largest = shown[0]["lines"] or 1
+
+    def bar(area: dict[str, Any]) -> dict[str, Any]:
+        # index is the type's place in TYPE_ORDER, which fixes its colour on the page.
+        parts = area["parts"]
+        return {**area, "parts": [
+            {"type": kind, "index": index, "files": parts[kind]["files"], "lines": parts[kind]["lines"],
+             "percent": round(100 * parts[kind]["lines"] / largest, 1)}
+            for index, kind in enumerate(TYPE_ORDER) if kind in parts]}
+
+    return {"types": list(TYPE_ORDER), "areas": [bar(area) for area in shown],
+            "files": sum(row["files"] for row in rows), "lines": sum(row["lines"] for row in rows)}

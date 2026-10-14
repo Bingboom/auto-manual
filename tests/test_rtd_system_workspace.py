@@ -729,8 +729,8 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             result = build("good")
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             page = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
-            headings = ("当前重点", "正在做与下一步", "语言资产", "能力地图", "生产流程与连接", "技能与钩子", "现在就能用",
-                        "数据来源")
+            headings = ("当前重点", "正在做与下一步", "语言资产", "能力地图", "生产流程与连接", "技能与钩子", "工程规模",
+                        "现在就能用", "数据来源")
             self.assertEqual([page.find(f"<h2>{h}</h2>") >= 0 for h in headings], [True] * len(headings))
             self.assertEqual(sorted(headings, key=lambda h: page.find(f"<h2>{h}</h2>")), list(headings))
             progress_panel = page.split('id="tab-progress"', 1)[1].split('id="tab-corpus"', 1)[0]
@@ -757,6 +757,11 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn('id="tooling"', page)
             self.assertIn("<code>hardcore-task-execution</code>", page)
             self.assertIn("scripts/git_branch_guard.py", page)
+            # 工程规模 shares their tab. The REPO build is a git checkout, so its bars are real.
+            self.assertIn('data-tab="tab-tooling">工具与工程规模</a>', page)
+            self.assertIn('id="codebase"', page)
+            self.assertIn("RST 模板/页面", page)
+            self.assertRegex(page, r'<i class="sw-code-type-\d" style="width:[\d.]+%"></i>')
             # Every registered data domain is listed publicly, snapshots with their file.
             shipped_registry, problems = load_registry(assets)
             self.assertEqual(problems, [])

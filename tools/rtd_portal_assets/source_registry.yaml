@@ -69,7 +69,7 @@ domains:
       - "file:auto-manual:.githooks/pre-push"
     read: build
     fallback: 不显示这一块
-    used_by: 技能与钩子
+    used_by: 系统建设·工具与工程规模
 
   - id: capabilities
     label: 能力状态
@@ -95,6 +95,13 @@ domains:
     read: build
     fallback: 系统演变记录当前不可读，请查看仓库演进史
     used_by: 系统演变标签页；历史快照与未来方向
+
+  - id: codebase
+    label: 工程规模
+    authority: 构建时检出的 git ls-files
+    read: build
+    fallback: git 文件清单当前不可读
+    used_by: 系统建设·工具与工程规模
 
   # Sources of the 系统数据 and 产品矩阵 pages, and of the navigation groups the
   # homepage and 产品知识 share. Those pages do not read this file; fallback says what they show.
@@ -136,10 +143,3 @@ domains:
     read: build
     fallback: 评审页数记为 0
     used_by: 系统数据
-
-  - id: codebase
-    label: 工程规模
-    authority: 构建时检出的 git ls-files
-    read: build
-    fallback: 工程规模显示无数据
-    used_by: 系统数据·工程规模
