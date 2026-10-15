@@ -205,6 +205,19 @@ to a valid earlier website deployment intentionally follows that deployed versio
    not grant any build or write permission. Verify actual tool calls in each
    channel, since a slash-shaped message alone does not prove interception.
 
+   If one channel replies `This command requires authorization` while another
+   works, inspect that channel's command policy and the sender identity in its
+   inbound log. A channel with `enforceOwnerForCommands: true` requires an
+   explicit command owner; `commands.allowFrom` and a wildcard channel
+   allowlist do not by themselves satisfy that gate. Owner identities are
+   provider-specific: a Feishu owner entry does not identify the same person
+   on DingTalk. Only with the operator's explicit approval, add the verified
+   provider-prefixed identity to `commands.ownerAllowFrom`, preserving existing
+   owners; this grants other owner-only command capabilities too. Back up and
+   read back the host configuration, restart, and verify an actual inbound
+   command plus an unauthorized-sender case. Keep identities and credentials
+   out of Git and retain `requireAuth: true`.
+
 5. In the already connected bot, check `/manual-query JE-2000F USB-C输出`, then
    ask “JE-2000F 欧规 USB-C 输出功率是多少？”, “JE-2000F 节能模式怎么关闭？” and
    “目前容量最大的产品是哪个？” (the answer should name the compared models).
