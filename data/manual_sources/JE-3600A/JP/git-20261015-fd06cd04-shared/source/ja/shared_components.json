@@ -1,0 +1,301 @@
+{
+  "base_edition": "git-20261013-fd06cd04-web-layout",
+  "changes": [
+    {
+      "change": "signal-table",
+      "chapter": "page-3",
+      "component": "HB-TABLE-SYMBOL-SIGNAL",
+      "rows": 4,
+      "added_headers": [
+        "記号",
+        "意味"
+      ]
+    },
+    {
+      "change": "symbol-pair",
+      "chapter": "page-3",
+      "component": "HB-TABLE-SYMBOL-ICON",
+      "rows": [
+        5,
+        5
+      ],
+      "added_headers": [
+        "記号",
+        "意味",
+        "記号",
+        "意味"
+      ]
+    },
+    {
+      "change": "symbol-pair",
+      "chapter": "page-4",
+      "component": "HB-TABLE-SYMBOL-ICON",
+      "rows": [
+        2,
+        1
+      ],
+      "added_headers": [
+        "記号",
+        "意味",
+        "記号",
+        "意味"
+      ]
+    },
+    {
+      "change": "symbol-pair",
+      "chapter": "page-4",
+      "component": "HB-TABLE-SYMBOL-ICON",
+      "rows": [
+        4,
+        4
+      ],
+      "added_headers": [
+        "記号",
+        "意味",
+        "記号",
+        "意味"
+      ]
+    },
+    {
+      "change": "safety-table",
+      "chapter": "page-5",
+      "component": "HB-TABLE-SYMBOL-ICON",
+      "rows": 4,
+      "merged_rows": 2,
+      "panels": [
+        1,
+        3
+      ],
+      "added_headers": [
+        "記号",
+        "意味",
+        "記号",
+        "意味"
+      ],
+      "note": "icon + instruction list becomes the shared two-panel symbol table; rows one icon spans merge"
+    },
+    {
+      "change": "safety-table",
+      "chapter": "page-5",
+      "component": "HB-TABLE-SYMBOL-ICON",
+      "rows": 4,
+      "merged_rows": 1,
+      "panels": [
+        2,
+        2
+      ],
+      "added_headers": [
+        "記号",
+        "意味",
+        "記号",
+        "意味"
+      ],
+      "note": "icon + instruction list becomes the shared two-panel symbol table; rows one icon spans merge"
+    },
+    {
+      "change": "inbox",
+      "chapter": "page-8",
+      "figure": "inbox-p8",
+      "component": "HB-SPECIAL-INBOX",
+      "cards": [
+        "本体",
+        "AC充電ケーブル",
+        "取扱説明書一式"
+      ],
+      "boxes": [
+        [
+          4,
+          28,
+          30.5,
+          67
+        ],
+        [
+          37.25,
+          28,
+          63.75,
+          67
+        ],
+        [
+          70.6,
+          28,
+          97.1,
+          67
+        ]
+      ],
+      "notes": 0,
+      "note": "drawn card panel becomes the shared inbox cards; each card's art is cropped from the print"
+    },
+    {
+      "change": "lcd-icon-table",
+      "chapter": "page-10",
+      "component": "HB-TABLE-LCD-ICON",
+      "rows": 24,
+      "note": "Print row-spanned numbers repeat on each row of their span."
+    },
+    {
+      "change": "figure-prose",
+      "chapter": "page-12",
+      "figure": "power-p12",
+      "lines": 3,
+      "note": "print lines of one paragraph become one live label"
+    },
+    {
+      "change": "figure-callout",
+      "chapter": "page-13",
+      "figure": "usb-output-p13",
+      "component": "HB-CALLOUT-STRIP",
+      "note": "ご注意 box drawn as a figure label becomes a shared callout after the figure"
+    },
+    {
+      "change": "figure-crop",
+      "chapter": "page-13",
+      "figure": "usb-output-p13",
+      "box": [
+        2,
+        2,
+        98,
+        60.5
+      ],
+      "asset": "assets/usb-output-p13-crop.svg"
+    },
+    {
+      "change": "figure-table",
+      "chapter": "page-14",
+      "figure": "energy-saving-p14",
+      "component": "table",
+      "note": "table drawn as a figure label becomes a shared table in its printed place"
+    },
+    {
+      "change": "figure-prose-out",
+      "chapter": "page-14",
+      "figure": "energy-saving-p14",
+      "lines": 4,
+      "note": "body prose set in a print panel becomes a paragraph outside the figure"
+    },
+    {
+      "change": "figure-prose-out",
+      "chapter": "page-14",
+      "figure": "energy-saving-p14",
+      "lines": 3,
+      "note": "body prose set in a print panel becomes a paragraph outside the figure"
+    },
+    {
+      "change": "figure-prose-out",
+      "chapter": "page-14",
+      "figure": "energy-saving-p14",
+      "lines": 2,
+      "note": "body prose set in a print panel becomes a paragraph outside the figure"
+    },
+    {
+      "change": "figure-crop",
+      "chapter": "page-14",
+      "figure": "energy-saving-p14",
+      "box": [
+        2,
+        62,
+        98,
+        98
+      ],
+      "asset": "assets/energy-saving-p14-web-crop.svg"
+    },
+    {
+      "change": "lcd-mode-table",
+      "chapter": "page-15",
+      "component": "HB-TABLE-LCD-MODE",
+      "states": 2
+    },
+    {
+      "change": "key-combinations",
+      "chapter": "page-15",
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "rows": 3,
+      "dropped": "button and clock glyphs beside the printed words (the shared table is text-only, as in EU)"
+    },
+    {
+      "change": "inline-icon-reuse",
+      "chapter": "page-18",
+      "source": "assets/native-inline-parallel-connected-p18.svg",
+      "asset": "assets/lcd-parallel.png",
+      "note": "extracted vector covers the glyph with a filled box; the LCD table's icon is reused"
+    },
+    {
+      "change": "troubleshooting",
+      "chapter": "page-24",
+      "component": "HB-TABLE-TROUBLESHOOTING",
+      "rows": 9
+    },
+    {
+      "change": "spec-table",
+      "chapter": "page-25",
+      "component": "HB-TABLE-SPEC",
+      "title": "基本情報",
+      "rows": 6,
+      "spanned_rows_merged": 0
+    },
+    {
+      "change": "spec-table",
+      "chapter": "page-25",
+      "component": "HB-TABLE-SPEC",
+      "title": "入力ポート",
+      "rows": 3,
+      "spanned_rows_merged": 2
+    },
+    {
+      "change": "spec-table",
+      "chapter": "page-25",
+      "component": "HB-TABLE-SPEC",
+      "title": "出カポート",
+      "rows": 8,
+      "spanned_rows_merged": 0
+    },
+    {
+      "change": "spec-table",
+      "chapter": "page-25",
+      "component": "HB-TABLE-SPEC",
+      "title": "温度範囲",
+      "rows": 3,
+      "spanned_rows_merged": 0
+    },
+    {
+      "change": "figure-prose",
+      "chapter": "page-28",
+      "figure": "app-download-p28",
+      "lines": 3,
+      "note": "print lines of one paragraph become one live label"
+    },
+    {
+      "change": "figure-prose",
+      "chapter": "page-28",
+      "figure": "app-download-p28",
+      "lines": 3,
+      "note": "print lines of one paragraph become one live label"
+    },
+    {
+      "change": "app-download",
+      "chapter": "page-28",
+      "figure": "app-download-p28",
+      "component": "HB-SPECIAL-APP",
+      "boxes": {
+        "store": [
+          0.5,
+          41,
+          20.2,
+          90.5
+        ],
+        "qr": [
+          60,
+          41.5,
+          75.3,
+          97.5
+        ]
+      },
+      "note": "store and QR copy set beside drawn art become the shared App download columns"
+    },
+    {
+      "change": "app-inline-control",
+      "chapter": "page-28",
+      "component": "HB-SPECIAL-APP",
+      "note": "add-device '+' picture becomes the shared inline control icon"
+    }
+  ]
+}
