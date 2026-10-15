@@ -439,7 +439,9 @@ def make(language):
     n.add(*n.prose(P(16), g["energizing-body"], right=345.0))
     n.h(P(16), g["locking"], level=4)
     n.add(n.figure("locking-panel", width="narrow"))
-    n.chapter("recommended-breakers", P(16), g["recommended-breakers"])
+    # The French and Spanish prints set this title at the size of the subheadings above it, not as a
+    # chapter title; it follows the print (operator decision D2, 2026-10-15).
+    n.h(P(16), g["recommended-breakers"], level=4)
     n.add(*n.prose(P(16), g["breakers-body"], right=345.0))
 
     # ---- p17-19 INTERNET AND INITIALIZATION SETUP -------------------------------------

@@ -308,9 +308,7 @@
 
 <div class="native-figure native-locking-panel native-narrow"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="locking-panel" data-source-fragment-sha256="b7a52d6231d49a5f34bfc8360d5fae174ad4bc160a53fed866fa3deb756091cd"><div class="hb-reference-semantic" data-reference-id="locking-panel.semantic"><img alt="Verrouillage du panneau" class="hb-reference-art hb-composite-art" src="assets/fr-locking-panel.png"/></div></figure></div>
 
-<span id="native-recommended-breakers"></span>
-
-## Briseurs recommandés
+#### Briseurs recommandés
 
 <p>Disjoncteurs 15A, disjoncteurs 20A, disjoncteurs; pas de disjoncteurs tandem ou quadruples. Marques et modèles de disjoncteurs compatibles : GE - THQL, Siemens - Tipo QP, Square D-HOM, Eaton-BR<br/>Le STS n'est pas compatible avec les disjoncteurs à neutre enfichable.</p>
 

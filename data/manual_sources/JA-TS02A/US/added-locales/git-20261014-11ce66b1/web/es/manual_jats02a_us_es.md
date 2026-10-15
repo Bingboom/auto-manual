@@ -308,9 +308,7 @@
 
 <div class="native-figure native-locking-panel native-narrow"><figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="locking-panel" data-source-fragment-sha256="ca9f15fb1d68bc3fe77f64763f81440a16f9a274dd88a08485b3c0ce9347d078"><div class="hb-reference-semantic" data-reference-id="locking-panel.semantic"><img alt="Bloqueo del Panel" class="hb-reference-art hb-composite-art" src="assets/es-locking-panel.png"/></div></figure></div>
 
-<span id="native-recommended-breakers"></span>
-
-## Disyuntores Recomendados
+#### Disyuntores Recomendados
 
 <p>Disyuntores de 15A, disyuntores de 20A, disyuntores de 30A; no interruptores tandem ni cuádruples. Marcas y modelos de disyuntores compatibles: GE - THQL, Siemens - Tipo QP, Square D-HOM y HOMT, Eaton-BR<br/>El STS no es compatible con los interruptores automáticos de neutro enchufable.</p>
 

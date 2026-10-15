@@ -5383,17 +5383,10 @@
             }
           ],
           "schema_version": "manual-flow/v2"
-        }
-      ]
-    },
-    {
-      "id": "recommended-breakers",
-      "title": "Briseurs recommandés",
-      "nodes": [
+        },
         {
           "kind": "heading",
-          "level": 2,
-          "anchor": "native-recommended-breakers",
+          "level": 4,
           "children": [
             {
               "kind": "text",

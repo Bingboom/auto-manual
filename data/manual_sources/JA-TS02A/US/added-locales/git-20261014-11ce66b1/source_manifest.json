@@ -174,7 +174,7 @@
     "es": "web/es"
   },
   "source_authority": "operator-supplied original PDF; native visible French and Spanish content; no translation or product adaptation",
-  "publication_status": "operator-approved-git-only-release",
+  "publication_status": "git-only-source-candidate",
   "normalizations": [
     "Shared Manual IR: content.json is replayed through the shared flow renderer and shared components (callout strip, warning lockup, reference figure, App download, warranty lead and sections), in the accepted English edition's order.",
     "Print line breaks: a line the print ended while the next word would still have fitted is kept as a line break; every other line end is a wrap (logged per language in source/<lang>/coverage.json).",
@@ -1297,8 +1297,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 7855,
-      "sha256": "1567bf91b2edaf10a3d47a5bdb55a8b2ff709acfad451f3bf84f4ba44556c73b"
+      "size": 8253,
+      "sha256": "8f6b99a55eb72d45eac1843158c6d5ae0a2758ba229f89b8bcc1a789f18a63a2"
     },
     {
       "path": "assets/app-store-badges.png",
@@ -1696,14 +1696,9 @@
       "sha256": "92d410874e1046af24ab56f3a8fc3406b93093159b09c33e1c865e6723eab001"
     },
     {
-      "path": "source/approval.json",
-      "size": 16478,
-      "sha256": "f1b02637311d3d2ed83d2e2859bfc8adc51ab0fd3231ac7ad7756b52c2b60280"
-    },
-    {
       "path": "source/es/content.json",
-      "size": 273102,
-      "sha256": "2a2ede42274ff7d04ba6ff66f003db25bd327cb115ff2e2d4d5ac0a844115a56"
+      "size": 272935,
+      "sha256": "99657e41e311881fc280218db907d575fab8d251ee9ec6230ad9b259e38ce2f4"
     },
     {
       "path": "source/es/coverage.json",
@@ -1722,8 +1717,8 @@
     },
     {
       "path": "source/fr/content.json",
-      "size": 276503,
-      "sha256": "9c829896177945f6fd33f58c8060def58b7687fdb4ef6c29a61ad0c23be62ee0"
+      "size": 276339,
+      "sha256": "d692e98fbb033ce053c45d846d4ae52f76a3512f021e257c8575e813703db982"
     },
     {
       "path": "source/fr/coverage.json",
@@ -1737,8 +1732,8 @@
     },
     {
       "path": "source/intake.py",
-      "size": 33150,
-      "sha256": "d20f33bce68e4b8a7bd2bae8b66dc6a3db04fbf0e0acc1055d8fde1dfaadeba4"
+      "size": 33308,
+      "sha256": "8b3a8801a602904a037da4e8a23f717c1b37bc8e415e94e9a656332b4584ec4b"
     },
     {
       "path": "source/native.py",
@@ -2017,13 +2012,13 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 414680,
-      "sha256": "12ceea66ac59c25e000bcab1eaff90d9f0505fc497422788a9ccc8e67db0eae5"
+      "size": 395958,
+      "sha256": "de5846a433b5653a836621ebe34339bc2c4d795a9952c1550ed27e78726eb363"
     },
     {
       "path": "web/es/manual_jats02a_us_es.md",
-      "size": 60469,
-      "sha256": "436e7151782d7afbb12cb8444956f09be89f5cc12cdb72f85425a2e194fc1538"
+      "size": 60423,
+      "sha256": "283412a1b137540702edbb50d0d4f6c9e27f005014eb7771a7f43ec936bdf9e2"
     },
     {
       "path": "web/fr/_static/source_presentation.css",
@@ -2272,13 +2267,13 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 418165,
-      "sha256": "d6e64fd4f899b82193aa6963d3c8b85ee5f7dcdfd99357334183ba4997eda790"
+      "size": 399443,
+      "sha256": "2c14a65fef76c54f75db8684885f79b25c61f4ff67d0d93a2a922efa8385fccc"
     },
     {
       "path": "web/fr/manual_jats02a_us_fr.md",
-      "size": 61815,
-      "sha256": "67764e40d1add93bdb446a3f63ac99a0b8ad8fbbd93d545380963269655332ec"
+      "size": 61769,
+      "sha256": "4859511a82c91bdffd0ecd4e609a54ace4149500527fb9054c9fc222ce62af49"
     }
   ]
 }

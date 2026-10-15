@@ -1,4 +1,4 @@
-# JA-TS02A / US / French · Spanish — Git-only Web release
+# JA-TS02A / US / French · Spanish — Git-only source candidate (D2 revision)
 
 This package adds the French and Spanish Web editions of the Jackery Smart Transfer Switch manual (model JA-TS02A, printed version JAK-UM-V1.0) from the same supplied booklet as the accepted English edition. It converts the printed French and Spanish bodies only:
 
@@ -9,7 +9,7 @@ This package adds the French and Spanish Web editions of the Jackery Smart Trans
 
 The cover, global contents, English and Portuguese bodies and back cover stay in the archived PDF (「封面和目录 不用体现在web版面上」).
 
-**Status: operator-accepted Git-only release.** The operator reviewed the layout review page (print beside the desktop and phone Web per chapter, French and Spanish tabs) for candidate `d35efce`, which was merged as PR #1530 (`9ca45d81`) with decisions D1–D6 at their defaults. On 2026-10-14 the operator accepted both editions for release (「授权你合入」, in reply to the go-live prompt). `source/approval.json` binds that acceptance to these exact source inputs, and both replayed IRs are `publication_eligible: true`. Release runs under MA-307 in `code-as-doc/dev/merge_authorizations.md`.
+**Status: Git-only source candidate (D2 revision) for operator acceptance.** The first candidate (`d35efce`, PR #1530) was accepted for release on 2026-10-14 with decisions D1–D6 at their defaults (「授权你合入」, MA-307). On 2026-10-15 the operator decided: 「D1 用print矢量，D2按印刷，其余保持」. D1 (the print's own symbol vectors) and D3–D6 are already what the accepted edition does. D2 changes the source: the recommended-breakers title now follows the print as a subheading, not a chapter. The 2026-10-14 acceptance binds the earlier source inputs, so `source/approval.json` is removed and both replayed IRs are `publication_eligible: false` until the operator accepts this revision. Merge, release and any Hello-Docs change each need a separate operator decision.
 
 ## Package shape
 
@@ -19,7 +19,7 @@ The source identity is still one: `source_manifest.json` names the same 94,486,7
 
 ## Layout reference and method
 
-The layout follows the accepted English edition (fixes R1–R9): the same 11 chapters in the same order, the same shared components, figures, callouts and tables. Wording is as printed in each language. The method follows JBP-3600A US: a per-language region table (`GEOMETRY` in `source/intake.py`), print line breaks and hyphen joins logged per language, outlined text restored from source pixels with glyph-path boxes, symbols admitted per locale, and FR/ES panels sharing an English file only when the crop matches it within antialiasing.
+The layout follows the accepted English edition (fixes R1–R9): the same chapters in the same order (10 here: the French and Spanish prints set the recommended-breakers title as a bold subheading of the installation guide, so it follows the print as a level-4 heading, operator decision D2), the same shared components, figures, callouts and tables. Wording is as printed in each language. The method follows JBP-3600A US: a per-language region table (`GEOMETRY` in `source/intake.py`), print line breaks and hyphen joins logged per language, outlined text restored from source pixels with glyph-path boxes, symbols admitted per locale, and FR/ES panels sharing an English file only when the crop matches it within antialiasing.
 
 | Print feature | Web |
 | --- | --- |
@@ -60,7 +60,7 @@ for lang in fr es; do
 done
 ```
 
-To re-freeze: remove `web/`, run `source/refresh_manifest.py`, rebuild each language into `web/<lang>`, and run `source/refresh_manifest.py` again. `tests/test_ja_ts02a_us_fr_es_web.py` covers identity, the operator acceptance, coverage, intake reproduction, cold replay, admissions and the English package being untouched. `audit/browser-validation.json` records the Chromium sweep from 320 to 1920 px.
+To re-freeze: remove `web/`, run `source/refresh_manifest.py`, rebuild each language into `web/<lang>`, and run `source/refresh_manifest.py` again. `tests/test_ja_ts02a_us_fr_es_web.py` covers identity, the candidate state, coverage, intake reproduction, cold replay, admissions and the English package being untouched. `audit/browser-validation.json` records the Chromium sweep from 320 to 1920 px.
 
 ## Boundaries
 
