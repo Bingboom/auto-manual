@@ -42,3 +42,14 @@ Git branch hygiene note:
 - if OpenClaw on your local machine needs to report branch state or switch to an existing branch from a Feishu chat flow, use [`../scripts/openclaw_git_guard.py`](../../scripts/openclaw_git_guard.py) instead of exposing raw Git commands; it only supports `status` and safe `switch --pull`, and it refuses non-generated dirty worktrees
 - OpenClaw / Feishu IM can now answer read-only product-manual inventory questions from the `发布文档管理` Base view before falling back to queue resolution. Use phrases like `查 JE-2000F 的说明书链接`, `查询各产品的说明书`, or `获取说明书总览信息`; build-copy phrases such as `输出JE-1000F的所有欧规说明书文案` still go through the existing Build Draft queue path.
 - if you need to keep `main` open while editing one or more review branches in parallel, use the repo worktree flow in [`../code-as-doc/dev/git_worktree_guide.md`](../../code-as-doc/dev/git_worktree_guide.md); on Windows, prefer worktree paths under your current user such as `C:\Users\<you>\Documents\cms2docs\worktrees\...` instead of another user's home directory
+
+Ordinary product compatibility, specification, and operation questions use current
+manual evidence as well as explicit RTD commands; verify tool calls, not just a
+model claim that it searched or received an HTTP error.
+For the shared DingTalk/Feishu RTD query bot, follow the
+[query activation runbook](../../code-as-doc/dev/eu_manual_query.md).
+A versioned site needs its complete `/en/latest/` directory in `manualQueryBaseUrl`;
+changing only the hostname can leave JSON requests at a 404 endpoint. Install the
+updated plugin, set and read back the URL via the host administrator's config CLI,
+and verify both the query tools and their source links after loading the update.
+A chat configuration-protection error is not a website outage; retain the protection.

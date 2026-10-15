@@ -64,6 +64,7 @@ Phase 2 控制层使用阶段化交付契约：
 - `/build-draft <document_link_record_id>`
 - `/publish <document_link_record_id> confirm`
 - `/manual-status [run_id|last]`
+- `/manual-query JE-2000F`：只读查询已发布欧规说明书链接
 
 注意：
 
@@ -74,3 +75,12 @@ Phase 2 控制层使用阶段化交付契约：
 - 类似 `构建JE-1000F的欧规说明书文案` 这种没有写“所有”的市场文案请求也按批量处理；OpenClaw 会用 `Task_id` 前缀匹配配置里的欧规语言行
 - 类似 `构建JE-1000F说明书文案` 这种没有写市场的文案请求会进一步把市场也通配，按 `Task_id` 前缀 `JE-1000F_` 匹配所有已勾选构建的行
 - 插件包路径是 [`../integrations/openclaw/auto-manual-control-layer/`](../../integrations/openclaw/auto-manual-control-layer)
+
+
+飞书、钉钉共用同一说明书查询插件。启用时在主机终端设置
+`plugins.entries.auto-manual-control-layer.config.manualQueryBaseUrl` 为完整站点目录，
+例如 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest/`，回读后重启网关。
+普通问题也可直接问“查一下 JBP-2000B 适用主机”，应调用手册检索和正文工具并附原文链接。
+使用包含 `activation.onStartup: true` 的插件版本，让命令和 RTD 路由在收消息前注册。
+聊天中的配置保护拒绝不等于站点故障，不要关闭保护；具体安装、校验与回滚前的核对见
+[欧规说明书查询](../../code-as-doc/dev/eu_manual_query.md)。

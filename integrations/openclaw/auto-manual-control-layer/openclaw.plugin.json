@@ -3,6 +3,7 @@
   "name": "BlockClaw Auto Manual Operator",
   "description": "Runs as BlockClaw, the Auto-Manual content-block operator that dispatches manual review/build/publish workflows from OpenClaw and reports GitHub run status.",
   "contracts": { "tools": ["manual_search", "manual_section"] },
+  "activation": { "onStartup": true },
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
