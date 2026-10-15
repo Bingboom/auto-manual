@@ -134,7 +134,7 @@ hashes it alongside the rendered manuals. Draft/preview builds outside frozen
 `publish/web` do not emit a production corpus. Neither authoring inputs nor
 published HTML are rewritten for querying.
 
-The gateway reads the HTTPS site origin, verifies the artifact hash and each
+The gateway reads the HTTPS site directory, verifies the artifact hash and each
 document's HTML hash against the receipt, then rereads the receipt before
 replacing its in-memory corpus. This verifies deployment consistency, not a
 cryptographic signature independent of the website. There is no new database.
@@ -176,12 +176,48 @@ to a valid earlier website deployment intentionally follows that deployed versio
    }
    ```
 
+   Use the complete directory that serves `manual-deployment.json` and
+   `manual-knowledge.json`, including `/en/latest/` on a versioned RTD site.
+   A home-page redirect does not imply JSON files redirect too. The reader
+   keeps this prefix in requests and citations; same-origin redirect and
+   receipt/hash checks remain enforced. Root-only deployments remain supported.
+   Set the property through the host administrator's supported config CLI;
+   a chat `gateway config.patch` can reject protected plugin paths. Do not
+   weaken that protection. Read the property back after setting it.
+
 4. If the agent has an explicit tool allowlist, add `manual_search` and
    `manual_section` to that existing list, preserving other policies. The query
    feature does not widen channel membership or grant build/publish rights to
    new colleagues. Restart the existing gateway with `openclaw gateway restart`
    and check that these two tools and `/manual-query` are registered. Older
    gateways without `registerTool` retain only the deterministic query command.
+   The manifest declares `activation.onStartup: true`: lazy tool-only loading
+   would otherwise leave commands and prompt hooks unregistered until a tool
+   call already selected this plugin.
+   The plugin's shared `before_prompt_build` guidance routes explicit RTD /
+   Read the Docs / machine-corpus requests, `/manual-query` text, and ordinary
+   model-specific compatibility/specification/operation questions to
+   `manual_search` / `manual_section`, before the Feishu attachment catalog or web
+   search. Product comparisons also use this evidence path. A claimed HTTP error
+   must come from a current tool result; a prior failure or a model statement
+   without a tool call is not evidence of a service outage.
+   This covers channels that forward slash commands to the model; it does
+   not grant any build or write permission. Verify actual tool calls in each
+   channel, since a slash-shaped message alone does not prove interception.
+
+   If one channel replies `This command requires authorization` while another
+   works, inspect that channel's command policy and the sender identity in its
+   inbound log. A channel with `enforceOwnerForCommands: true` requires an
+   explicit command owner; `commands.allowFrom` and a wildcard channel
+   allowlist do not by themselves satisfy that gate. Owner identities are
+   provider-specific: a Feishu owner entry does not identify the same person
+   on DingTalk. Only with the operator's explicit approval, add the verified
+   provider-prefixed identity to `commands.ownerAllowFrom`, preserving existing
+   owners; this grants other owner-only command capabilities too. Back up and
+   read back the host configuration, restart, and verify an actual inbound
+   command plus an unauthorized-sender case. Keep identities and credentials
+   out of Git and retain `requireAuth: true`.
+
 5. In the already connected bot, check `/manual-query JE-2000F USB-C输出`, then
    ask “JE-2000F 欧规 USB-C 输出功率是多少？”, “JE-2000F 节能模式怎么关闭？” and
    “目前容量最大的产品是哪个？” (the answer should name the compared models).
