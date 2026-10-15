@@ -1,0 +1,127 @@
+{
+  "base_edition": "git-20261013-caa5370a-web-layout",
+  "changes": [
+    {
+      "change": "inbox",
+      "chapter": "page-3",
+      "figure": "inbox-p3",
+      "component": "HB-SPECIAL-INBOX",
+      "cards": [
+        "便携式储能电源 3600 Plus",
+        "AC电源线",
+        "用户指南"
+      ],
+      "boxes": [
+        [
+          2.2,
+          16,
+          27.8,
+          61
+        ],
+        [
+          37.2,
+          16,
+          62.8,
+          61
+        ],
+        [
+          71.7,
+          16,
+          97.3,
+          61
+        ]
+      ],
+      "notes": 2,
+      "note": "drawn card panel becomes the shared inbox cards; each card's art is cropped from the print"
+    },
+    {
+      "change": "lcd-icon-table",
+      "chapter": "page-5",
+      "component": "HB-TABLE-LCD-ICON",
+      "rows": 24,
+      "note": "Print row-spanned numbers repeat on each row of their span."
+    },
+    {
+      "change": "figure-prose",
+      "chapter": "page-8",
+      "figure": "power-p8",
+      "lines": 2,
+      "note": "print lines of one paragraph become one live label"
+    },
+    {
+      "change": "lcd-mode-table",
+      "chapter": "page-9",
+      "component": "HB-TABLE-LCD-MODE",
+      "states": 2,
+      "dropped_header_row": [
+        "分类",
+        "操作",
+        "说明"
+      ]
+    },
+    {
+      "change": "key-combinations",
+      "chapter": "page-10",
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "rows": 3,
+      "dropped": "button and clock glyphs beside the printed words (the shared table is text-only, as in EU)"
+    },
+    {
+      "change": "troubleshooting",
+      "chapter": "page-18",
+      "component": "HB-TABLE-TROUBLESHOOTING",
+      "rows": 12
+    },
+    {
+      "change": "spec-table",
+      "chapter": "page-19",
+      "component": "HB-TABLE-SPEC",
+      "title": "基本规格",
+      "rows": 8,
+      "spanned_rows_merged": 0
+    },
+    {
+      "change": "spec-table",
+      "chapter": "page-19",
+      "component": "HB-TABLE-SPEC",
+      "title": "输入",
+      "rows": 3,
+      "spanned_rows_merged": 0
+    },
+    {
+      "change": "spec-table",
+      "chapter": "page-19",
+      "component": "HB-TABLE-SPEC",
+      "title": "输出",
+      "rows": 8,
+      "spanned_rows_merged": 0
+    },
+    {
+      "change": "spec-table",
+      "chapter": "page-19",
+      "component": "HB-TABLE-SPEC",
+      "title": "工作环境温度",
+      "rows": 2,
+      "spanned_rows_merged": 0
+    },
+    {
+      "change": "app-qr-download",
+      "chapter": "page-20",
+      "component": "HB-SPECIAL-APP",
+      "lines": 3,
+      "note": "store copy and QR code become the shared App QR-only download; print line indents dropped"
+    },
+    {
+      "change": "app-inline-control",
+      "chapter": "page-20",
+      "component": "HB-SPECIAL-APP",
+      "note": "add-device '+' picture becomes the shared inline control icon"
+    },
+    {
+      "change": "certificate",
+      "chapter": "page-23",
+      "component": "table",
+      "note": "QC certificate drawn with source CSS becomes a plain table"
+    }
+  ]
+}
