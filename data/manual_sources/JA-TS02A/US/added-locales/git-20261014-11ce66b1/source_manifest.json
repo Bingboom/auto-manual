@@ -309,6 +309,11 @@
       "sha256": "2c8911281c01bf5e81319c38ebe55433b6ee49b9bd8ba9a9d0a21f014047b738"
     },
     {
+      "path": "docs/renderers/contracts/prepared_style_baseline.json",
+      "size": 25894,
+      "sha256": "320e428e070944a2cc757f3354011a1a16824c7b493ae752ad3c88a97175b57e"
+    },
+    {
       "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",
       "size": 26001,
       "sha256": "dc9aa7b4137120e43cd5c1eddd8609827e655f18c54d1cf09132edcc5ee15a8f"
@@ -1224,6 +1229,11 @@
       "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288"
     },
     {
+      "path": "tools/web/prepared_style_audit.py",
+      "size": 9128,
+      "sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121"
+    },
+    {
       "path": "tools/web/presentation.py",
       "size": 65114,
       "sha256": "619902e6a286ea17708a7b62831dda0ac0d6fe6294a2b0b7fea6af4f58d812b8"
@@ -1297,8 +1307,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 8253,
-      "sha256": "8f6b99a55eb72d45eac1843158c6d5ae0a2758ba229f89b8bcc1a789f18a63a2"
+      "size": 9429,
+      "sha256": "efb364fdeae1f37400b042da61a3e64fe3cf8d35ac6f6cc09cb7d9e9d54a597c"
     },
     {
       "path": "assets/app-store-badges.png",
@@ -1687,8 +1697,13 @@
     },
     {
       "path": "audit/browser-validation.json",
-      "size": 4813,
-      "sha256": "d5888fc28372ec062e04aad3d05748855a9e52c08ddc7d1b9b5149c09be9b2f5"
+      "size": 4263,
+      "sha256": "9fff3bebfd602e8da0e0843784643a73a74fef77ffaff2d6a953c2fa8e799c91"
+    },
+    {
+      "path": "audit/component-map.json",
+      "size": 3789,
+      "sha256": "0e4629216a7dd42e0b3dfa4440d5a6740f7cb3bedab2c1b07d09adb71d225853"
     },
     {
       "path": "rebuild.py",
@@ -1697,8 +1712,8 @@
     },
     {
       "path": "source/es/content.json",
-      "size": 272935,
-      "sha256": "99657e41e311881fc280218db907d575fab8d251ee9ec6230ad9b259e38ce2f4"
+      "size": 235553,
+      "sha256": "97f05a57d5fd7ea88b2dfa5025e3b5701278b85d31ef7ab9291a37912ba648b0"
     },
     {
       "path": "source/es/coverage.json",
@@ -1717,8 +1732,8 @@
     },
     {
       "path": "source/fr/content.json",
-      "size": 276339,
-      "sha256": "d692e98fbb033ce053c45d846d4ae52f76a3512f021e257c8575e813703db982"
+      "size": 238122,
+      "sha256": "b37f993ae6268019c074d0519802c1b2250b42dd765a0b0bf67269250a5048dc"
     },
     {
       "path": "source/fr/coverage.json",
@@ -1732,23 +1747,23 @@
     },
     {
       "path": "source/intake.py",
-      "size": 33308,
-      "sha256": "8b3a8801a602904a037da4e8a23f717c1b37bc8e415e94e9a656332b4584ec4b"
+      "size": 32460,
+      "sha256": "56d399649d496ad71927bc3b94ef07bfbaa1d144a9c9e5be102dc6a22fc95750"
     },
     {
       "path": "source/native.py",
-      "size": 22705,
-      "sha256": "b3bc8abfc8e4746ac559f787a24f1105eb53043231fdb53bd137415b4433b84e"
+      "size": 22561,
+      "sha256": "0aebb49febc0ccab80f3aa8ee4abbe659d9823fa368928aef588d73eaa30fb93"
     },
     {
       "path": "source/presentation.css",
-      "size": 6174,
-      "sha256": "5c795156a5c77be45f902d3f292a9b59262104761045d38138c898fcc7a76eae"
+      "size": 3133,
+      "sha256": "fd908d0bf930c4c12c9c0a80ac33561dec9cce346d47826f7958766679f04d8c"
     },
     {
       "path": "source/refresh_manifest.py",
-      "size": 4683,
-      "sha256": "ce660757bc0c5896edf593b3f5b8d5c3acef7577021d548f6f3f7ff7f0f8daa6"
+      "size": 6675,
+      "sha256": "00c874628e424591eb61ee457a0b3a23337600e6493b344bf85dd3d3f6f7c979"
     },
     {
       "path": "source/symbols.json",
@@ -1767,8 +1782,8 @@
     },
     {
       "path": "web/es/_static/source_presentation.css",
-      "size": 6174,
-      "sha256": "5c795156a5c77be45f902d3f292a9b59262104761045d38138c898fcc7a76eae"
+      "size": 3133,
+      "sha256": "fd908d0bf930c4c12c9c0a80ac33561dec9cce346d47826f7958766679f04d8c"
     },
     {
       "path": "web/es/_static/web_manual.css",
@@ -2012,18 +2027,18 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 395958,
-      "sha256": "de5846a433b5653a836621ebe34339bc2c4d795a9952c1550ed27e78726eb363"
+      "size": 361232,
+      "sha256": "4a9b49f1303b604e3bca36ebf7289d171e9690aeab1fb74d00670ef72f3e4a58"
     },
     {
       "path": "web/es/manual_jats02a_us_es.md",
-      "size": 60423,
-      "sha256": "283412a1b137540702edbb50d0d4f6c9e27f005014eb7771a7f43ec936bdf9e2"
+      "size": 54168,
+      "sha256": "4bba842e63b4d289bbaed512d850e0fd3473503f08126c57aa221306245308b2"
     },
     {
       "path": "web/fr/_static/source_presentation.css",
-      "size": 6174,
-      "sha256": "5c795156a5c77be45f902d3f292a9b59262104761045d38138c898fcc7a76eae"
+      "size": 3133,
+      "sha256": "fd908d0bf930c4c12c9c0a80ac33561dec9cce346d47826f7958766679f04d8c"
     },
     {
       "path": "web/fr/_static/web_manual.css",
@@ -2267,13 +2282,71 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 399443,
-      "sha256": "2c14a65fef76c54f75db8684885f79b25c61f4ff67d0d93a2a922efa8385fccc"
+      "size": 364152,
+      "sha256": "93bb2ebbf7eb639a75e51ac03f061623f51ba24d5e11bce705a234158234ea61"
     },
     {
       "path": "web/fr/manual_jats02a_us_fr.md",
-      "size": 61769,
-      "sha256": "4859511a82c91bdffd0ecd4e609a54ace4149500527fb9054c9fc222ce62af49"
+      "size": 55468,
+      "sha256": "959895d892ccb741c11283b9c4c3b2220dd416390b4aff40843aa3f05ad48c3a"
+    }
+  ],
+  "shared_component_exceptions": [
+    {
+      "language": "fr",
+      "page_id": "safety",
+      "kind": "table",
+      "text_sha256": "8623a15174e6386d1979dd8d5b4dbb438148b164c10b94b09c2e7fa122ef022e",
+      "reason": "Meaning of symbols. HB-TABLE-SYMBOL-ICON admits only shared catalogue symbols; the print's grounding, caution and electric-shock icons miss the fixed glyph gate against every shared variant, and the operator chose the print's own vectors (D1, 2026-10-15)."
+    },
+    {
+      "language": "fr",
+      "page_id": "what-you-need",
+      "kind": "table",
+      "text_sha256": "c13bd2be63f21e6b78c887865bd66175c9cf0379eef46233a89ab73a39b2906c",
+      "reason": "Optional cables: group labels and currents span four rows and the cable header spans two columns, in five columns; no shared table component has row or column spans."
+    },
+    {
+      "language": "fr",
+      "page_id": "product-overview",
+      "kind": "table",
+      "text_sha256": "bd6a3ae216980e05b952a296326014d4a4ca6949c1af8a2262704e2106baeab0",
+      "reason": "LED indicators: each indicator name spans its two or three status rows; the shared reference and LCD tables have fixed columns and no row spans."
+    },
+    {
+      "language": "fr",
+      "page_id": "installation-guide",
+      "kind": "table",
+      "text_sha256": "e4750a63df7e286f6c5f5c1ba21b3643a0a66be1fb206b6eb4069087469fd4b7",
+      "reason": "Conductor tightening torque: grid and home-load sides in six columns; no shared table component has six columns."
+    },
+    {
+      "language": "es",
+      "page_id": "safety",
+      "kind": "table",
+      "text_sha256": "a1a3f1decdaea7632ce41954a426b8b9d3006239ed926574d9ed64824f04c066",
+      "reason": "Meaning of symbols. HB-TABLE-SYMBOL-ICON admits only shared catalogue symbols; the print's grounding, caution and electric-shock icons miss the fixed glyph gate against every shared variant, and the operator chose the print's own vectors (D1, 2026-10-15)."
+    },
+    {
+      "language": "es",
+      "page_id": "what-you-need",
+      "kind": "table",
+      "text_sha256": "e9579cf7253cb01f6c9e90cbbf411697d6d9dac489a770be4c289739a3233135",
+      "reason": "Optional cables: group labels and currents span four rows and the cable header spans two columns, in five columns; no shared table component has row or column spans."
+    },
+    {
+      "language": "es",
+      "page_id": "product-overview",
+      "kind": "table",
+      "text_sha256": "58939268526dbf4a44743668cfe3b0c0f931e76d99065946271860e1fcc9721e",
+      "reason": "LED indicators: each indicator name spans its two or three status rows; the shared reference and LCD tables have fixed columns and no row spans."
+    },
+    {
+      "language": "es",
+      "page_id": "installation-guide",
+      "kind": "table",
+      "text_sha256": "efa8b4e0ed3750e5f85841a12e83778025d0fe3e456905b79a9335ea7c96a481",
+      "reason": "Conductor tightening torque: grid and home-load sides in six columns; no shared table component has six columns."
     }
   ]
 }

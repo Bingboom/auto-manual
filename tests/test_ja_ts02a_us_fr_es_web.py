@@ -40,7 +40,10 @@ CHAPTER_IDS = ['safety', 'specifications', 'package-list', 'what-you-need', 'pro
 BREAKERS = {'fr': 'Briseurs recommandés', 'es': 'Disyuntores Recomendados'}
 # English has five callout strips; the French and Spanish prints set the deadfront warning as a plain line.
 COMPONENTS = {'HB-CALLOUT-STRIP': 4, 'HB-SPECIAL-APP': 1, 'HB-SPECIAL-REFERENCE-FIGURE': 30,
-              'HB-WARRANTY-LEAD': 1, 'HB-WARRANTY-SECTION': 6}
+              'HB-TABLE-SPEC': 1, 'HB-WARRANTY-LEAD': 1, 'HB-WARRANTY-SECTION': 6}
+# Plain shared tables (no shared component fits), declared with their reasons in the manifest.
+PLAIN_TABLES = ['safety', 'what-you-need', 'product-overview', 'installation-guide']
+STYLE_BASELINE = ROOT / 'docs/renderers/contracts/prepared_style_baseline.json'
 JOINS = {'fr': [['domes-', 'tique'], ['automatique-', 'ment'], ['immédi-', 'atement'], ['alimenta', 'tion']],
          'es': [['concesion-', 'ario'], ['recomien-', 'da'], ['instruc-', 'ciones']]}
 SHARED_PANELS = {('fr', 'deadfront-installation'), ('fr', 'iot-pairing'), ('es', 'app-store-badges')}
@@ -282,18 +285,36 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
     def test_tables_keep_the_print_spans(self):
         for language in LANGUAGES:
             soup = page(language)
-            spec = soup.select_one('table.native-spec-rules')
-            self.assertIsNone(spec.find('thead'))
+            spec = soup.select_one('table.hb-spec-table')
             self.assertEqual(len(spec.select('tbody > tr')), 17)
-            cables = soup.select_one('table.native-cables')
+            plain = [t for t in soup.select('table') if t.get('class') == ['manual-table']]
+            self.assertEqual(len(plain), 4)
+            symbols, cables, led, torque = plain
+            self.assertEqual(len(symbols.select('tbody img')), 4)
             self.assertEqual(cables.select_one('thead th')['colspan'], '2')
             self.assertEqual([cell['rowspan'] for cell in cables.select('td[rowspan]')], ['4'] * 4)
-            self.assertEqual(len(cables.select('td.native-wire')), 8)
-            led = soup.select_one('table.native-led')
             self.assertEqual([cell['rowspan'] for cell in led.select('td[rowspan]')], ['3', '3', '3', '2'])
-            torque = soup.select_one('table.native-torque')
             self.assertEqual(len(torque.select('thead th')), 6)
             self.assertEqual(len(torque.select('tbody > tr')), 4)
+
+    def test_only_shared_styles_pass_the_prepared_document_gate(self):
+        from tools.web.prepared_style_audit import audit_prepared_package_locale, require_prepared_style_admission
+        manifest = read(PACKAGE / 'source_manifest.json')
+        declared = manifest['shared_component_exceptions']
+        self.assertEqual([(row['language'], row['page_id']) for row in declared],
+                         [(language, page_id) for language in LANGUAGES for page_id in PLAIN_TABLES])
+        self.assertTrue(all(row['reason'].strip() for row in declared))
+        roots = {row['web_root'] for row in read(STYLE_BASELINE)['entries']}
+        for language in LANGUAGES:
+            with self.subTest(language=language):
+                web = PACKAGE / f'web/{language}'
+                report = audit_prepared_package_locale(PACKAGE, web, manifest)
+                self.assertEqual((report['issues'], report['declared_tables']), ([], 4))
+                self.assertNotIn(web.relative_to(ROOT).as_posix(), roots)  # not a baseline entry
+                self.assertNotIn('baseline', require_prepared_style_admission(web, manifest))
+                classes = {c for tag in page(language).find_all(class_=True) for c in tag['class']}
+                self.assertFalse({c for c in classes if c.startswith('native-')})
+        self.assertIn(ENGLISH.relative_to(ROOT).as_posix() + '/web/en', roots)  # English stays as released
 
     def test_artwork_is_shared_with_english_or_cut_per_language(self):
         english = {r['slot']: r for r in read(ENGLISH / 'source/figures.json')}

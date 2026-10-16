@@ -44,16 +44,6 @@
       "issues": 47
     },
     {
-      "web_root": "data/manual_sources/JA-TS02A/US/added-locales/git-20261014-11ce66b1/web/es",
-      "ir_content_sha256": "519bbd045513ea7b5e8d5c0b86f18c7cf92ff314890bf730c2784242746746a9",
-      "issues": 216
-    },
-    {
-      "web_root": "data/manual_sources/JA-TS02A/US/added-locales/git-20261014-11ce66b1/web/fr",
-      "ir_content_sha256": "2b7c2ff7701485d4359a64d3d3f65d92527f31fdeb0f42f37216af9b875bcc2f",
-      "issues": 218
-    },
-    {
       "web_root": "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/web/en",
       "ir_content_sha256": "d02f6b563e0357788707776b3a3968338ad93193009a261d897359ec67322134",
       "issues": 204
