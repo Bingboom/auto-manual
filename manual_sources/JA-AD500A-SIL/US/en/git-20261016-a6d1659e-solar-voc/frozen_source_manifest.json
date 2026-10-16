@@ -20,7 +20,7 @@
   "language_scope": "single",
   "source_role": "Git-only English solar-Voc correction edition of the approved release",
   "live_bitable_dependency": false,
-  "publication_eligible": false,
+  "publication_eligible": true,
   "page_order": [
     "box_contents_en.rst",
     "product_overview_en.rst",
@@ -87,14 +87,12 @@
     }
   ],
   "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
-  "pending_source_review": [
-    "operator review of the solar-Voc text correction before Git-only release"
-  ],
+  "pending_source_review": [],
   "inputs": [
     {
       "path": "README.md",
-      "size": 2123,
-      "sha256": "52556739e264a600738101eeee5f730ce2213fa459d5c3e1b1d8a4ba4aad09ac"
+      "size": 2117,
+      "sha256": "8616ef7972bd39340f92234d0dbb6929fb6a78fcf655f126dc10412349934ac9"
     },
     {
       "path": "assets/car.png",
@@ -138,13 +136,18 @@
     },
     {
       "path": "derive_solar_voc.py",
-      "size": 6386,
-      "sha256": "54e64ed5920fbadaaf1b36a91aed76d4e2e92670f368f5f042c56e4ac5501e83"
+      "size": 6385,
+      "sha256": "bba97f5f4fe27706e956345b28f2ed7788a7d699a93afd2ef1442deb8981fed5"
     },
     {
       "path": "render.py",
       "size": 7668,
       "sha256": "c8e685562bf57783ebf33fecde7ea749c6a1d8147716d39ea3413e01debc8df2"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 3882,
+      "sha256": "5ddffa6c74cabb9deeec69e317cd3ed8e97d46568949ec2e14057c21b5f92d7e"
     },
     {
       "path": "source/asset_recipe.json",
@@ -208,8 +211,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 8955,
-      "sha256": "b0ebbf2390000481c1ec954fc584f52e5f98aba03b03ce40f8bb439e87d9c943"
+      "size": 9019,
+      "sha256": "bd8bcf1b91253acfcefc57813520c366af6c3a9497672437ffce308e88196992"
     },
     {
       "path": "web/en/_static/web_manual.css",
@@ -258,8 +261,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 214198,
-      "sha256": "17b6c90fbe7141b89d5af79194a9c74c5020ee2c5af8dac05812fe0d328e988f"
+      "size": 218829,
+      "sha256": "df6d2297845cfd582bfae3934682366c24f93740ddb05685e64939a5bc4452d7"
     },
     {
       "path": "web/en/manual_bundle.html",
@@ -281,7 +284,7 @@
   "web_roots": {
     "en": "web/en"
   },
-  "publication_status": "review-candidate-no-release-authorization",
+  "publication_status": "operator-approved-git-only-release",
   "derived_from": {
     "package": "git-20261006-a6d1659e-reviewed",
     "authorization": "MA-259",

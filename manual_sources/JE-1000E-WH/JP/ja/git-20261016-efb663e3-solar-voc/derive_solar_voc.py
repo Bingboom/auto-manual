@@ -12,11 +12,12 @@ a second run leaves the tree unchanged. Hand-written ``README.md``,
 ``rebuild.py``, ``verify.py``, ``source/differences.md`` and (after acceptance)
 ``source/approval.json`` are not touched.
 
-The correction replaces the two middle sentences of the solar-panel paragraph
+The correction replaces the first three sentences of the solar-panel paragraph
 (printed p.20). Panels reach the SlimPower H1 through the Jackery DC Input
 Module, so the governing limit is the module's DC input voltage range
-(16V～60V), not the H1's own DC input range. The opening accessory warning and
-the closing disclaimer are kept. ``tests/test_jp_solar_voc.py`` proves the
+(16V～60V), not the H1's own DC input range. The opening accessory warning is
+dropped on operator instruction (it contradicted the recommendation and the
+disclaimer); the closing disclaimer is kept. ``tests/test_jp_solar_voc.py`` proves the
 rendered Markdown equals the approved Markdown with exactly this paragraph
 replaced.
 """
@@ -32,7 +33,7 @@ BASE = PACKAGE.parent / 'git-20261008-efb663e3-no-cover-reviewed'
 
 CANDIDATE = 'review-candidate-no-release-authorization'
 APPROVED = 'operator-approved-git-only-release'
-STATUS = CANDIDATE
+STATUS = APPROVED
 LANGUAGE = 'ja'
 PDF = 'Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf'
 # Copied byte-for-byte; the base edition's scripts, docs, approval, validation and web are not.
@@ -44,6 +45,7 @@ CORRECTED_NATIVE_BLOCKS = [(20, 5)]
 CORRECTIONS = [
     (
         'source/chapters.json',
+        'Jackeryブランド以外の付属品を使用して充電しないでください。'
         '特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。'
         'ソーラーパネルの開放電圧（Voc）が、Jackery SlimPower H1のDC入力電圧範囲（36.8V~56V）'
         '内に収まっていることを確認してください。',
@@ -87,7 +89,7 @@ def manifest() -> None:
     data['source_authority'] = (
         'Operator-designated Japanese PDF and the approved MA-277 Web edition '
         'git-20261008-efb663e3-no-cover-reviewed; solar-Voc text correction on operator instruction '
-        '2026-10-15/16 (整段替换, 不删免责句, 保留这句). The printed source keeps its wording.')
+        '2026-10-15/16 (整段替换, 不删免责句, 删掉第①句). The printed source keeps its wording.')
     data['publication_eligible'] = STATUS == APPROVED
     data['publication_status'] = STATUS
     data['derived_from'] = {
@@ -100,7 +102,7 @@ def manifest() -> None:
          'reason': 'Solar panels connect through the Jackery DC Input Module; the panel Voc limit is '
                    "the module's DC input voltage range (16V～60V), not the SlimPower H1's own DC input range.",
          'instruction': 'operator, 2026-10-15/16: replace the paragraph (整段替换), keep the disclaimer '
-                        '(不删免责句) and the opening accessory warning (保留这句); the printed source and its '
+                        '(不删免责句); the opening accessory warning is dropped (删掉第①句, 2026-10-16); the printed source and its '
                         'native text stay unchanged'}
         for relative, old, new in CORRECTIONS
     ]

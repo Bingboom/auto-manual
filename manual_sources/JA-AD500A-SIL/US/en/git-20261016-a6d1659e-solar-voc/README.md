@@ -3,7 +3,7 @@
 Operator instruction, 2026-10-15: replace the solar-panel Voc paragraph so it cites the Jackery DC Input Module's DC input voltage range (16V–60V) instead of the downstream FridgeGuard / Battery Pack ranges (“整段替换”), keeping the third-party-panel disclaimer (“不删免责句”).
 This edition applies that correction to the [approved package](../git-20261006-a6d1659e-reviewed/README.md) (MA-259). The approved package, its printed source and its release evidence remain immutable.
 
-**Status: `review-candidate-no-release-authorization`.** The edition renders but is not publication-eligible. Release needs the operator's acceptance in `source/approval.json` (binding every reviewed `source/` and `assets/` input), `publication_status` switched to `operator-approved-git-only-release` in `derive_solar_voc.py`, and a Git-only Web Publish.
+**Status: `operator-approved-git-only-release`.** Accepted by the operator on 2026-10-16 (「全部验收并发布上线」; 「验收记录 允许你写」, MA-312): `source/approval.json` binds every reviewed `source/` and `assets/` input, and the IR is publication-eligible. Release is the Git-only Web Publish sealed at the merged `main` commit.
 
 ## What changed
 

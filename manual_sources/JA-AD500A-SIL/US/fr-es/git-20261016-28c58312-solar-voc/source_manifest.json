@@ -20,7 +20,7 @@
   "baseline_main": "07859f7eae1fe90b72ee950025b28b12cf2c36ff",
   "source_role": "Git-only French/Spanish solar-Voc correction edition of the approved release",
   "live_bitable_dependency": false,
-  "publication_eligible": false,
+  "publication_eligible": true,
   "page_order": {
     "fr": [
       "box_contents_fr.rst",
@@ -151,9 +151,7 @@
     }
   ],
   "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
-  "pending_source_review": [
-    "operator review of the solar-Voc text correction before Git-only release"
-  ],
+  "pending_source_review": [],
   "inputs": [
     {
       "path": "assets/car.png",
@@ -187,13 +185,18 @@
     },
     {
       "path": "derive_solar_voc.py",
-      "size": 7679,
-      "sha256": "a16b694408f21c21c4f4a61c8284e7ac9bb5b10a1efb67f095700217e448ec00"
+      "size": 7678,
+      "sha256": "5b19e0aa20ef8c7cc2a5f96a89f769d20206681f30b08c6ee7bb327d21d5c8e8"
     },
     {
       "path": "render.py",
       "size": 7781,
       "sha256": "15e87cd7edbbcc267a3a20076997f7efef3534205499d63e994e0af70793e0ea"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 4055,
+      "sha256": "9f76d4df535e4134cada0b0fd9dca4accbb86a1779c99350c5ac41b260c319ce"
     },
     {
       "path": "source/differences.md",
@@ -288,7 +291,7 @@
     "structure": "same chapter order, component types/counts, table geometry, reference IDs and art hashes; native text governs all copy"
   },
   "filename_version_label": "V2.0-2026-05-25; filename metadata only, no printed version located",
-  "publication_status": "review-candidate-no-release-authorization",
+  "publication_status": "operator-approved-git-only-release",
   "derived_from": {
     "package": "git-20261007-28c58312-reviewed",
     "authorization": "MA-262",

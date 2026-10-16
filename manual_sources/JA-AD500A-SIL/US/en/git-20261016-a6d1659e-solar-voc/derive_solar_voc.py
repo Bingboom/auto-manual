@@ -33,7 +33,7 @@ REPO = next(parent for parent in PACKAGE.parents if (parent / 'build.py').is_fil
 
 CANDIDATE = 'review-candidate-no-release-authorization'
 APPROVED = 'operator-approved-git-only-release'
-STATUS = CANDIDATE
+STATUS = APPROVED
 LANGUAGE = 'en'
 # Copied byte-for-byte; the correction applies on top of the copy.
 COPIED_ROOTS = ('source', 'assets')
