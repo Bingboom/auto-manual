@@ -1,0 +1,76 @@
+/* Source-local navigation and safety styles; the printed cover is excluded from Web. */
+article span[id]:empty { display: block; scroll-margin-top: 2rem; }
+#furo-main-content .hb-symbol-signal-composition .hb-signal-badge {
+  background: transparent; color: #333; font-size: 1.15rem; min-width: 0;
+}
+#furo-main-content .hb-symbol-signal-composition .hb-signal-icon {
+  display: inline-block; width: 1.25rem; height: 1.15rem; flex: 0 0 1.25rem;
+  color: transparent; background: url("assets/symbol-warning_triangle.svg") center / contain no-repeat;
+}
+@media (max-width: 760px) {
+  #furo-main-content .hb-symbol-signal-col-label { width: 27%; }
+  #furo-main-content .hb-symbol-signal-col-meaning { width: 73%; }
+  #furo-main-content .hb-symbol-signal-table td { font-size: .95rem; }
+  #furo-main-content .hb-symbol-signal-composition .hb-signal-badge { font-size: 1rem; }
+}
+
+/* Reserve native image geometry before decoding to keep chapter fragment reloads stable. */
+article img[src="assets/ac-charge.png"] { aspect-ratio: 945 / 426; }
+article img[src="assets/app-phones.png"] { aspect-ratio: 483 / 426; }
+article img[src="assets/app-power.png"] { aspect-ratio: 942 / 273; }
+article img[src="assets/app-qr.png"] { aspect-ratio: 150 / 147; }
+article img[src="assets/app-result.png"] { aspect-ratio: 780 / 441; }
+article img[src="assets/app-stores.png"] { aspect-ratio: 186 / 126; }
+article img[src="assets/back-qr.png"] { aspect-ratio: 129 / 132; }
+article img[src="assets/battery.png"] { aspect-ratio: 952 / 504; }
+article img[src="assets/car.png"] { aspect-ratio: 945 / 453; }
+article img[src="assets/concrete_1.png"] { aspect-ratio: 1261 / 473; }
+article img[src="assets/concrete_2.png"] { aspect-ratio: 1261 / 690; }
+article img[src="assets/concrete_3_4.png"] { aspect-ratio: 1261 / 919; }
+article img[src="assets/concrete_5_6.png"] { aspect-ratio: 1261 / 944; }
+article img[src="assets/concrete_7_8.png"] { aspect-ratio: 1257 / 755; }
+article img[src="assets/concrete_prepare.png"] { aspect-ratio: 1261 / 529; }
+article img[src="assets/inbox-cable.png"] { aspect-ratio: 216 / 219; }
+article img[src="assets/inbox-manual.png"] { aspect-ratio: 183 / 219; }
+article img[src="assets/inbox-stand.png"] { aspect-ratio: 183 / 219; }
+article img[src="assets/inbox-unit.png"] { aspect-ratio: 126 / 255; }
+article img[src="assets/lcd-01.png"] { aspect-ratio: 180 / 108; }
+article img[src="assets/lcd-02.png"] { aspect-ratio: 156 / 96; }
+article img[src="assets/lcd-03.png"] { aspect-ratio: 138 / 96; }
+article img[src="assets/lcd-04.png"] { aspect-ratio: 72 / 174; }
+article img[src="assets/lcd-05.png"] { aspect-ratio: 150 / 90; }
+article img[src="assets/lcd-06.png"] { aspect-ratio: 90 / 84; }
+article img[src="assets/lcd-07.png"] { aspect-ratio: 78 / 90; }
+article img[src="assets/lcd-08.png"] { aspect-ratio: 126 / 96; }
+article img[src="assets/lcd-09.png"] { aspect-ratio: 96 / 96; }
+article img[src="assets/lcd-10.png"] { aspect-ratio: 78 / 90; }
+article img[src="assets/lcd-11.png"] { aspect-ratio: 126 / 84; }
+article img[src="assets/lcd-12.png"] { aspect-ratio: 162 / 162; }
+article img[src="assets/lcd-map.png"] { aspect-ratio: 849 / 519; }
+article img[src="assets/lcd_mode.png"] { aspect-ratio: 296 / 632; }
+article img[src="assets/maintenance.png"] { aspect-ratio: 945 / 363; }
+article img[src="assets/overview.png"] { aspect-ratio: 951 / 690; }
+article img[src="assets/power.png"] { aspect-ratio: 1258 / 786; }
+article img[src="assets/solar.png"] { aspect-ratio: 945 / 474; }
+article img[src="assets/stand_1.png"] { aspect-ratio: 1261 / 473; }
+article img[src="assets/stand_2.png"] { aspect-ratio: 1261 / 527; }
+article img[src="assets/stand_3.png"] { aspect-ratio: 1259 / 529; }
+article img[src="assets/stand_prepare.png"] { aspect-ratio: 1204 / 574; }
+article img[src="assets/symbol-battery_recycle.svg"] { aspect-ratio: 24 / 24; }
+article img[src="assets/symbol-do_not_dismantle.svg"] { aspect-ratio: 20 / 20; }
+article img[src="assets/symbol-keep_away_from_children.svg"] { aspect-ratio: 22 / 20; }
+article img[src="assets/symbol-keep_dry.svg"] { aspect-ratio: 20 / 21; }
+article img[src="assets/symbol-mandatory.svg"] { aspect-ratio: 20 / 21; }
+article img[src="assets/symbol-no_open_flame.svg"] { aspect-ratio: 25 / 23; }
+article img[src="assets/symbol-no_wet_hands.svg"] { aspect-ratio: 20 / 20; }
+article img[src="assets/symbol-prohibited.svg"] { aspect-ratio: 20 / 20; }
+article img[src="assets/symbol-read_manual.svg"] { aspect-ratio: 20 / 20; }
+article img[src="assets/symbol-unplug.svg"] { aspect-ratio: 20 / 20; }
+article img[src="assets/symbol-warning_triangle.svg"] { aspect-ratio: 22 / 20; }
+article img[src="assets/symbol-weee.svg"] { aspect-ratio: 24 / 33; }
+article img[src="assets/ups.png"] { aspect-ratio: 945 / 768; }
+article img[src="assets/wood_1.png"] { aspect-ratio: 1261 / 475; }
+article img[src="assets/wood_2_3.png"] { aspect-ratio: 1259 / 691; }
+article img[src="assets/wood_4_5.png"] { aspect-ratio: 1259 / 472; }
+article img[src="assets/wood_6.png"] { aspect-ratio: 1259 / 680; }
+article img[src="assets/wood_prepare.png"] { aspect-ratio: 879 / 553; }

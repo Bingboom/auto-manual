@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/ja-ad500a-sil-us-hto889a",
+    "expected_sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.35,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "source_artboard",
+      "role": "source_artboard",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Single Illustrator artboard; English pages are isolated by crop coordinates"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ad500a-sil/us/en/inbox-module",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            353,
+            720,
+            401,
+            794
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-module.png",
+          "scale": 4,
+          "expected_sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only English review candidate; no live asset promotion. Whiteout applies only to isolated annotation regions on white canvas; complete device and frame retained."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/us/en/inbox-manual",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            461,
+            722,
+            508,
+            791
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/inbox-manual.png",
+          "scale": 4,
+          "expected_sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only English review candidate; no live asset promotion. Whiteout applies only to isolated annotation regions on white canvas; complete device and frame retained."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/us/en/overview",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            582,
+            688,
+            791,
+            923
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/overview.png",
+          "scale": 4,
+          "expected_sha256": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only English review candidate; no live asset promotion. Whiteout applies only to isolated annotation regions on white canvas; complete device and frame retained."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/us/en/solar",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            836.7,
+            715.7,
+            1049.2,
+            963.4
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/solar.png",
+          "scale": 4,
+          "expected_sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Operator requested that DC8020 remain in the original solar diagram; unchanged complete panel, no label overlay or asset registry promotion."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/us/en/car",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1092.5,
+            815.4,
+            1304.5,
+            992.2
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1243,
+            870,
+            1264,
+            880
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1199,
+            971,
+            1218,
+            977
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            1231.9,
+            958,
+            1297.9,
+            979
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/car.png",
+          "scale": 4,
+          "expected_sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only English review candidate; no live asset promotion. Whiteout applies only to isolated annotation regions on white canvas; complete device and frame retained."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/us/en/contact-qr",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            507,
+            523,
+            539,
+            555
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 4,
+          "expected_sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only English review candidate; no live asset promotion. Whiteout applies only to isolated annotation regions on white canvas; complete device and frame retained."
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}
