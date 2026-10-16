@@ -1,4 +1,4 @@
-"""JE-300E EU English Git-only candidate: source identity, word coverage, shared-IR replay, admissions."""
+"""JE-300E EU English Git-only release: source identity, operator acceptance, word coverage, shared-IR replay, admissions."""
 from __future__ import annotations
 
 from contextlib import redirect_stdout
@@ -25,7 +25,6 @@ PACKAGE = ROOT / 'data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd'
 SOURCE_FILE = '55060100007 HTE147300A-EU-JAK-A0 说明书 RoHS REACH_修正.ai'
 SOURCE_SHA = '50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800'
 MARKDOWN = PACKAGE / 'web/en/manual_je300e_eu_en.md'
-CANDIDATE_STATUS = 'git-only-source-candidate'
 APPROVED_STATUS = 'operator-approved-git-only-release'
 PAGES = [3, *range(7, 25), 97]
 # The cover, contents and the FR/ES/DE/IT bodies are not part of the English Web body.
@@ -118,20 +117,6 @@ class Je300eEuEnWebTests(unittest.TestCase):
         write(dest / 'source_manifest.json', manifest)
         return dest
 
-    def accept(self, source: Path) -> dict:
-        """Simulate the operator's acceptance on a fixture (never on the package itself)."""
-        manifest = read(source / 'source_manifest.json')
-        manifest['publication_status'] = APPROVED_STATUS
-        approval = {'target': {key: manifest['target'][key] for key in ('model', 'region', 'technical_version')},
-                    'original_source_sha256': SOURCE_SHA, 'reviewed_inputs': manifest['inputs'],
-                    'operator_quote': 'fixture acceptance', 'merge_authorization': 'fixture'}
-        write(source / 'source/approval.json', approval)
-        path = source / 'source/approval.json'
-        manifest['inputs'] = sorted([*manifest['inputs'], {'path': 'source/approval.json', 'size': path.stat().st_size,
-                                                           'sha256': file_sha256(path)}], key=lambda row: row['path'])
-        write(source / 'source_manifest.json', manifest)
-        return manifest
-
     def test_identity_and_archive(self):
         manifest = read(PACKAGE / 'source_manifest.json')
         self.assertEqual(manifest['target'], {'model': 'JE-300E', 'region': 'EU', 'languages': ['en'],
@@ -153,21 +138,23 @@ class Je300eEuEnWebTests(unittest.TestCase):
         files = sorted(path for path in inventory(PACKAGE) if path != 'source_manifest.json')
         self.assertEqual(sorted(row['path'] for row in manifest['inputs']), files)
 
-    def test_candidate_is_not_publishable(self):
-        from tools.web.component_admission import require_fresh_component_admission
-        from tools.web.language_release_evidence import require_publishable_manual_ir
-
+    def test_the_operator_acceptance_binds_every_source_input(self):
         manifest = read(PACKAGE / 'source_manifest.json')
-        self.assertEqual(manifest['publication_status'], CANDIDATE_STATUS)
-        self.assertFalse((PACKAGE / 'source/approval.json').exists())
+        self.assertEqual(manifest['publication_status'], APPROVED_STATUS)
+        approval = read(PACKAGE / 'source/approval.json')
+        self.assertEqual(approval['target'], {key: manifest['target'][key]
+                                              for key in ('model', 'region', 'technical_version')})
+        self.assertEqual(approval['languages'], ['en'])
+        self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
+        # Everything but the frozen web/ outputs and the acceptance itself.
+        self.assertEqual(approval['reviewed_inputs'],
+                         [row for row in manifest['inputs']
+                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+        self.assertEqual((approval['operator_quote'], approval['merge_authorization']), ('做完直接发布', 'MA-313'))
         metadata = read(PACKAGE / 'web/en' / PathSegments.MANUAL_IR_JSON)['metadata']
-        self.assertIs(metadata['publication_eligible'], False)
-        self.assertTrue(metadata['pending_source_review'])
-        self.assertIsNone(metadata['operator_source_acceptance'])
-        with self.assertRaisesRegex(RuntimeError, 'pending source review'):
-            require_publishable_manual_ir(PACKAGE / 'web/en')
-        with self.assertRaisesRegex(RuntimeError, 'pending source review'):
-            require_fresh_component_admission(PACKAGE / 'web/en', model='JE-300E', region='EU', language='en')
+        self.assertIs(metadata['publication_eligible'], True)
+        self.assertEqual(metadata['pending_source_review'], [])
+        self.assertEqual(metadata['operator_source_acceptance'], approval)
 
     def test_every_english_word_in_scope_is_classified(self):
         coverage = read(PACKAGE / 'source/en/coverage.json')
@@ -230,11 +217,11 @@ class Je300eEuEnWebTests(unittest.TestCase):
 
     def test_an_acceptance_that_misses_an_input_is_refused_before_output(self):
         source = self.fixture()
-        manifest = self.accept(source)
         path = source / 'source/approval.json'
         approval = read(path)
         approval['reviewed_inputs'] = approval['reviewed_inputs'][1:]
         write(path, approval)
+        manifest = read(source / 'source_manifest.json')
         row = next(row for row in manifest['inputs'] if row['path'] == 'source/approval.json')
         row.update(size=path.stat().st_size, sha256=file_sha256(path))
         write(source / 'source_manifest.json', manifest)
@@ -242,37 +229,24 @@ class Je300eEuEnWebTests(unittest.TestCase):
             rebuild(self.root / 'output', source)
         self.assertFalse((self.root / 'output').exists())
 
-    def test_an_accepted_copy_passes_the_release_admissions(self):
-        """Under the proposed source profile (D12), acceptance is all that stands between candidate and release."""
+    def test_the_accepted_edition_passes_the_release_admissions(self):
+        """D12 enrolled this source in the shared contract; the accepted edition passes every release admission."""
         self.require_pinned_shared_inputs()
-        import tools.web.component_admission as component_admission
-        from tools.prepared_component_policy import resolve_prepared_component_policy
         from tools.web.caption_frame_admission import require_caption_frame_admission
+        from tools.web.component_admission import require_fresh_component_admission
         from tools.web.language_release_evidence import require_publishable_manual_ir
         from tools.web.symbol_asset_admission import require_symbol_asset_admission
 
-        source = self.fixture()
-        manifest = self.accept(source)
-        output = self.root / 'accepted'
-        rebuild(output, source)
         contract = read(ROOT / 'docs/renderers/contracts/prepared_component_admission.json')
         proposal = read(PACKAGE / 'audit/proposed-component-admission.json')
         self.assertEqual(proposal['source_sha256'], SOURCE_SHA)
-        self.assertNotIn(SOURCE_SHA, contract['source_profiles'])  # not enrolled by this candidate
-        contract['source_profiles'][SOURCE_SHA] = proposal['source_profile']
-        contract_path = self.root / 'contract.json'
-        write(contract_path, contract)
-
-        def policy(**kwargs):
-            return resolve_prepared_component_policy(contract_path=contract_path, **kwargs)
-
-        with mock.patch.object(component_admission, 'resolve_prepared_component_policy', policy):
-            report = component_admission.require_fresh_component_admission(
-                output, model='JE-300E', region='EU', language='en')
+        self.assertEqual(contract['source_profiles'][SOURCE_SHA], proposal['source_profile'])
+        web = PACKAGE / 'web/en'
+        report = require_fresh_component_admission(web, model='JE-300E', region='EU', language='en')
         self.assertEqual(report['issues'], [])
-        self.assertEqual(len(require_symbol_asset_admission(output, source, manifest, 'en')), 8)
-        require_caption_frame_admission(output)
-        require_publishable_manual_ir(output)
+        self.assertEqual(len(require_symbol_asset_admission(web, PACKAGE, read(PACKAGE / 'source_manifest.json'), 'en')), 8)
+        require_caption_frame_admission(web)
+        require_publishable_manual_ir(web)
 
     def test_shared_styles_only(self):
         from tools.web.prepared_style_audit import audit_prepared_package_locale
