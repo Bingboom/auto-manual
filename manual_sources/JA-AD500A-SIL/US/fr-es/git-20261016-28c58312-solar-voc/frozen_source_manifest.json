@@ -20,7 +20,7 @@
   "baseline_main": "07859f7eae1fe90b72ee950025b28b12cf2c36ff",
   "source_role": "Git-only French/Spanish solar-Voc correction edition of the approved release",
   "live_bitable_dependency": false,
-  "publication_eligible": false,
+  "publication_eligible": true,
   "page_order": {
     "fr": [
       "box_contents_fr.rst",
@@ -151,14 +151,12 @@
     }
   ],
   "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
-  "pending_source_review": [
-    "operator review of the solar-Voc text correction before Git-only release"
-  ],
+  "pending_source_review": [],
   "inputs": [
     {
       "path": "README.md",
-      "size": 2273,
-      "sha256": "d136a69a63f62c0c22e6761025d8884f0233df318d16fffa2673dfc3cf400e6f"
+      "size": 2267,
+      "sha256": "b30f13d482f5d76888dbee3272210768f972cd37eec380b55867b90b059f9f89"
     },
     {
       "path": "assets/car.png",
@@ -192,13 +190,18 @@
     },
     {
       "path": "derive_solar_voc.py",
-      "size": 7679,
-      "sha256": "a16b694408f21c21c4f4a61c8284e7ac9bb5b10a1efb67f095700217e448ec00"
+      "size": 7678,
+      "sha256": "5b19e0aa20ef8c7cc2a5f96a89f769d20206681f30b08c6ee7bb327d21d5c8e8"
     },
     {
       "path": "render.py",
       "size": 7781,
       "sha256": "15e87cd7edbbcc267a3a20076997f7efef3534205499d63e994e0af70793e0ea"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 4055,
+      "sha256": "9f76d4df535e4134cada0b0fd9dca4accbb86a1779c99350c5ac41b260c319ce"
     },
     {
       "path": "source/differences.md",
@@ -277,8 +280,8 @@
     },
     {
       "path": "source_manifest.json",
-      "size": 12777,
-      "sha256": "e0db0b338201c1666a34cbe7c634fb77a54f190f8c5ec24589cf2ea21d695ae9"
+      "size": 12841,
+      "sha256": "820e4e06f7c35499dc4d17ef02d365000bbf16c7f97c4eda5ae0402aef70bb9e"
     },
     {
       "path": "web/es/_static/web_manual.css",
@@ -327,8 +330,8 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 219652,
-      "sha256": "a4cabb98b1cda832def6a32a42363e5bc9dfd7cdb8287d7adf9353cd37f5d09e"
+      "size": 224509,
+      "sha256": "993504c9a534cd99323bb4831728f6dcf15d58bf97b273435f985d1763b8cf00"
     },
     {
       "path": "web/es/manual_bundle.html",
@@ -387,8 +390,8 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 220452,
-      "sha256": "117b5049bda5d175df55308538d77607a1fed72e40394fb9cc97c7a5e8e1fafe"
+      "size": 225309,
+      "sha256": "50e380c82bb1ba8dbff0f50d8f9496a7c4b1b486edc6956d26784587ba5157f8"
     },
     {
       "path": "web/fr/manual_bundle.html",
@@ -418,7 +421,7 @@
     "structure": "same chapter order, component types/counts, table geometry, reference IDs and art hashes; native text governs all copy"
   },
   "filename_version_label": "V2.0-2026-05-25; filename metadata only, no printed version located",
-  "publication_status": "review-candidate-no-release-authorization",
+  "publication_status": "operator-approved-git-only-release",
   "derived_from": {
     "package": "git-20261007-28c58312-reviewed",
     "authorization": "MA-262",

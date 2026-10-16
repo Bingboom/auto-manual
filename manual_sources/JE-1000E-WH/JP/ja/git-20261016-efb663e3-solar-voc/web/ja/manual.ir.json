@@ -61,8 +61,8 @@
     "assets/back-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "94edb1d8dc2699b245660e8194eeaddf7bd5cf505d57778059608cb1532549b6",
-  "content_sha256": "64ed34c8a95a97ac9b71fec327b06dc05c45b9cccf9c403f8420dd8a6afecde3",
+  "bundle_sha256": "acc4ab8b3450b7665e57b80dbdc6a091821757c719864ec08a5e57ecbd60e2b8",
+  "content_sha256": "4320eef5da0b6d5a7c8e39932e54a232ee88b77a97a3401143e3cc641ecced8f",
   "language": "ja",
   "layout_params_sha256": "6b11ed06e4a923a59bb8d6c14d4efb4774f519cab575b55dbdfcedcc028222cb",
   "metadata": {
@@ -1418,8 +1418,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "1950afdb7a6f652f895f62a705f8af19d370662e7350af477529a188f3ebac98",
-          "size": 2194
+          "sha256": "4afc8a7b12c8be226f856093320ca5d8cfa43d333b17681b89171b63245b2ae2",
+          "size": 2293
         },
         {
           "path": "artwork/ac-charge.png",
@@ -1728,8 +1728,8 @@
         },
         {
           "path": "derive_solar_voc.py",
-          "sha256": "d3e33712b7cf4db5263126a259808f3b883a34e256cb453d34e15436c2789e9b",
-          "size": 6222
+          "sha256": "7db368d4fa1459d9483f1be39d1233e51abfa4cd928964a2e7e17884e157598b",
+          "size": 6431
         },
         {
           "path": "rebuild.py",
@@ -1742,14 +1742,19 @@
           "size": 1305
         },
         {
+          "path": "source/approval.json",
+          "sha256": "924d8426cfc6fc8c502d1c804e71553ebccd4951119cb2f74db76e60db46b18f",
+          "size": 12440
+        },
+        {
           "path": "source/asset-recipe.json",
           "sha256": "8c3ad99aa814113cf091ceb76867a331078192e632d77e5706a7386c41538dc0",
           "size": 43596
         },
         {
           "path": "source/chapters.json",
-          "sha256": "829592581544d97458d6b03c49a689a23c1d7727765097794573c2a8d43ee773",
-          "size": 300830
+          "sha256": "3b3ddd7148d4ddbbd9ddcbeb87f4dc9121ccb9efceed3cd994d68a7e92f98e4d",
+          "size": 300745
         },
         {
           "path": "source/cover-removal.json",
@@ -1763,8 +1768,8 @@
         },
         {
           "path": "source/differences.md",
-          "sha256": "cfdaa41eb79e37e6bfcc21217799fc5cca2dd9334c40ca5101a1628a9a3f4dfa",
-          "size": 2385
+          "sha256": "60c550b9045a08bbc2ede24130081c1e3e8f253288f637a2bb41dce48cf0ff5f",
+          "size": 2397
         },
         {
           "path": "source/dispositions.json",
@@ -1820,13 +1825,11 @@
         "sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
         "size_bytes": 12367319
       },
-      "pending_source_review": [
-        "operator review of the solar-Voc text correction before Git-only release"
-      ],
-      "publication_eligible": false,
-      "publication_status": "review-candidate-no-release-authorization",
+      "pending_source_review": [],
+      "publication_eligible": true,
+      "publication_status": "operator-approved-git-only-release",
       "schema_version": "auto-manual-frozen-web-source/v1",
-      "source_authority": "Operator-designated Japanese PDF and the approved MA-277 Web edition git-20261008-efb663e3-no-cover-reviewed; solar-Voc text correction on operator instruction 2026-10-15/16 (整段替换, 不删免责句, 保留这句). The printed source keeps its wording.",
+      "source_authority": "Operator-designated Japanese PDF and the approved MA-277 Web edition git-20261008-efb663e3-no-cover-reviewed; solar-Voc text correction on operator instruction 2026-10-15/16 (整段替换, 不删免责句, 删掉第①句). The printed source keeps its wording.",
       "source_page_map": {
         "back_cover": [
           27
@@ -2304,9 +2307,9 @@
       },
       "text_corrections": [
         {
-          "approved": "特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。ソーラーパネルの開放電圧（Voc）が、Jackery SlimPower H1のDC入力電圧範囲（36.8V~56V）内に収まっていることを確認してください。",
+          "approved": "Jackeryブランド以外の付属品を使用して充電しないでください。特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。ソーラーパネルの開放電圧（Voc）が、Jackery SlimPower H1のDC入力電圧範囲（36.8V~56V）内に収まっていることを確認してください。",
           "corrected": "本製品の充電には、Jackery製ソーラーパネルの使用を推奨します。接続するソーラーパネルの開放電圧（Voc）が、Jackery DC Input ModuleのDC入力電圧範囲（16V～60V）内であることを確認してください。",
-          "instruction": "operator, 2026-10-15/16: replace the paragraph (整段替换), keep the disclaimer (不删免责句) and the opening accessory warning (保留这句); the printed source and its native text stay unchanged",
+          "instruction": "operator, 2026-10-15/16: replace the paragraph (整段替换), keep the disclaimer (不删免责句); the opening accessory warning is dropped (删掉第①句, 2026-10-16); the printed source and its native text stay unchanged",
           "native_blocks": [
             {
               "block": 5,
@@ -2918,14 +2921,424 @@
     },
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual.md",
-    "operator_source_acceptance": null,
+    "operator_source_acceptance": {
+      "date": "2026-10-16",
+      "merge_authorization": "MA-312",
+      "operator_decisions": [
+        "整段替换（太阳能板 Voc 段改为引用 Jackery DC Input Module 的 DC 输入电压范围 16V–60V）",
+        "不删免责句",
+        "删掉第①句（Jackeryブランド以外の付属品を使用して充電しないでください。）"
+      ],
+      "operator_quote": "全部验收并发布上线；然后全部 要发布上线 这四本 验收记录 允许你写",
+      "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+      "reviewed_chapters_sha256": "3b3ddd7148d4ddbbd9ddcbeb87f4dc9121ccb9efceed3cd994d68a7e92f98e4d",
+      "reviewed_component_requirements": {
+        "HB-CALLOUT-STRIP": 13,
+        "HB-SPECIAL-APP": 2,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 28,
+        "HB-TABLE-LCD-ICON": 1,
+        "HB-TABLE-LCD-MODE": 1,
+        "HB-TABLE-SPEC": 4,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 6,
+        "HB-WARRANTY-YEARS": 1
+      },
+      "reviewed_inputs": [
+        {
+          "path": "Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf",
+          "sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+          "size": 12367319
+        },
+        {
+          "path": "artwork/ac-charge.png",
+          "sha256": "3ff6fe9c38400ad9967b299406585682d4d256e40e9a160eb7cbd653f62c7ca4",
+          "size": 44254
+        },
+        {
+          "path": "artwork/app-phones.png",
+          "sha256": "6091ca3a9a468810d7a9a170870d106da10fd16a43119781d74391822e7a5dae",
+          "size": 54063
+        },
+        {
+          "path": "artwork/app-power.png",
+          "sha256": "51fea631deb0612b17621aab209e567caa93fa5c871853ffaccfb1958b9b42ac",
+          "size": 17486
+        },
+        {
+          "path": "artwork/app-qr.png",
+          "sha256": "1c08e307a374c9b3bb36c54cb31eccc32eb9f83c865e1536ddf59d23fcef34b8",
+          "size": 16737
+        },
+        {
+          "path": "artwork/app-result.png",
+          "sha256": "0bb98e4c12b8ccd70596e91b93acd6b4390ec9a59e1eea282edf18ec86874396",
+          "size": 57732
+        },
+        {
+          "path": "artwork/app-stores.png",
+          "sha256": "0fe3671dbe726b8ec6dc474a9f2c17d82e5e828087eeb8b329e5b5d55ddd9f4f",
+          "size": 7445
+        },
+        {
+          "path": "artwork/back-qr.png",
+          "sha256": "336ee0b98264061141abf5fbeb2542c961096e6263159f6d2e76c8f59067fc90",
+          "size": 2771
+        },
+        {
+          "path": "artwork/battery.png",
+          "sha256": "bbfb0afc92e1f28f010aaeaa51bd2a2d1e251e8c632c2c6b74e838ba81f6a47b",
+          "size": 45089
+        },
+        {
+          "path": "artwork/car.png",
+          "sha256": "afe8c490558dba225c3665ab1466b37de5912ce65d0eb54b9483a8a2756d48f8",
+          "size": 77564
+        },
+        {
+          "path": "artwork/concrete_1.png",
+          "sha256": "e18ba7aeb190f1d8778a08347799e374427994348075a63136669b9e728561cf",
+          "size": 65277
+        },
+        {
+          "path": "artwork/concrete_2.png",
+          "sha256": "2e5c885fec9e09dfc2538fe6dbabb35e4024b9e634a71bd979ccf861e2ee06a7",
+          "size": 170714
+        },
+        {
+          "path": "artwork/concrete_3_4.png",
+          "sha256": "8ba43b495c38e0af28a7c91d4a354dbdbd9c494db88adcd09e2b0bc630e60152",
+          "size": 59703
+        },
+        {
+          "path": "artwork/concrete_5_6.png",
+          "sha256": "dd90de301d86dcc03e6a7925136aab0cdab91b3a799334be7ea6adb98e784f67",
+          "size": 60042
+        },
+        {
+          "path": "artwork/concrete_7_8.png",
+          "sha256": "d7ef4dd0b138e1cbd8c3f4caa0a508658759c2f5faf4be479b1e2eb01f906e07",
+          "size": 121206
+        },
+        {
+          "path": "artwork/concrete_prepare.png",
+          "sha256": "931d991c33743651d014185db6b8477c349c31c6bb6a36bd0d11edfe19aa2c33",
+          "size": 81763
+        },
+        {
+          "path": "artwork/cover-unit.png",
+          "sha256": "6f9452323ac9073238cd789b8d334c380ee11d9f883aa0aaf0ccf00f435bf46a",
+          "size": 25744
+        },
+        {
+          "path": "artwork/inbox-cable.png",
+          "sha256": "ff0a0b94e65fd85e148c7f95b74414e38b3ad8f9a1ab6799322fbd657f04d2f2",
+          "size": 4655
+        },
+        {
+          "path": "artwork/inbox-manual.png",
+          "sha256": "4fa62f372acc9f233dfca89f889e0368314bbcb1b671917b0c2c1903bf2210e8",
+          "size": 2152
+        },
+        {
+          "path": "artwork/inbox-stand.png",
+          "sha256": "23d9dde69a836cb3fb8f78302e704a2ef516a3f346da1a156e653d99032d59e8",
+          "size": 4920
+        },
+        {
+          "path": "artwork/inbox-unit.png",
+          "sha256": "d3ee72ec024db25ea19e7422ee60beb7212d2a619208ca2160558500c2932f78",
+          "size": 6422
+        },
+        {
+          "path": "artwork/lcd-01.png",
+          "sha256": "bee1babea1dcbb8c2909321a1ffb3c62c1bdafe0fdedb0de7408dfb52f473f45",
+          "size": 3299
+        },
+        {
+          "path": "artwork/lcd-02.png",
+          "sha256": "06d5896b50c25c550c67d7973d8d0f4b39073a6f695222d9e719f93c26f5a360",
+          "size": 4011
+        },
+        {
+          "path": "artwork/lcd-03.png",
+          "sha256": "c85dd72ce7ae308c57e93a1ba56d185d68a42e69e4a392a411ec5ad5140e95ea",
+          "size": 1732
+        },
+        {
+          "path": "artwork/lcd-04.png",
+          "sha256": "13fa155bea6e8e5ad1a6dd6a693dbd39cacd6c178df5cd1fe815dff7124e2e81",
+          "size": 1690
+        },
+        {
+          "path": "artwork/lcd-05.png",
+          "sha256": "74e2d219427d3155588c28188dcc6b3b870a79f3a7fe8743b89764042b4510f5",
+          "size": 4374
+        },
+        {
+          "path": "artwork/lcd-06.png",
+          "sha256": "9ff96281355a0ff074cfffee4278d35223fba66e8d33e30dbe98bdeabc17a7d2",
+          "size": 1623
+        },
+        {
+          "path": "artwork/lcd-07.png",
+          "sha256": "7774684b5ddddb775baf4af7d7a9debccf2d618c3b97dbc914efd41ec441aed5",
+          "size": 1203
+        },
+        {
+          "path": "artwork/lcd-08.png",
+          "sha256": "07f13253f240494b2e9f6420312f39ecbf0a96b3dd2144d627165dc2682e41da",
+          "size": 2339
+        },
+        {
+          "path": "artwork/lcd-09.png",
+          "sha256": "b13b5c340ef67bf420c7ed2c62273180f70832e3607b648460dbfa0e19d1bb11",
+          "size": 2529
+        },
+        {
+          "path": "artwork/lcd-10.png",
+          "sha256": "0a6e904e69e110c2fcd2f26d43ea1c7e97aa5240282fda4aafb5e136db0a5c98",
+          "size": 1030
+        },
+        {
+          "path": "artwork/lcd-11.png",
+          "sha256": "b21ed34d174954cc1abb977753da0b0f7d081875f672d469cc736869d2232c3a",
+          "size": 2448
+        },
+        {
+          "path": "artwork/lcd-12.png",
+          "sha256": "2894a3ae3d0c7852c085b34276b9ed7a0d73375f7877b56ab6e131c5ad516b92",
+          "size": 4189
+        },
+        {
+          "path": "artwork/lcd-map.png",
+          "sha256": "c203da0caf4cc3538b1d9463dce4566161b82b65d3f1bc43835200a390fec7cd",
+          "size": 100140
+        },
+        {
+          "path": "artwork/lcd_mode.png",
+          "sha256": "e4d9be8aab4ba8beee23c037d3c0c59edf7c849289e31948be6b75879483d7c8",
+          "size": 30673
+        },
+        {
+          "path": "artwork/maintenance.png",
+          "sha256": "e4e0e0b9bd5f2b2fb9d90c9e7a8833b50784d9472db614cc9f1db160410bfa08",
+          "size": 78297
+        },
+        {
+          "path": "artwork/overview.png",
+          "sha256": "a43a6e8eaf044558850d4e4a571e3e54a8561a06f1f49ea89f92c865b69f31c4",
+          "size": 57045
+        },
+        {
+          "path": "artwork/power.png",
+          "sha256": "cc4a6c69ae614c0c80317f85d0f6b7e0e41efe8fd383bc4f8ff1eb18a093239f",
+          "size": 47172
+        },
+        {
+          "path": "artwork/solar.png",
+          "sha256": "a97a1453f0b2478730f27332e8bb654c9b905d69400a0d4ecba473f9f72bbf71",
+          "size": 154733
+        },
+        {
+          "path": "artwork/stand_1.png",
+          "sha256": "3d700619b6f0a2e9bfacfabdf51da7d8cb5072b6d37af10c162e4e6317da9ca1",
+          "size": 65851
+        },
+        {
+          "path": "artwork/stand_2.png",
+          "sha256": "9e7e01c816912104755cbb7e9d22380fb644f2f863bdc10b95901421e1242c4b",
+          "size": 69698
+        },
+        {
+          "path": "artwork/stand_3.png",
+          "sha256": "fd4927f5e7638076c1a0320b16ada12a513931f4ba1a8fd1a47678c0a53fcc9b",
+          "size": 77153
+        },
+        {
+          "path": "artwork/stand_prepare.png",
+          "sha256": "249e291b0c6cf8f9faac1251d4efec0750f68a99f6bd081b3630ea42c104eb21",
+          "size": 33646
+        },
+        {
+          "path": "artwork/symbol-battery_recycle.svg",
+          "sha256": "4ece7680add5525499da868786eec13e2b1b20dd831fca2f54bfb9840e608f8d",
+          "size": 5303
+        },
+        {
+          "path": "artwork/symbol-do_not_dismantle.svg",
+          "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+          "size": 4358
+        },
+        {
+          "path": "artwork/symbol-keep_away_from_children.svg",
+          "sha256": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe",
+          "size": 3409
+        },
+        {
+          "path": "artwork/symbol-keep_dry.svg",
+          "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+          "size": 5105
+        },
+        {
+          "path": "artwork/symbol-mandatory.svg",
+          "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+          "size": 1292
+        },
+        {
+          "path": "artwork/symbol-no_open_flame.svg",
+          "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+          "size": 2148
+        },
+        {
+          "path": "artwork/symbol-no_wet_hands.svg",
+          "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+          "size": 3972
+        },
+        {
+          "path": "artwork/symbol-prohibited.svg",
+          "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "size": 1452
+        },
+        {
+          "path": "artwork/symbol-read_manual.svg",
+          "sha256": "d77bdba4899e5d56d0502a10732bd3488d90aa88639ce336cab9ff42d35cfd30",
+          "size": 3075
+        },
+        {
+          "path": "artwork/symbol-unplug.svg",
+          "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "size": 2569
+        },
+        {
+          "path": "artwork/symbol-warning_triangle.svg",
+          "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+          "size": 1363
+        },
+        {
+          "path": "artwork/symbol-weee.svg",
+          "sha256": "21fd7d31c0d22590a0f461da3821869eee28a23122edc994b471642a89ad3e92",
+          "size": 2560
+        },
+        {
+          "path": "artwork/ups.png",
+          "sha256": "90f9e334a6c527943284dd74b509fd7759f65b81054ead103552b1f12738bde4",
+          "size": 94930
+        },
+        {
+          "path": "artwork/wood_1.png",
+          "sha256": "3bcc5bdd18c39ad8c8638b24567b060adec52154ff52a4bc8f35cfe28b368a56",
+          "size": 65600
+        },
+        {
+          "path": "artwork/wood_2_3.png",
+          "sha256": "23c9c3de17ae0137f8c9036b653f6ea06d92a5aed55c6065640ae080ed1f9d4f",
+          "size": 158513
+        },
+        {
+          "path": "artwork/wood_4_5.png",
+          "sha256": "a73b9a922273a9bf788cf4013611b9bc196adab598dfb96d54c50fc7496c6f7b",
+          "size": 45986
+        },
+        {
+          "path": "artwork/wood_6.png",
+          "sha256": "b3bc37532b4a6a48d53fdea7b7ab2f1ac6ad712ac8835fda42824b567a7ea3eb",
+          "size": 82056
+        },
+        {
+          "path": "artwork/wood_prepare.png",
+          "sha256": "047da5e3737625ada189066eac35143ed0c3186dba2c9a2db242ebeefe715fdf",
+          "size": 64026
+        },
+        {
+          "path": "asset_provenance.json",
+          "sha256": "17622fd8db26c8f9fe6e21d5033004c3e1ca738449413cb41d5c9017c67044d3",
+          "size": 57207
+        },
+        {
+          "path": "source/admission.json",
+          "sha256": "f9f8e1af5aabf93f7f2ce57e68ff5b51f985dc183220959b4efeb55bc54f0419",
+          "size": 1305
+        },
+        {
+          "path": "source/asset-recipe.json",
+          "sha256": "8c3ad99aa814113cf091ceb76867a331078192e632d77e5706a7386c41538dc0",
+          "size": 43596
+        },
+        {
+          "path": "source/chapters.json",
+          "sha256": "3b3ddd7148d4ddbbd9ddcbeb87f4dc9121ccb9efceed3cd994d68a7e92f98e4d",
+          "size": 300745
+        },
+        {
+          "path": "source/cover-removal.json",
+          "sha256": "1f755cdb4e36130449f542f7b8b172d9702385224e9a2eb414aa7442e66decfd",
+          "size": 547
+        },
+        {
+          "path": "source/differences.json",
+          "sha256": "e81969ec45fe598badda20e8bdfd208828b106e0290f290b0809e3c971fec3a3",
+          "size": 2397
+        },
+        {
+          "path": "source/differences.md",
+          "sha256": "60c550b9045a08bbc2ede24130081c1e3e8f253288f637a2bb41dce48cf0ff5f",
+          "size": 2397
+        },
+        {
+          "path": "source/dispositions.json",
+          "sha256": "c1d085043ea4d5c477f8eab903c55c739becb47dd5a51d7cc014b2370442ad9b",
+          "size": 65740
+        },
+        {
+          "path": "source/native-text.json",
+          "sha256": "a732c8f93c8a8401a3ad59963fcc38d2aa8ae06fdd3288702d4272da0eb70331",
+          "size": 313360
+        },
+        {
+          "path": "source/presentation.css",
+          "sha256": "5cffa7c23741eed96535925d60c039fb3a114c07d433b04c4dff5d36f01e737d",
+          "size": 5091
+        },
+        {
+          "path": "source/print-cover.json",
+          "sha256": "758445c4443d62800a3abb9126ec580e637ea5f63f87e5fbaa4a33badc51fb12",
+          "size": 4630
+        },
+        {
+          "path": "source/reading-order.json",
+          "sha256": "b60b0e813a0f77dd7212096c823be41cad36a157b878900b8a97cab10802a074",
+          "size": 740
+        },
+        {
+          "path": "source/symbol-bindings.json",
+          "sha256": "7740a045f6424debc225c7844886f23f90c7bc253b754d7f92cce2ce6712dd8b",
+          "size": 12030
+        },
+        {
+          "path": "source/symbol-publication-bindings.json",
+          "sha256": "c4e32063659dab392dee38387113ac74c3fbe2a68d59001ce1176964efbe40b5",
+          "size": 11309
+        }
+      ],
+      "reviewed_presentation_css_sha256": "5cffa7c23741eed96535925d60c039fb3a114c07d433b04c4dff5d36f01e737d",
+      "reviewed_source_commit": "cebdc754",
+      "schema_version": "source-operator-acceptance/v1",
+      "scope": "Git-only Web release of the solar-Voc correction edition git-20261016-efb663e3-solar-voc; base editions, printed sources and their release evidence unchanged; no Feishu/Base/source-table, queue, asset-registry or HTML_link writes.",
+      "target": {
+        "language": "ja",
+        "model": "JE-1000E-WH",
+        "region": "JP"
+      }
+    },
     "page_count": 16,
     "page_declarations": {},
-    "pending_source_review": [
-      "operator review of the solar-Voc text correction before Git-only release"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "skipped_raw": 0,
     "source_stylesheet": {
       "path": "_static/source_presentation.css",
@@ -9708,13 +10121,13 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0013",
-          "content_sha256": "c54769445be78a96a1b4d1491e57c97bd9e6691f7c5667d8bf89c8c7445ce3ce",
+          "content_sha256": "48855a934ab2aaee1b25ccf125fef00bca33b8a65cfb0446d3aa10f345311f64",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "Jackeryブランド以外の付属品を使用して充電しないでください。本製品の充電には、Jackery製ソーラーパネルの使用を推奨します。接続するソーラーパネルの開放電圧（Voc）が、Jackery DC Input ModuleのDC入力電圧範囲（16V～60V）内であることを確認してください。他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。"
+                "text": "本製品の充電には、Jackery製ソーラーパネルの使用を推奨します。接続するソーラーパネルの開放電圧（Voc）が、Jackery DC Input ModuleのDC入力電圧範囲（16V～60V）内であることを確認してください。他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。"
               }
             ],
             "kind": "paragraph",
@@ -9852,7 +10265,7 @@
       "skipped_raw": 0,
       "source_path": "source/charging",
       "source_ref": "ja/charging",
-      "source_sha256": "34d00004f23fb42fecceecbd40134c725d01e507eaef7b8a8ab4b43846c2afc8"
+      "source_sha256": "7aa7af276a221534fb72069e45add8909cf66fc0ac54d25c4281326b02e3ed3d"
     },
     {
       "blocks": [

@@ -134,7 +134,9 @@ class SolarVocEditionTests(unittest.TestCase):
                             for p in (reviewed / root).rglob('*') if p.is_file()}
                 mine = {p.relative_to(package).as_posix() for root in ('source', 'assets')
                         for p in (package / root).rglob('*') if p.is_file()}
-                self.assertEqual(mine - approved, {'source/differences.md'})
+                # The edition's own change record and, once accepted, its own acceptance.
+                own = {'source/differences.md'} | ({'source/approval.json'} & mine)
+                self.assertEqual(mine - approved, own)
                 self.assertEqual(approved - mine, set())
                 for relative in sorted(approved - corrected):
                     self.assertEqual((package / relative).read_bytes(), (reviewed / relative).read_bytes(), relative)

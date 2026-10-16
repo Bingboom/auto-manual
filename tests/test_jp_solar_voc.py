@@ -1,4 +1,4 @@
-"""Solar-Voc correction editions of the JA-AD500A-SIL and SlimPower H1 JP manuals: one paragraph, nothing else."""
+"""Solar-Voc correction editions of the JA-AD500A-SIL and SlimPower H1 JP manuals: one paragraph of copy, nothing else."""
 from __future__ import annotations
 
 import importlib.util
@@ -59,6 +59,26 @@ def rebuild_h1(source: Path, output: Path) -> None:
                    check=True, capture_output=True, env=env, cwd=ROOT)
 
 
+def squeeze(text: str) -> str:
+    return ''.join(text.split())
+
+
+def visible_copy(ir_path: Path) -> str:
+    """Every text node of the IR flow in reading order, whitespace removed."""
+    def texts(node):
+        if isinstance(node, dict):
+            for name, value in node.items():
+                if name == 'text' and isinstance(value, str):
+                    yield value
+                else:
+                    yield from texts(value)
+        elif isinstance(node, list):
+            for item in node:
+                yield from texts(item)
+    raw = read(ir_path)
+    return squeeze(''.join(t for page in raw['pages'] for block in page['blocks'] for t in texts(block['payload'])))
+
+
 class JapaneseSolarVocEditionTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -101,17 +121,25 @@ class JapaneseSolarVocEditionTests(unittest.TestCase):
     def test_ad500a_only_the_declared_page_differs_from_the_base(self):
         base = {p: h for p, h in tree(AD500A_BASE).items() if p.startswith(('source/', 'assets/'))}
         mine = {p: h for p, h in tree(AD500A_PACKAGE).items() if p.startswith(('source/', 'assets/'))}
+        # Both editions carry their own change record and acceptance; the base's are not copied.
+        own = {'source/differences.md'} | ({'source/approval.json'} & set(mine))
         self.assertEqual(set(mine) - set(base), set())
-        self.assertEqual(set(base) - set(mine), set(ad500a_derive.NOT_COPIED) - {'source/differences.md'})
-        corrected = {f'source/page/{name}' for name, _, _ in ad500a_derive.CORRECTIONS} | {'source/differences.md'}
-        for path in sorted(set(mine) - corrected):
+        self.assertEqual(set(base) - set(mine), set(ad500a_derive.NOT_COPIED) - own)
+        pages = {name for name, _, _ in ad500a_derive.CORRECTIONS} | set(ad500a_derive.STYLED_PAGES)
+        changed = {f'source/page/{name}' for name in pages} | own | {'source/presentation.css'}
+        for path in sorted(set(mine) - changed):
             self.assertEqual(mine[path], base[path], path)
+        for name in sorted(pages):
+            self.assertEqual((AD500A_PACKAGE / 'source/page' / name).read_text(encoding='utf-8'),
+                             ad500a_derive.edited_page(name), name)
+        self.assertEqual((AD500A_PACKAGE / 'source/presentation.css').read_text(encoding='utf-8'),
+                         ad500a_derive.PRESENTATION_CSS)
 
     def test_h1_only_chapters_differ_from_the_base(self):
         copied = ('Jackery SlimPower H1', 'artwork/', 'asset_provenance.json', 'source/')
         base = {p: h for p, h in tree(H1_BASE).items() if p.startswith(copied)}
         mine = {p: h for p, h in tree(H1_PACKAGE).items() if p.startswith(copied)}
-        self.assertEqual(set(mine) - set(base), {'source/differences.md'})
+        self.assertEqual(set(mine) - set(base), {'source/differences.md'} | ({'source/approval.json'} & set(mine)))
         self.assertEqual(set(base) - set(mine), set())
         for path in sorted(set(base) - {'source/chapters.json'}):
             self.assertEqual(mine[path], base[path], path)
@@ -120,18 +148,25 @@ class JapaneseSolarVocEditionTests(unittest.TestCase):
         self.assertEqual(text.count(old), 1)
         self.assertEqual((H1_PACKAGE / relative).read_text(encoding='utf-8'), text.replace(old, new))
 
-    def test_rendered_markdown_is_the_base_markdown_with_only_the_paragraph_replaced(self):
+    def test_rendered_copy_is_the_base_copy_with_only_the_paragraph_replaced(self):
         for key, edition in EDITIONS.items():
             with self.subTest(edition=key):
                 (_, old, new), = edition['derive'].CORRECTIONS
                 base = (edition['base'] / 'web/ja' / edition['markdown']).read_text(encoding='utf-8')
                 mine = (edition['package'] / 'web/ja' / edition['markdown']).read_text(encoding='utf-8')
                 self.assertEqual(base.count(old), 1)
-                self.assertEqual(mine, base.replace(old, new))
+                if key == 'h1':
+                    self.assertEqual(mine, base.replace(old, new))
+                else:
+                    # The AD500A edition is also restyled on shared classes (shared-style gate):
+                    # its visible copy, not its markup, equals the base with the paragraph replaced.
+                    self.assertEqual(visible_copy(edition['package'] / 'web/ja/manual.ir.json'),
+                                     visible_copy(edition['base'] / 'web/ja/manual.ir.json').replace(
+                                         squeeze(old), squeeze(new)))
                 self.assertNotIn('36.8V', new)
                 self.assertIn('16V～60V', new)
-                # The opening accessory warning and the closing disclaimer stay.
-                self.assertIn('Jackeryブランド以外の付属品を使用して充電しないでください。' + new, mine)
+                # The contradicting opening accessory warning is dropped; the closing disclaimer stays.
+                self.assertNotIn('Jackeryブランド以外の付属品を使用して充電しないでください。', mine)
                 self.assertIn(new + '他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。', mine)
 
     def test_ad500a_cold_render_matches_committed_web(self):
@@ -143,7 +178,7 @@ class JapaneseSolarVocEditionTests(unittest.TestCase):
         source = self.fixture(AD500A_PACKAGE)
         report = ad500a_render.render(source, self.root / 'out')
         self.assertEqual(tree(self.root / 'out'), tree(AD500A_PACKAGE / 'web/ja'))
-        self.assertFalse(report['publication_eligible'])
+        self.assertEqual(report['publication_eligible'], read(AD500A_PACKAGE / 'source_manifest.json')['publication_eligible'])
 
     def test_h1_cold_replay_matches_committed_web(self):
         rebuild_h1(H1_PACKAGE, self.root / 'out')

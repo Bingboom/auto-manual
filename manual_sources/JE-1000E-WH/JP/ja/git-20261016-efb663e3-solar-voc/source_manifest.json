@@ -16,7 +16,7 @@
     "size_bytes": 12367319,
     "page_count": 27
   },
-  "source_authority": "Operator-designated Japanese PDF and the approved MA-277 Web edition git-20261008-efb663e3-no-cover-reviewed; solar-Voc text correction on operator instruction 2026-10-15/16 (整段替换, 不删免责句, 保留这句). The printed source keeps its wording.",
+  "source_authority": "Operator-designated Japanese PDF and the approved MA-277 Web edition git-20261008-efb663e3-no-cover-reviewed; solar-Voc text correction on operator instruction 2026-10-15/16 (整段替换, 不删免责句, 删掉第①句). The printed source keeps its wording.",
   "included_physical_pages": [
     1,
     2,
@@ -539,8 +539,8 @@
       "reason": "Printed TOC already represented by Web navigation"
     }
   ],
-  "publication_eligible": false,
-  "publication_status": "review-candidate-no-release-authorization",
+  "publication_eligible": true,
+  "publication_status": "operator-approved-git-only-release",
   "derived_from": {
     "package": "git-20261008-efb663e3-no-cover-reviewed",
     "authorization": "MA-277",
@@ -549,7 +549,7 @@
   "text_corrections": [
     {
       "source": "source/chapters.json",
-      "approved": "特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。ソーラーパネルの開放電圧（Voc）が、Jackery SlimPower H1のDC入力電圧範囲（36.8V~56V）内に収まっていることを確認してください。",
+      "approved": "Jackeryブランド以外の付属品を使用して充電しないでください。特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。ソーラーパネルの開放電圧（Voc）が、Jackery SlimPower H1のDC入力電圧範囲（36.8V~56V）内に収まっていることを確認してください。",
       "corrected": "本製品の充電には、Jackery製ソーラーパネルの使用を推奨します。接続するソーラーパネルの開放電圧（Voc）が、Jackery DC Input ModuleのDC入力電圧範囲（16V～60V）内であることを確認してください。",
       "native_blocks": [
         {
@@ -558,12 +558,10 @@
         }
       ],
       "reason": "Solar panels connect through the Jackery DC Input Module; the panel Voc limit is the module's DC input voltage range (16V～60V), not the SlimPower H1's own DC input range.",
-      "instruction": "operator, 2026-10-15/16: replace the paragraph (整段替换), keep the disclaimer (不删免责句) and the opening accessory warning (保留这句); the printed source and its native text stay unchanged"
+      "instruction": "operator, 2026-10-15/16: replace the paragraph (整段替换), keep the disclaimer (不删免责句); the opening accessory warning is dropped (删掉第①句, 2026-10-16); the printed source and its native text stay unchanged"
     }
   ],
-  "pending_source_review": [
-    "operator review of the solar-Voc text correction before Git-only release"
-  ],
+  "pending_source_review": [],
   "inputs": [
     {
       "path": "Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf",
@@ -572,8 +570,8 @@
     },
     {
       "path": "README.md",
-      "size": 2194,
-      "sha256": "1950afdb7a6f652f895f62a705f8af19d370662e7350af477529a188f3ebac98"
+      "size": 2293,
+      "sha256": "4afc8a7b12c8be226f856093320ca5d8cfa43d333b17681b89171b63245b2ae2"
     },
     {
       "path": "artwork/ac-charge.png",
@@ -882,8 +880,8 @@
     },
     {
       "path": "derive_solar_voc.py",
-      "size": 6222,
-      "sha256": "d3e33712b7cf4db5263126a259808f3b883a34e256cb453d34e15436c2789e9b"
+      "size": 6431,
+      "sha256": "7db368d4fa1459d9483f1be39d1233e51abfa4cd928964a2e7e17884e157598b"
     },
     {
       "path": "rebuild.py",
@@ -896,14 +894,19 @@
       "sha256": "f9f8e1af5aabf93f7f2ce57e68ff5b51f985dc183220959b4efeb55bc54f0419"
     },
     {
+      "path": "source/approval.json",
+      "size": 12440,
+      "sha256": "924d8426cfc6fc8c502d1c804e71553ebccd4951119cb2f74db76e60db46b18f"
+    },
+    {
       "path": "source/asset-recipe.json",
       "size": 43596,
       "sha256": "8c3ad99aa814113cf091ceb76867a331078192e632d77e5706a7386c41538dc0"
     },
     {
       "path": "source/chapters.json",
-      "size": 300830,
-      "sha256": "829592581544d97458d6b03c49a689a23c1d7727765097794573c2a8d43ee773"
+      "size": 300745,
+      "sha256": "3b3ddd7148d4ddbbd9ddcbeb87f4dc9121ccb9efceed3cd994d68a7e92f98e4d"
     },
     {
       "path": "source/cover-removal.json",
@@ -917,8 +920,8 @@
     },
     {
       "path": "source/differences.md",
-      "size": 2385,
-      "sha256": "cfdaa41eb79e37e6bfcc21217799fc5cca2dd9334c40ca5101a1628a9a3f4dfa"
+      "size": 2397,
+      "sha256": "60c550b9045a08bbc2ede24130081c1e3e8f253288f637a2bb41dce48cf0ff5f"
     },
     {
       "path": "source/dispositions.json",
@@ -1282,13 +1285,13 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 477784,
-      "sha256": "a25759e9e0a1ec9b5fef41c9f236e04549b47fd776d6f846870858452292caa9"
+      "size": 492913,
+      "sha256": "fd1b5999a586b5be63fe754f766475f979d060611483a9df6d0ce5d45ce023d8"
     },
     {
       "path": "web/ja/manual.md",
-      "size": 84473,
-      "sha256": "00ef4041429d250c3a856af425915c8760a90578143b07fe3cd5f02e9ba481a1"
+      "size": 84388,
+      "sha256": "ee8af65cf9ec4f60d8f5bcbd03e2c02d0cb98fca8ce72f6534616a8c88c8c59b"
     }
   ]
 }

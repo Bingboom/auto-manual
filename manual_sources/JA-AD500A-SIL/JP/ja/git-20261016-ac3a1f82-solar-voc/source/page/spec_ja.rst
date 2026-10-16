@@ -16,6 +16,6 @@
    <tr><th>DC 出カ</th><td>42V-58V⎓最大10.7A</td></tr>
    </tbody></table>
 
-.. class:: jpad-small
+.. class:: manual-spec-note
 
 本製品はJackery SlimPower H1およびJackery Battery Packとの組み合わせ専用となります。他の機器には接続しないでください。
