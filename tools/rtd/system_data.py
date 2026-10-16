@@ -20,7 +20,7 @@ whole-repository counts and the publication table still show. A missing
 publish manifest shows the publication and capability cards as 无数据, since
 the published models are unknown; an unreadable or malformed CSV is an
 authoring error that empties the tab with a Sphinx warning.
-``/workspace/data/`` (系统数据) is a pointer page to the tab until it is removed.
+The former ``/workspace/data/`` URL redirects to the tab through ``portal.py``.
 """
 from __future__ import annotations
 
@@ -34,8 +34,6 @@ from typing import Any
 from tools.rtd.production_evidence import publication_facts, read_publications
 from tools.utils.path_utils import Paths, PathSegments, repo_root
 
-PAGE = "workspace/data/index"
-TEMPLATE = "system_data.html"
 CAPABILITIES_CSV = "model_capabilities.csv"
 LANGUAGES_CSV = "model_languages.csv"
 ASSET_REGISTRY_CSV = "asset_registry.csv"
@@ -224,6 +222,6 @@ def system_data_page_context(app, settings: dict[str, Any]) -> dict[str, Any] | 
 
 
 __all__ = [
-    "PAGE", "SystemDataError", "TEMPLATE", "published_targets", "read_assets", "read_published", "read_targets",
+    "SystemDataError", "published_targets", "read_assets", "read_published", "read_targets",
     "review_page_counts", "summary", "system_data_context", "system_data_page_context",
 ]

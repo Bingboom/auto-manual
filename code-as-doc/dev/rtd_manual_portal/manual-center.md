@@ -48,20 +48,19 @@ its market list from the same settings, and CN/JP display their own market notes
 
 ## Page layout
 
-Every portal page (manual library root, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 系统数据, 产品矩阵)
+Every portal page (manual library root, 知识库首页, 产品知识, 市场与政策, 系统建设, 说明书工作台, 设计规范, 产品矩阵)
 shares one site shell from `tools/rtd_portal_assets/_site_shell.html` and
 `_static/site-shell.css`. The public manual library passes `internal=false` to
 both shell macros: its sidebar contains only 说明书资料库 and 搜索说明书正文,
 and its top bar keeps the breadcrumb and region selector. It has no internal
 knowledge links or 知识库 / 说明书资料库 switch. Internal pages add three groups
 after 说明书: 知识库 (首页), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
-说明书生产 (说明书工作台, 系统建设, 设计规范, 系统数据 — 系统数据 stays last as a
-pointer page to 说明书工作台「数据统计」 until it is removed), plus the switch. Their breadcrumb section is 知识库,
+说明书生产 (说明书工作台, 系统建设, 设计规范), plus the switch. Their breadcrumb section is 知识库,
 and 工作资料 is only the brand. The root keeps 工作资料 as title, crumb and footer,
 and renders byte-identically in both roles. Every sidebar entry is a page and carries
 `aria-current="page"` on that page; 分享资料 and 最近更新 are sections of the
 知识库首页 (`workspace/index.html#shares`, `#updates`), not sidebar entries.
-Optional entries follow the same rules as before: 系统建设, 设计规范, 系统数据 and
+Optional entries follow the same rules as before: 系统建设, 设计规范 and
 产品矩阵 only when their context builds (each computed once per build and shared
 with the sidebar). Page stylesheets style only what
 sits inside `.app-content`; the brand accent is the shared `--brand` orange.

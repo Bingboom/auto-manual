@@ -15,7 +15,7 @@
 <a class="home-card" href="{{ pathto(docname) }}"><i aria-hidden="true">{{ icon }}</i><span><strong>{{ title }}</strong><small>{{ note }}</small></span><b aria-hidden="true">→</b></a>
 {%- endmacro -%}
 <body class="app">
-{{ site_sidebar('overview', {'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry, 'data': data_entry, 'matrix': matrix_entry}) }}
+{{ site_sidebar('overview', {'system': system_entry, 'deliverables': deliverables_entry, 'design': design_entry, 'matrix': matrix_entry}) }}
 <div class="app-content">
   {{ site_topbar('知识库', '首页') }}
 
@@ -46,7 +46,6 @@
             {% if deliverables_entry %}{{ card('workspace/deliverables/index', '▦', '说明书工作台', '交付物矩阵、数据统计、工作入口、生产与资产') }}{% endif %}
             {% if system_entry %}{{ card('workspace/system/index', '◈', '系统建设', '当前重点、已有能力、证据与阶段进度') }}{% endif %}
             {% if design_entry %}{{ card('workspace/design/index', '◐', '设计规范', '网页说明书的颜色、字体与组件，图标和印刷规格') }}{% endif %}
-            {% if data_entry %}{{ card('workspace/data/index', '▥', '系统数据', '已并入说明书工作台「数据统计」') }}{% endif %}
           </div>
         </section>
 
