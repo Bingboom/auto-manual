@@ -23,7 +23,7 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
-  - date: 2026-10-14
+  - date: 2026-10-15
     title: 说明书工作台 · 数据统计入口
     note: 独立系统数据页已下线，旧链接自动转入此标签并保留筛选条件
     page: deliverables

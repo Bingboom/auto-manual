@@ -6,6 +6,7 @@
 test_jhp5000c_us_web_layout                        # 112s (cold replay, admissions, derivation)
 test_jhp3000d_us_web_layout                        # 40s (admissions, derivation, cold replay)
 test_je3600a_cn_jp_web_layout                      # 37s (admissions, derivation, cold replay)
+test_ja_ts02a_us_fr_es_web                         # 45s (fr/es intake reproduction, cold replay, admissions)
 test_jbp3600a_us_web                               # 34s (en/fr/es intake reproduction, cold replay, admissions)
 test_web_presentation                              # 21.6s
 test_idml_rst_comments                             # 21.4s
