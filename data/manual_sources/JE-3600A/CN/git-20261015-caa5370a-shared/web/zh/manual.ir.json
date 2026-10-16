@@ -57,8 +57,8 @@
     "assets/manufacturer-qr-native.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "70a1cb856ea57b4e8c788ba2e79eca05abc90bcb21ce7e5c6a3f92fe4ecf14fb",
-  "content_sha256": "23598c47139115d4ca81566a5b90c5458449fb4ee14a4189d3cb3a0f493ba70f",
+  "bundle_sha256": "3156b097b65fcc268b4fbdd677dc4778e3f86029742230b597398468ee45112b",
+  "content_sha256": "dd2cce74c761d2d1621c5fd103c545916ca719b90df40bf760c2a20d5c2960a8",
   "language": "zh",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -7645,7 +7645,7 @@
         {
           "asset_refs": [],
           "block_id": "page-12:block-0002",
-          "content_sha256": "d5b63c7105bd7a29472071313c9c2aa6c0e1c46959b69e57c798d6fc902350cd",
+          "content_sha256": "d941f7d7e7a72bef611304f092b4892131b66841f5303f7fe9d3ee9771e90b45",
           "kind": "flow",
           "payload": {
             "anchor": "native-p12-b4-l0-0",
@@ -7657,14 +7657,7 @@
                     "text": "与加电包连接（单独售卖）"
                   }
                 ],
-                "kind": "inline_group",
-                "presentation": {
-                  "html": {
-                    "attributes": {
-                      "class": "native-plain-title"
-                    }
-                  }
-                }
+                "kind": "inline_group"
               }
             ],
             "kind": "heading",
@@ -8231,7 +8224,7 @@
       "skipped_raw": 0,
       "source_path": "source/zh/content.json#page-12",
       "source_ref": "native-pdf/page-12",
-      "source_sha256": "30a6c05d391446d12c7ce91169bd352c8b68259d05107611eba2b522777f0f93"
+      "source_sha256": "9e7e1f7996c456c56510a0a4294c0355c59af3b8a0028ccdd9ea341bf42dd147"
     },
     {
       "blocks": [

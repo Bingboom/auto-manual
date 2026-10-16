@@ -58,6 +58,11 @@
       "sha256": "2c8911281c01bf5e81319c38ebe55433b6ee49b9bd8ba9a9d0a21f014047b738"
     },
     {
+      "path": "docs/renderers/contracts/prepared_style_baseline.json",
+      "size": 25670,
+      "sha256": "3c0f94903223aef2f55bcc31cd34b18a852ed76c9c2d8418dff455bb4864c741"
+    },
+    {
       "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",
       "size": 26001,
       "sha256": "dc9aa7b4137120e43cd5c1eddd8609827e655f18c54d1cf09132edcc5ee15a8f"
@@ -909,8 +914,8 @@
     },
     {
       "path": "tools/web/frozen_source_evidence.py",
-      "size": 10498,
-      "sha256": "eac58d951f33206f40f888c2c0a41fd5cb4a4eaab0cfc551c69c780f7c46fca4"
+      "size": 10635,
+      "sha256": "7aec979a91c4b7820d6250d3909eb398b195645bc90812eeff9697225d0e3067"
     },
     {
       "path": "tools/web/frozen_web_component_coverage.py",
@@ -966,6 +971,11 @@
       "path": "tools/web/overview_component.py",
       "size": 5730,
       "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288"
+    },
+    {
+      "path": "tools/web/prepared_style_audit.py",
+      "size": 9128,
+      "sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121"
     },
     {
       "path": "tools/web/presentation.py",
@@ -1044,6 +1054,16 @@
       "zh": []
     }
   },
+  "shared_component_exceptions": [
+    {
+      "language": "zh",
+      "page_id": "page-23",
+      "kind": "table",
+      "text_sha256": "b8ef1aa8591e4a9334e4ceb783b320c74e49355bf3f354d2ded244aef4cddba9",
+      "preview": "检验员 / 检验日期 / QC PASS 01",
+      "reason": "合格证 QC certificate (inspector, date, stamp); no shared component represents a certificate, so it is a plain shared manual table."
+    }
+  ],
   "inputs": [
     {
       "path": "README.md",
@@ -1332,8 +1352,8 @@
     },
     {
       "path": "derive_shared.py",
-      "size": 48144,
-      "sha256": "f402f1e1bf18fec61691cc627fec8d12ae9bd7fb7d2ee9ac6b33f9f7625d72d2"
+      "size": 48138,
+      "sha256": "870394b033ae778e298ba7cc9ba3258678bba9329109414a7978915308a3c90c"
     },
     {
       "path": "rebuild.py",
@@ -1347,8 +1367,8 @@
     },
     {
       "path": "source/refresh_manifest.py",
-      "size": 3533,
-      "sha256": "2c6c615f6080d936841c3875eb5f9dd42d66c99488b95676551412dfcb4633e9"
+      "size": 3556,
+      "sha256": "07ceb54c4a0928be9ac06425ddf3e10c0543c7a0c5c400fafef10babe0cb0f2f"
     },
     {
       "path": "source/symbol_admission.py",
@@ -1357,8 +1377,8 @@
     },
     {
       "path": "source/zh/content.json",
-      "size": 371130,
-      "sha256": "122f58d35f43abd3430db4d4379554166f302f74044c9dc9c3c96faa622d8f04"
+      "size": 370933,
+      "sha256": "22c549998f80b6f0c1cc2161a07d46d466c6b8ecbaa8600df2f68786fe1f8f9d"
     },
     {
       "path": "source/zh/shared_components.json",
@@ -1662,13 +1682,13 @@
     },
     {
       "path": "web/zh/manual.ir.json",
-      "size": 495502,
-      "sha256": "452924de78291ef6eeb77b7c3040d1b9ce8b994ffcf1d498be4e1d99ecb3898f"
+      "size": 495291,
+      "sha256": "4914779056660ee21c331db7f93e8499d8e23ae23c9c3e790b7ecb331adb7ce7"
     },
     {
       "path": "web/zh/manual_je3600a_cn_zh.md",
-      "size": 95838,
-      "sha256": "5464640387149102b817290d53d16f7b0bc8a41de3efd228c08bf5085a224578"
+      "size": 95811,
+      "sha256": "93888c3faee7c1b99a0ac3ba0f6e50f2c09738a8d7253f3f52239774856aa32d"
     },
     {
       "path": "电小二户外电源 3600 Plus.pdf",

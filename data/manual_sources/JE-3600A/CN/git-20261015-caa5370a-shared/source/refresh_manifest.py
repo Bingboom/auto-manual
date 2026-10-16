@@ -59,8 +59,9 @@ def refresh() -> None:
     if destination.is_file():
         previous = json.loads(destination.read_text())
         manifest["publication_status"] = previous.get("publication_status", manifest["publication_status"])
-        if "symbol_asset_admission" in previous:
-            manifest["symbol_asset_admission"] = previous["symbol_asset_admission"]
+        for key in ("symbol_asset_admission", "shared_component_exceptions"):
+            if key in previous:
+                manifest[key] = previous[key]
     manifest["inputs"] = list(_file_inventory(SOURCE, excluded_roots=(
         destination, SOURCE / "__pycache__", SOURCE / "source/__pycache__")))
     destination.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
