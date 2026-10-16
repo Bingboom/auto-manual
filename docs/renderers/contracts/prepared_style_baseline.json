@@ -604,11 +604,6 @@
       "issues": 28
     },
     {
-      "web_root": "manual_sources/JA-AD500A-SIL/JP/ja/git-20261016-ac3a1f82-solar-voc/web/ja",
-      "ir_content_sha256": "61bf616a7268607734d0fae46c0cfb947a10be16182f6b17ba3045b3761b6e72",
-      "issues": 35
-    },
-    {
       "web_root": "manual_sources/JA-AD500A-SIL/US/en/git-20261016-a6d1659e-solar-voc/web/en",
       "ir_content_sha256": "6b6b4a39e335eaf4fb6b48954fd45af5d52a36c23f495b0e062fc84a67e120ff",
       "issues": 28

@@ -20,7 +20,7 @@
   "language_scope": "single",
   "source_role": "Git-only Japanese solar-Voc correction edition of the approved Web-layout edition",
   "live_bitable_dependency": false,
-  "publication_eligible": false,
+  "publication_eligible": true,
   "page_order": [
     "00_preface_ja.rst",
     "box_contents_ja.rst",
@@ -102,14 +102,12 @@
     }
   ],
   "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
-  "pending_source_review": [
-    "operator review of the solar-Voc text correction before Git-only release"
-  ],
+  "pending_source_review": [],
   "inputs": [
     {
       "path": "README.md",
-      "size": 1853,
-      "sha256": "bc3de653a2158350f1c3bf767bb8dd15037fcb121eb0d1b6bc849c8fa1c2bef8"
+      "size": 3228,
+      "sha256": "3567bce4d6dd500f3640d05ab15a6d9eb32c9c73161f25178e121fa045c1f92a"
     },
     {
       "path": "assets/car.png",
@@ -148,13 +146,18 @@
     },
     {
       "path": "derive_solar_voc.py",
-      "size": 7008,
-      "sha256": "a7639db1fcf0172ea7ed60dd6a7def8aa34cd243505e9de744400da2eef3000e"
+      "size": 14421,
+      "sha256": "14913c49036cc2739e0a5b7d72a551975ea1d7161e0120d1cf25e4f526d5eb68"
     },
     {
       "path": "render.py",
       "size": 7533,
       "sha256": "b769eb76a1a88dd4d1e5e4cd2037404b79b436a021a33a1338ce3c8cb20b45f5"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 3844,
+      "sha256": "78189d94debadf114247fd0188e0cf587bf7836564ba25b5ed5bcf0da0c88394"
     },
     {
       "path": "source/asset_recipe.json",
@@ -163,8 +166,8 @@
     },
     {
       "path": "source/differences.md",
-      "size": 2308,
-      "sha256": "082951b7faf8047938adbb5db1dfa9fcb40cb8bddb5a8a9534619c4e3a690506"
+      "size": 2742,
+      "sha256": "2e07d8b79cf106d6397e902dc923aca8506af3442bfa85b5f05f54e8cb601f74"
     },
     {
       "path": "source/native_pages.json",
@@ -178,8 +181,8 @@
     },
     {
       "path": "source/page/00_preface_ja.rst",
-      "size": 563,
-      "sha256": "e3924cf5160099db9fa872f84bab83a8778183266241b6974aa16247518f1e83"
+      "size": 510,
+      "sha256": "3338d9644c7cfb685a9f25df7c5a1707bc398009c028dd4c7792b2c902e350cd"
     },
     {
       "path": "source/page/box_contents_ja.rst",
@@ -188,23 +191,23 @@
     },
     {
       "path": "source/page/charging_ja.rst",
-      "size": 5998,
-      "sha256": "8f09af278b7a632aac1b13f4938ec0a14ee8662b8e85092e83043c26f8010a7b"
+      "size": 5871,
+      "sha256": "839e073a4ea07a30e9bb61401d6e3e5a379a803cb3df16284c2b30b9d90ee922"
     },
     {
       "path": "source/page/contact_ja.rst",
-      "size": 495,
-      "sha256": "1e28f9fcfb583bc579d9aea1a0de3db3e38b9a7894da839eb98eea01e2b27a89"
+      "size": 473,
+      "sha256": "f5311ed63bb1be847c0a2cf1c80e6acd12242c2fe0bb359258c2f587a0f94a1e"
     },
     {
       "path": "source/page/product_overview_ja.rst",
-      "size": 4165,
-      "sha256": "4776b64c70932be46e0be4832ac31620a0b954a65a3e4b0be74349c114d26e2d"
+      "size": 2173,
+      "sha256": "aad4fdf23fa7cbe4527515aa8db725442b71583feb1502b9534cc7a76dc71644"
     },
     {
       "path": "source/page/spec_ja.rst",
-      "size": 968,
-      "sha256": "56e5a7d035e8b535205c091055ec95747c4d47df0b6527d7eae5f261ffcd39c8"
+      "size": 974,
+      "sha256": "28e998906c15162efb8db76c69eaaebdc0764217de5bd4e3139e40ce6e2e3a7e"
     },
     {
       "path": "source/page/warranty_ja.rst",
@@ -213,18 +216,18 @@
     },
     {
       "path": "source/presentation.css",
-      "size": 4270,
-      "sha256": "ba157c945942b1c2264a51b25efa8d9b9931ab6fc195fce987dcee30d9f44fde"
+      "size": 3066,
+      "sha256": "864cd07ff86972ebdb6463c1781b1911c3f8b04080370a978b73a9691b756e70"
     },
     {
       "path": "source_manifest.json",
-      "size": 11168,
-      "sha256": "83611e0b9147e71da0c12817701fbf1efac8dbc58d0d26a8c5616994cae66b0d"
+      "size": 12388,
+      "sha256": "0f4bbda63f7ab784f11f3c763e8aa6dd490748eec17aaa35a57ba58497b9e7fd"
     },
     {
       "path": "web/ja/_static/source.css",
-      "size": 4270,
-      "sha256": "ba157c945942b1c2264a51b25efa8d9b9931ab6fc195fce987dcee30d9f44fde"
+      "size": 3066,
+      "sha256": "864cd07ff86972ebdb6463c1781b1911c3f8b04080370a978b73a9691b756e70"
     },
     {
       "path": "web/ja/_static/web_manual.css",
@@ -273,18 +276,18 @@
     },
     {
       "path": "web/ja/manual.ir.json",
-      "size": 264049,
-      "sha256": "a3da29e28c2cf280743e3ce40c8ae88e3637db835ab75745beaaabdcd25f7beb"
+      "size": 261737,
+      "sha256": "e12112cc72236035d7566103968f1e4328c1883a632841bd2929688adcc5b5aa"
     },
     {
       "path": "web/ja/manual_bundle.html",
-      "size": 25241,
-      "sha256": "f5cd340269cae099794dbe914ee29a4c349f0671f28740db75ee51a8109fa04c"
+      "size": 23365,
+      "sha256": "7e9ee81a80059aa492be3bcd71ae3afa6912c398d9b967ee90633034e751e5f7"
     },
     {
       "path": "web/ja/manual_jaad500asil_jp_ja.md",
-      "size": 28116,
-      "sha256": "ffe5edc9c36526c743ceec4b161edd7f2e00373ed69ba9d5374ffd2350dec869"
+      "size": 25054,
+      "sha256": "f4571e1c4d395ae49b354de033793df6bf5c53b6927f9cb7a4006b49f6d7181e"
     }
   ],
   "repo_inputs": [
@@ -320,7 +323,7 @@
       "locale": "und"
     }
   ],
-  "publication_status": "review-candidate-no-release-authorization",
+  "publication_status": "operator-approved-git-only-release",
   "derived_from": {
     "package": "git-20261009-ac3a1f82-web-layout",
     "authorization": "operator review and merge of #1467 (AGENTS.md §8.6); base approval MA-272",
@@ -343,10 +346,32 @@
   "text_corrections": [
     {
       "page": "source/page/charging_ja.rst",
-      "approved": "ソーラーパネルの開放電圧（Voc）が、Jackery SlimPower H1 のDC入力範囲（36.8V～56V）または Jackery Battery PackのDC入力範囲（40V～57.6V）内であることを確認してください。",
+      "approved": "Jackeryブランド以外の付属品を使用して充電しないでください。ソーラーパネルの開放電圧（Voc）が、Jackery SlimPower H1 のDC入力範囲（36.8V～56V）または Jackery Battery PackのDC入力範囲（40V～57.6V）内であることを確認してください。",
       "corrected": "Jackery DC Input Moduleを介して接続した製品を充電する場合は、Jackery製ソーラーパネルの使用を推奨します。接続するソーラーパネルの開放電圧（Voc）が、本モジュールのDC入力電圧範囲（16V～60V）内であることを確認してください。",
       "reason": "Solar panels connect through the Jackery DC Input Module; the panel Voc limit is the module's DC input voltage range (16V～60V), not the downstream SlimPower H1 / Battery Pack ranges cited by the printed source.",
-      "instruction": "operator, 2026-10-15/16: replace the paragraph (整段替换), keep the disclaimer (不删免责句) and the opening accessory warning (保留这句); the printed source and its transcription stay unchanged"
+      "instruction": "operator, 2026-10-15/16: replace the paragraph (整段替换), keep the disclaimer (不删免责句); the opening accessory warning is dropped (删掉第①句, 2026-10-16); the printed source and its transcription stay unchanged"
     }
-  ]
+  ],
+  "shared_component_exceptions": [
+    {
+      "language": "ja",
+      "page_id": "product_overview_ja.rst",
+      "kind": "table",
+      "text_sha256": "7410f90222f775cd54decfa20f107c35a8f73f326520548687d7d7c2bf6b1f38",
+      "reason": "module LED status/colour/meaning table: no shared ComponentSpec covers an LED-state table; it uses the shared hb-source-status-table classes"
+    }
+  ],
+  "style_migration": {
+    "gate": "prepared-document-shared-styles/v1",
+    "pages": [
+      "source/page/00_preface_ja.rst",
+      "source/page/charging_ja.rst",
+      "source/page/contact_ja.rst",
+      "source/page/product_overview_ja.rst",
+      "source/page/spec_ja.rst"
+    ],
+    "stylesheet": "source/presentation.css",
+    "reason": "re-frozen for the solar-Voc correction, the locale must pass the shared-style gate: page-local classes, inline styles and stylesheet paint replaced by shared theme classes; visible copy unchanged",
+    "instruction": "operator, 2026-10-16: 889 日规 也要删掉第一句 (fix the inherited style issues)"
+  }
 }

@@ -1,17 +1,19 @@
 <style>
-/* JA-AD500A-SIL JP Web-layout edition: page-local presentation following the PDF.
-   Shared components and web_manual.css stay unchanged; these rules only restyle them. */
+/* JA-AD500A-SIL JP solar-Voc edition: page-local geometry only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
 
 /* Print bullets are "・" lines, as in the PDF. */
 #furo-main-content ul > li { list-style-type: "・"; }
 #furo-main-content ul { padding-left: 1.2rem; }
-#furo-main-content ul.jpad-tight { margin: .2rem 0 .5rem; }
-#furo-main-content ul.jpad-tight > li > p { margin: 0; }
-#furo-main-content p.jpad-hang { padding-left: 1em; text-indent: -1em; }
-#furo-main-content p.jpad-small { font-size: .88rem; }
 
-/* p.1: the welcome lead opens the Web edition (the printed cover is not part of it). */
-#furo-main-content p.jpad-welcome-lead { margin: 0 0 .3rem; font-size: 1.05rem; }
+/* p.3: the product overview figure keeps its print width. */
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] { width: min(100%, 40rem); margin-inline: auto; }
+
+/* p.3: LED status table columns follow the print. */
+#furo-main-content table.hb-source-status-table { min-width: 0; }
+#furo-main-content table.hb-source-status-table :is(th, td) { text-align: center; }
+#furo-main-content table.hb-source-status-table tr > :nth-child(1) { width: 25%; }
+#furo-main-content table.hb-source-status-table tr > :nth-child(2) { width: 20%; }
 
 /* p.5: connection notes keep their print lines; continuation lines are indented. */
 #furo-main-content li > .line-block { margin: 0 0 .4rem; }
@@ -22,40 +24,18 @@
 #furo-main-content .manual-callout-label p { font-size: 1.3rem; }
 #furo-main-content .manual-callout-body > p > strong { font-size: 1.05rem; }
 
-/* p.6: the five car-charging precautions sit in one grey panel. */
-#furo-main-content div.jpad-panel {
-  margin: .4rem 0 1.2rem;
-  padding: .7rem 1rem .7rem .9rem;
-  border-radius: .88rem;
-  background: var(--hb-surface);
-}
-#furo-main-content div.jpad-panel ul { margin: 0; }
-#furo-main-content div.jpad-panel li > p { margin: .1rem 0; }
+/* p.6: the five car-charging precautions sit in one shared text panel. */
+#furo-main-content div.hb-text-panel { margin: .4rem 0 1.2rem; }
+#furo-main-content div.hb-text-panel ul { margin: 0; }
+#furo-main-content div.hb-text-panel li > p { margin: .1rem 0; }
 
 /* p.7: "170 x 90 x 52" keeps the printed letter x (no contextual × substitution). */
 #furo-main-content .hb-spec-value { font-variant-ligatures: no-contextual; font-feature-settings: "calt" 0; }
 
-/* p.7: the warranty introduction is one grey panel including its last line. */
-#furo-main-content .hb-warranty-intro-panel { border-radius: .88rem .88rem 0 0; padding-bottom: .2rem; }
-#furo-main-content .hb-warranty-local-note {
-  margin: 0;
-  padding: .2rem 1.05rem .9rem;
-  border-radius: 0 0 .88rem .88rem;
-  background: var(--hb-surface);
-  font-size: 1rem;
-}
+/* p.7–9: warranty notes and lines keep the print spacing. */
 #furo-main-content .hb-warranty-intro-panel p + p,
 #furo-main-content .hb-warranty-local-note p { margin-top: .2rem; }
-
-/* p.7–9: notes are grey capsules; 購入チャネルについて keeps its detail line. */
-#furo-main-content .hb-warranty-card p.jpad-note {
-  display: table;
-  margin: .5rem 0 0;
-  padding: .2rem .65rem;
-  border-radius: .45rem;
-  background: var(--hb-surface);
-  font-size: .84rem;
-}
+#furo-main-content .hb-warranty-card p.jpad-note { margin: .5rem 0 0; font-size: .84rem; }
 #furo-main-content .hb-warranty-card li > .line-block { margin: 0; }
 #furo-main-content .hb-warranty-card li > .line-block > .line + .line { padding-left: 0; }
 
@@ -64,44 +44,19 @@
 #furo-main-content figure[aria-label="保証内容"] > ol > li::marker { font-weight: 700; }
 #furo-main-content figure[aria-label="保証内容"] > ol > li + li { margin-top: .9rem; }
 #furo-main-content figure[aria-label="保証内容"] > ol > li > ul { margin-top: .15rem; }
-
-/* p.9: 免責事項 is a grey panel with a plain bold heading. */
-#furo-main-content section:has(> figure[aria-label="免責事項"]) {
-  padding-top: 1rem;
-  border-color: transparent;
-  background: var(--hb-surface);
-}
-#furo-main-content section:has(> figure[aria-label="免責事項"]) > h2:first-child,
-#furo-main-content section:target:has(> figure[aria-label="免責事項"]) > h2:first-child {
-  position: static;
-  margin: 0 0 .55rem;
-  padding: 0;
-  background: transparent !important;
-  color: var(--hb-text);
-  font-size: 1.15rem;
-}
-#furo-main-content section:has(> figure[aria-label="免責事項"]) > h2:first-child .headerlink { color: var(--hb-text-muted); }
 #furo-main-content figure[aria-label="免責事項"] .jpad-closing { margin: 0 0 0 1.3rem; }
 
-/* p.9: the contact lines are bold grey capsules. */
-#furo-main-content .hb-manual-page-end p {
-  width: fit-content;
-  max-width: 100%;
-  margin: .45rem 0 0;
-  padding: .3rem .8rem;
-  border-radius: .45rem;
-  background: var(--hb-surface);
-  font-weight: 700;
-}
+/* p.9: the back-cover QR code keeps its print size. */
+#furo-main-content img[alt="原稿裏表紙のQRコード"] { width: 96px !important; height: auto; margin: 1rem 0; }
 
 </style>
 
-<p class="jpad-welcome-lead"><strong>お買い上げありがとうございます。</strong></p>
+<p><strong>お買い上げありがとうございます。</strong></p>
 
 
 
 
-<ul class="jpad-tight simple">
+<ul class="simple">
 <li><p>ご使用の前にこの「取扱説明書」をよくお読みのうえ、正しくお使いください。</p></li>
 <li><p>特に「安全上のご注意」は、必ずお読みいただき、安全にお使いください。</p></li>
 <li><p>お読みになったあとは、すぐに取り出せる場所に大切に保管してください。</p></li>
@@ -123,44 +78,41 @@
 
 # 各部の名称
 
-<div style="width:min(100%,40rem);margin-inline:auto"><figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="product-overview" data-source-fragment-sha256="ce934ab4ce71eaa014b8e0698dbe853724b36f83bb4fc6c2faee91db0923e571" data-web-base-art-ref="../../assets/overview-textless.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.product-overview"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="product-overview.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "product-overview", "web_replace_key": "reference.product-overview", "capture_following_lines": 5, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2", "panel_top": 0, "panel_fill": "#ffffff", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [58, 0.3, 34, 4.2]}, {"line": 1, "rect": [2, 4.5, 90, 4.4]}, {"line": 2, "rect": [32, 8.8, 60, 4.2]}, {"line": 3, "rect": [65, 30.2, 27, 5]}, {"line": 4, "rect": [71, 51.8, 21, 5]}]}}' src="assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:58%;--hb-y:0.3%;--hb-width:34%;--hb-height:4.2%"><span style="display:block;width:100%;text-align:right;font-size:clamp(12px,1.2em,18px);line-height:1.15;font-weight:700">DC入力ポート</span></span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:2%;--hb-y:4.5%;--hb-width:90%;--hb-height:4.4%"><span style="display:block;width:100%;text-align:right;font-size:clamp(10px,0.8em,12px);line-height:1.15;color:#8a8a8a">PV：16V-60V⎓最大13A，2ポート最大24A，最大500W</span></span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:32%;--hb-y:8.8%;--hb-width:60%;--hb-height:4.2%"><span style="display:block;width:100%;text-align:right;font-size:clamp(10px,0.8em,12px);line-height:1.15;color:#8a8a8a">ｼｶﾞｰｿｹｯﾄ ：11V-16V⎓最大8A</span></span><span class="hb-reference-live-label" data-source-line="3" style="--hb-x:65%;--hb-y:30.2%;--hb-width:27%;--hb-height:5%"><span style="display:block;width:100%;text-align:right;font-size:clamp(12px,1.2em,18px);line-height:1.15;font-weight:700">LEDライト</span></span><span class="hb-reference-live-label" data-source-line="4" style="--hb-x:71%;--hb-y:51.8%;--hb-width:21%;--hb-height:5%"><span style="display:block;width:100%;text-align:right;font-size:clamp(12px,1.2em,18px);line-height:1.15;font-weight:700">プラグ</span></span></div></div></figure></div>
+<figure class="hb-reference-figure hb-base-art-live-copy" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="product-overview" data-source-fragment-sha256="ce934ab4ce71eaa014b8e0698dbe853724b36f83bb4fc6c2faee91db0923e571" data-web-base-art-ref="../../assets/overview-textless.png" data-web-presentation-mode="base-art-live-copy" data-web-replace-key="reference.product-overview"><div class="hb-reference-semantic" data-mobile-labels="overlay" data-preserve-art-frame="true" data-reference-id="product-overview.semantic"><div class="hb-reference-art-panel" style="--hb-panel-top:0%;--hb-panel-fill:#ffffff"><img alt="" class="hb-source-reference hb-reference-art hb-composite-art" data-reference='{"id": "product-overview", "web_replace_key": "reference.product-overview", "capture_following_lines": 5, "presentation_mode": "base-art-live-copy", "base_art_layout": {"art_sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2", "panel_top": 0, "panel_fill": "#ffffff", "preserve_frame": true, "mobile_labels": "overlay", "labels": [{"line": 0, "rect": [58, 0.3, 34, 4.2]}, {"line": 1, "rect": [2, 4.5, 90, 4.4]}, {"line": 2, "rect": [32, 8.8, 60, 4.2]}, {"line": 3, "rect": [65, 30.2, 27, 5]}, {"line": 4, "rect": [71, 51.8, 21, 5]}]}}' src="assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png"/><span class="hb-reference-live-label" data-source-line="0" style="--hb-x:58%;--hb-y:0.3%;--hb-width:34%;--hb-height:4.2%"><span style="display:block;width:100%;text-align:right;font-size:clamp(12px,1.2em,18px);line-height:1.15;font-weight:700">DC入力ポート</span></span><span class="hb-reference-live-label" data-source-line="1" style="--hb-x:2%;--hb-y:4.5%;--hb-width:90%;--hb-height:4.4%"><span style="display:block;width:100%;text-align:right;font-size:clamp(10px,0.8em,12px);line-height:1.15;color:#8a8a8a">PV：16V-60V⎓最大13A，2ポート最大24A，最大500W</span></span><span class="hb-reference-live-label" data-source-line="2" style="--hb-x:32%;--hb-y:8.8%;--hb-width:60%;--hb-height:4.2%"><span style="display:block;width:100%;text-align:right;font-size:clamp(10px,0.8em,12px);line-height:1.15;color:#8a8a8a">ｼｶﾞｰｿｹｯﾄ ：11V-16V⎓最大8A</span></span><span class="hb-reference-live-label" data-source-line="3" style="--hb-x:65%;--hb-y:30.2%;--hb-width:27%;--hb-height:5%"><span style="display:block;width:100%;text-align:right;font-size:clamp(12px,1.2em,18px);line-height:1.15;font-weight:700">LEDライト</span></span><span class="hb-reference-live-label" data-source-line="4" style="--hb-x:71%;--hb-y:51.8%;--hb-width:21%;--hb-height:5%"><span style="display:block;width:100%;text-align:right;font-size:clamp(12px,1.2em,18px);line-height:1.15;font-weight:700">プラグ</span></span></div></div></figure>
 
 <p id="led-light"><strong>LEDライト</strong></p>
 
 
 
 
-<div class="table-wrapper docutils" style="--hb-line-soft:var(--hb-brand-dark);border:1.5px solid var(--hb-brand-dark);border-radius:16px;overflow:hidden;"><table class="manual-table" style="table-layout:fixed;min-width:0!important;">
-<colgroup>
-<col style="width: 25.0%"/>
-<col style="width: 20.0%"/>
-<col style="width: 55.0%"/>
-</colgroup>
+<div class="hb-source-status docutils container">
+<table class="hb-source-status-table">
 <thead>
-<tr><th class="head" scope="col" style="padding:0.25rem 0.6rem!important;text-align:center!important;border-bottom:1px solid var(--hb-line-soft)!important;background:var(--hb-surface-strong)!important;"><p>LEDライトの状態</p></th>
-<th class="head" scope="col" style="padding:0.25rem 0.6rem!important;text-align:center!important;border-bottom:1px solid var(--hb-line-soft)!important;background:var(--hb-surface-strong)!important;"><p>ライトの色</p></th>
-<th class="head" scope="col" style="padding:0.25rem 0.6rem!important;text-align:center!important;border-bottom:1px solid var(--hb-line-soft)!important;background:var(--hb-surface-strong)!important;"><p>製品の状態</p></th>
+<tr><th class="head"><p>LEDライトの状態</p></th>
+<th class="head"><p>ライトの色</p></th>
+<th class="head"><p>製品の状態</p></th>
 </tr>
 </thead>
 <tbody>
-<tr><td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>点滅</p></td>
-<td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>緑色</p></td>
-<td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>充電中</p></td>
+<tr><td><p>点滅</p></td>
+<td><p>緑色</p></td>
+<td><p>充電中</p></td>
 </tr>
-<tr><td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>点灯</p></td>
-<td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>赤色</p></td>
-<td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>異常状態</p></td>
+<tr><td><p>点灯</p></td>
+<td><p>赤色</p></td>
+<td><p>異常状態</p></td>
 </tr>
-<tr><td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>点灯</p></td>
-<td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>緑色</p></td>
-<td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>接続成功、充電準備完了</p></td>
+<tr><td><p>点灯</p></td>
+<td><p>緑色</p></td>
+<td><p>接続成功、充電準備完了</p></td>
 </tr>
-<tr><td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>消灯</p></td>
-<td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>なし</p></td>
-<td style="padding:0.25rem 0.6rem!important;text-align:center!important;"><p>電源オフ</p></td>
+<tr><td><p>消灯</p></td>
+<td><p>なし</p></td>
+<td><p>電源オフ</p></td>
 </tr>
 </tbody>
-</table></div>
+</table>
+</div>
 
 # 接続
 
@@ -178,7 +130,7 @@
 
 
 
-<ul class="jpad-tight simple">
+<ul class="simple">
 <li><p>1枚または2枚接続時：直接本体に接続可能です。</p></li>
 <li><p>4枚接続時：別売りの「SolarSagaアダプター（Pro/Plus/New専用）」を2個ご用意いただく必要があります。</p></li>
 </ul>
@@ -186,7 +138,7 @@
 
 
 
-<p class="jpad-hang">※Jackery SolarSagaアダプターを使って3枚接続はできません（電圧が許容範囲を超え、故障のリスクがあります）。</p>
+<p>※Jackery SolarSagaアダプターを使って3枚接続はできません（電圧が許容範囲を超え、故障のリスクがあります）。</p>
 
 
 
@@ -220,7 +172,7 @@
 </ul>
 </td></tr></tbody></table>
 
-<p>Jackeryブランド以外の付属品を使用して充電しないでください。Jackery DC Input Moduleを介して接続した製品を充電する場合は、Jackery製ソーラーパネルの使用を推奨します。接続するソーラーパネルの開放電圧（Voc）が、本モジュールのDC入力電圧範囲（16V～60V）内であることを確認してください。他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。</p>
+<p>Jackery DC Input Moduleを介して接続した製品を充電する場合は、Jackery製ソーラーパネルの使用を推奨します。接続するソーラーパネルの開放電圧（Voc）が、本モジュールのDC入力電圧範囲（16V～60V）内であることを確認してください。他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。</p>
 
 
 
@@ -239,7 +191,7 @@
 
 
 
-<div class="jpad-panel docutils container">
+<div class="hb-text-panel docutils container">
 <ul class="simple">
 <li><p>必ず車のエンジンを始動させてから接続してください。エンジン停止状態で使用すると、車両のバッテリーが上がる恐れがあります。</p></li>
 <li><p>車の充電ポートとシガーソケット充電ケーブルの接触状態をご確認ください。</p></li>
@@ -284,7 +236,7 @@
 
 
 
-<p class="jpad-small">本製品はJackery SlimPower H1およびJackery Battery Packとの組み合わせ専用となります。他の機器には接続しないでください。</p>
+<p class="manual-spec-note">本製品はJackery SlimPower H1およびJackery Battery Packとの組み合わせ専用となります。他の機器には接続しないでください。</p>
 
 # 保証について
 
@@ -385,9 +337,13 @@
 </div></figure>
 </section>
 
-<div class="hb-manual-page-end">
-<p>公式サイト: <a href="https://www.jackery.jp">https://www.jackery.jp</a></p>
-<p>カスタマーサポート: <a href="mailto:jackery.jp@jackery.com">jackery.jp@jackery.com</a></p>
-<p>お問い合わせ電話番号: <a href="tel:05031989007">050-3198-9007</a></p>
-<div style="width:96px;margin:1rem 0"><img alt="原稿裏表紙のQRコード" src="assets/ir/aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10/contact-qr.png" style="width:100%;height:auto"/></div>
+<div class="hb-text-panel">
+<p><strong>公式サイト: <a href="https://www.jackery.jp">https://www.jackery.jp</a></strong></p>
+<p><strong>カスタマーサポート: <a href="mailto:jackery.jp@jackery.com">jackery.jp@jackery.com</a></strong></p>
+<p><strong>お問い合わせ電話番号: <a href="tel:05031989007">050-3198-9007</a></strong></p>
 </div>
+
+
+
+
+<p><img alt="原稿裏表紙のQRコード" src="assets/ir/aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10/contact-qr.png"/></p>
