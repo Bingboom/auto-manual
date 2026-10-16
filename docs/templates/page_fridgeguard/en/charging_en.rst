@@ -46,7 +46,7 @@ Connected to the Jackery DC Input Module, Jackery FridgeGuard is compatible with
    </div>
 
 
-It is recommended to use the Jackery solar panel to charge the Jackery FridgeGuard. Ensure that the open-circuit voltage (Voc) of the solar panel falls within the Jackery FridgeGuard's DC input voltage range (36.8V-56V). Jackery is not responsible for any losses caused by using solar panels from other brands.
+It is recommended to use Jackery solar panels to charge the product. Ensure that the open-circuit voltage (Voc) of the connected solar panels is within the Jackery DC Input Module's DC input voltage range (16V–60V). Jackery is not responsible for any losses caused by using solar panels from other brands.
 
 
 CHARGING WITH A CAR CHARGER
