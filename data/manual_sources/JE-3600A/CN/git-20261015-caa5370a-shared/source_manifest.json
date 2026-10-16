@@ -914,8 +914,8 @@
     },
     {
       "path": "tools/web/frozen_source_evidence.py",
-      "size": 10635,
-      "sha256": "7aec979a91c4b7820d6250d3909eb398b195645bc90812eeff9697225d0e3067"
+      "size": 10498,
+      "sha256": "eac58d951f33206f40f888c2c0a41fd5cb4a4eaab0cfc551c69c780f7c46fca4"
     },
     {
       "path": "tools/web/frozen_web_component_coverage.py",
@@ -1067,8 +1067,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3703,
-      "sha256": "3b5041709b31628efb018c42b90642c9c5f36303a0d730f46d065903565ae831"
+      "size": 3914,
+      "sha256": "e975c95a5d04facffcd6646289d5cb4fe491a44e312d330c9e32f2638137a4a3"
     },
     {
       "path": "assets/ac-output-p8.svg",

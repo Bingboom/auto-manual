@@ -38,6 +38,7 @@ Additions the shared components require, all logged:
 - A specification label the print spans over two rows (1×AC入力ポート, 2×DC8020入力ポート) keeps one row with its values on separate lines.
 - The button and clock glyphs beside the ボタン操作 words are dropped: the shared table is text-only, as in EU.
 - The inline 並列 icon (p18) reuses this edition's LCD glyph `lcd-parallel.png`: the old vector extraction painted a filled box over the glyph.
+- The 省エネモード threshold table (p14) has no shared component; it is a plain shared table, declared with its reason in `source_manifest.json` → `shared_component_exceptions` for the prepared-document shared-style gate.
 
 Visible copy equals the Web-layout edition's, apart from: the added headers; the repeated LCD numbers; ⚠ in the signal badges; the ＋ of the inline control; the inbox numbers, which the shared cards draw; and "Li-ion", which is part of the shared recycling symbol. `tests/test_je3600a_cn_jp_shared.py` asserts this exactly.
 

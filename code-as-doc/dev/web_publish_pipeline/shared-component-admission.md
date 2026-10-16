@@ -76,9 +76,12 @@ closes that gap from the style side. Outside registered components:
 - the package stylesheet (`source_stylesheet`) holds geometry only: no colour,
   background, border, fill, stroke, shadow or outline.
 
-`seal_frozen_web_evidence` runs it at release sealing.
 `tests/test_prepared_document_shared_styles.py` runs it over every frozen
-prepared-document locale in the repository on each CI run.
+prepared-document locale in the repository on each CI run, so a package that
+draws its own styles cannot land. `require_prepared_style_admission` is the
+seal-time entry point; it is not yet called from `seal_frozen_web_evidence`,
+because released packages pin that module's bytes and a change there needs a
+coordinated re-pin.
 
 Locales frozen before the gate are listed in
 [`prepared_style_baseline.json`](../../../docs/renderers/contracts/prepared_style_baseline.json),

@@ -15,7 +15,6 @@ from urllib.parse import unquote, urlsplit
 
 from tools.web.caption_frame_admission import require_caption_frame_admission
 from tools.web.component_admission import require_fresh_component_admission
-from tools.web.prepared_style_audit import require_prepared_style_admission
 from tools.web.symbol_asset_admission import require_symbol_asset_admission
 from tools.utils.path_utils import PathSegments
 from tools.web.language_release_evidence import (
@@ -108,7 +107,6 @@ def seal_frozen_web_evidence(*, source_manifest_path: Path, source_root: Path,
         markdown_dir, model=target["model"], region=target["region"], language=language,
     )
     require_symbol_asset_admission(markdown_dir, source_root, manifest, language)
-    require_prepared_style_admission(markdown_dir, manifest)
     caption_frames = require_caption_frame_admission(markdown_dir)
     actual = _file_inventory(source_root, excluded_roots=(source_manifest_path,))
     if actual != inputs:

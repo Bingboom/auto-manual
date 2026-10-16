@@ -30,6 +30,7 @@ Additions and removals the shared components require, all logged:
 - The LCD-mode table drops its header row 分类 / 操作 / 说明: the shared table has none.
 - Button and clock glyphs beside the 组合按键 words are dropped: the shared table is text-only.
 - The APP download copy drops the print's line indents.
+- The 合格证 table (p23) has no shared component; it is a plain shared table, declared with its reason in `source_manifest.json` → `shared_component_exceptions` for the prepared-document shared-style gate.
 
 Visible copy otherwise equals the Web-layout edition's. The other differences are the ＋ of the inline control and the inbox numbers, which the shared cards draw. `tests/test_je3600a_cn_jp_shared.py` asserts this exactly.
 
