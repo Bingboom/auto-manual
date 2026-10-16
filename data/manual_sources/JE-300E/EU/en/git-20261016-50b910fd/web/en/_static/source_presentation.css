@@ -1,0 +1,21 @@
+/* JE-300E EU source geometry only. The shared Web theme owns every colour, border,
+   fill, heading, callout, table, card and figure style (prepared-document
+   shared-style gate). Figures are selected by their shared data attributes. */
+
+/* Complete print panels keep the print's own width; no visible caption. */
+#furo-main-content .hb-reference-figure { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+/* Small print marks and drawings keep a print-like size. */
+#furo-main-content .hb-reference-figure[data-reference-id="ce-mark"] { max-width: 3.2rem; margin-left: 0; }
+#furo-main-content .hb-reference-figure[data-reference-id="manufacturer-qr"] { max-width: 6.5rem; margin-left: 0; }
+#furo-main-content .hb-reference-figure[data-reference-id="dc-input-led"] { max-width: 8rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="serial-number"] { max-width: 560px; margin-left: 0; }
+
+/* Inline contact pictograms (the glyph-*.svg files) at text height. */
+#furo-main-content p > img[src*="/glyph-"] {
+  display: inline-block; width: auto !important; height: 1.05em !important;
+  margin: 0 0.15em 0 0 !important; vertical-align: -0.15em;
+}
+
+/* Print case for chapter and subheadings; shared markers stay. */
+#furo-main-content :is(h1, h3, h4), #furo-main-content h2:not(.hb-spec-section) { text-transform: none; }

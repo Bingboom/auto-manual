@@ -1,0 +1,494 @@
+[
+  {
+    "slot": "lcd-ac-power",
+    "physical_page": 10,
+    "search_box": [
+      49.5,
+      237.5,
+      91.3,
+      274.4
+    ],
+    "meaning": "AC Power Indicator",
+    "local_path": "assets/lcd-ac-power.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      138,
+      139
+    ],
+    "glyph_bbox": [
+      58.799503326416016,
+      251.1413116455078,
+      78.1884994506836,
+      267.29931640625
+    ],
+    "sha256": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0"
+  },
+  {
+    "slot": "lcd-output-voltage",
+    "physical_page": 10,
+    "search_box": [
+      49.5,
+      275.4,
+      91.3,
+      305.6
+    ],
+    "meaning": "Output Voltage and Frequency",
+    "local_path": "assets/lcd-output-voltage.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      204,
+      205,
+      206,
+      207,
+      208
+    ],
+    "glyph_bbox": [
+      53.82709884643555,
+      287.2187194824219,
+      85.9031982421875,
+      292.5647277832031
+    ],
+    "sha256": "07f99d87d180c223d12a3f6658e63ae23b0c2705e8d8669b8c7e707af13db77b"
+  },
+  {
+    "slot": "lcd-input-power",
+    "physical_page": 10,
+    "search_box": [
+      49.5,
+      306.6,
+      91.3,
+      337.4
+    ],
+    "meaning": "Input Power",
+    "local_path": "assets/lcd-input-power.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173
+    ],
+    "glyph_bbox": [
+      57.20779800415039,
+      313.9596862792969,
+      79.90139770507812,
+      328.04901123046875
+    ],
+    "sha256": "064890bdd120a64c923b8ba6957493762ae8228de7dbbbe1698715021dc1412e"
+  },
+  {
+    "slot": "lcd-output-power",
+    "physical_page": 10,
+    "search_box": [
+      49.5,
+      338.4,
+      91.3,
+      368.5
+    ],
+    "meaning": "Output Power",
+    "local_path": "assets/lcd-output-power.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203
+    ],
+    "glyph_bbox": [
+      57.51430130004883,
+      345.930419921875,
+      80.20929718017578,
+      360.0733337402344
+    ],
+    "sha256": "42e2c1cfa5b193ddb24af2779649fdfa8126140ae81b0593d1ed5f98598ee9a5"
+  },
+  {
+    "slot": "lcd-car-charging",
+    "physical_page": 10,
+    "search_box": [
+      49.5,
+      369.5,
+      91.3,
+      405.1
+    ],
+    "meaning": "Car Charging Indicator",
+    "local_path": "assets/lcd-car-charging.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      144,
+      145,
+      146
+    ],
+    "glyph_bbox": [
+      60.891998291015625,
+      382.17840576171875,
+      76.83200073242188,
+      398.118408203125
+    ],
+    "sha256": "544d91029a10f3a13f50d365ea95cc2160f0c569caadc71ed4de1d516571d9cd"
+  },
+  {
+    "slot": "lcd-solar-charging",
+    "physical_page": 10,
+    "search_box": [
+      49.5,
+      406.1,
+      91.3,
+      448.3
+    ],
+    "meaning": "Solar Charging Indicator",
+    "local_path": "assets/lcd-solar-charging.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      142,
+      143
+    ],
+    "glyph_bbox": [
+      60.403594970703125,
+      422.5967102050781,
+      76.34359741210938,
+      438.5367126464844
+    ],
+    "sha256": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee"
+  },
+  {
+    "slot": "lcd-battery-power",
+    "physical_page": 10,
+    "search_box": [
+      49.5,
+      449.3,
+      91.3,
+      495.5
+    ],
+    "meaning": "Battery Power Indicator",
+    "local_path": "assets/lcd-battery-power.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      140
+    ],
+    "glyph_bbox": [
+      59.96980285644531,
+      461.0287170410156,
+      77.31680297851562,
+      478.3697204589844
+    ],
+    "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+  },
+  {
+    "slot": "lcd-battery-percentage",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      31.5,
+      85.2,
+      68.4
+    ],
+    "meaning": "Remaining Battery Percentage",
+    "local_path": "assets/lcd-battery-percentage.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "glyph_bbox": [
+      54.375999450683594,
+      45.529022216796875,
+      79.94100189208984,
+      57.822021484375
+    ],
+    "sha256": "8a707e5fa48b63b5efae5be11219e8a6fe1595641c66a1627f456dd4a738eb56"
+  },
+  {
+    "slot": "lcd-fault-code",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      69.4,
+      85.2,
+      99.9
+    ],
+    "meaning": "Fault Code",
+    "local_path": "assets/lcd-fault-code.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "shared_candidate": "docs/renderers/web/assets/shared/lcd/lcd_fault-code.png",
+    "drawing_indices": [
+      59,
+      60,
+      61,
+      62
+    ],
+    "glyph_bbox": [
+      57.7489013671875,
+      74.94841003417969,
+      74.67900085449219,
+      90.89591217041016
+    ],
+    "shared_comparison": {
+      "status": "rejected",
+      "reason": "symbol glyph/background differs from authoritative PDF"
+    },
+    "sha256": "0390f59d2f20301b2f6b6400b61d589eb0e98e3a1700cf7e10e3731a7e6b35aa"
+  },
+  {
+    "slot": "lcd-high-temperature",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      100.9,
+      85.2,
+      133.8
+    ],
+    "meaning": "High Temperature Indicator",
+    "local_path": "assets/lcd-high-temperature.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      13,
+      14
+    ],
+    "glyph_bbox": [
+      58.9369010925293,
+      108.37152862548828,
+      74.79090118408203,
+      122.9895248413086
+    ],
+    "sha256": "a9f840ea0020e8b2a3717273e3e91efe7b6697fb729422766b7746326fe91158"
+  },
+  {
+    "slot": "lcd-low-temperature",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      134.8,
+      85.2,
+      166.7
+    ],
+    "meaning": "Low Temperature Indicator",
+    "local_path": "assets/lcd-low-temperature.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      15,
+      16
+    ],
+    "glyph_bbox": [
+      58.9369010925293,
+      145.38949584960938,
+      74.79090118408203,
+      160.00750732421875
+    ],
+    "sha256": "a4e0d1419019504d9d1406c4ac72775b12f10da60f171d60b4cdc9f130572608"
+  },
+  {
+    "slot": "lcd-energy-saving",
+    "physical_page": 11,
+    "search_box": [
+      48.2,
+      167.7,
+      85.2,
+      205.5
+    ],
+    "meaning": "Energy Saving Mode",
+    "local_path": "assets/lcd-energy-saving.svg",
+    "decision": "native vector glyph",
+    "reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "drawing_indices": [
+      55,
+      56,
+      57,
+      58
+    ],
+    "glyph_bbox": [
+      55.785499572753906,
+      177.83602905273438,
+      77.52249908447266,
+      193.77603149414062
+    ],
+    "sha256": "b0d6afa954c8196d99ad160519439590c22fcc00140cb9b04bb575b7aa927d26"
+  },
+  {
+    "slot": "glyph-mail-p23",
+    "physical_page": 23,
+    "search_box": [
+      26,
+      430,
+      40,
+      446
+    ],
+    "meaning": "Email",
+    "local_path": "assets/glyph-mail-p23.svg",
+    "decision": "native vector glyph",
+    "reason": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "drawing_indices": [
+      3
+    ],
+    "glyph_bbox": [
+      30.214799880981445,
+      437.34808349609375,
+      35.25279998779297,
+      441.382080078125
+    ],
+    "sha256": "79c52e3871f1c81163f1962150d59cfbc6fa4259c765c0c829c0b8067e353713"
+  },
+  {
+    "slot": "glyph-phone",
+    "physical_page": 97,
+    "search_box": [
+      28,
+      486,
+      38,
+      500
+    ],
+    "meaning": "Phone",
+    "local_path": "assets/glyph-phone.svg",
+    "decision": "native vector glyph",
+    "reason": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "drawing_indices": [
+      11
+    ],
+    "glyph_bbox": [
+      30.167699813842773,
+      490.8678894042969,
+      33.63970184326172,
+      495.8908996582031
+    ],
+    "sha256": "8b15f0d0394e07939cb87b7c79f75ec84c89a4c5e9130a28b9721c019746c847"
+  },
+  {
+    "slot": "glyph-mail",
+    "physical_page": 97,
+    "search_box": [
+      98,
+      486,
+      110,
+      500
+    ],
+    "meaning": "Email",
+    "local_path": "assets/glyph-mail.svg",
+    "decision": "native vector glyph",
+    "reason": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "drawing_indices": [
+      5,
+      6
+    ],
+    "glyph_bbox": [
+      99.4834976196289,
+      490.44561767578125,
+      107.77249908447266,
+      496.2916259765625
+    ],
+    "sha256": "991f26fe73e50758b8776272d053dad2799eca2cc15dd694e56665197944972d"
+  },
+  {
+    "slot": "glyph-web",
+    "physical_page": 97,
+    "search_box": [
+      184,
+      486,
+      196,
+      500
+    ],
+    "meaning": "Website",
+    "local_path": "assets/glyph-web.svg",
+    "decision": "native vector glyph",
+    "reason": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "drawing_indices": [
+      7,
+      8,
+      9
+    ],
+    "glyph_bbox": [
+      184.81410217285156,
+      489.713623046875,
+      194.00909423828125,
+      497.0226135253906
+    ],
+    "sha256": "b3b9b391ef19e354f36fb3d61b76308663af34506e2697ed788154b8366b4e6a"
+  }
+]

@@ -1,0 +1,126 @@
+{
+  "schema": "je300e-browser-validation/v1",
+  "browser": "Chromium 1194 (Playwright, /opt/pw-browsers)",
+  "page": "web/en built with sphinx -n -W",
+  "widths": {
+    "320": {
+      "page_scroll_width": 320,
+      "viewport": 320,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": [
+        "TABLE.hb-lcd-icon-table",
+        "COLGROUP.",
+        "COL.hb-lcd-col-description",
+        "TBODY.",
+        "TR.",
+        "TD.hb-lcd-description",
+        "TR.",
+        "TD.hb-lcd-description"
+      ]
+    },
+    "360": {
+      "page_scroll_width": 360,
+      "viewport": 360,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": [
+        "TABLE.hb-lcd-icon-table",
+        "COLGROUP.",
+        "COL.hb-lcd-col-description",
+        "TBODY.",
+        "TR.",
+        "TD.hb-lcd-description",
+        "TR.",
+        "TD.hb-lcd-description"
+      ]
+    },
+    "390": {
+      "page_scroll_width": 390,
+      "viewport": 390,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": [
+        "TABLE.hb-lcd-icon-table",
+        "COLGROUP.",
+        "COL.hb-lcd-col-description",
+        "TBODY.",
+        "TR.",
+        "TD.hb-lcd-description",
+        "TR.",
+        "TD.hb-lcd-description"
+      ]
+    },
+    "414": {
+      "page_scroll_width": 414,
+      "viewport": 414,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": [
+        "TABLE.hb-lcd-icon-table",
+        "COLGROUP.",
+        "COL.hb-lcd-col-description",
+        "TBODY.",
+        "TR.",
+        "TD.hb-lcd-description",
+        "TR.",
+        "TD.hb-lcd-description"
+      ]
+    },
+    "600": {
+      "page_scroll_width": 600,
+      "viewport": 600,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": [
+        "TABLE.hb-lcd-icon-table",
+        "COLGROUP.",
+        "COL.hb-lcd-col-description",
+        "TBODY.",
+        "TR.",
+        "TD.hb-lcd-description",
+        "TR.",
+        "TD.hb-lcd-description"
+      ]
+    },
+    "768": {
+      "page_scroll_width": 768,
+      "viewport": 768,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": []
+    },
+    "1024": {
+      "page_scroll_width": 1024,
+      "viewport": 1024,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": []
+    },
+    "1280": {
+      "page_scroll_width": 1280,
+      "viewport": 1280,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": []
+    },
+    "1440": {
+      "page_scroll_width": 1440,
+      "viewport": 1440,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": []
+    },
+    "1920": {
+      "page_scroll_width": 1920,
+      "viewport": 1920,
+      "horizontal_page_scroll": false,
+      "broken_images": [],
+      "content_wider_than_viewport_outside_scroll_containers": []
+    }
+  },
+  "notes": [
+    "At 320-600 px the shared HB-TABLE-LCD-ICON and HB-TABLE-LCD-MODE tables scroll inside their own overflow-x:auto containers (figure.hb-lcd-table-composition, div.hb-lcd-mode-table-panel); the JE-3600A EU English Web edition behaves identically (review D5).",
+    "No page-level horizontal scroll at any width; no broken images."
+  ]
+}
