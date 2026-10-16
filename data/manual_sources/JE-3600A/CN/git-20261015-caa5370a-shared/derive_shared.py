@@ -137,12 +137,12 @@ def merge_text(item):
 
 
 def strip_styles(item):
-    """Remove every source-local (ht-*) class and inline style; keep shared hooks."""
+    """Remove source-local (ht-*, native-*) classes and inline styles; keep shared hooks."""
     presentation = item.get("presentation")
     if presentation:
         attributes = presentation.get("html", {}).get("attributes", {})
         attributes.pop("style", None)
-        names = [name for name in classes(item) if not name.startswith("ht-") and name != "native-band"]
+        names = [name for name in classes(item) if not name.startswith(("ht-", "native-"))]
         if "class" in attributes:
             if names:
                 attributes["class"] = " ".join(names)

@@ -5212,13 +5212,6 @@
           "children": [
             {
               "kind": "inline_group",
-              "presentation": {
-                "html": {
-                  "attributes": {
-                    "class": "native-plain-title"
-                  }
-                }
-              },
               "children": [
                 {
                   "kind": "text",

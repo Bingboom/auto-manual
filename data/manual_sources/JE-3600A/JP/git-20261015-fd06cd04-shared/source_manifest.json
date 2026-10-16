@@ -968,6 +968,11 @@
       "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288"
     },
     {
+      "path": "tools/web/prepared_style_audit.py",
+      "size": 9128,
+      "sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121"
+    },
+    {
       "path": "tools/web/presentation.py",
       "size": 65114,
       "sha256": "619902e6a286ea17708a7b62831dda0ac0d6fe6294a2b0b7fea6af4f58d812b8"
@@ -2022,6 +2027,16 @@
       ]
     }
   },
+  "shared_component_exceptions": [
+    {
+      "language": "ja",
+      "page_id": "page-14",
+      "kind": "table",
+      "text_sha256": "4112ff6ec7026e5a4d5ab7c4332de71f3d8c3a28940acc03e3da9bc3e762e4a9",
+      "preview": "出力ポートタイプ / 電力設定値 / デフォルト設定",
+      "reason": "省エネモード threshold table (port type, power threshold, default timeout) that the print draws inside the p14 figure; no shared component holds this table, so it is a plain shared manual table in flow."
+    }
+  ],
   "inputs": [
     {
       "path": "Jackery ポータブル電源 3600 Plus 取扱説明書.pdf",
@@ -2030,8 +2045,8 @@
     },
     {
       "path": "README.md",
-      "size": 6667,
-      "sha256": "c4533dcf8af301720d951fbee53f10d38d832df69f1c90913a1b7509ca6d8915"
+      "size": 6897,
+      "sha256": "349716afe4b8535269aef5858ed829e5a38b2462f86943260feb73d914e59494"
     },
     {
       "path": "assets/ac-output-p12.svg",
@@ -2400,8 +2415,8 @@
     },
     {
       "path": "derive_shared.py",
-      "size": 48144,
-      "sha256": "f402f1e1bf18fec61691cc627fec8d12ae9bd7fb7d2ee9ac6b33f9f7625d72d2"
+      "size": 48138,
+      "sha256": "870394b033ae778e298ba7cc9ba3258678bba9329109414a7978915308a3c90c"
     },
     {
       "path": "rebuild.py",
@@ -2425,8 +2440,8 @@
     },
     {
       "path": "source/refresh_manifest.py",
-      "size": 3533,
-      "sha256": "2c6c615f6080d936841c3875eb5f9dd42d66c99488b95676551412dfcb4633e9"
+      "size": 3736,
+      "sha256": "9923ebdf8afae4880c18367c2773a0b8f4b63b5916238570778b37811f30f4a0"
     },
     {
       "path": "source/symbol_admission.py",

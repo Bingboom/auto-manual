@@ -30,6 +30,7 @@ Document boundary (open the others only when the task needs them; see §10):
 ## 3. Workflow Rules
 
 - Before any manual-to-Web asset work, follow the [Web artwork reuse order](docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则): inventory existing assets and record reuse decisions before extracting; preserve complete panels and App screenshot frames. A new language or source PDF alone is not a reason to recrop.
+- Web packages use shared components and the shared theme, never source-drawn styles. Before converting a manual to Web, map every printed block (symbol, LCD, button, troubleshooting, specification, inbox, callout, App) to its shared component and record the map in the package; an unmappable block is a plain table declared with its reason, never a package colour, border or `ht-*` class. Review pages show the shared reference edition (e.g. the same model's EU Web) beside the new one. The [prepared-document shared-style gate](code-as-doc/dev/web_publish_pipeline/shared-component-admission.md#prepared-document-shared-style-admission) enforces it.
 - Do not create one config per model just because the model changed.
 - Keep the shared family config pattern with [`configs/config.us.yaml`](configs/config.us.yaml) and [`configs/config.ja.yaml`](configs/config.ja.yaml).
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.

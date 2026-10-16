@@ -1,0 +1,627 @@
+{
+  "schema_version": "auto-manual-prepared-style-baseline/v1",
+  "decided": "2026-10-16 operator: 「执行」 (prevent source-drawn styles; already-frozen locales are recorded, not rewritten)",
+  "rule": "Each entry is a prepared-document locale frozen before the shared-style gate, bound to its exact IR content hash. A re-frozen locale no longer matches and must pass the gate. Entries may be removed, never added.",
+  "entries": [
+    {
+      "web_root": "data/manual_sources/JA-AD600A/EU/added-locales/native-0924/web/de",
+      "ir_content_sha256": "8bad7223cd3ba4a79b68d90153c1933ea465a41e695d1989644a6c04632b9031",
+      "issues": 47
+    },
+    {
+      "web_root": "data/manual_sources/JA-AD600A/EU/added-locales/native-0924/web/es",
+      "ir_content_sha256": "ec17e2feb825261d23deca0d3803a7f8fcfe319a78fc567cad89729f99dddc36",
+      "issues": 47
+    },
+    {
+      "web_root": "data/manual_sources/JA-AD600A/EU/added-locales/native-0924/web/fr",
+      "ir_content_sha256": "fbe658a6309b1c16d7332a94642b82ba08761e4390e544bc85d8b85c1fdcc931",
+      "issues": 47
+    },
+    {
+      "web_root": "data/manual_sources/JA-AD600A/EU/added-locales/native-0924/web/it",
+      "ir_content_sha256": "aa7b750014a872b9e2fcc6f04f9a9ad052492e8156e01076d307c269df003e6c",
+      "issues": 47
+    },
+    {
+      "web_root": "data/manual_sources/JA-AD600A/EU/added-locales/native-0924/web/nl",
+      "ir_content_sha256": "4d8d0e2d74748e5967944ccee3f8e21eca1f947d5af320c3fc6461d08dc4605a",
+      "issues": 47
+    },
+    {
+      "web_root": "data/manual_sources/JA-AD600A/EU/added-locales/native-0924/web/pl",
+      "ir_content_sha256": "bee3cc94b787c0a3484769afa680b3be62c4c3dbdcc71671c0430d2a474157dd",
+      "issues": 47
+    },
+    {
+      "web_root": "data/manual_sources/JA-AD600A/EU/added-locales/native-0924/web/pt",
+      "ir_content_sha256": "775efcd1e8ce97707b26f989a184d660d1dfa690c26e6110319a0cc7930cabb7",
+      "issues": 47
+    },
+    {
+      "web_root": "data/manual_sources/JA-AD600A/EU/added-locales/native-0924/web/uk",
+      "ir_content_sha256": "d6eb5a7098c9c2cf1761ea438bcea07d2fa31da8e4c6d669cb5668d25ab713b6",
+      "issues": 47
+    },
+    {
+      "web_root": "data/manual_sources/JA-TS02A/US/added-locales/git-20261014-11ce66b1/web/es",
+      "ir_content_sha256": "519bbd045513ea7b5e8d5c0b86f18c7cf92ff314890bf730c2784242746746a9",
+      "issues": 216
+    },
+    {
+      "web_root": "data/manual_sources/JA-TS02A/US/added-locales/git-20261014-11ce66b1/web/fr",
+      "ir_content_sha256": "2b7c2ff7701485d4359a64d3d3f65d92527f31fdeb0f42f37216af9b875bcc2f",
+      "issues": 218
+    },
+    {
+      "web_root": "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1/web/en",
+      "ir_content_sha256": "d02f6b563e0357788707776b3a3968338ad93193009a261d897359ec67322134",
+      "issues": 204
+    },
+    {
+      "web_root": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/web/en",
+      "ir_content_sha256": "9095bca195d29c8cd79ef88f2bee5867da425cdf7ad8da4d7b65c8eba6d750b1",
+      "issues": 45
+    },
+    {
+      "web_root": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/web/es",
+      "ir_content_sha256": "2b8379acb4db08338fcc708eac1795744114cc49ab95b1c1ecdb125f141f9e38",
+      "issues": 45
+    },
+    {
+      "web_root": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/web/fr",
+      "ir_content_sha256": "cd148f84a4ff004692a1d2a0abb46513b003fef8f2aaca3c723e7bf78fce6bbe",
+      "issues": 45
+    },
+    {
+      "web_root": "data/manual_sources/JBP-3600A/JP/ja/git-20261014-56860f2f/web/ja",
+      "ir_content_sha256": "979abd245f96ad12098ee35ea69d5ec19c1580bfdb5dc8b52ae90177faded3aa",
+      "issues": 88
+    },
+    {
+      "web_root": "data/manual_sources/JBP-3600A/US/git-20261014-16ae12b0/web/en",
+      "ir_content_sha256": "fa4d2022cd404955b4d0e0c02c944a4703565b74e1c134b71cbd7169367c9914",
+      "issues": 37
+    },
+    {
+      "web_root": "data/manual_sources/JBP-3600A/US/git-20261014-16ae12b0/web/es",
+      "ir_content_sha256": "8e915f5f823699f8234d8b6a330b5c83b16b30bba678f6b6c9c7008612361d47",
+      "issues": 37
+    },
+    {
+      "web_root": "data/manual_sources/JBP-3600A/US/git-20261014-16ae12b0/web/fr",
+      "ir_content_sha256": "a68b1898f108437a78913554de4327ce252c200c4d5a55d979a3b6e878e27372",
+      "issues": 36
+    },
+    {
+      "web_root": "data/manual_sources/JBP-5000A/JP/git-20261011-cdd40510-reviewed/web/ja",
+      "ir_content_sha256": "9ea8094560114968fdf970e2240bd41b3ac9c6e90ceb9d9ad6185acf30d0e0cf",
+      "issues": 66
+    },
+    {
+      "web_root": "data/manual_sources/JBP-5000A/JP/git-20261011-cdd40510/web/ja",
+      "ir_content_sha256": "9ea8094560114968fdf970e2240bd41b3ac9c6e90ceb9d9ad6185acf30d0e0cf",
+      "issues": 66
+    },
+    {
+      "web_root": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed/web/zh-TW",
+      "ir_content_sha256": "2d08fd5eb54b208ea9a1697d4be16bc53ed01df50ce302e76abdebd206289d5d",
+      "issues": 57
+    },
+    {
+      "web_root": "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7/web/zh-TW",
+      "ir_content_sha256": "2d08fd5eb54b208ea9a1697d4be16bc53ed01df50ce302e76abdebd206289d5d",
+      "issues": 57
+    },
+    {
+      "web_root": "data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed/web/zh",
+      "ir_content_sha256": "6b9032f9f9df36de63ecca094f8118ceb1ae5e4f5ea22465ebcf3afdafa3cc39",
+      "issues": 450
+    },
+    {
+      "web_root": "data/manual_sources/JE-3600A/CN/git-20261013-caa5370a-web-layout/web/zh",
+      "ir_content_sha256": "6ceeae0ffb3dee9185ce9fd10a65dc07cdb85d48327ff67e8b937c6f0cb7489b",
+      "issues": 610
+    },
+    {
+      "web_root": "data/manual_sources/JE-3600A/JP/git-20261012-fd06cd04-reviewed/web/ja",
+      "ir_content_sha256": "8c7f0ec0ae4485ba5586fa750c431ed6e5a9b1f57b3a968797b045e782cb89bf",
+      "issues": 612
+    },
+    {
+      "web_root": "data/manual_sources/JE-3600A/JP/git-20261013-fd06cd04-web-layout/web/ja",
+      "ir_content_sha256": "06df5e66f89fbf7afb620487295aa2110a451e865885d1b941acbe511f5376df",
+      "issues": 783
+    },
+    {
+      "web_root": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed/web/ja",
+      "ir_content_sha256": "7cecbc95c6b6e77da63a023dc4fe5d139bd475f71ea952e475a64c675ce8ab50",
+      "issues": 89
+    },
+    {
+      "web_root": "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2/web/ja",
+      "ir_content_sha256": "7cecbc95c6b6e77da63a023dc4fe5d139bd475f71ea952e475a64c675ce8ab50",
+      "issues": 89
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/web/en",
+      "ir_content_sha256": "7469e62ed20b2a9e1103dfab50f703115eeaa5bec4ffeac4b99257a79baaacef",
+      "issues": 53
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/web/es",
+      "ir_content_sha256": "dcacee85a574ce880054ef47735390bf44d437032beab638f7033e9dee90e768",
+      "issues": 53
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/web/fr",
+      "ir_content_sha256": "c2526709bc7c536f2359253bb0c7285b5b497674214244ef35175fc60822ef1f",
+      "issues": 53
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/web/en",
+      "ir_content_sha256": "de823318b1c18767b41232a442407f100cbfc2e5a5a4a4406c9e7c78337c5ce6",
+      "issues": 86
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/web/es",
+      "ir_content_sha256": "27b4ecde2149e0ec2b09d526b9c37d8a0bbbc49bae77f58580bc847576d88758",
+      "issues": 86
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout/web/fr",
+      "ir_content_sha256": "cb4775e8a8c2534658ac5a95985086aa731f3f06388b60a3ffe8fa2cfb60094a",
+      "issues": 86
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/web/en",
+      "ir_content_sha256": "381179571a0e9c08323ae131bf952d04c24fa9279a33c46ae9c0d42026ce55d8",
+      "issues": 194
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/web/es",
+      "ir_content_sha256": "04243cf29aa21d7e6e6e6be18f17fb430ccf0b5feaabc163e5e025acce7a0bf7",
+      "issues": 194
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed/web/fr",
+      "ir_content_sha256": "bb9292f378faa2b043b7db2f8a32c70677067d8aaa54c78c7c0eecd407aafd7a",
+      "issues": 192
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3600C/US/added-locales/git-20261007-31fd0692/web/es",
+      "ir_content_sha256": "112ce8192b87467948e05af516149fd3e7176c2444d40b7b3c4a311b74f567c1",
+      "issues": 30
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3600C/US/added-locales/git-20261007-31fd0692/web/fr",
+      "ir_content_sha256": "f68928e3f600f7bd734f77fe59e2b6b9d46c99e4aeee0cabf1f2e01145989587",
+      "issues": 30
+    },
+    {
+      "web_root": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en",
+      "ir_content_sha256": "adaf007add36c80ce6b8ce167cee245024783a8a8316bfbe5c92a0da90376fe1",
+      "issues": 30
+    },
+    {
+      "web_root": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/web/en",
+      "ir_content_sha256": "524bed69b8a706b25f38ad4def724de651308ae105320c049d0797f35491b7d3",
+      "issues": 102
+    },
+    {
+      "web_root": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/web/es",
+      "ir_content_sha256": "9a7219f9d723736a47a55dc391ebb90b11c472641226f4ef477e998a7cdceaa1",
+      "issues": 102
+    },
+    {
+      "web_root": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/web/fr",
+      "ir_content_sha256": "3c9091970027d978ca552ee52732530b5c327a593a57d07259e2c53e38397719",
+      "issues": 102
+    },
+    {
+      "web_root": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/web/en",
+      "ir_content_sha256": "f010105e4da134cf6262818aa0d4507528cf65ac5a986454abf55c8f06778e93",
+      "issues": 146
+    },
+    {
+      "web_root": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/web/es",
+      "ir_content_sha256": "6f700a2b3d2954b6bfb0dfc73136e5a272901887e926152092ff0a0cccbe2fae",
+      "issues": 146
+    },
+    {
+      "web_root": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/web/fr",
+      "ir_content_sha256": "95a3bcb0f006a801aca889ee6caae9e33f941a4621477a293808495316601903",
+      "issues": 146
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82-reviewed/web/ja",
+      "ir_content_sha256": "ca7c750d1009fef287a53b22077872c9004cb0191b723a8f48feab815188303e",
+      "issues": 25
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82/web/ja",
+      "ir_content_sha256": "4410d7918de78cc0cde8ad795bc94fecfa37230f762754967b78cbc8dc47e58f",
+      "issues": 25
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/JP/ja/git-20261009-ac3a1f82-web-layout/web/ja",
+      "ir_content_sha256": "eb1fbfa1b10cae8128749e4933ee5692624e37acea1775b8ece9952ae99c24c4",
+      "issues": 35
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e/web/en",
+      "ir_content_sha256": "f50a1c20327db279c0687cee502ad24788daee3fef6e3f43c737d587bfc12653",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed/web/en",
+      "ir_content_sha256": "99776ef443853fefce7799bd2bea38784797d34243e6f1ff4782c043b7357df7",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261007-28c58312-native/web/es",
+      "ir_content_sha256": "cde1fb71785520dcbc75d87007d1717d6671ed4ee84e7db22534674cc00d304d",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261007-28c58312-native/web/fr",
+      "ir_content_sha256": "9ea9bad90d736c3e350fa8dd40df1124cb22787790f666ee0e961ab8f09a5369",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261007-28c58312-reviewed/web/es",
+      "ir_content_sha256": "87c425fcb7c537b784868e438edeb4cb6aa3cbe8bb8dda2eb02933b44fbf331c",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261007-28c58312-reviewed/web/fr",
+      "ir_content_sha256": "8c43b65658e16beb2bf7993e60508c19bdacfb3ae56bc1fa11084b74991831b8",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JBP-1000B-WH/JP/ja/git-20261009-3aa6c003-web-layout/web/ja",
+      "ir_content_sha256": "592a584e897df2f75641da53974113a3b94d6a614a01cc30be9e8f79dc91beba",
+      "issues": 9
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/batch1465-candidate/web/de",
+      "ir_content_sha256": "5b2aa7443b6bd6e40790e5fd6ed49b945beac4ffb8ac0c86677f019f8d728729",
+      "issues": 34
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/batch1465-candidate/web/es",
+      "ir_content_sha256": "330bda88d5c930181f780e37a589a34678ca729ace4d636476d43ae0121ef893",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/batch1465-candidate/web/fr",
+      "ir_content_sha256": "39b3c7a04ff6e781b69cbf0178b13f93bd57e1c91c2c528bbbb46545d2b28d8a",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/batch1465-candidate/web/it",
+      "ir_content_sha256": "04cdbc9b9723cee3000367a87ca96c317ca97893a48b0ce80b88c41618235c5c",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/batch1465-candidate/web/nl",
+      "ir_content_sha256": "c454828648522e622f01590e7c0b6bee83aec873049920b2b5c3b0e797796de7",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/batch1465-candidate/web/pl",
+      "ir_content_sha256": "66d1a76d4711cf8a8d1aad7158742bf039c8bbcb8c7ed3852d745953a3bfa8fc",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/batch1465-candidate/web/pt",
+      "ir_content_sha256": "62ae6a52b68c02001e8d599fc3facbee4821f9dd43770dc24371333f1e5e14ff",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/batch1465-candidate/web/uk",
+      "ir_content_sha256": "91d7db0a6e271ac3d122c74a3b7c86751b05ebbc6edd502b43e6209f5ae3c8fc",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/git-20261008-557cc07f-reviewed/web/nl",
+      "ir_content_sha256": "9061cbe83252509414f47da7bec8ef9ff3f46a2b5ceda3e917371cbd5c6390a2",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/git-20261008-557cc07f-reviewed/web/pl",
+      "ir_content_sha256": "3fb23c65cd0f28b1e9f25c8170aba3f2930a111bfb09a9e174e20af8ca60412b",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/git-20261008-557cc07f-reviewed/web/pt",
+      "ir_content_sha256": "413f43cb7bd65d8a5873a5794589880608ba38adb829c67e2c0858a044013a50",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/git-20261008-557cc07f-reviewed/web/uk",
+      "ir_content_sha256": "d85930ae97074f6f67559bcfa2c92f32a45a9dd0c655ca9dfac2afa6a95b2ebd",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/native-0924/web/nl",
+      "ir_content_sha256": "9061cbe83252509414f47da7bec8ef9ff3f46a2b5ceda3e917371cbd5c6390a2",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/native-0924/web/pl",
+      "ir_content_sha256": "3fb23c65cd0f28b1e9f25c8170aba3f2930a111bfb09a9e174e20af8ca60412b",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/native-0924/web/pt",
+      "ir_content_sha256": "413f43cb7bd65d8a5873a5794589880608ba38adb829c67e2c0858a044013a50",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-2000B/EU/native-0924/web/uk",
+      "ir_content_sha256": "d85930ae97074f6f67559bcfa2c92f32a45a9dd0c655ca9dfac2afa6a95b2ebd",
+      "issues": 19
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/de",
+      "ir_content_sha256": "46b75bfd844e91135326b4024a911138fb12c8ca9f8aace4da70d0e7563e746b",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/en",
+      "ir_content_sha256": "243bfa943c73dbaf9afdc3493181ac42d02bfe4b1e491c86d6d9de77f49e3d94",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/es",
+      "ir_content_sha256": "6e39b55311acb3e286a625819e322de39ed449a86069474100a5ede960859e0e",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/fr",
+      "ir_content_sha256": "89fca378bf6b713d31cbcc43ab06213b0049a50d2060b56d47f57b4e81015045",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/it",
+      "ir_content_sha256": "3974d6b82153107c19b90afc8d2c876260c6f088829bcf492f463fc0ae2238fe",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/nl",
+      "ir_content_sha256": "c5950f7012205b8eb443b6a2ff82296e9f242f6811b87e072a5f8f265a08f901",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/pl",
+      "ir_content_sha256": "1740907104e176a6b824d2d7935e5c95516433b30688ee98fbfbb71d34dd370d",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/pt",
+      "ir_content_sha256": "b233fa814a892782481b0e3d9ac78c5a96e4644bda7b328fd9ffd18a26526bd9",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed/web/uk",
+      "ir_content_sha256": "20c398d5a2afc5dbb7c33b4ed936a52804b3089dbbef4ecebbbb7979dd1f198d",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/de-r1",
+      "ir_content_sha256": "ae3af08a1ce02c2f4d884c2512758c2cfe04b3c3298a607f249d21bef630598e",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/de-r2",
+      "ir_content_sha256": "46b75bfd844e91135326b4024a911138fb12c8ca9f8aace4da70d0e7563e746b",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/en-r5",
+      "ir_content_sha256": "960f5cfcec92bc43e7b13ae277d66a6f223de84216f399f22167c01457ac8696",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/en-r6",
+      "ir_content_sha256": "243bfa943c73dbaf9afdc3493181ac42d02bfe4b1e491c86d6d9de77f49e3d94",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/es-r2",
+      "ir_content_sha256": "9105da956d121ede5af8412bc151e31c91e58932a3cbe9769a028dc31de33c87",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/es-r3",
+      "ir_content_sha256": "6e39b55311acb3e286a625819e322de39ed449a86069474100a5ede960859e0e",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/fr-r4",
+      "ir_content_sha256": "075638e1f74f94c1a2a1c17c70fa25f234d1de32dba0795443ad5924a12dd9d6",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/fr-r5",
+      "ir_content_sha256": "89fca378bf6b713d31cbcc43ab06213b0049a50d2060b56d47f57b4e81015045",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/it-r1",
+      "ir_content_sha256": "a4ce20a5e4a97f195e7cb2d6ee3a263b518561bd1f480c60db31e64ac8ed52d6",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/it-r2",
+      "ir_content_sha256": "3974d6b82153107c19b90afc8d2c876260c6f088829bcf492f463fc0ae2238fe",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/nl-r1",
+      "ir_content_sha256": "17493442b99fbc9c152301d694ce6e82926e1377c0e3333eb876f5cd409405ad",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/nl-r2",
+      "ir_content_sha256": "c5950f7012205b8eb443b6a2ff82296e9f242f6811b87e072a5f8f265a08f901",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/pl-r1",
+      "ir_content_sha256": "863bdca7cfbbf957e05909002dd52a6430b23aba7d1d121c7e67edb8e253cee9",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/pl-r2",
+      "ir_content_sha256": "1740907104e176a6b824d2d7935e5c95516433b30688ee98fbfbb71d34dd370d",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/pt-r1",
+      "ir_content_sha256": "67cea5da2c6fcadc397afd5531693b82d0802da37de763e7dd59dfe7ea67b2d4",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/pt-r2",
+      "ir_content_sha256": "b233fa814a892782481b0e3d9ac78c5a96e4644bda7b328fd9ffd18a26526bd9",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/uk-r1",
+      "ir_content_sha256": "101510b61797662b36a1b45232232584db811cb7a16ee299d80b01ceb51d873b",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JBP-3600A/EU/native-0924/web/uk-r2",
+      "ir_content_sha256": "20c398d5a2afc5dbb7c33b4ed936a52804b3089dbbef4ecebbbb7979dd1f198d",
+      "issues": 21
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/de/git-20261004-47a346dc/web/de",
+      "ir_content_sha256": "ec714c37da6210cddee5413b896aa16b9427bca787edf1680c2722275f51e332",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/de/git-20261005-47a346dc/web/de",
+      "ir_content_sha256": "7a77d18aa1963af5bd4f757ec94554b8b1624fb9a4bb8761b9c80710f6e74f52",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/en/git-20261002-47a346dc/web/en",
+      "ir_content_sha256": "df7c3493da1276907f0852ddd7029ff0072eb816d17b3bb2bea3cf0f2c04f8a6",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/en/git-20261004-47a346dc/web/en",
+      "ir_content_sha256": "c8d0b30c4520a8197c2c951daf7c89c517f6a756776c55812a3e15802548b6aa",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/web/en",
+      "ir_content_sha256": "c8d0b30c4520a8197c2c951daf7c89c517f6a756776c55812a3e15802548b6aa",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/es/1465-20261010-r1/web/es",
+      "ir_content_sha256": "22f0bb7ea1ac8054d2ccb06935d889698461292c41bf0cbc31cb555563aa1ea4",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/es/git-20261004-47a346dc/web/es",
+      "ir_content_sha256": "06490c6dd0480b5757983f68fee94417995e1956e9d9584d06f47e1c44b3ad3a",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/es/git-20261005-47a346dc/web/es",
+      "ir_content_sha256": "06490c6dd0480b5757983f68fee94417995e1956e9d9584d06f47e1c44b3ad3a",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/fr/git-20261004-47a346dc/web/fr",
+      "ir_content_sha256": "fa735ebed06456a5da31690f4e4c9153b21d233c406b706c623ac3b28d8fda91",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/fr/git-20261005-47a346dc/web/fr",
+      "ir_content_sha256": "fa735ebed06456a5da31690f4e4c9153b21d233c406b706c623ac3b28d8fda91",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/it/1465-20261010-r1/web/it",
+      "ir_content_sha256": "d6d583bb519330f4807c9a249f374cab2cefb5ef03843c0b02074f2946f77ebc",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/it/git-20261004-47a346dc/web/it",
+      "ir_content_sha256": "5e7457fb5ed9db3369e72a28521623174a907b1365489c7bf3035cc90cfb2042",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/it/git-20261005-47a346dc/web/it",
+      "ir_content_sha256": "5e7457fb5ed9db3369e72a28521623174a907b1365489c7bf3035cc90cfb2042",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/nl/git-20261004-47a346dc/web/nl",
+      "ir_content_sha256": "c9ae4fc075542b693882bab3a1624f9a6eb4f7d7da61d18c0d7540ca07d70700",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/nl/git-20261005-47a346dc/web/nl",
+      "ir_content_sha256": "a1230b03f37e44fb137b483c590dd25e58a0f924b5db7591e32eb9b264217a73",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/pl/git-20261004-47a346dc/web/pl",
+      "ir_content_sha256": "5b1d8df8709199cea106086007a7d467bbfe17ab0ceb54c6a4604bfd3ebbcddf",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/pl/git-20261005-47a346dc/web/pl",
+      "ir_content_sha256": "668382a7792689a0dfe518f2cf728a7a5c213802d5cee568a9882dfdf8be8ba4",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/pt/git-20261004-47a346dc/web/pt",
+      "ir_content_sha256": "7d97f3f9eea1f35662c23e649868a33fae2ac835e5fe75eb2ce87b4ce2c77fc8",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/pt/git-20261005-47a346dc/web/pt",
+      "ir_content_sha256": "506146a99ddafac8eef444972197add578b21476745254ca89f3e1a6c7d2f934",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/uk/git-20261004-47a346dc/web/uk",
+      "ir_content_sha256": "b19fe1c5cc10d2e62e45807487b7b6def0445669c37b5d4c9cf55c470a5872d3",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JE-3600A/EU/uk/git-20261005-47a346dc/web/uk",
+      "ir_content_sha256": "dcbe7a965e22befa35aad4d9f16fbebad343b853e6da9d071e4152c62e7507e0",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/JP/ja/git-20261016-ac3a1f82-solar-voc/web/ja",
+      "ir_content_sha256": "61bf616a7268607734d0fae46c0cfb947a10be16182f6b17ba3045b3761b6e72",
+      "issues": 35
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/en/git-20261016-a6d1659e-solar-voc/web/en",
+      "ir_content_sha256": "6b6b4a39e335eaf4fb6b48954fd45af5d52a36c23f495b0e062fc84a67e120ff",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261016-28c58312-solar-voc/web/es",
+      "ir_content_sha256": "e3105a24df2063828c70c530f0f59ca4456198128028d1c9398bfc6aeb2074b7",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261016-28c58312-solar-voc/web/fr",
+      "ir_content_sha256": "d439d5437204bf6ef52439c97186aee851e93909ac02a5acee382c6af2cd5f1f",
+      "issues": 28
+    }
+  ]
+}

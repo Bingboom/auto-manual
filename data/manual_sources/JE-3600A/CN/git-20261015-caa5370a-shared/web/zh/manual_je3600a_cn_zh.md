@@ -278,7 +278,7 @@
 
 <span id="native-p12-b4-l0-0"></span>
 
-## <span class="native-plain-title">与加电包连接（单独售卖）</span>
+## <span>与加电包连接（单独售卖）</span>
 
 <p>本产品最多搭载5个加电包，可满足大容量的需求。<br/>关于加电包的使用说明，详见加电包 3600说明书。</p>
 
