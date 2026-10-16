@@ -65,4 +65,17 @@ For a portrait PDF export (cover page 1, back cover last page, one page per artb
 - Tell the user exactly what changed (table of old→new values), what you deliberately left alone and why, and any adjacent defect you noticed but that was out of the requested scope — let them decide whether to fix it in the same pass.
 - If the target file's directory is a git repo (this one usually isn't the target — it's a Desktop file — but check), this skill's own edits to `.claude/skills/**` still fall under this repo's `config-review` skill and branch/PR discipline in `AGENTS.md` §8; the manual-file edits themselves are not a repo change and need no branch/PR.
 
+## 7. Batch fixes from a review: the change-spec toolkit
+
+When a review has already produced a list of fixes, possibly across many files, do not hand-write a `.jsx` for each file. Use `scripts/`; usage and the spec format are in [`scripts/README.md`](scripts/README.md).
+
+- `locate.py` finds text on a page and gives you the PDF bbox for a spec entry.
+- `run_fix.sh SRC.ai SPEC.json [--dry-run]` turns the spec into ASCII-only ExtendScript and applies it in Illustrator, matching each frame by position and old text together.
+  - It renders PNGs of the changed artboards.
+  - It saves to `<name>_修正.ai` and never overwrites the original.
+  - It refuses to save while any change reports FAIL.
+- `verify.py` independently re-checks the saved file with PyMuPDF: page count, text deltas, untouched pages and font degradation.
+
+A worked example (review reports, a ready spec and a hand-off prompt) is in [`reports/eu-nine-language-ai-audit/`](../../../reports/eu-nine-language-ai-audit/README.md).
+
 See also: `references/diagnosis-recipes.md` (PyMuPDF snippets) and `references/jxa-illustrator-recipes.md` (the full JXA/ExtendScript recipes, ready to adapt).
