@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/ja-ad500a-sil-us-hto889a",
+    "expected_sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.35,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "source_artboard",
+      "role": "source_artboard",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Single Illustrator artboard; English pages are isolated by crop coordinates"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ad500a-sil/us/overview-textless",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            582,
+            688,
+            791,
+            923
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            648,
+            689.8,
+            774,
+            718.8
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            746,
+            759,
+            774,
+            767.3
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            760,
+            810.5,
+            774,
+            818.3
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/overview-textless.png",
+          "scale": 4,
+          "expected_sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+        },
+        {
+          "format": "pdf",
+          "path": "assets/overview-textless.pdf",
+          "expected_sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only textless review derivative. Six outlined external annotations on pure white canvas removed; complete product shading, logos, leaders and crop preserved. No live registry promotion."
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}

@@ -397,7 +397,7 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn("当前有效快照没有交付物", page)
             self.assertNotIn("发布清单和飞书快照当前都不可读", page)
 
-            # An unreadable capability table empties only the 数据统计 tab; 系统数据 stays a pointer page.
+            # An unreadable capability table empties only the 数据统计 tab; the old 系统数据 URL still redirects.
             with (web / "conf.py").open("a", encoding="utf-8") as conf:
                 conf.write("from tools.rtd import system_data\nsystem_data.CAPABILITIES_CSV = 'missing.csv'\n")
             result, page = build("no-statistics")
@@ -405,7 +405,10 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn("机型能力表或素材登记表不可读，构建日志有告警。", page)
             self.assertNotIn("system-data-json", page)
             self.assertIn("当前有效快照没有交付物", page)
-            self.assertTrue((base / "no-statistics" / "workspace" / "data" / "index.html").is_file())
+            moved = BeautifulSoup(
+                (base / "no-statistics" / "workspace" / "data" / "index.html").read_text(), "html.parser")
+            self.assertEqual(moved.select_one("#moved-target")["href"], "../deliverables/index.html#statistics")
+            self.assertIsNone(moved.select_one("#app-sidebar"))
 
 
 

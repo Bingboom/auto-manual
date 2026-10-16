@@ -1,9 +1,9 @@
 {#- Shared site shell: one sidebar and one top bar for every portal page.
     Import with context so pathto() resolves relative to the calling page:
       {% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
-    `nav` carries the optional entries: system (bool), deliverables (bool), design (bool), data (bool), matrix (bool).
+    `nav` carries the optional entries: system (bool), deliverables (bool), design (bool), matrix (bool).
     Internal pages add three groups after 说明书: 知识库 (首页), 产品与市场 (产品知识, 产品矩阵, 市场与政策) and
-    说明书生产 (说明书工作台, 系统建设, 设计规范, 系统数据). Every sidebar entry is a page, so it is marked current on
+    说明书生产 (说明书工作台, 系统建设, 设计规范). Every sidebar entry is a page, so it is marked current on
     that page; sections of a page (知识库首页's 分享资料 and 最近更新) are not sidebar entries.
     Public manual pages pass internal=false: only the `internal` branches are left out, so edit inside them and the
     manual-library root stays byte-identical in both site roles. 「工作资料」 is the brand only. -#}
@@ -29,7 +29,6 @@
     {% if nav.deliverables %}{{ nav_link(pathto('workspace/deliverables/index'), '▦', '说明书工作台', active == 'deliverables') }}{% endif %}
     {% if nav.system %}{{ nav_link(pathto('workspace/system/index'), '◈', '系统建设', active == 'system') }}{% endif %}
     {% if nav.design %}{{ nav_link(pathto('workspace/design/index'), '◐', '设计规范', active == 'design-system') }}{% endif %}
-    {% if nav.data %}{{ nav_link(pathto('workspace/data/index'), '▥', '系统数据', active == 'system-data') }}{% endif %}
     {% endif %}
   </nav>
 </aside>

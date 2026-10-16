@@ -43,6 +43,16 @@ BlockClaw currently handles bounded manual operations: queue lookup, Start Revie
 - `/manual-status [run_id|last]`
 - `/manual-query <model and keywords>` — read-only chapter links and labelled previews
 
+The manifest declares `activation.onStartup: true` so slash commands and routing
+hooks register before the first tool call on runtimes with lazy plugin loading.
+The plugin adds a shared `before_prompt_build` routing rule for RTD and
+`/manual-query` requests forwarded as ordinary text by DingTalk or Feishu, and
+ordinary model-specific product questions such as “查一下 JBP-2000B 适用主机”.
+Answers must read current manual evidence; do not substitute similar web product
+names or claim HTTP failures without a tool result.
+It directs the model to the read-only manual tools instead of the Feishu
+attachment catalog. Model tool selection still requires live acceptance.
+
 ## Published EU Product Queries
 
 `manual_search` locates the exact model, source language and chapters;
@@ -59,7 +69,9 @@ Set the optional `manualQueryBaseUrl` to the HTTPS root of the deployed site,
 version prefix included (for example
 `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`), in this plugin's
 existing config. The site must be publicly readable: the client sends no credentials.
-Without it, query calls report unavailable. The client verifies the same-origin
+The site home may redirect while root-level JSON files return 404; both downloads
+and evidence links retain the configured version prefix. Without a configured URL,
+query calls report unavailable. The client verifies the same-origin
 deployment receipt and export hashes, caches for at most 60 seconds between
 checks, and refuses expired data when a refresh fails. Same-origin RTD version
 redirects are bounded; cross-origin redirects are refused. Existing tool policies

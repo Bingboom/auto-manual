@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
 
 from tools.rtd import knowledge_updates as ku
-from tools.rtd import design_system, market_policy, product_learning, product_matrix, system_data
+from tools.rtd import design_system, market_policy, product_learning, product_matrix
 from tools.rtd.deliverables import DELIVERABLES_PAGE
 from tools.rtd.portal import ASSETS
 from tools.rtd.system_workspace import SYSTEM_PAGE
@@ -51,7 +51,7 @@ class LoadUpdatesTests(unittest.TestCase):
         self.assertEqual(ku.PAGES, {
             "share": None, "product-knowledge": product_learning.PAGE, "product-matrix": product_matrix.PAGE,
             "market-policy": market_policy.PAGE, "deliverables": DELIVERABLES_PAGE, "system": SYSTEM_PAGE,
-            "design-system": design_system.PAGE, "system-data": system_data.PAGE,
+            "design-system": design_system.PAGE,
         })
 
     def test_bad_entries_are_dropped_and_undated_ones_kept(self):
@@ -128,7 +128,7 @@ class UpdatesViewTests(unittest.TestCase):
 class HomeTemplateTests(unittest.TestCase):
     def render(self, **context):
         base = {"share_entry": "", "system_entry": True, "deliverables_entry": True, "design_entry": True,
-                "data_entry": True, "matrix_entry": True, "updates": []}
+                "matrix_entry": True, "updates": []}
         template = Environment(loader=FileSystemLoader(ASSETS)).get_template("workspace_portal.html")
         page = template.render(**{**base, **context}, pathto=lambda name, *args: name)
         return BeautifulSoup(page, "html.parser")
@@ -137,7 +137,7 @@ class HomeTemplateTests(unittest.TestCase):
         soup = self.render(matrix_entry=False, system_entry=False)
         groups = [(s.h2.text, [c.strong.text for c in s.select(".home-card")]) for s in soup.select(".home-group")]
         self.assertEqual(groups, [("产品与市场", ["产品知识", "市场与政策"]),
-                                  ("说明书生产", ["说明书工作台", "设计规范", "系统数据"])])
+                                  ("说明书生产", ["说明书工作台", "设计规范"])])
         self.assertFalse(re.search(r"\d", "".join(c.text for c in soup.select(".home-card"))))
         self.assertIsNone(soup.select_one("#shares"))
 

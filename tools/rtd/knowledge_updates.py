@@ -31,7 +31,6 @@ PAGES: dict[str, str | None] = {
     "deliverables": "workspace/deliverables/index",
     "system": "workspace/system/index",
     "design-system": "workspace/design/index",
-    "system-data": "workspace/data/index",
 }
 _ANCHOR = re.compile(r"[a-z][a-z0-9-]*")
 

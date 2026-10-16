@@ -13,7 +13,7 @@
 #   title     the row's bold line
 #   note      one line: what changed
 #   page      where the row links: share | product-knowledge | product-matrix |
-#             market-policy | deliverables | system | design-system | system-data
+#             market-policy | deliverables | system | design-system
 #             (hidden while that page, or the share package, is not built)
 #   anchor    optional lower-case id on that page, such as work-map
 #   evidence  pr:<repo>#<n>, or a list of them, for reviewers; never shown
@@ -23,6 +23,13 @@
 schema: hello-docs-knowledge-updates/v1
 
 updates:
+  - date: 2026-10-15
+    title: 说明书工作台 · 数据统计入口
+    note: 独立系统数据页已下线，旧链接自动转入此标签并保留筛选条件
+    page: deliverables
+    anchor: statistics
+    evidence: "pr:auto-manual#1546"
+
   - date: 2026-10-14
     title: 说明书工作台 · 数据统计
     note: 系统数据页的发布统计、机型能力（只列已发布型号）和素材登记并入此标签页，原页改为指引
@@ -52,7 +59,8 @@ updates:
   - date: 2026-10-10
     title: 系统数据
     note: 新页面：统计已发布网页说明书、机型能力与素材登记，可按区域和机型筛选
-    page: system-data
+    page: deliverables
+    anchor: statistics
     evidence: "pr:auto-manual#1482"
 
   - date: 2026-10-10
