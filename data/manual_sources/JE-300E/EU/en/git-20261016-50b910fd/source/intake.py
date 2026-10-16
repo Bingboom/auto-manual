@@ -272,10 +272,11 @@ def make():
     n.add(*n.prose(17, [26, 151, 341, 172], right=FULL))
     headers = [pair(n.t(17, [29, 175, 55.6, 199]), "content"), pair(n.t(17, [55.6, 175, 341, 199]), "content")]
     rows = []
-    # F0-F3: four printed code cells beside one merged measure cell.
-    codes = [n.t(17, [29, y0, 55.6, y1]) for y0, y1 in [(199, 217.2), (217.2, 235.3), (235.3, 253.4), (253.4, 271.6)]]
-    rows.append({"code_html": "<br>".join(codes), "code_text": " ".join(codes),
-                 **rich(n.prose(17, [55.6, 199, 341, 271.6], right=336.0), "measures")})
+    # F0-F3: four printed code cells beside one merged measure cell. Operator decision D6
+    # (2026-10-16, 「拆成4行」): one row per code, each carrying the merged cell's measure.
+    measures = rich(n.prose(17, [55.6, 199, 341, 271.6], right=336.0), "measures")
+    for y0, y1 in [(199, 217.2), (217.2, 235.3), (235.3, 253.4), (253.4, 271.6)]:
+        rows.append({**pair(n.t(17, [29, y0, 55.6, y1]), "code"), **measures})
     for y0, y1 in [(271.6, 289.7), (289.7, 307.8), (307.8, 387.8), (387.8, 441.1), (441.1, 469.1), (469.1, 498)]:
         rows.append({**pair(n.t(17, [29, y0, 55.6, y1]), "code"),
                      **rich(n.prose(17, [55.6, y0, 341, y1], right=336.0, keep_marks=True), "measures")})

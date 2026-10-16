@@ -116,7 +116,7 @@
       "pages": "p17",
       "print_block": "Troubleshooting table",
       "web": "HB-TABLE-TROUBLESHOOTING/two-column",
-      "note": "F0-F3 one row (D6)"
+      "note": "F0-F3 one row per code, each with the merged measure (operator D6)"
     },
     {
       "pages": "p18",

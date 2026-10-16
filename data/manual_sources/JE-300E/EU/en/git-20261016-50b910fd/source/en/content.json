@@ -3211,8 +3211,26 @@
                 "content_kind": "ordered_rows",
                 "content": [
                   {
-                    "code_html": "F0<br>F1<br>F2<br>F3",
-                    "code_text": "F0 F1 F2 F3",
+                    "code_html": "F0",
+                    "code_text": "F0",
+                    "measures_html": "Restart the product.",
+                    "measures_text": "Restart the product."
+                  },
+                  {
+                    "code_html": "F1",
+                    "code_text": "F1",
+                    "measures_html": "Restart the product.",
+                    "measures_text": "Restart the product."
+                  },
+                  {
+                    "code_html": "F2",
+                    "code_text": "F2",
+                    "measures_html": "Restart the product.",
+                    "measures_text": "Restart the product."
+                  },
+                  {
+                    "code_html": "F3",
+                    "code_text": "F3",
                     "measures_html": "Restart the product.",
                     "measures_text": "Restart the product."
                   },

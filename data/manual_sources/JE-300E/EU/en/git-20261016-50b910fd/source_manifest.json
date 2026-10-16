@@ -1515,8 +1515,8 @@
     },
     {
       "path": "README.md",
-      "size": 6328,
-      "sha256": "2b874cf27536c0ad1f2a35e6f1002e1456295fcfdc4626e8f089e5d9caabeee4"
+      "size": 6683,
+      "sha256": "cd23171bff9d953f8e10e6fd04bf198a1deb3b619fe3197ddaa90f44d7332d97"
     },
     {
       "path": "assets/ac-output.png",
@@ -1750,8 +1750,8 @@
     },
     {
       "path": "audit/component-map.json",
-      "size": 4108,
-      "sha256": "0f42eea2112a8c0f1931ab89155c8d1703d90fecb3eaac19c8e243f3a85ebf41"
+      "size": 4156,
+      "sha256": "cd29446025711588ad6cb3c81af6d38e542f1d331f7c519e559df65c85f3cd8b"
     },
     {
       "path": "audit/proposed-component-admission.json",
@@ -1760,8 +1760,8 @@
     },
     {
       "path": "audit/review.zh.md",
-      "size": 2872,
-      "sha256": "df62a7f5bfef44c3f5a27d2850caf3df712c34d473fe404286e601e782f26f99"
+      "size": 3681,
+      "sha256": "4a6ebea726fd9dd7fc0bb1e71c4a78d7457a75d2a33d0aaa69c475936df62dd2"
     },
     {
       "path": "rebuild.py",
@@ -1770,13 +1770,13 @@
     },
     {
       "path": "source/en/content.json",
-      "size": 223249,
-      "sha256": "dd569d76c9c3e5043261916de53cc3488ef083ff80af3d76c64e007cd8a50d6a"
+      "size": 223942,
+      "sha256": "16ae07ce68e340a76105f617d3e2f0ef56dab6ca357787e5058e3a1638af685a"
     },
     {
       "path": "source/en/coverage.json",
       "size": 160629,
-      "sha256": "f2b798070b4902a38ccfed67d05b75d374accb69fb88a94bc6580060f2706b73"
+      "sha256": "a0555b0de1822e6c3e4bb0a1b81f2b8ec15fca48f47aabed50364d956ceffea3"
     },
     {
       "path": "source/extract_assets.py",
@@ -1795,8 +1795,8 @@
     },
     {
       "path": "source/intake.py",
-      "size": 22209,
-      "sha256": "867be0b326163c90d77679ad0e50f169d08b51a7e753520d118930c14142401e"
+      "size": 22283,
+      "sha256": "e8199b21d9fa56bbcc5de04c583d48fe5bcd36b07039d9f4add73b88a2495674"
     },
     {
       "path": "source/native.py",
@@ -2065,13 +2065,13 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 349321,
-      "sha256": "0af34204585f3fe18d3c272c3bfa359e4bf62a043ed4a62031f5d348db518343"
+      "size": 350050,
+      "sha256": "3940d145ce807ceecbfeb6cae875fe0c7fcfd11fa475e07d551ed8201e81f4d9"
     },
     {
       "path": "web/en/manual_je300e_eu_en.md",
-      "size": 58002,
-      "sha256": "6ffb66e129c245c99cca841d4c455c5504c13f43b61f90fda7e004c3ed7344eb"
+      "size": 58332,
+      "sha256": "1ce401e494d8a20dd68d2d331f13f2df66cbb85d6bc61f6b8064ef19dd0ecc15"
     }
   ]
 }

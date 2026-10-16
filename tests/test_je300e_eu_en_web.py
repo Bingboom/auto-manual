@@ -306,6 +306,14 @@ class Je300eEuEnWebTests(unittest.TestCase):
         soup = page()
         self.assertFalse(soup.select('figcaption'))  # the print has no figure captions
         self.assertEqual(len(soup.select('figure.hb-warranty-card')), 5)
+        # Operator D6: the print's F0-F3 code cells beside one merged measure become one row per code.
+        content = read(PACKAGE / 'source/en/content.json')
+        rows = next(slot['content'] for ch in content['chapters'] for node in ch['nodes']
+                    if node.get('kind') == 'component'
+                    and node['component_spec']['component_id'] == 'HB-TABLE-TROUBLESHOOTING'
+                    for slot in node['component_spec']['slots'] if slot['role'] == 'rows')
+        self.assertEqual([row['code_text'] for row in rows], [f'F{i}' for i in range(10)])
+        self.assertEqual({row['measures_text'] for row in rows[:4]}, {'Restart the product.'})
 
     def test_artwork_is_recorded_shared_or_native(self):
         content = (PACKAGE / 'source/en/content.json').read_text(encoding='utf-8')

@@ -46,8 +46,8 @@
     "assets/manufacturer-qr.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "a65f03e6de57171ec739e8089bf31efdee4cd0dc2232cc8eaa9c5e50370a376c",
-  "content_sha256": "3df972f9bfba1072c94ea434a1ef0293ae0973d9cb18388fbb00e85dc77ee3ee",
+  "bundle_sha256": "80d3375d8aace379b2aa8886aab33e5229a1ce042ff5a2d02447f15abb78bc68",
+  "content_sha256": "33f423e60d81e1b7f82c7e87221d1c5dbc8a9f38195401e7a2e7e6de661e52b1",
   "language": "en",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -5874,7 +5874,7 @@
         {
           "asset_refs": [],
           "block_id": "troubleshooting:block-0003",
-          "content_sha256": "077d21f276d44532dd8bd34c954eb049eaa7130481fab5700ff36bbe459f0ee3",
+          "content_sha256": "3a78353285306fc0f6b0b8feac61276e842ccdb2551a3d2150aedffba8cc7e3a",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -5901,8 +5901,26 @@
                 {
                   "content": [
                     {
-                      "code_html": "F0<br>F1<br>F2<br>F3",
-                      "code_text": "F0 F1 F2 F3",
+                      "code_html": "F0",
+                      "code_text": "F0",
+                      "measures_html": "Restart the product.",
+                      "measures_text": "Restart the product."
+                    },
+                    {
+                      "code_html": "F1",
+                      "code_text": "F1",
+                      "measures_html": "Restart the product.",
+                      "measures_text": "Restart the product."
+                    },
+                    {
+                      "code_html": "F2",
+                      "code_text": "F2",
+                      "measures_html": "Restart the product.",
+                      "measures_text": "Restart the product."
+                    },
+                    {
+                      "code_html": "F3",
+                      "code_text": "F3",
                       "measures_html": "Restart the product.",
                       "measures_text": "Restart the product."
                     },
@@ -5964,7 +5982,7 @@
       "skipped_raw": 0,
       "source_path": "source/en/content.json#troubleshooting",
       "source_ref": "native-pdf/troubleshooting",
-      "source_sha256": "01ca5e45f1e65a6f9db83568e0be6cb73aa68a61c00c8a1194f719da9540df68"
+      "source_sha256": "7db1f98c582605002c750c6837308093d5c675a899c9952a1e71a887163a3b93"
     },
     {
       "blocks": [

@@ -2,7 +2,7 @@
 
 This package freezes the supplied Jackery Explorer 300 EU booklet (model JE-300E, project HTE147, part 55060100007, printed version HTE147300A-EU-JAK-A0) and converts its English edition. The file is the Adobe Illustrator master `55060100007 HTE147300A-EU-JAK-A0 说明书 RoHS REACH_修正.ai` (PDF-compatible, 97 pages, 130 × 185 mm), read once from Feishu wiki node `KEnIwtwxqiqdj0kMiCLcd9plnne`.
 
-**Status: `git-only-source-candidate`.** Not publication-eligible. There is no `source/approval.json`, and the replayed IR carries `publication_eligible: false` with a pending source review. The operator decides the layout items D1–D13 in [`audit/review.zh.md`](audit/review.zh.md). Acceptance, merge and any release are separate operator steps.
+**Status: `git-only-source-candidate`.** Not publication-eligible. There is no `source/approval.json`, and the replayed IR carries `publication_eligible: false` with a pending source review. The operator answered the layout items D1–D13 on 2026-10-16 (「1. 保留为第一章 2. 保留为最后一章 3. 可以 4. 可以 5. 可以 6. 拆成4行 7. 可以 8. 可以 9. 可以 10. 可以 11. 可以 12. 准入 13.」), recorded in [`audit/review.zh.md`](audit/review.zh.md): defaults kept, except D6 (troubleshooting F0–F3 as one row per code) and D12 (this source enrolled for fresh EU admission). D13 stays open for the product owner. Acceptance, merge and any release are separate operator steps.
 
 ## Scope
 
