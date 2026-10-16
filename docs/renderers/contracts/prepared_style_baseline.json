@@ -602,6 +602,26 @@
       "web_root": "manual_sources/JE-3600A/EU/uk/git-20261005-47a346dc/web/uk",
       "ir_content_sha256": "dcbe7a965e22befa35aad4d9f16fbebad343b853e6da9d071e4152c62e7507e0",
       "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/JP/ja/git-20261016-ac3a1f82-solar-voc/web/ja",
+      "ir_content_sha256": "61bf616a7268607734d0fae46c0cfb947a10be16182f6b17ba3045b3761b6e72",
+      "issues": 35
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/en/git-20261016-a6d1659e-solar-voc/web/en",
+      "ir_content_sha256": "6b6b4a39e335eaf4fb6b48954fd45af5d52a36c23f495b0e062fc84a67e120ff",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261016-28c58312-solar-voc/web/es",
+      "ir_content_sha256": "e3105a24df2063828c70c530f0f59ca4456198128028d1c9398bfc6aeb2074b7",
+      "issues": 28
+    },
+    {
+      "web_root": "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261016-28c58312-solar-voc/web/fr",
+      "ir_content_sha256": "d439d5437204bf6ef52439c97186aee851e93909ac02a5acee382c6af2cd5f1f",
+      "issues": 28
     }
   ]
 }

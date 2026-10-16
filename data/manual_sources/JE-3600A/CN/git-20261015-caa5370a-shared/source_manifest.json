@@ -58,11 +58,6 @@
       "sha256": "2c8911281c01bf5e81319c38ebe55433b6ee49b9bd8ba9a9d0a21f014047b738"
     },
     {
-      "path": "docs/renderers/contracts/prepared_style_baseline.json",
-      "size": 25670,
-      "sha256": "3c0f94903223aef2f55bcc31cd34b18a852ed76c9c2d8418dff455bb4864c741"
-    },
-    {
       "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",
       "size": 26001,
       "sha256": "dc9aa7b4137120e43cd5c1eddd8609827e655f18c54d1cf09132edcc5ee15a8f"
@@ -1367,8 +1362,8 @@
     },
     {
       "path": "source/refresh_manifest.py",
-      "size": 3556,
-      "sha256": "07ceb54c4a0928be9ac06425ddf3e10c0543c7a0c5c400fafef10babe0cb0f2f"
+      "size": 3736,
+      "sha256": "9923ebdf8afae4880c18367c2773a0b8f4b63b5916238570778b37811f30f4a0"
     },
     {
       "path": "source/symbol_admission.py",

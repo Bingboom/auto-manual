@@ -52,7 +52,9 @@ def refresh() -> None:
     for relative in SHARED_MODULES:
         dependencies.update(p for p in (REPO / relative).rglob("*")
                             if p.is_file() and p.suffix in {".py", ".css", ".json", ".yaml", ".yml"}
-                            and "__pycache__" not in p.parts)
+                            and "__pycache__" not in p.parts
+                            # The shared-style baseline lists other packages; it never shapes this replay.
+                            and p.name != "prepared_style_baseline.json")
     manifest["repo_inputs"] = [{"path": p.relative_to(REPO).as_posix(), "size": p.stat().st_size,
                                 "sha256": digest(p)} for p in sorted(dependencies)]
     destination = SOURCE / "source_manifest.json"

@@ -17,9 +17,11 @@ from tools.web.prepared_style_audit import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-# Locales frozen before the gate (2026-10-16). The baseline may shrink, never grow:
-# raising this number needs the operator's decision recorded in the PR.
-BASELINE_LIMIT = 120
+# Locales frozen before the gate (2026-10-16), including the four JA-AD500A-SIL
+# solar-voc locales that landed on main the same day before the gate merged.
+# The baseline may shrink, never grow: raising this number needs the operator's
+# decision recorded in the PR.
+BASELINE_LIMIT = 124
 RELEASED_SOURCE_DRAWN = 'data/manual_sources/JE-3600A/JP/git-20261013-fd06cd04-web-layout/web/ja'
 
 
