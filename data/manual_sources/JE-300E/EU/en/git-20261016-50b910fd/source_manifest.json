@@ -159,7 +159,7 @@
     "en": "web/en"
   },
   "source_authority": "operator-supplied original .ai booklet (Feishu); native visible English content; no translation or product adaptation",
-  "publication_status": "git-only-source-candidate",
+  "publication_status": "operator-approved-git-only-release",
   "validation_boundary": {
     "build_py_check": "Existing JE-1000F/US fixture regression only; does not validate JE-300E EU or register it in phase2.",
     "native_body": [
@@ -473,8 +473,8 @@
     },
     {
       "path": "docs/renderers/contracts/prepared_component_admission.json",
-      "size": 327166,
-      "sha256": "2c8911281c01bf5e81319c38ebe55433b6ee49b9bd8ba9a9d0a21f014047b738"
+      "size": 330806,
+      "sha256": "0c17fd986bb8634dfa08940e2a5c6426fb58ed1fff98dc829d1ae41471c16b9c"
     },
     {
       "path": "docs/renderers/contracts/prepared_style_baseline.json",
@@ -1515,8 +1515,8 @@
     },
     {
       "path": "README.md",
-      "size": 6683,
-      "sha256": "cd23171bff9d953f8e10e6fd04bf198a1deb3b619fe3197ddaa90f44d7332d97"
+      "size": 6906,
+      "sha256": "260f807e424a062a4257958ad70c163180c7520ea78b0d4fde8f1f93c954b20b"
     },
     {
       "path": "assets/ac-output.png",
@@ -1755,18 +1755,23 @@
     },
     {
       "path": "audit/proposed-component-admission.json",
-      "size": 3797,
-      "sha256": "12dcc83690f0bedb2ea3ebcf76e89899e7720e08455618b2e648cca1b7f2fc62"
+      "size": 3785,
+      "sha256": "a16fe6a67320f604427e710187717c8523bc5ef3fdd7deda336e5dd80644d3ce"
     },
     {
       "path": "audit/review.zh.md",
-      "size": 3681,
-      "sha256": "4a6ebea726fd9dd7fc0bb1e71c4a78d7457a75d2a33d0aaa69c475936df62dd2"
+      "size": 3871,
+      "sha256": "5a1747719019b7075ea5c9870a08a0d4f32df7c6780b85fdd59b19cc7507942e"
     },
     {
       "path": "rebuild.py",
       "size": 8222,
       "sha256": "8d0aa3d65f07fdfd54f58c0547b3267a280a36fbbc9c4600956450c889430236"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 11515,
+      "sha256": "d297c539de2876c54116f9dd230c070302ab898acd83b0384dcb6d188dfd8217"
     },
     {
       "path": "source/en/content.json",
@@ -2065,8 +2070,8 @@
     },
     {
       "path": "web/en/manual.ir.json",
-      "size": 350050,
-      "sha256": "3940d145ce807ceecbfeb6cae875fe0c7fcfd11fa475e07d551ed8201e81f4d9"
+      "size": 362785,
+      "sha256": "e47426384ae9da0ff51e7eba1e6729b2448590a658ca62fcd4be153205a67cf6"
     },
     {
       "path": "web/en/manual_je300e_eu_en.md",

@@ -1,6 +1,6 @@
 {
   "schema_version": "je300e-eu-en-proposed-admission/v1",
-  "status": "proposal only; not enrolled. docs/renderers/contracts/prepared_component_admission.json is a shared contract and stays unchanged in this candidate (operator decision D-item).",
+  "status": "enrolled at acceptance (D12 「准入」, MA-313, 2026-10-16): source_profile is copied unchanged into docs/renderers/contracts/prepared_component_admission.json.",
   "contract_path": "docs/renderers/contracts/prepared_component_admission.json",
   "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800",
   "source_profile": {

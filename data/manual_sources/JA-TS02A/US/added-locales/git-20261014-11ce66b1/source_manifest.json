@@ -305,8 +305,13 @@
     },
     {
       "path": "docs/renderers/contracts/prepared_component_admission.json",
-      "size": 327166,
-      "sha256": "2c8911281c01bf5e81319c38ebe55433b6ee49b9bd8ba9a9d0a21f014047b738"
+      "size": 330806,
+      "sha256": "0c17fd986bb8634dfa08940e2a5c6426fb58ed1fff98dc829d1ae41471c16b9c"
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_style_baseline.json",
+      "size": 26342,
+      "sha256": "94cbd767f652d0fe4a0ead9cdf4df69cc25a293623c92d7f6444451874aeb48c"
     },
     {
       "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",
@@ -1222,6 +1227,11 @@
       "path": "tools/web/overview_component.py",
       "size": 5730,
       "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288"
+    },
+    {
+      "path": "tools/web/prepared_style_audit.py",
+      "size": 9128,
+      "sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121"
     },
     {
       "path": "tools/web/presentation.py",
