@@ -1,0 +1,818 @@
+[
+  {
+    "slot": "inbox-unit",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p9 bbox [38, 90, 102, 147] at 4x",
+      "path": "assets/inbox-unit.png",
+      "sha256": "b2720743a39d76be9692ae80529edf3889aa8c8f9175db48271c46ffa6e51452"
+    },
+    "background": "card art only; the shared inbox card draws frame, number and label"
+  },
+  {
+    "slot": "inbox-adapter",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p9 bbox [114, 90, 178, 147] at 4x",
+      "path": "assets/inbox-adapter.png",
+      "sha256": "efff3384a6e4e7d4dba0f2a93beaa78d5ceb2b33c606df3e59ecc4ed8dbd2fe4"
+    },
+    "background": "card art only; the shared inbox card draws frame, number and label"
+  },
+  {
+    "slot": "inbox-car-cable",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p9 bbox [192, 90, 256, 147] at 4x",
+      "path": "assets/inbox-car-cable.png",
+      "sha256": "79a1082ba75f8aa873bfbb0eea4186de133525799dbf7359ef7146c4f71b9624"
+    },
+    "background": "card art only; the shared inbox card draws frame, number and label"
+  },
+  {
+    "slot": "inbox-documents",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p9 bbox [272, 90, 336, 147] at 4x",
+      "path": "assets/inbox-documents.png",
+      "sha256": "1490d5929de857a2739b549ccea48d95f7d67e2453765e11e6be2bf8b9459fc4"
+    },
+    "background": "card art only; the shared inbox card draws frame, number and label"
+  },
+  {
+    "slot": "overview-front",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p9 bbox [26, 276, 346, 494] at 4x",
+      "path": "assets/overview-front.png",
+      "sha256": "8204a0360f169f4c5a3a1e198080230cfd945c165d73b1637cf56dff6428b652"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "lcd-display",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p10 bbox [28, 54, 342, 216] at 4x",
+      "path": "assets/lcd-display.png",
+      "sha256": "1b712a158066518796af0452befb5174aff043c375a8839390a420b3ed4402c6"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "power-on-off",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p11 bbox [26, 280, 343, 438] at 4x",
+      "path": "assets/power-on-off.png",
+      "sha256": "c6376dc28bfb58aa03b5d4a57ce9460aaa55bcc2a89118888ee7f6e63447ba40"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "ac-output",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p12 bbox [26, 44, 343, 225] at 4x",
+      "path": "assets/ac-output.png",
+      "sha256": "f5db859ee6f23c7ca77f3aec964d9db3ae686bc7617d1fe330a80f124fa859f2"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "dc-output",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p12 bbox [29, 253, 346, 432] at 4x",
+      "path": "assets/dc-output.png",
+      "sha256": "1fd1b8107d167b15b8a268ae01895a2990d58a7d4af519f51bd88d5c5e70e84e"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "usb-output",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p13 bbox [26, 105, 343, 253] at 4x",
+      "path": "assets/usb-output.png",
+      "sha256": "363c95ee127e9a1ddfb07cc738b204f5ef982bac03c6ac9251dde6d203f48674"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "energy-saving",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p13 bbox [30, 352, 339, 445] at 4x",
+      "path": "assets/energy-saving.png",
+      "sha256": "3669e93f9d3d80a645a70eafd84c9f9a28bf0f89e06683c21f3f39463f34240b"
+    },
+    "background": "drawing only; the panel's prose and Note box are live copy and a shared callout"
+  },
+  {
+    "slot": "lcd-screen",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p14 bbox [95, 40, 310, 149] at 4x",
+      "path": "assets/lcd-screen.png",
+      "sha256": "a25076d6e86e7b16b1a5ecb1d98df1b704abeaf60182e27168c11e4b21780c11"
+    },
+    "background": "drawing only; artwork of the shared LCD mode table"
+  },
+  {
+    "slot": "charging-ac",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p15 bbox [26, 55, 343, 184] at 4x",
+      "path": "assets/charging-ac.png",
+      "sha256": "c322a01c71609b3bdb8e9aafa86b9580ef25be9b162ddc073b081de95f27b373"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "charging-usbc",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p15 bbox [26, 208, 343, 338] at 4x",
+      "path": "assets/charging-usbc.png",
+      "sha256": "2912121f21609204f8ebc41ccf733cf644c8f4e326c7d405cb43da68c4aceb77"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "dc-input-led",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p15 bbox [44, 394, 88, 463] at 4x",
+      "path": "assets/dc-input-led.png",
+      "sha256": "494280230452cf4f94ccbdacc53987bd2a1896724af7bd9ad85c9fc91e733832"
+    },
+    "background": "indicator drawing only; the LED states are the shared indicator table"
+  },
+  {
+    "slot": "charging-solar",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p16 bbox [27, 52, 344, 178] at 4x",
+      "path": "assets/charging-solar.png",
+      "sha256": "c511ee30761fc270831e12a3ead14a4c0851987bafa41db506c75fa374727d3c"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "charging-car",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p16 bbox [32, 298, 348, 421] at 4x",
+      "path": "assets/charging-car.png",
+      "sha256": "27806e5f056eb5f8c12e5093c1a615cbe9b3b9edf0fa35da333bff36e7540ee0"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "serial-number",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "final": {
+      "source": "PDF p24 bbox [26, 88, 345, 192] at 4x",
+      "path": "assets/serial-number.png",
+      "sha256": "e9bdc604d08a1ae687956f35b9331d8af45572487f79167b7f9ca47ad0bb5f44"
+    },
+    "background": "complete panel kept"
+  },
+  {
+    "slot": "ce-mark",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "Back-cover mark; no shared Web CE asset on main.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "Back-cover mark; no shared Web CE asset on main.",
+    "final": {
+      "source": "PDF p97 bbox [269, 363, 301, 389] at 4x",
+      "path": "assets/ce-mark.png",
+      "sha256": "ddc110633f3ca7688ef745e2742ef35fb75f5a72031a87541976becfd9fa6240"
+    },
+    "background": "mark only"
+  },
+  {
+    "slot": "manufacturer-qr",
+    "kind": "figure",
+    "checked": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "identity": "Back-cover code of this print; not shared.",
+    "decision": "extract complete source panel at 4x",
+    "extraction_reason": "Back-cover code of this print; not shared.",
+    "final": {
+      "source": "PDF p97 bbox [301, 458, 343, 500] at 4x",
+      "path": "assets/manufacturer-qr.png",
+      "sha256": "cdb45d5342dcad5f2eab595013d991a66f744356c556a47d5c34085b0e4f3bcc"
+    },
+    "background": "code only"
+  },
+  {
+    "slot": "warning/outline-triangle-tinted",
+    "kind": "symbol",
+    "checked": [
+      "docs/renderers/web/assets/shared/symbols/manifest.json (62 variants)"
+    ],
+    "identity": "fixed glyph comparison 0.010933 against PDF p8 drawings [11, 12, 13]",
+    "decision": "reuse",
+    "extraction_reason": "not applicable",
+    "final": {
+      "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+      "path": "assets/symbol_warning_triangle.svg",
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    "background": "transparent standalone symbol"
+  },
+  {
+    "slot": "read-manual/book-information",
+    "kind": "symbol",
+    "checked": [
+      "docs/renderers/web/assets/shared/symbols/manifest.json (62 variants)"
+    ],
+    "identity": "fixed glyph comparison 0.018763 against PDF p8 drawings [35, 36, 37]",
+    "decision": "reuse",
+    "extraction_reason": "not applicable",
+    "final": {
+      "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+      "path": "assets/symbol_read_manual.svg",
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    "background": "transparent standalone symbol"
+  },
+  {
+    "slot": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+    "kind": "symbol",
+    "checked": [
+      "docs/renderers/web/assets/shared/symbols/manifest.json (62 variants)"
+    ],
+    "identity": "fixed glyph comparison 0.01467 against PDF p8 drawings [20, 21, 22]",
+    "decision": "reuse",
+    "extraction_reason": "not applicable",
+    "final": {
+      "source": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+      "path": "assets/screwdriver-prohibited-tw-477dfbd7.svg",
+      "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b"
+    },
+    "background": "transparent standalone symbol"
+  },
+  {
+    "slot": "no-open-flame/fire-match-prohibited",
+    "kind": "symbol",
+    "checked": [
+      "docs/renderers/web/assets/shared/symbols/manifest.json (62 variants)"
+    ],
+    "identity": "fixed glyph comparison 0.002962 against PDF p8 drawings [38, 39, 40, 41, 42, 43]",
+    "decision": "reuse",
+    "extraction_reason": "not applicable",
+    "final": {
+      "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+      "path": "assets/symbol_no_open_flame.svg",
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    "background": "transparent standalone symbol"
+  },
+  {
+    "slot": "keep-away-from-children/adult-child-prohibited",
+    "kind": "symbol",
+    "checked": [
+      "docs/renderers/web/assets/shared/symbols/manifest.json (62 variants)"
+    ],
+    "identity": "fixed glyph comparison 0.002831 against PDF p8 drawings [44, 45, 46, 47]",
+    "decision": "reuse",
+    "extraction_reason": "not applicable",
+    "final": {
+      "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+      "path": "assets/symbol_keep_away_from_children.svg",
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    "background": "transparent standalone symbol"
+  },
+  {
+    "slot": "li-ion/recycle-li-ion-native-dark",
+    "kind": "symbol",
+    "checked": [
+      "docs/renderers/web/assets/shared/symbols/manifest.json (62 variants)"
+    ],
+    "identity": "fixed glyph comparison 0.012379 against PDF p8 drawings [23, 24, 25, 26, 27, 28, 29, 30, 31]",
+    "decision": "reuse",
+    "extraction_reason": "not applicable",
+    "final": {
+      "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_dark.svg",
+      "path": "assets/symbol_li_ion_dark.svg",
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1"
+    },
+    "background": "transparent standalone symbol"
+  },
+  {
+    "slot": "weee/crossed-bin-bar",
+    "kind": "symbol",
+    "checked": [
+      "docs/renderers/web/assets/shared/symbols/manifest.json (62 variants)"
+    ],
+    "identity": "fixed glyph comparison 0.011828 against PDF p8 drawings [32, 33, 34]",
+    "decision": "reuse",
+    "extraction_reason": "not applicable",
+    "final": {
+      "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+      "path": "assets/symbol_weee.png",
+      "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+    },
+    "background": "transparent standalone symbol"
+  },
+  {
+    "slot": "battery-weee/crossed-bin-no-bar",
+    "kind": "symbol",
+    "checked": [
+      "docs/renderers/web/assets/shared/symbols/manifest.json (62 variants)"
+    ],
+    "identity": "fixed glyph comparison 0.014543 against PDF p8 drawings [48]",
+    "decision": "reuse",
+    "extraction_reason": "not applicable",
+    "final": {
+      "source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_weee.png",
+      "path": "assets/symbol_battery_weee.png",
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+    },
+    "background": "transparent standalone symbol"
+  },
+  {
+    "slot": "lcd-ac-power",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p10 drawings [138, 139]",
+      "path": "assets/lcd-ac-power.svg",
+      "sha256": "ae74b5535c88c6f612bfc8fe4f187bb3b106b6b039ac98a809112b6584d1a7c0"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-output-voltage",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p10 drawings [204, 205, 206, 207, 208]",
+      "path": "assets/lcd-output-voltage.svg",
+      "sha256": "07f99d87d180c223d12a3f6658e63ae23b0c2705e8d8669b8c7e707af13db77b"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-input-power",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p10 drawings [151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173]",
+      "path": "assets/lcd-input-power.svg",
+      "sha256": "064890bdd120a64c923b8ba6957493762ae8228de7dbbbe1698715021dc1412e"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-output-power",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p10 drawings [174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203]",
+      "path": "assets/lcd-output-power.svg",
+      "sha256": "42e2c1cfa5b193ddb24af2779649fdfa8126140ae81b0593d1ed5f98598ee9a5"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-car-charging",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p10 drawings [144, 145, 146]",
+      "path": "assets/lcd-car-charging.svg",
+      "sha256": "544d91029a10f3a13f50d365ea95cc2160f0c569caadc71ed4de1d516571d9cd"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-solar-charging",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p10 drawings [142, 143]",
+      "path": "assets/lcd-solar-charging.svg",
+      "sha256": "c4e8ecbbc808bf7d20dd2147e9b066b2bb29fb6bb39cc93c7b8011e7db90ffee"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-battery-power",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p10 drawings [140]",
+      "path": "assets/lcd-battery-power.svg",
+      "sha256": "5500242f2fe21a6b1b32d363f483f23841d34f0055c057e530eecdcfe2de0c1f"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-battery-percentage",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p11 drawings [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]",
+      "path": "assets/lcd-battery-percentage.svg",
+      "sha256": "8a707e5fa48b63b5efae5be11219e8a6fe1595641c66a1627f456dd4a738eb56"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-fault-code",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent. Shared candidate: {\"status\": \"rejected\", \"reason\": \"symbol glyph/background differs from authoritative PDF\"}",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p11 drawings [59, 60, 61, 62]",
+      "path": "assets/lcd-fault-code.svg",
+      "sha256": "0390f59d2f20301b2f6b6400b61d589eb0e98e3a1700cf7e10e3731a7e6b35aa"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-high-temperature",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p11 drawings [13, 14]",
+      "path": "assets/lcd-high-temperature.svg",
+      "sha256": "a9f840ea0020e8b2a3717273e3e91efe7b6697fb729422766b7746326fe91158"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-low-temperature",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p11 drawings [15, 16]",
+      "path": "assets/lcd-low-temperature.svg",
+      "sha256": "a4e0d1419019504d9d1406c4ac72775b12f10da60f171d60b4cdc9f130572608"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "lcd-energy-saving",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "No shared Web LCD glyph for this icon on main (docs/renderers/web/assets/shared/lcd holds expansion, EV, fault-code, parallel, meter and transfer-switch glyphs); the JE-300D EU LCD icons are phase2 attachments, not Git assets. Native vector paths of this print, transparent.",
+    "final": {
+      "source": "PDF p11 drawings [55, 56, 57, 58]",
+      "path": "assets/lcd-energy-saving.svg",
+      "sha256": "b0d6afa954c8196d99ad160519439590c22fcc00140cb9b04bb575b7aa927d26"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "glyph-mail-p23",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "final": {
+      "source": "PDF p23 drawings [3]",
+      "path": "assets/glyph-mail-p23.svg",
+      "sha256": "79c52e3871f1c81163f1962150d59cfbc6fa4259c765c0c829c0b8067e353713"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "glyph-phone",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "final": {
+      "source": "PDF p97 drawings [11]",
+      "path": "assets/glyph-phone.svg",
+      "sha256": "8b15f0d0394e07939cb87b7c79f75ec84c89a4c5e9130a28b9721c019746c847"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "glyph-mail",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "final": {
+      "source": "PDF p97 drawings [5, 6]",
+      "path": "assets/glyph-mail.svg",
+      "sha256": "991f26fe73e50758b8776272d053dad2799eca2cc15dd694e56665197944972d"
+    },
+    "background": "transparent standalone icon (native vector)"
+  },
+  {
+    "slot": "glyph-web",
+    "kind": "glyph",
+    "checked": [
+      "docs/renderers/web/assets/shared/lcd",
+      "docs/renderers/web/assets/shared/symbols",
+      "docs/renderers/web/assets/je300d_eu_en"
+    ],
+    "identity": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "decision": "native vector glyph",
+    "extraction_reason": "Inline contact pictogram of this print; no shared Web contact glyph on main. Native vector paths, transparent.",
+    "final": {
+      "source": "PDF p97 drawings [7, 8, 9]",
+      "path": "assets/glyph-web.svg",
+      "sha256": "b3b9b391ef19e354f36fb3d61b76308663af34506e2697ed788154b8366b4e6a"
+    },
+    "background": "transparent standalone icon (native vector)"
+  }
+]

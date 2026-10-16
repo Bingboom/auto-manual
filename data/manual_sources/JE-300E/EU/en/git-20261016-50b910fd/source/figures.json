@@ -1,0 +1,521 @@
+[
+  {
+    "slot": "inbox-unit",
+    "physical_page": 9,
+    "bbox": [
+      38,
+      90,
+      102,
+      147
+    ],
+    "caption": "Jackery Explorer 300",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/inbox-unit.png",
+    "background": "card art only; the shared inbox card draws frame, number and label",
+    "render_scale": 4,
+    "sha256": "b2720743a39d76be9692ae80529edf3889aa8c8f9175db48271c46ffa6e51452",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "inbox-adapter",
+    "physical_page": 9,
+    "bbox": [
+      114,
+      90,
+      178,
+      147
+    ],
+    "caption": "65W AC Adapter",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/inbox-adapter.png",
+    "background": "card art only; the shared inbox card draws frame, number and label",
+    "render_scale": 4,
+    "sha256": "efff3384a6e4e7d4dba0f2a93beaa78d5ceb2b33c606df3e59ecc4ed8dbd2fe4",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "inbox-car-cable",
+    "physical_page": 9,
+    "bbox": [
+      192,
+      90,
+      256,
+      147
+    ],
+    "caption": "Car Charging Cable",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/inbox-car-cable.png",
+    "background": "card art only; the shared inbox card draws frame, number and label",
+    "render_scale": 4,
+    "sha256": "79a1082ba75f8aa873bfbb0eea4186de133525799dbf7359ef7146c4f71b9624",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "inbox-documents",
+    "physical_page": 9,
+    "bbox": [
+      272,
+      90,
+      336,
+      147
+    ],
+    "caption": "Documents",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/inbox-documents.png",
+    "background": "card art only; the shared inbox card draws frame, number and label",
+    "render_scale": 4,
+    "sha256": "1490d5929de857a2739b549ccea48d95f7d67e2453765e11e6be2bf8b9459fc4",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "overview-front",
+    "physical_page": 9,
+    "bbox": [
+      26,
+      276,
+      346,
+      494
+    ],
+    "caption": "Front view of the Jackery Explorer 300: Main Power Button, USB-C Input/Output, USB Power Button, DC Input, USB-A1 and USB-A2 Outputs, Handle, LCD, DC Power Button, DC 12V Port, AC Output and AC Power Button",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/overview-front.png",
+    "background": "complete panel kept",
+    "render_scale": 4,
+    "sha256": "8204a0360f169f4c5a3a1e198080230cfd945c165d73b1637cf56dff6428b652",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "lcd-display",
+    "physical_page": 10,
+    "bbox": [
+      28,
+      54,
+      342,
+      216
+    ],
+    "caption": "LCD display with callouts 1 to 11",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/lcd-display.png",
+    "background": "complete panel kept",
+    "render_scale": 4,
+    "sha256": "1b712a158066518796af0452befb5174aff043c375a8839390a420b3ed4402c6",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "power-on-off",
+    "physical_page": 11,
+    "bbox": [
+      26,
+      280,
+      343,
+      438
+    ],
+    "caption": "POWER ON/OFF: On, press the Main Power Button once; Off, press and hold for 3s",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/power-on-off.png",
+    "background": "complete panel kept",
+    "printed_notes": [
+      "Default standby time: The product will automatically shut down after 2 hours of inactivity, with no charging or discharging."
+    ],
+    "render_scale": 4,
+    "sha256": "c6376dc28bfb58aa03b5d4a57ce9460aaa55bcc2a89118888ee7f6e63447ba40",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "ac-output",
+    "physical_page": 12,
+    "bbox": [
+      26,
+      44,
+      343,
+      225
+    ],
+    "caption": "AC OUTPUT ON/OFF: prerequisite, the product is powered on; On, press the AC Power Button once; Off, press once",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/ac-output.png",
+    "background": "complete panel kept",
+    "render_scale": 4,
+    "sha256": "f5db859ee6f23c7ca77f3aec964d9db3ae686bc7617d1fe330a80f124fa859f2",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "dc-output",
+    "physical_page": 12,
+    "bbox": [
+      29,
+      253,
+      346,
+      432
+    ],
+    "caption": "DC 12V OUTPUT ON/OFF: prerequisite, the product is powered on; on, press the DC Power Button once; off, press once",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/dc-output.png",
+    "background": "complete panel kept",
+    "lift_boxes": [
+      [
+        40,
+        405,
+        342,
+        427
+      ]
+    ],
+    "lift_reason": "The sentence under the drawing is body copy; it is redacted from the crop and set as live text after the figure.",
+    "render_scale": 4,
+    "sha256": "1fd1b8107d167b15b8a268ae01895a2990d58a7d4af519f51bd88d5c5e70e84e",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "usb-output",
+    "physical_page": 13,
+    "bbox": [
+      26,
+      105,
+      343,
+      253
+    ],
+    "caption": "USB OUTPUT ON/OFF: prerequisite, the product is powered on; on, press the USB Power Button once; off, press once",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/usb-output.png",
+    "background": "complete panel kept",
+    "render_scale": 4,
+    "sha256": "363c95ee127e9a1ddfb07cc738b204f5ef982bac03c6ac9251dde6d203f48674",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "energy-saving",
+    "physical_page": 13,
+    "bbox": [
+      30,
+      352,
+      339,
+      445
+    ],
+    "caption": "Energy Saving Mode: press and hold the AC Power Button and the Main Power Button for 3 seconds",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/energy-saving.png",
+    "background": "drawing only; the panel's prose and Note box are live copy and a shared callout",
+    "render_scale": 4,
+    "sha256": "3669e93f9d3d80a645a70eafd84c9f9a28bf0f89e06683c21f3f39463f34240b",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "lcd-screen",
+    "physical_page": 14,
+    "bbox": [
+      95,
+      40,
+      310,
+      149
+    ],
+    "caption": "LCD screen on/off: Main Power Button",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/lcd-screen.png",
+    "background": "drawing only; artwork of the shared LCD mode table",
+    "render_scale": 4,
+    "sha256": "a25076d6e86e7b16b1a5ecb1d98df1b704abeaf60182e27168c11e4b21780c11",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "charging-ac",
+    "physical_page": 15,
+    "bbox": [
+      26,
+      55,
+      343,
+      184
+    ],
+    "caption": "Charging via the 65W AC adapter connected to the DC8020 port and a wall outlet",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/charging-ac.png",
+    "background": "complete panel kept",
+    "render_scale": 4,
+    "sha256": "c322a01c71609b3bdb8e9aafa86b9580ef25be9b162ddc073b081de95f27b373",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "charging-usbc",
+    "physical_page": 15,
+    "bbox": [
+      26,
+      208,
+      343,
+      338
+    ],
+    "caption": "Charging via the USB-C port from a wall charger",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/charging-usbc.png",
+    "background": "complete panel kept",
+    "render_scale": 4,
+    "sha256": "2912121f21609204f8ebc41ccf733cf644c8f4e326c7d405cb43da68c4aceb77",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "dc-input-led",
+    "physical_page": 15,
+    "bbox": [
+      44,
+      394,
+      88,
+      463
+    ],
+    "caption": "DC Input Indicator above the DC8020 port",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/dc-input-led.png",
+    "background": "indicator drawing only; the LED states are the shared indicator table",
+    "render_scale": 4,
+    "sha256": "494280230452cf4f94ccbdacc53987bd2a1896724af7bd9ad85c9fc91e733832",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "charging-solar",
+    "physical_page": 16,
+    "bbox": [
+      27,
+      52,
+      344,
+      178
+    ],
+    "caption": "Charging via a SolarSaga 100 solar panel connected to the DC8020 input",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/charging-solar.png",
+    "background": "complete panel kept",
+    "render_scale": 4,
+    "sha256": "c511ee30761fc270831e12a3ead14a4c0851987bafa41db506c75fa374727d3c",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "charging-car",
+    "physical_page": 16,
+    "bbox": [
+      32,
+      298,
+      348,
+      421
+    ],
+    "caption": "Charging with a car charger from the vehicle's 12V outlet",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/charging-car.png",
+    "background": "complete panel kept",
+    "render_scale": 4,
+    "sha256": "27806e5f056eb5f8c12e5093c1a615cbe9b3b9edf0fa35da333bff36e7540ee0",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "serial-number",
+    "physical_page": 24,
+    "bbox": [
+      26,
+      88,
+      345,
+      192
+    ],
+    "caption": "Serial number example 855 1 230806 00001 with its four parts",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "No JE-300E EU artwork on main. JE-300D EU art shows a different product (300D ports, strap, LED); the unmerged JE-300E-SG US draft shows US outlets and the sand-gold housing, while this EU print draws the 230 V socket. Not the same panel.",
+    "local_path": "assets/serial-number.png",
+    "background": "complete panel kept",
+    "printed_notes": [
+      "855 1 230806 00001",
+      "Sequential unit number — unique ID for each unit produced that day",
+      "Date of manufacture in YYMMDD format (e.g. 230806 = 6 August 2023)",
+      "Production line number",
+      "Factory code — identifies the manufacturing facility"
+    ],
+    "render_scale": 4,
+    "sha256": "e9bdc604d08a1ae687956f35b9331d8af45572487f79167b7f9ca47ad0bb5f44",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "ce-mark",
+    "physical_page": 97,
+    "bbox": [
+      269,
+      363,
+      301,
+      389
+    ],
+    "caption": "CE marking",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "Back-cover mark; no shared Web CE asset on main.",
+    "local_path": "assets/ce-mark.png",
+    "background": "mark only",
+    "render_scale": 4,
+    "sha256": "ddc110633f3ca7688ef745e2742ef35fb75f5a72031a87541976becfd9fa6240",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  },
+  {
+    "slot": "manufacturer-qr",
+    "physical_page": 97,
+    "bbox": [
+      301,
+      458,
+      343,
+      500
+    ],
+    "caption": "Manufacturer QR code",
+    "decision": "extract complete source panel at 4x",
+    "inventory": [
+      "data/manual_sources (no JE-300E package on main)",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je300d_eu_en",
+      "docs/templates/word_template/common_assets",
+      "draft PR #1525 data/manual_sources/JE-300E-SG/US (unmerged; US sand-gold variant)"
+    ],
+    "reason": "Back-cover code of this print; not shared.",
+    "local_path": "assets/manufacturer-qr.png",
+    "background": "code only",
+    "render_scale": 4,
+    "sha256": "cdb45d5342dcad5f2eab595013d991a66f744356c556a47d5c34085b0e4f3bcc",
+    "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800"
+  }
+]
