@@ -1744,6 +1744,11 @@
       "sha256": "b19ea1d713cf4403ef3ae571db51eaa785f189938ca3630def63d9bc577c9108"
     },
     {
+      "path": "audit/browser-validation.json",
+      "size": 3673,
+      "sha256": "486ff078ce67ba939f66b8ce80b6a35fcfbcb5491acde9af2346b3328f1d8489"
+    },
+    {
       "path": "audit/component-map.json",
       "size": 4108,
       "sha256": "0f42eea2112a8c0f1931ab89155c8d1703d90fecb3eaac19c8e243f3a85ebf41"
