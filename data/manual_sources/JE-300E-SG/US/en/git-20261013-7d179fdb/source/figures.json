@@ -1,0 +1,534 @@
+[
+  {
+    "slug": "in-the-box",
+    "path": "assets/in-the-box.png",
+    "page": 6,
+    "bbox": [
+      28,
+      60,
+      343,
+      196
+    ],
+    "alt": "Jackery Explorer 300, 65W AC Adapter, Car Charging Cable and Documents",
+    "width": 640,
+    "sha256": "95148ccd6cd2f79f5d09bfe42d7a0b9b9d4f34c86514b20d171f5ed10365a69e",
+    "render_scale": 3
+  },
+  {
+    "slug": "front-view",
+    "path": "assets/front-view.png",
+    "page": 6,
+    "bbox": [
+      28,
+      281,
+      343,
+      494
+    ],
+    "alt": "Front view: power buttons, ports, handle and LCD",
+    "width": 700,
+    "sha256": "ece58afff18e4f4569264bb9196d06abae8684273884bd1f211036fe6b0960e8",
+    "render_scale": 3
+  },
+  {
+    "slug": "lcd-display",
+    "path": "assets/lcd-display.png",
+    "page": 7,
+    "bbox": [
+      43,
+      57,
+      333,
+      216
+    ],
+    "alt": "LCD display with indicators 1–11",
+    "width": 600,
+    "sha256": "83d806b6975facac47a990371586dcfcc6a1ba10d249b6407056aa5d22545d3a",
+    "render_scale": 3
+  },
+  {
+    "slug": "power-on-off",
+    "path": "assets/power-on-off.png",
+    "page": 8,
+    "bbox": [
+      28,
+      283,
+      341,
+      415
+    ],
+    "alt": "Main power button: press once to turn on; press and hold for 3s to turn off",
+    "width": 620,
+    "sha256": "ca0465e9883974703809b9f2155faf38812a206db69160c154d42027ecd9791d",
+    "render_scale": 3
+  },
+  {
+    "slug": "ac-output",
+    "path": "assets/ac-output.png",
+    "page": 9,
+    "bbox": [
+      28,
+      46,
+      341,
+      223
+    ],
+    "alt": "AC output: prerequisite, product turned on; press AC power button once for on or off",
+    "width": 620,
+    "sha256": "f0d425672241a162997b3e448ad28e9a0c2dcac539cae7ccf799a35c74195dce",
+    "render_scale": 3
+  },
+  {
+    "slug": "dc-12v-output",
+    "path": "assets/dc-12v-output.png",
+    "page": 9,
+    "bbox": [
+      30,
+      257,
+      344,
+      409
+    ],
+    "alt": "DC 12V output: press DC power button once for on or off",
+    "width": 620,
+    "sha256": "1d95af571371e9f1c12499b297f1a6ade51007bd4268cac341740c52c63106fc",
+    "render_scale": 3
+  },
+  {
+    "slug": "usb-output",
+    "path": "assets/usb-output.png",
+    "page": 10,
+    "bbox": [
+      28,
+      45,
+      344,
+      190
+    ],
+    "alt": "USB output: press USB power button once for on or off",
+    "width": 620,
+    "sha256": "c1fc3f0e458c0e793b55d7585fed6befc58059a188004dff1342aae3da3d2792",
+    "render_scale": 3
+  },
+  {
+    "slug": "energy-saving",
+    "path": "assets/energy-saving.png",
+    "page": 10,
+    "bbox": [
+      44,
+      354,
+      322,
+      442
+    ],
+    "alt": "Energy Saving Mode: press and hold both the AC power button and main power button for 3 seconds",
+    "width": 620,
+    "sha256": "6bd0d6bcb53f67db51c98f1e537c04a8e9070e3609353c9e1e576592583f0cab",
+    "render_scale": 3
+  },
+  {
+    "slug": "lcd-screen",
+    "path": "assets/lcd-screen.png",
+    "page": 11,
+    "bbox": [
+      97,
+      49,
+      311,
+      146
+    ],
+    "alt": "Main power button and LCD screen",
+    "width": 440,
+    "sha256": "c5ed8cb77a98d417597f37ad3cfb8779601ca660b57911933a9d4ee268d174fb",
+    "render_scale": 3
+  },
+  {
+    "slug": "ac-charging",
+    "path": "assets/ac-charging.png",
+    "page": 12,
+    "bbox": [
+      27,
+      56,
+      342,
+      183
+    ],
+    "alt": "Connect the 65W AC adapter to the DC8020 input and wall outlet",
+    "width": 640,
+    "sha256": "2ea620a2ab673409929be005350411e829e94a194bc3a051014b1fff6dcd6065",
+    "render_scale": 3
+  },
+  {
+    "slug": "usb-c-charging",
+    "path": "assets/usb-c-charging.png",
+    "page": 12,
+    "bbox": [
+      27,
+      210,
+      342,
+      336
+    ],
+    "alt": "Charge via the USB-C input/output port, 100W Max",
+    "width": 640,
+    "sha256": "3d0164e7ca12cc810f0bc2382ac458b674e13e12635e4314f0288cfd0fad7fd2",
+    "render_scale": 3
+  },
+  {
+    "slug": "dc-input-indicator",
+    "path": "assets/dc-input-indicator.png",
+    "page": 12,
+    "bbox": [
+      47,
+      397,
+      86,
+      463
+    ],
+    "alt": "DC Input Indicator above the DC8020 input port",
+    "width": 100,
+    "sha256": "a1ddd8993d5686889984ff77655a9a6807cbd4a1dcacf9425482008e55f28c78",
+    "render_scale": 3
+  },
+  {
+    "slug": "solar-charging",
+    "path": "assets/solar-charging.png",
+    "page": 13,
+    "bbox": [
+      29,
+      54,
+      343,
+      176
+    ],
+    "alt": "One SolarSaga 100 solar panel connected to the DC8020 input",
+    "width": 640,
+    "sha256": "67c393009106baa478b3ec7650938b971de9d5a670886e57758441963a138c1a",
+    "render_scale": 3
+  },
+  {
+    "slug": "car-charging",
+    "path": "assets/car-charging.png",
+    "page": 13,
+    "bbox": [
+      33,
+      299,
+      345,
+      419
+    ],
+    "alt": "12V vehicle outlet connected to the DC8020 input",
+    "width": 640,
+    "sha256": "e5722678fc81c632cdc707e3ad6ad67f1cb9849bccae8248b3336d0a3f2ceb34",
+    "render_scale": 3
+  },
+  {
+    "slug": "contact-qr",
+    "path": "assets/contact-qr.png",
+    "page": 43,
+    "bbox": [
+      308,
+      462,
+      343,
+      499
+    ],
+    "alt": "Jackery contact QR code",
+    "width": 108,
+    "sha256": "576a42f5f50adf6bd009c1e64b8545c77c2b0ed0711b17e8876944fea0506e5e",
+    "render_scale": 4
+  },
+  {
+    "slug": "symbol-warning",
+    "path": "assets/symbol-warning.png",
+    "page": 5,
+    "shared_source": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+    "alt": "Warning and Caution Symbols",
+    "width": 42,
+    "inline": true,
+    "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c"
+  },
+  {
+    "slug": "symbol-read-manual",
+    "path": "assets/symbol-read-manual.png",
+    "page": 5,
+    "shared_source": "docs/templates/word_template/common_assets/symbols/read_manual_operator.png",
+    "alt": "Read the user manual",
+    "width": 42,
+    "inline": true,
+    "sha256": "c7a2c7dc6ddd9bb4724d9607df666243fc3bbeaa20a669d00de8f1d1a8463b47"
+  },
+  {
+    "slug": "symbol-weee",
+    "path": "assets/symbol-weee.png",
+    "page": 5,
+    "shared_source": "docs/templates/word_template/common_assets/symbols/weee.png",
+    "alt": "Separate collection and recycling",
+    "width": 42,
+    "inline": true,
+    "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989"
+  },
+  {
+    "slug": "symbol-electric-shock",
+    "path": "assets/symbol-electric-shock.png",
+    "page": 5,
+    "shared_source": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+    "alt": "Risk of electric shock",
+    "width": 42,
+    "inline": true,
+    "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f"
+  },
+  {
+    "slug": "symbol-do-not-dismantle",
+    "path": "assets/symbol-do-not-dismantle.png",
+    "page": 5,
+    "shared_source": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+    "alt": "Do not dismantle",
+    "width": 42,
+    "inline": true,
+    "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c"
+  },
+  {
+    "slug": "symbol-no-open-flame",
+    "path": "assets/symbol-no-open-flame.png",
+    "page": 5,
+    "shared_source": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+    "alt": "Keep away from fire",
+    "width": 42,
+    "inline": true,
+    "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc"
+  },
+  {
+    "slug": "symbol-keep-away-from-children",
+    "path": "assets/symbol-keep-away-from-children.png",
+    "page": 5,
+    "shared_source": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+    "alt": "Keep away from children",
+    "width": 42,
+    "inline": true,
+    "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200"
+  },
+  {
+    "slug": "symbol-li-ion",
+    "path": "assets/symbol-li-ion.svg",
+    "page": 5,
+    "shared_source": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+    "alt": "Lithium-ion battery recycling",
+    "width": 42,
+    "inline": true,
+    "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+  },
+  {
+    "slug": "symbol-battery-charging",
+    "path": "assets/symbol-battery-charging.png",
+    "page": 5,
+    "shared_source": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+    "alt": "Battery charging",
+    "width": 42,
+    "inline": true,
+    "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6"
+  },
+  {
+    "slug": "symbol-explosive-material",
+    "path": "assets/symbol-explosive-material.png",
+    "page": 5,
+    "shared_source": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+    "alt": "Explosive material",
+    "width": 42,
+    "inline": true,
+    "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3"
+  },
+  {
+    "slug": "lcd-1",
+    "path": "assets/lcd-1.png",
+    "page": 7,
+    "bbox": [
+      56,
+      249,
+      80,
+      269
+    ],
+    "alt": "LCD indicator 1",
+    "width": 48,
+    "inline": true,
+    "sha256": "25658cdb590db26af5d1dd6daccfc776aa9b03466214cffd36587d69e2dcb85b",
+    "source_indicator_number": 1,
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-2",
+    "path": "assets/lcd-2.png",
+    "page": 7,
+    "bbox": [
+      52,
+      284,
+      85,
+      298
+    ],
+    "alt": "LCD indicator 2",
+    "width": 48,
+    "inline": true,
+    "sha256": "582ee9e854a0601fb8b763ee37236a049051249bc85c344c9cbe9d35bf6f52e1",
+    "source_indicator_number": 2,
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-3",
+    "path": "assets/lcd-3.png",
+    "page": 7,
+    "bbox": [
+      54,
+      313,
+      83,
+      334
+    ],
+    "alt": "LCD indicator 3",
+    "width": 48,
+    "inline": true,
+    "sha256": "8b16294c4440824542865af5df83e7a444ce154b72bd78b619fa82f9432624be",
+    "source_indicator_number": 3,
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-4",
+    "path": "assets/lcd-4.png",
+    "page": 7,
+    "bbox": [
+      54,
+      342,
+      84,
+      368
+    ],
+    "alt": "LCD indicator 4",
+    "width": 48,
+    "inline": true,
+    "sha256": "77e6d10a51038b5391ff7792dee64ccdc2eac793a24443be0763c6c35ae198b2",
+    "source_indicator_number": 4,
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-5",
+    "path": "assets/lcd-5.png",
+    "page": 7,
+    "bbox": [
+      55,
+      381,
+      81,
+      400
+    ],
+    "alt": "LCD indicator 5",
+    "width": 48,
+    "inline": true,
+    "sha256": "c4e64694375c8317ec4816d945f67dd333984ce6230277e0a8adbddb991d3db8",
+    "source_indicator_number": 5,
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-6",
+    "path": "assets/lcd-6.png",
+    "page": 7,
+    "bbox": [
+      54,
+      422,
+      82,
+      444
+    ],
+    "alt": "LCD indicator 6",
+    "width": 48,
+    "inline": true,
+    "sha256": "600a664d344b8d3ab14510dd5b7c2320f07125d4af93390fbd1cddcb9f287afe",
+    "source_indicator_number": 6,
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-7",
+    "path": "assets/lcd-7.png",
+    "page": 7,
+    "bbox": [
+      56,
+      461,
+      80,
+      482
+    ],
+    "alt": "LCD indicator 7",
+    "width": 48,
+    "inline": true,
+    "sha256": "fcb3f96584320b8bdb31135abb04e1e7aa6cc13738f2f905e4b41fe940ad1e8b",
+    "source_indicator_number": 7,
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-8",
+    "path": "assets/lcd-8.png",
+    "page": 8,
+    "bbox": [
+      53,
+      44,
+      83,
+      59
+    ],
+    "alt": "LCD indicator 8",
+    "width": 48,
+    "inline": true,
+    "sha256": "8150bb8e38bc78f10ab1132d1935503c9782190d9c134cbd4483c458dbdf65d2",
+    "source_indicator_number": 8,
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-9",
+    "path": "assets/lcd-9.png",
+    "page": 8,
+    "bbox": [
+      54,
+      73,
+      82,
+      93
+    ],
+    "alt": "LCD indicator 9",
+    "width": 48,
+    "inline": true,
+    "sha256": "6b04c4b95c9e38a4f09804e3f39e07d91b2e64be6fe03ba711ff6eb224fb333e",
+    "source_indicator_number": 9,
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-10",
+    "path": "assets/lcd-10.png",
+    "page": 8,
+    "bbox": [
+      56,
+      105,
+      82,
+      126
+    ],
+    "alt": "LCD indicator 10 — High temperature",
+    "width": 48,
+    "inline": true,
+    "sha256": "927c09d069128475be14390d3f6cd40ac4aac07458fe5e0a8c259a244e620c7a",
+    "source_indicator_number": 10,
+    "source_variant": "High temperature",
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-11",
+    "path": "assets/lcd-11.png",
+    "page": 8,
+    "bbox": [
+      55,
+      140,
+      82,
+      160
+    ],
+    "alt": "LCD indicator 10 — Low temperature",
+    "width": 48,
+    "inline": true,
+    "sha256": "89a638769ca38f509bfb1d325cc1316a290c3169ee8c8e4871005a9ad749094c",
+    "source_indicator_number": 10,
+    "source_variant": "Low temperature",
+    "render_scale": 4
+  },
+  {
+    "slug": "lcd-12",
+    "path": "assets/lcd-12.png",
+    "page": 8,
+    "bbox": [
+      52,
+      174,
+      85,
+      196
+    ],
+    "alt": "LCD indicator 11 — Energy Saving Mode",
+    "width": 48,
+    "inline": true,
+    "sha256": "88a0bb53997614c78d0d2ab563b1ee5b604402d43f894b7978e9edd864c9e1df",
+    "source_indicator_number": 11,
+    "source_variant": "Energy Saving Mode",
+    "render_scale": 4
+  }
+]
