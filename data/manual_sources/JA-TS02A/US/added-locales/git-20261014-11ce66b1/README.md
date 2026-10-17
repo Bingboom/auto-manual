@@ -1,4 +1,4 @@
-# JA-TS02A / US / French · Spanish — Git-only source candidate (D2 revision)
+# JA-TS02A / US / French · Spanish — Git-only Web release (D2 shared-style revision)
 
 This package adds the French and Spanish Web editions of the Jackery Smart Transfer Switch manual (model JA-TS02A, printed version JAK-UM-V1.0) from the same supplied booklet as the accepted English edition. It converts the printed French and Spanish bodies only:
 
@@ -9,7 +9,7 @@ This package adds the French and Spanish Web editions of the Jackery Smart Trans
 
 The cover, global contents, English and Portuguese bodies and back cover stay in the archived PDF (「封面和目录 不用体现在web版面上」).
 
-**Status: Git-only source candidate (shared-style rework) for operator acceptance.** The first candidate (`d35efce`, PR #1530) was accepted for release on 2026-10-14 (「授权你合入」, MA-307). On 2026-10-15 the operator decided 「D1 用print矢量，D2按印刷，其余保持」: the recommended-breakers title now follows the print as a subheading. On 2026-10-16 main gained the prepared-document shared-style gate (#1556), and the operator decided 「改成共享样式」: both editions are reworked to shared styles only. The 2026-10-14 acceptance binds the earlier source inputs, so there is no `source/approval.json` and both replayed IRs are `publication_eligible: false` until the operator accepts this revision. Merge, release and any Hello-Docs change each need a separate operator decision.
+**Status: operator-accepted Git-only release (shared-style rework).** The first candidate (`d35efce`, PR #1530) was accepted for release on 2026-10-14 (「授权你合入」, MA-307). On 2026-10-15 the operator decided 「D1 用print矢量，D2按印刷，其余保持」: the recommended-breakers title now follows the print as a subheading. On 2026-10-16 main gained the prepared-document shared-style gate (#1556), and the operator decided 「改成共享样式」: both editions are reworked to shared styles only (PR #1550, `7d19f6d8`). After reviewing the revision, the operator accepted it for release on 2026-10-17 (「上线」, in reply to the go-live prompt). `source/approval.json` binds that acceptance to these exact source inputs, and both replayed IRs are `publication_eligible: true`. Release runs under MA-314 in `code-as-doc/dev/merge_authorizations.md`.
 
 ## Package shape
 
@@ -66,7 +66,7 @@ for lang in fr es; do
 done
 ```
 
-To re-freeze: remove `web/`, run `source/refresh_manifest.py`, rebuild each language into `web/<lang>`, and run `source/refresh_manifest.py` again. `tests/test_ja_ts02a_us_fr_es_web.py` covers identity, the candidate state, coverage, intake reproduction, cold replay, admissions and the English package being untouched. `audit/browser-validation.json` records the Chromium sweep from 320 to 1920 px.
+To re-freeze: remove `web/`, run `source/refresh_manifest.py`, rebuild each language into `web/<lang>`, and run `source/refresh_manifest.py` again. `tests/test_ja_ts02a_us_fr_es_web.py` covers identity, the operator acceptance, coverage, intake reproduction, cold replay, admissions and the English package being untouched. `audit/browser-validation.json` records the Chromium sweep from 320 to 1920 px.
 
 ## Boundaries
 

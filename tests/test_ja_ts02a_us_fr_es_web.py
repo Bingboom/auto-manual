@@ -1,4 +1,4 @@
-"""JA-TS02A US French and Spanish Git-only candidate: source identity, word coverage, admissions, shared-IR replay."""
+"""JA-TS02A US French and Spanish Git-only release: source identity, operator acceptance, word coverage, admissions, shared-IR replay."""
 from __future__ import annotations
 
 from contextlib import redirect_stdout
@@ -115,9 +115,7 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
                                               'technical_version': PACKAGE.name,
                                               'printed_manual_version': 'JAK-UM-V1.0'})
         self.assertEqual(manifest['web_roots'], {'fr': 'web/fr', 'es': 'web/es'})
-        # The D2 revision changes source inputs, so the 2026-10-14 acceptance (MA-307) no longer covers them.
-        self.assertEqual(manifest['publication_status'], 'git-only-source-candidate')
-        self.assertFalse((PACKAGE / 'source/approval.json').exists())
+        self.assertEqual(manifest['publication_status'], 'operator-approved-git-only-release')
         original = manifest['original_source']
         self.assertEqual(original['sha256'], SOURCE_SHA)
         digest = hashlib.sha256()
@@ -140,16 +138,42 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         files = {path: sha for path, sha in inventory(ENGLISH).items() if path != 'source_manifest.json'}
         self.assertEqual({row['path']: row['sha256'] for row in manifest['inputs']}, files)
 
-    def test_candidate_is_not_publishable_before_operator_acceptance(self):
-        from tools.web.language_release_evidence import require_publishable_manual_ir
+    def test_the_operator_acceptance_binds_every_source_input(self):
+        manifest = read(PACKAGE / 'source_manifest.json')
+        approval = read(PACKAGE / 'source/approval.json')
+        self.assertEqual(approval['target'], {key: manifest['target'][key]
+                                              for key in ('model', 'region', 'technical_version')})
+        self.assertEqual(approval['languages'], list(LANGUAGES))
+        self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
+        # Everything but the frozen web/ outputs and the acceptance itself.
+        self.assertEqual(approval['reviewed_inputs'],
+                         [row for row in manifest['inputs']
+                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
+        # The shared-style revision (D2, #1550); the 2026-10-14 acceptance (MA-307) bound the earlier inputs.
+        self.assertEqual((approval['operator_quote'], approval['merge_authorization']), ('上线', 'MA-314'))
         for language in LANGUAGES:
             with self.subTest(language=language):
                 metadata = read(PACKAGE / f'web/{language}' / PathSegments.MANUAL_IR_JSON)['metadata']
-                self.assertIs(metadata['publication_eligible'], False)
-                self.assertTrue(metadata['pending_source_review'])
-                self.assertIsNone(metadata['operator_source_acceptance'])
-                with self.assertRaises(Exception):
-                    require_publishable_manual_ir(PACKAGE / f'web/{language}')
+                self.assertIs(metadata['publication_eligible'], True)
+                self.assertEqual(metadata['pending_source_review'], [])
+                self.assertEqual(metadata['operator_source_acceptance'], approval)
+
+    def test_an_acceptance_that_misses_an_input_is_refused_before_output(self):
+        source = self.fixture()
+        path = source / 'source/approval.json'
+        approval = read(path)
+        approval['reviewed_inputs'] = approval['reviewed_inputs'][1:]
+        write(path, approval)
+        manifest = read(source / 'source_manifest.json')
+        row = next(row for row in manifest['inputs'] if row['path'] == 'source/approval.json')
+        row.update(size=path.stat().st_size, sha256=file_sha256(path))
+        write(source / 'source_manifest.json', manifest)
+        for language in LANGUAGES:
+            with self.subTest(language=language):
+                with mock.patch.object(rebuild_module, 'SOURCE_ROOT', source):
+                    with self.assertRaisesRegex(ValueError, 'operator acceptance does not cover these source inputs'):
+                        rebuild(self.root / 'output', language)
+                self.assertFalse((self.root / 'output').exists())
 
     def test_every_body_word_is_classified(self):
         self.assertEqual(read(PACKAGE / 'source/unmapped.json'), {'fr': [], 'es': []})
@@ -205,7 +229,7 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         from tools.web.caption_frame_admission import require_caption_frame_admission
         from tools.web.component_admission import require_fresh_component_admission
         from tools.web.frozen_source_evidence import _locale_inventory, _source
-        from tools.web.language_release_evidence import _file_inventory
+        from tools.web.language_release_evidence import _file_inventory, require_publishable_manual_ir
         from tools.web.symbol_asset_admission import require_symbol_asset_admission
 
         path = PACKAGE / 'source_manifest.json'
@@ -220,6 +244,7 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
                 require_fresh_component_admission(web, model='JA-TS02A', region='US', language=language)
                 require_symbol_asset_admission(web, PACKAGE, manifest, language)
                 require_caption_frame_admission(web)
+                require_publishable_manual_ir(web)
 
     def test_every_symbol_passes_the_glyph_gate_against_its_own_page(self):
         import fitz
