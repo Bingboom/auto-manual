@@ -17,9 +17,22 @@ REPO = next(p for p in Path(__file__).resolve().parents if (p / "build.py").is_f
 sys.path.insert(0, str(REPO))
 
 from tools.web.language_release_evidence import _file_inventory  # noqa: E402
+from tools.web.prepared_style_audit import table_text_sha256  # noqa: E402
 
 SOURCE = Path(__file__).resolve().parents[1]
 SHARED = REPO / "docs/renderers/web/assets/shared/symbols"
+# Plain shared tables (class manual-table only) where no shared component fits, by chapter.
+TABLE_REASONS = {
+    "safety": "Meaning of symbols. HB-TABLE-SYMBOL-ICON admits only shared catalogue symbols; the print's "
+              "grounding, caution and electric-shock icons miss the fixed glyph gate against every shared "
+              "variant, and the operator chose the print's own vectors (D1, 2026-10-15).",
+    "what-you-need": "Optional cables: group labels and currents span four rows and the cable header spans two "
+                     "columns, in five columns; no shared table component has row or column spans.",
+    "product-overview": "LED indicators: each indicator name spans its two or three status rows; the shared "
+                        "reference and LCD tables have fixed columns and no row spans.",
+    "installation-guide": "Conductor tightening torque: grid and home-load sides in six columns; no shared table "
+                          "component has six columns.",
+}
 NORMALIZATIONS = [
     "Shared Manual IR: content.json is replayed through the shared flow renderer and shared components "
     "(callout strip, warning lockup, reference figure, App download, warranty lead and sections), "
@@ -43,11 +56,33 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def plain_tables(nodes):
+    """Tables outside shared components, in reading order."""
+    for item in nodes:
+        if not isinstance(item, dict) or item.get("kind") == "component":
+            continue
+        if item.get("kind") == "table":
+            yield item
+        yield from plain_tables(item.get("children", []))
+
+
+def table_exceptions(manifest):
+    rows = []
+    for language in manifest["target"]["languages"]:
+        content = json.loads((SOURCE / "source" / language / "content.json").read_text())
+        for chapter in content["chapters"]:
+            for table in plain_tables(chapter["nodes"]):
+                rows.append({"language": language, "page_id": chapter["id"], "kind": "table",
+                             "text_sha256": table_text_sha256(table), "reason": TABLE_REASONS[chapter["id"]]})
+    return rows
+
+
 def refresh():
     destination = SOURCE / "source_manifest.json"
     manifest = json.loads(destination.read_text())
     english = REPO / manifest["english_baseline"]
     manifest["normalizations"] = NORMALIZATIONS
+    manifest["shared_component_exceptions"] = table_exceptions(manifest)
     manifest["validation_boundary"] = {
         "build_py_check": "Existing JE-1000F/US fixture regression only; does not validate JA-TS02A or register it in phase2.",
         "native_body": [
