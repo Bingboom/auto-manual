@@ -1,7 +1,7 @@
 {
   "schema": "ja-ts02a-browser-validation/v1",
   "browser": "Chromium (Playwright, /opt/pw-browsers/chromium-1194), file:// of a strict Sphinx build of each frozen web root",
-  "date": "2026-10-14",
+  "date": "2026-10-16",
   "checks": "page-level horizontal scroll, broken or unloaded images (lazy images forced eager), elements overflowing the viewport outside table wrappers, tables that scroll inside their wrapper",
   "languages": {
     "fr": {
@@ -10,84 +10,70 @@
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-cables",
-          "native-led",
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 3
       },
       "360": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-cables",
-          "native-led",
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 3
       },
       "390": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 1
       },
       "414": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 1
       },
       "600": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 0
       },
       "768": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       },
       "1024": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       },
       "1280": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       },
       "1440": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       },
       "1920": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       }
     },
     "es": {
@@ -96,83 +82,70 @@
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-cables",
-          "native-led",
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 3
       },
       "360": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-cables",
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 2
       },
       "390": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 1
       },
       "414": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 1
       },
       "600": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": [
-          "native-torque"
-        ]
+        "tables_scrolling_in_wrapper": 0
       },
       "768": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       },
       "1024": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       },
       "1280": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       },
       "1440": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       },
       "1920": {
         "page_horizontal_scroll": false,
         "images": 47,
         "broken_images": [],
         "viewport_overflow": [],
-        "tables_scrolling_in_wrapper": []
+        "tables_scrolling_in_wrapper": 0
       }
     }
   }

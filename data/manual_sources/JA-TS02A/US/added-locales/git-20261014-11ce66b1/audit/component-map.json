@@ -1,0 +1,118 @@
+{
+  "schema": "ja-ts02a-print-block-component-map/v1",
+  "package_classes": 0,
+  "inline_styles": 0,
+  "plain_tables": 4,
+  "shared_component_exceptions": "source_manifest.json (4 per language, with reasons)",
+  "decisions": "2026-10-16 operator: 「改成共享样式」; D1 print symbol vectors, D2 breaker subheading, D3-D6 as accepted",
+  "blocks": [
+    {
+      "pages": "EN p3-5 (FR 25-27, ES 47-49)",
+      "print_block": "Safety prose, numbered and bullet lists, FCC and IC statements",
+      "web": "flow: headings, paragraphs, lists",
+      "note": ""
+    },
+    {
+      "pages": "EN p5",
+      "print_block": "Ingestion-hazard mark beside its bullet list",
+      "web": "flow: image (print vector) + list",
+      "note": "mark floated by source geometry"
+    },
+    {
+      "pages": "EN p5",
+      "print_block": "Meaning of symbols table",
+      "web": "plain shared table (manual-table), declared",
+      "note": "print symbol vectors (D1); HB-TABLE-SYMBOL-ICON admits only shared catalogue icons"
+    },
+    {
+      "pages": "EN p6",
+      "print_block": "Specification table",
+      "web": "HB-TABLE-SPEC",
+      "note": "section title is the chapter title (the print table has none)"
+    },
+    {
+      "pages": "EN p6-23",
+      "print_block": "Complete art panels and App screenshots",
+      "web": "HB-SPECIAL-REFERENCE-FIGURE",
+      "note": "30 per language; width by data-reference-id"
+    },
+    {
+      "pages": "EN p7",
+      "print_block": "Optional cables table (spans, 5 columns)",
+      "web": "plain shared table (manual-table), declared",
+      "note": "colour words only; swatches were package paint"
+    },
+    {
+      "pages": "EN p9",
+      "print_block": "LED indicator table (row spans)",
+      "web": "plain shared table (manual-table), declared",
+      "note": ""
+    },
+    {
+      "pages": "EN p10",
+      "print_block": "CAUTION / AVERTISSEMENT / PRECAUCIÓN boxes",
+      "web": "HB-CALLOUT-STRIP/caution, shaded label (shared class)",
+      "note": ""
+    },
+    {
+      "pages": "EN p11",
+      "print_block": "Warning lockups with the yellow triangle",
+      "web": "HB-CALLOUT-STRIP/warning + shared hb-warning-lockup",
+      "note": ""
+    },
+    {
+      "pages": "EN p11-16",
+      "print_block": "Steps beside their drawings",
+      "web": "flow: text then HB-SPECIAL-REFERENCE-FIGURE, stacked",
+      "note": ""
+    },
+    {
+      "pages": "EN p14",
+      "print_block": "Conductor tightening torque (6 columns)",
+      "web": "plain shared table (manual-table), declared",
+      "note": ""
+    },
+    {
+      "pages": "EN p15",
+      "print_block": "Deadfront warning word (FR/ES print: plain line, no triangle)",
+      "web": "flow: paragraph lines (D3)",
+      "note": ""
+    },
+    {
+      "pages": "EN p16",
+      "print_block": "Recommended breakers title",
+      "web": "flow: h4 subheading of the installation guide (D2)",
+      "note": ""
+    },
+    {
+      "pages": "EN p17",
+      "print_block": "App download badges, QR and texts",
+      "web": "HB-SPECIAL-APP",
+      "note": ""
+    },
+    {
+      "pages": "EN p17-19",
+      "print_block": "Inline App controls in step text",
+      "web": "flow: inline image (shared English control files)",
+      "note": "size by source geometry"
+    },
+    {
+      "pages": "EN p17",
+      "print_block": "IoT indicator status lines (grey panel in print)",
+      "web": "flow: paragraphs",
+      "note": "no shared panel component"
+    },
+    {
+      "pages": "EN p20-23",
+      "print_block": "App screens beside their text",
+      "web": "flow: HB-SPECIAL-REFERENCE-FIGURE then text, stacked",
+      "note": ""
+    },
+    {
+      "pages": "EN p24",
+      "print_block": "Warranty lead and sections",
+      "web": "HB-WARRANTY-LEAD, HB-WARRANTY-SECTION x6",
+      "note": ""
+    }
+  ]
+}

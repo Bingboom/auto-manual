@@ -20,11 +20,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from native import LANGUAGES, Native, SOURCE, attrs, dump  # noqa: E402
 from tools.component_specs.app import app_download_component_spec  # noqa: E402
 from tools.component_specs.callout import display_label  # noqa: E402
+from tools.component_specs.spec_table import spec_table_component_spec  # noqa: E402
 from tools.component_specs.warranty import (  # noqa: E402
     warranty_lead_component_spec, warranty_section_component_spec,
 )
 from tools.web.frozen_ai_flow import callout as shared_callout  # noqa: E402
-from tools.web.frozen_ai_flow import node, paragraph, text  # noqa: E402
+from tools.web.frozen_ai_flow import node, paragraph, table, text  # noqa: E402
 
 
 def page_of(language):
@@ -195,7 +196,6 @@ GEOMETRY = {
         "warranty-titles": [95.5, 191, 264.5, 316, 355.5, 459.5, 503],
     },
 }
-WIRES = ["black", "red", "white", "green"]  # the print's L1/L2/N/GND swatch colours, in row order
 
 
 def callout(n, label, body, *, variant, lockup=None, shaded=False):
@@ -205,7 +205,7 @@ def callout(n, label, body, *, variant, lockup=None, shaded=False):
     carrier = item["carrier_flow"][0]
     classes = carrier["presentation"]["html"]["attributes"]["class"]
     if lockup:
-        classes += " hb-source-warning-lockup native-lockup-open"
+        classes += " hb-source-warning-lockup"
         label_cell = carrier["children"][0]["children"][0]["children"][0]
         label_cell["children"] = [node("inline_group", [
             node("image", source=lockup, alt=""), text(display_label(label))],
@@ -216,36 +216,40 @@ def callout(n, label, body, *, variant, lockup=None, shaded=False):
     return item
 
 
-def cell(children, *, header=False, cls=None, **fields):
+def cell(children, *, header=False, **fields):
     if isinstance(children, str):
         children = [text(children)]
-    extra = {"presentation": attrs(cls)} if cls else {}
-    return node("table_cell", children, header=header, **fields, **extra)
+    return node("table_cell", children, header=header, **fields)
 
 
 def head(n, p, box, **fields):
-    """A header cell; a header the print sets in regular weight keeps that weight."""
-    return cell(n.t(p, box), header=True, scope="col", cls=None if n.bold(p, box) else "native-head-regular", **fields)
+    """A header cell; the shared table theme sets its weight."""
+    return cell(n.t(p, box), header=True, scope="col", **fields)
 
 
-def grid(head_rows, body_rows, css):
-    """A native table in the shared scroll wrapper; head rows become <thead>."""
+def grid(head_rows, body_rows):
+    """A plain shared table (declared in shared_component_exceptions); head rows become <thead>."""
     parts = []
     if head_rows:
         parts.append(node("table_head", [node("table_row", r) for r in head_rows]))
     parts.append(node("table_body", [node("table_row", r) for r in body_rows]))
-    table = node("table", parts, presentation=attrs("manual-table " + css))
-    return node("group", [table], role="container",
-                presentation=attrs("table-wrapper docutils container native-table-wrap"))
+    table = node("table", parts, presentation=attrs("manual-table"))
+    return node("group", [table], role="container", presentation=attrs("table-wrapper docutils container"))
 
 
-def media(art, copy, *, art_first=False, css=""):
-    """Print text beside its figure: text and art stay one reading unit."""
-    copy_group = node("group", copy, role="container", presentation=attrs("native-media-copy"))
-    art_group = node("group", [art], role="container", presentation=attrs("native-media-art"))
-    order = [art_group, copy_group] if art_first else [copy_group, art_group]
-    return node("group", order, role="container",
-                presentation=attrs(("native-media native-media-art-first " if art_first else "native-media ") + css))
+def media(art, copy, *, art_first=False):
+    """Print text and its figure in reading order, as plain flow (stacked at every width)."""
+    return [art, *copy] if art_first else [*copy, art]
+
+
+def spec_carrier(spec):
+    slot = lambda role: spec.slot(role).content  # noqa: E731
+    title = node("heading", [node("inline_group", [text(slot("section_title"))],
+                                  presentation=attrs("hb-spec-section-text"))], level=2,
+                 presentation=attrs("hb-spec-section hb-spec-group"))
+    rows = [[cell(r["label"] if i == 0 else "", header=True), cell(v["text"])]
+            for r in slot("rows") for i, v in enumerate(r["values"])]
+    return [title, table(rows)]
 
 
 def insert_control(n, flow, marker, slot, *, at_end=False):
@@ -292,31 +296,31 @@ def make(language):
     n.add(*n.prose(P(5), g["ic-body"], right=345.0))
     n.take(P(5), g["ingestion-symbol"], purpose="native-symbol/ingestion-hazard")
     hazard = n.prose(P(5), g["ingestion-body"], right=345.0)
-    n.add(node("group", [node("image", source=n.symbol("ingestion-hazard"), alt=""), *hazard],
-               role="container", presentation=attrs("native-ingestion")))
+    n.add(node("image", source=n.symbol("ingestion-hazard"), alt=""), *hazard)
     n.h(P(5), g["symbols"])
     n.add(*n.prose(P(5), g["symbols-body"], right=345.0))
     head_rows = [[head(n, P(5), box) for box in g["symbols-head"]]]
     rows = []
     for key, (y0, y1) in zip(["grounding", "caution", "electric-shock", "read-manual"], g["symbols-rows"], strict=True):
         meaning = n.t(P(5), [80, y0, 345, y1])
-        rows.append([cell([node("image", source=n.symbol(key), alt=meaning)], cls="native-symbol-cell"), cell(meaning)])
-    n.add(grid(head_rows, rows, "native-print-grid native-symbols native-fit"))
+        rows.append([cell([node("image", source=n.symbol(key), alt=meaning)]), cell(meaning)])
+    n.add(grid(head_rows, rows))
 
     # ---- p6 SPECIFICATIONS, PACKAGE LIST -----------------------------------------
     n.chapter("specifications", P(6), g["specifications"])
     tops = [g["spec-top"] + 12 * i for i in range(18)]
     split = g["spec-split"]
-    rows = [[cell(n.t(P(6), [26, y0, split, y1])), cell(n.t(P(6), [split, y0, 345, y1]))]
+    rows = [(n.t(P(6), [26, y0, split, y1]), n.t(P(6), [split, y0, 345, y1]))
             for y0, y1 in zip(tops[:-1], tops[1:], strict=True)]
-    n.add(grid([], rows, "native-spec-rules native-fit"))
+    # The print's specification table has no title of its own; the shared spec table takes the chapter's.
+    n.add(n.comp(spec_table_component_spec, spec_carrier, section_title=n.current["title"], rows=rows))
     n.add(*n.prose(P(6), g["spec-note"], right=345.0))
     n.chapter("package-list", P(6), g["package-list"])
-    n.add(n.figure("package-list", width="wide"))
+    n.add(n.figure("package-list"))
 
     # ---- p7 WHAT YOU NEED ---------------------------------------------------------
     n.chapter("what-you-need", P(7), g["what-you-need"])
-    n.add(n.figure("optional-tools", width="wide"))
+    n.add(n.figure("optional-tools"))
     n.h(P(7), g["optionals"])
     x = g["cable-cols"]
     h0, h1 = g["cable-head"]
@@ -328,26 +332,26 @@ def make(language):
         for i, (y0, y1) in enumerate(zip(ys[:-1], ys[1:], strict=True)):
             row = []
             if i == 0:
-                row.append(cell(label, row_span=4, cls="native-cable-group"))
+                row.append(cell(label, row_span=4))
             row += [cell(n.t(P(7), [x[1], y0, x[2], y1])),
-                    cell(n.t(P(7), [x[2], y0, x[3], y1]), cls="native-wire native-wire-" + WIRES[i])]
+                    cell(n.t(P(7), [x[2], y0, x[3], y1]))]
             if i == 0:
                 row.append(cell(current, row_span=4))
             row.append(cell(n.t(P(7), [x[4], y0, x[5], y1])))
             rows.append(row)
     y0, y1 = g["cable-last"]
-    rows.append([cell(n.t(P(7), [x[0], y0, x[1], y1]), cls="native-cable-group")]
+    rows.append([cell(n.t(P(7), [x[0], y0, x[1], y1]))]
                 + [cell(n.t(P(7), [a, y0, b, y1])) for a, b in zip(x[1:-1], x[2:], strict=True)])
-    n.add(grid(head_rows, rows, "native-print-grid native-cables"))
+    n.add(grid(head_rows, rows))
     n.add(*n.prose(P(7), g["cable-note"], right=345.0))
 
     # ---- p8-10 PRODUCT OVERVIEW ---------------------------------------------------
     n.chapter("product-overview", P(8), g["product-overview"])
     n.h(P(8), g["dimensions"])
-    n.add(n.figure("dimensions", width="wide"))
+    n.add(n.figure("dimensions"))
     n.add(*n.prose(P(8), g["dimensions-note"], right=345.0))
     n.h(P(8), g["covered"])
-    n.add(n.figure("covered-overview", width="wide"))
+    n.add(n.figure("covered-overview"))
     n.h(P(9), g["iot"], level=4)
     n.add(*n.prose(P(9), g["iot-body"], right=345.0))
     n.h(P(9), g["estop"], level=4)
@@ -362,13 +366,13 @@ def make(language):
         name = n.t(P(9), [c[0], bounds[index], c[1], bounds[index + span]])
         for k in range(span):
             y0, y1 = bounds[index], bounds[index + 1]
-            row = [cell(name, row_span=span, cls="native-led-name")] if k == 0 else []
+            row = [cell(name, row_span=span)] if k == 0 else []
             row += [cell(n.t(P(9), [c[1], y0, c[2], y1])), cell(n.t(P(9), [c[2], y0, c[3], y1]))]
             rows.append(row)
             index += 1
-    n.add(grid(head_rows, rows, "native-print-grid native-led"))
+    n.add(grid(head_rows, rows))
     n.h(P(9), g["uncovered"])
-    n.add(n.figure("uncovered-overview", width="wide"))
+    n.add(n.figure("uncovered-overview"))
     n.h(P(10), g["normal-backup"], level=4)
     n.add(*n.prose(P(10), g["normal-backup-body"], right=345.0))
     n.add(callout(n, n.t(P(10), g["caution-1-label"]),
@@ -381,7 +385,7 @@ def make(language):
     # ---- p10-11 PRE-INSTALLATION -----------------------------------------------------
     n.chapter("pre-installation", P(10), g["pre-installation"])
     n.h(P(10), g["system-overview"])
-    n.add(n.figure("system-overview", width="wide"))
+    n.add(n.figure("system-overview"))
     n.add(*n.prose(P(11), g["wifi-notes"], right=345.0))
     n.h(P(11), g["location"])
     n.add(*n.prose(P(11), g["location-body"], right=345.0))
@@ -399,47 +403,49 @@ def make(language):
     label, _, rest = first["text"].partition(":")
     first["text"] = rest.lstrip()
     n.add(callout(n, label.strip(), lead, variant="warning", lockup=n.symbol("lockup-surface-mounting")))
-    n.add(media(n.figure("mounting-brackets", width="art"),
+    n.add(*media(n.figure("mounting-brackets"),
                 n.prose(P(11), g["bracket-steps"], right=g["bracket-right"])))
     n.add(*n.prose(P(11), g["template-step"], right=345.0))
-    n.add(n.figure("mounting-template", width="wide"))
+    n.add(n.figure("mounting-template"))
     n.add(*n.prose(P(12), g["fasten-step"], right=345.0))
-    n.add(n.figure("mounting-fasteners", width="wide"))
+    n.add(n.figure("mounting-fasteners"))
     n.h(P(12), g["cable-entry"])
     n.add(*n.prose(P(12), g["cable-entry-body"], right=345.0))
-    n.add(n.figure("cable-entry", width="wide"))
+    n.add(n.figure("cable-entry"))
     n.h(P(12), g["electrical"])
     n.add(*n.prose(P(12), g["electrical-body"], right=345.0))
-    n.add(n.figure("grid-preparation", width="wide"))
+    n.add(n.figure("grid-preparation"))
     n.h(P(13), g["grid"], level=4)
     n.add(*n.prose(P(13), g["grid-body"], right=345.0))
-    n.add(n.figure("grid-wiring", width="wide"))
+    n.add(n.figure("grid-wiring"))
     n.h(P(14), g["load"], level=4)
     n.add(*n.prose(P(14), g["load-body"], right=347.0))
-    n.add(n.figure("load-wiring", width="wide"))
+    n.add(n.figure("load-wiring"))
     n.add(*n.prose(P(14), g["torque-title"], right=345.0))  # Conductor Tightening Torque
     cols = g["torque-cols"]
     h0, h1 = g["torque-head"]
     head_rows = [[head(n, P(14), [x0, h0, x1, h1]) for x0, x1 in zip(cols[:-1], cols[1:], strict=True)]]
     rows = [[cell(n.t(P(14), [x0, y0, x1, y1])) for x0, x1 in zip(cols[:-1], cols[1:], strict=True)]
             for y0, y1 in g["torque-rows"]]
-    n.add(grid(head_rows, rows, "native-print-grid native-torque"))
+    n.add(grid(head_rows, rows))
     n.h(P(15), g["estop-install"], level=4)
     n.add(*n.prose(P(15), g["estop-install-body"], right=345.0))
-    n.add(n.figure("external-emergency-stop", width="wide"))
+    n.add(n.figure("external-emergency-stop"))
     n.h(P(15), g["deadfront"], level=4)
     # The French and Spanish prints set this warning as a plain line above the checks, with no triangle.
     n.add(*n.prose(P(15), g["deadfront-warning"], right=345.0, keep_marks=True))
     n.add(*n.prose(P(15), g["deadfront-body"], right=345.0))
-    n.add(n.figure("deadfront-installation", width="wide"))
+    n.add(n.figure("deadfront-installation"))
     n.h(P(16), g["power-station"], level=4)
     n.add(*n.prose(P(16), g["power-station-body"], right=345.0))
-    n.add(n.figure("power-station-connections", width="wide"))
+    n.add(n.figure("power-station-connections"))
     n.h(P(16), g["energizing"], level=4)
     n.add(*n.prose(P(16), g["energizing-body"], right=345.0))
     n.h(P(16), g["locking"], level=4)
-    n.add(n.figure("locking-panel", width="narrow"))
-    n.chapter("recommended-breakers", P(16), g["recommended-breakers"])
+    n.add(n.figure("locking-panel"))
+    # The French and Spanish prints set this title at the size of the subheadings above it, not as a
+    # chapter title; it follows the print (operator decision D2, 2026-10-15).
+    n.h(P(16), g["recommended-breakers"], level=4)
     n.add(*n.prose(P(16), g["breakers-body"], right=345.0))
 
     # ---- p17-19 INTERNET AND INITIALIZATION SETUP -------------------------------------
@@ -462,56 +468,54 @@ def make(language):
     n.h(P(17), g["add-device"])
     step = n.prose(P(17), g["pairing-step"], right=g["pairing-right"])
     note = n.prose(P(17), g["status-panel"], right=g["status-right"], every_line=True)
-    for line in note:  # two status lines in one grey panel
-        line["presentation"] = attrs("native-status-panel")
-    n.add(media(n.figure("iot-pairing", width="art"), step + note))
+    n.add(*media(n.figure("iot-pairing"), step + note))
     step = insert_control(n, n.prose(P(17), g["add-step"], right=g["add-right"]), g["add-marker"], "inline-add-device")
-    n.add(media(n.figure("app-add-device", width="phone"), step))
+    n.add(*media(n.figure("app-add-device"), step))
     n.add(*n.prose(P(18), g["wifi-step"], right=345.0))
-    n.add(n.figure("app-wifi", width="wide"))
+    n.add(n.figure("app-wifi"))
     n.h(P(18), g["voltage"])
     first = insert_control(n, n.prose(P(18), g["voltage-1"], right=185.0), g["voltage-1-marker"], "inline-settings")
     second = insert_control(n, n.prose(P(18), g["voltage-2"], right=345.0), "", "inline-voltage-config", at_end=True)
     first[0]["children"] += [text(" ")] + second[0]["children"]
     n.add(*first)
-    n.add(n.figure("app-voltage-menu", width="wide"))
+    n.add(n.figure("app-voltage-menu"))
     steps = n.prose(P(19), g["voltage-steps"], right=345.0)
     for marker, slot in zip(g["voltage-markers"], ["inline-edit", "inline-link-circuits", "inline-save"], strict=True):
         insert_control(n, steps, marker, slot)
     n.add(*steps)
-    n.add(n.figure("app-voltage-settings", width="wide"))
+    n.add(n.figure("app-voltage-settings"))
     n.h(P(19), g["edit-name"])
     n.add(*n.prose(P(19), g["edit-name-body"], right=352.0))
-    n.add(n.figure("app-circuit-list", width="wide"))
+    n.add(n.figure("app-circuit-list"))
     n.add(*insert_control(n, n.prose(P(19), g["edit-name-step"], right=345.0), g["edit-name-marker"], "inline-edit-name"))
-    n.add(n.figure("app-circuit-name", width="wide"))
+    n.add(n.figure("app-circuit-name"))
 
     # ---- p20-23 JACKERY APP QUICK START GUIDE -------------------------------------
     n.chapter("app-quick-start", P(20), g["app-quick-start"])
     n.h(P(20), g["dashboard"])
-    n.add(media(n.figure("app-dashboard", width="phone"), n.prose(P(20), g["dashboard-body"], right=g["app-text-right"]),
+    n.add(*media(n.figure("app-dashboard"), n.prose(P(20), g["dashboard-body"], right=g["app-text-right"]),
                 art_first=True))
     n.h(P(20), g["circuits"])
-    n.add(n.figure("app-circuits", width="wide"))
+    n.add(n.figure("app-circuits"))
     n.add(*n.prose(P(20), g["circuits-body"], right=g["app-full-right"]))
     n.h(P(21), g["working-modes"])
     copy = []
     for heading_box, body_box in g["modes-copy"]:
         copy.append(node("heading", [text(n.t(P(21), heading_box))], level=3))
         copy += n.prose(P(21), body_box, right=g["modes-right"])
-    n.add(media(n.figure("app-working-modes", width="phone"), copy, art_first=True))
+    n.add(*media(n.figure("app-working-modes"), copy, art_first=True))
     n.h(P(21), g["self-powered"], level=4)
     n.add(*n.prose(P(21), g["self-powered-body"], right=g["modes-full-right"]))
     n.h(P(21), g["plan"], level=4)
     n.add(*n.prose(P(21), g["plan-body"], right=g["modes-full-right"]))
     n.h(P(22), g["backup-only"])
-    n.add(media(n.figure("app-backup-only", width="phone"),
+    n.add(*media(n.figure("app-backup-only"),
                 n.prose(P(22), g["backup-only-body"], right=g["backup-only-right"]), art_first=True))
     n.h(P(22), g["backup-priority"])
-    n.add(media(n.figure("app-backup-priority", width="phone"),
+    n.add(*media(n.figure("app-backup-priority"),
                 n.prose(P(22), g["backup-priority-body"], right=g["backup-priority-right"]), art_first=True))
     n.h(P(23), g["ups-mode"])
-    n.add(media(n.figure("app-ups-mode", width="phone"),
+    n.add(*media(n.figure("app-ups-mode"),
                 n.prose(P(23), g["ups-mode-body"], right=g["ups-mode-right"]), art_first=True))
 
     # ---- p24 WARRANTY --------------------------------------------------------------

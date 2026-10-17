@@ -1,4 +1,4 @@
-# JA-TS02A / US / French · Spanish — Git-only Web release
+# JA-TS02A / US / French · Spanish — Git-only source candidate (D2 revision)
 
 This package adds the French and Spanish Web editions of the Jackery Smart Transfer Switch manual (model JA-TS02A, printed version JAK-UM-V1.0) from the same supplied booklet as the accepted English edition. It converts the printed French and Spanish bodies only:
 
@@ -9,7 +9,7 @@ This package adds the French and Spanish Web editions of the Jackery Smart Trans
 
 The cover, global contents, English and Portuguese bodies and back cover stay in the archived PDF (「封面和目录 不用体现在web版面上」).
 
-**Status: operator-accepted Git-only release.** The operator reviewed the layout review page (print beside the desktop and phone Web per chapter, French and Spanish tabs) for candidate `d35efce`, which was merged as PR #1530 (`9ca45d81`) with decisions D1–D6 at their defaults. On 2026-10-14 the operator accepted both editions for release (「授权你合入」, in reply to the go-live prompt). `source/approval.json` binds that acceptance to these exact source inputs, and both replayed IRs are `publication_eligible: true`. Release runs under MA-307 in `code-as-doc/dev/merge_authorizations.md`.
+**Status: Git-only source candidate (shared-style rework) for operator acceptance.** The first candidate (`d35efce`, PR #1530) was accepted for release on 2026-10-14 (「授权你合入」, MA-307). On 2026-10-15 the operator decided 「D1 用print矢量，D2按印刷，其余保持」: the recommended-breakers title now follows the print as a subheading. On 2026-10-16 main gained the prepared-document shared-style gate (#1556), and the operator decided 「改成共享样式」: both editions are reworked to shared styles only. The 2026-10-14 acceptance binds the earlier source inputs, so there is no `source/approval.json` and both replayed IRs are `publication_eligible: false` until the operator accepts this revision. Merge, release and any Hello-Docs change each need a separate operator decision.
 
 ## Package shape
 
@@ -19,7 +19,7 @@ The source identity is still one: `source_manifest.json` names the same 94,486,7
 
 ## Layout reference and method
 
-The layout follows the accepted English edition (fixes R1–R9): the same 11 chapters in the same order, the same shared components, figures, callouts and tables. Wording is as printed in each language. The method follows JBP-3600A US: a per-language region table (`GEOMETRY` in `source/intake.py`), print line breaks and hyphen joins logged per language, outlined text restored from source pixels with glyph-path boxes, symbols admitted per locale, and FR/ES panels sharing an English file only when the crop matches it within antialiasing.
+The layout follows the accepted English edition (fixes R1–R9): the same chapters in the same order (10 here: the French and Spanish prints set the recommended-breakers title as a bold subheading of the installation guide, so it follows the print as a level-4 heading, operator decision D2), the same shared components, figures, callouts and tables. Wording is as printed in each language. The method follows JBP-3600A US: a per-language region table (`GEOMETRY` in `source/intake.py`), print line breaks and hyphen joins logged per language, outlined text restored from source pixels with glyph-path boxes, symbols admitted per locale, and FR/ES panels sharing an English file only when the crop matches it within antialiasing.
 
 | Print feature | Web |
 | --- | --- |
@@ -27,11 +27,17 @@ The layout follows the accepted English edition (fixes R1–R9): the same 11 cha
 | Hyphen splits | Rejoined and logged: FR domes-/tique, automatique-/ment, immédi-/atement, alimenta/tion (no hyphen); ES concesion-/ario, recomien-/da, instruc-/ciones. |
 | Outlined text | Two French Dashboard lines (p42) are vector outlines with no text layer. `source/text-recovery.json` restores them from source pixels with their glyph-path boxes (straight apostrophe as printed). Spanish has none. |
 | Repeated page | The Spanish print repeats its p62 (PDF 64 and 65 are word- and pixel-identical). The repeat is classified `duplicate-print-page` and left out. |
-| Weights, headings | Bold print runs are `strong`; headings keep print case. Table header cells that the French and Spanish prints set in regular weight stay regular. |
+| Weights, headings | Bold print runs are `strong`; headings keep print case. Table headers take the shared table weight. |
 | Callouts | Print labels as printed: AVERTISSEMENT / PRECAUCIÓN (shaded strips; English CAUTION), Avertissement / Advertencia (warning lockups with the print's yellow triangle). |
-| Tables | Native row and column spans, as in English. Spanish torque values (pulgadas-libra) wrap on desktop; phones scroll the torque table, as in English. |
+| Tables | The specification table is the shared HB-TABLE-SPEC. The symbol, cable, LED and torque tables keep their row and column spans as plain shared tables (`manual-table` only), declared in `shared_component_exceptions` with their reasons. At 390 px only the torque table scrolls, as in English. |
 
-Shared components per language: HB-CALLOUT-STRIP 4, HB-SPECIAL-APP 1, HB-SPECIAL-REFERENCE-FIGURE 30, HB-WARRANTY-LEAD 1, HB-WARRANTY-SECTION 6. English has five callout strips. The French and Spanish prints set the "Installing the Deadfront Cover" warning as a plain line with no triangle, so it stays a body line.
+## Shared styles only
+
+Both editions pass the prepared-document shared-style gate (`tools/web/prepared_style_audit.py`) with no issues, and their pre-gate baseline entries are removed from `docs/renderers/contracts/prepared_style_baseline.json` (the English edition's entry stays). No flow node carries a package class or an inline style, and `source/presentation.css` holds geometry only: figure widths by `data-reference-id`, image sizes by file name, list indents and phone table fitting. `audit/component-map.json` maps every printed block to its shared component or plain shared flow. Without package classes, steps and App screens stack with their figures at every width; the wire-colour swatches and the grey status panel are gone.
+
+Four tables have no shared component and are declared with their reasons. The symbol table: HB-TABLE-SYMBOL-ICON admits only shared catalogue icons, and the print's own vectors are kept (D1). The cable table (row and column spans, five columns), the LED table (row spans) and the torque table (six columns).
+
+Shared components per language: HB-CALLOUT-STRIP 4, HB-SPECIAL-APP 1, HB-SPECIAL-REFERENCE-FIGURE 30, HB-TABLE-SPEC 1, HB-WARRANTY-LEAD 1, HB-WARRANTY-SECTION 6. English has five callout strips. The French and Spanish prints set the "Installing the Deadfront Cover" warning as a plain line with no triangle, so it stays a body line.
 
 ## Artwork reuse
 
@@ -60,7 +66,7 @@ for lang in fr es; do
 done
 ```
 
-To re-freeze: remove `web/`, run `source/refresh_manifest.py`, rebuild each language into `web/<lang>`, and run `source/refresh_manifest.py` again. `tests/test_ja_ts02a_us_fr_es_web.py` covers identity, the operator acceptance, coverage, intake reproduction, cold replay, admissions and the English package being untouched. `audit/browser-validation.json` records the Chromium sweep from 320 to 1920 px.
+To re-freeze: remove `web/`, run `source/refresh_manifest.py`, rebuild each language into `web/<lang>`, and run `source/refresh_manifest.py` again. `tests/test_ja_ts02a_us_fr_es_web.py` covers identity, the candidate state, coverage, intake reproduction, cold replay, admissions and the English package being untouched. `audit/browser-validation.json` records the Chromium sweep from 320 to 1920 px.
 
 ## Boundaries
 

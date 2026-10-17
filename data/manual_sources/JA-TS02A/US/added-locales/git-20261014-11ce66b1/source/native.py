@@ -241,7 +241,7 @@ class Native:
         self.take(figure["physical_page"], figure["bbox"], purpose="embedded-art/" + slot,
                   exclude=figure.get("exclude", ()))
 
-    def figure(self, slot, *, width="regular"):
+    def figure(self, slot):
         g = self.figures[slot]
         self.embedded(slot)
         path = SOURCE / g["local_path"]
@@ -261,13 +261,13 @@ class Native:
             language=self.language, image_key=slot,
         )
         flow = [node("image", source=g["local_path"], alt=alt)]
-        return node("group", [reference_flow(spec, flow)], role="container",
-                    presentation=attrs(f"native-figure native-{slot} native-{width}"))
+        # The shared reference figure alone; its print width is source geometry keyed by
+        # data-reference-id in source/presentation.css (no package classes).
+        return reference_flow(spec, flow)
 
     def control(self, slot):
         c = self.controls[slot]
-        return node("image", source=c["local_path"], alt=c["meaning"],
-                    presentation=attrs("native-inline-control"))
+        return node("image", source=c["local_path"], alt=c["meaning"])
 
     def finish(self):
         for copy, original in DUPLICATE_PAGES[self.language].items():
@@ -447,6 +447,5 @@ def build_flow(native, p, lines, *, right, keep_marks=False, every_line=False):
             fields = {"ordered": kind == "ol"}
             if kind == "ol" and number != 1:
                 fields["start"] = number
-            flow.append(node("list", [item], **fields,
-                             presentation=attrs("native-steps" if kind == "ol" else "native-bullets")))
+            flow.append(node("list", [item], **fields))
     return flow

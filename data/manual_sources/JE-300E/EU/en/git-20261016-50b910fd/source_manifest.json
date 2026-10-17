@@ -478,8 +478,8 @@
     },
     {
       "path": "docs/renderers/contracts/prepared_style_baseline.json",
-      "size": 26342,
-      "sha256": "94cbd767f652d0fe4a0ead9cdf4df69cc25a293623c92d7f6444451874aeb48c"
+      "size": 25894,
+      "sha256": "320e428e070944a2cc757f3354011a1a16824c7b493ae752ad3c88a97175b57e"
     },
     {
       "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",

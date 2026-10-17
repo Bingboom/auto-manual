@@ -1,4 +1,4 @@
-"""JA-TS02A US French and Spanish Git-only release: source identity, operator acceptance, word coverage, admissions, shared-IR replay."""
+"""JA-TS02A US French and Spanish Git-only candidate: source identity, word coverage, admissions, shared-IR replay."""
 from __future__ import annotations
 
 from contextlib import redirect_stdout
@@ -28,17 +28,22 @@ PAGES = {'fr': list(range(25, 47)), 'es': list(range(47, 70))}
 # Same chapters, in the English edition's order; titles as printed in each language.
 CHAPTERS = {
     'fr': ['CONSIGNES DE SÉCURITÉ', 'SPÉCIFICATIONS', 'LISTE DES PAQUETS', 'CE DONT VOUS AVEZ BESOIN',
-           'APERÇU DU PRODUIT', 'PRÉ-INSTALLATION', "GUIDE D'INSTALLATION", 'Briseurs recommandés',
+           'APERÇU DU PRODUIT', 'PRÉ-INSTALLATION', "GUIDE D'INSTALLATION",
            'UTILISATION DE L’APPLICATION JACKERY', "GUIDE DE DÉMARRAGE RAPIDE DE L'APPLICATION JACKERY", 'GARANTIE'],
     'es': ['INSTRUCCIONES DE SEGURIDAD', 'ESPECIFICACIONES', 'LISTA DE PAQUETES', 'LO QUE NECESITAS',
-           'DESCRIPCIÓN DEL PRODUCTO', 'PRE-INSTALACIÓN', 'GUÍA DE INSTALACIÓN', 'Disyuntores Recomendados',
+           'DESCRIPCIÓN DEL PRODUCTO', 'PRE-INSTALACIÓN', 'GUÍA DE INSTALACIÓN',
            'USO DE LA APLICACIÓN DE JACKERY', 'GUÍA DE INICIO RÁPIDO DE LA APLICACIÓN JACKERY', 'GARANTÍA'],
 }
 CHAPTER_IDS = ['safety', 'specifications', 'package-list', 'what-you-need', 'product-overview', 'pre-installation',
-               'installation-guide', 'recommended-breakers', 'internet-setup', 'app-quick-start', 'warranty']
+               'installation-guide', 'internet-setup', 'app-quick-start', 'warranty']
+# The prints set the recommended-breakers title as a subheading of the installation guide (decision D2).
+BREAKERS = {'fr': 'Briseurs recommandés', 'es': 'Disyuntores Recomendados'}
 # English has five callout strips; the French and Spanish prints set the deadfront warning as a plain line.
 COMPONENTS = {'HB-CALLOUT-STRIP': 4, 'HB-SPECIAL-APP': 1, 'HB-SPECIAL-REFERENCE-FIGURE': 30,
-              'HB-WARRANTY-LEAD': 1, 'HB-WARRANTY-SECTION': 6}
+              'HB-TABLE-SPEC': 1, 'HB-WARRANTY-LEAD': 1, 'HB-WARRANTY-SECTION': 6}
+# Plain shared tables (no shared component fits), declared with their reasons in the manifest.
+PLAIN_TABLES = ['safety', 'what-you-need', 'product-overview', 'installation-guide']
+STYLE_BASELINE = ROOT / 'docs/renderers/contracts/prepared_style_baseline.json'
 JOINS = {'fr': [['domes-', 'tique'], ['automatique-', 'ment'], ['immédi-', 'atement'], ['alimenta', 'tion']],
          'es': [['concesion-', 'ario'], ['recomien-', 'da'], ['instruc-', 'ciones']]}
 SHARED_PANELS = {('fr', 'deadfront-installation'), ('fr', 'iot-pairing'), ('es', 'app-store-badges')}
@@ -110,7 +115,9 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
                                               'technical_version': PACKAGE.name,
                                               'printed_manual_version': 'JAK-UM-V1.0'})
         self.assertEqual(manifest['web_roots'], {'fr': 'web/fr', 'es': 'web/es'})
-        self.assertEqual(manifest['publication_status'], 'operator-approved-git-only-release')
+        # The D2 revision changes source inputs, so the 2026-10-14 acceptance (MA-307) no longer covers them.
+        self.assertEqual(manifest['publication_status'], 'git-only-source-candidate')
+        self.assertFalse((PACKAGE / 'source/approval.json').exists())
         original = manifest['original_source']
         self.assertEqual(original['sha256'], SOURCE_SHA)
         digest = hashlib.sha256()
@@ -133,41 +140,16 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         files = {path: sha for path, sha in inventory(ENGLISH).items() if path != 'source_manifest.json'}
         self.assertEqual({row['path']: row['sha256'] for row in manifest['inputs']}, files)
 
-    def test_the_operator_acceptance_binds_every_source_input(self):
-        manifest = read(PACKAGE / 'source_manifest.json')
-        approval = read(PACKAGE / 'source/approval.json')
-        self.assertEqual(approval['target'], {key: manifest['target'][key]
-                                              for key in ('model', 'region', 'technical_version')})
-        self.assertEqual(approval['languages'], list(LANGUAGES))
-        self.assertEqual(approval['original_source_sha256'], SOURCE_SHA)
-        # Everything but the frozen web/ outputs and the acceptance itself.
-        self.assertEqual(approval['reviewed_inputs'],
-                         [row for row in manifest['inputs']
-                          if not row['path'].startswith('web/') and row['path'] != 'source/approval.json'])
-        self.assertEqual((approval['operator_quote'], approval['merge_authorization']), ('授权你合入', 'MA-307'))
+    def test_candidate_is_not_publishable_before_operator_acceptance(self):
+        from tools.web.language_release_evidence import require_publishable_manual_ir
         for language in LANGUAGES:
             with self.subTest(language=language):
                 metadata = read(PACKAGE / f'web/{language}' / PathSegments.MANUAL_IR_JSON)['metadata']
-                self.assertIs(metadata['publication_eligible'], True)
-                self.assertEqual(metadata['pending_source_review'], [])
-                self.assertEqual(metadata['operator_source_acceptance'], approval)
-
-    def test_an_acceptance_that_misses_an_input_is_refused_before_output(self):
-        source = self.fixture()
-        path = source / 'source/approval.json'
-        approval = read(path)
-        approval['reviewed_inputs'] = approval['reviewed_inputs'][1:]
-        write(path, approval)
-        manifest = read(source / 'source_manifest.json')
-        row = next(row for row in manifest['inputs'] if row['path'] == 'source/approval.json')
-        row.update(size=path.stat().st_size, sha256=file_sha256(path))
-        write(source / 'source_manifest.json', manifest)
-        for language in LANGUAGES:
-            with self.subTest(language=language):
-                with mock.patch.object(rebuild_module, 'SOURCE_ROOT', source):
-                    with self.assertRaisesRegex(ValueError, 'operator acceptance does not cover these source inputs'):
-                        rebuild(self.root / 'output', language)
-                self.assertFalse((self.root / 'output').exists())
+                self.assertIs(metadata['publication_eligible'], False)
+                self.assertTrue(metadata['pending_source_review'])
+                self.assertIsNone(metadata['operator_source_acceptance'])
+                with self.assertRaises(Exception):
+                    require_publishable_manual_ir(PACKAGE / f'web/{language}')
 
     def test_every_body_word_is_classified(self):
         self.assertEqual(read(PACKAGE / 'source/unmapped.json'), {'fr': [], 'es': []})
@@ -223,7 +205,7 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         from tools.web.caption_frame_admission import require_caption_frame_admission
         from tools.web.component_admission import require_fresh_component_admission
         from tools.web.frozen_source_evidence import _locale_inventory, _source
-        from tools.web.language_release_evidence import _file_inventory, require_publishable_manual_ir
+        from tools.web.language_release_evidence import _file_inventory
         from tools.web.symbol_asset_admission import require_symbol_asset_admission
 
         path = PACKAGE / 'source_manifest.json'
@@ -238,7 +220,6 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
                 require_fresh_component_admission(web, model='JA-TS02A', region='US', language=language)
                 require_symbol_asset_admission(web, PACKAGE, manifest, language)
                 require_caption_frame_admission(web)
-                require_publishable_manual_ir(web)
 
     def test_every_symbol_passes_the_glyph_gate_against_its_own_page(self):
         import fitz
@@ -283,6 +264,12 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
             text = (PACKAGE / f'web/{language}/manual_jats02a_us_{language}.md').read_text(encoding='utf-8')
             self.assertNotRegex(text, r'(?m)^# ')  # no printed cover title
             self.assertEqual(re.findall(r'(?m)^## (.+)$', text), CHAPTERS[language])
+            # A subheading of the installation guide, at the level of Energizing and Locking the Panel.
+            guide = next(c for c in content['chapters'] if c['id'] == 'installation-guide')
+            headings = [(n['level'],
+                         ''.join(t.get('text', '') for t in n.get('children', [])))
+                        for n in guide['nodes'] if n.get('kind') == 'heading']
+            self.assertEqual(headings[-1], (4, BREAKERS[language]))
 
     def test_shared_components_carry_the_page(self):
         for language in LANGUAGES:
@@ -298,18 +285,36 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
     def test_tables_keep_the_print_spans(self):
         for language in LANGUAGES:
             soup = page(language)
-            spec = soup.select_one('table.native-spec-rules')
-            self.assertIsNone(spec.find('thead'))
+            spec = soup.select_one('table.hb-spec-table')
             self.assertEqual(len(spec.select('tbody > tr')), 17)
-            cables = soup.select_one('table.native-cables')
+            plain = [t for t in soup.select('table') if t.get('class') == ['manual-table']]
+            self.assertEqual(len(plain), 4)
+            symbols, cables, led, torque = plain
+            self.assertEqual(len(symbols.select('tbody img')), 4)
             self.assertEqual(cables.select_one('thead th')['colspan'], '2')
             self.assertEqual([cell['rowspan'] for cell in cables.select('td[rowspan]')], ['4'] * 4)
-            self.assertEqual(len(cables.select('td.native-wire')), 8)
-            led = soup.select_one('table.native-led')
             self.assertEqual([cell['rowspan'] for cell in led.select('td[rowspan]')], ['3', '3', '3', '2'])
-            torque = soup.select_one('table.native-torque')
             self.assertEqual(len(torque.select('thead th')), 6)
             self.assertEqual(len(torque.select('tbody > tr')), 4)
+
+    def test_only_shared_styles_pass_the_prepared_document_gate(self):
+        from tools.web.prepared_style_audit import audit_prepared_package_locale, require_prepared_style_admission
+        manifest = read(PACKAGE / 'source_manifest.json')
+        declared = manifest['shared_component_exceptions']
+        self.assertEqual([(row['language'], row['page_id']) for row in declared],
+                         [(language, page_id) for language in LANGUAGES for page_id in PLAIN_TABLES])
+        self.assertTrue(all(row['reason'].strip() for row in declared))
+        roots = {row['web_root'] for row in read(STYLE_BASELINE)['entries']}
+        for language in LANGUAGES:
+            with self.subTest(language=language):
+                web = PACKAGE / f'web/{language}'
+                report = audit_prepared_package_locale(PACKAGE, web, manifest)
+                self.assertEqual((report['issues'], report['declared_tables']), ([], 4))
+                self.assertNotIn(web.relative_to(ROOT).as_posix(), roots)  # not a baseline entry
+                self.assertNotIn('baseline', require_prepared_style_admission(web, manifest))
+                classes = {c for tag in page(language).find_all(class_=True) for c in tag['class']}
+                self.assertFalse({c for c in classes if c.startswith('native-')})
+        self.assertIn(ENGLISH.relative_to(ROOT).as_posix() + '/web/en', roots)  # English stays as released
 
     def test_artwork_is_shared_with_english_or_cut_per_language(self):
         english = {r['slot']: r for r in read(ENGLISH / 'source/figures.json')}
