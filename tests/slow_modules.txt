@@ -15,6 +15,7 @@ test_jbp3600a_jp_ja_web                            # 18s (intake and artwork rep
 test_frozen_ai_table_components                    # 17.9s
 test_je3000c_0915_warnings                         # 15.7s
 test_ja_ts02a_us_en_web                            # 14s (intake reproduction, cold replay, admissions)
+test_je300e_eu_en_web                              # 14s (intake reproduction, cold replay, accepted-copy admissions)
 test_rtd_feedback                                  # 13.7s
 test_component_spec_manual_sections                # 11.8s
 test_authored_table_components                     # 11.7s

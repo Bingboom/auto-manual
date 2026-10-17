@@ -1,0 +1,112 @@
+{
+  "schema_version": "je300e-eu-en-proposed-admission/v1",
+  "status": "enrolled at acceptance (D12 「准入」, MA-313, 2026-10-16): source_profile is copied unchanged into docs/renderers/contracts/prepared_component_admission.json.",
+  "contract_path": "docs/renderers/contracts/prepared_component_admission.json",
+  "source_sha256": "50b910fdd761010f2e0609afae924e4cad2ca109c5a4717d99a4edf294672800",
+  "source_profile": {
+    "source": "55060100007 HTE147300A-EU-JAK-A0 说明书 RoHS REACH_修正.ai",
+    "review_record": "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd/README.md",
+    "targets": {
+      "JE-300E/EU/en": {
+        "pages": {
+          "introduction": {
+            "slot": "native/introduction",
+            "components": {}
+          },
+          "safety": {
+            "slot": "native/safety",
+            "components": {
+              "HB-CALLOUT-STRIP/warning": 1
+            }
+          },
+          "symbols": {
+            "slot": "native/symbols",
+            "components": {
+              "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+              "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1
+            }
+          },
+          "in_the_box": {
+            "slot": "native/in_the_box",
+            "components": {
+              "HB-SPECIAL-INBOX/responsive-card-grid": 1
+            }
+          },
+          "product_overview": {
+            "slot": "native/product_overview",
+            "components": {
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+            }
+          },
+          "lcd_display": {
+            "slot": "native/lcd_display",
+            "components": {
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+              "HB-TABLE-LCD-ICON/icon-catalog": 1
+            }
+          },
+          "operations": {
+            "slot": "native/operations",
+            "components": {
+              "HB-CALLOUT-STRIP/caution": 2,
+              "HB-CALLOUT-STRIP/note": 1,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 5,
+              "HB-TABLE-LCD-MODE/two-state-three-action": 1
+            }
+          },
+          "charging": {
+            "slot": "native/charging",
+            "components": {
+              "HB-CALLOUT-STRIP/caution": 2,
+              "HB-CALLOUT-STRIP/note": 4,
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 5,
+              "HB-TABLE-REFERENCE/lcd-actions-compact": 1
+            }
+          },
+          "storage": {
+            "slot": "native/storage",
+            "components": {}
+          },
+          "troubleshooting": {
+            "slot": "native/troubleshooting",
+            "components": {
+              "HB-TABLE-TROUBLESHOOTING/two-column": 1
+            }
+          },
+          "specifications": {
+            "slot": "native/specifications",
+            "components": {
+              "HB-CALLOUT-STRIP/note": 1,
+              "HB-TABLE-SPEC/vertical": 4
+            }
+          },
+          "warranty": {
+            "slot": "native/warranty",
+            "components": {
+              "HB-WARRANTY-LEAD/intro-panel": 1,
+              "HB-WARRANTY-SECTION/rounded-card": 5,
+              "HB-WARRANTY-YEARS/numeric-badges": 1
+            },
+            "chapter": "warranty"
+          },
+          "recycling": {
+            "slot": "native/recycling",
+            "components": {}
+          },
+          "serial_number": {
+            "slot": "native/serial_number",
+            "components": {
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+            }
+          },
+          "eu-declaration": {
+            "slot": "native/eu-declaration",
+            "components": {
+              "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

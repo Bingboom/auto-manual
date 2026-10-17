@@ -1,0 +1,9610 @@
+{
+  "schema": "native-word-coverage/v1",
+  "language": "en",
+  "pages": {
+    "3": [
+      0,
+      0,
+      369,
+      170
+    ],
+    "7": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "8": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "9": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "10": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "11": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "12": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "13": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "14": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "15": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "16": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "17": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "18": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "19": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "20": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "21": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "22": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "23": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "24": [
+      0,
+      0,
+      369,
+      525
+    ],
+    "97": [
+      0,
+      0,
+      369,
+      525
+    ]
+  },
+  "classified_word_count": 4563,
+  "unmapped": [],
+  "duplicate_live_copy": [],
+  "unused_split_words": [],
+  "word_joins": [
+    [
+      "organiza-",
+      "tions",
+      23,
+      157.4
+    ]
+  ],
+  "overlay_splices": [
+    [
+      18,
+      "®",
+      [
+        73.1,
+        435.1,
+        77.4,
+        441.3
+      ]
+    ],
+    [
+      18,
+      "®",
+      [
+        113.8,
+        435.1,
+        118.1,
+        441.3
+      ]
+    ]
+  ],
+  "print_line_breaks": [
+    [
+      3,
+      73.8,
+      "n accessible place for future reference.",
+      "In compliance with laws and regulations,"
+    ],
+    [
+      3,
+      115.8,
+      "any errors that may appear.",
+      "Please note that no further notification"
+    ],
+    [
+      3,
+      137.8,
+      "duct manuals, visit support.jackery.com.",
+      "*The images are for reference purposes o"
+    ],
+    [
+      8,
+      185.2,
+      "disposed of with household waste.",
+      "As a consumer, you are legally required "
+    ],
+    [
+      8,
+      219.2,
+      "substances.",
+      "Please return used batteries and "
+    ],
+    [
+      10,
+      468.9,
+      "sequence.",
+      "When charging other devices, the orange "
+    ],
+    [
+      11,
+      178.1,
+      "On: Energy Saving Mode is enabled.",
+      "Off: Energy Saving Mode is disabled."
+    ],
+    [
+      17,
+      315.4,
+      "charging the product via AC wall outlet.",
+      "2. Check whether the air intake and exha"
+    ],
+    [
+      17,
+      331.4,
+      "side of the product.",
+      "3. Place the product in a shaded, well-v"
+    ],
+    [
+      17,
+      347.4,
+      "45°C.",
+      "4.Disconnect all loads from the product,"
+    ],
+    [
+      17,
+      356.4,
+      "dle and wait until the fault disappears.",
+      "5. Restart the product."
+    ],
+    [
+      17,
+      398.6,
+      ". Remove all DC inputs from the product.",
+      "2. If you charge the product via a solar"
+    ],
+    [
+      17,
+      414.6,
+      "llows a maximum DC input voltage of 28V.",
+      "3. Restart the product and keep it idle."
+    ],
+    [
+      18,
+      218.5,
+      "Car: 11V-16V⎓6A Max, 96W Max",
+      "PV: 16V-28V⎓6A Max, 100W Max"
+    ],
+    [
+      18,
+      274.4,
+      "Hz, 1.3 A, 300 W rated (-10 °C to 45 °C)",
+      "230 V~ 50 Hz, 0.86 A, 200 W rated (-15 °"
+    ],
+    [
+      18,
+      297.1,
+      "ated, 600 W surge peak (-10 °C to 45 °C)",
+      "200 W rated, 400 W surge peak  (-15 °C t"
+    ],
+    [
+      20,
+      95.0,
+      "ks associated with hazardous substances.",
+      "Through this Guide, Jackery aims to fulf"
+    ],
+    [
+      20,
+      122.0,
+      "pollution and potential safety hazards.",
+      "As part of our commitment to complying w"
+    ],
+    [
+      20,
+      167.1,
+      "frequent replacement.",
+      "When a battery approaches the end of its"
+    ],
+    [
+      20,
+      359.8,
+      "battery degradation.",
+      "Extending battery life and reducing the "
+    ],
+    [
+      21,
+      119.0,
+      "and water.",
+      "You can obtain information about the loc"
+    ],
+    [
+      21,
+      214.2,
+      "batteries.",
+      "Please note that, under applicable law, "
+    ],
+    [
+      21,
+      356.0,
+      " from ultimately ending up in landfills.",
+      "Jackery provides recycling services to a"
+    ],
+    [
+      22,
+      59.2,
+      "environment.",
+      "When handling waste batteries, particula"
+    ],
+    [
+      22,
+      153.7,
+      "overheating.",
+      "Do not expose batteries to excessive hea"
+    ],
+    [
+      22,
+      202.3,
+      "direct contact with the electrolyte.",
+      "If you notice any swelling, leakage, or "
+    ],
+    [
+      23,
+      61.9,
+      "disposed of as unsorted household waste.",
+      "At the end of its service life, the batt"
+    ],
+    [
+      23,
+      219.1,
+      "disposal is prohibited.",
+      "The subsequent processing of waste batte"
+    ],
+    [
+      23,
+      346.5,
+      "thereby supporting resource circularity.",
+      "Individuals are prohibited from independ"
+    ],
+    [
+      24,
+      64.5,
+      "ber (SN) barcode, structured as follows:",
+      "Example:"
+    ],
+    [
+      97,
+      381.8,
+      "RED Declaration of Conformity",
+      "Shenzhen Hello Tech Energy Co., Ltd. her"
+    ]
+  ],
+  "selections": [
+    {
+      "page": 3,
+      "bbox": [
+        30,
+        30,
+        54,
+        50
+      ],
+      "purpose": "printed-badge",
+      "word_ids": [
+        386
+      ],
+      "raw": "US"
+    },
+    {
+      "page": 3,
+      "bbox": [
+        54,
+        30,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        383
+      ],
+      "raw": "IMPORTANT"
+    },
+    {
+      "page": 3,
+      "bbox": [
+        30,
+        50,
+        345,
+        165
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121
+      ],
+      "raw": "Congratulations on your new Jackery Explorer 300. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for future reference. In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company. Although every effort has been made to ensure the accuracy of this manual, Jackery assumes no responsibility for any errors that may appear. Please note that no further notifications will be given in case of any update, revision, or termination. For the latest version of the product manuals, visit support.jackery.com. *The images are for reference purposes only. Please refer to the actual product."
+    },
+    {
+      "page": 7,
+      "bbox": [
+        28,
+        26,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        321,
+        322,
+        323
+      ],
+      "raw": "IMPORTANT SAFETY INFORMATION"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        28,
+        54,
+        60,
+        86
+      ],
+      "purpose": "native-symbol/warning-box-triangle",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 7,
+      "bbox": [
+        60,
+        56,
+        341,
+        86
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308
+      ],
+      "raw": "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        28,
+        86,
+        345,
+        236
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317
+      ],
+      "raw": "• Read all the instructions before using the product. • Do not allow children to play with the product. Close supervision of children is necessary when the product is used near children. • Risk of electric shock may occur if using accessories that are not recommended or sold by professional product manufacturers. • When the product is not in use, unplug the power plug from the product's socket. • Do not dismantle the product, as this may lead to unpredictable risks such as fire, explosion, or electric shock. • Do not use the product with damaged cords, plugs, or output cables, as this may cause electric shock. • To ensure proper air circulation, keep the product vents uncovered. The area where the product is used must have adequate airflow in a cool, dry environment to prevent overheating. ◦Charging in damp or poorly ventilated spaces may cause safety hazards. ◦Water can cause short circuits or damage to the charger, leading to safety risks. • Do not expose the product to fire, high temperatures, direct sunlight, or high-heat environments such as inside a parked vehicle. Such exposure may result in fire or explosion. Always follow these basic precautions when using this product."
+    },
+    {
+      "page": 7,
+      "bbox": [
+        28,
+        280,
+        200,
+        297
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        318,
+        319,
+        320
+      ],
+      "raw": "USER MAINTENANCE INSTRUCTIONS"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        26,
+        298,
+        345,
+        330
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "raw": "During the lifecycle of energy storage products, a certain degree of capacity and energy degradation is expected. As the number of charge and discharge cycles increases and storage time extends, this degradation will gradually intensify, which is a normal phenomenon consistent with the natural aging of battery cells."
+    },
+    {
+      "page": 7,
+      "bbox": [
+        28,
+        342,
+        345,
+        366
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        103,
+        104,
+        105
+      ],
+      "raw": "MEANING OF SYMBOLS"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        30,
+        371,
+        104,
+        388
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        49
+      ],
+      "raw": "Symbol"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        104,
+        371,
+        341,
+        388
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        50
+      ],
+      "raw": "Meaning"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        30,
+        388,
+        104,
+        413
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        75
+      ],
+      "raw": "WARNING"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        104,
+        388,
+        341,
+        413
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ],
+      "raw": "Hazardous practices that may result in severe injury, death, and/or property damage."
+    },
+    {
+      "page": 7,
+      "bbox": [
+        30,
+        413,
+        104,
+        439
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        62
+      ],
+      "raw": "CAUTION"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        104,
+        413,
+        341,
+        439
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "raw": "Hazardous practices that may result in personal injury and/or property damage."
+    },
+    {
+      "page": 7,
+      "bbox": [
+        30,
+        439,
+        104,
+        464
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        91
+      ],
+      "raw": "NOTE"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        104,
+        439,
+        341,
+        464
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "raw": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results."
+    },
+    {
+      "page": 7,
+      "bbox": [
+        30,
+        464,
+        104,
+        490
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        102
+      ],
+      "raw": "TIP"
+    },
+    {
+      "page": 7,
+      "bbox": [
+        104,
+        464,
+        341,
+        490
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101
+      ],
+      "raw": "Supplements the important information or operation tips in the text."
+    },
+    {
+      "page": 8,
+      "bbox": [
+        30,
+        28,
+        68,
+        44
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1
+      ],
+      "raw": "Symbol"
+    },
+    {
+      "page": 8,
+      "bbox": [
+        68,
+        28,
+        186,
+        44
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2
+      ],
+      "raw": "Meaning"
+    },
+    {
+      "page": 8,
+      "bbox": [
+        186,
+        28,
+        222,
+        44
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        34
+      ],
+      "raw": "Symbol"
+    },
+    {
+      "page": 8,
+      "bbox": [
+        222,
+        28,
+        341,
+        44
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        35
+      ],
+      "raw": "Meaning"
+    },
+    {
+      "page": 8,
+      "bbox": [
+        36,
+        44,
+        70,
+        77
+      ],
+      "purpose": "native-symbol/warning/outline-triangle-tinted",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 8,
+      "bbox": [
+        70,
+        44,
+        184,
+        77
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "raw": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks."
+    },
+    {
+      "page": 8,
+      "bbox": [
+        36,
+        77,
+        70,
+        106
+      ],
+      "purpose": "native-symbol/read-manual/book-information",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 8,
+      "bbox": [
+        70,
+        77,
+        184,
+        106
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "raw": "Read the user manual before operation."
+    },
+    {
+      "page": 8,
+      "bbox": [
+        36,
+        106,
+        70,
+        140
+      ],
+      "purpose": "native-symbol/do-not-dismantle/screwdriver-prohibited-tw-477dfbd7",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 8,
+      "bbox": [
+        70,
+        106,
+        184,
+        140
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "raw": "Do not dismantle the product."
+    },
+    {
+      "page": 8,
+      "bbox": [
+        36,
+        140,
+        70,
+        174
+      ],
+      "purpose": "native-symbol/no-open-flame/fire-match-prohibited",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 8,
+      "bbox": [
+        70,
+        140,
+        184,
+        174
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "raw": "Keep the product away from fire."
+    },
+    {
+      "page": 8,
+      "bbox": [
+        192,
+        44,
+        222,
+        75
+      ],
+      "purpose": "native-symbol/keep-away-from-children/adult-child-prohibited",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 8,
+      "bbox": [
+        222,
+        44,
+        340,
+        75
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "raw": "Keep away from children."
+    },
+    {
+      "page": 8,
+      "bbox": [
+        192,
+        75,
+        222,
+        105.5
+      ],
+      "purpose": "native-symbol/li-ion/recycle-li-ion-native-dark",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 8,
+      "bbox": [
+        222,
+        75,
+        340,
+        105.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "raw": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly."
+    },
+    {
+      "page": 8,
+      "bbox": [
+        192,
+        105.5,
+        222,
+        174.6
+      ],
+      "purpose": "native-symbol/weee/crossed-bin-bar",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 8,
+      "bbox": [
+        222,
+        105.5,
+        340,
+        174.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112
+      ],
+      "raw": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer."
+    },
+    {
+      "page": 8,
+      "bbox": [
+        192,
+        174.6,
+        222,
+        275
+      ],
+      "purpose": "native-symbol/battery-weee/crossed-bin-no-bar",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 8,
+      "bbox": [
+        222,
+        174.6,
+        340,
+        275
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185
+      ],
+      "raw": "Batteries and accumulators must not be disposed of with household waste. As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances. Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment."
+    },
+    {
+      "page": 9,
+      "bbox": [
+        30,
+        26,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw": "WHAT'S IN THE BOX"
+    },
+    {
+      "page": 9,
+      "bbox": [
+        60,
+        64,
+        320,
+        84
+      ],
+      "purpose": "shared-inbox-live-ordinal",
+      "word_ids": [
+        5,
+        6,
+        13,
+        84
+      ],
+      "raw": "1 2 3 4"
+    },
+    {
+      "page": 9,
+      "bbox": [
+        38,
+        90,
+        102,
+        147
+      ],
+      "purpose": "embedded-art/inbox-unit",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 9,
+      "bbox": [
+        31,
+        164,
+        105,
+        180
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        10,
+        11,
+        12
+      ],
+      "raw": "Jackery Explorer 300"
+    },
+    {
+      "page": 9,
+      "bbox": [
+        114,
+        90,
+        178,
+        147
+      ],
+      "purpose": "embedded-art/inbox-adapter",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 9,
+      "bbox": [
+        109,
+        164,
+        183,
+        180
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        7,
+        8,
+        9
+      ],
+      "raw": "65W AC Adapter"
+    },
+    {
+      "page": 9,
+      "bbox": [
+        192,
+        90,
+        256,
+        147
+      ],
+      "purpose": "embedded-art/inbox-car-cable",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 9,
+      "bbox": [
+        186,
+        164,
+        262,
+        180
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        14,
+        15,
+        16
+      ],
+      "raw": "Car Charging Cable"
+    },
+    {
+      "page": 9,
+      "bbox": [
+        272,
+        90,
+        336,
+        147
+      ],
+      "purpose": "embedded-art/inbox-documents",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 9,
+      "bbox": [
+        266,
+        164,
+        342,
+        180
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        85
+      ],
+      "raw": "Doucuments"
+    },
+    {
+      "page": 9,
+      "bbox": [
+        30,
+        225,
+        345,
+        248
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        44,
+        45
+      ],
+      "raw": "PRODUCT OVERVIEW"
+    },
+    {
+      "page": 9,
+      "bbox": [
+        36,
+        254,
+        200,
+        272
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        42,
+        43
+      ],
+      "raw": "FRONT VIEW"
+    },
+    {
+      "page": 9,
+      "bbox": [
+        26,
+        276,
+        346,
+        494
+      ],
+      "purpose": "embedded-art/overview-front",
+      "word_ids": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83
+      ],
+      "raw": "USB-C Input / Output DC Power Button DC 12V Port AC Output AC Power Button Main Power Button USB Power Button DC Input USB-A1 Output LCD Handle 230 V~ 50 Hz, 1.3 A, 300 W rated 12V⎓10A Max 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A 15W Max, 5V⎓3A 15W Max, 5V⎓3A USB-A2 Output 1×DC8020 Port: 11-16V⎓6A Max, 96W Max 16-28V⎓6A Max, 100W Max"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        28,
+        26,
+        345,
+        52
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        13,
+        14
+      ],
+      "raw": "LCD DISPLAY"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        28,
+        54,
+        342,
+        216
+      ],
+      "purpose": "embedded-art/lcd-display",
+      "word_ids": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "raw": "内二 9 5 3 8 7 6 10 11 1 2 4"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        28,
+        237,
+        48.7,
+        274.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        23
+      ],
+      "raw": "1"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        49.5,
+        237.5,
+        91.3,
+        274.4
+      ],
+      "purpose": "native-lcd-icon/lcd-ac-power",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 10,
+      "bbox": [
+        91.8,
+        237,
+        181.2,
+        274.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        25,
+        26,
+        27
+      ],
+      "raw": "AC Power Indicator"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        181.2,
+        237,
+        341,
+        274.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "raw": "The AC output (pure sine wave) is on."
+    },
+    {
+      "page": 10,
+      "bbox": [
+        28,
+        274.9,
+        48.7,
+        306.1
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        24
+      ],
+      "raw": "2"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        49.5,
+        275.4,
+        91.3,
+        305.6
+      ],
+      "purpose": "native-lcd-icon/lcd-output-voltage",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 10,
+      "bbox": [
+        91.8,
+        274.9,
+        181.2,
+        306.1
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        110,
+        111,
+        112,
+        113
+      ],
+      "raw": "Output Voltage and Frequency"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        181.2,
+        274.9,
+        341,
+        306.1
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        99,
+        100,
+        101,
+        102,
+        103,
+        104
+      ],
+      "raw": "Displays the output voltage and frequency."
+    },
+    {
+      "page": 10,
+      "bbox": [
+        28,
+        306.1,
+        48.7,
+        337.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        106
+      ],
+      "raw": "3"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        49.5,
+        306.6,
+        91.3,
+        337.4
+      ],
+      "purpose": "native-lcd-icon/lcd-input-power",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 10,
+      "bbox": [
+        91.8,
+        306.1,
+        181.2,
+        337.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        108,
+        109
+      ],
+      "raw": "Input Power"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        181.2,
+        306.1,
+        341,
+        337.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "raw": "Displays the input power in watts."
+    },
+    {
+      "page": 10,
+      "bbox": [
+        28,
+        337.9,
+        48.7,
+        369.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        105
+      ],
+      "raw": "4"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        49.5,
+        338.4,
+        91.3,
+        368.5
+      ],
+      "purpose": "native-lcd-icon/lcd-output-power",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 10,
+      "bbox": [
+        91.8,
+        337.9,
+        181.2,
+        369.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        114,
+        115
+      ],
+      "raw": "Output Power"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        181.2,
+        337.9,
+        341,
+        369.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        116,
+        117,
+        118,
+        119,
+        120,
+        121
+      ],
+      "raw": "Displays the output power in watts."
+    },
+    {
+      "page": 10,
+      "bbox": [
+        28,
+        369.0,
+        48.7,
+        405.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        107
+      ],
+      "raw": "5"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        49.5,
+        369.5,
+        91.3,
+        405.1
+      ],
+      "purpose": "native-lcd-icon/lcd-car-charging",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 10,
+      "bbox": [
+        91.8,
+        369.0,
+        181.2,
+        405.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        89,
+        90,
+        91
+      ],
+      "raw": "Car Charging Indicator"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        181.2,
+        369.0,
+        341,
+        405.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88
+      ],
+      "raw": "The product is charged via the DC Input (DC8020) using DC 12V (car charging)."
+    },
+    {
+      "page": 10,
+      "bbox": [
+        28,
+        405.6,
+        48.7,
+        448.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        92
+      ],
+      "raw": "6"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        49.5,
+        406.1,
+        91.3,
+        448.3
+      ],
+      "purpose": "native-lcd-icon/lcd-solar-charging",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 10,
+      "bbox": [
+        91.8,
+        405.6,
+        181.2,
+        448.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        69,
+        70,
+        71
+      ],
+      "raw": "Solar Charging Indicator"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        181.2,
+        405.6,
+        341,
+        448.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "raw": "The product is charged via the DC Input (DC8020) using solar panel(s)."
+    },
+    {
+      "page": 10,
+      "bbox": [
+        28,
+        448.8,
+        48.7,
+        496.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        68
+      ],
+      "raw": "7"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        49.5,
+        449.3,
+        91.3,
+        495.5
+      ],
+      "purpose": "native-lcd-icon/lcd-battery-power",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 10,
+      "bbox": [
+        91.8,
+        448.8,
+        181.2,
+        496.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72,
+        73,
+        74
+      ],
+      "raw": "Battery Power Indicator"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        181.2,
+        448.8,
+        341,
+        496.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "raw": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on."
+    },
+    {
+      "page": 11,
+      "bbox": [
+        28,
+        31.0,
+        47.7,
+        68.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        78
+      ],
+      "raw": "8"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        48.2,
+        31.5,
+        85.2,
+        68.4
+      ],
+      "purpose": "native-lcd-icon/lcd-battery-percentage",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 11,
+      "bbox": [
+        85.7,
+        31.0,
+        179.0,
+        68.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        84,
+        85,
+        86
+      ],
+      "raw": "Remaining Battery Percentage"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        179.0,
+        31.0,
+        341,
+        68.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "raw": "Displays the remaining battery percentage."
+    },
+    {
+      "page": 11,
+      "bbox": [
+        28,
+        68.9,
+        47.7,
+        100.4
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        79
+      ],
+      "raw": "9"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        48.2,
+        69.4,
+        85.2,
+        99.9
+      ],
+      "purpose": "native-lcd-icon/lcd-fault-code",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 11,
+      "bbox": [
+        85.7,
+        68.9,
+        179.0,
+        100.4
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        82,
+        83
+      ],
+      "raw": "Fault Code"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        179.0,
+        68.9,
+        341,
+        100.4
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "raw": "A product error has occurred. Please refer to the Troubleshooting section for details."
+    },
+    {
+      "page": 11,
+      "bbox": [
+        28,
+        100.4,
+        47.7,
+        167.2
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        80
+      ],
+      "raw": "10"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        48.2,
+        100.9,
+        85.2,
+        133.8
+      ],
+      "purpose": "native-lcd-icon/lcd-high-temperature",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 11,
+      "bbox": [
+        85.7,
+        100.4,
+        179.0,
+        134.3
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72,
+        73,
+        74
+      ],
+      "raw": "High Temperature Indicator"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        179.0,
+        100.4,
+        341,
+        134.3
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "raw": "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range."
+    },
+    {
+      "page": 11,
+      "bbox": [
+        48.2,
+        134.8,
+        85.2,
+        166.7
+      ],
+      "purpose": "native-lcd-icon/lcd-low-temperature",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 11,
+      "bbox": [
+        85.7,
+        134.3,
+        179.0,
+        167.2
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        75,
+        76,
+        77
+      ],
+      "raw": "Low Temperature Indicator"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        179.0,
+        134.3,
+        341,
+        167.2
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "raw": "Low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range."
+    },
+    {
+      "page": 11,
+      "bbox": [
+        28,
+        167.2,
+        47.7,
+        206.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        81
+      ],
+      "raw": "11"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        48.2,
+        167.7,
+        85.2,
+        205.5
+      ],
+      "purpose": "native-lcd-icon/lcd-energy-saving",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 11,
+      "bbox": [
+        85.7,
+        167.2,
+        179.0,
+        206.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        57,
+        58,
+        59
+      ],
+      "raw": "Energy Saving Mode"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        179.0,
+        167.2,
+        341,
+        206.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "raw": "On: Energy Saving Mode is enabled. Off: Energy Saving Mode is disabled."
+    },
+    {
+      "page": 11,
+      "bbox": [
+        28,
+        232,
+        345,
+        256
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        110
+      ],
+      "raw": "OPERATIONS"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        36,
+        262,
+        200,
+        280
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        87,
+        88
+      ],
+      "raw": "POWER ON/OFF"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        26,
+        280,
+        343,
+        438
+      ],
+      "purpose": "embedded-art/power-on-off",
+      "word_ids": [
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119
+      ],
+      "raw": "3s Default standby time: The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. POWER On Oﬀ Press once Press and hold for 3s"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        36,
+        26,
+        200,
+        43
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        34,
+        35,
+        36
+      ],
+      "raw": "AC OUTPUT ON/OFF"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        26,
+        44,
+        343,
+        225
+      ],
+      "purpose": "embedded-art/ac-output",
+      "word_ids": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "raw": "Prerequisite: The product is powered on. On Oﬀ Press once Press once"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        36,
+        232,
+        200,
+        250
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "raw": "DC 12V OUTPUT ON/OFF"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        29,
+        253,
+        346,
+        432
+      ],
+      "purpose": "embedded-art/dc-output",
+      "word_ids": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "raw": "on oﬀ Press once Press once Prerequisite: The product is powered on."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        40,
+        405,
+        342,
+        427
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "raw": "The product can charge your car battery using the Jackery 12V automobile battery charging cable, which is sold separately and available on our website."
+    },
+    {
+      "page": 12,
+      "bbox": [
+        32,
+        440,
+        76,
+        490
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        56
+      ],
+      "raw": "CAUTION"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        76,
+        440,
+        341,
+        490
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143
+      ],
+      "raw": "• USB-C 100W is a USB-PD Power Source 3 (PS3) high-power output port. If the connected user device or accessory does not meet safety requirements, there may be a fire risk. Before using these ports, ensure that the connected device or accessory has fire safety protection. • Only connect Jackery Explorer 300 to devices or accessories that comply with clauses 6.3, 6.4, and 6.5 of IEC/EN/UL 62368-1 (or other equivalent standards). • To obtain maximum output power, use the USB-C to USB-C 5A cable (20V DC/5A, 100W)."
+    },
+    {
+      "page": 13,
+      "bbox": [
+        30,
+        32,
+        73,
+        77
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1
+      ],
+      "raw": "CAUTION"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        73,
+        32,
+        341,
+        77
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62
+      ],
+      "raw": "• The DC 12V port is only compatible with 12V car batteries and not suitable for 24V systems. • Do not start the car while the product is charging the car battery through the DC 12V port, as this may damage the product. • This feature is intended for emergency use only and cannot charge a dead or damaged car battery."
+    },
+    {
+      "page": 13,
+      "bbox": [
+        36,
+        84,
+        200,
+        101
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        149,
+        150,
+        151
+      ],
+      "raw": "USB OUTPUT ON/OFF"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        26,
+        105,
+        343,
+        253
+      ],
+      "purpose": "embedded-art/usb-output",
+      "word_ids": [
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163
+      ],
+      "raw": "on oﬀ Press once Press once Prerequisite: The product is powered on."
+    },
+    {
+      "page": 13,
+      "bbox": [
+        36,
+        256,
+        200,
+        273
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        63,
+        64,
+        65
+      ],
+      "raw": "ENERGY SAVING MODE"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        40,
+        286,
+        330,
+        351
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148
+      ],
+      "raw": "To prevent unnecessary battery consumption caused by forgetting to turn off the output, Energy Saving Mode is enabled by default. If no device is connected or the connected device's power consumption is below a certain threshold (AC output ≤ 25W, USB + DC 12V port ≤ 2W ) for 6 hours, the product will automatically turn off the outputs. To turn Energy Saving Mode on or off, press and hold both the AC power button and the main power button for 3 seconds."
+    },
+    {
+      "page": 13,
+      "bbox": [
+        30,
+        352,
+        339,
+        445
+      ],
+      "purpose": "embedded-art/energy-saving",
+      "word_ids": [
+        164,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206
+      ],
+      "raw": "POWER Press and hold for 3 seconds"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        42,
+        450,
+        85,
+        485
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        200
+      ],
+      "raw": "Note"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        85,
+        450,
+        333,
+        485
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199
+      ],
+      "raw": "• When Energy Saving Mode is disabled, the product will not automatically turn off the AC or DC output. • Energy Saving Mode resumes previous state after power-on. Manual switching is required for mode changes."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        34,
+        24,
+        200,
+        41
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        187,
+        188,
+        189
+      ],
+      "raw": "LCD SCREEN ON/OFF"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        95,
+        40,
+        310,
+        149
+      ],
+      "purpose": "embedded-art/lcd-screen",
+      "word_ids": [
+        186
+      ],
+      "raw": "POWER"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        30,
+        152,
+        110.1,
+        231.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        190,
+        191
+      ],
+      "raw": "LCD Screen"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        110.1,
+        152,
+        166.1,
+        180.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        200,
+        201
+      ],
+      "raw": "Turn on"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        166.1,
+        152,
+        332,
+        180.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212
+      ],
+      "raw": "Press the Main Power Button or when the product is charging."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        110.1,
+        180.7,
+        166.1,
+        204.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        257,
+        258
+      ],
+      "raw": "Turn off"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        166.1,
+        180.7,
+        332,
+        204.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        213,
+        214,
+        215,
+        216,
+        217
+      ],
+      "raw": "Press the Main Power Button."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        110.1,
+        204.7,
+        166.1,
+        231.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        261
+      ],
+      "raw": "Auto-off"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        166.1,
+        204.7,
+        332,
+        231.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228
+      ],
+      "raw": "The LCD screen turns off automatically after 2 minutes of inactivity."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        30,
+        231.8,
+        110.1,
+        301
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199
+      ],
+      "raw": "Always-on Display Mode (under charging or discharging state)"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        110.1,
+        231.8,
+        166.1,
+        251.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        263,
+        264
+      ],
+      "raw": "Turn on"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        166.1,
+        231.8,
+        332,
+        251.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239
+      ],
+      "raw": "Double-click the Main Power Button when the LCD screen is ON."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        110.1,
+        251.6,
+        166.1,
+        271.4
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        259,
+        260
+      ],
+      "raw": "Turn off"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        166.1,
+        251.6,
+        332,
+        271.4
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        252,
+        253,
+        254,
+        255,
+        256
+      ],
+      "raw": "Press the Main Power Button."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        110.1,
+        271.4,
+        166.1,
+        301
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        262
+      ],
+      "raw": "Auto-off"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        166.1,
+        271.4,
+        332,
+        301
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251
+      ],
+      "raw": "The Always-on Display Mode turns off automatically after 2 hours of inactivity."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        28,
+        325,
+        345,
+        348
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1
+      ],
+      "raw": "CHARGING"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        26,
+        348,
+        341,
+        386
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185
+      ],
+      "raw": "Green energy first: We advocate to use the green energy first. This product supports two modes of charging at the same time: solar charging and AC wall charging. When AC wall charging and solar charging are turned on at the same time, the product will give priority to solar charging and both methods will be used to charge the battery at the maximum permissible power."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        30,
+        386,
+        200,
+        400
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "raw": "Fully charge the product before its first use."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        40,
+        404,
+        75,
+        453
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        76
+      ],
+      "raw": "Note"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        75,
+        404,
+        340,
+        453
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75
+      ],
+      "raw": "• The recommended charging temperature for the product ranges from 32°F to 113°F (0°C to 45°C), and the discharging temperature ranges from 5°F to 113°F (-15°C to 45°C). Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging. • The charging power and battery capacity of the product may vary due to temperature fluctuations."
+    },
+    {
+      "page": 14,
+      "bbox": [
+        40,
+        457,
+        75,
+        491
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        120
+      ],
+      "raw": "Note"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        75,
+        457,
+        340,
+        491
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119
+      ],
+      "raw": "When the product is charged via the 65W AC Adapter or the USB-C port, the charging icon will not appear on the LCD screen. Please refer to the battery power indicator and input power displayed on the LCD to check the charging status."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        34,
+        27,
+        250,
+        42
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "raw": "CHARGING VIA 65W AC ADAPTER"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        42,
+        341,
+        53
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "raw": "Connect the included 65W AC adapter to the product’s DC8020 port and plug the adapter into a wall outlet."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        26,
+        55,
+        343,
+        184
+      ],
+      "purpose": "embedded-art/charging-ac",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 15,
+      "bbox": [
+        34,
+        183,
+        250,
+        197
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "raw": "CHARGING VIA USB-C PORT (100W MAX)"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        28,
+        196,
+        341,
+        207
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "raw": "Charge the product using the USB-C port."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        26,
+        208,
+        343,
+        338
+      ],
+      "purpose": "embedded-art/charging-usbc",
+      "word_ids": [
+        0,
+        1
+      ],
+      "raw": "USB-C2 USB-A"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        34,
+        346,
+        62,
+        362
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        67
+      ],
+      "raw": "Note"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        64,
+        346,
+        340,
+        362
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "raw": "The USB-C port does not support solar panel input."
+    },
+    {
+      "page": 15,
+      "bbox": [
+        34,
+        370,
+        200,
+        387
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        29,
+        30,
+        31
+      ],
+      "raw": "DC INPUT INDICATOR"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        44,
+        394,
+        88,
+        463
+      ],
+      "purpose": "embedded-art/dc-input-led",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 15,
+      "bbox": [
+        106.2,
+        389,
+        176.2,
+        404.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        70,
+        71
+      ],
+      "raw": "LED Status"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        176.2,
+        389,
+        336,
+        404.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72
+      ],
+      "raw": "Description"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        106.2,
+        404.9,
+        176.2,
+        427.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        68,
+        69
+      ],
+      "raw": "Solid Red"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        176.2,
+        404.9,
+        336,
+        427.9
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        73
+      ],
+      "raw": "Charging"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        106.2,
+        427.9,
+        176.2,
+        447.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        79,
+        80
+      ],
+      "raw": "Solid Green"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        176.2,
+        427.9,
+        336,
+        447.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        74,
+        75
+      ],
+      "raw": "Fully charged"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        106.2,
+        447.5,
+        176.2,
+        468
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        81
+      ],
+      "raw": "Off"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        176.2,
+        447.5,
+        336,
+        468
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        76,
+        77,
+        78
+      ],
+      "raw": "No power input"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        34,
+        476,
+        62,
+        492
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        2
+      ],
+      "raw": "Note"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        64,
+        476,
+        340,
+        492
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "raw": "Observe the DC Input Indicator when charging with a solar panel or car charger."
+    },
+    {
+      "page": 16,
+      "bbox": [
+        34,
+        25,
+        250,
+        40
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "raw": "CHARGING VIA SOLAR PANELS (100W MAX)"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        28,
+        40,
+        341,
+        51
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "raw": "Jackery Explorer 300 has one DC8020 input port and is compatible with the Jackery solar panels."
+    },
+    {
+      "page": 16,
+      "bbox": [
+        27,
+        52,
+        344,
+        178
+      ],
+      "purpose": "embedded-art/charging-solar",
+      "word_ids": [
+        89,
+        90
+      ],
+      "raw": "SolarSaga 100"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        28,
+        178,
+        341,
+        197
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "raw": "It is recommended to use the Jackery Solar Panel to charge the Explorer 300. Ensure that the open-circuit voltage (Voc) of the solar panel falls within the Jackery Explorer 300's DC input voltage range (16V–28V)."
+    },
+    {
+      "page": 16,
+      "bbox": [
+        36,
+        200,
+        82,
+        233
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        198
+      ],
+      "raw": "CAUTION"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        82,
+        200,
+        342,
+        233
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197
+      ],
+      "raw": "• Only one solar panel can be connected to the DC8020 input port. • Jackery is not responsible for any damage or loss resulting from the use of third-party solar panels."
+    },
+    {
+      "page": 16,
+      "bbox": [
+        28,
+        262,
+        250,
+        277
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        58,
+        59,
+        60,
+        61,
+        62
+      ],
+      "raw": "CHARGING WITH A CAR CHARGER"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        28,
+        276,
+        341,
+        297
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87
+      ],
+      "raw": "This product can be charged using a 12V car charger. Ensure that the car charger and the 12V car power outlet provide a good connection."
+    },
+    {
+      "page": 16,
+      "bbox": [
+        32,
+        298,
+        348,
+        421
+      ],
+      "purpose": "embedded-art/charging-car",
+      "word_ids": [
+        88
+      ],
+      "raw": "Vehicle"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        38,
+        430,
+        90,
+        491
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        199
+      ],
+      "raw": "CAUTION"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        90,
+        430,
+        342,
+        491
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166
+      ],
+      "raw": "• Please start the vehicle before charging your power station. • If the vehicle is running on bumpy roads, it is forbidden to use the car charger in case it causes non-standard operation. The Company will not be responsible for any loss caused by non-standard operation. • Vehicle charging is only applicable to vehicles with 12V DC, not 24V DC. Please do not charge this product in 24V vehicle to avoid personal injury and property loss."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        28,
+        28,
+        345,
+        52
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        321
+      ],
+      "raw": "STORAGE"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        30,
+        58,
+        338,
+        120
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320
+      ],
+      "raw": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity: • 1 month: -4°F to 113°F / -20°C to 45°C (0-60%RH) • 3 months: 32°F to 113°F / 0°C to 45°C (0-60%RH) • 12 months: 32°F to 77°F / 0°C to 25°C (0-60%RH) If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        28,
+        128,
+        345,
+        150
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        26
+      ],
+      "raw": "TROUBLESHOOTING"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        26,
+        151,
+        341,
+        172
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue. If fault persists, please contact Jackery Customer Support."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        175,
+        55.6,
+        199
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        27,
+        28
+      ],
+      "raw": "Error Code"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        55.6,
+        175,
+        341,
+        199
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        29,
+        30
+      ],
+      "raw": "Corrective Measures"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        55.6,
+        199,
+        341,
+        271.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        65,
+        66,
+        67
+      ],
+      "raw": "Restart the product."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        199,
+        55.6,
+        217.2
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        91
+      ],
+      "raw": "F0"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        217.2,
+        55.6,
+        235.3
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        90
+      ],
+      "raw": "F1"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        235.3,
+        55.6,
+        253.4
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        89
+      ],
+      "raw": "F2"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        253.4,
+        55.6,
+        271.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        64
+      ],
+      "raw": "F3"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        271.6,
+        55.6,
+        289.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        50
+      ],
+      "raw": "F4"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        55.6,
+        271.6,
+        341,
+        289.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "raw": "Connect the product to loads to discharge its battery until the fault disappears."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        289.7,
+        55.6,
+        307.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        35
+      ],
+      "raw": "F5"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        55.6,
+        289.7,
+        341,
+        307.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "raw": "Charge the product via solar panels or AC wall outlet until the fault disappears."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        307.8,
+        55.6,
+        387.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        34
+      ],
+      "raw": "F6"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        55.6,
+        307.8,
+        341,
+        387.8
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162
+      ],
+      "raw": "1. Wait for the grid to normalize before charging the product via AC wall outlet. 2. Check whether the air intake and exhaust vents are blocked; ensure 20 cm clearance on both side of the product. 3. Place the product in a shaded, well-ventilated area where the ambient temperature is below 45°C. 4.Disconnect all loads from the product, keep it idle and wait until the fault disappears. 5. Restart the product."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        387.8,
+        55.6,
+        441.1
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        33
+      ],
+      "raw": "F7"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        55.6,
+        387.8,
+        341,
+        441.1
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213
+      ],
+      "raw": "1. Remove all DC inputs from the product. 2. If you charge the product via a solar panel, check the open-circuit voltage (Voc) of the connected solar panel. The product allows a maximum DC input voltage of 28V. 3. Restart the product and keep it idle. Wait until the fault disappears."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        441.1,
+        55.6,
+        469.1
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        31
+      ],
+      "raw": "F8"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        55.6,
+        441.1,
+        341,
+        469.1
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        68,
+        69,
+        70,
+        71
+      ],
+      "raw": "Contact Jackery Customer Support."
+    },
+    {
+      "page": 17,
+      "bbox": [
+        29,
+        469.1,
+        55.6,
+        498
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        32
+      ],
+      "raw": "F9"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        55.6,
+        469.1,
+        341,
+        498
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88
+      ],
+      "raw": "Remove the load connected to the USB/DC 12V ports of the product. Wait until the fault disappears."
+    },
+    {
+      "page": 18,
+      "bbox": [
+        28,
+        26,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0
+      ],
+      "raw": "SPECIFICATIONS"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        36,
+        55,
+        300,
+        74
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1,
+        2
+      ],
+      "raw": "GENERAL INFO"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        77,
+        126,
+        91.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        3,
+        4
+      ],
+      "raw": "Product Name"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        77,
+        342,
+        91.6
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        14,
+        15,
+        16
+      ],
+      "raw": "Jackery Explorer 300"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        91.6,
+        126,
+        105.1
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        5,
+        6
+      ],
+      "raw": "Model No."
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        91.6,
+        342,
+        105.1
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        17
+      ],
+      "raw": "JE-300E"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        105.1,
+        126,
+        118.3
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        7
+      ],
+      "raw": "Capacity"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        105.1,
+        342,
+        118.3
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "raw": "15.2Ah / 19.2V DC (291.84 Wh)"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        118.3,
+        126,
+        131.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        8,
+        9
+      ],
+      "raw": "Cell Chemistry"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        118.3,
+        342,
+        131.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        24,
+        25
+      ],
+      "raw": "Li-ion LFP"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        131.7,
+        126,
+        145.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        10
+      ],
+      "raw": "Weight"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        131.7,
+        342,
+        145.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        26,
+        27,
+        28
+      ],
+      "raw": "About 3.4 kg"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        145.0,
+        126,
+        158.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        11
+      ],
+      "raw": "Dimensions"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        145.0,
+        342,
+        158.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "raw": "23 × 15.3 × 19.9 cm"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        158.0,
+        126,
+        172
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        12,
+        13
+      ],
+      "raw": "Cycle Life"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        158.0,
+        342,
+        172
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "raw": "4000 cycles to 70%+ capacity"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        36,
+        180,
+        300,
+        198
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        69,
+        70
+      ],
+      "raw": "INPUT PORTS"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        201,
+        126,
+        215.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        71,
+        72,
+        73,
+        74
+      ],
+      "raw": "1 × USB-C Input"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        201,
+        342,
+        215.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85
+      ],
+      "raw": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        215.5,
+        126,
+        246
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        75,
+        76,
+        77,
+        78
+      ],
+      "raw": "1 × DC8020 Input"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        215.5,
+        342,
+        246
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95
+      ],
+      "raw": "Car: 11V-16V⎓6A Max, 96W Max PV: 16V-28V⎓6A Max, 100W Max"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        36,
+        255,
+        300,
+        273
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        40,
+        41
+      ],
+      "raw": "OUTPUT PORTS"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        273,
+        126,
+        296.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        169,
+        170,
+        171,
+        172
+      ],
+      "raw": "2 × AC Output"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        273,
+        342,
+        296.0
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144
+      ],
+      "raw": "230 V~ 50 Hz, 1.3 A, 300 W rated (-10 °C to 45 °C) 230 V~ 50 Hz, 0.86 A, 200 W rated (-15 °C to -10 °C)"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        296.0,
+        126,
+        318.2
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        173,
+        174,
+        175
+      ],
+      "raw": "AC Total Output"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        296.0,
+        342,
+        318.2
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168
+      ],
+      "raw": "300 W rated, 600 W surge peak (-10 °C to 45 °C) 200 W rated, 400 W surge peak (-15 °C to -10 °C)"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        318.2,
+        126,
+        329.4
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        176,
+        177,
+        178,
+        179
+      ],
+      "raw": "1 × USB-C Output"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        318.2,
+        342,
+        329.4
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208
+      ],
+      "raw": "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        329.4,
+        126,
+        342.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        180,
+        181,
+        182,
+        183
+      ],
+      "raw": "1 × USB-A1 Output"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        329.4,
+        342,
+        342.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        199,
+        200,
+        201
+      ],
+      "raw": "15W Max, 5V⎓3A"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        342.7,
+        126,
+        357.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        184,
+        185,
+        186,
+        187
+      ],
+      "raw": "1 × USB-A2 Output"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        342.7,
+        342,
+        357.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        196,
+        197,
+        198
+      ],
+      "raw": "15W Max, 5V⎓3A"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        357.7,
+        126,
+        376
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        188,
+        189,
+        190,
+        191,
+        192
+      ],
+      "raw": "1 × DC 12V Port"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        357.7,
+        342,
+        376
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        193,
+        194,
+        195
+      ],
+      "raw": "12 V⎓10A Max."
+    },
+    {
+      "page": 18,
+      "bbox": [
+        36,
+        375,
+        300,
+        394
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        46,
+        47,
+        48
+      ],
+      "raw": "ENVIRONMENTAL OPERATING TEMPERATURE"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        397,
+        126,
+        412.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        42,
+        43
+      ],
+      "raw": "Charge Temperature"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        397,
+        342,
+        412.7
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        49,
+        50,
+        51
+      ],
+      "raw": "0°C to 45°C"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        29,
+        412.7,
+        126,
+        427
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        44,
+        45
+      ],
+      "raw": "Discharge Temperature"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        126,
+        412.7,
+        342,
+        427
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        52,
+        53,
+        54
+      ],
+      "raw": "-15°C to 45°C"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        26,
+        430,
+        341,
+        446
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "raw": "※ USB Type-C and USB-C are registered trademarks of USB Implementers Forum. ® ®"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        36,
+        454,
+        62,
+        470
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        96
+      ],
+      "raw": "Note"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        66,
+        454,
+        330,
+        472
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116
+      ],
+      "raw": "The device's output power will adjust automatically under different ambient temperatures to ensure safe operation and extend battery life."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        28,
+        26,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        98
+      ],
+      "raw": "WARRANTY"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        33,
+        56,
+        338,
+        80
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "raw": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        26,
+        82,
+        341,
+        95
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ],
+      "raw": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        97,
+        240,
+        112
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        233,
+        234
+      ],
+      "raw": "Limited Warranty"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        112,
+        337,
+        160
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176
+      ],
+      "raw": "Jackery Inc. warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below. This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        167,
+        240,
+        182
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        360,
+        361
+      ],
+      "raw": "Warranty Period"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        40,
+        182,
+        62,
+        216
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        365
+      ],
+      "raw": "3"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        58,
+        185,
+        112,
+        200.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        364
+      ],
+      "raw": "YEARS"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        58,
+        200.5,
+        214,
+        212
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        362,
+        363
+      ],
+      "raw": "Standard Warranty"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        212,
+        214,
+        258
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232
+      ],
+      "raw": "The standard warranty period for Jackery Explorer 300 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        222,
+        182,
+        244,
+        216
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        369
+      ],
+      "raw": "2"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        240,
+        185,
+        294,
+        200.5
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        368
+      ],
+      "raw": "YEARS"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        240,
+        200.5,
+        337,
+        212
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        366,
+        367
+      ],
+      "raw": "Extended Warranty"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        216,
+        212,
+        337,
+        258
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "raw": "To activate the Warranty Extension, you must register your product online or contact our customer service team at hello.eu@jackery.com to extend the standard warranty runtime."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        266,
+        240,
+        281
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        235
+      ],
+      "raw": "Exchange"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        281,
+        337,
+        310
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97
+      ],
+      "raw": "Jackery will replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. A replacement product assumes the remaining warranty of the original product."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        321,
+        240,
+        336
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        256,
+        257,
+        258,
+        259,
+        260
+      ],
+      "raw": "Limited to Original Consumer Buyer"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        336,
+        337,
+        358
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255
+      ],
+      "raw": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        369,
+        240,
+        384
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        344
+      ],
+      "raw": "Exclusions"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        384,
+        337,
+        452
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343
+      ],
+      "raw": "Jackery's warranty does not apply to: • Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature. • Attempted repair by anyone other than an authorized facility. • Any product purchased through an online auction house. • Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter."
+    },
+    {
+      "page": 19,
+      "bbox": [
+        38,
+        463,
+        240,
+        477
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        358,
+        359
+      ],
+      "raw": "Interpretation Rights"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        35,
+        477,
+        337,
+        495
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357
+      ],
+      "raw": "Jackery reserves the right to final interpretation of the above customers' after-sales policy."
+    },
+    {
+      "page": 20,
+      "bbox": [
+        28,
+        27,
+        345,
+        50
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "raw": "RETURN FOR RECYCLING SERVICE"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        53.17120361328125,
+        350,
+        67.05120086669922
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "raw": "Introduction and Compliance Statement"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        67.05120086669922,
+        350,
+        208.70590209960938
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172
+      ],
+      "raw": "This Guide has been prepared in accordance with the EU Batteries Regulation (EU) 2023/1542. It is intended to clearly inform end users of their responsibilities regarding waste prevention, compliant disposal requirements, official recycling channels, safe handling procedures, and the potential risks associated with hazardous substances. Through this Guide, Jackery aims to fulfill its mandatory disclosure obligations under applicable regulations, promote battery recycling and resource recovery, and prevent environmental pollution and potential safety hazards. As part of our commitment to complying with Regulation (EU) 2023/1542 on batteries and waste batteries, we are committed to ensuring the safe handling and disposal of waste batteries. Choosing durable, repairable, and recyclable products can significantly reduce waste generation. Proper battery maintenance and care can also extend battery life and reduce the need for frequent replacement. When a battery approaches the end of its service life, proper disposal is essential. Batteries may contain hazardous substances that, if handled improperly, may harm the environment and pose risks to human health and safety."
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        208.70590209960938,
+        350,
+        222.58590698242188
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180
+      ],
+      "raw": "The Role of End Users in Waste Prevention"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        222.58590698242188,
+        350,
+        250.7827911376953
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216
+      ],
+      "raw": "End users can help extend battery service life and reduce waste generation at the source by choosing durable, repairable, and recyclable Jackery products and properly maintaining their batteries."
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        250.7827911376953,
+        350,
+        262.1867980957031
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        217,
+        218,
+        219,
+        220,
+        221,
+        222
+      ],
+      "raw": "Purchase products according to actual needs"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        262.1867980957031,
+        350,
+        290.1846923828125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263
+      ],
+      "raw": "Select an energy storage product with an appropriate capacity based on your actual usage scenarios. Avoid unnecessary purchases or excessive stockpiling, which may result in batteries being left unused for extended periods and prematurely reaching the end of their service life."
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        290.1846923828125,
+        350,
+        301.58868408203125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        321,
+        322,
+        323,
+        324,
+        325,
+        326
+      ],
+      "raw": "Use Jackery energy storage devices properly"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        301.58868408203125,
+        350,
+        330.40692138671875
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364
+      ],
+      "raw": "Follow the charging and discharging instructions provided in the product manual. Avoid overcharging, deep discharge, exposure to high temperatures or direct sunlight, and physical impact to help extend battery service life and reduce the generation of waste batteries."
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        330.40692138671875,
+        350,
+        341.8109130859375
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        365,
+        366,
+        367
+      ],
+      "raw": "Perform regular maintenance"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        341.8109130859375,
+        350,
+        394.2815856933594
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400,
+        401,
+        402,
+        403,
+        404,
+        434,
+        435,
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450,
+        451,
+        452,
+        453,
+        454,
+        455
+      ],
+      "raw": "If the device will not be used for an extended period, maintain the battery charge level between 20% and 60%. Store the device in a cool, dry environment and recharge it periodically to help slow battery degradation. Extending battery life and reducing the generation of waste batteries is one of the most important environmental responsibilities of every end user."
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        394.2815856933594,
+        350,
+        408.1615905761719
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188
+      ],
+      "raw": "Separate Collection of Waste Batteries and Legal Obligations"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        408.1615905761719,
+        350,
+        439.1500244140625
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        433
+      ],
+      "raw": "Under applicable EU law, all Jackery waste lithium-ion batteries must be handled and disposed of in compliance with applicable requirements. End users are required to fulfill the following obligations:"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        439.1500244140625,
+        350,
+        450.55401611328125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        264,
+        265
+      ],
+      "raw": "Separate collection"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        20,
+        450.55401611328125,
+        350,
+        498
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320
+      ],
+      "raw": "You must dispose of waste batteries: 1. Separately from other waste streams, including mixed municipal waste; and 2. At designated separate collection points for waste batteries. Waste batteries must not be disposed of together with household waste or other mixed waste. They must be collected separately and taken to officially designated and compliant collection points."
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        28.072406768798828,
+        350,
+        39.47640609741211
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "raw": "Disposal through compliant channels"
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        39.47640609741211,
+        350,
+        88.52207946777344
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65
+      ],
+      "raw": "At the end of their service life, batteries must only be returned through appropriate channels, including municipal recycling centers, authorized retailers, or official Jackery recycling channels. Do not disassemble, modify, or otherwise attempt to dispose of waste batteries yourself. Please cooperate with authorized recycling programs to ensure that waste batteries enter the appropriate recycling and recovery system."
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        88.52207946777344,
+        350,
+        99.92608642578125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        66,
+        67,
+        68
+      ],
+      "raw": "Prevent improper disposal"
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        99.92608642578125,
+        350,
+        160.27719116210938
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127
+      ],
+      "raw": "Do not discard, landfill, or abandon waste batteries in open areas. Proper disposal helps reduce the risk of battery thermal runaway and prevents hazardous substances from contaminating soil and water. You can obtain information about the location of municipal collection centers from your local or municipal authorities. By recycling batteries, you help recover valuable materials and prevent environmental pollution."
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        160.27719116210938,
+        350,
+        174.15719604492188
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw": "Recycling Channels and Collection Points"
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        174.15719604492188,
+        350,
+        174.79649353027344
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        174.79649353027344,
+        350,
+        186.20050048828125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        225,
+        226,
+        227,
+        228,
+        229
+      ],
+      "raw": "Oﬄine Collection and Return Points"
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        186.20050048828125,
+        350,
+        299.5714111328125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378
+      ],
+      "raw": "Jackery's authorized dealers and offline retail stores within the European Union provide free recycling services for waste batteries and can accept waste batteries from Jackery energy storage products. Municipal recycling centers also provide ongoing collection services for waste batteries. Please note that, under applicable law, distributors are required to accept waste industrial batteries from end users free of charge and may not require end users to purchase, or have previously purchased, a new battery, regardless of the battery's chemistry, brand, or origin. Distributors must accept such batteries at their retail locations or in their immediate vicinity. These obligations also apply to distributors supplying batteries to end users through distance contracts. Such distributors must provide a sufficient number of collection points covering the territory of the relevant Member State, taking into account population size and density, the expected quantity of waste industrial batteries, and accessibility and proximity for end users."
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        299.5714111328125,
+        350,
+        310.97540283203125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        379,
+        380,
+        381,
+        382
+      ],
+      "raw": "Jackery Online Recycling Service"
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        310.97540283203125,
+        350,
+        388.0137939453125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450,
+        451,
+        452,
+        453,
+        454,
+        455,
+        456,
+        457,
+        458,
+        459,
+        460,
+        461,
+        462,
+        463,
+        464,
+        465,
+        466,
+        467,
+        468,
+        469,
+        470,
+        471,
+        472,
+        473,
+        474,
+        475,
+        476,
+        477,
+        478,
+        479,
+        480
+      ],
+      "raw": "Customers may use the recycling return service available through the Jackery official website and follow the instructions to safely package and ship used energy storage equipment for recycling. Jackery provides a recycling service that allows customers to return products that are used, no longer needed, or at the end of their service life for proper handling, recycling, or reuse. By ensuring that materials are handled responsibly, this service helps reduce environmental impact and prevent products from ultimately ending up in landfills. Jackery provides recycling services to all customers and verifies purchases of Jackery generators through authorized sales channels."
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        388.0137939453125,
+        350,
+        399.41778564453125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        128,
+        129,
+        130
+      ],
+      "raw": "Recycling Service Fees"
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        399.41778564453125,
+        350,
+        437.6466064453125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175
+      ],
+      "raw": "1. The recycling service is free of charge. The applicable shipping policy is as follows: 2. Returns during the warranty period: Jackery will cover the return shipping costs. 3. Returns of products outside the warranty period: The customer is responsible for the return shipping costs."
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        437.6466064453125,
+        350,
+        449.05059814453125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        176,
+        177,
+        178
+      ],
+      "raw": "Online Recycling Procedure"
+    },
+    {
+      "page": 21,
+      "bbox": [
+        20,
+        449.05059814453125,
+        350,
+        498
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224
+      ],
+      "raw": "1. Safely place your device in a suitable shipping box and securely seal the package. 2. Clearly attach the return shipping label to the outside of the package. 3. Take the package to your nearest parcel drop-off location. 4. Cash on Delivery (COD) is not accepted."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        26.315704345703125,
+        350,
+        40.19570541381836
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "raw": "Safety Instructions for Handling Used Batteries"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        40.19570541381836,
+        350,
+        90.88630676269531
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ],
+      "raw": "Handling lithium-ion batteries involves a risk of fire. Please strictly follow the safety instructions below. Compliance with these safety instructions is important for protecting yourself and the environment. When handling waste batteries, particularly lithium-ion batteries, it is essential to understand the potential risks. Improper handling may result in overheating, fire, or other serious hazards."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        90.88630676269531,
+        350,
+        102.29031372070312
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "raw": "Do not physically damage batteries"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        102.29031372070312,
+        350,
+        123.78819274902344
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "raw": "Never crush, puncture, disassemble, or otherwise physically damage waste batteries. Damaged batteries may leak hazardous chemicals or catch fire."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        123.78819274902344,
+        350,
+        135.19219970703125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        91,
+        92,
+        93,
+        94,
+        95,
+        96
+      ],
+      "raw": "Store batteries in an appropriate environment"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        135.19219970703125,
+        350,
+        181.88340759277344
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139
+      ],
+      "raw": "Store batteries in a cool, dry, room-temperature, and well-ventilated area, away from high temperatures, water, and flammable or explosive materials to prevent short circuits and overheating. Do not expose batteries to excessive heat or water, as this may cause overheating or short circuits."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        181.88340759277344,
+        350,
+        193.28741455078125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        140,
+        141,
+        142,
+        143
+      ],
+      "raw": "Take appropriate protective measures"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        193.28741455078125,
+        350,
+        232.0498809814453
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183
+      ],
+      "raw": "If handling a damaged or leaking battery, wear protective gloves and safety goggles and avoid direct contact with the electrolyte. If you notice any swelling, leakage, or unusual odor, exercise extreme caution when handling the battery and seek professional assistance."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        232.0498809814453,
+        350,
+        243.45388793945312
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        184,
+        185,
+        186
+      ],
+      "raw": "Handling abnormal conditions"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        243.45388793945312,
+        350,
+        273.59002685546875
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224
+      ],
+      "raw": "If a battery shows signs of swelling, leakage, an unusual odor, or other abnormalities, immediately isolate it in a safe location and contact an official recycling channel. Do not attempt to handle or dispose of the battery yourself."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        273.59002685546875,
+        350,
+        284.9940185546875
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        225,
+        226,
+        227,
+        228,
+        229,
+        230
+      ],
+      "raw": "Emergency response in case of ﬁre"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        284.9940185546875,
+        350,
+        317.39239501953125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262
+      ],
+      "raw": "If a battery catches fire, use an appropriate fire extinguisher or sand to extinguish the fire. Do not use water to extinguish a lithium-ion battery fire, as this may worsen the situation."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        317.39239501953125,
+        350,
+        331.27239990234375
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "raw": "Battery Contents and Environmental and Health Impacts"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        331.27239990234375,
+        350,
+        365.1700134277344
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384
+      ],
+      "raw": "Jackery products are equipped with lithium-ion batteries, which may contain metals such as lithium, nickel, and cobalt, as well as organic electrolytes. Improper disposal may result in multiple risks."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        365.1700134277344,
+        350,
+        376.5740051269531
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        263,
+        264
+      ],
+      "raw": "Environmental impact"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        376.5740051269531,
+        350,
+        407.3600158691406
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290
+      ],
+      "raw": "If waste batteries are discarded improperly and electrolyte leaks, hazardous substances may enter soil and groundwater, causing soil and water contamination and damaging ecosystems and wildlife."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        407.3600158691406,
+        350,
+        418.7640075683594
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        291,
+        292,
+        293,
+        294
+      ],
+      "raw": "Impact on human health"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        418.7640075683594,
+        350,
+        448.9005126953125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326
+      ],
+      "raw": "Battery electrolyte may be corrosive. Direct contact with skin or mucous membranes may cause irritation or chemical burns. Continued release of hazardous substances into the environment may also create long-term health risks."
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        448.9005126953125,
+        350,
+        460.30450439453125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        327,
+        328,
+        329
+      ],
+      "raw": "Personal safety risks"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        20,
+        460.30450439453125,
+        350,
+        498
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355
+      ],
+      "raw": "Improper crushing, puncturing, or incineration of waste lithium-ion batteries may cause thermal runaway, fire, or other serious safety incidents, potentially resulting in burns and property damage."
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        26.083282470703125,
+        350,
+        39.96328353881836
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw": "Oﬃcial Explanation of Battery Symbols"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        39.96328353881836,
+        350,
+        40.60271072387695
+      ],
+      "purpose": "live-copy",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        40.60271072387695,
+        350,
+        52.006710052490234
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "raw": "Crossed-out wheeled bin symbol"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        52.006710052490234,
+        350,
+        102.22468566894531
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "raw": "The crossed-out wheeled bin symbol on a battery indicates that the battery must not be disposed of as unsorted household waste. At the end of its service life, the battery must be collected separately and handled through an appropriate recycling system. It must be taken to a designated municipal collection point or a dedicated collection system for recycling."
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        102.22468566894531,
+        350,
+        113.62869262695312
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        69,
+        70,
+        71,
+        72
+      ],
+      "raw": "Heavy metal markings (Pb/Cd)"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        113.62869262695312,
+        350,
+        145.13490295410156
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104
+      ],
+      "raw": "If Cd (cadmium) or Pb (lead) is indicated beneath the battery symbol, this means that the battery contains the corresponding heavy metal and must be subject to appropriate separate collection and recycling."
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        145.13490295410156,
+        350,
+        156.53890991210938
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        105,
+        106,
+        107
+      ],
+      "raw": "Product traceability information"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        156.53890991210938,
+        350,
+        184.48858642578125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129
+      ],
+      "raw": "Battery model numbers, serial numbers, and production dates are used by recycling organiza- tions for sorting, inspection, grading, reuse, and material recovery."
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        184.48858642578125,
+        350,
+        198.36859130859375
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        130,
+        131,
+        132,
+        133,
+        134
+      ],
+      "raw": "Subsequent Processing of Waste Batteries"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        198.36859130859375,
+        350,
+        239.15440368652344
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173
+      ],
+      "raw": "All collected Jackery waste batteries are handled through qualified and compliant organizations in the European Union in accordance with applicable requirements. Unauthorized handling or disposal is prohibited. The subsequent processing of waste batteries may include the following three pathways:"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        239.15440368652344,
+        350,
+        250.55841064453125
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        174,
+        175,
+        176
+      ],
+      "raw": "Preparation for reuse"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        250.55841064453125,
+        350,
+        273.0870056152344
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198
+      ],
+      "raw": "Retired batteries are inspected and, where appropriate, repaired. Batteries that remain in good condition may be returned to service for further use."
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        273.0870056152344,
+        350,
+        284.4909973144531
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        199,
+        200,
+        201,
+        202
+      ],
+      "raw": "Preparation for second-life applications"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        284.4909973144531,
+        350,
+        316.1979064941406
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234
+      ],
+      "raw": "Batteries whose capacity has degraded and which no longer meet the requirements for use in portable energy storage systems may, following appropriate assessment and screening, be used in lower-power energy storage applications."
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        316.1979064941406,
+        350,
+        327.6018981933594
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        235,
+        236
+      ],
+      "raw": "Material recycling"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        327.6018981933594,
+        350,
+        391.9276123046875
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295
+      ],
+      "raw": "Batteries that are no longer suitable for reuse are transferred to qualified and compliant recycling organizations in the European Union for the recovery of metal and other valuable materials, thereby supporting resource circularity. Individuals are prohibited from independently handling or disposing of waste lithium-ion batteries. All collected waste batteries are handled by qualified professional organizations in the European Union."
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        391.9276123046875,
+        350,
+        405.8076171875
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        5,
+        6
+      ],
+      "raw": "Contact Us"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        20,
+        405.8076171875,
+        350,
+        428
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310
+      ],
+      "raw": "For more information about battery safety, handling, and recycling, please contact our Customer Service Team:"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        26,
+        430,
+        40,
+        446
+      ],
+      "purpose": "native-glyph/glyph-mail-p23",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 23,
+      "bbox": [
+        36,
+        432,
+        200,
+        446
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        311,
+        312
+      ],
+      "raw": "Email: hello.eu@jackery.com"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        28,
+        28,
+        345,
+        52
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "raw": "HOW TO READ YOUR SERIAL NUMBER"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        26,
+        60,
+        341,
+        88
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "raw": "Each product carries a unique serial number (SN) barcode, structured as follows: Example:"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        26,
+        88,
+        345,
+        192
+      ],
+      "purpose": "embedded-art/serial-number",
+      "word_ids": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "raw": "855 1 230806 00001 Sequential unit number — unique ID for each unit produced that day Date of manufacture in YYMMDD format (e.g. 230806 = 6 August 2023) Production line number Factory code — identiﬁes the manufacturing facility"
+    },
+    {
+      "page": 97,
+      "bbox": [
+        36,
+        362,
+        120,
+        380
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        99,
+        100
+      ],
+      "raw": "EU Regulations"
+    },
+    {
+      "page": 97,
+      "bbox": [
+        269,
+        363,
+        301,
+        389
+      ],
+      "purpose": "embedded-art/ce-mark",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 97,
+      "bbox": [
+        26,
+        378,
+        320,
+        432
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        101,
+        102,
+        103,
+        104
+      ],
+      "raw": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 300 AC with JE-300E is in compliance with the essential requirements and other relevant provisions of the LVD Directive 2014/35/EU , EMC Directive 2014/30/EU and ROHS Directive 2011/65/EU as amended by 2015/863/EU, The full text of the EU declaration of conformity is available at the following internet address: https://de.jackery.com/pages/user-guides RED Declaration of Conformity"
+    },
+    {
+      "page": 97,
+      "bbox": [
+        24,
+        444,
+        280,
+        458
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "raw": "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO.,LTD."
+    },
+    {
+      "page": 97,
+      "bbox": [
+        24,
+        456,
+        280,
+        487
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "raw": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China"
+    },
+    {
+      "page": 97,
+      "bbox": [
+        28,
+        486,
+        38,
+        500
+      ],
+      "purpose": "native-glyph/glyph-phone",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 97,
+      "bbox": [
+        36,
+        486,
+        96,
+        500
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        94,
+        95,
+        96,
+        97
+      ],
+      "raw": "+86 400 668 9293"
+    },
+    {
+      "page": 97,
+      "bbox": [
+        98,
+        486,
+        110,
+        500
+      ],
+      "purpose": "native-glyph/glyph-mail",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 97,
+      "bbox": [
+        108,
+        486,
+        182,
+        500
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        93
+      ],
+      "raw": "sales@hello-tech.com"
+    },
+    {
+      "page": 97,
+      "bbox": [
+        184,
+        486,
+        196,
+        500
+      ],
+      "purpose": "native-glyph/glyph-web",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 97,
+      "bbox": [
+        194,
+        486,
+        270,
+        500
+      ],
+      "purpose": "live-copy",
+      "word_ids": [
+        98
+      ],
+      "raw": "www.hello-tech.com"
+    },
+    {
+      "page": 97,
+      "bbox": [
+        301,
+        458,
+        343,
+        500
+      ],
+      "purpose": "embedded-art/manufacturer-qr",
+      "word_ids": [],
+      "raw": ""
+    },
+    {
+      "page": 7,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "01"
+    },
+    {
+      "page": 8,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "02"
+    },
+    {
+      "page": 9,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "03"
+    },
+    {
+      "page": 10,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        1
+      ],
+      "raw": "04"
+    },
+    {
+      "page": 11,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "05"
+    },
+    {
+      "page": 12,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        37
+      ],
+      "raw": "06"
+    },
+    {
+      "page": 13,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "07"
+    },
+    {
+      "page": 14,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "08"
+    },
+    {
+      "page": 15,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        3
+      ],
+      "raw": "09"
+    },
+    {
+      "page": 16,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "10"
+    },
+    {
+      "page": 17,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "11"
+    },
+    {
+      "page": 18,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        97
+      ],
+      "raw": "12"
+    },
+    {
+      "page": 19,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        0
+      ],
+      "raw": "13"
+    },
+    {
+      "page": 20,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        456
+      ],
+      "raw": "14"
+    },
+    {
+      "page": 21,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        481
+      ],
+      "raw": "15"
+    },
+    {
+      "page": 22,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        385
+      ],
+      "raw": "16"
+    },
+    {
+      "page": 23,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        313
+      ],
+      "raw": "17"
+    },
+    {
+      "page": 24,
+      "bbox": [
+        0,
+        498,
+        369,
+        525
+      ],
+      "purpose": "printed-folio",
+      "word_ids": [
+        57
+      ],
+      "raw": "18"
+    }
+  ]
+}
