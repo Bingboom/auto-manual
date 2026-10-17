@@ -174,7 +174,7 @@
     "es": "web/es"
   },
   "source_authority": "operator-supplied original PDF; native visible French and Spanish content; no translation or product adaptation",
-  "publication_status": "git-only-source-candidate",
+  "publication_status": "operator-approved-git-only-release",
   "normalizations": [
     "Shared Manual IR: content.json is replayed through the shared flow renderer and shared components (callout strip, warning lockup, reference figure, App download, warranty lead and sections), in the accepted English edition's order.",
     "Print line breaks: a line the print ended while the next word would still have fitted is kept as a line break; every other line end is a wrap (logged per language in source/<lang>/coverage.json).",
@@ -1307,8 +1307,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 9429,
-      "sha256": "efb364fdeae1f37400b042da61a3e64fe3cf8d35ac6f6cc09cb7d9e9d54a597c"
+      "size": 9505,
+      "sha256": "1a5d7e59894f187ea907db7d4c586f790f680cda6258dcea9accd24febd7ecd7"
     },
     {
       "path": "assets/app-store-badges.png",
@@ -1711,6 +1711,11 @@
       "sha256": "92d410874e1046af24ab56f3a8fc3406b93093159b09c33e1c865e6723eab001"
     },
     {
+      "path": "source/approval.json",
+      "size": 16865,
+      "sha256": "4382948ce8e9b6b2bd7ac91587f5286a2a94fbba05c369c808b343977f3772db"
+    },
+    {
       "path": "source/es/content.json",
       "size": 235553,
       "sha256": "97f05a57d5fd7ea88b2dfa5025e3b5701278b85d31ef7ab9291a37912ba648b0"
@@ -2027,8 +2032,8 @@
     },
     {
       "path": "web/es/manual.ir.json",
-      "size": 361232,
-      "sha256": "4a9b49f1303b604e3bca36ebf7289d171e9690aeab1fb74d00670ef72f3e4a58"
+      "size": 379961,
+      "sha256": "55079c7622f849238c9381f9deeccfc59bab1e86e5337e16de1c50fb8cf12432"
     },
     {
       "path": "web/es/manual_jats02a_us_es.md",
@@ -2282,8 +2287,8 @@
     },
     {
       "path": "web/fr/manual.ir.json",
-      "size": 364152,
-      "sha256": "93bb2ebbf7eb639a75e51ac03f061623f51ba24d5e11bce705a234158234ea61"
+      "size": 382881,
+      "sha256": "7c32f5dde9445a8cda533268f835cff16db4bf15cd6426f5772559bce0c69f05"
     },
     {
       "path": "web/fr/manual_jats02a_us_fr.md",

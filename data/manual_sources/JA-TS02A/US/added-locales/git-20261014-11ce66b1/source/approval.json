@@ -1,0 +1,496 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JA-TS02A",
+    "region": "US",
+    "technical_version": "git-20261014-11ce66b1"
+  },
+  "languages": [
+    "fr",
+    "es"
+  ],
+  "operator_quote": "上线",
+  "date": "2026-10-17",
+  "reviewed": "Layout review page (print | live now | new per chapter at desktop 1280 and phone 390, French and Spanish tabs) for the shared-style revision ad461eb1, merged as PR #1550 (`7d19f6d8`): D1-D6 as decided on 2026-10-15 (「D1 用print矢量，D2按印刷，其余保持」) and the shared-style rework decided on 2026-10-16 (「改成共享样式」). The operator then answered the go-live prompt with 「上线」 (2026-10-17).",
+  "reviewed_source_commit": "ad461eb1",
+  "merge_authorization": "MA-314",
+  "original_source_sha256": "11ce66b135c5a1b1141c33e4368552124f24757db78d0890a0cdfe3e4f14bff3",
+  "scope": "Git-only fr and es Web release of git-20261014-11ce66b1 (shared-style revision), replacing the live fr and es editions on the same routes JA-TS02A/US/fr/md and JA-TS02A/US/es/md. The live English edition (JA-TS02A/US/en, git-20261013-11ce66b1) is unchanged. Source inputs are byte-identical to the merged candidate except the README status lines that record this acceptance; the pinned repository inputs are unchanged. No online Base, queue, source-table, asset-registry or HTML_link writes.",
+  "reviewed_inputs": [
+    {
+      "path": "README.md",
+      "size": 9505,
+      "sha256": "1a5d7e59894f187ea907db7d4c586f790f680cda6258dcea9accd24febd7ecd7"
+    },
+    {
+      "path": "assets/app-store-badges.png",
+      "size": 9976,
+      "sha256": "11a6eeda9f87362e2f4adddfdb385ef5985b7c1f4b7a0d1dcf6a1051b30e26e1"
+    },
+    {
+      "path": "assets/deadfront-installation.png",
+      "size": 77443,
+      "sha256": "8226827b9e72290fbe0d68220f8346f421fb3f2f7cc3dab5a6e30da2351afc3d"
+    },
+    {
+      "path": "assets/es-app-add-device.png",
+      "size": 85844,
+      "sha256": "cf76da2aa61f1a1cd0ad5a25c2695a688189e8607dcadfca00eedafda469b343"
+    },
+    {
+      "path": "assets/es-app-backup-only.png",
+      "size": 46184,
+      "sha256": "94d8c853e7aa6ab2de44e824248cdf51f0bcdb4f382007b4ddd2fd7ed522db9a"
+    },
+    {
+      "path": "assets/es-app-backup-priority.png",
+      "size": 54046,
+      "sha256": "f360e028b42218851908349a08676dab117b16044db8c6ec9860fcba016f6c62"
+    },
+    {
+      "path": "assets/es-app-circuit-list.png",
+      "size": 49197,
+      "sha256": "bb899ed9bc4430ea0d8eb6c7c1e3ae2ac9f642fe65e2ee9bcb75c17de6c53750"
+    },
+    {
+      "path": "assets/es-app-circuit-name.png",
+      "size": 32471,
+      "sha256": "e9eb91090e629e86c49315f5a5f39421fe8c14c14eb8e86e3a59a7c66a720a6b"
+    },
+    {
+      "path": "assets/es-app-circuits.png",
+      "size": 72593,
+      "sha256": "ea2885d11317907c578aa712f6b69824a3436e0b4947284f76bff4749dacfc9c"
+    },
+    {
+      "path": "assets/es-app-dashboard.png",
+      "size": 53262,
+      "sha256": "a36076ce58e18cd46eb4fd6f213ddb90ea8eb870c7383104d7b6e86c3a37f095"
+    },
+    {
+      "path": "assets/es-app-download-qr.png",
+      "size": 25980,
+      "sha256": "8a254015173e94a05a6e12babf4ebb4db9bce1a31aa0441d8e56420f394f5637"
+    },
+    {
+      "path": "assets/es-app-ups-mode.png",
+      "size": 65474,
+      "sha256": "89f7628b209aa25d41d96e9acdbba4dab2b56544ab55954ab2f0a57cd796d507"
+    },
+    {
+      "path": "assets/es-app-voltage-menu.png",
+      "size": 84409,
+      "sha256": "68b7f7c72a99f06a765fe91e878f9db0e82feedf952269cbc8ca210e4313f5de"
+    },
+    {
+      "path": "assets/es-app-voltage-settings.png",
+      "size": 62986,
+      "sha256": "e552c6de2f4643a09b126107e13ddae04f61738d6e669497aad891a9dc701b3f"
+    },
+    {
+      "path": "assets/es-app-wifi.png",
+      "size": 58917,
+      "sha256": "38f20f4a329bb72abab77cd70713e76d27f70189fdefb46d23571d1cb65e2d7a"
+    },
+    {
+      "path": "assets/es-app-working-modes.png",
+      "size": 54080,
+      "sha256": "f75b746797c2bea9b75f37310e8ef5a112c3d4111e9ba2a243a39e20d760ffb6"
+    },
+    {
+      "path": "assets/es-cable-entry.png",
+      "size": 145864,
+      "sha256": "2cdc8d23846d5ddc75534f9940783f9e9964d0415b89a8447ff19e1955e354df"
+    },
+    {
+      "path": "assets/es-covered-overview.png",
+      "size": 69667,
+      "sha256": "ae0baa43fc12178c66c303872f9246e2d63f5c7a5c6514dd5fcfd939d2c80790"
+    },
+    {
+      "path": "assets/es-deadfront-installation.png",
+      "size": 77000,
+      "sha256": "785419249318c5954a36ff8c9d2455b5b27275fbe9b26d8c6ed8ef0dca436301"
+    },
+    {
+      "path": "assets/es-dimensions.png",
+      "size": 32254,
+      "sha256": "f6f9b8688bffd71f99dc3508941d4e223ed4709332a36cc531da0a4d8982fb7d"
+    },
+    {
+      "path": "assets/es-external-emergency-stop.png",
+      "size": 71224,
+      "sha256": "b027be0c2aa30fe436a497b9cf97f0d88fbbbe81e41fee015da48d822706efb0"
+    },
+    {
+      "path": "assets/es-grid-preparation.png",
+      "size": 51883,
+      "sha256": "7e043a077f8b6eab48f1d65637ea82ba37f400373072842e6d6614fc0ce18fc7"
+    },
+    {
+      "path": "assets/es-grid-wiring.png",
+      "size": 52958,
+      "sha256": "7072b9778ee36201330f38938a351d3a255d8d15ebccdf715415aa93e9ec9843"
+    },
+    {
+      "path": "assets/es-iot-pairing.png",
+      "size": 24264,
+      "sha256": "f026596db4941c40a0ee985265f42ae5b7831fffe6441cae88058e1f4a3daed7"
+    },
+    {
+      "path": "assets/es-load-wiring.png",
+      "size": 83811,
+      "sha256": "8517448a5c34ba2035340c38c8dc7ac85b4b00ca332f5c8e039863aceee9278a"
+    },
+    {
+      "path": "assets/es-locking-panel.png",
+      "size": 37385,
+      "sha256": "42d8ab77108992db6dd589acd8301e3faf9a5f33cacc2cdffaa77af83662e4dc"
+    },
+    {
+      "path": "assets/es-mounting-brackets.png",
+      "size": 20798,
+      "sha256": "7f102a84f5d365b6aee576a555f92672663df327890353fa3eeeb9c69e11ae84"
+    },
+    {
+      "path": "assets/es-mounting-fasteners.png",
+      "size": 27797,
+      "sha256": "9f71a9a0f3be5dbba5a1a5b83a879c51b0e5f471526e929e0fb24d2963f709ca"
+    },
+    {
+      "path": "assets/es-mounting-template.png",
+      "size": 30887,
+      "sha256": "7751ccadde5e4728f3dfc1cbe48fd30af91ec2f5972a9e8bc34ef8aa48596256"
+    },
+    {
+      "path": "assets/es-optional-tools.png",
+      "size": 34634,
+      "sha256": "4171e2cf8d38e26b5548a662ce31e9b11901f81266ceea38d21b7e40572e90b3"
+    },
+    {
+      "path": "assets/es-package-list.png",
+      "size": 62226,
+      "sha256": "007fbfdfc09b7b4c7fb99869c7a5cf6f7dfbbd676fea0463b08b2c6851f4f78f"
+    },
+    {
+      "path": "assets/es-power-station-connections.png",
+      "size": 74797,
+      "sha256": "5f08fbc0e70ceb93d542efc2c80aa8ceb456e5870b9155a3b501732725679cb2"
+    },
+    {
+      "path": "assets/es-system-overview.png",
+      "size": 53973,
+      "sha256": "847a2eb5ecb15814cb97f021649a57cab8a8fb3ec6b2de6edd3ce8048c0b9377"
+    },
+    {
+      "path": "assets/es-uncovered-overview.png",
+      "size": 71634,
+      "sha256": "7f1b76b8270837ab91ce8bc1c12e6b30f8394c997d8c2dfeda66a103b7784256"
+    },
+    {
+      "path": "assets/fr-app-add-device.png",
+      "size": 86278,
+      "sha256": "793772142c3fb28641aed2a75f07c8566165e752721263a3efa2151067ff0a17"
+    },
+    {
+      "path": "assets/fr-app-backup-only.png",
+      "size": 52606,
+      "sha256": "ba97e23fe5230dc2e8a92dae727938270d39d3966339f84d907788c7cb9f0d71"
+    },
+    {
+      "path": "assets/fr-app-backup-priority.png",
+      "size": 53221,
+      "sha256": "d90a7a4c4adc6b3731e5d5c4f2dc3b718e418706463775e779a1f1107024aed7"
+    },
+    {
+      "path": "assets/fr-app-circuit-list.png",
+      "size": 46742,
+      "sha256": "9a4e85cb3b7d05c33b350c6d395cb1a66364c3ce808febcfe121c2be2ddac76e"
+    },
+    {
+      "path": "assets/fr-app-circuit-name.png",
+      "size": 32986,
+      "sha256": "3d7c058090c793c4d7049493a2b57ef4423248da48a6b6e7aa020e1f82e0aafb"
+    },
+    {
+      "path": "assets/fr-app-circuits.png",
+      "size": 67373,
+      "sha256": "1c97831aa0ed371213654d117754a37e4307891db27b780638e415624c2cd56c"
+    },
+    {
+      "path": "assets/fr-app-dashboard.png",
+      "size": 51519,
+      "sha256": "2fe1a2fc5622a9681770796c5494f4521fa2afee806467a5b5afc0f2a1227966"
+    },
+    {
+      "path": "assets/fr-app-download-qr.png",
+      "size": 26225,
+      "sha256": "1b0b7242a937d65710b285f147b8128159a267f58954fb9cd4692929378ca46d"
+    },
+    {
+      "path": "assets/fr-app-store-badges.png",
+      "size": 9955,
+      "sha256": "17ddb4358c78068b1f6c5303d4cda77a7886087b3acd317f07bc42401cdf2357"
+    },
+    {
+      "path": "assets/fr-app-ups-mode.png",
+      "size": 68430,
+      "sha256": "37ff97d0a98ed415c36ec6e009cb094da9aaee5d766fb1f28aab81770b1906b0"
+    },
+    {
+      "path": "assets/fr-app-voltage-menu.png",
+      "size": 87997,
+      "sha256": "6503361697c0d1b6d84f2fc7169a6eba9f846dce71a37c3cd06977deb59b8dc9"
+    },
+    {
+      "path": "assets/fr-app-voltage-settings.png",
+      "size": 63019,
+      "sha256": "7d2c4f2ba678b7a26b2a1d4817b4963d6360b6a65f6ff4c09bf3a28a853ca21a"
+    },
+    {
+      "path": "assets/fr-app-wifi.png",
+      "size": 59121,
+      "sha256": "fdbf0182f970d7a315c1bb5e22f73265b3a3580c99510bc6653c54d1860b1b70"
+    },
+    {
+      "path": "assets/fr-app-working-modes.png",
+      "size": 52397,
+      "sha256": "dc9842593f98c690bdeced0eff580679bff00afaddffc921a6dfe2eddb4ea784"
+    },
+    {
+      "path": "assets/fr-cable-entry.png",
+      "size": 126041,
+      "sha256": "feb2310c0e4939184da90058080ee055d26ce96373b9244ac38f834375b39bf3"
+    },
+    {
+      "path": "assets/fr-covered-overview.png",
+      "size": 68842,
+      "sha256": "865c5219ad01cf28095923f74339ff1b55dd2dec6541b9ac1234168837b3d7b5"
+    },
+    {
+      "path": "assets/fr-dimensions.png",
+      "size": 33223,
+      "sha256": "76a9a42a8240b5b78d60b401b6a7b669a49471904f1efb6d9549be273e8fcbe7"
+    },
+    {
+      "path": "assets/fr-external-emergency-stop.png",
+      "size": 70846,
+      "sha256": "2e6a331540c4c12efaba0f785b44f6bff9c8fea1c8c1ef4605eac52db8e222e4"
+    },
+    {
+      "path": "assets/fr-grid-preparation.png",
+      "size": 52489,
+      "sha256": "4eeb8867cbecdc78ff8219b7a3b39f9b6bf7b5d13833ebfe5a6ec0c1d489e63e"
+    },
+    {
+      "path": "assets/fr-grid-wiring.png",
+      "size": 53952,
+      "sha256": "de9427469c18d2df9d35fc742d9ec3074f687d0d0f9bb1a40f634baab94107e0"
+    },
+    {
+      "path": "assets/fr-load-wiring.png",
+      "size": 84589,
+      "sha256": "a8a8dc8288555595b9473d26493e466a4672ac19b9486bb30f1ba5258dbea312"
+    },
+    {
+      "path": "assets/fr-locking-panel.png",
+      "size": 37093,
+      "sha256": "c62a67e17c67d37fe766dd8520f388a266eb4d9365eb38bbc084ab746e6999c0"
+    },
+    {
+      "path": "assets/fr-mounting-brackets.png",
+      "size": 19561,
+      "sha256": "f0d6df9f0f98baab16e3818b26eb66a531a58ed2c7f348cb8f818161cc573d43"
+    },
+    {
+      "path": "assets/fr-mounting-fasteners.png",
+      "size": 27883,
+      "sha256": "a83caee99e79b826d2827b832d545e2eb0280670d835be6b73297057cedf1a36"
+    },
+    {
+      "path": "assets/fr-mounting-template.png",
+      "size": 32106,
+      "sha256": "db751105e894d305d0e885397f4b313429ebfef2adb8ee8ae8bb0b345558af4a"
+    },
+    {
+      "path": "assets/fr-optional-tools.png",
+      "size": 33046,
+      "sha256": "d2b7e11a754097c9479fbe257f4ca966498095f2c68e61f08a38c2dcd838fa22"
+    },
+    {
+      "path": "assets/fr-package-list.png",
+      "size": 62239,
+      "sha256": "0919185f98a40a44fbc13f48547524d552abb556ffd6ebbec59c26527c67b082"
+    },
+    {
+      "path": "assets/fr-power-station-connections.png",
+      "size": 75352,
+      "sha256": "b906b8648318f505a46cbe102c172905c7d62d1b702f11a1af908e476904f469"
+    },
+    {
+      "path": "assets/fr-system-overview.png",
+      "size": 66770,
+      "sha256": "10a31affbf596863435369050bca12a358149fce4e49c89357be0441c765f2f0"
+    },
+    {
+      "path": "assets/fr-uncovered-overview.png",
+      "size": 72142,
+      "sha256": "98469ee218a31defdfabccae9e286ba3c06e1bffe6eca07ebc9b950ee2354021"
+    },
+    {
+      "path": "assets/inline-add-device.png",
+      "size": 1014,
+      "sha256": "4e520c727876b84293a37cff9bf08fe1e71ffefda176fe38a54f23d41ab2c3e3"
+    },
+    {
+      "path": "assets/inline-edit-name.png",
+      "size": 2374,
+      "sha256": "d9836a340efa452417ace01660c453f26fe44950daebe4cf059e2345e65a0c5b"
+    },
+    {
+      "path": "assets/inline-edit.png",
+      "size": 2460,
+      "sha256": "11c966d28e83d003bc47c87036074ff9e15d5a4d298e66045861ff18b2d009fb"
+    },
+    {
+      "path": "assets/inline-link-circuits.png",
+      "size": 2821,
+      "sha256": "c18d9aaaba0bedda5649c4811bf874195fab2acb47b18bafc2854cd9d391f43b"
+    },
+    {
+      "path": "assets/inline-save.png",
+      "size": 2328,
+      "sha256": "d9562c75be4ee1db93c20541ff9692b12051581bc581456e24000140eb03f442"
+    },
+    {
+      "path": "assets/inline-settings.png",
+      "size": 2748,
+      "sha256": "841f078d6aa2add1ac18e1cb3735754bdde17b629e9936e69cce463dc578978d"
+    },
+    {
+      "path": "assets/inline-voltage-config.png",
+      "size": 2921,
+      "sha256": "e93f10afdf54a3e1f3179edb5d4a3e5377b539a01c4b990b78bf92b150d336b0"
+    },
+    {
+      "path": "assets/iot-pairing.png",
+      "size": 24315,
+      "sha256": "5b57169d52289a355eefc42f86ecb04b19fdf996ecc76e57b2bb24db96130ff6"
+    },
+    {
+      "path": "assets/symbol_electric_shock-print.svg",
+      "size": 816,
+      "sha256": "d33edf86ce117fc851fae3d78a3a7bb6bb63ecb218ef31868f72e77fbabbc4a4"
+    },
+    {
+      "path": "assets/symbol_grounding-print.svg",
+      "size": 1460,
+      "sha256": "64d6515747798d90d31619de174b19d88a65262ff1974dcdcbdd7aae6873505c"
+    },
+    {
+      "path": "assets/symbol_ingestion_hazard-print.svg",
+      "size": 3789,
+      "sha256": "db1952a846dd27465f8963df1b743fdc1dd777b6328691958b95e1d82fe94e48"
+    },
+    {
+      "path": "assets/symbol_read_manual.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "assets/symbol_warning_triangle-print.svg",
+      "size": 1257,
+      "sha256": "b4d82cdcc622d3488525ebe5e780807f137ae565e62da8e12d4f9a51eed5e641"
+    },
+    {
+      "path": "assets/symbol_warning_triangle_yellow.svg",
+      "size": 1719,
+      "sha256": "3ba1bfd9a4945818636df78a2defae7ec5eada00f0ca135d29e9b1d962109808"
+    },
+    {
+      "path": "audit/browser-validation.json",
+      "size": 4263,
+      "sha256": "9fff3bebfd602e8da0e0843784643a73a74fef77ffaff2d6a953c2fa8e799c91"
+    },
+    {
+      "path": "audit/component-map.json",
+      "size": 3789,
+      "sha256": "0e4629216a7dd42e0b3dfa4440d5a6740f7cb3bedab2c1b07d09adb71d225853"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 8116,
+      "sha256": "92d410874e1046af24ab56f3a8fc3406b93093159b09c33e1c865e6723eab001"
+    },
+    {
+      "path": "source/es/content.json",
+      "size": 235553,
+      "sha256": "97f05a57d5fd7ea88b2dfa5025e3b5701278b85d31ef7ab9291a37912ba648b0"
+    },
+    {
+      "path": "source/es/coverage.json",
+      "size": 166840,
+      "sha256": "a85889a721d56b904a3731712dee2379f76644a3174d8573f96453078cd88d07"
+    },
+    {
+      "path": "source/extract_assets.py",
+      "size": 11229,
+      "sha256": "df3e95341b900070c74290758e3718ce41ff4be61a77dee034803535414dc18a"
+    },
+    {
+      "path": "source/figures.json",
+      "size": 91642,
+      "sha256": "b8092cab6cb815c33eebe6dcf87509c4c9b19ad6b75aa9a7e369401af7071760"
+    },
+    {
+      "path": "source/fr/content.json",
+      "size": 238122,
+      "sha256": "b37f993ae6268019c074d0519802c1b2250b42dd765a0b0bf67269250a5048dc"
+    },
+    {
+      "path": "source/fr/coverage.json",
+      "size": 165145,
+      "sha256": "36b9876f01e9c5a406e4af43e40bc8792beeb512c6e611544f44c83b40637745"
+    },
+    {
+      "path": "source/inline-controls.json",
+      "size": 6749,
+      "sha256": "5795183d0a3afd7f677a9fbc8f24363b651d8c738c115b9308ac868d8fd30aee"
+    },
+    {
+      "path": "source/intake.py",
+      "size": 32460,
+      "sha256": "56d399649d496ad71927bc3b94ef07bfbaa1d144a9c9e5be102dc6a22fc95750"
+    },
+    {
+      "path": "source/native.py",
+      "size": 22561,
+      "sha256": "0aebb49febc0ccab80f3aa8ee4abbe659d9823fa368928aef588d73eaa30fb93"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 3133,
+      "sha256": "fd908d0bf930c4c12c9c0a80ac33561dec9cce346d47826f7958766679f04d8c"
+    },
+    {
+      "path": "source/refresh_manifest.py",
+      "size": 6675,
+      "sha256": "00c874628e424591eb61ee457a0b3a23337600e6493b344bf85dd3d3f6f7c979"
+    },
+    {
+      "path": "source/symbols.json",
+      "size": 11420,
+      "sha256": "af303491167e1e6100e60022d75dc42a7ecf5c0a5f4aedf66bf384ccb7206429"
+    },
+    {
+      "path": "source/text-recovery.json",
+      "size": 706,
+      "sha256": "3888f15a69f02455917f8d37a316526db88c3e31ffc3fa9313fc1f6dd9a8ff34"
+    },
+    {
+      "path": "source/unmapped.json",
+      "size": 27,
+      "sha256": "a0dcbf3cb4f6f7be5b1d2f32d6a944bdd3b4fa1486d63873999f10f19d4ca917"
+    }
+  ]
+}
