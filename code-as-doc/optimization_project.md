@@ -365,7 +365,7 @@ single-PR slices between business deliveries and never blocks a delivery.
 
 ### Workstream T: Enterprise Ops Hardening (Phase 0)
 
-Status: next — Tier 1 (K1, K4, K5, K7) is done; K2, K3 and K6 are deferred on their triggers, so the exit criteria below (and the roadmap's Phase 0 exit) are not yet recorded as passed
+Status: next — Tier 1 (K1, K4, K5, K7) is done, but the roadmap's Phase 0 exit is not yet recorded: the real-failure alerting record, the dated binary-storage and delivery risk assessment and the exit record are still missing. K2, K3 and K6 stay deferred on their triggers.
 
 PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone K (K1–K7).
 
@@ -398,8 +398,8 @@ Exit criteria:
 The authoritative Phase 0 capability gate is in the [platform roadmap](architecture/platform_evolution_roadmap.md#phase-0--stabilization). Workstream T supplies supporting evidence, **not** a competing exit gate:
 
 - A dated content-restore drill, an alert observed on a real queue failure, and verified second-host IDML→PDF delivery must satisfy the roadmap's capability criteria and be cited by its exit record.
-- Binary-storage risk requires the roadmap's dated assessment, safeguards and restart condition. A risk-triggered mitigation is required when the assessment calls for one; K3 remains deferred unless the operator selects Git LFS as the appropriate remedy. RTD deployment-budget pressure alone does not mandate LFS.
-- K1's locked CI installation remains delivered; K2 TeX pin/cache and K6 governance work keep their documented triggers and do not become unconditional Phase 0 gates. No Phase 0 completion is claimed here.
+- Binary-storage risk requires the roadmap's dated assessment, safeguards and restart condition. When the assessment calls for a mitigation, it must be in place and verified before Phase 0 exits, or the operator records a dated risk acceptance; K3 remains deferred unless the operator selects Git LFS as the appropriate remedy. RTD deployment-budget pressure alone does not mandate LFS.
+- K1's lockfile installs for CI and ReadTheDocs are re-checked at exit (the roadmap's reproducible-installs criterion); K2 TeX pin/cache and K6 governance work keep their documented triggers and do not become unconditional Phase 0 gates. No Phase 0 completion is claimed here.
 
 ### Workstream U: Platform Consolidation (Phase 1)
 
@@ -489,7 +489,7 @@ Scope:
 
 Exit criteria:
 
-- a shared-template fix reaches every affected review branch in the declared scope as a reviewable automated PR without repetitive manual per-branch propagation merges and with zero silent drift; human review, approval and release verification remain required
+- a shared-template fix reaches every affected review branch in the declared scope as a reviewable automated PR that needs no hand-made sync or merge commit to carry the change, with zero silent drift; the human steps are content review, approval and resolving any surfaced conflict, and release verification remains required
 - propagation lag (fix merged → all branches bumped) is measured and visible
 - reviewer-authored edits survive propagation or surface as explicit conflicts, never silent overwrites
 
