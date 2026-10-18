@@ -56,10 +56,10 @@ North Star (end state). Hello-Docs is the content lifecycle system for that
 asset: trusted content and its relations (one authority, an explicit identity
 and an explicit applicability per governed item) are maintained from confirmed
 commonality baselines with explicit, necessary differences. Shared changes are
-maintained once and reach applicable delivery targets and surfaces verifiably.
-Governed feedback returns through authorized review to improve the content and
-the governance rules themselves. This reduces repeated editing and repeated
-judgment; the reuse and propagation constraints are in §6.
+made once at their authority and reach applicable delivery targets and surfaces
+verifiably. Governed feedback returns through authorized review to improve the
+content and the governance rules themselves. The aim is to reduce repeated
+editing and repeated judgment; the reuse and propagation constraints are in §6.
 
 The five strategic objectives apply across content classes. Governance depth
 is selective: tier-1 content (warning, safety and compliance text and spec
@@ -324,8 +324,8 @@ In the target end state:
   build, validation, and publishing tooling
 - every release is traceable to a frozen snapshot and a build record
 
-Stage 3 is a deliberate hybrid, not total structuralization. "Source of truth"
-applies to the content classes that benefit from governance — spec values,
+Stage 3 is a deliberate hybrid, not total structuralization. CMS ownership applies
+to the content classes that benefit from structured governance — spec values,
 high-reuse short copy, and tabular/reference content. Layout and page structure,
 stable long-form and compliance prose, and environment differences (legal
 identity, contacts, URLs, marketplaces) are deliberately owned by repository
@@ -336,9 +336,11 @@ class each piece of content belongs to is decided by an explicit content-truth
 allocation rule, not case by case. These table/template allocations coexist
 with approved native-source production: a target can retain its declared
 original or source-designated Manual IR, with an explicit revision and editing
-surface, and freeze new input packages for release. A frozen package is an
-immutable version, not an in-place editing surface; generated Shared IR remains
-a derivative unless explicitly designated as the source. This route does not
+surface, and freeze new input packages for release. A sealed package is an
+immutable version, not an editing surface; where a Git-held source package is
+the declared editing surface, a reviewed correction re-locks it as a new
+version with recorded lineage. Generated IR remains a derivative unless
+explicitly designated as the source. This route does not
 require migration into tables or templates to count as governed. See the
 allocation rule and its route boundary in
 [`Long_Form_Content_Block_Design.md`](Long_Form_Content_Block_Design.md).
@@ -353,13 +355,14 @@ Production principles:
 1. One authority per content item; structure is selective. Each governed item
    has one declared content authority and version, allocated by the
    content-truth rule, with an explicit editing surface for revisions. Tables,
-   repository templates and approved native originals can own content;
-   source-designated Manual IR can do so, but generated IR cannot become an
-   authority merely because it carries the same content. Frozen snapshots and
-   release packages remain immutable; corrections use the declared editing
-   surface and produce a new version with recorded lineage. Forbidden: a
-   second editable authority such as a machine JSON, an operations table or a
-   parallel CMS; in-place changes to frozen versions; moving prose into tables
+   repository templates and config, and approved native originals can own
+   content; source-designated Manual IR can do so, but generated IR cannot
+   become an authority merely because it carries the same content. Sealed
+   snapshots and release packages remain immutable; corrections use the declared
+   editing surface (which may be a Git-held source package, re-locked by a
+   reviewed change) and produce a new version with recorded lineage. Forbidden:
+   a second editable authority such as a machine JSON, an operations table or a
+   parallel CMS; changing a sealed version in place; moving prose into tables
    for completeness; treating degree of structure as maturity. The enemy is
    uncontrolled template forks, not templates or versioned derivatives.
 2. Build inputs are explicit and reproducible. Forbidden: implicit environment
@@ -399,12 +402,14 @@ Content-relation principles:
    surface their authority declares. Changes to the governance model itself
    (identities, applicability vocabulary, allocation rule, relation status) are
    reviewed changes with cited evidence. Observation and knowledge tools do not
-   write content authorities. Authorized execution tools may apply an approved
-   change through its declared editing surface, within the approved scope and
-   with an audit trail and read-back or rebuild verification. Forbidden:
-   observation or knowledge layers writing an authority directly; automated
-   writes without the required authorization or outside its scope; AI judging
-   regulatory applicability; a findings ledger becoming a wording authority.
+   write content authorities. Authorized change-execution tools may apply a
+   change that a person with the accountable role approved (recorded with the
+   approver and date), through its declared editing surface, within the approved
+   scope and with an audit trail and read-back or rebuild verification.
+   Forbidden: observation or knowledge layers writing an authority directly;
+   automated writes of a change that no accountable person approved, or outside
+   the approved scope; AI judging regulatory applicability; a findings ledger
+   copying approved wording or becoming a wording authority.
 
 ## 7. Strategic Invariants
 
@@ -425,6 +430,7 @@ These are the boundaries that should not be casually broken.
 - [`platform_evolution_roadmap.md`](platform_evolution_roadmap.md) holds the platform maturity assessment, capacity-driven phases and exit criteria.
 - [`system_evolution_history.md`](system_evolution_history.md) records how the system reached its current shape.
 - [`optimization_project.md`](../optimization_project.md) tracks repo-level execution and current optimization priorities.
+- [`dev/manual_revitalization_execution.md`](../dev/manual_revitalization_execution.md) is the execution ledger: per-item state, dependencies and acceptance evidence.
 - [`manual_production_revitalization_plan.md`](../manual_production_revitalization_plan.md) applies these boundaries to stock-manual delivery.
 - [`user-guide/two_plane_map.md`](../../user-guide/two_plane_map.md) records current repository/Base ownership.
 - [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md) describes current maintainer behavior.
@@ -449,7 +455,7 @@ Review this file only when:
 
 Hello-Docs should evolve into a content lifecycle system in which trusted
 content and its relations are maintained from confirmed commonality baselines
-and explicit differences, reach applicable delivery targets and surfaces
-verifiably, and improve through governed feedback, on the same
+with explicit, necessary differences, reach applicable delivery targets and
+surfaces verifiably, and improve through governed feedback, on the same
 governance, snapshot, assembly, build, review and release boundaries it has
 today.

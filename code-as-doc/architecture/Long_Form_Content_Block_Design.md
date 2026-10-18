@@ -94,11 +94,15 @@ not decided case by case. The target is to eliminate template forks (the same pa
 cloned per language/region), not to move every paragraph into a table.
 
 The table governs the table/template production route addressed by this design.
-Approved native-source production is also a formal route: each target declares
-its authoritative original or source-designated Manual IR, source version and
-editing surface. Frozen input and release packages are immutable versions;
-corrections produce a new version through that editing surface with recorded
-lineage. Generated IR is a derivative unless explicitly designated as the source.
+Approved native-source production is also a formal route: each target must
+declare its authoritative original or source-designated Manual IR, source
+version and editing surface. Sealed input and release packages are immutable
+versions; corrections go through that editing surface (a Git-held source package
+is re-locked by a reviewed change) and must produce a new version with recorded
+lineage. Generated IR is a derivative unless explicitly designated as the
+source. The editing-surface and lineage declarations are target state: as of
+2026-10-18 no `source_manifest.json` declares an editing surface, and 12 of 125
+record lineage (`derived_from`).
 Native-source targets do not have to migrate into this table's CMS/template
 allocations to qualify as governed, and this design's block-migration gates apply
 only when that migration is proposed.
@@ -258,7 +262,7 @@ Incremental, lowest-risk first. Each phase keeps the RST fallback until parity.
 
 ## 10. Definition Of Done (Stage 3 Content Gate)
 
-The Stage 3 content gate is met — for prose pages — when:
+The Stage 3 content gate is met — for prose pages on the table/template route — when:
 
 1. Every prose page is declared in `page_registry` with explicit applicability.
 2. Template forks are eliminated: each page renders from one shared definition plus
