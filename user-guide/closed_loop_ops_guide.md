@@ -1,6 +1,6 @@
 # 闭环运营手册（操作者版）
 
-Updated: 2026-07-15
+Updated: 2026-10-18
 
 这是 Milestone G（G0–G7，PR #514–#521）交付的闭环机制的**操作者视角**说明：
 日常要跑什么命令、什么时候跑、看到什么算正常。实现细节和字段含义在
@@ -607,6 +607,15 @@ Publish，并逐字节比较 DOCX/Markdown/PDF。原归档文件丢失而必须�
 | 日期 | release tag | 场景 | 网页恢复 | Word/PDF 重发 | 历史重建验证 | 结果/发现 |
 | --- | --- | --- | ---: | ---: | ---: | --- |
 | 待操作者演练 | — | — | — | — | — | 未执行 |
+
+## 4.11 知识问题台账（机读 Phase 3a，EU）
+
+说明书知识问题（如某些语言版缺少的警示）记在 Hello-Docs 的 `docs/knowledge/governance/findings.json`，
+只经含 `docs/knowledge/**` 的内容 PR 修改，在 **Hello-Docs checkout** 里操作。机器只提出候选并给出核验结果；
+确认、批准与关闭由人给出，写明人和日期。命令 `python -m tools.manual_knowledge.findings` 的
+`check`（只读校验）、`verify`（重新发布后核验）、`propose`（新候选）、`coverage`（覆盖矩阵）、
+`bindings`（各版本的编辑入口）见[构建指南 · Web 发布与 RTD](../code-as-doc/build_doc_guide/web-publish-and-rtd.md)；
+条目字段、状态与闭环流程见[知识治理方案](../code-as-doc/dev/machine_readable_knowledge_governance.md) §6–§7。
 
 ## 5. 首跑清单（一次性，做完划掉）
 

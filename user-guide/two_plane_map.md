@@ -1,6 +1,6 @@
 # 双平面地图：仓库、飞书 base、谁在哪跑
 
-Updated: 2026-08-02
+Updated: 2026-10-18
 
 这套系统有 **2 个 git 仓库 + 2 组飞书 base**，四个东西都常被叫"库"，
 不看地图必混。本文是唯一的权威地图：改了拓扑（合并仓库、迁移 base、
@@ -98,15 +98,21 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 ### 2.1 发布契约与实际托管配置的区别（2026-09-17）
 
 上表的 `publish → PR → main` 是受支持的发布契约，不代表历史 RTD 项目均已迁到该配置。
-操作者提供的调查截图报告 HT-Manuals 仍关联 `publish`，HT-Doc 关联 `main`；
-本次文档更新未在线复核后台，也未执行迁移。以
-[发布入口整合检查](../code-as-doc/dev/web_publish_pipeline/hosting-boundaries.md#31-hosting-convergence-and-legacy-entry-review)
-逐项核实、批准变更并验收后，再回填实际托管状态。
+2026-09-17 的调查截图曾报告 HT-Manuals 关联 `publish`、HT-Doc 关联 `main`；入口整合的检查项见
+[发布入口整合检查](../code-as-doc/dev/web_publish_pipeline/hosting-boundaries.md#31-hosting-convergence-and-legacy-entry-review)。
+REV-03 已于 2026-09-19 验收（[台账](../code-as-doc/dev/manual_revitalization_execution.md#rev-03)）：
+操作者删除了旧站 HT-Manuals，四条死亡探针 404，旧链接由新站兼容页承接，`publish` 分支保留。
+2026-10-13 起，门户、Web Publish 工作流与回执/核验工具的默认站点基址改为
+`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`（#1514 及后续 PR，见
+[盘活方案](../code-as-doc/manual_production_revitalization_plan.md)第二章）；实际仓库变量与
+RTD 后台分支配置以后台为准，本图未在线复核。
 停止旧 RTD 项目独立更新不删除 `Hello-Docs/publish` 候选分支，也不合并工程/业务两个仓库。
 
 Hello-Docs `docs/knowledge/workspace-data` 同样属于业务内容：保存审核后的工作台快照，工程同步保留它。更新和补做见 [工作台数据持续更新](../code-as-doc/dev/workspace_data_refresh.md)。
 
 Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明书知识问题的台账（人工结论、修改与核验），经只含 `docs/knowledge/**` 的内容 PR 维护；契约、校验、核验、覆盖矩阵与权威源绑定命令在 auto-manual，见[知识治理方案](../code-as-doc/dev/machine_readable_knowledge_governance.md) §6。
+
+[Strategy](../code-as-doc/architecture/System%20Evolution%20Strategy.md) §4.6、§4.8 所说的内容身份、适用性与关系状态登记是计划目标状态，尚未建设；它放在哪个平面，在动工前随执行台账登记确定，届时更新本图。
 
 ## 3. 谁在哪跑
 
@@ -132,7 +138,7 @@ Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明
 
 1. **代码只改 auto-manual**。Hello-Docs 的工程树是镜像，直接改代码会被下一次同步覆盖或产生分叉。
    `Hello-Docs/main:docs/publish/**` 保存已发布说明书；
-   `Hello-Docs/main:docs/knowledge/**` 保存分享稿、配图和示例。两个业务内容目录
+   `Hello-Docs/main:docs/knowledge/**` 保存分享稿、配图、示例和业务数据（工作台数据、知识问题台账等，见 §2.1）。两个业务内容目录
    都由 Hello-Docs 内容 PR 维护，工程同步保留它们；
    `Hello-Docs/publish` 由 Web Publish workflow 自动写入候选快照，人不在该分支改代码。
    只能把该分支中 `docs/publish/**` 的差异通过 PR 合入 `main`，不能把 `review/*` 整分支合入。
@@ -146,7 +152,7 @@ Hello-Docs `docs/knowledge/governance/findings.json` 也是业务内容：说明
 
 ## 6. 收口清单（2026-07-02 遗留，做完删本节）
 
-- [ ] 合并 [PR #525](https://github.com/Bingboom/auto-manual/pull/525)（回收哨兵在业务面生效）
+- [x] 合并 [PR #525](https://github.com/Bingboom/auto-manual/pull/525)（回收哨兵在业务面生效；2026-07-02 已合入）
 - [ ] 飞书 UI：旧 base 文档构建表筛 `Review_status=InReview`（10 条）→ 全部改 `NotStarted`
       （本机 bot/user 身份对旧 base 只读，需操作者手动）；改完后 auto-manual 侧
       [issue #524](https://github.com/Bingboom/auto-manual/issues/524) 会被哨兵自动关闭

@@ -1,6 +1,6 @@
 # Published EU manual query
 
-Status: active — implementation under validation; live gateway/deployment not yet accepted.
+Status: active — in live use on the existing gateway (see the 2026-10-11 and 10-12 incidents below); formal acceptance of the live gateway and deployment is not yet recorded.
 Owner: the Auto-Manual maintainer. Scope approved by the
 operator on 2026-10-01: every EU manual published on Read the Docs, content
 export, read-only retrieval and integration with the already connected DingTalk
