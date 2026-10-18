@@ -28,11 +28,13 @@ Related documents:
 
 Page assembly is currently **split**:
 
-- **Data-driven (already done):** `symbols`, `lcd_icons`, `troubleshooting`,
-  `spec`, and safety blocks render from live tables through
+- **Data-driven (already done):** `symbols`, `lcd_icons`, `troubleshooting` and
+  `spec` render from synced table snapshots through
   [`../../tools/csv_pages/`](../../tools/csv_pages) using `page_registry.csv`
-  composition, `content_blocks.csv`, and `Manual_Copy_Source` short-copy tokens.
-  One structured source emits every language variant. This is the target shape.
+  composition and `Manual_Copy_Source` short-copy tokens. (The safety-block
+  renderer reads a `content_blocks.csv` that no snapshot or manifest supplies
+  today; safety prose comes from repository templates.) One structured source
+  emits every language variant. This is the target shape.
 - **Template-forked (still Stage 1):** product overview, operation guide
   (~2.7k lines across 13 templates), app setup (~0.9k lines across 10 templates),
   preface, UPS mode, charging, storage, warranty, and other prose pages exist as

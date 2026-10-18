@@ -42,8 +42,9 @@ identical.
 ## Fold index
 
 The tracked [`docs/manifests/family/index.yaml`](../../docs/manifests/family/index.yaml)
-records four compatibility anchors and 16 target/diff pairs, covering all 20
-current manifests. `BP@INTL` and `BP@JP` intentionally use separate anchors.
+records six compatibility anchors and 48 target/diff pairs, covering all 54
+current manifests (fold report, 2026-10-18). `BP@INTL` and `BP@JP`
+intentionally use separate anchors.
 Run:
 
 ```bash

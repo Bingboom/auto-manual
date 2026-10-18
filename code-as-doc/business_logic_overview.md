@@ -1,6 +1,6 @@
 # Business Logic Overview
 
-Updated: 2026-04-19
+Updated: 2026-10-18
 
 This file is the current business-logic overview for `auto-manual`.
 It explains the repo's maintained business flow in plain language, with the current codebase and maintainer workflow as the source of truth.
@@ -157,12 +157,27 @@ In plain language:
 - `_build` stays generated
 - snapshot changes may still refresh parameter-driven values, but should not wipe reviewed prose
 
+The [Strategy](architecture/System%20Evolution%20Strategy.md) places review workflows in the
+Release And Traceability layer (§4.5). That placement does not change this rule: after review
+starts, the `_review` derivative is the target's editing surface for reviewed prose, and
+backport writes only there.
+
 ### 3.3 What Is Never The Long-Lived Editing Surface
 
 The following should not be treated as the durable authoring source:
 
 - [`../docs/_build/`](../docs/_build)
 - generated export outputs under `html`, `word`, and `pdf`
+
+### 3.4 Git-Only Frozen Sources
+
+Targets released through the Git-only route take their content from a Git-held frozen source
+package (for example a native package under `manual_sources/` or `data/manual_sources/`,
+converted from an approved print PDF) rather than from templates plus the current snapshot.
+A published package is not edited in place: a correction is rebuilt as a new version and
+released through an engineering PR and a Hello-Docs publish PR
+([Web publish contract](dev/web_publish_pipeline.md)). Strategy §5 (Stage 3) holds the target
+rules for each package's editing surface and lineage.
 
 ## 4. End-To-End Business Lifecycle
 

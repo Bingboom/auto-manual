@@ -1,6 +1,6 @@
 # 系统演进史（骨架与来路）
 
-Updated: 2026-10-07
+Updated: 2026-10-18
 
 ## 0. 本文角色
 
@@ -182,7 +182,7 @@ Word 仍逐页转换 RST，IDML 从 prepared RST 另建 IR。三者已有公共�
 [IDML 源适配](../../tools/idml/ir_projection.py)。
 **不变量**：语义与组件角色由共享契约约束，各 Renderer 对原生格式负责；
 声明了组件就要通过准入，不能在另一种语言中静默退化。
-稳定边界见 [Strategy §4.6](System%20Evolution%20Strategy.md#46-cross-layer-operations-feedback-and-shared-intake)。
+稳定边界见 [Strategy §4.6](System%20Evolution%20Strategy.md#46-lifecycle-intake-consumption-and-governed-feedback)。
 
 ### 环 12 · Web Corpus 与 Workspace（2026-09 ～ 10）
 
@@ -343,7 +343,7 @@ flowchart LR
 <!-- system-evolution:start -->
 ```yaml
 schema: system-evolution/v1
-updated_on: 2026-10-07
+updated_on: 2026-10-18
 title: 从一条自动化脚本，到持续演进的说明书工作台
 intro: 从自动生成一份说明书开始，记录系统怎样逐步支持评审、发布、样式复用和 AI 查询，为什么发生这些变化，以及后续准备向哪些方向发展。
 architecture:
@@ -519,8 +519,8 @@ architecture:
 now:
   - {label: Web 文档, state: 已成熟，持续发布与维护, status: ongoing}
   - {label: 印刷版 IDML, state: 试生产，逐项验证排版与印刷, status: in_progress}
-  - {label: 程序与 AI 查询, state: EU 第一阶段已验收，从网页整理, status: recorded}
-  - {label: 审核经验回馈, state: 后续规划，范围待定, status: planned}
+  - {label: 程序与 AI 查询, state: EU 机读语料第一阶段已验收，从网页整理；查询网关验收未完成, status: in_progress}
+  - {label: 审核经验回馈, state: EU 发现台账与核验已实现，全量验收未完成；更广的经验回馈仍为规划, status: in_progress}
 chapters:
   - title: 能稳定地生成
     question: 同样的数据和模板，能不能每次得到同样的说明书，并覆盖不同产品与市场？
