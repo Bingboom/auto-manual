@@ -40,8 +40,9 @@ Page assembly is currently **split**:
   `page_us-en/es/fr`, `page_jp`, `page_zh`, `page_us-pt-br`) with only `|TOKEN|`
   spec values pulled from data. The prose itself lives in the template.
 
-The per-language fork is exactly the "more template forks" that strategy
-Principle 1 warns against. Collapsing it is the core remaining Stage 3 move.
+The per-language fork is the uncontrolled template duplication that strategy
+Principle 1 warns against. Collapsing it is this design's Stage 3 contribution
+for the table/template route, subject to its migration gates.
 
 ### 2.1 Lessons from the rollback (#295/#296)
 
@@ -92,6 +93,20 @@ design. Each piece of content is allocated to one home of truth by the rule belo
 not decided case by case. The target is to eliminate template forks (the same page
 cloned per language/region), not to move every paragraph into a table.
 
+The table governs the table/template production route addressed by this design.
+Approved native-source production is also a formal route: each target must
+declare its authoritative original or source-designated Manual IR, source
+version and editing surface. Sealed input and release packages are immutable
+versions; corrections go through that editing surface (a Git-held source package
+is re-locked by a reviewed change) and must produce a new version with recorded
+lineage. Generated IR is a derivative unless explicitly designated as the
+source. The editing-surface and lineage declarations are target state: as of
+2026-10-18 no `source_manifest.json` declares an editing surface, and 12 of 125
+record lineage (`derived_from`).
+Native-source targets do not have to migrate into this table's CMS/template
+allocations to qualify as governed, and this design's block-migration gates apply
+only when that migration is proposed.
+
 | Content | Home of truth | Status |
 | --- | --- | --- |
 | Spec values / parameters | structured (`Spec_Master`) | done |
@@ -101,7 +116,7 @@ cloned per language/region), not to move every paragraph into a table.
 | Layout, directives, page skeleton | repository RST template | always |
 | Stable long-form / compliance prose | repository RST template — deliberately retained | policy |
 
-Only the last row is new policy: long-form and compliance prose stays
+Within this route, long-form and compliance prose stays
 repository-owned by default, with a recorded reason, rather than being treated as
 debt that must eventually move. Two repo facts make this safe:
 
@@ -114,7 +129,7 @@ debt that must eventually move. Two repo facts make this safe:
   low while its structuring risk is high.
 
 This rule is the contract that [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md)
-Stage 3 and Principle 6 refer to.
+Stage 3 and Principle 1 refer to.
 
 ## 4. The Long-Form Block Schema
 
@@ -247,7 +262,7 @@ Incremental, lowest-risk first. Each phase keeps the RST fallback until parity.
 
 ## 10. Definition Of Done (Stage 3 Content Gate)
 
-The Stage 3 content gate is met — for prose pages — when:
+The Stage 3 content gate is met — for prose pages on the table/template route — when:
 
 1. Every prose page is declared in `page_registry` with explicit applicability.
 2. Template forks are eliminated: each page renders from one shared definition plus
