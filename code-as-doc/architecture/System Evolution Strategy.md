@@ -52,16 +52,17 @@ Vision. Product content should be a maintained knowledge asset: trusted,
 reusable, consumable by people and by machines, and improved by what delivery
 and use reveal, rather than a set of files delivered once.
 
-North Star. Hello-Docs is the content lifecycle system for that asset:
-trusted content and its relations (one authority, an explicit identity and an
-explicit applicability per governed item) are maintained once, reach every
-delivery target and surface verifiably, and improve through governed feedback
-that returns, through authorized review, to the content and to the governance
-rules themselves. How commonality is shared and how change propagates are
-principles (§6), not part of this statement.
+North Star (end state). Hello-Docs is the content lifecycle system for that
+asset: trusted content and its relations (one authority, an explicit identity
+and an explicit applicability per governed item) are maintained once, reach
+every delivery target and surface verifiably, and improve through governed
+feedback that returns, through authorized review, to the content and to the
+governance rules themselves. How commonality is shared and how change
+propagates are principles (§6), not part of this statement.
 
-Strategic objectives (the end state holds when all five are true for the
-governed content classes):
+Strategic objectives (the end state holds when all five are true for tier-1
+content: warning, safety and compliance text and spec values; other content
+carries light metadata only):
 
 1. Trusted content: authority, identity, applicability and approved version
    are explicit for every target.
@@ -185,18 +186,23 @@ Responsibility:
 The five production layers are the deterministic spine of a two-level
 lifecycle. Content Governance is layer 4.1 and, as a planned target state, a
 registry of content identities, applicability statements, baseline-derivative
-links and relation status (its delivery status lives in the execution ledger,
-not in this file). Content Production is layers 4.2 to 4.5. Delivery & Consumption is the
-published human and machine surfaces (§4.7). Content Intelligence is read-only
-observation over published editions: corpus, relations, findings. Governed
-Feedback returns corrections through the editing surface each authority
-declares; returning confirmed relations and rule changes to governance is a
-planned target state, not a delivered capability. None of these stages adds a
-build engine or a content authority. The first feedback level corrects content
-through paths that exist today; the second, which is to correct the governance
-model itself, has no rule or carrier yet and is tracked in the execution
-ledger, not claimed here. In both, an observation stays a candidate until a
-person with the accountable role decides.
+links and relation status (its delivery status is to be recorded only in the
+[execution ledger](../dev/manual_revitalization_execution.md) before any of it
+is built, not in this file). Content Production is layers 4.2 to 4.5.
+Delivery & Consumption is the published human and machine surfaces (§4.7).
+Content Intelligence is read-only observation over published editions: corpus,
+relations, findings. Governed Feedback returns corrections through the editing
+surface each authority declares; returning confirmed relations and rule
+changes to governance is a planned target state, not a delivered capability.
+None of these stages adds a build engine or a content authority. The first
+feedback level uses correction paths that exist today; the second, which is to
+correct the governance model itself, has no rule or carrier yet, is not
+claimed here, and is to be recorded only in the [execution
+ledger](../dev/manual_revitalization_execution.md) before any of it is built.
+In both, an observation stays a candidate until a person with the accountable
+role decides.
+
+Intake, release and feedback boundaries:
 
 - Governed table/template inputs and approved AI/PDF intake both freeze their
   content, structure, assets, configuration and source authority before assembly.
@@ -229,8 +235,7 @@ not the boundary of the platform itself.
 
 - Human access uses Portal, Workspace and existing Bot workflows to read,
   submit work and review. Agent skills and bounded manual-query interfaces
-  already exist.
-  Their coverage and approval rules remain capability-specific.
+  already exist. Their coverage and approval rules remain capability-specific.
 - Planned enterprise integration references PLM/ERP product, SKU, BOM, material
   and lifecycle records through synchronization and field mapping into the
   existing business tables. These tables support product information, content
@@ -266,9 +271,11 @@ data writes or formal file modification.
 Hello-Docs is: the authority-and-derivation system for product documentation
 content; a deterministic, reproducible production line; the origin of
 same-source human and machine surfaces; and the governed entry point for
-feedback. As a planned target state, tracked in the execution ledger and not
-claimed here, it is also the registry of content identities, applicability
-statements, baseline-derivative links, change records and relation status.
+feedback. As a planned target state, it is also the registry of content
+identities, applicability statements, baseline-derivative links, change
+records and relation status; that registry is not claimed here, and its status
+is to be recorded only in the [execution
+ledger](../dev/manual_revitalization_execution.md) before any of it is built.
 
 Hello-Docs is not: enterprise master data (PLM, ERP and business tables remain
 authoritative for their records); a judge of regulatory or certification
@@ -342,21 +349,21 @@ Production principles:
 
 Content-relation principles:
 
-4. Share by confirmed relation; vary explicitly. Content is reused across
-   targets only along a relation whose identity, applicability and reason are
-   recorded and confirmed by the accountable role. Textual similarity is not
-   equivalence. A difference is recorded with its reason, not expressed by
-   copying a file. Forbidden: merging because text matches; forking because
-   one target changed; variation mechanisms that do not name the baseline they
-   diverge from.
+4. Share by confirmed relation; vary explicitly. Tier-1 content is reused
+   across targets only along a relation whose identity, applicability and
+   reason are recorded and confirmed by the accountable role. Textual
+   similarity is not equivalence. A difference is recorded with its reason,
+   not expressed by copying a file. Forbidden: merging because text matches;
+   forking because one target changed; adding variation mechanisms that do not
+   name the baseline they diverge from.
 5. Change at the source; propagate by evidence. A shared change is made once
    at its authority; affected targets are listed from declared relations
    before approval; relation declared, impact identified, change approved,
    target built, published and verified online are separate records with
    separate evidence; review and release remain traceable, as today.
-   Forbidden: automatic propagation along unconfirmed
-   relations; marking a target updated because its baseline changed; treating
-   a library fix as applied to frozen editions that were not rebuilt.
+   Forbidden: automatic propagation along unconfirmed relations; marking a
+   target updated because its baseline changed; treating a library fix as
+   applied to frozen editions that were not rebuilt.
 6. Feedback is governed and two-level. Observations are candidates, never
    facts; machines propose and verify, people decide, and approval does not
    replace verification. Content corrections return through the editing

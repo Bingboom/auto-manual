@@ -114,7 +114,7 @@ debt that must eventually move. Two repo facts make this safe:
   low while its structuring risk is high.
 
 This rule is the contract that [`System Evolution Strategy.md`](System%20Evolution%20Strategy.md)
-Stage 3 and Principle 6 refer to.
+Stage 3 and Principle 1 refer to.
 
 ## 4. The Long-Form Block Schema
 
