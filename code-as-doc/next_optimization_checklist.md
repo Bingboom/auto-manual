@@ -1,9 +1,9 @@
 # Next Optimization Checklist
 
-本轮说明书盘活的 34 项任务在[执行台账](dev/manual_revitalization_execution.md)维护唯一状态，
+本轮说明书盘活的 34 项任务及范围变更新增项（REV-35 起）在[执行台账](dev/manual_revitalization_execution.md)维护唯一状态，
 以 REV-ID 关联方案、依赖、验收和 PR；本清单保留既有工程工作，不复制该批次勾选项。
 
-Updated: 2026-10-12
+Updated: 2026-10-18
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
