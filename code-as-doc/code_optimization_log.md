@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-10-13
+Updated: 2026-10-18
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -52,6 +52,22 @@ The next two largest agent-facing docs followed the 2026-10-10 split:
   The 30 deep links into moved sections, AGENTS.md §3 among them, point at
   the pages.
 - Content moved verbatim; the maintainability guardrails cap both hubs.
+
+## 2026-10-04 to 2026-10-12: Machine-readable EU corpus, observation and governance
+
+The machine-readable program runs EU first; each phase has its own plan and acceptance record in `dev/`.
+
+- Phase 1 Machine Corpus (2026-10-04): manual-variant identity and provenance (#1434), the sealed
+  machine-surface manifest and freshness check (#1435), workbench coverage (#1436) and the
+  pilot audit (#1437); online checks closed with #1439.
+  [Plan](dev/machine_readable_manual_corpus.md).
+- Phase 2a Knowledge Observation (2026-10-11): the offline `observe` command (#1488–#1491),
+  accepted in the [pilot audit](dev/machine_readable_knowledge_pilot_audit.md) (#1492), which
+  lists 23 issues for the content owners.
+- Phase 3a Knowledge Governance (opened 2026-10-12): the findings-ledger contract and check
+  (#1495), `verify` / `propose` (#1498), the coverage matrix (#1503) and authority bindings
+  (#1505) shipped as P3-0…P3-3. At P3-3 all 23 ledger entries were still `candidate`; the
+  full acceptance P3-4 is open ([plan](dev/machine_readable_knowledge_governance.md) §7).
 
 ## 2026-10-10: Agent-facing docs split for on-demand reading
 
