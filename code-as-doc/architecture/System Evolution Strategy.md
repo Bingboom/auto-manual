@@ -186,8 +186,6 @@ Responsibility:
 - create release records
 - preserve build accountability
 
-<a id="46-cross-layer-operations-feedback-and-shared-intake"></a>
-
 ### 4.6 Lifecycle: Intake, Consumption and Governed Feedback
 
 The five production layers are the deterministic spine of a two-level
