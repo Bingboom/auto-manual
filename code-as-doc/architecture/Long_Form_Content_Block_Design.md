@@ -40,8 +40,9 @@ Page assembly is currently **split**:
   `page_us-en/es/fr`, `page_jp`, `page_zh`, `page_us-pt-br`) with only `|TOKEN|`
   spec values pulled from data. The prose itself lives in the template.
 
-The per-language fork is exactly the "more template forks" that strategy
-Principle 1 warns against. Collapsing it is the core remaining Stage 3 move.
+The per-language fork is the uncontrolled template duplication that strategy
+Principle 1 warns against. Collapsing it is this design's Stage 3 contribution
+for the table/template route, subject to its migration gates.
 
 ### 2.1 Lessons from the rollback (#295/#296)
 
@@ -92,6 +93,16 @@ design. Each piece of content is allocated to one home of truth by the rule belo
 not decided case by case. The target is to eliminate template forks (the same page
 cloned per language/region), not to move every paragraph into a table.
 
+The table governs the table/template production route addressed by this design.
+Approved native-source production is also a formal route: each target declares
+its authoritative original or source-designated Manual IR, source version and
+editing surface. Frozen input and release packages are immutable versions;
+corrections produce a new version through that editing surface with recorded
+lineage. Generated IR is a derivative unless explicitly designated as the source.
+Native-source targets do not have to migrate into this table's CMS/template
+allocations to qualify as governed, and this design's block-migration gates apply
+only when that migration is proposed.
+
 | Content | Home of truth | Status |
 | --- | --- | --- |
 | Spec values / parameters | structured (`Spec_Master`) | done |
@@ -101,7 +112,7 @@ cloned per language/region), not to move every paragraph into a table.
 | Layout, directives, page skeleton | repository RST template | always |
 | Stable long-form / compliance prose | repository RST template — deliberately retained | policy |
 
-Only the last row is new policy: long-form and compliance prose stays
+Within this route, long-form and compliance prose stays
 repository-owned by default, with a recorded reason, rather than being treated as
 debt that must eventually move. Two repo facts make this safe:
 

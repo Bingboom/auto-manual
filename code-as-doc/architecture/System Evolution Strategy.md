@@ -54,15 +54,21 @@ and use reveal, rather than a set of files delivered once.
 
 North Star (end state). Hello-Docs is the content lifecycle system for that
 asset: trusted content and its relations (one authority, an explicit identity
-and an explicit applicability per governed item) are maintained once, reach
-every delivery target and surface verifiably, and improve through governed
-feedback that returns, through authorized review, to the content and to the
-governance rules themselves. How commonality is shared and how change
-propagates are principles (§6), not part of this statement.
+and an explicit applicability per governed item) are maintained from confirmed
+commonality baselines with explicit, necessary differences. Shared changes are
+maintained once and reach applicable delivery targets and surfaces verifiably.
+Governed feedback returns through authorized review to improve the content and
+the governance rules themselves. This reduces repeated editing and repeated
+judgment; the reuse and propagation constraints are in §6.
 
-Strategic objectives (the end state holds when all five are true for tier-1
-content: warning, safety and compliance text and spec values; other content
-carries light metadata only):
+The five strategic objectives apply across content classes. Governance depth
+is selective: tier-1 content (warning, safety and compliance text and spec
+values) requires explicit item-level records and accountable review; other
+content defaults to light metadata. Lightweight governance still requires
+confirmed applicability for shared maintenance and evidence for propagation.
+Record granularity follows risk, reuse value and total maintenance cost; this
+does not require a registry entry for every sentence or immediate migration of
+existing content.
 
 1. Trusted content: authority, identity, applicability and approved version
    are explicit for every target.
@@ -75,7 +81,8 @@ carries light metadata only):
    are derivatives of one approved production, never a second authority.
 5. Governed evolution: observations become candidates, people decide, and
    confirmed decisions update content, relations and governance rules; the
-   unknown boundary shrinks measurably.
+   unknown boundary is visible and its resolution is measured within a
+   declared scope, alongside the cost of maintaining those records.
 
 The production spine is unchanged:
 
@@ -312,8 +319,9 @@ In this stage:
 
 In the target end state:
 
-- the CMS becomes the content source of truth for governed content classes
-- the repository becomes a deterministic build, validation, and publishing engine
+- the CMS owns the content classes assigned to it by the allocation rule
+- the repository owns declared Git-native sources as well as deterministic
+  build, validation, and publishing tooling
 - every release is traceable to a frozen snapshot and a build record
 
 Stage 3 is a deliberate hybrid, not total structuralization. "Source of truth"
@@ -325,7 +333,14 @@ templates and config, which are themselves versioned build inputs. The goal is t
 eliminate template forks — the same page cloned per language or region — and to
 govern reusable content; it is not to move every paragraph into a table. Which
 class each piece of content belongs to is decided by an explicit content-truth
-allocation rule, not case by case. See the allocation rule in
+allocation rule, not case by case. These table/template allocations coexist
+with approved native-source production: a target can retain its declared
+original or source-designated Manual IR, with an explicit revision and editing
+surface, and freeze new input packages for release. A frozen package is an
+immutable version, not an in-place editing surface; generated Shared IR remains
+a derivative unless explicitly designated as the source. This route does not
+require migration into tables or templates to count as governed. See the
+allocation rule and its route boundary in
 [`Long_Form_Content_Block_Design.md`](Long_Form_Content_Block_Design.md).
 
 ## 6. Stable Architectural Principles
@@ -336,12 +351,17 @@ one.
 Production principles:
 
 1. One authority per content item; structure is selective. Each governed item
-   has exactly one editable authority at a time (a table, a repository
-   template, a frozen source package or Shared IR), allocated by the
-   content-truth rule. Forbidden: a second editable copy such as a machine
-   JSON, an operations table or a parallel CMS; moving prose into tables for
-   completeness; treating degree of structure as maturity. The enemy is
-   forks, not templates.
+   has one declared content authority and version, allocated by the
+   content-truth rule, with an explicit editing surface for revisions. Tables,
+   repository templates and approved native originals can own content;
+   source-designated Manual IR can do so, but generated IR cannot become an
+   authority merely because it carries the same content. Frozen snapshots and
+   release packages remain immutable; corrections use the declared editing
+   surface and produce a new version with recorded lineage. Forbidden: a
+   second editable authority such as a machine JSON, an operations table or a
+   parallel CMS; in-place changes to frozen versions; moving prose into tables
+   for completeness; treating degree of structure as maturity. The enemy is
+   uncontrolled template forks, not templates or versioned derivatives.
 2. Build inputs are explicit and reproducible. Forbidden: implicit environment
    and releases that cannot be rebuilt.
 3. Assembly rules are declared, not inferred. Forbidden: page selection that
@@ -349,29 +369,42 @@ Production principles:
 
 Content-relation principles:
 
-4. Share by confirmed relation; vary explicitly. Tier-1 content is reused
-   across targets only along a relation whose identity, applicability and
-   reason are recorded and confirmed by the accountable role. Textual
-   similarity is not equivalence. A difference is recorded with its reason,
-   not expressed by copying a file. Forbidden: merging because text matches;
-   forking because one target changed; adding variation mechanisms that do not
-   name the baseline they diverge from.
+4. Share by confirmed relation; vary explicitly. Shared maintenance across
+   targets requires a relation whose identity, applicability and reason are
+   recorded and confirmed by the accountable role, at the governance depth
+   appropriate to its risk and reuse value (§3). Textual similarity is not
+   equivalence. A governed difference records its reason and the baseline
+   identity and version it diverges from; a copied file alone is not that
+   record. When the baseline or applicability conditions change, the affected
+   relation must be revalidated before it authorizes propagation. Forbidden:
+   merging because text matches; treating a target change as sufficient reason
+   for an untracked fork; adding variation mechanisms without a versioned
+   baseline.
 5. Change at the source; propagate by evidence. A shared change is made once
-   at its authority; affected targets are listed from declared relations
-   before approval; relation declared, impact identified, change approved,
-   target built, published and verified online are separate records with
-   separate evidence; review and release remain traceable, as today.
-   Forbidden: automatic propagation along unconfirmed relations; marking a
-   target updated because its baseline changed; treating a library fix as
-   applied to frozen editions that were not rebuilt.
+   at its authority. Before approval, impact analysis declares its target
+   inventory and scope, lists affected targets from confirmed relations, and
+   exposes missing, unknown, stale or conflicting relations as unresolved,
+   never as unaffected. Confirmed targets may proceed within an explicitly
+   approved scope while exclusions and unresolved targets remain visible;
+   propagation is not complete for a scope with unresolved targets. Relation
+   declared, impact identified, change approved, target built, published and
+   verified online are separate records with separate evidence; review and
+   release remain traceable, as today. Forbidden: automatic propagation along
+   unconfirmed or invalidated relations; treating an incomplete inventory as
+   complete coverage; marking a target updated because its baseline changed;
+   treating a library fix as applied to frozen editions that were not rebuilt.
 6. Feedback is governed and two-level. Observations are candidates, never
    facts; machines propose and verify, people decide, and approval does not
    replace verification. Content corrections return through the editing
    surface their authority declares. Changes to the governance model itself
    (identities, applicability vocabulary, allocation rule, relation status) are
-   reviewed changes with cited evidence. Forbidden: any machine or knowledge
-   layer writing an authority; AI judging regulatory applicability; a findings
-   ledger holding content text.
+   reviewed changes with cited evidence. Observation and knowledge tools do not
+   write content authorities. Authorized execution tools may apply an approved
+   change through its declared editing surface, within the approved scope and
+   with an audit trail and read-back or rebuild verification. Forbidden:
+   observation or knowledge layers writing an authority directly; automated
+   writes without the required authorization or outside its scope; AI judging
+   regulatory applicability; a findings ledger becoming a wording authority.
 
 ## 7. Strategic Invariants
 
@@ -397,6 +430,11 @@ These are the boundaries that should not be casually broken.
 - [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md) describes current maintainer behavior.
 - [`user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md) describes the current user workflow.
 
+Adopting this strategy does not start implementation, reopen deferred work or
+relax existing execution gates and governance decisions. Those remain binding
+until explicitly revised in their owning documents; new capabilities require
+scoped work and acceptance evidence in the execution ledger.
+
 ## 9. Next Review Trigger
 
 Review this file only when:
@@ -410,7 +448,8 @@ Review this file only when:
 ## 10. One-Sentence Summary
 
 Hello-Docs should evolve into a content lifecycle system in which trusted
-content and its relations are maintained once, reach every delivery target and
-surface verifiably, and improve through governed feedback, on the same
+content and its relations are maintained from confirmed commonality baselines
+and explicit differences, reach applicable delivery targets and surfaces
+verifiably, and improve through governed feedback, on the same
 governance, snapshot, assembly, build, review and release boundaries it has
 today.
