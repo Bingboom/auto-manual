@@ -387,7 +387,7 @@ Scope (one PR per item where possible):
 
 - T1: make `requirements.lock` the install source for CI and ReadTheDocs (today no workflow references it); fix the stale "Python >= 3.9" comment in [`requirements.txt`](../requirements.txt) and the stale "no lock file" note in [`ONBOARDING.md`](../ONBOARDING.md)
 - T2: pin and cache the TeXLive install in [`feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) (currently unpinned apt install on every run)
-- T3: move `docs/_build` binary assets (PNG/PDF/DOCX) to Git LFS; the history-rewrite decision (pack ~148 MiB, two 18.9 MB PDFs) is operator-gated and may be deferred, but new binaries stop entering raw history now
+- T3: assess binary-history and checkout risk; start Git LFS adoption only if an operator-approved mitigation decision selects it. The history-rewrite decision remains separately operator-gated. While K3 is deferred, keep the risk measurements, current safeguards and restart condition explicit (roadmap Phase 0).
 - T4: scheduled, versioned export of the phase2 source tables (extend [`tools/data/snapshot.py`](../tools/data/snapshot.py) / `bitable_schema.py` export) plus a written restore runbook — today only structure parity is checked, content has no backup
 - T5: route `feishu-build-queue` / draft / start-review failures into the same open/close-Issue sentinel pattern used by `cred-health-check` and `feishu-schema-parity`, so a failed queue run alerts without a watcher
 - T6: governance floor: add `CODEOWNERS`, verify server-side branch protection, add secret scanning and dependabot
@@ -395,10 +395,11 @@ Scope (one PR per item where possible):
 
 Exit criteria:
 
-- CI installs from the lock; a warm TeX cache skips the apt install
-- a destructive Bitable edit can be restored from a dated export by following the runbook
-- a failed queue run opens a tracked Issue automatically
-- new binary artifacts land in LFS, and the IDML→PDF leg is reproducible on a documented second host
+The authoritative Phase 0 capability gate is in the [platform roadmap](architecture/platform_evolution_roadmap.md#phase-0--stabilization). Workstream T supplies supporting evidence, **not** a competing exit gate:
+
+- A dated content-restore drill, an alert observed on a real queue failure, and verified second-host IDML→PDF delivery must satisfy the roadmap's capability criteria and be cited by its exit record.
+- Binary-storage risk requires the roadmap's dated assessment, safeguards and restart condition. A risk-triggered mitigation is required when the assessment calls for one; K3 remains deferred unless the operator selects Git LFS as the appropriate remedy. RTD deployment-budget pressure alone does not mandate LFS.
+- K1's locked CI installation remains delivered; K2 TeX pin/cache and K6 governance work keep their documented triggers and do not become unconditional Phase 0 gates. No Phase 0 completion is claimed here.
 
 ### Workstream U: Platform Consolidation (Phase 1)
 
@@ -455,14 +456,14 @@ Exit criteria:
 
 ### Workstream V: Review-Branch Propagation Re-Architecture (Phase 2)
 
-Status: design approved 2026-07-31; bounded implementation slices registered; the Phase 2 entry condition below also needs the Workstream T exit, not yet recorded
+Status: design approved 2026-07-31; bounded implementation slices registered; the Phase 2 entry condition needs the roadmap Phase 0 capability exit accepted with evidence, not yet recorded
 
 Design: [`architecture/Review_Branch_Propagation_Design.md`](architecture/Review_Branch_Propagation_Design.md).
 
 PR-level breakdown: [`next_optimization_checklist.md`](next_optimization_checklist.md) Milestone K (K15 = design gate only; implementation PRs are registered after design approval).
 
-Capacity/trigger (roadmap Phase 2): entry = Workstream T exit criteria passed
-AND the K15 design doc approved. A business trigger legitimately accelerates
+Capacity/trigger (roadmap Phase 2): entry = the roadmap Phase 0 capability exit
+accepted with recorded evidence AND the K15 design doc approved. A business trigger legitimately accelerates
 it: when the dashboard shows template-fix propagation or queue wall-time
 measurably eating delivery capacity, this jumps the queue (the
 discovery-engine rule, roadmap §5). The pilot needs sustained review
@@ -488,7 +489,7 @@ Scope:
 
 Exit criteria:
 
-- a shared-template fix reaches every open review branch as a reviewable automated PR, with zero manual merge steps and zero silent drift
+- a shared-template fix reaches every affected review branch in the declared scope as a reviewable automated PR without repetitive manual per-branch propagation merges and with zero silent drift; human review, approval and release verification remain required
 - propagation lag (fix merged → all branches bumped) is measured and visible
 - reviewer-authored edits survive propagation or surface as explicit conflicts, never silent overwrites
 
