@@ -1,6 +1,6 @@
 # Feishu Cloud Doc Backport Design
 
-Status: design baseline · Owner: 夏冰 · Created: 2026-06-08 · Updated: 2026-06-18 (backport writes `_review` only; template-sync and approval-gated source-table writes are separate roles — see §5.1)
+Status: design baseline · Owner: 夏冰 · Created: 2026-06-08 · Updated: 2026-10-18 (F6 implementation note points at the live-activation checklist); 2026-06-18 (backport writes `_review` only; template-sync and approval-gated source-table writes are separate roles — see §5.1)
 
 This document defines the reverse-sync design for Feishu cloud documents that
 act as editing surfaces for `auto-manual`.
@@ -384,7 +384,9 @@ revert. Content writes are therefore the most strongly gated path.
 - **Audit.** The change-request plus approval log is the audit trail (record the
   before-value), since Bitable has no version history.
 
-**Implementation (shipped).** The executor entrypoint is
+**Implementation (shipped; live writes are operator-activated per the
+[live-activation checklist](../dev/backport_live_activation_checklist.md)
+Step 2).** The executor entrypoint is
 `python -m tools.backport.cloud_doc apply-source-table` (loads the change-request report,
 applies the R9 gates via `source_table_sync.apply_change_requests`, writes an apply
 report). It is dry-run by default; a live Bitable write requires an explicit

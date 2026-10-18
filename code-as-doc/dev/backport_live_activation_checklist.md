@@ -5,7 +5,8 @@ Status: active · Recorded detail: operator checklist · Owner: 夏冰 · Create
 Milestone F (F1–F8) is implemented in-repo. **F1–F5 and F7 are fully live.**
 **F6** (approval-gated source-table writes) and **F8** (`QC_Report` writeback) are
 implemented to the **dry-run / fixture boundary** — every gate, plan, and report
-works without network, but the actual Feishu writes are intentionally not wired.
+works without network. F6's live transport and executor are built but write only
+when the operator runs Step 2; F8's live transport is not implemented yet (Step 3).
 
 This checklist activates those live writes. They touch the **source of truth**
 (Feishu Bitable) and create a Feishu table, so they are **operator-gated** and
