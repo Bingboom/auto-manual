@@ -18,8 +18,8 @@ deliberately kept in templates/config follows the content-truth allocation rule
 The long-form prose assembly re-launch (Workstream N) stays out of this milestone,
 gated on the same design.
 
-- [ ] PR E1: Freeze release snapshots (Workstream J)
-  - Status: `in_progress` — E1-PR1 freeze/binding implemented; E1-PR2 rebuild-equivalence proof remains
+- [x] PR E1: Freeze release snapshots (Workstream J)
+  - Status: `done` (2026-07-31) — E1-PR1 freeze/binding implemented; E1-PR2 rebuild-equivalence proof delivered by `release-rebuild-verify` (log archive record 79, "Archived Releases Rebuild Byte-for-Byte")
   - Target files:
     - [`../tools/release_manifest.py`](../../tools/release_manifest.py)
     - [`../tools/utils/path_utils.py`](../../tools/utils/path_utils.py)
@@ -53,7 +53,7 @@ gated on the same design.
     - no body prose is moved, and app-market/support/manufacturer/URL text is routed to config, not the copy table
 
 - [ ] PR E4: Make `page_registry` the single composition authority (Workstream M)
-  - Status: `pending`
+  - Status: `deferred` — the REV-41 decision (2026-10-12) deferred Workstream M; restart conditions are in [`dev/revitalization/rev41_skeleton_decision.md`](../dev/revitalization/rev41_skeleton_decision.md) §4
   - Note: touches the phase2 source contract → operator-gated per `AGENTS.md` §8.7
   - Target files:
     - [`../tools/check_docs_generated.py`](../../tools/check/docs_generated.py)
