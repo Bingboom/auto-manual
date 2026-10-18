@@ -1,6 +1,6 @@
 # System Evolution Strategy
 
-Updated: 2026-10-07
+Updated: 2026-10-18
 
 ## 1. Role
 
@@ -37,6 +37,7 @@ Update this file only when one of these changes:
 3. the role split between CMS, snapshot, assembly, build, and release changes
 4. the intended evolution stages change
 5. a principle that should remain stable across repo refactors changes
+6. the content-relation principles or the lifecycle framing change
 
 Do not update this file for:
 
@@ -45,31 +46,59 @@ Do not update this file for:
 - command-level changes
 - implementation detail refactors
 
-## 3. North Star
+## 3. Vision and North Star
 
-Hello-Docs should evolve from a repository-centered manual build system into a content infrastructure system with:
+Vision. Product content should be a maintained knowledge asset: trusted,
+reusable, consumable by people and by machines, and improved by what delivery
+and use reveal, rather than a set of files delivered once.
 
-- structured content governance
-- reproducible snapshots
-- explicit page assembly
-- deterministic build and rendering
-- traceable review and release workflows
+North Star. Hello-Docs is the content lifecycle system for that asset:
+trusted content and its relations (one authority, an explicit identity and an
+explicit applicability per governed item) are maintained once, reach every
+delivery target and surface verifiably, and improve through governed feedback
+that returns, through authorized review, to the content and to the governance
+rules themselves. How commonality is shared and how change propagates are
+principles (§6), not part of this statement.
 
-The target flow is:
+Strategic objectives (the end state holds when all five are true for the
+governed content classes):
+
+1. Trusted content: authority, identity, applicability and approved version
+   are explicit for every target.
+2. Maintain once: a shared change is made in one place and its affected
+   targets are listed completely.
+3. Verifiable propagation: declared, impact-identified, approved, built,
+   published and verified are recorded separately per change and per target;
+   historical releases keep their version meaning.
+4. Same-source surfaces: Web, Word, PDF, IDML and machine-readable surfaces
+   are derivatives of one approved production, never a second authority.
+5. Governed evolution: observations become candidates, people decide, and
+   confirmed decisions update content, relations and governance rules; the
+   unknown boundary shrinks measurably.
+
+The production spine is unchanged:
 
 ```text
 Content Governance -> Snapshot -> Page Assembly -> Build/Render -> Release/Traceability
 ```
 
+It is one part of a two-level lifecycle (§4.6):
+
+```text
+Content Governance -> Content Production -> Delivery & Consumption
+    -> Content Intelligence -> Governed Feedback -> Content Governance
+```
+
 In practical terms:
 
 ```text
-CMS / Multidimensional Tables
-        -> exported snapshot
-        -> page assembly
-        -> RST bundle
-        -> HTML / Word / PDF
-        -> review, diff, publish, release records
+governed tables | Git-native originals | approved frozen sources
+    -> frozen snapshot or source package
+    -> page assembly / Shared IR
+    -> RST / MyST bundle
+    -> HTML / Word / PDF / IDML + machine corpus
+    -> review, diff, publish, deployment receipt, release records
+    -> observation, findings, authorized change
 ```
 
 ## 4. Fixed Layer Model
@@ -95,8 +124,9 @@ Responsibility:
 
 Examples:
 
-- exported CSV snapshots
-- exported JSON snapshots
+- exported CSV / JSON snapshots
+- frozen source packages (approved PDF / AI originals with input hashes)
+- Manual IR packages
 
 Responsibility:
 
@@ -108,10 +138,9 @@ Responsibility:
 
 Examples:
 
-- `page_registry`
-- `content_blocks`
-- template mapping
-- contracts
+- `page_registry`, template mapping, placeholder contracts
+- skeleton blueprints, region profiles and product plans
+- Shared IR and component contracts
 
 Responsibility:
 
@@ -149,12 +178,25 @@ Responsibility:
 - create release records
 - preserve build accountability
 
-### 4.6 Cross-Layer Operations Feedback and Shared Intake
+<a id="46-cross-layer-operations-feedback-and-shared-intake"></a>
 
-The five production layers remain stable. Operations is a feedback loop across
-those layers, not a sixth build engine or another source of publication truth.
-The [manual revitalization plan](../manual_production_revitalization_plan.md)
-applies these boundaries to stock-manual delivery:
+### 4.6 Lifecycle: Intake, Consumption and Governed Feedback
+
+The five production layers are the deterministic spine of a two-level
+lifecycle. Content Governance is layer 4.1 and, as a planned target state, a
+registry of content identities, applicability statements, baseline-derivative
+links and relation status (its delivery status lives in the execution ledger,
+not in this file). Content Production is layers 4.2 to 4.5. Delivery & Consumption is the
+published human and machine surfaces (§4.7). Content Intelligence is read-only
+observation over published editions: corpus, relations, findings. Governed
+Feedback returns corrections through the editing surface each authority
+declares; returning confirmed relations and rule changes to governance is a
+planned target state, not a delivered capability. None of these stages adds a
+build engine or a content authority. The first feedback level corrects content
+through paths that exist today; the second, which is to correct the governance
+model itself, has no rule or carrier yet and is tracked in the execution
+ledger, not claimed here. In both, an observation stays a candidate until a
+person with the accountable role decides.
 
 - Governed table/template inputs and approved AI/PDF intake both freeze their
   content, structure, assets, configuration and source authority before assembly.
@@ -187,8 +229,7 @@ not the boundary of the platform itself.
 
 - Human access uses Portal, Workspace and existing Bot workflows to read,
   submit work and review. Agent skills and bounded manual-query interfaces
-  already exist, including file pretranslation, PDF-compatible AI diagnosis and
-  page-number modification, PDF QC annotations, review backport and builds.
+  already exist.
   Their coverage and approval rules remain capability-specific.
 - Planned enterprise integration references PLM/ERP product, SKU, BOM, material
   and lifecycle records through synchronization and field mapping into the
@@ -220,6 +261,22 @@ existing [history summary](system_evolution_history.md#7-rtd-同源展示摘要)
 Adding a diagram or planned adapter does not authorize implementation, enterprise
 data writes or formal file modification.
 
+### 4.8 Capability Boundary
+
+Hello-Docs is: the authority-and-derivation system for product documentation
+content; a deterministic, reproducible production line; the origin of
+same-source human and machine surfaces; and the governed entry point for
+feedback. As a planned target state, tracked in the execution ledger and not
+claimed here, it is also the registry of content identities, applicability
+statements, baseline-derivative links, change records and relation status.
+
+Hello-Docs is not: enterprise master data (PLM, ERP and business tables remain
+authoritative for their records); a judge of regulatory or certification
+applicability; a general CMS, knowledge graph or semantic search platform; the
+quality owner of a customer-facing answer product; a general AI importer; or an
+analytics and event platform. Those are suppliers, consumers or separate
+decisions with their own owners.
+
 ## 5. Evolution Stages
 
 ### Stage 1: Repository-Driven System
@@ -244,7 +301,7 @@ In this stage:
 - the repository still owns templates, assembly, validation, rendering, and release tooling
 - builds consume exported snapshots rather than live content
 
-### Stage 3: CMS-Driven Content Infrastructure
+### Stage 3: Governed Content Infrastructure (hybrid)
 
 In the target end state:
 
@@ -266,14 +323,48 @@ allocation rule, not case by case. See the allocation rule in
 
 ## 6. Stable Architectural Principles
 
-These principles should remain true even as repo implementation changes.
+Each principle names what it forbids; a principle that forbids nothing is not
+one.
 
-1. Content truth should move toward structured governance, not toward more template forks.
-2. Build inputs should become more explicit and more reproducible over time.
-3. Page assembly rules should be declared, not inferred from tribal knowledge.
-4. Review and release must remain traceable.
-5. Layer responsibilities should become clearer over time, not more blended.
-6. Structure is selective: not all content should be governed by the CMS. Layout, stable long-form and compliance prose, and environment differences are deliberately repository- or config-owned, allocated by an explicit content-truth rule rather than drifting case by case. The enemy is template forks, not templates.
+Production principles:
+
+1. One authority per content item; structure is selective. Each governed item
+   has exactly one editable authority at a time (a table, a repository
+   template, a frozen source package or Shared IR), allocated by the
+   content-truth rule. Forbidden: a second editable copy such as a machine
+   JSON, an operations table or a parallel CMS; moving prose into tables for
+   completeness; treating degree of structure as maturity. The enemy is
+   forks, not templates.
+2. Build inputs are explicit and reproducible. Forbidden: implicit environment
+   and releases that cannot be rebuilt.
+3. Assembly rules are declared, not inferred. Forbidden: page selection that
+   lives in tribal knowledge.
+
+Content-relation principles:
+
+4. Share by confirmed relation; vary explicitly. Content is reused across
+   targets only along a relation whose identity, applicability and reason are
+   recorded and confirmed by the accountable role. Textual similarity is not
+   equivalence. A difference is recorded with its reason, not expressed by
+   copying a file. Forbidden: merging because text matches; forking because
+   one target changed; variation mechanisms that do not name the baseline they
+   diverge from.
+5. Change at the source; propagate by evidence. A shared change is made once
+   at its authority; affected targets are listed from declared relations
+   before approval; relation declared, impact identified, change approved,
+   target built, published and verified online are separate records with
+   separate evidence; review and release remain traceable, as today.
+   Forbidden: automatic propagation along unconfirmed
+   relations; marking a target updated because its baseline changed; treating
+   a library fix as applied to frozen editions that were not rebuilt.
+6. Feedback is governed and two-level. Observations are candidates, never
+   facts; machines propose and verify, people decide, and approval does not
+   replace verification. Content corrections return through the editing
+   surface their authority declares. Changes to the governance model itself
+   (identities, applicability vocabulary, allocation rule, relation status) are
+   reviewed changes with cited evidence. Forbidden: any machine or knowledge
+   layer writing an authority; AI judging regulatory applicability; a findings
+   ledger holding content text.
 
 ## 7. Strategic Invariants
 
@@ -284,11 +375,18 @@ These are the boundaries that should not be casually broken.
 - Page assembly is not the same thing as rendering.
 - Review and release are not side effects; they are first-class system concerns.
 - Current repo workflows may evolve, but the system should not collapse back into a single undifferentiated script layer.
+- Layer responsibilities should become clearer over time, not more blended.
+- Machine and knowledge surfaces are consumers of approved content, never
+  authorities.
 
 ## 8. Relationship To Other Documents
 
 - This file defines long-term direction and stable architecture boundaries.
+- [`platform_evolution_roadmap.md`](platform_evolution_roadmap.md) holds the platform maturity assessment, capacity-driven phases and exit criteria.
+- [`system_evolution_history.md`](system_evolution_history.md) records how the system reached its current shape.
 - [`optimization_project.md`](../optimization_project.md) tracks repo-level execution and current optimization priorities.
+- [`manual_production_revitalization_plan.md`](../manual_production_revitalization_plan.md) applies these boundaries to stock-manual delivery.
+- [`user-guide/two_plane_map.md`](../../user-guide/two_plane_map.md) records current repository/Base ownership.
 - [`code-as-doc/build_doc_guide.md`](../build_doc_guide.md) describes current maintainer behavior.
 - [`user-guide/hello_auto-doc.md`](../../user-guide/hello_auto-doc.md) describes the current user workflow.
 
@@ -300,7 +398,12 @@ Review this file only when:
 - the intended end-state ownership between CMS and repository changes
 - the evolution stage model changes
 - a stable architectural principle must be revised
+- a feedback level or the relation status model changes
 
 ## 10. One-Sentence Summary
 
-Hello-Docs should evolve into a snapshot-driven content infrastructure with clear governance, assembly, build, review, and release boundaries.
+Hello-Docs should evolve into a content lifecycle system in which trusted
+content and its relations are maintained once, reach every delivery target and
+surface verifiably, and improve through governed feedback, on the same
+governance, snapshot, assembly, build, review and release boundaries it has
+today.
