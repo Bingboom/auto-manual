@@ -12,7 +12,7 @@
   "merge_authorization": "MA-322",
   "operator_quote": "走git only转web说明书 直到提交发布；日规说明书 结构 都很像的 你参考现有的JE-1000F日规说明书去转",
   "authority_date": "2026-10-19",
-  "acceptance_basis": "User-supplied original PDF and end-to-end publication instruction; conversion parity and browser QA checked by this agent, not represented as a separate human review of the generated pages.",
+  "acceptance_basis": "User-supplied original PDF and end-to-end publication instruction. This agent verified source parity and the preceding v7 full-body browser preflight. The final panel-boundary/outlined-copy patch passes source/static/strict-build checks; its fresh browser attempt was blocked because the administrator policy verification service was unavailable. This is not a separate human review of generated pages.",
   "verified_inputs": [
     {
       "path": "JE-1500D-JP-V2.pdf",
@@ -21,8 +21,8 @@
     },
     {
       "path": "README.md",
-      "size": 3153,
-      "sha256": "c950a5c3140874f887097325aa0950633f85db0eed2915b6ba7cbb54d6c529a8"
+      "size": 3563,
+      "sha256": "c292f3bc637eb58bcdd30837b309e4bc9131ccace86eb034131e5c23a4021f11"
     },
     {
       "path": "assets/ac-charge.png",
@@ -415,13 +415,17 @@
     "symbol_source_bound_glyphs": 12,
     "shared_style_issues": 0,
     "strict_sphinx": "pass",
-    "desktop_mobile_viewports": [
-      1280,
-      390
-    ],
-    "missing_images": 0,
-    "page_horizontal_overflow": 0,
     "shared_component_tests": "29 passed",
-    "complete_panel_boundary_audit": "native PDF drawing bounds retained; outlined page-19 charging copy restored to live HTML"
+    "complete_panel_boundary_audit": "native PDF drawing bounds retained; outlined page-19 charging copy restored to live HTML",
+    "browser_preflight": {
+      "candidate": "v7 before final panel/copy patch",
+      "viewports": [
+        1280,
+        390
+      ],
+      "missing_images": 0,
+      "page_horizontal_overflow": 0
+    },
+    "final_fresh_browser": "unverified_policy_verification_unavailable"
   }
 }

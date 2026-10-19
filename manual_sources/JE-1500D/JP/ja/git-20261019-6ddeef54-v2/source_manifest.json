@@ -1729,8 +1729,8 @@
     },
     {
       "path": "README.md",
-      "size": 3153,
-      "sha256": "c950a5c3140874f887097325aa0950633f85db0eed2915b6ba7cbb54d6c529a8"
+      "size": 3563,
+      "sha256": "c292f3bc637eb58bcdd30837b309e4bc9131ccace86eb034131e5c23a4021f11"
     },
     {
       "path": "assets/ac-charge.png",
@@ -2069,8 +2069,8 @@
     },
     {
       "path": "source/approval.json",
-      "size": 14791,
-      "sha256": "5f2f90a665951949cc3501994f6ca99726301dfbaece83085bdd957cd8de5286"
+      "size": 15162,
+      "sha256": "5b4094561ef3850a3e64903940aceb5544e94991fc58b201ef6dd6275a123de5"
     },
     {
       "path": "source/asset_decisions.json",

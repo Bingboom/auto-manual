@@ -20,3 +20,5 @@ python3 -m sphinx -W -b html tmp/je1500d-replay tmp/je1500d-html
 ```
 
 `source_manifest.json` pins input and repository dependencies. Git-only scope excludes Feishu/Base, queue, source-table, online asset/catalog and HTML_link writes. Release evidence is sealed at the actual committed source ref; engineering merge, RTD deployment and live browser acceptance are checked separately.
+
+Validation boundary: the v7 full-body desktop/mobile browser preflight passed. The final complete-panel/outlined-copy patch passes static source, fresh symbol/style admission, cold-replay byte parity and strict Sphinx checks; a fresh browser attempt was refused because the administrator-policy verification service was unavailable. Neither that refusal nor a publication merge proves live visual acceptance.

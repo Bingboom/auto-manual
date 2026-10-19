@@ -1371,8 +1371,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "c950a5c3140874f887097325aa0950633f85db0eed2915b6ba7cbb54d6c529a8",
-          "size": 3153
+          "sha256": "c292f3bc637eb58bcdd30837b309e4bc9131ccace86eb034131e5c23a4021f11",
+          "size": 3563
         },
         {
           "path": "assets/ac-charge.png",
@@ -1711,8 +1711,8 @@
         },
         {
           "path": "source/approval.json",
-          "sha256": "5f2f90a665951949cc3501994f6ca99726301dfbaece83085bdd957cd8de5286",
-          "size": 14791
+          "sha256": "5b4094561ef3850a3e64903940aceb5544e94991fc58b201ef6dd6275a123de5",
+          "size": 15162
         },
         {
           "path": "source/asset_decisions.json",
@@ -4069,7 +4069,7 @@
     "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
     "markdown_filename": "manual_je1500d_jp_ja.md",
     "operator_source_acceptance": {
-      "acceptance_basis": "User-supplied original PDF and end-to-end publication instruction; conversion parity and browser QA checked by this agent, not represented as a separate human review of the generated pages.",
+      "acceptance_basis": "User-supplied original PDF and end-to-end publication instruction. This agent verified source parity and the preceding v7 full-body browser preflight. The final panel-boundary/outlined-copy patch passes source/static/strict-build checks; its fresh browser attempt was blocked because the administrator policy verification service was unavailable. This is not a separate human review of generated pages.",
       "authority_date": "2026-10-19",
       "merge_authorization": "MA-322",
       "operator_quote": "走git only转web说明书 直到提交发布；日规说明书 结构 都很像的 你参考现有的JE-1000F日规说明书去转",
@@ -4084,14 +4084,18 @@
         "technical_version": "git-20261019-6ddeef54-v2"
       },
       "validation": {
+        "browser_preflight": {
+          "candidate": "v7 before final panel/copy patch",
+          "missing_images": 0,
+          "page_horizontal_overflow": 0,
+          "viewports": [
+            1280,
+            390
+          ]
+        },
         "complete_panel_boundary_audit": "native PDF drawing bounds retained; outlined page-19 charging copy restored to live HTML",
-        "desktop_mobile_viewports": [
-          1280,
-          390
-        ],
-        "missing_images": 0,
+        "final_fresh_browser": "unverified_policy_verification_unavailable",
         "native_unassigned_lines": 0,
-        "page_horizontal_overflow": 0,
         "shared_component_tests": "29 passed",
         "shared_style_issues": 0,
         "strict_sphinx": "pass",
@@ -4105,8 +4109,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "c950a5c3140874f887097325aa0950633f85db0eed2915b6ba7cbb54d6c529a8",
-          "size": 3153
+          "sha256": "c292f3bc637eb58bcdd30837b309e4bc9131ccace86eb034131e5c23a4021f11",
+          "size": 3563
         },
         {
           "path": "assets/ac-charge.png",
