@@ -306,6 +306,11 @@
         }
       }
     },
+    "data/manual_sources/JE-2000F/JP/ja/git-20261019-d10ae5e0": {
+      "approval": "User 2026-10-19: 走Git only转日规网页版说明书 参考JE-1000F日规说明书的结构; candidate intake only, no merge or release authorization",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
     "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd": {
       "approval": "MA-313（见 source/approval.json）",
       "registered": "2026-10-19",

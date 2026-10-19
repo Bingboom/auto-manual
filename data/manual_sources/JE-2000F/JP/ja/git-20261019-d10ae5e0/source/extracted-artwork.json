@@ -1,0 +1,596 @@
+[
+  {
+    "key": "inbox-unit",
+    "page": 8,
+    "crop": [
+      42,
+      91,
+      122,
+      157
+    ],
+    "mode": "native-art",
+    "reason": "JE-1000F chassis differs; EU source socket is not JP",
+    "drop_text": [],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/inbox-unit.png",
+    "sha256": "cd716debe63fe1e30ddd39a4a405c0a825b9184047741efff28a6ad03a4ebe0c",
+    "size": 13050,
+    "removed_external_text": []
+  },
+  {
+    "key": "overview-front",
+    "page": 8,
+    "crop": [
+      27,
+      327,
+      345,
+      498
+    ],
+    "mode": "dense-labeled-diagram",
+    "reason": "JP three-AC-port figure differs from EU socket; 2000 chassis differs from 1000",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/overview-front.png",
+    "sha256": "410a21d81ff58c037feacd5fd223d5fb7d4c3cd099580c73d4e39a43699f9f7a",
+    "size": 109593,
+    "removed_external_text": []
+  },
+  {
+    "key": "overview-right",
+    "page": 9,
+    "crop": [
+      27,
+      39,
+      346,
+      180
+    ],
+    "mode": "dense-labeled-diagram",
+    "reason": "authoritative JP DC8020 and AC input ratings differ from sibling",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/overview-right.png",
+    "sha256": "1bc02910645e12ffc21e9b52a2bed1899955000233df6c92f544f8c08f815509",
+    "size": 51643,
+    "removed_external_text": []
+  },
+  {
+    "key": "lcd-map",
+    "page": 9,
+    "crop": [
+      40,
+      307,
+      316,
+      483
+    ],
+    "mode": "numbered-display-map",
+    "reason": "25-number JP layout differs from the JE-1000F reference",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/lcd-map.png",
+    "sha256": "063fd33c1986f605386bb7c02e7102ad2253fdd7ccb8ba58fb8a0bd93227b6da",
+    "size": 98367,
+    "removed_external_text": []
+  },
+  {
+    "key": "power-operation",
+    "page": 12,
+    "crop": [
+      44,
+      90,
+      268,
+      182
+    ],
+    "mode": "native-art",
+    "reason": "2000 chassis; external on/off copy stays live HTML",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "drop_frames": [
+      [
+        158,
+        165,
+        323,
+        216
+      ],
+      [
+        216.5,
+        121.8,
+        255.6,
+        123
+      ],
+      [
+        256.3,
+        107.1,
+        266,
+        133.9
+      ]
+    ],
+    "path": "assets/power-operation.png",
+    "sha256": "122ecc150b8344743b8178271f89fb96467658876cdfb6a458fa0e41036e20e6",
+    "size": 54317,
+    "removed_external_text": [
+      "本製品のデフォルトの待機時間は2時間です（充電または"
+    ]
+  },
+  {
+    "key": "ac-operation",
+    "page": 12,
+    "crop": [
+      36,
+      326,
+      334,
+      483
+    ],
+    "mode": "native-art",
+    "reason": "JP AC outlets and 2000 chassis; live on/off instructions",
+    "drop_text": [
+      [
+        269,
+        330,
+        345,
+        390
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "drop_frames": [
+      [
+        244.2,
+        358.1,
+        274.2,
+        359.3
+      ],
+      [
+        274.9,
+        346.4,
+        285.1,
+        370.2
+      ]
+    ],
+    "path": "assets/ac-operation.png",
+    "sha256": "29ea714995f7b834904b3ad4b6fafafaa0ed96cebaf2fce1a1defa5bee0b917c",
+    "size": 72208,
+    "removed_external_text": [
+      "オン",
+      "オフ",
+      "1回押す",
+      "1回押す"
+    ]
+  },
+  {
+    "key": "frequency-displays",
+    "page": 13,
+    "crop": [
+      56,
+      135,
+      312,
+      207
+    ],
+    "mode": "display-art",
+    "reason": "source display geometry and symbols; 50/60 Hz instruction stays live",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/frequency-displays.png",
+    "sha256": "474801743d94a2426c8ea3ca1ed39de59bfe9746522c0ab7e9c290c6f9193c64",
+    "size": 50095,
+    "removed_external_text": []
+  },
+  {
+    "key": "usb-operation",
+    "page": 13,
+    "crop": [
+      36,
+      260,
+      334,
+      405
+    ],
+    "mode": "native-art",
+    "reason": "2000 USB/AC layout; captions outside artwork",
+    "drop_text": [
+      [
+        293,
+        250,
+        343,
+        306
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "drop_frames": [
+      [
+        248.5,
+        277.5,
+        277.6,
+        278.6
+      ],
+      [
+        278.8,
+        267,
+        293.1,
+        288.4
+      ]
+    ],
+    "path": "assets/usb-operation.png",
+    "sha256": "a0c3773e36758c6469e570603b6b933a78d16b27def8a0be6879e6a8fb8f62a8",
+    "size": 77738,
+    "removed_external_text": [
+      "オン",
+      "オフ",
+      "1回押す",
+      "1回押す"
+    ]
+  },
+  {
+    "key": "led-operation",
+    "page": 15,
+    "crop": [
+      40,
+      188,
+      207,
+      282
+    ],
+    "mode": "native-art",
+    "reason": "2000 chassis; three LED operations become live numbered text",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "keep_text": [
+      "LIGHT"
+    ],
+    "path": "assets/led-operation.png",
+    "sha256": "0caa553c60e989241880a44de99123e2d863ec803b15f69ec9fd0d3ee53f8c6d",
+    "size": 45451,
+    "removed_external_text": []
+  },
+  {
+    "key": "lcd-operation",
+    "page": 15,
+    "crop": [
+      35,
+      326,
+      150,
+      434
+    ],
+    "mode": "native-art",
+    "reason": "2000 chassis; state/action table is a shared LCD mode component",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/lcd-operation.png",
+    "sha256": "92672a4b706a437fe20c5e44d8f61a3284e1768f7637bcfa2b325eeb0c9c8f5a",
+    "size": 37266,
+    "removed_external_text": []
+  },
+  {
+    "key": "ups",
+    "page": 16,
+    "crop": [
+      43,
+      266,
+      332,
+      469
+    ],
+    "mode": "native-art",
+    "reason": "JP AC plug and three-port body differ from EU and JE-1000F",
+    "drop_frames": [
+      [
+        149,
+        409,
+        332,
+        454
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/ups.png",
+    "sha256": "edef4400d45afdc01e5d4a28b55a70743a793d625cddacdaeefca714c7b41a47",
+    "size": 79423,
+    "removed_external_text": [
+      "電気製品のコンセントをポータブル電源のAC",
+      " ",
+      "出力ポートに接続し、",
+      "ポータブル電源のAC入力ポートを家庭のコンセントにつなぐことで、",
+      "停電時などにポータブル電源を予備電源として活用できます。"
+    ]
+  },
+  {
+    "key": "ac-charge",
+    "page": 18,
+    "crop": [
+      28,
+      25,
+      342,
+      159
+    ],
+    "mode": "native-art",
+    "reason": "JP socket/cable and 2000 body",
+    "drop_text": [
+      [
+        193,
+        159,
+        334,
+        179
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/ac-charge.png",
+    "sha256": "ddb10ba8d093114ddc762701e7b3f8b0d85fb717b1cb30ab45cd6c544db75b71",
+    "size": 71668,
+    "removed_external_text": [
+      "付属の",
+      "AC",
+      "充電ケーブルをご使用ください。"
+    ]
+  },
+  {
+    "key": "solar-direct",
+    "page": 19,
+    "crop": [
+      28,
+      25,
+      342,
+      163
+    ],
+    "mode": "native-art",
+    "reason": "2000 body and target two-panel wiring; SolarSaga product markings stay",
+    "drop_text": [
+      [
+        220,
+        155,
+        337,
+        180
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/solar-direct.png",
+    "sha256": "ceea4560ee78759acbb01463451e7e8e59df2390a48ec3ae0995434f666ce32e",
+    "size": 139492,
+    "removed_external_text": [
+      "SolarSaga 200 × 2"
+    ]
+  },
+  {
+    "key": "solar-adapter",
+    "page": 19,
+    "crop": [
+      28,
+      224,
+      342,
+      397
+    ],
+    "mode": "native-art",
+    "reason": "2000 body and four-panel wiring; captions remain live",
+    "drop_text": [
+      [
+        125,
+        372,
+        340,
+        395
+      ]
+    ],
+    "drop_frames": [
+      [
+        131,
+        372,
+        338,
+        393
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/solar-adapter.png",
+    "sha256": "9f8c5b74869e8b8adcabd157ca3caba07cec2a2dfeaf8cd990f3f4afe255d367",
+    "size": 233504,
+    "removed_external_text": [
+      "SolarSaga アダプター（Pro/Plus/New専用）別売り",
+      "SolarSaga 100 Air × 4"
+    ]
+  },
+  {
+    "key": "car-charge",
+    "page": 20,
+    "crop": [
+      28,
+      204,
+      342,
+      355
+    ],
+    "mode": "native-art",
+    "reason": "2000 body and cigarette-lighter wiring",
+    "drop_text": [
+      [
+        194,
+        315,
+        337,
+        343
+      ]
+    ],
+    "drop_frames": [
+      [
+        197,
+        315,
+        335,
+        340
+      ]
+    ],
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/car-charge.png",
+    "sha256": "afe4d8938fd2ed25c0c1d898501b72aad25c519e89fe12a92a78c5735121e802",
+    "size": 101670,
+    "removed_external_text": [
+      "※ シガーソケット充電ケーブルは別売りです。",
+      "車"
+    ]
+  },
+  {
+    "key": "app-store",
+    "page": 25,
+    "crop": [
+      28,
+      103,
+      94,
+      150
+    ],
+    "mode": "store-badges",
+    "reason": "compare JE-1000F combined panel: layout differs, extract the two source badges",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/app-store.png",
+    "sha256": "f98d36b0ab8d653bafb62a68bf4e3ae55fd609e5cbf9695de29c4fa6aa9075a3",
+    "size": 10495,
+    "removed_external_text": []
+  },
+  {
+    "key": "app-qr",
+    "page": 25,
+    "crop": [
+      228,
+      98,
+      280,
+      149
+    ],
+    "mode": "qr",
+    "reason": "bind the actual source QR, without guessing a URL",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/app-qr.png",
+    "sha256": "c2da104921cef37bb0c160405bde661d3bcc6d3e035a2f2b4ddff46e784d7577",
+    "size": 24136,
+    "removed_external_text": []
+  },
+  {
+    "key": "app-phones",
+    "page": 25,
+    "crop": [
+      86,
+      236,
+      264,
+      403
+    ],
+    "mode": "ui-screenshot",
+    "reason": "source device identifies 2000 New; do not import 1000 New screenshots",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/app-phones.png",
+    "sha256": "2318c1fa9aceb5e980eb6a6dbc9bec1feaabb0f0ef988f858e4ca4d65ab486e3",
+    "size": 102323,
+    "removed_external_text": []
+  },
+  {
+    "key": "app-control",
+    "page": 25,
+    "crop": [
+      42,
+      415,
+      326,
+      490
+    ],
+    "mode": "dense-labeled-diagram",
+    "reason": "2000 chassis and exact three source control labels",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/app-control.png",
+    "sha256": "74009bb59cc15a377d097043baeac9f547fccb15fe40fe32845f95e3246e23fb",
+    "size": 23043,
+    "removed_external_text": []
+  },
+  {
+    "key": "app-results",
+    "page": 26,
+    "crop": [
+      62,
+      138,
+      305,
+      284
+    ],
+    "mode": "ui-screenshot",
+    "reason": "Use the target PDF's own illustrative UI screenshots and model labels; do not substitute the reference manual's screenshots",
+    "candidate_paths": [
+      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
+      "docs/renderers/web/assets/je2000f_eu_en"
+    ],
+    "decision": "new source-bound candidate",
+    "background": "preserve product shading and UI; no page/body/table screenshots",
+    "path": "assets/app-results.png",
+    "sha256": "6d8d9437645394711962316d41988dee528ec255b48accc35088ea6a9d8f0731",
+    "size": 82380,
+    "removed_external_text": []
+  }
+]
