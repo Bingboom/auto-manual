@@ -1502,6 +1502,169 @@
         ],
         "decision": "no existing no-open-flame variant passes native glyph comparison for the X-over-flames glyph; retain original PDF SVG paths with real transparent margins; identical on pp. 117/135/153"
       }
+    },
+    {
+      "key": "native/je1500d-jp-6ddeef54-01",
+      "path": "native-v1/je1500d-jp-6ddeef54-symbol-01.svg",
+      "sha256": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/JE-1500D-JP-V2.pdf",
+        "source_sha256": "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
+        "physical_page": 3,
+        "drawing_indices": [
+          72
+        ],
+        "glyph_bbox": [
+          37,
+          281,
+          59,
+          302
+        ],
+        "decision": "Existing shared variants failed fixed 2% source glyph comparison; native paths/ancestor transforms retained, no redraw or cell backdrop"
+      }
+    },
+    {
+      "key": "native/je1500d-jp-6ddeef54-02",
+      "path": "native-v1/je1500d-jp-6ddeef54-symbol-02.svg",
+      "sha256": "ad44bd9df9eddf4ad13bcd6f63d2fe7269002237c318c4cb55f4ed9348f692a5",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/JE-1500D-JP-V2.pdf",
+        "source_sha256": "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
+        "physical_page": 3,
+        "drawing_indices": [
+          73,
+          74,
+          75,
+          76,
+          77
+        ],
+        "glyph_bbox": [
+          38,
+          311,
+          58,
+          331
+        ],
+        "decision": "Existing shared variants failed fixed 2% source glyph comparison; native paths/ancestor transforms retained, no redraw or cell backdrop"
+      }
+    },
+    {
+      "key": "native/je1500d-jp-6ddeef54-04",
+      "path": "native-v1/je1500d-jp-6ddeef54-symbol-04.svg",
+      "sha256": "5a343701c01a73a9620c0525f786774e89bc6a3531fd439a77d7f772029b3b23",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/JE-1500D-JP-V2.pdf",
+        "source_sha256": "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
+        "physical_page": 3,
+        "drawing_indices": [
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94
+        ],
+        "glyph_bbox": [
+          40,
+          366,
+          56,
+          382
+        ],
+        "decision": "Existing shared variants failed fixed 2% source glyph comparison; native paths/ancestor transforms retained, no redraw or cell backdrop"
+      }
+    },
+    {
+      "key": "native/je1500d-jp-6ddeef54-05",
+      "path": "native-v1/je1500d-jp-6ddeef54-symbol-05.svg",
+      "sha256": "e5988a0e4dfcfba253ad8b85f36ec213e8d7c29584160c05a7e3cec0344ea207",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/JE-1500D-JP-V2.pdf",
+        "source_sha256": "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
+        "physical_page": 3,
+        "drawing_indices": [
+          38,
+          39,
+          40,
+          41,
+          42
+        ],
+        "glyph_bbox": [
+          38,
+          391,
+          58,
+          411
+        ],
+        "decision": "Existing shared variants failed fixed 2% source glyph comparison; native paths/ancestor transforms retained, no redraw or cell backdrop"
+      }
+    },
+    {
+      "key": "native/je1500d-jp-6ddeef54-07",
+      "path": "native-v1/je1500d-jp-6ddeef54-symbol-07.svg",
+      "sha256": "f062577eefb0ba67932bf2b0faec0617a3cafd366b185d69434659ac365b70e3",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/JE-1500D-JP-V2.pdf",
+        "source_sha256": "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
+        "physical_page": 3,
+        "drawing_indices": [
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70
+        ],
+        "glyph_bbox": [
+          38,
+          444,
+          58,
+          465
+        ],
+        "decision": "Existing shared variants failed fixed 2% source glyph comparison; native paths/ancestor transforms retained, no redraw or cell backdrop"
+      }
+    },
+    {
+      "key": "native/je1500d-jp-6ddeef54-09",
+      "path": "native-v1/je1500d-jp-6ddeef54-symbol-09.svg",
+      "sha256": "a3ede7a32d579f9e8403132e2cd2e99521dd7996b5243f3ebafff2ab0e0757aa",
+      "status": "source-bound native variant",
+      "provenance": {
+        "source": "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2/JE-1500D-JP-V2.pdf",
+        "source_sha256": "6ddeef548ccf8552185ffd300a7222df849e7ac8f5e16bdc67fd081a976862e6",
+        "physical_page": 3,
+        "drawing_indices": [
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108
+        ],
+        "glyph_bbox": [
+          196,
+          303,
+          215,
+          322
+        ],
+        "decision": "Existing shared variants failed fixed 2% source glyph comparison; native paths/ancestor transforms retained, no redraw or cell backdrop"
+      }
     }
   ],
   "withdrawn": [

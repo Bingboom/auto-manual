@@ -16,12 +16,24 @@
     "data/manual_sources/JA-TS02A/US/added-locales/git-20261014-11ce66b1": {
       "approval": "MA-314（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        }
+      }
     },
     "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1": {
       "approval": "MA-302（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        }
+      }
     },
     "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -92,12 +104,24 @@
     "data/manual_sources/JBP-3600A/JP/ja/git-20261014-56860f2f": {
       "approval": "MA-303（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        }
+      }
     },
     "data/manual_sources/JBP-3600A/US/git-20261014-16ae12b0": {
       "approval": "MA-303（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        }
+      }
     },
     "data/manual_sources/JBP-5000A/JP/git-20261011-cdd40510": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -309,7 +333,13 @@
     "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd": {
       "approval": "MA-313（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        }
+      }
     },
     "data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed": {
       "approval": "MA-298（见 source/approval.json）",
@@ -324,7 +354,13 @@
     "data/manual_sources/JE-3600A/CN/git-20261015-caa5370a-shared": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        }
+      }
     },
     "data/manual_sources/JE-3600A/JP/git-20261012-fd06cd04-reviewed": {
       "approval": "MA-298（见 source/approval.json）",
@@ -339,7 +375,13 @@
     "data/manual_sources/JE-3600A/JP/git-20261015-fd06cd04-shared": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        }
+      }
     },
     "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -462,7 +504,13 @@
     "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout": {
       "approval": "操作者「上线提交发布」2026-10-13，经工程 PR 审核合入（见 source/approval.json）",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        }
+      }
     },
     "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed": {
       "approval": "MA-295（见 source/approval.json）",
@@ -1052,6 +1100,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2": {
+      "approval": "MA-322",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
     "manual_sources/JE-2000E/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",
@@ -1279,6 +1332,15 @@
       "packages": 20,
       "handling": "keep-frozen",
       "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审"
+    },
+    {
+      "date": "2026-10-19",
+      "files": [
+        "docs/renderers/web/assets/shared/symbols/manifest.json"
+      ],
+      "packages": 8,
+      "handling": "keep-frozen",
+      "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision."
     }
   ]
 }
