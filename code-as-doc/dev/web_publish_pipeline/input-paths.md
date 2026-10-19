@@ -88,7 +88,9 @@ create synthetic queue rows or write `HTML_link`.
    and an input SHA-256 inventory. If the printed-manual version is unknown,
    keep it unknown. A technical snapshot version such as
    `git-<date>-<source-sha-prefix>` identifies the Git release input; it is not
-   a paper-manual version.
+   a paper-manual version. Register the package in the same PR with
+   `python -m tools.web.frozen_package_registry register <package dir> --approval "<MA row or recorded approval>"`;
+   the maintainability guardrails fail on an unregistered package.
 2. At the exact source Git ref, run the target `build.py check`, render the Web
    presentation profile to MyST, build it with strict Sphinx, and inspect the
    actual page at desktop and mobile widths for image URLs and page overflow.

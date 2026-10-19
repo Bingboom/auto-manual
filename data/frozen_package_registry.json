@@ -1,0 +1,1279 @@
+{
+  "schema_version": "auto-manual-frozen-package-registry/v1",
+  "description": "Frozen source packages under manual_sources/ and data/manual_sources/ (one row per source_manifest.json) with their approval reference, and the pinned shared inputs (repo_inputs) that no longer match the checkout, each with its handling. Checked by tools/web/frozen_package_registry.py through the maintainability guardrails; operator decision 2026-10-19 「失败 + 保持冻结」. drift_log rows feed the roadmap §6 intervention KPI.",
+  "packages": {
+    "data/manual_sources/JA-AD600A/EU/added-locales/native-0924": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JA-TS02A/US/added-locales/git-20261014-11ce66b1": {
+      "approval": "MA-314（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JA-TS02A/US/en/git-20261013-11ce66b1": {
+      "approval": "MA-302（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/web_language_navigation.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/README.md": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/markdown_bundle.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/document_ir.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/language_navigation.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JBP-3600A/JP/ja/git-20261014-56860f2f": {
+      "approval": "MA-303（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JBP-3600A/US/git-20261014-16ae12b0": {
+      "approval": "MA-303（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JBP-5000A/JP/git-20261011-cdd40510": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JBP-5000A/JP/git-20261011-cdd40510-reviewed": {
+      "approval": "MA-286（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JE-1000E-SIL/US/en/git-20261001-9d3b811e": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/manifests/family/index.yaml": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_app_components.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/templates/page_fridgeguard/en/charging_en.rst": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JE-1000E-SIL/US/es/git-20261002-537939d0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/manifests/family/index.yaml": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_app_components.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/templates/page_fridgeguard/es/charging.rst": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JE-1000E-SIL/US/fr/git-20261002-537939d0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/manifests/family/index.yaml": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_app_components.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/templates/page_fridgeguard/fr/charging.rst": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/rtd/deployment_receipt.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JE-1500C/TW/git-20261010-477dfbd7-reviewed": {
+      "approval": "MA-284（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/rtd/deployment_receipt.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JE-300E/EU/en/git-20261016-50b910fd": {
+      "approval": "MA-313（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JE-3600A/CN/git-20261012-caa5370a-reviewed": {
+      "approval": "MA-298（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JE-3600A/CN/git-20261013-caa5370a-web-layout": {
+      "approval": "操作者「上线发布」2026-10-13，经工程 PR 审核合入（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JE-3600A/CN/git-20261015-caa5370a-shared": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JE-3600A/JP/git-20261012-fd06cd04-reviewed": {
+      "approval": "MA-298（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JE-3600A/JP/git-20261013-fd06cd04-web-layout": {
+      "approval": "操作者「上线发布」2026-10-13，经工程 PR 审核合入（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JE-3600A/JP/git-20261015-fd06cd04-shared": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JE-5000A/JP/git-20261010-26cccfe2-reviewed": {
+      "approval": "MA-285（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_language_navigation.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/markdown_bundle.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/document_ir.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/language_navigation.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JHP-3000D/US/git-20261013-cebe4aab-web-layout": {
+      "approval": "操作者「上线提交发布」2026-10-13，经工程 PR 审核合入（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JHP-3600A/US/git-20261012-541ca8a5-reviewed": {
+      "approval": "MA-295（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JHP-3600C/US/added-locales/git-20261007-31fd0692": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_battery_pack_components.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_fcc_components.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_language_navigation.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/README.md": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/templates/word_template/common_assets/symbols/README.md": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/markdown_bundle.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/document_ir.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/language_navigation.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_battery_pack_components.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_fcc_components.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_language_navigation.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/README.md": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/templates/word_template/common_assets/symbols/README.md": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/asset_pipeline/native_svg.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/markdown_bundle.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/document_ir.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/language_navigation.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JHP-5000C/US/git-20261009-051169dd": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_language_navigation.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_manual.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/contracts/web_source_panels.css": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/markdown_bundle.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/document_ir.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/language_navigation.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout": {
+      "approval": "操作者「上线提交发布」2026-10-10，经工程 PR 审核合入（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/prepared_component_admission.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "docs/renderers/web/assets/shared/symbols/manifest.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/utils/path_utils.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/symbol_asset_admission.py": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "data/manual_sources/JS-100F/EU/en/1.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JS-100I/EU/added-locales/2026-09-28": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JS-100I/EU/en/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JS-200E/EU/en/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/JS-40C/EU/en/2026-08-30": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/ja_ad01a_eu_en": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/ja_ad600a_eu_en": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/ja_ca05b_eu_en": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/ja_ca3sa_eu_en": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/ja_cc30a_eu_en": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "data/manual_sources/jaac_whe100_eu_en": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82-reviewed": {
+      "approval": "MA-272（见 approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JA-AD500A-SIL/JP/ja/git-20261009-ac3a1f82-web-layout": {
+      "approval": "操作者「上线提交发布」2026-10-09，经工程 PR 审核合入（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JA-AD500A-SIL/JP/ja/git-20261016-ac3a1f82-solar-voc": {
+      "approval": "MA-312（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed": {
+      "approval": "MA-259（见 approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "manual_sources/JA-AD500A-SIL/US/en/git-20261016-a6d1659e-solar-voc": {
+      "approval": "MA-312（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261007-28c58312-native": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261007-28c58312-reviewed": {
+      "approval": "MA-262（见 approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {
+        "docs/renderers/contracts/web_presentation/target_overlays.json": {
+          "handling": "keep-frozen",
+          "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        }
+      }
+    },
+    "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261016-28c58312-solar-voc": {
+      "approval": "MA-312（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native": {
+      "approval": "MA-275（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JBP-1000B-WH/JP/ja/git-20261009-3aa6c003-web-layout": {
+      "approval": "操作者「上线提交发布」2026-10-09，经工程 PR 审核合入（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JBP-2000B/EU/batch1465-candidate": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JBP-2000B/EU/en/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JBP-2000B/EU/git-20261008-557cc07f-reviewed": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JBP-2000B/EU/native-0924": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JBP-3600A/EU/en": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JBP-3600A/EU/git-20261003-44b6ce61-reviewed": {
+      "approval": "MA-244（见 approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-no-cover-reviewed": {
+      "approval": "MA-277（见 approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-reviewed": {
+      "approval": "MA-274（见 approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000E-WH/JP/ja/git-20261016-efb663e3-solar-voc": {
+      "approval": "MA-312（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/EU/en-fr/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000H/EU/en/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-temperature-web": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-web": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/EU/de/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/EU/en/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/EU/es/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/EU/fr/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/EU/it/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/EU/nl/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/EU/pl/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/EU/pt/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/EU/uk/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-100C/KR/ko/V0.3-Q": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000E/EU/en/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-candidate/three-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000E/EU/nine-language/git-20261010-batch1465-preface/two-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000F/EU/en/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-2000F/EU/nine-language/git-20261010-1465-web/three-language": {
+      "approval": "操作者「上线提交发布」2026-10-10，经工程 PR 审核合入（见 approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000C/EU/en/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-intake": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-nl-errata-intake": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-nl-errata-web": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-web": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-300D/EU/en/candidate-2025-10-24": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/de/git-20261004-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/de/git-20261005-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/en/2026-05-25": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/en/git-20261002-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/en/git-20261004-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/es/1465-20261010-r1": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/es/git-20261004-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/es/git-20261005-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/fr/git-20261004-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/fr/git-20261005-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/it/1465-20261010-r1": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/it/git-20261004-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/it/git-20261005-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/nl/git-20261004-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/nl/git-20261005-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/pl/git-20261004-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/pl/git-20261005-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/pt/git-20261004-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/pt/git-20261005-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/uk/git-20261004-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-3600A/EU/uk/git-20261005-47a346dc": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
+    "manual_sources/JE-500A/EU/en/2.0": {
+      "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    }
+  },
+  "drift_log": [
+    {
+      "date": "2026-10-19",
+      "files": [
+        "docs/manifests/family/index.yaml",
+        "docs/renderers/contracts/prepared_component_admission.json",
+        "docs/renderers/contracts/web_app_components.css",
+        "docs/renderers/contracts/web_battery_pack_components.css",
+        "docs/renderers/contracts/web_fcc_components.css",
+        "docs/renderers/contracts/web_language_navigation.css",
+        "docs/renderers/contracts/web_manual.css",
+        "docs/renderers/contracts/web_presentation/target_overlays.json",
+        "docs/renderers/contracts/web_source_panels.css",
+        "docs/renderers/web/assets/shared/symbols/README.md",
+        "docs/renderers/web/assets/shared/symbols/manifest.json",
+        "docs/templates/page_fridgeguard/en/charging_en.rst",
+        "docs/templates/page_fridgeguard/es/charging.rst",
+        "docs/templates/page_fridgeguard/fr/charging.rst",
+        "docs/templates/word_template/common_assets/symbols/README.md",
+        "tools/asset_pipeline/native_svg.py",
+        "tools/markdown_bundle.py",
+        "tools/rtd/deployment_receipt.py",
+        "tools/utils/path_utils.py",
+        "tools/web/document_ir.py",
+        "tools/web/language_navigation.py",
+        "tools/web/stylesheets.py",
+        "tools/web/symbol_asset_admission.py"
+      ],
+      "packages": 20,
+      "handling": "keep-frozen",
+      "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审"
+    }
+  ]
+}
