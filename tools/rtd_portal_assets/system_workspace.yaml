@@ -497,6 +497,7 @@ now_next:
     - {id: G4, label: 协作与服务准备, revs: [REV-29..REV-31], fold: true}
   now_labels:
     REV-09: 代表目标修订、发布与恢复演练
+    REV-46: 冻结包登记与漂移控制
 
 # Skills and hooks: read from the tree at build time (.agents/skills,
 # .claude/skills, .claude/settings.json, .githooks/pre-push); nothing is
