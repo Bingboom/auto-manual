@@ -121,8 +121,8 @@ without filename heuristics.
 1. `python3 -m ruff check` on touched Python modules and tests.
 2. Targeted component, whole-document, Web table, and symbol tests.
 3. `python3 -m unittest`.
-4. `python3 tools/check_maintainability_guardrails.py`.
-5. `python3 tools/check_doc_link_integrity.py`.
+4. `python3 -m tools.check_maintainability_guardrails`.
+5. `python3 -m tools.check_doc_link_integrity`.
 6. `python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2`.
 7. Whole-document cold replay for JE-1000F US EN/FR/ES, JE-3000C KR KO,
    and the copied JE-1000F EU DE/IT review pages, with source-table reads

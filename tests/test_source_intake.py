@@ -10,8 +10,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.source_intake import main as source_intake_main
-from tools.source_intake_closure import (
+from tools.data.source_intake import main as source_intake_main
+from tools.data.source_intake_closure import (
     build_apply_report,
     build_approval_report,
     build_closure_report,
@@ -19,19 +19,19 @@ from tools.source_intake_closure import (
     write_apply_report,
     write_approval_report,
 )
-from tools.source_intake_model import (
+from tools.data.source_intake_model import (
     TARGET_MANUAL_COPY,
     TARGET_PAGE_PLACEHOLDERS,
     TARGET_SPEC_FOOTNOTES,
     TARGET_SPEC_MASTER,
 )
-from tools.source_intake_runtime import (
+from tools.data.source_intake_runtime import (
     build_change_request_report,
     candidates_payload,
     enrich_candidates_with_snapshot,
     extract_candidates_from_text,
 )
-from tools.source_record_index import build_index, index_json_text
+from tools.data.source_record_index import build_index, index_json_text
 
 
 def _write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> None:

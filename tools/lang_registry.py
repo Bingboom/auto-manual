@@ -113,6 +113,21 @@ LANGUAGE_REGISTRY = (
         separator=": ",
     ),
     LanguageSpec(
+        code="zh-TW",
+        aliases=("zh-TW", "zh_tw", "zh-Hant"),
+        column_suffixes=("zh-TW",),
+        table_columns=(),
+        tm_column="zh-TW",
+        localized_copy_column="text_zh-TW",
+        status_word_column="zh-TW",
+        spec_title_column=None,
+        display_name="Chinese (Traditional, Taiwan)",
+        native_name="繁體中文",
+        template_directory="page_shared/zh-TW",
+        separator="：",
+        sync_enabled=False,
+    ),
+    LanguageSpec(
         code="ja",
         aliases=("ja", "jp"),
         # IDML tries the historical ``jp`` column before the newer ``ja``
@@ -299,9 +314,9 @@ LANGUAGE_REGISTRY = (
             aliases=(code,),
             column_suffixes=(code,),
             table_columns=(),
-            tm_column=code,
+            tm_column=tm_column,
             localized_copy_column=f"text_{code}",
-            status_word_column=code,
+            status_word_column=tm_column,
             spec_title_column=None,
             display_name=display_name,
             native_name=native_name,
@@ -309,10 +324,10 @@ LANGUAGE_REGISTRY = (
             separator=": ",
             sync_enabled=False,
         )
-        for code, display_name, native_name in (
-            ("pt", "Portuguese", "Português"),
-            ("nl", "Dutch", "Nederlands"),
-            ("pl", "Polish", "Polski"),
+        for code, tm_column, display_name, native_name in (
+            ("pt", "eu-pt", "Portuguese", "Português"),
+            ("nl", "nl", "Dutch", "Nederlands"),
+            ("pl", "pl", "Polish", "Polski"),
         )
     ),
 )

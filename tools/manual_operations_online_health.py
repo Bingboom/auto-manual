@@ -10,7 +10,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-from tools.rtd_portal import ASSETS, catalog
+from tools.rtd.portal import ASSETS, catalog
 
 
 def _https_url(value: str) -> str:
@@ -87,7 +87,7 @@ def build_online_health_report(
     if len(set(urls)) != len(urls):
         raise ValueError("Duplicate frozen publication URLs")
     entries = []
-    for record, url in zip(records, urls):
+    for record, url in zip(records, urls, strict=True):
         entries.append({
             "model": record["model"], "market": record["region"],
             "language": record["lang"] if record["language_scope"] == "single" else None,

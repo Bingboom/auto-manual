@@ -1,0 +1,16 @@
+[
+  {
+    "lang": "pt",
+    "physical_page": 123,
+    "old": "Leia o manual do usuário antes de operar",
+    "new": "Leia o manual do usuário antes de operar.",
+    "reason": "Recover punctuation clipped from source symbol caption; exact PDF text verified"
+  },
+  {
+    "lang": "pt",
+    "physical_page": 123,
+    "old": "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion e que esta deve ser descartada ou reciclada adequadamente.",
+    "new": "Este símbolo indica que o produto contém uma bateria de íon de lítio (Li-ion) e que esta deve ser descartada ou reciclada adequadamente.",
+    "reason": "Recover punctuation clipped from source symbol caption; exact PDF text verified"
+  }
+]

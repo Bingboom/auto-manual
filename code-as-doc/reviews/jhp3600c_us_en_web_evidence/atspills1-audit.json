@@ -1,0 +1,140 @@
+[
+  {
+    "availabilityCount": 7,
+    "contained": true,
+    "containerRect": {
+      "bottom": 213.3828125,
+      "height": 26.484375,
+      "left": 314.59375,
+      "right": 577.3203125,
+      "top": 186.8984375,
+      "width": 262.7265625,
+      "x": 314.59375,
+      "y": 186.8984375
+    },
+    "gap": 10.3984375,
+    "headingBg": "rgba(0, 0, 0, 0)",
+    "headingClass": "hb-heading-label-pair",
+    "headingCount": 84,
+    "overflow": false,
+    "soldBg": "rgb(52, 48, 49)",
+    "soldColor": "rgb(255, 255, 255)",
+    "soldRadius": "999px",
+    "soldRect": {
+      "bottom": 213.3828125,
+      "height": 26.484375,
+      "left": 460.421875,
+      "right": 577.3203125,
+      "top": 186.8984375,
+      "width": 116.8984375,
+      "x": 460.421875,
+      "y": 186.8984375
+    },
+    "title": "CONNECT TO ATS SOLD SEPARATELY",
+    "titleBg": "rgb(244, 243, 243)",
+    "titleRadius": "999px",
+    "titleRect": {
+      "bottom": 213.3828125,
+      "height": 26.484375,
+      "left": 314.59375,
+      "right": 450.0234375,
+      "top": 186.8984375,
+      "width": 135.4296875,
+      "x": 314.59375,
+      "y": 186.8984375
+    },
+    "width": 1440
+  },
+  {
+    "availabilityCount": 7,
+    "contained": true,
+    "containerRect": {
+      "bottom": 435.03125,
+      "height": 26.484375,
+      "left": 16,
+      "right": 278.7265625,
+      "top": 408.546875,
+      "width": 262.7265625,
+      "x": 16,
+      "y": 408.546875
+    },
+    "gap": 10.3984375,
+    "headingBg": "rgba(0, 0, 0, 0)",
+    "headingClass": "hb-heading-label-pair",
+    "headingCount": 84,
+    "overflow": false,
+    "soldBg": "rgb(52, 48, 49)",
+    "soldColor": "rgb(255, 255, 255)",
+    "soldRadius": "999px",
+    "soldRect": {
+      "bottom": 435.03125,
+      "height": 26.484375,
+      "left": 161.828125,
+      "right": 278.7265625,
+      "top": 408.546875,
+      "width": 116.8984375,
+      "x": 161.828125,
+      "y": 408.546875
+    },
+    "title": "CONNECT TO ATS SOLD SEPARATELY",
+    "titleBg": "rgb(244, 243, 243)",
+    "titleRadius": "999px",
+    "titleRect": {
+      "bottom": 435.03125,
+      "height": 26.484375,
+      "left": 16,
+      "right": 151.4296875,
+      "top": 408.546875,
+      "width": 135.4296875,
+      "x": 16,
+      "y": 408.546875
+    },
+    "width": 390
+  },
+  {
+    "availabilityCount": 7,
+    "contained": true,
+    "containerRect": {
+      "bottom": 158.34375,
+      "height": 26.484375,
+      "left": 16,
+      "right": 278.7265625,
+      "top": 131.859375,
+      "width": 262.7265625,
+      "x": 16,
+      "y": 131.859375
+    },
+    "gap": 10.3984375,
+    "headingBg": "rgba(0, 0, 0, 0)",
+    "headingClass": "hb-heading-label-pair",
+    "headingCount": 84,
+    "overflow": false,
+    "soldBg": "rgb(52, 48, 49)",
+    "soldColor": "rgb(255, 255, 255)",
+    "soldRadius": "999px",
+    "soldRect": {
+      "bottom": 158.34375,
+      "height": 26.484375,
+      "left": 161.828125,
+      "right": 278.7265625,
+      "top": 131.859375,
+      "width": 116.8984375,
+      "x": 161.828125,
+      "y": 131.859375
+    },
+    "title": "CONNECT TO ATS SOLD SEPARATELY",
+    "titleBg": "rgb(244, 243, 243)",
+    "titleRadius": "999px",
+    "titleRect": {
+      "bottom": 158.34375,
+      "height": 26.484375,
+      "left": 16,
+      "right": 151.4296875,
+      "top": 131.859375,
+      "width": 135.4296875,
+      "x": 16,
+      "y": 131.859375
+    },
+    "width": 320
+  }
+]

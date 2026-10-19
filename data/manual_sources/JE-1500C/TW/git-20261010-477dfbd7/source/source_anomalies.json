@@ -1,0 +1,15 @@
+[
+  {
+    "physical_page": 14,
+    "text": "妥產品所有防護蓋，避免清洗過程中進水。",
+    "policy": "preserved verbatim; the odd initial wording is visible in the authoritative PDF, not silently corrected"
+  },
+  {
+    "physical_page": 3,
+    "symbols": [
+      "○",
+      "－"
+    ],
+    "policy": "recovered from native vector objects and rendered restricted-substances table; PDF text cells are empty"
+  }
+]

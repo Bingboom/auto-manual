@@ -1,0 +1,76 @@
+{
+  "language": "it",
+  "status": "sealed-candidate-awaiting-independent-review",
+  "publication_eligible": false,
+  "independent_acceptance": false,
+  "producer_commit": "5de0abb3a86ff53763d6bfe40c117c4577d4aafa",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "english_revision": "565c52a2d450d2b353e0186b22d0b230a2fb13ee",
+  "ir_sha256": "9a564c39fd42f537e8f8930eced3be793b4d71c07fe5f6a6cb1cf8e12162d375",
+  "html_sha256": "8a435fb822e35f905ed24c2802477f7203c791e06d38eee77ab06e13ebafaa85",
+  "markdown_sha256": "d599e841409f809adfdbd8260f1b6e9a2ea5a7dc424f2caaff3be1a631aa339f",
+  "copy_map_sha256": "b91742ab46eb02a99923c5d538a9c8db3945d9563d9df91954bd9603179ac2bc",
+  "preview": "http://127.0.0.1:56059/it-r1/manual_jbp3600a_eu_it.html",
+  "checks": {
+    "strict_sphinx": "passed",
+    "cold_replay": "Markdown and HTML byte-identical",
+    "native_copy": "169 mappings, zero missing values",
+    "images": "22/22 decoded; 18 neutral English assets reused; 3 native label panels; 1 shared x5",
+    "browser": "desktop 1440x1000; mobile 390x844; no document horizontal overflow",
+    "admission": "blocked as required"
+  },
+  "shared_validation": {
+    "full_unittest": "5075 passed;35 skipped; reused unchanged shared implementation",
+    "final_badge_scope": "36 targeted passed",
+    "producer_commit": "5de0abb3a86ff53763d6bfe40c117c4577d4aafa",
+    "evidence": [
+      {
+        "path": ".tmp/jbp3600a-native-languages/unittest-fr-fixes.log",
+        "sha256": "849ea1ccf761b945d6bd5aff84a263ef3a254affb97b6bc0b5cc7fb8a50773b4"
+      },
+      {
+        "path": ".tmp/jbp3600a-native-languages/label-scope-targeted.log",
+        "sha256": "bf7fd8256f8a8f40dbf80384b43d9acc504de8dd4edfb5e329757b88ed93d1f9"
+      },
+      {
+        "path": ".tmp/jbp3600a-native-languages/guardrails.log",
+        "sha256": "391444530fdeafdbcb1c0e93c49022908ebe8428ae75d3f9793c81f06f81bb91"
+      },
+      {
+        "path": ".tmp/jbp3600a-native-languages/us-fixture-check.log",
+        "sha256": "c906f8f7cd8fbe2a383a51ee5863b12d12e0c7cdc4dfb3c9a9e43df73a279ca5"
+      }
+    ]
+  },
+  "native_source_review": {
+    "path": "review/it-source/source-copy-review.json",
+    "sha256": "b22f0cec037230cb8e9519713e55924e908930c63fc3415e564763e36da95ac9"
+  },
+  "native_findings": [
+    "Native inbox cable is labelled Cavo di ricarica CA; retained alongside the unchanged expansion cable art.",
+    "Native general heading starts NFORMAZIONI; retained.",
+    "Native cycle-life and environmental-temperature heading remain English.",
+    "Native warranty omits 36-month sentence but shows 3+2-year badges; native text retained.",
+    "Native specification adds maximum short-circuit-current/duration row 1160A/860μs.",
+    "Second clearance label reads ≥≈200 mm; retained.",
+    "Native operation text says ucita; retained.",
+    "Native charge-temperature label reads Temperatura di caricatra; retained."
+  ],
+  "review_boundaries": [
+    "English presentation revision remains unapproved",
+    "Three native labeled-art panels and shared x5 require operator source-exception review",
+    "No locale enrollment",
+    "No multilingual merge/publication authorization"
+  ],
+  "known_findings": [],
+  "packaged_css_sha256": "0319fe2d03c6963e47cec388fc0599910dcda39d39a5b530377a01a8d7425d87",
+  "pending_shared_css_revision": {
+    "status": "candidate-not-approved",
+    "scope": [
+      "Desktop anchor64px clears back-to-top",
+      "Mobile wrapped warranty headings reserve their full height",
+      "Targeted warranty titles retain dark fill and112px card anchor clearance"
+    ],
+    "baseline": "Published English and French r4 remain sealed; this does not promote a new baseline."
+  }
+}

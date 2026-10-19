@@ -1,0 +1,42 @@
+{
+  "schema_version": "manual-reviewed-publication-approval/v1",
+  "authorization": "MA-272",
+  "date": "2026-10-08",
+  "user_instruction": "上线提交发布",
+  "candidate_source_commit": "be6643d5683acfa6e20a8e46b43eea25e9447da9",
+  "candidate_manifest_sha256": "5d00ca5e318372ed031e21805bf10886b53a683b6e7bb15ac908a1fa2172f192",
+  "original_source_sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777",
+  "model": "JA-AD500A-SIL",
+  "region": "JP",
+  "language": "ja",
+  "retained_source_concerns": [
+    {
+      "issue": "filename V2.0-20260525 vs PDF metadata 2026-05-06; no printed version",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "cover refers to safety chapter absent as standalone heading",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "DC input 8A versus 12V/10A vehicle text; host ranges differ from module range",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "spec labels use 出カ",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "voltage warning and geographic warranty scope concatenate phrases",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    },
+    {
+      "issue": "warranty refers to portable power products",
+      "disposition": "preserved verbatim under operator publication authorization; source-owner corrections remain separate"
+    }
+  ],
+  "reviewed_markdown_sha256": "3c5f07767ca49687a9ba3ce11c8befe1d0ae673c33ed79463edfae79bdb5748f",
+  "reviewed_css_sha256": "5783008c449b8db9c618492118199a11c10f5aafae5d53c2a15b90ab2ebb65f1",
+  "reviewed_html_sha256": "3415d087c55e55c60b08717296065786e9de735303347f48f09bd108b4d088a1",
+  "decision": "Publish the current Japanese candidate with its source wording, numerical discrepancies and warranty wording preserved. Filename version remains distinct from unknown printed version. No live table or registry writes."
+}

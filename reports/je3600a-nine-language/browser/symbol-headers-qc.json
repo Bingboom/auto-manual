@@ -1,0 +1,101 @@
+[
+  {
+    "language": "en",
+    "headers": [
+      "Symbol",
+      "Meaning"
+    ],
+    "geometry": {
+      "scroll": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "language": "fr",
+    "headers": [
+      "Symbole",
+      "Signification"
+    ],
+    "geometry": {
+      "scroll": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "language": "es",
+    "headers": [
+      "Símbolo",
+      "Significados"
+    ],
+    "geometry": {
+      "scroll": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "language": "de",
+    "headers": [
+      "Symbol",
+      "Bedeutung"
+    ],
+    "geometry": {
+      "scroll": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "language": "it",
+    "headers": [
+      "Símbolo",
+      "Significato"
+    ],
+    "geometry": {
+      "scroll": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "language": "uk",
+    "headers": [
+      "Символ",
+      "Значення"
+    ],
+    "geometry": {
+      "scroll": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "language": "pt",
+    "headers": [
+      "Símbolo",
+      "Significado"
+    ],
+    "geometry": {
+      "scroll": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "language": "nl",
+    "headers": [
+      "Symbool",
+      "Betekenis"
+    ],
+    "geometry": {
+      "scroll": 1280,
+      "width": 1280
+    }
+  },
+  {
+    "language": "pl",
+    "headers": [
+      "Symbol",
+      "Znaczenie"
+    ],
+    "geometry": {
+      "scroll": 1280,
+      "width": 1280
+    }
+  }
+]

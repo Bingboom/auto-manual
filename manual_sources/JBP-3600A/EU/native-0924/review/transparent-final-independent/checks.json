@@ -1,0 +1,182 @@
+[
+  {
+    "language": "en",
+    "revision": "en-r6",
+    "package_files_verified": 27,
+    "html_sha256": "c6e447a16abc05b1a2f334e441dab1277b214992c008f173c5d27a272259abd0",
+    "ir_sha256": "70df94260f3fd8fceef40a1f1fb8893915e37c9b00269ce5101e625b93f8f53f",
+    "markdown_only_two_asset_substitutions": true,
+    "images_verified": 21,
+    "asset_changes": {
+      "symbol_warning.png": [
+        "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+      ],
+      "symbol_battery_weee.png": [
+        "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+      ]
+    },
+    "css_changed": false
+  },
+  {
+    "language": "fr",
+    "revision": "fr-r5",
+    "package_files_verified": 28,
+    "html_sha256": "dce81595d558e9975e474ed46e476222872256b99900daee931ea8e0c6ba5b49",
+    "ir_sha256": "55cfc66eb0482f6893a48c186418160ea6bdfdddc90c5be00da623e824064df0",
+    "markdown_only_two_asset_substitutions": true,
+    "images_verified": 22,
+    "asset_changes": {
+      "symbol_warning.png": [
+        "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+      ],
+      "symbol_battery_weee.png": [
+        "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+      ]
+    },
+    "css_changed": true
+  },
+  {
+    "language": "es",
+    "revision": "es-r3",
+    "package_files_verified": 28,
+    "html_sha256": "7704b68d7877e56fb498bc803530fff7472ec664bf490cdff12868b85a9edd59",
+    "ir_sha256": "f4153edb299adaf1a9028ff5ea25121bdc405411a0df349abe6cc83360e290f7",
+    "markdown_only_two_asset_substitutions": true,
+    "images_verified": 22,
+    "asset_changes": {
+      "symbol_warning.png": [
+        "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+      ],
+      "symbol_battery_weee.png": [
+        "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+      ]
+    },
+    "css_changed": false
+  },
+  {
+    "language": "de",
+    "revision": "de-r2",
+    "package_files_verified": 28,
+    "html_sha256": "2a816bb562c1ee5fa96bd8706fdbb1f88f81ce81f46330fc4f4f4229429ce169",
+    "ir_sha256": "5f66e588a7ce5516934b3138507599a0dbf0d5560cb06de848ca7bfd156c0556",
+    "markdown_only_two_asset_substitutions": true,
+    "images_verified": 22,
+    "asset_changes": {
+      "symbol_warning.png": [
+        "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+      ],
+      "symbol_battery_weee.png": [
+        "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+      ]
+    },
+    "css_changed": false
+  },
+  {
+    "language": "it",
+    "revision": "it-r2",
+    "package_files_verified": 28,
+    "html_sha256": "3d8079560ccff5242e035e3954250d13afda7c552b897e540bdb3297813e18e6",
+    "ir_sha256": "e01e82f34489f3afa4869a27588fe7d6bf4600fb03d8f3c4899c9be85d988a44",
+    "markdown_only_two_asset_substitutions": true,
+    "images_verified": 22,
+    "asset_changes": {
+      "symbol_warning.png": [
+        "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+      ],
+      "symbol_battery_weee.png": [
+        "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+      ]
+    },
+    "css_changed": false
+  },
+  {
+    "language": "uk",
+    "revision": "uk-r2",
+    "package_files_verified": 28,
+    "html_sha256": "916b2f5d5d8c08d6da4a7c87d64b6ffaa5848f468614e52e4b1b8966bbd6a9ab",
+    "ir_sha256": "1267a875eebce2ba2c542260a207e470dd2644dfa1377066c6c379d37d007890",
+    "markdown_only_two_asset_substitutions": true,
+    "images_verified": 22,
+    "asset_changes": {
+      "symbol_warning.png": [
+        "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+      ],
+      "symbol_battery_weee.png": [
+        "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+      ]
+    },
+    "css_changed": false
+  },
+  {
+    "language": "pt",
+    "revision": "pt-r2",
+    "package_files_verified": 28,
+    "html_sha256": "f09854b6c97968dcc1d92db920a736aaf22d516a4a9fbe85f54a39dc54134f36",
+    "ir_sha256": "fdf98b1b12846c9aa41a6c5a5ec8c996882f5afc4e312b40d3a2639b0cb37685",
+    "markdown_only_two_asset_substitutions": true,
+    "images_verified": 22,
+    "asset_changes": {
+      "symbol_warning.png": [
+        "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+      ],
+      "symbol_battery_weee.png": [
+        "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+      ]
+    },
+    "css_changed": false
+  },
+  {
+    "language": "nl",
+    "revision": "nl-r2",
+    "package_files_verified": 28,
+    "html_sha256": "e4dd3261ba1874fa7d74d907b7dfc0cfdf991f428ff3bca256568693098bd202",
+    "ir_sha256": "c176714232010e3fe47aadd064d132027500f61ac5f798fd5689274ea74158c5",
+    "markdown_only_two_asset_substitutions": true,
+    "images_verified": 22,
+    "asset_changes": {
+      "symbol_warning.png": [
+        "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+      ],
+      "symbol_battery_weee.png": [
+        "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+      ]
+    },
+    "css_changed": false
+  },
+  {
+    "language": "pl",
+    "revision": "pl-r2",
+    "package_files_verified": 28,
+    "html_sha256": "9c842505cad6297029bdec56c584ccb010cc8e7c1229995c8bab32dc12a81677",
+    "ir_sha256": "c98bcadf90504bc0b4333f6915ce3deeca598aaef09e57d780692a2154364cba",
+    "markdown_only_two_asset_substitutions": true,
+    "images_verified": 22,
+    "asset_changes": {
+      "symbol_warning.png": [
+        "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8"
+      ],
+      "symbol_battery_weee.png": [
+        "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+      ]
+    },
+    "css_changed": false
+  }
+]

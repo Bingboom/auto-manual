@@ -11,7 +11,7 @@ from unittest.mock import patch
 from bs4 import BeautifulSoup
 
 from tools.manual_ir import ManualIR, builder, build_manual_ir_from_source, read_manual_ir, validate_manual_ir, write_manual_ir
-from tools.web_presentation import WebPresentationError, transform_web_fragment
+from tools.web.presentation import WebPresentationError, transform_web_fragment
 
 
 def matrix():
@@ -45,7 +45,7 @@ class WebSymbolPairIRTests(unittest.TestCase):
 
     def test_serialized_replay_preserves_order_rich_cells_and_assets(self) -> None:
         from tools.manual_ir.web_symbols import load_web_pair_source
-        from tools.web_symbol_pairs import render_pair_ir
+        from tools.web.symbol_pairs import render_pair_ir
 
         html = matrix()
         with TemporaryDirectory() as td:
@@ -72,7 +72,7 @@ class WebSymbolPairIRTests(unittest.TestCase):
             self.assertIsNotNone(soup.select_one('img[src="detail.svg"]'))
 
     def test_application_keeps_other_content_and_target_gate(self) -> None:
-        from tools import web_symbol_pairs
+        from tools.web import symbol_pairs as web_symbol_pairs
 
         ordinary = '<table id="ordinary"><tr><td>Other</td></tr></table>'
         soup = BeautifulSoup('<h1>Symbols</h1>' + ordinary + matrix() + '<p>After</p>', 'html.parser')
@@ -86,7 +86,7 @@ class WebSymbolPairIRTests(unittest.TestCase):
             self.assertNotIn('hb-symbol-pair-composition', result)
 
     def test_corrupt_envelope_leaves_caller_unchanged(self) -> None:
-        from tools import web_symbol_pairs
+        from tools.web import symbol_pairs as web_symbol_pairs
 
         def corrupt(source):
             return replace(build_manual_ir_from_source(source), content_sha256='0' * 64)
@@ -100,7 +100,7 @@ class WebSymbolPairIRTests(unittest.TestCase):
 
     def test_rehashed_owned_payload_drift_is_rejected(self) -> None:
         from tools.manual_ir.web_symbols import load_web_pair_source
-        from tools.web_symbol_pairs import render_pair_ir
+        from tools.web.symbol_pairs import render_pair_ir
 
         for change in ('meaning', 'icon', 'assets', 'kind', 'projection', 'extra'):
             with self.subTest(change=change):
@@ -121,7 +121,7 @@ class WebSymbolPairIRTests(unittest.TestCase):
                     render_pair_ir(ir)
 
     def test_invalid_geometry_assets_and_discarded_content_are_atomic(self) -> None:
-        from tools.web_symbol_pairs import transform_symbol_pairs
+        from tools.web.symbol_pairs import transform_symbol_pairs
 
         html = matrix()
         for malformed in (html + html, html.replace('<th>Symbol', '<th colspan="2">Symbol'),

@@ -1,0 +1,132 @@
+{
+  "status": "candidate-not-approved",
+  "changes": [
+    {
+      "role": "Warning triangle",
+      "old": {
+        "path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r5/assets/ir/ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d/symbol_warning.png",
+        "sha256": "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+        "size": [
+          204,
+          180
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "fully_transparent_pixels": 29080,
+        "partial_alpha_pixels": 1227,
+        "opaque_pixels": 6413,
+        "alpha_bbox": [
+          25,
+          16,
+          189,
+          162
+        ]
+      },
+      "candidate": {
+        "path": "manual_sources/JBP-3600A/EU/native-0924/review/transparent-symbol-r1/inputs/warning-triangle-transparent.png",
+        "sha256": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+        "size": [
+          569,
+          512
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "fully_transparent_pixels": 217550,
+        "partial_alpha_pixels": 3822,
+        "opaque_pixels": 69956,
+        "alpha_bbox": [
+          23,
+          25,
+          547,
+          488
+        ]
+      },
+      "normalized_alpha_mask_iou": 0.9622316727420008,
+      "decision": "Local high-resolution transparent-source reuse proposal. Old asset already has alpha; not a newly proven background repair. Pixel bounds/padding differ; requires visual confirmation.",
+      "new_asset_ref": "assets/ir/ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8/symbol_warning.png"
+    },
+    {
+      "role": "Battery disposal: NO bottom bar",
+      "old": {
+        "path": "manual_sources/JBP-3600A/EU/native-0924/web/en-r5/assets/ir/4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74/symbol_battery_weee.png",
+        "sha256": "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+        "size": [
+          216,
+          240
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "fully_transparent_pixels": 44395,
+        "partial_alpha_pixels": 2505,
+        "opaque_pixels": 4940,
+        "alpha_bbox": [
+          9,
+          25,
+          194,
+          221
+        ]
+      },
+      "candidate": {
+        "path": "manual_sources/JBP-3600A/EU/native-0924/review/transparent-symbol-r1/inputs/weee2-transparent.png",
+        "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+        "size": [
+          492,
+          519
+        ],
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "fully_transparent_pixels": 216858,
+        "partial_alpha_pixels": 5776,
+        "opaque_pixels": 32714,
+        "alpha_bbox": [
+          25,
+          23,
+          468,
+          494
+        ]
+      },
+      "normalized_alpha_mask_iou": 0.9032725413328788,
+      "decision": "Local high-resolution transparent-source reuse proposal. Old asset already has alpha; not a newly proven background repair. Pixel bounds/padding differ; requires visual confirmation.",
+      "new_asset_ref": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
+    }
+  ],
+  "warning_source": {
+    "path": "/Users/pika/Downloads/HTP011-EU-9国语言-0924.ai",
+    "sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+    "physical_page": 23,
+    "retained_drawings": [
+      906,
+      907
+    ],
+    "excluded_drawings": [
+      896,
+      905
+    ],
+    "note": "Backdrop and interior shade excluded in supplied native extraction; shared warning shape."
+  },
+  "battery_weee_source": {
+    "path": "/Users/pika/.codex/worktrees/manual-intake-assist/auto-manual2/docs/templates/word_template/common_assets/symbols/weee2.png",
+    "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+    "reuse": "unchanged bytes",
+    "meaning": "battery disposal without bottom bar"
+  },
+  "equipment_weee": {
+    "decision": "unchanged; equipment disposal with bottom bar",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5"
+  },
+  "connection_icon": {
+    "decision": "Keep JBP native x5 unchanged. HTE152 x8 is archived for review only and is not a JBP asset.",
+    "jbp_x5_sha256": "8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd",
+    "hte152_x8_sha256": "81983db46972ddbd56bfd4dbd97ff16629d3179eeb710727a2a0fb518c111dc3",
+    "variant": "HTE152 x8 has no outer capsule; not equivalent to prior low-resolution capsule icon."
+  },
+  "registry_enrollment": false
+}

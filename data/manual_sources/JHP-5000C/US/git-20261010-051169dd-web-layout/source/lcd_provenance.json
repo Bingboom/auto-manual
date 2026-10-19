@@ -1,0 +1,748 @@
+[
+  {
+    "row_index": 0,
+    "physical_page": 8,
+    "table_row": 0,
+    "glyph_bbox": [
+      56.151998901367186,
+      247.639990234375,
+      73.63599548339843,
+      261.048974609375
+    ],
+    "drawing_indices": [
+      83,
+      84
+    ],
+    "old_asset": "assets/lcd-01.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-01.png",
+    "best_error": 0.123973,
+    "candidate": null,
+    "reference_sha256": "04f2429baa45133fc0ff99840b2f3acb42e2fe7987010f86f9d6d88fb10efb21",
+    "asset_ref": "assets/lcd-native-01.svg",
+    "asset_sha256": "04f2429baa45133fc0ff99840b2f3acb42e2fe7987010f86f9d6d88fb10efb21"
+  },
+  {
+    "row_index": 1,
+    "physical_page": 8,
+    "table_row": 1,
+    "glyph_bbox": [
+      58.56500091552734,
+      273.6559814453125,
+      71.26600036621093,
+      288.7409912109375
+    ],
+    "drawing_indices": [
+      85,
+      86
+    ],
+    "old_asset": "assets/lcd-02.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-02.png",
+    "best_error": 0.111212,
+    "candidate": null,
+    "reference_sha256": "e50006c59af293f0a3c9e43ef97c32fd26b83707b30a593c731739ddcc98aa3b",
+    "asset_ref": "assets/lcd-native-02.svg",
+    "asset_sha256": "e50006c59af293f0a3c9e43ef97c32fd26b83707b30a593c731739ddcc98aa3b"
+  },
+  {
+    "row_index": 2,
+    "physical_page": 8,
+    "table_row": 2,
+    "glyph_bbox": [
+      58.7865966796875,
+      307.3757080078125,
+      71.00129852294921,
+      319.914697265625
+    ],
+    "drawing_indices": [
+      49,
+      50
+    ],
+    "old_asset": "assets/lcd-03.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_steady.png",
+    "best_error": 0.31788,
+    "candidate": null,
+    "reference_sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9",
+    "asset_ref": "assets/lcd-native-03.svg",
+    "asset_sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9"
+  },
+  {
+    "row_index": 3,
+    "physical_page": 8,
+    "table_row": 3,
+    "glyph_bbox": [
+      60.31210174560547,
+      336.1872924804687,
+      69.4750991821289,
+      348.7263122558594
+    ],
+    "drawing_indices": [
+      51,
+      52,
+      53,
+      54,
+      55,
+      56
+    ],
+    "old_asset": "assets/lcd-04.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-13.png",
+    "best_error": 0.249733,
+    "candidate": null,
+    "reference_sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb",
+    "asset_ref": "assets/lcd-native-04.svg",
+    "asset_sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb"
+  },
+  {
+    "row_index": 4,
+    "physical_page": 8,
+    "table_row": 4,
+    "glyph_bbox": [
+      56.364401245117186,
+      364.08798828125,
+      72.98129425048828,
+      378.8987976074219
+    ],
+    "drawing_indices": [
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68
+    ],
+    "old_asset": "assets/lcd-05.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-05.png",
+    "best_error": 0.153094,
+    "candidate": null,
+    "reference_sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+    "asset_ref": "assets/lcd-native-05.svg",
+    "asset_sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b"
+  },
+  {
+    "row_index": 5,
+    "physical_page": 8,
+    "table_row": 5,
+    "glyph_bbox": [
+      57.47400131225586,
+      389.6340087890625,
+      72.31400451660156,
+      404.4460083007813
+    ],
+    "drawing_indices": [
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82
+    ],
+    "old_asset": "assets/lcd-06.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/symbol_dismantle.png",
+    "best_error": 0.219669,
+    "candidate": null,
+    "reference_sha256": "3294ca7af1fc603747a6a9efba45435350ac0a72450e2a8a79f0f8b691dde73e",
+    "asset_ref": "assets/lcd-native-06.svg",
+    "asset_sha256": "3294ca7af1fc603747a6a9efba45435350ac0a72450e2a8a79f0f8b691dde73e"
+  },
+  {
+    "row_index": 6,
+    "physical_page": 8,
+    "table_row": 6,
+    "glyph_bbox": [
+      56.357000732421874,
+      408.6250061035156,
+      73.43100128173828,
+      423.4309936523438
+    ],
+    "drawing_indices": [
+      32,
+      33,
+      34,
+      35
+    ],
+    "old_asset": "assets/lcd-07.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-10.png",
+    "best_error": 0.066628,
+    "candidate": null,
+    "reference_sha256": "c1305d80758ffa89bbfe57cc30c2d403513c5a38d893fbb35d4a3c2d855955ea",
+    "asset_ref": "assets/lcd-native-07.svg",
+    "asset_sha256": "c1305d80758ffa89bbfe57cc30c2d403513c5a38d893fbb35d4a3c2d855955ea"
+  },
+  {
+    "row_index": 7,
+    "physical_page": 8,
+    "table_row": 7,
+    "glyph_bbox": [
+      51.122999572753905,
+      430.22199096679685,
+      78.66500244140624,
+      444.5240112304688
+    ],
+    "drawing_indices": [
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "old_asset": "assets/lcd-08.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-11.png",
+    "best_error": 0.055041,
+    "candidate": null,
+    "reference_sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+    "asset_ref": "assets/lcd-native-08.svg",
+    "asset_sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660"
+  },
+  {
+    "row_index": 8,
+    "physical_page": 8,
+    "table_row": 8,
+    "glyph_bbox": [
+      54.01800003051758,
+      455.0780090332031,
+      75.7699981689453,
+      465.3000122070313
+    ],
+    "drawing_indices": [
+      22,
+      23,
+      24,
+      25
+    ],
+    "old_asset": "assets/lcd-09.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_charge_time.png",
+    "best_error": 0.144257,
+    "candidate": null,
+    "reference_sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+    "asset_ref": "assets/lcd-native-09.svg",
+    "asset_sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd"
+  },
+  {
+    "row_index": 9,
+    "physical_page": 8,
+    "table_row": 9,
+    "glyph_bbox": [
+      58.62460174560547,
+      476.7361206054687,
+      71.1625991821289,
+      489.2751098632813
+    ],
+    "drawing_indices": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48
+    ],
+    "old_asset": "assets/lcd-10.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_energy.png",
+    "best_error": 0.186118,
+    "candidate": null,
+    "reference_sha256": "06b7b4b8692bca9f25ad25049705a8f7d69d1f48e8fa8692b24807426c2c33e9",
+    "asset_ref": "assets/lcd-native-10.svg",
+    "asset_sha256": "06b7b4b8692bca9f25ad25049705a8f7d69d1f48e8fa8692b24807426c2c33e9"
+  },
+  {
+    "row_index": 10,
+    "physical_page": 9,
+    "table_row": 0,
+    "glyph_bbox": [
+      59.92159881591797,
+      36.19460906982422,
+      72.4595962524414,
+      48.73360977172852
+    ],
+    "drawing_indices": [
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243
+    ],
+    "old_asset": "assets/lcd-11.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_energy.png",
+    "best_error": 0.192123,
+    "candidate": null,
+    "reference_sha256": "daba8dc8b566867e92269c53011de7159ec772a0ae2aaaa3d5c171b87d76cb3d",
+    "asset_ref": "assets/lcd-native-11.svg",
+    "asset_sha256": "daba8dc8b566867e92269c53011de7159ec772a0ae2aaaa3d5c171b87d76cb3d"
+  },
+  {
+    "row_index": 11,
+    "physical_page": 9,
+    "table_row": 1,
+    "glyph_bbox": [
+      89.06000366210938,
+      55.24600830078125,
+      109.44800720214843,
+      69.52901611328124
+    ],
+    "drawing_indices": [
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191
+    ],
+    "old_asset": "assets/lcd-high-pv.svg",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_discharge_time.png",
+    "best_error": 0.198028,
+    "candidate": null,
+    "reference_sha256": "23992b3da93fc64bf08991fd5f6019e27c308f1ea53f8c1ca5f9ba5cbd3b33e5",
+    "asset_ref": "assets/lcd-native-12.svg",
+    "asset_sha256": "23992b3da93fc64bf08991fd5f6019e27c308f1ea53f8c1ca5f9ba5cbd3b33e5"
+  },
+  {
+    "row_index": 12,
+    "physical_page": 9,
+    "table_row": 2,
+    "glyph_bbox": [
+      89.06000366210938,
+      77.34198608398438,
+      109.44800720214843,
+      91.62499389648437
+    ],
+    "drawing_indices": [
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "old_asset": "assets/lcd-low-pv.svg",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_temperature.png",
+    "best_error": 0.198323,
+    "candidate": null,
+    "reference_sha256": "ede509006e160d7a16260d2d9d0b48c0e89b7f17461cec646a6cc6edf9f6487f",
+    "asset_ref": "assets/lcd-native-13.svg",
+    "asset_sha256": "ede509006e160d7a16260d2d9d0b48c0e89b7f17461cec646a6cc6edf9f6487f"
+  },
+  {
+    "row_index": 13,
+    "physical_page": 9,
+    "table_row": 3,
+    "glyph_bbox": [
+      89.06000366210938,
+      99.40698852539063,
+      109.44800720214843,
+      113.68999633789062
+    ],
+    "drawing_indices": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "old_asset": "assets/lcd-14.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-24.png",
+    "best_error": 0.18473,
+    "candidate": null,
+    "reference_sha256": "e470726a943e24f8cf917a64711b1882cce55187a93d21fe93f8fa59bd56a115",
+    "asset_ref": "assets/lcd-native-14.svg",
+    "asset_sha256": "e470726a943e24f8cf917a64711b1882cce55187a93d21fe93f8fa59bd56a115"
+  },
+  {
+    "row_index": 14,
+    "physical_page": 9,
+    "table_row": 4,
+    "glyph_bbox": [
+      89.93219604492188,
+      143.09668579101563,
+      108.5761962890625,
+      155.63569030761718
+    ],
+    "drawing_indices": [
+      51,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "old_asset": "assets/lcd-15.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-24.png",
+    "best_error": 0.182313,
+    "candidate": null,
+    "reference_sha256": "2df3dc64035343b2d8f8b7de42cbc31c87eccea01e5beaf4e9e8771088ac50cb",
+    "asset_ref": "assets/lcd-native-15.svg",
+    "asset_sha256": "2df3dc64035343b2d8f8b7de42cbc31c87eccea01e5beaf4e9e8771088ac50cb"
+  },
+  {
+    "row_index": 15,
+    "physical_page": 9,
+    "table_row": 5,
+    "glyph_bbox": [
+      59.92159881591797,
+      186.21977844238282,
+      72.4595962524414,
+      198.75878295898437
+    ],
+    "drawing_indices": [
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164
+    ],
+    "old_asset": "assets/lcd-transfer-switch.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_energy.png",
+    "best_error": 0.221986,
+    "candidate": null,
+    "reference_sha256": "1a9d3f3710052777bdc2d290878a81a32a30f018f0c7e454a194a4a340ecea88",
+    "asset_ref": "assets/lcd-native-16.svg",
+    "asset_sha256": "1a9d3f3710052777bdc2d290878a81a32a30f018f0c7e454a194a4a340ecea88"
+  },
+  {
+    "row_index": 16,
+    "physical_page": 9,
+    "table_row": 6,
+    "glyph_bbox": [
+      56.91720428466797,
+      207.99561157226563,
+      75.46420440673828,
+      226.53661499023437
+    ],
+    "drawing_indices": [
+      20
+    ],
+    "old_asset": "assets/lcd-17.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_ring.png",
+    "best_error": 0.061534,
+    "candidate": null,
+    "reference_sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+    "asset_ref": "assets/lcd-native-17.svg",
+    "asset_sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4"
+  },
+  {
+    "row_index": 17,
+    "physical_page": 9,
+    "table_row": 7,
+    "glyph_bbox": [
+      56.4598030090332,
+      244.5431884765625,
+      75.92180023193359,
+      255.66419372558593
+    ],
+    "drawing_indices": [
+      21
+    ],
+    "old_asset": "assets/lcd-18.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_low_battery.png",
+    "best_error": 0.168096,
+    "candidate": null,
+    "reference_sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22",
+    "asset_ref": "assets/lcd-native-18.svg",
+    "asset_sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22"
+  },
+  {
+    "row_index": 18,
+    "physical_page": 9,
+    "table_row": 8,
+    "glyph_bbox": [
+      52.80800094604492,
+      271.5839904785156,
+      79.5729995727539,
+      285.0779968261719
+    ],
+    "drawing_indices": [
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157
+    ],
+    "old_asset": "assets/lcd-19.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-18.png",
+    "best_error": 0.054547,
+    "candidate": null,
+    "reference_sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+    "asset_ref": "assets/lcd-native-19.svg",
+    "asset_sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7"
+  },
+  {
+    "row_index": 19,
+    "physical_page": 9,
+    "table_row": 9,
+    "glyph_bbox": [
+      55.11900177001953,
+      296.2209838867187,
+      77.26300201416015,
+      310.5039916992188
+    ],
+    "drawing_indices": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71
+    ],
+    "old_asset": "assets/lcd-connected-batteries.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_temperature.png",
+    "best_error": 0.177873,
+    "candidate": null,
+    "reference_sha256": "e83e8f4142517d2d9771312ce4fc90c68bc0dcde47b2b5df5b6e20269cf4dcfb",
+    "asset_ref": "assets/lcd-native-20.svg",
+    "asset_sha256": "e83e8f4142517d2d9771312ce4fc90c68bc0dcde47b2b5df5b6e20269cf4dcfb"
+  },
+  {
+    "row_index": 20,
+    "physical_page": 9,
+    "table_row": 10,
+    "glyph_bbox": [
+      57.895800018310545,
+      322.1576293945312,
+      74.48279724121093,
+      337.5326171875
+    ],
+    "drawing_indices": [
+      31,
+      32,
+      33
+    ],
+    "old_asset": "assets/lcd-20.png",
+    "best_candidate": "docs/renderers/web/assets/shared/lcd/lcd_fault-code.png",
+    "best_error": 0.0901,
+    "candidate": null,
+    "reference_sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+    "asset_ref": "assets/lcd-native-21.svg",
+    "asset_sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0"
+  },
+  {
+    "row_index": 21,
+    "physical_page": 9,
+    "table_row": 11,
+    "glyph_bbox": [
+      89.92099609375,
+      343.6784729003906,
+      106.975,
+      359.496484375
+    ],
+    "drawing_indices": [
+      34,
+      35
+    ],
+    "old_asset": "assets/lcd-21.png",
+    "best_candidate": "docs/renderers/web/assets/shared/lcd/lcd_fault-code.png",
+    "best_error": 0.145761,
+    "candidate": null,
+    "reference_sha256": "a537f928a74ad454c4acb95479890fae8fb929841ab46a7ab2e7becdea178806",
+    "asset_ref": "assets/lcd-native-22.svg",
+    "asset_sha256": "a537f928a74ad454c4acb95479890fae8fb929841ab46a7ab2e7becdea178806"
+  },
+  {
+    "row_index": 22,
+    "physical_page": 9,
+    "table_row": 12,
+    "glyph_bbox": [
+      89.92099609375,
+      371.96820678710935,
+      106.975,
+      387.7862182617188
+    ],
+    "drawing_indices": [
+      36,
+      37
+    ],
+    "old_asset": "assets/lcd-22.png",
+    "best_candidate": "docs/renderers/web/assets/shared/lcd/lcd_fault-code.png",
+    "best_error": 0.134803,
+    "candidate": null,
+    "reference_sha256": "b4bc3ea53dccdfdadf8a172db138ecd691b36bf510da7f383b27d5cf31bc82a1",
+    "asset_ref": "assets/lcd-native-23.svg",
+    "asset_sha256": "b4bc3ea53dccdfdadf8a172db138ecd691b36bf510da7f383b27d5cf31bc82a1"
+  },
+  {
+    "row_index": 23,
+    "physical_page": 9,
+    "table_row": 13,
+    "glyph_bbox": [
+      57.653395080566405,
+      418.878515625,
+      74.7273956298828,
+      431.4175048828125
+    ],
+    "drawing_indices": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "old_asset": "assets/lcd-23.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_discharge_time.png",
+    "best_error": 0.162207,
+    "candidate": null,
+    "reference_sha256": "1dc3f1b40d814deba684f8ee818ebe8bd9ad17b9a8c6a29330c939925ac780cd",
+    "asset_ref": "assets/lcd-native-24.svg",
+    "asset_sha256": "1dc3f1b40d814deba684f8ee818ebe8bd9ad17b9a8c6a29330c939925ac780cd"
+  },
+  {
+    "row_index": 24,
+    "physical_page": 9,
+    "table_row": 14,
+    "glyph_bbox": [
+      50.511000061035155,
+      458.9020141601562,
+      81.87099609375,
+      474.14299926757815
+    ],
+    "drawing_indices": [
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      82,
+      85,
+      88,
+      90,
+      92,
+      94,
+      95,
+      96,
+      97
+    ],
+    "old_asset": "assets/lcd-24.png",
+    "best_candidate": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/lcd-25.png",
+    "best_error": 0.066086,
+    "candidate": null,
+    "reference_sha256": "e90d4a517505ea1d9687b3b0f98a08b3e044a997d5deb6487472249b5405fd9c",
+    "asset_ref": "assets/lcd-native-25.svg",
+    "asset_sha256": "e90d4a517505ea1d9687b3b0f98a08b3e044a997d5deb6487472249b5405fd9c"
+  },
+  {
+    "row_index": 25,
+    "physical_page": 9,
+    "table_row": 15,
+    "glyph_bbox": [
+      50.916998291015624,
+      481.0629943847656,
+      81.46399841308593,
+      491.9670043945313
+    ],
+    "drawing_indices": [
+      98,
+      99,
+      100,
+      101
+    ],
+    "old_asset": "assets/lcd-25.png",
+    "best_candidate": "docs/renderers/web/assets/je100c_eu_shared/lcd_discharge_time.png",
+    "best_error": 0.114588,
+    "candidate": null,
+    "reference_sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+    "asset_ref": "assets/lcd-native-26.svg",
+    "asset_sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e"
+  }
+]

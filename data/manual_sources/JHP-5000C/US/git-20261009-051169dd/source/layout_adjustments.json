@@ -1,0 +1,98 @@
+{
+  "fr": {
+    "overview-left": {
+      "Connexion au Smart Transfer Switch": {
+        "dy_pt": 1.5
+      }
+    },
+    "low-pv-200": {
+      "SolarSaga 200 × 6": {
+        "dy_pt": -4
+      }
+    },
+    "package-sts": {
+      "(fixer des supports muraux pour": {
+        "dy_pt": 1.5
+      },
+      "Smart Transfer Switch )": {
+        "dy_pt": 3
+      }
+    },
+    "ac-output": {
+      "Appuyez une fois": {
+        "dy_pt": 1.5
+      }
+    },
+    "usb-output": {
+      "Appuyez une fois": {
+        "dy_pt": 1.5
+      }
+    },
+    "dc-output": {
+      "Appuyez une fois": {
+        "dy_pt": 1.5
+      }
+    }
+  },
+  "es": {
+    "overview-front": {
+      "encendido USB": {
+        "dy_pt": 2
+      }
+    },
+    "overview-left": {
+      "conectar al Smart Transfer Switch": {
+        "dy_pt": 1.5
+      }
+    },
+    "overview-right": {
+      "120V, 15A Max": {
+        "dy_pt": 3
+      }
+    },
+    "power": {
+      "Mantén presionado": {
+        "font_scale": 0.9
+      },
+      "durante 3 segundos": {
+        "font_scale": 0.9
+      }
+    },
+    "app-control": {
+      "principale": {
+        "dy_pt": 2
+      }
+    },
+    "ac-output": {
+      "Presiona una vez": {
+        "dy_pt": 1.5
+      }
+    },
+    "usb-output": {
+      "Presiona una vez": {
+        "font_scale": 0.9,
+        "occurrences": {
+          "0": {
+            "dy_pt": 0
+          },
+          "1": {
+            "dy_pt": 1.5
+          }
+        }
+      }
+    },
+    "dc-output": {
+      "Presiona una vez": {
+        "font_scale": 0.9,
+        "occurrences": {
+          "0": {
+            "dy_pt": 0
+          },
+          "1": {
+            "dy_pt": 1.5
+          }
+        }
+      }
+    }
+  }
+}

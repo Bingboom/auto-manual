@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/fridgeguard_us_16-0102-000422",
+    "expected_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.15,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "source_artboard",
+      "role": "source_artboard",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Single Illustrator artboard; English pages are isolated by crop coordinates"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/je1000e-sil/us/en/car_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            5532.61328125,
+            2208.22998046875,
+            5848.61328125,
+            2362.22998046875
+          ]
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            5752.4,
+            2228.1,
+            5778.8,
+            2236.9
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            5705.7,
+            2318.1,
+            5824.6,
+            2332.8
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            5699.97587890625,
+            2311.68486328125,
+            5835.0041015625,
+            2338.11396484375
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/car_art.png",
+          "scale": 4,
+          "expected_sha256": "0c1cb6b315a0c2d02a8a9affba466d118b23d67311272e1725c6973bf292839f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-copy preview; DC8020 retained"
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}

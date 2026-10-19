@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools import queue_artifact_sink
+from tools.build_queue import artifact_sink as queue_artifact_sink
 
 
 class TestQueueArtifactSink(unittest.TestCase):

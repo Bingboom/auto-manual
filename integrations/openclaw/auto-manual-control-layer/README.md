@@ -4,7 +4,8 @@ This package is the OpenClaw-side bridge for BlockClaw, the repository's Auto-Ma
 BlockClaw is the repo-specific identity that helps operators work with content blocks, Feishu queue rows, review bundles, draft packages, and publish artifacts.
 
 It does not execute `build.py` directly.
-It only dispatches the existing `main`-owned GitHub workflows and reports their status back into OpenClaw as BlockClaw.
+Its operation commands dispatch the existing `main`-owned GitHub workflows and report their status back into OpenClaw as BlockClaw.
+Its product-query tools read the receipt-verified EU manual export from RTD and return source-linked evidence to the existing gateway model.
 
 For local Phase 2 natural-language orchestration, the same package also ships a repo-local CLI:
 
@@ -40,6 +41,44 @@ BlockClaw currently handles bounded manual operations: queue lookup, Start Revie
 - `/build-draft <document_link_record_id>`
 - `/publish <document_link_record_id> confirm`
 - `/manual-status [run_id|last]`
+- `/manual-query <model and keywords>` — read-only chapter links and labelled previews
+
+The manifest declares `activation.onStartup: true` so slash commands and routing
+hooks register before the first tool call on runtimes with lazy plugin loading.
+The plugin adds a shared `before_prompt_build` routing rule for RTD and
+`/manual-query` requests forwarded as ordinary text by DingTalk or Feishu, and
+ordinary model-specific product questions such as “查一下 JBP-2000B 适用主机”.
+Answers must read current manual evidence; do not substitute similar web product
+names or claim HTTP failures without a tool result.
+It directs the model to the read-only manual tools instead of the Feishu
+attachment catalog. Model tool selection still requires live acceptance.
+
+## Published EU Product Queries
+
+`manual_search` locates the exact model, source language and chapters;
+`manual_section` returns whole semantic blocks with version/source links.
+With `compare: true`, `manual_search` answers questions across products
+(largest capacity, A versus B): one best chapter and its matching source lines
+per published model, or per model named in the query.
+The latter requires the search result's `publication.snapshot_id` on every page,
+so a release change requires a new search. Follow `next_offset` to read all
+conditions and warnings before answering. No workflow is dispatched by either
+tool or `/manual-query`; no second DingTalk connection or model account is needed.
+
+Set the optional `manualQueryBaseUrl` to the HTTPS root of the deployed site,
+version prefix included (for example
+`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`), in this plugin's
+existing config. The site must be publicly readable: the client sends no credentials.
+The site home may redirect while root-level JSON files return 404; both downloads
+and evidence links retain the configured version prefix. Without a configured URL,
+query calls report unavailable. The client verifies the same-origin
+deployment receipt and export hashes, caches for at most 60 seconds between
+checks, and refuses expired data when a refresh fails. Same-origin RTD version
+redirects are bounded; cross-origin redirects are refused. Existing tool policies
+still apply to `manual_search` and `manual_section`.
+
+See [activation, coverage and verification](../../../code-as-doc/dev/eu_manual_query.md)
+for the complete rollout sequence, legacy-language and image-text limitations.
 
 ## Expected GitHub Workflow Inputs
 

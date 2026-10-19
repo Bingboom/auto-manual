@@ -517,7 +517,7 @@ def _decode(
     parent_kind: str | None = None,
     component_renderer: Callable[[Mapping[str, Any]], str] | None = None,
     component_fragments: dict[str, str] | None = None,
-):
+) -> Any:
     kind = str(node["kind"])
     if kind == "text":
         return NavigableString(str(node["text"]))

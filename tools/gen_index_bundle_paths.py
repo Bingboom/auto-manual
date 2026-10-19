@@ -6,7 +6,7 @@ from pathlib import Path
 
 from tools.config_loader import load_config_mapping
 from tools.config_pages import ConfigPage, CsvPage, GeneratedPage, RstIncludePage
-from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.data.snapshot import resolve_data_snapshot_paths
 from tools.utils.path_utils import docs_build_dir_of
 from tools.utils.targets import (
     format_tokenized,
@@ -14,7 +14,7 @@ from tools.utils.targets import (
     resolve_build_model as resolve_target_model,
     resolve_build_region as resolve_target_region,
 )
-from tools.word_bundle_common import resolve_config_path
+from tools.word.bundle_common import resolve_config_path
 
 _INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
 

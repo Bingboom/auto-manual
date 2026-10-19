@@ -1,6 +1,6 @@
 # Workstream Y 多 agent 并行执行方案
 
-Status: active · Owner: 夏冰 · Created: 2026-10-01
+Status: done · Owner: 夏冰 · Created: 2026-10-01 · Closed: 2026-10-02
 
 本文件把 [`code_quality_iterability_plan.md`](code_quality_iterability_plan.md)（下称"计划台账"）
 里本轮可推进的条目拆成 8 条泳道；无交叉的任务可并行，交叉文件按明确的所有权交接串行。
@@ -280,6 +280,29 @@ csv_pages 等 D 交接，manual_ir 等 A2 对应 PR 合入并交接；未满足�
    然后由一个 agent 开**收尾 PR**：按实际完成项勾选计划台账、写 `code_optimization_log.md`，
    明确列出暂停、关闭而未完成以及第 5 节未覆盖条目。
    只有本轮任务均完成或明确转交后才能把本方案标为 `done`；这不等于整个 Workstream Y 完成。
+
+## 4.1 本轮结果（2026-10-02 收尾）
+
+本方案执行完毕并关闭；**这不等于 Workstream Y 完成**，剩余项回到计划台账。
+
+| 指标 | 起点（10-01） | 收尾 | 
+| --- | --- | --- |
+| 复杂度 ≥50 的函数 | 32 | 25 |
+| 缺状态行的文档 | 174 | 5 |
+| broad except | 89 | 86 |
+| 门面 patch | 363 | 363 |
+| `zip()` 无 `strict=`（B905） | 62 | 64（已加棘轮） |
+| mypy untyped-def（三个子包，含包外导入） | 125 / 87 / 29 | 115 / 82 / 29（棘轮口径：包内、不读已安装包，共 68，已加棘轮） |
+| `print` | ~580 | 568 |
+
+已合入：A1 #1357 #1363 #1377；A2 #1355 #1361；B #1356 #1360；C #1362（骨架）；D #1358；
+F #1375 #1379；G #1354 #1359；收尾（本 PR）加 B905、mypy 两个棘轮。
+
+关闭未合入（落后 main 16 个提交，收益小于同步成本，需要时从最新 main 重开）：
+#1365（F component_specs 类型）、#1366（D ops_catalog 异常审计）、#1368（E release 诊断日志）。
+
+遗留（回到计划台账）：C 时钟接缝与门面 patch 迁移；B `export_idml`；D 其余 broad except 族与 B905 清零；
+E 其余 `print` 族；F mypy 清零与严格 override；G 剩余 5 篇与 CQ-7.5。
 
 ## 5. 不在本方案内
 

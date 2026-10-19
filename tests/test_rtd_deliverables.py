@@ -17,9 +17,9 @@ from urllib.parse import unquote, urlsplit
 
 from bs4 import BeautifulSoup
 
-from tools import rtd_deliverables as dl
-from tools import rtd_portal
-from tools.rtd_source_registry import load_registry
+from tools.rtd import deliverables as dl
+from tools.rtd import portal as rtd_portal
+from tools.rtd.source_registry import load_registry
 from tools.utils.path_utils import repo_root
 
 REPO = repo_root()
@@ -110,9 +110,6 @@ class ExportTests(unittest.TestCase):
             [us, None, ["0.9"], None, link("https://t.feishu.cn/wiki/w09"), None],
             [us, ["en"], ["2.0"], None, "https://t.feishu.cn/wiki/w-en", link("https://ht-doc.readthedocs.io/x.html")],
             [br, None, ["0.5"], "https://t.feishu.cn/wiki/p-br", None, None],
-            [[{"id": "rec-missing"}], None, ["9.9"], "https://t.feishu.cn/wiki/orphan", None, None],
-            [us, None, ["3.0"], "https://example.com/not-feishu", None, None],
-            [None, None, ["1.0"], "https://t.feishu.cn/wiki/no-key", None, None],
         ])
         result = dl.export_snapshot(run=run, base_token="base", build_table="tblBUILD", key_table="tblKEY", today=TODAY)
         self.assertEqual(result["schema"], dl.SNAPSHOT_SCHEMA)
@@ -131,6 +128,14 @@ class ExportTests(unittest.TestCase):
         key_offsets = [c[c.index("--offset") + 1] for c in run.calls if "tblKEY" in c]
         self.assertEqual(key_offsets, ["0", "200"])
         self.assertNotIn("否", json.dumps(result, ensure_ascii=False))
+
+    def test_does_not_silently_drop_unresolved_or_invalid_delivery(self):
+        for row in (
+            [[{"id": "rec-missing"}], None, ["1.0"], "https://t.feishu.cn/wiki/orphan", None, None],
+            [[{"id": "rec-us"}], None, ["1.0"], "https://example.com/invalid", None, None],
+        ):
+            with self.subTest(row=row), self.assertRaises(RuntimeError):
+                dl.export_snapshot(run=self.tables([row]), base_token="base", build_table="tblBUILD", key_table="tblKEY", today=TODAY)
 
     def test_refuses_a_table_without_the_needed_columns(self):
         run = self.tables([])
@@ -192,25 +197,16 @@ class ViewTests(unittest.TestCase):
         us = first["rows"][1]
         self.assertEqual([chip["label"] for chip in us["web"]], ["EN", "FR"])
         self.assertEqual(us["web"][0]["docname"], "JE-1000F/US/en/md/manual_je1000f_us")
-        self.assertIn("发布于 2026-09-24", us["web"][0]["title"])
+        self.assertIn("构建于 2026-09-24", us["web"][0]["title"])
         self.assertEqual([(c["label"], c["version"], c["url"]) for c in us["print"]],
                          [("整本", "2.2", "https://t.feishu.cn/wiki/print-us")])
         self.assertEqual(first["rows"][0]["print"], [])
         self.assertEqual([r["code"] for r in view["regions"]], ["EU", "US", "JP", "pt-BR"])
 
-    def test_tiles_count_each_format(self):
-        tiles = {tile["label"]: (tile["value"], tile["sub"]) for tile in self.view()["tiles"]}
-        self.assertEqual(tiles, {
-            "型号": ("3", "5 个型号 × 区域"),
-            "网页": ("4", "覆盖 3 个型号 × 区域"),
-            "印刷交付包": ("2", "覆盖 2 个型号 × 区域"),
-            "Word 云文档": ("2", "覆盖 2 个型号 × 区域"),
-        })
-
     def test_staleness_and_missing_inputs(self):
         view = self.view()
         self.assertEqual((view["snapshot_date"], view["stale"], view["last_published"]), ("2026-09-25", [], "2026-09-24"))
-        self.assertIn("超过 45 天", self.view(today=TODAY + dt.timedelta(days=46))["stale"][0])
+        self.assertIn("超过 3 天", self.view(today=TODAY + dt.timedelta(days=46))["stale"][0])
         bare = dl.deliverables_view(None, None, names={}, labels=LABELS, language_order=ORDER, today=TODAY,
                                     feishu_domain=FEISHU)
         self.assertEqual((bare["models"], bare["web_missing"], bare["feishu_missing"]), ([], True, True))
@@ -268,7 +264,7 @@ class RealSphinxTests(unittest.TestCase):
             (assets / "settings.json").write_text(json.dumps(dict(settings, product_voc_endpoint="")), encoding="utf-8")
             (web / "conf.py").write_text(
                 "project = 'manual'\nroot_doc = 'index'\n"
-                "from pathlib import Path\nfrom tools import rtd_portal as portal\n"
+                "from pathlib import Path\nfrom tools.rtd import portal\n"
                 f"portal.ASSETS = Path({str(assets)!r})\n"
                 f"rtd_knowledge_dir = {str(base / 'knowledge')!r}\n"
                 "rtd_system_workspace_date = '2026-09-25'\n",
@@ -278,7 +274,7 @@ class RealSphinxTests(unittest.TestCase):
             def build(name):
                 result = subprocess.run(
                     [sys.executable, "-m", "sphinx", "-q", "-b", "html",
-                     "-D", "extensions=myst_parser,tools.rtd_portal", str(web), str(base / name)],
+                     "-D", "extensions=myst_parser,tools.rtd.portal", str(web), str(base / name)],
                     cwd=REPO, capture_output=True, text=True,
                     check=False,
                 )
@@ -288,25 +284,67 @@ class RealSphinxTests(unittest.TestCase):
 
             _, page = build("good")
             self.assertIn("<h1>说明书工作台", page)
+            self.assertIn("打开说明书资料库", page)
             self.assertIn('<tbody data-model="JE-1000F">', page)
-            self.assertIn('<tr data-region="pt-BR">', page)
-            # Web manuals link to their page on this site; Feishu links open in a new tab.
+            # The 交付物 tab lists Web manuals only: a region or model with Feishu formats alone has no row.
+            self.assertNotIn('<tr data-region="pt-BR">', page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
-            self.assertIn('href="https://t.feishu.cn/wiki/print-us"', page)
+            self.assertNotIn("t.feishu.cn", page)
             soup = BeautifulSoup(page, 'html.parser')
-            self.assertEqual(len(soup.select('.dl-table a[target="_blank"][rel="noopener"]')), 4)
-            self.assertIn('<option value="JE-1800B">JE-1800B</option>', page)
-            self.assertIn("飞书快照 2026-09-25", page)
+            sections = [section.get('id') for section in soup.select('#production-evidence > section')]
+            self.assertLess(sections.index('production-overview'), sections.index('reuse'))
+            self.assertLess(sections.index('reuse'), sections.index('production-effort'))
+            self.assertLess(sections.index('production-effort'), sections.index('backflow'))
+            self.assertTrue(soup.select('#production-evidence > aside#attention'))
+            self.assertEqual(len(soup.select('#production-evidence > section.pe-layer')), 4)
+            self.assertTrue(soup.select('details#more-evidence #activity'))
+            self.assertIn('已确认配置引用', page)
+            self.assertIn('尚未证明再次复用', page)
+            self.assertIn('2026-09-18 至 2026-09-25 UTC', page)
+            self.assertFalse(soup.select('.dl-tiles'))  # one authoritative summary, no legacy zero tiles
+            for card in soup.select('[data-metric]'):
+                self.assertTrue(card.select('details'))
+            self.assertTrue(soup.select('.pe-attention a[href]'))
+            # 数据统计: the statistics moved from 系统数据, with their own JSON block, script and filters.
+            self.assertEqual([tab['data-tab'] for tab in soup.select('.page-tabs [data-tab]')],
+                             ['deliverables', 'statistics', 'work-entries', 'production-evidence'])
+            statistics = soup.select_one('#statistics.tab-panel.system-data')
+            payload = json.loads(statistics.select_one('script#system-data-json').string)
+            # Capability rows list published models only: JE-1000F, in every region of the capability table.
+            self.assertTrue(payload['targets'])
+            self.assertEqual({row['model'] for row in payload['targets']}, {'JE-1000F'})
+            # The page summary above the tabs owns 网页说明书 / 语言版本; the tab counts the rest.
+            self.assertEqual([kpi.span.text for kpi in statistics.select('.kpi')],
+                             ['覆盖机型', '发布语言', '机型/区域目标', '素材登记'])
+            self.assertEqual(len(statistics.select('#sd-table tbody tr')), 1)
+            self.assertIsNotNone(soup.select_one('head script[src="../../_static/system-data.js"]'))
+            self.assertTrue((base / "good" / "_static" / "system-data.js").is_file())
+
+            self.assertFalse(soup.select('.dl-table a[target="_blank"]'))
+            self.assertNotIn('<option value="JE-1800B">', page)
+            # 网页说明书进度 leads the tab; its matrix links each market version to its page.
+            tab = soup.select_one('#deliverables.tab-panel')
+            self.assertEqual(tab.find(['section', 'details'])['id'], 'web-progress')
+            self.assertTrue(soup.select_one('details#deliverables-matrix'))
+            rows = soup.select('#web-progress .wp-table tr[data-open]')
+            self.assertEqual([row.th.b.text for row in rows], ['JE-1000F'])
+            chip = rows[0].select_one('a.wp-chip')
+            self.assertEqual((chip.text, chip['href']), ('1/1', '../../JE-1000F/US/en/md/manual_je1000f_us.html'))
+            self.assertTrue((base / "good" / "_static" / "web-progress.js").is_file())
+            self.assertIsNotNone(soup.select_one('[data-wp-trend] script[type="application/json"]'))
             self.assertTrue((base / "good" / "_static" / "deliverables.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
-            self.assertEqual(workspace.count('href="deliverables/index.html"'), 2)  # nav and 最近更新
+            home = BeautifulSoup(workspace, "html.parser")
+            # The 知识库首页 links the page from its sidebar and from its 说明书生产 card.
+            for where in ("#app-sidebar", "#production"):
+                self.assertEqual(len(home.select(f'{where} a[href="deliverables/index.html"]')), 1, where)
             system = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="../deliverables/index.html"', system)
             self.assertIn('href="../system/index.html"', page)
 
             # The work map remains usable without JS and points at real repo resources.
             nodes = soup.select('[data-workbench-node]')
-            self.assertEqual(len(nodes), 4)
+            self.assertEqual(len(nodes), 5)
             for node in nodes:
                 panel = soup.find(id=node['aria-controls'])
                 self.assertIsNotNone(panel)
@@ -321,24 +359,66 @@ class RealSphinxTests(unittest.TestCase):
                     self.assertEqual(url.scheme, 'https')
                     self.assertEqual(anchor.get('target'), '_blank')
                     self.assertIn('noopener', anchor.get('rel', []))
-            for name in ('manual-workbench.css', 'manual-workbench.js'):
+            for name in ('manual-workbench.css', 'manual-workbench.js', 'machine-surface-stats.js'):
                 self.assertTrue((base / 'good' / '_static' / name).is_file())
+            # Coverage is read at view time from the sealed manifest; the static page keeps a fallback.
+            surface = soup.select_one('#wb-machine [data-surface-manifest]')
+            self.assertEqual(surface['data-surface-manifest'], '../../machine_surface_manifest.json')
+            self.assertEqual(surface['data-surface-receipt'], '../../manual-deployment.json')
+            self.assertTrue(surface.select_one('[data-surface-stats]').has_attr('hidden'))
+            self.assertIn('machine_surface_manifest.json', surface.select_one('[data-surface-note]').text)
             self.assertIn('说明书工作台', workspace)
             self.assertIn('说明书工作台', system)
+            # This page owns the publication counts: its 网页说明书 KPI carries the books per region.
+            kpis = {kpi.span.text: kpi for kpi in soup.select('.kpi-row a.kpi')}
+            self.assertEqual(kpis['网页说明书'].em.text, '美规 1')
+            self.assertIsNone(kpis['语言版本'].em)
+            # Both snapshot freshness spans stay here for Workspace Data Verify; the rules sit on 系统建设.
+            for kind in ('deliverables', 'corpus'):
+                self.assertIsNotNone(soup.select_one(f'[data-workspace-source="{kind}"]'), kind)
+            self.assertTrue(soup.select('.page-meta a[href="../system/index.html#sources"]'))
+            # Corpus and skeleton totals belong to 系统建设: the asset cards and the ledger point there.
+            for anchor in ('#tab-corpus', '#lane-skeletons'):
+                for where in ('.pe-library', '.pe-table'):
+                    self.assertTrue(soup.select(f'{where} a[href="../system/index.html{anchor}"]'), (where, anchor))
+            self.assertEqual([row.b.text for row in soup.select('#asset-growth tbody tr') if row.b],
+                             ['Shared Components', 'Structured Specs', 'Artwork Assets'])
 
             # An unsound snapshot empties only the Feishu columns.
             (assets / SNAPSHOT_NAME).write_text("{not json", encoding="utf-8")
             result, page = build("no-snapshot")
             self.assertIn("Deliverables page shows no Feishu links", result.stderr)
-            self.assertIn("飞书快照当前不可读", page)
+            self.assertIn("交付快照 Unavailable", page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("t.feishu.cn", page)
 
             # Without a publish manifest the page still renders; with neither input it says so.
             manifest.unlink()
             _, page = build("nothing")
-            self.assertIn("发布清单和飞书快照当前都不可读", page)
+            self.assertIn("发布清单当前不可读，构建日志有告警。", page)
             self.assertIn("网页手册：发布清单当前不可读", page)
+            self.assertIn("无数据：本次构建没有可读的发布清单", page)
+            self.assertIn("无数据：发布清单当前不可读，无法确定已发布型号。", page)
+            manifest.write_text(json.dumps({"targets": []}), encoding="utf-8")
+            (assets / SNAPSHOT_NAME).write_text(json.dumps({"schema": dl.SNAPSHOT_SCHEMA,
+                "exported_at": "2026-09-25", "documents": []}), encoding="utf-8")
+            _, page = build("empty")
+            self.assertIn("发布清单里还没有网页说明书", page)
+            self.assertNotIn("发布清单当前不可读，构建日志有告警。", page)
+
+            # An unreadable capability table empties only the 数据统计 tab; the old 系统数据 URL still redirects.
+            with (web / "conf.py").open("a", encoding="utf-8") as conf:
+                conf.write("from tools.rtd import system_data\nsystem_data.CAPABILITIES_CSV = 'missing.csv'\n")
+            result, page = build("no-statistics")
+            self.assertIn("Workbench statistics show no data", result.stderr)
+            self.assertIn("机型能力表或素材登记表不可读，构建日志有告警。", page)
+            self.assertNotIn("system-data-json", page)
+            self.assertIn("发布清单里还没有网页说明书", page)
+            moved = BeautifulSoup(
+                (base / "no-statistics" / "workspace" / "data" / "index.html").read_text(), "html.parser")
+            self.assertEqual(moved.select_one("#moved-target")["href"], "../deliverables/index.html#statistics")
+            self.assertIsNone(moved.select_one("#app-sidebar"))
+
 
 
 if __name__ == "__main__":

@@ -1,0 +1,9 @@
+{
+  "fresh_prepared_assembly": "passed; source RST rediscovered and shared component slots/assets validated through actual public replay",
+  "region_admission": "US normal admission applies; EU/UK gate explicitly out of region",
+  "html_byte_parity": "d4c8ef0b2e738ff5b256cc887b44019bf2adae9a52af6b26e0639d1eaf8b5aaf",
+  "markdown_byte_parity": "ed11fa8beffb56d3ec125c4f70411c88e7acfcdcc287eb8bad945b2f61800e9c",
+  "cold_source_free_replay": "pass",
+  "tampered_base_art_rejection": "document asset missing or changed: assets/ir/910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2/overview-textless.png",
+  "strict_sphinx": "pass"
+}

@@ -1,0 +1,1146 @@
+[
+  {
+    "lang": "uk",
+    "clocks": 1,
+    "coveredStepDigits": 0,
+    "images": [
+      {
+        "ok": true,
+        "src": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41/inbox_unit.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524/inbox_cable.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48/inbox_manual.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b358d85e56b8187022a0bcfaabb71f395586adab9b87605419c6010a56a52c5c/overview.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/dfe129c1a972f057d9b39b762f688103591ede63d51746b48c79519f1c9cd725/lcd.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b/power_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207/lcd_control.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239/clearance.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d/ac_charging.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
+      }
+    ],
+    "lockingLabels": [
+      {
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6349.0390625,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6325.84375
+        },
+        "scrollWidth": 105,
+        "text": "Заблокувати"
+      },
+      {
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6494.0390625,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6470.84375
+        },
+        "scrollWidth": 105,
+        "text": "Розблокувати"
+      }
+    ],
+    "scrollWidth": 1280,
+    "stepDigitRegions": [
+      {
+        "bottom": 6356.037561010567,
+        "left": 548.3691187748016,
+        "right": 557.5073717509921,
+        "top": 6334.3394270177605
+      },
+      {
+        "bottom": 6356.758815329924,
+        "left": 657.7988636210317,
+        "right": 669.6389516666667,
+        "top": 6335.060681337118
+      },
+      {
+        "bottom": 6501.8218987747305,
+        "left": 545.4208846924603,
+        "right": 554.5591376686508,
+        "top": 6480.123764781924
+      },
+      {
+        "bottom": 6501.885115453575,
+        "left": 654.8508381746032,
+        "right": 666.6909262202381,
+        "top": 6480.186981460769
+      }
+    ],
+    "symbolPanels": [
+      6,
+      2
+    ],
+    "width": 1280
+  },
+  {
+    "lang": "pt",
+    "clocks": 1,
+    "coveredStepDigits": 0,
+    "images": [
+      {
+        "ok": true,
+        "src": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41/inbox_unit.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524/inbox_cable.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48/inbox_manual.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/45c1eb33930e40f86104c223268a08f180e7813f83e68d4dc928166e922060e2/overview.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b47ab796d64506a30e4bb674429f12e27cfeba426feb6d5475641abd6d12ba01/lcd.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b/power_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207/lcd_control.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239/clearance.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d/ac_charging.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
+      }
+    ],
+    "lockingLabels": [
+      {
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6557.40625,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6534.2109375
+        },
+        "scrollWidth": 105,
+        "text": "Bloquear"
+      },
+      {
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6702.40625,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6679.2109375
+        },
+        "scrollWidth": 105,
+        "text": "Desbloquear"
+      }
+    ],
+    "scrollWidth": 1280,
+    "stepDigitRegions": [
+      {
+        "bottom": 6564.404748510567,
+        "left": 548.3691187748016,
+        "right": 557.5073717509921,
+        "top": 6542.7066145177605
+      },
+      {
+        "bottom": 6565.126002829924,
+        "left": 657.7988636210317,
+        "right": 669.6389516666667,
+        "top": 6543.427868837118
+      },
+      {
+        "bottom": 6710.1890862747305,
+        "left": 545.4208846924603,
+        "right": 554.5591376686508,
+        "top": 6688.490952281924
+      },
+      {
+        "bottom": 6710.252302953575,
+        "left": 654.8508381746032,
+        "right": 666.6909262202381,
+        "top": 6688.554168960769
+      }
+    ],
+    "symbolPanels": [
+      6,
+      2
+    ],
+    "width": 1280
+  },
+  {
+    "lang": "nl",
+    "clocks": 1,
+    "coveredStepDigits": 0,
+    "images": [
+      {
+        "ok": true,
+        "src": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41/inbox_unit.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524/inbox_cable.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48/inbox_manual.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/2a2e4aa74c577914d5aeeb0acf947e788523fd661173181ab8ecb5393fc87bd6/overview.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1cc78d02c6f0be9080028b812573645bd232fc9e9984c184829ea81b57a45950/lcd.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b/power_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207/lcd_control.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239/clearance.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d/ac_charging.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
+      }
+    ],
+    "lockingLabels": [
+      {
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6595.4296875,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6572.234375
+        },
+        "scrollWidth": 105,
+        "text": "Vergrendelen"
+      },
+      {
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6740.4296875,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6717.234375
+        },
+        "scrollWidth": 105,
+        "text": "Ontgrendelen"
+      }
+    ],
+    "scrollWidth": 1280,
+    "stepDigitRegions": [
+      {
+        "bottom": 6602.428186010567,
+        "left": 548.3691187748016,
+        "right": 557.5073717509921,
+        "top": 6580.7300520177605
+      },
+      {
+        "bottom": 6603.149440329924,
+        "left": 657.7988636210317,
+        "right": 669.6389516666667,
+        "top": 6581.451306337118
+      },
+      {
+        "bottom": 6748.2125237747305,
+        "left": 545.4208846924603,
+        "right": 554.5591376686508,
+        "top": 6726.514389781924
+      },
+      {
+        "bottom": 6748.275740453575,
+        "left": 654.8508381746032,
+        "right": 666.6909262202381,
+        "top": 6726.577606460769
+      }
+    ],
+    "symbolPanels": [
+      6,
+      2
+    ],
+    "width": 1280
+  },
+  {
+    "lang": "pl",
+    "clocks": 1,
+    "coveredStepDigits": 0,
+    "images": [
+      {
+        "ok": true,
+        "src": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41/inbox_unit.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524/inbox_cable.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48/inbox_manual.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a12874566ecc79931e9bfc03e81b9595fde6040631581060de5d318917c24e12/overview.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/98bb7ca0ba8c9a3bfc5957779664a9c602a2d69ee9fe9c71c5c07ea7ad2dc9f1/lcd.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b/power_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207/lcd_control.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239/clearance.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d/ac_charging.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
+      }
+    ],
+    "lockingLabels": [
+      {
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6648.0078125,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6624.8125
+        },
+        "scrollWidth": 105,
+        "text": "Zablokowanie"
+      },
+      {
+        "clientWidth": 105,
+        "rect": {
+          "bottom": 6793.0078125,
+          "left": 437.96875,
+          "right": 543.1171875,
+          "top": 6769.8125
+        },
+        "scrollWidth": 105,
+        "text": "Odblokowanie"
+      }
+    ],
+    "scrollWidth": 1280,
+    "stepDigitRegions": [
+      {
+        "bottom": 6655.006311010567,
+        "left": 548.3691187748016,
+        "right": 557.5073717509921,
+        "top": 6633.3081770177605
+      },
+      {
+        "bottom": 6655.727565329924,
+        "left": 657.7988636210317,
+        "right": 669.6389516666667,
+        "top": 6634.029431337118
+      },
+      {
+        "bottom": 6800.7906487747305,
+        "left": 545.4208846924603,
+        "right": 554.5591376686508,
+        "top": 6779.092514781924
+      },
+      {
+        "bottom": 6800.853865453575,
+        "left": 654.8508381746032,
+        "right": 666.6909262202381,
+        "top": 6779.155731460769
+      }
+    ],
+    "symbolPanels": [
+      6,
+      2
+    ],
+    "width": 1280
+  },
+  {
+    "lang": "uk",
+    "clocks": 1,
+    "coveredStepDigits": 0,
+    "images": [
+      {
+        "ok": true,
+        "src": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41/inbox_unit.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524/inbox_cable.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48/inbox_manual.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b358d85e56b8187022a0bcfaabb71f395586adab9b87605419c6010a56a52c5c/overview.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/dfe129c1a972f057d9b39b762f688103591ede63d51746b48c79519f1c9cd725/lcd.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b/power_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207/lcd_control.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239/clearance.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d/ac_charging.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
+      }
+    ],
+    "lockingLabels": [
+      {
+        "clientWidth": 107,
+        "rect": {
+          "bottom": 7283.6484375,
+          "left": 26.3984375,
+          "right": 133.609375,
+          "top": 7262.5234375
+        },
+        "scrollWidth": 107,
+        "text": "Заблокувати"
+      },
+      {
+        "clientWidth": 113,
+        "rect": {
+          "bottom": 7311.96875,
+          "left": 26.3984375,
+          "right": 138.9609375,
+          "top": 7290.84375
+        },
+        "scrollWidth": 113,
+        "text": "Розблокувати"
+      }
+    ],
+    "scrollWidth": 390,
+    "stepDigitRegions": [
+      {
+        "bottom": 7104.323313033948,
+        "left": 79.7177492063492,
+        "right": 84.69565396825398,
+        "top": 7092.503776163444
+      },
+      {
+        "bottom": 7104.716198985499,
+        "left": 139.32770412698414,
+        "right": 145.77738666666667,
+        "top": 7092.896662114996
+      },
+      {
+        "bottom": 7183.735826382644,
+        "left": 78.11174984126984,
+        "right": 83.08965460317461,
+        "top": 7171.91628951214
+      },
+      {
+        "bottom": 7183.770262148719,
+        "left": 137.7218184126984,
+        "right": 144.17150095238094,
+        "top": 7171.950725278215
+      }
+    ],
+    "symbolPanels": [
+      6,
+      2
+    ],
+    "width": 390
+  },
+  {
+    "lang": "pt",
+    "clocks": 1,
+    "coveredStepDigits": 0,
+    "images": [
+      {
+        "ok": true,
+        "src": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41/inbox_unit.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524/inbox_cable.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48/inbox_manual.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/45c1eb33930e40f86104c223268a08f180e7813f83e68d4dc928166e922060e2/overview.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b47ab796d64506a30e4bb674429f12e27cfeba426feb6d5475641abd6d12ba01/lcd.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b/power_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207/lcd_control.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239/clearance.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d/ac_charging.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
+      }
+    ],
+    "lockingLabels": [
+      {
+        "clientWidth": 81,
+        "rect": {
+          "bottom": 7318.7421875,
+          "left": 26.3984375,
+          "right": 107.3671875,
+          "top": 7297.6171875
+        },
+        "scrollWidth": 81,
+        "text": "Bloquear"
+      },
+      {
+        "clientWidth": 106,
+        "rect": {
+          "bottom": 7347.0625,
+          "left": 26.3984375,
+          "right": 131.9921875,
+          "top": 7325.9375
+        },
+        "scrollWidth": 106,
+        "text": "Desbloquear"
+      }
+    ],
+    "scrollWidth": 390,
+    "stepDigitRegions": [
+      {
+        "bottom": 7139.417063033948,
+        "left": 79.7177492063492,
+        "right": 84.69565396825398,
+        "top": 7127.597526163444
+      },
+      {
+        "bottom": 7139.809948985499,
+        "left": 139.32770412698414,
+        "right": 145.77738666666667,
+        "top": 7127.990412114996
+      },
+      {
+        "bottom": 7218.829576382644,
+        "left": 78.11174984126984,
+        "right": 83.08965460317461,
+        "top": 7207.01003951214
+      },
+      {
+        "bottom": 7218.864012148719,
+        "left": 137.7218184126984,
+        "right": 144.17150095238094,
+        "top": 7207.044475278215
+      }
+    ],
+    "symbolPanels": [
+      6,
+      2
+    ],
+    "width": 390
+  },
+  {
+    "lang": "nl",
+    "clocks": 1,
+    "coveredStepDigits": 0,
+    "images": [
+      {
+        "ok": true,
+        "src": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41/inbox_unit.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524/inbox_cable.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48/inbox_manual.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/2a2e4aa74c577914d5aeeb0acf947e788523fd661173181ab8ecb5393fc87bd6/overview.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1cc78d02c6f0be9080028b812573645bd232fc9e9984c184829ea81b57a45950/lcd.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b/power_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207/lcd_control.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239/clearance.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d/ac_charging.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
+      }
+    ],
+    "lockingLabels": [
+      {
+        "clientWidth": 108,
+        "rect": {
+          "bottom": 7464.53125,
+          "left": 26.3984375,
+          "right": 133.921875,
+          "top": 7443.40625
+        },
+        "scrollWidth": 108,
+        "text": "Vergrendelen"
+      },
+      {
+        "clientWidth": 112,
+        "rect": {
+          "bottom": 7492.8515625,
+          "left": 26.3984375,
+          "right": 138.015625,
+          "top": 7471.7265625
+        },
+        "scrollWidth": 112,
+        "text": "Ontgrendelen"
+      }
+    ],
+    "scrollWidth": 390,
+    "stepDigitRegions": [
+      {
+        "bottom": 7285.206125533948,
+        "left": 79.7177492063492,
+        "right": 84.69565396825398,
+        "top": 7273.386588663444
+      },
+      {
+        "bottom": 7285.599011485499,
+        "left": 139.32770412698414,
+        "right": 145.77738666666667,
+        "top": 7273.779474614996
+      },
+      {
+        "bottom": 7364.618638882644,
+        "left": 78.11174984126984,
+        "right": 83.08965460317461,
+        "top": 7352.79910201214
+      },
+      {
+        "bottom": 7364.653074648719,
+        "left": 137.7218184126984,
+        "right": 144.17150095238094,
+        "top": 7352.833537778215
+      }
+    ],
+    "symbolPanels": [
+      6,
+      2
+    ],
+    "width": 390
+  },
+  {
+    "lang": "pl",
+    "clocks": 1,
+    "coveredStepDigits": 0,
+    "images": [
+      {
+        "ok": true,
+        "src": "assets/ir/0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a/symbol_warning_triangle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584/symbol_read_manual.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33/symbol_do_not_dismantle.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f/symbol_no_open_flame.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899/symbol_keep_away_from_children.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/b98301d1742f0695e0b0c1ec523eba3c79f8c9879fc2672565ff5d79fde0bd66/symbol_li_ion_htp017.svg"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45/symbol_battery_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5/symbol_weee.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41/inbox_unit.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524/inbox_cable.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48/inbox_manual.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/a12874566ecc79931e9bfc03e81b9595fde6040631581060de5d318917c24e12/overview.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/98bb7ca0ba8c9a3bfc5957779664a9c602a2d69ee9fe9c71c5c07ea7ad2dc9f1/lcd.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/af29680d9135da5907c8a841c42f860276fa2bce1d2f83cdab3c2512607a853b/power_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207/lcd_control.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239/clearance.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd/connection-x5.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/9e09181b8709b59dc8bb6cd07ad0647fed92b8fe99a348862d6f076d274a7d8a/locking_native.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d/ac_charging.png"
+      },
+      {
+        "ok": true,
+        "src": "assets/ir/7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1/solar_charging.png"
+      }
+    ],
+    "lockingLabels": [
+      {
+        "clientWidth": 112,
+        "rect": {
+          "bottom": 7695.6171875,
+          "left": 26.3984375,
+          "right": 138.171875,
+          "top": 7674.4921875
+        },
+        "scrollWidth": 112,
+        "text": "Zablokowanie"
+      },
+      {
+        "clientWidth": 116,
+        "rect": {
+          "bottom": 7723.9375,
+          "left": 26.3984375,
+          "right": 142.453125,
+          "top": 7702.8125
+        },
+        "scrollWidth": 116,
+        "text": "Odblokowanie"
+      }
+    ],
+    "scrollWidth": 390,
+    "stepDigitRegions": [
+      {
+        "bottom": 7516.292063033948,
+        "left": 79.7177492063492,
+        "right": 84.69565396825398,
+        "top": 7504.472526163444
+      },
+      {
+        "bottom": 7516.684948985499,
+        "left": 139.32770412698414,
+        "right": 145.77738666666667,
+        "top": 7504.865412114996
+      },
+      {
+        "bottom": 7595.704576382644,
+        "left": 78.11174984126984,
+        "right": 83.08965460317461,
+        "top": 7583.88503951214
+      },
+      {
+        "bottom": 7595.739012148719,
+        "left": 137.7218184126984,
+        "right": 144.17150095238094,
+        "top": 7583.919475278215
+      }
+    ],
+    "symbolPanels": [
+      6,
+      2
+    ],
+    "width": 390
+  }
+]

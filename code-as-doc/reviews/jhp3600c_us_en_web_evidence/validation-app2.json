@@ -1,0 +1,221 @@
+{
+  "source_git_ref": "c4e352ec0e80a552a21a7816b04a5ae4d52af663",
+  "technical_version": "git-20261005-31fd0692-app2",
+  "receipt_sha256": "07aac87216da5956fa9f8cb030f662b48145bfb3e28db6ad5093fb06b7fb94be",
+  "strict_standalone_sphinx": "passed",
+  "strict_aggregate_sphinx": "passed",
+  "aggregate_targets": 106,
+  "native_source_line_coverage_unmatched": 0,
+  "deterministic_replay": {
+    "files": 107,
+    "byte_identical": true
+  },
+  "baseline_sources": {
+    "files_checked": 5609,
+    "failures": [],
+    "commit": "83cc003714a81a6d8fa1e89b9b38829b76ed598e"
+  },
+  "shared_css": "unchanged; existing pair/trio variants selected in source",
+  "asset_bytes": "unchanged; complete frames and embedded step numbers preserved",
+  "browser": {
+    "checks": "passed",
+    "snapshots": [
+      {
+        "phones": {
+          "documentWidth": 1440,
+          "images": [
+            {
+              "availableWidth": 817.03125,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-pair",
+              "loaded": true,
+              "natural": [
+                489,
+                486
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": 700.15625,
+                "height": 349.8359375,
+                "width": 352,
+                "x": 547.109375,
+                "y": 350.3203125
+              },
+              "src": "../../../../_static/manual-assets/_pool/79/7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7.png"
+            },
+            {
+              "availableWidth": 817.03125,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-trio",
+              "loaded": true,
+              "natural": [
+                888,
+                474
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": 1809.96875,
+                "height": 313.859375,
+                "width": 588,
+                "x": 429.109375,
+                "y": 1496.109375
+              },
+              "src": "../../../../_static/manual-assets/_pool/3e/3e9abb93a403936c8e8dd9aa6dca7643eca1f0a42694472e6fe6efe122981f14.png"
+            }
+          ],
+          "rootFont": "16px",
+          "viewport": [
+            1440,
+            1000
+          ]
+        },
+        "regression": {
+          "headingRolesChecked": 84,
+          "headingErrors": [],
+          "lcdLabelsBold": 28,
+          "soldBadges": 7,
+          "downloadColumns": 2,
+          "bold": [
+            "POWER",
+            "\"Icon Flashed\""
+          ],
+          "sharedPlus": true,
+          "oldDownloadCropReferences": 0
+        }
+      },
+      {
+        "phones": {
+          "documentWidth": 390,
+          "images": [
+            {
+              "availableWidth": 358,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-pair",
+              "loaded": true,
+              "natural": [
+                489,
+                486
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": 693.484375,
+                "height": 349.8359375,
+                "width": 352,
+                "x": 19,
+                "y": 343.6484375
+              },
+              "src": "../../../../_static/manual-assets/_pool/79/7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7.png"
+            },
+            {
+              "availableWidth": 358,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-trio",
+              "loaded": true,
+              "natural": [
+                888,
+                474
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": 2036.1171875,
+                "height": 191.09375,
+                "width": 358,
+                "x": 16,
+                "y": 1845.0234375
+              },
+              "src": "../../../../_static/manual-assets/_pool/3e/3e9abb93a403936c8e8dd9aa6dca7643eca1f0a42694472e6fe6efe122981f14.png"
+            }
+          ],
+          "rootFont": "16px",
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        "regression": {
+          "headingRolesChecked": 84,
+          "headingErrors": [],
+          "lcdLabelsBold": 28,
+          "soldBadges": 7,
+          "downloadColumns": 2,
+          "bold": [
+            "POWER",
+            "\"Icon Flashed\""
+          ],
+          "sharedPlus": true,
+          "oldDownloadCropReferences": 0
+        }
+      },
+      {
+        "phones": {
+          "documentWidth": 320,
+          "images": [
+            {
+              "availableWidth": 288,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-pair",
+              "loaded": true,
+              "natural": [
+                489,
+                486
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": 696.7890625,
+                "height": 286.2265625,
+                "width": 288,
+                "x": 16,
+                "y": 410.5625
+              },
+              "src": "../../../../_static/manual-assets/_pool/79/7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7.png"
+            },
+            {
+              "availableWidth": 288,
+              "centerOffset": 0,
+              "class": "hb-app-add-device-phone-art hb-app-phone-trio",
+              "loaded": true,
+              "natural": [
+                888,
+                474
+              ],
+              "objectFit": "contain",
+              "overflow": "visible",
+              "rect": {
+                "bottom": 2104.703125,
+                "height": 153.7265625,
+                "width": 288,
+                "x": 16,
+                "y": 1950.9765625
+              },
+              "src": "../../../../_static/manual-assets/_pool/3e/3e9abb93a403936c8e8dd9aa6dca7643eca1f0a42694472e6fe6efe122981f14.png"
+            }
+          ],
+          "rootFont": "16px",
+          "viewport": [
+            320,
+            844
+          ]
+        },
+        "regression": {
+          "headingRolesChecked": 84,
+          "headingErrors": [],
+          "lcdLabelsBold": 28,
+          "soldBadges": 7,
+          "downloadColumns": 2,
+          "bold": [
+            "POWER",
+            "\"Icon Flashed\""
+          ],
+          "sharedPlus": true,
+          "oldDownloadCropReferences": 0
+        }
+      }
+    ]
+  },
+  "boundary": "local Git-only; no push/PR/merge/deployment/online writes"
+}

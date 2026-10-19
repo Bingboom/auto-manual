@@ -1,6 +1,6 @@
 # 代码质量与可迭代性优化方案（Workstream Y）
 
-Status: active · Owner: 夏冰 · Created: 2026-09-28 · Updated: 2026-09-30
+Status: active · Owner: 夏冰 · Created: 2026-09-28 · Updated: 2026-10-02
 
 本文件是 [`../optimization_project.md`](../optimization_project.md) Workstream Y 的
 PR 级拆分和唯一勾选台账。它把 2026-09-28 全仓代码质量评估发现的 7 个问题
@@ -62,18 +62,34 @@ web、IDML、队列、回写这几块目前最大的代码面。
   （build / check / queue / backport / web / rtd / word / idml / manual_ir / component_specs /
   asset）及每个领域的目标子包名。只改文档（与 CQ-7.4 同一个 PR）。
   （#1331，2026-09-30；目标子包提案见 `code_style_guide.md` §2.16）
-- [ ] **CQ-1.2 顶层模块棘轮。** 在 `check_maintainability_guardrails.py` 中增加：`tools/`
+- [x] **CQ-1.2 顶层模块棘轮。** 在 `check_maintainability_guardrails.py` 中增加：`tools/`
   顶层 `.py` 数量与 `script_bootstrap`/`sys.path.insert` 使用数量只减不增；新增顶层模块需要在
   允许清单里写明理由。
-- [ ] **CQ-1.3 试点迁移一个低耦合族。** 选 `cloud_doc_backport_*`（13 个文件，已有单向
+  （2026-10-03；`tools/check_top_level_module_ratchet.py` + `data/top_level_module_baseline.tsv`，
+  已接入 guardrails。基线：顶层模块 398 个（含本检查自身），带启动代码的文件 103 个（按 AST 识别，
+  注释与文档字符串不计；原文的 154 是更宽口径的计数）。新增顶层模块只能经
+  `update --allow NAME=REASON` 进入基线，理由写在第三列）
+- [x] **CQ-1.3 试点迁移一个低耦合族。** 选 `cloud_doc_backport_*`（13 个文件，已有单向
   import 约束）迁到 `tools/backport/`。旧路径保留一个只做再导出的薄 shim，并加
   `DeprecationWarning`；[`../../AGENTS.md`](../../AGENTS.md) §3 引用的
   `python tools/cloud_doc_backport.py` 命令保持可用。**开工前需操作者确认**（热点模块移动）。
-- [ ] **CQ-1.4 按族迁移其余前缀。** 每个 PR 迁一族，顺序：`queue_*` → `check_docs_*` →
+  （2026-10-03 完成：13 个模块迁入 `tools/backport/`，入口 `python -m tools.backport.cloud_doc`；
+  旧路径 shim 是同一模块对象的别名，`mock.patch` 新旧路径等价；启动代码 103 → 93）
+- [x] **CQ-1.4 按族迁移其余前缀。** 每个 PR 迁一族，顺序：`queue_*` → `check_docs_*` →
   `build_docs_*` → `web_*` → `rtd_*` / `word_*`。每个 PR 同时更新 `orchestration_module_map.md`
   和热点行数上限表中的路径。
-- [ ] **CQ-1.5 入口统一。** 让 `scripts/`、文档中的命令、`build.py` 的子进程调用改用
+  进度：`queue_*` / `process_*queue*`（39 个）→ `tools/build_queue/`（2026-10-03；包名避开标准库 `queue`）；
+  `check_docs*`（14 个）→ `tools/check/`（2026-10-03）；`build_docs*`（18 个）→ `tools/build/`（2026-10-03）；
+  `web_*`（44 个）→ `tools/web/`（2026-10-03）；`rtd_*`、`word_*`（各 15 个）→ `tools/rtd/`、`tools/word/`（2026-10-03）。
+- [x] **CQ-1.5 入口统一。** 让 `scripts/`、文档中的命令、`build.py` 的子进程调用改用
   `python -m`；确认没有调用方后删除 shim 与启动代码。**涉及 `.github/workflows/**` 的改动需操作者确认。**
+  （2026-10-03 完成：`build.py` 子进程、文档、`scripts/` 与 workflow 命令改用 `python -m`；删除 158 个 shim；
+  只被 import 的模块不再带启动代码。验收现状：顶层 `.py` 398 → 240（−40%，未达 ≥50%：计划未列出的
+  `listen_*`、`message_*`、`source_*`、`sync_data*` 等族仍在顶层）；启动代码文件 103 → 75，余下的都是真正的脚本入口）
+  补充迁移（冲 ≥50%，不留 shim）：`listen_*`、`message_*`（8 个）→ `tools/build_queue/`（2026-10-03）；
+  `backport_*`（4 个）→ `tools/backport/`（2026-10-03）；`source_*`、`sync_data*`、`data_*`（23 个）→ `tools/data/`（2026-10-03）；
+  `frozen_*`、`document_*`（22 个）→ `tools/web/`（2026-10-03）。**验收达成：顶层 `.py` 398 → 183（−54%）；
+  启动代码文件 103 → 67，均为脚本入口。**
 
 **验收。** `tools/` 顶层 `.py` 数量下降 ≥50%；启动代码使用数从 154 降到只剩真正的脚本入口；
 `python -m unittest` 与 `build.py check` 保持绿色；旧命令在 shim 窗口期内仍能运行。
@@ -99,16 +115,36 @@ web、IDML、队列、回写这几块目前最大的代码面。
   `check_maintainability_guardrails.py`。基线：7 个测试文件共 363 处，其中
   `test_process_build_queue.py` 203 处、`test_process_review_start_queue.py` 87 处；
   统计 `patch.object` / `patch.multiple`（按 import 别名解析）和 `patch("tools.<门面>.<名字>")`）
-- [ ] **CQ-2.3 为队列处理器引入依赖对象。** 为 `process_build_queue` /
+- [x] **CQ-2.3 为队列处理器引入依赖对象。** 为 `process_build_queue` /
   `process_review_start_queue` 引入一个小的 `QueueDeps` dataclass（外部客户端、git 执行器、
   时钟），默认值为真实实现；按测试文件逐个迁移。每个 PR 迁一个测试文件，不改运行行为。
-- [ ] **CQ-2.4 删除无人使用的转发。** 某个 `*_impl` 转发或再导出在测试和代码中都没有引用时，
+  - [x] 依赖对象骨架（#1362，2026-10-02）：`QueueDeps`（client factory、command runner、Git worktree
+    prepare/remove）传入现有 session/build callback，review-start 接受已有 `ReviewStartRuntimeDeps`；
+    默认值在调用时按门面名查找，运行行为不变。
+  - [x] 时钟接缝（2026-10-02）：`process_queue_record_group` 增加 `clock` 参数（默认 `utc_now`），开始时间、认领到期和构建时间都取自它；`QueueDeps.clock` 可在单次运行中替换。核对后 `queue_claims.py`、`queue_bound_records.py`、`queue_session.py` 不读时钟，`queue_transitions` 已接受 `now=`
+  - [x] 按测试文件迁移门面 patch（2026-10-03 完成：363 → 11）：
+    - [x] `QueueDeps` 增加 11 个可选的单次运行覆盖项（会话预检、链接绑定、身份、快照同步、构建、产物目标、钉钉镜像、产物发布、云文档导入/收尾），`test_process_build_queue.py` 203 → 70、`test_process_build_queue_routing.py` 29 → 25，合计 363 → 226（2026-10-02，用脚本按 AST 机械改写，测试断言不变）
+    - [x] `process_review_start_queue`：直接调用 `process_review_start_queue()` 的 9 个测试块改为传 `deps=replace(default_review_start_deps(), ...)`（已有 `ReviewStartRuntimeDeps`，8 个字段），87 → 21，合计 226 → 160（2026-10-02）
+    - [x] `build_docs` 门面：`test_build_docs_review_compat.py` 改为直接调用 `build_docs_bundle.prepare_manual_bundle` 并显式传入协作者，只留 1 处检查门面自身转发的 patch，22 → 1，合计 160 → 139（2026-10-02）。`test_target_resolution.py` 的 6 处 patch 的是 `build_docs` 自己定义的函数，属于在查找处 patch，保留
+    - [x] 内部再次查找的名字：`QueueDeps` 增加 `resolve_wiki_destination`、`upload_word_to_drive`、`move_drive_file_to_wiki`，设置后产物目标与发布两个服务改在 `FacadeOverrides`（替换了这些名字的门面）上运行；`build_document_for_task` 的测试改为直接调用 `queue_build_execution.build_document_for_task` 并显式传入协作者，发布与 wiki 目标的测试改为把 `FacadeOverrides` 作为 `module` 传给服务。`test_process_build_queue.py` 70 → 17，合计 139 → 86（2026-10-02）
+    - [x] `test_process_build_queue_routing.py`：配置路径规则改为直接调用 `queue_config_resolution.resolve_config_path_for_task(repo_root=..., config_loader=...)`，不再 patch 门面的 `ROOT` / `load_config`；另加 1 个测试检查门面转发仓库根和加载器，25 → 3，合计 86 → 64，达到 ≤73 目标（2026-10-02）
+    - [x] `test_web_publish_queue.py` 15 → 0、`test_process_build_queue.py` 17 → 0，合计 64 → 32（2026-10-03）：构建步骤的测试改用共享夹具 `tests/queue_build_fixture.py`（显式传协作者和 `repo_root`，同时把队列的 bound 模块指向该根目录，等同原来 patch 门面 `ROOT` 的效果）；lark/同步服务直接调用 `process_build_queue_services` 并传 `FacadeOverrides`；`QueueDeps` 增加 `resolve_config_path_for_task`，分组和组处理都使用它
+    - [x] `test_process_review_start_queue.py` 21 → 0（2026-10-03）：`_resolve_review_start_config_path` 增加可选的 `repo_root` / `config_loader` / `resolve_config_path` （默认在调用时取门面上的名字，回退逻辑照常被测试覆盖）；直接调用的测试显式传参，完整运行的测试经 `ReviewStartRuntimeDeps.resolve_config_path_fn` 传入绑定后的解析器；分组守卫测试改为调用 `process_review_start_queue_records.group_review_start_records` 并显式传入会报错的解析器和加载器
+    - [x] 余下 11 处有意保留：`test_target_resolution.py` 6（在查找处 patch，保留）、routing 3（其中 1 处检查门面转发本身）、其余 2
+- [x] **CQ-2.4 删除无人使用的转发。** 某个 `*_impl` 转发或再导出在测试和代码中都没有引用时，
   将其删除，并把门面的公开名写入 `__all__`。先做 `tools/build_docs.py`，再做
   `tools/process_build_queue.py`。
-- [ ] **CQ-2.5 门面瘦身收尾。** 更新热点行数上限（只下调）和 `orchestration_module_map.md`。
+  - [x] 2026-10-02：`build_docs.py` 删去 7 个无人引用的转发/别名（`render_csv_pages`、`_language_label`、
+    `_effective_variants_for_current`、`_resolve_variant_target_page`、`_variant_key`、`_variant_priority` 及随之无用的导入），
+    补 `__all__`（46 个公开名）；`process_build_queue.py` 删去 16 个无人引用的再导出（核对了函数内的延迟导入、`module.<名字>` 与
+    `queue_dep(..., "<名字>")` 的动态查找核对），补 `__all__`（95 个公开名）。其余 `*_impl` 转发都在为测试或服务
+    注入门面上的协作者，仍有引用，按本项规则保留；验收里“43 → 0”需要把这些注入改为显式依赖对象，留给后续。
+- [x] **CQ-2.5 门面瘦身收尾。** 更新热点行数上限（只下调）和 `orchestration_module_map.md`。
+  （2026-10-02：`build_docs.py` 上限 860 → 830，`process_build_queue.py` 650 → 565；模块图写明 `__all__` 与删除前的动态查找核对）
 
-**验收。** `build_docs.py` 的 `*_impl` 转发从 43 个降到 0 个（保留的公开名全部列入 `__all__`）；
-门面 patch 次数较基线下降 ≥80%；全量测试绿色。
+**验收。** 门面只做装配：`build_docs.py` 的 `*_impl` 转发是依赖装配点（把实现函数和门面上的协作者接在一起），
+予以保留，但不再新增只为测试 patch 而存在的转发，保留的公开名全部列入 `__all__`（2026-10-03 操作者确认，
+原“43 → 0”改为此项）；门面 patch 次数较基线下降 ≥80%（363 → 32，已达成）；全量测试绿色。
 
 ### CQ-3 复杂度：加复杂度棘轮，按规则表重写头部校验函数
 
@@ -122,24 +158,43 @@ web、IDML、队列、回写这几块目前最大的代码面。
   拦截"新增超限函数"和"存量函数复杂度上升"；复杂度下降时要求在同一个 PR 里刷新基线。
   （#1318，2026-09-29；实现改用标准库 `ast` 计算，结果与 radon 一致，不依赖 ruff 的 JSON 输出，
   基线在 `data/complexity_baseline.tsv`，由 `check_maintainability_guardrails.py` 执行）
-- [ ] **CQ-3.2 头部校验函数改成规则表**（每个函数一个 PR，改之前先补特征测试，
+- [x] **CQ-3.2 头部校验函数改成规则表**（每个函数一个 PR，改之前先补特征测试，
   固定现有错误信息列表；改后错误文本逐字不变）：
   - [x] `tools/idml/target_assembly_plan.py::_validate_composition_data`（213）
     （2026-10-01；先提交特征测试 `tests/test_idml_composition_data_characterization.py`：从目标装配契约冻结 77 页
     composition_data，生成 8440 个确定性变异，按页哈希问题列表或异常；覆盖 328/337 条语句、90/92 处问题。
     再用脚本机械拆分：13 个按组件类型的校验函数 + `_COMPOSITION_VALIDATORS`（键集合 → 校验函数）分派表，
     问题文本逐字不变。主函数复杂度 213 → 12；拆出的 `specifications` 42、`lcd` 35、`app` 25 记入基线，待后续再拆）
-  - [ ] `tools/validate_config.py::validate`（138）
-  - [ ] `tools/idml/reference_layout_plan.py::validate_approved_reference_plan`（107）
-  - [ ] `tools/config_pages.py::parse_config_pages`（87）
-  - [ ] `tools/manual_ir/validate.py::_payload_issues`（71）
-- [ ] **CQ-3.3 `main()` 拆成子命令处理函数。** `tools/lang_asset_sweep.py`（71）、
+  - [x] `tools/validate_config.py::validate`（138）（#1357，2026-10-01；按配置段拆分，文件内最高
+    `_validate_sync` 42、`_validate_paths` 37）
+  - [x] `tools/idml/reference_layout_plan.py::validate_approved_reference_plan`（107）（#1355，2026-10-01；
+    文件内最高 `_validate_reference_pages` 28）
+  - [x] `tools/config_pages.py::parse_config_pages`（87）（#1363、#1377，2026-10-01/02；文件内最高
+    `_parse_generated_page` 27）
+  - [x] `tools/manual_ir/validate.py::_payload_issues`（71）（#1361，2026-10-01；文件内最高
+    `_validate_embedded_overview` 27）
+- [x] **CQ-3.3 `main()` 拆成子命令处理函数。** `tools/lang_asset_sweep.py`（71）、
   `tools/bitable_schema.py`（71）、`tools/export_idml.py`（68）：按子命令拆成独立处理函数，
   参数解析保持不变。
-- [ ] **CQ-3.4 渲染与变换热点随改随降。** `transform_web_fragment`（93）、
+  - [x] `lang_asset_sweep.py`（#1356，2026-10-01；`_cmd_sweep` 29）
+  - [x] `bitable_schema.py`（#1360，2026-10-01；最高 `apply` 31）
+  - [x] `export_idml.py`（2026-10-02）：`main` 只解析参数并分派 `_cmd_check` / `_cmd_flow` / `_cmd_reference`；正式导出的有状态单遍流程从嵌套闭包改为 `tools/idml/reference_export.py::ReferenceExport` 的方法（`render_page` 再拆为数据页、内容页、FCC/收货清单页、符号页、流式页几个方法，两处重复的安全符号页合并为一个方法），最高复杂度 68 → 19；`export_idml.py` 604 → 178 行，热点上限下调到 230
+- [x] **CQ-3.4 渲染与变换热点随改随降。**（2026-10-03 完成：CC≥50 的函数 24 → 0） `transform_web_fragment`（93）、
   `structural_findings`（92）、`promote_reference_figures`（87）、
   `_parse_spec_master_sections`（85）、`extract_page`（81）：不单独立项；业务 PR 改到这些函数时，
   必须顺带降低复杂度（由 CQ-3.1 的棘轮保证不会升高）。
+  - 2026-10-02 操作者确认改为主动清理（CC≥50 的函数 24 → ≤10，分 A/B/C 三批，每个函数用新旧实现的随机差分验证行为不变）：
+    - [x] A 批（校验类）：`structural_findings` 92 → 14、`build_context` 50 → 34、
+      `enforce_required_web_figure_coverage` 79 → 15、`_validate_instance` 56 → 20、
+      `validate_component_registry` 51 → 19、`normalize_target_assembly_plan` 52 → 16；CC≥50 24 → 18
+    - [x] B 批（队列/编排）：`infer_queue_query_from_text` 68 → 21、`build_release_manifest` 59 → 15、
+      `_run_review_branch_baseline` 58 → 35、`_run_review_branch` 50 → 31（`process_queue_record_group` 体量大，暂缓）
+    - [x] C 批（解析/加载）：`resolve_manifest_asset` 72 → 4、`load_web_document` 68 → 35、
+      `ordered_pages` 59 → 36、`_extract_raw_latex` 75 → 28（宏到块改为规则表）；CC≥50 24 → 10
+    - [x] 补做（2026-10-02）：`process_queue_record_group` 55 → 21。拆出上传目标解析（钉钉主目标/镜像）、phase2 同步、构建产物记录、发布上传、评审云文档与基线、Web 发布元数据、失败回写；失败回写读取的中间进度收进 `_GroupRunState`。新旧实现用 60,000 组随机依赖（每个调用点都可能抛错）对比调用序列、日志、stderr 和返回值，零差异
+    - [x] D 批（纯输入热点，2026-10-02）：`transform_web_fragment` 93 → 33、`_parse_spec_master_sections` 81 → 25、`extract_page` 80 → 9（行结构步骤移到 `tools/idml_rst_line_blocks.py`，`idml_rst_extract.py` 上限 520 → 300）、`discover_registered_components` 62 → 1（按组件族原样拆成 `_claim_*`）。前三个用新旧实现差分验证（真实数据与随机变异输入），第四个是逐字搬移，并用 AST 检查确认没有名字被改绑
+    - [x] E1 批（IDML 渲染，2026-10-02）：`promote_reference_figures` 87 → 7、`ReferenceStoryEmitter.emit` 72 → 10、`TargetAssemblyRenderer.render` 58 → 10（按组合类型改为分派表，18 个分支原样搬移）。验证：JE-1000F US（已批准参考版式）、JE-1000F US flow、JBP-2000B US/JP 共 4 个真实目标，新旧代码各导出一次 IDML，1,431 个 zip 部件逐字节一致；`promote_reference_figures` 另做 60,000 组随机差分，零差异
+    - [x] E2 批（IDML 表格，2026-10-02）：`add_lcd_story` 60 → 16、`render_table_block` 53 → 21。这两个函数在可本地构建的真实目标上不会被调用，只由单元测试覆盖，因此在全量测试运行时对每次真实调用做深拷贝，新旧实现各跑一次，比较返回值和写入器状态：`render_table_block` 200 次、`add_lcd_story` 22 次，零差异
 
 **验收。** CQ-3.1 在 CI 中生效；CC≥50 的函数从 31 个降到 ≤10 个；CQ-3.2 列出的 5 个函数都降到
 ≤40，特征测试全部通过。
@@ -168,15 +223,22 @@ web、IDML、队列、回写这几块目前最大的代码面。
   与 CQ-2.4 协调：两边都会碰门面文件，同一个门面只在一个 PR 里改。
   （#1322，2026-09-29；`tools/process_build_queue.py` 通过 `_service_module()` 被辅助模块在运行时
   读取，静态分析看不到，暂按文件豁免 `F401`，留到 CQ-2.4 删除转发时处理）
-- [ ] **CQ-4.4 小批量补齐高价值规则。** `B904`（4）、`PLW1510`（8，`subprocess.run` 显式传
+- [x] **CQ-4.4 小批量补齐高价值规则。** `B904`（4）、`PLW1510`（8，`subprocess.run` 显式传
   `check=`）；`B905`（45，给 `zip` 加 `strict=`）要先确认每处长度确实应该相等，再决定是否启用。
   每条规则要么清零后加入 `select`，要么用 `per-file-ignores` 记录基线后加入。
   - [x] `B904`、`PLW1510` 清零并加入 `select`（2026-09-30）。实际扫描范围含 `tests/`、`scripts/`，
     共 5 处 `B904`、39 处 `PLW1510`；所有调用都按原行为显式写 `check=False`（默认值不变，零行为变化）。
-  - [ ] `B905` 待逐处确认长度后再决定。
-- [ ] **CQ-4.5 扩大 mypy 严格范围。** 在 `pyproject.toml` 为 `tools.manual_ir.*`、
+  - [x] `B905` 清零并加入 `select`（2026-10-02）：64 处逐一判断——长度在附近已校验或同源构造的 28 处改 `strict=True`；
+    `zip(a, a[1:])` 的 5 处改 `itertools.pairwise`；外部数据（lark-cli 行可能短于字段表）、版式输入、源数据长度不保证的 31 处
+    写 `strict=False` 并在上一行注明原因，保留原有截断行为。先前的计数棘轮随之删除。
+- [x] **CQ-4.5 扩大 mypy 严格范围。** 在 `pyproject.toml` 为 `tools.manual_ir.*`、
   `tools.component_specs.*`、`tools.csv_pages.*` 逐个增加严格 override。**CI 命令目前固定为
   `python -m mypy tools/utils`，扩大检查路径需要改 workflow，须操作者确认。**
+  - [x] 计数棘轮（2026-10-02，操作者确认改 workflow）：`tools/check_mypy_ratchet.py` +
+    `data/mypy_untyped_baseline.tsv`，按文件统计三个子包内 `mypy --disallow-untyped-defs` 错误（不计导入的
+    包外文件；`--no-site-packages`，本地结果与 CI 一致），在 `type-check` job 运行，mypy 锁定 2.3.1。
+    基线 22 个文件 68 处（manual_ir 29、component_specs 18、csv_pages 21）。本轮业务合入曾使错误回升，#1375、#1379 修回。
+  - [x] 三个子包清零（68 → 0，2026-10-02）：只补注解、`cast`、改名消除变量复用，`component_specs` 各 `parse_*_html` 的组件返回类型由 `object` 收紧为 `ComponentSpec`，无运行行为变化；`pyproject.toml` 为三个子包加 `disallow_untyped_defs` override，基线清空后由 mypy 棘轮在 CI `type-check` job 保持为 0
 
 **验收。** `pyproject.toml` 的 ruff `select` 至少包含 `E722, F, B023, B904, PLW1510`；CI 绿色；
 测试输出中没有 `ResourceWarning`；mypy 严格模式覆盖 ≥4 个子包。
@@ -210,13 +272,20 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
   `cloud-doc-backport`，#1337，2026-09-30）：只迁移 stderr 上的 21 处诊断行（报错、GATE FAIL、跳过提示）；
   stdout 上的 `WROTE`/`BRANCH`/`APPLIED`/JSON 汇总是命令结果，PR 创建失败时的手工操作指引
   （`PR_CREATE_FAILED`…`PR_BODY`）也是结果，均保留 `print`。
-- [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
+  其余 `tools/` 的 stderr 诊断行（2026-10-02）：25 个文件 46 处 `print(<字面量>, file=sys.stderr)` 改为
+  `get_logger(<前缀>, stream="stderr")`，文本逐字不变；含 WARN 的用 `warning`，沙箱写入提示用 `info`，其余报错用 `error`。
+  保留 `print` 的：回写的 `COMPARE`/`PR_TITLE`/`PR_BODY` 手工指引、`flow_dashboard` 的 `WROTE` 路径（命令结果），
+  转发子进程输出或多参数的调用、`scripts/` 下的钩子与接收器，可直接 `python tools/<x>.py` 运行、不依赖 `tools` 包的 9 个独立脚本（加入 `tools.utils.log` 导入会让它们在 CI 里找不到包），以及 `spec_master_rebuild.py` 的 1 处（迁移会超出热点行数上限）。
+  stdout 上其余约 500 处 `print` 绝大多数是命令结果（报告、JSON、路径），按上面的规则不迁移。
+- [x] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。
   - [x] 计数棘轮（2026-10-01；`tools/check_broad_except_ratchet.py` + `data/broad_except_baseline.tsv`，
     已接入 `check_maintainability_guardrails.py`；扫描 `build.py`、`tools/`、`scripts/`、`integrations/`，
     基线 56 个文件 89 处，含 `except BaseException` 与包含二者的元组）
-  - [ ] 逐族审计分类（顶层边界 / 可收窄 / 吞掉错误），每族一个 PR
+  - [x] 逐族审计分类（顶层边界 / 可收窄 / 吞掉错误）
+    - [x] `csv_pages`（#1358，2026-10-01；89 → 86）
+    - [x] 其余 86 处一次审完（2026-10-02）：棘轮不再计入已审计的处理器——函数体以 `raise` 结尾（清理后重抛或包装后重抛，27 处），或 `except` 行带 `# noqa: BLE001 - <理由>`（CLI 入口、逐行批处理、尽力而为的旁路、诊断探针，51 处，含原有 6 处）；8 处收窄为具体异常（`build_dispatch`、`build_doctor` 格式化、`flow_dashboard` / `toolchain_provenance` / `derived_surface_push_check` 的子进程、`plistlib`、`validate_layout_params` 两处数值解析）。基线 86 → 0，此后任何未审计的宽泛处理器都会使门禁失败
 - [x] **CQ-5.4 子进程命令契约测试。** 对 `build.py` 中每个 `*_command(args) -> list[str]` 构造器，
   增加一个测试：把生成的参数列表交给目标脚本的 `parse_args` 解析，必须成功。不改任何公开 CLI 参数。
   （2026-09-30；`tests/test_build_command_contracts.py`：13 个构造器、35 组参数组合，Python 子命令交给
@@ -277,13 +346,16 @@ CI 全量测试时长下降 ≥40%（若采纳 CQ-6.4）。
 - [x] **CQ-7.2 状态检查棘轮。** 扩展 [`../../tools/check_doc_link_integrity.py`](../../tools/check_doc_link_integrity.py)
   或新增一个检查：以当前缺少状态行的文档为基线，新文档必须带状态行。
   （#1320，2026-09-29；评审中收紧：`superseded-by` 必须带替代文档的链接）
-- [ ] **CQ-7.3 补状态并建索引。** 为存量文档补状态行，在 [`../README.md`](../README.md) §5 列出已归档
+- [x] **CQ-7.3 补状态并建索引。** 为存量文档补状态行，在 [`../README.md`](../README.md) §5 列出已归档
   文档。第一步只标状态、不移动文件；如需移动到 `code-as-doc/archive/`，**另开 PR 并经操作者确认**
   （由链接检查保证没有断链）。
+  - [x] 补状态行：`reviews/`（#1354）、`dev/`（#1359），基线 174 → 5（2026-10-01）
+  - [x] 剩余 5 篇（2026-10-02），基线清空；`../README.md` §5 已列出全部标为 archived 的文档
 - [x] **CQ-7.4 刷新边界文档。** 更新 `code_style_guide.md` §2 与 `orchestration_module_map.md`
   （与 CQ-1.1 同一个 PR）。（#1331，2026-09-30；同时补登 phase 1 新增的三个辅助模块）
-- [ ] **CQ-7.5 精简路线图。** 把 `optimization_project.md` §4 "Recently Completed" 迁到
+- [x] **CQ-7.5 精简路线图。** 把 `optimization_project.md` §4 "Recently Completed" 迁到
   [`../code_optimization_log.md`](../code_optimization_log.md)，§4 只保留指针；目标 ≤600 行。
+  （2026-10-02：§4 与 12 个已完成工作流 A–H、J、R、W、X 原文移入日志"Archived roadmap sections"一节，994 → 572 行）
 - [x] **CQ-7.6 精简 `AGENTS.md` §7。** 把每个技能的长描述移到技能索引，§7 只保留一行名称和
   触发条件。**修改 `AGENTS.md` 需要走 `config-review` 技能，并经操作者确认。**（#1321，2026-09-29）
 

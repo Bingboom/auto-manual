@@ -1,0 +1,95 @@
+{
+  "source_sha256": "cdd40510647f7d45a80f58eccddba32754346edeaede760c993ca6670af6bfc8",
+  "exporter": "MuPDF native SVG; exact selected elements plus original transform/clip ancestors",
+  "compatibility": "Compound fs paths use implicit fill closure and explicit final H/V stroke edges. Exact closed geometry compared before retaining both original elements; original SVG bytes never repainted. All 10 page mapping counts checked.",
+  "reviewed_difference_indices": {
+    "3": [
+      98,
+      102
+    ],
+    "5": [
+      9629
+    ],
+    "6": [
+      7196
+    ],
+    "7": [
+      6831,
+      17725
+    ]
+  },
+  "scratch_adapter_sha256": "bb402c83821e4edcbee9c3ed6de41dd71e8578bafd9ea0b95c6902a4b29467e6",
+  "registry_promotion": false,
+  "page_mapping_validation": [
+    {
+      "page": 1,
+      "drawings": 2006,
+      "svg_paths": 2007,
+      "closure_equivalent_pairs": []
+    },
+    {
+      "page": 2,
+      "drawings": 23,
+      "svg_paths": 23,
+      "closure_equivalent_pairs": []
+    },
+    {
+      "page": 3,
+      "drawings": 6171,
+      "svg_paths": 6224,
+      "closure_equivalent_pairs": [
+        98,
+        102
+      ]
+    },
+    {
+      "page": 4,
+      "drawings": 2108,
+      "svg_paths": 2112,
+      "closure_equivalent_pairs": []
+    },
+    {
+      "page": 5,
+      "drawings": 19738,
+      "svg_paths": 19778,
+      "closure_equivalent_pairs": [
+        9629
+      ]
+    },
+    {
+      "page": 6,
+      "drawings": 8255,
+      "svg_paths": 8405,
+      "closure_equivalent_pairs": [
+        7196
+      ]
+    },
+    {
+      "page": 7,
+      "drawings": 21518,
+      "svg_paths": 21557,
+      "closure_equivalent_pairs": [
+        6831,
+        17725
+      ]
+    },
+    {
+      "page": 8,
+      "drawings": 11,
+      "svg_paths": 13,
+      "closure_equivalent_pairs": []
+    },
+    {
+      "page": 9,
+      "drawings": 26,
+      "svg_paths": 26,
+      "closure_equivalent_pairs": []
+    },
+    {
+      "page": 10,
+      "drawings": 76,
+      "svg_paths": 77,
+      "closure_equivalent_pairs": []
+    }
+  ]
+}

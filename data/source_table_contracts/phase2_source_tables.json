@@ -83,8 +83,8 @@
       },
       "commands": {
         "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master",
-        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2",
-        "backport": "python tools/cloud_doc_backport.py run-review-branch --doc-name <doc-name> --cloud-doc <url>"
+        "intake": "python tools/data/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2",
+        "backport": "python tools/backport/cloud_doc.py run-review-branch --doc-name <doc-name> --cloud-doc <url>"
       },
       "skills": ["spec-sheet-structured-intake", "manual-revision-backport", "manual-rewrite-with-tm"]
     },
@@ -155,8 +155,8 @@
       },
       "commands": {
         "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_master",
-        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2",
-        "backport": "python tools/cloud_doc_backport.py run-review-branch --doc-name <doc-name> --cloud-doc <url>"
+        "intake": "python tools/data/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2",
+        "backport": "python tools/backport/cloud_doc.py run-review-branch --doc-name <doc-name> --cloud-doc <url>"
       },
       "skills": ["spec-sheet-structured-intake", "manual-revision-backport"]
     },
@@ -230,7 +230,7 @@
       ],
       "commands": {
         "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table manual_copy_source",
-        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2"
+        "intake": "python tools/data/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2"
       },
       "skills": ["spec-sheet-structured-intake", "bilingual-tm-maintenance", "manual-rewrite-with-tm"]
     },
@@ -293,7 +293,7 @@
       },
       "commands": {
         "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_footnotes",
-        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2"
+        "intake": "python tools/data/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2"
       },
       "skills": ["spec-sheet-structured-intake", "manual-revision-backport"]
     },
@@ -356,7 +356,7 @@
       },
       "commands": {
         "sync": "python build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --table spec_notes",
-        "intake": "python tools/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2"
+        "intake": "python tools/data/source_intake.py run --input <spec.md-or-doc-url> --document-key <MODEL_REGION> --source-lang en --data-root data/phase2"
       },
       "skills": ["spec-sheet-structured-intake", "manual-revision-backport"]
     },

@@ -23,7 +23,7 @@ Word outputs. The PDF (LaTeX) and IDML stay exactly as on main. The gate is the
 repo's print/screen branch selection:
 
 * ``.. only:: not latex`` bodies reach the Web and Word pipelines, whose tag set
-  is ``html`` plus model/region/lang (``tools.word_bundle_html``); the Sphinx
+  is ``html`` plus model/region/lang (``tools.word.bundle_html``); the Sphinx
   LaTeX builder and the IDML extractor (tags ``latex``/``idml``) drop them;
 * ``.. only:: latex`` bodies go the other way.
 
@@ -60,8 +60,8 @@ from bs4 import BeautifulSoup
 from tools.config_loader import load_config_mapping
 from tools.config_pages import GeneratedPage, RstIncludePage, parse_config_pages
 from tools.idml_rst_extract import extract_page
-from tools.word_bundle_html import _normalize_sphinx_only_blocks_for_docutils
-from tools.word_bundle_html_only import _build_word_only_tags
+from tools.word.bundle_html import _normalize_sphinx_only_blocks_for_docutils
+from tools.word.bundle_html_only import _build_word_only_tags
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATES = ROOT / "docs" / "templates"
@@ -161,7 +161,8 @@ UPS_TEMPLATES = {lang: TEMPLATES / "page_shared" / lang / "06_ups_mode.rst" for 
 JE1000F_EU_REVIEW_UPS = {
     lang: ROOT / "docs/_review/JE-1000F/EU/page" / name
     for lang, name in zip(LANGS[:5], ("06_ups_mode.rst", "p24_06_ups_mode.rst", "p39_06_ups_mode.rst",
-                                      "p54_06_ups_mode.rst", "p69_06_ups_mode.rst"))
+                                      "p54_06_ups_mode.rst", "p69_06_ups_mode.rst"),
+                                          strict=True)
 }
 JE500A_UPS = TEMPLATES / "page_je500a_eu-en" / "06_ups_mode.rst"
 
@@ -233,7 +234,7 @@ MAIN_IDML_BLOCKS_SHA256 = {
 UNTOUCHED_SHA256 = {
     "docs/templates/page_shared/ko/06_ups_mode.rst": "0fb720f9f4a37a3d6ed55fba53ffe7ead1d3aad7e4676c09b871299797cf0c8a",
     "docs/templates/page_shared/pt-BR/06_ups_mode.rst": "640c072659fdc20b24448cae4fbe9666b160ecae06f6963e26d3ce8a0269219e",
-    "docs/templates/page_jp/06_ups_mode.rst": "6a27b689763361e948add7d0fe2564b7a68856f63aca054b43ab5a52671f4413",
+    "docs/templates/page_jp/06_ups_mode.rst": "a93cfa6d115004b79bee8d20b9aae41cd39b34ea2cc2e966c480b2dbdb152768",
     "docs/templates/page_zh/06_ups_mode.rst": "88ccfbf022124a2d37c883bb3106df6d457db16f69d20a8b3783f4f4b1f8c006",
     "docs/_review/JE-1000F/US/page/06_ups_mode.rst": "eb87f4fa77ac5ab17ef230ca16569ddb9ca199eafeac76137e7d82677052dc53",
     "docs/_review/JE-1000F/US/page/p27_06_ups_mode.rst": "e9de192a5e93aec9df5c3e9312355908372150022b71cfe63b418418b638d73a",
@@ -645,15 +646,15 @@ class Je500aRenderedWarningTests(unittest.TestCase):
                 break
             section.append(sibling)
         ups = BeautifulSoup("".join(str(node) for node in section), "html.parser")
-        warnings = ups.select(".admonition.warning")
-        cautions = ups.select(".admonition.caution")
+        warnings = ups.select('[data-callout-variant="warning"]')
+        cautions = ups.select('[data-callout-variant="caution"]')
         self.assertEqual((1, 1), (len(warnings), len(cautions)))
         first, second, items, last = PRINT["en"]["ups"]
-        paragraphs = [p.get_text(" ", strip=True) for p in warnings[0].find_all("p", recursive=False)
-                      if "admonition-title" not in (p.get("class") or [])]
+        body = warnings[0].select_one(".manual-callout-body")
+        paragraphs = [p.get_text(" ", strip=True) for p in body.find_all("p", recursive=False)]
         self.assertEqual([first, second, last], paragraphs)
         self.assertEqual(list(items), [li.get_text(" ", strip=True) for li in warnings[0].select("li")])
-        self.assertIs(warnings[0].find_next(class_="admonition"), cautions[0])
+        self.assertIs(warnings[0].find_next(class_="manual-callout-table"), cautions[0])
         bullets = [li.get_text(" ", strip=True) for li in cautions[0].select("li")]
         self.assertEqual(4, len(bullets))
         self.assertEqual(PRINT["en"]["bullet"], bullets[3])

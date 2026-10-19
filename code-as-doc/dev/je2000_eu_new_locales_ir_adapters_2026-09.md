@@ -23,7 +23,7 @@ E has three views, AC1/AC2, an extra-battery chapter, 27 LCD items, four App
 controls and expansion-port specifications. Their source and artwork must be
 bound independently. Neither is a JE-1000F parameter substitution.
 
-The command remains `python -m tools.frozen_pdf_web --pdf <native-pdf-compatible-ai>
+The command remains `python -m tools.web.frozen_pdf_web --pdf <native-pdf-compatible-ai>
 --recipe-root <model-frozen-recipe> --assets-manifest <artwork-binding>
 --output <new-empty-package> --language <uk|pt|nl|pl>`. It produces
 `manual-ir/v2` with embedded ComponentSpecs, then uses the shared Web replay.

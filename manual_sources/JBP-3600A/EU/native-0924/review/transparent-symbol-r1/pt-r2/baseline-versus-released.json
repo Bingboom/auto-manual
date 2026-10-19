@@ -1,0 +1,147 @@
+{
+  "status": "candidate_trial",
+  "publication_eligible": false,
+  "target": "JBP-3600A/EU/pt",
+  "differences": [
+    {
+      "path": "/pages/3/items/2/assets/0/sha256",
+      "expected": "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+      "actual": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "expected_sha256": "7bfb45c2b523e8d0931878858baa178fea62686320262344a67a60ea3d39a090",
+      "actual_sha256": "dc41d9914da10b84c6e4f4e748bd5086333c6e88d6a332eda75bfcb737fa3998",
+      "chapter": "symbols",
+      "component_slot": "symbols#symbol-icons"
+    },
+    {
+      "path": "/pages/3/items/2/assets/7/sha256",
+      "expected": "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+      "actual": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "expected_sha256": "7e76e5ed1f067342c8ee6acee180383b7a3cd11bd7b69370d6cf5b7bfb77598c",
+      "actual_sha256": "a33e73a9ae6a7c8817bc88b24f93a1517354309ca61add48c111251bd23f6407",
+      "chapter": "symbols",
+      "component_slot": "symbols#symbol-icons"
+    },
+    {
+      "path": "/pages/3/items/2/carrier_layout/0/children/1/children/1/children/0/children/0/sha256",
+      "expected": "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+      "actual": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "expected_sha256": "7bfb45c2b523e8d0931878858baa178fea62686320262344a67a60ea3d39a090",
+      "actual_sha256": "dc41d9914da10b84c6e4f4e748bd5086333c6e88d6a332eda75bfcb737fa3998",
+      "chapter": "symbols",
+      "component_slot": "symbols#symbol-icons"
+    },
+    {
+      "path": "/pages/3/items/2/carrier_layout/0/children/1/children/4/children/2/children/0/sha256",
+      "expected": "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+      "actual": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "expected_sha256": "7e76e5ed1f067342c8ee6acee180383b7a3cd11bd7b69370d6cf5b7bfb77598c",
+      "actual_sha256": "a33e73a9ae6a7c8817bc88b24f93a1517354309ca61add48c111251bd23f6407",
+      "chapter": "symbols",
+      "component_slot": "symbols#symbol-icons"
+    },
+    {
+      "path": "/pages/5/items/1/children/1/sha256",
+      "expected": "d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5",
+      "actual": "91fa5df1c4380046b06c4e109326e55f9f14ae4132d51ab71b036f2ffde5d193",
+      "expected_sha256": "2c68dd88918345f6c58c0bdb945a27b698354a2ec5a55b26d34e2788e8f0029b",
+      "actual_sha256": "910baf93a9b825f2b9f8b7b1f055e6019f899167da7d1522cc09dfa659040c25",
+      "chapter": "overview"
+    },
+    {
+      "path": "/pages/5/items/2/children/1/sha256",
+      "expected": "4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43",
+      "actual": "969a639b471256a3794887e1e9276f62de21e62631c16395d9cd249c7c44f5a9",
+      "expected_sha256": "88f5ad6f617c5eeb34f622d99047f2adc2cbef26cd6a7507994e6877f23b755e",
+      "actual_sha256": "d8d651a155d10c83e2eb78df8257ffe951a8c2a99232eec605804ff2e19a99d3",
+      "chapter": "overview"
+    },
+    {
+      "path": "/pages/6/items/1/sha256",
+      "expected": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f",
+      "actual": "79c517d4649ca2c583791a785d20aef87281437b655fc5efd60b5cab4286939f",
+      "expected_sha256": "608d04f6c71a36e24b0b467b698d10e4c41c735489b5d87dede2947090f58144",
+      "actual_sha256": "35b65367c22baf54c6c54114e6998c11e924c163d02e6739e82a29f0aa9493f1",
+      "chapter": "lcd"
+    },
+    {
+      "path": "/pages/8/items/4/carrier_layout/0/children/0/children/0/children/1/children/0",
+      "expected": {
+        "$absent": true
+      },
+      "actual": {
+        "kind": "paragraph",
+        "layout": {},
+        "children": [
+          {
+            "kind": "image",
+            "sha256": "8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd",
+            "presentation": {
+              "class": [
+                "manual-finished-illustration"
+              ],
+              "style": "display:inline-block;width:1.9em;height:auto;vertical-align:middle;"
+            }
+          }
+        ]
+      },
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "e641436469321b6d9010c541571a54fc62f91602bb120e447a74cd75346285b2",
+      "chapter": "connections",
+      "component_slot": "connections#callout-2"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/0/color",
+      "expected": {
+        "$absent": true
+      },
+      "actual": "#ffffff",
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "f8a3cb06987be2388c54198c21d334a007f9b0b1717161cc050357401c1de839",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/0/fill",
+      "expected": "#efefef",
+      "actual": "#434345",
+      "expected_sha256": "7e8cdcf81db242c56f2406631873db3c05970d59ce40903acccced5bfbb5f508",
+      "actual_sha256": "17a87785482e5f44b533ab4d9f2b442978b850cf25ff3b7c01f6289c68a9e2e7",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/1/color",
+      "expected": {
+        "$absent": true
+      },
+      "actual": "#ffffff",
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "f8a3cb06987be2388c54198c21d334a007f9b0b1717161cc050357401c1de839",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/1/fill",
+      "expected": "#efefef",
+      "actual": "#434345",
+      "expected_sha256": "7e8cdcf81db242c56f2406631873db3c05970d59ce40903acccced5bfbb5f508",
+      "actual_sha256": "17a87785482e5f44b533ab4d9f2b442978b850cf25ff3b7c01f6289c68a9e2e7",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/style_contract_sha256",
+      "expected": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+      "actual": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+      "expected_sha256": "c3e934822ec8e718cb977f98c5ea27770e5fa3205e321e9520977548c5ba86f9",
+      "actual_sha256": "a40f5932ab5ea3ad38af804ad7cca8cb1f8b53431adb16ac2536c447c2e2dfd6"
+    },
+    {
+      "path": "/web_contract_sha256",
+      "expected": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+      "actual": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+      "expected_sha256": "c3e934822ec8e718cb977f98c5ea27770e5fa3205e321e9520977548c5ba86f9",
+      "actual_sha256": "a40f5932ab5ea3ad38af804ad7cca8cb1f8b53431adb16ac2536c447c2e2dfd6"
+    }
+  ]
+}

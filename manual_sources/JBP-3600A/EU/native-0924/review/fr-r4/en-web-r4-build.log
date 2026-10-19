@@ -1,0 +1,15 @@
+[build] validating config...
+[build] validating layout params...
+[build] Cleaning target output: /Users/pika/.codex/worktrees/jbp3600a-en-intake/auto-manual2/.tmp/jbp3600a-native-languages/english-web-r4/docs/_build/JBP-3600A/EU/en
+[build] target: model='JBP-3600A', region='EU', lang='en'
+[bundle-plan] capability 'UPS功能' is FALSE for JBP-3600A_EU: dropped templates/page_shared/en/06_ups_mode.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JBP-3600A_EU: dropped templates/page_shared/en/07_extra_battery.rst
+[bundle-page] 00_preface.rst: dropped 'fr' language block (target ships ['en'])
+[bundle-page] 00_preface.rst: dropped 'es' language block (target ships ['en'])
+[bundle-page] 09_storage.rst: spliced snippet 'battery_long_storage_advisory'
+[build] Prepared bundle: /Users/pika/.codex/worktrees/jbp3600a-en-intake/auto-manual2/.tmp/jbp3600a-native-languages/english-web-r4/docs/_build/JBP-3600A/EU/en/web/source/rst
+[build] Bundle source: runtime
+[bundle-plan] capability 'UPS功能' is FALSE for JBP-3600A_EU: dropped templates/page_shared/en/06_ups_mode.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JBP-3600A_EU: dropped templates/page_shared/en/07_extra_battery.rst
+[build] Done. Markdown: /Users/pika/.codex/worktrees/jbp3600a-en-intake/auto-manual2/.tmp/jbp3600a-native-languages/english-web-r4/docs/_build/JBP-3600A/EU/en/md/manual_jbp3600a_eu.md
+[build.py] /private/tmp/jbp3600a-assets-runtime/bin/python /Users/pika/.codex/worktrees/jbp3600a-en-intake/auto-manual2/tools/build_docs.py --config /Users/pika/.codex/worktrees/jbp3600a-en-intake/auto-manual2/configs/config.bp-eu-en-web.yaml --model JBP-3600A --region EU --lang en --data-root manual_sources/JBP-3600A/EU/en/phase2 --source auto --formats md --output-base-root /Users/pika/.codex/worktrees/jbp3600a-en-intake/auto-manual2/.tmp/jbp3600a-native-languages/english-web-r4/docs/_build --skip-root-index --clean --no-open

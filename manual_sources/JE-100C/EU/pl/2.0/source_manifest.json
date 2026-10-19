@@ -1,0 +1,78 @@
+{
+  "model": "JE-100C",
+  "region": "EU",
+  "language": "pl",
+  "status": "local-source-intake-candidate",
+  "live_bitable_dependency": false,
+  "authority": {
+    "file": "HTE162-EU-9国语言-0928(1).ai",
+    "sha256": "04d5a4075fc9fc5ad630416dca8e138576e9159fcfd4ce9a06328b8aa1a39cb5",
+    "pages": [
+      101,
+      112
+    ]
+  },
+  "native_source_intake": {
+    "path": "manual_sources/JE-100C/EU/pl/2.0/native_source_intake.json",
+    "sha256": "3131c53d9639f8927c28dcf69a2b0a52926d459bc0a090cc14725e8e915f07ec"
+  },
+  "identity_data_root": "manual_sources/JE-100C/EU/en/2.0/phase2",
+  "page_manifest": {
+    "path": "docs/manifests/manual_je100c_eu-pl.yaml",
+    "sha256": "a9ecd294cfb7e3377cfa1de1c3ae8269b180d7c2050be2bcdb4b08bc4c01ff18"
+  },
+  "web_illustration_manifest": {
+    "path": "docs/renderers/web/je100c_eu_pl_illustrations.json",
+    "sha256": "9c340d7dc63c6f508a6e169f6afa0789a95686f66cf07e05c3d646ba31baa8e9"
+  },
+  "templates": [
+    {
+      "path": "docs/templates/page_je100c_eu-pl/01_user_maintenance_instructions.rst",
+      "sha256": "b885d3c91f979b76c0a1d3c8ef95ddf0b7d88e2d8ac9e0691782be89b231b919"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/02_whats_in_the_box.rst",
+      "sha256": "a9b78569ee767f13330a3fd1a46ab97a35e0862d3ce3ef7025101e11eced0763"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/03_product_overview.rst",
+      "sha256": "0b593d70d11e5052859fac7ee0ea5b1a6e5294dc5e251780246669da539c63b1"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/charging_pl.rst",
+      "sha256": "4194a6a226f657572287e9ec8b4f9155f285ff7281721dc7e0087ac789577a03"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/lcd_display_pl.rst",
+      "sha256": "67d5309eb6e012153e7413635f4375d99fb5964cfd0847a593852536576b777b"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/operation_pl.rst",
+      "sha256": "9f0a51f7cb536c7ac126667f1812675daca3b392ad5ea27d113091524a66929c"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/safety_pl.rst",
+      "sha256": "07c0e4e54523d2faff66e7f34c2d933461472352092976a11948ac3534ff6006"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/spec_pl.rst",
+      "sha256": "560405c7e989106f3581471664dbedb835cf0b6e40ae3d3ca503369b2f9f8d1f"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/storage_pl.rst",
+      "sha256": "2e95139f7709e0c23b3c5fbe2f0c86ad691969e2d05fb183dced7925ef2482a2"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/symbol_meaning_pl.rst",
+      "sha256": "1a959df502e9e2bcbd841837c6837d6f164e1f97a2a0f9eece7af1d4f1383325"
+    },
+    {
+      "path": "docs/templates/page_je100c_eu-pl/warranty_pl.rst",
+      "sha256": "33e225eacdad9f490790c9817cc18c7a2b5905b302e5228fd19b4e38f48fdfca"
+    }
+  ],
+  "newer_english_alignment": {
+    "path": "manual_sources/JE-100C/EU/pl/2.0/newer_english_alignment.json",
+    "sha256": "8849af72d3f7a63bc2aab2510b52d2a8011308959a00c2a90542ae809ea5a641"
+  }
+}

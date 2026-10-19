@@ -1,0 +1,1476 @@
+[
+  {
+    "physical_page": 64,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          34.867698669433594,
+          31.207988739013672,
+          251.07171630859375,
+          46.063987731933594
+        ],
+        "text": "BELANGRIJKE VEILIGHEIDSINFORMATIE\n"
+      },
+      {
+        "bbox": [
+          28.938501358032227,
+          51.54242706298828,
+          310.6264343261719,
+          58.97042465209961
+        ],
+        "text": "Bij het gebruik van dit product moeten de basisveiligheidsvoorschriften worden gevolgd, waaronder:\n"
+      },
+      {
+        "bbox": [
+          29.6210994720459,
+          60.932708740234375,
+          332.3993225097656,
+          157.5400390625
+        ],
+        "text": "• Lees alle instructies voordat u dit product gebruikt.\n• Houd kinderen onder strikt toezicht bij gebruik van dit product om het risico te beperken.\n• Er bestaat risico op elektrische schokken bij gebruik van accessoires die worden aanbevolen of verkocht door \nniet-professionele productfabrikanten.\n• Haal de stekker uit de voedingsaansluiting van het product wanneer het product niet wordt gebruikt.\n• Demonteer het product niet, omdat dit kan leiden tot onvoorspelbare risico's zoals brand, explosie of elektrische \nschokken.\n• Gebruik het product niet met beschadigde snoeren, stekkers of uitgangskabels, omdat dit kan leiden tot een \nelektrische schok.\n• Laad het product op in een goed geventileerde ruimte en beperk de ventilatie op geen enkele manier.\n• Plaats het product op een geventileerde en droge plaats om te voorkomen dat regen en water elektrische schokken \nveroorzaken.\n• Stel het product niet bloot aan vuur en hoge temperaturen (onder direct zonlicht of in een voertuig bij hoge hitte). Dit \nkan ongelukken zoals brand of explosie veroorzaken.\n• Als dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt bewaard, kan het zijn dat \nhet niet meer kan worden opgeladen.\n"
+      },
+      {
+        "bbox": [
+          34.867698669433594,
+          166.22068786621094,
+          184.4357147216797,
+          181.07669067382812
+        ],
+        "text": "BETEKENIS VAN SYMBOLEN\n"
+      },
+      {
+        "bbox": [
+          36.95899963378906,
+          192.48988342285156,
+          146.56781005859375,
+          202.39389038085938
+        ],
+        "text": "Symbool\nBetekenis\n"
+      },
+      {
+        "bbox": [
+          49.61470031738281,
+          210.51231384277344,
+          320.05731201171875,
+          225.71029663085938
+        ],
+        "text": "Gevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of \nmateriële schade.\nWAARSCHUWING \n"
+      },
+      {
+        "bbox": [
+          47.7666015625,
+          236.8443145751953,
+          314.259033203125,
+          252.04229736328125
+        ],
+        "text": "Gevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade \naan eigendommen.\n OPGELET\n"
+      },
+      {
+        "bbox": [
+          38.729000091552734,
+          261.95367431640625,
+          298.894775390625,
+          277.15167236328125
+        ],
+        "text": "Gevaarlijke praktijken die kunnen leiden tot schade aan apparatuur, \ngegevensverlies, slechtere prestaties of onverwachte resultaten.\nOPMERKING\n"
+      },
+      {
+        "bbox": [
+          58.71480178833008,
+          288.8088073730469,
+          283.467529296875,
+          301.0065612792969
+        ],
+        "text": "Vult de belangrijke informatie of bedieningstips in de tekst aan.\nTIP\n"
+      },
+      {
+        "bbox": [
+          30.956100463867188,
+          312.6090087890625,
+          105.46171569824219,
+          322.51300048828125
+        ],
+        "text": "Symbool\nBetekenis\n"
+      },
+      {
+        "bbox": [
+          189.62010192871094,
+          312.6090087890625,
+          263.868896484375,
+          322.760986328125
+        ],
+        "text": "Symbool\nBetekenis\n"
+      },
+      {
+        "bbox": [
+          69.6426010131836,
+          327.31903076171875,
+          171.73158264160156,
+          351.31903076171875
+        ],
+        "text": "Waarschuwings- en voorzorgssymbolen. \nWaarschuwt personen voor informatie die \nmoet worden gelezen om mogelijke gevaren \nof risico’s te voorkomen.\n"
+      },
+      {
+        "bbox": [
+          69.6426010131836,
+          361.8641052246094,
+          161.6416473388672,
+          375.5841064453125
+        ],
+        "text": "Lees de gebruikershandleiding voor \ngebruik.\n"
+      },
+      {
+        "bbox": [
+          69.6426010131836,
+          392.9888916015625,
+          142.33116149902344,
+          399.7088928222656
+        ],
+        "text": "Demonteer het product niet.\n"
+      },
+      {
+        "bbox": [
+          228.05079650878906,
+          326.10260009765625,
+          337.6553039550781,
+          416.70965576171875
+        ],
+        "text": "Batterijen en accu's mogen niet bij het \nhuishoudelijk afval worden weggegooid.\nAls consument bent u wettelijk verplicht om \nalle batterijen en accu's in te leveren bij \ndaarvoor aangewezen inzamelpunten, \nongeacht of ze gevaarlijke stoffen \nbevatten.\nLever gebruikte batterijen en accu's in bij \neen plaatselijk inleverpunt, recyclingcen-\ntrum of bij de winkel waar u ze heeft \ngekocht. Een juiste afvalverwerking \nverzekert dat recycling op een \nmilieuvriendelijke manier gebeurt en \nvoorkomt mogelijke schade aan de \nmenselijke gezondheid en het milieu.\n"
+      },
+      {
+        "bbox": [
+          69.6426010131836,
+          422.0137023925781,
+          170.29197692871094,
+          428.73370361328125
+        ],
+        "text": "Houd het product uit de buurt van vuur.\n"
+      },
+      {
+        "bbox": [
+          69.6426010131836,
+          447.581787109375,
+          171.78775024414062,
+          461.3017883300781
+        ],
+        "text": "Houd het product buiten het bereik van \nkinderen.\n"
+      },
+      {
+        "bbox": [
+          228.21780395507812,
+          426.9457702636719,
+          338.2122497558594,
+          493.64178466796875
+        ],
+        "text": "Dit symbool geeft aan dat het product \nniet als huishoudelijk afval mag worden \nweggegooid en naar een aangewezen \ninzamelingspunt voor recycling moet \nworden gebracht. \nEen juiste afvalverwerking en recycling \ndragen bij aan een beter milieu. Voor meer \ninformatie over de verwijdering en \nrecycling van dit product, neem contact \nop met uw gemeente, afvalverwerkings-\ndienst of leverancier.\n"
+      },
+      {
+        "bbox": [
+          69.6426010131836,
+          470.1217956542969,
+          174.1604766845703,
+          494.8345947265625
+        ],
+        "text": "Dit symbool geeft aan dat zich een \nlithium-ion (Li-ion) batterij in het product \nbevindt en dat deze op de juiste manier \nmoet worden afgevoerd of gerecycled.\n"
+      },
+      {
+        "bbox": [
+          27.852500915527344,
+          504.8183898925781,
+          33.5525016784668,
+          512.0183715820312
+        ],
+        "text": "01\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 65,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          34.792999267578125,
+          31.207988739013672,
+          166.88900756835938,
+          46.063987731933594
+        ],
+        "text": "WAT ZIT ER IN DE DOOS\n"
+      },
+      {
+        "bbox": [
+          40.183101654052734,
+          67.33306884765625,
+          43.73957824707031,
+          79.45105743408203
+        ],
+        "text": "1\n"
+      },
+      {
+        "bbox": [
+          147.1123046875,
+          67.33206176757812,
+          261.8691101074219,
+          79.7205581665039
+        ],
+        "text": "2\n3\n"
+      },
+      {
+        "bbox": [
+          94.02439880371094,
+          120.53076934814453,
+          97.6952896118164,
+          121.47266387939453
+        ],
+        "text": "Vermogen\n"
+      },
+      {
+        "bbox": [
+          69.96829986572266,
+          133.44248962402344,
+          81.36197662353516,
+          135.03672790527344
+        ],
+        "text": "Battery Pack 2000\n"
+      },
+      {
+        "bbox": [
+          159.87010192871094,
+          151.2196044921875,
+          208.88284301757812,
+          158.64761352539062
+        ],
+        "text": "Uitbreidingskabel\n"
+      },
+      {
+        "bbox": [
+          260.3955078125,
+          151.2196044921875,
+          323.9901428222656,
+          158.64761352539062
+        ],
+        "text": "Gebruikershandleiding\n"
+      },
+      {
+        "bbox": [
+          38.73929977416992,
+          151.2200927734375,
+          113.8406982421875,
+          158.64810180664062
+        ],
+        "text": "Jackery Battery Pack 2000\n"
+      },
+      {
+        "bbox": [
+          34.792999267578125,
+          186.27589416503906,
+          154.13299560546875,
+          201.13189697265625
+        ],
+        "text": "PRODUCTOVERZICHT\n"
+      },
+      {
+        "bbox": [
+          41.32619857788086,
+          219.7622833251953,
+          336.8869323730469,
+          240.27239990234375
+        ],
+        "text": "Handvat\nVOORAANZICHT\nLINKERAANZICHT\n"
+      },
+      {
+        "bbox": [
+          30.574325561523438,
+          233.45640563964844,
+          64.89372253417969,
+          240.65640258789062
+        ],
+        "text": "LCD-scherm\n"
+      },
+      {
+        "bbox": [
+          271.060302734375,
+          259.69439697265625,
+          336.88507080078125,
+          266.8944091796875
+        ],
+        "text": "DC-uitbreidingspoort B \n"
+      },
+      {
+        "bbox": [
+          262.39630126953125,
+          268.6283874511719,
+          338.38629150390625,
+          275.8283996582031
+        ],
+        "text": "(Sluit aan op klem B van de \n"
+      },
+      {
+        "bbox": [
+          200.54879760742188,
+          276.842041015625,
+          201.3657989501953,
+          278.3832702636719
+        ],
+        "text": "A\n"
+      },
+      {
+        "bbox": [
+          122.4657974243164,
+          276.75054931640625,
+          225.26959228515625,
+          279.6302490234375
+        ],
+        "text": "B\nVermogen\n"
+      },
+      {
+        "bbox": [
+          288.25030517578125,
+          275.63037109375,
+          336.8857116699219,
+          282.83038330078125
+        ],
+        "text": "uitbreidingskabel)\n"
+      },
+      {
+        "bbox": [
+          206.66546630859375,
+          291.54290771484375,
+          219.30667114257812,
+          293.0841369628906
+        ],
+        "text": "DC-uitbreidingspoort\n"
+      },
+      {
+        "bbox": [
+          79.45999908447266,
+          301.0283508300781,
+          99.82868194580078,
+          303.87841796875
+        ],
+        "text": "Battery Pack 2000\n"
+      },
+      {
+        "bbox": [
+          272.49432373046875,
+          313.910400390625,
+          336.87908935546875,
+          321.11041259765625
+        ],
+        "text": "DC-uitbreidingspoort A\n"
+      },
+      {
+        "bbox": [
+          269.65631103515625,
+          321.92041015625,
+          338.38629150390625,
+          329.12042236328125
+        ],
+        "text": " (Sluit aan op klem A van \n"
+      },
+      {
+        "bbox": [
+          279.4302978515625,
+          328.9223937988281,
+          336.8863220214844,
+          336.1224060058594
+        ],
+        "text": "de uitbreidingskabel)\n"
+      },
+      {
+        "bbox": [
+          30.574310302734375,
+          331.8263854980469,
+          68.90711212158203,
+          339.0263977050781
+        ],
+        "text": "Aan/Uit-knop\n"
+      },
+      {
+        "bbox": [
+          330.3222961425781,
+          504.8183898925781,
+          337.1922912597656,
+          512.0183715820312
+        ],
+        "text": "02\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 66,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          34.81880187988281,
+          31.244182586669922,
+          114.13880920410156,
+          46.100181579589844
+        ],
+        "text": "LCD-SCHERM \n"
+      },
+      {
+        "bbox": [
+          29.529300689697266,
+          67.57231140136719,
+          321.67352294921875,
+          76.70730590820312
+        ],
+        "text": "Batterijpercentage/Foutcode\nLaadindicator\n"
+      },
+      {
+        "bbox": [
+          36.90480041503906,
+          125.31498718261719,
+          89.48741149902344,
+          143.98397827148438
+        ],
+        "text": "Batterijpercent-\nage/Foutcode\n"
+      },
+      {
+        "bbox": [
+          111.50289916992188,
+          122.9795913696289,
+          296.5596618652344,
+          146.17556762695312
+        ],
+        "text": "De weergave toont het actuele batterijpercentage. \nWanneer het systeem faalt, wordt de bijbehorende foutcode F0-FF \nweergegeven. \n"
+      },
+      {
+        "bbox": [
+          36.83890151977539,
+          154.5215606689453,
+          328.4676513671875,
+          169.71954345703125
+        ],
+        "text": "De indicator wordt weergegeven tijdens het opladen en verdwijnt wanneer het \nproduct volledig is opgeladen.\nLaadindicator\n"
+      },
+      {
+        "bbox": [
+          34.81880187988281,
+          185.92579650878906,
+          114.75080871582031,
+          200.78179931640625
+        ],
+        "text": "HANDELINGEN\n"
+      },
+      {
+        "bbox": [
+          40.79050064086914,
+          211.49278259277344,
+          114.0145034790039,
+          221.39678955078125
+        ],
+        "text": "IN-/UITSCHAKELEN \n"
+      },
+      {
+        "bbox": [
+          265.0990905761719,
+          232.00320434570312,
+          283.80908203125,
+          244.38320922851562
+        ],
+        "text": "Aan\n"
+      },
+      {
+        "bbox": [
+          265.42919921875,
+          244.7823028564453,
+          303.15716552734375,
+          251.9822998046875
+        ],
+        "text": "Druk één keer\n"
+      },
+      {
+        "bbox": [
+          264.80908203125,
+          255.63320922851562,
+          277.6590881347656,
+          268.0132141113281
+        ],
+        "text": "Uit\n"
+      },
+      {
+        "bbox": [
+          265.4287109375,
+          267.78179931640625,
+          332.1523132324219,
+          274.9818115234375
+        ],
+        "text": "Houd 3 seconden ingedrukt.\n"
+      },
+      {
+        "bbox": [
+          278.6283874511719,
+          279.2314758300781,
+          285.5163879394531,
+          287.6314697265625
+        ],
+        "text": "3s\n"
+      },
+      {
+        "bbox": [
+          37.669898986816406,
+          327.6455383300781,
+          83.09522247314453,
+          337.49755859375
+        ],
+        "text": "OPMERKING\n"
+      },
+      {
+        "bbox": [
+          92.8198013305664,
+          312.3017883300781,
+          319.42291259765625,
+          351.4938049316406
+        ],
+        "text": "• Bij gebruik met het draagbare energiestation kunt u de aan/uit-status van het \nJackery Battery Pack 2000 bedienen via de hoofdschakelaar van het draagbare \nenergiestation.\n• Het product wordt automatisch uitgeschakeld als het gedurende 2 uur niet wordt \nopgeladen of als er geen belastingen zijn aangesloten.\n"
+      },
+      {
+        "bbox": [
+          40.79050064086914,
+          366.17742919921875,
+          125.614501953125,
+          376.0814208984375
+        ],
+        "text": "LCD-SCHERM AAN/UIT\n"
+      },
+      {
+        "bbox": [
+          43.45800018310547,
+          471.5014953613281,
+          304.0242004394531,
+          486.6994934082031
+        ],
+        "text": "Wanneer u de hoofdschakelaar indrukt of het product oplaadt, wordt het LCD-scherm verlicht. \nWanneer u er nogmaals op drukt, wordt het LCD-scherm uitgeschakeld.\n"
+      },
+      {
+        "bbox": [
+          27.457500457763672,
+          504.8183898925781,
+          34.29750061035156,
+          512.0183715820312
+        ],
+        "text": "03\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 67,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          35.2495002746582,
+          31.207988739013672,
+          121.99751281738281,
+          46.063987731933594
+        ],
+        "text": "VERBINDINGEN \n"
+      },
+      {
+        "bbox": [
+          28.8085994720459,
+          54.54209518432617,
+          333.078857421875,
+          69.74008178710938
+        ],
+        "text": "Er kunnen maximaal 5 sets van deze producten worden gebruikt, samen met het draagbare energiestation, om \naan de toegenomen capaciteitsbehoefte te voldoen.\n"
+      },
+      {
+        "bbox": [
+          38.5458984375,
+          90.95954895019531,
+          72.38407135009766,
+          100.81155395507812
+        ],
+        "text": "OPGELET\n"
+      },
+      {
+        "bbox": [
+          90.0927963256836,
+          75.5386962890625,
+          327.0029296875,
+          117.14617156982422
+        ],
+        "text": "• Zorg ervoor dat alle producten zijn uitgeschakeld voordat u het draagbare energiestation op \nde Jackery Battery Pack 2000 aansluit.\n•Zorg voor een goede werking van het product door ervoor te zorgen dat de luchtinlaat- en \nuitlaatopeningen aan beide zijden niet geblokkeerd zijn. Zorg voor minimaal 200 mm ruimte \ntussen de ventilatieopeningen en eventuele voorwerpen om een goede warmteafvoer \nmogelijk te maken.\n"
+      },
+      {
+        "bbox": [
+          166.9980010986328,
+          325.695556640625,
+          185.78106689453125,
+          330.99774169921875
+        ],
+        "text": "≥200 mm\n"
+      },
+      {
+        "bbox": [
+          92.01950073242188,
+          374.4433898925781,
+          334.46697998046875,
+          397.639404296875
+        ],
+        "text": "• De weergave van het           -pictogram op het LCD-scherm (het draagbare energiesta-\ntion) betekent dat het batterijpakket en het draagbare energiestation succesvol zijn \nverbonden.\n"
+      },
+      {
+        "bbox": [
+          92.01950073242188,
+          401.4373779296875,
+          269.0002746582031,
+          408.63739013671875
+        ],
+        "text": "• Stapel het product niet bovenop het draagbare energiestation.\n"
+      },
+      {
+        "bbox": [
+          34.9370002746582,
+          409.69244384765625,
+          85.62275695800781,
+          419.5444641113281
+        ],
+        "text": "Opmerkingen\n"
+      },
+      {
+        "bbox": [
+          92.01950073242188,
+          412.4353942871094,
+          335.9921569824219,
+          427.6334228515625
+        ],
+        "text": "• Plaats de batterijpakketten op een vlak, stabiel oppervlak met voldoende draagkracht. \nHet standaard maximale aantal gestapelde batterijpakketten is 3.\n"
+      },
+      {
+        "bbox": [
+          92.01950073242188,
+          431.431396484375,
+          334.4621276855469,
+          454.6274108886719
+        ],
+        "text": "• Wanneer er 4 of meer batterijpakketten nodig zijn, moeten deze op een stabiele plaats \ntegen een muur worden geplaatst, uit de buurt van externe impact, en moeten de \nnodige kantelbeveiligingsmaatregelen worden genomen.\n"
+      },
+      {
+        "bbox": [
+          332.75048828125,
+          504.04107666015625,
+          340.010498046875,
+          511.2410888671875
+        ],
+        "text": "04\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 68,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          38.83689880371094,
+          158.36419677734375,
+          76.8529052734375,
+          165.79220581054688
+        ],
+        "text": "Vergrendelen\n"
+      },
+      {
+        "bbox": [
+          84.06449890136719,
+          157.73098754882812,
+          86.44449615478516,
+          166.1309814453125
+        ],
+        "text": "1\n"
+      },
+      {
+        "bbox": [
+          136.5146026611328,
+          158.07769775390625,
+          140.18960571289062,
+          166.47769165039062
+        ],
+        "text": "2\n"
+      },
+      {
+        "bbox": [
+          38.2578010559082,
+          228.306884765625,
+          70.78779602050781,
+          234.49688720703125
+        ],
+        "text": "Ontgrendelen\n"
+      },
+      {
+        "bbox": [
+          82.65139770507812,
+          227.60498046875,
+          85.0313949584961,
+          236.00497436523438
+        ],
+        "text": "1\n"
+      },
+      {
+        "bbox": [
+          135.10159301757812,
+          227.63629150390625,
+          138.77659606933594,
+          236.03628540039062
+        ],
+        "text": "2\n"
+      },
+      {
+        "bbox": [
+          35.082000732421875,
+          310.4057922363281,
+          164.99766540527344,
+          325.2424621582031
+        ],
+        "text": "PROBLEEMOPLOSSING\n"
+      },
+      {
+        "bbox": [
+          28.491252899169922,
+          333.533447265625,
+          337.8729553222656,
+          349.7123718261719
+        ],
+        "text": "Als een van de volgende foutcodes verschijnt, volg dan de vermelde corrigerende acties om het probleem op \nte lossen. Als het probleem aanhoudt, neem dan contact op met Jackery-klantenondersteuning.\n"
+      },
+      {
+        "bbox": [
+          32.186500549316406,
+          362.2987976074219,
+          150.63534545898438,
+          370.6764831542969
+        ],
+        "text": "Foutcode\nOplossingsmaatregelen\n"
+      },
+      {
+        "bbox": [
+          43.63479995727539,
+          378.8515625,
+          134.16867065429688,
+          388.74267578125
+        ],
+        "text": "F0\nHerstart het product.\n"
+      },
+      {
+        "bbox": [
+          75.1259994506836,
+          397.5960693359375,
+          134.16867065429688,
+          404.7867126464844
+        ],
+        "text": "Herstart het product.\n"
+      },
+      {
+        "bbox": [
+          43.98465347290039,
+          396.17132568359375,
+          52.75446319580078,
+          406.06243896484375
+        ],
+        "text": "F3\n"
+      },
+      {
+        "bbox": [
+          75.1259994506836,
+          414.34423828125,
+          325.102783203125,
+          421.5348815917969
+        ],
+        "text": "Sluit het product aan op belastingen om de batterij te ontladen totdat de fout verdwijnt.\n"
+      },
+      {
+        "bbox": [
+          43.885746002197266,
+          413.5007629394531,
+          52.861610412597656,
+          423.3918762207031
+        ],
+        "text": "F4\n"
+      },
+      {
+        "bbox": [
+          75.12699890136719,
+          432.02490234375,
+          312.901123046875,
+          439.2155456542969
+        ],
+        "text": "Laad het product op via zonnepanelen of een AC-stopcontact tot de fout verdwijnt.\n"
+      },
+      {
+        "bbox": [
+          43.976409912109375,
+          430.8302001953125,
+          52.77094650268555,
+          440.7213134765625
+        ],
+        "text": "F5\n"
+      },
+      {
+        "bbox": [
+          75.12699890136719,
+          449.0246887207031,
+          236.37661743164062,
+          456.21533203125
+        ],
+        "text": "Neem contact op met de Jackery-klantenondersteuning.\n"
+      },
+      {
+        "bbox": [
+          43.97269821166992,
+          448.1582336425781,
+          52.93207931518555,
+          458.0493469238281
+        ],
+        "text": "F8\n"
+      },
+      {
+        "bbox": [
+          75.12699890136719,
+          466.0245666503906,
+          236.37661743164062,
+          473.2152099609375
+        ],
+        "text": "Neem contact op met de Jackery-klantenondersteuning.\n"
+      },
+      {
+        "bbox": [
+          43.97269821166992,
+          465.4876708984375,
+          52.618873596191406,
+          475.3787841796875
+        ],
+        "text": "FE\n"
+      },
+      {
+        "bbox": [
+          44.091800689697266,
+          482.810546875,
+          52.64731216430664,
+          492.70166015625
+        ],
+        "text": "FF\n"
+      },
+      {
+        "bbox": [
+          75.12699890136719,
+          480.1242980957031,
+          311.8224182128906,
+          494.3078308105469
+        ],
+        "text": "Plaats het product in een omgeving met de juiste temperatuur en wacht tot de fout \nverdwijnt.\n"
+      },
+      {
+        "bbox": [
+          28.246599197387695,
+          504.04107666015625,
+          35.2666015625,
+          511.2410888671875
+        ],
+        "text": "05\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 69,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          34.87160110473633,
+          31.207988739013672,
+          91.25961303710938,
+          46.063987731933594
+        ],
+        "text": "OPLADEN \n"
+      },
+      {
+        "bbox": [
+          39.79100036621094,
+          55.01530838012695,
+          164.59901428222656,
+          64.9193115234375
+        ],
+        "text": "OPLADEN VIA AC-STOPCONTACT\n"
+      },
+      {
+        "bbox": [
+          28.800800323486328,
+          65.50348663330078,
+          314.4308776855469,
+          80.70147705078125
+        ],
+        "text": "Bij het opladen via het stopcontact moet dit product worden gebruikt in combinatie met het draagbare \nenergiestation.\n"
+      },
+      {
+        "bbox": [
+          33.83399963378906,
+          90.24909973144531,
+          99.79399108886719,
+          100.15310668945312
+        ],
+        "text": "WAARSCHUWING\n"
+      },
+      {
+        "bbox": [
+          107.6698989868164,
+          87.05719757080078,
+          312.91015625,
+          102.25518798828125
+        ],
+        "text": "Zorg ervoor dat alle producten zijn uitgeschakeld voordat u het draagbare \nenergiestation aansluit op het Jackery Battery Pack 2000.\n"
+      },
+      {
+        "bbox": [
+          189.9159698486328,
+          151.34103393554688,
+          222.98629760742188,
+          155.43667602539062
+        ],
+        "text": "AC 220 V-240 V 10 A MAX          DC(8020) INGANG\n"
+      },
+      {
+        "bbox": [
+          163.94630432128906,
+          283.46917724609375,
+          218.3892822265625,
+          291.43707275390625
+        ],
+        "text": "APART VERKOCHT\n"
+      },
+      {
+        "bbox": [
+          39.53810119628906,
+          283.41119384765625,
+          150.5941162109375,
+          293.315185546875
+        ],
+        "text": "OPLADEN VIA ZONNEPANELEN\n"
+      },
+      {
+        "bbox": [
+          28.799800872802734,
+          298.50787353515625,
+          329.0907287597656,
+          321.70391845703125
+        ],
+        "text": "Laad uw product op met zonnepanelen en het draagbare energiestation, zoals weergegeven in de \nonderstaande afbeelding. Raadpleeg de gebruikershandleiding van het draagbare energiestation voor meer \ninformatie.\n"
+      },
+      {
+        "bbox": [
+          140.6595458984375,
+          342.8231201171875,
+          172.6819610595703,
+          347.0739440917969
+        ],
+        "text": "0 V-240 V 10 A MAX          DC(8020) INGANG\n"
+      },
+      {
+        "bbox": [
+          276.6073913574219,
+          432.3891906738281,
+          319.2493896484375,
+          439.5892028808594
+        ],
+        "text": "SolarSaga 200 \n"
+      },
+      {
+        "bbox": [
+          332.5386047363281,
+          503.9853820800781,
+          339.49859619140625,
+          511.1853942871094
+        ],
+        "text": "06\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 70,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          35.57469940185547,
+          30.906291961669922,
+          76.15870666503906,
+          45.762290954589844
+        ],
+        "text": "Opslag\n"
+      },
+      {
+        "bbox": [
+          34.600101470947266,
+          65.1500015258789,
+          334.36187744140625,
+          135.35000610351562
+        ],
+        "text": "Bewaar het product op een droge, schone plaats met goede ventilatie. Opslagtemperatuur en -vochtigheid:\n• 1 maand: -20°C tot 45°C (0-60%RH)\n• 3 maanden: 0°C tot 45°C (0-60%RH)\n• 12 maanden: 0°C tot 25°C (0-60%RH)\nAls dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt bewaard, kan \nhet zijn dat het niet meer kan worden opgeladen. Om dit te voorkomen en de batterij in goede conditie te \nhouden, is het aan te raden om het product elke drie maanden te controleren en op te laden, waarbij minstens \néén keer per 6 tot 12 maanden een volledige laad- en ontlaadcyclus moet worden uitgevoerd.\n"
+      },
+      {
+        "bbox": [
+          34.43600082397461,
+          151.9604949951172,
+          116.02400970458984,
+          166.81649780273438
+        ],
+        "text": "SPECIFICATIES\n"
+      },
+      {
+        "bbox": [
+          39.202598571777344,
+          177.38389587402344,
+          126.81060028076172,
+          187.28790283203125
+        ],
+        "text": "ALGEMENE INFORMATIE\n"
+      },
+      {
+        "bbox": [
+          31.81450080871582,
+          194.3918914794922,
+          258.56707763671875,
+          201.66989135742188
+        ],
+        "text": "Productnaam\nJackery Battery Pack 2000\n"
+      },
+      {
+        "bbox": [
+          184.47410583496094,
+          205.4119415283203,
+          216.32208251953125,
+          212.6119384765625
+        ],
+        "text": "JBP-2000B\n"
+      },
+      {
+        "bbox": [
+          31.81610107421875,
+          205.39402770996094,
+          71.29610443115234,
+          212.67202758789062
+        ],
+        "text": "Modelnummer\n"
+      },
+      {
+        "bbox": [
+          31.81610107421875,
+          216.3920135498047,
+          61.3955078125,
+          223.67001342773438
+        ],
+        "text": "Capaciteit\n"
+      },
+      {
+        "bbox": [
+          184.47410583496094,
+          213.8539276123047,
+          254.1400909423828,
+          227.58192443847656
+        ],
+        "text": "2048 Wh (40 Ah/51,2 V ⎓)\n"
+      },
+      {
+        "bbox": [
+          184.23410034179688,
+          227.40794372558594,
+          205.07791137695312,
+          234.60794067382812
+        ],
+        "text": "LiFePO4\n"
+      },
+      {
+        "bbox": [
+          31.81610107421875,
+          227.38999938964844,
+          61.10870361328125,
+          234.66799926757812
+        ],
+        "text": "Celchemie\n"
+      },
+      {
+        "bbox": [
+          184.65379333496094,
+          237.88441467285156,
+          231.58639526367188,
+          245.08441162109375
+        ],
+        "text": "Ongeveer 14,8 kg\n"
+      },
+      {
+        "bbox": [
+          31.81610107421875,
+          238.3879852294922,
+          54.790103912353516,
+          245.66598510742188
+        ],
+        "text": "Gewicht\n"
+      },
+      {
+        "bbox": [
+          184.53379821777344,
+          249.4224090576172,
+          235.7852020263672,
+          256.6224060058594
+        ],
+        "text": "36,5 × 25,5 × 19,1 cm\n"
+      },
+      {
+        "bbox": [
+          31.81610107421875,
+          249.38597106933594,
+          63.658103942871094,
+          256.6639709472656
+        ],
+        "text": "Afmetingen\n"
+      },
+      {
+        "bbox": [
+          184.53379821777344,
+          259.6224060058594,
+          267.29718017578125,
+          266.8224182128906
+        ],
+        "text": "6000 cycli tot 70%+ capaciteit\n"
+      },
+      {
+        "bbox": [
+          31.81610107421875,
+          260.3839416503906,
+          67.51008605957031,
+          267.6619567871094
+        ],
+        "text": "Levenscyclus\n"
+      },
+      {
+        "bbox": [
+          39.202598571777344,
+          283.7467041015625,
+          158.93861389160156,
+          293.65069580078125
+        ],
+        "text": "INGANGS//UITGANGSPOORTEN\n"
+      },
+      {
+        "bbox": [
+          31.963899612426758,
+          299.73480224609375,
+          248.20452880859375,
+          313.4627990722656
+        ],
+        "text": "DC-uitbreidingspoort (ingang)\n36,8 V-57,6 V⎓75 A Max\n"
+      },
+      {
+        "bbox": [
+          31.965805053710938,
+          314.9364013671875,
+          118.43118286132812,
+          322.21441650390625
+        ],
+        "text": "DC-uitbreidingspoort (Uitgang)\n"
+      },
+      {
+        "bbox": [
+          184.62380981445312,
+          311.91241455078125,
+          248.2064208984375,
+          325.6404113769531
+        ],
+        "text": "36,8 V-57,6 V⎓75 A Max\n"
+      },
+      {
+        "bbox": [
+          39.20209884643555,
+          339.8502197265625,
+          128.38609313964844,
+          349.75421142578125
+        ],
+        "text": "BEDRIJFSTEMPERATUUR\n"
+      },
+      {
+        "bbox": [
+          31.81450080871582,
+          360.03009033203125,
+          223.66506958007812,
+          367.5960998535156
+        ],
+        "text": "Oplaadtemperatuur\n-10°C tot 45°C\n"
+      },
+      {
+        "bbox": [
+          31.815805435180664,
+          372.0263977050781,
+          89.5586166381836,
+          379.3044128417969
+        ],
+        "text": "Ontlaadtemperatuur\n"
+      },
+      {
+        "bbox": [
+          184.85780334472656,
+          372.39239501953125,
+          224.14637756347656,
+          379.5924072265625
+        ],
+        "text": "-10°C tot 45°C\n"
+      },
+      {
+        "bbox": [
+          27.790000915527344,
+          503.9853820800781,
+          34.38999938964844,
+          511.1853942871094
+        ],
+        "text": "07\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 71,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          35.02640151977539,
+          31.207988739013672,
+          91.9784164428711,
+          46.063987731933594
+        ],
+        "text": "GARANTIE\n"
+      },
+      {
+        "bbox": [
+          36.16600036621094,
+          60.30570602416992,
+          318.37457275390625,
+          77.97372436523438
+        ],
+        "text": "Deze garantie geldt alleen voor klanten die aankopen bij de officiële Jackery-website, \nJackery-merkplatformen van derden of lokale erkende dealers.\n"
+      },
+      {
+        "bbox": [
+          29.39259910583496,
+          87.4341812133789,
+          313.0450134277344,
+          94.63418579101562
+        ],
+        "text": "*De garantieperiode en details kunnen variëren volgens lokale wetten, voorschriften en erkende dealers.\n"
+      },
+      {
+        "bbox": [
+          40.86040115356445,
+          101.44490051269531,
+          108.54840850830078,
+          111.34890747070312
+        ],
+        "text": "Beperkte garantie\n"
+      },
+      {
+        "bbox": [
+          37.94139862060547,
+          116.58309936523438,
+          329.50506591796875,
+          158.19058227539062
+        ],
+        "text": "Jackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en \nmateriaalfouten bij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de \nsectie 'Garantieperiode' hieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen.\nIn deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij \naanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere aansprakeli-\njkheid te aanvaarden in verband met de verkoop van onze producten.\n"
+      },
+      {
+        "bbox": [
+          40.86040115356445,
+          171.51918029785156,
+          102.99640655517578,
+          181.42318725585938
+        ],
+        "text": "Garantieperiode\n"
+      },
+      {
+        "bbox": [
+          42.03609848022461,
+          186.46224975585938,
+          308.0141296386719,
+          214.49505615234375
+        ],
+        "text": " Standaardgarantie\n JAAR\n3  \nVerlengde garantie\n JAAR\n2  \n"
+      },
+      {
+        "bbox": [
+          37.940399169921875,
+          215.11680603027344,
+          207.72720336914062,
+          257.3268737792969
+        ],
+        "text": "De standaard garantieperiode voor het Jackery Battery Pack \n2000 is 36 maanden. In alle gevallen gaat de \ngarantieperiode in op de datum van aankoop door de \noorspronkelijke consument-koper. Om de startdatum van de \ngarantieperiode te bepalen, is de aankoopbon van de eerste \nconsumentenaankoop of ander redelijk bewijsstuk vereist.\n"
+      },
+      {
+        "bbox": [
+          218.75100708007812,
+          215.11680603027344,
+          328.451416015625,
+          257.3268737792969
+        ],
+        "text": "Om de garantieverlenging te activeren, \nmoet u uw product online registreren of \ncontact opnemen met onze \nklantenservice via hello.eu@jackery.com \nom de standaardgarantieperiode te \nverlengen.\n"
+      },
+      {
+        "bbox": [
+          40.86040115356445,
+          269.88629150390625,
+          63.51640319824219,
+          279.790283203125
+        ],
+        "text": "Ruilen\n"
+      },
+      {
+        "bbox": [
+          37.942596435546875,
+          285.7701721191406,
+          308.910888671875,
+          306.97418212890625
+        ],
+        "text": "Jackery vervangt (op kosten van Jackery) elk Jackery-product dat gedurende de toepasselijke \ngarantieperiode niet functioneert als gevolg van een fabricage- of materiaalfout. Een vervangend \nproduct neemt de resterende garantie van het originele product over.\n"
+      },
+      {
+        "bbox": [
+          40.86040115356445,
+          321.8336181640625,
+          175.68438720703125,
+          331.73760986328125
+        ],
+        "text": "Beperkt tot de oorspronkelijke koper\n"
+      },
+      {
+        "bbox": [
+          37.940399169921875,
+          337.72027587890625,
+          296.0466003417969,
+          351.92230224609375
+        ],
+        "text": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet \noverdraagbaar aan een volgende eigenaar.\n"
+      },
+      {
+        "bbox": [
+          40.86040115356445,
+          367.56903076171875,
+          87.11640167236328,
+          377.4730224609375
+        ],
+        "text": "Uitsluitingen\n"
+      },
+      {
+        "bbox": [
+          41.94459533691406,
+          383.2161865234375,
+          180.45217895507812,
+          390.41619873046875
+        ],
+        "text": "De garantie van Jackery is niet van toepassing op:\n"
+      },
+      {
+        "bbox": [
+          41.94459533691406,
+          393.0501708984375,
+          316.46563720703125,
+          407.252197265625
+        ],
+        "text": "• Elk product met onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal \nconsumentengebruik, zoals toegestaan in de huidige productliteratuur van Jackery.\n"
+      },
+      {
+        "bbox": [
+          41.94459533691406,
+          409.88616943359375,
+          259.12420654296875,
+          417.086181640625
+        ],
+        "text": "• Een poging tot reparatie door iemand anders dan een erkend servicecentrum.\n"
+      },
+      {
+        "bbox": [
+          41.94459533691406,
+          419.72015380859375,
+          187.00595092773438,
+          426.920166015625
+        ],
+        "text": "• Elk product dat via een online veilinghuis is gekocht.\n"
+      },
+      {
+        "bbox": [
+          41.94459533691406,
+          429.5541687011719,
+          326.04339599609375,
+          443.75616455078125
+        ],
+        "text": "• De garantie van Jackery is niet van toepassing op de batterijcel, tenzij u de batterijcel binnen zeven \ndagen na aankoop van het product volledig oplaadt en daarna ten minste één keer per zes maanden.\n"
+      },
+      {
+        "bbox": [
+          42.815399169921875,
+          461.00262451171875,
+          118.08661651611328,
+          470.9066162109375
+        ],
+        "text": "Interpretatierechten\n"
+      },
+      {
+        "bbox": [
+          37.940399169921875,
+          480.77789306640625,
+          323.746826171875,
+          494.9798889160156
+        ],
+        "text": "Jackery behoudt zich het recht voor op definitieve interpretatie van het bovengenoemde after-salesbe-\nleid voor klanten.\n"
+      },
+      {
+        "bbox": [
+          333.0487976074219,
+          504.2353820800781,
+          340.1167907714844,
+          511.4353942871094
+        ],
+        "text": "08\n"
+      }
+    ]
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "physical_page": 20,
+    "bbox": [
+      170,
+      152,
+      320,
+      163
+    ],
+    "text": "2. Backup-only mode is off.",
+    "reason": "Visible source line is absent from PyMuPDF and Poppler text layers."
+  },
+  {
+    "physical_page": 20,
+    "bbox": [
+      52,
+      481,
+      320,
+      495
+    ],
+    "text": "Manually turn each home circuit on or off, rename them, and view the historical power",
+    "reason": "Visible first line of the source circuit caption is absent from both text layers."
+  },
+  {
+    "physical_page": 21,
+    "bbox": [
+      52,
+      365,
+      320,
+      377
+    ],
+    "text": "plans based on peak and off-peak electricity times, reducing electricity costs.",
+    "reason": "Visible continuation line omitted from the source text layer."
+  },
+  {
+    "physical_page": 21,
+    "bbox": [
+      52,
+      423,
+      320,
+      435
+    ],
+    "text": "Battery saving mode, Auto-off, Energy saving mode, Quiet charging mode, Charging",
+    "reason": "Visible source list line omitted from the text layer."
+  },
+  {
+    "physical_page": 23,
+    "bbox": [
+      169,
+      183,
+      320,
+      192
+    ],
+    "text": "manually turn off the power station.",
+    "reason": "Visible final line omitted from the text layer."
+  }
+]

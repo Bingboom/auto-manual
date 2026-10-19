@@ -1,0 +1,9 @@
+{
+  "source_commit": "169ee17e8f18c4372dad4d6689e89dc59788e7e2",
+  "technical_version": "git-20261005-31fd0692-charging2",
+  "baseline_ref": "83cc003714a81a6d8fa1e89b9b38829b76ed598e",
+  "baseline_files_byte_identical": 5609,
+  "candidate_targets": 106,
+  "scope": "local-only",
+  "native_caption_count": 16
+}

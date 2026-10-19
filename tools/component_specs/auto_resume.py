@@ -14,7 +14,7 @@ _ADAPTERS = {"web": "hb_auto_resume", "latex": "hb_latex_auto_resume",
              "idml": "idml_auto_resume", "word": "word_auto_resume"}
 
 
-def _copy(headers, conditions):
+def _copy(headers: Sequence[str], conditions: Sequence[Sequence[str]]) -> dict[str, list[object]]:
     if (len(headers) != 2 or len(conditions) != 2
             or [len(column) for column in conditions] != [3, 4]):
         raise ComponentSpecError("auto-resume requires two headers and 3/4 conditions")

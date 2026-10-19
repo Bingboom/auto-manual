@@ -1,0 +1,29 @@
+{
+  "candidate": "11",
+  "strict_sphinx": true,
+  "source_free_replay_exact": true,
+  "body_text_unchanged": true,
+  "six_assets_unchanged": true,
+  "overview_sha256": "b8bed03f8c5c58d2170dc5e7e4f9323efea24ceb7cfcf05889cbbca55437da5c",
+  "desktop": {
+    "viewport": [
+      1440,
+      1000
+    ],
+    "previous_width": 842.8125,
+    "width": 640,
+    "height": 719.6171875,
+    "horizontal_overflow": false
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "width": 358,
+    "height": 402.53125,
+    "horizontal_overflow": false
+  },
+  "display_contract": "width:min(100%,40rem)!important;max-width:100%!important;height:auto!important;",
+  "shared_css_changed": false
+}

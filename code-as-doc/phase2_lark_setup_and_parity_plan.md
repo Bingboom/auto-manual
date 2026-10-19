@@ -17,7 +17,7 @@ It covers:
 Reference:
 
 - official CLI README: [larksuite/cli](https://github.com/larksuite/cli)
-- current repo implementation: [`build.py`](../build.py), [`tools/sync_data.py`](../tools/sync_data.py), [`tools/data_snapshot.py`](../tools/data_snapshot.py)
+- current repo implementation: [`build.py`](../build.py), [`tools/data/sync_data.py`](../tools/data/sync_data.py), [`tools/data/snapshot.py`](../tools/data/snapshot.py)
 
 ## 1. Goal
 
@@ -248,7 +248,7 @@ Follow-up on 2026-04-01:
 - Feishu source data was already correct; the real cause was the sync implementation
 - `lark-cli base +record-list` abbreviated long headers such as `Row_label_footnote_refs` to `Row_label_footnote_r...`
 - the previous sync path matched returned columns by display name only, so that field was dropped during CSV normalization
-- after fixing [`../tools/sync_data.py`](../tools/sync_data.py) to resolve full field names via `base +field-list`, rerunning `sync-data` restored `Row_label_footnote_refs=ac_bypass` in [`../data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
+- after fixing [`../tools/data/sync_data.py`](../tools/data/sync_data.py) to resolve full field names via `base +field-list`, rerunning `sync-data` restored `Row_label_footnote_refs=ac_bypass` in [`../data/phase2/Spec_Master.csv`](../data/phase2/Spec_Master.csv)
 - a second disposable parity run under `C:/Users/tangxb/Documents/GitHub/auto-manual-parity/.tmp/parity_real_sync_20260401T112147/` removed the remaining `spec_en.rst` delta
 - current parity status is now clean except for the expected traceability-only `bundle_manifest.json` path/SHA difference and the expected `release-manifest built_at + phase path` differences
 

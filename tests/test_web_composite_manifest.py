@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.web_composite_manifest import (
+from tools.web.composite_manifest import (
     WEB_COMPOSITE_MANIFEST_SCHEMA,
     WebCompositeEntry,
     WebCompositeManifest,

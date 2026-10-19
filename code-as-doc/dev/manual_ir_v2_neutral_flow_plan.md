@@ -83,9 +83,9 @@ python3 -m unittest \
   `ManualSource` blocks without reading source files.
 - `tools/manual_ir/document.py` currently owns the HTML content-tree shape and
   whole-document-specific validation.
-- `tools/web_document_source.py` reads each source page once, packages images
+- `tools/web/document_source.py` reads each source page once, packages images
   by digest and builds the whole-document IR.
-- `tools/web_document_ir.py` validates hashes and replays without reading RST
+- `tools/web/document_ir.py` validates hashes and replays without reading RST
   or CSV.
 
 The existing prepared-RST/IDML producer and its `manual-ir/v1` bytes are a
@@ -224,8 +224,8 @@ Files:
 - `tools/manual_ir/builder.py`
 - `tools/manual_ir/validate.py`
 - `tools/manual_ir/serialize.py`
-- `tools/web_document_source.py`
-- `tools/web_document_ir.py`
+- `tools/web/document_source.py`
+- `tools/web/document_ir.py`
 
 Safety net:
 
@@ -271,8 +271,8 @@ Run in order and record the exact result:
 1. `python3 -m ruff check build.py integrations tools tests scripts`
 2. focused ManualIR/whole-document/component projection tests
 3. `python3 -m unittest`
-4. `python3 tools/check_maintainability_guardrails.py`
-5. `python3 tools/check_doc_link_integrity.py`
+4. `python3 -m tools.check_maintainability_guardrails`
+5. `python3 -m tools.check_doc_link_integrity`
 6. `python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US`
 7. build a real JE-1000F/US Web package, verify v2-only flow blocks, then cold
    replay it with RST/CSV reads forbidden

@@ -1,0 +1,197 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JBP-5000A",
+    "region": "JP",
+    "technical_version": "git-20261011-cdd40510-reviewed"
+  },
+  "original_source_sha256": "cdd40510647f7d45a80f58eccddba32754346edeaede760c993ca6670af6bfc8",
+  "reviewed_source_commit": "26a5a4e41f727c4281a230044267e61ba2190dc3",
+  "reviewed_inputs": [
+    {
+      "path": "Jackery Battery Pack 5000 Plus 取扱説明書.pdf",
+      "sha256": "cdd40510647f7d45a80f58eccddba32754346edeaede760c993ca6670af6bfc8",
+      "size": 7896389
+    },
+    {
+      "path": "README.md",
+      "sha256": "6a5ccc8df4192711be6cd946b545ab0705a517e6f4d2ad471fe8232d155a938f",
+      "size": 5889
+    },
+    {
+      "path": "assets/ac-charge.svg",
+      "sha256": "2e631ef75388c58af6259a947645a4e3aa4537d082d77ea347003a683997f5d7",
+      "size": 1374700
+    },
+    {
+      "path": "assets/app-download.svg",
+      "sha256": "0cf80731f66daa375a8ee40b2cb9cde5cf8e73fea8304061b31719c40d6df45a",
+      "size": 16869
+    },
+    {
+      "path": "assets/app-qr.svg",
+      "sha256": "2faaeb1f63bde180669d27fe0adc8cd3dd40f66b85b96caa46ee2b397f3b2ee8",
+      "size": 5689
+    },
+    {
+      "path": "assets/battery-packs.svg",
+      "sha256": "81af55ff98f81ada561b90c77deefb99b1c99bc668dcefa232725fdba0e08278",
+      "size": 2180260
+    },
+    {
+      "path": "assets/connected-batteries.svg",
+      "sha256": "e83e8f4142517d2d9771312ce4fc90c68bc0dcde47b2b5df5b6e20269cf4dcfb",
+      "size": 48784
+    },
+    {
+      "path": "assets/inbox-cable.png",
+      "sha256": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7",
+      "size": 8742
+    },
+    {
+      "path": "assets/inbox-main.svg",
+      "sha256": "28f48b185c652fc0e144acbfb214055eafb39fa8f84a9bcb64c5c37eb7865382",
+      "size": 390354
+    },
+    {
+      "path": "assets/inbox-manual.svg",
+      "sha256": "a07e88fde477f05ccd86746e200155f53e6a95c950b1a8444152bcc1914bd133",
+      "size": 568842
+    },
+    {
+      "path": "assets/lcd-charge.svg",
+      "sha256": "e1ffa40277a7eb92a8a4c3f770d0099c0a5f5d414bad82d5cbb8d7555d3b27c2",
+      "size": 2547
+    },
+    {
+      "path": "assets/lcd-map.svg",
+      "sha256": "55f3c68fcf37bc58acbe5ba99e32b9867adb47e636c0c904287ab36beb851f8e",
+      "size": 7648
+    },
+    {
+      "path": "assets/lcd-percentage.svg",
+      "sha256": "af251a1736d323f84a1a71cb0ad5bd173922a7b599b72e03f3f00727cdbff5a9",
+      "size": 3998
+    },
+    {
+      "path": "assets/locking-connection.svg",
+      "sha256": "098fc8ad4c29e0cdd5ada28e03edd83bdd549016e5a8b849ff21f8e8f99f950f",
+      "size": 2051844
+    },
+    {
+      "path": "assets/overview.svg",
+      "sha256": "d2cfb9e6a142b099fb8073971082b0123fc1477ca6a9b3bae3a10ad5245970e7",
+      "size": 421135
+    },
+    {
+      "path": "assets/power.svg",
+      "sha256": "9ffade3f6f4f7679e046d56764cc532798ff9acc746c80343a4d9422a587b47f",
+      "size": 417603
+    },
+    {
+      "path": "assets/service-logo.svg",
+      "sha256": "00889b66437ecd87e2c6ba008a202edcd1e352e07bb7fd3ec07713c946e8635c",
+      "size": 7802
+    },
+    {
+      "path": "assets/solar-house.svg",
+      "sha256": "ad5c6265c1bc7b0ddc4ae96e3c9312a1d249d909b4bab3695fa24aa008799969",
+      "size": 2894605
+    },
+    {
+      "path": "assets/solar-portable.svg",
+      "sha256": "76caf021d16116ff166b7b72841ab215e3f61c44ab6ec9f658d97ed1a8a6f1c3",
+      "size": 1852100
+    },
+    {
+      "path": "assets/stack-limits.svg",
+      "sha256": "d03b4f3801abb3ab6b35ca6364e530d8c9b6fa2629bf2195fd35a921c4dce8f0",
+      "size": 790768
+    },
+    {
+      "path": "assets/symbol-li-ion.svg",
+      "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+      "size": 6007
+    },
+    {
+      "path": "rebuild.py",
+      "sha256": "0b02dc7ce9ed13ec12e6d450faa5a3ead4bd4d15e00afa8214e21cdb7848cf93",
+      "size": 7371
+    },
+    {
+      "path": "refresh_manifest.py",
+      "sha256": "9d40da87e0f15ef72830705fc9c70701eebda7df0e720be5e56938f3f31039cc",
+      "size": 2570
+    },
+    {
+      "path": "source/asset_decisions.json",
+      "sha256": "e14bb6a893c145f3db9f74ba3a61fb7a7690cf5317ecd17ea29c21d3924da431",
+      "size": 605631
+    },
+    {
+      "path": "source/asset_recipe.json",
+      "sha256": "e5423f2985d7b985d93887d48f3aa1d7677de084d8be84e3485817b353b5312b",
+      "size": 882678
+    },
+    {
+      "path": "source/figures.json",
+      "sha256": "8792283f668a5aa9a043e2440fba741ab3f4f5b64da311eacab79adb6a5ba52f",
+      "size": 713503
+    },
+    {
+      "path": "source/ja/acceptance.json",
+      "sha256": "b4e4cc421e099be6b0dc8508959e5e830f89de1f22dc029f2b3847341f311fc6",
+      "size": 1382
+    },
+    {
+      "path": "source/ja/content.json",
+      "sha256": "cb06ceebe721f034e8081809824c1c72692fda2a095be2fb30bff26344bfbdb6",
+      "size": 182016
+    },
+    {
+      "path": "source/ja/coverage.json",
+      "sha256": "2353642cd6b69391095678e99b86010914cbd9f45660770f4f9b4e9c6826936d",
+      "size": 35549
+    },
+    {
+      "path": "source/native_export_compatibility.json",
+      "sha256": "8fe96181f81378187dc231ce83ae3141cffad0aa886896b1a1776dee8495fdcc",
+      "size": 2029
+    },
+    {
+      "path": "source/native_pages.json",
+      "sha256": "b01c5e4ed23ff972af8e320118b765f2e507cde2415766e551383891eac2e59a",
+      "size": 246733
+    },
+    {
+      "path": "source/page_map.json",
+      "sha256": "b5ff380e31b4119683133fd8e2fa2e4a4a3ece2a9b51fdd283397c509994337a",
+      "size": 502
+    },
+    {
+      "path": "source/presentation.css",
+      "sha256": "fa0afd7a9320cdf115159142d03232f89e28600eb47baf2380594de1f8bc23d2",
+      "size": 7218
+    },
+    {
+      "path": "source/print-cover.json",
+      "sha256": "040ff5a5cc54256e5941f680245c19dad789ad41d8f60a8e592a50a2924f0d77",
+      "size": 9903
+    },
+    {
+      "path": "validate_layout.py",
+      "sha256": "173f76dc296384cad776a4780d905e7e201ef61f6aabc076012808a6d40aaa07",
+      "size": 22359
+    },
+    {
+      "path": "validate_source.py",
+      "sha256": "1616a91254824dbec46b527f2689890a27b2c9864bb79deda90c282f61fc2afa",
+      "size": 4730
+    }
+  ],
+  "candidate_manifest_sha256": "de1f0f61977845498e62e8e65af396a93a2ccf393651e2ca19dd2e12dd6fbc32",
+  "operator_quote": "提交发布上线",
+  "decision_date": "2026-10-11",
+  "merge_authorization": "MA-286",
+  "scope": "JBP-5000A/JP/ja engineering merge and Git-only Web publication only"
+}

@@ -185,7 +185,7 @@ python build.py sync-data --config configs/config.<region>.yaml            # ful
 python build.py check --config configs/config.<region>.yaml --model <MODEL> --region <REGION>
 python build.py check --config configs/config.us.yaml --model JE-1000F --region US   # regression
 python -m unittest
-python tools/check_maintainability_guardrails.py
+python -m tools.check_maintainability_guardrails
 ```
 Then branch/commit/PR per AGENTS.md §8.6 (do not self-merge).
 

@@ -197,7 +197,7 @@ def run_jobs_manifest(
         for job in jobs:
             try:
                 result = runner(job, pin_status, pin_message)
-            except Exception as exc:  # injectable per-job path used by tests/callers
+            except Exception as exc:  # noqa: BLE001 - injectable per-job runner; failure recorded per job
                 result = {
                     "job_id": job["job_id"],
                     "success": False,

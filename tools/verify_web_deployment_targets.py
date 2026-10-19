@@ -9,7 +9,7 @@ published target catalog (``docs/publish/publish_manifest.json`` on Hello-Docs
 site:
 
 - With ``--publish-root`` (a local frozen ``docs/publish`` checkout) it runs
-  the full ``tools.rtd_deployment_receipt.verify_deployment`` check per target:
+  the full ``tools.rtd.deployment_receipt.verify_deployment`` check per target:
   live receipt against the frozen source fingerprint, byte identity for each
   page and its same-origin resources, and the RTD project-slug dimension.
 - Without a local tree it fetches the manifest remotely (``--manifest-url``)
@@ -38,7 +38,6 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
-import sys
 from typing import Any
 from urllib.parse import urlsplit
 from urllib.request import Request, build_opener
@@ -51,9 +50,12 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools import rtd_deployment_receipt as receipt  # noqa: E402
+from tools.rtd import deployment_receipt as receipt  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
+from tools.utils.log import get_logger
+
+_ERR = get_logger("verify-web-deploy", stream="stderr")
 
 REPORT_SCHEMA = "auto-manual-web-deployment-verification/v1"
 MANIFEST_SCHEMA = "auto-manual-web-publish-branch/v2"
@@ -212,7 +214,7 @@ def verify_targets_against_source(
             web_root, base_url, routes, expected_project_slug=project_slug, session=session,
             include_dependency=include_dependency,
         )
-    except Exception:
+    except Exception:  # noqa: BLE001 - falls back to per-target verification
         results = []
         for target in targets:
             if session.budget_exhausted:
@@ -228,7 +230,7 @@ def verify_targets_against_source(
                     expected_project_slug=project_slug, session=session,
                     include_dependency=include_dependency,
                 )
-            except Exception as exc:
+            except Exception as exc:  # noqa: BLE001 - one target's failure is recorded
                 results.append(_failure(target, mode=mode, exc=exc))
             else:
                 results.append(_result(target, mode=mode))
@@ -274,7 +276,7 @@ def verify_targets_live_slug(
                     "page never declared the expected RTD project slug "
                     f"{project_slug}: no readthedocs-project-slug meta observed"
                 )
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - one target's failure is recorded
             results.append(_failure(target, mode=mode, exc=exc))
         else:
             results.append(_result(target, mode=mode))
@@ -443,8 +445,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
         exit_code, report = run(args)
-    except Exception as exc:
-        print(f"[verify-web-deploy] ERROR: {exc}", file=sys.stderr)
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
+        _ERR.error(f"[verify-web-deploy] ERROR: {exc}")
         return EXIT_FAILED
     if args.report_json is not None:
         Path(args.report_json).write_text(

@@ -1,0 +1,431 @@
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import test from "node:test";
+import { readFile } from "node:fs/promises";
+import { createKnowledgeClient, siteBase, validateCorpus } from "../lib/manual-query/client.mjs";
+import { readSection, searchManuals } from "../lib/manual-query/search.mjs";
+import { registerManualQuery, renderQueryResult } from "../lib/manual-query/plugin.mjs";
+import plugin from "../index.mjs";
+
+const origin = "https://manual.example";
+const digest = (value) => createHash("sha256").update(value).digest("hex");
+function fixture({ version = "2.0", model = "JE-TEST", scope = "single", lang = "en" } = {}) {
+  const doc = { id: "doc-" + model, model, name: "Product", region: "EU", lang: scope === "single" ? lang : null,
+    language_scope: scope, version, url: `${model}/EU/en/md/manual.html`, html_sha256: "b".repeat(64),
+    coverage: { image_text_coverage: "alt_only_no_ocr" }, sections: [
+      { id: "spec-" + model, title: "Specifications", anchor: "specifications", blocks: [
+        { type: "table", text: "USB-C output | 100 W\nVoltage | 20 V", grid: [["USB-C output", "100 W"], ["Voltage", "20 V"]] },
+        { type: "callout", text: "WARNING: Single port only.", label: "WARNING", body: "Single port only." },
+      ] },
+      { id: "operate-" + model, title: "Operations", anchor: "operation", blocks: [
+        { type: "paragraph", text: "Turn Energy Saving Mode off. Hold for 3 seconds." },
+        { type: "callout", text: "WARNING: Do not use for critical continuous loads." },
+      ] },
+    ] };
+  const corpus = { schema: "auto-manual-knowledge/v1", source_sha256: "a".repeat(64), region: "EU",
+    published_at: "2026-10-01T00:00:00Z", counts: { models: 1, editions: 1, sections: 2 }, documents: [doc] };
+  const bytes = Buffer.from(JSON.stringify(corpus));
+  const receipt = { schema: "manual-rtd-deployment/v1", source_sha256: corpus.source_sha256,
+    files: { "manual-knowledge.json": digest(bytes), [doc.url]: doc.html_sha256 } };
+  return { corpus, receipt, bytes, origin, checkedAt: 1000, digest: digest(bytes) };
+}
+
+function fetcher(current) {
+  const calls = [];
+  const fetchImpl = async (url, options) => {
+    calls.push({ url, options });
+    const f = current();
+    if (f instanceof Error) throw f;
+    const bytes = new URL(url).pathname.endsWith("manual-deployment.json") ? JSON.stringify(f.receipt) : f.bytes;
+    return new Response(bytes, { status: 200 });
+  };
+  return { calls, fetchImpl };
+}
+
+test("query client accepts one HTTPS site root, with an optional version prefix", () => {
+  assert.equal(siteBase(origin + "/"), origin);
+  assert.equal(siteBase(origin + "/en/latest"), origin + "/en/latest");
+  assert.equal(siteBase(origin + "/en/latest/"), origin + "/en/latest");
+  for (const url of ["http://manual.example", "https://x:y@manual.example", origin + "?secret=1", origin + "#x",
+    origin + "//en/latest", origin + "/en/a%2Fb", origin + "/en/latest?x=1"]) {
+    assert.throws(() => siteBase(url));
+  }
+});
+
+test("a version-prefixed root reads the receipt and links documents under that prefix", async () => {
+  const transport = fetcher(() => fixture());
+  const base = origin + "/en/latest";
+  const snapshot = await createKnowledgeClient({ baseUrl: base + "/", fetchImpl: transport.fetchImpl }).load();
+  for (const { url } of transport.calls) assert.ok(new URL(url).pathname.startsWith("/en/latest/"), url);
+  const result = searchManuals(snapshot, { query: "JE-TEST specifications" });
+  assert.equal(result.results[0].url, base + "/JE-TEST/EU/en/md/manual.html#specifications");
+});
+
+test("receipt/hash verification is atomic and cache refresh observes a replacement release", async () => {
+  let current = fixture(); let time = 1000;
+  const transport = fetcher(() => current);
+  const client = createKnowledgeClient({ baseUrl: origin, fetchImpl: transport.fetchImpl, now: () => time });
+  const first = await client.load();
+  assert.equal(first.corpus.documents[0].version, "2.0");
+  assert.equal(transport.calls.length, 3);
+  await client.load(); assert.equal(transport.calls.length, 3);
+  time += 60001; current = fixture({ version: "3.0" });
+  assert.equal((await client.load()).corpus.documents[0].version, "3.0");
+  for (const { url, options } of transport.calls) {
+    assert.equal(new URL(url).origin, origin); assert.equal(options.redirect, "manual");
+    assert.match(new URL(url).search, /^\?receipt_probe=[a-f0-9]{32}$/);
+  }
+});
+
+test("RTD version-prefix redirects are bounded and never followed across origins", async () => {
+  const transport = fetcher(() => fixture());
+  const fetchImpl = async (url, options) => {
+    const path = new URL(url).pathname;
+    if (!path.startsWith("/en/latest/")) return new Response(null, { status: 302, headers: { location: "/en/latest" + path } });
+    return transport.fetchImpl(url, options);
+  };
+  assert.equal((await createKnowledgeClient({ baseUrl: origin, fetchImpl }).load()).corpus.counts.models, 1);
+  let calls = 0;
+  await assert.rejects(createKnowledgeClient({ baseUrl: origin, fetchImpl: async () => {
+    calls++;
+    return new Response(null, { status: 302, headers: { location: "https://other.example/receipt" } });
+  } }).load(), /Cross-origin/);
+  assert.equal(calls, 1);
+  await assert.rejects(createKnowledgeClient({ baseUrl: origin, fetchImpl: async () =>
+    new Response(null, { status: 302, headers: { location: "/loop" } }) }).load(), /Too many/);
+});
+
+test("withdrawal replaces the whole corpus; withdrawn sections cannot be read", async () => {
+  let current = fixture(); let time = 1000;
+  const transport = fetcher(() => current);
+  const client = createKnowledgeClient({ baseUrl: origin, fetchImpl: transport.fetchImpl, now: () => time });
+  await client.load();
+  current = fixture({ model: "JE-OTHER" }); time += 60001;
+  const after = await client.load();
+  assert.equal(readSection(after, { document_id: "doc-JE-TEST", section_id: "spec-JE-TEST", snapshot_id: after.digest }).status, "not_found");
+});
+
+test("expired cached data is refused when fresh receipt fetch fails", async () => {
+  let current = fixture(); let time = 1000;
+  const transport = fetcher(() => current);
+  const client = createKnowledgeClient({ baseUrl: origin, fetchImpl: transport.fetchImpl, now: () => time });
+  await client.load(); time += 60001; current = new Error("offline");
+  await assert.rejects(client.load(), /offline/);
+  await assert.rejects(client.load(), /offline/);
+});
+
+test("tampered bytes, missing artifact, deployment race and foreign routes fail closed", async () => {
+  const tampered = fixture(); tampered.bytes = Buffer.from("{}");
+  await assert.rejects(createKnowledgeClient({ baseUrl: origin, ...fetcher(() => tampered) }).load(), /does not match/);
+  const missing = fixture(); delete missing.receipt.files["manual-knowledge.json"];
+  await assert.rejects(createKnowledgeClient({ baseUrl: origin, ...fetcher(() => missing) }).load(), /does not contain/);
+  let i = 0; const before = fixture(); const after = fixture({ version: "3" });
+  await assert.rejects(createKnowledgeClient({ baseUrl: origin,
+    ...fetcher(() => ++i < 3 ? before : after) }).load(), /changed during refresh/);
+  const foreign = fixture(); foreign.corpus.documents[0].url = "https://evil.test/manual.html";
+  assert.throws(() => validateCorpus(foreign.corpus, foreign.receipt), /Invalid/);
+});
+
+test("HTTP failures and oversized or incomplete responses never become a corpus", async () => {
+  for (const response of [new Response("forbidden", { status: 403 }),
+    new Response("{}", { headers: { "content-length": "999999999" } }),
+    new Response("{}", { headers: { "content-length": "20" } })]) {
+    await assert.rejects(createKnowledgeClient({ baseUrl: origin, fetchImpl: async () => response }).load());
+  }
+});
+
+test("concurrent queries share one verification download", async () => {
+  const transport = fetcher(() => fixture());
+  const client = createKnowledgeClient({ baseUrl: origin, fetchImpl: transport.fetchImpl });
+  const results = await Promise.all([client.load(), client.load(), client.load()]);
+  assert.equal(transport.calls.length, 3); assert.equal(results[0], results[2]);
+});
+
+test("Chinese questions retrieve source evidence with explicit version and chapter URL", () => {
+  const f = fixture();
+  for (const query of ["JE-TEST USB-C输出功率", "JE-TEST USB-C的输出是多少", "JE-TEST specifications", "JE TEST specifications"]) {
+    const result = searchManuals(f, { query });
+    assert.equal(result.status, "matches");
+    assert.equal(result.results[0].section_id, "spec-JE-TEST");
+    assert.equal(result.results[0].version, "2.0");
+    assert.equal(result.results[0].url, origin + "/JE-TEST/EU/en/md/manual.html#specifications");
+  }
+  assert.equal(searchManuals(f, { query: "JE-TEST节能模式怎么关闭" }).results[0].section_id, "operate-JE-TEST");
+});
+
+test("model, region and language uncertainty is not silently resolved to another manual", () => {
+  const f = fixture();
+  assert.equal(searchManuals(f, { query: "USB-C功率" }).status, "needs_model");
+  assert.equal(searchManuals(f, { query: "JE-TESTMORE output" }).status, "model_not_found");
+  assert.equal(searchManuals(f, { query: "JE-NONE output" }).status, "model_not_found");
+  assert.equal(searchManuals(f, { query: "JE-TEST 美规输出" }).status, "outside_scope");
+  assert.equal(searchManuals(f, { query: "JE-TEST UK output" }).status, "outside_scope");
+  assert.equal(searchManuals(f, { query: "JE-TEST 英规输出" }).status, "outside_scope");
+  assert.equal(searchManuals(f, { model: "JE-TEST", language: "fr", query: "output" }).status, "language_not_found");
+  const other = fixture({ model: "JE-OTHER" }); f.corpus.documents.push(other.corpus.documents[0]);
+  assert.equal(searchManuals(f, { query: "compare JE-TEST JE-OTHER" }).status, "needs_model");
+  assert.equal(searchManuals(f, { query: "compare JE-TEST JE-UNKNOWN" }).status, "model_not_found");
+});
+
+test("legacy editions remain searchable with unknown language, and missing concepts return no evidence", () => {
+  const f = fixture({ scope: "legacy_unspecified" });
+  const r = searchManuals(f, { model: "JE-TEST", query: "output" });
+  assert.equal(r.results[0].language, null); assert.equal(r.results[0].language_scope, "legacy_unspecified");
+  assert.equal(searchManuals(f, { model: "JE-TEST", query: "underwater submersion" }).status, "no_evidence");
+  assert.match(renderQueryResult(r), /语言范围未验证/);
+});
+
+test("section pagination preserves whole tables and adjacent warnings", () => {
+  const f = fixture(); const args = { document_id: "doc-JE-TEST", section_id: "spec-JE-TEST", snapshot_id: f.digest, limit: 1 };
+  const first = readSection(f, args); assert.deepEqual(first.blocks[0].grid, [["USB-C output", "100 W"], ["Voltage", "20 V"]]);
+  assert.equal(first.next_offset, 1);
+  const second = readSection(f, { ...args, offset: first.next_offset });
+  assert.equal(second.blocks[0].label, "WARNING"); assert.equal(second.next_offset, null);
+  assert.match(first.guidance, /继续读取/);
+  assert.throws(() => readSection(f, { ...args, offset: -1 }));
+});
+
+test("search and every evidence page must belong to the same publication snapshot", () => {
+  const before = fixture(); const after = fixture({ version: "3.0" });
+  const result = searchManuals(before, { query: "JE-TEST output" });
+  const args = { document_id: "doc-JE-TEST", section_id: "spec-JE-TEST", snapshot_id: result.publication.snapshot_id };
+  assert.equal(readSection(before, args).status, "evidence");
+  assert.equal(readSection(after, args).status, "publication_changed");
+  assert.equal(readSection(after, { ...args, snapshot_id: undefined }).status, "publication_changed");
+});
+
+test("technical parameters headings are found with Chinese or English specifications keywords", () => {
+  const f = fixture(); f.corpus.documents[0].sections[0].title = "TECHNICAL PARAMETERS";
+  for (const query of ["JE-TEST 参数", "JE-TEST specifications"]) {
+    assert.equal(searchManuals(f, { query }).results[0].section_id, "spec-JE-TEST");
+  }
+});
+
+test("oversized evidence is not truncated into a misleading partial table", () => {
+  const f = fixture(); f.corpus.documents[0].sections[0].blocks[0].text = "a".repeat(70000);
+  const result = readSection(f, { document_id: "doc-JE-TEST", section_id: "spec-JE-TEST", snapshot_id: f.digest });
+  assert.equal(result.status, "open_source"); assert.equal(result.next_offset, null); assert.deepEqual(result.blocks, []);
+});
+
+test("gateway tools use the existing model path and never dispatch builds", async () => {
+  const tools = []; const commands = []; let loads = 0;
+  const api = { pluginConfig: { manualQueryBaseUrl: origin }, registerTool: (tool) => tools.push(tool),
+    registerCommand: (command) => commands.push(command) };
+  registerManualQuery(api, { clientFactory: () => ({ load: async () => { loads++; return fixture(); } }) });
+  assert.deepEqual(tools.map((tool) => tool.name), ["manual_search", "manual_section"]);
+  assert.equal(commands[0].requireAuth, true);
+  const search = await tools[0].execute("call-id", { query: "JE-TEST output" });
+  assert.equal(search.details.status, "matches");
+  const read = await tools[1].execute("call-id", { document_id: search.details.results[0].document_id,
+    section_id: search.details.results[0].section_id, snapshot_id: search.details.publication.snapshot_id });
+  assert.equal(read.details.status, "evidence");
+  const reply = await commands[0].handler({ args: "JE-TEST output" });
+  assert.match(reply.text, /检索片段/); assert.match(reply.text, /\[Specifications\]\(https:\/\/manual\.example/);
+  assert.equal(loads, 3);
+});
+
+test("plugin registers query tools alongside unchanged operation commands", () => {
+  const tools = []; const commands = [];
+  plugin.register({ registerTool: (t) => tools.push(t.name), registerCommand: (c) => commands.push(c.name) });
+  assert.deepEqual(tools, ["manual_search", "manual_section"]);
+  assert.ok(commands.includes("manual-query")); assert.ok(commands.includes("publish"));
+  assert.ok(commands.includes("manual-status"));
+});
+
+test("unconfigured or disconnected gateway reports unavailable, never a guessed answer", async () => {
+  const tools = [];
+  registerManualQuery({ registerTool: (tool) => tools.push(tool), registerCommand() {} });
+  const result = await tools[0].execute("call-id", { query: "JE-TEST output" });
+  assert.equal(result.details.status, "unavailable"); assert.equal(result.isError, true);
+  assert.match(result.details.guidance, /请勿使用缓存或记忆补答/);
+});
+
+function catalog(...documents) {
+  const corpus = { schema: "auto-manual-knowledge/v1", source_sha256: "a".repeat(64), region: "EU",
+    published_at: "2026-10-01T00:00:00Z", documents, counts: { models: documents.length, editions: documents.length,
+      sections: documents.reduce((total, doc) => total + doc.sections.length, 0) } };
+  return { corpus, origin, checkedAt: 1000, digest: "snapshot" };
+}
+
+function manual(model, sections) {
+  return { id: "doc-" + model, model, name: "Product", region: "EU", lang: "en", language_scope: "single",
+    version: "2.0", url: `${model}/EU/en/md/manual.html`, html_sha256: "b".repeat(64),
+    coverage: { image_text_coverage: "alt_only_no_ocr" },
+    sections: sections.map(([id, title, ...texts]) => ({ id, title, anchor: id,
+      blocks: texts.map((text) => ({ type: "paragraph", text })) })) };
+}
+
+// Chapter ids sort opposite to chapter order, so an id tie-break would surface the wrong chapter.
+const station = (model, capacity) => manual(model, [
+  ["z-box", "What's in the box", "Portable power station; charging cable."],
+  ["y-lcd", "LCD Display", "Battery Saving Mode limits the usable battery capacity. USB output icon: On / Off."],
+  ["w-ops", "Operations", "USB OUTPUT ON/OFF", "Press the USB button once to turn the output on.", "Press it again to turn it off."],
+  ["x-charge", "Charging", "Charge the battery to full capacity before storage. Open the cover on the back."],
+  ["a-spec", "Specifications", `Capacity | ${capacity}\nWeight | About 35 kg`],
+]);
+
+test("parameter questions open the specification table, not chapters that only mention the word", () => {
+  const f = catalog(station("JE-TEST", "80 Ah / 44.8 V DC (3584 Wh)"));
+  for (const query of ["JE-TEST 容量", "JE-TEST capacity", "JE-TEST capacity Wh", "JE-TEST 最大容量",
+    "JE-TEST largest capacity", "JE-TEST 容量最大的产品是哪个 介绍一下", "JE-TEST 重量"]) {
+    const result = searchManuals(f, { query });
+    assert.equal(result.status, "matches", query);
+    assert.equal(result.results[0].section_id, "a-spec", query);
+  }
+  assert.ok(!searchManuals(f, { query: "JE-TEST 容量" }).results.some((row) => row.section_id === "z-box"),
+    "the unit Wh must not match the word what");
+  assert.deepEqual(searchManuals(f, { query: "JE-TEST battery" }).results.map((row) => row.section_id), ["y-lcd", "x-charge"],
+    "equal scores keep chapter order");
+  assert.equal(searchManuals(f, { query: "JE-TEST ac" }).status, "no_evidence", "short words match whole words only");
+  const glued = catalog(manual("JE-SMALL", [["spec", "Specifications", "Battery | 96Wh (5Ah/19.2V DC)"],
+    ["warranty", "Garantía", "Garantía de 2 años."]]));
+  assert.equal(searchManuals(glued, { query: "JE-SMALL 电流" }).status, "no_evidence", "2 años is not 2 A");
+  assert.equal(searchManuals(glued, { query: "JE-SMALL 容量" }).results[0]?.section_id, "spec", "a unit glued to its number counts");
+  assert.equal(searchManuals(f, { query: "JE-TEST 开启 USB 输出" }).results[0].section_id, "w-ops",
+    "on equal scores the chapter that explains the procedure beats a passing mention");
+});
+
+test("comparisons list one chapter per model with the matching source lines", () => {
+  const f = catalog(station("JE-T1", "1024 Wh (20 Ah / 51.2 V DC)"), station("JE-T2", "80 Ah / 44.8 V DC (3584 Wh)"),
+    manual("JS-T3", [["spec", "Specifications", "Rated power | 100 W"]]));
+  const all = searchManuals(f, { query: "容量最大的产品是哪个", compare: true });
+  assert.equal(all.status, "comparison");
+  assert.deepEqual(all.compared_models, ["JE-T1", "JE-T2", "JS-T3"]);
+  assert.deepEqual(all.results.map((row) => [row.model, row.section_id]), [["JE-T1", "a-spec"], ["JE-T2", "a-spec"]]);
+  assert.deepEqual(all.results[1].matched_lines, ["Capacity | 80 Ah / 44.8 V DC (3584 Wh)"]);
+  assert.match(all.results[1].url, /JE-T2\/EU\/en\/md\/manual\.html#a-spec$/);
+  assert.deepEqual(all.models_without_evidence, [{ model: "JS-T3", reason: "no_evidence" }]);
+  assert.match(all.guidance, /写明比较了哪些型号/);
+  assert.deepEqual(searchManuals(f, { query: "JE-T1 和 JE-T2 容量对比", compare: true }).compared_models, ["JE-T1", "JE-T2"]);
+  assert.equal(searchManuals(f, { query: "Which Jackery has the largest capacity", compare: true }).status, "comparison");
+  assert.equal(searchManuals(f, { query: "JE-T1 JE-T9 capacity", compare: true }).status, "model_not_found");
+  assert.equal(searchManuals(f, { query: "哪个最好", compare: true }).status, "needs_parameter");
+  assert.equal(searchManuals(f, { query: "JE-T1 capacity", compare: true, model: "JE-T2" }).compared_models.length, 2);
+  const single = searchManuals(f, { query: "容量最大的产品是哪个" });
+  assert.equal(single.status, "needs_model");
+  assert.match(single.guidance, /compare: true/);
+  assert.equal(searchManuals(f, { query: "Jackery 容量" }).status, "needs_model", "the brand is not a model name");
+  assert.throws(() => searchManuals(f, { query: "capacity", compare: "yes" }), /Invalid/);
+});
+
+test("the search tool declares the comparison switch", () => {
+  const tools = [];
+  registerManualQuery({ registerTool: (tool) => tools.push(tool), registerCommand() {} });
+  assert.equal(tools[0].parameters.properties.compare.type, "boolean");
+  assert.match(tools[0].description, /compare 为 true/);
+});
+
+// A battery pack names its hosts once, in a note before the first heading; the chapters say "the portable power station".
+const pack = () => manual("JBP-TEST", [
+  ["intro", "Manual introduction", "NOTE: This battery pack is compatible with both the Jackery E1000 Plus V2 and the "
+    + "Jackery E2000 Plus V2. Throughout this manual, \"the portable power station\" refers to either model."],
+  ["charge", "Charging", "Connect the battery pack to the portable power station.",
+    "The portable power station charges the battery pack.", "Turn on the portable power station."],
+  ["connect", "Connections", "Connect the cable to the portable power station.", "Lock the connector in place."],
+  ["spec", "Specifications", "Capacity | 2048 Wh\nWeight | About 18.5 kg"],
+]);
+
+test("compatibility questions find the note that names the host models", () => {
+  const f = catalog(pack());
+  for (const query of ["JBP-TEST 适用主机是哪些", "JBP-TEST 兼容哪些主机", "JBP-TEST 支持哪些主机", "JBP-TEST 可以配哪些主机",
+    "JBP-TEST 搭配哪些储能电源", "JBP-TEST compatibility", "JBP-TEST compatible host", "JBP-TEST supported power stations",
+    "JBP-TEST works with"]) {
+    const result = searchManuals(f, { query });
+    assert.equal(result.results[0]?.section_id, "intro", query);
+  }
+  assert.equal(searchManuals(f, { query: "JBP-TEST 电池包 连接" }).results[0].section_id, "charge");
+});
+
+test("Chinese words no alias translates are left out of matching and reported", () => {
+  const f = catalog(pack());
+  const partial = searchManuals(f, { query: "JBP-TEST 适配哪些电源" });
+  assert.equal(partial.results[0].section_id, "intro", "an untranslated word no longer excludes every chapter");
+  assert.match(partial.guidance, /未用于检索：电源/);
+  const none = searchManuals(f, { query: "JBP-TEST 防水等级" });
+  assert.equal(none.status, "no_evidence");
+  assert.match(none.guidance, /防水等级.*英文关键词/);
+  assert.equal(searchManuals(f, { query: "JBP-TEST 介绍一下" }).status, "manuals", "a question with no terms lists the manual");
+  const compared = searchManuals(f, { query: "防水等级最高的是哪个", compare: true });
+  assert.equal(compared.status, "needs_parameter");
+  assert.match(compared.guidance, /防水等级/);
+});
+
+test("host words neither narrow a parameter question nor a comparison", () => {
+  const f = catalog(station("JE-T1", "1024 Wh (20 Ah / 51.2 V DC)"), station("JE-T2", "80 Ah / 44.8 V DC (3584 Wh)"));
+  assert.equal(searchManuals(f, { query: "JE-T1 主机重量" }).results[0].section_id, "a-spec");
+  const compared = searchManuals(f, { query: "容量最大的储能电源是哪个", compare: true });
+  assert.deepEqual(compared.results.map((row) => row.section_id), ["a-spec", "a-spec"]);
+  assert.equal(searchManuals(f, { query: "JE-T1 host" }).status, "manuals", "a host word alone is no search term");
+});
+
+
+test("version directory is retained in verified downloads, search, comparison and evidence URLs", async () => {
+  for (const suffix of ["/en/latest", "/en/latest/"]) {
+    const transport = fetcher(() => fixture());
+    const snapshot = await createKnowledgeClient({ baseUrl: origin + suffix, fetchImpl: transport.fetchImpl }).load();
+    assert.equal(snapshot.origin, origin + "/en/latest");
+    assert.deepEqual(transport.calls.map(({ url }) => new URL(url).pathname), [
+      "/en/latest/manual-deployment.json", "/en/latest/manual-knowledge.json", "/en/latest/manual-deployment.json",
+    ]);
+    const manualUrl = origin + "/en/latest/JE-TEST/EU/en/md/manual.html";
+    const search = searchManuals(snapshot, { query: "JE-TEST output" });
+    const hit = search.results[0];
+    assert.equal(hit.url, manualUrl + "#specifications");
+    assert.equal(searchManuals(snapshot, { model: "JE-TEST", query: "" }).manuals[0].url, manualUrl);
+    assert.equal(searchManuals(snapshot, { query: "output", compare: true }).results[0].url,
+      manualUrl + "#specifications");
+    const section = readSection(snapshot, { document_id: hit.document_id, section_id: hit.section_id,
+      snapshot_id: search.publication.snapshot_id });
+    assert.equal(section.status, "evidence");
+    assert.equal(section.url, manualUrl + "#specifications");
+  }
+});
+
+test("version-directory clients still reject cross-origin redirects and tampered exports", async () => {
+  let calls = 0;
+  await assert.rejects(createKnowledgeClient({ baseUrl: origin + "/en/latest/", fetchImpl: async () => {
+    calls++;
+    return new Response(null, { status: 302, headers: { location: "https://other.example/en/latest/manual-deployment.json" } });
+  } }).load(), /Cross-origin/);
+  assert.equal(calls, 1);
+  const tampered = fixture(); tampered.bytes = Buffer.from("{}");
+  await assert.rejects(createKnowledgeClient({ baseUrl: origin + "/en/latest/",
+    ...fetcher(() => tampered) }).load(), /does not match/);
+});
+
+test("shared routing guidance covers slash text and RTD, and config reload replaces the client", async () => {
+  const hooks = []; const tools = []; const addresses = [];
+  const api = { pluginConfig: { manualQueryBaseUrl: origin },
+    on: (name, handler) => hooks.push({ name, handler }),
+    registerTool: (tool) => tools.push(tool), registerCommand() {} };
+  registerManualQuery(api, { clientFactory: ({ baseUrl }) => {
+    addresses.push(baseUrl); return { load: async () => fixture() };
+  } });
+  assert.equal(hooks[0].name, "before_prompt_build");
+  assert.equal(hooks[0].handler({ prompt: "build JE-TEST" }), undefined);
+  const guidance = hooks[0].handler({ prompt: "/manual-query JE-TEST" }).prependSystemContext;
+  for (const prompt of ["查 rtd 啊", "Read the Docs", "读取机读语料",
+    "查一下 JBP-2000B 适用主机", "JBP-2000B compatible hosts", "JE-2000F USB-C 输出功率",
+    "目前容量最大的产品是哪个", "JE-2000F 节能模式怎么关闭？"]) {
+    assert.match(hooks[0].handler({ prompt }).prependSystemContext, /manual_search/);
+  }
+  for (const prompt of ["修复 JBP-2000B 构建脚本", "查询 JE-2000F 构建状态", "今天有哪些会议？"]) {
+    assert.equal(hooks[0].handler({ prompt }), undefined);
+  }
+  assert.match(guidance, /本轮工具调用结果/);
+  assert.match(guidance, /不得把型号自行等同/);
+  assert.match(guidance, /RTD/); assert.match(guidance, /\/manual-query/);
+  assert.match(guidance, /manual_search/); assert.match(guidance, /manual_section/);
+  await tools[0].execute("one", { query: "JE-TEST output" });
+  await tools[0].execute("two", { query: "JE-TEST output" });
+  api.pluginConfig.manualQueryBaseUrl = origin + "/en/latest/";
+  await tools[0].execute("three", { query: "JE-TEST output" });
+  assert.deepEqual(addresses, [origin, origin + "/en/latest/"]);
+});
+
+
+test("manifest eagerly activates the plugin so commands and routing hooks exist before a tool call", async () => {
+  const manifest = JSON.parse(await readFile(new URL("../openclaw.plugin.json", import.meta.url), "utf8"));
+  assert.equal(manifest.activation.onStartup, true);
+  assert.deepEqual(manifest.contracts.tools, ["manual_search", "manual_section"]);
+});

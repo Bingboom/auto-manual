@@ -1,0 +1,57 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    4426.65087890625,
+    2126.12,
+    4741.65087890625,
+    2361.90478515625
+  ],
+  "sha256": "dd90de301d86dcc03e6a7925136aab0cdab91b3a799334be7ea6adb98e784f67",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        3.225911458333333,
+        3.6827935233907225,
+        34.38451760912698,
+        0.0
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        45.29436383928571,
+        3.6827935233907225,
+        51.63185143849206,
+        0.0
+      ]
+    },
+    {
+      "line": 2,
+      "rect": [
+        78.17661830357143,
+        38.27596272786171,
+        7.325365823412699,
+        0.0
+      ]
+    },
+    {
+      "line": 3,
+      "rect": [
+        86.23961433531746,
+        48.88423641096835,
+        6.274243551587301,
+        0.0
+      ]
+    }
+  ],
+  "source_text": [
+    "5. Hang the product onto the\nexpansion bolt vertically and mark\nthe mounting point on the wall.",
+    "6. Remove the product. Drill a hole at the mounting point\nand insert an expansion bolt without the nut and\nwasher into the hole.",
+    "70mm",
+    "8mm"
+  ],
+  "policy": "All PDF annotation text extracted; retain original grey frames, dashed box, artwork and product engravings."
+}

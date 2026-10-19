@@ -1,0 +1,861 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "art": {
+        "complete": true,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 457.3090515136719,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 570.529541015625
+        },
+        "src": "assets/parallel-p15.svg"
+      },
+      "caution": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 75.8203125,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 1058.8975830078125
+            },
+            "text": "After a successful parallel connection, do not disconnect the parallel cable while AC  output is still active, as this may trigger overload protection in the other unit. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 75.8203125,
+              "width": 498.029541015625,
+              "x": 574.0712280273438,
+              "y": 1134.7178955078125
+            },
+            "text": "Do not touch the parallel cable port when AC output is enabled (when the AC power  button indicator light is on). This port carries 240V high voltage and poses a risk of  electric shock."
+          }
+        ],
+        "label": "CAUTION",
+        "labelAlign": "center",
+        "labelCenterOffset": {
+          "x": 0.002147674560546875,
+          "y": 0.27776336669921875
+        },
+        "labelVertical": "middle",
+        "rawBullets": false
+      },
+      "extraModelVisible": false,
+      "figure": {
+        "height": 457.3090515136719,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 570.529541015625
+      },
+      "labels": [
+        {
+          "rect": {
+            "height": 19.25347328186035,
+            "width": 112.53472900390624,
+            "x": 754.1276245117188,
+            "y": 978.1814575195312
+          },
+          "selectable": "auto",
+          "text": "Jackery Connector"
+        },
+        {
+          "rect": {
+            "height": 19.25347328186035,
+            "width": 108.55469512939452,
+            "x": 766.5581665039062,
+            "y": 618.7890625
+          },
+          "selectable": "auto",
+          "text": "AC Expansion Port"
+        }
+      ],
+      "pageOverflow": 0,
+      "parallelSteps": [
+        "Ensure that both HP3600 Plus units are powered off. ",
+        "Use one Jackery Connector to connect both units via the AC EXPANSION PORT. ",
+        "Turn on both units.  ",
+        "Within 1 minute, press the AC power button on each unit in sequence to enable AC output."
+      ],
+      "width": 1280
+    },
+    {
+      "lang": "fr",
+      "art": {
+        "complete": true,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 416.7882080078125,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 14220.955078125
+        },
+        "src": "assets/parallel-p35.svg"
+      },
+      "caution": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 101.09375762939452,
+              "width": 496.8055725097656,
+              "x": 575.295166015625,
+              "y": 14668.802734375
+            },
+            "text": "Après une connexion en parallèle réussie, ne débranchez pas le câble parallèle tant que  la sortie CA est encore active, car cela peut déclencher la protection contre les  surcharges dans l'autre unité. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 101.09375762939452,
+              "width": 496.8055725097656,
+              "x": 575.295166015625,
+              "y": 14769.896484375
+            },
+            "text": "Ne touchez pas le port du câble parallèle lorsque la sortie CA est activée (lorsque  l'indicateur lumineux du bouton d'alimentation CA est allumé).Ce port transporte une  haute tension de 240V et présente un risque d'électrocution."
+          }
+        ],
+        "label": "ATTENTION",
+        "labelAlign": "center",
+        "labelCenterOffset": {
+          "x": 7.62939453125e-06,
+          "y": 0.27794647216796875
+        },
+        "labelVertical": "middle",
+        "rawBullets": false
+      },
+      "extraModelVisible": false,
+      "figure": {
+        "height": 416.7882080078125,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 14220.955078125
+      },
+      "labels": [
+        {
+          "rect": {
+            "height": 19.25347328186035,
+            "width": 112.53472900390624,
+            "x": 753.771728515625,
+            "y": 14596.697265625
+          },
+          "selectable": "auto",
+          "text": "Jackery Connector"
+        },
+        {
+          "rect": {
+            "height": 19.25347328186035,
+            "width": 114.8654556274414,
+            "x": 766.2066040039062,
+            "y": 14245.6865234375
+          },
+          "selectable": "auto",
+          "text": "Port d’extension CA"
+        }
+      ],
+      "pageOverflow": 0,
+      "parallelSteps": [
+        "Assurez-vous que les deux unités HomePower 3600 Plus sont éteintes. ",
+        "Utilisez un connecteur Jackery pour relier les deux unités via le Port d’extension CA. ",
+        "Allumez les deux unités. ",
+        "Dans un délai d'une minute, appuyez sur le bouton d'alimentation CA de chaque unité en séquence pour activer  la sortie CA."
+      ],
+      "width": 1280
+    },
+    {
+      "lang": "es",
+      "art": {
+        "complete": true,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 433.55035400390625,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": 14317.712890625
+        },
+        "src": "assets/parallel-p55.svg"
+      },
+      "caution": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 75.8203125,
+              "width": 480.4383850097656,
+              "x": 591.662353515625,
+              "y": 14782.322265625
+            },
+            "text": "Después de una conexión en paralelo exitosa, no desconecte el cable paralelo  mientras la salida CA aún esté activa, ya que esto puede activar la protección contra  sobrecarga en la otra unidad. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 101.09375762939452,
+              "width": 480.4383850097656,
+              "x": 591.662353515625,
+              "y": 14858.1435546875
+            },
+            "text": "No toque el puerto del cable paralelo cuando la salida de CA esté habilitada (cuando  la luz indicadora del botón de alimentación CA esté encendida).Este puerto maneja  un alto voltaje de 240 V y representa un riesgo de descarga eléctrica."
+          }
+        ],
+        "label": "PRECAUCIÓN",
+        "labelAlign": "center",
+        "labelCenterOffset": {
+          "x": 7.62939453125e-06,
+          "y": 0.27501678466796875
+        },
+        "labelVertical": "middle",
+        "rawBullets": false
+      },
+      "extraModelVisible": false,
+      "figure": {
+        "height": 433.55035400390625,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 14317.712890625
+      },
+      "labels": [
+        {
+          "rect": {
+            "height": 19.25347328186035,
+            "width": 112.53472900390624,
+            "x": 758.8541870117188,
+            "y": 14697.5439453125
+          },
+          "selectable": "auto",
+          "text": "Jackery Connector"
+        },
+        {
+          "rect": {
+            "height": 19.25347328186035,
+            "width": 142.10504150390625,
+            "x": 754.3750610351562,
+            "y": 14350.1611328125
+          },
+          "selectable": "auto",
+          "text": "Puerto de expansión CA"
+        }
+      ],
+      "pageOverflow": 0,
+      "parallelSteps": [
+        "Asegúrese de que ambas unidades HomePower 3600 Plus estén apagadas. ",
+        "Utilice un conector Jackery para conectar ambas unidades a través del PUERTO DE EXPANSIÓN CA. ",
+        "Encienda ambas unidades. ",
+        "En no más de 1 minuto, presione en secuencia el botón de energía CA en cada unidad para habilitar la salida CA."
+      ],
+      "width": 1280
+    },
+    {
+      "lang": "en",
+      "art": {
+        "complete": true,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 472.3177185058594,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 13162.0751953125
+        },
+        "src": "assets/parallel-p15.svg"
+      },
+      "caution": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 13673.451171875
+            },
+            "text": "After a successful parallel connection, do not disconnect the parallel cable while AC  output is still active, as this may trigger overload protection in the other unit. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 13746.3681640625
+            },
+            "text": "Do not touch the parallel cable port when AC output is enabled (when the AC power  button indicator light is on). This port carries 240V high voltage and poses a risk of  electric shock."
+          }
+        ],
+        "label": "CAUTION",
+        "labelAlign": "center",
+        "labelCenterOffset": {
+          "x": 0.0021686553955078125,
+          "y": 0.208770751953125
+        },
+        "labelVertical": "middle",
+        "rawBullets": false
+      },
+      "extraModelVisible": false,
+      "figure": {
+        "height": 480.3168640136719,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 13162.0751953125
+      },
+      "labels": [
+        {
+          "rect": {
+            "height": 19.88715362548828,
+            "width": 116.22830200195312,
+            "x": 349.4922180175781,
+            "y": 13583.103515625
+          },
+          "selectable": "auto",
+          "text": "Jackery Connector"
+        },
+        {
+          "rect": {
+            "height": 19.88715362548828,
+            "width": 112.11805725097656,
+            "x": 362.3307495117187,
+            "y": 13211.9189453125
+          },
+          "selectable": "auto",
+          "text": "AC Expansion Port"
+        }
+      ],
+      "pageOverflow": 0,
+      "parallelSteps": [
+        "Ensure that both HP3600 Plus units are powered off. ",
+        "Use one Jackery Connector to connect both units via the AC EXPANSION PORT. ",
+        "Turn on both units.  ",
+        "Within 1 minute, press the AC power button on each unit in sequence to enable AC output."
+      ],
+      "width": 711
+    },
+    {
+      "lang": "fr",
+      "art": {
+        "complete": true,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 430.4687805175781,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 13761.611328125
+        },
+        "src": "assets/parallel-p35.svg"
+      },
+      "caution": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 14231.1376953125
+            },
+            "text": "Après une connexion en parallèle réussie, ne débranchez pas le câble parallèle tant que  la sortie CA est encore active, car cela peut déclencher la protection contre les  surcharges dans l'autre unité. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 97.22222900390624,
+              "width": 516.154541015625,
+              "x": 162.2960205078125,
+              "y": 14304.0546875
+            },
+            "text": "Ne touchez pas le port du câble parallèle lorsque la sortie CA est activée (lorsque  l'indicateur lumineux du bouton d'alimentation CA est allumé).Ce port transporte une  haute tension de 240V et présente un risque d'électrocution."
+          }
+        ],
+        "label": "ATTENTION",
+        "labelAlign": "center",
+        "labelCenterOffset": {
+          "x": 1.9073486328125e-06,
+          "y": 0.20822906494140625
+        },
+        "labelVertical": "middle",
+        "rawBullets": false
+      },
+      "extraModelVisible": false,
+      "figure": {
+        "height": 438.4678955078125,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 13761.611328125
+      },
+      "labels": [
+        {
+          "rect": {
+            "height": 19.88715362548828,
+            "width": 116.22830200195312,
+            "x": 349.12762451171875,
+            "y": 14149.68359375
+          },
+          "selectable": "auto",
+          "text": "Jackery Connector"
+        },
+        {
+          "rect": {
+            "height": 19.88715362548828,
+            "width": 118.6371612548828,
+            "x": 361.9704895019531,
+            "y": 13787.1533203125
+          },
+          "selectable": "auto",
+          "text": "Port d’extension CA"
+        }
+      ],
+      "pageOverflow": 0,
+      "parallelSteps": [
+        "Assurez-vous que les deux unités HomePower 3600 Plus sont éteintes. ",
+        "Utilisez un connecteur Jackery pour relier les deux unités via le Port d’extension CA. ",
+        "Allumez les deux unités. ",
+        "Dans un délai d'une minute, appuyez sur le bouton d'alimentation CA de chaque unité en séquence pour activer  la sortie CA."
+      ],
+      "width": 711
+    },
+    {
+      "lang": "es",
+      "art": {
+        "complete": true,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 447.7778015136719,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": 13778.1259765625
+        },
+        "src": "assets/parallel-p55.svg"
+      },
+      "caution": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 72.91667175292969,
+              "width": 504.0147705078125,
+              "x": 174.43577575683594,
+              "y": 14264.9619140625
+            },
+            "text": "Después de una conexión en paralelo exitosa, no desconecte el cable paralelo  mientras la salida CA aún esté activa, ya que esto puede activar la protección contra  sobrecarga en la otra unidad. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 97.22222900390624,
+              "width": 504.0147705078125,
+              "x": 174.43577575683594,
+              "y": 14337.8779296875
+            },
+            "text": "No toque el puerto del cable paralelo cuando la salida de CA esté habilitada (cuando  la luz indicadora del botón de alimentación CA esté encendida).Este puerto maneja  un alto voltaje de 240 V y representa un riesgo de descarga eléctrica."
+          }
+        ],
+        "label": "PRECAUCIÓN",
+        "labelAlign": "center",
+        "labelCenterOffset": {
+          "x": 1.9073486328125e-06,
+          "y": 0.20871734619140625
+        },
+        "labelVertical": "middle",
+        "rawBullets": false
+      },
+      "extraModelVisible": false,
+      "figure": {
+        "height": 455.77691650390625,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 13778.1259765625
+      },
+      "labels": [
+        {
+          "rect": {
+            "height": 19.88715362548828,
+            "width": 116.22830200195312,
+            "x": 354.3793640136719,
+            "y": 14170.421875
+          },
+          "selectable": "auto",
+          "text": "Jackery Connector"
+        },
+        {
+          "rect": {
+            "height": 19.88715362548828,
+            "width": 146.77084350585938,
+            "x": 349.75262451171875,
+            "y": 13811.63671875
+          },
+          "selectable": "auto",
+          "text": "Puerto de expansión CA"
+        }
+      ],
+      "pageOverflow": 0,
+      "parallelSteps": [
+        "Asegúrese de que ambas unidades HomePower 3600 Plus estén apagadas. ",
+        "Utilice un conector Jackery para conectar ambas unidades a través del PUERTO DE EXPANSIÓN CA. ",
+        "Encienda ambas unidades. ",
+        "En no más de 1 minuto, presione en secuencia el botón de energía CA en cada unidad para habilitar la salida CA."
+      ],
+      "width": 711
+    },
+    {
+      "lang": "en",
+      "art": {
+        "complete": true,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 445.11285400390625,
+          "width": 640,
+          "x": 15.99826431274414,
+          "y": 16486.767578125
+        },
+        "src": "assets/parallel-p15.svg"
+      },
+      "caution": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 97.22222900390624,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 17021.4765625
+            },
+            "text": "After a successful parallel connection, do not disconnect the parallel cable while AC  output is still active, as this may trigger overload protection in the other unit. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 121.5277862548828,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 17118.69921875
+            },
+            "text": "Do not touch the parallel cable port when AC output is enabled (when the AC power  button indicator light is on). This port carries 240V high voltage and poses a risk of  electric shock."
+          }
+        ],
+        "label": "CAUTION",
+        "labelAlign": "center",
+        "labelCenterOffset": {
+          "x": 0.0021724700927734375,
+          "y": 0.20855140686035156
+        },
+        "labelVertical": "middle",
+        "rawBullets": false
+      },
+      "extraModelVisible": false,
+      "figure": {
+        "height": 453.1119995117187,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 16486.767578125
+      },
+      "labels": [
+        {
+          "rect": {
+            "height": 18.74131965637207,
+            "width": 109.5355987548828,
+            "x": 330.2864685058594,
+            "y": 16883.546875
+          },
+          "selectable": "auto",
+          "text": "Jackery Connector"
+        },
+        {
+          "rect": {
+            "height": 18.74131965637207,
+            "width": 105.65972900390624,
+            "x": 342.3828430175781,
+            "y": 16533.7421875
+          },
+          "selectable": "auto",
+          "text": "AC Expansion Port"
+        }
+      ],
+      "pageOverflow": 0,
+      "parallelSteps": [
+        "Ensure that both HP3600 Plus units are powered off. ",
+        "Use one Jackery Connector to connect both units via the AC EXPANSION PORT. ",
+        "Turn on both units.  ",
+        "Within 1 minute, press the AC power button on each unit in sequence to enable AC output."
+      ],
+      "width": 390
+    },
+    {
+      "lang": "fr",
+      "art": {
+        "complete": true,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 405.6770935058594,
+          "width": 640,
+          "x": 15.99826431274414,
+          "y": 17292.05859375
+        },
+        "src": "assets/parallel-p35.svg"
+      },
+      "caution": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 121.5277862548828,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 17787.33203125
+            },
+            "text": "Après une connexion en parallèle réussie, ne débranchez pas le câble parallèle tant que  la sortie CA est encore active, car cela peut déclencher la protection contre les  surcharges dans l'autre unité. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 145.83334350585938,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 17908.859375
+            },
+            "text": "Ne touchez pas le port du câble parallèle lorsque la sortie CA est activée (lorsque  l'indicateur lumineux du bouton d'alimentation CA est allumé).Ce port transporte une  haute tension de 240V et présente un risque d'électrocution."
+          }
+        ],
+        "label": "ATTENTION",
+        "labelAlign": "center",
+        "labelCenterOffset": {
+          "x": 1.9073486328125e-06,
+          "y": 0.20952796936035156
+        },
+        "labelVertical": "middle",
+        "rawBullets": false
+      },
+      "extraModelVisible": false,
+      "figure": {
+        "height": 413.6762390136719,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 17292.05859375
+      },
+      "labels": [
+        {
+          "rect": {
+            "height": 18.74131965637207,
+            "width": 109.5355987548828,
+            "x": 329.9392395019531,
+            "y": 17657.783203125
+          },
+          "selectable": "auto",
+          "text": "Jackery Connector"
+        },
+        {
+          "rect": {
+            "height": 18.74131965637207,
+            "width": 111.80555725097656,
+            "x": 342.0442810058594,
+            "y": 17316.12890625
+          },
+          "selectable": "auto",
+          "text": "Port d’extension CA"
+        }
+      ],
+      "pageOverflow": 0,
+      "parallelSteps": [
+        "Assurez-vous que les deux unités HomePower 3600 Plus sont éteintes. ",
+        "Utilisez un connecteur Jackery pour relier les deux unités via le Port d’extension CA. ",
+        "Allumez les deux unités. ",
+        "Dans un délai d'une minute, appuyez sur le bouton d'alimentation CA de chaque unité en séquence pour activer  la sortie CA."
+      ],
+      "width": 390
+    },
+    {
+      "lang": "es",
+      "art": {
+        "complete": true,
+        "naturalWidth": 314,
+        "rect": {
+          "height": 421.98785400390625,
+          "width": 640,
+          "x": 15.99826431274414,
+          "y": 17539.90625
+        },
+        "src": "assets/parallel-p55.svg"
+      },
+      "caution": {
+        "items": [
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 121.5277862548828,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 18051.490234375
+            },
+            "text": "Después de una conexión en paralelo exitosa, no desconecte el cable paralelo  mientras la salida CA aún esté activa, ya que esto puede activar la protección contra  sobrecarga en la otra unidad. "
+          },
+          {
+            "clipped": false,
+            "display": "list-item",
+            "marginBottom": "0px",
+            "marginTop": "0px",
+            "marker": "disc",
+            "paragraphMarginBottom": "0px",
+            "paragraphMarginTop": "0px",
+            "rect": {
+              "height": 170.13890075683594,
+              "width": 303.08160400390625,
+              "x": 54.257816314697266,
+              "y": 18173.017578125
+            },
+            "text": "No toque el puerto del cable paralelo cuando la salida de CA esté habilitada (cuando  la luz indicadora del botón de alimentación CA esté encendida).Este puerto maneja  un alto voltaje de 240 V y representa un riesgo de descarga eléctrica."
+          }
+        ],
+        "label": "PRECAUCIÓN",
+        "labelAlign": "center",
+        "labelCenterOffset": {
+          "x": 0.0021648406982421875,
+          "y": 0.20952796936035156
+        },
+        "labelVertical": "middle",
+        "rawBullets": false
+      },
+      "extraModelVisible": false,
+      "figure": {
+        "height": 429.9869995117187,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 17539.90625
+      },
+      "labels": [
+        {
+          "rect": {
+            "height": 18.74131965637207,
+            "width": 109.5355987548828,
+            "x": 334.8871765136719,
+            "y": 17909.60546875
+          },
+          "selectable": "auto",
+          "text": "Jackery Connector"
+        },
+        {
+          "rect": {
+            "height": 18.74131965637207,
+            "width": 138.31597900390625,
+            "x": 330.529541015625,
+            "y": 17571.490234375
+          },
+          "selectable": "auto",
+          "text": "Puerto de expansión CA"
+        }
+      ],
+      "pageOverflow": 0,
+      "parallelSteps": [
+        "Asegúrese de que ambas unidades HomePower 3600 Plus estén apagadas. ",
+        "Utilice un conector Jackery para conectar ambas unidades a través del PUERTO DE EXPANSIÓN CA. ",
+        "Encienda ambas unidades. ",
+        "En no más de 1 minuto, presione en secuencia el botón de energía CA en cada unidad para habilitar la salida CA."
+      ],
+      "width": 390
+    }
+  ],
+  "operator_acceptance": "pending combined review"
+}

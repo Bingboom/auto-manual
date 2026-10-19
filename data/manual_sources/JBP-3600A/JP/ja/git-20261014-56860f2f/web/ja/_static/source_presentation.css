@@ -1,0 +1,64 @@
+/* JBP-3600A JP source geometry only. Shared Web theme owns headings, callouts, tables and figures. */
+
+/* Figures: the print's own art width; no visible caption (the art carries its labels). */
+.native-figure { max-width: 680px; margin: 1rem auto; min-width: 0; }
+.native-figure .hb-reference-figure { margin: 0; max-width: none; }
+#furo-main-content .native-figure img { width: 100% !important; height: auto !important; max-height: none; }
+.native-qr { max-width: 112px; margin: 0; }
+
+/* Print case for headings (Japanese has none to change); shared markers stay. */
+#furo-main-content h2:not(.hb-spec-section), #furo-main-content :is(h3, h4) { text-transform: none; }
+
+/* Grey note panels the print draws around a statement (p03 notes, p04 LCD line). */
+#furo-main-content .native-note-panel {
+  margin: 0.8rem 0; padding: 0.55rem 0.9rem;
+  border-radius: var(--hb-panel-radius); background: var(--hb-surface);
+}
+#furo-main-content .native-note-panel > p { margin: 0; }
+
+/* Inline LCD icon at text size (p06 ご注意). */
+#furo-main-content img.native-inline-glyph {
+  display: inline-block; width: auto !important; height: 1.15em !important;
+  margin: 0 0.3em !important; vertical-align: -0.2em;
+}
+
+/* Signal-word lockups: the print's filled triangle beside the label. */
+#furo-main-content .hb-warning-lockup img { width: 1.15em !important; height: auto !important; margin: 0 0.3em 0 0 !important; vertical-align: -0.15em; display: inline-block; }
+
+/* Tables the print rules as a grid: grey key column, regular weight, as printed. */
+#furo-main-content table.native-print-grid th { background: var(--hb-paper) !important; font-weight: 700; }
+#furo-main-content table.native-print-grid td { vertical-align: middle; }
+#furo-main-content table.native-print-grid :is(td, th) { padding: 0.42rem 0.6rem !important; }
+#furo-main-content table.native-print-grid td:first-child { background: var(--hb-surface); }
+#furo-main-content table.native-signal td.native-signal-label { width: 7.5rem; text-align: center; white-space: nowrap; font-size: 1.15rem; }
+#furo-main-content table.native-symbols td.native-symbol-cell { width: 5rem; text-align: center; }
+#furo-main-content table.native-symbols td.native-symbol-cell img { width: 2.2rem !important; height: auto; margin: 0 !important; }
+#furo-main-content table.native-lcd td.native-key { width: 34%; }
+#furo-main-content table.native-spec td.native-key { width: 34%; font-weight: 500; }
+
+/* p08 certification line: the mark sits in the value column, larger, as printed. */
+#furo-main-content p.native-certification { margin: 0.8rem 0 0.4rem; }
+
+/* p10 contact lines with their icons, QR code beside them. */
+.native-contact { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin: 1.6rem 0 0.6rem; }
+.native-contact-lines { min-width: 0; }
+#furo-main-content .native-contact-lines > p {
+  margin: 0.35rem 0; padding: 0.15rem 0.8rem 0.15rem 0; display: flex; align-items: center; gap: 0.5rem;
+  border-radius: 999px; background: var(--hb-surface); overflow-wrap: anywhere;
+}
+#furo-main-content img.native-contact-icon { width: 1.6rem !important; height: 1.6rem !important; margin: 0 !important; flex: none; }
+.native-contact .native-figure { flex: none; }
+
+/* Two- and three-column tables fit the phone; the shared troubleshooting table would scroll below 40rem. */
+@media (max-width: 760px) {
+  #furo-main-content table.native-fit { min-width: 0 !important; }
+  #furo-main-content table.hb-troubleshooting-table { min-width: 0 !important; }
+  #furo-main-content .hb-troubleshooting-col-code { width: 24%; }
+  #furo-main-content .hb-troubleshooting-col-measures { width: 76%; }
+  #furo-main-content table.native-signal td.native-signal-label { width: 5.2rem; font-size: 1rem; }
+  #furo-main-content table.native-symbols td.native-symbol-cell { width: 3.4rem; }
+}
+@media (max-width: 420px) {
+  #furo-main-content table.native-print-grid :is(td, th) { padding: 0.42rem 0.4rem !important; }
+  .native-contact { flex-direction: column; align-items: flex-start; }
+}

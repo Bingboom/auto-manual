@@ -1,0 +1,358 @@
+{
+  "scope": "US EN/FR/ES key combinations only",
+  "asset_selection": [
+    {
+      "asset": "button-power-vertical.svg",
+      "decision": "extract distinct native vertical-switch variant; one copy shared by EN/FR/ES",
+      "reason": "Opened candidate SVGs have horizontal switches. Physical pages 12/32/52 have vertical switches, dot at top, and POWER/USB/AC product markings below. No matching vertical variant in target, shared, template, or existing frozen packages.",
+      "candidates": [
+        {
+          "path": "docs/renderers/web/assets/shared/buttons/power-bottom.svg",
+          "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+          "rejected": "horizontal switch"
+        },
+        {
+          "path": "docs/renderers/web/assets/shared/buttons/power.svg",
+          "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+          "rejected": "horizontal switch"
+        }
+      ],
+      "searched_inventory": [
+        "target assets_manifest.json",
+        "docs/renderers/web/assets/shared/buttons/manifest.json",
+        "data/manual_sources/JHP-5000C/US",
+        "data/manual_sources/JE-5000A/JP",
+        "docs/templates/word_template/common_assets",
+        "docs/renderers/latex/assets"
+      ],
+      "physical_page": 12,
+      "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+      "crop": [
+        50.191698455810545,
+        285.63629760742185,
+        74.7886978149414,
+        310.2322937011719
+      ],
+      "drawing_indices": [
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "background_policy": "transparent outside complete circular button face; exclude gray table backdrop, frames and external labels",
+      "text_policy": "preserve outlined fixed product marking; editable external labels remain HTML",
+      "registry_status": "local-only candidate; no shared registry or online enrollment",
+      "sha256": "8e9b4b88fd3fcdbe0a3c9760569347f524f6c627c69c961df0b0c883f99d356b"
+    },
+    {
+      "asset": "button-usb-vertical.svg",
+      "decision": "extract distinct native vertical-switch variant; one copy shared by EN/FR/ES",
+      "reason": "Opened candidate SVGs have horizontal switches. Physical pages 12/32/52 have vertical switches, dot at top, and POWER/USB/AC product markings below. No matching vertical variant in target, shared, template, or existing frozen packages.",
+      "candidates": [
+        {
+          "path": "docs/renderers/web/assets/shared/buttons/usb-bottom.svg",
+          "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+          "rejected": "horizontal switch"
+        },
+        {
+          "path": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+          "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+          "rejected": "horizontal switch"
+        }
+      ],
+      "searched_inventory": [
+        "target assets_manifest.json",
+        "docs/renderers/web/assets/shared/buttons/manifest.json",
+        "data/manual_sources/JHP-5000C/US",
+        "data/manual_sources/JE-5000A/JP",
+        "docs/templates/word_template/common_assets",
+        "docs/renderers/latex/assets"
+      ],
+      "physical_page": 12,
+      "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+      "crop": [
+        111.0750946044922,
+        285.63629760742185,
+        135.6720977783203,
+        310.2322937011719
+      ],
+      "drawing_indices": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "background_policy": "transparent outside complete circular button face; exclude gray table backdrop, frames and external labels",
+      "text_policy": "preserve outlined fixed product marking; editable external labels remain HTML",
+      "registry_status": "local-only candidate; no shared registry or online enrollment",
+      "sha256": "6909fdf1d72a992e086f974e942f49bdf81307cb9702c429db42d3369b369797"
+    },
+    {
+      "asset": "button-ac-vertical.svg",
+      "decision": "extract distinct native vertical-switch variant; one copy shared by EN/FR/ES",
+      "reason": "Opened candidate SVGs have horizontal switches. Physical pages 12/32/52 have vertical switches, dot at top, and POWER/USB/AC product markings below. No matching vertical variant in target, shared, template, or existing frozen packages.",
+      "candidates": [
+        {
+          "path": "docs/renderers/web/assets/shared/buttons/ac-bottom.svg",
+          "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+          "rejected": "horizontal switch"
+        },
+        {
+          "path": "docs/renderers/web/assets/shared/buttons/ac.svg",
+          "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+          "rejected": "horizontal switch"
+        }
+      ],
+      "searched_inventory": [
+        "target assets_manifest.json",
+        "docs/renderers/web/assets/shared/buttons/manifest.json",
+        "data/manual_sources/JHP-5000C/US",
+        "data/manual_sources/JE-5000A/JP",
+        "docs/templates/word_template/common_assets",
+        "docs/renderers/latex/assets"
+      ],
+      "physical_page": 12,
+      "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+      "crop": [
+        111.04118957519532,
+        327.6943115234375,
+        135.63819274902343,
+        352.2903076171875
+      ],
+      "drawing_indices": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "background_policy": "transparent outside complete circular button face; exclude gray table backdrop, frames and external labels",
+      "text_policy": "preserve outlined fixed product marking; editable external labels remain HTML",
+      "registry_status": "local-only candidate; no shared registry or online enrollment",
+      "sha256": "cde202ff6bbbd00e43c671031fdb105e6bd811bb39ce5c5e9b97a84f0c2b29d8"
+    }
+  ],
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review",
+  "native_geometry": {
+    "en": {
+      "physical_page": 12,
+      "table_rect_pt": [
+        29.268844604492188,
+        268.2687072753906,
+        341.7061004638672,
+        409.5382080078125
+      ],
+      "column_width_pct": [
+        41.13808641656958,
+        29.068412075705822,
+        29.793501507724596
+      ],
+      "row_height_pct": [
+        10.308808220311468,
+        29.287214262584303,
+        29.287214262584303,
+        31.11676325451992
+      ],
+      "body_font_pt": 6,
+      "label_font_pt": 5.5,
+      "operation_font_pt": 5.5,
+      "duration_font_pt": 7,
+      "header_font_pt": 6.6,
+      "button_crop_size_pt": 24.596999,
+      "copy": {
+        "labels": {
+          "power": [
+            "Main power button"
+          ],
+          "usb": [
+            "USB power button"
+          ],
+          "ac": [
+            "AC power button"
+          ]
+        },
+        "operations": [
+          [
+            "Press and hold both for 3s"
+          ],
+          [
+            "Press and hold both for 3s"
+          ],
+          [
+            "Press and hold both for 1s"
+          ]
+        ],
+        "functions": [
+          [
+            "Reset Wi-Fi and Bluetooth"
+          ],
+          [
+            "Turn on/off the",
+            "Energy Saving Mode"
+          ],
+          [
+            "Turn on/off Wi-Fi and",
+            "Bluetooth"
+          ]
+        ]
+      }
+    },
+    "fr": {
+      "physical_page": 32,
+      "table_rect_pt": [
+        28.340021514892577,
+        345.3453063964844,
+        340.7315979003906,
+        486.61480712890625
+      ],
+      "column_width_pct": [
+        41.26373489540329,
+        29.072535608527673,
+        29.66372949606903
+      ],
+      "row_height_pct": [
+        10.308808220311468,
+        29.287214262584303,
+        29.287214262584303,
+        31.11676325451992
+      ],
+      "body_font_pt": 6,
+      "label_font_pt": 5,
+      "operation_font_pt": 5.5,
+      "duration_font_pt": 7,
+      "header_font_pt": 6.6,
+      "button_crop_size_pt": 24.596999,
+      "copy": {
+        "labels": {
+          "power": [
+            "Bouton d’alimentation",
+            "principal"
+          ],
+          "usb": [
+            "Bouton d’alimentation",
+            "USB"
+          ],
+          "ac": [
+            "Bouton d’alimentation",
+            "CA"
+          ]
+        },
+        "operations": [
+          [
+            "Appuyer 3 secondes sur les deux"
+          ],
+          [
+            "Appuyer 3 secondes sur les deux"
+          ],
+          [
+            "Appuyer 1 seconde sur les deux"
+          ]
+        ],
+        "functions": [
+          [
+            "Réinitialiser le Wi-Fi et le",
+            "Bluetooth"
+          ],
+          [
+            "Activer/désactiver le mode",
+            "économie d’énergie"
+          ],
+          [
+            "Activer le Wi-Fi et le Bluetooth"
+          ]
+        ]
+      }
+    },
+    "es": {
+      "physical_page": 52,
+      "table_rect_pt": [
+        27.680661773681642,
+        352.4259948730469,
+        340.0759989420573,
+        493.69549560546875
+      ],
+      "column_width_pct": [
+        41.47430394796883,
+        29.072185617727182,
+        29.453510434304004
+      ],
+      "row_height_pct": [
+        10.308808220311468,
+        29.287214262584303,
+        29.287214262584303,
+        31.11676325451992
+      ],
+      "body_font_pt": 6,
+      "label_font_pt": 5,
+      "operation_font_pt": 6,
+      "duration_font_pt": 7,
+      "header_font_pt": 6.6,
+      "button_crop_size_pt": 24.596999,
+      "copy": {
+        "labels": {
+          "power": [
+            "Botón de encendido",
+            "principal"
+          ],
+          "usb": [
+            "Botón de energía USB"
+          ],
+          "ac": [
+            "Botón de energía CA"
+          ]
+        },
+        "operations": [
+          [
+            "Mantenga pulsados ambos",
+            "botones durante 3 segundos"
+          ],
+          [
+            "Mantenga pulsados ambos",
+            "botones durante 3 segundos"
+          ],
+          [
+            "Mantenga pulsados ambos",
+            "botones durante 1 segundo"
+          ]
+        ],
+        "functions": [
+          [
+            "Restablecer Wi-Fi y Bluetooth"
+          ],
+          [
+            "Encender/apagar el modo",
+            "de ahorro de energía"
+          ],
+          [
+            "Encender/apagar",
+            "Wi-Fi y Bluetooth"
+          ]
+        ]
+      }
+    }
+  },
+  "cause": "Ordinary flow table used horizontal button variants and concatenated independent native captions; shared key-combination layout was not bound.",
+  "component": "HB-TABLE-KEY-COMBINATIONS/three-column",
+  "shared_styles": [
+    "hb-key-button-pair",
+    "hb-key-button",
+    "hb-key-button-plus",
+    "hb-key-duration with CSS clock",
+    "shared gray/white columns and dark frame"
+  ],
+  "correction": "Bind source-native independent button labels, plus, clock and duration/operation separation to the registered component. Preserve native row/column, font and line-break geometry.",
+  "asset_pipeline_recipe": "source/key-combination-asset-recipe.json",
+  "asset_pipeline_evidence": "validation/key-combination-asset-intake.json",
+  "asset_pixel_review": "validation/key-combination-asset-qc.json and three 12x source/export pairs",
+  "registry_action": "none; local-only Git intake. No registry enrollment or online writes.",
+  "all_prior_artwork_bytes_preserved": true,
+  "browser_evidence": "validation/key-combination-browser.json",
+  "closure": "validation/key-combination-closure.json"
+}

@@ -203,7 +203,7 @@ Deliverables:
 Before approving a refreshed identity, use the review-only scaffold:
 
 ```bash
-python3 tools/reference_layout_scaffold.py \
+python3 -m tools.reference_layout_scaffold \
   --seed-plan docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json \
   --manual-ir <manual.ir.json> \
   --output <reference-layout-draft.json>
@@ -279,8 +279,8 @@ python3 -m ruff check build.py integrations tools tests scripts
 python3 -m unittest <targeted IDML and page-plan modules>
 python3 -m unittest
 python3 -m mypy tools/utils
-python3 tools/check_maintainability_guardrails.py
-python3 tools/check_doc_link_integrity.py
+python3 -m tools.check_maintainability_guardrails
+python3 -m tools.check_doc_link_integrity
 python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US \
   --data-root /Users/pika/Documents/auto-manual2/data/phase2
 python3 build.py check --config configs/config.ja.yaml --model JE-1000F --region JP \
@@ -288,8 +288,8 @@ python3 build.py check --config configs/config.ja.yaml --model JE-1000F --region
 python3 build.py idml --config configs/config.us.yaml --model JE-1000F --region US \
   --source review-asis --idml-mode production \
   --data-root /Users/pika/Documents/auto-manual2/data/phase2
-python3 tools/indesign_finalize.py <approved output arguments>
-python3 tools/idml_pdf_parity.py <approved PDF and InDesign PDF arguments>
+python3 -m tools.indesign_finalize <approved output arguments>
+python3 -m tools.idml_pdf_parity <approved PDF and InDesign PDF arguments>
 ```
 
 Final acceptance is all of the following, on the latest artifact:

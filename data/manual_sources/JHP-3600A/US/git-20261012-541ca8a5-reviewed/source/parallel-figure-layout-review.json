@@ -1,0 +1,68 @@
+{
+  "locales": {
+    "en": {
+      "source_node": [
+        12,
+        4
+      ],
+      "native_page": 15,
+      "removed_label": {
+        "html": "<span class=\"ht-source-line\" style=\"font-size:2.3645cqw\">Jackery Explorer 2000 Plus</span>",
+        "text": "Jackery Explorer 2000 Plus"
+      },
+      "retained_labels": [
+        "Jackery Connector",
+        "AC Expansion Port"
+      ],
+      "art_asset": "assets/parallel-p15.svg",
+      "art_sha256": "d3fbab3c3b7289b76fd50c2c5a8ee2d84467c5a4dd71943c06c4f93d835e9e82",
+      "decision": "Remove the extra live model label as explicitly marked by the operator; reuse base artwork byte-identically.",
+      "caution_list": "Two semantic LI items retained; zero inter-item margins matches the reference."
+    },
+    "fr": {
+      "source_node": [
+        12,
+        4
+      ],
+      "native_page": 35,
+      "removed_label": {
+        "html": "<span class=\"ht-source-line\" style=\"font-size:2.3645cqw\">Jackery Explorer 2000 Plus</span>",
+        "text": "Jackery Explorer 2000 Plus"
+      },
+      "retained_labels": [
+        "Jackery Connector",
+        "Port d’extension CA"
+      ],
+      "art_asset": "assets/parallel-p35.svg",
+      "art_sha256": "69f80a802842650c75f8b1246528c36dd1081bd3ca32af6d835e52e5e0372b17",
+      "decision": "Remove the extra live model label as explicitly marked by the operator; reuse base artwork byte-identically.",
+      "caution_list": "Two semantic LI items retained; zero inter-item margins matches the reference."
+    },
+    "es": {
+      "source_node": [
+        12,
+        4
+      ],
+      "native_page": 55,
+      "removed_label": {
+        "html": "<span class=\"ht-source-line\" style=\"font-size:2.3645cqw\">Jackery Explorer 2000 Plus</span>",
+        "text": "Jackery Explorer 2000 Plus"
+      },
+      "retained_labels": [
+        "Jackery Connector",
+        "Puerto de expansión CA"
+      ],
+      "art_asset": "assets/parallel-p55.svg",
+      "art_sha256": "b42a3a66d28d5b66efb951d720156f0e500acb5062204eca5e03ee4bc42e8960",
+      "decision": "Remove the extra live model label as explicitly marked by the operator; reuse base artwork byte-identically.",
+      "caution_list": "Two semantic LI items retained; zero inter-item margins matches the reference."
+    }
+  },
+  "operator_omitted_source_line_ids": [
+    "p15-b13-l0-0",
+    "p35-b12-l0-0",
+    "p55-b13-l0-0"
+  ],
+  "source_ledger_retains_original_text_and_bbox": true,
+  "publication_eligible": false
+}

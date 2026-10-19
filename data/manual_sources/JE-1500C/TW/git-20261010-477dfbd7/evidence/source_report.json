@@ -1,0 +1,47 @@
+{
+  "language": "zh-TW",
+  "visible_native_lines": 326,
+  "chapters": 17,
+  "live_labels": 115,
+  "spec_rows": [
+    8,
+    2,
+    6,
+    2
+  ],
+  "unmapped_words": 0,
+  "resource_closure": 65,
+  "editable_app_plus": 1,
+  "symbol_admission": [
+    {
+      "asset_ref": "assets/symbol-01.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.017494
+    },
+    {
+      "asset_ref": "assets/symbol-02.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol-03.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.019748
+    },
+    {
+      "asset_ref": "assets/symbol-04.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.0
+    },
+    {
+      "asset_ref": "assets/symbol-05.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.013552
+    },
+    {
+      "asset_ref": "assets/symbol-06.svg",
+      "physical_page": 4,
+      "max_mean_channel_error": 0.0
+    }
+  ]
+}

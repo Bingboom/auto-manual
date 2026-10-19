@@ -1,0 +1,74 @@
+[
+  {
+    "language": "en",
+    "pages": 16,
+    "asset_count": 55,
+    "cold_replay": "byte-identical",
+    "fresh_admission": "passed",
+    "tamper_rejected": "document asset missing or changed: assets/battery-accessories.png"
+  },
+  {
+    "language": "fr",
+    "pages": 16,
+    "asset_count": 55,
+    "cold_replay": "byte-identical",
+    "fresh_admission": "passed",
+    "tamper_rejected": "document asset missing or changed: assets/battery-accessories.png"
+  },
+  {
+    "language": "es",
+    "pages": 16,
+    "asset_count": 55,
+    "cold_replay": "byte-identical",
+    "fresh_admission": "passed",
+    "tamper_rejected": "document asset missing or changed: assets/battery-accessories.png"
+  },
+  {
+    "language": "de",
+    "pages": 16,
+    "asset_count": 55,
+    "cold_replay": "byte-identical",
+    "fresh_admission": "passed",
+    "tamper_rejected": "document asset missing or changed: assets/battery-accessories.png"
+  },
+  {
+    "language": "it",
+    "pages": 16,
+    "asset_count": 55,
+    "cold_replay": "byte-identical",
+    "fresh_admission": "passed",
+    "tamper_rejected": "document asset missing or changed: assets/battery-accessories.png"
+  },
+  {
+    "language": "uk",
+    "pages": 16,
+    "asset_count": 55,
+    "cold_replay": "byte-identical",
+    "fresh_admission": "passed",
+    "tamper_rejected": "document asset missing or changed: assets/battery-accessories.png"
+  },
+  {
+    "language": "pt",
+    "pages": 16,
+    "asset_count": 55,
+    "cold_replay": "byte-identical",
+    "fresh_admission": "passed",
+    "tamper_rejected": "document asset missing or changed: assets/battery-accessories.png"
+  },
+  {
+    "language": "nl",
+    "pages": 16,
+    "asset_count": 55,
+    "cold_replay": "byte-identical",
+    "fresh_admission": "passed",
+    "tamper_rejected": "document asset missing or changed: assets/battery-accessories.png"
+  },
+  {
+    "language": "pl",
+    "pages": 16,
+    "asset_count": 55,
+    "cold_replay": "byte-identical",
+    "fresh_admission": "passed",
+    "tamper_rejected": "document asset missing or changed: assets/battery-accessories.png"
+  }
+]

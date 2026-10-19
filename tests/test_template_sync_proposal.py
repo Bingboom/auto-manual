@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.cloud_doc_backport import (  # noqa: E402
+from tools.backport.cloud_doc import (  # noqa: E402
     build_template_sync_proposal_report,
     diff_blocks,
     markdown_template_sync_proposal_report,

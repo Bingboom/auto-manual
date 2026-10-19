@@ -164,7 +164,7 @@ def _target_config_path_for_review_mapping(
     lang: str,
 ) -> Path | None:
     from tools.config_loader import load_config_mapping
-    from tools.queue_config_resolution import resolve_config_path_for_task
+    from tools.build_queue.config_resolution import resolve_config_path_for_task
 
     normalized_region = (region or "").strip().upper()
     normalized_lang = lang.strip().lower()
@@ -603,7 +603,7 @@ def _render_placeholder_values(template_line: str, values: tuple[str, ...]) -> s
 
     rendered_parts: list[str] = []
     last = 0
-    for value, match in zip(values, matches):
+    for value, match in zip(values, matches, strict=True):
         rendered_parts.append(template_line[last:match.start()])
         rendered_parts.append(value)
         last = match.end()

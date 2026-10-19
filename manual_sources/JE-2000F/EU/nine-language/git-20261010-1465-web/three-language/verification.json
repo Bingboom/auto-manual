@@ -1,0 +1,50 @@
+{
+  "pt": {
+    "pdf_notice_match": true,
+    "cold_replay_byte_identical": true,
+    "live_new_notices_present": [
+      false,
+      false
+    ],
+    "assets_unchanged": true,
+    "markdown_sha256": "f22e55ebc0b81cffa7dc618d9d31b34849f115709b8671d584371f8c9ff7bbf7",
+    "ups_callout_order": [
+      "CUIDADO",
+      "AVISO"
+    ],
+    "publication_eligible": true,
+    "symbol_admission_rows": 8
+  },
+  "nl": {
+    "pdf_notice_match": true,
+    "cold_replay_byte_identical": true,
+    "live_new_notices_present": [
+      false,
+      false
+    ],
+    "assets_unchanged": true,
+    "markdown_sha256": "0f657b50e79c10140fe87a6fdf78e9d74ee0ea7ff4d5c0bc46f7b9d0978b8010",
+    "ups_callout_order": [
+      "OPGELET",
+      "WAARSCHUWING"
+    ],
+    "publication_eligible": true,
+    "symbol_admission_rows": 8
+  },
+  "pl": {
+    "pdf_notice_match": true,
+    "cold_replay_byte_identical": true,
+    "live_new_notices_present": [
+      false,
+      false
+    ],
+    "assets_unchanged": true,
+    "markdown_sha256": "2e6991a021cd8be0becf9a76db822ceeba718c70f13d2820ac207ea6ad41ba10",
+    "ups_callout_order": [
+      "PRZESTROGA",
+      "OSTRZEŻENIE"
+    ],
+    "publication_eligible": true,
+    "symbol_admission_rows": 8
+  }
+}

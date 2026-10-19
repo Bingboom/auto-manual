@@ -1,0 +1,95 @@
+{
+  "target": "JA-AD500A-SIL/US/en",
+  "candidate": "web-candidate-9",
+  "status": "English candidate, not operator-confirmed baseline or publication",
+  "desktop_viewport": [
+    1440,
+    1000
+  ],
+  "mobile_viewport": [
+    390,
+    844
+  ],
+  "image_count": 6,
+  "image_loads": 6,
+  "desktop_scroll_width": 1440,
+  "mobile_scroll_width": 390,
+  "broken_fragment_links": [],
+  "spec_input_rowspan": 2,
+  "solar": {
+    "operator_instruction": "这个dc8020直接保留在底图",
+    "captions_embedded": true,
+    "duplicate_live_caption": false,
+    "panel_identity": "SolarSaga 100 Air × 4"
+  },
+  "car": {
+    "live_copy": true,
+    "mobile_labels": "overlay",
+    "observed_clipping": false
+  },
+  "source_note": "Battery-cell warranty exclusion retained verbatim; paper version unknown",
+  "validation": {
+    "focused_component_tests": 38,
+    "overlay_contract_tests": 20,
+    "strict_sphinx": true,
+    "source_free_cold_replay": true,
+    "tampered_asset_rejected": true,
+    "regression_target": "JE-1000F/US/en using committed phase2 test fixture only"
+  },
+  "footer_correction": {
+    "candidate": "web-candidate-6",
+    "operator_correction": "封底的内容可以放上去 但是 封底 没有 CONTACT US这个章节",
+    "contact_headings": 0,
+    "toc": [
+      "WHAT’S IN THE BOX",
+      "PRODUCT OVERVIEW",
+      "CHARGING",
+      "SPECIFICATIONS",
+      "WARRANTY"
+    ],
+    "contact_source": "back-cover, physical page 1; proof crop pt [308,480,563,579]",
+    "source_copy_preserved": true,
+    "all_other_body_words_unchanged": true,
+    "artwork_bytes_unchanged": true,
+    "qr_width_desktop_px": 96,
+    "qr_width_mobile_px": 96,
+    "mobile_scroll_width": 390,
+    "strict_sphinx": true,
+    "source_free_replay_exact_myst_parity": true,
+    "publication_eligible": false
+  },
+  "historical_browser_evidence": "Unmodified candidate-3 screenshots retained; footer-corrected screenshots show candidate-6.",
+  "led_table_correction": {
+    "candidate": "web-candidate-9",
+    "operator_correction": "这里样式不对",
+    "native_table": true,
+    "source_rows": 4,
+    "header_rows": 1,
+    "columns": 3,
+    "column_proportions": [
+      25,
+      20,
+      55
+    ],
+    "shared_classes": [
+      "table-wrapper",
+      "docutils",
+      "manual-table"
+    ],
+    "label": "LED Light (plain bold, no bullet subsection)",
+    "header_alignment": "left",
+    "header_background": "rgb(244, 243, 243)",
+    "grid_color": "rgb(52, 48, 49)",
+    "header_body_divider": true,
+    "rounded_outline": true,
+    "compact_spacing": true,
+    "mobile_table_width_px": 355,
+    "mobile_wrapper_width_px": 358,
+    "mobile_viewport_width_px": 390,
+    "mobile_document_width_px": 390,
+    "body_words_unchanged": true,
+    "strict_sphinx": true,
+    "source_free_exact_myst_replay": true,
+    "publication_eligible": false
+  }
+}

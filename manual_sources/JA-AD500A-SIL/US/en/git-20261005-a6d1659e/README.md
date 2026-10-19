@@ -1,0 +1,121 @@
+# Jackery DC Input Module — English Web intake
+
+This is a Git-only **review candidate**, not a published or operator-confirmed
+English baseline. The public model printed on the supplied source is
+**JA-AD500A-SIL**, region **US**. HTO889A is the source project identifier.
+
+`source/original.ai` is the byte-exact operator source. `source/panel_map.json`
+maps its single Illustrator artboard to six English body panels and the
+cover/back. `source/page/` contains native, selectable copy. The specification
+table preserves its two-row DC Input label, and the warranty is 12 months.
+The source's battery-cell exclusion is retained verbatim for review; no paper
+version has been inferred.
+
+The solar diagram preserves **SolarSaga 100 Air × 4** and the original **DC8020**
+label at its leader endpoint, following the operator's instruction
+“这个dc8020直接保留在底图”. It has no duplicate live DC8020 caption. Car labels
+use the existing ReferenceFigure overlay, including on mobile. The original artwork
+recipe records the inventory/reuse decisions and pins all six extracted images;
+these assets have not been promoted to an online registry.
+
+The back cover's company/address/phone/email/website/QR remain in an untitled
+page-end contact block. The operator corrected the previously added
+“CONTACT US” chapter: it is not a back-cover chapter and is now absent from
+headings and navigation. The contents contain only the original five chapters.
+The QR is constrained to 96px on both desktop and mobile, preserving its bytes.
+
+The LED table keeps its original bold `LED Light` label, three columns in
+25/20/55 proportions, one grey header and four source rows. It explicitly
+binds the existing shared `manual-table` / `table-wrapper docutils` grid;
+native source presentation retains the dark complete grid, rounded outline,
+left alignment and compact cell spacing. A source width constraint permits
+wrapping at 390px instead of inheriting the generic table's 576px minimum.
+
+The Web body starts directly at **WHAT’S IN THE BOX**. The operator removed
+the added Model and US / English / User Manual introduction lines. The
+cover-title-only source file is retained for provenance and omitted from Web
+page assembly; identity remains in target metadata and native specifications.
+Candidate 10b's strict build and exact source-free replay passed; all content
+from the first chapter onward and all six artwork bytes are unchanged from
+candidate 9. Desktop and 390px screenshots are in `evidence/browser/`, with
+checks in `evidence/intro-correction.json`.
+
+The complete product overview is centered and bounded at **640px (40rem)**
+on desktop, following the operator's request to make the whole diagram smaller.
+It scales to the available phone width. The source-local width overrides the
+shared standalone image rule; no shared CSS or artwork was changed. Candidate
+11 passes strict Sphinx and exact source-free replay, with unchanged body text
+and all six artwork bytes. See `evidence/overview-size-correction.json` and
+`evidence/browser/*-overview-smaller.jpg`.
+
+The car-cable note now has a compact source-bound capsule: one line at
+1440px desktop, with natural two-line wrapping at 390px. The source rectangle
+was widened and shortened; native copy, all artwork and shared CSS are
+unchanged. Candidate 12 passes strict Sphinx and exact source-free replay.
+See `evidence/car-pill-correction.json` and the matching browser screenshots.
+
+## Reusable overview base art
+
+`assets/overview-textless.png` and `assets/overview-textless.pdf` are the
+language-neutral overview base art (locale `und`). The six external annotation
+lines are selectable/editable native copy in `source/page/product_overview_en.rst`:
+DC Input, port count, car input, PV input, LED Light and Plug. The existing
+ReferenceFigure component places them at declared anchors. Product Jackery
+markings, shading, full cable loop and all leaders remain in the artwork.
+The 640px desktop bound and phone-width scaling are retained.
+
+`source/overview_textless_recipe.json` is a separate hash-pinned corrective
+recipe through the existing asset pipeline. Original AI, labeled overview and
+original six-asset recipe are preserved unchanged. Outlined labels on isolated
+white canvas are removed; no vector geometry under the product or leaders is
+removed. At production 4x all pixels outside those regions and all four edges
+are identical. The three removal areas are also visually checked at 12x.
+A cropped vector PDF has minor raster antialias differences at 12x (maximum
+channel difference 14); it is not claimed to rasterize byte-identically.
+
+Future languages reuse these exact base-art bytes and provide native labels
+in their own source; this change does not create translated manuals or an
+approved multilingual baseline. No online registry promotion was performed.
+Candidate 13b passes strict Sphinx, exact source-free replay, changed-base-art
+rejection and 21 reference/IR tests. Actual desktop and 390px screenshots,
+before/after pair, recipe receipt and pixel checks are retained in `evidence/`.
+
+## Rebuild
+
+From the repository root, with the project's Python dependencies installed:
+
+```sh
+python manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e/render.py /tmp/jaad500a-web-new
+python -m sphinx -W -b html /tmp/jaad500a-web-new /tmp/jaad500a-html-new
+python -m http.server 18979 --bind 127.0.0.1 --directory /tmp/jaad500a-html-new
+```
+
+The output directory must be new and outside this input snapshot. The adapter
+verifies frozen source and repository inputs, then uses the existing prepared
+RST → manual-ir/v2 → shared Web/MyST pipeline. It does not implement an HTML
+renderer or register a phase2 target. `web/en/` contains the frozen MyST, IR,
+CSS and packaged artwork. `output_inventory.json` records output/evidence
+hashes separately from source inputs.
+The adapter invokes the existing frozen-IR replay to retain the page-end
+block and QR width through MyST export, instead of flattening that container.
+
+## Verification and scope
+
+- Strict Sphinx and a source-free cold IR replay passed. Cold replay preserves
+  body text and rejects a changed solar asset.
+- 38 focused component tests and 20 overlay contract tests passed, as did Ruff,
+  maintainability guardrails and documentation link/lifecycle checks.
+- The JE-1000F/US/en repository regression passed with the committed
+  `tests/fixtures/phase2` snapshot. The default command could not resolve its
+  product because this worktree has no local Spec_Master snapshot; the retained
+  log makes that limitation explicit. This regression does not validate this
+  new model's copy.
+- Actual browser inspection at 1440px desktop and 390px mobile found all six
+  images loaded, no document horizontal overflow or broken fragment links,
+  and intact native specifications/warranty. See `evidence/verification.json`
+  and the browser screenshots. Sphinx log copies omit trailing terminal spaces;
+  original session logs remain in the retained discovery directory. The LED table now wraps within the phone width, with no cropped cells.
+
+No live source table, queue, asset registry, build record or HTML_link was
+written. Merge, Hello-Docs publication, RTD and other languages require their
+own next-stage instruction. English baseline confirmation remains pending.

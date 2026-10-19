@@ -1,0 +1,2279 @@
+{
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "pages": [
+    {
+      "physical_page": 1,
+      "text": "USER MANUAL\nJackery Battery Pack 3600\nCONTACT US:\nhello.eu@jackery.com\nModel: JBP-3600A\n",
+      "blocks": [
+        {
+          "bbox": [
+            90.67459869384766,
+            325.98956298828125,
+            278.0810241699219,
+            361.19580078125
+          ],
+          "text": "USER MANUAL\n"
+        },
+        {
+          "bbox": [
+            90.84860229492188,
+            367.6473083496094,
+            277.2526550292969,
+            385.8013000488281
+          ],
+          "text": "Jackery Battery Pack 3600\n"
+        },
+        {
+          "bbox": [
+            28.904499053955078,
+            452.589599609375,
+            85.55024719238281,
+            463.51458740234375
+          ],
+          "text": "CONTACT US:\n"
+        },
+        {
+          "bbox": [
+            63.713401794433594,
+            475.4739074707031,
+            332.5700988769531,
+            490.7771911621094
+          ],
+          "text": "hello.eu@jackery.com\nModel: JBP-3600A\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 2,
+      "text": "IMPORTANT\nIMPORTANT\nIMPORTANTE\nUS\nFR\nES\nCongratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before \nusing the product, particularly the relevant precautions to ensure proper use. \nKeep this manual in an accessible place for frequent reference.\nIn compliance with laws and regulations, the right of ﬁnal interpretation of this document and all \nrelated documents of this product resides with the Company.\nPlease kindly notice that no further notiﬁcations will be given in case of any update, revision or \ntermination.\nFélicitations d’avoir fait l’acquisition du nouveau Jackery Battery Pack 3600. Veuillez lire \nattentivement ce manuel avant d’utiliser le dispositif, en particulier les précautions à prendre aﬁn \nde garantir une bonne utilisation.\nConservez ce manuel dans un endroit accessible pour pouvoir vous y référer fréquemment. \nConformément aux lois et réglementations, le droit d’interprétation ﬁnale de ce document et de \ntous les documents relatifs à ce produit appartient à l’entreprise.\nVeuillez noter qu’aucune autre notiﬁcation ne sera donnée en cas de mise à jour, de révision ou de \nrésiliation.\nFelicidades por su nuevo Jackery Battery Pack 3600. Lea atentamente este manual antes de \nutilizar el producto, en particular las precauciones pertinentes para garantizar un uso correcto. \nGuarde este manual en un lugar accesible para consultarlo con frecuencia.\nEn cumplimiento de las leyes y reglamentos, el derecho de interpretación ﬁnal de este documento \ny de todos los documentos relacionados con este producto corresponde a la Empresa.\nTenga en cuenta que no se realizarán más notiﬁcaciones en caso de actualización, revisión o \nﬁnalización.\nWICHTIG\nIMPORTANTE\nDE\nIT\nHerzlichen Glückwunsch zu Ihrem neuen Jackery Battery Pack 3600. Bitte lesen Sie dieses \nHandbuch, insbesondere die entsprechenden Vorsichtsmaßnahmen sorgfältig durch, bevor Sie \ndas Produkt verwenden, um eine ordnungsgemäße Verwendung zu gewährleisten. Bewahren Sie \ndieses Handbuch zum Nachschlagen an einem leicht zugänglichen Ort auf. \nIn Übereinstimmung mit den Gesetzen und Vorschriften liegt das Recht der endgültigen \nAuslegung dieses Dokuments und aller zugehörigen Dokumente zu diesem Produkt beim \nUnternehmen. \nBitte beachten Sie, dass im Falle einer Aktualisierung, Überarbeitung oder Beendigung keine \nweiteren Benachrichtigungen erfolgen.\nCongratulazioni per il tuo nuovo Jackery Battery Pack 3600. Leggi attentamente questo \nmanuale prima di utilizzare il prodotto, in particolare le precauzioni rilevanti per garantirne un uso \ncorretto. Conserva questo manuale in un luogo accessibile per consultazioni frequenti. \nIn conformità con le leggi e i regolamenti, il diritto di interpretazione ﬁnale di questo documento e \ndi tutti i documenti correlati a questo prodotto spetta all'Azienda. \nSi prega di notare che non verranno fornite ulteriori notiﬁche in caso di aggiornamenti, revisioni o \ncessazioni.\n",
+      "blocks": [
+        {
+          "bbox": [
+            49.82080078125,
+            31.571788787841797,
+            115.82080841064453,
+            46.42778778076172
+          ],
+          "text": "IMPORTANT\n"
+        },
+        {
+          "bbox": [
+            49.82080078125,
+            119.35179138183594,
+            115.82080841064453,
+            134.20779418945312
+          ],
+          "text": "IMPORTANT\n"
+        },
+        {
+          "bbox": [
+            49.82080078125,
+            214.7157745361328,
+            122.1808090209961,
+            229.57177734375
+          ],
+          "text": "IMPORTANTE\n"
+        },
+        {
+          "bbox": [
+            31.510700225830078,
+            33.714988708496094,
+            42.22434997558594,
+            44.44597625732422
+          ],
+          "text": "US\n"
+        },
+        {
+          "bbox": [
+            32.27348327636719,
+            121.01909637451172,
+            42.09432601928711,
+            131.7500762939453
+          ],
+          "text": "FR\n"
+        },
+        {
+          "bbox": [
+            32.02210998535156,
+            216.46246337890625,
+            41.669593811035156,
+            227.1934356689453
+          ],
+          "text": "ES\n"
+        },
+        {
+          "bbox": [
+            29.493200302124023,
+            47.938995361328125,
+            343.52020263671875,
+            110.35108184814453
+          ],
+          "text": "Congratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before \nusing the product, particularly the relevant precautions to ensure proper use. \nKeep this manual in an accessible place for frequent reference.\nIn compliance with laws and regulations, the right of ﬁnal interpretation of this document and all \nrelated documents of this product resides with the Company.\nPlease kindly notice that no further notiﬁcations will be given in case of any update, revision or \ntermination.\n"
+        },
+        {
+          "bbox": [
+            29.5491943359375,
+            135.36209106445312,
+            343.4922180175781,
+            206.77618408203125
+          ],
+          "text": "Félicitations d’avoir fait l’acquisition du nouveau Jackery Battery Pack 3600. Veuillez lire \nattentivement ce manuel avant d’utiliser le dispositif, en particulier les précautions à prendre aﬁn \nde garantir une bonne utilisation.\nConservez ce manuel dans un endroit accessible pour pouvoir vous y référer fréquemment. \nConformément aux lois et réglementations, le droit d’interprétation ﬁnale de ce document et de \ntous les documents relatifs à ce produit appartient à l’entreprise.\nVeuillez noter qu’aucune autre notiﬁcation ne sera donnée en cas de mise à jour, de révision ou de \nrésiliation.\n"
+        },
+        {
+          "bbox": [
+            29.491287231445312,
+            230.59017944335938,
+            343.34326171875,
+            292.97491455078125
+          ],
+          "text": "Felicidades por su nuevo Jackery Battery Pack 3600. Lea atentamente este manual antes de \nutilizar el producto, en particular las precauciones pertinentes para garantizar un uso correcto. \nGuarde este manual en un lugar accesible para consultarlo con frecuencia.\nEn cumplimiento de las leyes y reglamentos, el derecho de interpretación ﬁnal de este documento \ny de todos los documentos relacionados con este producto corresponde a la Empresa.\nTenga en cuenta que no se realizarán más notiﬁcaciones en caso de actualización, revisión o \nﬁnalización.\n"
+        },
+        {
+          "bbox": [
+            49.82080078125,
+            297.90869140625,
+            100.83280944824219,
+            312.76470947265625
+          ],
+          "text": "WICHTIG\n"
+        },
+        {
+          "bbox": [
+            49.82080078125,
+            401.66070556640625,
+            122.1808090209961,
+            416.5167236328125
+          ],
+          "text": "IMPORTANTE\n"
+        },
+        {
+          "bbox": [
+            30.829099655151367,
+            299.5773010253906,
+            41.603424072265625,
+            310.30828857421875
+          ],
+          "text": "DE\n"
+        },
+        {
+          "bbox": [
+            32.8574104309082,
+            403.419921875,
+            39.86115646362305,
+            414.1509094238281
+          ],
+          "text": "IT\n"
+        },
+        {
+          "bbox": [
+            29.493200302124023,
+            313.9117126464844,
+            340.0692443847656,
+            394.32769775390625
+          ],
+          "text": "Herzlichen Glückwunsch zu Ihrem neuen Jackery Battery Pack 3600. Bitte lesen Sie dieses \nHandbuch, insbesondere die entsprechenden Vorsichtsmaßnahmen sorgfältig durch, bevor Sie \ndas Produkt verwenden, um eine ordnungsgemäße Verwendung zu gewährleisten. Bewahren Sie \ndieses Handbuch zum Nachschlagen an einem leicht zugänglichen Ort auf. \nIn Übereinstimmung mit den Gesetzen und Vorschriften liegt das Recht der endgültigen \nAuslegung dieses Dokuments und aller zugehörigen Dokumente zu diesem Produkt beim \nUnternehmen. \nBitte beachten Sie, dass im Falle einer Aktualisierung, Überarbeitung oder Beendigung keine \nweiteren Benachrichtigungen erfolgen.\n"
+        },
+        {
+          "bbox": [
+            29.493200302124023,
+            417.5397033691406,
+            343.4852600097656,
+            479.95166015625
+          ],
+          "text": "Congratulazioni per il tuo nuovo Jackery Battery Pack 3600. Leggi attentamente questo \nmanuale prima di utilizzare il prodotto, in particolare le precauzioni rilevanti per garantirne un uso \ncorretto. Conserva questo manuale in un luogo accessibile per consultazioni frequenti. \nIn conformità con le leggi e i regolamenti, il diritto di interpretazione ﬁnale di questo documento e \ndi tutti i documenti correlati a questo prodotto spetta all'Azienda. \nSi prega di notare che non verranno fornite ulteriori notiﬁche in caso di aggiornamenti, revisioni o \ncessazioni.\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 3,
+      "text": "ВАЖЛИВО\nUA\nВітаємо з новим Jackery Battery Pack 3600. Будь ласка, уважно прочитайте це керівництво \nперед використанням продукту, особливо відповідні застереження для забезпечення \nправильного використання. \nЗберігайте цей посібник у легкодоступному місці для частого звернення.\nВідповідно до законів і нормативних актів, право остаточного тлумачення цього документа та \nвсіх пов’язаних документів цього продукту належить Компанії.\nЗверніть увагу, що у разі будь-яких оновлень, змін або припинення додаткових повідомлень не \nбуде.\nIMPORTANTE\nPT\nParabéns pela sua nova Jackery Battery Pack 3600. Leia este manual atentamente antes de usar \no produto, especialmente as precauções relevantes, para garantir o uso adequado. \nMantenha este manual em um local acessível para consultas frequentes.\nEm conformidade com leis e regulamentos, o direito de interpretação ﬁnal deste documento e de \ntodos os documentos relacionados a este produto pertence à Empresa.\nObserve que não serão fornecidas notiﬁcações adicionais em caso de atualização, revisão ou \nencerramento.\nBELANGRIJK\nNL\nGefeliciteerd met uw nieuwe Jackery Battery Pack 3600. Lees deze handleiding goed door \nvoordat u het product gebruikt. Neem vooral de relevante voorzorgsmaatregelen door om een \ncorrect gebruik te garanderen. \nBewaar deze handleiding op een gemakkelijk bereikbare plaats, zodat u deze regelmatig kunt \nraadplegen.\nVolgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit \ndocument en alle andere documenten die bij dit product horen.\nHoud er rekening mee dat er bij een update, herziening of beëindiging geen verdere \nkennisgevingen volgen.\nWAŻNE\nPL\nGratulujemy zakupu nowego urządzenia Jackery Battery Pack 3600. Prosimy o dokładne \nprzeczytanie niniejszej instrukcji przed użyciem produktu, ze szczególnym uwzględnieniem środków \nostrożności, aby zapewnić prawidłowe użytkowanie. \nInstrukcję należy przechowywać w łatwo dostępnym miejscu, aby można było po nią sięgać w \nprzyszłości.\nZgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich \ndokumentów związanych z tym produktem przysługuje ﬁrmie.\nNależy pamiętać, że w przypadku jakichkolwiek aktualizacji, zmian lub zakończenia publikacji nie \nbędą wysyłane żadne dodatkowe powiadomienia.\n",
+      "blocks": [
+        {
+          "bbox": [
+            31.0,
+            32.30808639526367,
+            108.38610076904297,
+            47.164085388183594
+          ],
+          "text": "ВАЖЛИВО\nUA\n"
+        },
+        {
+          "bbox": [
+            28.98240089416504,
+            48.67529296875,
+            341.57440185546875,
+            115.87525177001953
+          ],
+          "text": "Вітаємо з новим Jackery Battery Pack 3600. Будь ласка, уважно прочитайте це керівництво \nперед використанням продукту, особливо відповідні застереження для забезпечення \nправильного використання. \nЗберігайте цей посібник у легкодоступному місці для частого звернення.\nВідповідно до законів і нормативних актів, право остаточного тлумачення цього документа та \nвсіх пов’язаних документів цього продукту належить Компанії.\nЗверніть увагу, що у разі будь-яких оновлень, змін або припинення додаткових повідомлень не \nбуде.\n"
+        },
+        {
+          "bbox": [
+            31.0,
+            134.2598114013672,
+            121.67011260986328,
+            149.11581420898438
+          ],
+          "text": "IMPORTANTE\nPT\n"
+        },
+        {
+          "bbox": [
+            28.98240089416504,
+            150.62750244140625,
+            342.96038818359375,
+            209.42745971679688
+          ],
+          "text": "Parabéns pela sua nova Jackery Battery Pack 3600. Leia este manual atentamente antes de usar \no produto, especialmente as precauções relevantes, para garantir o uso adequado. \nMantenha este manual em um local acessível para consultas frequentes.\nEm conformidade com leis e regulamentos, o direito de interpretação ﬁnal deste documento e de \ntodos os documentos relacionados a este produto pertence à Empresa.\nObserve que não serão fornecidas notiﬁcações adicionais em caso de atualização, revisão ou \nencerramento.\n"
+        },
+        {
+          "bbox": [
+            31.96579933166504,
+            225.21778869628906,
+            119.99590301513672,
+            240.07379150390625
+          ],
+          "text": "BELANGRIJK\nNL\n"
+        },
+        {
+          "bbox": [
+            29.948699951171875,
+            241.58551025390625,
+            332.6076965332031,
+            317.1854553222656
+          ],
+          "text": "Gefeliciteerd met uw nieuwe Jackery Battery Pack 3600. Lees deze handleiding goed door \nvoordat u het product gebruikt. Neem vooral de relevante voorzorgsmaatregelen door om een \ncorrect gebruik te garanderen. \nBewaar deze handleiding op een gemakkelijk bereikbare plaats, zodat u deze regelmatig kunt \nraadplegen.\nVolgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit \ndocument en alle andere documenten die bij dit product horen.\nHoud er rekening mee dat er bij een update, herziening of beëindiging geen verdere \nkennisgevingen volgen.\n"
+        },
+        {
+          "bbox": [
+            31.96579933166504,
+            336.9740905761719,
+            91.13589477539062,
+            351.8301086425781
+          ],
+          "text": "WAŻNE\nPL\n"
+        },
+        {
+          "bbox": [
+            29.948699951171875,
+            353.3412780761719,
+            344.6617736816406,
+            428.9412841796875
+          ],
+          "text": "Gratulujemy zakupu nowego urządzenia Jackery Battery Pack 3600. Prosimy o dokładne \nprzeczytanie niniejszej instrukcji przed użyciem produktu, ze szczególnym uwzględnieniem środków \nostrożności, aby zapewnić prawidłowe użytkowanie. \nInstrukcję należy przechowywać w łatwo dostępnym miejscu, aby można było po nią sięgać w \nprzyszłości.\nZgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich \ndokumentów związanych z tym produktem przysługuje ﬁrmie.\nNależy pamiętać, że w przypadku jakichkolwiek aktualizacji, zmian lub zakończenia publikacji nie \nbędą wysyłane żadne dodatkowe powiadomienia.\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 4,
+      "text": "TABLE OF CONTENTS\nIMPORTANT SAFETY INFORMATION .................\nMEANING OF SYMBOLS .......................................\nWHAT'S IN THE BOX ............................................\nPRODUCT OVERVIEW .........................................\nLCD DISPLAY .........................................................\nOPERATIONS .........................................................\nTROUBLESHOOTING ..........................................\nCONNECTIONS ....................................................\nCHARGING ...........................................................\nSPECIFICATIONS .................................................\nSTORAGE ...............................................................\nWARRANTY ...........................................................\nINFORMATIONS DE SÉCURITÉ IMPORTANTES ....\nSIGNIFICATION DES SYMBOLES ........................\nCONTENU DE LA BOÎTE ........................................\nAPERÇU DU PRODUIT ...........................................\nAFFICHAGE LCD .....................................................\nFONCTIONNEMENT ...............................................\nDÉPANNAGE .........................................................\nCONNEXIONS .......................................................\nCHARGE ................................................................. \nSTOCKAGE ............................................................\nSPÉCIFICATIONS ................................................. \nGARANTIE ............................................................. \nINFORMACIÓN IMPORTANTE DE SEGURIDAD ....\nSIGNIFICADO DE LOS SÍMBOLOS .....................\nCONTENIDO DE LA CAJA ....................................\nDESCRIPCIÓN GENERAL DEL PRODUCTO ......\nPANTALLA LCD ......................................................\nOPERACIONES .......................................................\nRESOLUCIÓN DE PROBLEMAS ........................\nCONEXIONES ......................................................\nCARGANDO .........................................................\nALMACENAMIENTO .............................................\nESPECIFICACIONES ............................................\nGARANTÍA .............................................................\nEN English\n01-08\nFR\nFrançais\n09-16\nES\nEspañol\n17-24\n17\n17\n18\n18\n19\n19\n20\n20\n22\n23\n23\n24\n01\n01\n02\n02\n03\n03\n04\n04\n06\n07\n07\n08\n09\n09\n10\n10\n11\n11\n12\n12\n14\n15\n15\n16\n",
+      "blocks": [
+        {
+          "bbox": [
+            27.801799774169922,
+            22.244470596313477,
+            243.47006225585938,
+            49.78700256347656
+          ],
+          "text": "TABLE OF CONTENTS\n"
+        },
+        {
+          "bbox": [
+            28.76609992980957,
+            81.3849868774414,
+            171.65017700195312,
+            89.87598419189453
+          ],
+          "text": "IMPORTANT SAFETY INFORMATION .................\n"
+        },
+        {
+          "bbox": [
+            28.76610565185547,
+            95.3849868774414,
+            171.65016174316406,
+            103.87598419189453
+          ],
+          "text": "MEANING OF SYMBOLS .......................................\n"
+        },
+        {
+          "bbox": [
+            28.76610565185547,
+            109.3849868774414,
+            169.942138671875,
+            117.87598419189453
+          ],
+          "text": "WHAT'S IN THE BOX ............................................\n"
+        },
+        {
+          "bbox": [
+            28.76610565185547,
+            123.3849868774414,
+            169.942138671875,
+            131.8759765625
+          ],
+          "text": "PRODUCT OVERVIEW .........................................\n"
+        },
+        {
+          "bbox": [
+            28.76610565185547,
+            137.38497924804688,
+            169.94908142089844,
+            145.8759765625
+          ],
+          "text": "LCD DISPLAY .........................................................\n"
+        },
+        {
+          "bbox": [
+            28.94110107421875,
+            152.37896728515625,
+            169.8020782470703,
+            160.86996459960938
+          ],
+          "text": "OPERATIONS .........................................................\n"
+        },
+        {
+          "bbox": [
+            190.5640869140625,
+            81.38495635986328,
+            329.16363525390625,
+            89.8759536743164
+          ],
+          "text": "TROUBLESHOOTING ..........................................\n"
+        },
+        {
+          "bbox": [
+            190.2910919189453,
+            95.5109634399414,
+            329.765625,
+            104.00196075439453
+          ],
+          "text": "CONNECTIONS ....................................................\n"
+        },
+        {
+          "bbox": [
+            190.2910919189453,
+            109.84696197509766,
+            329.7656555175781,
+            118.33795928955078
+          ],
+          "text": "CHARGING ...........................................................\n"
+        },
+        {
+          "bbox": [
+            190.2910919189453,
+            138.74996948242188,
+            329.00970458984375,
+            147.240966796875
+          ],
+          "text": "SPECIFICATIONS .................................................\n"
+        },
+        {
+          "bbox": [
+            190.2910919189453,
+            124.98096466064453,
+            330.6336975097656,
+            133.47195434570312
+          ],
+          "text": "STORAGE ...............................................................\n"
+        },
+        {
+          "bbox": [
+            190.2910919189453,
+            153.2049560546875,
+            329.7656555175781,
+            161.69595336914062
+          ],
+          "text": "WARRANTY ...........................................................\n"
+        },
+        {
+          "bbox": [
+            28.76609992980957,
+            201.22769165039062,
+            171.63951110839844,
+            209.71868896484375
+          ],
+          "text": "INFORMATIONS DE SÉCURITÉ IMPORTANTES ....\n"
+        },
+        {
+          "bbox": [
+            28.769500732421875,
+            215.22769165039062,
+            171.6466064453125,
+            223.71868896484375
+          ],
+          "text": "SIGNIFICATION DES SYMBOLES ........................\n"
+        },
+        {
+          "bbox": [
+            28.769508361816406,
+            229.22769165039062,
+            172.6825714111328,
+            237.71868896484375
+          ],
+          "text": "CONTENU DE LA BOÎTE ........................................\n"
+        },
+        {
+          "bbox": [
+            28.769508361816406,
+            244.05368041992188,
+            173.38255310058594,
+            252.544677734375
+          ],
+          "text": "APERÇU DU PRODUIT ...........................................\n"
+        },
+        {
+          "bbox": [
+            28.769508361816406,
+            258.5926818847656,
+            174.1945037841797,
+            267.08367919921875
+          ],
+          "text": "AFFICHAGE LCD .....................................................\n"
+        },
+        {
+          "bbox": [
+            28.769512176513672,
+            273.81768798828125,
+            173.7815399169922,
+            282.3086853027344
+          ],
+          "text": "FONCTIONNEMENT ...............................................\n"
+        },
+        {
+          "bbox": [
+            190.29452514648438,
+            201.59869384765625,
+            330.0704345703125,
+            210.08969116210938
+          ],
+          "text": "DÉPANNAGE .........................................................\n"
+        },
+        {
+          "bbox": [
+            190.2945098876953,
+            215.89968872070312,
+            331.4700622558594,
+            224.39068603515625
+          ],
+          "text": "CONNEXIONS .......................................................\n"
+        },
+        {
+          "bbox": [
+            190.2945098876953,
+            230.37570190429688,
+            332.2611389160156,
+            238.86669921875
+          ],
+          "text": "CHARGE ................................................................. \n"
+        },
+        {
+          "bbox": [
+            190.2945098876953,
+            244.85870361328125,
+            330.5741271972656,
+            253.34970092773438
+          ],
+          "text": "STOCKAGE ............................................................\n"
+        },
+        {
+          "bbox": [
+            190.2945098876953,
+            259.50970458984375,
+            332.0020446777344,
+            268.0007019042969
+          ],
+          "text": "SPÉCIFICATIONS ................................................. \n"
+        },
+        {
+          "bbox": [
+            190.29449462890625,
+            273.8106994628906,
+            331.5260925292969,
+            282.30169677734375
+          ],
+          "text": "GARANTIE ............................................................. \n"
+        },
+        {
+          "bbox": [
+            28.770999908447266,
+            322.4049987792969,
+            172.0247039794922,
+            331.3578796386719
+          ],
+          "text": "INFORMACIÓN IMPORTANTE DE SEGURIDAD ....\n"
+        },
+        {
+          "bbox": [
+            28.769699096679688,
+            336.7760009765625,
+            171.6467742919922,
+            345.2669982910156
+          ],
+          "text": "SIGNIFICADO DE LOS SÍMBOLOS .....................\n"
+        },
+        {
+          "bbox": [
+            28.769691467285156,
+            350.7760009765625,
+            171.64675903320312,
+            359.2669982910156
+          ],
+          "text": "CONTENIDO DE LA CAJA ....................................\n"
+        },
+        {
+          "bbox": [
+            28.769691467285156,
+            364.7760009765625,
+            171.64669799804688,
+            373.2669982910156
+          ],
+          "text": "DESCRIPCIÓN GENERAL DEL PRODUCTO ......\n"
+        },
+        {
+          "bbox": [
+            28.769683837890625,
+            378.7760009765625,
+            171.6536865234375,
+            387.2669982910156
+          ],
+          "text": "PANTALLA LCD ......................................................\n"
+        },
+        {
+          "bbox": [
+            28.769683837890625,
+            394.51898193359375,
+            171.65367126464844,
+            403.0099792480469
+          ],
+          "text": "OPERACIONES .......................................................\n"
+        },
+        {
+          "bbox": [
+            190.5606689453125,
+            322.86700439453125,
+            328.2503967285156,
+            331.3580017089844
+          ],
+          "text": "RESOLUCIÓN DE PROBLEMAS ........................\n"
+        },
+        {
+          "bbox": [
+            190.29466247558594,
+            336.426025390625,
+            328.0752258300781,
+            344.9170227050781
+          ],
+          "text": "CONEXIONES ......................................................\n"
+        },
+        {
+          "bbox": [
+            190.29466247558594,
+            350.7760009765625,
+            329.7762145996094,
+            359.2669982910156
+          ],
+          "text": "CARGANDO .........................................................\n"
+        },
+        {
+          "bbox": [
+            190.29466247558594,
+            364.7760009765625,
+            329.9442138671875,
+            373.2669982910156
+          ],
+          "text": "ALMACENAMIENTO .............................................\n"
+        },
+        {
+          "bbox": [
+            190.29466247558594,
+            379.12603759765625,
+            329.3212585449219,
+            387.6170349121094
+          ],
+          "text": "ESPECIFICACIONES ............................................\n"
+        },
+        {
+          "bbox": [
+            190.29466247558594,
+            394.8690185546875,
+            329.7692565917969,
+            403.3600158691406
+          ],
+          "text": "GARANTÍA .............................................................\n"
+        },
+        {
+          "bbox": [
+            32.62889862060547,
+            57.4004020690918,
+            337.7016296386719,
+            72.25640106201172
+          ],
+          "text": "EN English\n01-08\n"
+        },
+        {
+          "bbox": [
+            32.62889862060547,
+            177.1182098388672,
+            336.99908447265625,
+            191.97421264648438
+          ],
+          "text": "FR\nFrançais\n09-16\n"
+        },
+        {
+          "bbox": [
+            32.62889862060547,
+            299.31500244140625,
+            336.83160400390625,
+            314.1710205078125
+          ],
+          "text": "ES\nEspañol\n17-24\n"
+        },
+        {
+          "bbox": [
+            172.7982940673828,
+            322.86688232421875,
+            178.7202911376953,
+            331.3578796386719
+          ],
+          "text": "17\n"
+        },
+        {
+          "bbox": [
+            172.7982940673828,
+            337.3638916015625,
+            178.7202911376953,
+            345.8548889160156
+          ],
+          "text": "17\n"
+        },
+        {
+          "bbox": [
+            172.34329223632812,
+            351.86090087890625,
+            178.7202911376953,
+            360.3518981933594
+          ],
+          "text": "18\n"
+        },
+        {
+          "bbox": [
+            172.34329223632812,
+            366.3578796386719,
+            178.7202911376953,
+            374.848876953125
+          ],
+          "text": "18\n"
+        },
+        {
+          "bbox": [
+            172.46229553222656,
+            380.8548583984375,
+            178.72030639648438,
+            389.3458557128906
+          ],
+          "text": "19\n"
+        },
+        {
+          "bbox": [
+            172.46229553222656,
+            395.35186767578125,
+            178.72030639648438,
+            403.8428649902344
+          ],
+          "text": "19\n"
+        },
+        {
+          "bbox": [
+            329.86431884765625,
+            322.8528747558594,
+            337.96331787109375,
+            331.3438720703125
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            329.86431884765625,
+            337.349853515625,
+            337.96331787109375,
+            345.8408508300781
+          ],
+          "text": "20\n"
+        },
+        {
+          "bbox": [
+            330.5853271484375,
+            351.84686279296875,
+            337.96331787109375,
+            360.3378601074219
+          ],
+          "text": "22\n"
+        },
+        {
+          "bbox": [
+            330.5293273925781,
+            366.3438720703125,
+            337.96331787109375,
+            374.8348693847656
+          ],
+          "text": "23\n"
+        },
+        {
+          "bbox": [
+            330.5293273925781,
+            380.8408508300781,
+            337.96331787109375,
+            389.33184814453125
+          ],
+          "text": "23\n"
+        },
+        {
+          "bbox": [
+            330.2143249511719,
+            395.3378601074219,
+            337.96331787109375,
+            403.828857421875
+          ],
+          "text": "24\n"
+        },
+        {
+          "bbox": [
+            172.6373291015625,
+            81.44388580322266,
+            179.53933715820312,
+            89.93488311767578
+          ],
+          "text": "01\n"
+        },
+        {
+          "bbox": [
+            172.6373291015625,
+            95.9408950805664,
+            179.53933715820312,
+            104.43189239501953
+          ],
+          "text": "01\n"
+        },
+        {
+          "bbox": [
+            171.44032287597656,
+            110.43790435791016,
+            179.53932189941406,
+            118.92890167236328
+          ],
+          "text": "02\n"
+        },
+        {
+          "bbox": [
+            171.44032287597656,
+            124.9349136352539,
+            179.53932189941406,
+            133.4259033203125
+          ],
+          "text": "02\n"
+        },
+        {
+          "bbox": [
+            171.3843231201172,
+            139.43191528320312,
+            179.53932189941406,
+            147.92291259765625
+          ],
+          "text": "03\n"
+        },
+        {
+          "bbox": [
+            171.3843231201172,
+            153.92892456054688,
+            179.53932189941406,
+            162.419921875
+          ],
+          "text": "03\n"
+        },
+        {
+          "bbox": [
+            331.04034423828125,
+            81.42993927001953,
+            339.5103454589844,
+            89.92093658447266
+          ],
+          "text": "04\n"
+        },
+        {
+          "bbox": [
+            331.04034423828125,
+            95.92694854736328,
+            339.5103454589844,
+            104.4179458618164
+          ],
+          "text": "04\n"
+        },
+        {
+          "bbox": [
+            331.3343505859375,
+            110.42395782470703,
+            339.5103454589844,
+            118.91495513916016
+          ],
+          "text": "06\n"
+        },
+        {
+          "bbox": [
+            331.67034912109375,
+            124.92096710205078,
+            339.5103454589844,
+            133.41195678710938
+          ],
+          "text": "07\n"
+        },
+        {
+          "bbox": [
+            331.67034912109375,
+            139.41796875,
+            339.5103454589844,
+            147.90896606445312
+          ],
+          "text": "07\n"
+        },
+        {
+          "bbox": [
+            331.2153625488281,
+            153.91497802734375,
+            339.5103759765625,
+            162.40597534179688
+          ],
+          "text": "08\n"
+        },
+        {
+          "bbox": [
+            172.67236328125,
+            201.44497680664062,
+            180.84837341308594,
+            209.93597412109375
+          ],
+          "text": "09\n"
+        },
+        {
+          "bbox": [
+            172.67236328125,
+            215.94198608398438,
+            180.84837341308594,
+            224.4329833984375
+          ],
+          "text": "09\n"
+        },
+        {
+          "bbox": [
+            173.9463653564453,
+            230.43899536132812,
+            180.84837341308594,
+            238.92999267578125
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            173.9463653564453,
+            244.93600463867188,
+            180.84837341308594,
+            253.427001953125
+          ],
+          "text": "10\n"
+        },
+        {
+          "bbox": [
+            175.86436462402344,
+            259.4330139160156,
+            180.84837341308594,
+            267.92401123046875
+          ],
+          "text": "11\n"
+        },
+        {
+          "bbox": [
+            175.86436462402344,
+            273.92999267578125,
+            180.84837341308594,
+            282.4209899902344
+          ],
+          "text": "11\n"
+        },
+        {
+          "bbox": [
+            331.775390625,
+            201.92800903320312,
+            337.9563903808594,
+            210.41900634765625
+          ],
+          "text": "12\n"
+        },
+        {
+          "bbox": [
+            331.775390625,
+            216.42501831054688,
+            337.9563903808594,
+            224.916015625
+          ],
+          "text": "12\n"
+        },
+        {
+          "bbox": [
+            331.4043884277344,
+            230.92202758789062,
+            337.9563903808594,
+            239.41302490234375
+          ],
+          "text": "14\n"
+        },
+        {
+          "bbox": [
+            331.66339111328125,
+            245.41903686523438,
+            337.9563903808594,
+            253.9100341796875
+          ],
+          "text": "15\n"
+        },
+        {
+          "bbox": [
+            331.66339111328125,
+            259.9160461425781,
+            337.9563903808594,
+            268.40704345703125
+          ],
+          "text": "15\n"
+        },
+        {
+          "bbox": [
+            331.6983947753906,
+            274.41302490234375,
+            337.9563903808594,
+            282.9040222167969
+          ],
+          "text": "16\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 5,
+      "text": "SICHERHEITSVORKEHRUNGEN BEI DER VERWENDUNG ..............\nBEDEUTUNG DER SYMBOLE ...............................\nLIEFERUMFANG .....................................................\nLERNE DEINE AUSRÜSTUNG KENNEN ...............\nLCD-ANZEIGE ........................................................\nGRUNDLEGENDE OPERATIONEN ......................\nFEHLERSUCHE ......................................................\nWIE BENUTZT MAN ..............................................\nAUFLADEN ............................................................\nTECHNISCHE DATEN ...........................................\nLAGERUNG ............................................................\nGARANTIE ..............................................................\nRECAUZIONI DI SICUREZZA .................................\nSIGNIFICATO DEI SIMBOLI ..................................\nCONTENUTO DELLA CONFEZIONE ...................\nPANORAMICA DEL PRODOTTO ........................\nDISPLAY LCD .........................................................\nOPERAZIONI DI BASE ...........................................\nRISOLUZIONE DEI PROBLEMI ...........................\nCOME SI USA ......................................................\nRICARICA ..............................................................\nSTOCCAGGIO .....................................................\nSPECIFICHE TECNICHE .....................................\nGARANZIA ............................................................\nDE Deutsch\n25-32\nIT\nItaliano\n33-40\n25\n25\n26\n26\n27\n27\n28\n28\n30\n31\n31\n32\n33\n33\n34\n34\n35\n35\n36\n36\n38\n39\n39\n40\nUK Українська\nВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ ................\nЗНАЧЕННЯ СИМВОЛІВ ........................................\nЩО В КОРОБЦІ .....................................................\nОГЛЯД ПРОДУКТУ ................................................\nLCD-ДИСПЛЕЙ .......................................................\nОПЕРАЦІЇ .................................................................\nУСУНЕННЯ НЕСПРАВНОСТЕЙ ................\nПІДКЛЮЧЕННЯ ...........................................\nЗАРЯДЖАННЯ .............................................\nЗБЕРІГАННЯ .................................................\nТЕХНІЧНІ ХАРАКТЕРИСТИКИ ...................\nГАРАНТІЯ ......................................................\n44\n45\n46\n47\n47\n48\n41\n41\n42\n42\n43\n43\n41-48\n",
+      "blocks": [
+        {
+          "bbox": [
+            28.76609992980957,
+            80.52460479736328,
+            171.14315795898438,
+            89.0156021118164
+          ],
+          "text": "SICHERHEITSVORKEHRUNGEN BEI DER VERWENDUNG ..............\n"
+        },
+        {
+          "bbox": [
+            28.763107299804688,
+            94.52460479736328,
+            170.70217895507812,
+            103.0156021118164
+          ],
+          "text": "BEDEUTUNG DER SYMBOLE ...............................\n"
+        },
+        {
+          "bbox": [
+            28.763107299804688,
+            108.52460479736328,
+            171.01010131835938,
+            117.0156021118164
+          ],
+          "text": "LIEFERUMFANG .....................................................\n"
+        },
+        {
+          "bbox": [
+            28.763103485107422,
+            122.52460479736328,
+            171.21316528320312,
+            131.01559448242188
+          ],
+          "text": "LERNE DEINE AUSRÜSTUNG KENNEN ...............\n"
+        },
+        {
+          "bbox": [
+            28.763107299804688,
+            136.52459716796875,
+            170.61109924316406,
+            145.01559448242188
+          ],
+          "text": "LCD-ANZEIGE ........................................................\n"
+        },
+        {
+          "bbox": [
+            28.9381103515625,
+            151.51858520507812,
+            170.42919921875,
+            160.00958251953125
+          ],
+          "text": "GRUNDLEGENDE OPERATIONEN ......................\n"
+        },
+        {
+          "bbox": [
+            190.5611114501953,
+            80.52460479736328,
+            329.87469482421875,
+            89.0156021118164
+          ],
+          "text": "FEHLERSUCHE ......................................................\n"
+        },
+        {
+          "bbox": [
+            190.28811645507812,
+            94.6506118774414,
+            329.9306335449219,
+            103.14160919189453
+          ],
+          "text": "WIE BENUTZT MAN ..............................................\n"
+        },
+        {
+          "bbox": [
+            190.28811645507812,
+            108.98661041259766,
+            329.42669677734375,
+            117.47760772705078
+          ],
+          "text": "AUFLADEN ............................................................\n"
+        },
+        {
+          "bbox": [
+            190.28811645507812,
+            137.88961791992188,
+            330.18267822265625,
+            146.380615234375
+          ],
+          "text": "TECHNISCHE DATEN ...........................................\n"
+        },
+        {
+          "bbox": [
+            190.28811645507812,
+            124.12061309814453,
+            330.3857116699219,
+            132.61160278320312
+          ],
+          "text": "LAGERUNG ............................................................\n"
+        },
+        {
+          "bbox": [
+            190.28811645507812,
+            152.3446044921875,
+            330.2876892089844,
+            160.83560180664062
+          ],
+          "text": "GARANTIE ..............................................................\n"
+        },
+        {
+          "bbox": [
+            28.763107299804688,
+            200.36788940429688,
+            171.84158325195312,
+            208.86260986328125
+          ],
+          "text": "RECAUZIONI DI SICUREZZA .................................\n"
+        },
+        {
+          "bbox": [
+            28.76850128173828,
+            214.36788940429688,
+            171.2815704345703,
+            222.85888671875
+          ],
+          "text": "SIGNIFICATO DEI SIMBOLI ..................................\n"
+        },
+        {
+          "bbox": [
+            28.76850128173828,
+            228.36788940429688,
+            171.18357849121094,
+            236.85888671875
+          ],
+          "text": "CONTENUTO DELLA CONFEZIONE ...................\n"
+        },
+        {
+          "bbox": [
+            28.76850128173828,
+            243.19387817382812,
+            170.58859252929688,
+            251.68487548828125
+          ],
+          "text": "PANORAMICA DEL PRODOTTO ........................\n"
+        },
+        {
+          "bbox": [
+            28.76849365234375,
+            257.7328796386719,
+            170.95950317382812,
+            266.223876953125
+          ],
+          "text": "DISPLAY LCD .........................................................\n"
+        },
+        {
+          "bbox": [
+            28.768478393554688,
+            272.9578857421875,
+            171.69451904296875,
+            281.4488830566406
+          ],
+          "text": "OPERAZIONI DI BASE ...........................................\n"
+        },
+        {
+          "bbox": [
+            190.29347229003906,
+            200.7388916015625,
+            327.7591857910156,
+            209.22988891601562
+          ],
+          "text": "RISOLUZIONE DEI PROBLEMI ...........................\n"
+        },
+        {
+          "bbox": [
+            190.29347229003906,
+            215.04690551757812,
+            328.0880432128906,
+            223.53790283203125
+          ],
+          "text": "COME SI USA ......................................................\n"
+        },
+        {
+          "bbox": [
+            190.29345703125,
+            229.52291870117188,
+            328.80908203125,
+            238.013916015625
+          ],
+          "text": "RICARICA ..............................................................\n"
+        },
+        {
+          "bbox": [
+            190.29345703125,
+            243.99893188476562,
+            328.80206298828125,
+            252.48992919921875
+          ],
+          "text": "STOCCAGGIO .....................................................\n"
+        },
+        {
+          "bbox": [
+            190.29345703125,
+            258.6499328613281,
+            328.3680419921875,
+            267.14093017578125
+          ],
+          "text": "SPECIFICHE TECNICHE .....................................\n"
+        },
+        {
+          "bbox": [
+            190.29345703125,
+            272.950927734375,
+            327.5210876464844,
+            281.4419250488281
+          ],
+          "text": "GARANZIA ............................................................\n"
+        },
+        {
+          "bbox": [
+            32.62889862060547,
+            56.54050827026367,
+            337.3326110839844,
+            71.3965072631836
+          ],
+          "text": "DE Deutsch\n25-32\n"
+        },
+        {
+          "bbox": [
+            35.39889907836914,
+            176.25828552246094,
+            337.953125,
+            191.11428833007812
+          ],
+          "text": "IT\nItaliano\n33-40\n"
+        },
+        {
+          "bbox": [
+            172.04930114746094,
+            80.61591339111328,
+            179.53929138183594,
+            89.1069107055664
+          ],
+          "text": "25\n"
+        },
+        {
+          "bbox": [
+            172.04930114746094,
+            95.11292266845703,
+            179.53929138183594,
+            103.60391998291016
+          ],
+          "text": "25\n"
+        },
+        {
+          "bbox": [
+            172.0843048095703,
+            109.60993194580078,
+            179.539306640625,
+            118.1009292602539
+          ],
+          "text": "26\n"
+        },
+        {
+          "bbox": [
+            172.0843048095703,
+            124.10694122314453,
+            179.539306640625,
+            132.59793090820312
+          ],
+          "text": "26\n"
+        },
+        {
+          "bbox": [
+            172.42030334472656,
+            138.60394287109375,
+            179.53929138183594,
+            147.09494018554688
+          ],
+          "text": "27\n"
+        },
+        {
+          "bbox": [
+            172.42030334472656,
+            153.1009521484375,
+            179.53929138183594,
+            161.59194946289062
+          ],
+          "text": "27\n"
+        },
+        {
+          "bbox": [
+            331.9363098144531,
+            80.60196685791016,
+            339.51031494140625,
+            89.09296417236328
+          ],
+          "text": "28\n"
+        },
+        {
+          "bbox": [
+            331.9363098144531,
+            95.0989761352539,
+            339.51031494140625,
+            103.58997344970703
+          ],
+          "text": "28\n"
+        },
+        {
+          "bbox": [
+            331.3553161621094,
+            109.59598541259766,
+            339.51031494140625,
+            118.08698272705078
+          ],
+          "text": "30\n"
+        },
+        {
+          "bbox": [
+            333.2733154296875,
+            124.0929946899414,
+            339.51031494140625,
+            132.583984375
+          ],
+          "text": "31\n"
+        },
+        {
+          "bbox": [
+            333.2733154296875,
+            138.58999633789062,
+            339.51031494140625,
+            147.08099365234375
+          ],
+          "text": "31\n"
+        },
+        {
+          "bbox": [
+            332.0763244628906,
+            153.08700561523438,
+            339.51031494140625,
+            161.5780029296875
+          ],
+          "text": "32\n"
+        },
+        {
+          "bbox": [
+            173.3583221435547,
+            200.61700439453125,
+            180.8483123779297,
+            209.10800170898438
+          ],
+          "text": "33\n"
+        },
+        {
+          "bbox": [
+            173.3583221435547,
+            215.114013671875,
+            180.8483123779297,
+            223.60501098632812
+          ],
+          "text": "33\n"
+        },
+        {
+          "bbox": [
+            173.04331970214844,
+            229.61102294921875,
+            180.8483123779297,
+            238.10202026367188
+          ],
+          "text": "34\n"
+        },
+        {
+          "bbox": [
+            173.04331970214844,
+            244.1080322265625,
+            180.8483123779297,
+            252.59902954101562
+          ],
+          "text": "34\n"
+        },
+        {
+          "bbox": [
+            173.3023223876953,
+            258.60504150390625,
+            180.8483123779297,
+            267.0960388183594
+          ],
+          "text": "35\n"
+        },
+        {
+          "bbox": [
+            173.3023223876953,
+            273.10205078125,
+            180.8483123779297,
+            281.5930480957031
+          ],
+          "text": "35\n"
+        },
+        {
+          "bbox": [
+            330.4453125,
+            201.10003662109375,
+            337.956298828125,
+            209.59103393554688
+          ],
+          "text": "36\n"
+        },
+        {
+          "bbox": [
+            330.4453125,
+            215.5970458984375,
+            337.956298828125,
+            224.08804321289062
+          ],
+          "text": "36\n"
+        },
+        {
+          "bbox": [
+            330.3263244628906,
+            230.09405517578125,
+            337.9563293457031,
+            238.58505249023438
+          ],
+          "text": "38\n"
+        },
+        {
+          "bbox": [
+            330.4453125,
+            244.591064453125,
+            337.956298828125,
+            253.08206176757812
+          ],
+          "text": "39\n"
+        },
+        {
+          "bbox": [
+            330.4453125,
+            259.08807373046875,
+            337.956298828125,
+            267.5790710449219
+          ],
+          "text": "39\n"
+        },
+        {
+          "bbox": [
+            329.4862976074219,
+            273.5850830078125,
+            337.956298828125,
+            282.0760803222656
+          ],
+          "text": "40\n"
+        },
+        {
+          "bbox": [
+            32.44139862060547,
+            296.4765625,
+            89.24520111083984,
+            311.33258056640625
+          ],
+          "text": "UK Українська\n"
+        },
+        {
+          "bbox": [
+            28.576200485229492,
+            320.6286926269531,
+            171.7892608642578,
+            329.11968994140625
+          ],
+          "text": "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ ................\n"
+        },
+        {
+          "bbox": [
+            28.576200485229492,
+            335.12567138671875,
+            171.4812469482422,
+            343.6166687011719
+          ],
+          "text": "ЗНАЧЕННЯ СИМВОЛІВ ........................................\n"
+        },
+        {
+          "bbox": [
+            28.576200485229492,
+            349.6226806640625,
+            170.84420776367188,
+            358.1136779785156
+          ],
+          "text": "ЩО В КОРОБЦІ .....................................................\n"
+        },
+        {
+          "bbox": [
+            28.576200485229492,
+            364.11968994140625,
+            171.9992218017578,
+            372.6106872558594
+          ],
+          "text": "ОГЛЯД ПРОДУКТУ ................................................\n"
+        },
+        {
+          "bbox": [
+            28.576200485229492,
+            378.6166687011719,
+            173.77020263671875,
+            387.107666015625
+          ],
+          "text": "LCD-ДИСПЛЕЙ .......................................................\n"
+        },
+        {
+          "bbox": [
+            28.576200485229492,
+            393.1136779785156,
+            171.670166015625,
+            401.60467529296875
+          ],
+          "text": "ОПЕРАЦІЇ .................................................................\n"
+        },
+        {
+          "bbox": [
+            190.7172088623047,
+            320.61468505859375,
+            315.84210205078125,
+            329.1056823730469
+          ],
+          "text": "УСУНЕННЯ НЕСПРАВНОСТЕЙ ................\n"
+        },
+        {
+          "bbox": [
+            190.7172088623047,
+            335.1116638183594,
+            314.9668884277344,
+            343.6026611328125
+          ],
+          "text": "ПІДКЛЮЧЕННЯ ...........................................\n"
+        },
+        {
+          "bbox": [
+            190.7172088623047,
+            349.608642578125,
+            315.1769104003906,
+            358.0996398925781
+          ],
+          "text": "ЗАРЯДЖАННЯ .............................................\n"
+        },
+        {
+          "bbox": [
+            190.7172088623047,
+            364.10565185546875,
+            315.0929260253906,
+            372.5966491699219
+          ],
+          "text": "ЗБЕРІГАННЯ .................................................\n"
+        },
+        {
+          "bbox": [
+            190.7172088623047,
+            378.6026611328125,
+            315.76507568359375,
+            387.0936584472656
+          ],
+          "text": "ТЕХНІЧНІ ХАРАКТЕРИСТИКИ ...................\n"
+        },
+        {
+          "bbox": [
+            190.7172088623047,
+            393.0996398925781,
+            315.40093994140625,
+            401.59063720703125
+          ],
+          "text": "ГАРАНТІЯ ......................................................\n"
+        },
+        {
+          "bbox": [
+            330.24822998046875,
+            320.60064697265625,
+            338.36822509765625,
+            329.0916442871094
+          ],
+          "text": "44\n"
+        },
+        {
+          "bbox": [
+            330.5072326660156,
+            335.09765625,
+            338.36822509765625,
+            343.5886535644531
+          ],
+          "text": "45\n"
+        },
+        {
+          "bbox": [
+            330.542236328125,
+            349.5946350097656,
+            338.36822509765625,
+            358.08563232421875
+          ],
+          "text": "46\n"
+        },
+        {
+          "bbox": [
+            330.87823486328125,
+            364.09161376953125,
+            338.36822509765625,
+            372.5826110839844
+          ],
+          "text": "47\n"
+        },
+        {
+          "bbox": [
+            330.87823486328125,
+            378.588623046875,
+            338.36822509765625,
+            387.0796203613281
+          ],
+          "text": "47\n"
+        },
+        {
+          "bbox": [
+            330.4232482910156,
+            393.08563232421875,
+            338.3682556152344,
+            401.5766296386719
+          ],
+          "text": "48\n"
+        },
+        {
+          "bbox": [
+            173.44825744628906,
+            320.58660888671875,
+            180.00025939941406,
+            329.0776062011719
+          ],
+          "text": "41\n"
+        },
+        {
+          "bbox": [
+            173.44825744628906,
+            335.0836181640625,
+            180.00025939941406,
+            343.5746154785156
+          ],
+          "text": "41\n"
+        },
+        {
+          "bbox": [
+            172.25125122070312,
+            349.58062744140625,
+            180.000244140625,
+            358.0716247558594
+          ],
+          "text": "42\n"
+        },
+        {
+          "bbox": [
+            172.25125122070312,
+            364.0776062011719,
+            180.000244140625,
+            372.568603515625
+          ],
+          "text": "42\n"
+        },
+        {
+          "bbox": [
+            172.19525146484375,
+            378.5745849609375,
+            180.000244140625,
+            387.0655822753906
+          ],
+          "text": "43\n"
+        },
+        {
+          "bbox": [
+            172.19525146484375,
+            393.07159423828125,
+            180.000244140625,
+            401.5625915527344
+          ],
+          "text": "43\n"
+        },
+        {
+          "bbox": [
+            311.5674133300781,
+            298.4192199707031,
+            335.1474304199219,
+            309.56121826171875
+          ],
+          "text": "41-48\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 6,
+      "text": "INFORMAÇÕES IMPORTANTES DE \nSEGURANÇA .........................................................\nSIGNIFICADO DOS SÍMBOLOS .........................\nCONTEÚDO DA EMBALAGEM.............................\nVISÃO GERAL DO PRODUTO .............................\nTELA LCD ................................................................\nOPERAÇÕES .........................................................\nCARREGAMENTO ...............................................\nESPECIFICAÇÕES ...............................................\nARMAZENAMENTO .............................................\nGARANTIA .............................................................\nPT\nPortuguês\n     \n          \n01-08\n01\n04\nSOLUÇÃO DE PROBLEMAS .............................\nCONEXÕES .........................................................\n01\n02\n02\n03\n03\n05\n06\n07\n07\n08\nBELANGRIJKE VEILIGHEIDSINFORMATIE .........\nBETEKENIS VAN SYMBOLEN ...............................\nINHOUD VAN DE DOOS ......................................\nPRODUCTOVERZICHT .........................................\nLCD-SCHERM ........................................................\nBEDIENING ..............................................................\nPROBLEEMOPLOSSING ......................................\nOPLADEN ...........................................................\nSPECIFICATIES .................................................\nOPSLAG ...............................................................\nGARANTIE ...........................................................\nNL Nederlands\n     \n          \n01-08\n01\n04\nVERBINDINGEN ....................................................\n01\n02\n02\n03\n03\n05\n06\n07\n07\n08\nWAŻNE INFORMACJE DOTYCZĄCE \nBEZPIECZEŃSTWA ...............................................\nOBSŁUGA ...............................................................\nROZWIĄZYWANIE PROBLEMÓW ....................\nŁADOWANIE .........................................................\nDANE TECHNICZNE .............................................\nPRZECHOWYWANIE ...........................................\nGWARANCJA .......................................................\nPL\nPolski     \n          \n01-08\n01\n04\nPOŁĄCZENIA .........................................................\nZNACZENIE SYMBOLI .......................................... 01\nZAWARTOŚĆ OPAKOWANIA............................. 02\nINFORMACJE OGÓLNE NA TEMAT \nPRODUKTU .............................................................02\nWYŚWIETLACZ LCD ............................................ 03\n03\n05\n06\n07\n07\n08\n",
+      "blocks": [
+        {
+          "bbox": [
+            28.70560073852539,
+            81.12909698486328,
+            161.49954223632812,
+            99.62308502197266
+          ],
+          "text": "INFORMAÇÕES IMPORTANTES DE \nSEGURANÇA .........................................................\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            103.39908599853516,
+            168.82467651367188,
+            111.89008331298828
+          ],
+          "text": "SIGNIFICADO DOS SÍMBOLOS .........................\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            115.3970718383789,
+            170.231689453125,
+            123.88806915283203
+          ],
+          "text": "CONTEÚDO DA EMBALAGEM.............................\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            129.39706420898438,
+            170.294677734375,
+            137.8880615234375
+          ],
+          "text": "VISÃO GERAL DO PRODUTO .............................\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            143.39706420898438,
+            170.09156799316406,
+            151.8880615234375
+          ],
+          "text": "TELA LCD ................................................................\n"
+        },
+        {
+          "bbox": [
+            28.880599975585938,
+            156.38906860351562,
+            168.33456420898438,
+            164.88006591796875
+          ],
+          "text": "OPERAÇÕES .........................................................\n"
+        },
+        {
+          "bbox": [
+            190.2305908203125,
+            109.85306549072266,
+            327.3531799316406,
+            118.34406280517578
+          ],
+          "text": "CARREGAMENTO ...............................................\n"
+        },
+        {
+          "bbox": [
+            190.2305908203125,
+            138.75607299804688,
+            327.9132080078125,
+            147.2470703125
+          ],
+          "text": "ESPECIFICAÇÕES ...............................................\n"
+        },
+        {
+          "bbox": [
+            190.2305908203125,
+            124.98706817626953,
+            327.5421447753906,
+            133.47805786132812
+          ],
+          "text": "ARMAZENAMENTO .............................................\n"
+        },
+        {
+          "bbox": [
+            190.2305908203125,
+            153.2110595703125,
+            329.2641906738281,
+            161.70205688476562
+          ],
+          "text": "GARANTIA .............................................................\n"
+        },
+        {
+          "bbox": [
+            32.56840133666992,
+            57.41459274291992,
+            337.6410217285156,
+            72.27059173583984
+          ],
+          "text": "PT\nPortuguês\n     \n          \n01-08\n"
+        },
+        {
+          "bbox": [
+            172.1768035888672,
+            92.65009307861328,
+            179.0788116455078,
+            101.1410903930664
+          ],
+          "text": "01\n"
+        },
+        {
+          "bbox": [
+            190.2298126220703,
+            80.98108673095703,
+            339.4488220214844,
+            89.5630874633789
+          ],
+          "text": "04\nSOLUÇÃO DE PROBLEMAS .............................\n"
+        },
+        {
+          "bbox": [
+            171.32281494140625,
+            95.38007354736328,
+            325.6514587402344,
+            112.4810562133789
+          ],
+          "text": "CONEXÕES .........................................................\n01\n"
+        },
+        {
+          "bbox": [
+            171.4418182373047,
+            116.49207305908203,
+            179.5408172607422,
+            124.98307037353516
+          ],
+          "text": "02\n"
+        },
+        {
+          "bbox": [
+            171.4418182373047,
+            130.98907470703125,
+            179.5408172607422,
+            139.48007202148438
+          ],
+          "text": "02\n"
+        },
+        {
+          "bbox": [
+            171.4068145751953,
+            145.486083984375,
+            179.5618133544922,
+            153.97708129882812
+          ],
+          "text": "03\n"
+        },
+        {
+          "bbox": [
+            171.4068145751953,
+            157.98809814453125,
+            179.5618133544922,
+            166.47909545898438
+          ],
+          "text": "03\n"
+        },
+        {
+          "bbox": [
+            330.97882080078125,
+            95.9891128540039,
+            339.1898193359375,
+            104.48011016845703
+          ],
+          "text": "05\n"
+        },
+        {
+          "bbox": [
+            330.97882080078125,
+            110.48612213134766,
+            339.1548156738281,
+            118.97711944580078
+          ],
+          "text": "06\n"
+        },
+        {
+          "bbox": [
+            330.97882080078125,
+            124.9831314086914,
+            338.8188171386719,
+            133.47412109375
+          ],
+          "text": "07\n"
+        },
+        {
+          "bbox": [
+            330.97882080078125,
+            139.48013305664062,
+            338.8188171386719,
+            147.97113037109375
+          ],
+          "text": "07\n"
+        },
+        {
+          "bbox": [
+            330.97882080078125,
+            153.97714233398438,
+            339.2738342285156,
+            162.4681396484375
+          ],
+          "text": "08\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            200.74288940429688,
+            170.30862426757812,
+            209.23388671875
+          ],
+          "text": "BELANGRIJKE VEILIGHEIDSINFORMATIE .........\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            214.74288940429688,
+            169.8186798095703,
+            223.23388671875
+          ],
+          "text": "BETEKENIS VAN SYMBOLEN ...............................\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            228.74288940429688,
+            169.3496551513672,
+            237.23388671875
+          ],
+          "text": "INHOUD VAN DE DOOS ......................................\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            242.74288940429688,
+            169.77662658691406,
+            251.23388671875
+          ],
+          "text": "PRODUCTOVERZICHT .........................................\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            256.7428894042969,
+            170.49758911132812,
+            265.23388671875
+          ],
+          "text": "LCD-SCHERM ........................................................\n"
+        },
+        {
+          "bbox": [
+            28.880599975585938,
+            271.73687744140625,
+            171.25357055664062,
+            280.2278747558594
+          ],
+          "text": "BEDIENING ..............................................................\n"
+        },
+        {
+          "bbox": [
+            190.50360107421875,
+            200.83389282226562,
+            330.4752197265625,
+            209.32489013671875
+          ],
+          "text": "PROBLEEMOPLOSSING ......................................\n"
+        },
+        {
+          "bbox": [
+            190.23060607910156,
+            229.19790649414062,
+            323.46826171875,
+            237.68890380859375
+          ],
+          "text": "OPLADEN ...........................................................\n"
+        },
+        {
+          "bbox": [
+            190.23060607910156,
+            258.1009216308594,
+            322.3132629394531,
+            266.5919189453125
+          ],
+          "text": "SPECIFICATIES .................................................\n"
+        },
+        {
+          "bbox": [
+            190.23060607910156,
+            244.3319091796875,
+            326.3522644042969,
+            252.82290649414062
+          ],
+          "text": "OPSLAG ...............................................................\n"
+        },
+        {
+          "bbox": [
+            190.23060607910156,
+            272.555908203125,
+            325.0712585449219,
+            281.0469055175781
+          ],
+          "text": "GARANTIE ...........................................................\n"
+        },
+        {
+          "bbox": [
+            32.56840133666992,
+            176.75828552246094,
+            337.6410217285156,
+            191.61428833007812
+          ],
+          "text": "NL Nederlands\n     \n          \n01-08\n"
+        },
+        {
+          "bbox": [
+            172.5771026611328,
+            200.83367919921875,
+            339.4501037597656,
+            209.32467651367188
+          ],
+          "text": "01\n04\n"
+        },
+        {
+          "bbox": [
+            171.3240966796875,
+            214.36468505859375,
+            328.96368408203125,
+            223.82168579101562
+          ],
+          "text": "VERBINDINGEN ....................................................\n01\n"
+        },
+        {
+          "bbox": [
+            171.3240966796875,
+            229.82769775390625,
+            179.423095703125,
+            238.31869506835938
+          ],
+          "text": "02\n"
+        },
+        {
+          "bbox": [
+            171.3240966796875,
+            244.32470703125,
+            179.423095703125,
+            252.81570434570312
+          ],
+          "text": "02\n"
+        },
+        {
+          "bbox": [
+            171.3240966796875,
+            258.82171630859375,
+            179.47909545898438,
+            267.3127136230469
+          ],
+          "text": "03\n"
+        },
+        {
+          "bbox": [
+            171.3240966796875,
+            273.3187255859375,
+            179.47909545898438,
+            281.8097229003906
+          ],
+          "text": "03\n"
+        },
+        {
+          "bbox": [
+            330.9801025390625,
+            215.31671142578125,
+            339.19110107421875,
+            223.80770874023438
+          ],
+          "text": "05\n"
+        },
+        {
+          "bbox": [
+            330.9801025390625,
+            229.813720703125,
+            339.1560974121094,
+            238.30471801757812
+          ],
+          "text": "06\n"
+        },
+        {
+          "bbox": [
+            330.9801025390625,
+            244.31072998046875,
+            338.8200988769531,
+            252.80172729492188
+          ],
+          "text": "07\n"
+        },
+        {
+          "bbox": [
+            330.9801025390625,
+            258.8077392578125,
+            338.8200988769531,
+            267.2987365722656
+          ],
+          "text": "07\n"
+        },
+        {
+          "bbox": [
+            330.9801025390625,
+            273.30474853515625,
+            339.2751159667969,
+            281.7957458496094
+          ],
+          "text": "08\n"
+        },
+        {
+          "bbox": [
+            28.70560073852539,
+            320.49578857421875,
+            168.2646026611328,
+            338.9897766113281
+          ],
+          "text": "WAŻNE INFORMACJE DOTYCZĄCE \nBEZPIECZEŃSTWA ...............................................\n"
+        },
+        {
+          "bbox": [
+            28.880599975585938,
+            405.643798828125,
+            169.92355346679688,
+            414.1347961425781
+          ],
+          "text": "OBSŁUGA ...............................................................\n"
+        },
+        {
+          "bbox": [
+            190.50360107421875,
+            321.2447814941406,
+            328.01141357421875,
+            329.73577880859375
+          ],
+          "text": "ROZWIĄZYWANIE PROBLEMÓW ....................\n"
+        },
+        {
+          "bbox": [
+            190.23060607910156,
+            349.6227722167969,
+            329.2781982421875,
+            358.11376953125
+          ],
+          "text": "ŁADOWANIE .........................................................\n"
+        },
+        {
+          "bbox": [
+            190.23060607910156,
+            378.57476806640625,
+            329.3971862792969,
+            387.0657653808594
+          ],
+          "text": "DANE TECHNICZNE .............................................\n"
+        },
+        {
+          "bbox": [
+            190.23060607910156,
+            364.4417724609375,
+            329.2991638183594,
+            372.9327697753906
+          ],
+          "text": "PRZECHOWYWANIE ...........................................\n"
+        },
+        {
+          "bbox": [
+            190.23060607910156,
+            393.05078125,
+            329.65618896484375,
+            401.5417785644531
+          ],
+          "text": "GWARANCJA .......................................................\n"
+        },
+        {
+          "bbox": [
+            32.56840133666992,
+            296.8617858886719,
+            337.8120422363281,
+            311.7178039550781
+          ],
+          "text": "PL\nPolski     \n          \n01-08\n"
+        },
+        {
+          "bbox": [
+            171.86770629882812,
+            321.2421875,
+            339.2447204589844,
+            339.4281921386719
+          ],
+          "text": "01\n04\n"
+        },
+        {
+          "bbox": [
+            28.710708618164062,
+            335.2071838378906,
+            330.2353210449219,
+            352.6371765136719
+          ],
+          "text": "POŁĄCZENIA .........................................................\nZNACZENIE SYMBOLI .......................................... 01\n"
+        },
+        {
+          "bbox": [
+            28.710708618164062,
+            357.0611877441406,
+            179.23870849609375,
+            366.2171936035156
+          ],
+          "text": "ZAWARTOŚĆ OPAKOWANIA............................. 02\n"
+        },
+        {
+          "bbox": [
+            28.710708618164062,
+            369.47918701171875,
+            179.23870849609375,
+            387.9731750488281
+          ],
+          "text": "INFORMACJE OGÓLNE NA TEMAT \nPRODUKTU .............................................................02\n"
+        },
+        {
+          "bbox": [
+            28.710708618164062,
+            392.57220458984375,
+            179.25970458984375,
+            401.7281799316406
+          ],
+          "text": "WYŚWIETLACZ LCD ............................................ 03\n"
+        },
+        {
+          "bbox": [
+            171.10470581054688,
+            405.648193359375,
+            179.25970458984375,
+            414.1391906738281
+          ],
+          "text": "03\n"
+        },
+        {
+          "bbox": [
+            330.970703125,
+            335.21417236328125,
+            339.18170166015625,
+            343.7051696777344
+          ],
+          "text": "05\n"
+        },
+        {
+          "bbox": [
+            330.9566955566406,
+            349.627197265625,
+            339.1326904296875,
+            358.1181945800781
+          ],
+          "text": "06\n"
+        },
+        {
+          "bbox": [
+            331.14569091796875,
+            364.4461669921875,
+            338.9856872558594,
+            372.9371643066406
+          ],
+          "text": "07\n"
+        },
+        {
+          "bbox": [
+            331.14569091796875,
+            378.57916259765625,
+            338.9856872558594,
+            387.0701599121094
+          ],
+          "text": "07\n"
+        },
+        {
+          "bbox": [
+            330.9286804199219,
+            393.05517578125,
+            339.22369384765625,
+            401.5461730957031
+          ],
+          "text": "08\n"
+        }
+      ]
+    },
+    {
+      "physical_page": 79,
+      "text": "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO.,LTD.\nAddress: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the \neast side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, \nShenzhen, Guangdong, China\nRED Declaration of Conformity\nShenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Battery Pack 3600 with \nBluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other \nrelevant provisions of the RED Directive 2014/53/EU,The full text of the EU declaration of conformity \nis available at the following internet address: https://de.jackery.com/pages/user-guides\nsales@hello-tech.com\n+86 400 668 9293\nwww.hello-tech.com\nEU Regulations\n",
+      "blocks": [
+        {
+          "bbox": [
+            29.283199310302734,
+            454.9281311035156,
+            258.8972473144531,
+            486.214111328125
+          ],
+          "text": "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO.,LTD.\nAddress: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the \neast side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, \nShenzhen, Guangdong, China\n"
+        },
+        {
+          "bbox": [
+            29.671899795532227,
+            384.4997253417969,
+            345.549072265625,
+            426.5697021484375
+          ],
+          "text": "RED Declaration of Conformity\nShenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Battery Pack 3600 with \nBluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other \nrelevant provisions of the RED Directive 2014/53/EU,The full text of the EU declaration of conformity \nis available at the following internet address: https://de.jackery.com/pages/user-guides\n"
+        },
+        {
+          "bbox": [
+            39.36909866333008,
+            489.021240234375,
+            256.519775390625,
+            496.5296325683594
+          ],
+          "text": "sales@hello-tech.com\n+86 400 668 9293\nwww.hello-tech.com\n"
+        },
+        {
+          "bbox": [
+            36.36470031738281,
+            363.0205383300781,
+            98.77970886230469,
+            374.16253662109375
+          ],
+          "text": "EU Regulations\n"
+        }
+      ]
+    }
+  ]
+}

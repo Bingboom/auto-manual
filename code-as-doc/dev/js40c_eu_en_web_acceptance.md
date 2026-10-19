@@ -60,7 +60,7 @@ python build.py md \
   --model JS-40C --region EU --lang en \
   --data-root data/manual_sources/JS-40C/EU/en/2026-08-30/phase2
 
-python tools/readthedocs_source.py \
+python -m tools.readthedocs_source \
   --build-root docs/_build \
   --output-dir docs/_build/rtd-js40c \
   --title "JS-40C EU English Web Acceptance"

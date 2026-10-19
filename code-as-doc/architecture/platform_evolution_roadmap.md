@@ -1,6 +1,6 @@
 # Platform Evolution Roadmap
 
-Registered: 2026-07-17 · Revised: 2026-07-17 (v2 — rewritten from the Platform Owner perspective under real organizational constraints; technical scope unchanged from v1)
+Registered: 2026-07-17 · Revised: 2026-07-17 (v2 — rewritten from the Platform Owner perspective under real organizational constraints; technical scope unchanged from v1); 2026-10-18 (status and pointer alignment, and the Phase 0 and Phase 2 exit criteria re-scoped on the operator's instruction of that date; the §2 scores are unchanged)
 Derived from: [`../reviews/production_readiness_review_2026-07-17.md`](../reviews/production_readiness_review_2026-07-17.md)
 
 ## 0. Role and Boundary
@@ -28,7 +28,7 @@ Consequently this roadmap optimizes for one variable above all others: **reducin
 
 ## 2. Platform Maturity Assessment
 
-Scale: 1 = ad hoc · 2 = repeatable but manual · 3 = defined, partially automated · 4 = managed, measured, multi-person · 5 = optimizing, self-service.
+Scale: 1 = ad hoc · 2 = repeatable but manual · 3 = defined, partially automated · 4 = managed, measured, multi-person · 5 = optimizing, self-service. Scores below are as of 2026-07-17.
 
 Target levels are **capacity-gated, not calendar-gated**: a target is reached when its phase's exit criteria pass, whenever that is. Several 4s are honestly unreachable while the organization provides no second person — those are flagged as org-dependent below, and the roadmap treats surfacing that dependency to management as a deliverable, not a footnote.
 
@@ -44,7 +44,7 @@ Target levels are **capacity-gated, not calendar-gated**: a target is reached wh
 | AI Workflow | 3 | 4 | Governance unusually mature (deterministic backport, propose-then-approve writes, dry-run boundaries, delta-hash idempotency). Gap: standing QC agent deferred, hit-rate/reflow baselines just started, no consolidated agent audit ledger. |
 | Security | 2 | 4 | Hygiene clean (nothing committed, stdin secrets, daily live probes). Missing the floor: secret scanning, dependency alerts, CODEOWNERS, rotation automation; DingTalk browser-session tokens fragile; one OAuth holder. Rotation/second-holder is **org-dependent**. |
 | Scalability | 2 | 4 | Four walls before 50 lines: frozen-copy review-branch propagation, single-operator gating, serial queue + per-run TeX install, git binary growth. Known fixes; the propagation fix (Workstream V) is the only one with real design risk. |
-| Business Readiness | 3 | 5 | Value proven and measured (value-face dashboard, shipped-manual catalog). Gap to 5: throughput capped at one human, no SLA possible yet, stock-manual onboarding and manual-Q&A remain unscheduled candidates. |
+| Business Readiness | 3 | 5 | Value proven and measured (value-face dashboard, shipped-manual catalog). Gap to 5: throughput capped at one human, no SLA possible yet; manual-Q&A (查客服答案) remains an unscheduled candidate, while stock-manual onboarding now runs through native conversion of approved print PDFs ([REV-41 decision](../dev/revitalization/rev41_skeleton_decision.md) §2). |
 
 Reading: the profile is lopsided — Documentation 4, Architecture/DX/AI 3, everything operational 2 — the signature of an excellent production system built by one strong person. The roadmap front-loads the 2s that are irreversible or existential, then sheds operator load, and treats scale as a consequence, not a goal.
 
@@ -60,7 +60,7 @@ Phases below are **not scheduled**. Each defines:
 
 Inside a phase, work advances as **single-PR slices absorbed between business deliveries**: agent-prepared, validation-gated, operator-approved, individually abandonable. A slice that would block a delivery is deferred by rule, not by negotiation. Rough sizing is therefore given in slices, not weeks — throughput depends on business load, and that is by design.
 
-Within phases, execution order follows the **Milestone K tier triage** (2026-07-17, in [`../next_optimization_checklist.md`](../next_optimization_checklist.md) §6i): Tier 1 = current real execution (4 items, no trigger needed); Tier 2 = starts when its named business pain fires; Tier 3 = requires dedicated capacity or a protected window and must not start as between-delivery filler. The triage exists so the task list reads as "4 in flight", not "15 pending" — deferred-with-trigger is a first-class state, not a failure to schedule.
+Within phases, execution order follows the **Milestone K tier triage** (2026-07-17, in [`../next_optimization_checklist/milestone-k-enterprise-ops.md`](../next_optimization_checklist/milestone-k-enterprise-ops.md) §6i): Tier 1 = current real execution (4 items, no trigger needed); Tier 2 = starts when its named business pain fires; Tier 3 = requires dedicated capacity or a protected window and must not start as between-delivery filler. The triage exists so the task list reads as "4 in flight", not "15 pending" — deferred-with-trigger is a first-class state, not a failure to schedule.
 
 ## 4. Phases
 
@@ -71,7 +71,14 @@ Within phases, execution order follows the **Milestone K tier triage** (2026-07-
 - **Organizational trigger:** none. Entry condition is "today." This is the only phase with no external dependency, which is exactly why it runs first.
 - **Technical scope:** Milestone K1–K7 (lockfile into CI, TeX pin+cache, LFS routing, scheduled content exports + restore drill, queue-failure sentinel, CODEOWNERS/secret-scanning/dependabot, InDesign version pin + second host). Per the tier triage the current execution set is K4 → K5 → K7 → K1; K2/K3 wait on pain triggers, K6 on the second-reviewer window.
 - **Alongside business:** K4's restore drill piggybacks the existing I5 drill rhythm; the K5 sentinel reuses the existing Issue-bot pattern; nothing touches delivery paths.
-- **Exit criteria:** a content-restore drill executed and timed; the queue-failure Issue observed firing on a real failure; LFS live for new binaries; the IDML→PDF leg verified once on a second documented host.
+- **Exit criteria:** each one verifies a capability, not one implementation, and needs recorded evidence; finished Milestone K items do not count on their own.
+  - Recovery: a content-restore drill from a dated export, following the written runbook, executed and timed.
+  - Alerting: a real queue failure raises an alert that needs no watcher (today the K5 queue-failure Issue), observed on a real failure, not a dispatch test.
+  - Second delivery environment: the IDML→PDF leg verified once end-to-end on a second documented host.
+  - Reproducible installs: CI and ReadTheDocs install from the lockfile, re-checked at exit (today K1).
+  - Binary-storage and delivery risk: record a dated assessment before Phase 0 exit, covering current Git pack size and raw-binary growth, `manual_sources/` and `data/manual_sources/` growth, tracked `docs/_build` volume, measured clone/CI checkout performance where available, and current [deployment-receipt](../../tools/rtd/deployment_receipt.py) headroom. The receipt budgets (frozen source 1536 MiB / 20,000 files, served output 768 MiB, per-file 32 MiB) are delivery safeguards, **not** evidence that Git LFS would solve a release-size problem. A breached budget or one within an operator-set margin of its limit, material growth or checkout degradation, or an operator storage-policy decision triggers a documented storage-risk review; choose the mitigation separately based on the failure mode. When the review calls for a mitigation, Phase 0 cannot exit until that mitigation is in place and verified, or the operator records a dated risk acceptance.
+  - K3 (Git LFS) is conditional: start its implementation only if the risk review selects LFS and records approval, not automatically when an RTD budget is reached. Until then K3 can remain `deferred` and need not block Phase 0 if the dated assessment records current measurements, explicit risk judgment, safeguards/monitoring, and a restart condition. Unmeasured signals or thresholds not yet defined must be recorded as unknown and resolved or explicitly risk-accepted by the operator; they are **not** proof that no trigger has fired. Git history rewrite remains a separate operator decision.
+- **Status (2026-10-18):** Phase 0 has not exited; K1, K4, K5 and K7 being done does not make it exit. Evidence on record: the restore drill (2026-07-17, 888 rows restored in about 25 s; [ops guide §4.7b](../../user-guide/closed_loop_ops_guide.md)) and the second-host end-to-end run (K7, 2026-07-21; [Milestone K](../next_optimization_checklist/milestone-k-enterprise-ops.md)). Alerting has fired on real failures (for example Hello-Docs #25, 2026-07-24), but no repo document records it as exit evidence. Still missing: that record, the dated binary-storage and delivery risk assessment, and an exit record that cites all of the evidence.
 - **Next phase:** Phase 1 starts immediately for its agent-executable scope; its *completion* waits on an org trigger.
 
 ### Phase 1 — De-concentration (knowledge and review load)
@@ -88,10 +95,19 @@ Within phases, execution order follows the **Milestone K tier triage** (2026-07-
 
 - **Removes from the operator:** repetitive maintenance — the O(N) manual `sync-review` propagation of every shared-template fix, and babysitting serial build waves. This is the phase that stops platform toil from growing linearly with business success.
 - **Current operating capacity:** operator + agents, with whatever Phase 1's trigger produced. The V pilot needs sustained review attention: either a second maintainer shares it, or business load must be consciously shaped around the pilot window — an explicit operator decision, made visible, not absorbed silently.
-- **Organizational trigger:** Phase 0 exit passed AND the proposed [Workstream V design doc](Review_Branch_Propagation_Design.md) (K15) is approved by the operator. A business trigger legitimately accelerates it: when the dashboard shows template-fix propagation or queue wall-time measurably eating delivery capacity, this phase jumps the queue — that is the discovery engine working, not scope creep.
-- **Technical scope:** K15 design → Workstream V implementation (per-target-derivative review branches + pinned template reference + authored-edit protection, piloted on one model family); parallel build matrix atop Phase 1's atomic claims; build container image; content Stage-3 safe tiers (Workstreams L, M); release-snapshot freezing (Workstream J / E1).
+- **Organizational trigger:** Phase 0 capability exit accepted with recorded evidence AND the proposed [Workstream V design doc](Review_Branch_Propagation_Design.md) (K15) is approved by the operator. A business trigger legitimately accelerates it: when the dashboard shows template-fix propagation or queue wall-time measurably eating delivery capacity, this phase jumps the queue — that is the discovery engine working, not scope creep.
+- **Technical scope:** K15 design → Workstream V implementation (per-target-derivative review branches + pinned template reference + authored-edit protection, piloted on one model family); parallel build matrix atop Phase 1's atomic claims; build container image; content Stage-3 safe tiers (Workstreams L, M); release-snapshot freezing (Workstream J / E1, done 2026-07-31).
+- **Not yet scoped:** content-relation governance, a planned target state in the [Strategy](System%20Evolution%20Strategy.md) §4.6 and §4.8, is in no phase's technical scope; it is to be recorded in the [execution ledger](../dev/manual_revitalization_execution.md) before any of it is built.
 - **Alongside business:** V migrates one family at a time; every open review branch keeps working unmigrated. The pilot family is chosen from live production so every propagation event is a real one.
-- **Exit criteria:** the V pilot family survives 3 consecutive real template changes propagated as auto-PRs with zero clobbered reviewer edits; independent targets build in parallel; propagation lag is on the dashboard; L/M shipped (all pages registry-declared, chrome copy data-driven).
+- **Exit criteria:** each one is shown within a declared scope (the routes, model families and targets the evidence covers).
+  - Impact identification: for each real shared change in the scope, every affected target is listed before approval; a target that cannot be enumerated or resolved shows as blocked, never as unaffected.
+  - Controlled propagation: the V pilot family survives 3 consecutive real shared-template changes, each reaching every affected review branch as a reviewable auto-PR that needs no hand-made sync or merge commit to carry the change, with zero clobbered reviewer edits. The human steps are content review, PR approval and resolving any surfaced conflict; release verification remains mandatory.
+  - Release verification: each target those changes reach is rebuilt, published and verified online, with evidence per target.
+  - Measured maintenance-cost improvement: propagation lag is on the dashboard, and operator interventions per shared change, counted as in the §6 intervention KPI, are lower than a baseline recorded before the pilot.
+  - Throughput: independent targets build in parallel.
+  - Copy and composition: L shipped (chrome copy data-driven). M (all pages registry-declared) is a conditional capability of the table/template route only, not a requirement for every production route: it is required when the declared scope includes table/template-route changes to page composition or applicability. M stays `deferred` under REV-41 and does not restart because Phase 2 starts; until it restarts, such changes stay outside the declared scope.
+  - Scope: the exit names what it covers. Passing on one route or family does not show that other content sources (for example native frozen packages, which change by rebuild) can propagate shared changes; those stay listed as not covered.
+- **Status (2026-10-18):** no exit evidence is recorded for any criterion: no V pilot propagation is recorded, the parallel build matrix is the later U5 expansion, and Workstream L is `next`. Workstream M has been `deferred` since the [REV-41 decision](../dev/revitalization/rev41_skeleton_decision.md) (2026-10-12). The operator re-evaluates it when one of that record's §4 restart conditions is met, and once after the D23 `1.0` baseline re-release; this gate does not restart it.
 - **Next phase:** Phase 3 — but only if its org trigger fires; otherwise the platform legitimately *stays* in post-Phase-2 steady state, which is already sustainable.
 
 ### Phase 3 — De-operationalization (the service handoff)
@@ -155,6 +171,7 @@ All on the existing [`flow_dashboard`](../../tools/flow_dashboard.py), extended.
 - reflow rate and TM hit rate (already measured)
 - content-restore drill time
 - % of agent writes carrying a full audit trail
+- frozen-package drift per shared change: packages affected, their handling and operator minutes, from the `drift_log` of [`data/frozen_package_registry.json`](../../data/frozen_package_registry.json) (read from the registry, not yet on the dashboard); packages without pins count as impact unknown
 
 ## 7. Operating Under Long-Term Constraints (core philosophy)
 

@@ -1,0 +1,207 @@
+{
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "default_scale": 0.35,
+      "page_scale": {},
+      "path_pattern": "archive/previews/page-{page:04d}.png"
+    }
+  },
+  "artifacts": [
+    {
+      "build_eligible": false,
+      "byte_size": 1016902,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0001.pdf",
+      "sha256": "4ba3280740950b9baadc9c63c59c74774d041db32a87c2b157f64f991e87df20",
+      "source_page": 1,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 49685,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0001.png",
+      "sha256": "f6e3eb922c3b94aa79802040accc018bbcf123d4bf860b5ed441474dbbe61741",
+      "source_page": 1,
+      "visual_review_required": false
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/us/overview-textless",
+      "build_eligible": false,
+      "byte_size": 1016968,
+      "expected_sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891",
+      "format": "pdf",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/overview-textless.pdf",
+      "repo_path": "assets/overview-textless.pdf",
+      "sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891",
+      "source_page": 1,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/us/overview-textless",
+      "build_eligible": false,
+      "byte_size": 72743,
+      "expected_sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/overview-textless.png",
+      "repo_path": "assets/overview-textless.png",
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2",
+      "source_page": 1,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ad500a-sil/us/overview-textless",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Git-only textless review derivative. Six outlined external annotations on pure white canvas removed; complete product shading, logos, leaders and crop preserved. No live registry promotion."
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2",
+          "format": "png",
+          "path": "assets/overview-textless.png",
+          "scale": 4.0
+        },
+        {
+          "expected_sha256": "daea42641b87e4d3a7a838645858b852b609c8146a7703c834425fbd30cd0891",
+          "format": "pdf",
+          "path": "assets/overview-textless.pdf"
+        }
+      ],
+      "page": 1,
+      "risk_tags": [],
+      "scope": {
+        "locales": [
+          "und"
+        ],
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            582.0,
+            688.0,
+            791.0,
+            923.0
+          ],
+          "op": "crop"
+        },
+        {
+          "bbox_pt": [
+            648.0,
+            689.8,
+            774.0,
+            718.8
+          ],
+          "op": "whiteout"
+        },
+        {
+          "bbox_pt": [
+            746.0,
+            759.0,
+            774.0,
+            767.3
+          ],
+          "op": "whiteout"
+        },
+        {
+          "bbox_pt": [
+            760.0,
+            810.5,
+            774.0,
+            818.3
+          ],
+          "op": "whiteout"
+        }
+      ],
+      "visual_review_required": true
+    }
+  ],
+  "coordinate_contract": {
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page",
+    "bbox_units": "pt",
+    "page_numbering": "pdf-1-based"
+  },
+  "indexes": {
+    "artifacts_csv": {
+      "path": "artifacts.csv",
+      "sha256": "17c95786ad4eecbe627e5fe85dc19bb867816956d699673afa3b84c70daf1680"
+    }
+  },
+  "manifest_version": 1,
+  "normalization": {
+    "engine": "pymupdf",
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000,
+    "pdf_save": {
+      "clean": true,
+      "deflate": true,
+      "garbage": 4,
+      "no_new_id": true
+    },
+    "validated_mupdf_version": "1.29.0",
+    "validated_version": "1.28.0"
+  },
+  "page_catalog": [
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Single Illustrator artboard; English pages are isolated by crop coordinates"
+        ],
+        "status": "archive"
+      },
+      "locale": "en",
+      "page": 1,
+      "page_key": "source_artboard",
+      "risk_tags": [],
+      "role": "source_artboard"
+    }
+  ],
+  "recipe_sha256": "1717919977e3fb7021163312b96088a34d331e27e31f0a5b8eaf3aa0325c651d",
+  "runtime": {
+    "mupdf_version": "1.29.0",
+    "pymupdf_version": "1.28.0"
+  },
+  "source": {
+    "ai_metadata_count": 1,
+    "ai_private_data_count": 61,
+    "page_count": 1,
+    "piece_info_count": 1,
+    "sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da",
+    "source_key": "source/ja-ad500a-sil-us-hto889a"
+  }
+}

@@ -1,0 +1,580 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from __future__ import annotations
+
+import html
+import re
+from pathlib import Path
+
+from tools.config_pages import CsvPage
+from tools.gen_index_bundle import MaterializedBundle, materialize_bundle, plan_materialized_pages
+from tools.lang_registry import LANGUAGE_BY_ALIAS
+from tools.utils.path_utils import PathSegments, web_composite_manifest_of
+from tools.web.composite_manifest import (
+    WebCompositeManifest,
+    load_optional_web_composite_manifest,
+)
+from tools.word.bundle_common import paths
+from tools.word.bundle_html_images import _inject_img_dimensions
+from tools.web.document_assets import resolve_fragment_asset_path, stage_fragment_assets
+from tools.word.bundle_html_models import WordBundlePageMeta
+from tools.page_plan import page_template_role_for_source_ref, word_page_binding
+from tools.word.bundle_html_only import (
+    _build_word_only_tags,
+    _dedent_only_block_lines,
+    _evaluate_only_expression,
+)
+from tools.word.bundle_html_render import (
+    _extract_word_anchor_text,
+    _render_page_break_html,
+    render_safety_word_html,
+    render_spec_word_html,
+    transform_word_fcc_html,
+)
+from tools.word.inbox_component import transform_word_inbox_html
+from tools.word.bundle_html_rewrite import (
+    _extract_spec_word_data,
+    _rewrite_word_friendly_fragment,
+)
+from tools.web.presentation import (
+    DOCUMENT_PRESENTATION_PROFILE,
+    WEB_PRESENTATION_PROFILE,
+    is_web_entry_page,
+    load_web_manual_contract,
+    normalize_presentation_profile,
+    should_include_web_page,
+    transform_web_fragment,
+)
+
+_RST_HEADING_CHARS = set("=-~^\"`:+*#")
+_DOCUTILS_UNWRAP_CONTAINER_CLASSES = frozenset(
+    {
+        "warranty-lead",
+        "warranty-section",
+    }
+)
+
+
+def _language_token_pattern(alias: str) -> re.Pattern[str]:
+    escaped = re.escape(alias).replace("\\-", "[-_]").replace("_", "[-_]")
+    return re.compile(rf"(?:^|[_-]){escaped}(?:$|[_-])")
+
+
+_LANG_TOKEN_PATTERNS = tuple(
+    (
+        _language_token_pattern(alias),
+        code,
+    )
+    for alias, code in sorted(
+        LANGUAGE_BY_ALIAS.items(),
+        key=lambda item: (-len(item[0]), item[0]),
+    )
+)
+
+
+def _normalize_sphinx_only_blocks_for_docutils(rst_text: str, *, active_tags: set[str] | None = None) -> str:
+    """
+    Normalize Sphinx/renderer semantic blocks for docutils parsing:
+    - keep `.. only:: ...` content whose expression matches the active tags
+    - drop non-matching `.. only:: ...` content
+    - unwrap known renderer-owned semantic containers whose nested headings are
+      otherwise rejected and discarded by docutils
+    """
+    tags = {"html"}
+    if active_tags:
+        tags.update(tag.strip().lower() for tag in active_tags if tag.strip())
+
+    lines = rst_text.splitlines()
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.lstrip()
+        indent = len(line) - len(stripped)
+
+        if stripped.startswith(".. only::"):
+            expr = stripped.split("::", 1)[1].strip()
+            i += 1
+            block: list[str] = []
+            while i < len(lines):
+                cur = lines[i]
+                cur_stripped = cur.lstrip()
+                cur_indent = len(cur) - len(cur_stripped)
+                if cur_stripped and cur_indent <= indent:
+                    break
+                block.append(cur)
+                i += 1
+
+            if _evaluate_only_expression(expr, tags):
+                dedented = _dedent_only_block_lines(block, indent)
+                normalized = _normalize_sphinx_only_blocks_for_docutils(
+                    "\n".join(dedented),
+                    active_tags=tags,
+                )
+                if normalized:
+                    out.extend(normalized.split("\n"))
+                    # The "\n".join(...)/splitlines() round-trip above drops the
+                    # block's own trailing blank line. Restore the separator so a
+                    # construct that immediately follows the inlined only-block
+                    # (e.g. a section title) is not absorbed into the block's last
+                    # paragraph, which would otherwise leak its "----" title
+                    # underline into the body as literal text.
+                    if out[-1].strip():
+                        out.append("")
+                else:
+                    out.append("")
+            continue
+
+        if stripped.startswith(".. container::"):
+            classes = {
+                value.casefold()
+                for value in stripped.split("::", 1)[1].split()
+                if value.strip()
+            }
+            if classes & _DOCUTILS_UNWRAP_CONTAINER_CLASSES:
+                i += 1
+                block = []
+                while i < len(lines):
+                    cur = lines[i]
+                    cur_stripped = cur.lstrip()
+                    cur_indent = len(cur) - len(cur_stripped)
+                    if cur_stripped and cur_indent <= indent:
+                        break
+                    block.append(cur)
+                    i += 1
+
+                dedented = _dedent_only_block_lines(block, indent)
+                normalized = _normalize_sphinx_only_blocks_for_docutils(
+                    "\n".join(dedented),
+                    active_tags=tags,
+                )
+                if normalized:
+                    out.extend(normalized.split("\n"))
+                    if out[-1].strip():
+                        out.append("")
+                else:
+                    out.append("")
+                continue
+
+        out.append(line)
+        i += 1
+
+    return "\n".join(out)
+
+
+def _extract_raw_html_blocks(rst_text: str, *, active_tags: set[str] | None = None) -> str | None:
+    normalized_rst = _normalize_sphinx_only_blocks_for_docutils(rst_text, active_tags=active_tags)
+    lines = normalized_rst.splitlines()
+    fragments: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.lstrip()
+        indent = len(line) - len(stripped)
+        if stripped != ".. raw:: html":
+            i += 1
+            continue
+
+        i += 1
+        if i < len(lines) and not lines[i].strip():
+            i += 1
+
+        block: list[str] = []
+        while i < len(lines):
+            cur = lines[i]
+            cur_stripped = cur.lstrip()
+            cur_indent = len(cur) - len(cur_stripped)
+            if cur_stripped and cur_indent <= indent:
+                break
+            if not cur_stripped:
+                block.append("")
+            else:
+                block.append(cur[indent + 3 :] if len(cur) > indent + 3 else cur_stripped)
+            i += 1
+        fragment = "\n".join(block).strip()
+        if fragment:
+            fragments.append(fragment)
+
+    joined = "\n".join(fragments).strip()
+    return joined or None
+
+
+def _extract_rst_first_heading(text: str) -> tuple[str | None, str | None]:
+    lines = text.splitlines()
+    for idx in range(len(lines) - 1):
+        title = lines[idx].strip()
+        underline = lines[idx + 1].strip()
+        if not title or title.startswith(".. "):
+            continue
+        if not underline:
+            continue
+        if len(set(underline)) != 1:
+            continue
+        ch = underline[0]
+        if ch not in _RST_HEADING_CHARS:
+            continue
+        if len(underline) < len(title):
+            continue
+        return title, ch
+    return None, None
+
+
+def _resolve_fragment_asset_path(src: str, source_path: Path) -> Path | None:
+    return resolve_fragment_asset_path(src, source_path, (paths.docs_dir, paths.root))
+
+
+def _language_dir_parts(source_path: Path) -> tuple[str, ...]:
+    """Directory names that may carry a language token.
+
+    Inside the repo only the repo-relative part counts: the checkout's own
+    directory (a worktree named ``terminology-jp-rules``) is not a language
+    marker. Paths outside the repo keep every component.
+    """
+    parent = source_path.parent
+    try:
+        return parent.resolve().relative_to(paths.root.resolve()).parts
+    except ValueError:
+        return parent.parts
+
+
+def _infer_fragment_lang(source_path: Path) -> str | None:
+    candidates = [source_path.stem.lower()]
+    candidates.extend(part.lower() for part in reversed(_language_dir_parts(source_path)))
+    for candidate in candidates:
+        for pattern, code in _LANG_TOKEN_PATTERNS:
+            if pattern.search(candidate):
+                return code
+    return None
+
+
+def _resolve_fragment_lang(source_path: Path, language: str | None) -> str | None:
+    token = (language or "").strip()
+    if token:
+        return LANGUAGE_BY_ALIAS.get(token.casefold(), token)
+    return _infer_fragment_lang(source_path)
+
+
+def _stage_fragment_assets(fragment: str, source_path: Path, bundle_dir: Path) -> str:
+    return stage_fragment_assets(fragment, source_path, bundle_dir, (paths.docs_dir, paths.root))
+
+
+def _publish_rst_fragment_to_html(
+    rst_text: str,
+    source_path: Path,
+    *,
+    active_tags: set[str] | None = None,
+) -> str:
+    from docutils.core import publish_parts
+
+    normalized_rst = _normalize_sphinx_only_blocks_for_docutils(rst_text, active_tags=active_tags)
+    parts = publish_parts(
+        source=normalized_rst,
+        source_path=str(source_path),
+        writer_name="html5",
+        settings_overrides={
+            "report_level": 5,
+            "halt_level": 6,
+            "file_insertion_enabled": False,
+            "raw_enabled": True,
+            "syntax_highlight": "none",
+        },
+    )
+    fragment = parts.get("fragment") or parts.get("body") or parts.get("html_body")
+    if not fragment:
+        raise RuntimeError("docutils did not return an HTML fragment for the RST input")
+    html_fragment = fragment.strip()
+
+    title, adorn = _extract_rst_first_heading(normalized_rst)
+    if title and adorn == "=":
+        html_fragment = f"<h1>{html.escape(title)}</h1>{html_fragment}"
+
+    return html_fragment
+
+
+def _convert_rst_fragment_to_html(
+    rst_text: str,
+    source_path: Path,
+    bundle_dir: Path,
+    *,
+    active_tags: set[str] | None = None,
+    presentation_profile: str = DOCUMENT_PRESENTATION_PROFILE,
+    composite_manifest: WebCompositeManifest | None = None,
+    model: str | None = None,
+    region: str | None = None,
+    language: str | None = None,
+    declared_troubleshooting: bool = False,
+    declared_lcd_icons: bool = False,
+) -> str:
+    profile = normalize_presentation_profile(presentation_profile)
+    source_name = source_path.name.lower()
+    fragment_lang = _resolve_fragment_lang(source_path, language)
+    if source_name.startswith("safety_"):
+        raw_html = _extract_raw_html_blocks(rst_text, active_tags=active_tags)
+        if raw_html:
+            rewritten_fragment = _rewrite_word_friendly_fragment(raw_html, lang=fragment_lang)
+            if profile == WEB_PRESENTATION_PROFILE:
+                rewritten_fragment = transform_web_fragment(
+                    rewritten_fragment,
+                    source_path=source_path,
+                    composite_manifest=composite_manifest,
+                    model=model,
+                    region=region,
+                    language=fragment_lang,
+                    declared_troubleshooting=declared_troubleshooting,
+                    declared_lcd_icons=declared_lcd_icons,
+                )
+            return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
+
+    published_fragment = _publish_rst_fragment_to_html(rst_text, source_path, active_tags=active_tags)
+
+    if profile == DOCUMENT_PRESENTATION_PROFILE and source_name.startswith("spec_"):
+        spec_data = _extract_spec_word_data(published_fragment)
+        if spec_data is not None:
+            published_fragment = render_spec_word_html(spec_data)
+
+    rewritten_fragment = _rewrite_word_friendly_fragment(published_fragment, lang=fragment_lang)
+    if profile == WEB_PRESENTATION_PROFILE:
+        # HTML drops the page's operation_panel_copy blocks; read them from the
+        # source exactly as the whole-document Web path does.
+        from tools.web.document_source import operation_panel_copy
+
+        rewritten_fragment = transform_web_fragment(
+            rewritten_fragment,
+            source_path=source_path,
+            composite_manifest=composite_manifest,
+            model=model,
+            region=region,
+            language=fragment_lang,
+            declared_troubleshooting=declared_troubleshooting,
+            declared_lcd_icons=declared_lcd_icons,
+            operation_panel_copy=operation_panel_copy(
+                rst_text, source_path, active_tags=active_tags or set(),
+            ),
+        )
+    else:
+        rewritten_fragment = transform_word_fcc_html(
+            rewritten_fragment,
+            source_path=source_path,
+            config=load_web_manual_contract()["fcc"],
+            language=fragment_lang,
+        )
+        rewritten_fragment = transform_word_inbox_html(
+            rewritten_fragment,
+            source_path=source_path,
+            config=load_web_manual_contract()["in_the_box"],
+            language=fragment_lang or "und",
+        )
+    return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
+
+
+def build_word_bundle_html(
+    cfg: dict,
+    model: str | None,
+    region: str | None,
+    *,
+    materialized_bundle: MaterializedBundle | None = None,
+    output_dir: Path | None = None,
+    presentation_profile: str = DOCUMENT_PRESENTATION_PROFILE,
+) -> tuple[Path, Path | None, tuple[WordBundlePageMeta, ...]]:
+    profile = normalize_presentation_profile(presentation_profile)
+    materialized = materialized_bundle or materialize_bundle(cfg, model, region)
+    materialized_bundle_dir = getattr(materialized, "bundle_dir", None)
+    composite_manifest = (
+        load_optional_web_composite_manifest(
+            web_composite_manifest_of(Path(materialized_bundle_dir))
+        )
+        if profile == WEB_PRESENTATION_PROFILE and materialized_bundle_dir is not None
+        else None
+    )
+    title = materialized.title
+    bundle_languages = tuple(getattr(materialized, "languages", ()))
+    reference_doc = materialized.reference_doc
+    active_tags = _build_word_only_tags(model=materialized.model, region=materialized.region, lang=materialized.lang)
+
+    bundle_output_dir = output_dir or (paths.docs_build_dir / "word")
+    bundle_output_dir.mkdir(parents=True, exist_ok=True)
+    bundle_html = bundle_output_dir / "manual_bundle.html"
+
+    body_parts: list[str] = []
+    page_metas: list[WordBundlePageMeta] = []
+    page_paths = list(materialized.page_paths)
+    declared_csv_pages: dict[Path, str] = {}
+    page_languages: dict[str, str] = {}
+    page_slots: dict[str, str] = {}
+    if profile == WEB_PRESENTATION_PROFILE:
+        # Reuse the target's declared CSV page identities once per bundle.
+        # slot_id/renames are resolved by the existing assembly planner, not
+        # guessed from filenames or the HTML's localized content.
+        if cfg.get("pages") or cfg.get("paths", {}).get("page_manifest"):
+            planned_pages = plan_materialized_pages(
+                cfg, model=materialized.model, region=materialized.region,
+                langs=list(materialized.languages) or None,
+            )
+            page_languages = {p.file_name: p.lang or "" for p in planned_pages}
+            page_slots = {
+                planned.file_name: str(
+                    getattr(planned.page, "slot_id", None)
+                    or getattr(planned.page, "page", None)
+                    or getattr(planned.page, "file", None)
+                    or ""
+                )
+                for planned in planned_pages
+            }
+            declared_csv_pages = {
+                (materialized.page_dir / planned.file_name).resolve(): planned.page.page
+                for planned in planned_pages
+                if isinstance(planned.page, CsvPage)
+                and planned.page.page in {"troubleshooting", "lcd_icons", "symbols"}
+            }
+        page_paths = [path for path in page_paths if should_include_web_page(path)]
+        entry_source_patterns = cfg.get("build", {}).get(
+            "web_entry_source_patterns"
+        )
+        if entry_source_patterns is not None and (
+            not isinstance(entry_source_patterns, list)
+            or not all(isinstance(pattern, str) for pattern in entry_source_patterns)
+        ):
+            raise RuntimeError(
+                "build.web_entry_source_patterns must be a list of source patterns"
+            )
+        if page_paths and not is_web_entry_page(
+            page_paths[0], entry_source_patterns=entry_source_patterns
+        ):
+            expected = (
+                entry_source_patterns
+                if entry_source_patterns is not None
+                else ["00_preface*"]
+            )
+            raise RuntimeError(
+                "web manual first page does not match its governed entry patterns "
+                f"{expected!r}; got {page_paths[0]}"
+            )
+
+    web_fragments = None
+    if profile == WEB_PRESENTATION_PROFILE:
+        from tools.build_paths import (
+            resolve_web_illustration_manifest_from_config,
+            resolve_web_illustration_manifests_from_config,
+        )
+        from tools.web.document_source import load_web_document
+        from tools.web.document_ir import render_document_fragments
+        illustration_manifest = resolve_web_illustration_manifest_from_config(
+            cfg,
+            repo_root=paths.root,
+            model=materialized.model,
+            region=materialized.region,
+        )
+        illustration_manifests = resolve_web_illustration_manifests_from_config(
+            cfg,
+            repo_root=paths.root,
+            model=materialized.model,
+            region=materialized.region,
+        )
+        ir = load_web_document(
+            materialized, page_paths=page_paths, declarations=declared_csv_pages,
+            page_languages=page_languages,
+            active_tags=active_tags, output_dir=bundle_output_dir,
+            composite_manifest=composite_manifest,
+            illustration_manifest=illustration_manifest,
+            illustration_manifests=illustration_manifests,
+            page_slots=page_slots,
+        )
+        web_fragments = render_document_fragments(ir, package_root=bundle_output_dir)
+        from tools.manual_ir import write_manual_ir
+        from tools.manual_ir.document import validate_document
+        from tools.web.figure_coverage import attach_web_figure_coverage
+
+        ir = attach_web_figure_coverage(ir, web_fragments)
+        validate_document(ir)
+        write_manual_ir(ir, bundle_output_dir / PathSegments.MANUAL_IR_JSON)
+
+    previous_was_cover = False
+    for idx, rst_path in enumerate(page_paths):
+        if profile == DOCUMENT_PRESENTATION_PROFILE and idx > 0 and not previous_was_cover:
+            body_parts.append(_render_page_break_html())
+        if web_fragments is not None:
+            html_fragment = web_fragments[idx]
+        else:
+            rst_text = rst_path.read_text(encoding="utf-8")
+            html_fragment = _convert_rst_fragment_to_html(
+                rst_text,
+                rst_path,
+                bundle_output_dir,
+                active_tags=active_tags,
+                presentation_profile=profile,
+                composite_manifest=composite_manifest,
+                model=materialized.model,
+                region=materialized.region,
+                language=materialized.lang,
+                declared_troubleshooting=declared_csv_pages.get(rst_path.resolve()) == "troubleshooting",
+                declared_lcd_icons=declared_csv_pages.get(rst_path.resolve()) == "lcd_icons",
+            )
+        body_parts.append(html_fragment or "<div></div>")
+        page_role = page_template_role_for_source_ref(rst_path)
+        page_binding = word_page_binding(page_role)
+        page_metas.append(
+            WordBundlePageMeta(
+                source_path=rst_path,
+                anchor_text=_extract_word_anchor_text(html_fragment),
+                page_role=page_role.value,
+                footer_policy=("show" if page_binding.footer_style else "suppress"),
+                folio_policy=(
+                    "show" if page_binding.page_number_style else "suppress"
+                ),
+                page_plan_capability=page_binding.capability.value,
+            )
+        )
+        previous_was_cover = rst_path.name.startswith("cover")
+
+    html_doc = "".join(
+        [
+            "<!DOCTYPE html>",
+            f'<html lang="{html.escape(materialized.lang or (bundle_languages[0] if len(bundle_languages) == 1 else "en"), quote=True)}">',
+            "<head>",
+            '<meta charset="utf-8"/>',
+            f"<title>{html.escape(title)}</title>",
+            "<style>",
+            "body { font-family: Calibri, Arial, sans-serif; line-height: 1.45; margin: 0; }",
+            "h1, h2 { page-break-after: avoid; }",
+            ".hb-h1-pill { margin: 10px 0 12px 0; font-size: 20pt; }",
+            ".hb-subbar { margin: 10px 0 12px 0; font-size: 14pt; }",
+            ".hb-spec-section { margin: 8px 0 6px 0; font-size: 12pt; }",
+            ".manual-cover { min-height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; }",
+            ".manual-cover .cover-title { font-size: 24pt; font-weight: 700; }",
+            ".manual-page-break { page-break-after: always; }",
+            ".manual-table { width: 100%; border-collapse: collapse; margin: 0 0 16px 0; }",
+            ".manual-table td { border: 1px solid #888; padding: 6px 8px; vertical-align: top; }",
+            ".manual-table td:first-child { width: 34%; }",
+            ".manual-spec-label { width: 34%; }",
+            ".manual-spec-value { width: 66%; }",
+            ".manual-two-col-table { width: 100%; border-collapse: separate; border-spacing: 12px 0; margin: 0 0 16px 0; }",
+            ".manual-two-col-table td { width: 50%; border: none; padding: 0; vertical-align: top; }",
+            ".manual-callout-table { width: 100%; border-collapse: collapse; margin: 0 0 16px 0; }",
+            ".manual-callout-table td { border: 1px solid #000; padding: 6px 8px; vertical-align: top; }",
+            ".manual-callout-table td:first-child { width: 16%; }",
+            ".manual-spec-trailer-spacer { margin: 0; line-height: 1.45; }",
+            ".manual-spec-note, .manual-spec-footnote { margin: 0; }",
+            "p, li { font-size: 10.5pt; }",
+            "</style>",
+            "</head>",
+            "<body>",
+            "".join(body_parts),
+            "</body>",
+            "</html>",
+        ]
+    )
+    bundle_html.write_text(_inject_img_dimensions(html_doc), encoding="utf-8")
+    return bundle_html, reference_doc, tuple(page_metas)
+
+
+__all__ = [
+    "WordBundlePageMeta",
+    "_build_word_only_tags",
+    "_convert_rst_fragment_to_html",
+    "_inject_img_dimensions",
+    "_rewrite_word_friendly_fragment",
+    "build_word_bundle_html",
+    "render_safety_word_html",
+    "render_spec_word_html",
+]

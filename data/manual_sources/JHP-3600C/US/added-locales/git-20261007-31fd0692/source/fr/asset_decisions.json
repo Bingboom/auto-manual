@@ -1,0 +1,766 @@
+[
+  {
+    "final_path": "assets/21b5f19ca9a6_21b5f19ca9a6_21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/21b5f19ca9a6_21b5f19ca9a6_21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/28f3cad42ae3_28f3cad42ae3_28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/28f3cad42ae3_28f3cad42ae3_28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/4025f864c192_usb-bottom.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/4025f864c192_usb-bottom.svg",
+    "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/45f309ed8b3f_fcc_mark.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/45f309ed8b3f_fcc_mark.png",
+    "sha256": "45f309ed8b3f4787b6dde440c738b8e0fbc5074bf758fecc2e1ac44307153d90",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/58c1d3604ca7_58c1d3604ca7_58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/58c1d3604ca7_58c1d3604ca7_58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/6aab9a14900a_6aab9a14900a_6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/6aab9a14900a_6aab9a14900a_6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/71017f43bab4_71017f43bab4_71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/71017f43bab4_71017f43bab4_71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/73225cf9faa8_73225cf9faa8_73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/73225cf9faa8_73225cf9faa8_73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/747147be99d7_747147be99d7_747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/747147be99d7_747147be99d7_747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/7623ef10e229_7623ef10e229_7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/7623ef10e229_7623ef10e229_7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/7b5fa9057ca9_power-bottom.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/7b5fa9057ca9_power-bottom.svg",
+    "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/7e1392ba6a45_7e1392ba6a45_7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/7e1392ba6a45_7e1392ba6a45_7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/7f743182c050_7f743182c050_7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/7f743182c050_7f743182c050_7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/85921a9ad7fb_85921a9ad7fb_85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/85921a9ad7fb_85921a9ad7fb_85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/87ac44e52863_manual_icon1.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/87ac44e52863_manual_icon1.png",
+    "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/8be87c5a0849_8be87c5a0849_8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/8be87c5a0849_8be87c5a0849_8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/91cec82eeaa5_91cec82eeaa5_91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/91cec82eeaa5_91cec82eeaa5_91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/9b148ea95d3a_9b148ea95d3a_9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/9b148ea95d3a_9b148ea95d3a_9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/ac_framefree.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/ac_framefree.png",
+    "sha256": "265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/ad437a82a4fe_ac-bottom.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/ad437a82a4fe_ac-bottom.svg",
+    "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/app_add.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_add.png",
+    "sha256": "7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/app_connect_result_steps.png",
+    "decision": "native complete App screenshots",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_connect_result_steps.png",
+    "sha256": "d9f8f62d3e0f73da6e71eec006ffe175fad6b5bcb6d351d7cf2c30909cbd9d8a",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "source-finished-panel",
+    "reason": "Shared Explorer1000 screenshots differ from native HomePower3600 Plus UI; preserve source UI and complete phone frames.",
+    "physical_page": 60,
+    "bbox": [
+      61,
+      145,
+      306,
+      291
+    ]
+  },
+  {
+    "final_path": "assets/app_control.png",
+    "decision": "native language-bearing finished panel",
+    "searched": [
+      "accepted English bundle",
+      "same-model locale packages",
+      "shared Web/template assets"
+    ],
+    "reason": "English panel contains external English labels; no matching native locale panel exists. Same source geometry and complete border retained. Matches English image-led content mode.",
+    "physical_page": 59,
+    "bbox": [
+      27,
+      378,
+      343,
+      463
+    ],
+    "background_policy": "preserve complete source panel and labels",
+    "content_mode": "source-finished-panel",
+    "sha256": "4374a289f34366bc6b00d3b2144f85901ac71a07f08de447ffd1f135ea13a245"
+  },
+  {
+    "final_path": "assets/app_download_qr.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_download_qr.png",
+    "sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/app_store_badges.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_store_badges.png",
+    "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/ats_app.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/ats_app.png",
+    "sha256": "f5cc470998ef9e5274a1b9814a1d2c0afa3419bbbc00ad5463e3dcfc17cb41de",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/ats_live.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/ats_live.png",
+    "sha256": "3a501abecb4e24bf96a40a4314d9dab8273cd3bdff9a345905c90bb6fb2652cb",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/battery_packs.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/battery_packs.png",
+    "sha256": "a889607cf11ae91cfa2e95512d755ef1193a240fd7bd2c0eb31f5ef15d3dee45",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/bdbf602db74a_bdbf602db74a_bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/bdbf602db74a_bdbf602db74a_bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/c4b830c769a3_c4b830c769a3_c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/c4b830c769a3_c4b830c769a3_c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/c7862a87e742_c7862a87e742_c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/c7862a87e742_c7862a87e742_c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/car_charging_framefree.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/car_charging_framefree.svg",
+    "sha256": "c5bf094d9b0f2cd27cd5f6ac9e82e6ad413ac0c4f36441d76dcb7de7d7cfdfd4",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/cascade.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/cascade.png",
+    "sha256": "c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/cfb69b1ffc0b_cfb69b1ffc0b_cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/cfb69b1ffc0b_cfb69b1ffc0b_cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/charge120.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/charge120.png",
+    "sha256": "378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/charge240.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/charge240.png",
+    "sha256": "78421e939d39ded94f7ec9c48de298d160fb082d1302f8aef16d395679252632",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/d5100a538e96_d5100a538e96_d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/d5100a538e96_d5100a538e96_d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/e1746d6937db_warning_triangle_dark.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/e1746d6937db_warning_triangle_dark.svg",
+    "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/e32e6ae96321_e32e6ae96321_e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/e32e6ae96321_e32e6ae96321_e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/e422a56922eb_e422a56922eb_e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/e422a56922eb_e422a56922eb_e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/eed3299c3f6a_eed3299c3f6a_eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/eed3299c3f6a_eed3299c3f6a_eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/energy_framefree.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/energy_framefree.png",
+    "sha256": "6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/epo.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/epo.png",
+    "sha256": "73538543ce16f0a0fbce0da4f719b4c69163a881ba9f66e3376603b1047bc068",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/ess_connection.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/ess_connection.png",
+    "sha256": "4039388533950249061954f24e6866b64c0641c146e277ada6e96c4892c52616",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/f4cdcb551105_f4cdcb551105_f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/f4cdcb551105_f4cdcb551105_f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/f548c6504f49_f548c6504f49_f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/f548c6504f49_f548c6504f49_f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/fc4cc02b42ef_fc4cc02b42ef_fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/fc4cc02b42ef_fc4cc02b42ef_fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/inbox_ac.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/inbox_ac.png",
+    "sha256": "f6ea4630900d41df0e9eaa35be9c229a0dfa13d3dcee83d0a0308298b5ab479d",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/inbox_terminal.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/inbox_terminal.png",
+    "sha256": "da72fe85ec858bdaf30fe06f6dc8cf4e431f7a003ffaab66ea9be6bc7b12f310",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/inbox_unit.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/inbox_unit.png",
+    "sha256": "98a08132d482146545340cebfb4093bfaa3b63487bacfb95abe2b6e4f8619bb0",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_ac-expansion-in.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_ac-expansion-in.png",
+    "sha256": "5651765e549c201fe8afe43c3358a6de619cc034d1af10451aecff647be0e93e",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_ac-expansion-out.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_ac-expansion-out.png",
+    "sha256": "435f17477214a56e10fe0039aeb7799ab958f1dcdab4f0314829842028937397",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_connected-batteries.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_connected-batteries.png",
+    "sha256": "a1f1a5236ea916b088aebe42a22157ad058cbbd18bd29961091831beeeecffd1",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_device.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_device.png",
+    "sha256": "62379420cc83084f91f8566033f7c77f9be1e74e30fd415e840baace983f7e77",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_ev-charging.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_ev-charging.png",
+    "sha256": "905ff8481cf04c39c16ecafb0da3697978765eea977e457920905172f5960b39",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_fault-code.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_fault-code.png",
+    "sha256": "7b251bff4004f01b3fbb6e383230d0c27f6ea17654502eca64240888ebe510a0",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_map.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_map.png",
+    "sha256": "6e59ceb432be306dbed1dca0216dc3a894c9272b7e60ca61d90bf5e501a17349",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_parallel.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_parallel.png",
+    "sha256": "1aacd9dc96bbc2ec22ff2364e88a896dd567a0f561f101dd85c93be10779dd04",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_smart-meter.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_smart-meter.png",
+    "sha256": "2eec7e59289bb32c1dd8f173fab2c13b9592740e7c3e882d70c07ba29012baa4",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/lcd_transfer-switch.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_transfer-switch.png",
+    "sha256": "72853bd49a4742f6f2d7e1c6f66d3087a2f68106cc91fdd1c6169a5bba9a9d49",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/mts_cascade_live.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/mts_cascade_live.png",
+    "sha256": "a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/mts_single_live.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/mts_single_live.png",
+    "sha256": "6351b0b395ed043bb9f3a66f98605ad951645065688dc1eff8125f6d4870625c",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/overview_front.png",
+    "decision": "native language-bearing finished panel",
+    "searched": [
+      "accepted English bundle",
+      "same-model locale packages",
+      "shared Web/template assets"
+    ],
+    "reason": "English panel contains external English labels; no matching native locale panel exists. Same source geometry and complete border retained. Matches English image-led content mode.",
+    "physical_page": 38,
+    "bbox": [
+      25,
+      81,
+      344,
+      267
+    ],
+    "background_policy": "preserve complete source panel and labels",
+    "content_mode": "source-finished-panel",
+    "sha256": "a4cd9cbcf0ca78e4ec1f4ea049610119eec63b79f5a5883ebe3527088f99c708"
+  },
+  {
+    "final_path": "assets/overview_side.png",
+    "decision": "native language-bearing finished panel",
+    "searched": [
+      "accepted English bundle",
+      "same-model locale packages",
+      "shared Web/template assets"
+    ],
+    "reason": "English panel contains external English labels; no matching native locale panel exists. Same source geometry and complete border retained. Matches English image-led content mode.",
+    "physical_page": 38,
+    "bbox": [
+      25,
+      295,
+      344,
+      496
+    ],
+    "background_policy": "preserve complete source panel and labels",
+    "content_mode": "source-finished-panel",
+    "sha256": "5ff471c04faa557c5dba8619c06f810109fed0d1e87d20e3bdfc729a75b87b61"
+  },
+  {
+    "final_path": "assets/package_ats.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/package_ats.png",
+    "sha256": "d4b0c8520d453b857c36a108e97914d5d2ad4f5e54c5cb41fbbbe5464ae9b1ee",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/package_battery.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/package_battery.png",
+    "sha256": "4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/package_expansion.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/package_expansion.png",
+    "sha256": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/package_gland.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/package_gland.png",
+    "sha256": "17764661f009821a873f6b96d90c9f9aaed659e62325a616de19c946916656a4",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/package_jumper.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/package_jumper.png",
+    "sha256": "247740c71cda195f02994f84c1f4071745dc9e7786000372b2c7888106e3517b",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/package_neutral_wire.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/package_neutral_wire.png",
+    "sha256": "3c0b2ffecf95738354bbf7c5050dbefde0ee5d896b96f55e1241808d479a7fa8",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/package_power_cable.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/package_power_cable.png",
+    "sha256": "815fe005bfdcc05e07270558a6650a53631b01d04b7995fe2809ab882e905f16",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/package_template.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/package_template.png",
+    "sha256": "7393bdf6e7ad9575e3240d88b1d5954970344a23bd91d1221d47381524c84dce",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/placement_framefree.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/placement_framefree.png",
+    "sha256": "2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/power_framefree.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/power_framefree.png",
+    "sha256": "6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/solar200.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/solar200.png",
+    "sha256": "2ad7cea648c11ea0309f1ff586bdaf340914d7502b3a75a1b5f5c2253604ebaa",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/solar500.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/solar500.png",
+    "sha256": "71ee1f8ec5f9a3762e6ba20d2d560872cd1944158152e544f2af6e994fe45939",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_battery_charging.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_battery_charging.svg",
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_do_not_dismantle.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_do_not_dismantle.svg",
+    "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_electric_shock.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_electric_shock.svg",
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_explosive_material.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_explosive_material.svg",
+    "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_heavy_object.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_heavy_object.svg",
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_keep_away_from_children.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_keep_away_from_children.svg",
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_li_ion.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_li_ion.svg",
+    "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_no_open_flame.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_no_open_flame.svg",
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_read_manual.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_read_manual.svg",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_warning_triangle.svg",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_warning_triangle.svg",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/symbol_weee.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/symbol_weee.png",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/ups120.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/ups120.png",
+    "sha256": "4a7768c38f4a2093f1c107c8edecd1c672915a97ed79f5c39886f3c8e8f7b5d6",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/ups240.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/ups240.png",
+    "sha256": "ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  },
+  {
+    "final_path": "assets/usb_framefree.png",
+    "decision": "reuse byte-identical",
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/usb_framefree.png",
+    "sha256": "e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619",
+    "background_policy": "preserve approved transparency or complete frame",
+    "content_mode": "approved-English-inheritance"
+  }
+]

@@ -85,6 +85,6 @@ and the proposal contract prove stable. Tracked as Workstream Q /
 
 - Layer-routing rules and the R4/R5/R6/R7 contracts:
   [`../architecture/Feishu_Cloud_Doc_Backport_Design.md`](../architecture/Feishu_Cloud_Doc_Backport_Design.md) §5.1
-- Backport CLI: [`../../tools/cloud_doc_backport.py`](../../tools/cloud_doc_backport.py)
+- Backport CLI: [`../../tools/backport/cloud_doc.py`](../../tools/backport/cloud_doc.py)
 - Prose-assembly direction:
   [`../architecture/Long_Form_Content_Block_Design.md`](../architecture/Long_Form_Content_Block_Design.md)

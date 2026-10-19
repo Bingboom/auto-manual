@@ -1,0 +1,103 @@
+{
+  "status": "independent-source-and-layout-pass",
+  "original_evidence_directory": "/tmp/jbp-independent-acceptance/uk-r1-20261003",
+  "archive_parent_commit": "54cc7f47748760c154cffc005e4adc36593e3dcc",
+  "publication_eligible": false,
+  "operator_approval": false,
+  "locale_enrollment": false,
+  "note": "Report copied verbatim; original directory retains full package/HTML/producer-evidence snapshots. This archive includes report,checks,browser metrics,independent structure diff and all top-level source/browser screenshots. The count clarification is acknowledged without changing the historical count-correction appendix or declaring IT-META-001 independently closed.",
+  "files": [
+    {
+      "path": "acceptance.md",
+      "sha256": "8a4e4f8ef1014bf01667a0a0c61ac899fc5f9952cd2411bb0f9c024e3c32cc47"
+    },
+    {
+      "path": "checks.json",
+      "sha256": "d264a24d083e74a479c629266c96fb216d57ae1576989a40efe873eba2227917"
+    },
+    {
+      "path": "browser-metrics.json",
+      "sha256": "9798fd45b7a51eb1c636770d2c955e72bc157b7bec35ff7cbdd6b208b3225124"
+    },
+    {
+      "path": "independent-structure-diff.json",
+      "sha256": "cc52ddf3fd7e1961ca620dd885d374230b9473cd978abb9ead31312451acee44"
+    },
+    {
+      "path": "desktop-lcd.png",
+      "sha256": "5f286c0a200a6d22014b9bf2ba5ee3dcc0615213a3644676710d975522fb6e77"
+    },
+    {
+      "path": "desktop-overview.png",
+      "sha256": "4cc28b9d453af2df03932bb1bc3bfcab759cc0dc67bc6a506823458686433841"
+    },
+    {
+      "path": "desktop-specifications.png",
+      "sha256": "b951d5117ea02165405860425b69da8ec1c958fa8c22031196a3371df3ae33ec"
+    },
+    {
+      "path": "mobile-connections.png",
+      "sha256": "305eaf97f6ca280e33cbb571ecd9cdf1ccbe6cf1301fa0a1f2faeef2d479f7c1"
+    },
+    {
+      "path": "mobile-lcd.png",
+      "sha256": "6f171db2d473a5873d23c87191c1132ec98d34b2d790527a499b0bf9856a9c6b"
+    },
+    {
+      "path": "mobile-locking.png",
+      "sha256": "8d196742d447b4ac96a44cc43f2eb36a887c91288c16d4a8bd5c83f7f893e09f"
+    },
+    {
+      "path": "mobile-operation.png",
+      "sha256": "56a8b65ce6df968a8d918dcbe33fd368479fa1738bc1ccf9d53dc2f1ec79f340"
+    },
+    {
+      "path": "mobile-table-scrolled.png",
+      "sha256": "f1872c1a5861afd5287d0d57b4564fb3cae17bc0f8130380d7f70758cc9f264d"
+    },
+    {
+      "path": "mobile-warranty.png",
+      "sha256": "626ce29720bd18f06fe4de8643c9e32ff49df2abb085027c77442c2ffb8d01e9"
+    },
+    {
+      "path": "source-3.png",
+      "sha256": "c08560c28110aa63b5b401976061eb1b38e0d3b88764832f3a21689edb675e26"
+    },
+    {
+      "path": "source-47.png",
+      "sha256": "5a5006eea33eb4171d22def834b1b7af1d967ab8ad386872c63daed39348b24f"
+    },
+    {
+      "path": "source-48.png",
+      "sha256": "4b5b7e816ef85755f3bb8e67cedf7112116322ffb4d846b933e66bbe2b48d98b"
+    },
+    {
+      "path": "source-49.png",
+      "sha256": "04083b81ed9e461c8e64c1ba760f5d128a73ac1580be1a6ab3095952db8744c6"
+    },
+    {
+      "path": "source-50.png",
+      "sha256": "c317e6e137cdd6461446265a937387b7692bd0d02af9ef46e0f5c0830aacd2d7"
+    },
+    {
+      "path": "source-51.png",
+      "sha256": "921b019cc66262eba2bedb35e1e78d9da3af4f24f7bac76dd4fa31eff0c8216e"
+    },
+    {
+      "path": "source-52.png",
+      "sha256": "045ef7cb2921bdf674261e81959faa0a8e2e19bb7d007cd9d307ac6f81f51c9c"
+    },
+    {
+      "path": "source-53.png",
+      "sha256": "86e99733370de05fca2a86aa2d181c1ff55b71ea114eff4f6ba0dc3cf2719476"
+    },
+    {
+      "path": "source-54.png",
+      "sha256": "da971bd9ac202e470528ba6d8436dd4747bb3a9dcd692b0fee5059a4cd18f1de"
+    },
+    {
+      "path": "source-79.png",
+      "sha256": "1146f86f1554a2dee42b5d5ab9f00064bf783b00a92cb12c5ae759722d65ce52"
+    }
+  ]
+}

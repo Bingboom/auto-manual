@@ -1,0 +1,37 @@
+{
+  "total_discovered": 5217,
+  "case_ids_sha256": "3edbadd3ac1105b9cd5ec05e57968df8fc34f1fa1e5c1e379b6dd18d3fa51912",
+  "canonical_TMPDIR": "/private/tmp",
+  "shards": [
+    {
+      "requested": 1739,
+      "successful_or_skipped": 1731,
+      "skipped": 12,
+      "harness_import_errors": 8,
+      "log": "unittest-shard-1.log"
+    },
+    {
+      "requested": 1739,
+      "successful_or_skipped": 1731,
+      "skipped": 10,
+      "harness_import_errors": 8,
+      "log": "unittest-shard-2.log"
+    },
+    {
+      "requested": 1739,
+      "successful_or_skipped": 1731,
+      "skipped": 13,
+      "harness_import_errors": 8,
+      "log": "unittest-shard-3.log"
+    }
+  ],
+  "repair_command": "TMPDIR=/private/tmp python3 -m unittest tests.test_wukong_bridge_contract tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only",
+  "repair_passed": 25,
+  "dynamic_cases_recovered": 24,
+  "extra_provenance_recheck": 1,
+  "covered_unique_cases": 5217,
+  "passed_unique_cases": 5182,
+  "skipped": 35,
+  "unresolved_failures": 0,
+  "limitation": "Equivalent full discovered-case coverage plus native dynamic loader repair; not a clean single python -m unittest invocation. Original default invocation failed one macOS symlink-path assertion."
+}

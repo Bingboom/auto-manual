@@ -10,12 +10,12 @@ from unittest.mock import patch
 
 from bs4 import BeautifulSoup
 
-from tools.frozen_ai_web import replay_package
-from tools.frozen_pdf_app import APP_ASSET_KEYS
-from tools.frozen_pdf_media import MEDIA_ASSET_KEYS
-from tools.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS
-from tools.frozen_pdf_web import build_pdf_book
-from tools.frozen_pdf_source import PdfBook, _overview_binding
+from tools.web.frozen_ai_web import replay_package
+from tools.web.frozen_pdf_app import APP_ASSET_KEYS
+from tools.web.frozen_pdf_media import MEDIA_ASSET_KEYS
+from tools.web.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS
+from tools.web.frozen_pdf_web import build_pdf_book
+from tools.web.frozen_pdf_source import PdfBook, _overview_binding
 from tools.component_specs.overview_instance import resolve_overview_instance, overview_instance_sha256
 from tools.manual_ir.hashing import file_sha256
 from tools.manual_ir.components import component_specs_in_flow
@@ -60,7 +60,7 @@ class FreshPdfWebTests(unittest.TestCase):
                                  {'filename': 'other.pdf', 'sha256': file_sha256(PDF)}):
                 with self.subTest(identity=bad_identity):
                     manifest.write_text(json.dumps({**original, 'text_source': bad_identity}))
-                    with patch('tools.frozen_pdf_source.load_pdf_book', side_effect=AssertionError('must reject before intake')):
+                    with patch('tools.web.frozen_pdf_source.load_pdf_book', side_effect=AssertionError('must reject before intake')):
                         with self.assertRaisesRegex(ValueError, 'text_source disagrees'):
                             build_pdf_book(PDF, RECIPE, manifest, root / 'candidate', 'uk')
                     self.assertFalse((root / 'candidate').exists())

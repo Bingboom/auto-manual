@@ -238,7 +238,7 @@ def _dict_value_key(node: ast.AST, parents: dict[ast.AST, ast.AST]) -> str | Non
     parent = parents.get(node)
     if not isinstance(parent, ast.Dict):
         return None
-    for key, value in zip(parent.keys, parent.values):
+    for key, value in zip(parent.keys, parent.values, strict=True):
         if value is not node:
             continue
         if isinstance(key, ast.Constant) and isinstance(key.value, str):
@@ -252,7 +252,7 @@ def _dict_value_key_path(node: ast.AST, parents: dict[ast.AST, ast.AST]) -> list
     while child in parents:
         parent = parents[child]
         if isinstance(parent, ast.Dict):
-            for key, value in zip(parent.keys, parent.values):
+            for key, value in zip(parent.keys, parent.values, strict=True):
                 if value is not child:
                     continue
                 if isinstance(key, ast.Constant) and isinstance(key.value, str):
@@ -295,7 +295,7 @@ def _joined_string_text(node: ast.JoinedStr) -> str:
         elif isinstance(value, ast.FormattedValue):
             try:
                 expr = ast.unparse(value.value)
-            except Exception:  # pragma: no cover - ast.unparse is best-effort context only.
+            except Exception:  # noqa: BLE001 - ast.unparse is best-effort context only
                 expr = "expr"
             parts.append(f"{{{expr}}}")
     return "".join(parts)
@@ -531,7 +531,7 @@ def classify_string(
                 rst_template_option="no: derive from owned source rows",
             )
 
-    if rel_path == "tools/word_bundle_html_rewrite.py":
+    if rel_path == "tools/word/bundle_html_rewrite.py":
         if context.startswith(("_ALERT_LABELS", "_WARNING_BOX_LABEL_TEXTS")):
             return Classification(
                 "manual_output",
@@ -582,7 +582,7 @@ def classify_string(
             rst_template_option="yes: template title is possible if fixed",
         )
 
-    if rel_path == "tools/word_bundle_common.py" and text == "User Manual":
+    if rel_path == "tools/word/bundle_common.py" and text == "User Manual":
         return Classification(
             "manual_output",
             "config",
@@ -606,7 +606,7 @@ def classify_string(
         rel_path,
         "diff_report_render.py",
         "build_review_preview_pages.py",
-        "build_docs_index.py",
+        "build/docs_index.py",
     ):
         if _looks_like_markup_or_code(text):
             return None
@@ -885,14 +885,14 @@ def write_summary(findings: list[AuditFinding], path: Path, *, max_items: int = 
         lines.append(
             "- `tools/signal_words.py`: replace hardcoded signal words with generated `Localized_Copy.csv` signal labels, falling back to `symbols_blocks.csv` compatibility labels only when needed."
         )
-    if "tools/word_bundle_html_rewrite.py" in p0_files:
+    if "tools/word/bundle_html_rewrite.py" in p0_files:
         lines.append(
-            "- `tools/word_bundle_html_rewrite.py`: move safety sublist snippets to a business blocks table if they remain manual content; alert labels should come from generated `Localized_Copy.csv` signal labels."
+            "- `tools/word/bundle_html_rewrite.py`: move safety sublist snippets to a business blocks table if they remain manual content; alert labels should come from generated `Localized_Copy.csv` signal labels."
         )
     if "tools/csv_pages/renderers_spec_parser.py" in p0_files:
         lines.append("- `tools/csv_pages/renderers_spec_parser.py`: replace the `SPECIFICATIONS` title fallback with required manual copy source or data validation.")
-    if "tools/word_bundle_common.py" in p0_files:
-        lines.append("- `tools/word_bundle_common.py`: make the default Word manual title config/data driven.")
+    if "tools/word/bundle_common.py" in p0_files:
+        lines.append("- `tools/word/bundle_common.py`: make the default Word manual title config/data driven.")
     if not p0_files:
         lines.append("- No P0 code-copy migration batches remain in the current scan.")
 

@@ -14,7 +14,7 @@ def fitted_art_size(asset: Path, width: float) -> tuple[float, float]:
                 rect = document[0].rect
                 if rect.width > 0:
                     return width, width * rect.height / rect.width
-        except Exception:
+        except Exception:  # noqa: BLE001 - optional size probe; falls back to the declared size
             pass
     try:
         from PIL import Image
@@ -23,7 +23,7 @@ def fitted_art_size(asset: Path, width: float) -> tuple[float, float]:
             image_width, image_height = image.size
         if image_width > 0:
             return width, width * image_height / image_width
-    except Exception:
+    except Exception:  # noqa: BLE001 - optional size probe; falls back to the declared size
         pass
     return width, width * 0.62
 

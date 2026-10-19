@@ -5,7 +5,7 @@ import unittest
 from dataclasses import dataclass
 from pathlib import Path
 
-from tools.check_docs_lang_parity import collect_lang_parity_issues
+from tools.check.docs_lang_parity import collect_lang_parity_issues
 
 
 @dataclass
@@ -186,7 +186,7 @@ class TestKnownExceptions(unittest.TestCase):
         self.assertEqual([i.code for i in issues], ["LANG_PARITY_FOREIGN_LANG_BLOCK"])
 
     def test_loader_reads_csv_rows(self) -> None:
-        from tools.check_docs_lang_parity import load_known_exceptions
+        from tools.check.docs_lang_parity import load_known_exceptions
 
         with tempfile.TemporaryDirectory() as tmp:
             data = Path(tmp)
@@ -202,7 +202,7 @@ class TestKnownExceptions(unittest.TestCase):
         )
 
     def test_loader_missing_file_is_empty(self) -> None:
-        from tools.check_docs_lang_parity import load_known_exceptions
+        from tools.check.docs_lang_parity import load_known_exceptions
 
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(load_known_exceptions(Path(tmp)), set())

@@ -1,0 +1,22 @@
+{
+  "schema_version": "manual-reviewed-publication-approval/v1",
+  "authorization": "MA-259",
+  "date": "2026-10-06",
+  "user_instruction": "上线发布",
+  "candidate_source_commit": "45609dc9935e6d3b9e00686fcc962352239e315e",
+  "candidate_manifest_sha256": "8fc91740eb79ac358522b0f654a383bebe1134ab2abdb9fe51e766ea24342818",
+  "original_source_sha256": "a6d1659e25a48272f50af44ca5b2f0a5741d7b1ea04fde7c426094faa0ede3da",
+  "model": "JA-AD500A-SIL",
+  "region": "US",
+  "language": "en",
+  "retained_source_concerns": [
+    {
+      "panel": "printed-06",
+      "issue": "battery-cell exclusion in a DC module warranty",
+      "disposition": "preserved verbatim pending source-owner decision"
+    }
+  ],
+  "reviewed_markdown_sha256": "ed11fa8beffb56d3ec125c4f70411c88e7acfcdcc287eb8bad945b2f61800e9c",
+  "reviewed_css_sha256": "1421762d41c844bce3b411c370d11c9bd0e2b17f3957e81ccb3e85a11fae85db",
+  "decision": "Publish the current reviewed English with all requested source-compatible corrections; paper version remains unknown; no live registry promotion."
+}

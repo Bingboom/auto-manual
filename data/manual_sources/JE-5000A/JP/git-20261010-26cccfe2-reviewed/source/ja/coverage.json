@@ -1,0 +1,4524 @@
+{
+  "schema": "native-line-coverage/v1",
+  "body_physical_pages": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "classified_line_count": 789,
+  "unmapped": [],
+  "selections": [
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "主な仕様"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b1-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "【Jackery ポータブル電源 5000 Plus】"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b3-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "製品の名称"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b2-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "Jackery ポータブル電源 5000 Plus"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "型番"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b4-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "JE-5000A"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b7-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "定格容量"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "45Ah/112Vdc (5040Wh)"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリータイプ"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "LiFePO4（リン酸鉄リチウムイオン電池）"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b11-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "サイズ＆重量"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "約420×390×635 mm  (約60 kg）"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b13-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "UPS"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b12-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バックアップUPS:20ms、オンラインUPS:0ms"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b14-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "入力ポート"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b16-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC入力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b15-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "100V-120V ~ 50/60Hz, 最大15A"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b18-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "パススルー充電  AC入力/出力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b17-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "100V-120V ~ 50/60Hz, 最大15A"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b19-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "DC 入力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b20-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "1 x DC 拡張ポート（入力）"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b21-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "80.5V-126V⎓98A 最大98A"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b22-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "高電圧入力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b23-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "135V-450V⎓15A 最大15A， 最大4000W"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b25-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "低電圧入力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b24-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2 x DC 8mm ポート; 16V-60V⎓10.5A 最大21A/1200Wに倍増"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b26-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "11V-16V（動作電圧）⎓8A 最大8Aに倍増"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b27-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "出力ポート"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b29-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC 出力(NEMA L14-30R)"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b28-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "100V/200V ~ 50/60Hz, 最大30A"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b31-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC 出力(NEMA 6-20)"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b30-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "200V ~ 50/60Hz, 最大20A"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b33-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "パススルー充電  AC入力/出力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b32-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "100V-120V ~ 50/60Hz, 最大15A"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b35-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "4 × AC 出力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b34-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "100V ~ 50/60Hz, 20A, 2000W"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b37-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC Total 出力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b36-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "最大6000W, 瞬間最大12000W"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b39-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2 × USB-C 出力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b38-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 最大100W"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b41-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2 × USB-A 出力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b40-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A, 最大18W"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b43-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "シガーソケット出力"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b42-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "12V⎓10A 最大10A"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b45-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "1 × DC 拡張ポート(出力)"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b44-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "80.5V-126V⎓41A 最大41A"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b47-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "充電温度"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b46-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "0°C~45°C (32°F~113°F)"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b49-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "動作温度"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b48-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "-15°C~45°C (5°F~113°F)"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b50-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "-15°C~-10°C (5°F~14°F) 出力電力：3000W"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b52-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "保存温度"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b51-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "1ヶ月 -20℃~45℃ (-4℉~113℉); 3ヶ月 0℃~45℃ (32℉~113℉);"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b53-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "1年 0℃~25℃ (32℉~77℉)"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b55-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "認証"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b54-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "UN38.3"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b56-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "※USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b57-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "本機の仕様および外観は、改善のため予告なく変更することがあります。"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b58-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "充電式電池のリサイクルについて"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b59-l0",
+        "p3-b59-l1",
+        "p3-b59-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b60-l0"
+      ],
+      "purpose": "fixed-symbol-marking",
+      "text": "Li-ion"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "同梱品"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b1-l0"
+      ],
+      "purpose": "shared-component-native-number",
+      "text": "2"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b2-l0"
+      ],
+      "purpose": "shared-component-native-number",
+      "text": "4"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b3-l0",
+        "p4-b3-l1"
+      ],
+      "purpose": "shared-component-native-number",
+      "text": "13"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "本体"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b4-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC充電ケーブル"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "MC4レンチ"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b6-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "取扱説明書"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b7-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b8-l0",
+        "p4-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "シガーソケット充電ケーブルは別売りです。Jackery公式サイトよりご購入いただけます。サポートが必要な場合は、Jackeryカスタマーサポートまでお問い合わせください。"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "各部の名称"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b11-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "前面"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b12-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "LCDディスプレイ"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b13-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "主電源ボタン"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b14-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "USB-C 出力ポート"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b15-l0",
+        "p4-b15-l1"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "5V⎓3A, 9V⎓3A, 12V⎓3A,15V⎓3A, 20V⎓5A, 最大100W"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b16-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "DC出力ボタン"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b17-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "USB-A 出力ポート"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b18-l0",
+        "p4-b18-l1"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "5-6V⎓3A, 6-9V⎓2A,9-12V⎓1.5A, 最大18W"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b19-l0",
+        "p4-b19-l1"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "シガーソケット出力ポート"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b20-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "12V⎓10A 最大10A"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b21-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "USB出力ボタン"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b22-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "AC出力ポート"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b23-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "(NEMA 5-20)"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b24-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "1*AC出力:"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b24-l1"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "100V~ 50/60Hz, 20A, 2000W"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b24-l2"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "4*AC Total 出力:"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b24-l3"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "最大6000W, 瞬間最大12000W"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b25-l0"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "AC出力ボタン"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b26-l0",
+        "p4-b26-l1",
+        "p4-b26-l2"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "合計出力100V, 30A, 最大3000W、瞬間最大6000W"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b27-l0",
+        "p4-b27-l1",
+        "p4-b27-l2"
+      ],
+      "purpose": "live-figure-label/overview-front",
+      "text": "合計出力100V, 30A, 最大3000W、瞬間最大6000W"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "左側面"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b1-l0"
+      ],
+      "purpose": "live-figure-label/overview-left",
+      "text": "ハンドル"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b2-l0"
+      ],
+      "purpose": "live-figure-label/overview-left",
+      "text": "NEMA L14-30R AC出力ポート"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b3-l0"
+      ],
+      "purpose": "live-figure-label/overview-left",
+      "text": "100V/200V ~ 50/60Hz, 最大30A"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b4-l0",
+        "p5-b4-l1"
+      ],
+      "purpose": "live-figure-label/overview-left",
+      "text": "高出力機器に電力を供給し、家庭用電源のインレットボックスまたは切替スイッチに接続します。"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b5-l0",
+        "p5-b5-l1"
+      ],
+      "purpose": "live-figure-label/overview-left",
+      "text": "NEMA 6-20 AC出力ポート200V ~ 50/60Hz, 最大20A"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b6-l0"
+      ],
+      "purpose": "live-figure-label/overview-left",
+      "text": "200Vの入力電圧を必要とする機器と互換性があります。"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b7-l0"
+      ],
+      "purpose": "live-figure-label/overview-left",
+      "text": "ホイールブレーキ"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b8-l0"
+      ],
+      "purpose": "live-figure-label/overview-left",
+      "text": "ホイール"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "右側面"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b10-l0",
+        "p5-b10-l1"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "リトラクタブルハンドルボタンを押し、引っ張ると長さが伸びます"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b11-l0"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "低電圧入力ポート"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b12-l0",
+        "p5-b12-l1"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "2 x DC 8mm ポート; 16V-60V⎓10.5A 最大21A/1200Wに倍増11V-16V（動作電圧）⎓8A 最大8Aに倍増"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b13-l0"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "高電圧入力ポート"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b14-l0"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "135V-450V⎓15A 最大15A， 最大4000W"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b15-l0"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "電圧スイッチ"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b16-l0",
+        "p5-b16-l1"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "電圧スイッチのオン/オフにより、高電圧ソーラー充電の有効/無効を切り替えます。"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b17-l0"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "AC入力"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b18-l0"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "100V-120V ~ 50/60Hz, 最大15A，最大1500W"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b19-l0"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "DC拡張ポート端子A"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b20-l0"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "バッテリーパックに接続"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b21-l0"
+      ],
+      "purpose": "live-figure-label/overview-right",
+      "text": "底部ハンドル"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "液晶画面"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b1-l0"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "1"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b2-l0"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "2"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b3-l0"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "3"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b3-l1"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "4"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b3-l2"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "5"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b3-l3"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "6"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b3-l4"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "7"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b4-l0"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "8"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b5-l0"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "20"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b6-l0"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "21"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b7-l0"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "9"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b8-l0"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "10"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b9-l0"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "11"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b9-l1"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "12"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b9-l2"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "13"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b9-l3"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "14"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b9-l4"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "15"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b9-l5"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "16"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b9-l6"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "17"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b9-l7"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "18"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b9-l8"
+      ],
+      "purpose": "live-figure-label/lcd-map",
+      "text": "19"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b11-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "Wi-Fi"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b12-l0",
+        "p6-b12-l1",
+        "p6-b12-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "オン： Wi-Fi接続済。点滅： Wi-Fiに接続する準備ができました。オフ： Wi-Fi接続解除済。"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b14-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "Bluetooth"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b15-l0",
+        "p6-b15-l1",
+        "p6-b15-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "オン： Bluetooth接続済。点滅： Bluetoothに接続する準備ができました。オフ： Bluetooth接続解除済。"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b16-l0",
+        "p6-b18-l0",
+        "p6-b18-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "静音充電モードJackeryアプリで有効/無効にできます"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b19-l0",
+        "p6-b19-l1",
+        "p6-b19-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "オン： 充電中の騒音が大幅に低減され、充電電力が低下し、充電速度が低減します。オフ： 静音充電モードが無効になっています。"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b20-l0",
+        "p6-b21-l0",
+        "p6-b21-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリー節約モードJackeryアプリで有効/無効にできます"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b22-l0",
+        "p6-b22-l1",
+        "p6-b22-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "オン：製品の電力使用量を削減して、バッテリー寿命を延ばします。オフ：バッテリー節約モードが無効になっています。"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b24-l0",
+        "p6-b25-l0",
+        "p6-b25-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "自家発電モードJackeryアプリで有効/無効にできます"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b26-l0",
+        "p6-b26-l1",
+        "p6-b26-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "太陽光エネルギーの利用を最大化し、蓄電された太陽光エネルギーを優先することで、ご家庭の電力からの供給量を削減します。"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b28-l0",
+        "p6-b29-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "計画充電モードJackeryアプリで設定してください"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b30-l0",
+        "p6-b30-l1",
+        "p6-b30-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "Jackery ポータブル電源 5000 Plusの充電時間をカスタマイズすることで、電気料金オフピーク時間に基づいた充電プランを選択。これにより月々の電気料金を削減することができます。"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b32-l1",
+        "p6-b32-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "オンラインUPSJackeryアプリで設定できます"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b33-l0",
+        "p6-b33-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "オン： 製品はオンラインUPSモードです（0 ms）。オフ： バックアップUPSモード（デフォルト）。"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b36-l0",
+        "p6-b36-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "交流電源による出力マーク（正弦波）"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b35-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC出力（純正弦波）がオンになっています。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b2-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "入力電力表示"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b1-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "入力電力をワットで表示します。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "充電残り時間"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b4-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "充電残り時間を表示します。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC入力電力表示"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b7-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "製品は、系統電力を使用し、AC入力を介して充電されます。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b11-l0",
+        "p7-b11-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "シガーソケット入力電力表示"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b10-l0",
+        "p7-b10-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "製品は、DC 12V（カーチャージ）を使用し、低PV入力（8020）を介して充電されています。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b13-l0",
+        "p7-b13-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "高電圧入力インジケーター"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b12-l0",
+        "p7-b12-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "製品は、高PV入力（MC4）を介し、ソーラーパネルを使用して充電されます。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b16-l0",
+        "p7-b16-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "低電圧入力インジケーター"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b15-l0",
+        "p7-b15-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "製品は、ソーラーパネルを使用し、低PV入力（8020）を介して充電されています。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b18-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリーアイコン"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b19-l0",
+        "p7-b19-l1",
+        "p7-b19-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "製品の充電中は、バッテリーのパーセンテージを囲むオレンジ色の円が順番に点灯します。他のデバイスの充電時には、オレンジ色の円は点灯したままになります。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b21-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリー残量警告灯"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b22-l0",
+        "p7-b22-l1",
+        "p7-b22-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "オン：バッテリー残量が20％未満です。点滅：バッテリー残量が5％未満です。オフ：製品は充電中です。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b25-l0",
+        "p7-b25-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリーレベルパーセントタグ"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b24-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリー残量を表示します。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b28-l0",
+        "p7-b28-l1",
+        "p7-b28-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリーパックインジケータと接続された量"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b27-l0",
+        "p7-b27-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "本製品が指定された数の5000 Plusバッテリーパックに接続されていることを示します。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b30-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "エラーコード"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b30-l1",
+        "p7-b30-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "製品エラーが発生しました。詳細については、トラブルシューティングのセクションを参照してください。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b33-l0",
+        "p7-b33-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "高温インジケーター"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b31-l0",
+        "p7-b31-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "高温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b35-l0",
+        "p7-b35-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "低温インジケーター"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b34-l0",
+        "p7-b34-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "低温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b37-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "省エネモード"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b38-l0",
+        "p7-b38-l1",
+        "p7-b38-l2",
+        "p7-b38-l3",
+        "p7-b38-l4",
+        "p7-b38-l5",
+        "p7-b38-l6"
+      ],
+      "purpose": "live-copy",
+      "text": "出力の消し忘れによる不要なバッテリー消費を防ぐため、製品はデフォルトで省エネモードを有効にしています。デバイスが接続されていない場合、または接続されているデバイスの消費電力が特定のしきい値（AC出力≤25W、USB出力≤2W、カー出力≤2W）を下回っている場合、デバイスは12時間後にすべての出力を自動的にオフにします。オン/オフ：AC電源ボタンと主電源ボタンの両方を長押しします"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b41-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "出力電力"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b40-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "出力電力をワットで表示します。"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b44-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "残り放電時間"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b43-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "放電残りの時間を表示します。"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b10-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "1"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b13-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "2"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b17-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "3"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b23-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "4"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b27-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "5"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b31-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "6"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b34-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "7"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b0-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "8"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b3-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "9"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b6-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "10"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b9-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "11"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b14-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "12"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b17-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "13"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b20-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "14"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b23-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "15"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b26-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "16"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b29-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "17"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b32-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "18"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b36-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "19"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b39-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "20"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b42-l0"
+      ],
+      "purpose": "native-lcd-row-number",
+      "text": "21"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "使い方"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b2-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "重要"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b1-l0",
+        "p8-b1-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "省エネモードでは、DC出力またはAC出力をオンにするか、充電入力または放電出力がない場合、12時間後に自動的にシャットダウンします。"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b3-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "出力オン/オフ"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b4-l0"
+      ],
+      "purpose": "live-figure-label/power",
+      "text": "前提：主電源ボタンのみがオンになっています。"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b5-l0"
+      ],
+      "purpose": "live-figure-label/power",
+      "text": "オン"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b6-l0"
+      ],
+      "purpose": "live-figure-label/power",
+      "text": "1回押す"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b7-l0"
+      ],
+      "purpose": "live-figure-label/power",
+      "text": "オフ"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b8-l0"
+      ],
+      "purpose": "live-figure-label/power",
+      "text": "3秒間長押し"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b9-l0"
+      ],
+      "purpose": "live-figure-label/power",
+      "text": "3S"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b10-l0",
+        "p8-b11-l0",
+        "p8-b12-l0",
+        "p8-b13-l0"
+      ],
+      "purpose": "live-figure-label/power",
+      "text": "本製品のデフォルトの待機時間は2時間です。(充電または放電がない場合、2時間後に自動的にシャットダウンします）。 自動シャットダウン時間はJackeryアプリで設定できます。"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b14-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC出力のオン/オフ"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b15-l0"
+      ],
+      "purpose": "live-figure-label/ac-output",
+      "text": "前提：主電源ボタンがオンになっていることを確認してください。"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b16-l0"
+      ],
+      "purpose": "live-figure-label/ac-output",
+      "text": "オン"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b17-l0"
+      ],
+      "purpose": "live-figure-label/ac-output",
+      "text": "1回押す"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b18-l0"
+      ],
+      "purpose": "live-figure-label/ac-output",
+      "text": "オフ"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b19-l0"
+      ],
+      "purpose": "live-figure-label/ac-output",
+      "text": "1回押す"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "USB出力オン/オフ"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b1-l0"
+      ],
+      "purpose": "live-figure-label/usb-output",
+      "text": "前提：主電源ボタンがオンになっていることを確認してください。"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b2-l0"
+      ],
+      "purpose": "live-figure-label/usb-output",
+      "text": "オン"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b3-l0"
+      ],
+      "purpose": "live-figure-label/usb-output",
+      "text": "1回押す"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b4-l0"
+      ],
+      "purpose": "live-figure-label/usb-output",
+      "text": "オフ"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b5-l0"
+      ],
+      "purpose": "live-figure-label/usb-output",
+      "text": "1回押す"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "DC出力オン/オフ"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b7-l0"
+      ],
+      "purpose": "live-figure-label/dc-output",
+      "text": "前提：主電源ボタンがオンになっていることを確認してください。"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b8-l0"
+      ],
+      "purpose": "live-figure-label/dc-output",
+      "text": "オン"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b9-l0"
+      ],
+      "purpose": "live-figure-label/dc-output",
+      "text": "1回押す"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b10-l0"
+      ],
+      "purpose": "live-figure-label/dc-output",
+      "text": "オフ"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b11-l0"
+      ],
+      "purpose": "live-figure-label/dc-output",
+      "text": "1回押す"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b12-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "LCDスクリーン"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b15-l0",
+        "p9-b18-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "LCDスクリーン"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b23-l0",
+        "p9-b24-l0",
+        "p9-b27-l0",
+        "p9-b29-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "常時点灯表示モード（充電中または放電中）"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b13-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "オンにする"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b14-l0",
+        "p9-b14-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "主電源ボタンを押すか、充電入力がある場合。"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b17-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "オフにする"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b16-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "主電源ボタンを押します。"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b19-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "自動オフ"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b20-l0",
+        "p9-b20-l1",
+        "p9-b20-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "2分間操作がないとLCDは自動的に消灯し、スリープモードになります。"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b21-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "オンにする"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b22-l0",
+        "p9-b22-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "LCD画面がオンのときに主電源ボタンをダブルクリックします。"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b26-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "オフにする"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b25-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "主電源ボタンを押します。"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b28-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "自動オフ"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b30-l0",
+        "p9-b30-l1",
+        "p9-b30-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "常時点灯ディスプレイモードは、2時間操作がないと自動的に消灯します。"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "キーの組み合わせ"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b1-l0",
+        "p10-b1-l1",
+        "p10-b1-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "ボタン操作機能"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "主電源ボタン"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "USB電源ボタン"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b2-l0"
+      ],
+      "purpose": "live-key-duration",
+      "text": "3S"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b4-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "両方を3秒間長押し"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b3-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "Wi-FiとBluetoothをリセット"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b11-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "主電源ボタン"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b11-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "AC電源ボタン"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b7-l0"
+      ],
+      "purpose": "live-key-duration",
+      "text": "3S"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "両方を3秒間長押し"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b8-l0",
+        "p10-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "省エネモードのオン/オフを切り替えます"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b17-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "USB電源ボタン"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b16-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC電源ボタン"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b12-l0"
+      ],
+      "purpose": "live-key-duration",
+      "text": "3S"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b14-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "両方を3秒間長押し"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b13-l0",
+        "p10-b15-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "Wi-FiとBluetoothをオンにします"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b22-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "DC電源ボタン"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b23-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC電源ボタン"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b18-l0"
+      ],
+      "purpose": "live-key-duration",
+      "text": "3S"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b20-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "両方を3秒間長押し"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b19-l0",
+        "p10-b21-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "オンラインUPSまたはバックアップUPSに切り替えます"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b24-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "トラブルシューティング"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b25-l0",
+        "p10-b25-l1",
+        "p10-b25-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "エラーコード名前説明（内部故障メンテナンス専用）"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b26-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "F0"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b28-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "BMSデータ通信エラー"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b27-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "BMSとメインボード間のデータ通信障害"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b29-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "F1"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b31-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "インバーターデータ通信エラー"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b30-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "インバーターとメインボード間のデータ通信障害"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b32-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "DC入力データ通信エラー"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b32-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "F2"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b32-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "DC充電モジュールとBMS間のデータ通信障害"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b33-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "BMSまたはバッテリーの故障"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b33-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "F3"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b33-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "BMSまたはバッテリーの故障"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b34-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリー過電圧"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b34-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "F4"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b34-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリー過電圧"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b35-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリー低電圧"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b35-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "F5"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b36-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリー低電圧"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b37-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "F6"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b38-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "インバーターの故障"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b39-l0",
+        "p10-b39-l1",
+        "p10-b39-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "AC出力過電流 / 過負荷 / 短絡；系統電力入力過電圧 / 低電圧 / 過周波数 / 低周波数；インバーター過熱保護オン（起動）絶縁検出障害"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b40-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "F7"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b41-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "DC入力障害"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b42-l0",
+        "p10-b42-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "PV入力過電圧；DC充電モジュール過熱保護オン / 起動；DC充電モジュールの出力過電流保護オン / 起動"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b43-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "F8"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b45-l0",
+        "p10-b45-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリーの充電 / 放電 過電流 / 短絡"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b44-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "BMS過電流 / 短絡保護オン / 起動"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b46-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "F9"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b47-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "DC出力過電流 / 短絡"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b48-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "USB短絡保護オン / 起動"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b49-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "FA"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b50-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "並列ユニット通信エラー"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b51-l0",
+        "p10-b51-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "2つの5000 Plusの欠陥が原因で発生した両ユニット間のデータ通信障害。"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b52-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "FC"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b54-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリーパック通信エラー"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b53-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "5000 Plusとバッテリーパック間のデータ通信障害"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "UPS機能"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b1-l0",
+        "p11-b1-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "UPS（無停電電源装置）は、停電などが発生した時に電気の供給を自動で切り替え、自動バックアップ電力を供給する継続的な電源システムです。"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b2-l0",
+        "p11-b2-l1",
+        "p11-b2-l2"
+      ],
+      "purpose": "live-figure-label/ups",
+      "text": "本製品をAC充電ケーブルでコンセントに接続し、AC出力ボタンを押して、同時に電化製品に電力を供給してください。"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b7-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "重要"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b3-l0",
+        "p11-b4-l0",
+        "p11-b5-l0",
+        "p11-b6-l0",
+        "p11-b8-l0",
+        "p11-b9-l0",
+        "p11-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "·本製品のNEMA L14-30RおよびNEMA 6-20 コンセントは、製品が AC 充電ケーブルを使用して壁のコンセントに接続されている場合、パススルー機能により100V 出力を提供します。·システム設定は、製品がオンラインUPSモードで再起動すると、バックアップUPSモードに戻ります。·オンラインUPSモードでは、NEMA 5-20出力ポートのみが動作し、0ミリ秒スイッチングをサポートし、最大出力電力は3000Wです。·バックアップUPSとして使用している際はパススルー機能により充電と出力が同時に行われている状態のため、ポータブル電源の最大出力は1500Wに制限され、停電時には定格出力に戻ります。"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b11-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "本製品はバックアップUPS（20ミリ秒切り替え）とオンラインUPS（0ミリ秒切り替え）に対応しています。"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b12-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バックアップUPS"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b13-l0",
+        "p11-b13-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "デフォルトではバックアップUPS機能が有効になっています。主電源が突然失われた場合、このデバイスは20ミリ秒以内に自動的に電源供給を切り替え、電化製品の電源を入れます。"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b14-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "オンラインUPS"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b15-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "オンラインUPSモード(0ミリ秒電源切り替え)に変更する方法は2通りあります。"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b16-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "1. JackeryアプリでオンラインUPS機能を有効にする。"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b16-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "2. ディスプレイ画面にオンラインUPSのアイコンが表示されるまで、DCボタンとACボタンを同時に押してください。"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "バッテリーパック（別売）に接続"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b1-l0",
+        "p12-b1-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "本製品は最大5個のバッテリーパックに対応し、大容量電源のニーズに応えることができます。使用方法の詳細については、Jackery Battery Pack 5000 Plusの取扱説明書を参照してください。"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b2-l0"
+      ],
+      "purpose": "live-figure-label/battery-packs",
+      "text": "≥20cm"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b2-l1"
+      ],
+      "purpose": "live-figure-label/battery-packs",
+      "text": "≥20cm"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b4-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "重要"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b3-l0",
+        "p12-b3-l1",
+        "p12-b4-l1",
+        "p12-b4-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "Battery packを Jackery Explorer 5000 Plus に接続する前に、両方の電源がオフになっていることを確認してください。製品が適切に動作するよう、両側の吸気口と排気口が遮られていないことを確認してください。適切な放熱を確保するため、通気口と物との間に少なくとも20cmの空間を空けてください。"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "充電方法"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "最初に使用する前に、デバイスを完全に充電してください。"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b7-l0",
+        "p12-b7-l1",
+        "p12-b7-l2",
+        "p12-b7-l3"
+      ],
+      "purpose": "live-copy",
+      "text": "グリーンエネルギー優先モード:本製品はグリーンエネルギー優先モードを搭載しており、ソーラーパネルとAC充電ケーブルを使って同時に充電できます。同時に充電すると、ソーラーが優先されますが、バッテリーの最大許容電力で同時に充電されます。"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ご注意"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b8-l0",
+        "p12-b9-l0",
+        "p12-b11-l0",
+        "p12-b12-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・製品の充電動作温度範囲は0℃～45℃、放電動作温度範囲は-15℃～45℃です。上限・下限温度を超えた場合、充放電が制限され、または充放電不可の可能性があります。・温度によって、製品の充電効率と実際の容量は異なります。・周囲温度が-15℃～-10℃の場合、最大出力は3000Wに低下します。"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b16-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ご注意"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b13-l0",
+        "p12-b14-l0",
+        "p12-b15-l0",
+        "p12-b17-l0",
+        "p12-b18-l0",
+        "p12-b19-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・はじめてお使いになるときは、本製品をフル充電してからご使用ください。・充電池は空の状態で長期保管(3カ月～6カ月）すると、性能が劣化したり、充電できなくなる場合があります。・本機を長期保管する場合には、3ヵ月に１度を目安に本体にACアダプターやソーラーパネルを通して蓄電が可能か、他製品に給電可能かなど動作確認をお願い致します。長期保管の際は満充電(電池残量100%)で保管することを推奨します。"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "AC充電ケーブル"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b1-l0",
+        "p13-b2-l0",
+        "p13-b3-l0",
+        "p13-b4-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "コンセントよりJackery ポータブル電源 5000 Plus 本体に充電する場合、電流容量が大きいため、他機器と併用したり途中接続をすると、コンセントの電流上限値を超え充電停止したり、配線やコンセント・接続部が発熱し、火災の原因となる恐れがあります。電源タップなどを使って他の電気製品と併用しないでください。"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b5-l0"
+      ],
+      "purpose": "live-figure-label/ac-charge",
+      "text": "付属のAC充電ケーブルをご使用ください。"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ソーラー充電"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ご注意"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b7-l0",
+        "p13-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ソーラーパネルを直列に接続する場合、すべてのパネルの最大電圧出力が低電圧入力ポートでは16V～60V、高電圧入力ポートでは135V～450Vの範囲内にあることを確認してください。"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "低電圧入力ポートに接続"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b11-l0",
+        "p13-b11-l1",
+        "p13-b11-l2",
+        "p13-b11-l3"
+      ],
+      "purpose": "live-copy",
+      "text": "低電圧入力電圧範囲：16V < ソーラー入力合計 < 60VJackery ポータブル電源 5000 Plusには2つの低電圧入力ポートがあり、各ポートはJackery SolarSaga200を3枚まで直接接続することができます。1つの低電圧入力ポートに2つ以上のソーラーパネルを同時に接続する必要がある場合は、下図を参照してSolarsagaアダプター（別売り）を介して充電してください。"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b12-l0"
+      ],
+      "purpose": "live-figure-label/low-pv",
+      "text": "SolarSaga 200 × 6"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b2-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ご注意"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b0-l0",
+        "p14-b1-l0",
+        "p14-b3-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2つの入力を同時に使用する場合、2つのチャンネルの電圧の不一致による機器の損傷や充電の問題を避けるため、必ず同じ種類のソーラーパネルを使用し、2つの入力のソーラーパネルの数は同じでなければなりません。"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b4-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "高電圧入力ポートに接続"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "高電圧入力電圧範囲：135V < 総太陽光入力 < 450V"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ご注意"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b6-l0",
+        "p14-b7-l0",
+        "p14-b9-l0",
+        "p14-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・高電圧入力を接続する前またはメンテナンス中には、高電圧スイッチをオフにしておきます。・高電圧入力ポートを使用する前に、電圧スイッチがオンになっていることを確認してください。・付属のMC4レンチを使用してMC4コネクタを分解する前に高電圧スイッチが「OFF」または「LOCK」の位置にあることを確認してください。"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b11-l0",
+        "p14-b11-l1"
+      ],
+      "purpose": "live-figure-label/high-pv",
+      "text": "付属の MC4 レンチで MC4 コネクタを分解します。"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b12-l0"
+      ],
+      "purpose": "live-figure-label/high-pv-lock",
+      "text": "ロック"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b13-l0"
+      ],
+      "purpose": "live-figure-label/high-pv-lock",
+      "text": "ロック解除"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b14-l0"
+      ],
+      "purpose": "live-figure-label/high-pv-lock",
+      "text": "高電圧スイッチを「LOCK」位置に回し、ロック機"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b15-l0"
+      ],
+      "purpose": "live-figure-label/high-pv-lock",
+      "text": "ロック機構を解除すると、スイッチは「OFF」"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b16-l0"
+      ],
+      "purpose": "live-figure-label/high-pv-lock",
+      "text": "構を押します。"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b17-l0"
+      ],
+      "purpose": "live-figure-label/high-pv-lock",
+      "text": "位置 に戻ります。"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "高電圧＋低電圧入力"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b1-l0",
+        "p15-b1-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "低電圧入力用の電圧範囲：16V < 総太陽光入力 < 60V高電圧入力の電圧範囲：135V < 総太陽光入力 < 450V"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b2-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "車載シガーソケットからの充電について"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b3-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・  本製品は12V / 10A対応の車のシガーソケットから充電が可能です。"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b3-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "・  必ずエンジンを始動した後にシガーソケットをご使用ください。車のバッテリー上がりを防止するためです。"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b3-l2",
+        "p15-b4-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・  ご使用前に、車側の充電ポートとシガーライターケーブルの接触に問題がないかをご確認ください。しっかりと所定の位置に差し込まれているかもご確認ください。"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b4-l1",
+        "p15-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・  悪路などで車の振動が大きい場合は、接触不良により発熱・焼損の恐れがあります。その場合は、安全のためシガーソケットでの充電を中止してください。"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b5-l1",
+        "p15-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "※本製品の誤った取り扱いにより生じた損害について、当社では一切の責任を負いかねます。あらかじめご了承ください。"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b7-l0"
+      ],
+      "purpose": "live-figure-label/car-charge",
+      "text": "車"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b8-l0"
+      ],
+      "purpose": "live-figure-label/car-charge",
+      "text": "*シガーソケット充電ケーブルは別売りです。"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b11-l0",
+        "p15-b14-l0",
+        "p15-b16-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "充電に関する安全上のご注意"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b9-l0",
+        "p15-b10-l0",
+        "p15-b12-l0",
+        "p15-b13-l0",
+        "p15-b15-l0",
+        "p15-b17-l0",
+        "p15-b18-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "シガーソケット充電とソーラー充電を同時に使用しないでください。同時に使用すると、車のヒューズが損傷する可能性があります。シガーソケット充電は12V, 10A車専用で、24V車は充電できません。人身傷害や物的損害を避けるため、本製品の充電に24V車を使用しないでください。Jackeryブランド以外の付属品を使用して充電しないでください。特に、ソーラーパネルで充電する際は、Jackeryのソーラーパネルを使用することをお勧めします。他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "安全上のご注意"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b1-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ご使用の前にこの「安全上のご注意」をよくお読みのうえ、正しくお使いください。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b2-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "絵表示について"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b3-l0",
+        "p16-b3-l1",
+        "p16-b3-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "製品を安全に正しくお使いいただき、お客様や他の方々への危害や財産への損害を未然に防止するための表示です。内容をよく理解してから本文をお読みください。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "警告"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b4-l0",
+        "p16-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "この表示を無視して、誤った取り扱いをすると、人が死亡または重傷を負う可能性が想定される内容を示しています。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "注意"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b7-l0",
+        "p16-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "この表示を無視して、誤った取り扱いをすると、人が傷害を負う可能性が想定される内容または物的損害の発生が想定される内容を示しています。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "絵表示の説明"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b11-l0",
+        "p16-b11-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "コンセントから電源プラグを抜く記号"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b11-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "行為を指示する記号"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b13-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "製品を分解、改造を禁止する記号"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b15-l0",
+        "p16-b15-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "製品に濡れた手で触れることを禁止する記号"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b12-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "製品を濡らすことを禁止する記号"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b14-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "行為を禁止する記号"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b16-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "警告"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b18-l0",
+        "p16-b18-l1",
+        "p16-b18-l2",
+        "p16-b18-l3",
+        "p16-b18-l4"
+      ],
+      "purpose": "live-copy",
+      "text": "火のそばや炎天下の車内、熱器具の周辺など高温（45℃以上）になる場所で使用したり、放置しない発熱や発火、破裂する原因になります。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b20-l0",
+        "p16-b20-l1",
+        "p16-b20-l2",
+        "p16-b20-l3"
+      ],
+      "purpose": "live-copy",
+      "text": "強い衝撃を与えたり、投げつけたりしない発熱や発火、破裂する原因になります。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b22-l0",
+        "p16-b22-l1",
+        "p16-b22-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "水など、液体を入れたり、濡らしたりしない発熱や発火の原因になります。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b23-l0",
+        "p16-b23-l1",
+        "p16-b23-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "濡れた手で本体や接続するケーブルを触らない火災や感電の原因になります。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b17-l0",
+        "p16-b17-l1",
+        "p16-b17-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "端子部にケーブル以外の金属類を差し込まない発熱や発火の原因になります。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b19-l0",
+        "p16-b19-l1",
+        "p16-b19-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "雷が鳴りだしたら、電源プラグにふれない  (充電をしない)感電の原因になります。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b21-l0",
+        "p16-b21-l1",
+        "p16-b21-l2",
+        "p16-b21-l3"
+      ],
+      "purpose": "live-copy",
+      "text": "各接続端子には確実に差し込む差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b24-l0",
+        "p16-b24-l1",
+        "p16-b24-l2",
+        "p16-b24-l3",
+        "p16-b24-l4"
+      ],
+      "purpose": "live-copy",
+      "text": "接地接続は必ず、電源プラグを電源につなぐ前に行って下さいまた、接地接続を外す場合は、必ず電源プラグを切り離してから行って下さい。"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "警告"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b1-l0",
+        "p17-b2-l0",
+        "p17-b2-l1",
+        "p17-b2-l2",
+        "p17-b3-l0",
+        "p17-b3-l1",
+        "p17-b4-l0",
+        "p17-b4-l1",
+        "p17-b4-l2",
+        "p17-b5-l0",
+        "p17-b5-l1",
+        "p17-b6-l0",
+        "p17-b6-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "万が一、次のような異常が発生したときはすぐに使用をやめる煙が出ている、異臭がする落としたり、破損したとき異音がする内部に水や異物が入ったとき電源コード  (ACアダプター)  が傷んだときこのような異常が発生したまま使用していると、火災や感電の原因になります。すぐにACアダプターをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。煙が出なくなることを確認してからカスタマーサポートにご連絡ください。お客様による修理は危険ですので絶対におやめください。"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b7-l1",
+        "p17-b7-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "分解、改造しない故障、発熱、火災·感電の原因になります。"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b8-l0",
+        "p17-b9-l0",
+        "p17-b9-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "表示された電源電圧以外で使用しない故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "付属品と本製品が破損した場合は、ご自身で修理をしない"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b11-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "注意"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b12-l0",
+        "p17-b12-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "本製品の上に物を載せたり、不安定な場所に置かない倒れたり、落ちたりしてけがの原因になります。"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b13-l0",
+        "p17-b13-l1",
+        "p17-b13-l2",
+        "p17-b14-l0",
+        "p17-b14-l1",
+        "p17-b14-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。· 医療機器や使用上、生命に関わるような機器· 社会的、公共的に重要な機器など· 重要な事業用機器など"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b15-l0",
+        "p17-b15-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "心臓にペースメーカーを装着している方は使用しないペースメーカーが、本製品の影響を受ける恐れがあります。"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b16-l0",
+        "p17-b16-l1",
+        "p17-b16-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "格納式ハンドルを使用してJackery ポータブル電源 2000 を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "使用上のご注意"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b1-l0",
+        "p18-b2-l0",
+        "p18-b3-l0",
+        "p18-b4-l0",
+        "p18-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "Jackery ポータブル電源 5000 Plusは、定格出力6000Wです。通常時で消費電力が6000Wまでの機器に給電ができるため、多くの電化製品や端末に対応可能です。ただし、電気モーターを搭載している製品については、例(ヒーター、掃除機、ポンプ、冷蔵庫、電動丸ノコ、エアコン、洗濯機、電子レンジ、ドライヤーなど)起動時に「誘導負荷」が発生し、公称電力の3～7倍の電力が必要となります。定格出力6000Wは、一定の電力で動く機器への出力可能範囲を指しています。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b6-l0",
+        "p18-b7-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "6000Wの出力を超えた場合は、電気回路が自動的に調整され、電力が低減、または保護機能が作動し自動で遮断することがあります。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b8-l0",
+        "p18-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "またAC出力ポート6つ搭載されておりますが、6つ同時にご利用頂く場合、合計して6000W以内であることをご確認の上ご利用ください。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b13-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "ご注意"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b10-l0",
+        "p18-b11-l0",
+        "p18-b12-l0",
+        "p18-b13-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "始動電力が出力上限値(定格出力)を大幅に超える可能性のある製品のご利用や、定格出力を超え給電がストップした製品を繰り返し利用することはポータブル電源のバッテリーが損傷するリスクがありますのでお控えください。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b14-l0",
+        "p18-b15-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・出力上限値を超えた電化製品を利用しない(始動電力が公称電力3倍～7倍の誘導負荷のヒーター、掃除機、冷蔵庫、エアコン、電子レンジ、洗濯機、電動丸、ポンプなどは特にご注意下さい) 。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b16-l0",
+        "p18-b17-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・本製品は、充電ケーブル、DCケーブル、USBケーブルの差し込みが緩い状態で使用した場合、発火や発煙などの恐れがあります。確実に奥まで差し込んでから、ご使用くださ い。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b18-l0",
+        "p18-b19-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・本製品は防塵·防水仕様ではありませんので、ほこりや水、海水などがかからないように注意してください。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b20-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・ほこりが多い場所や高温多湿の場所での充電および使用、放置をしないでください。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b21-l0",
+        "p18-b22-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・本製品を不安定な場所に置かないでください。必ず、平坦で安定した場所に置いて使用してください。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b23-l0",
+        "p18-b24-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・本製品の通風孔は、安全上絶対にふさがないでください。また、本製品の各面から5cm以上スペースを空けてください。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b25-l0",
+        "p18-b26-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・充電または給電中は本製品が温かくなります(故障ではありません)、周囲には物を置かないでください。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b27-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・本製品接続機器のケーブルを差すときは、真っすぐな向きに差してください。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b28-l0",
+        "p18-b29-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・接続機器のケーブルを抜くときは、必ずプラグ部分を持って抜いてください。ケーブルを引っ張ったり折り曲げると、断線などの原因となります。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b30-l0",
+        "p18-b31-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・給電する機器の充電制御や充電状況、環境などにより給電できない、または急速充電にならない場合があります。"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b32-l0",
+        "p18-b33-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・充電または給電中はラジオやチューナー、テレビなどに雑音が入る場合があります。雑音が入る場合には、それらの製品から離れた場所でお使いください。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・本体が汚れたらコンセントから電源プラグを抜き、柔らかい布で乾拭きしてください。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b1-l0",
+        "p19-b2-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "汚れがひどいときは、水または薄めた中性洗剤でふきとってください。シンナーやベンジンなどは絶対に使わないでください。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b3-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・入出力の電力(W)"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b4-l0",
+        "p19-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "接続機器の消費電力が本製品の出力上限値を超えている場合、電源を自動的に遮断します。消費電力が仕様以下であることを確認してから出力ボタンを押してください。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・低/高温警報"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b7-l0",
+        "p19-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "本機は-15℃～45℃(5°F～113°F)の温度範囲でお使いの機器に電力供給が可能となり、本機への蓄電は0℃～45℃℃(32°F～113°F)で行えます。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b9-l0",
+        "p19-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "動作温度が上記範囲外にある場合、本製品が温度異常マークが表示され動作しない可能性がございます。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b11-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "温度異常マークを解除するには、動作温度範囲内の環境に2時間以上置くようにお願い致します。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b12-l0",
+        "p19-b13-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・容量表示に関しては、あくまで参考値となり、電圧により電力が算出され、表示数値にズレが発生することがあります。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b14-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "免 責 事 項"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b15-l0",
+        "p19-b16-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・火災、地震、第三者による行為、その他の事故、お客様の故意または過失誤用・誤動作・その他の異常な条件下での使用により生じた損害に関して、当社は一切責任を負いません。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b17-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・付属品と本製品が破損した場合は、ご自身で修理を行わないでください。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b18-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ご自身で分解・修理したことにより生じた損害に関し、当社は一切責任を負いません。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b19-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・保証範囲は利用規約に適用され、記載されていない内容は当社の保証範囲外となります。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b20-l0",
+        "p19-b21-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・取扱説明書の記載事項が遵守されないことにより生じた不適合について当社は責任を負いかねます。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b22-l0",
+        "p19-b23-l0",
+        "p19-b24-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・本製品の使用、または使用不能から発生する付随的な損害(事業利益損失含む)、当社が関与しない接続機器との組み合わせによる誤動作などから生じた損害に関して、当社は一切の責任を負いません。"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b25-l0",
+        "p19-b26-l0",
+        "p19-b27-l0",
+        "p19-b28-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "・本製品は病院仕様のCPAP（シーバップ）、ECMO（エクモ）、ペースメーカなど、身の安全に関わる医療救急機械の電源としての使用、または、消費電力の大きいな設備、例えば核施設設備、スペースシャトル製造などの使用は推薦されません。上記設備の使用後、火災、機器故障など個人安全を脅かす事故の責任を取りません。"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "Jackeryアプリ ユーザーマニュアル"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b1-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "1. アプリをダウンロードしてログインするには"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b2-l0",
+        "p20-b4-l0",
+        "p20-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "Google PlayまたはApp Storeで「Jackery」と検索し、アプリをインストールしてください。その後、登録とログインを行ってください。"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b3-l0",
+        "p20-b5-l0",
+        "p20-b7-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "または、下の QR コードをスキャンしてアプリをダウンロードし、インストールしてください。"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2. デバイスを追加するには"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2.1  APPの右上にあるデバイス追加ボタン        をクリックします；",
+      "rendered_text": "2.1  APPの右上にあるデバイス追加ボタン+をクリックします；",
+      "vector_recovery": {
+        "page": 20,
+        "drawing_indices": [
+          0,
+          1
+        ],
+        "role": "inline-add-device-plus"
+      }
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b10-l0",
+        "p20-b11-l0",
+        "p20-b12-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2.2 デバイスの主電源ボタンを長押しして電源をいれると、ディスプレー画面にWi-FiとBluetoothのアイコンが点滅し、デバイスがネットワーク設定モードに入ったことを示します。アイコン点滅中ボタンをクリックし、アプリが近くのデバイスに接続し、Bluetoothのアクセス許可を開くことを許可します；"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b13-l0"
+      ],
+      "purpose": "live-figure-label/app-add",
+      "text": "2.1"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b13-l1"
+      ],
+      "purpose": "live-figure-label/app-add",
+      "text": "2.2"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b15-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "備考"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b14-l0",
+        "p20-b16-l0",
+        "p20-b16-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "電源を入れた後、アプリが2時間以内接続されていないと、デバイスは自動的にWi-FiとBluetoothをオフにします。再度Wi-FiとBluetoothをオンにするには、「USBボタン」と「ACボタン」を同時長押しする必要があります。"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b17-l1"
+      ],
+      "purpose": "live-figure-label/app-control",
+      "text": "DC ボタン"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b17-l0"
+      ],
+      "purpose": "live-figure-label/app-control",
+      "text": "POWER ボタン"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b18-l0"
+      ],
+      "purpose": "live-figure-label/app-control",
+      "text": "USB ボタン"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b18-l1"
+      ],
+      "purpose": "live-figure-label/app-control",
+      "text": "AC ボタン"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b19-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2.3 検出されたデバイスアイコンをクリックすると、アプリは自動的にBluetoothでデバイスを接続します。"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b20-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "備考：バインド処理中に「デバイスがバインドされました」と表示された場合は、以下の2つの方法で接続できます："
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "デバイス所有者は、アプリを通じてこのデバイスを他のユーザーと共有します。"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b1-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "「POWERボタン」と「USBボタン」を3秒間長押ししてデバイスをリセットし、再度バインドしてくだい。"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b2-l0",
+        "p21-b3-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2.4 デバイスが正常に接続されると、デバイスが接続するWi-Fiの名前とパスワードを入力する必要があり、デバイスは自動的にWi-Fiネットワークに接続します。"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "備考"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b4-l0",
+        "p21-b6-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2.4GHz帯のWi-Fiネットワークを選択してください。デバイスは、5GHz帯のWi-Fiネットワークには対応していません。"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b7-l0",
+        "p21-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2.5 デバイスのホーム画面でデバイスが正常に追加されると、デバイスのWi-Fi アイコンは常にオンになります。"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b9-l0",
+        "p21-b10-l0"
+      ],
+      "purpose": "fixed-native-product-or-app-ui",
+      "text": "5000 Plus5000 Plus"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b11-l1"
+      ],
+      "purpose": "live-figure-label/app-results",
+      "text": "2.3"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b11-l2"
+      ],
+      "purpose": "live-figure-label/app-results",
+      "text": "2.4"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b11-l0"
+      ],
+      "purpose": "live-figure-label/app-results",
+      "text": "2.5"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b12-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "上記のスクリーンショットはご参考まで。"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b13-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "3. デバイスのバインドを解除するには"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b14-l0",
+        "p21-b15-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "デバイスのメインインターフェースの右上隅にある「設定」ボタンをクリックして設定ページに入り、ページの下部にある「バインド解除」ボタンをクリックしてデバイスのバインドを解除します。"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b16-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "4. ご確認"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b17-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "4.1 Wi-FiとBluetoothをオンにするには（ディスプレーにWi-FiとBluetoothのアイコンが点灯）："
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b18-l0",
+        "p21-b19-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "デバイスがオンになれば自動的にオンになり、ディスプレーにWi-FiとBluetoothのアイコンが点灯します；"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b20-l0",
+        "p21-b21-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "上記アイコンが点灯しない場合、ディスプレーにWi-FiとBluetoothのアイコンが点灯するまで、USB出力ボタンとAC出力ボタンを同時長押しします。"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b22-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "4.2 Wi-FiとBluetoothをオフにするには（ディスプレーにWi-FiとBluetoothのアイコンが消える）："
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b23-l0",
+        "p21-b24-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "ディスプレーにWi-FiとBluetoothのアイコンが消えるまで、USB出力ボタンとAC出力ボタンを同時長押しします；"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b25-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "2 時間以内にデバイスが接続されない場合、Wi-FiとBluetooth は自動的にオフになります。"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b26-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "4.3 Wi-FiとBluetoothをリセットするには："
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b27-l0",
+        "p21-b28-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "主電源ボタンとUSBボタンを同時に3秒間押すと、Wi-FiとBluetoothが初期化され、システムが再起動します。接続されているアプリアカウントはバインド解除されます。"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b0-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "保証サービス"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b1-l0",
+        "p22-b2-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "本書は、株式会社 Jackery Japan（以下、当社）製品の交換・修理にかかる保証サービスの内容を説明するものです。"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b3-l0",
+        "p22-b3-l1",
+        "p22-b3-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "1. 当社は、当社が運営するJackery Japan 公式オンラインストア、当社もしくは正規販売代理店が販売元として販売した当社のポータブル電源・ソーラーパネル、その他の付属製品について保証期間中に、当社が定める条件に従って保証サービスを提供しております。"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b4-l0",
+        "p22-b4-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "2. 当社は、保証期間中に、当社が定める「保証条件」に合致した場合、Jackery 製品を交換・無償修理するものとします。"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b5-l0",
+        "p22-b5-l1",
+        "p22-b5-l2"
+      ],
+      "purpose": "live-copy",
+      "text": "保証期間内に当社に有効な請求が行われた場合、当社は、同じJackery 製品を交換もしくは価値の等しい製品と交換いたします。無償修理については、当社ポータブル電源の新品のご購入日から30 日以上5 年間以内の製品を対象といたします。"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b6-l0",
+        "p22-b6-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "3. 取扱説明書、本体貼付ラベルなどの注意書に従った使用状態で、保証期間内に製品が故障した場合のみ無償交換· 無償修理をさせていただきます。"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b7-l0",
+        "p22-b7-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "4. 当社は、日本国内に居住または滞在中のお客様のみを対象として、日本国内においてのみ本サービスを提供いたします。"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "5. 保証期間内でも次の場合には保証対象外となります。"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "(1) 保証期間中に発生した故障について、保証期間終了後に請求された場合"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b10-l0",
+        "p22-b10-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "(2) 使用上の誤り( 取扱説明書、本体貼付ラベル等の注意書きに従った正常な使用をしなかった場合を含む) による故障· 損傷"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b11-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "(3) 他の機器から受けた障害または不当な修理、改造による故障· 損傷"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b12-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "(4) お買上げ後の移設、輸送、落下などによる故障· 損傷"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b13-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "(5) 火災や地震、風水害、落雷その他の天災地変、公害、塩害、異常電圧などによる故障· 損傷"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b14-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "(6) 業務用など一般家庭用以外での使用による故障損傷"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b15-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "(7) 消耗· 摩耗した部品の交換、汚損した部分の交換"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b16-l0",
+        "p22-b16-l1"
+      ],
+      "purpose": "live-copy",
+      "text": "6. 在庫切れや販売終了など当社都合で新品製品が調達できなかった場合返金にて対応することがあります。"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b17-l0",
+        "p22-b18-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "7. 本書に基づく交換・修理製品については、最初のご購入時の保証期間、または交換日から90 日間のどちらか長い期間で保証されます。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b0-l0",
+        "p23-b1-l0",
+        "p23-b2-l0",
+        "p23-b3-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "8. お客様の修理依頼品の状態、故障部分あるいは当社の事情により、修理による対応が不可能、困難または合理的でないと判断した場合、かつ保証期間内と確認できた場合に、当社が選定する同等程度の機能・性能を有する製品（修理依頼品と類似の製品・異機種を含みます）と修理依頼品との交換をさせていただく場合がございます。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b4-l0",
+        "p23-b5-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "9. 当社は、保証期間が過ぎた製品及び保証対象外の製品について、修理すれば使用できる場合は、ご希望により有償修理にて承ります。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b6-l0",
+        "p23-b7-l0",
+        "p23-b8-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "10. 当社の製品または製品のご使用から起因して生じた障害・損傷により、直接または間接的に発生した製品以外への損失、その他の金銭的損害につきまして、弊社はその一切の責任は負わないものとします。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b9-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "11. 本書は再発行いたしませんので紛失しないよう大切に保管してください。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b10-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "※保証期間はお買い上げ日より5 年間となります。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b11-l0",
+        "p23-b12-l0",
+        "p23-b13-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "※本書は、本書記載内容（上記記載）で無償製品交換・無償修理を行うことをお約束するものです。故障による保証サービスを受ける際は、当社もしくは当社製品正規取扱店が運営するショップでの購入が証明できるもの（インターネットでの購入は注文"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b14-l0",
+        "p23-b15-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "番号、それ以外はレシートや領収書など）をお手元にご用意の上、JackeryJapan カスタマーサービス、もしくは販売店へお問い合わせください。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b16-l0",
+        "p23-b17-l0",
+        "p23-b18-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "※故障による保証サービスを受ける際は、当社もしくは当社製品正規取扱店が運営するショップでの購入が証明できるもの（インターネットでの購入は注文番号、それ以外はレシートや領収書など）が必須となりますのでご注意ください。当社製品正規取"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b19-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "扱店につきましては、当社公式HP をご確認ください。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b20-l0",
+        "p23-b21-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "※本書によって保証責任者、及びそれ以外の事業者に対するお客様の法律上の権利を制限するものではありません。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b22-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "※保証内容は都合により予告なく変更する場合がございますのでご了承ください。"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b23-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "公式サイト"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b24-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "http://www.jackery.jp"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b25-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "カスタマーサービス"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b26-l0"
+      ],
+      "purpose": "live-copy",
+      "text": "jackery.jp@jackery.com"
+    },
+    {
+      "physical_page": 3,
+      "line_ids": [
+        "p3-b61-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "01"
+    },
+    {
+      "physical_page": 4,
+      "line_ids": [
+        "p4-b28-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "02"
+    },
+    {
+      "physical_page": 5,
+      "line_ids": [
+        "p5-b22-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "03"
+    },
+    {
+      "physical_page": 6,
+      "line_ids": [
+        "p6-b37-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "04"
+    },
+    {
+      "physical_page": 7,
+      "line_ids": [
+        "p7-b45-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "05"
+    },
+    {
+      "physical_page": 8,
+      "line_ids": [
+        "p8-b20-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "06"
+    },
+    {
+      "physical_page": 9,
+      "line_ids": [
+        "p9-b31-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "07"
+    },
+    {
+      "physical_page": 10,
+      "line_ids": [
+        "p10-b55-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "08"
+    },
+    {
+      "physical_page": 11,
+      "line_ids": [
+        "p11-b17-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "09"
+    },
+    {
+      "physical_page": 12,
+      "line_ids": [
+        "p12-b20-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "10"
+    },
+    {
+      "physical_page": 13,
+      "line_ids": [
+        "p13-b13-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "11"
+    },
+    {
+      "physical_page": 14,
+      "line_ids": [
+        "p14-b18-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "12"
+    },
+    {
+      "physical_page": 15,
+      "line_ids": [
+        "p15-b19-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "13"
+    },
+    {
+      "physical_page": 16,
+      "line_ids": [
+        "p16-b25-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "14"
+    },
+    {
+      "physical_page": 17,
+      "line_ids": [
+        "p17-b17-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "15"
+    },
+    {
+      "physical_page": 18,
+      "line_ids": [
+        "p18-b34-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "16"
+    },
+    {
+      "physical_page": 19,
+      "line_ids": [
+        "p19-b29-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "17"
+    },
+    {
+      "physical_page": 20,
+      "line_ids": [
+        "p20-b21-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "18"
+    },
+    {
+      "physical_page": 21,
+      "line_ids": [
+        "p21-b29-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "19"
+    },
+    {
+      "physical_page": 22,
+      "line_ids": [
+        "p22-b19-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "20"
+    },
+    {
+      "physical_page": 23,
+      "line_ids": [
+        "p23-b27-l0"
+      ],
+      "purpose": "printed-folio",
+      "text": "21"
+    }
+  ]
+}

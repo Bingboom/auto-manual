@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="产品矩阵：已发布网页说明书里的产品，按产品线、容量和发布市场排列，附规格对照、功能矩阵和搭配关系。">
+  <title>产品矩阵</title>
+  <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/site-shell.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/product-matrix.css', 1) }}">
+  <script defer src="{{ pathto('_static/product-matrix.js', 1) }}"></script>
+</head>
+{% from "_site_shell.html" import site_sidebar, site_topbar, site_script with context %}
+{%- macro market_tags(regions) -%}<span class="pm-markets">{% for region in regions %}<span class="pm-mk">{{ region|e }}</span>{% endfor %}</span>{%- endmacro -%}
+{%- macro card(item, ghost=false) -%}
+<div class="pm-card{% if ghost %} is-ghost{% endif %}" data-regions="{{ item.regions|join(' ')|e }}" title="{{ item.name|e }} · {{ item.model|e }} · 来源 {{ item.source|e }}{% if item.basis %} · 说明书原文：{{ item.basis|e }}{% endif %}{% if item.variant_of %} · 与 {{ item.variant_of|e }} 为同一产品的不同市场版本{% endif %}">
+  <b>{{ item.name|e }}{% if item.inferred %}<sup title="{{ inferred_note|e }}">*</sup>{% endif %}</b>
+  <span class="pm-model">{{ item.model|e }}</span>
+  <span class="pm-facts">{% for fact in item.facts %}{% if not loop.first %} {% endif %}<span>{{ fact|e }}</span>{% endfor %}</span>
+  {{ market_tags(item.regions) }}
+</div>
+{%- endmacro -%}
+<body class="app product-matrix">
+{{ site_sidebar('product-matrix', site_nav) }}
+<div class="app-content">
+  {{ site_topbar('知识库', '产品矩阵') }}
+
+  <main id="top">
+    <section class="page-head">
+      <h1>产品矩阵<span>.</span></h1>
+      <p>按说明书资料库里已发布的网页说明书整理产品线、容量和功能。{% if built_on %}数据截至 {{ built_on|e }}。{% endif %}</p>
+    </section>
+
+    <div class="kpi-row">
+      <div class="kpi"><span>有网页说明书的型号</span><strong>{{ facts.models }}</strong><em>共 {{ facts.books }} 本网页说明书 · {{ facts.variants }} 个语言版本</em></div>
+      <div class="kpi"><span>电源与电池</span><strong>{{ facts.energy }}</strong><em>按产品线 × 容量排在下方</em></div>
+      <div class="kpi"><span>配套产品</span><strong>{{ facts.accessories }}</strong><em>太阳能板、充电器与配件</em></div>
+      {%- if facts.pending %}
+      <div class="kpi"><span>更多型号</span><strong class="pm-kpi-text">持续维护中</strong></div>
+      {%- endif %}
+    </div>
+
+    <div class="pm-filter" id="pm-filter" role="group" aria-label="按发布市场筛选" hidden>
+      <span>按发布市场看：</span>
+      <button type="button" data-market="" aria-pressed="true">全部</button>
+      {%- for market in markets %}
+      <button type="button" data-market="{{ market|e }}" aria-pressed="false">{{ market|e }}</button>
+      {%- endfor %}
+    </div>
+
+    <section class="pm-section" id="positioning" aria-labelledby="positioning-title">
+      <h2 id="positioning-title">产品定位：产品线 × 容量</h2>
+      <p class="pm-note">每张卡片是一个型号，标出容量、AC 额定输出、重量和已有网页说明书的市场。同一列里的型号往往是同一电池平台在不同产品线或市场的版本。带 * 的型号说明书导航表没有收录，按说明书内容归入；归入备电类的型号须有说明书原文支撑，不看产品名称，悬停卡片可看原文。</p>
+      <div class="pm-scroll" tabindex="0" role="region" aria-label="产品定位矩阵，可横向滚动">
+        <div class="pm-grid" role="table" aria-label="产品定位矩阵" style="--pm-tiers:{{ tiers|length }}">
+          <div class="pm-row pm-head" role="row">
+            <div class="pm-line" role="columnheader">产品线 \ 容量</div>
+            {%- for tier in tiers %}<div class="pm-tier" role="columnheader">{{ tier|e }}</div>{% endfor %}
+          </div>
+          {%- for line in lines %}
+          <div class="pm-row" role="row">
+            <div class="pm-line" role="rowheader">{{ line.title|e }}<small>{{ line.count }} 个型号</small></div>
+            {%- for cell in line.cells %}
+            <div class="pm-cell" role="cell">{% for item in cell %}{{ card(item) }}{% endfor %}</div>
+            {%- endfor %}
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="pm-section" id="accessories" aria-labelledby="accessories-title">
+      <h2 id="accessories-title">配套产品</h2>
+      <p class="pm-note">太阳能板、充电器、连接与搬运配件；没有独立说明书的产品以虚线框标出，规格写在所注明的说明书里。</p>
+      <div class="pm-groups">
+        {%- for group in accessories %}
+        <div class="pm-group">
+          <h3>{{ group.title|e }}</h3>
+          <div class="pm-group-cards">{% for item in group.cards %}{{ card(item, group.ghost) }}{% endfor %}</div>
+        </div>
+        {%- endfor %}
+      </div>
+    </section>
+
+    <section class="pm-section" id="capabilities" aria-labelledby="capabilities-title">
+      <h2 id="capabilities-title">功能矩阵</h2>
+      <p class="pm-note">能力表里的每个机型。功能开关决定说明书出现哪些章节；同一型号在不同区域可能不同，悬停单元格查看区域。</p>
+      <div class="pm-legend"><span><i class="pm-dot is-all"></i>全部区域支持</span><span><i class="pm-dot is-some"></i>部分区域支持</span><span><i class="pm-dot is-none"></i>不支持</span></div>
+      <div class="pm-scroll" tabindex="0" role="region" aria-label="功能矩阵，可横向滚动">
+        <table class="pm-table pm-caps">
+          <thead><tr><th scope="col">型号</th>{% for name in capability_names %}<th scope="col">{{ name|e }}</th>{% endfor %}<th scope="col">能力表区域</th></tr></thead>
+          <tbody>
+            {%- for row in capabilities %}
+            <tr data-regions="{{ row.published|join(' ')|e }}"><th scope="row"><b>{{ row.model|e }}</b><small>{{ row.name|e if row.name else '持续维护中' }}</small></th>
+              {%- for cell in row.cells %}<td class="pm-cap" title="{{ cell.tip|e }}"><i class="pm-dot is-{{ cell.state }}" role="img" aria-label="{{ cell.tip|e }}"></i></td>{% endfor -%}
+              <td class="pm-regions">{{ row.regions|join(' · ')|e }}</td></tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="pm-section" id="specs" aria-labelledby="specs-title">
+      <h2 id="specs-title">规格对照</h2>
+      <p class="pm-note">电源与电池的关键规格，点表头排序。AC 额定与峰值取说明书中的整机合计；没有交流输出的型号记为 —。不同区域版本的电压和额定值可能不同，这里取首选版本（英文优先）。</p>
+      <div class="pm-scroll" tabindex="0" role="region" aria-label="规格对照，可横向滚动">
+        <table class="pm-table pm-specs" id="pm-specs">
+          <thead><tr>
+            <th scope="col"><button type="button" data-col="0">型号</button></th>
+            <th scope="col"><button type="button" data-col="1">产品线</button></th>
+            <th scope="col" aria-sort="ascending"><button type="button" data-col="2" data-num="1">容量 Wh</button></th>
+            <th scope="col"><button type="button" data-col="3" data-num="1">AC 额定 W</button></th>
+            <th scope="col"><button type="button" data-col="4" data-num="1">峰值 W</button></th>
+            <th scope="col"><button type="button" data-col="5" data-num="1">循环次数</button></th>
+            <th scope="col"><button type="button" data-col="6" data-num="1">重量 kg</button></th>
+            <th scope="col"><button type="button" data-col="7" data-num="1">扩展口</button></th>
+            <th scope="col"><button type="button" data-col="8">网页市场</button></th>
+            <th scope="col"><button type="button" data-col="9" data-num="1">语言数</button></th>
+          </tr></thead>
+          <tbody>
+            {%- for row in specs %}
+            <tr data-regions="{{ row.regions|join(' ')|e }}">
+              <td class="pm-key" data-v="{{ row.model|e }}"><b>{{ row.model|e }}</b><small>{{ row.name|e }}</small></td>
+              <td data-v="{{ row.line|e }}">{{ row.line|e }}</td>
+              {%- for raw, shown in row.figures %}<td class="pm-num" data-v="{{ raw }}">{{ shown }}</td>{% endfor %}
+              <td data-v="{{ 1 if row.expansion else 0 }}">{{ '有' if row.expansion else '—' }}</td>
+              <td data-v="{{ row.regions|join(' ')|e }}">{{ market_tags(row.regions) }}</td>
+              <td class="pm-num" data-v="{{ row.langs }}">{{ row.langs }}</td>
+            </tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {%- if pairings %}
+    <section class="pm-section" id="pairings" aria-labelledby="pairings-title">
+      <h2 id="pairings-title">搭配关系</h2>
+      <p class="pm-note">各说明书正文里提到的扩容电池、转换开关、太阳能板和兼容主机，照原文写法列出，不推断未写明的兼容性；说明书不再提到的条目自动不显示。</p>
+      <div class="pm-scroll" tabindex="0" role="region" aria-label="搭配关系，可横向滚动">
+        <table class="pm-table pm-pairs">
+          <thead><tr><th scope="col">说明书</th><th scope="col">提到的扩容 / 配套产品</th><th scope="col">提到的太阳能板</th></tr></thead>
+          <tbody>
+            {%- for row in pairings %}
+            <tr><th scope="row"><b>{{ row.model|e }}</b><small>{{ row.name|e }}</small></th><td>{{ row.parts|join('、')|e or '—' }}</td><td>{{ row.solar|join('、')|e or '—' }}</td></tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {%- endif %}
+
+    <section class="pm-section" id="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">数据来源与说明</h2>
+      <ul class="pm-sources">
+        <li>型号、市场与语言：<code>docs/publish/publish_manifest.json</code>{% if built_on %}（构建于 {{ built_on|e }}）{% endif %}；名称取自说明书资料库目录。</li>
+        <li>规格：各型号网页说明书的 SPECIFICATIONS / 仕様 / 规格表，照原文数值；悬停产品卡片可看规格取自哪个语言版本。</li>
+        <li>产品线：说明书资料库导航表的分组；导航表未收录的型号（带 *）和搭配关系由 <code>tools/rtd_portal_assets/product_matrix.json</code> 维护。归入备电类须引用说明书原文，原文不再出现时该型号移到“其他”并在构建日志提示。</li>
+        <li>功能：<code>data/model_capabilities.csv</code> 的 {{ capability_names|length }} 项能力开关{% if facts.pending %}；更多型号持续维护中{% endif %}。</li>
+        {%- for note in footnotes %}
+        <li>{{ note|e }}</li>
+        {%- endfor %}
+      </ul>
+    </section>
+  </main>
+</div>
+{{ site_script() }}
+</body>
+</html>

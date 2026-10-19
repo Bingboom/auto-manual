@@ -14,7 +14,7 @@ Cut 2 writes registered semantic instances directly into ordered
 `manual-flow/v2` nodes.  `tools/manual_ir/whole_document_components.py` still
 has a deliberately small discovery registry: Overview, FCC, Inbox,
 specification tables, and callout strips.  The Web consumer dispatches those
-five families from `tools/web_embedded_components.py`; replay does not reopen
+five families from `tools/web/embedded_components.py`; replay does not reopen
 RST or source CSVs.
 
 The style contract already defines these three warranty semantics and LCD

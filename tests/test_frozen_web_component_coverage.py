@@ -5,12 +5,12 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from tools.frozen_ai_web import replay_package
-from tools.frozen_web_component_coverage import (
+from tools.web.frozen_ai_web import replay_package
+from tools.web.frozen_web_component_coverage import (
     audit_frozen_component_coverage, require_frozen_component_coverage,
 )
 from tools.manual_ir.hashing import value_sha256
-from tools.web_language_release_evidence import require_publishable_manual_ir
+from tools.web.language_release_evidence import require_publishable_manual_ir
 
 
 ROOT = Path(__file__).resolve().parents[1]

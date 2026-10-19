@@ -77,7 +77,7 @@ candidate 加载器的 fail-closed 是**防偷跑**设计
 ### 3.2 绑定 identity pins(rebind 工具,勿手算)
 
 ```bash
-python tools/reference_layout_rebind.py \
+python -m tools.reference_layout_rebind \
   --plan docs/renderers/contracts/reference_layout/<target>_v1_<date>.json \
   --manual-ir docs/_build/<MODEL>/<REGION>/idml/manual.ir.json \
   --approved-by <操作者> --approval-method native-indesign-pdf-review \

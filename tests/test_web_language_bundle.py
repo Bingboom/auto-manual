@@ -8,7 +8,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools.gen_index_bundle import MaterializedBundle
-from tools.web_language_bundle import materialize_web_language_projection, split_web_bundle
+from tools.web.language_bundle import materialize_web_language_projection, split_web_bundle
 
 
 class LanguageBundleTests(unittest.TestCase):
@@ -132,7 +132,7 @@ class LanguageBundleTests(unittest.TestCase):
         wrapper.write_text("old wrapper")
         self.bundle = replace(self.bundle, wrapper_index_path=wrapper)
 
-        with mock.patch("tools.web_language_bundle.os.replace", side_effect=OSError("blocked")):
+        with mock.patch("tools.web.language_bundle.os.replace", side_effect=OSError("blocked")):
             with self.assertRaisesRegex(OSError, "blocked"):
                 materialize_web_language_projection(
                     self.bundle,

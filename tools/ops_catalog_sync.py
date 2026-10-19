@@ -35,7 +35,6 @@ import csv
 import io
 import json
 import re
-import sys
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -49,18 +48,21 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.document_link_queue import split_rendered_url  # noqa: E402
+from tools.web.document_link_queue import split_rendered_url  # noqa: E402
 from tools.feishu_record_transport import run_lark_cli_json as _transport_run  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import parse_json_payload, resolved_cli_command_parts  # noqa: E402
-from tools.queue_runtime import command_failure_message, format_command  # noqa: E402
-from tools.rtd_deployment_receipt import DEFAULT_RTD_BASE_URL  # noqa: E402
+from tools.build_queue.runtime import command_failure_message, format_command  # noqa: E402
+from tools.rtd.deployment_receipt import DEFAULT_RTD_BASE_URL  # noqa: E402
 from tools.utils.path_utils import ops_catalog_reconcile_whitelist_of  # noqa: E402
 from tools.verify_web_deployment_targets import (  # noqa: E402
     MANIFEST_SCHEMA,
     fetch_manifest_bytes,
     manifest_targets,
 )
+from tools.utils.log import get_logger
+
+_ERR = get_logger("ops-catalog-sync", stream="stderr")
 
 REPORT_SCHEMA = "auto-manual-ops-catalog-sync/v1"
 WHITELIST_SCHEMA = "auto-manual-ops-catalog-reconcile-whitelist/v1"
@@ -274,7 +276,8 @@ class LarkOps:
             for index, row in enumerate(rows):
                 if not isinstance(row, list):
                     continue
-                entry = dict(zip(fields, row))
+                # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
+                entry = dict(zip(fields, row, strict=False))
                 if index < len(record_ids):
                     entry["_record_id"] = record_ids[index]
                 records.append(entry)
@@ -607,7 +610,7 @@ def apply_sync_plan(
                     "human columns changed during a machine-column update: "
                     f"{after[MACHINE_COL_COUNT:]!r} != {expected_human!r}"
                 )
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - one row's failure is recorded, the batch continues
             failures.append({**entry, "error": f"{type(exc).__name__}: {exc}"})
         else:
             applied.append({**entry, "readback": after})
@@ -635,7 +638,7 @@ def apply_sync_plan(
             after = _readback_row(ops, spreadsheet_token, sheet_id, row_number)
             if after != full_values:
                 raise RuntimeError(f"readback mismatch on appended row: {after!r}")
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - one row's failure is recorded, the batch continues
             failures.append({**entry, "error": f"{type(exc).__name__}: {exc}"})
         else:
             applied.append({**entry, "readback": after})
@@ -932,13 +935,10 @@ def run_sync(args: argparse.Namespace, ops: LarkOps) -> tuple[int, dict[str, Any
     for item in outcome["applied"]:
         print(f"{prefix} WROTE {item['action']} row {item['row']} {item['doc_id']} (readback ok)")
     for item in outcome["failures"]:
-        print(f"{prefix} FAILED {item['action']} {item['doc_id']}: {item['error']}", file=sys.stderr)
+        _ERR.error(f"{prefix} FAILED {item['action']} {item['doc_id']}: {item['error']}")
     if outcome["failures"]:
-        print(
-            f"{prefix} {len(outcome['failures'])} row(s) failed; rerun sync to retry just those rows "
-            "(the plan is idempotent)",
-            file=sys.stderr,
-        )
+        _ERR.error(f"{prefix} {len(outcome['failures'])} row(s) failed; rerun sync to retry just those rows "
+            "(the plan is idempotent)")
         return EXIT_DIFF, report
     return EXIT_OK, report
 
@@ -989,8 +989,8 @@ def main(argv: list[str] | None = None) -> int:
             exit_code, report = run_sync(args, ops)
         else:
             exit_code, report = run_reconcile(args, ops)
-    except Exception as exc:
-        print(f"[ops-catalog-sync] ERROR: {exc}", file=sys.stderr)
+    except Exception as exc:  # noqa: BLE001 - CLI boundary reports the error and exits non-zero
+        _ERR.error(f"[ops-catalog-sync] ERROR: {exc}")
         return EXIT_ERROR
     _emit_report(args, report)
     return exit_code

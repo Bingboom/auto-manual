@@ -49,7 +49,8 @@
   `manuals.jackery.com` 域名选择及首次响应时限；域名落地因 DNS 权限暂缓。
   这些决定不重新发起选择；当前在线采集与任务运行状态仍需独立核验。
 - [Web Publish 契约](dev/web_publish_pipeline.md)已有队列与 Git-only 共用冻结快照发布出口的机制。
-  当前代码的门户 `site_base_url` 和 Web Publish 工作流默认 URL 指向 `ht-doc.readthedocs.io`；
+  2026-10-13 起门户 `site_base_url`、Web Publish 工作流默认 URL 与回执/核验工具默认值均指向
+  `https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`（#1514 及后续 PR）；
   实际仓库变量、RTD 后台分支配置及线上访问本次未核验。
 - 截图记载旧站构建 `33875158`（8 月 2 日，JE-1000F US 1.7），新站构建
   `34611273`（9 月 17 日，含 JE-1000F US 2.3）；这是操作者提供的调查记录，
@@ -94,7 +95,7 @@
 | ⑤ 审核、发布与追溯 | 评审、批准、部署、验证、归档和回退 | 发布记录、部署证据、交付包 |
 | 横向：运营与反馈 | 采集使用数据、复核问题、安排修订、验证改进 | 运营行动及修订需求 |
 
-以上沿用架构文档的五层生产模型。运营与反馈是跨层闭环，不新增一套构建层级或发布事实源。
+以上沿用[架构文档](architecture/System%20Evolution%20Strategy.md) §4 的五层生产模型，各层定义以该文为准，本表只列本方案关心的职责与输出。运营与反馈是跨层闭环，不新增一套构建层级或发布事实源。
 
 主流程：内容接入 → 快照 → 装配与 IR → 渲染 → 审核发布 → 分发与运营。
 
@@ -116,7 +117,7 @@ Hello-Docs 发布 PR → 合入 `main` → HT-Doc 部署 → 线上版本与链�
 两种接入方式保留各自的来源和回执，不为 Git-only 补造队列历史，也不因为共用出口而授权在线表写入。
 
 HT-Manuals 兼容迁移是本轮首批任务，操作及证据要求由
-[发布入口整合检查](dev/web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)维护：
+[发布入口整合检查](dev/web_publish_pipeline/hosting-boundaries.md#31-hosting-convergence-and-legacy-entry-review)维护：
 
 1. 逐条建立旧 URL、新 URL、文档身份、内容版本、发布标识和处理结论的对应表。
 2. 只读核查 `HTML_link`、包材二维码、历史交付记录；经授权修改时保留原值并回读同一记录。
@@ -355,6 +356,7 @@ REV-01/02 核对目标及旧链接，REV-08 补齐目标站点检查，REV-03 �
 本次不改 `AGENTS.md`、CI 工作流、配置或源数据；不新增 CLI 示例，所以不改快速上手指南。
 未完成任何实施工作包，所以不在 `code_optimization_log.md` 登记“阶段完成”。后续实际完成时由实施 PR 补记录。
 现有总执行清单仅链接本台账；进入实施后，切片 PR 引用对应 REV-ID，不另建竞争状态表。
+内容关系治理（Strategy §4.6、§4.8 所说的内容身份、适用性与关系状态登记）是计划目标状态，动工前先在执行台账登记，本方案不另列任务。
 
 中期（3–6 个月）在代表产品族和发布闭环通过后扩大多语言/IDML 复用并验证交接；
 长期（6–12 个月及以后）只在有消费团队、质量责任人、维护容量和可追溯内容时提供官网/客服/检索接口。

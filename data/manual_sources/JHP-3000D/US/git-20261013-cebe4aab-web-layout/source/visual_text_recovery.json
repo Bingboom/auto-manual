@@ -1,0 +1,20 @@
+{
+  "physical_page": 2,
+  "basis": "Outlined original glyphs checked against source pixels; native words do not contain these badge labels.",
+  "language_badges": {
+    "en": "EN",
+    "fr": "FR",
+    "es": "ES"
+  },
+  "presentation": "shared hb-preface-region",
+  "app_add_button": {
+    "physical_pages": [
+      20,
+      38,
+      56
+    ],
+    "text": "+",
+    "basis": "Native p20/p38/p56 step 2.1 prints a plus in a gray circular add-button graphic between button/bouton/botón and the following phrase. It is vector artwork, absent from extracted words.",
+    "presentation": "editable native-inline-plus span; CSS circle"
+  }
+}

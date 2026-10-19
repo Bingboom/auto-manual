@@ -5,6 +5,8 @@ import unittest
 
 import yaml
 
+from tools.rtd.deployment_receipt import DEFAULT_RTD_BASE_URL
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "feishu-web-publish-queue.yml"
@@ -39,7 +41,7 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertIn("merge --no-edit --no-ff -s ours", prepare)
         self.assertIn("read-tree --reset -u", prepare)
         self.assertIn("docs/publish", prepare)
-        self.assertIn("tools/publish_branch_assembly.py", assemble)
+        self.assertIn("tools.publish_branch_assembly", assemble)
         self.assertIn("--output-dir", assemble)
         self.assertIn("HEAD:refs/heads/publish", push)
         self.assertNotIn("--force", push)
@@ -76,12 +78,12 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertIn("review/*", pr_command)
 
         pending = str(self.steps[pending_index]["run"])
-        self.assertIn("tools/write_web_publish_html_link.py", pending)
+        self.assertIn("tools.write_web_publish_html_link", pending)
         self.assertIn("--pending", pending)
         self.assertIn("AUTO_MANUAL_RTD_BASE_URL", pending)
         rtd_base_url = str(self.job["env"]["AUTO_MANUAL_RTD_BASE_URL"])
-        self.assertIn("https://ht-doc.readthedocs.io", rtd_base_url)
-        self.assertNotIn("/en/latest", rtd_base_url)
+        # The workflow fallback is the serving root the tools default to, version prefix included.
+        self.assertIn(f"'{DEFAULT_RTD_BASE_URL}'", rtd_base_url)
 
     def test_build_time_lane_never_writes_html_link_directly(self) -> None:
         # The queue lane must not carry a direct writeback step any more; the
@@ -90,7 +92,7 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertNotIn("Write RTD HTML_link back to Document_link", text)
         for step in self.steps:
             run = str(step.get("run") or "")
-            if "tools/write_web_publish_html_link.py" in run:
+            if "tools.write_web_publish_html_link" in run:
                 self.assertIn("--pending", run)
 
     def test_failure_sentinel_is_the_last_step(self) -> None:

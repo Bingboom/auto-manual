@@ -1,0 +1,17 @@
+{
+  "scope": "US EN/FR/ES power-on/off two gray callouts only",
+  "change": "Center existing editable paragraph lines horizontally and vertically with scoped flex column CSS.",
+  "preserved": [
+    "All source JSON bytes",
+    "All base artwork and assets",
+    "Native line breaks and font sizes",
+    "Gray-frame positions and dimensions",
+    "Other figure labels",
+    "Prior layout corrections"
+  ],
+  "source_stylesheet_sha256": "80d183dec07d7245febbf22ff42c64896355fdffce47b0e04b93c353bceed271",
+  "browser_evidence": "validation/power-callout-browser.json",
+  "checks": "validation/power-callout-closure.json",
+  "publication_eligible": false,
+  "operator_acceptance": "pending combined layout review"
+}

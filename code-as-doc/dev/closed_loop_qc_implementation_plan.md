@@ -2,7 +2,7 @@
 
 Status: active implementation plan · Owner: 夏冰 · Created: 2026-06-07 · **Updated 2026-06-10 with shipped status.**
 
-> **✅ Implementation status (2026-06-10).** Near-term observation layer **shipped**: M1 `content_lint --json` (#338), M3 local reports (#339), M2 lightweight `source_ref` (#340), M5 docs (#341) — all verified (valid JSON, `findings.json`+`report.md` written, full test suite green). The B2 reviewer-diff channel (M7) **and** its source routing (M8) **also shipped — as the deterministic `tools/cloud_doc_backport.py` CLI** (`diff` / `apply-template` / `apply-review` / `verify-review` / `run-review` / `open-pr`), triggered from Feishu IM (#353) and opening draft PRs (#354); design: [`../architecture/Feishu_Cloud_Doc_Backport_Design.md`](../architecture/Feishu_Cloud_Doc_Backport_Design.md). **No standing LLM agent was built** — judgment is handled by guarded rules + human PR review. **M4 (Feishu `QC_Report` table) — writer shipped to the dry-run boundary (F8, Milestone F):** `tools/qc_report.py` maps `content_lint` findings to QC_Report rows and upserts them idempotently by `finding_hash`; creating the Feishu table and the live `lark-cli` write stay operator-gated. **Update (F1, Milestone F):** the sync-time `record_id` sidecar now ships — `sync-data` emits `data/phase2/source_record_index.json` and `content_lint` resolves `record_id` exact-or-abstain for indexed tables (lcd_icons; `Spec_Master` #397; `Manual_Copy_Source` keyed by `copy_key` on `Is_Latest` rows — the write-back target for `Localized_Copy`-origin values); content_lint's row-level spec findings (`spec_overview_drift`/`spec_master_row`) resolve to the **list** of the row's slot `record_ids` (a row spans multiple `Slot_key` records), shown in the report's `Record(s)` column; until an operator runs `sync-data`, `record_id` stays `null`/`snapshot_only`. Read "standing QC agent" below as the original design, superseded for now by the deterministic CLI.
+> **✅ Implementation status (2026-06-10).** Near-term observation layer **shipped**: M1 `content_lint --json` (#338), M3 local reports (#339), M2 lightweight `source_ref` (#340), M5 docs (#341) — all verified (valid JSON, `findings.json`+`report.md` written, full test suite green). The B2 reviewer-diff channel (M7) **and** its source routing (M8) **also shipped — as the deterministic `tools/backport/cloud_doc.py` CLI** (`diff` / `apply-template` / `apply-review` / `verify-review` / `run-review` / `open-pr`), triggered from Feishu IM (#353) and opening draft PRs (#354); design: [`../architecture/Feishu_Cloud_Doc_Backport_Design.md`](../architecture/Feishu_Cloud_Doc_Backport_Design.md). **No standing LLM agent was built** — judgment is handled by guarded rules + human PR review. **M4 (Feishu `QC_Report` table) — writer shipped to the dry-run boundary (F8, Milestone F):** `tools/qc_report.py` maps `content_lint` findings to QC_Report rows and upserts them idempotently by `finding_hash`; creating the Feishu table and the live `lark-cli` write stay operator-gated. **Update (F1, Milestone F):** the sync-time `record_id` sidecar now ships — `sync-data` emits `data/phase2/source_record_index.json` and `content_lint` resolves `record_id` exact-or-abstain for indexed tables (lcd_icons; `Spec_Master` #397; `Manual_Copy_Source` keyed by `copy_key` on `Is_Latest` rows — the write-back target for `Localized_Copy`-origin values); content_lint's row-level spec findings (`spec_overview_drift`/`spec_master_row`) resolve to the **list** of the row's slot `record_ids` (a row spans multiple `Slot_key` records), shown in the report's `Record(s)` column; until an operator runs `sync-data`, `record_id` stays `null`/`snapshot_only`. Read "standing QC agent" below as the original design, superseded for now by the deterministic CLI.
 
 This is the execution plan for the closed-loop QC requirements in
 [`../architecture/closed_loop_qc_agent_requirements.md`](../architecture/closed_loop_qc_agent_requirements.md).
@@ -145,7 +145,7 @@ Scope:
 
 Exit criteria:
 
-- `python tools/content_lint.py --data-root data/phase2 --json` emits valid JSON.
+- `python -m tools.content_lint --data-root data/phase2 --json` emits valid JSON.
 - Existing text output still works.
 - Unit tests cover one clean run and one finding per rule.
 
@@ -310,7 +310,7 @@ Exit criteria:
 ### M8: Standing QC Agent
 
 Status (2026-06-10): **superseded by a deterministic CLI.** The B2 routing /
-apply / verify / PR work shipped as `tools/cloud_doc_backport.py` + the Feishu IM
+apply / verify / PR work shipped as `tools/backport/cloud_doc.py` + the Feishu IM
 trigger (#342–#354) — **not** a standing LLM agent. A standing LLM agent remains
 an optional future layer, warranted only if judgment beyond guarded rules + human
 PR review is ever needed. The original design follows.
@@ -352,7 +352,7 @@ Deferred until source/report contracts stabilize:
 9. `feat(qc-agent): stand up report-only qc service`
 
 Each slice should pass the relevant unit tests and
-`python tools/check_doc_link_integrity.py` when docs change.
+`python -m tools.check_doc_link_integrity` when docs change.
 
 ## 6. Deferred Items
 

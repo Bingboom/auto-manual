@@ -1,0 +1,1317 @@
+[
+  {
+    "slot": "symbol-01.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "best_comparison_error": 0.0174941916870915,
+    "identity_check": "Reviewed p4 native shape; compare all glyph paths, native tint and real transparent margins (fixed threshold 0.02).",
+    "decision": "reuse checked shared variant bytes",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol-01.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "shared_symbol_key": "warning/outline-triangle-tinted"
+  },
+  {
+    "slot": "symbol-02.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/person-reading-circle-tw-477dfbd7.svg",
+    "best_comparison_error": 0.10077029292619827,
+    "identity_check": "Reviewed p4 native shape; compare all glyph paths, native tint and real transparent margins (fixed threshold 0.02).",
+    "decision": "reuse checked shared variant bytes",
+    "new_extraction_reason": "No catalog glyph passes native shape/tint/background comparison; TW recycling symbol differs from Li-ion logo.",
+    "final_path": "assets/symbol-02.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "779f14e6d648e3955bc1fb5ea606759f26da6562080602f465b60194ea9935a5",
+    "shared_symbol_key": "read-manual/person-reading-circle-tw-477dfbd7"
+  },
+  {
+    "slot": "symbol-03.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+    "best_comparison_error": 0.01974826388888889,
+    "identity_check": "Reviewed p4 native shape; compare all glyph paths, native tint and real transparent margins (fixed threshold 0.02).",
+    "decision": "reuse checked shared variant bytes",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol-03.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+    "shared_symbol_key": "keep-away-from-children/adult-child-frame-gray"
+  },
+  {
+    "slot": "symbol-04.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/screwdriver-prohibited-tw-477dfbd7.svg",
+    "best_comparison_error": 0.023063682938453157,
+    "identity_check": "Reviewed p4 native shape; compare all glyph paths, native tint and real transparent margins (fixed threshold 0.02).",
+    "decision": "reuse checked shared variant bytes",
+    "new_extraction_reason": "No catalog glyph passes native shape/tint/background comparison; TW recycling symbol differs from Li-ion logo.",
+    "final_path": "assets/symbol-04.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "482e56e11b72b30ca053ee1cc94021f98909ceb9497e9c084738fd2b4a0fe01b",
+    "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited-tw-477dfbd7"
+  },
+  {
+    "slot": "symbol-05.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+    "best_comparison_error": 0.013551666326252725,
+    "identity_check": "Reviewed p4 native shape; compare all glyph paths, native tint and real transparent margins (fixed threshold 0.02).",
+    "decision": "reuse checked shared variant bytes",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol-05.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+    "shared_symbol_key": "no-open-flame/fire-match-crossed-gray"
+  },
+  {
+    "slot": "symbol-06.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/taiwan-restricted-battery-477dfbd7.svg",
+    "best_comparison_error": 0.40333860974945535,
+    "identity_check": "Reviewed p4 native shape; compare all glyph paths, native tint and real transparent margins (fixed threshold 0.02).",
+    "decision": "reuse checked shared variant bytes",
+    "new_extraction_reason": "No catalog glyph passes native shape/tint/background comparison; TW recycling symbol differs from Li-ion logo.",
+    "final_path": "assets/symbol-06.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "0c810a41f2312ec8dff7b8af1beee394e0799f38761dfe9f8a36bb4aacf41564",
+    "shared_symbol_key": "recycle/taiwan-restricted-battery-477dfbd7"
+  },
+  {
+    "slot": "lcd-01.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.02555168334694989,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-01.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "2e6ed961723e02a85d355869482f2f66863576de9482fb0a9650ddfbd3ded2a5"
+  },
+  {
+    "slot": "lcd-02.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.026938976545479304,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-02.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "90a33061760cdab8805f469402b6626853cd2c0601e369f7456311fd2ea1307a"
+  },
+  {
+    "slot": "lcd-03.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-03.svg",
+    "best_comparison_error": 0.0185825588916122,
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-03.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9"
+  },
+  {
+    "slot": "lcd-04.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-04.svg",
+    "best_comparison_error": 0.015261820874183006,
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-04.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb"
+  },
+  {
+    "slot": "lcd-05.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.16728132659313724,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-05.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "ae2167d3e18827a575ec2d49ccbd168014dc35517dc2dd01a04e499774477e24"
+  },
+  {
+    "slot": "lcd-06.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.1539975234885621,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-06.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "6264e35ea700fb8ec93473700101202e7d5548ebd7e80bf4e9ebd3907b20aaf4"
+  },
+  {
+    "slot": "lcd-07.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.1765290968818083,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-07.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "ae1ef49a52ffe8f9022edb4f8c5929c26609a48276a3e8eef6476412829701d7"
+  },
+  {
+    "slot": "lcd-08.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.02617474724264706,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-08.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "3f94c9fd8da2838f7045a9fa6bf8d4323e49c89f2e902568090cdee45af4b54a"
+  },
+  {
+    "slot": "lcd-09.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.10077752672249456,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-09.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "997e2759c6817ed17033e107f1fb6853419f002ca85e913f040c1bb560c2cc23"
+  },
+  {
+    "slot": "lcd-10.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-08.svg",
+    "best_comparison_error": 0.01181981038943355,
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-10.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660"
+  },
+  {
+    "slot": "lcd-11.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-09.svg",
+    "best_comparison_error": 0.011853532645697168,
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-11.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd"
+  },
+  {
+    "slot": "lcd-12.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.02130150888480392,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-12.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "0fe2c971cd3f076b937fc814afed2c5b9c67c52d1e2f118b89fb3ea76e08d3e2"
+  },
+  {
+    "slot": "lcd-13.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.02099822133714597,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-13.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "f1d7a2845814596b5a40f8f498806db9bf49fbb21b43b488dad4b6543f8c32a8"
+  },
+  {
+    "slot": "lcd-14.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.1632681653390523,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-14.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "f2112155f6db2fdb111aef456be2f67e28855f1821f59a46eb562cd726c67f3f"
+  },
+  {
+    "slot": "lcd-15.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-17.svg",
+    "best_comparison_error": 0.007240817333877996,
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-15.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4"
+  },
+  {
+    "slot": "lcd-16.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-18.svg",
+    "best_comparison_error": 0.01535777505446623,
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-16.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22"
+  },
+  {
+    "slot": "lcd-17.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-19.svg",
+    "best_comparison_error": 0.010741336465141612,
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-17.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7"
+  },
+  {
+    "slot": "lcd-18.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-21.svg",
+    "best_comparison_error": 0.010010084763071896,
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-18.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0"
+  },
+  {
+    "slot": "lcd-19.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.2716227745438453,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-19.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "342c647f9bd551c21d0662f1d7d839361284c7e68667bd7dc2435f6ddd0f4fe1"
+  },
+  {
+    "slot": "lcd-20.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.02236615349264706,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-20.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "12223fddf58a3ffe6ed44f9677c824fc2b1e2e0414c7bf7b79e6b5f7d67e86b8"
+  },
+  {
+    "slot": "lcd-21.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "best_comparison_error": 0.02884763497412854,
+    "decision": "native glyph variant",
+    "new_extraction_reason": "Existing semantic icon candidates fail the fixed native glyph/tint comparison.",
+    "final_path": "assets/lcd-21.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "d7610ab6fac80a2cfc25560f23a0f7e991dc80c9d7b8be8d995f379a69c23e9e"
+  },
+  {
+    "slot": "lcd-22.svg",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-26.svg",
+    "best_comparison_error": 0.010783143552559913,
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-22.svg",
+    "background_policy": "standalone transparent",
+    "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e"
+  },
+  {
+    "slot": "inbox-main",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/inbox-main.svg",
+    "physical_page": 5,
+    "bbox": [
+      46,
+      71,
+      96,
+      117
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "cd6d3ca35bbab772a3a05c70baf624b574b27082b509b17be2e21164423bfb4d",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips"
+  },
+  {
+    "slot": "inbox-ac",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/inbox-ac.svg",
+    "physical_page": 5,
+    "bbox": [
+      139,
+      67,
+      172,
+      119
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "3b69577e5459e9b7dc6fc4f19873066d0bfe180bc27688d9d995adf5ff3233be",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "9605d88260e0e943300c058d24d4b45c296a42e1c99a281e717a3df006bc8006",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "inbox-usbc",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/inbox-usbc.svg",
+    "physical_page": 5,
+    "bbox": [
+      215,
+      72,
+      244,
+      118
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "60eacaf552dcdff311b3b963c55dc7f030d6ee6b840f7787f0999ff20fbbe68e",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "cc519e5f7d87deec4b7ea49d7e0a1495741356f35990d9a54a01563e9ae43850",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "inbox-manual",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/inbox-manual.svg",
+    "physical_page": 5,
+    "bbox": [
+      295,
+      69,
+      326,
+      118
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "6ef9f8a14ea2790372c6a93069426405bfdbe8b72140e125d7b9c9b5e4014354",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "2a11f0562f8b84397f201404187cf96e22139329a19fa742bfafcc5747349828",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "overview-front",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/overview-front.svg",
+    "physical_page": 5,
+    "bbox": [
+      19,
+      215,
+      351,
+      493
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "628435ee8ff623a6b106675b8404c612ee493f58785ed190b629692dacd187eb",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "eef5fa9bba187a4ec630df7667fc71b8415eadbeacf4bad49eec00bdc76384e5",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "lcd-map",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/lcd-map.svg",
+    "physical_page": 6,
+    "bbox": [
+      28,
+      61,
+      340,
+      222
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "8af8fe45226e01bdbf8e3e403f277c0c7ab286fa23bb553610966d4e7b123cfb",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "956f16b0235639e1d90c7725e73b320f666f01b46c68e335b622236582534cfd",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "power",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/power.svg",
+    "physical_page": 8,
+    "bbox": [
+      27,
+      70,
+      341,
+      270
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [
+      5,
+      6,
+      56
+    ],
+    "sha256": "0d3ac94f8ac8696be89368aa42ade69920cebd32aa4bc005fb9f7a76ed1cbee4",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "0d91abe8cf16b7c2a572f6a5fdf69999c2a971dc1e0c0713b1b03abd96f861f8",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "ac-output",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/ac-output.svg",
+    "physical_page": 8,
+    "bbox": [
+      27,
+      300,
+      341,
+      486
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [
+      7
+    ],
+    "sha256": "e706dee79decec1c49781791507f7fc32925ff54dee152889f462942bf8fcd52",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "10f4a2302b242a7b6cab88a1f674a6386d1d8c34127673f0c9fc7763fabb04f0",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "dc-usb",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/dc-usb.svg",
+    "physical_page": 9,
+    "bbox": [
+      28,
+      43,
+      343,
+      482
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "sha256": "1c2ce39d76ed6d7e4ec18856502b0059e5726d3e051adaa5f627a6b8063d8396",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "12944b25b9c33fd944cf641a96a64f5f7e9938de907263c6f076fcb42a521f47",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "energy-buttons",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/energy-buttons.svg",
+    "physical_page": 10,
+    "bbox": [
+      24,
+      129,
+      344,
+      221
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "dd55b8da70717b585244f8cef5158a3ad064fe8644c7f67605f65df3f7b6b408",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "61d5dc2deafa7dd0e55aefc2e0e4f14ba9b1d3267ef6be45e371a4ffc5430492",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "lcd-button",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/lcd-button.svg",
+    "physical_page": 10,
+    "bbox": [
+      28,
+      273,
+      171,
+      382
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "76905746f37d3255d1c47b76c73cebc192f17c39c72ae4ce0c644fb6804d73d3",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "54af4874aeb7682109dfbff850251afbabcf1547311f07cc06ba96a1300fcbce",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "ups",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/ups.svg",
+    "physical_page": 11,
+    "bbox": [
+      23,
+      121,
+      346,
+      258
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "26d6ee7935d9f3bca4ef661b96ddc80aeebc096ffef6e4711af8af2c758631cd",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "2ca33f6679f47b241543d61605d70bf2b13c808b803790a0802a7c9973be1da5",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "ac-charge",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/ac-charge.svg",
+    "physical_page": 12,
+    "bbox": [
+      22,
+      59,
+      346,
+      165
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "e1a348352e284ab4885af65b0f731a960a4bd74d04f8e1a23aafaf271f805864",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "51f122c1873a387e27e2517b73d697e7805dd34db1c1073018834a3579eed2cb",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "solar-direct",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/solar-direct.svg",
+    "physical_page": 12,
+    "bbox": [
+      22,
+      234,
+      346,
+      342
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "06b344621128c8755a34a5b72cf13df25466c8f4bdbbb0953db6a01dd8614d2b",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "ef343595b638eaa7f1c071306c73ec0012fcf748aa6c54d1b06264f494c43853",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "solar-connectors",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/solar-connectors.svg",
+    "physical_page": 12,
+    "bbox": [
+      22,
+      370,
+      346,
+      497
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "1f0b3cc9713e25df595ba33b2ed7dfa524dac2a1b0b43ad3c50bd2873dff0462",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "e6d5698b2b272add1ad817dad13f13a9fb819ac96c6a102792cbc1178b642f6f",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "solar-incorrect",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/solar-incorrect.svg",
+    "physical_page": 13,
+    "bbox": [
+      22,
+      28,
+      346,
+      138
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "cd62d184d881aff931470f439cf597c2d20b027613830ca3a89bb18717c89ae7",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "fa421ba55b30ee1f43dfee5bd0976b5dc2107c15a3a09e58af9bab02b22e84a9",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "car-charge",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/car-charge.svg",
+    "physical_page": 13,
+    "bbox": [
+      22,
+      309,
+      346,
+      432
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [
+      4360
+    ],
+    "sha256": "67c9bcce905e5da120558616861e576e093e0e6bd07a846e215a59c5111e6e37",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "b61158f07c0243e6eadd217ba9ca82ff3f1fe2beca7906a379f6811486669042",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "bottom-cleaning",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/bottom-cleaning.svg",
+    "physical_page": 14,
+    "bbox": [
+      27,
+      60,
+      342,
+      477
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "4f8896b2d4b81a96e41a7bf55132d025b184b70b24e79e7ffcf1ef5a36b286e0",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "6ba01783eb3a98b61f62f70f624beba7e469adad91133e457bef4d40735071ef",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "app-download",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/app-download.svg",
+    "physical_page": 18,
+    "bbox": [
+      42,
+      68,
+      246,
+      118
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "03352840ce2e03e46d757a7b12015724e7344a5bc557ae72a9468f59aba144d8",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "aab5fdaa853f6e794bcc0baa72b16a340b87e8eb1314a25f56f24d67f5252165",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "app-store",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/app-store.svg",
+    "physical_page": 18,
+    "bbox": [
+      42,
+      68,
+      116,
+      118
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "1c5aa03f03bebdeb4ff3e1260efc43c7e2a02e2d0363cdd05652070473ed6d5c",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "13167a77bb9609f136de4b44a0e77d9de4f0b07ebd55e9d4315006d7f3b67e62",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "app-qr",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/app-qr.png",
+    "physical_page": 18,
+    "bbox": [
+      194,
+      69,
+      245,
+      119
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "8037f72bdbd2b1480e73261a22011e85eceb442e61217b8657764bf220e1f9c1"
+  },
+  {
+    "slot": "app-add",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/app-add.svg",
+    "physical_page": 18,
+    "bbox": [
+      101,
+      212,
+      264,
+      378
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "8fc4969ffe3e497131f79d01a915d797c64d660746d2c534802ba16020044381",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "6cfe57a8887e7b498ae3aa6d87c83746e6b2915356929f2a81d31c6bb353ac74",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "app-network",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/app-network.svg",
+    "physical_page": 18,
+    "bbox": [
+      36,
+      382,
+      337,
+      459
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "a3d2b302a4c01d7e39f7dafac9f395127f973745462f8c8fdd64f17e24b3cba9",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "b41475302e0763de41906187fe0bffad71d644177d686d143323c5781a38a129",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "app-result",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/app-result.svg",
+    "physical_page": 19,
+    "bbox": [
+      49,
+      138,
+      315,
+      306
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "885e8e0004f10f0c165807754a4a51503779c32ec50c685244a1d22dbb5eac91",
+    "selection_policy": "complete original page path set, source crop and explicit independent caption-frame exclusions; retain original occluders and clips",
+    "prior_candidate_sha256": "a7cc7ef47f8ff32a2badac7daa9f63abecec9024dbb8dad4602cd13c7cf363fd",
+    "prior_candidate_policy": "superseded-do-not-reuse: incomplete ordinal path selection"
+  },
+  {
+    "slot": "reporting-qr",
+    "searched": [
+      "data/manual_sources/JE-1500C",
+      "manual_sources/JE-1500C",
+      "docs/renderers/web/assets/shared",
+      "docs/renderers/web/assets/je100c_eu_shared",
+      "data/manual_sources/JBP-1000B-SIL",
+      "data/manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-5000C"
+    ],
+    "candidate": null,
+    "decision": "native complete source group",
+    "new_extraction_reason": "No matching JE-1500C TW complete panel exists; source-specific protected body/cleaning/phone geometry and Taiwan sockets. Existing generic artwork is not this regional panel.",
+    "final_path": "assets/reporting-qr.png",
+    "physical_page": 20,
+    "bbox": [
+      310,
+      460,
+      344,
+      494
+    ],
+    "background_policy": "source group backgrounds and frames preserved; independent external caption plates excluded for CSS",
+    "removed_drawing_indices": [],
+    "sha256": "116467aa683a0758608f641534cd87c29a960fa85703fb603308cd4b6bdc7df1"
+  },
+  {
+    "slot": "key-power",
+    "searched": [
+      "docs/renderers/web/assets/shared/buttons/manifest.json"
+    ],
+    "candidate": null,
+    "decision": "native button variant",
+    "new_extraction_reason": "Catalog faces use a horizontal switch; this source uses the vertical striped switch and native POWER/AC device markings. Original MuPDF SVG has pattern clipping artifacts, so preserve the faithful native alpha pixmap.",
+    "physical_page": 10,
+    "bbox": [
+      37.6573989868164,
+      427.7242858886719,
+      57.482398223876956,
+      447.55031127929686
+    ],
+    "final_path": "assets/key-power.png",
+    "background_policy": "transparent native glyph; no cell or caption plate",
+    "text_policy": "fixed product markings only",
+    "sha256": "04baf206fe8fdf1e1dc7e24bfbdab4ab98867edf96af6f5f1b7d10be518e2189"
+  },
+  {
+    "slot": "key-ac",
+    "searched": [
+      "docs/renderers/web/assets/shared/buttons/manifest.json"
+    ],
+    "candidate": null,
+    "decision": "native button variant",
+    "new_extraction_reason": "Catalog faces use a horizontal switch; this source uses the vertical striped switch and native POWER/AC device markings. Original MuPDF SVG has pattern clipping artifacts, so preserve the faithful native alpha pixmap.",
+    "physical_page": 10,
+    "bbox": [
+      93.2967041015625,
+      427.7242858886719,
+      113.12169952392578,
+      447.55031127929686
+    ],
+    "final_path": "assets/key-ac.png",
+    "background_policy": "transparent native glyph; no cell or caption plate",
+    "text_policy": "fixed product markings only",
+    "sha256": "ef294bfb3d07e47d38b0e58fb37456224d7a0f69fccb67a7fe605a4c97d163ea"
+  }
+]

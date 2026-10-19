@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 
 from tools import schema_drift
-from tools.queue_contract import DATA_SYNC_FIELD
+from tools.build_queue.contract import DATA_SYNC_FIELD
 
 
 FIXTURE_DIR = Path(__file__).parent / "fixtures" / "schema_drift"

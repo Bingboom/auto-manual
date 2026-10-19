@@ -1,0 +1,1342 @@
+.........................................................................................................................................................ERROR: --write requires a sandbox --table-binding TABLE=BASE:TABLE_ID
+......................................................................................................................................................................................................................[build.py] ERROR: boom
+..................................................................................................................................................................................................................................................[ci-check-targets] FAIL ratchet failed: current=1 baseline=0 — failing targets: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqrcyob48/configs/config.us-en.yaml JE-1000F_US
+..........cloud-doc-backport: --tm-write requires --tm-binding BASE:TABLE_ID
+..cloud-doc-backport: --write requires at least one --table-binding TABLE=BASE:TABLE_ID
+....[PASS] je2000f_eu_fr_mixed (fr) routes={'needs_human_mapping': 1, 'repo_review_text': 1, 'source_table_suggestion': 1} metrics={'precision': 1.0, 'recall': 1.0} round-trip=ok
+[PASS] je1000f_us_en_table_and_noise (en) routes={'repo_review_text': 1, 'source_table_suggestion': 1} metrics={'precision': 1.0, 'recall': 1.0} round-trip=ok
+[PASS] je1000f_jp_ja_prose_only (ja) routes={'repo_review_text': 2} metrics={'precision': 1.0, 'recall': 1.0} round-trip=n/a
+
+3/3 fixtures passed
+{
+  "passed": true,
+  "results": [
+    {
+      "name": "je2000f_eu_fr_mixed",
+      "lang": "fr",
+      "passed": true,
+      "observed": {
+        "total": 3,
+        "routes": {
+          "needs_human_mapping": 1,
+          "repo_review_text": 1,
+          "source_table_suggestion": 1
+        },
+        "semantic": 1,
+        "resolved_requests": 1,
+        "plan_applies": [
+          "Sortie USB-A 20 W"
+        ],
+        "closure": {
+          "round_trip_landed": true,
+          "idempotent": true
+        },
+        "metrics": {
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "mismatches": []
+    },
+    {
+      "name": "je1000f_us_en_table_and_noise",
+      "lang": "en",
+      "passed": true,
+      "observed": {
+        "total": 2,
+        "routes": {
+          "repo_review_text": 1,
+          "source_table_suggestion": 1
+        },
+        "semantic": 0,
+        "resolved_requests": 1,
+        "plan_applies": [
+          "DC 24 V"
+        ],
+        "closure": {
+          "round_trip_landed": true,
+          "idempotent": true
+        },
+        "metrics": {
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "mismatches": []
+    },
+    {
+      "name": "je1000f_jp_ja_prose_only",
+      "lang": "ja",
+      "passed": true,
+      "observed": {
+        "total": 2,
+        "routes": {
+          "repo_review_text": 2
+        },
+        "semantic": 0,
+        "resolved_requests": 0,
+        "plan_applies": [],
+        "closure": null,
+        "metrics": {
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "mismatches": []
+    }
+  ]
+}
+je2000f_eu_fr_mixed	(lang=fr, edits=3, doc_type=review)
+je1000f_us_en_table_and_noise	(lang=en, edits=3, doc_type=review)
+je1000f_jp_ja_prose_only	(lang=ja, edits=2, doc_type=review)
+lang    needs_human_mappin  repo_review_text    source_table_sugge  
+en      0                   1                   1                   
+fr      1                   1                   1                   
+ja      0                   2                   0                   
+{
+  "fr": {
+    "repo_review_text": 1,
+    "source_table_suggestion": 1,
+    "needs_human_mapping": 1
+  },
+  "en": {
+    "repo_review_text": 1,
+    "source_table_suggestion": 1
+  },
+  "ja": {
+    "repo_review_text": 2
+  }
+}
+PARITY ✗ — target lags source: 0 table(s), 0 field(s), 1 drift
+  ⚠ DRIFT T1.St: options ['DIFFERENT'] ≠ ['a']
+PARITY ⚠ — 0 missing table/field; 1 drift reported below (informational under --fail-on missing)
+  ⚠ DRIFT T1.St: options ['DIFFERENT'] ≠ ['a']
+[build] Prepared bundle: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpagf7z3g7/docs/_build/JE-1800B/JP/rst
+[build] Bundle source: review
+[build] Prepared bundle: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp2lsq1_i8/docs/_build/JE-1000F/US/es/rst
+[build] Bundle source: review
+[build] Review overlay p81_03_product_overview_placeholder.rst: dropped out-of-scope 'uk' page
+[build] Prepared bundle: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7zz7f7bn/docs/_build/JE-1000F/EU/rst
+[build] Bundle source: review
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/en/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/fr/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/es/07_extra_battery.rst
+[build] Prepared bundle: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7w5widuz/docs/_build/JE-1000F/US/en/rst
+[build] Bundle source: review
+[build] Review overlay 00_preface.rst: dropped ['en'] language block(s) not shipped by this target
+[build] Prepared bundle: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpug_99boe/docs/_build/JE-1000F/US/fr/rst
+[build] Bundle source: review
+[build] Prepared bundle: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp4u1xpe_v/docs/_build/JE-1000F/US/web/source/rst
+[build] Bundle source: review
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/en/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/fr/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/es/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/en/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/fr/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/es/07_extra_battery.rst
+[build] Cleaning preview output: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpyl5gpnli/staging/docs/_build/JE-1000F/US/preview/05
+[build.py] Skipping Spec_Master content validation because the local phase2 snapshot is missing: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1rpurp81/missing/Spec_Master.csv. Run `python build.py sync-data --config <config> --data-root data/phase2` or pass `--data-root <snapshot>` to validate a materialized snapshot.
+
+Open HTML:
+[reference-pins] OK for 1 contract(s)
+[reference-pins] no reference-layout contracts to check
+[PASS] /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpuzl3x7bm/configs/config.us-en.yaml JE-1000F_US: build.py check passed
+[ci-check-targets] PASS=1 SKIP=0 FAIL=0 coverage=1.0000 definition=PASS/(PASS+SKIP+FAIL)
+[FAIL] /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpczdh5los/configs/config.us-en.yaml JE-1000F_US: observed failure
+[ci-check-targets] PASS=0 SKIP=0 FAIL=1 coverage=0.0000 definition=PASS/(PASS+SKIP+FAIL)
+[FAIL] /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqrcyob48/configs/config.us-en.yaml JE-1000F_US: observed failure
+[ci-check-targets] PASS=0 SKIP=0 FAIL=1 coverage=0.0000 definition=PASS/(PASS+SKIP+FAIL)
+[FAIL] /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp2ckrjorw/configs/config.us-en.yaml JE-1000F_US: observed failure
+[ci-check-targets] PASS=0 SKIP=0 FAIL=1 coverage=0.0000 definition=PASS/(PASS+SKIP+FAIL)
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpte04nzx_/cloud_doc_backport_source_table_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpte04nzx_/cloud_doc_backport_source_table_apply.md
+APPLY plan: apply 1 skip 1 | written 0 verify_failed 0 error 0 (dry-run)
+TM plan: apply 0 skip 0 | written 0 already 0 verify_failed 0 error 0 (dry-run)
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp6demo_iy/cloud_doc_backport_source_table_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp6demo_iy/cloud_doc_backport_source_table_apply.md
+APPLY plan: apply 0 skip 1 | written 0 verify_failed 0 error 0 (dry-run)
+TM plan: apply 1 skip 0 | written 0 already 0 verify_failed 0 error 0 (dry-run)
+F2 value-index: empty (data-root=data/phase2, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1mrh1bo8  BASELINE-DIFF deltas=2  routes={"repo_review_text": 1, "source_table_suggestion": 1}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1mrh1bo8/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1mrh1bo8/out/cloud_doc_backport_report.md
+ROUTE: 1 source-bound (Class D) delta(s) -> run `apply-source-table --report /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1mrh1bo8/out/cloud_doc_backport_source_table_change_request.json` (approval-gated F6/TM), NOT the _review RST......
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-2.baseline.md", "baseline_advanced": false, "changed": [], "deltas": 2, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [], "passed": true}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1mrh1bo8/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1, "source_table_suggestion": 1}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1mrh1bo8/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1mrh1bo8/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1mrh1bo8", "wrote": false}
+F2 value-index: 1 value(s) from /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqiwkxvfe/phase2 (lang=en) — Class D is deterministic
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqiwkxvfe  BASELINE-DIFF deltas=1  routes={"source_table_suggestion": 1}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqiwkxvfe/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqiwkxvfe/out/cloud_doc_backport_report.md
+ROUTE: 1 source-bound (Class D) delta(s) -> run `apply-source-table --report /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqiwkxvfe/out/cloud_doc_backport_source_table_change_request.json` (approval-gated F6/TM), NOT the _review RST.
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-f2.baseline.md", "baseline_advanced": false, "changed": [], "deltas": 1, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [], "passed": true}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqiwkxvfe/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"source_table_suggestion": 1}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqiwkxvfe/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqiwkxvfe/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqiwkxvfe", "wrote": false}
+F2 value-index: empty (data-root=data/phase2, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpp1mymkc9  BASELINE-DIFF deltas=1  routes={"repo_review_text": 1}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpp1mymkc9/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpp1mymkc9/out/cloud_doc_backport_report.md
+  APPLIED (Class R) 00_preface.rst  [rebuild+rediff gate OK]
+NOTE: full apply (1 edit(s)), but the copy-doc 基线文档 baseline is frozen — re-snapshot it to advance the cursor (operator follow-up). Re-runs re-report (idempotent).
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-3.baseline.md", "baseline_advanced": false, "changed": ["docs/_review/JE-1000F/US/page/00_preface.rst"], "deltas": 1, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [{"missing": [], "page": "00_preface.rst", "passed": true, "skipped": false, "unexpected": []}], "passed": true}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpp1mymkc9/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpp1mymkc9/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpp1mymkc9/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpp1mymkc9", "wrote": true}
+F2 value-index: empty (data-root=none, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppsi7roul  BASELINE-DIFF deltas=1  routes={"repo_review_text": 1}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppsi7roul/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppsi7roul/out/cloud_doc_backport_report.md
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-dry.baseline.md", "baseline_advanced": false, "changed": [], "deltas": 1, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [], "passed": true}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppsi7roul/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppsi7roul/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppsi7roul/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppsi7roul", "wrote": false}
+F2 value-index: empty (data-root=none, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmplbsso4rk  BASELINE-DIFF deltas=1  routes={"repo_review_text": 1}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmplbsso4rk/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmplbsso4rk/out/cloud_doc_backport_report.md
+NOTE: no review-prose delta matched a _review page uniquely (nothing written; handle manually if needed).
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-xpage.baseline.md", "baseline_advanced": false, "changed": [], "deltas": 1, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [], "passed": true}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmplbsso4rk/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmplbsso4rk/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmplbsso4rk/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmplbsso4rk", "wrote": true}
+F2 value-index: empty (data-root=none, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxw1kneef  BASELINE-DIFF deltas=1  routes={"repo_review_text": 1}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxw1kneef/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxw1kneef/out/cloud_doc_backport_report.md
+  APPLIED (Class R) 00_preface.rst  [rebuild+rediff gate OK]
+NOTE: full apply (1 edit(s)), but the copy-doc 基线文档 baseline is frozen — re-snapshot it to advance the cursor (operator follow-up). Re-runs re-report (idempotent).
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-ledger.baseline.md", "baseline_advanced": false, "changed": ["docs/_review/JE-1000F/US/page/00_preface.rst"], "deltas": 1, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [{"missing": [], "page": "00_preface.rst", "passed": true, "skipped": false, "unexpected": []}], "passed": true}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxw1kneef/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxw1kneef/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxw1kneef/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxw1kneef", "wrote": true}.......................................cloud-doc-backport: section heading '不存在' was not found in: baseline, fetched
+.........
+F2 value-index: empty (data-root=none, lang=none) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-EU  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvczh9v3o  BASELINE-DIFF deltas=2  routes={"repo_review_text": 2}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvczh9v3o/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvczh9v3o/out/cloud_doc_backport_report.md
+NOTE: no review-prose delta matched a _review page uniquely (nothing written; handle manually if needed).
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/EU/.backport/doc-1.baseline.md", "baseline_advanced": false, "changed": [], "deltas": 2, "git_ref": "review/JE-1000F-EU", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [], "passed": true}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvczh9v3o/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": "https://github.com/x/y/pull/1", "route_classes": {"repo_review_text": 2}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvczh9v3o/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvczh9v3o/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvczh9v3o", "wrote": true}
+F2 value-index: empty (data-root=none, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp60svax9m  BASELINE-DIFF deltas=1  routes={"repo_review_text": 1}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp60svax9m/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp60svax9m/out/cloud_doc_backport_report.md
+  APPLIED (Class R) 00_preface.rst  [rebuild+rediff gate OK]
+  ADVANCED seed baseline cursor -> docs/_review/JE-1000F/US/.backport/doc-seed.baseline.md (full apply: 1 edit(s) resolved)
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-seed.baseline.md", "baseline_advanced": true, "changed": ["docs/_review/JE-1000F/US/page/00_preface.rst", "docs/_review/JE-1000F/US/.backport/doc-seed.baseline.md"], "deltas": 1, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [{"missing": [], "page": "00_preface.rst", "passed": true, "skipped": false, "unexpected": []}], "passed": true}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp60svax9m/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp60svax9m/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp60svax9m/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp60svax9m", "wrote": true}
+F2 value-index: empty (data-root=data/phase2, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcfq_1vno  BASELINE-DIFF deltas=2  routes={"repo_review_text": 1, "source_table_suggestion": 1}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcfq_1vno/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcfq_1vno/out/cloud_doc_backport_report.md
+ROUTE: 1 source-bound (Class D) delta(s) -> run `apply-source-table --report /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcfq_1vno/out/cloud_doc_backport_source_table_change_request.json` (approval-gated F6/TM), NOT the _review RST.
+  APPLIED (Class R) 00_preface.rst  [rebuild+rediff gate OK]
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-seed2.baseline.md", "baseline_advanced": false, "changed": ["docs/_review/JE-1000F/US/page/00_preface.rst"], "deltas": 2, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [{"missing": [], "page": "00_preface.rst", "passed": true, "skipped": false, "unexpected": []}], "passed": true}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcfq_1vno/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1, "source_table_suggestion": 1}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcfq_1vno/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcfq_1vno/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcfq_1vno", "wrote": true}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpbgrhq8qg/out/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpbgrhq8qg/out/cloud_doc_backport_apply.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmplax3sakk/out/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmplax3sakk/out/cloud_doc_backport_apply.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpl5v3i4j6/out/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpl5v3i4j6/out/cloud_doc_backport_apply.md
+UPDATED /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpl5v3i4j6/docs/_review/JE-1000F/US/page/00_preface.rst
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjvafutmn/apply/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjvafutmn/apply/cloud_doc_backport_apply.md
+UPDATED /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjvafutmn/docs/_review/JE-1000F/US/page/00_preface.rst
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjvafutmn/verify/cloud_doc_backport_verify.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjvafutmn/verify/cloud_doc_backport_verify.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjvafutmn/verify/cloud_doc_backport_source_table_suggestions.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjvafutmn/verify/cloud_doc_backport_source_table_suggestions.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjvafutmn/verify/cloud_doc_backport_template_sync_proposal.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjvafutmn/verify/cloud_doc_backport_template_sync_proposal.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmphrmsikfq/out/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmphrmsikfq/out/cloud_doc_backport_apply.md
+UPDATED /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmphrmsikfq/docs/_review/JE-1000F/US/page/00_preface.rst
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpkwpsqqjv/out/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpkwpsqqjv/out/cloud_doc_backport_apply.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpk0tmouid/out/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpk0tmouid/out/cloud_doc_backport_apply.md
+UPDATED /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpk0tmouid/docs/templates/page_zh/00_preface.rst
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpg5vi_om5/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpg5vi_om5/out/cloud_doc_backport_report.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpbsmmtebd/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpbsmmtebd/cloud_doc_backport_report.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_apply.json..................cloud-doc-backport: revision-ledger ingest skipped: [Errno 17] File exists: '/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpkm6p129f/not-a-dir-file'
+.
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_apply.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_report.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_run.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_run.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_source_table_change_request.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_source_table_suggestions.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_source_table_suggestions.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_template_sync_proposal.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp11y1dopo/out/cloud_doc_backport_template_sync_proposal.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_apply.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_report.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_run.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_run.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_source_table_change_request.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_source_table_suggestions.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_source_table_suggestions.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_template_sync_proposal.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_n7ajyq3/out/cloud_doc_backport_template_sync_proposal.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_apply.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_report.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_run.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_run.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_source_table_change_request.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_source_table_suggestions.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_source_table_suggestions.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_template_sync_proposal.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_template_sync_proposal.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_verify.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/out/cloud_doc_backport_verify.md
+UPDATED /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0vdx8vlo/docs/_review/JE-1000F/US/page/00_preface.rst
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_apply.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_report.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_run.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_run.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_source_table_change_request.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_source_table_suggestions.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_source_table_suggestions.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_template_sync_proposal.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_template_sync_proposal.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_verify.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpwzku3omp/out/cloud_doc_backport_verify.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgzdmm3da/out/cloud_doc_backport_verify.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgzdmm3da/out/cloud_doc_backport_verify.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgzdmm3da/out/cloud_doc_backport_source_table_suggestions.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgzdmm3da/out/cloud_doc_backport_source_table_suggestions.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgzdmm3da/out/cloud_doc_backport_template_sync_proposal.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgzdmm3da/out/cloud_doc_backport_template_sync_proposal.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpe8uozppo/apply/cloud_doc_backport_apply.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpe8uozppo/apply/cloud_doc_backport_apply.md
+UPDATED /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpe8uozppo/docs/_review/JE-1000F/US/page/00_preface.rst
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpe8uozppo/verify/cloud_doc_backport_verify.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpe8uozppo/verify/cloud_doc_backport_verify.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpe8uozppo/verify/cloud_doc_backport_source_table_suggestions.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpe8uozppo/verify/cloud_doc_backport_source_table_suggestions.md
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpe8uozppo/verify/cloud_doc_backport_template_sync_proposal.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpe8uozppo/verify/cloud_doc_backport_template_sync_proposal.md
+F2 value-index: empty (data-root=none, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcdga7o6r  BASELINE-DIFF deltas=1  routes={"repo_review_text": 1}
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcdga7o6r/out/cloud_doc_backport_report.json
+WROTE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcdga7o6r/out/cloud_doc_backport_report.md
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-r7b.baseline.md", "baseline_advanced": false, "changed": ["docs/_review/JE-1000F/US/page/00_preface.rst"], "deltas": 1, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [{"missing": [], "page": "00_preface.rst", "passed": false, "unexpected": ["x->y"]}], "passed": false}, "report": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcdga7o6r/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1}, "source_table_change_request": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcdga7o6r/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcdga7o6r/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpcdga7o6r", "wrote": true}.............[backport] F3 family-scope: 15 shared template(s) (page_shared/en) — a shared-prose delta routes to Class T (template-sync proposal), not the _review write
+.[backport] F3 family-scope: 15 shared template(s) (page_shared/en) — a shared-prose delta routes to Class T (template-sync proposal), not the _review write
+.....................................................................................................................................................................................................................................................missing: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_SITE_TAG (token needs Account Analytics: Read)
+..............................................................
+BRANCH review/JE-1000F-US  WORKTREE /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgk2vfo_6  PAGES 1
+{"backport_pr_url": "", "changed": [], "git_ref": "review/JE-1000F-US", "pages": 1, "pushed": false, "review_branch_pr_url": null, "worktree": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgk2vfo_6", "wrote": false}
+content-lint  (data-root: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgfzbkvto, langs: fr,es,de,it,uk,ja,ko,zh)
+============================================================
+  [status-word consistency] ........... FAIL (1)
+        - it · TOU: non-canonical prefix 'On'  | 'On: abilitata.'
+  [english residue] ................... FAIL (1)
+        - lcd_icons_blocks.csv [it]: 'On:' in 'On: abilitata.'
+  [slot-key collision] ................ PASS
+  [spec<->overview drift] ............. PASS
+  [tm duplicate (snapshot)] ........... PASS
+------------------------------------------------------------
+RESULT: FAIL  (WARN-level findings do not fail the gate)
+content-lint  (data-root: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpic5bcpjn, langs: fr,es,de,it,uk,ja,ko,zh)
+============================================================
+  [status-word consistency] ........... PASS
+  [english residue] ................... PASS
+  [slot-key collision] ................ PASS
+  [spec<->overview drift] ............. PASS
+  [tm duplicate (snapshot)] ........... PASS
+------------------------------------------------------------
+RESULT: OK  (WARN-level findings do not fail the gate)
+[delivery-outbox] JE-1000F_JP_1.7_20260803T143005Z verified: 1 file(s) -> HTE153/日规 [日语]
+[build-queue] delivery outbox JE-1000F_JP_1.7_20260803T150000Z: 4 file(s) -> /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpeejarc5f/outbox/JE-1000F_JP_1.7_20260803T150000Z
+[build-queue] delivery outbox JE-1000F_EU_0.8_20260803T150000Z: 4 file(s) -> /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp18pcvdso/outbox/JE-1000F_EU_0.8_20260803T150000Z
+[build-queue] Acquired queue claim for JE-1000F_EU (1 row(s)): expires_at=2026-10-03T05:39:40+00:00
+.[build-queue] Acquired queue claim for JE-1000F_EU (1 row(s)): expires_at=2026-08-03T17:00:00+00:00
+.[build-queue] Acquired queue claim for JE-1000F_EU (1 row(s)): expires_at=2026-10-03T05:39:40+00:00
+[build-queue] delivery outbox JE-1000F_EU_0.8_20261003T033940Z: 4 file(s) -> /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjzci_hyw/outbox/JE-1000F_EU_0.8_20261003T033940Z
+[build-queue] Published JE-1000F_EU (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpve_aje1z/build/handoff.zip -> https://feishu.example.com/wiki/manual
+.[build-queue] Acquired queue claim for JE-1000F_EU (1 row(s)): expires_at=2026-10-03T05:39:40+00:00
+[build-queue] Published JE-1000F_EU (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp6k3e3dni/build/handoff.zip -> https://feishu.example.com/wiki/manual
+...................................................................................................................................s..........s..............................s...............................s......s..................................................................[dingtalk-spike] upload
+{
+  "url": "https://example.com/upload",
+  "status": 200,
+  "upload_file": null
+}
+[draft] missing Spec_Master rows filled with ==MISSING:...== placeholders:
+Draft page 'demo_page' is missing 1 required Spec_Master row(s) [model=JE-1000F, region=US, lang=en]:
+  - field_map.MAIN_POWER_BUTTON_LABEL -> main_power_button[pages=Product overview, usage_type=page_value, value_role=label]
+  Fix: add the listed row(s) to the Spec_Master source (Feishu phase2 page-value / spec table) for this model+region+lang, or set a recipe `default:` for the binding.
+[draft] missing Spec_Master rows filled with ==MISSING:...== placeholders:
+Draft page 'demo_page' is missing 2 required Spec_Master row(s) [model=JE-1000F, region=US, lang=en]:
+  - product_name
+  - field_map.MAIN_POWER_BUTTON_LABEL -> main_power_button[pages=Product overview, usage_type=page_value, value_role=label]
+  Fix: add the listed row(s) to the Spec_Master source (Feishu phase2 page-value / spec table) for this model+region+lang, or set a recipe `default:` for the binding.
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:40:03+00:00
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxtp4ra7s/manual.docx
+...[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:40:03+00:00
+..[build-queue] Acquired queue claim for JE-1000F_US (2 row(s)): expires_at=2026-10-03T05:40:03+00:00
+..[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:40:03+00:00
+................................................................................s...........................ssss........ss.......s......../Users/pika/.codex/worktrees/jbp3600a-en-intake/auto-manual2/tests/test_frozen_pdf_reference.py:63: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  pixels = list(image.crop((634, 448, 1180, 497)).getdata())
+.......sssss...................From /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprdnlctr3/remote
+ * branch            main       -> FETCH_HEAD
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+From /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprdnlctr3/remote
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+Switched to a new branch 'codex/stale-branch'
+From /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprdnlctr3/remote
+ * branch            main       -> FETCH_HEAD
+[pre-push] Current branch does not contain the latest origin/main.
+[pre-push] Start new work with:
+[pre-push]   powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>
+[pre-push]   ./scripts/start_branch.sh <type>/<area>-<topic>
+[pre-push] Or update this branch before pushing:
+[pre-push]   git fetch origin
+[pre-push]   git rebase origin/main
+[pre-push] Intentional bypass: git push --no-verify
+..From /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpbamvbmxm/remote
+ * branch            main       -> FETCH_HEAD
+[pre-push] Current branch does not contain the latest origin/main.
+[pre-push] Start new work with:
+[pre-push]   powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>
+[pre-push]   ./scripts/start_branch.sh <type>/<area>-<topic>
+[pre-push] Or update this branch before pushing:
+[pre-push]   git fetch origin
+[pre-push]   git rebase origin/main
+[pre-push] Intentional bypass: git push --no-verify
+.From /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpn7crq27b/remote
+ * branch            main       -> FETCH_HEAD
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+From /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpn7crq27b/remote
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+Switched to a new branch 'codex/generated-only'
+...........................................................................................................................................................................................................................................s.......sssssss...............s......sss..........ssss..........................................................................................................................................................................................................................................................................................s.................................................usage: python -m unittest [-h] --ir IR --physical-pages PHYSICAL_PAGES --out
+                          OUT [--reference-pdf REFERENCE_PDF] [--force]
+python -m unittest: error: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpclesydzs/draft_v1_candidate.json already exists; pass --force to overwrite
+.................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................[mypy-ratchet] ERROR mypy is not installed
+.................................................................................................................usage: pdf_annotate [-h] [--pdf PDF] [--findings FINDINGS] [--out OUT]
+                    [--ledger LEDGER] [--no-ledger]
+                    [--backfill-summary BACKFILL_SUMMARY]
+pdf_annotate: error: --backfill-summary cannot be combined with --pdf
+..usage: pdf_annotate [-h] [--pdf PDF] [--findings FINDINGS] [--out OUT]
+                    [--ledger LEDGER] [--no-ledger]
+                    [--backfill-summary BACKFILL_SUMMARY]
+pdf_annotate: error: --pdf and --findings are required unless --backfill-summary is given
+..............Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp3zw1mzqo/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp3zw1mzqo/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp3zw1mzqo/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp3zw1mzqo/site.
+Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprnco2v3v/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprnco2v3v/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprnco2v3v/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprnco2v3v/site.
+...Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpaj_0i1jh/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpaj_0i1jh/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpaj_0i1jh/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpaj_0i1jh/site.
+....Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprxerg18h/source/index.md:3: ERROR: unknown callout variant 'neon'; expected one of caution, danger, note, tip, warning [docutils]
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpya5qvp86/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpya5qvp86/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpya5qvp86/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build finished with problems, 1 warning (with warnings treated as errors).
+Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp5jm7sp05/source/index.md.md:3: WARNING: 'callout': Unknown option keys: ['class'] (allowed: ['variant']) [myst.directive_option]
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpz9uon1us/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpz9uon1us/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpz9uon1us/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build finished with problems, 1 warning (with warnings treated as errors).
+.......................Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqfn7qy92/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqfn7qy92/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqfn7qy92/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpqfn7qy92/site.
+..Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppplrl0cv/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppplrl0cv/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppplrl0cv/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+copying images... [100%] assets/pic.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppplrl0cv/site.
+.Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 3 source files that are out of date
+updating environment: [new config] 3 added, 0 changed, 0 removed
+reading sources... [ 33%] guides/one
+reading sources... [ 67%] guides/two
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp62mchj3t/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp62mchj3t/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp62mchj3t/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [ 33%] guides/one
+writing output... [ 67%] guides/two
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+copying images... [100%] assets/pic.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp62mchj3t/site.
+.Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 3 source files that are out of date
+updating environment: [new config] 3 added, 0 changed, 0 removed
+reading sources... [ 33%] index
+reading sources... [ 67%] manuals/guide
+reading sources... [100%] notes/note
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_gyp7wt3/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_gyp7wt3/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_gyp7wt3/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [ 33%] index
+writing output... [ 67%] manuals/guide
+writing output... [100%] notes/note
+
+generating indices... genindex done
+writing additional pages... search done
+copying images... [100%] manuals/assets/pic.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_gyp7wt3/site.
+.....Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7h54n6q7/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7h54n6q7/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7h54n6q7/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7h54n6q7/site.
+..Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpn4p3gsa0/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpn4p3gsa0/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpn4p3gsa0/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpn4p3gsa0/site.
+.Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7hoeqtau/site/_static/basic.css
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7hoeqtau/site/_static/language_data.js
+Writing evaluated template result to /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7hoeqtau/site/_static/documentation_options.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+copying images... [100%] _md_assets/remote/one-87fdd20dbc1f.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp7hoeqtau/site.
+..........................................................[build-queue] ERROR: queue boom
+...............[build-queue] /bin/lark-cli base +record-list
+[start-branch] Created codex/stale-branch from origin/main at 96fbcdc
+[start-branch] Created codex/generated-only from origin/main at 5a51c1e
+[export-idml] WARNING: COMPONENT TARGET INERT (pilot): JE-1000F/US/en keeps the ordinary layout; 10 issue(s)
+[export-idml] WARNING:   page/00_preface.rst: source_sha256 does not match (pinned=713ccde55a46, built=96fd21d8d672)
+[export-idml] WARNING:   page/safety_en.rst: source_sha256 does not match (pinned=9f41f6eb9800, built=4f37f36653df)
+[export-idml] WARNING:   page/20_01_user_maintenance_instructions.rst: not pinned by docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json
+[export-idml] WARNING:   page/symbols_en.rst: source_sha256 does not match (pinned=2e3cf36d2cbc, built=641c2b246114)
+[export-idml] WARNING:   page/p22_01_fcc.rst: not pinned by docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json
+[export-idml] WARNING:   page/p23_02_whats_in_the_box.rst: not pinned by docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json
+[export-idml] WARNING:   page/05_operation_guide.rst: not pinned by docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json
+[export-idml] WARNING:   page/lcd_icons_en.rst: source_sha256 does not match (pinned=63380330cf46, built=79a7a889d1cf)
+[export-idml] WARNING:   page/troubleshooting_en.rst: source_sha256 does not match (pinned=412dd5952e87, built=7f550927976f)
+[export-idml] WARNING:   page/spec_en.rst: source_sha256 does not match (pinned=1d365e6f08e3, built=6a1261bd7e1d)
+[export-idml] IR OK: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp6wwq1_th/manual.ir.json | pages=10 blocks=51 skipped_raw=0
+[export-idml] OK: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp6wwq1_th/manual.idml
+[export-idml] STORY SPANS: pages=2 | 00_preface=1 05_operation_guide=1
+[export-idml] stories=71 spreads=11 prose pages=5 skipped raw blocks=0 | spec rows=16 lcd rows=26 trouble rows=11
+[export-idml] IR OK: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpb71s74qx/manual.ir.json | pages=2 blocks=4 skipped_raw=0
+[export-idml] OK: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpb71s74qx/manual.idml
+[export-idml] STORY SPANS: pages=1 | 03_product_overview_placeholder=1
+[export-idml] stories=5 spreads=2 prose pages=1 skipped raw blocks=0 | spec rows=0 lcd rows=0 trouble rows=0
+[scaffold] draft: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpclesydzs/draft_v1_candidate.json (43 pages, 28 compositions)
+[scaffold] todos: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpclesydzs/draft_v1_candidate.todos.md (7 item(s))
+[scaffold] normalize: PASS — the draft loads as-is
+[indesign-finalize] version-pin match: pinned; application=InDesign A jobs=2
+[indesign-finalize] version-pin match: pinned; application=InDesign B jobs=1
+[indesign-finalize] PREFLIGHT FAIL: pages=None overset=0 fonts=0 glyphs=1 links=0 overset_pages=- report=/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgx6817vd/report.json
+[indesign-finalize] ERROR: exported PDF contains replacement or .notdef glyphs
+[indesign-finalize] PREFLIGHT FAIL: pages=1 overset=0 fonts=1 glyphs=0 links=0 overset_pages=- report=/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmps18d_znh/report.json
+[indesign-finalize] ERROR: saved INDD failed the mandatory close/reopen preflight gate
+[indesign-finalize] version-pin match: ok
+[indesign-finalize] version-pin mismatch: drift
+[indesign-finalize] ERROR: drift
+[indesign-finalize] refusing to run; pass --allow-version-mismatch to override (recorded).
+[indesign-finalize] batch FAIL: jobs=2 failed=1 incomplete_packages=2 report=/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpswbn359c/aggregate.json
+[indesign-finalize] batch FAIL: jobs=2 failed=1 incomplete_packages=0 report=/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpkr5t97w8/aggregate.json
+{"indexed_publications": 1, "http_failures": 0}
+[mypy-ratchet] WARN mypy 2.4.0 installed; the baseline was recorded with 2.3.1
+[nightly-render] doctor configs/config.us-en.yaml JE-1000F/US/en
+[nightly-render] production IDML pilot configs/config.us-en.yaml JE-1000F/US/en
+[nightly-render] SUMMARY doctor_pass=1 doctor_fail=0 pilot=FAIL
+[nightly-render] doctor configs/config.us-en.yaml JE-1000F/US/en
+[nightly-render] doctor configs/config.eu-en.yaml JE-1000F/EU/en
+[nightly-render] production IDML pilot configs/config.us-en.yaml JE-1000F/US/en
+[nightly-render] SUMMARY doctor_pass=1 doctor_fail=1 pilot=PASS
+[patch_latex_fonts] enabled portable Japanese CJK font: HBManualSansJP-Regular.ttf
+[patch_latex_fonts] enabled local Gilroy override from: /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0y_5nzif/gilroy
+[patch_latex_fonts] local Gilroy dir missing required font files, skipping override: gilroy-bold-4.otf, Gilroy-LightItalic-12.otf, Gilroy-ExtraBoldItalic-10.otf
+[patch_latex_fonts] injected into: manual_demo.tex
+[patch_latex_fonts] sanitized fragile Unicode glyphs in: manual_demo.tex (changes=2)
+{
+  "pdf": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxkr0yv84/manual.pdf",
+  "out": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxkr0yv84/manual_annotated.pdf",
+  "findings": 1,
+  "located": [
+    {
+      "rule": "stale_model_name",
+      "page": 1,
+      "needle": "Charge the JE-2000E battery fully."
+    }
+  ],
+  "unlocated": 0,
+  "annotations": 1,
+  "ledger": {
+    "path": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxkr0yv84/ledger.jsonl",
+    "written": 1
+  }
+}
+{
+  "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp8cwotfgl/ledger.jsonl",
+  "written": 1,
+  "skipped": 0,
+  "entry": {
+    "ledger_schema_version": 1,
+    "run_key": "e2d2071104b374b5e9efe937b2e13b8f855824a7",
+    "recorded_at": "2026-10-03T03:47:12+00:00",
+    "pdf": "manual.pdf",
+    "out": "manual_annotated.pdf",
+    "findings": 3,
+    "located": 1,
+    "unlocated": 2
+  }
+}
+[printed-urls] wrote /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxpxnv9tg/data/printed_url_inventory.csv (1 target(s))
+[printed-urls] inventory current (1 target(s))
+[printed-urls] inventory is stale — run `python tools/printed_url_inventory.py scan` and commit the diff
+[build-queue] DingTalk docs target {"target_node_id": "", "target_node_url": ""}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:26+00:00
+[build-queue] Using DingTalk upload for JE-1000F_US (1 row(s)) with row target https://alidocs.dingtalk.com/i/nodes/DefaultTargetAlias123?utm_scene=team_space.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpsa5eon40/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] DingTalk docs target {"target_node_id": "", "target_node_url": ""}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:26+00:00
+[build-queue] Using DingTalk upload for JE-1000F_US (1 row(s)) with row target https://alidocs.dingtalk.com/i/nodes/RowOnlyTargetNode456?utm_scene=team_space.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpp3e_zxpu/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:26+00:00
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp5d70lj3y/docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (2 row(s)): expires_at=2026-10-03T05:47:27+00:00
+[build-queue] Build Draft Package JE-1000F_US (2 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0xkg9wdc/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=2 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:28+00:00
+[build-queue] WARNING DingTalk sync unavailable for JE-1000F_US (1 row(s)); using Feishu/wiki only: Invalid DingTalk workspace URL: -
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpgtrfj16b/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:29+00:00
+[build-queue] Syncing DingTalk upload for JE-1000F_US (1 row(s)) with default target.
+[build-queue] WARNING DingTalk sync unavailable for JE-1000F_US (1 row(s)); using Feishu/wiki only: No AliDocs session found for operator_union_id=alice. Expected session file C:/Users/Administrator/.auto-manual/dingtalk-sessions/alice.json or environment variables DINGTALK_DOCS_A_TOKEN, DINGTALK_DOCS_XSRF_TOKEN, DINGTALK_DOCS_COOKIE.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpt7d_gi3k/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_JP (1 row(s)): expires_at=2026-10-03T05:47:29+00:00
+[build-queue] Summary: processed=0 failed=1
+[build-queue] FAILURE Build Draft Package JE-1000F_JP (1 row(s)): Build Draft Package queue rows require Git_ref so the worker can fetch the review branch
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:29+00:00
+[build-queue] Summary: processed=0 failed=1
+[build-queue] FAILURE Build Draft Package JE-1000F_US (1 row(s)): cloud import failed
+.[build-queue] DingTalk docs target {"target_node_id": "NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:30+00:00
+[build-queue] Skipping DingTalk upload for JE-1000F_US (1 row(s)); using Feishu/wiki upload.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpuyuyt6xl/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:31+00:00
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjbhpr3qt/manual.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:31+00:00
+[build-queue] Skipping DingTalk sync for JE-1000F_US (1 row(s)); using Feishu/wiki only.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpv76_kj65/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] DingTalk docs target {"target_node_id": "DefaultNode", "target_node_url": "https://alidocs.dingtalk.com/i/nodes/DefaultNode"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:32+00:00
+[build-queue] Using DingTalk upload for JE-1000F_US (1 row(s)) with row target https://alidocs.dingtalk.com/i/nodes/RowTargetNode123?utm_scene=team_space.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvatgcipr/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_JP (1 row(s)): expires_at=2026-10-03T05:47:32+00:00
+[build-queue] WARNING wiki attach failed; using Drive link https://test-degwga5x6ex8.feishu.cn/file/file_token_123
+[build-queue] Publish JE-1000F_JP (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpzuqjue99/docs/_build/JE-1000F/JP/word/manual_je1000f_jp.docx -> https://test-degwga5x6ex8.feishu.cn/file/file_token_123
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:32+00:00
+[build-queue] Syncing DingTalk upload for JE-1000F_US (1 row(s)) with default target.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_0_e1301/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:32+00:00
+[build-queue] Syncing latest phase2 snapshot before JE-1000F_US (1 row(s)).
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] DingTalk docs target {"target_node_id": "NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:33+00:00
+[build-queue] Using DingTalk upload for JE-1000F_US (1 row(s)) with default target.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmptg1fjd6m/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:47:33+00:00
+[build-queue] Syncing latest phase2 snapshot before JE-1000F_US (1 row(s)).
+[build-queue] Summary: processed=0 failed=1
+[build-queue] FAILURE Build Draft Package JE-1000F_US (1 row(s)): sync boom
+..............................................[build-queue] DRY-RUN {"record_ids": ["rec_group_1", "rec_group_2"], "record_id": "rec_group_1", "label": "JE-1000F_US_1.0", "document_key": "JE-1000F_US", "model": "JE-1000F", "region": "US", "lang": "", "build_family": "us-merged", "langs": [], "version": "1.0", "workflow_action": "Build Draft Package", "workflow_action_source": "Workflow_action", "legacy_doc_phase": null, "git_ref": "codex/review-je-1000f-us", "config": "configs/config.us.yaml", "data_root": "data/phase2"}
+...................................[review-start] Syncing latest phase2 snapshot before start review.
+[review-start] Start Review FAILURE JE-1000F_US family=us-merged: Review-start rows merged by Document_Key must agree on Build_family: JE-1000F_US
+[review-start] Start Review summary: processed=0 blocked=0 failed=1
+.[review-start] Syncing latest phase2 snapshot before start review.
+[review-start] Start Review FAILURE JE-1000F_US family=us-merged: Review-start rows merged by Document_Key must agree on Version, Git_ref: JE-1000F_US
+[review-start] Start Review summary: processed=0 blocked=0 failed=1
+.[review-start] Syncing latest phase2 snapshot before start review.
+[review-start] Start Review updated JE-1000F_US: family=us-merged git_ref=codex/review-je-1000f-us pr_url=https://github.com/Bingboom/auto-manual/pull/999 rows=1
+[review-start] Start Review summary: processed=1 blocked=0 failed=0
+.[review-start] No pending review-start task found for record_id=rec_advanced_not_started.
+.[review-start] Targeted review-start row is already in review; record_id=rec_started git_ref=codex/review-je-1000f-jp. Treating duplicate dispatch as success.
+.[review-start] Targeted review-start row is already in review; record_id=recvokvmgfofyI git_ref=review/JE-2000F-CN. Treating duplicate dispatch as success.
+.[review-start] Syncing latest phase2 snapshot before start review.
+[review-start] Start Review updated JE-1000F_US: family=us-merged git_ref=codex/review-je-1000f-us pr_url=https://github.com/Bingboom/auto-manual/pull/999 rows=2
+[review-start] Start Review summary: processed=1 blocked=0 failed=0
+.[review-start] Syncing latest phase2 snapshot before start review.
+[review-start] Start Review FAILURE JE-1000F_CN family=cn-zh: Failed to resolve Product Name from Spec_Master.csv for model='JE-1000F', region='CN', lang='zh'. Source: /tmp/Spec_Master.csv
+[review-start] Start Review summary: processed=0 blocked=0 failed=1
+.[review-start] No pending review-start task found for record_id=rec_target_missing.
+.............[review-start] build.py rst
+Traceback (most recent call last):
+RuntimeError: Draft page '03_product_overview' is missing 1 required Spec_Master row(s) [model=JE-1000F, region=CN, lang=zh]:
+  - field_map.FRONT_DC12_PORT_LABEL -> dc12_port[pages=Product overview]
+  Fix: add the listed row(s) to the Spec_Master source, or set a recipe `default:`.
+.............................................................................................................................[build-queue] WARNING git fetch failed; retrying in 1.0s (1/4)...
+[build-queue] WARNING git fetch failed; retrying in 2.0s (2/4)...
+[build-queue] WARNING git fetch failed; retrying in 4.0s (3/4)...
+[build-queue] WARNING git fetch failed; reusing cached remote ref origin/feature/test
+..[build-queue] Using local Git_ref branch feature/test
+.[build-queue] WARNING git fetch failed; retrying in 1.0s (1/4)...
+.[build-queue] Using remote Git_ref origin/main
+.....................................................................................................................................................................................................................usage: python -m unittest [-h] (--plan PLAN | --all-registered) --manual-ir
+                          MANUAL_IR [--write] [--approve-content-change]
+                          [--approved-by APPROVED_BY]
+                          [--approved-at APPROVED_AT]
+                          [--approval-method APPROVAL_METHOD]
+                          [--registry REGISTRY]
+python -m unittest: error: --all-registered is ordinary dry-run only; pass --plan explicitly before writing or approving content
+..usage: python -m unittest [-h] (--plan PLAN | --all-registered) --manual-ir
+                          MANUAL_IR [--write] [--approve-content-change]
+                          [--approved-by APPROVED_BY]
+                          [--approved-at APPROVED_AT]
+                          [--approval-method APPROVAL_METHOD]
+                          [--registry REGISTRY]
+python -m unittest: error: --approve-content-change requires --approved-by, --approved-at, and --approval-method
+....................................................................................[release-tag] ERROR: release tag annotation mismatch for manual-release/je-1000f/jp/ja/1.0; the manifest binding changed
+.....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................REFERENCE-LAYOUT SCAFFOLD: draft target=MODEL-1/US pages=5 production_eligible=false registry_update=required-after-approval
+output=/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp6yqzhu9p/draft.json
+[release-tag] status=planned
+[release-tag] tag=manual-release/je-1000f/jp/ja/1.0
+[release-tag] git_sha=16f48246d4c152e6f084012000856f4319f7bff5
+[release-tag] manifest_sha256=9784d07e837512a88e95ec60d41db1aee7350da32be3413825351d0f68abe087
+[release-tag] status=created
+[release-tag] tag=manual-release/je-1000f/jp/ja/1.0
+[release-tag] git_sha=16f48246d4c152e6f084012000856f4319f7bff5
+[release-tag] manifest_sha256=9784d07e837512a88e95ec60d41db1aee7350da32be3413825351d0f68abe087
+[release-tag] status=verified
+[release-tag] tag=manual-release/je-1000f/jp/ja/1.0
+[release-tag] git_sha=16f48246d4c152e6f084012000856f4319f7bff5
+[release-tag] manifest_sha256=9784d07e837512a88e95ec60d41db1aee7350da32be3413825351d0f68abe087
+[release-tag] status=created-and-pushed
+[release-tag] tag=manual-release/je-1000f/us/en/1.0
+[release-tag] git_sha=16f48246d4c152e6f084012000856f4319f7bff5
+[release-tag] manifest_sha256=48a5810336f7380bf98f403de6104dc6a5666e17435d7b0e8116746a6346679e
+[bundle-plan] JE-1000F_EU ships ['en', 'fr', 'es', 'de', 'it']; dropped family language(s) ['uk'] per data/model_languages.csv
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_EU: dropped 07_extra_battery
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/en/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/fr/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/es/07_extra_battery.rst
+{
+  "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppqdnodp5/ledger.jsonl",
+  "run_id": "run-123",
+  "deltas_seen": 1,
+  "rows_written": 1,
+  "rows_skipped": 0,
+  "row_keys": [
+    "run-123:hash-a"
+  ],
+  "reconcile": {
+    "rows_reconciled": 0,
+    "verdicts": {
+      "source_missing": 1
+    },
+    "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppqdnodp5/ledger.jsonl"
+  }
+}
+{
+  "total_rows": 1,
+  "by_status": {
+    "accepted_as_proposed": 1
+  },
+  "decided": 1,
+  "reflow_rate": 1.0,
+  "acceptance_rate": 1.0,
+  "by_route_class": {
+    "repo_review_text": {
+      "accepted_as_proposed": 1,
+      "decided": 1,
+      "acceptance_rate": 1.0
+    }
+  },
+  "top_corrected_sources": [
+    {
+      "source_path": "docs/_review/JE-1000F/US/en/page/01_overview.rst",
+      "corrections": 1
+    }
+  ]
+}
+{"out": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp6zxg37f4/pairs.jsonl", "pairs": 1}
+{
+  "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp0jjmsgr8/ledger.jsonl",
+  "run_id": "run-123",
+  "deltas_seen": 1,
+  "rows_written": 1,
+  "rows_skipped": 0,
+  "row_keys": [
+    "run-123:hash-a"
+  ]
+}
+{
+  "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvo_2xink/ledger.jsonl",
+  "run_id": "run-123",
+  "deltas_seen": 1,
+  "rows_written": 1,
+  "rows_skipped": 0,
+  "row_keys": [
+    "run-123:hash-a"
+  ],
+  "reconcile": {
+    "rows_reconciled": 1,
+    "verdicts": {
+      "accepted_as_proposed": 1
+    },
+    "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvo_2xink/ledger.jsonl"
+  }
+}
+{
+  "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1xcrgrkd/ledger.jsonl",
+  "run_id": "run-123",
+  "deltas_seen": 1,
+  "rows_written": 1,
+  "rows_skipped": 0,
+  "row_keys": [
+    "run-123:hash-a"
+  ],
+  "reconcile": {
+    "rows_reconciled": 0,
+    "verdicts": {
+      "source_missing": 1
+    },
+    "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1xcrgrkd/ledger.jsonl"
+  }
+}
+{
+  "rows_reconciled": 1,
+  "verdicts": {
+    "accepted_as_proposed": 1
+  },
+  "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp1xcrgrkd/ledger.jsonl"
+}
+{
+  "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp8cs6mzw5/ledger.jsonl",
+  "run_id": "run-123",
+  "deltas_seen": 1,
+  "rows_written": 1,
+  "rows_skipped": 0,
+  "row_keys": [
+    "run-123:hash-a"
+  ],
+  "reconcile": {
+    "rows_reconciled": 0,
+    "verdicts": {},
+    "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp8cs6mzw5/ledger.jsonl"
+  }
+}
+{
+  "rows_reconciled": 1,
+  "verdicts": {
+    "accepted_as_proposed": 1
+  },
+  "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp8cs6mzw5/ledger.jsonl"
+}
+{"out": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprimxnevd/tm_candidates.jsonl", "candidates": 1}
+{
+  "schema_version": "translation-suggestion-apply/v1",
+  "external_write": false,
+  "summary": {
+    "total": 1,
+    "apply": 1,
+    "skip": 0,
+    "written": 0,
+    "already": 0,
+    "verify_failed": 0,
+    "error": 0
+  },
+  "plan": [
+    {
+      "delta_hash": "hash-tm-1",
+      "copy_key": null,
+      "lang": "ko",
+      "action": "apply",
+      "field": "ko",
+      "value": "검토자가 고친 문장.",
+      "record_id": null,
+      "resolution_status": "deferred"
+    }
+  ],
+  "applied": [
+    {
+      "delta_hash": "hash-tm-1",
+      "copy_key": null,
+      "lang": "ko",
+      "action": "apply",
+      "field": "ko",
+      "value": "검토자가 고친 문장.",
+      "record_id": null,
+      "resolution_status": "deferred",
+      "status": "planned"
+    }
+  ],
+  "candidates": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprimxnevd/tm_candidates.jsonl",
+  "approved_count": 1
+}
+WROTE candidates /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvz8s9s2_/out/spec_intake_candidates.json
+CANDIDATES 0  {}
+WROTE candidates /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp46wcfxh7/out/spec_intake_candidates.json
+CANDIDATES 0  {}
+COMPLETENESS ⚠️ incomplete: 1 reference rows missing from candidates
+[sync-review] bundle: model='MODEL', region='EU', lang='en', scope='params', files='1', path='/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp5m37xgzq/docs/_review/MODEL/EU'
+[build] Cleaning target output: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp76qp3gm3/docs/_build/M1/US
+[build] Cleaning target output: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpg66hdw6j/docs/_build/M1/US
+[build] Cleanup blocked by an open handle; retrying in 0.2s (1/3)...
+[build] Cleanup blocked by an open handle; retrying in 0.5s (2/3)...
+[build] Cleanup blocked by an open handle; retrying in 1.0s (3/3)...
+[build] Cleaning target output: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpkkpa8h4o/docs/_build/M1/US
+[build] Cleanup blocked by an open handle; retrying in 0.2s (1/3)...
+[build] Sphinx -> LATEX
+[warning-ratchet] stale-baseline sphinx-latex: docs/_build/{target}/rst/page/06_ups_mode.rst: WARNING: Line block ends without a blank line. [docutils]
+[warning-ratchet] sphinx-latex: 0 new, 0 known, 1 stale
+[build] Sphinx -> HTML
+[build] HTML theme 'furo' not available, fallback to alabaster
+[warning-ratchet] stale-baseline sphinx-html: docs/_build/{target}/rst/page/06_ups_mode.rst: WARNING: Line block ends without a blank line. [docutils]
+[warning-ratchet] sphinx-html: 0 new, 0 known, 1 stale
+{
+  "ledger": "/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpxuklra3x/ledger.jsonl",
+  "written": 1,
+  "skipped": 0,
+  "entry": {
+    "ledger_schema_version": 1,
+    "run_key": "b8fbd5a3f7b1e86a31ba883e729c4a578012cebc",
+    "recorded_at": "2026-10-03T03:50:08+00:00",
+    "input_docx": "/work/manual_en.docx",
+    "output_docx": "/work/manual_ko.docx",
+    "source_lang": "en",
+    "target_lang": "ko",
+    "units_total": 40,
+    "units_matched": 25,
+    "hit_rate": 0.625,
+    "change_count": 3
+  }
+}
+{
+  "runs": 1,
+  "runs_without_counters": 0,
+  "units_total": 40,
+  "units_matched": 25,
+  "hit_rate": 0.625,
+  "by_language_pair": {
+    "en->ko": {
+      "runs": 1,
+      "units_total": 40,
+      "units_matched": 25,
+      "hit_rate": 0.625
+    }
+  }
+}
+VOC receiver listening on 127.0.0.1:9198; fixed table table
+.VOC receiver listening on 127.0.0.1:9198; fixed table tblTable
+.Ignoring stale receiver pid file for reused pid 123
+VOC receiver did not become healthy; inspect /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpnoqfp6pl/receiver.log
+.usage: python -m unittest start [-h] [--runtime-dir RUNTIME_DIR] --profile
+                                PROFILE --base BASE --table TABLE --origin
+                                ORIGIN [--port PORT] [--preview]
+                                [--cloudflare-tunnel]
+python -m unittest start: error: the following arguments are required: --profile
+.Refusing to signal unrecognized pid 123
+......................................................................................................................................................................................................................................................................................................[warning-ratchet] wrote /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpvgo6fa_y/baselines/sphinx-html-known-warnings.txt
+[warning-ratchet] sphinx-html: 0 new, 1 known, 0 stale
+[warning-ratchet] NEW sphinx-html: docs/b.rst: WARNING: new
+[warning-ratchet] sphinx-html: 1 new, 1 known, 0 stale
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:51:19+00:00
+[build-queue] Syncing latest phase2 snapshot before JE-1000F_US (1 row(s)).
+[build-queue] Web Publish JE-1000F_US (1 row(s)): /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprt5sk00p/reports/releases/manual_web_publish_2.0.md
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-03T05:51:19+00:00
+[build-queue] Syncing latest phase2 snapshot before JE-1000F_US (1 row(s)).
+...............................................................................................................................[publish-html-link] Fallback writeback via HTML_link failed: unknown field
+[publish-html-link] Fallback writeback via HTML link failed: unknown field
+[publish-html-link] Fallback writeback via HTMLLink failed: unknown field
+[publish-html-link] Fallback writeback via HTML链接 failed: unknown field
+[publish-html-link] Fallback writeback via HTML 链接 failed: unknown field
+[publish-html-link] Fallback writeback via 网页链接 failed: unknown field
+[publish-html-link] Fallback writeback via 网页链接地址 failed: unknown field
+[publish-html-link] Fallback writeback via Vercel URL failed: unknown field
+[publish-html-link] Fallback writeback via Vercel链接 failed: unknown field
+[publish-html-link] Fallback writeback via Vercel 链接 failed: unknown field
+..........................................................
+----------------------------------------------------------------------
+Ran 5075 tests in 762.048s
+
+OK (skipped=35)
+[word_bundle_docx] boom; retrying with pandoc: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpjj1wq7v8/manual.docx
+[publish-html-link] Updated publish metadata: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp3j88ncxv/reports/releases/JE-1000F/US/en/latest/publish_meta.json
+[publish-html-link] HTML_link lookup missed. Nearby link-like fields: Document link
+[publish-html-link] Updated rec_publish_1: HTML_link=https://manual.example.com/latest
+[publish-html-link] Updated publish metadata: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpab12nbj7/reports/releases/JE-1000F/US/en/latest/publish_meta.json
+[publish-html-link] HTML_link lookup missed. Field list returned no link-like fields.
+[publish-html-link] Document_link table does not expose a writable HTML link field; attempted=HTML_link, HTML link, HTMLLink, HTML链接, HTML 链接, 网页链接, 网页链接地址, Vercel URL, Vercel链接, Vercel 链接. Skipping writeback.
+[publish-html-link] Updated publish metadata: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpl5bscloa/reports/releases/JE-1000F/US/en/latest/publish_meta.json, /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpl5bscloa/reports/releases/JE-1000F/US/en/versions/0.2/publish_meta.json
+[publish-html-link] Updated rec_publish_1: HTML_link=https://manual.example.com/latest
+[publish-html-link] Updated rec_publish_2: HTML_link=https://manual.example.com/latest
+[publish-html-link] Updated publish metadata: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp_5p3wie4/reports/releases/JE-1000F/US/en/latest/publish_meta.json
+[publish-html-link] Updated rec_publish_1: HTML link=https://manual.example.com/latest
+[publish-html-link] Updated publish metadata: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp5kww9yao/reports/releases/JE-1000F/US/en/latest/publish_meta.json
+[publish-html-link] Updated publish metadata: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmp5kww9yao/reports/releases/JE-2000F/JP/ja/latest/publish_meta.json
+[publish-html-link] Updated rec_us: HTML_link=https://manual.example.com/JE-1000F/US/en/index.html
+[publish-html-link] Updated rec_jp: HTML_link=https://manual.example.com/JE-2000F/JP/ja/index.html
+[web-publish-link] Updated metadata: /private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmpmk8dzh3y/JE-1000F/US/en/latest/web/publish_meta.json -> https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html
+[web-publish-link] PENDING rec_pending_1: HTML_link registration deferred to the post-deploy receipt lane (https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html)
+[web-publish-link] Recorded 1 pending HTML_link registration(s).
+[web-publish-link] Updated metadata: /var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmprn3hm6m0/JE-1000F/US/en/latest/web/publish_meta.json -> https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html
+[web-publish-link] PENDING rec_pending_1: HTML_link registration deferred to the post-deploy receipt lane (https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html)
+[web-publish-link] PENDING rec_pending_2: HTML_link registration deferred to the post-deploy receipt lane (https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html)
+[web-receipt] NOT REGISTERED JE-1000F/US/en: deployment failed — forced failed
+[web-receipt] failed: 0 written, 0 already registered across 1 registrable target(s) (verify failed after 1 attempt(s))
+[web-receipt] No stored publish target records queue rows; nothing to register (Git-only targets never write HTML_link).
+[web-receipt] WROTE rec_web_1: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] WROTE rec_web_2: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] registered: 2 written, 0 already registered across 1 registrable target(s) (verify verified after 3 attempt(s))
+[web-receipt] WROTE rec_web_1: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] WROTE rec_web_2: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] registered: 2 written, 0 already registered across 1 registrable target(s) (verify verified after 1 attempt(s))
+[web-receipt] SKIP rec_web_1: HTML_link already registered (https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html)
+[web-receipt] SKIP rec_web_2: HTML_link already registered (https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html)
+[web-receipt] registered: 0 written, 2 already registered across 1 registrable target(s) (verify verified after 1 attempt(s))
+[web-receipt] WROTE rec_web_1: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] WROTE rec_web_2: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] registered: 2 written, 0 already registered across 1 registrable target(s) (verify verified after 1 attempt(s))
+[web-receipt] SKIP rec_web_1: HTML_link already registered (https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html)
+[web-receipt] SKIP rec_web_2: HTML_link already registered (https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html)
+[web-receipt] registered: 0 written, 2 already registered across 1 registrable target(s) (verify verified after 1 attempt(s))
+[web-receipt] NOT REGISTERED JE-1000F/US/en: deployment throttled — forced throttled
+[web-receipt] throttled: 0 written, 0 already registered across 1 registrable target(s) (verify throttled after 1 attempt(s))
+[web-receipt] WROTE rec_web_1: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] WROTE rec_web_2: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] registered: 2 written, 0 already registered across 1 registrable target(s) (verify verified after 1 attempt(s))

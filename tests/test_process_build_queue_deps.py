@@ -12,8 +12,8 @@ from types import SimpleNamespace
 import unittest
 from unittest import mock
 
-from tools import process_build_queue, process_build_queue_services, queue_bound_runtime
-from tools.process_build_queue_deps import default_queue_deps
+from tools.build_queue import process_build_queue, process_build_queue_services, bound_runtime as queue_bound_runtime, group_processing as queue_group_processing
+from tools.build_queue.process_build_queue_deps import default_queue_deps
 from tools.phase2_support import LarkCliSource
 from tools.utils.path_utils import PathSegments, review_dir_of
 
@@ -156,3 +156,144 @@ class TestBuildQueueInjectedBoundaries(unittest.TestCase):
             )
         self.assertEqual(17, result)
         self.assertEqual(["sync-data", "check"], [call.args[0][2] for call in runner.call_args_list])
+
+    def test_queue_forwards_each_optional_override_and_keeps_facade_defaults(self) -> None:
+        overrides = {
+            name: mock.Mock(name=name)
+            for name in (
+                "sync_phase2_snapshot_before_queue", "build_document_for_task",
+                "resolve_dingtalk_mirror_destination", "ensure_dingtalk_session_ready",
+                "publish_word_artifact", "import_markdown_to_cloud_doc", "finalize_cloud_doc",
+            )
+        }
+        resolve_artifact = mock.Mock(name="resolve_artifact_destination")
+        deps = replace(default_queue_deps(process_build_queue), resolve_artifact_destination=resolve_artifact, **overrides)
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False, deps=deps,
+            )
+        for name, value in overrides.items():
+            self.assertIs(value, captured[name], name)
+        self.assertIs(resolve_artifact, captured["resolve_wiki_destination"])
+        self.assertIs(resolve_artifact, captured["resolve_row_artifact_destination"])
+        self.assertIs(process_build_queue.resolve_wiki_destination, captured["resolve_lark_wiki_destination"])
+
+        captured.clear()
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False,
+            )
+        self.assertIs(process_build_queue.publish_word_artifact, captured["publish_word_artifact"])
+        self.assertIs(process_build_queue.build_document_for_task, captured["build_document_for_task"])
+
+    def test_clock_override_reaches_the_group_processor(self) -> None:
+        clock = mock.Mock(name="clock")
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False,
+                deps=replace(default_queue_deps(process_build_queue), clock=clock),
+            )
+        processor = captured["process_queue_record_group"]
+        self.assertIs(queue_group_processing.process_queue_record_group, processor.func)  # type: ignore[attr-defined]
+        self.assertEqual({"clock": clock}, processor.keywords)  # type: ignore[attr-defined]
+
+        captured.clear()
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False,
+            )
+        self.assertIs(queue_group_processing.process_queue_record_group, captured["process_queue_record_group"])
+
+    def test_bootstrap_uses_session_overrides(self) -> None:
+        preflight = mock.Mock(return_value=["blocked"])
+        deps = replace(
+            default_queue_deps(process_build_queue),
+            collect_queue_preflight_errors=preflight,
+            resolve_document_link_binding=mock.Mock(),
+            phase2_identity=mock.Mock(return_value="bot"),
+        )
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_bootstrap_queue_session_impl", side_effect=capture):
+            process_build_queue_services._bootstrap_queue_session(process_build_queue, deps=deps, cfg={})
+        self.assertIs(preflight, captured["collect_queue_preflight_errors"])
+        self.assertIs(deps.resolve_document_link_binding, captured["resolve_document_link_binding"])
+        self.assertIs(deps.phase2_identity, captured["phase2_identity"])
+
+    def test_build_document_facade_forwards_its_collaborators(self) -> None:
+        with mock.patch.object(process_build_queue_services, "_build_document_for_task_impl", return_value="built") as impl:
+            result = process_build_queue.build_document_for_task(
+                config_path=Path("config.yaml"), model="M1", region="US", data_root=None, doc_phase="draft",
+            )
+        self.assertEqual("built", result)
+        kwargs = impl.call_args.kwargs
+        self.assertEqual(process_build_queue.ROOT, kwargs["repo_root"])
+        for name, facade_name in (
+            ("normalize_workflow_action", "normalize_workflow_action"),
+            ("prepare_git_ref_worktree", "_prepare_git_ref_worktree"),
+            ("remove_worktree", "_remove_worktree"),
+            ("config_path_in_repo_root", "_config_path_in_repo_root"),
+            ("run_command", "_run_command"),
+            ("build_py_target_command", "_build_py_target_command"),
+            ("resolve_word_output_path_for_target", "resolve_word_output_path_for_target"),
+            ("resolve_pdf_output_path_for_target", "resolve_pdf_output_path_for_target"),
+            ("resolve_md_output_path_for_target", "resolve_md_output_path_for_target"),
+            ("versioned_pdf_output_path", "_versioned_pdf_output_path"),
+            ("versioned_word_output_path", "_versioned_word_output_path"),
+            ("versioned_md_output_path", "_versioned_md_output_path"),
+            ("resolve_html_output_dir_for_target", "resolve_html_output_dir_for_target"),
+            ("stage_publish_assets_to_host_repo", "_stage_publish_assets_to_host_repo"),
+            ("stage_web_publish_assets_to_host_repo", "_stage_web_publish_assets_to_host_repo"),
+            ("stage_draft_word_output_to_host_repo", "_stage_draft_word_output_to_host_repo"),
+            ("stage_draft_md_output_to_host_repo", "_stage_draft_md_output_to_host_repo"),
+        ):
+            self.assertIs(getattr(process_build_queue, facade_name), kwargs[name], name)
+
+    def test_nested_overrides_reach_artifact_destination_and_publish(self) -> None:
+        resolve_wiki = mock.Mock(return_value="wiki-destination")
+        upload = mock.Mock(return_value=("file_token", "https://drive/file_token"))
+        move = mock.Mock(return_value="https://wiki/node")
+        deps = replace(
+            default_queue_deps(process_build_queue),
+            resolve_wiki_destination=resolve_wiki,
+            upload_word_to_drive=upload,
+            move_drive_file_to_wiki=move,
+        )
+        captured: dict[str, object] = {}
+
+        def capture(**kwargs: object) -> int:
+            captured.update(kwargs)
+            return 0
+
+        with mock.patch.object(process_build_queue_services, "_process_build_queue_impl", side_effect=capture):
+            process_build_queue.process_build_queue(
+                cfg={}, config_path=Path("config.yaml"), data_root=None, dry_run=False, deps=deps,
+            )
+        self.assertIs(resolve_wiki, captured["resolve_lark_wiki_destination"])
+        destination = captured["resolve_wiki_destination"](  # type: ignore[operator]
+            cfg={}, cli_bin="lark-cli", identity="bot", binding=object(),
+        )
+        self.assertEqual("wiki-destination", destination)
+        result = captured["publish_word_artifact"](  # type: ignore[operator]
+            cfg={}, cli_bin="lark-cli", artifact_output_path=Path("manual.docx"), identity="bot",
+            artifact_destination=destination,
+        )
+        upload.assert_called_once()
+        move.assert_called_once()
+        self.assertEqual("https://wiki/node", result.document_link_url)

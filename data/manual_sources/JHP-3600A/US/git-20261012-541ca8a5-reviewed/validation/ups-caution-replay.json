@@ -1,0 +1,17 @@
+{
+  "en": {
+    "fresh_frozen_source_replay": "pass",
+    "compared_files": 109,
+    "all_generated_bytes_identical": true
+  },
+  "fr": {
+    "fresh_frozen_source_replay": "pass",
+    "compared_files": 109,
+    "all_generated_bytes_identical": true
+  },
+  "es": {
+    "fresh_frozen_source_replay": "pass",
+    "compared_files": 109,
+    "all_generated_bytes_identical": true
+  }
+}

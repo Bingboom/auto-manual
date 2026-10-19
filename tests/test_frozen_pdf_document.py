@@ -4,11 +4,11 @@ from pathlib import Path
 from types import SimpleNamespace
 import unittest
 
-from tools.frozen_ai_flow import flow_text, paragraph
-from tools.frozen_ai_source import FrozenBook
-from tools.frozen_pdf_document import _SECTIONS, _body_prose, _introduction, _reference_nodes, ordered_pages
+from tools.web.frozen_ai_flow import flow_text, paragraph
+from tools.web.frozen_ai_source import FrozenBook
+from tools.web.frozen_pdf_document import _SECTIONS, _body_prose, _introduction, _reference_nodes, ordered_pages
 from tools.manual_ir.flow import validate_flow_node
-from tools.web_composite_presentation import supports_figure_contract
+from tools.web.composite_presentation import supports_figure_contract
 
 
 def _block(text, y, x=30):

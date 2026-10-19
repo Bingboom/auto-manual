@@ -40,7 +40,7 @@ Word and HTML title styling also depend on:
 
 - RST template structure
 - [`docs/_static/hb_manual.css`](../../docs/_static/hb_manual.css)
-- [`tools/word_bundle_html.py`](../../tools/word_bundle_html.py)
+- [`tools/word/bundle_html.py`](../../tools/word/bundle_html.py)
 
 So if you change a PDF layout parameter and Word does not move with it, that is usually expected.
 

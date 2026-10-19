@@ -1,0 +1,214 @@
+{
+  "sourceVersion": "git-20261005-31fd0692-ess2",
+  "operation": "Verified existing shared white product-bar availability pills after refreshing preview. No source/CSS/artwork change needed.",
+  "snapshots": [
+    {
+      "documentWidth": 1440,
+      "titles": [
+        {
+          "background": "rgb(255, 255, 255)",
+          "badge": {
+            "bottom": -301.8359375,
+            "height": 29.7734375,
+            "left": 925.4609375,
+            "right": 1084.125,
+            "top": -331.609375,
+            "width": 158.6640625
+          },
+          "badgeCount": 1,
+          "color": "rgb(52, 48, 49)",
+          "font": "15.6736px",
+          "inside": true,
+          "overflow": false,
+          "plainDash": false,
+          "radius": "999px",
+          "rect": {
+            "bottom": -290.9609375,
+            "height": 52.1640625,
+            "left": 314.59375,
+            "right": 1131.625,
+            "top": -343.125,
+            "width": 817.03125
+          },
+          "text": "SOLD SEPARATELY",
+          "title": "Jackery Battery Pack 3600",
+          "weight": "700",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "badge": {
+            "bottom": 404.84375,
+            "height": 29.7734375,
+            "left": 925.4609375,
+            "right": 1084.125,
+            "top": 375.0703125,
+            "width": 158.6640625
+          },
+          "badgeCount": 1,
+          "color": "rgb(52, 48, 49)",
+          "font": "15.6736px",
+          "inside": true,
+          "overflow": false,
+          "plainDash": false,
+          "radius": "999px",
+          "rect": {
+            "bottom": 415.71875,
+            "height": 52.1640625,
+            "left": 314.59375,
+            "right": 1131.625,
+            "top": 363.5546875,
+            "width": 817.03125
+          },
+          "text": "SOLD SEPARATELY",
+          "title": "Jackery Automatic Transfer Switch",
+          "weight": "700",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "documentWidth": 390,
+      "titles": [
+        {
+          "background": "rgb(255, 255, 255)",
+          "badge": {
+            "bottom": 5361.5546875,
+            "height": 25.2421875,
+            "left": 197.5703125,
+            "right": 332.1328125,
+            "top": 5336.3125,
+            "width": 134.5625
+          },
+          "badgeCount": 1,
+          "color": "rgb(52, 48, 49)",
+          "font": "13.2928px",
+          "inside": true,
+          "overflow": false,
+          "plainDash": false,
+          "radius": "999px",
+          "rect": {
+            "bottom": 5371.7890625,
+            "height": 80.3828125,
+            "left": 16,
+            "right": 374,
+            "top": 5291.40625,
+            "width": 358
+          },
+          "text": "SOLD SEPARATELY",
+          "title": "Jackery Battery Pack 3600",
+          "weight": "700",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "badge": {
+            "bottom": 6254.8984375,
+            "height": 25.2421875,
+            "left": 197.5703125,
+            "right": 332.1328125,
+            "top": 6229.65625,
+            "width": 134.5625
+          },
+          "badgeCount": 1,
+          "color": "rgb(52, 48, 49)",
+          "font": "13.2928px",
+          "inside": true,
+          "overflow": false,
+          "plainDash": false,
+          "radius": "999px",
+          "rect": {
+            "bottom": 6265.1328125,
+            "height": 104.8203125,
+            "left": 16,
+            "right": 374,
+            "top": 6160.3125,
+            "width": 358
+          },
+          "text": "SOLD SEPARATELY",
+          "title": "Jackery Automatic Transfer Switch",
+          "weight": "700",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "documentWidth": 320,
+      "titles": [
+        {
+          "background": "rgb(255, 255, 255)",
+          "badge": {
+            "bottom": 5977.21875,
+            "height": 22.609375,
+            "left": 142.875,
+            "right": 263.3671875,
+            "top": 5954.609375,
+            "width": 120.4921875
+          },
+          "badgeCount": 1,
+          "color": "rgb(52, 48, 49)",
+          "font": "11.904px",
+          "inside": true,
+          "overflow": false,
+          "plainDash": false,
+          "radius": "999px",
+          "rect": {
+            "bottom": 5987.453125,
+            "height": 75.203125,
+            "left": 16,
+            "right": 304,
+            "top": 5912.25,
+            "width": 288
+          },
+          "text": "SOLD SEPARATELY",
+          "title": "Jackery Battery Pack 3600",
+          "weight": "700",
+          "whiteSpace": "nowrap"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "badge": {
+            "bottom": 6917.5390625,
+            "height": 22.609375,
+            "left": 142.875,
+            "right": 263.3671875,
+            "top": 6894.9296875,
+            "width": 120.4921875
+          },
+          "badgeCount": 1,
+          "color": "rgb(52, 48, 49)",
+          "font": "11.904px",
+          "inside": true,
+          "overflow": false,
+          "plainDash": false,
+          "radius": "999px",
+          "rect": {
+            "bottom": 6927.7734375,
+            "height": 97.09375,
+            "left": 16,
+            "right": 304,
+            "top": 6830.6796875,
+            "width": 288
+          },
+          "text": "SOLD SEPARATELY",
+          "title": "Jackery Automatic Transfer Switch",
+          "weight": "700",
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "viewport": [
+        320,
+        844
+      ]
+    }
+  ],
+  "checks": "passed"
+}

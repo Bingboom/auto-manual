@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from tools.utils.path_utils import PathSegments, Paths, repo_root
-from tools.web_presentation_contract import load_web_presentation_contract
+from tools.web.presentation_contract import load_web_presentation_contract
 
 
 BASE_ART_LIVE_COPY = "base-art-live-copy"

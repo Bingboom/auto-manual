@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import re
+from typing import cast
 
 from tools.component_specs.spec_table import (
     latex_spec_table_rows,
@@ -70,7 +71,7 @@ def _render_spec_sections_latex(
         raw_title = str(sec.get("title") or "")
         spec = spec_table_component_spec(
             section_title=raw_title,
-            rows=expand_rows(sec.get("rows") or []),
+            rows=expand_rows(cast(list[tuple[str, str]], sec.get("rows") or [])),
             source_ref=f"spec:{section_index}:{raw_title}",
             language=language,
         )
@@ -114,7 +115,7 @@ def _render_spec_sections_html(
         raw_title = str(sec.get("title") or "")
         spec = spec_table_component_spec(
             section_title=raw_title,
-            rows=sec.get("rows") or [],
+            rows=cast(list[tuple[str, str]], sec.get("rows") or []),
             source_ref=f"spec:{section_index}:{raw_title}",
             language=language,
         )
@@ -193,9 +194,9 @@ def render_spec_page(
 ) -> str:
     data = collect_spec_content(blocks, sku_id, lang, vars_map)
     title_main = str(data["title_main"])
-    sections = data["sections"]
-    notes = data["notes"]
-    footnotes = data["footnotes"]
+    sections = cast(list[dict[str, object]], data["sections"])
+    notes = cast(list[str], data["notes"])
+    footnotes = cast(list[str], data["footnotes"])
 
     title_main_latex = rf"\HBSpecPageStart \section{{{latex_arg_escape(title_main)}}}"
     sections_latex = _render_spec_sections_latex(sections, language=lang)

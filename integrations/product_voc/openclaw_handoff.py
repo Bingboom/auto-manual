@@ -134,7 +134,8 @@ def _read_verified_record(
         or not isinstance(rows[0], list)
     ):
         raise HandoffError("record readback has an unexpected shape")
-    values = dict(zip(names, rows[0]))
+    # zip(strict=False): lark-cli rows can be shorter than the field list; keep truncating
+    values = dict(zip(names, rows[0], strict=False))
     fields: dict[str, str] = {}
     for label in FIELDS.values():
         value = values.get(label)

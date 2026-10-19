@@ -1,0 +1,96 @@
+{
+  "language": "it",
+  "explicit_native_mappings": 169,
+  "reused_neutral_assets": 18,
+  "localized_panel_candidates": 3,
+  "mapped_english_residuals": [],
+  "publication_eligible": false,
+  "ir_sha256": "9a564c39fd42f537e8f8930eced3be793b4d71c07fe5f6a6cb1cf8e12162d375",
+  "source_manifest": {
+    "schema_version": "auto-manual-frozen-web-source/v1",
+    "target": {
+      "model": "JBP-3600A",
+      "region": "EU",
+      "languages": [
+        "it"
+      ]
+    },
+    "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+    "physical_pages": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "frontmatter_pages": [
+      2
+    ],
+    "shared_regulatory_page": 79,
+    "english_reference": {
+      "commit": "565c52a2d450d2b353e0186b22d0b230a2fb13ee",
+      "ir_sha256": "4c4fb33a2016849503a7812fa6cd0c3e0c70c84036cb2d65e3b8208b1f4a0a79"
+    },
+    "native_copy_sha256": "b91742ab46eb02a99923c5d538a9c8db3945d9563d9df91954bd9603179ac2bc",
+    "artwork_exceptions": [
+      {
+        "asset": "overview_front.png",
+        "source_page": 40,
+        "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+        "bbox_pt": [
+          27,
+          297.2244873046875,
+          152,
+          436.0664978027344
+        ],
+        "render_scale": 4,
+        "sha256": "7b03b55091b34f8afac0cc7b0061e28de903029ca28259095e9ad6a9cdad2ee6",
+        "replaces_english_path": "assets/ir/d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5/overview_front.png",
+        "english_sha256": "d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5",
+        "candidate_path": "assets/ir/7b03b55091b34f8afac0cc7b0061e28de903029ca28259095e9ad6a9cdad2ee6/overview_front.png",
+        "status": "source-backed-exception-candidate-not-approved",
+        "reason": "English composite embeds English labels; native source panel preserves the same product and dense leader geometry. Existing overview.png and lcd.png also contain English labels."
+      },
+      {
+        "asset": "overview_left.png",
+        "source_page": 40,
+        "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+        "bbox_pt": [
+          157,
+          297.2244873046875,
+          342,
+          436.0664978027344
+        ],
+        "render_scale": 4,
+        "sha256": "8869331cdcea5e84a66c926b7ee88ecaf2e092706a392266398c101c5e1cb572",
+        "replaces_english_path": "assets/ir/4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43/overview_left.png",
+        "english_sha256": "4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43",
+        "candidate_path": "assets/ir/8869331cdcea5e84a66c926b7ee88ecaf2e092706a392266398c101c5e1cb572/overview_left.png",
+        "status": "source-backed-exception-candidate-not-approved",
+        "reason": "English composite embeds English labels; native source panel preserves the same product and dense leader geometry. Existing overview.png and lcd.png also contain English labels."
+      },
+      {
+        "asset": "lcd_annotated.png",
+        "source_page": 41,
+        "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+        "bbox_pt": [
+          27,
+          54,
+          342,
+          110
+        ],
+        "render_scale": 4,
+        "sha256": "9e8665d32678bc79983a2bf254a43252a281f7e134aa976bfd4a745865c31071",
+        "replaces_english_path": "assets/ir/77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f/lcd_annotated.png",
+        "english_sha256": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f",
+        "candidate_path": "assets/ir/9e8665d32678bc79983a2bf254a43252a281f7e134aa976bfd4a745865c31071/lcd_annotated.png",
+        "status": "source-backed-exception-candidate-not-approved",
+        "reason": "English composite embeds English labels; native source panel preserves the same product and dense leader geometry. Existing overview.png and lcd.png also contain English labels."
+      }
+    ],
+    "status": "candidate-not-approved"
+  }
+}

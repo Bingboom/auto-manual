@@ -1,0 +1,1032 @@
+{
+  "schema_version": "car-artwork-review/v1",
+  "publication_eligible": false,
+  "status": "visual-source-grouping-not-approved",
+  "policy": {
+    "copy_owner": "native-html",
+    "caption_frame_owner": "shared-css",
+    "operations_shared": false
+  },
+  "groups": [
+    {
+      "id": "CAR-01",
+      "label": "JE-3000C · 方孔插座",
+      "status": "existing-textless-candidate",
+      "preferred_id": "ART-594fa3eb6720",
+      "preferred_sha256": "594fa3eb67203bc5c45a260c9423f37992c93361f52c9d07671e7452dbc62f7f",
+      "members": [
+        {
+          "id": "ART-594fa3eb6720",
+          "sha256": "594fa3eb67203bc5c45a260c9423f37992c93361f52c9d07671e7452dbc62f7f",
+          "paths": [
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-intake/artwork/shared/reference-car_charging.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/nl/assets/594fa3eb6720_reference-car_charging.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/pl/assets/594fa3eb6720_reference-car_charging.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-native-web/web/pt/assets/594fa3eb6720_reference-car_charging.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-nl-errata-intake/artwork/shared/reference-car_charging.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-nl-errata-web/web/nl/assets/594fa3eb6720_reference-car_charging.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-intake/artwork/shared/reference-car_charging.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-web/web/nl/assets/594fa3eb6720_reference-car_charging.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-web/web/pl/assets/594fa3eb6720_reference-car_charging.png",
+            "manual_sources/JE-3000C/EU/three-language/git-20261002-45219a6e-pv-web/web/pt/assets/594fa3eb6720_reference-car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-d948737cf4dd",
+          "sha256": "d948737cf4dd8acf7f8fa2a72ec45ea045e7df70b772d954c40f4dfe12890953",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_en/charging_car.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-02",
+      "label": "JE-3000C · 盖板插座",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-d947970a3f32",
+      "preferred_sha256": "d947970a3f3225a80553bdefcc4754792a6499f1b052027cd1ab10531366b185",
+      "members": [
+        {
+          "id": "ART-0227f02c17b1",
+          "sha256": "0227f02c17b1464615375d93b70608c4b46cc29bdf5300ed9e149ab94ef3efd1",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_de/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-17a55b17aa36",
+          "sha256": "17a55b17aa36fe5ac541630d1b78708eff0e365ccc4971145cae4c7f606a4654",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_uk/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-4807f7b5716a",
+          "sha256": "4807f7b5716a1b70bd564bf1d8636f23fca0e438db48535d8279721ed124a1fc",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_it/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-5465709cbb3a",
+          "sha256": "5465709cbb3a96a20fbaa819315db1c2f62bacdb2693f8ee1e3881eaf6f02391",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_es/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-d947970a3f32",
+          "sha256": "d947970a3f3225a80553bdefcc4754792a6499f1b052027cd1ab10531366b185",
+          "paths": [
+            "docs/renderers/web/assets/je3000c_eu_fr/charging_car.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-03",
+      "label": "JE-1000H · 方孔插座",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-647bd9a42cc1",
+      "preferred_sha256": "647bd9a42cc1e0b29b31d51a7bd980446268f26b3c045c129988e8c4416df368",
+      "members": [
+        {
+          "id": "ART-647bd9a42cc1",
+          "sha256": "647bd9a42cc1e0b29b31d51a7bd980446268f26b3c045c129988e8c4416df368",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_en/charging_car.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-04",
+      "label": "JE-1000H · 盖板插座",
+      "status": "existing-textless-candidate",
+      "preferred_id": "ART-60f1d05b31b5",
+      "preferred_sha256": "60f1d05b31b5db8549e860ca6bf67ecb183d39fdbde34113b2e13c831d60624f",
+      "members": [
+        {
+          "id": "ART-02e7039d6f93",
+          "sha256": "02e7039d6f9344247697b0dde2b7a8fca80e3407d93caf60287c5932759dd122",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_fr/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-037e3213bea9",
+          "sha256": "037e3213bea98297fd0381430797e377e0b0e7cc300389b032ec57563e975996",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_es/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-55a59b992189",
+          "sha256": "55a59b992189e21e17e744de5da42b9354bcc7e5a8f53483ecc6f30c1dc76c56",
+          "paths": [
+            "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/pl/reference-car_charging.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-temperature-web/web/pl/assets/55a59b992189_reference-car_charging.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-web/web/pl/assets/55a59b992189_reference-car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-60f1d05b31b5",
+          "sha256": "60f1d05b31b5db8549e860ca6bf67ecb183d39fdbde34113b2e13c831d60624f",
+          "paths": [
+            "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/reference-car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-6942c72cac46",
+          "sha256": "6942c72cac464da264cf3e381358e572145de843cefb307c4f79be56b7fb8004",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_de/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-9233956d503d",
+          "sha256": "9233956d503da7561651a6161a569139dec390242189c557ef5ca93fab734dc1",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_it/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-990e30845a75",
+          "sha256": "990e30845a75cd0137c5c00db9f1b8843eda79c0192c9510b50baf7efd810787",
+          "paths": [
+            "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/pt/reference-car_charging.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-temperature-web/web/pt/assets/990e30845a75_reference-car_charging.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-web/web/pt/assets/990e30845a75_reference-car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-a99dded3530e",
+          "sha256": "a99dded3530e91430e34b3027693e066f5899db85b2f1fe4292530a423dcb617",
+          "paths": [
+            "docs/renderers/web/assets/je1000h_eu_uk/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-d8edc5d25c26",
+          "sha256": "d8edc5d25c267e407829715575cda4ad3b9498572295e1a9b24a205e017665fa",
+          "paths": [
+            "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/nl/reference-car_charging.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-temperature-web/web/nl/assets/d8edc5d25c26_reference-car_charging.png",
+            "manual_sources/JE-1000H/EU/three-language/git-20261001-8bcb378f-web/web/nl/assets/d8edc5d25c26_reference-car_charging.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-05",
+      "label": "JE-2000F · 方孔插座",
+      "status": "existing-textless-candidate",
+      "preferred_id": "ART-f2f97ff0a870",
+      "preferred_sha256": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca",
+      "members": [
+        {
+          "id": "ART-19be3982a842",
+          "sha256": "19be3982a842add4b5f97ed42b4f05cac2b9c11cb1158c673c69273ea6e10bb8",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pl/p163_car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-27aa79ccbf18",
+          "sha256": "27aa79ccbf18eaf91554d4f4d482965eb14fceecd73e4ae1f8b9cf91178b9af7",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_en/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-328b3fe5fe77",
+          "sha256": "328b3fe5fe77f997232ed48dca34ac06699a745632a0963752df73049a53f919",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/nl/p145_car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-e9d3fba85579",
+          "sha256": "e9d3fba855792fc6f9818a95c3cfc93f4044f5334a3f98c8d1c1fe72a9c025a9",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/pt/p127_car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-f2f97ff0a870",
+          "sha256": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/artwork/shared/english-charging_car.png",
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language/web/nl/assets/f2f97ff0a870_english-charging_car.png",
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language/web/pl/assets/f2f97ff0a870_english-charging_car.png",
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-native-web/three-language/web/pt/assets/f2f97ff0a870_english-charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-f747de34445e",
+          "sha256": "f747de34445e7c4773e9a4e261b69dac5eccae87ce741c4ff2e63f3d4985cf1d",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_en_full_frames/charging_car.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-06",
+      "label": "JE-2000F · 盖板插座",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-399978cf808e",
+      "preferred_sha256": "399978cf808e264f7f078d4be4ad265e6b961d3dea450be2d43f12de4becdb98",
+      "members": [
+        {
+          "id": "ART-0b390e24e9bc",
+          "sha256": "0b390e24e9bc891e9b8be3919943e8b6e66f5e0402961d24a06f809d0ac3e7ce",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_uk/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-17f027c98078",
+          "sha256": "17f027c980785ee405a70f9e44c73adebb4023d50b1a0cd5c10b9bacba1ea2bd",
+          "paths": [
+            "manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/figures/uk/p109_car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-399978cf808e",
+          "sha256": "399978cf808e264f7f078d4be4ad265e6b961d3dea450be2d43f12de4becdb98",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_fr/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-7715470a2bd0",
+          "sha256": "7715470a2bd015814131bd6836e18771577c08c84fbed06b6e8df909c787df46",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_es/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-9dc82467af7a",
+          "sha256": "9dc82467af7a96cd62676435b69ad88d9cdc9eea422f28f851d3460b6a9be9b7",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_de/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-dc647e508cca",
+          "sha256": "dc647e508ccad0c31ffcaab3d6ccb6586e4cf8c6c94b21e5fc19650577cae728",
+          "paths": [
+            "docs/renderers/web/assets/je2000f_eu_it/charging_car.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-07",
+      "label": "JE-2000E · 方孔插座",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-9853dd9e2125",
+      "preferred_sha256": "9853dd9e21251626ce05c5b89c3946e5ce161396d625d081ad5076cb1d1cf8f4",
+      "members": [
+        {
+          "id": "ART-1615ae8869ae",
+          "sha256": "1615ae8869ae7c1cc829cc8d9333e817eef90df6abc3c4163d24e1f5f101275d",
+          "paths": [
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-candidate/three-language/artwork/pt/reference-car_charging.png",
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language/web/pt/assets/1615ae8869ae_reference-car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-92b1e0895a8e",
+          "sha256": "92b1e0895a8e3b21a91f24b1e1a206a246c58d08da6087b848a0d06cfaa061d6",
+          "paths": [
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-candidate/three-language/artwork/nl/reference-car_charging.png",
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language/web/nl/assets/92b1e0895a8e_reference-car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-9853dd9e2125",
+          "sha256": "9853dd9e21251626ce05c5b89c3946e5ce161396d625d081ad5076cb1d1cf8f4",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_en/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-aab5ecb30f7a",
+          "sha256": "aab5ecb30f7a9d3d5601f4be02c1ccb54c3bf1a523e6ee0e23b06a34a048172e",
+          "paths": [
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-candidate/three-language/artwork/pl/reference-car_charging.png",
+            "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language/web/pl/assets/aab5ecb30f7a_reference-car_charging.png"
+          ]
+        }
+      ],
+      "note": "6/35/43已去字，但仍有白色空胶囊，不能当合格无字底图。"
+    },
+    {
+      "id": "CAR-08",
+      "label": "JE-2000E · 盖板插座",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-d7c120fbdf4d",
+      "preferred_sha256": "d7c120fbdf4d31d70357d33d7140b04f4937396eed66e5c7540a890df1b239e6",
+      "members": [
+        {
+          "id": "ART-418a9c7f6855",
+          "sha256": "418a9c7f6855036e7fd6b43760b2efcb1d3e9adec80f09979cc9e41437936bd7",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_uk/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-47f746c84f9e",
+          "sha256": "47f746c84f9e827432ded2d66faf90e2a8b5acba87f33e79229f80b2c37423d1",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_it/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-78e8d59f7cbb",
+          "sha256": "78e8d59f7cbb67c46f92a08000fb1adae7a5ce156a9a07ebf2039c5428b199e7",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_fr/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-8ca3aa8fc7e3",
+          "sha256": "8ca3aa8fc7e3ed489a34d716704452270a5477f7c0a7d92f397f1fb31e6d0933",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_es/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-d7c120fbdf4d",
+          "sha256": "d7c120fbdf4d31d70357d33d7140b04f4937396eed66e5c7540a890df1b239e6",
+          "paths": [
+            "docs/renderers/web/assets/je2000e_eu_de/charging_car.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-09",
+      "label": "JE-1000F · 方孔插座",
+      "status": "existing-textless-candidate",
+      "preferred_id": "ART-b276ee48728d",
+      "preferred_sha256": "b276ee48728db4e72e21d7fde456e91017e3e4f5335209b1d5476f6c7af1f0f4",
+      "members": [
+        {
+          "id": "ART-11ef39e9a113",
+          "sha256": "11ef39e9a1133dff3b94e994203d796a24250aa5732f153f85a04f11f00ebcae",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-car_en_11ef39e9a113.png"
+          ]
+        },
+        {
+          "id": "ART-b276ee48728d",
+          "sha256": "b276ee48728db4e72e21d7fde456e91017e3e4f5335209b1d5476f6c7af1f0f4",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/artwork/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/nl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/pl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/pt/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web/uk/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/artwork/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/nl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/pl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/pt/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-lcd-status/four-language/web/uk/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/artwork/b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/nl/assets/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/pl/assets/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/pt/assets/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language/web/uk/assets/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/artwork/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/nl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/pl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/pt/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language/web/uk/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/artwork/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/nl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/pl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/pt/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-auto-resume/four-language/web/uk/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/artwork/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/nl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/pl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/pt/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-overview-headings/four-language/web/uk/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/artwork/b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/nl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/pl/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/pt/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260930-c38415f5-shared-keys/four-language/web/uk/assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png"
+          ]
+        },
+        {
+          "id": "ART-cc48f1f67478",
+          "sha256": "cc48f1f67478d372a1d41eb54670f966db58f888a189257572a2c705fcea9941",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/pt/p121_car_charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/pt/md/assets/p121_car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-d3897622d0e3",
+          "sha256": "d3897622d0e3ba245aafdaf372b87e7434e71197cc7d54b9f1312ba012df4f31",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/uk/p104_car_charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/uk/md/assets/p104_car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-e3a640bfe8d7",
+          "sha256": "e3a640bfe8d7d872bc7062ddc203c3ee08d09bf9cca7f9524cb0e63f76cafc0e",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/nl/p138_car_charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/nl/md/assets/p138_car_charging.png"
+          ]
+        },
+        {
+          "id": "ART-eb6d8f45861e",
+          "sha256": "eb6d8f45861e8d80a30413490be352e29564013da7234d9dd4daf3e0b97f4807",
+          "paths": [
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/figures/pl/p155_car_charging.png",
+            "manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web/JE-1000F/EU/pl/md/assets/p155_car_charging.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-10",
+      "label": "JE-1000F · 盖板插座",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-62d32ac8ac4e",
+      "preferred_sha256": "62d32ac8ac4e8ab6bdc873f3067dccc96726ddc25ef14f618cb7e31509d39a3a",
+      "members": [
+        {
+          "id": "ART-4e3894dbfbe0",
+          "sha256": "4e3894dbfbe0bbd9fbfa171ab2e00a0c672acf21cc5cd90fd3542a446c5425d2",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-car_de_4e3894dbfbe0.png"
+          ]
+        },
+        {
+          "id": "ART-62d32ac8ac4e",
+          "sha256": "62d32ac8ac4e8ab6bdc873f3067dccc96726ddc25ef14f618cb7e31509d39a3a",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-car_fr_62d32ac8ac4e.png"
+          ]
+        },
+        {
+          "id": "ART-bc528286d032",
+          "sha256": "bc528286d0324b037e234764b337ae77b9bf3813679f445039e9278eb895de49",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-car_es_bc528286d032.png"
+          ]
+        },
+        {
+          "id": "ART-ed8f8cb22483",
+          "sha256": "ed8f8cb224835522353ee77d78a4635b940028ca2f082ff300df220f11c55c1e",
+          "paths": [
+            "manual_sources/JE-1000F/EU/en-fr/2.0/phase2/_attachments/web_composites/reference.charging-car_it_ed8f8cb22483.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-11",
+      "label": "JE-1000F JP · 双槽插座",
+      "status": "existing-textless-candidate",
+      "preferred_id": "ART-ae8bb886e144",
+      "preferred_sha256": "ae8bb886e144c7206f36d9392b2c50f0e573bc518756621e90312fd74f5f2778",
+      "members": [
+        {
+          "id": "ART-60b7f65b4ece",
+          "sha256": "60b7f65b4ece4c5686476d2762b4ea175234f48c0e66049b8eda69eb2910b09a",
+          "paths": [
+            "docs/renderers/latex/assets/je1000f_jp_car_charge.png"
+          ]
+        },
+        {
+          "id": "ART-a918de3a4a3b",
+          "sha256": "a918de3a4a3b22cc6f400d9250f24905459d010e13e4020c23eadf247e928e75",
+          "paths": [
+            "docs/renderers/latex/assets/car_charge.png"
+          ]
+        },
+        {
+          "id": "ART-ae8bb886e144",
+          "sha256": "ae8bb886e144c7206f36d9392b2c50f0e573bc518756621e90312fd74f5f2778",
+          "paths": [
+            "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/native-car-charge.svg"
+          ]
+        },
+        {
+          "id": "ART-be3e23850314",
+          "sha256": "be3e23850314ed7bc64656812279156b1bba787af6641e240a551eefecc5857d",
+          "paths": [
+            "docs/renderers/contracts/assets/charging/charging_car_es.png"
+          ]
+        },
+        {
+          "id": "ART-dcc945901d30",
+          "sha256": "dcc945901d30e4b8cf446e229f1542ae482713565cf4c462afff0d142fd6d1cd",
+          "paths": [
+            "docs/renderers/contracts/assets/charging/charging_car_en.png"
+          ]
+        },
+        {
+          "id": "ART-e55bbfc529d3",
+          "sha256": "e55bbfc529d3dffb14eb591fa7d52f901665606438772d24bdfbb9622dc810d6",
+          "paths": [
+            "docs/renderers/contracts/assets/charging/charging_car_fr.png"
+          ]
+        }
+      ],
+      "note": "25残留空胶囊；仅推荐无胶囊/无说明文字版本。保留JP机身技术标记，禁止跨区域自动代换。"
+    },
+    {
+      "id": "CAR-12",
+      "label": "JE-100C · 转接线直连",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-5ddae8920821",
+      "preferred_sha256": "5ddae892082187a1bf6aa2f2e112aa606112a2cb7b14eda14a87abee8cdac327",
+      "members": [
+        {
+          "id": "ART-0ae6e47e32e3",
+          "sha256": "0ae6e47e32e3620662e686c94592bbe3fdbf596d104a1527d9c03bda9fb9885b",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_pl/charging_car.svg"
+          ]
+        },
+        {
+          "id": "ART-439af9be5956",
+          "sha256": "439af9be59566f839c65c898bd363142e7dc30eaffdc673bda7494d3f1d1ef3e",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_en/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-587ed54f1a31",
+          "sha256": "587ed54f1a314eff1b74939e1f78d35a448184aac75acd1e024e1b4326af6825",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_fr/charging_car.svg"
+          ]
+        },
+        {
+          "id": "ART-5a9f647fc141",
+          "sha256": "5a9f647fc14198980e9650bdabfda47f9056b5601e74c3fbd92746783542e158",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_es/charging_car.svg"
+          ]
+        },
+        {
+          "id": "ART-5ddae8920821",
+          "sha256": "5ddae892082187a1bf6aa2f2e112aa606112a2cb7b14eda14a87abee8cdac327",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_shared/charging_car.svg"
+          ]
+        },
+        {
+          "id": "ART-93f8ca608fc0",
+          "sha256": "93f8ca608fc0fcdf6149bc5865d96aa9d9da8c5ded242e363650135ae860d0c3",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_it/charging_car.svg"
+          ]
+        },
+        {
+          "id": "ART-ac6766b5f5a2",
+          "sha256": "ac6766b5f5a2ac53fa903630bae72cc93352ff113fb743a4447116984e3b016e",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_de/charging_car.svg"
+          ]
+        },
+        {
+          "id": "ART-bb891861961c",
+          "sha256": "bb891861961c24f624682c6bb0c9ebb71486bf8b21bd68d35b5584eccf4da3ea",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_pt/charging_car.svg"
+          ]
+        },
+        {
+          "id": "ART-d98e8df438a7",
+          "sha256": "d98e8df438a7e47070c9cc8b018b4ad6ae443a9219f88c2f46d37bf62843a964",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_nl/charging_car.svg"
+          ]
+        },
+        {
+          "id": "ART-f7900c8689d4",
+          "sha256": "f7900c8689d4c61fd387b0acdc4705fb21cc11cb9206456da5253adfc8ef35f9",
+          "paths": [
+            "docs/renderers/web/assets/je100c_eu_uk/charging_car.svg"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-13",
+      "label": "JE-300D · 侧面端口",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-2966eb1a3215",
+      "preferred_sha256": "2966eb1a32157fc1e04aae20fbc8e0954957b44fb9abeb68bfd7094b52a1aba7",
+      "members": [
+        {
+          "id": "ART-2966eb1a3215",
+          "sha256": "2966eb1a32157fc1e04aae20fbc8e0954957b44fb9abeb68bfd7094b52a1aba7",
+          "paths": [
+            "docs/renderers/web/assets/je300d_eu_en/charging_car.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-14",
+      "label": "JE-3600A · 方孔插座",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-f8852a5e606e",
+      "preferred_sha256": "f8852a5e606e97f5bff54a5abc3280e07d7b8fe3f75d4e8f63e5e1b4e6527aae",
+      "members": [
+        {
+          "id": "ART-f8852a5e606e",
+          "sha256": "f8852a5e606e97f5bff54a5abc3280e07d7b8fe3f75d4e8f63e5e1b4e6527aae",
+          "paths": [
+            "docs/renderers/web/assets/je3600a_eu_en/charging_car.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-15",
+      "label": "JE-3600A · 盖板插座",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-a5e5d20db405",
+      "preferred_sha256": "a5e5d20db405bf4b4f1754dababc7c36be033b9e4f8d8950609a7dd41756fcee",
+      "members": [
+        {
+          "id": "ART-6687da516a48",
+          "sha256": "6687da516a486f620499e1fbd3459c4df350b5cbc1a345b79acb4e9a6fd327c3",
+          "paths": [
+            "docs/renderers/web/assets/je3600a_eu_fr/charging_car.png"
+          ]
+        },
+        {
+          "id": "ART-a5e5d20db405",
+          "sha256": "a5e5d20db405bf4b4f1754dababc7c36be033b9e4f8d8950609a7dd41756fcee",
+          "paths": [
+            "docs/renderers/web/assets/je3600a_eu_es/charging_car.png"
+          ]
+        }
+      ],
+      "note": "29虽无说明文字，但底部仍留空胶囊，需同时去框。"
+    },
+    {
+      "id": "CAR-16",
+      "label": "JE-500A · 侧面直连",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-b30e15d8e60c",
+      "preferred_sha256": "b30e15d8e60cc46f2133500607a4eebd3cd19ec7dee0336c969e56129ad71659",
+      "members": [
+        {
+          "id": "ART-b30e15d8e60c",
+          "sha256": "b30e15d8e60cc46f2133500607a4eebd3cd19ec7dee0336c969e56129ad71659",
+          "paths": [
+            "docs/renderers/web/assets/je500a_eu_en/charging_car.png"
+          ]
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "CAR-17",
+      "label": "历史高机身图 · 型号未可靠绑定",
+      "status": "textless-preparation-required",
+      "preferred_id": "ART-cc7007d5671c",
+      "preferred_sha256": "cc7007d5671cf4abfbc552aeed661b5d7cf73e3fdd3f275af5f9183f40134dc0",
+      "members": [
+        {
+          "id": "ART-cc7007d5671c",
+          "sha256": "cc7007d5671cf4abfbc552aeed661b5d7cf73e3fdd3f275af5f9183f40134dc0",
+          "paths": [
+            "docs/_build/JE-1000F/JP/rst/_assets/templates/word_template/common_assets/charging/car_charge.png",
+            "docs/_build/JE-1000F/US/rst/_assets/templates/word_template/common_assets/charging/car_charge.png",
+            "docs/templates/word_template/common_assets/charging/car_charge.png"
+          ]
+        }
+      ],
+      "note": "先核对主机原稿身份；不得按外形认作JE-3600A。"
+    }
+  ],
+  "tasks": [
+    {
+      "group": "CAR-01",
+      "status": "pending-operator-archive-review",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "优先引用本组既有无说明文字底图，保留原字节",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-594fa3eb6720",
+        "ART-d948737cf4dd"
+      ]
+    },
+    {
+      "group": "CAR-02",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-0227f02c17b1",
+        "ART-17a55b17aa36",
+        "ART-4807f7b5716a",
+        "ART-5465709cbb3a",
+        "ART-d947970a3f32"
+      ]
+    },
+    {
+      "group": "CAR-03",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-647bd9a42cc1"
+      ]
+    },
+    {
+      "group": "CAR-04",
+      "status": "pending-operator-archive-review",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "优先引用本组既有无说明文字底图，保留原字节",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-02e7039d6f93",
+        "ART-037e3213bea9",
+        "ART-55a59b992189",
+        "ART-60f1d05b31b5",
+        "ART-6942c72cac46",
+        "ART-9233956d503d",
+        "ART-990e30845a75",
+        "ART-a99dded3530e",
+        "ART-d8edc5d25c26"
+      ]
+    },
+    {
+      "group": "CAR-05",
+      "status": "pending-operator-archive-review",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "优先引用本组既有无说明文字底图，保留原字节",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-19be3982a842",
+        "ART-27aa79ccbf18",
+        "ART-328b3fe5fe77",
+        "ART-e9d3fba85579",
+        "ART-f2f97ff0a870",
+        "ART-f747de34445e"
+      ]
+    },
+    {
+      "group": "CAR-06",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-0b390e24e9bc",
+        "ART-17f027c98078",
+        "ART-399978cf808e",
+        "ART-7715470a2bd0",
+        "ART-9dc82467af7a",
+        "ART-dc647e508cca"
+      ]
+    },
+    {
+      "group": "CAR-07",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-1615ae8869ae",
+        "ART-92b1e0895a8e",
+        "ART-9853dd9e2125",
+        "ART-aab5ecb30f7a"
+      ]
+    },
+    {
+      "group": "CAR-08",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-418a9c7f6855",
+        "ART-47f746c84f9e",
+        "ART-78e8d59f7cbb",
+        "ART-8ca3aa8fc7e3",
+        "ART-d7c120fbdf4d"
+      ]
+    },
+    {
+      "group": "CAR-09",
+      "status": "pending-operator-archive-review",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "优先引用本组既有无说明文字底图，保留原字节",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-11ef39e9a113",
+        "ART-b276ee48728d",
+        "ART-cc48f1f67478",
+        "ART-d3897622d0e3",
+        "ART-e3a640bfe8d7",
+        "ART-eb6d8f45861e"
+      ]
+    },
+    {
+      "group": "CAR-10",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-4e3894dbfbe0",
+        "ART-62d32ac8ac4e",
+        "ART-bc528286d032",
+        "ART-ed8f8cb22483"
+      ]
+    },
+    {
+      "group": "CAR-11",
+      "status": "pending-operator-archive-review",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "优先引用本组既有无说明文字底图，保留原字节",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-60b7f65b4ece",
+        "ART-a918de3a4a3b",
+        "ART-ae8bb886e144",
+        "ART-be3e23850314",
+        "ART-dcc945901d30",
+        "ART-e55bbfc529d3"
+      ]
+    },
+    {
+      "group": "CAR-12",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-0ae6e47e32e3",
+        "ART-439af9be5956",
+        "ART-587ed54f1a31",
+        "ART-5a9f647fc141",
+        "ART-5ddae8920821",
+        "ART-93f8ca608fc0",
+        "ART-ac6766b5f5a2",
+        "ART-bb891861961c",
+        "ART-d98e8df438a7",
+        "ART-f7900c8689d4"
+      ]
+    },
+    {
+      "group": "CAR-13",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-2966eb1a3215"
+      ]
+    },
+    {
+      "group": "CAR-14",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-f8852a5e606e"
+      ]
+    },
+    {
+      "group": "CAR-15",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-6687da516a48",
+        "ART-a5e5d20db405"
+      ]
+    },
+    {
+      "group": "CAR-16",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-b30e15d8e60c"
+      ]
+    },
+    {
+      "group": "CAR-17",
+      "status": "pending-preparation",
+      "actions": [
+        "核对目标型号、区域、插座及接线",
+        "核对原稿并提取无说明文字/无空胶囊底图；保留必要连接线与插头，避免重裁全部语种",
+        "从本语原稿填写车辆标签和单独售卖说明（有则填，无则登记）",
+        "标签用原生HTML；说明胶囊/文字框用共享CSS",
+        "桌面与390px手机检查线缆完整、说明可选中、无字图无空框；确认后登记原图哈希"
+      ],
+      "source_ids": [
+        "ART-cc7007d5671c"
+      ]
+    }
+  ],
+  "counts": {
+    "files": 70,
+    "groups": 17,
+    "existing_textless_groups": 5,
+    "preparation_groups": 12
+  }
+}

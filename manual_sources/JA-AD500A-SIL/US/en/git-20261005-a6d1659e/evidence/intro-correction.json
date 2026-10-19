@@ -1,0 +1,24 @@
+{
+  "candidate": "10b",
+  "strict_sphinx": true,
+  "source_free_replay_exact": true,
+  "body_after_first_chapter_unchanged": true,
+  "six_assets_unchanged": true,
+  "removed_intro": [
+    "Model: JA-AD500A-SIL",
+    "US \u00b7 English \u00b7 User Manual"
+  ],
+  "first_heading": "WHAT'S IN THE BOX",
+  "browser": {
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "document_horizontal_overflow": false
+  },
+  "preface": "cover-title-only file retained for provenance; omitted from Web page_order to avoid an empty normalized page"
+}

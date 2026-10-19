@@ -111,10 +111,8 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn(".hb-app-download-art-frame", css_text)
             self.assertIn(".hb-app-add-device-composition", css_text)
             self.assertIn(".hb-app-add-device-live-label", css_text)
-            self.assertIn(".hb-language-nav", css_text)
-            self.assertIn("a.hb-language-link", css_text)
+            self.assertNotIn("hb-language-nav", css_text)
             self.assertIn("overflow-x: auto", css_text)
-            self.assertIn("scroll-snap-type: x proximity", css_text)
             self.assertIn("max-width: none !important", css_text)
             self.assertNotIn("hb-app-add-device-live-label-main-power::after", css_text)
             self.assertIn(".hb-fcc-composition", css_text)
@@ -123,11 +121,11 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn("#furo-main-content .hb-fcc-column", css_text)
             self.assertIn("gap: var(--hb-fcc-flow-gap)", css_text)
             self.assertIn(
-                "section:has(> figure.hb-fcc-composition) > h1:first-child",
+                "section:has(> figure.hb-fcc-composition:not(.hb-fcc-statement)) > h1:first-child",
                 css_text,
             )
             fcc_heading_css = css_text.split(
-                "#furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child",
+                "#furo-main-content section:has(> figure.hb-fcc-composition:not(.hb-fcc-statement)) > h1:first-child",
                 1,
             )[1].split("}", 1)[0]
             self.assertIn("clip-path: inset(50%)", fcc_heading_css)
@@ -259,7 +257,7 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertNotIn("#signification-des-symboles", css_text)
             self.assertNotIn("#significado-de-los-simbolos", css_text)
             # Callout label columns size to content; the page-level width references
-            # (tools/web_callout_alignment.py) keep one boundary per page.
+            # (tools/web/callout_alignment.py) keep one boundary per page.
             self.assertIn("table-layout: auto !important", css_text)
             self.assertIn(".manual-callout-label-sizer", css_text)
             self.assertIn("width: clamp(7.5rem, 16%, 9.5rem)", css_text)

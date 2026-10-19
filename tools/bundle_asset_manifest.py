@@ -6,6 +6,7 @@ import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 ASSET_URI_PREFIX = "asset:"
 ASSET_USAGE_MANIFEST_FILENAME = "asset_usage_manifest.json"
@@ -78,25 +79,15 @@ def _safe_bundle_file(bundle_root: Path, raw_relative: object, *, label: str) ->
     return canonical
 
 
-def resolve_manifest_asset(
-    bundle_dir: Path,
-    asset_uri: str,
-    *,
-    format_name: str | None = None,
-    consumer: str | None = None,
-    reference_kind: str | None = None,
-    model: str | None = None,
-    region: str | None = None,
-    language: str | None = None,
-) -> Path:
-    """Resolve one semantic asset URI from the finalized usage manifest.
-
-    The manifest is the renderer boundary: callers never guess a staged path.
-    Both the manifest path and resolved asset stay inside the canonical bundle,
-    and the bytes are re-hashed before they are handed to the renderer.
-    """
-
-    asset_key = _parse_asset_uri(asset_uri)
+def _required_filters(
+    format_name: str | None,
+    consumer: str | None,
+    reference_kind: str | None,
+    model: str | None,
+    region: str | None,
+    language: str | None,
+) -> tuple[str | None, str | None, str | None, str | None, str | None, str | None]:
+    """Normalize the optional selectors; a supplied selector may not be blank."""
     required_format = (
         format_name.strip().casefold().lstrip(".") if format_name is not None else None
     )
@@ -127,12 +118,17 @@ def resolve_manifest_asset(
                 f"bundle manifest expected {label} must be non-empty"
             )
 
-    try:
-        bundle_root = bundle_dir.resolve(strict=True)
-    except (FileNotFoundError, OSError) as exc:
-        raise BundleAssetManifestError("bundle asset root is not usable") from exc
-    if not bundle_root.is_dir():
-        raise BundleAssetManifestError("bundle asset root is not a directory")
+    return (
+        required_format,
+        required_consumer,
+        required_reference_kind,
+        expected_model,
+        expected_region,
+        expected_language,
+    )
+
+
+def _load_manifest_payload(bundle_root: Path) -> tuple[Path, dict[str, Any]]:
     manifest_path = _safe_bundle_file(
         bundle_root,
         ASSET_USAGE_MANIFEST_FILENAME,
@@ -156,6 +152,16 @@ def resolve_manifest_asset(
         raise BundleAssetManifestError(
             f"asset usage manifest has unsupported schema_version: {schema_version!r}"
         )
+    return manifest_path, payload
+
+
+def _check_manifest_target(
+    payload: dict[str, Any],
+    manifest_path: Path,
+    expected_model: str | None,
+    expected_region: str | None,
+    expected_language: str | None,
+) -> None:
     raw_target = payload.get("target")
     if not isinstance(raw_target, dict):
         raise BundleAssetManifestError(
@@ -190,12 +196,69 @@ def resolve_manifest_asset(
             "asset usage manifest target language does not match expected target"
         )
 
-    raw_assets = payload.get("assets")
-    if not isinstance(raw_assets, list):
+
+def _reference_matches(row: dict[str, Any], required_reference_kind: str | None) -> bool:
+    actual = str(row.get("reference_kind") or "").strip()
+    return (
+        required_reference_kind is None
+        or actual == required_reference_kind
+        or actual == f"{required_reference_kind}-review-override"
+    )
+
+
+def _preferred_rows(
+    candidates: list[dict[str, Any]],
+    asset_key: str,
+    required_consumer: str | None,
+    required_reference_kind: str | None,
+) -> list[dict[str, Any]]:
+    """Rows matching the consumer and reference kind, or the one legacy row without them."""
+    preferred = [
+        row
+        for row in candidates
+        if (
+            required_consumer is None
+            or str(row.get("consumer") or "").strip() == required_consumer
+        )
+        and _reference_matches(row, required_reference_kind)
+    ]
+    if preferred:
+        return preferred
+    elif len(candidates) == 1:
+        row = candidates[0]
+        actual_consumer = str(row.get("consumer") or "").strip()
+        actual_reference_kind = str(row.get("reference_kind") or "").strip()
+        consumer_compatible = (
+            required_consumer is None
+            or not actual_consumer
+            or actual_consumer == required_consumer
+        )
+        reference_compatible = (
+            required_reference_kind is None
+            or not actual_reference_kind
+            or _reference_matches(row, required_reference_kind)
+        )
+        if consumer_compatible and reference_compatible:
+            # Older manifests may omit consumer metadata.  One key/format
+            # row remains deterministic and still passes all safety checks.
+            return candidates
+        else:
+            raise BundleAssetManifestError(
+                f"asset usage manifest has no preferred resolved asset {asset_key!r}"
+            )
+    else:
         raise BundleAssetManifestError(
-            f"asset usage manifest has invalid assets: {manifest_path}"
+            f"asset usage manifest has no preferred resolved asset {asset_key!r}"
         )
 
+
+def _select_asset_row(
+    raw_assets: list[Any],
+    asset_key: str,
+    required_format: str | None,
+    required_consumer: str | None,
+    required_reference_kind: str | None,
+) -> dict[str, Any]:
     candidates = [
         row
         for row in raw_assets
@@ -213,57 +276,16 @@ def resolve_manifest_asset(
         )
     selected = candidates
     if required_consumer is not None or required_reference_kind is not None:
-        def reference_matches(row: dict[str, object]) -> bool:
-            actual = str(row.get("reference_kind") or "").strip()
-            return (
-                required_reference_kind is None
-                or actual == required_reference_kind
-                or actual == f"{required_reference_kind}-review-override"
-            )
-
-        preferred = [
-            row
-            for row in candidates
-            if (
-                required_consumer is None
-                or str(row.get("consumer") or "").strip() == required_consumer
-            )
-            and reference_matches(row)
-        ]
-        if preferred:
-            selected = preferred
-        elif len(candidates) == 1:
-            row = candidates[0]
-            actual_consumer = str(row.get("consumer") or "").strip()
-            actual_reference_kind = str(row.get("reference_kind") or "").strip()
-            consumer_compatible = (
-                required_consumer is None
-                or not actual_consumer
-                or actual_consumer == required_consumer
-            )
-            reference_compatible = (
-                required_reference_kind is None
-                or not actual_reference_kind
-                or reference_matches(row)
-            )
-            if consumer_compatible and reference_compatible:
-                # Older manifests may omit consumer metadata.  One key/format
-                # row remains deterministic and still passes all safety checks.
-                selected = candidates
-            else:
-                raise BundleAssetManifestError(
-                    f"asset usage manifest has no preferred resolved asset {asset_key!r}"
-                )
-        else:
-            raise BundleAssetManifestError(
-                f"asset usage manifest has no preferred resolved asset {asset_key!r}"
-            )
+        selected = _preferred_rows(candidates, asset_key, required_consumer, required_reference_kind)
     if len(selected) != 1:
         raise BundleAssetManifestError(
             f"asset usage manifest has ambiguous resolved asset {asset_key!r}"
         )
 
-    row = selected[0]
+    return selected[0]
+
+
+def _verify_staged_asset(bundle_root: Path, row: dict[str, Any], asset_key: str) -> Path:
     staged = _safe_bundle_file(
         bundle_root,
         row.get("staged_path"),
@@ -288,6 +310,54 @@ def resolve_manifest_asset(
             f"staged asset hash does not match manifest: {asset_key!r}"
         )
     return staged
+
+
+def resolve_manifest_asset(
+    bundle_dir: Path,
+    asset_uri: str,
+    *,
+    format_name: str | None = None,
+    consumer: str | None = None,
+    reference_kind: str | None = None,
+    model: str | None = None,
+    region: str | None = None,
+    language: str | None = None,
+) -> Path:
+    """Resolve one semantic asset URI from the finalized usage manifest.
+
+    The manifest is the renderer boundary: callers never guess a staged path.
+    Both the manifest path and resolved asset stay inside the canonical bundle,
+    and the bytes are re-hashed before they are handed to the renderer.
+    """
+
+    asset_key = _parse_asset_uri(asset_uri)
+    (
+        required_format,
+        required_consumer,
+        required_reference_kind,
+        expected_model,
+        expected_region,
+        expected_language,
+    ) = _required_filters(format_name, consumer, reference_kind, model, region, language)
+
+    try:
+        bundle_root = bundle_dir.resolve(strict=True)
+    except (FileNotFoundError, OSError) as exc:
+        raise BundleAssetManifestError("bundle asset root is not usable") from exc
+    if not bundle_root.is_dir():
+        raise BundleAssetManifestError("bundle asset root is not a directory")
+    manifest_path, payload = _load_manifest_payload(bundle_root)
+    _check_manifest_target(payload, manifest_path, expected_model, expected_region, expected_language)
+
+    raw_assets = payload.get("assets")
+    if not isinstance(raw_assets, list):
+        raise BundleAssetManifestError(
+            f"asset usage manifest has invalid assets: {manifest_path}"
+        )
+    row = _select_asset_row(
+        raw_assets, asset_key, required_format, required_consumer, required_reference_kind
+    )
+    return _verify_staged_asset(bundle_root, row, asset_key)
 
 
 @functools.lru_cache(maxsize=32)

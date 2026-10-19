@@ -1,0 +1,57 @@
+{
+  "url": "http://127.0.0.1:8896/manual_jbp1000bwh_jp_ja.html",
+  "viewports": [
+    {
+      "brokenAnchors": [],
+      "imageCount": 54,
+      "internalOverflow": [],
+      "labelOutsidePanel": [],
+      "pageWidth": 1280,
+      "unloadedImages": [],
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    {
+      "brokenAnchors": [],
+      "imageCount": 54,
+      "internalOverflow": [],
+      "labelOutsidePanel": [],
+      "pageWidth": 390,
+      "unloadedImages": [],
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    }
+  ],
+  "checkedSections": [
+    "cover",
+    "wood installation",
+    "concrete installation",
+    "LCD icons and numbered diagram",
+    "car charging with native SVG clips",
+    "troubleshooting",
+    "warranty and contact"
+  ],
+  "notes": [
+    "No page/table/figure overflow at either viewport. Native font metric boxes can overlap blank space; readable labels were also checked visually.",
+    "Numeric LCD labels stay on the diagram at mobile width; other native captions stack in source order.",
+    "Native SVG clipPath rendering verified in browser; MuPDF SVG raster does not reproduce these source clips.",
+    "Source-local CSS removes the shared LCD/troubleshooting minimum-width scroll layout for this document."
+  ],
+  "screenshots": [
+    "desktop-installation.png",
+    "mobile-installation.png",
+    "mobile-troubleshooting.png",
+    "mobile-lcd.png",
+    "mobile-cover.png",
+    "desktop-car-charge.png",
+    "desktop-cover.png"
+  ],
+  "markdown_sha256": "e411891e9b81bfb2ca4e5b4eec870136cc25938d4ae31867945757a112c51865",
+  "stylesheet_sha256": "64788a2fdf6865e450e11798f24c2a163a0e669f1f2ea71a17ab71124664216c",
+  "frozen_ir_sha256": "78c7e05f52a059ebbd60635d6d9d2e25c3e49bfdeebe5fea43f1990d62b65a0d",
+  "source_manifest_sha256": "1b0c09138a8187dc52e49477fd8916133e79f3735b3e8aa63c4eddaec59645ca"
+}

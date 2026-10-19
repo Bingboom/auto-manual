@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.config_loader import load_config_mapping
-from tools.sync_data_config import (
+from tools.data.sync_data_config import (
     cli_bin as _cli_bin_impl,
     cli_command_exists as _cli_command_exists_impl,
     cli_command_parts as _cli_command_parts_impl,
@@ -17,7 +17,7 @@ from tools.sync_data_config import (
     resolved_cli_command_parts as _resolved_cli_command_parts_impl,
     sync_phase2_cfg as _sync_phase2_cfg_impl,
 )
-from tools.sync_data import (
+from tools.data.sync_data import (
     LarkCliSource as LarkCliSource,
     _parse_json_payload as _sync_parse_json_payload,
 )

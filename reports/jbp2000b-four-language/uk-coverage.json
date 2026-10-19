@@ -1,0 +1,133 @@
+{
+  "profile": "prepared-shared-components/v1",
+  "target": {
+    "model": "JBP-2000B",
+    "region": "EU",
+    "language": "uk"
+  },
+  "components": {
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-SPECIAL-OPERATION": 1,
+    "HB-CALLOUT-STRIP": 4,
+    "HB-SPECIAL-REFERENCE-FIGURE": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-TABLE-SPEC": 3,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "variants": {
+    "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+    "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+    "HB-SPECIAL-INBOX/three-card-responsive": 1,
+    "HB-TABLE-REFERENCE/lcd-descriptions": 1,
+    "HB-SPECIAL-OPERATION/status-right": 1,
+    "HB-CALLOUT-STRIP/note": 2,
+    "HB-CALLOUT-STRIP/caution": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+    "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+    "HB-CALLOUT-STRIP/warning": 1,
+    "HB-TABLE-SPEC/vertical": 3,
+    "HB-WARRANTY-LEAD/intro-panel": 1,
+    "HB-WARRANTY-SECTION/rounded-card": 5,
+    "HB-WARRANTY-YEARS/numeric-badges": 1
+  },
+  "pages": {
+    "preface_important_en.rst": {},
+    "toc.rst": {},
+    "safety_info_en.rst": {},
+    "symbol_meaning_en.rst": {
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+    },
+    "box_contents_en.rst": {
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-INBOX/three-card-responsive": 1
+    },
+    "product_overview_en.rst": {},
+    "lcd_display_en.rst": {
+      "HB-TABLE-REFERENCE": 1,
+      "HB-TABLE-REFERENCE/lcd-descriptions": 1
+    },
+    "operation_en.rst": {
+      "HB-SPECIAL-OPERATION": 1,
+      "HB-SPECIAL-OPERATION/status-right": 1,
+      "HB-CALLOUT-STRIP": 1,
+      "HB-CALLOUT-STRIP/note": 1
+    },
+    "connections_en.rst": {
+      "HB-CALLOUT-STRIP": 2,
+      "HB-CALLOUT-STRIP/caution": 1,
+      "HB-CALLOUT-STRIP/note": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+    },
+    "troubleshooting_en.rst": {
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-TABLE-TROUBLESHOOTING/two-column": 1
+    },
+    "charging_en.rst": {
+      "HB-CALLOUT-STRIP": 1,
+      "HB-CALLOUT-STRIP/warning": 1
+    },
+    "storage_en.rst": {},
+    "specifications_en.rst": {
+      "HB-TABLE-SPEC": 3,
+      "HB-TABLE-SPEC/vertical": 3
+    },
+    "warranty_en.rst": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-LEAD/intro-panel": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-SECTION/rounded-card": 5,
+      "HB-WARRANTY-YEARS": 1,
+      "HB-WARRANTY-YEARS/numeric-badges": 1
+    },
+    "regulatory_compliance.rst": {}
+  },
+  "legacy_debt": [],
+  "governed_finished_panels": [
+    {
+      "page_id": "product_overview_en.rst",
+      "location": "1/1",
+      "path": "assets/ir/b358d85e56b8187022a0bcfaabb71f395586adab9b87605419c6010a56a52c5c/overview.png",
+      "sha256": "b358d85e56b8187022a0bcfaabb71f395586adab9b87605419c6010a56a52c5c"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "location": "1",
+      "path": "assets/ir/dfe129c1a972f057d9b39b762f688103591ede63d51746b48c79519f1c9cd725/lcd.png",
+      "sha256": "dfe129c1a972f057d9b39b762f688103591ede63d51746b48c79519f1c9cd725"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "location": "3/3",
+      "path": "assets/jbp2000b_eu_en/lcd_control.png",
+      "sha256": "1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "location": "3",
+      "path": "assets/jbp2000b_eu_en/clearance.png",
+      "sha256": "f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "location": "1/6",
+      "path": "assets/jbp2000b_eu_en/ac_charging.png",
+      "sha256": "0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "location": "3/5",
+      "path": "assets/jbp2000b_eu_en/solar_charging.png",
+      "sha256": "7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1"
+    }
+  ],
+  "issues": []
+}

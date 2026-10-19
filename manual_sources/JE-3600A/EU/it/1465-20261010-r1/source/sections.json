@@ -1,0 +1,1875 @@
+{
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "language": "it",
+  "publication_eligible": false,
+  "records": [
+    {
+      "field": "lcd-11-0-name",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        200.9342041015625,
+        155.1,
+        225.935302734375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Wi-Fi",
+      "text": "Wi-Fi"
+    },
+    {
+      "field": "lcd-11-0-description",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        200.9342041015625,
+        344,
+        225.935302734375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Acceso: Wi-Fi connesso.\nLampeggiante: pronto per la connessione Wi-Fi.\nSpento: Wi-Fi disconnesso.",
+      "text": "Acceso: Wi-Fi connesso. Lampeggiante: pronto per la connessione Wi-Fi. Spento: Wi-Fi disconnesso."
+    },
+    {
+      "field": "lcd-11-1-name",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        225.935302734375,
+        155.1,
+        251.34628295898438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Bluetooth",
+      "text": "Bluetooth"
+    },
+    {
+      "field": "lcd-11-1-description",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        225.935302734375,
+        344,
+        251.34628295898438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Acceso: Bluetooth connesso.\nLampeggiante: pronto per la connessione Bluetooth.\nSpento: Bluetooth disconnesso",
+      "text": "Acceso: Bluetooth connesso. Lampeggiante: pronto per la connessione Bluetooth. Spento: Bluetooth disconnesso"
+    },
+    {
+      "field": "lcd-11-2-name",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        251.34628295898438,
+        155.1,
+        291.935302734375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Modalità di \nricarica silenziosa",
+      "text": "Modalità di ricarica silenziosa"
+    },
+    {
+      "field": "lcd-11-2-description",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        251.34628295898438,
+        344,
+        291.935302734375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Acceso: il rumore durante la ricarica è significativamente ridotto, \nmentre la potenza e la velocità di ricarica diminuiscono.\nSpento: la modalità di ricarica silenziosa è disattivata.\nQuesta funzione può essere attivata o disattivata tramite l'app \nJackery.",
+      "text": "Acceso: il rumore durante la ricarica è significativamente ridotto, mentre la potenza e la velocità di ricarica diminuiscono. Spento: la modalità di ricarica silenziosa è disattivata. Questa funzione può essere attivata o disattivata tramite l'app Jackery."
+    },
+    {
+      "field": "lcd-11-3-name",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        291.935302734375,
+        155.1,
+        341.435302734375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Modalità di \nrisparmio della \nbatteriabatteria",
+      "text": "Modalità di risparmio della batteriabatteria"
+    },
+    {
+      "field": "lcd-11-3-description",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        291.935302734375,
+        344,
+        341.435302734375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Acceso: limita la capacità massima della batteria utilizzabile per \nprolungarne la durata.\nSpento: la modalità di risparmio batteria è disattivata.\nQuesta funzione può essere attivata o disattivata tramite l'app \nJackery.",
+      "text": "Acceso: limita la capacità massima della batteria utilizzabile per prolungarne la durata. Spento: la modalità di risparmio batteria è disattivata. Questa funzione può essere attivata o disattivata tramite l'app Jackery."
+    },
+    {
+      "field": "lcd-11-4-name",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        341.435302734375,
+        155.1,
+        396.8097839355469
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Modalità \nautoalimentata",
+      "text": "Modalità autoalimentata"
+    },
+    {
+      "field": "lcd-11-4-description",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        341.435302734375,
+        344,
+        396.8097839355469
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Massimizza l'uso dell'energia solare e riduce la dipendenza dalla \nrete elettrica, dando priorità all'energia solare immagazzinata e \nriducendo i costi dell'elettricità (abilitare/disabilitare questa \nfunzione nell'app). La stazione di alimentazione deve essere \ncollegata contemporaneamente\nsia ai pannelli solari che alla rete elettrica, con la potenza di \ncarico limitata dalla potenza di bypass.",
+      "text": "Massimizza l'uso dell'energia solare e riduce la dipendenza dalla rete elettrica, dando priorità all'energia solare immagazzinata e riducendo i costi dell'elettricità (abilitare/disabilitare questa funzione nell'app). La stazione di alimentazione deve essere collegata contemporaneamente sia ai pannelli solari che alla rete elettrica, con la potenza di carico limitata dalla potenza di bypass."
+    },
+    {
+      "field": "lcd-11-5-name",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        396.8097839355469,
+        155.1,
+        439.2830810546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Piano di ricarica",
+      "text": "Piano di ricarica"
+    },
+    {
+      "field": "lcd-11-5-description",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        396.8097839355469,
+        344,
+        439.2830810546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Personalizza il tempo di ricarica dell’Explorer 3600 Plus. Adatta a \nsituazioni di fluttuazione dei prezzi dell'energia elettrica, consente \npiani di ricarica basati sulle ore di punta e non di punta, \nriducendo i costi dell'energia elettrica (da impostare nell'app \nJackery).",
+      "text": "Personalizza il tempo di ricarica dell’Explorer 3600 Plus. Adatta a situazioni di fluttuazione dei prezzi dell'energia elettrica, consente piani di ricarica basati sulle ore di punta e non di punta, riducendo i costi dell'energia elettrica (da impostare nell'app Jackery)."
+    },
+    {
+      "field": "lcd-11-6-name",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        439.2830810546875,
+        155.1,
+        467.60198974609375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Indicatore di\nalimentazione CA",
+      "text": "Indicatore di alimentazione CA"
+    },
+    {
+      "field": "lcd-11-6-description",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        439.2830810546875,
+        344,
+        467.60198974609375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "L’uscita AC (onda sinusoidale pura) è attiva.",
+      "text": "L’uscita AC (onda sinusoidale pura) è attiva."
+    },
+    {
+      "field": "lcd-11-7-name",
+      "physical_page": 79,
+      "bbox_pt": [
+        83,
+        467.60198974609375,
+        155.1,
+        495.9862060546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Tensione e \nfrequenza di uscita",
+      "text": "Tensione e frequenza di uscita"
+    },
+    {
+      "field": "lcd-11-7-description",
+      "physical_page": 79,
+      "bbox_pt": [
+        155.1,
+        467.60198974609375,
+        344,
+        495.9862060546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Visualizza la tensione e la frequenza di uscita.",
+      "text": "Visualizza la tensione e la frequenza di uscita."
+    },
+    {
+      "field": "lcd-12-0-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        28.761688232421875,
+        165,
+        53.764007568359375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Potenza in ingresso",
+      "text": "Potenza in ingresso"
+    },
+    {
+      "field": "lcd-12-0-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        28.761688232421875,
+        344,
+        53.764007568359375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Visualizza la potenza di ingresso in watt.",
+      "text": "Visualizza la potenza di ingresso in watt."
+    },
+    {
+      "field": "lcd-12-1-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        53.764007568359375,
+        165,
+        76.47799682617188
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Tempo di carica \nrimanente",
+      "text": "Tempo di carica rimanente"
+    },
+    {
+      "field": "lcd-12-1-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        53.764007568359375,
+        344,
+        76.47799682617188
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Visualizza il tempo residuo di carica.",
+      "text": "Visualizza il tempo residuo di carica."
+    },
+    {
+      "field": "lcd-12-2-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        76.47799682617188,
+        165,
+        104.11770629882812
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Indicatore di ricarica \nda auto",
+      "text": "Indicatore di ricarica da auto"
+    },
+    {
+      "field": "lcd-12-2-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        76.47799682617188,
+        344,
+        104.11770629882812
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) \nutilizzando 12V DC (ricarica da auto).",
+      "text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando 12V DC (ricarica da auto)."
+    },
+    {
+      "field": "lcd-12-3-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        104.11770629882812,
+        165,
+        128.31307983398438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Indicatore di ricarica \nsolare",
+      "text": "Indicatore di ricarica solare"
+    },
+    {
+      "field": "lcd-12-3-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        104.11770629882812,
+        344,
+        128.31307983398438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) \nutilizzando uno o più pannelli solari.",
+      "text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando uno o più pannelli solari."
+    },
+    {
+      "field": "lcd-12-4-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        128.31307983398438,
+        165,
+        151.72509765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Indicatore di \nricarica solare",
+      "text": "Indicatore di ricarica solare"
+    },
+    {
+      "field": "lcd-12-4-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        128.31307983398438,
+        344,
+        151.72509765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) \nutilizzando uno o più pannelli solari.",
+      "text": "Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando uno o più pannelli solari."
+    },
+    {
+      "field": "lcd-12-5-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        151.72509765625,
+        165,
+        183.28970336914062
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Indicatore di carica \ndella batteria",
+      "text": "Indicatore di carica della batteria"
+    },
+    {
+      "field": "lcd-12-5-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        151.72509765625,
+        344,
+        183.28970336914062
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Quando il prodotto è in carica, il cerchio arancione attorno \nalla percentuale della batteria si accende in sequenza. \nDurante la ricarica di altri dispositivi, il cerchio arancione \nrimarrà acceso.",
+      "text": "Quando il prodotto è in carica, il cerchio arancione attorno alla percentuale della batteria si accende in sequenza. Durante la ricarica di altri dispositivi, il cerchio arancione rimarrà acceso."
+    },
+    {
+      "field": "lcd-12-6-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        183.28970336914062,
+        165,
+        219.81698608398438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Indicatore di \nbatteria scarica",
+      "text": "Indicatore di batteria scarica"
+    },
+    {
+      "field": "lcd-12-6-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        183.28970336914062,
+        344,
+        219.81698608398438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Acceso: il livello della batteria è inferiore al 20%.\nLampeggiante: il livello della batteria è inferiore al 5%.\nSpento: il livello della batteria non è inferiore al 20% oppure il \nprodotto è in carica.",
+      "text": "Acceso: il livello della batteria è inferiore al 20%. Lampeggiante: il livello della batteria è inferiore al 5%. Spento: il livello della batteria non è inferiore al 20% oppure il prodotto è in carica."
+    },
+    {
+      "field": "lcd-12-7-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        219.81698608398438,
+        165,
+        247.65289306640625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Percentuale di \nbatteria residua",
+      "text": "Percentuale di batteria residua"
+    },
+    {
+      "field": "lcd-12-7-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        219.81698608398438,
+        344,
+        247.65289306640625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Mostra la percentuale residua della batteria.",
+      "text": "Mostra la percentuale residua della batteria."
+    },
+    {
+      "field": "lcd-12-8-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        247.65289306640625,
+        165,
+        289.377197265625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Indicatore del pacco \nbatteria e numero di \nbatterie collegate",
+      "text": "Indicatore del pacco batteria e numero di batterie collegate"
+    },
+    {
+      "field": "lcd-12-8-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        247.65289306640625,
+        344,
+        289.377197265625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Visualizza il numero di pacchi batteria collegati, se presenti.",
+      "text": "Visualizza il numero di pacchi batteria collegati, se presenti."
+    },
+    {
+      "field": "lcd-12-9-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        289.377197265625,
+        165,
+        321.4207763671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Codice di errore",
+      "text": "Codice di errore"
+    },
+    {
+      "field": "lcd-12-9-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        289.377197265625,
+        344,
+        321.4207763671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Si è verificato un errore del prodotto. Per maggiori dettagli, \nconsultare la sezione “Risoluzione dei problemi”.",
+      "text": "Si è verificato un errore del prodotto. Per maggiori dettagli, consultare la sezione “Risoluzione dei problemi”."
+    },
+    {
+      "field": "lcd-12-10-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        321.4207763671875,
+        165,
+        358.31988525390625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Indicatore di \ntemperatura elevata",
+      "text": "Indicatore di temperatura elevata"
+    },
+    {
+      "field": "lcd-12-10-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        321.4207763671875,
+        344,
+        358.31988525390625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "La protezione da alta temperatura è stata attivata.\nIl prodotto potrebbe smettere di funzionare finché la \ntemperatura non rientra nel normale intervallo operativo.",
+      "text": "La protezione da alta temperatura è stata attivata. Il prodotto potrebbe smettere di funzionare finché la temperatura non rientra nel normale intervallo operativo."
+    },
+    {
+      "field": "lcd-12-11-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        358.31988525390625,
+        165,
+        394.3095703125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Indicatore di bassa \ntemperatura",
+      "text": "Indicatore di bassa temperatura"
+    },
+    {
+      "field": "lcd-12-11-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        358.31988525390625,
+        344,
+        394.3095703125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "È stata attivata la protezione da bassa temperatura.\nIl prodotto potrebbe smettere di funzionare finché la \ntemperatura non rientra nel normale intervallo operativo.",
+      "text": "È stata attivata la protezione da bassa temperatura. Il prodotto potrebbe smettere di funzionare finché la temperatura non rientra nel normale intervallo operativo."
+    },
+    {
+      "field": "lcd-12-12-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        394.3095703125,
+        165,
+        435.618896484375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Modalità di risparmio \nenergetico",
+      "text": "Modalità di risparmio energetico"
+    },
+    {
+      "field": "lcd-12-12-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        394.3095703125,
+        344,
+        435.618896484375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Quando l'uscita CA o USB è accesa premendo il rispettivo \npulsante di alimentazione:\nAcceso: La modalità di risparmio energetico è attivata.\nSpento: La modalità di risparmio energetico è disattivata.",
+      "text": "Quando l'uscita CA o USB è accesa premendo il rispettivo pulsante di alimentazione: Acceso: La modalità di risparmio energetico è attivata. Spento: La modalità di risparmio energetico è disattivata."
+    },
+    {
+      "field": "lcd-12-13-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        435.618896484375,
+        165,
+        465.9848937988281
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Potenza in uscita",
+      "text": "Potenza in uscita"
+    },
+    {
+      "field": "lcd-12-13-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        435.618896484375,
+        344,
+        465.9848937988281
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Visualizza la potenza di uscita in watt.",
+      "text": "Visualizza la potenza di uscita in watt."
+    },
+    {
+      "field": "lcd-12-14-name",
+      "physical_page": 80,
+      "bbox_pt": [
+        83,
+        465.9848937988281,
+        165,
+        495.9126892089844
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Tempo di scarica \nrimanente",
+      "text": "Tempo di scarica rimanente"
+    },
+    {
+      "field": "lcd-12-14-description",
+      "physical_page": 80,
+      "bbox_pt": [
+        165,
+        465.9848937988281,
+        344,
+        495.9126892089844
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Visualizza il tempo residuo di scarica.",
+      "text": "Visualizza il tempo residuo di scarica."
+    },
+    {
+      "field": "fault-header",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        210.95242309570312,
+        344,
+        227.10031127929688
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Misure correttive",
+      "text": "Misure correttive"
+    },
+    {
+      "field": "fault-F0",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        227.10031127929688,
+        344,
+        242.31591796875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Starten Sie das Gerät neu.",
+      "text": "Starten Sie das Gerät neu."
+    },
+    {
+      "field": "fault-F1",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        242.31591796875,
+        344,
+        256.676513671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Starten Sie das Gerät neu.",
+      "text": "Starten Sie das Gerät neu."
+    },
+    {
+      "field": "fault-F2",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        256.676513671875,
+        344,
+        270.0558166503906
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Starten Sie das Gerät neu.",
+      "text": "Starten Sie das Gerät neu."
+    },
+    {
+      "field": "fault-F3",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        270.0558166503906,
+        344,
+        284.5787353515625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Starten Sie das Gerät neu.",
+      "text": "Starten Sie das Gerät neu."
+    },
+    {
+      "field": "fault-F4",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        284.5787353515625,
+        344,
+        296.4398193359375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Schließen Sie das Gerät an Verbraucher an, um die Batterie zu entladen, bis der Fehler verschwindet.",
+      "text": "Schließen Sie das Gerät an Verbraucher an, um die Batterie zu entladen, bis der Fehler verschwindet."
+    },
+    {
+      "field": "fault-F5",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        296.4398193359375,
+        344,
+        307.8258056640625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Laden Sie das Gerät über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet.",
+      "text": "Laden Sie das Gerät über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet."
+    },
+    {
+      "field": "fault-F6",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        307.8258056640625,
+        344,
+        371.03472900390625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "1.  Warten Sie, bis das Stromnetz stabil ist, bevor Sie das Gerät über eine Netzsteckdose laden.\n2. Überprüfen Sie, ob die Lufteinlass- und -auslassöﬀnungen blockiert sind; stellen Sie sicher, \ndass auf beiden Seiten des Geräts ein Abstand von 20 cm eingehalten wird.\n3. Platzieren Sie das Gerät an einem Ort, der nicht direktem Sonnenlicht oder hohen \nUmgebungstemperaturen ausgesetzt ist.\n4. Trennen Sie alle Verbraucher vom Gerät, lassen Sie es im Leerlauf und warten Sie, bis der \nFehler verschwindet.\n5. Starten Sie das Gerät neu.",
+      "text": "1. Warten Sie, bis das Stromnetz stabil ist, bevor Sie das Gerät über eine Netzsteckdose laden. 2. Überprüfen Sie, ob die Lufteinlass- und -auslassöffnungen blockiert sind; stellen Sie sicher, dass auf beiden Seiten des Geräts ein Abstand von 20 cm eingehalten wird. 3. Platzieren Sie das Gerät an einem Ort, der nicht direktem Sonnenlicht oder hohen Umgebungstemperaturen ausgesetzt ist. 4. Trennen Sie alle Verbraucher vom Gerät, lassen Sie es im Leerlauf und warten Sie, bis der Fehler verschwindet. 5. Starten Sie das Gerät neu."
+    },
+    {
+      "field": "fault-F7",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        371.03472900390625,
+        344,
+        417.82330322265625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "1.  Rimuovere tutti gli ingressi CC dal prodotto.\n2. Se si ricarica il prodotto tramite un pannello solare, veriﬁcare la tensione a circuito aperto (Voc) \ndel pannello solare collegato. Il prodotto consente una tensione di ingresso CC massima di \n60V.\n3. Riavviare il prodotto e lasciarlo inattivo. Attendere che l'errore scompaia.",
+      "text": "1. Rimuovere tutti gli ingressi CC dal prodotto. 2. Se si ricarica il prodotto tramite un pannello solare, verificare la tensione a circuito aperto (Voc) del pannello solare collegato. Il prodotto consente una tensione di ingresso CC massima di 60V. 3. Riavviare il prodotto e lasciarlo inattivo. Attendere che l'errore scompaia."
+    },
+    {
+      "field": "fault-F8",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        417.82330322265625,
+        344,
+        433.0710144042969
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Contattare il distributore o l'assistenza clienti Jackery.",
+      "text": "Contattare il distributore o l'assistenza clienti Jackery."
+    },
+    {
+      "field": "fault-F9",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        433.0710144042969,
+        344,
+        447.33599853515625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Rimuovere il carico collegato alle porte USB del prodotto. Attendere che l'errore scompaia.",
+      "text": "Rimuovere il carico collegato alle porte USB del prodotto. Attendere che l'errore scompaia."
+    },
+    {
+      "field": "fault-FA",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        447.33599853515625,
+        344,
+        470.5928039550781
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "1.  Spegnere l'uscita CA di entrambe le unità.\n2. Premere nuovamente il pulsante di alimentazione CA su ciascuna unità entro 1 minuto.",
+      "text": "1. Spegnere l'uscita CA di entrambe le unità. 2. Premere nuovamente il pulsante di alimentazione CA su ciascuna unità entro 1 minuto."
+    },
+    {
+      "field": "fault-FC",
+      "physical_page": 88,
+      "bbox_pt": [
+        70,
+        470.5928039550781,
+        344,
+        495.0754089355469
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "1.  Riavviare rispettivamente i pacchi batteria e il Jackery Explorer 3600 Plus.\n2. Se il guasto persiste, scollegare il pacco batteria dal Jackery Explorer 3600 Plus e ricollegarlo.",
+      "text": "1. Riavviare rispettivamente i pacchi batteria e il Jackery Explorer 3600 Plus. 2. Se il guasto persiste, scollegare il pacco batteria dal Jackery Explorer 3600 Plus e ricollegarlo."
+    },
+    {
+      "field": "signal-0-label",
+      "physical_page": 76,
+      "bbox_pt": [
+        28,
+        389,
+        128,
+        418
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "AVVERTENZA",
+      "text": "AVVERTENZA"
+    },
+    {
+      "field": "signal-0-meaning",
+      "physical_page": 76,
+      "bbox_pt": [
+        128,
+        389,
+        344,
+        418
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Pratiche pericolose che possono causare gravi lesioni, morte e/o \ndanni materiali.",
+      "text": "Pratiche pericolose che possono causare gravi lesioni, morte e/o danni materiali."
+    },
+    {
+      "field": "signal-1-label",
+      "physical_page": 76,
+      "bbox_pt": [
+        28,
+        418,
+        128,
+        441
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": " ATTENZIONE",
+      "text": "ATTENZIONE"
+    },
+    {
+      "field": "signal-1-meaning",
+      "physical_page": 76,
+      "bbox_pt": [
+        128,
+        418,
+        344,
+        441
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Pratiche pericolose che possono causare lesioni personali e/o danni \nmateriali.",
+      "text": "Pratiche pericolose che possono causare lesioni personali e/o danni materiali."
+    },
+    {
+      "field": "signal-2-label",
+      "physical_page": 76,
+      "bbox_pt": [
+        28,
+        441,
+        128,
+        471
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": " NOTA",
+      "text": "NOTA"
+    },
+    {
+      "field": "signal-2-meaning",
+      "physical_page": 76,
+      "bbox_pt": [
+        128,
+        441,
+        344,
+        471
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Pratiche pericolose che possono causare danni all'apparecchiatura, \nperdita di dati, deterioramento delle prestazioni o risultati imprevisti.",
+      "text": "Pratiche pericolose che possono causare danni all'apparecchiatura, perdita di dati, deterioramento delle prestazioni o risultati imprevisti."
+    },
+    {
+      "field": "signal-3-label",
+      "physical_page": 76,
+      "bbox_pt": [
+        28,
+        471,
+        128,
+        496
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": " SUGGERIMENTO",
+      "text": "SUGGERIMENTO"
+    },
+    {
+      "field": "signal-3-meaning",
+      "physical_page": 76,
+      "bbox_pt": [
+        128,
+        471,
+        344,
+        496
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Integra le informazioni importanti o i consigli operativi presenti nel testo.",
+      "text": "Integra le informazioni importanti o i consigli operativi presenti nel testo."
+    },
+    {
+      "field": "spec-general-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        73,
+        139,
+        180
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Nome del prodotto\nModello n.\nCapacità\nChimica celle batteria\nPeso\nDimensioni\nDurata del ciclo\nIEC code",
+      "text": "Nome del prodotto Modello n. Capacità Chimica celle batteria Peso Dimensioni Durata del ciclo IEC code"
+    },
+    {
+      "field": "spec-general-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        73,
+        344,
+        180
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Jackery Explorer 3600 Plus\nJE-3600A\n80Ah / 44,8V DC (3584 Wh)\nLiFePO₄ \nCirca 35 kg\n38,5×30,9×49,1 cm\n6000 cicli ﬁno all' 70% di capacità\nIFpR41/136[14S4P]M/-20+40/90",
+      "text": "Jackery Explorer 3600 Plus JE-3600A 80Ah / 44,8V DC (3584 Wh) LiFePO₄ Circa 35 kg 38,5×30,9×49,1 cm 6000 cicli fino all' 70% di capacità IFpR41/136[14S4P]M/-20+40/90"
+    },
+    {
+      "field": "spec-general-0-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        74.05380249023438,
+        139,
+        87.23672485351562
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Nome del prodotto",
+      "text": "Nome del prodotto"
+    },
+    {
+      "field": "spec-general-0-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        74.05380249023438,
+        344,
+        87.23672485351562
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Jackery Explorer 3600 Plus",
+      "text": "Jackery Explorer 3600 Plus"
+    },
+    {
+      "field": "spec-general-1-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        87.23672485351562,
+        139,
+        100.80020141601562
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Modello n.",
+      "text": "Modello n."
+    },
+    {
+      "field": "spec-general-1-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        87.23672485351562,
+        344,
+        100.80020141601562
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "JE-3600A",
+      "text": "JE-3600A"
+    },
+    {
+      "field": "spec-general-2-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        100.80020141601562,
+        139,
+        113.72250366210938
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Capacità",
+      "text": "Capacità"
+    },
+    {
+      "field": "spec-general-2-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        100.80020141601562,
+        344,
+        113.72250366210938
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "80Ah / 44,8V DC (3584 Wh)",
+      "text": "80Ah / 44,8V DC (3584 Wh)"
+    },
+    {
+      "field": "spec-general-3-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        113.72250366210938,
+        139,
+        126.0050048828125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Chimica celle batteria",
+      "text": "Chimica celle batteria"
+    },
+    {
+      "field": "spec-general-3-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        113.72250366210938,
+        344,
+        126.0050048828125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "LiFePO₄ ",
+      "text": "LiFePO₄"
+    },
+    {
+      "field": "spec-general-4-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        126.0050048828125,
+        139,
+        139.26840209960938
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Peso",
+      "text": "Peso"
+    },
+    {
+      "field": "spec-general-4-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        126.0050048828125,
+        344,
+        139.26840209960938
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Circa 35 kg",
+      "text": "Circa 35 kg"
+    },
+    {
+      "field": "spec-general-5-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        139.26840209960938,
+        139,
+        152.7451171875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Dimensioni",
+      "text": "Dimensioni"
+    },
+    {
+      "field": "spec-general-5-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        139.26840209960938,
+        344,
+        152.7451171875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "38,5×30,9×49,1 cm",
+      "text": "38,5×30,9×49,1 cm"
+    },
+    {
+      "field": "spec-general-6-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        152.7451171875,
+        139,
+        165.18212890625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Durata del ciclo",
+      "text": "Durata del ciclo"
+    },
+    {
+      "field": "spec-general-6-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        152.7451171875,
+        344,
+        165.18212890625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "6000 cicli ﬁno all' 70% di capacità",
+      "text": "6000 cicli fino all' 70% di capacità"
+    },
+    {
+      "field": "spec-general-7-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        165.18212890625,
+        139,
+        178.71780395507812
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "IEC code",
+      "text": "IEC code"
+    },
+    {
+      "field": "spec-general-7-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        165.18212890625,
+        344,
+        178.71780395507812
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "IFpR41/136[14S4P]M/-20+40/90",
+      "text": "IFpR41/136[14S4P]M/-20+40/90"
+    },
+    {
+      "field": "spec-inputs-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        210,
+        139,
+        282
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "1 × Ingresso CA\n  \n2 × Porte DC8020\n1 × Porta di Espansione CC",
+      "text": "1 × Ingresso CA 2 × Porte DC8020 1 × Porta di Espansione CC"
+    },
+    {
+      "field": "spec-inputs-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        210,
+        344,
+        282
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Modalità di ricarica: 220-240V~ 50Hz, 10A max\nAC modalità bypass① : 220-240V~ 50Hz, 10A max\n12-16V⎓8A max, raddoppia ﬁno a 8A max\n16-60V⎓12A, raddoppia ﬁno a 24A Max/ 1000W Max\n36,4V-50,4V⎓100A max",
+      "text": "Modalità di ricarica: 220-240V~ 50Hz, 10A max AC modalità bypass① : 220-240V~ 50Hz, 10A max 12-16V⎓8A max, raddoppia fino a 8A max 16-60V⎓12A, raddoppia fino a 24A Max/ 1000W Max 36,4V-50,4V⎓100A max"
+    },
+    {
+      "field": "spec-inputs-0-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        214.6640380859375,
+        344,
+        224.46402893066406
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Modalità di ricarica: 220-240V~ 50Hz, 10A max",
+      "text": "Modalità di ricarica: 220-240V~ 50Hz, 10A max"
+    },
+    {
+      "field": "spec-inputs-1-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        227.6640380859375,
+        344,
+        237.5760284423828
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "AC modalità bypass① : 220-240V~ 50Hz, 10A max",
+      "text": "AC modalità bypass① : 220-240V~ 50Hz, 10A max"
+    },
+    {
+      "field": "spec-inputs-2-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        240.6640380859375,
+        344,
+        250.5520263671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "12-16V⎓8A max, raddoppia ﬁno a 8A max",
+      "text": "12-16V⎓8A max, raddoppia fino a 8A max"
+    },
+    {
+      "field": "spec-inputs-3-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        253.6640380859375,
+        344,
+        263.5520263671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "16-60V⎓12A, raddoppia ﬁno a 24A Max/ 1000W Max",
+      "text": "16-60V⎓12A, raddoppia fino a 24A Max/ 1000W Max"
+    },
+    {
+      "field": "spec-inputs-4-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        266.6640380859375,
+        344,
+        276.5520263671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "36,4V-50,4V⎓100A max",
+      "text": "36,4V-50,4V⎓100A max"
+    },
+    {
+      "field": "spec-outputs-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        304,
+        139,
+        389
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "3 × Uscita CA\nUscita totale CA②\nUscita CA in modalità bypass\n2 × USB-C da 100W\n2 × USB-A da 18W\n1 × Porta di Espansione CC",
+      "text": "3 × Uscita CA Uscita totale CA② Uscita CA in modalità bypass 2 × USB-C da 100W 2 × USB-A da 18W 1 × Porta di Espansione CC"
+    },
+    {
+      "field": "spec-outputs-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        304,
+        344,
+        389
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "230V~ 50Hz, 3600W\n3600W nominali, 7200W picco di sovratensione\n220-240V~ 50Hz, 10A max\n①\n100W max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A\n18W max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A\n36.4V-50.4V⎓60A max",
+      "text": "230V~ 50Hz, 3600W 3600W nominali, 7200W picco di sovratensione 220-240V~ 50Hz, 10A max ① 100W max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A 18W max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A 36.4V-50.4V⎓60A max"
+    },
+    {
+      "field": "spec-outputs-0-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        306.8661193847656,
+        139,
+        320.17071533203125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "3 × Uscita CA",
+      "text": "3 × Uscita CA"
+    },
+    {
+      "field": "spec-outputs-0-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        306.8661193847656,
+        344,
+        320.17071533203125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "230V~ 50Hz, 3600W",
+      "text": "230V~ 50Hz, 3600W"
+    },
+    {
+      "field": "spec-outputs-1-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        320.17071533203125,
+        139,
+        332.83660888671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Uscita totale CA②",
+      "text": "Uscita totale CA②"
+    },
+    {
+      "field": "spec-outputs-1-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        320.17071533203125,
+        344,
+        332.83660888671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "3600W nominali, 7200W picco di sovratensione",
+      "text": "3600W nominali, 7200W picco di sovratensione"
+    },
+    {
+      "field": "spec-outputs-2-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        332.83660888671875,
+        139,
+        345.7054138183594
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Uscita CA in modalità bypass",
+      "text": "Uscita CA in modalità bypass"
+    },
+    {
+      "field": "spec-outputs-2-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        332.83660888671875,
+        344,
+        345.7054138183594
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "220-240V~ 50Hz, 10A max\n①",
+      "text": "220-240V~ 50Hz, 10A max ①"
+    },
+    {
+      "field": "spec-outputs-3-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        345.7054138183594,
+        139,
+        358.7054138183594
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "2 × USB-C da 100W",
+      "text": "2 × USB-C da 100W"
+    },
+    {
+      "field": "spec-outputs-3-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        345.7054138183594,
+        344,
+        358.7054138183594
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "100W max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+      "text": "100W max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A"
+    },
+    {
+      "field": "spec-outputs-4-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        358.7054138183594,
+        139,
+        372.0226135253906
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "2 × USB-A da 18W",
+      "text": "2 × USB-A da 18W"
+    },
+    {
+      "field": "spec-outputs-4-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        358.7054138183594,
+        344,
+        372.0226135253906
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "18W max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+      "text": "18W max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+    },
+    {
+      "field": "spec-outputs-5-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        372.0226135253906,
+        139,
+        383.9941101074219
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "1 × Porta di Espansione CC",
+      "text": "1 × Porta di Espansione CC"
+    },
+    {
+      "field": "spec-outputs-5-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        372.0226135253906,
+        344,
+        383.9941101074219
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "36.4V-50.4V⎓60A max",
+      "text": "36.4V-50.4V⎓60A max"
+    },
+    {
+      "field": "spec-temperature-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        414,
+        139,
+        450
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Temperatura di carica\nTemperatura di scarica",
+      "text": "Temperatura di carica Temperatura di scarica"
+    },
+    {
+      "field": "spec-temperature-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        414,
+        344,
+        450
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "tra -20 °C e 45 °C\ntra -20 °C e 45 °C",
+      "text": "tra -20 °C e 45 °C tra -20 °C e 45 °C"
+    },
+    {
+      "field": "spec-temperature-0-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        415.28582763671875,
+        139,
+        428.9137268066406
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Temperatura di carica",
+      "text": "Temperatura di carica"
+    },
+    {
+      "field": "spec-temperature-0-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        415.28582763671875,
+        344,
+        428.9137268066406
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "tra -20 °C e 45 °C",
+      "text": "tra -20 °C e 45 °C"
+    },
+    {
+      "field": "spec-temperature-1-label",
+      "physical_page": 89,
+      "bbox_pt": [
+        28,
+        428.9137268066406,
+        139,
+        441.6588134765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Temperatura di scarica",
+      "text": "Temperatura di scarica"
+    },
+    {
+      "field": "spec-temperature-1-value",
+      "physical_page": 89,
+      "bbox_pt": [
+        139,
+        428.9137268066406,
+        344,
+        441.6588134765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "tra -20 °C e 45 °C",
+      "text": "tra -20 °C e 45 °C"
+    },
+    {
+      "field": "standby",
+      "physical_page": 81,
+      "bbox_pt": [
+        150,
+        165,
+        344,
+        207
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Tempo di standby predeﬁnito: 2 ore\nIl prodotto si spegnerà automaticamente dopo 2 ore di \ninattività, senza alcuna carica o scarica.\n*Il tempo di standby può essere impostato nell’App \nJackery.",
+      "text": "Tempo di standby predefinito: 2 ore Il prodotto si spegnerà automaticamente dopo 2 ore di inattività, senza alcuna carica o scarica. *Il tempo di standby può essere impostato nell’App Jackery."
+    },
+    {
+      "field": "ups-body",
+      "physical_page": 84,
+      "bbox_pt": [
+        128,
+        242,
+        344,
+        312
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Condizione: assicurarsi che il prodotto sia acceso.\nUn gruppo di continuità (UPS) è un tipo di sistema di alimentazione continua che \nfornisce automaticamente energia elettrica di backup a un carico quando \nl'alimentazione dalla rete elettrica viene a mancare.\nIn caso di improvvisa interruzione della corrente di rete, l’Explorer 3600 Plus \npasserà automaticamente all’energia immagazzinata entro 10 ms per \nmantenere in funzione i dispositivi collegati.",
+      "text": "Condizione: assicurarsi che il prodotto sia acceso. Un gruppo di continuità (UPS) è un tipo di sistema di alimentazione continua che fornisce automaticamente energia elettrica di backup a un carico quando l'alimentazione dalla rete elettrica viene a mancare. In caso di improvvisa interruzione della corrente di rete, l’Explorer 3600 Plus passerà automaticamente all’energia immagazzinata entro 10 ms per mantenere in funzione i dispositivi collegati."
+    },
+    {
+      "field": "solar-description",
+      "physical_page": 86,
+      "bbox_pt": [
+        28,
+        320,
+        350,
+        367
+      ],
+      "method": "native-body-font-separated-from-title-and-badge",
+      "raw_text": "Il Jackery Explorer 3600 Plus dispone di due porte di ingresso DC8020 ed è compatibile con i pannelli solari Jackery. \nSe una porta di ingresso DC8020 deve collegare due pannelli solari contemporaneamente, fare riferimento alla \nfigura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso nella \nconfezione standard).",
+      "text": "Il Jackery Explorer 3600 Plus dispone di due porte di ingresso DC8020 ed è compatibile con i pannelli solari Jackery. Se una porta di ingresso DC8020 deve collegare due pannelli solari contemporaneamente, fare riferimento alla figura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso nella confezione standard)."
+    },
+    {
+      "field": "car-description",
+      "physical_page": 87,
+      "bbox_pt": [
+        28,
+        169,
+        344,
+        190
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Questo prodotto può essere caricato con un caricabatterie per auto da 12 V. Assicurarsi che il caricabatterie e \nl'accendisigari dell'auto siano ben collegati.",
+      "text": "Questo prodotto può essere caricato con un caricabatterie per auto da 12 V. Assicurarsi che il caricabatterie e l'accendisigari dell'auto siano ben collegati."
+    },
+    {
+      "field": "solar-voc",
+      "physical_page": 87,
+      "bbox_pt": [
+        25,
+        110,
+        344,
+        151
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Si consiglia di utilizzare il pannello solare Jackery per caricare l’Explorer 3600 Plus. Assicurarsi che la tensione a \ncircuito aperto (Voc) del pannello solare rientri nell’intervallo di tensione di ingresso CC dell’Explorer 3600 Plus \n(16V–60V). Jackery non è responsabile per eventuali danni o perdite derivanti dall’uso di pannelli solari di terze \nparti.",
+      "text": "Si consiglia di utilizzare il pannello solare Jackery per caricare l’Explorer 3600 Plus. Assicurarsi che la tensione a circuito aperto (Voc) del pannello solare rientri nell’intervallo di tensione di ingresso CC dell’Explorer 3600 Plus (16V–60V). Jackery non è responsabile per eventuali danni o perdite derivanti dall’uso di pannelli solari di terze parti."
+    },
+    {
+      "field": "ac-caution",
+      "physical_page": 86,
+      "bbox_pt": [
+        28,
+        280,
+        344,
+        312
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Assicurarsi che il cavo di ricarica CA sia inserito completamente e saldamente nella \nATTENZIONE\nporta di ingresso CA. Un collegamento incompleto potrebbe causare corrente instabile, \nsurriscaldamento, contatti difettosi o malfunzionamenti del dispositivo.",
+      "text": "Assicurarsi che il cavo di ricarica CA sia inserito completamente e saldamente nella ATTENZIONE porta di ingresso CA. Un collegamento incompleto potrebbe causare corrente instabile, surriscaldamento, contatti difettosi o malfunzionamenti del dispositivo."
+    },
+    {
+      "field": "charging-ac-caption",
+      "physical_page": 86,
+      "bbox_pt": [
+        168,
+        247,
+        344,
+        280
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Collega il cavo di ricarica CA alla porta di ingresso CA \ndel prodotto e a una presa a muro.",
+      "text": "Collega il cavo di ricarica CA alla porta di ingresso CA del prodotto e a una presa a muro."
+    },
+    {
+      "field": "app-power",
+      "physical_page": 91,
+      "bbox_pt": [
+        28,
+        392,
+        110,
+        425
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Pulsante di \naccensione \nprincipale",
+      "text": "Pulsante di accensione principale"
+    },
+    {
+      "field": "app-usb",
+      "physical_page": 91,
+      "bbox_pt": [
+        28,
+        425,
+        110,
+        463
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Pulsante \nAlimentazione \nUSB",
+      "text": "Pulsante Alimentazione USB"
+    },
+    {
+      "field": "app-ac",
+      "physical_page": 91,
+      "bbox_pt": [
+        270,
+        425,
+        344,
+        463
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Pulsante AC",
+      "text": "Pulsante AC"
+    },
+    {
+      "field": "app-2.2",
+      "physical_page": 91,
+      "bbox_pt": [
+        28,
+        183,
+        344,
+        224
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "2.2 Premere a lungo il pulsante \"Power\" sul dispositivo per accenderlo, le icone Wi-Fi e Bluetooth sul \ndispositivo lampeggiano per indicare che il dispositivo è entrato in modalità di conﬁgurazione della \nrete, fare clic sul pulsante \"Icon Flashed\" (icona lampeggiante) e consentire all'App di connettersi ai \ndispositivi vicini e aprire le autorizzazioni Bluetooth.",
+      "text": "2.2 Premere a lungo il pulsante \"Power\" sul dispositivo per accenderlo, le icone Wi-Fi e Bluetooth sul dispositivo lampeggiano per indicare che il dispositivo è entrato in modalità di configurazione della rete, fare clic sul pulsante \"Icon Flashed\" (icona lampeggiante) e consentire all'App di connettersi ai dispositivi vicini e aprire le autorizzazioni Bluetooth."
+    },
+    {
+      "field": "app-download-qr",
+      "physical_page": 91,
+      "bbox_pt": [
+        195,
+        119,
+        344,
+        155
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "In alternativa, scansionare il \ncodice QR qui sotto per scaricare \ne installare l'App.",
+      "text": "In alternativa, scansionare il codice QR qui sotto per scaricare e installare l'App."
+    },
+    {
+      "field": "app-bound-lead",
+      "physical_page": 92,
+      "bbox_pt": [
+        83,
+        45,
+        344,
+        64
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Se durante il processo di associazione viene richiesto \"il dispositivo è stato associato\", è \npossibile utilizzare i due metodi seguenti per la connessione:",
+      "text": "Se durante il processo di associazione viene richiesto \"il dispositivo è stato associato\", è possibile utilizzare i due metodi seguenti per la connessione:"
+    },
+    {
+      "field": "app-bound-steps",
+      "physical_page": 92,
+      "bbox_pt": [
+        83,
+        64,
+        344,
+        96
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "",
+      "text": ""
+    },
+    {
+      "field": "app-enable",
+      "physical_page": 92,
+      "bbox_pt": [
+        30,
+        380,
+        344,
+        418
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "4.1 Attivare Wi-Fi e Bluetooth\n• Il Wi-Fi e il Bluetooth vengono attivati automaticamente dopo l'accensione del dispositivo, e le icone \nWi-Fi e Bluetooth sullo schermo si illuminano.\n• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione \nCA ﬁno a quando le icone Wi-Fi e Bluetooth sullo schermo non si illuminano.",
+      "text": "4.1 Attivare Wi-Fi e Bluetooth • Il Wi-Fi e il Bluetooth vengono attivati automaticamente dopo l'accensione del dispositivo, e le icone Wi-Fi e Bluetooth sullo schermo si illuminano. • Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione CA fino a quando le icone Wi-Fi e Bluetooth sullo schermo non si illuminano."
+    },
+    {
+      "field": "app-disable",
+      "physical_page": 92,
+      "bbox_pt": [
+        30,
+        427,
+        344,
+        463
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione \nCA ﬁno a quando le icone Wi-Fi e Bluetooth sullo schermo non si spengono.\n• Il Wi-Fi e il Bluetooth si spengono automaticamente se non viene collegato alcun dispositivo entro \n2 ore.",
+      "text": "• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione CA fino a quando le icone Wi-Fi e Bluetooth sullo schermo non si spengono. • Il Wi-Fi e il Bluetooth si spengono automaticamente se non viene collegato alcun dispositivo entro 2 ore."
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 76,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "PRECAUZIONI DI SICUREZZA\nISTRUZIONI RELATIVE AI RISCHI DI INCENDIO, SCOSSA \nAVVERTENZA\nELETTRICA O LESIONI ALLE PERSONE\nSeguire sempre queste precauzioni di base durante l’utilizzo di questo prodotto.\nLeggere tutte le istruzioni prima di utilizzare il prodotto.\nNon consentire ai bambini di giocare con il prodotto. È necessaria una stretta supervisione quando il prodotto \nviene utilizzato vicino a bambini.\nIl rischio di scossa elettrica può verificarsi se si utilizzano accessori non raccomandati o non venduti da produttori \nprofessionali.\nQuando il prodotto non è in uso, scollegare la spina di alimentazione dalla presa del prodotto.\nNon smontare il prodotto, poiché ciò può comportare rischi imprevedibili come incendi, esplosioni o scosse \nelettriche.\nNon utilizzare il prodotto con cavi di alimentazione, spine o cavi di uscita danneggiati, poiché ciò può causare \nscosse elettriche.\nPer garantire una corretta circolazione dell’aria, non coprire le prese d’aria del prodotto. L’area in cui si utilizza il \nprodotto deve essere ben ventilata, fresca e asciutta per evitare il surriscaldamento.\n-La ricarica in ambienti umidi o poco ventilati può comportare rischi per la sicurezza.\n-L'acqua può causare cortocircuiti o danni al caricatore, con conseguenti rischi per la sicurezza.\nNon esporre il prodotto al fuoco, ad alte temperature, alla luce solare diretta o ad ambienti molto caldi come \nl’interno di un veicolo parcheggiato. Tali condizioni possono causare incendi o esplosioni.\nISTRUZIONI PER LA MANUTENZIONE DA PARTE DELL’UTENTE\nDurante il ciclo di vita dei prodotti per l’accumulo di energia, è previsto un certo grado di degrado della capacità \ne dell’energia. Con l’aumentare dei cicli di carica e scarica e il prolungarsi del tempo di immagazzinamento, tale \ndegrado tenderà a intensificarsi gradualmente. Si tratta di un fenomeno normale, coerente con il naturale \ninvecchiamento delle celle della batteria.\nSIGNIFICATO DEI SIMBOLI\nSímbolo\nSigniﬁcato\nPratiche pericolose che possono causare gravi lesioni, morte e/o \nAVVERTENZA\ndanni materiali.\nPratiche pericolose che possono causare lesioni personali e/o danni \n ATTENZIONE\nmateriali.\nPratiche pericolose che possono causare danni all'apparecchiatura, \n NOTA\nperdita di dati, deterioramento delle prestazioni o risultati imprevisti.\n SUGGERIMENTO\nIntegra le informazioni importanti o i consigli operativi presenti nel testo."
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 77,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "Simbolo Signiﬁcato\nSimbolo\nSigniﬁcato\nLe batterie e gli accumulatori non devono \nSimboli di avvertenza e cautela. Da \nessere smaltiti insieme ai rifiuti domestici.\nleggere assolutamente per avvisare le \nCome consumatore, sei legalmente \npersone di potenziali pericoli o rischi. \nobbligato a smaltire tutte le batterie e gli \naccumulatori nei punti di raccolta \ndesignati, indipendentemente dal fatto \nPrima dell’utilizzo, leggere il manuale \nche contengano sostanze pericolose.\nd’istruzioni.\nPer favore, restituisci le batterie e gli \naccumulatori usati a un punto di raccolta \nlocale, a un centro di riciclo o al rivenditore \npresso cui sono stati acquistati. Un corretto \nNon smontare il prodotto.\nsmaltimento garantisce un riciclo \nresponsabile per l'ambiente e previene \npotenziali danni alla salute umana e \nall'ambiente.\nTenere il prodotto lontano da fiamme.\nQuesto simbolo indica che il prodotto non \nva smaltito come rifiuto domestico e deve \nessere consegnato per il riciclaggio a un \ncentro di raccolta designato.\nTenere lontano dalla portata dei bambini.\nSmaltire adeguatamente e riciclare aiuta \na proteggere l’ambiente. Per maggiori \ninformazioni riguardo lo smaltimento e il \nQuesto simbolo indica che all’interno del \nriciclaggio di questo prodotto, contattare \nprodotto è presente una batteria agli ioni \nla propria comunità locale, i servizi di \ndi litio (Li-ion), la quale va smaltita o \nsmaltimento o il proprio fornitore.\nriciclata adeguatamente.\nCONTENUTO DELLA CONFEZIONE\n1\n2\n3\nJackery Explorer 3600 Plus\nCavo di ricarica CA\nManuale d'uso\nIl cavo di ricarica per auto non è incluso, ma può essere acquistato \nSUGGERIMENTO\nseparatamente sul nostro sito web. Per assistenza, contattare il servizio \nclienti Jackery."
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 78,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "PANORAMICA DEL PRODOTTO\nASPETTO DEL PRODOTTO\nLCD\nPulsante di \nalimentazione principale\nUscita USB-C da 100W\n100W max, 5V⎓3A, 9V⎓3A, \n12V⎓3A, 15V⎓3A, 20V⎓5A\nUscita CA\n230V~ 50 Hz, 3600W\nUscita USB-A da 18W\nUscita totale CA 3600W\n18W max, 5-6V⎓3A, \n6-9V⎓2A, 9-12V⎓1,5A\nPulsante \nAlimentazione USB\nPulsante AC\nVISTA LATERALE DESTRA\nManiglia Retrattile\nPremere il pulsante sulla maniglia retrattile e tirare verso \nl'alto per estenderla.\nIngresso DC\n2 × Porte DC8020:\n12-16V⎓8A max,\n raddoppia ﬁno a 8A Max\n16-60V⎓12A,\nPorta di Espansione CC\nraddoppia ﬁno a 24A Max/ 1000W Max\nCollegare al pacco batteria.\nIngresso CA\n220V-240V~ 50 Hz, 10A max\nRuote"
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 79,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "DISPLAY LCD\n1\n2\n3\n4\n5\n6\n7\n20\n8\n21\n9\n10\n12\n11\n13\n14\n18\n15\n16\n17\n19\nAcceso: Wi-Fi connesso.\n1\nWi-Fi\nLampeggiante: pronto per la connessione Wi-Fi.\nSpento: Wi-Fi disconnesso.\nAcceso: Bluetooth connesso.\nLampeggiante: pronto per la connessione Bluetooth.\nBluetooth\n2\nSpento: Bluetooth disconnesso\nAcceso: il rumore durante la ricarica è significativamente ridotto, \nmentre la potenza e la velocità di ricarica diminuiscono.\nModalità di \nSpento: la modalità di ricarica silenziosa è disattivata.\n3\nricarica silenziosa\nQuesta funzione può essere attivata o disattivata tramite l'app \nJackery.\nAcceso: limita la capacità massima della batteria utilizzabile per \nModalità di \nprolungarne la durata.\nrisparmio della \nSpento: la modalità di risparmio batteria è disattivata.\nbatteriabatteria\nQuesta funzione può essere attivata o disattivata tramite l'app \nJackery.\n4\nMassimizza l'uso dell'energia solare e riduce la dipendenza dalla \nrete elettrica, dando priorità all'energia solare immagazzinata e \nriducendo i costi dell'elettricità (abilitare/disabilitare questa \nModalità \nfunzione nell'app). La stazione di alimentazione deve essere \nautoalimentata\ncollegata contemporaneamente\nsia ai pannelli solari che alla rete elettrica, con la potenza di \ncarico limitata dalla potenza di bypass.\nPersonalizza il tempo di ricarica dell’Explorer 3600 Plus. Adatta a \nsituazioni di fluttuazione dei prezzi dell'energia elettrica, consente \n5\nPiano di ricarica\npiani di ricarica basati sulle ore di punta e non di punta, \nriducendo i costi dell'energia elettrica (da impostare nell'app \nJackery).\nIndicatore di\n6\nL’uscita AC (onda sinusoidale pura) è attiva.\nalimentazione CA\nTensione e \n7\nVisualizza la tensione e la frequenza di uscita.\nfrequenza di uscita"
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 80,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "8\nPotenza in ingresso\nVisualizza la potenza di ingresso in watt.\nTempo di carica \n9\nVisualizza il tempo residuo di carica.\nrimanente\nIndicatore di ricarica \nIl prodotto viene ricaricato tramite l’ingresso DC (DC8020) \n10\nutilizzando 12V DC (ricarica da auto).\nda auto\nIndicatore di ricarica \nIl prodotto viene ricaricato tramite l’ingresso DC (DC8020) \n11\nsolare\nutilizzando uno o più pannelli solari.\nIndicatore di \nIl prodotto viene ricaricato tramite l’ingresso DC (DC8020) \n12\nricarica solare\nutilizzando uno o più pannelli solari.\nQuando il prodotto è in carica, il cerchio arancione attorno \nIndicatore di carica \nalla percentuale della batteria si accende in sequenza. \n13\nDurante la ricarica di altri dispositivi, il cerchio arancione \ndella batteria\nrimarrà acceso.\nAcceso: il livello della batteria è inferiore al 20%.\nIndicatore di \nLampeggiante: il livello della batteria è inferiore al 5%.\n14\nbatteria scarica\nSpento: il livello della batteria non è inferiore al 20% oppure il \nprodotto è in carica.\nPercentuale di \n15\nMostra la percentuale residua della batteria.\nbatteria residua\nIndicatore del pacco \nbatteria e numero di \n16\nVisualizza il numero di pacchi batteria collegati, se presenti.\nbatterie collegate\nSi è verificato un errore del prodotto. Per maggiori dettagli, \n17\nCodice di errore\nconsultare la sezione “Risoluzione dei problemi”.\nLa protezione da alta temperatura è stata attivata.\nIndicatore di \nIl prodotto potrebbe smettere di funzionare finché la \ntemperatura elevata\ntemperatura non rientra nel normale intervallo operativo.\n18\nÈ stata attivata la protezione da bassa temperatura.\nIndicatore di bassa \nIl prodotto potrebbe smettere di funzionare finché la \ntemperatura\ntemperatura non rientra nel normale intervallo operativo.\nQuando l'uscita CA o USB è accesa premendo il rispettivo \nModalità di risparmio \npulsante di alimentazione:\n19\nAcceso: La modalità di risparmio energetico è attivata.\nenergetico\nSpento: La modalità di risparmio energetico è disattivata.\nPotenza in uscita\nVisualizza la potenza di uscita in watt.\n20\nTempo di scarica \n21\nVisualizza il tempo residuo di scarica.\nrimanente"
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 81,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "OPERAZIONI\nACCENSIONE/SPEGNIMENTO\nAccensione\npremere una volta\nSpegnimento\nTenere premuto per 3 \nsecondi\n3s\nTempo di standby predeﬁnito: 2 ore\nIl prodotto si spegnerà automaticamente dopo 2 ore di \ninattività, senza alcuna carica o scarica.\n*Il tempo di standby può essere impostato nell’App \nJackery.\nQuando la Modalità Risparmio Energetico è attiva, il prodotto si spegnerà automaticamente \ndopo 12 ore se il pulsante di alimentazione CA o USB è ON ma il prodotto non sta né caricando né \nscaricando.\nACCENSIONE/SPEGNIMENTO USCITA USB\nCondizione:  assicurarsi che il prodotto sia acceso.\nAccensione\npremere una volta\nSpegnimento\npremere una volta\nATTENZIONE"
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 82,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "ACCENSIONE/SPEGNIMENTO USCITA AC\nCondizione:  assicurarsi che il prodotto sia acceso.\nAccensione\npremere una volta\nSpegnimento\npremere una volta\nMODALITÀ DI RISPARMIO ENERGETICO\nPer prevenire un consumo inutile della batteria dimenticando di spegnere l'uscita, il prodotto attiva la \nModalità di risparmio energetico per impostazione predeﬁnita. Quando il pulsante di alimentazione \nCA è acceso, l’icona della MODALITÀ DI RISPARMIO ENERGETICO verrà visualizzata sullo schermo \nLCD. Se non è collegato alcun dispositivo o il consumo del dispositivo collegato è inferiore a una \ndeterminata soglia (uscita AC ≤ 25W oppure uscita USB-C ≤ 2W), il dispositivo spegne automatica-\nmente tutte le uscite dopo 12 ore. \nPer disattivare la Modalità risparmio energetico, tenere premuti entrambi i pulsanti di accensione CA \ne POWER per più di 3 secondi.\nPOWER-Taste\nAC-Ausgangstaste\nAccensione/Spegnimento\n3s\nTenere premuto per 3 secondi\nLa Modalità di risparmio energetico ripristina lo stato precedente dopo l'accensione. Per \nNOTA\ncambiare modalità è necessario un intervento manuale."
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 83,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "ACCENSIONE/SPEGNIMENTO SCHERMO LCD\nPremi il pulsante di accensione \nprincipale o durante la ricarica \nAccendere\ndel prodotto.\nSchermo \nPremere il pulsante di \nSpegnere\nLCD\naccensione principale.\nIl display LCD si spegne \nautomaticamente ed entra in \nSpegnimento\nautomatico\nmodalità sleep dopo 2 minuti di \ninattività.\nPremere due volte il pulsante di \naccensione principale quando \nAccendere\nModalità \nlo schermo LCD è acceso.\nDisplay \nsempre \nPremere il pulsante di \nSpegnere\nacceso\naccensione principale.\n(in stato di \ncarica o \nLa modalità Always-on Display \nSpegnimento \nsi spegne automaticamente \nscarica)\ndopo 2 ore di inattività.Inaktivi-\nautomatico\ntät automatisch aus.\nÈ anche possibile impostare la Modalità di visualizzazione dello schermo nell'app Jackery.\nFUNZIONI DEI PULSANTI\nPulsanti\nFunzionamento\nFunzione\n3s\nReimposta Wi-Fi e Bluetooth\nPremere e tenere premuti \nPulsante POWER\nPulsante di accensione \nentrambi per 3 secondi\nUSB\n3s\nAttiva/disattiva la Modalità \nRisparmio Energetico\nPremere e tenere premuti \nPulsante POWER\npulsante di uscita AC\nentrambi per 3 secondi\n1s\nAttivare/disattivare Wi-Fi e \nBluetooth\nTenere premuti entrambi per 1 \nPulsante di accensione \npulsante di uscita AC\nsecondo\nUSB"
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 84,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "GRUPPO DI CONTINUITÀ (UPS)\nCollega il prodotto a una presa a muro utilizzando il cavo di ricarica AC, quindi premi il pulsante di uscita AC per \nalimentare contemporaneamente i tuoi dispositivi.\nCondizione: assicurarsi che il prodotto sia acceso.\nUn gruppo di continuità (UPS) è un tipo di sistema di alimentazione continua che \nfornisce automaticamente energia elettrica di backup a un carico quando \nl'alimentazione dalla rete elettrica viene a mancare.\nIn caso di improvvisa interruzione della corrente di rete, l’Explorer 3600 Plus \npasserà automaticamente all’energia immagazzinata entro 10 ms per \nmantenere in funzione i dispositivi collegati.\nIn modalità UPS, la potenza di picco dell'unità raggiunge i 10 A prima dell'interruzione di corrente. Poiché la \nmodalità Bypass consente la ricarica/scarica simultanea, la potenza di uscita effettiva è inferiore alla potenza di \nuscita nominale in questa modalità, ma torna alla potenza di uscita nominale durante le interruzioni di corrente.\nATTENZIONE"
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 85,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "COLLEGAMENTI\nVENDUTI SEPARATAMENTE\n COLLEGAMENTO AL PACCO BATTERIA \nQuesto prodotto può supportare fino a 5 pacchi batteria per soddisfare l'esigenza di grande capacità di \nalimentazione. Per i dettagli su come utilizzarlo, consultare il manuale d'uso del Jackery Battery Pack 3600.\n≥Almeno 200 mm\n≥Almeno 200 mm\nATTENZIONE\nVENDUTI \nSEPARATA-\nMENTE\nJackery Battery Pack 3600\nCavo di espansione\nManuale d'uso"
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 86,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "RICARICA\nL'energia verde prima di tutto: sosteniamo a prediligere l'energia verde. Questo prodotto supporta due modalità di \nricarica contemporaneamente: ricarica solare e ricarica CA a muro.Quando la ricarica CA a muro e la ricarica solare \nvengono attivate contemporaneamente, il prodotto darà priorità alla ricarica solare e utilizzerà entrambi i metodi \nper caricare la batteria alla massima potenza consentita.\nCaricare completamente il dispositivo prima del primo utilizzo.\nNota\nRICARICA TRAMITE PRESA A MURO CA\nCollega il cavo di ricarica CA alla porta di ingresso CA \ndel prodotto e a una presa a muro.\nAssicurarsi che il cavo di ricarica CA sia inserito completamente e saldamente nella \nATTENZIONE\nporta di ingresso CA. Un collegamento incompleto potrebbe causare corrente instabile, \nsurriscaldamento, contatti difettosi o malfunzionamenti del dispositivo.\nRICARICA TRAMITE PANNELLI SOLARI\nVENDUTI SEPARATAMENTE\nIl Jackery Explorer 3600 Plus dispone di due porte di ingresso DC8020 ed è compatibile con i pannelli solari Jackery. \nSe una porta di ingresso DC8020 deve collegare due pannelli solari contemporaneamente, fare riferimento alla \nfigura seguente per la ricarica tramite il connettore per pannelli solari (venduto separatamente, non incluso nella \nconfezione standard).\nSolarSaga 200 × 4"
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 87,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "ATTENZIONE\nUna porta di ingresso DC8020 può essere collegata al massimo a due pannelli solari.\nATTENZIONE\nSi consiglia di utilizzare il pannello solare Jackery per caricare l’Explorer 3600 Plus. Assicurarsi che la tensione a \ncircuito aperto (Voc) del pannello solare rientri nell’intervallo di tensione di ingresso CC dell’Explorer 3600 Plus \n(16V–60V). Jackery non è responsabile per eventuali danni o perdite derivanti dall’uso di pannelli solari di terze \nparti.\nRICARICA TRAMITE CARICATORE DA AUTO\nVENDUTI SEPARATAMENTE\nQuesto prodotto può essere caricato con un caricabatterie per auto da 12 V. Assicurarsi che il caricabatterie e \nl'accendisigari dell'auto siano ben collegati.\nVeicolo\n※ Il cavo di ricarica per auto è venduto separatamente.\nATTENZIONE"
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 88,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "STOCCAGGIO\nRISOLUZIONE DEI PROBLEMI\nSe viene visualizzato uno dei seguenti codici di errore, seguire le azioni correttive elencate per risolvere il problema. \nSe l'errore persiste, contattare l'assistenza clienti Jackery.\nCodice di \nMisure correttive\nerrore\nF0\nStarten Sie das Gerät neu.\nF1\nStarten Sie das Gerät neu.\nF2\nStarten Sie das Gerät neu.\nF3\nStarten Sie das Gerät neu.\nF4\nSchließen Sie das Gerät an Verbraucher an, um die Batterie zu entladen, bis der Fehler verschwindet.\nF5\nLaden Sie das Gerät über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet.\n1.  Warten Sie, bis das Stromnetz stabil ist, bevor Sie das Gerät über eine Netzsteckdose laden.\n2. Überprüfen Sie, ob die Lufteinlass- und -auslassöﬀnungen blockiert sind; stellen Sie sicher, \ndass auf beiden Seiten des Geräts ein Abstand von 20 cm eingehalten wird.\n3. Platzieren Sie das Gerät an einem Ort, der nicht direktem Sonnenlicht oder hohen \nF6\nUmgebungstemperaturen ausgesetzt ist.\n4. Trennen Sie alle Verbraucher vom Gerät, lassen Sie es im Leerlauf und warten Sie, bis der \nFehler verschwindet.\n5. Starten Sie das Gerät neu.\n1.  Rimuovere tutti gli ingressi CC dal prodotto.\n2. Se si ricarica il prodotto tramite un pannello solare, veriﬁcare la tensione a circuito aperto (Voc) \nF7\ndel pannello solare collegato. Il prodotto consente una tensione di ingresso CC massima di \n60V.\n3. Riavviare il prodotto e lasciarlo inattivo. Attendere che l'errore scompaia.\nF8\nContattare il distributore o l'assistenza clienti Jackery.\nF9\nRimuovere il carico collegato alle porte USB del prodotto. Attendere che l'errore scompaia.\n1.  Spegnere l'uscita CA di entrambe le unità.\nFA\n2. Premere nuovamente il pulsante di alimentazione CA su ciascuna unità entro 1 minuto.\n1.  Riavviare rispettivamente i pacchi batteria e il Jackery Explorer 3600 Plus.\nFC\n2. Se il guasto persiste, scollegare il pacco batteria dal Jackery Explorer 3600 Plus e ricollegarlo."
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 89,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "SPECIFICHE TECNICHE\nINFORMAZIONI GENERALI\nNome del prodotto\nJackery Explorer 3600 Plus\nModello n.\nJE-3600A\nCapacità\n80Ah / 44,8V DC (3584 Wh)\nChimica celle batteria\nLiFePO₄ \nPeso\nCirca 35 kg\nDimensioni\n38,5×30,9×49,1 cm\nDurata del ciclo\n6000 cicli ﬁno all' 70% di capacità\nIEC code\nIFpR41/136[14S4P]M/-20+40/90\nPORTE IN INGRESSO\nModalità di ricarica: 220-240V~ 50Hz, 10A max\n1 × Ingresso CA\nAC modalità bypass① : 220-240V~ 50Hz, 10A max\n  \n12-16V⎓8A max, raddoppia ﬁno a 8A max\n2 × Porte DC8020\n16-60V⎓12A, raddoppia ﬁno a 24A Max/ 1000W Max\n1 × Porta di Espansione CC\n36,4V-50,4V⎓100A max\nPORTE IN USCITA\n3 × Uscita CA\n230V~ 50Hz, 3600W\nUscita totale CA②\n3600W nominali, 7200W picco di sovratensione\nUscita CA in modalità bypass①\n220-240V~ 50Hz, 10A max\n2 × USB-C da 100W\n100W max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A\n2 × USB-A da 18W\n18W max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A\n1 × Porta di Espansione CC\n36.4V-50.4V⎓60A max\nENVIRONMENTAL OPERATING TEMPERATURE\nTemperatura di carica\ntra -20 °C e 45 °C\nTemperatura di scarica\ntra -20 °C e 45 °C\n®\n®\n※ USB Type-C   e USB-C   sono marchi registrati di USB Implementers Forum.\n① Il prodotto può caricare la batteria dalla presa a muro CA mentre fornisce energia tramite le porte di uscita CA.\n② Indica che due o più porte di uscita CA funzionano insieme."
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 90,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "GARANZIA\nForniamo la nostra garanzia solo ai clienti che acquistano dal sito web ufficiale di Jackery, \ndalle piattaforme di terze parti con marchio Jackery o dai rivenditori autorizzati locali.\n* Il periodo ei dettagli della garanzia possono variare in base alle leggi locali, ai regolamenti e ai rivenditori autorizzati.\nGaranzia limitata\nJackery garantisce all'acquirente originale che il prodotto Jackery sarà esente da difetti di fabbricazione e \nmateriali in condizioni di normale utilizzo da parte del acquirente durante il periodo di garanzia applicabile \nidentificato nella sezione \"Periodo di garanzia\" di seguito, fatte salve le esclusioni indicate di seguito.\nQuesta dichiarazione di garanzia stabilisce l'obbligo di garanzia totale ed esclusivo di Jackery. Non ci \nassumeremo, né autorizzeremo alcuna persona ad assumersi per noi, qualsiasi altra responsabilità in \nrelazione allà vendita dei nostri prodotti.\nPeriodo di garanzia\n2  \n3  \n ANNI\n ANNI\ndi garanzia standard\ndi garanzia estesa\nIl periodo di garanzia standard per Jackery Explorer 3600 Plus \nPer attivare l'estensione della garanzia, \nè misurato a partire dalla data di acquisto da parte \nè necessario registrare il prodotto online, \ndell'acquirente consumatore originario. Per stabilire la data di \noppure contattare il nostro servizio \ninizio del periodo di garanzia è necessaria la ricevuta del \nclienti all’indirizzo hello.eu@jackery.com \nprimo acquisto da parte del consumatore, o altra prova \nper estendere il periodo di garanzia \ndocumentale ragionevole.\nstandard.\nSostituzione\nJackery sostituirà (a spese di Jackery) qualsiasi prodotto Jackery mal funzionante durante il periodo di \ngaranzia applicabile a causa di difetti di fabbricazione o materiali. Un prodotto sostitutivo assume la \ngaranzia residua del prodotto originale.\nLimitato all'acquirente consumatore originale\nLa garanzia sul prodotto Jackery è limitata all’acquirente originale e non è trasferibile a nessun \nproprietario successivo.\nEsclusioni\nDiritti di interpretazione\nJackery si riserva il diritto di interpretazione finale della politica post-vendita sopra descritta."
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 91,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "CONFIGURAZIONE APP\n1. Per scaricare l'app e accedere\nIn alternativa, scansionare il \nCercare \"Jackery\" in Google Play o App Store \ncodice QR qui sotto per scaricare \nper installare l'applicazione Dopodiché, è \ne installare l'App.\npossibile registrarsi e accedere.einloggen.\n2. Per aggiungere il dispositivo\n2.1 Fare clic sul pulsante        per aggiungere il dispositivo.\n2.2 Premere a lungo il pulsante \"Power\" sul dispositivo per accenderlo, le icone Wi-Fi e Bluetooth sul \ndispositivo lampeggiano per indicare che il dispositivo è entrato in modalità di conﬁgurazione della \nrete, fare clic sul pulsante \"Icon Flashed\" (icona lampeggiante) e consentire all'App di connettersi ai \ndispositivi vicini e aprire le autorizzazioni Bluetooth.\n2.2\n2.1\nPulsante di \naccensione \nprincipale\nPulsante \nAlimentazione \nPulsante AC\nUSB\nDopo l'accensione, se l'APP non viene collegata entro 2 ore, il dispositivo disattiva \nautomaticamente Wi-Fi e Bluetooth. Ora è necessario tenere premuti il pulsante \nNOTA\ndi alimentazione USB e il pulsante di alimentazione CA per riattivare Wi-Fi e \nBluetooth."
+    },
+    {
+      "field": "page-native-lines",
+      "physical_page": 92,
+      "bbox_pt": [
+        0,
+        0,
+        370,
+        500
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw_text": "2.3 Dopo aver toccato l'icona del dispositivo trovato, l'applicazione si collega automaticamente al \ndispositivo tramite Bluetooth.\nSe durante il processo di associazione viene richiesto \"il dispositivo è stato associato\", è \npossibile utilizzare i due metodi seguenti per la connessione:\nNOTA\n2.4 Dopo che il dispositivo è stato collegato correttamente, è necessario inserire la password Wi-Fi e \ntoccare il pulsante OK.\nSelezionare una rete Wi-Fi con banda a 2,4 GHz. Il dispositivo non supporta una rete Wi-Fi \nNOTA\nin banda 5GHz.\n2.5. Dopo che il dispositivo è stato aggiunto con successo all’App, l'icona Wi-Fi sul dispositivo sarà \nsempre accesa.\nExplorer 3600 Plus\nE3600 Plus\n2.3\n2.4\n2.5\nLe schermate sopra riportate sono solo di riferimento.\nL'app Jackery può connettersi tramite Bluetooth a una sola centrale elettrica alla volta. \nATTENZIONE\nTornando all'elenco dei dispositivi, il Bluetooth si disconnette automaticamente. \nToccare di nuovo la power station nell'elenco per riconnettersi automaticamente.\n3. Per annullare l’associazione del dispositivo\nFare clic sul pulsante Impostazioni nell'angolo in alto a destra dell'interfaccia principale del dispositivo \nper accedere alla pagina delle impostazioni e fare clic sul pulsante Annulla associazione nella parte \ninferiore della pagina per annullare l'associazione del dispositivo.\n4. Note\n4.1 Attivare Wi-Fi e Bluetooth\n• Il Wi-Fi e il Bluetooth vengono attivati automaticamente dopo l'accensione del dispositivo, e le icone \nWi-Fi e Bluetooth sullo schermo si illuminano.\n• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione \nCA ﬁno a quando le icone Wi-Fi e Bluetooth sullo schermo non si illuminano.\n4.2 Per spegnere Wi-Fi e Bluetooth\n• Tenere premuti contemporaneamente il pulsante di alimentazione USB e il pulsante di alimentazione \nCA ﬁno a quando le icone Wi-Fi e Bluetooth sullo schermo non si spengono.\n• Il Wi-Fi e il Bluetooth si spengono automaticamente se non viene collegato alcun dispositivo entro \n2 ore.\n4.3 Per reimpostare Wi-Fi e Bluetooth\nTenere premuti contemporaneamente il pulsante POWER e il pulsante di alimentazione USB per 3 \nsecondi per ripristinare Wi-Fi e Bluetooth alle impostazioni di fabbrica e riavviare il sistema. L’account \ndell’app collegato verrà scollegato."
+    }
+  ]
+}

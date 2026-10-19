@@ -13,7 +13,7 @@ App/LCD migration is complete.
 
 ## Boundary and owning contracts
 
-`tools/web_component_admission.py` gates new EU/UK/EUUK Web inputs at queue
+`tools/web/component_admission.py` gates new EU/UK/EUUK Web inputs at queue
 staging, projection sealing, frozen-source sealing and fresh evidence verification.
 A real `manual.ir.json` is mandatory. Removing a coverage marker cannot opt out.
 Target identity, pending source review, the IR envelope/content hashes, actual
@@ -150,3 +150,12 @@ now fails admission. The remaining legacy inventory is 82 exceptions: 49
 individual tables, 27 App chapters and six warranty chapters. This is source
 coverage, not a claim that all six updated manuals have been republished.
 The connected-batteries image retains its documented resolution debt.
+
+The JBP-2000B EU French and Spanish connection pages now use shared callout
+components. French requires two `HB-CALLOUT-STRIP/note` instances; Spanish
+requires one caution and one note. Their three obsolete ordinary-table debt
+pins were removed when sealing the transparent-symbol repair on 2026-10-05.
+The required component counts remain independent of candidate inventories.
+
+
+JA-AD600A/EU/en 的 0924 原稿修正版于2026-10-07按 MA-264 登记：保留9页/slot、规格及九项包装组件，新增5个原生 ReferenceFigure 要求；警告和10步配图由已审源容器承载，未冒充旧 footer-panel/callout/warranty ComponentSpec。兼容、灯状态和原稿质保周期三张表按准确节点/位置/哈希登记，质保正文仍是原生标题段落。旧绑定只适用于历史 stored 证据，不能作为新修正版门禁。

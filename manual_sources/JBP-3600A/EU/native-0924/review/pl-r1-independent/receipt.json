@@ -1,0 +1,104 @@
+{
+  "status": "independent-source-and-layout-pass",
+  "original_evidence_directory": "/tmp/jbp-independent-acceptance/pl-r1-20261003",
+  "archive_parent_commit": "20072daf5d6b30781a425e7aab12fa347f6f33fb",
+  "publication_eligible": false,
+  "operator_approval": false,
+  "locale_enrollment": false,
+  "shared_symbol_transparency_acceptance": false,
+  "note": "Report copied verbatim; original directory retains full package,HTML and producer-evidence snapshots. This archive includes report,checks,browser metrics,structure diff,source-search gaps and all top-level source/browser screenshots. Common-symbol transparency and release approval remain separate.",
+  "files": [
+    {
+      "path": "acceptance.md",
+      "sha256": "758e7ede05887577a2d1f64a65a8c6946ec2f1a0dc7933bca44ef797add5ba41"
+    },
+    {
+      "path": "checks.json",
+      "sha256": "46438984c083cfe6071bbfabcdba83365a734fa75ebbf7a2b51d02f88e4aafb8"
+    },
+    {
+      "path": "browser-metrics.json",
+      "sha256": "4fe5d87b7ec74e6eb2cdb43585a0aced2685e0bd908d5e0a3fe13af7dcc0e05e"
+    },
+    {
+      "path": "independent-structure-diff.json",
+      "sha256": "51196d7cdeb80bcb36d7972a01004a124a5a433f128c7da87363f01e388a64d8"
+    },
+    {
+      "path": "native-text-search-gaps.json",
+      "sha256": "dd339d6501a81b1672b558973b320522c7b4ab4f6b10b408d453b348a7ed9c5d"
+    },
+    {
+      "path": "desktop-lcd-operation.png",
+      "sha256": "05ba6a3941c5f8d978e77bd7f1b3e0027c128a14c48fa3bd2cebac95475afbe4"
+    },
+    {
+      "path": "desktop-specifications.png",
+      "sha256": "71fa8e3266d3f72a039b4bac6c0a2be32d935d5d9baa0c8b1a1bd998076b35ed"
+    },
+    {
+      "path": "mobile-locking.png",
+      "sha256": "e9c9c9340a14c8615370b3b17b5d200c0373c82c99caaa42ac20e6bc94556d75"
+    },
+    {
+      "path": "mobile-operation.png",
+      "sha256": "fd9d5fbd3cd66ad6f1ca4392056e58a006e477ea3818e7fccb5d69e177a8322f"
+    },
+    {
+      "path": "mobile-overview.png",
+      "sha256": "169aac87dd3f002be36548d94115dad80dbd2231e5025713f62f87541aa714ca"
+    },
+    {
+      "path": "mobile-symbols.png",
+      "sha256": "a3554b466b6c9f19a6dd0e02b80ce19c34b0bbcca772b8fa9d79358df4d6bd67"
+    },
+    {
+      "path": "mobile-table-scrolled.png",
+      "sha256": "906bd4de867433d4ec36172bbc8fb4de8b3e0764983cc57887943998650bc828"
+    },
+    {
+      "path": "mobile-warranty.png",
+      "sha256": "13e022a89d505371cbf9dde6fb0a92288bf726223fb46dad7b77e4d504414930"
+    },
+    {
+      "path": "source-3.png",
+      "sha256": "c08560c28110aa63b5b401976061eb1b38e0d3b88764832f3a21689edb675e26"
+    },
+    {
+      "path": "source-71.png",
+      "sha256": "43042a2f3ed6d0d4e4309ae088e0a939cb276b6c5f9664628f5eb7f0c7f09128"
+    },
+    {
+      "path": "source-72.png",
+      "sha256": "f1d38335a0fce9c2b30b4f617376587e9ece220f87dbafc65828707a99964a1e"
+    },
+    {
+      "path": "source-73.png",
+      "sha256": "1cc113eb6342cd3956026be73a56f4c4773e768563f195cc333f875fc1b9f6f3"
+    },
+    {
+      "path": "source-74.png",
+      "sha256": "8e465b84a8cb19de77d56de795ba30f31b7198ea831fb816045314c84dc7540e"
+    },
+    {
+      "path": "source-75.png",
+      "sha256": "9e3ca499ec321915fb1f6fdf486059ffe22df30b1027a4acb3ad5bd3a1795374"
+    },
+    {
+      "path": "source-76.png",
+      "sha256": "6031ad405e32b5e96c6e8bd61f1928cb5aef3aaf2b0050aa83df02ca527a6a76"
+    },
+    {
+      "path": "source-77.png",
+      "sha256": "fd30916edfafcc3228f38fb9ab9e69353d9744672004e4a890ebb755c4e5f231"
+    },
+    {
+      "path": "source-78.png",
+      "sha256": "3a0176acd10e8eb1303c29a185644b8809ead7a92f567d1092efa95c425024f9"
+    },
+    {
+      "path": "source-79.png",
+      "sha256": "1146f86f1554a2dee42b5d5ab9f00064bf783b00a92cb12c5ae759722d65ce52"
+    }
+  ]
+}

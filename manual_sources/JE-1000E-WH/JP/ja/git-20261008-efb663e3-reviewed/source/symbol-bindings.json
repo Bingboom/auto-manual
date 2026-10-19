@@ -1,0 +1,436 @@
+[
+  {
+    "key": "unplug",
+    "asset_ref": "assets/symbol-unplug.svg",
+    "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+    "physical_page": 3,
+    "glyph_bbox": [
+      38,
+      272,
+      58,
+      292
+    ],
+    "drawing_indices": [
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-unplug.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/unplug.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "do_not_dismantle",
+    "asset_ref": "assets/symbol-do_not_dismantle.svg",
+    "asset_sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+    "physical_page": 3,
+    "glyph_bbox": [
+      38,
+      298,
+      58,
+      318
+    ],
+    "drawing_indices": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-do_not_dismantle.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "no_wet_hands",
+    "asset_ref": "assets/symbol-no_wet_hands.svg",
+    "asset_sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+    "physical_page": 3,
+    "glyph_bbox": [
+      38,
+      328,
+      58,
+      348
+    ],
+    "drawing_indices": [
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-no_wet_hands.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/no_wet_hands.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "warning_triangle",
+    "asset_ref": "assets/symbol-warning_triangle.svg",
+    "asset_sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+    "physical_page": 3,
+    "glyph_bbox": [
+      37,
+      365,
+      59,
+      385
+    ],
+    "drawing_indices": [
+      107
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-warning_triangle.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "read_manual",
+    "asset_ref": "assets/symbol-read_manual.svg",
+    "asset_sha256": "d77bdba4899e5d56d0502a10732bd3488d90aa88639ce336cab9ff42d35cfd30",
+    "physical_page": 3,
+    "glyph_bbox": [
+      38,
+      400,
+      58,
+      420
+    ],
+    "drawing_indices": [
+      70,
+      71,
+      72,
+      73,
+      74
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-read_manual.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/read_manual_operator.png",
+        "result": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "no_open_flame",
+    "asset_ref": "assets/symbol-no_open_flame.svg",
+    "asset_sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+    "physical_page": 3,
+    "glyph_bbox": [
+      35,
+      430,
+      60,
+      453
+    ],
+    "drawing_indices": [
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-no_open_flame.png",
+        "result": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+        "result": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "keep_away_from_children",
+    "asset_ref": "assets/symbol-keep_away_from_children.svg",
+    "asset_sha256": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe",
+    "physical_page": 3,
+    "glyph_bbox": [
+      37,
+      467,
+      59,
+      487
+    ],
+    "drawing_indices": [
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-keep_away_from_children.png",
+        "result": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+        "result": "symbol requires real transparent margins; opaque backdrop detected"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "mandatory",
+    "asset_ref": "assets/symbol-mandatory.svg",
+    "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+    "physical_page": 3,
+    "glyph_bbox": [
+      195,
+      271,
+      215,
+      292
+    ],
+    "drawing_indices": [
+      55
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-mandatory.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/mandatory.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "keep_dry",
+    "asset_ref": "assets/symbol-keep_dry.svg",
+    "asset_sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+    "physical_page": 3,
+    "glyph_bbox": [
+      195,
+      297,
+      215,
+      318
+    ],
+    "drawing_indices": [
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-keep_dry.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/keep_dry.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "prohibited",
+    "asset_ref": "assets/symbol-prohibited.svg",
+    "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+    "physical_page": 3,
+    "glyph_bbox": [
+      195,
+      324,
+      215,
+      344
+    ],
+    "drawing_indices": [
+      56,
+      57,
+      58
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-prohibited.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/prohibited.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "battery_recycle",
+    "asset_ref": "assets/symbol-battery_recycle.svg",
+    "asset_sha256": "4ece7680add5525499da868786eec13e2b1b20dd831fca2f54bfb9840e608f8d",
+    "physical_page": 3,
+    "glyph_bbox": [
+      193,
+      364,
+      217,
+      388
+    ],
+    "drawing_indices": [
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-battery_recycle.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  },
+  {
+    "key": "weee",
+    "asset_ref": "assets/symbol-weee.svg",
+    "asset_sha256": "21fd7d31c0d22590a0f461da3821869eee28a23122edc994b471642a89ad3e92",
+    "physical_page": 3,
+    "glyph_bbox": [
+      192,
+      434,
+      216,
+      467
+    ],
+    "drawing_indices": [
+      82,
+      83,
+      84,
+      85
+    ],
+    "candidates": [
+      {
+        "path": "manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3/artwork/symbol-weee.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/templates/word_template/common_assets/symbols/weee.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+        "result": "symbol glyph/background differs from authoritative PDF"
+      }
+    ],
+    "decision": "source-native-vector-selection",
+    "max_mean_channel_error": 0.0
+  }
+]

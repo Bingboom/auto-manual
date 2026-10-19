@@ -1,0 +1,134 @@
+/* Searchable Symbols components layered over the shared Web manual theme. */
+
+/* Native safety leads reuse the signal panel, with an icon-only dark cell.
+   Explicit variants keep their tables out of the generic Markdown grid path. */
+#furo-main-content .hb-safety-instruction,
+#furo-main-content .hb-safety-lead {
+  margin: 0 0 0.45rem;
+  border-width: 1px;
+  border-radius: 0.5rem;
+}
+
+#furo-main-content :is(.hb-safety-instruction, .hb-safety-lead) table.hb-symbol-signal-table td {
+  padding: 0.35rem 0.5rem !important;
+  border: 0 !important;
+}
+
+#furo-main-content .hb-safety-instruction table.hb-symbol-signal-table {
+  table-layout: fixed;
+  font-size: 0.8rem;
+  line-height: 1.22;
+}
+
+#furo-main-content .hb-safety-instruction col:first-child {
+  width: 3rem !important;
+}
+
+#furo-main-content .hb-safety-instruction col:last-child {
+  width: auto !important;
+}
+
+#furo-main-content .hb-safety-instruction img {
+  display: block;
+  width: 1.9rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+#furo-main-content .hb-safety-lead table.hb-symbol-signal-table {
+  table-layout: fixed;
+  font-size: 0.78rem;
+  line-height: 1.18;
+}
+
+#furo-main-content .hb-safety-lead table.hb-symbol-signal-table td.hb-symbol-signal-label-cell {
+  background: var(--hb-brand-dark) !important;
+}
+
+#furo-main-content .hb-safety-lead .hb-signal-badge {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+}
+
+#furo-main-content .hb-safety-lead .hb-signal-badge img {
+  display: block;
+  width: 3rem;
+  max-width: 100%;
+  height: auto;
+}
+
+#furo-main-content .hb-safety-lead .hb-symbol-signal-meaning-cell > p:first-child {
+  margin-bottom: 0.15rem;
+  font-size: 1.02rem;
+  line-height: 1.15;
+}
+
+/* Scope compact print-style copy to the explicitly declared safety section. */
+#furo-main-content section:has(> .hb-safety-instruction) > h1 {
+  margin-bottom: 0.45rem;
+}
+
+#furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table {
+  /* Outer edges align with the title and risk banner; cell padding owns the gutter. */
+  margin: 0 !important;
+  border-spacing: 0 !important;
+  font-size: 0.86rem;
+  line-height: 1.26;
+}
+
+#furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table :is(p, ul) {
+  margin-bottom: 0.3rem;
+}
+
+#furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table ul {
+  padding-left: 0.9rem;
+}
+
+#furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table li + li {
+  margin-top: 0.18rem;
+}
+
+#furo-main-content section:has(> .hb-safety-instruction) > section:has(> .manual-two-col-table) {
+  margin-top: 0.65rem;
+}
+
+#furo-main-content section:has(> .hb-safety-instruction) > section:has(> .manual-two-col-table) > h2 {
+  margin: 0 0 0.45rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+}
+
+#furo-main-content section:has(> .hb-safety-instruction) h2:has(+ .manual-two-col-table)::before,
+#furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table h2::before {
+  display: none;
+}
+
+#furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table h2 {
+  margin: 0.4rem 0 0.2rem;
+  font-size: 0.86rem;
+}
+
+@media (max-width: 640px) {
+  #furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table {
+    display: block;
+    border-spacing: 0 !important;
+    font-size: 0.94rem;
+    line-height: 1.4;
+  }
+
+  #furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table > tbody,
+  #furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table > tbody > tr {
+    display: block;
+    width: 100%;
+  }
+
+  #furo-main-content section:has(> .hb-safety-instruction) .manual-two-col-table > tbody > tr > td {
+    display: block;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+}

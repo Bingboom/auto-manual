@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from tools.component_specs.registry import load_component_registry, registry_sha256
 from tools.component_specs.model import ComponentSpec
 from tools.component_specs.theme import load_manual_theme, theme_sha256
-from tools.frozen_ai_table_components import (
+from tools.web.frozen_ai_table_components import (
     lcd_mode_flow,
     specification_flow,
     symbol_pictogram_flow,
@@ -26,8 +26,8 @@ from tools.manual_ir import (
 )
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.hashing import value_sha256
-from tools.web_document_ir import render_document_fragments
-from tools.web_manual_table_components import render_manual_table_component
+from tools.web.document_ir import render_document_fragments
+from tools.web.manual_table_components import render_manual_table_component
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,7 +40,7 @@ def _read(name):
 
 class FrozenAITableComponentTests(unittest.TestCase):
     def test_key_combinations_share_english_table_in_source_free_replay(self):
-        from tools.frozen_ai_source import FrozenBook
+        from tools.web.frozen_ai_source import FrozenBook
         from tools.component_specs.key_combinations import key_combinations_projection
         for language in ("pl", "pt", "nl"):
             with self.subTest(language=language):
@@ -49,7 +49,7 @@ class FrozenAITableComponentTests(unittest.TestCase):
                 book.language = language
                 book.errata = {"entries": []}
                 book.records = {"operation_tables": {"shortcuts": record}}
-                from tools.frozen_ai_flow import root
+                from tools.web.frozen_ai_flow import root
                 nodes = [root(n) for n in book.operation("shortcuts")]
                 soup = self._roundtrip(nodes, language)
                 table = soup.select_one("figure.hb-key-combination-composition > table.hb-key-combination-table")
@@ -67,7 +67,7 @@ class FrozenAITableComponentTests(unittest.TestCase):
 
     def test_key_combinations_validate_shape_and_escape_native_copy(self):
         from tools.component_specs.key_combinations import key_combinations_component_spec
-        from tools.web_key_combinations_component import render_key_combinations_component
+        from tools.web.key_combinations_component import render_key_combinations_component
         args = dict(headers=["Buttons", "Operation", "Function"],
                     rows=[["POWER + AC", "Hold <3s> & wait", "<script>alert(1)</script>"]] * 3,
                     source_ref="operations", language="en")
@@ -79,8 +79,8 @@ class FrozenAITableComponentTests(unittest.TestCase):
             key_combinations_component_spec(**args)
 
     def test_auto_resume_four_languages_survive_source_free_public_replay(self):
-        from tools.frozen_ai_source import FrozenBook
-        from tools.frozen_ai_flow import root
+        from tools.web.frozen_ai_source import FrozenBook
+        from tools.web.frozen_ai_flow import root
         from tools.component_specs.auto_resume import auto_resume_projection
         for language in ("uk", "pt", "nl", "pl"):
             with self.subTest(language=language):
@@ -100,7 +100,7 @@ class FrozenAITableComponentTests(unittest.TestCase):
                 rows = table.select("tbody tr")
                 self.assertEqual([2, 2, 1, 2], [len(r.select("td")) for r in rows])
                 self.assertEqual("2", rows[1].select_one("td")["rowspan"])
-                for column, role in zip(record["columns"], ("left", "right")):
+                for column, role in zip(record["columns"], ("left", "right"), strict=True):
                     expected = [v["text"] for v in column["items"]]
                     self.assertEqual(expected, [c.get_text() for c in table.select(f"tbody .hb-auto-resume-{role}")])
                 spec = ComponentSpec.from_dict(nodes[-1]["component_spec"])
@@ -108,7 +108,7 @@ class FrozenAITableComponentTests(unittest.TestCase):
                     self.assertEqual([len(c) for c in auto_resume_projection(spec, renderer)["conditions"]], [3, 4])
 
     def test_auto_resume_rejects_changed_geometry_and_escapes_copy(self):
-        from tools.frozen_ai_table_components import auto_resume_flow
+        from tools.web.frozen_ai_table_components import auto_resume_flow
         record = deepcopy(_read("operation_tables")["locales"]["pl"]["restore"])
         record["columns"][0]["items"][0]["text"] = "SOC < 10% & <script>"
         nodes = auto_resume_flow(record, source_ref="restore", language="pl")
@@ -250,6 +250,23 @@ class FrozenAITableComponentTests(unittest.TestCase):
                      ("limited", "period", "exchange", "buyer", "exclusions", "interpretation")],
                     [heading.get_text() for heading in soup.select("h3")],
                 )
+
+    def test_declared_spec_break_survives_source_free_replay(self):
+        value = "Auto: 12-16 V 8 A PV: 16-60 V 12 A"
+        record = {"groups": {"inputs": [{"label": "DC", "value": value}]},
+                  "value_breaks": [{"group": "inputs", "row": 0, "before": "PV:"}]}
+        nodes = specification_flow(record, group_headings=["Input"], source_ref="spec", language="nl")
+        soup = self._roundtrip(nodes, "nl")
+        cell = soup.select_one("td")
+        self.assertEqual(1, len(soup.select("tbody tr")))
+        self.assertEqual(1, len(cell.select("br")))
+        self.assertEqual(value.replace(" PV:", "\nPV:"), cell.get_text("\n"))
+        self.assertEqual(value, record["groups"]["inputs"][0]["value"])
+        for changed in ({"row": 2}, {"before": "missing"}, {"before": "V"}, {"before": "uto:"}):
+            invalid = deepcopy(record)
+            invalid["value_breaks"][0].update(changed)
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                specification_flow(invalid, group_headings=["Input"], source_ref="spec", language="nl")
 
     def test_escaping_and_carrier_semantics_stay_consistent(self):
         record = {"groups": {"one": [{"label": "Voltage <maximum>", "value": '5 & 10 "V"'}]}}

@@ -17,7 +17,6 @@ Checks:
 from __future__ import annotations
 
 import argparse
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -39,6 +38,9 @@ from tools.config_pages import (
 )
 from tools.page_manifest import resolve_config_pages, resolve_page_manifest_path
 from tools.spec_master_sources import has_source_table_bindings
+from tools.utils.log import get_logger
+
+_ERR = get_logger("validate_config", stream="stderr")
 
 SYNC_PHASE2_PROVIDERS = {"lark_cli", "lark-cli", "cli"}
 SYNC_PHASE2_TABLES = {
@@ -518,9 +520,9 @@ def main() -> None:
     warns = [i for i in issues if i.level == "WARN"]
 
     for w in warns:
-        print(f"[validate_config] WARN: {w.msg}", file=sys.stderr)
+        _ERR.warning(f"[validate_config] WARN: {w.msg}")
     for e in errors:
-        print(f"[validate_config] ERROR: {e.msg}", file=sys.stderr)
+        _ERR.error(f"[validate_config] ERROR: {e.msg}")
 
     if errors:
         raise SystemExit(1)

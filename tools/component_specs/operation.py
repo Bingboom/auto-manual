@@ -142,7 +142,7 @@ def operation_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
         (slot.content for slot in spec.slots if slot.role == "prerequisite"),
         "",
     )
-    supporting = next(
+    supporting: Any = next(
         (slot.content for slot in spec.slots if slot.role == "supporting_copy"),
         [],
     )

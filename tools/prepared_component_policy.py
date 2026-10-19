@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from tools.check_docs_capability import load_capabilities, load_known_missing
+from tools.check.docs_capability import load_capabilities, load_known_missing
 from tools.utils.path_utils import get_paths
 
 
@@ -61,6 +61,7 @@ def _require_capability_chapters(entry, capabilities):
 def resolve_prepared_component_policy(
     *, model: str, region: str, language: str,
     contract_path: Path | None = None, data_dir: Path | None = None,
+    source_sha256: str | None = None,
 ) -> dict:
     """Load trusted enrollment and the existing capability SSOT; fail closed."""
     paths = get_paths()
@@ -71,6 +72,11 @@ def resolve_prepared_component_policy(
         raise ValueError("unsupported prepared component admission policy")
     key = f"{model}/{region}/{language}"
     entry = contract["targets"].get(key)
+    # A reviewed native source can have a different chapter map from the
+    # historical phase2 projection. Its trusted requirements still come only
+    # from this committed contract, never from candidate component counts.
+    profile = contract.get("source_profiles", {}).get(source_sha256, {})
+    entry = profile.get("targets", {}).get(key, entry)
     if entry is None:
         raise ValueError(f"prepared component applicability must be reviewed before publication: {key}")
     document_key = f"{model}_{region}"

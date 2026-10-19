@@ -1,0 +1,96 @@
+Command: tmp/jbp1000b-jp/asset-env/bin/python -m unittest -v
+Exit code: 1
+Runtime: Python 3.12, PyMuPDF 1.28.0; inherited existing root dependencies
+Full log retained locally: tmp/jbp1000b-jp/unittest-pinned-final.log
+Full log SHA256: 61352f1c91bde0b90023276158bf31a80297f9667de35ec45d0cabc8260ba230
+
+======================================================================
+ERROR: test_actual_jp_page_is_complete_in_strict_public_ir (tests.test_idml_boxed_intro.BoxedIntroTests.test_actual_jp_page_is_complete_in_strict_public_ir)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_idml_boxed_intro.py", line 65, in test_actual_jp_page_is_complete_in_strict_public_ir
+    extracted = _parse_text(text, {"latex", "region_jp"})
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 260, in _parse_text
+    return extract_page(Path(tmp), tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 241, in extract_page
+    i = _consume_directive(lines, i, m.group(1), m.group(2).strip(), tags, result)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 224, in _consume_directive
+    _append_list_table(body, result)
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 194, in _append_list_table
+    raise ValueError(
+ValueError: known notice label cannot fall back to a generic table: '警告'
+
+======================================================================
+ERROR: test_actual_jp_symbols_template_keeps_all_four_definitions (tests.test_jp_build_paths.SignalWordDefinitionTableTests.test_actual_jp_symbols_template_keeps_all_four_definitions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_jp_build_paths.py", line 43, in test_actual_jp_symbols_template_keeps_all_four_definitions
+    result = _parse_text(source.read_text(encoding="utf-8"), {"latex", "region_jp"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 260, in _parse_text
+    return extract_page(Path(tmp), tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 241, in extract_page
+    i = _consume_directive(lines, i, m.group(1), m.group(2).strip(), tags, result)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 224, in _consume_directive
+    _append_list_table(body, result)
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 194, in _append_list_table
+    raise ValueError(
+ValueError: known notice label cannot fall back to a generic table: '警告'
+
+======================================================================
+ERROR: test_distinct_signal_word_definitions_preserve_table_rows (tests.test_jp_build_paths.SignalWordDefinitionTableTests.test_distinct_signal_word_definitions_preserve_table_rows) (labels=('警告', '注意', '説明', 'ヒント'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_jp_build_paths.py", line 35, in test_distinct_signal_word_definitions_preserve_table_rows
+    result = _parse_text(_rst_table(rows), {"latex"})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 260, in _parse_text
+    return extract_page(Path(tmp), tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 241, in extract_page
+    i = _consume_directive(lines, i, m.group(1), m.group(2).strip(), tags, result)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 224, in _consume_directive
+    _append_list_table(body, result)
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/idml_rst_extract.py", line 194, in _append_list_table
+    raise ValueError(
+ValueError: known notice label cannot fall back to a generic table: '警告'
+
+======================================================================
+ERROR: test_provenance_names_release_path_from_frozen_files_only (tests.test_manual_knowledge.IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_manual_knowledge.py", line 264, in test_provenance_names_release_path_from_frozen_files_only
+    legacy = publication_identity(root, source, model='M', region='EU')['provenance']
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tools/rtd/publication_catalog.py", line 14, in publication_identity
+    relative = source.relative_to(root.resolve())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pika/.real/.bin/python-3.12-mac-arm64/lib/python3.12/pathlib.py", line 682, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: '/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppgotz7on/web/M/EU/md/manual.md' is not in the subpath of '/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/tmppgotz7on/web'
+
+======================================================================
+FAIL: test_substitutions_and_display_width_columns_preserve_values (tests.test_jp_rst_content.JpPreparedContentTests.test_substitutions_and_display_width_columns_preserve_values)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/pika/.codex/worktrees/battery-pack-jp-native/auto-manual2/tests/test_jp_rst_content.py", line 28, in test_substitutions_and_display_width_columns_preserve_values
+    self.assertEqual(tables[1][0], ["自動復帰する条件", "自動復帰しない条件"])
+AssertionError: Lists differ: ['説明', '省エネモードは電源投入後に前回の状態を維持します。モード変更には手動での切り替えが必要です。'] != ['自動復帰する条件', '自動復帰しない条件']
+
+First differing element 0:
+'説明'
+'自動復帰する条件'
+
+- ['説明', '省エネモードは電源投入後に前回の状態を維持します。モード変更には手動での切り替えが必要です。']
++ ['自動復帰する条件', '自動復帰しない条件']
+
+----------------------------------------------------------------------
+Ran 5225 tests in 3181.060s
+
+FAILED (failures=1, errors=4, skipped=35)

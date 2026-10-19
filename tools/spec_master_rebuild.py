@@ -22,11 +22,11 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.config_loader import load_config_mapping  # noqa: E402
-from tools.data_snapshot import resolve_phase2_export_root  # noqa: E402
-from tools.sync_data import LarkCliSource, _phase2_identity, resolve_table_binding  # noqa: E402
-from tools.sync_data_config import cli_bin as _cli_bin  # noqa: E402
-from tools.sync_data_models import TABLE_SCHEMAS  # noqa: E402
-from tools.sync_data_records import _dict_rows_csv_text, _write_atomic_text, normalize_records  # noqa: E402
+from tools.data.snapshot import resolve_phase2_export_root  # noqa: E402
+from tools.data.sync_data import LarkCliSource, _phase2_identity, resolve_table_binding  # noqa: E402
+from tools.data.sync_data_config import cli_bin as _cli_bin  # noqa: E402
+from tools.data.sync_data_models import TABLE_SCHEMAS  # noqa: E402
+from tools.data.sync_data_records import _dict_rows_csv_text, _write_atomic_text, normalize_records  # noqa: E402
 from tools.spec_master_sources import (  # noqa: E402
     collect_footnote_record_id_refs,
     footnote_record_id_to_id_map,

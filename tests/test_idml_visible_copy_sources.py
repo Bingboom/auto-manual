@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 IDML_PYTHON = (
     *sorted((ROOT / "tools" / "idml").rglob("*.py")),
     ROOT / "tools" / "idml_rst_extract.py",
+    ROOT / "tools" / "idml_rst_line_blocks.py",
     ROOT / "tools" / "idml_rst_tables.py",
     ROOT / "tools" / "export_idml.py",
 )

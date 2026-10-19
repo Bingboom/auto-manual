@@ -1,0 +1,175 @@
+{
+  "brokenImages": [],
+  "calloutItems": [
+    {
+      "items": 0,
+      "label": "ご注意"
+    },
+    {
+      "items": 0,
+      "label": "説明"
+    },
+    {
+      "items": 2,
+      "label": "ご注意"
+    },
+    {
+      "items": 2,
+      "label": "説明"
+    },
+    {
+      "items": 0,
+      "label": "ご使用前の確認"
+    },
+    {
+      "items": 2,
+      "label": "ご注意"
+    },
+    {
+      "items": 2,
+      "label": "ご注意"
+    },
+    {
+      "items": 3,
+      "label": "ご注意"
+    },
+    {
+      "items": 0,
+      "label": "ご注意"
+    },
+    {
+      "items": 2,
+      "label": "ご注意"
+    },
+    {
+      "items": 2,
+      "label": "ご注意"
+    },
+    {
+      "items": 0,
+      "label": "備考"
+    },
+    {
+      "items": 2,
+      "label": "備考"
+    },
+    {
+      "items": 0,
+      "label": "備考"
+    },
+    {
+      "items": 0,
+      "label": "備考"
+    }
+  ],
+  "cellOverflow": [],
+  "height": 844,
+  "labelCollisions": [],
+  "labelOverflow": [],
+  "labels": 145,
+  "pageOverflow": 0,
+  "rawBullets": [],
+  "scrollableFigures": [
+    "inbox",
+    "overview",
+    "lcd-map",
+    "power",
+    "ac-output",
+    "frequency",
+    "usb-output",
+    "energy-saving",
+    "ups",
+    "battery-stack",
+    "battery-accessories",
+    "parallel",
+    "parallel-interrupted",
+    "parallel-exit",
+    "charging-ac",
+    "charging-solar",
+    "charging-solar-four",
+    "charging-car",
+    "app-download",
+    "app-controls",
+    "app-download-reminder"
+  ],
+  "tables": [
+    {
+      "rows": 4,
+      "section": "id2"
+    },
+    {
+      "rows": 5,
+      "section": "id3"
+    },
+    {
+      "rows": 5,
+      "section": "id3"
+    },
+    {
+      "rows": 2,
+      "section": "id3"
+    },
+    {
+      "rows": 1,
+      "section": "id3"
+    },
+    {
+      "rows": 4,
+      "section": "id3"
+    },
+    {
+      "rows": 4,
+      "section": "id3"
+    },
+    {
+      "rows": 6,
+      "section": "id3"
+    },
+    {
+      "rows": 5,
+      "section": "id3"
+    },
+    {
+      "rows": 8,
+      "section": "id8"
+    },
+    {
+      "rows": 16,
+      "section": "id8"
+    },
+    {
+      "rows": 3,
+      "section": "id9"
+    },
+    {
+      "rows": 6,
+      "section": "id9"
+    },
+    {
+      "rows": 4,
+      "section": "id9"
+    },
+    {
+      "rows": 10,
+      "section": "id12"
+    },
+    {
+      "rows": 6,
+      "section": "id13"
+    },
+    {
+      "rows": 5,
+      "section": "id13"
+    },
+    {
+      "rows": 8,
+      "section": "id13"
+    },
+    {
+      "rows": 3,
+      "section": "id13"
+    }
+  ],
+  "unexpectedClipping": [],
+  "width": 390
+}

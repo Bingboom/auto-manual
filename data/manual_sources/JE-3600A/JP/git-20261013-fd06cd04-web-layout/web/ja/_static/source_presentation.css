@@ -1,0 +1,252 @@
+/* Source geometry. Heading, table, callout and breakpoint tokens are shared. */
+.ht-figure {max-width:760px;margin:1rem auto;min-width:0;}
+.ht-figure .hb-reference-figure {max-width:none;margin:0;}
+#furo-main-content .ht-figure img {width:100% !important;height:auto !important;max-height:none;}
+#furo-main-content .ht-figure .hb-reference-live-label {display:block;padding:0;line-height:1.1;text-align:left;white-space:normal;overflow:visible;}
+.ht-source-line {display:block;line-height:1.12;white-space:nowrap;}
+#furo-main-content .ht-figure .hb-reference-live-pill {border-radius:var(--hb-panel-radius);padding:.4% 1%;box-sizing:border-box;}
+#furo-main-content .ht-native-table {width:100%;}
+#furo-main-content .ht-native-table td {vertical-align:middle;}
+#furo-main-content .ht-native-table p {margin:.2rem 0;}
+#furo-main-content .ht-native-table img {display:inline-block;max-width:2.5rem;width:auto;max-height:2.5rem;height:auto;vertical-align:middle;margin:.15rem;}
+#furo-main-content .ht-symbol-table img {display:block;width:30px;height:auto;max-height:40px;margin:auto;}
+.ht-symbol-cell {width:55px;text-align:center;}
+#furo-main-content .ht-number {text-align:center;}
+.ht-lcd-pair {display:grid;grid-template-columns:1fr 1.4fr;align-items:stretch;gap:1rem;}
+.ht-lcd-pair > .ht-figure {margin:0;}
+@media(max-width:760px) {
+ .ht-dense {overflow-x:auto;padding-bottom:.5rem;}
+ .ht-dense > .hb-reference-figure {min-width:640px;}
+ .ht-lcd-pair {grid-template-columns:1fr;}
+}
+.ht-lcd-pair {border:2px solid var(--hb-line-soft);border-radius:var(--hb-panel-radius);padding:.6rem;margin:1rem 0;grid-template-columns:1fr 1.5fr;}
+#furo-main-content .ht-lcd-pair .ht-figure img {height:100% !important;object-fit:contain;}
+#furo-main-content .ht-lcd-pair .table-wrapper {margin:0;}
+@media(max-width:760px) {.ht-lcd-pair {grid-template-columns:1fr;}}
+
+.ht-symbol-pair {display:grid;grid-template-columns:1fr 1fr;gap:.6rem;align-items:stretch;margin:1rem 0;}
+.ht-symbol-pair > .table-wrapper {margin:0;min-width:0;}
+#furo-main-content .ht-symbol-pair table {height:100%;width:100%;}
+#furo-main-content .ht-symbol-pair img {max-width:30px;max-height:40px;}
+@media(max-width:760px){.ht-symbol-pair {grid-template-columns:1fr;}}
+
+#furo-main-content .ht-native-table .ht-lcd-key {background:var(--hb-fill-muted,#eeeeef);}
+.ht-certificate {max-width:360px;border:1.5px solid var(--hb-line-soft);border-radius:var(--hb-panel-radius);padding:1.2rem;margin:2rem auto;}
+#furo-main-content .ht-certificate h2 {text-align:center;margin:0 0 1rem;}
+#furo-main-content .ht-certificate table {border:0;box-shadow:none;border-radius:0;width:100%;}
+#furo-main-content .ht-certificate td {border:0;padding:.6rem .25rem;vertical-align:middle;}
+#furo-main-content .ht-certificate .ht-certificate-line {border-bottom:1px solid currentColor;}
+.ht-qc-stamp {width:3.4rem;height:3.4rem;border:1px solid currentColor;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;line-height:1.1;margin:auto;}
+.ht-qc-line {text-align:center;}
+#furo-main-content .ht-certificate > p {text-align:center;margin-top:1.5rem;}
+
+.ht-figure {max-width:min(760px,var(--ht-native-width,100%));}
+#furo-main-content .ht-certificate h2 {display:block!important;text-align:center!important;padding:0!important;font-size:1.4rem!important;margin:0 0 1rem!important;}
+#furo-main-content .ht-certificate h2::before {display:none!important;}
+#furo-main-content .ht-certificate table.manual-table {border:0!important;box-shadow:none!important;}
+#furo-main-content .ht-certificate table.manual-table td {border:0!important;box-shadow:none!important;background:transparent!important;}
+#furo-main-content .ht-certificate table.manual-table td.ht-certificate-line {border-bottom:1px solid currentColor!important;}
+
+@media(max-width:760px){.ht-figure {max-width:100%;}}
+#furo-main-content .ht-native-table td:last-child img {max-height:1.2em;}
+
+#furo-main-content .ht-safety-table td:first-child {text-align:center;vertical-align:middle;background:var(--hb-fill-muted,#eeeeef);}
+#furo-main-content .ht-safety-table td:first-child img {width:30px;max-height:40px;height:auto;}
+
+#furo-main-content .ht-figure .table-wrapper {margin:0;}
+#furo-main-content .ht-figure table.ht-native-table {font-size:1.8cqw;width:100%;}
+#furo-main-content .ht-figure table.ht-native-table td, #furo-main-content .ht-figure table.ht-native-table th {font-size:inherit!important;line-height:1.2;padding:.6cqw!important;}
+
+#furo-main-content table.ht-signal-table td:first-child {width:22%;white-space:nowrap;}
+#furo-main-content table.ht-signal-table td:first-child p {display:inline-block;font-size:1.2em;}
+#furo-main-content table.ht-signal-table td:first-child img {margin-right:.4rem;}
+
+#furo-main-content .ht-recycle-glyph {width:30px;height:25px;overflow:hidden;margin:0 auto;}
+#furo-main-content .ht-recycle-glyph img {width:30px!important;height:auto!important;max-height:none!important;margin:0!important;}
+#furo-main-content img.ht-inline-symbol {display:inline-block!important;vertical-align:middle;height:1.6em!important;width:auto!important;max-height:1.6em!important;margin:0 .2em!important;}
+.ht-add-device-icon {display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;width:1.1em;height:1.1em;border-radius:50%;background:#c8c8ca;color:#666;margin:0 .25em;font-weight:normal;}
+
+#furo-main-content .ht-figure .hb-reference-live-label:has(table) .table-wrapper,
+#furo-main-content .ht-figure .hb-reference-live-label table.ht-native-table {height:100%;}
+#furo-main-content .ht-figure .hb-reference-live-pill:has(.ht-caption-source-line) {padding:0;}
+.ht-caption-key-pane {position:absolute;left:0;top:0;height:100%;background:white;border-radius:var(--hb-panel-radius) 0 0 var(--hb-panel-radius);}
+
+.ht-lcd-pair > .ht-figure {max-width:none;width:100%;height:100%;}
+
+/* JP native caption centres and original table roles. */
+#furo-main-content .ht-figure .hb-reference-live-label {display:flex;flex-direction:column;align-items:stretch;justify-content:center;}
+#furo-main-content .ht-figure .ht-source-line {flex-shrink:0;line-height:1.05;}
+.ht-label-right{text-align:right;}.ht-label-center{text-align:center;}.ht-label-left{text-align:left;}
+#furo-main-content .ht-figure .ht-inbox-number {color:#fff;font-weight:700;text-align:center;}
+#furo-main-content .ht-figure .ht-sold-label {display:flex;align-items:center;justify-content:center;gap:.3em;color:#fff;font-weight:700;}
+#furo-main-content .ht-figure img.ht-cart-glyph {width:1.7em!important;height:1.7em!important;display:inline-block;margin:0;}
+#furo-main-content .ht-native-table th {text-align:center;vertical-align:middle;}
+#furo-main-content .ht-lcd-icons td:nth-child(-n+3),#furo-main-content .ht-lcd-modes td:nth-child(-n+2) {text-align:center;vertical-align:middle;}
+#furo-main-content .ht-troubleshooting td:first-child,#furo-main-content .ht-troubleshooting th:first-child {width:17%;min-width:5em;text-align:center;vertical-align:middle;}
+#furo-main-content .ht-native-table ol,#furo-main-content .ht-native-table ul,#furo-main-content .manual-callout-body ul {padding-left:1.25em;margin:.25rem 0;}
+#furo-main-content .ht-native-table li,#furo-main-content .manual-callout-body li {margin:.35em 0;padding:0;}
+#furo-main-content .ht-native-table li p,#furo-main-content .manual-callout-body li p {margin:0;}
+#furo-main-content .ht-lcd-icons td:last-child p + p {margin-top:.4em;}
+#furo-main-content .ht-key-combinations td {text-align:center;vertical-align:middle;}
+.ht-key-pair {display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.5rem;}
+#furo-main-content .ht-key-pair img {width:2.7rem!important;height:2.7rem!important;max-width:none;max-height:none;display:block;margin:0 auto .25rem;}
+#furo-main-content .ht-key-pair p {font-size:.875em;line-height:1.25;}
+.ht-key-plus {font-size:1.5rem;font-weight:700;}
+#furo-main-content .ht-native-square-heading::before,#furo-main-content .ht-native-safety-heading::before {display:none;}
+#furo-main-content .ht-native-safety-heading {display:flex;gap:.35em;align-items:center;}
+#furo-main-content .ht-native-safety-heading img {display:inline-block;width:1.3em;height:1.3em;margin:0;}
+/* Original page26/27 warranty cards and prose lists, using registered cards. */
+#furo-main-content .ht-native-warranty-section {position:relative;margin:1.8rem 0 1rem;padding:1.05rem 1rem .82rem;border:2px solid var(--hb-line-soft);border-radius:var(--hb-panel-radius);background:var(--hb-paper);}
+#furo-main-content .ht-native-warranty-section > h2.ht-native-warranty-title {position:relative;display:inline-flex;max-width:100%;margin:-1.92rem 0 .5rem;padding:.25rem .65rem;background:var(--hb-brand-dark);color:var(--hb-paper);border-radius:var(--hb-panel-radius);font-size:1rem;}
+#furo-main-content .ht-native-warranty-section > h2::before {display:none;}
+#furo-main-content .ht-native-warranty-section > figure {margin:0;}
+#furo-main-content .ht-native-warranty-lead,#furo-main-content .ht-native-warranty-disclaimer {padding:1rem;background:var(--hb-fill-muted);border-radius:var(--hb-panel-radius);margin:1rem 0;}
+#furo-main-content .ht-native-warranty-disclaimer h2 {font-size:1rem;padding:0;margin:0 0 .5rem;}
+#furo-main-content .ht-native-warranty-disclaimer h2::before {display:none;}
+#furo-main-content .ht-native-warranty li p {margin:.2em 0;}
+/* Original source callout remains inside the USB panel; semantic bullets fit its rect. */
+#furo-main-content .ht-figure-callout-table {min-width:0!important;width:100%;height:100%;border-collapse:collapse;font-size:1.6808cqw;table-layout:fixed;margin:0;background:transparent;}
+#furo-main-content .ht-figure-callout-table td {padding:1cqw;vertical-align:middle;border:0;line-height:1.2;}
+#furo-main-content .ht-figure-callout-label {width:18.6%;text-align:center;background:#fff;font-weight:700;}
+#furo-main-content .ht-figure-callout-table p {font-size:inherit;line-height:inherit;margin:0;}
+#furo-main-content .ht-figure-callout-table ul {padding-left:1.2em;margin:0;}
+#furo-main-content .ht-figure-callout-table li {margin:.35em 0;font-size:inherit;line-height:1.2;}
+#furo-main-content img.ht-native-app-plus {display:inline-block;width:1.2em;height:1.2em;margin:0 .15em;vertical-align:-.2em;}
+#furo-main-content .ht-native-app-phones {overflow:visible;padding:0;}
+@media(max-width:760px){.ht-key-pair{gap:.2rem;}.ht-native-warranty-section{padding:1rem .75rem .75rem;}.ht-native-app-phones{max-width:100%;}}
+
+#furo-main-content [data-native-figure="battery-accessories"] .hb-reference-source-badge {width:var(--hb-width);max-width:var(--hb-width);}
+#furo-main-content .ht-native-warranty-lead,#furo-main-content .ht-native-warranty-disclaimer {background:var(--hb-fill-muted,#eeeeef);}
+#furo-main-content .ht-lcd-modes td:last-child {text-align:left;}
+#furo-main-content .ht-key-combinations tr:first-child > * {text-align:center;}
+
+/* Rowspan continuation cells keep their source prose alignment. */
+#furo-main-content .ht-safety-table td.ht-safety-body {text-align:left;background:var(--hb-paper,#fff);}
+#furo-main-content .ht-lcd-icons td:last-child {text-align:left;}
+
+/* Paired native clock/duration and original button-table column proportions. */
+#furo-main-content .ht-key-combinations td:first-child {width:43%;}
+#furo-main-content .ht-key-combinations td:nth-child(2) {width:22%;}
+#furo-main-content .ht-key-combinations img.ht-key-clock {display:inline-block;width:1em!important;height:1em!important;max-width:1em;max-height:1em;margin:0 .25em 0 0;vertical-align:-.1em;}
+#furo-main-content .ht-troubleshooting td:first-child,#furo-main-content .ht-troubleshooting th:first-child {white-space:nowrap;}
+
+/* Original source note/precaution panels keep their native grouping. */
+#furo-main-content .ht-native-note-panel {background:var(--hb-fill-muted,#eeeeef);border-radius:var(--hb-panel-radius);padding:.75rem 1rem;margin:1rem 0;}
+#furo-main-content .ht-native-note-panel p:first-child,#furo-main-content .ht-native-note-panel ul:first-child {margin-top:0;}
+#furo-main-content .ht-native-note-panel p:last-child,#furo-main-content .ht-native-note-panel ul:last-child {margin-bottom:0;}
+#furo-main-content .ht-native-precautions {border:2px solid var(--hb-line-soft);border-radius:var(--hb-panel-radius);padding:.75rem 1rem;margin:1rem 0;}
+#furo-main-content .ht-native-precautions h2 {font-size:1rem;margin:.5rem 0;}
+#furo-main-content .ht-native-precautions h2:not(:first-child) {border-top:1px solid var(--hb-line-soft);padding-top:.75rem;}
+#furo-main-content .ht-native-contact-footer {display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;margin:1.75rem 0;}
+#furo-main-content p.ht-native-contact-row {display:flex;gap:.4rem;align-items:center;background:var(--hb-fill-muted,#eeeeef);border-radius:.3rem;padding:.2rem .4rem;margin:0;max-width:100%;font-size:.875rem;}
+#furo-main-content .ht-native-contact-row a {color:inherit;text-decoration:none;overflow-wrap:anywhere;}
+#furo-main-content img.ht-contact-glyph {display:block;width:1.45em;height:1.45em;margin:0;flex-shrink:0;}
+
+/* Original gray table key fields remain distinct from flowing explanation cells. */
+#furo-main-content .ht-troubleshooting td:first-child,#furo-main-content .ht-lcd-modes td[rowspan] {background:var(--hb-fill-muted,#eeeeef);}
+
+/* ---- Web-layout edition (2026-10-13): print layout restored page by page. ----
+   Rules above are the reviewed edition's, unchanged. derive_web_layout.py adds the classes
+   used below; source/differences.md lists each change with its PDF page. */
+
+/* Japanese titles keep their print case (50Hz, Jackery, Plus); the shared rule uppercases them. */
+#furo-main-content h1, #furo-main-content h2:not(.hb-spec-section) { text-transform: none; }
+
+/* p3: 絵表示について / 絵表示の説明 print white on a full-width dark band. */
+#furo-main-content h2:has(> .native-band) {
+  display: block;
+  max-width: none;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 0.95rem;
+}
+#furo-main-content h2:has(> .native-band)::before { display: none; }
+#furo-main-content h2:has(> .native-band) .headerlink { color: rgba(255, 255, 255, 0.7); }
+/* p3: the four signal labels share the grey, centred label column. */
+#furo-main-content table.ht-signal-table td:first-child { text-align: center; background: var(--hb-fill-muted, #eeeeef); }
+
+/* p4-5: the 警告 / 注意 lockups print at about twice the body size above their tables. */
+#furo-main-content h2.ht-native-safety-heading { font-size: 1.5rem; }
+
+/* p5: the five symptoms print in three columns, read row by row. */
+#furo-main-content ul.ht-print-grid-3 { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; column-gap: 1.6rem; }
+#furo-main-content ul.ht-print-grid-3 > li { margin: 0.15em 0; }
+@media (max-width: 760px) { #furo-main-content ul.ht-print-grid-3 { grid-template-columns: 1fr; } }
+
+/* p6: the outlined ご注意 panel with the dark triangle; body on white, as printed. */
+#furo-main-content table.hb-source-warning-lockup { border: 1.5px solid var(--hb-brand-dark) !important; background: var(--hb-paper); }
+#furo-main-content .hb-source-warning-lockup .manual-callout-label { width: 24% !important; background: var(--hb-paper) !important; }
+#furo-main-content .hb-source-warning-lockup .manual-callout-body { background: var(--hb-paper) !important; vertical-align: middle !important; }
+#furo-main-content .hb-source-warning-lockup .hb-warning-lockup { display: flex; align-items: center; justify-content: center; gap: 0.45rem; font-size: 1.3rem; font-weight: 700; }
+#furo-main-content .hb-source-warning-lockup .hb-warning-lockup img { flex: 0 0 auto; width: 1.6rem !important; height: auto; margin: 0 !important; }
+
+/* p8: the closing remark prints a drawn square before it; the art crop stops above the notes frame. */
+#furo-main-content p.ht-square-note::before { content: ""; display: inline-block; width: 0.62em; height: 0.62em; margin-right: 0.45em; background: var(--hb-brand-dark); vertical-align: 0.05em; }
+#furo-main-content [data-native-figure="inbox"] img.hb-reference-art { clip-path: inset(0 0 4.5% 0); }
+
+/* p10-11: circled entry numbers; names left, the App note small below the name. */
+#furo-main-content table.ht-lcd-icons td.ht-number p { display: inline-flex; align-items: center; justify-content: center; width: 1.45em; height: 1.45em; border: 1px solid currentColor; border-radius: 50%; font-size: 0.85em; line-height: 1; margin: 0; }
+#furo-main-content table.ht-lcd-icons p.ht-lcd-note { font-size: 0.8em; font-weight: 400; margin-top: 0.1rem; }
+
+/* p14: the energy-saving table centres every cell, as printed. */
+#furo-main-content [data-native-figure="energy-saving"] table.ht-native-table :is(td, th) { text-align: center !important; vertical-align: middle !important; }
+
+/* p15: display modes keep one line per mode and action; button table cells sit mid-row. */
+#furo-main-content table.ht-lcd-modes td.ht-lcd-mode, #furo-main-content table.ht-lcd-modes td.ht-lcd-action { white-space: nowrap; text-align: center; vertical-align: middle; }
+/* p15: mode and action columns print grey; the table takes more of the panel than the art. */
+#furo-main-content table.ht-lcd-modes td.ht-lcd-action { background: var(--hb-fill-muted, #eeeeef); }
+@media (min-width: 761px) { .ht-lcd-pair { grid-template-columns: 0.8fr 1.7fr; } }
+#furo-main-content table.ht-key-combinations td { vertical-align: middle; }
+#furo-main-content table.ht-key-combinations td:nth-child(2) { white-space: nowrap; text-align: left; }
+#furo-main-content table.ht-key-combinations td:last-child { text-align: left; }
+#furo-main-content table.ht-key-combinations th { text-align: center; }
+/* p15, p24: the key column prints grey from head to foot; the other heads print white. */
+#furo-main-content table:is(.ht-key-combinations, .ht-troubleshooting) :is(td, th):first-child { background: var(--hb-fill-muted, #eeeeef) !important; }
+#furo-main-content table:is(.ht-key-combinations, .ht-troubleshooting) th:not(:first-child) { background: var(--hb-paper) !important; }
+
+/* p26-27: ※ notes print in light grey capsules inside the warranty cards. */
+#furo-main-content p.ht-print-note-pill { display: inline-block; max-width: 100%; margin: 0.35rem 0; padding: 0.1rem 0.55rem; border-radius: 0.6rem; background: var(--hb-fill-muted, #eeeeef); font-size: 0.85em; }
+
+/* p4: the Li-ion mark under the recycling glyph keeps one line. */
+#furo-main-content .ht-recycle-glyph + p { white-space: nowrap; font-size: 0.8em; }
+/* p6-7: the precaution lists print compact, one line per item. */
+#furo-main-content .ht-native-precautions li { margin: 0.2em 0; }
+#furo-main-content .ht-native-precautions li > p { margin: 0; }
+
+/* p8: the three notes print in a white panel with a grey outline. */
+#furo-main-content .ht-print-outline-panel { border: 1px solid var(--hb-line-soft); border-radius: var(--hb-panel-radius); padding: 0.6rem 1rem; margin: 1rem 0; background: var(--hb-paper); }
+#furo-main-content .ht-print-outline-panel p { margin: 0.15rem 0; }
+
+/* p10-11: one glossary table; names wrap where the print wraps them (about ten characters a line). */
+#furo-main-content table.ht-lcd-icons td.ht-lcd-name { width: 10.5em; text-align: left; vertical-align: middle; }
+#furo-main-content table.ht-lcd-icons td.ht-lcd-icon { width: 4.6em; text-align: center; padding-left: 0.3rem !important; padding-right: 0.3rem !important; }
+/* Every glyph carries its print height inline (print pt / 7 pt table text); no shared cap. */
+#furo-main-content table.ht-lcd-icons td.ht-lcd-icon img { max-width: none !important; max-height: none !important; }
+#furo-main-content table.ht-lcd-icons td.ht-number { width: 2.6em; }
+@media (max-width: 760px) { #furo-main-content table.ht-lcd-icons td.ht-lcd-name { width: auto; } }
+
+/* p14: the 12H glyph sits in its line of text (and after the section title), as printed. */
+#furo-main-content img.ht-inline-symbol[src$="12h-p14.svg"] { height: 1.25em !important; max-height: 1.25em !important; vertical-align: -0.2em; margin: 0 0.15em !important; }
+#furo-main-content h2 img.ht-inline-symbol { display: inline-block; height: 1.1em; width: auto; margin-left: 0.35em; }
+
+/* Medium print faces (NotoSansJP-Medium) are lighter than bold: the reviewed edition set them bold.
+   The Japanese fallback fonts have no 500 weight while the Latin ones do, so 500 would set Latin
+   words heavier than the Japanese around them; medium therefore reads as regular. */
+#furo-main-content .ht-print-medium { font-weight: 400; }
+
+/* p24: the remedy cells sit mid-row, as printed. */
+#furo-main-content table.ht-troubleshooting td { vertical-align: middle; }
+
+/* p25: the four specification grids share one label width and the print's compact rows. */
+#furo-main-content table.ht-spec-grid td.ht-spec-label { width: 33%; background: var(--hb-fill-muted, #eeeeef); vertical-align: middle; }
+#furo-main-content table.ht-spec-grid td { padding-top: 0.45rem !important; padding-bottom: 0.45rem !important; }
+#furo-main-content table.ht-spec-grid sup, #furo-main-content .ht-prose sup { font-size: 0.68em; line-height: 0; }
+
+/* Lists print compact, one line per item. */
+#furo-main-content .ht-prose li, #furo-main-content .manual-callout-body li { margin: 0.2em 0; }
+#furo-main-content .ht-prose li > p, #furo-main-content .manual-callout-body li > p { margin: 0; }
+/* p10-11: descriptions read left and sit mid-row. */
+#furo-main-content table.ht-lcd-icons td.ht-lcd-desc { text-align: left; vertical-align: middle; }
+#furo-main-content table.ht-lcd-icons td.ht-lcd-number { width: 2.6em; text-align: center; }

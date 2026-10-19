@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools import build_docs
+from tools.build import docs as build_docs
 from tools.config_loader import load_config_mapping
 
 

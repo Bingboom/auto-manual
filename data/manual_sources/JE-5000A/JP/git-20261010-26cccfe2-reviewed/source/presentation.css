@@ -1,0 +1,165 @@
+/* Source-derived artwork geometry only; shared theme owns headings/tables. */
+.native-figure{max-width:720px;margin:1rem auto;min-width:0;}
+.native-figure .hb-reference-figure{max-width:none;margin:0;}
+#furo-main-content .native-figure img{width:100%!important;height:auto!important;max-height:none;}
+.native-figure .hb-reference-live-label{font-family:Arial,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.25;align-items:flex-start;justify-content:flex-start;text-align:left;padding:0;white-space:nowrap;overflow:visible!important;}
+.native-figure .hb-reference-live-label>span{width:100%;}
+.native-figure .hb-reference-live-label strong{font-weight:700;}
+.native-lcd-map{max-width:660px;}
+.native-app-add{max-width:390px;}
+.native-app-results{max-width:680px;}
+.native-app-control{max-width:580px;}
+.native-lcd-controls{display:grid;grid-template-columns:44% 56%;align-items:stretch;gap:0;}
+.native-lcd-controls .native-figure{margin:0;display:flex;align-items:center;}
+.native-lcd-actions .manual-table{height:100%;margin:0;table-layout:fixed;width:100%;min-width:0!important;}
+.native-lcd-actions{border:1px solid var(--hb-line-soft);border-radius:var(--hb-panel-radius);overflow:hidden;}
+#furo-main-content .native-lcd-actions table.manual-table td{padding:.28rem!important;font-size:.7rem!important;line-height:1.35;}
+.native-lcd-actions tr:first-child td:nth-child(2){width:20%;}
+.native-lcd-actions td[rowspan]{width:26%;font-weight:700;}
+.native-lcd-actions td{white-space:normal!important;}
+.native-lcd-actions{min-width:0;}
+.native-recycle{display:flex;align-items:center;gap:1rem;}
+.native-service{max-width:180px;margin-left:auto;}
+.native-service p{font-size:.75rem;line-height:1.45;margin:.25rem 0;}
+.native-recycle>img{width:65px!important;}
+.native-service .native-figure{width:100%;margin:0 0 .5rem;}
+.native-app-download-row{display:flex;align-items:center;justify-content:space-between;max-width:580px;}
+.native-app-download-row .native-app-download{max-width:140px;margin:0;}
+.native-app-download-row .native-app-qr{width:100px;margin:0;}
+.native-safety-columns{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+.native-safety-columns table{height:100%;margin:0;}
+.native-safety-signals img{width:35px!important;display:inline-block;vertical-align:middle;}
+.native-safety-signals th{white-space:nowrap;width:7rem;}
+.native-safety-signals{width:100%!important;min-width:0!important;table-layout:fixed;}
+.native-safety-signals td{white-space:normal!important;overflow-wrap:anywhere;}
+.native-safety-table{width:100%!important;min-width:0!important;table-layout:fixed;}
+.native-safety-table td:first-child{width:45px;padding:8px;vertical-align:middle;}
+.native-safety-table td:first-child img{width:26px!important;min-width:26px;height:auto;}
+.native-safety-table td:last-child{white-space:normal!important;overflow-wrap:anywhere;}
+.native-key-buttons{display:flex;align-items:center;justify-content:center;gap:.6rem;}
+.native-key-button{width:5.5rem;flex:none;text-align:center;}
+.native-key-button img{width:3.5rem!important;height:auto;}
+.native-key-button p{font-size:.65rem;white-space:nowrap;}
+.native-key-plus{font-weight:700;font-size:1.5rem;}
+.native-key-buttons p{margin:0!important;}
+.native-inline-plus{display:inline-flex;width:1em;height:1em;align-items:center;justify-content:center;background:#d0d2d4;border-radius:50%;margin:0 .2em;font-weight:700;}
+.native-power [data-source-line="6"]::before{content:"";position:absolute;top:-2.4cqw;left:3cqw;width:3.6cqw;height:2.5cqw;background:#e7e7e8;clip-path:polygon(50% 0,100% 100%,0 100%);}
+@media(max-width:760px){
+.native-dense{overflow-x:auto;padding-bottom:.5rem;}
+.native-dense>.hb-reference-figure{min-width:660px;}
+.native-lcd-scroll{overflow-x:auto;padding-bottom:.5rem;}
+.native-lcd-controls{min-width:660px;}
+.native-safety-columns{grid-template-columns:1fr;}
+}
+.native-overview-front [data-source-line="0"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="1"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="2"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="3"]{font-size:1.5773cqw!important;}
+.native-overview-front [data-source-line="4"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="5"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="6"]{font-size:1.5773cqw!important;}
+.native-overview-front [data-source-line="7"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="8"]{font-size:1.5773cqw!important;}
+.native-overview-front [data-source-line="9"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="10"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="11"]{font-size:1.8927cqw!important;}
+.native-overview-front [data-source-line="12"]{font-size:1.5773cqw!important;}
+.native-overview-front [data-source-line="13"]{font-size:1.5773cqw!important;}
+.native-overview-front [data-source-line="14"]{font-size:1.5773cqw!important;}
+.native-overview-front [data-source-line="15"]{font-size:1.5773cqw!important;}
+.native-overview-front [data-source-line="16"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="17"]{font-size:2.2082cqw!important;}
+.native-overview-front [data-source-line="18"]{font-size:2.2082cqw!important;}
+.native-overview-left [data-source-line="0"]{font-size:2.2293cqw!important;}
+.native-overview-left [data-source-line="1"]{font-size:2.2293cqw!important;}
+.native-overview-left [data-source-line="2"]{font-size:1.9108cqw!important;}
+.native-overview-left [data-source-line="3"]{font-size:1.5924cqw!important;}
+.native-overview-left [data-source-line="4"]{font-size:2.2293cqw!important;}
+.native-overview-left [data-source-line="5"]{font-size:1.5924cqw!important;}
+.native-overview-left [data-source-line="6"]{font-size:2.2293cqw!important;}
+.native-overview-left [data-source-line="7"]{font-size:2.2293cqw!important;}
+.native-overview-right [data-source-line="0"]{font-size:2.2222cqw!important;}
+.native-overview-right [data-source-line="1"]{font-size:2.2222cqw!important;}
+.native-overview-right [data-source-line="2"]{font-size:1.5873cqw!important;}
+.native-overview-right [data-source-line="3"]{font-size:2.2222cqw!important;}
+.native-overview-right [data-source-line="4"]{font-size:1.5873cqw!important;}
+.native-overview-right [data-source-line="5"]{font-size:2.2222cqw!important;}
+.native-overview-right [data-source-line="6"]{font-size:1.5873cqw!important;}
+.native-overview-right [data-source-line="7"]{font-size:2.2222cqw!important;}
+.native-overview-right [data-source-line="8"]{font-size:1.5873cqw!important;}
+.native-overview-right [data-source-line="9"]{font-size:2.2222cqw!important;}
+.native-overview-right [data-source-line="10"]{font-size:1.5873cqw!important;}
+.native-overview-right [data-source-line="11"]{font-size:2.2222cqw!important;}
+.native-lcd-map [data-source-line="0"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="1"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="2"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="3"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="4"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="5"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="6"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="7"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="8"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="9"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="10"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="11"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="12"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="13"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="14"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="15"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="16"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="17"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="18"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="19"]{font-size:2.2206cqw!important;}
+.native-lcd-map [data-source-line="20"]{font-size:2.2206cqw!important;}
+.native-power [data-source-line="0"]{font-size:1.9048cqw!important;}
+.native-power [data-source-line="0"]{padding:0.9514cqw 1.7432cqw!important;border-radius:1.7cqw!important;}
+.native-power [data-source-line="1"]{font-size:2.2222cqw!important;}
+.native-power [data-source-line="2"]{font-size:1.9048cqw!important;}
+.native-power [data-source-line="3"]{font-size:2.2222cqw!important;}
+.native-power [data-source-line="4"]{font-size:1.9048cqw!important;}
+.native-power [data-source-line="5"]{font-size:2.2222cqw!important;}
+.native-power [data-source-line="6"]{font-size:1.9048cqw!important;}
+.native-power [data-source-line="6"]{padding:2.3095cqw 2.7493cqw!important;border-radius:1.7cqw!important;}
+.native-ac-output [data-source-line="0"]{font-size:1.9048cqw!important;}
+.native-ac-output [data-source-line="0"]{padding:0.9513cqw 1.7432cqw!important;border-radius:1.7cqw!important;}
+.native-ac-output [data-source-line="1"]{font-size:2.2222cqw!important;}
+.native-ac-output [data-source-line="2"]{font-size:1.9048cqw!important;}
+.native-ac-output [data-source-line="3"]{font-size:2.2222cqw!important;}
+.native-ac-output [data-source-line="4"]{font-size:1.9048cqw!important;}
+.native-usb-output [data-source-line="0"]{font-size:1.9048cqw!important;}
+.native-usb-output [data-source-line="0"]{padding:0.9514cqw 1.7431cqw!important;border-radius:1.7cqw!important;}
+.native-usb-output [data-source-line="1"]{font-size:2.2222cqw!important;}
+.native-usb-output [data-source-line="2"]{font-size:1.9048cqw!important;}
+.native-usb-output [data-source-line="3"]{font-size:2.2222cqw!important;}
+.native-usb-output [data-source-line="4"]{font-size:1.9048cqw!important;}
+.native-dc-output [data-source-line="0"]{font-size:1.9048cqw!important;}
+.native-dc-output [data-source-line="0"]{padding:0.9514cqw 1.7431cqw!important;border-radius:1.7cqw!important;}
+.native-dc-output [data-source-line="1"]{font-size:2.2222cqw!important;}
+.native-dc-output [data-source-line="2"]{font-size:1.9048cqw!important;}
+.native-dc-output [data-source-line="3"]{font-size:2.2222cqw!important;}
+.native-dc-output [data-source-line="4"]{font-size:1.9048cqw!important;}
+.native-ups [data-source-line="0"]{font-size:1.9048cqw!important;}
+.native-ups [data-source-line="0"]{padding:1.1961cqw 2.7683cqw!important;border-radius:1.7cqw!important;}
+.native-battery-packs [data-source-line="0"]{font-size:1.9232cqw!important;}
+.native-battery-packs [data-source-line="1"]{font-size:1.9232cqw!important;}
+.native-ac-charge [data-source-line="0"]{font-size:1.9048cqw!important;}
+.native-low-pv [data-source-line="0"]{font-size:1.7732cqw!important;}
+.native-high-pv [data-source-line="0"]{font-size:2.2222cqw!important;}
+.native-high-pv-lock [data-source-line="0"]{font-size:2.0701cqw!important;}
+.native-high-pv-lock [data-source-line="1"]{font-size:2.0701cqw!important;}
+.native-high-pv-lock [data-source-line="2"]{font-size:2.0701cqw!important;}
+.native-high-pv-lock [data-source-line="3"]{font-size:2.0701cqw!important;}
+.native-high-pv-lock [data-source-line="4"]{font-size:2.0701cqw!important;}
+.native-high-pv-lock [data-source-line="5"]{font-size:2.0701cqw!important;}
+.native-car-charge [data-source-line="0"]{font-size:2.2222cqw!important;}
+.native-car-charge [data-source-line="1"]{font-size:1.9392cqw!important;}
+.native-car-charge [data-source-line="1"]{padding:0.5498cqw 1.3076cqw!important;border-radius:1.7cqw!important;}
+.native-app-add [data-source-line="0"]{font-size:3.6145cqw!important;}
+.native-app-add [data-source-line="1"]{font-size:3.6145cqw!important;}
+.native-app-control [data-source-line="0"]{font-size:3.2864cqw!important;}
+.native-app-control [data-source-line="1"]{font-size:3.2864cqw!important;}
+.native-app-control [data-source-line="2"]{font-size:3.2864cqw!important;}
+.native-app-control [data-source-line="3"]{font-size:3.2864cqw!important;}
+.native-app-results [data-source-line="0"]{font-size:2.0408cqw!important;}
+.native-app-results [data-source-line="1"]{font-size:2.0408cqw!important;}
+.native-app-results [data-source-line="2"]{font-size:2.0408cqw!important;}

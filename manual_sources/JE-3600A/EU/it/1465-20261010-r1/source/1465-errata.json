@@ -1,0 +1,46 @@
+{
+  "batch": "1465",
+  "model": "JE-3600A",
+  "language": "it",
+  "baseline_version": "git-20261005-47a346dc",
+  "source": "delivered JE-3600A corrected AI/PDF and modification records",
+  "scope": "semantic Web copy only; no print pagination or reviewer colors",
+  "deltas": [
+    {
+      "code": "F0",
+      "old": "Starten Sie das Gerät neu.",
+      "new": "Riavviare il prodotto."
+    },
+    {
+      "code": "F1",
+      "old": "Starten Sie das Gerät neu.",
+      "new": "Riavviare il prodotto."
+    },
+    {
+      "code": "F2",
+      "old": "Starten Sie das Gerät neu.",
+      "new": "Riavviare il prodotto."
+    },
+    {
+      "code": "F3",
+      "old": "Starten Sie das Gerät neu.",
+      "new": "Riavviare il prodotto."
+    },
+    {
+      "code": "F4",
+      "old": "Schließen Sie das Gerät an Verbraucher an, um die Batterie zu entladen, bis der Fehler verschwindet.",
+      "new": "Collega il prodotto ai carichi per scaricare la batteria fino a quando il guasto scompare."
+    },
+    {
+      "code": "F5",
+      "old": "Laden Sie das Gerät über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet.",
+      "new": "Caricare il prodotto tramite pannelli solari o una presa a muro CA fino a quando l'errore non scompare."
+    },
+    {
+      "code": "F6",
+      "old": "1. Warten Sie, bis das Stromnetz stabil ist, bevor Sie das Gerät über eine Netzsteckdose laden. 2. Überprüfen Sie, ob die Lufteinlass- und -auslassöffnungen blockiert sind; stellen Sie sicher, dass auf beiden Seiten des Geräts ein Abstand von 20 cm eingehalten wird. 3. Platzieren Sie das Gerät an einem Ort, der nicht direktem Sonnenlicht oder hohen Umgebungstemperaturen ausgesetzt ist. 4. Trennen Sie alle Verbraucher vom Gerät, lassen Sie es im Leerlauf und warten Sie, bis der Fehler verschwindet. 5. Starten Sie das Gerät neu.",
+      "new": "1. Attendi che la rete torni alla normalità prima di caricare il prodotto tramite una presa a muro CA.\r2. Verifica che le prese d'aria di ingresso e di scarico non siano ostruite; assicurati che ci siano 20 cm di spazio libero su entrambi i lati del prodotto.\r3. Posiziona il prodotto in un luogo non esposto alla luce solare diretta o a temperature ambientali elevate.\r4. Scollega tutti i carichi dal prodotto. Lascialo inattivo e attendi che il guasto scompaia.\r5. Riavvia il prodotto."
+    }
+  ],
+  "raw_capture_policy": "original native capture files retained as evidence; corrected chapters supersede affected original strings"
+}

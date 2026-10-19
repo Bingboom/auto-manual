@@ -1,0 +1,152 @@
+{
+  "schema": "je300e-print-block-component-map/v1",
+  "plain_tables": 0,
+  "package_classes": 0,
+  "shared_component_exceptions": [],
+  "blocks": [
+    {
+      "pages": "p3",
+      "print_block": "IMPORTANT (English half)",
+      "web": "flow: heading + paragraphs",
+      "note": ""
+    },
+    {
+      "pages": "p7",
+      "print_block": "Boxed warning statement with triangle",
+      "web": "HB-CALLOUT-STRIP/warning",
+      "note": "label WARNING added (D3)"
+    },
+    {
+      "pages": "p7",
+      "print_block": "Precautions list with hollow sub-bullets",
+      "web": "flow: paragraph + nested list",
+      "note": ""
+    },
+    {
+      "pages": "p7",
+      "print_block": "USER MAINTENANCE INSTRUCTIONS pill",
+      "web": "flow: h3",
+      "note": ""
+    },
+    {
+      "pages": "p7",
+      "print_block": "Signal-word table",
+      "web": "HB-TABLE-SYMBOL-SIGNAL/localized-badges",
+      "note": ""
+    },
+    {
+      "pages": "p8",
+      "print_block": "Symbol table, two panels",
+      "web": "HB-TABLE-SYMBOL-ICON/two-panel-responsive",
+      "note": "8 shared symbols, admitted"
+    },
+    {
+      "pages": "p9",
+      "print_block": "WHAT'S IN THE BOX cards",
+      "web": "HB-SPECIAL-INBOX/responsive-card-grid",
+      "note": "4 cards, art cropped per card"
+    },
+    {
+      "pages": "p9",
+      "print_block": "FRONT VIEW labelled drawing",
+      "web": "HB-SPECIAL-REFERENCE-FIGURE",
+      "note": "labels stay in the art"
+    },
+    {
+      "pages": "p10",
+      "print_block": "LCD map",
+      "web": "HB-SPECIAL-REFERENCE-FIGURE",
+      "note": ""
+    },
+    {
+      "pages": "p10-11",
+      "print_block": "LCD icon table",
+      "web": "HB-TABLE-LCD-ICON/icon-catalog",
+      "note": "12 native vector icons; number 10 repeats"
+    },
+    {
+      "pages": "p11-13",
+      "print_block": "POWER / AC / DC 12V / USB panels",
+      "web": "HB-SPECIAL-REFERENCE-FIGURE",
+      "note": "complete panels (D4)"
+    },
+    {
+      "pages": "p12-13",
+      "print_block": "CAUTION boxes",
+      "web": "HB-CALLOUT-STRIP/caution",
+      "note": ""
+    },
+    {
+      "pages": "p13",
+      "print_block": "ENERGY SAVING MODE panel",
+      "web": "flow paragraphs + HB-SPECIAL-REFERENCE-FIGURE + HB-CALLOUT-STRIP/note",
+      "note": ""
+    },
+    {
+      "pages": "p14",
+      "print_block": "LCD SCREEN ON/OFF drawing + table",
+      "web": "HB-TABLE-LCD-MODE/two-state-three-action",
+      "note": ""
+    },
+    {
+      "pages": "p14-16",
+      "print_block": "Note / CAUTION boxes",
+      "web": "HB-CALLOUT-STRIP/note, caution",
+      "note": ""
+    },
+    {
+      "pages": "p15-16",
+      "print_block": "Charging panels",
+      "web": "HB-SPECIAL-REFERENCE-FIGURE",
+      "note": ""
+    },
+    {
+      "pages": "p15",
+      "print_block": "DC INPUT INDICATOR states",
+      "web": "HB-SPECIAL-REFERENCE-FIGURE + HB-TABLE-REFERENCE/lcd-actions-compact",
+      "note": ""
+    },
+    {
+      "pages": "p17",
+      "print_block": "STORAGE grey panel",
+      "web": "flow: paragraphs + list",
+      "note": "no shared panel component (D9)"
+    },
+    {
+      "pages": "p17",
+      "print_block": "Troubleshooting table",
+      "web": "HB-TABLE-TROUBLESHOOTING/two-column",
+      "note": "F0-F3 one row per code, each with the merged measure (operator D6)"
+    },
+    {
+      "pages": "p18",
+      "print_block": "Specification groups",
+      "web": "HB-TABLE-SPEC/vertical x4",
+      "note": "multi-line values as spanned rows (D7)"
+    },
+    {
+      "pages": "p19",
+      "print_block": "Warranty lead, sections, years",
+      "web": "HB-WARRANTY-LEAD, HB-WARRANTY-SECTION x5, HB-WARRANTY-YEARS",
+      "note": ""
+    },
+    {
+      "pages": "p20-23",
+      "print_block": "Recycling guide",
+      "web": "flow: h3/h4 + paragraphs + lists",
+      "note": ""
+    },
+    {
+      "pages": "p24",
+      "print_block": "Serial-number diagram",
+      "web": "flow paragraphs + HB-SPECIAL-REFERENCE-FIGURE",
+      "note": ""
+    },
+    {
+      "pages": "p97",
+      "print_block": "EU Regulations, manufacturer, contacts",
+      "web": "flow + HB-SPECIAL-REFERENCE-FIGURE (CE mark, QR)",
+      "note": "inline native contact glyphs"
+    }
+  ]
+}

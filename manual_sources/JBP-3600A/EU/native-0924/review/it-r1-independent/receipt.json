@@ -1,0 +1,108 @@
+{
+  "status": "independent-source-and-layout-pass",
+  "original_evidence_directory": "/tmp/jbp-independent-acceptance/it-r1-20261003",
+  "inspected_worker_head": "edaf3e1039803e5b71954c385cd66532c4fd666f",
+  "publication_eligible": false,
+  "operator_approval": false,
+  "locale_enrollment": false,
+  "note": "Report copied verbatim. References to snapshots retained here refer to the original directory, which retains full package/HTML/producer-evidence snapshots. This archive includes report,checks,structure diff and all top-level source/browser screenshots.",
+  "count_erratum": "../copy-count-errata/IT-META-001.json",
+  "files": [
+    {
+      "path": "acceptance.md",
+      "sha256": "08a8f4a2683ff6013ded003d08f2f9ad71971083e46293161fd616756147ce4c"
+    },
+    {
+      "path": "checks.json",
+      "sha256": "a7b4cd64cb5f27b81a2d339cbfe753e0b2fa2227e2434786d01b221c2016dd2e"
+    },
+    {
+      "path": "independent-structure-diff.json",
+      "sha256": "368c8e10562cbeecd981bff7cc2a0e9c563016aa7968430ef0fb2ff9f505000b"
+    },
+    {
+      "path": "desktop-lcd.png",
+      "sha256": "547d239f9bc12737059690ca4e22dc201b778339d9ceaf647b01d5e699eb2805"
+    },
+    {
+      "path": "desktop-specifications.png",
+      "sha256": "c543f2eeed3fbbc702d29b208510146f7d67a128a904956fa1544fa4df7a767b"
+    },
+    {
+      "path": "mobile-extra-spec-row.png",
+      "sha256": "8e21ac286ec4fa62fdff27df528bec973049139ed679a5933cd618ec26d48671"
+    },
+    {
+      "path": "mobile-lcd.png",
+      "sha256": "dc050df5f407a056c41eae0c7dd9502f7e093abac6fd68b27b6e372adbb7eecb"
+    },
+    {
+      "path": "mobile-left-panel.png",
+      "sha256": "1e1fe64e18294c48f25349a57bad92a96aad1cfa1e4bff9b1ee85193761841c1"
+    },
+    {
+      "path": "mobile-locking.png",
+      "sha256": "d8108905edeb1429fba58f6c9a66ddfb11312385e2e2bbe3869f981ba66db200"
+    },
+    {
+      "path": "mobile-operation.png",
+      "sha256": "f8dca39682c218b8b4472fa014d0cc301bb448f169d23e99b3e61e1097f377b2"
+    },
+    {
+      "path": "mobile-overview.png",
+      "sha256": "451110e350cf6bdda01f82abbbb977d868b27d9a35e16153c199f16eb46a0ddf"
+    },
+    {
+      "path": "mobile-symbol-signals.png",
+      "sha256": "11d64062545682f6d342f9cf73073db8d3f1e45dd5d5f341f9d4ff6858f3e095"
+    },
+    {
+      "path": "mobile-table-scrolled.png",
+      "sha256": "46135425529e7c075a7593c00def0f158c8f7c6b20a4f9df1d58b21991394eeb"
+    },
+    {
+      "path": "mobile-warranty.png",
+      "sha256": "0dfa1cd284c389658c21b4b23882ac1cd6780225fb3f973ceb749a16e11d1984"
+    },
+    {
+      "path": "source-2.png",
+      "sha256": "9a46e1c655634cf9fe99538718f3ec8cb2f03a9d956af17723ed9b822ceb3d11"
+    },
+    {
+      "path": "source-39.png",
+      "sha256": "05b2118321932a6bb5932c262c15f4219f47ebb3bc828dc7001a2f1caaa38e69"
+    },
+    {
+      "path": "source-40.png",
+      "sha256": "f0afab2fb88c8aeaf4e8bba26d6198f0e5b06c88ab3288f2226188b2b5f633d4"
+    },
+    {
+      "path": "source-41.png",
+      "sha256": "a739fd9f4b68881519af9070108b46e2262f6776032a934826df72aa6a74be95"
+    },
+    {
+      "path": "source-42.png",
+      "sha256": "0d651f789ebd2f2a78db5e6dfe1810910696e81b307d554208e0490c5cb7c561"
+    },
+    {
+      "path": "source-43.png",
+      "sha256": "58f26d2bce0f8f7565fa24b0870652734aa650f426894533b7fd9a9a3a9603d5"
+    },
+    {
+      "path": "source-44.png",
+      "sha256": "1f1b40aa64197c0850c35265f446a12015dc263934d9c435426c5d0f015ab532"
+    },
+    {
+      "path": "source-45.png",
+      "sha256": "f2e49d3499357877951fd9df7ef61d9fbdb194790ed83e476e9ee510fda58e7e"
+    },
+    {
+      "path": "source-46.png",
+      "sha256": "8f71c104ffb6fc7f6b1194bebd386e71e780359aae3d34d08dd1c000c1d6148c"
+    },
+    {
+      "path": "source-79.png",
+      "sha256": "1146f86f1554a2dee42b5d5ab9f00064bf783b00a92cb12c5ae759722d65ce52"
+    }
+  ]
+}

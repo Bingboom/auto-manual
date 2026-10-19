@@ -15,7 +15,7 @@ git worktree add /tmp/acc HEAD
 cp -R data/phase2 /tmp/acc/data/            # phase2 是 gitignored 本地镜像
 cd /tmp/acc
 python build.py all --config configs/config.bp-us.yaml --model JBP-2000B --region US
-python tools/renderer_acceptance.py \
+python -m tools.renderer_acceptance \
     --config configs/config.bp-us.yaml --model JBP-2000B --region US \
     --block-pages 8
 cd - && git worktree remove --force /tmp/acc
@@ -26,7 +26,7 @@ cd - && git worktree remove --force /tmp/acc
 主机线回归（贵，两次 worktree 构建，单独跑）：
 
 ```bash
-python tools/renderer_acceptance.py \
+python -m tools.renderer_acceptance \
     --config configs/config.bp-us.yaml --model JBP-2000B --region US \
     --renderers regression --base-ref origin/main \
     --regression-target configs/config.us.yaml:JE-1000F:US \

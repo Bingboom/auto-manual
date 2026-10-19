@@ -602,6 +602,9 @@
        },
        {
         "$ref": "#/$defs/png_output"
+       },
+       {
+        "$ref": "#/$defs/svg_output"
        }
       ]
      }
@@ -749,6 +752,28 @@
      "exclusiveMinimum": 0,
      "maximum": 8,
      "description": "Match tolerance in pt. Omit for the pipeline default (0.03)."
+    }
+   }
+  },
+  "svg_output": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "format",
+    "path"
+   ],
+   "properties": {
+    "format": {
+     "const": "svg"
+    },
+    "path": {
+     "type": "string",
+     "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9._/-]+\\.svg$",
+     "description": "Package-relative mirror of the intended repository path; never a direct worktree write."
+    },
+    "expected_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
     }
    }
   }

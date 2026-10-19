@@ -37,7 +37,7 @@ Two standing disciplines make the loop close:
 ## 2. The lint
 
 ```bash
-python tools/content_lint.py --data-root data/phase2 [--langs fr,es,de,it,uk,ja,ko,zh]
+python -m tools.content_lint --data-root data/phase2 [--langs fr,es,de,it,uk,ja,ko,zh]
 ```
 
 It runs against the **exported snapshot** (`data/phase2/*.csv`) — the same inputs
@@ -55,7 +55,7 @@ from snapshot keys; `record_id` remains `null` until a later exact resolver land
 For a local operator artifact, add `--write-report`:
 
 ```bash
-python tools/content_lint.py --data-root data/phase2 --json --write-report
+python -m tools.content_lint --data-root data/phase2 --json --write-report
 ```
 
 This writes `findings.json` and `report.md` under `reports/content_qc/<run-id>/`.
@@ -66,14 +66,14 @@ delivery beyond the lint's existing `FAIL` exit code.
 Recommended local loop:
 
 1. Refresh or reuse the intended snapshot.
-2. Run `python tools/content_lint.py --data-root data/phase2 --json --write-report`.
+2. Run `python -m tools.content_lint --data-root data/phase2 --json --write-report`.
 3. Open the Markdown report and fix `FAIL` findings in the Feishu source tables
    or Translation Memory, not in `data/phase2` or `reports/content_qc`.
 4. Sync again and rerun the lint until the report is clean enough for the
    planned delivery stage.
 
 For PR validation of QC rule changes, run `python3 -m unittest tests.test_content_lint`,
-the repo ruff gate, and `python3 tools/check_doc_link_integrity.py` when docs
+the repo ruff gate, and `python3 -m tools.check_doc_link_integrity` when docs
 change.
 
 ## 3. Rules

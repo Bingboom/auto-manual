@@ -12,7 +12,7 @@ The whole-document package already writes renderer-neutral `manual-flow/v2`
 and embeds fourteen registered ComponentSpec types. App download, the inline
 Add-device control, App artwork, and governed Charging/App reference figures
 are still serialized as ordinary flow. During Web replay,
-`tools/web_presentation.py` scans the reconstructed page DOM and invokes their
+`tools/web/presentation.py` scans the reconstructed page DOM and invokes their
 legacy source projectors again.
 
 The existing Web behavior is mature and is the compatibility baseline:

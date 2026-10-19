@@ -1,0 +1,43 @@
+{
+  "schema": "native-web-local-acceptance/v1",
+  "target": {
+    "model": "JBP-5000A",
+    "region": "JP",
+    "language": "ja"
+  },
+  "source_sha256": "cdd40510647f7d45a80f58eccddba32754346edeaede760c993ca6670af6bfc8",
+  "local_browser_visual_review": "passed",
+  "source_body_physical_pages": [
+    2,
+    10
+  ],
+  "reviewed_widths": [
+    1280,
+    768,
+    390
+  ],
+  "body_lines": 213,
+  "live_copy_selections": 137,
+  "reference_figures": 12,
+  "live_labels": 27,
+  "image_references": 19,
+  "reviewed_source_commit": "26a5a4e41f727c4281a230044267e61ba2190dc3",
+  "reviewed_source_geometry": [
+    "native nine chapter order and mixed-case specification heading",
+    "centered LCD and lock/unlock numbers",
+    "complete stacked battery bottom borders and single original image group",
+    "shared shaded-label stacking callout with original two-line label",
+    "native warranty groups 1–7 / 8–11 and seven exclusions",
+    "shared bordered recycling panel and transparent Li-ion icon",
+    "compact 11 safety bullets retaining exact words",
+    "original download badges and full QR frame"
+  ],
+  "publication_eligible": true,
+  "merge": "authorized under MA-286; final head checks required",
+  "online_release": "authorized Git-only under MA-286; not yet deployed",
+  "business_plane_writes": false,
+  "cold_replay": {
+    "files": 25,
+    "byte_parity": true
+  }
+}

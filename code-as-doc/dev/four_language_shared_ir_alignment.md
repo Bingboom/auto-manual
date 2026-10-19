@@ -3,7 +3,7 @@
 Status: active
 
 Shared intake rules for subsequent models, regions and reviewed RST sources
-live in [STYLE_DEFINITION §5](../../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工).
+live in [STYLE_DEFINITION §5](../../docs/renderers/contracts/STYLE_DEFINITION/figures-warranty-templates.md#新录入网页的图文分工).
 This report's EU package tests are evidence for those packages, not acceptance
 of a new CN/JP target. Each new target must bind its required components and
 art hashes and receive its own source/asset and desktop/mobile validation.
@@ -64,7 +64,7 @@ or erratum JSON actually read must match the historical manifest hash and size;
 old screenshot files are never opened for this verification.
 
 ```bash
-python3 -m tools.frozen_pdf_web \
+python3 -m tools.web.frozen_pdf_web \
   --pdf /path/to/editable-export.pdf \
   --recipe-root manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language \
   --assets-manifest /path/to/verified-asset-bindings.json \
@@ -154,7 +154,7 @@ This is a bounded maintenance adapter for the already approved extraction
 format, not a general AI importer or a new rendering framework. From the repo:
 
 ```bash
-python3 -m tools.frozen_ai_web \
+python3 -m tools.web.frozen_ai_web \
   --source-root manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language \
   --output-root /tmp/four-language-shared-ir-candidate
 ```

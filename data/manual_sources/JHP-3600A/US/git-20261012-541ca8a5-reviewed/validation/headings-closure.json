@@ -1,0 +1,71 @@
+{
+  "en": {
+    "source_text_lines_audited": 723,
+    "required_text_lines": 722,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "native_level_two_titles": 28,
+    "native_title_variants": {
+      "safety": 2,
+      "circle": 16,
+      "warranty": 6,
+      "app": 4
+    },
+    "native_heading_availability_pairs": 3,
+    "native_accessory_cart_badge_preserved": true,
+    "source_wording_and_bold_spans_preserved": true,
+    "only_reviewed_title_nodes_and_French_notice_changed": true,
+    "markdown_change_only_reviewed_nodes_and_targeted_css": true,
+    "other_body_text_lists_and_components_preserved": true,
+    "artwork_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  },
+  "fr": {
+    "source_text_lines_audited": 874,
+    "required_text_lines": 873,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "native_level_two_titles": 28,
+    "native_title_variants": {
+      "safety": 2,
+      "circle": 16,
+      "warranty": 6,
+      "app": 4
+    },
+    "native_heading_availability_pairs": 3,
+    "native_accessory_cart_badge_preserved": true,
+    "source_wording_and_bold_spans_preserved": true,
+    "only_reviewed_title_nodes_and_French_notice_changed": true,
+    "markdown_change_only_reviewed_nodes_and_targeted_css": true,
+    "other_body_text_lists_and_components_preserved": true,
+    "artwork_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  },
+  "es": {
+    "source_text_lines_audited": 863,
+    "required_text_lines": 862,
+    "operator_omitted_extra_model_labels": 1,
+    "missing_required_text_lines": 0,
+    "missing_resources": 0,
+    "native_level_two_titles": 28,
+    "native_title_variants": {
+      "safety": 2,
+      "circle": 16,
+      "warranty": 6,
+      "app": 4
+    },
+    "native_heading_availability_pairs": 3,
+    "native_accessory_cart_badge_preserved": true,
+    "source_wording_and_bold_spans_preserved": true,
+    "only_reviewed_title_nodes_and_French_notice_changed": true,
+    "markdown_change_only_reviewed_nodes_and_targeted_css": true,
+    "other_body_text_lists_and_components_preserved": true,
+    "artwork_byte_identical": true,
+    "fresh_replay_byte_identical_source_files": 110,
+    "publication_eligible": false
+  }
+}

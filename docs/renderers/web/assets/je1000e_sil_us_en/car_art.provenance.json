@@ -1,0 +1,36 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    5532.61328125,
+    2208.22998046875,
+    5848.61328125,
+    2362.22998046875
+  ],
+  "sha256": "0c1cb6b315a0c2d02a8a9affba466d118b23d67311272e1725c6973bf292839f",
+  "recipe": "data/asset_recipes/manual_je1000e_sil_us_car_live.json",
+  "retained_text": "DC8020",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        69.60572834256328,
+        13.022999949269481,
+        20,
+        0
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        53.05778406843354,
+        67.37330052759741,
+        42.54057678995253,
+        16.772143871753247
+      ],
+      "fill": "#ebebec"
+    }
+  ],
+  "policy": "Native note backdrop removed within its isolated white-background region; shared CSS live-pill draws the note with centered editable text. Outer frame, DC8020 and all device artwork retained."
+}

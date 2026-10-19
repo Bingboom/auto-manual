@@ -1,7 +1,7 @@
 """Mirror the build table's capability checkboxes into the tracked CSV.
 
 ``data/model_capabilities.csv`` feeds the capability -> chapter check
-(tools/check_docs_capability.py). Like ``page_registry.csv`` it is a
+(tools/check/docs_capability.py). Like ``page_registry.csv`` it is a
 repo-tracked file that ``sync-data`` refreshes from Feishu — a diff in
 git is the review surface for capability changes.
 
@@ -15,7 +15,7 @@ import io
 from pathlib import Path
 from typing import Any
 
-from tools.check_docs_capability import load_rules
+from tools.check.docs_capability import load_rules
 
 
 _REPO_ROOT = Path(__file__).resolve().parents[1]

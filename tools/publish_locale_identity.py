@@ -12,8 +12,8 @@ from typing import Any
 
 from tools.release_contract import normalize_release_token
 from tools.utils.path_utils import PathSegments
-from tools.web_frozen_source_evidence import verify_release_evidence
-from tools.web_language_release_evidence import RECEIPT_FILENAME
+from tools.web.frozen_source_evidence import verify_release_evidence
+from tools.web.language_release_evidence import RECEIPT_FILENAME
 
 
 TARGET_SCHEMA_VERSION = "auto-manual-web-publish-target/v2"

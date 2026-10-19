@@ -5,7 +5,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
-from tools.web_base_art_operation import arrange_base_art_operation
+from tools.web.base_art_operation import arrange_base_art_operation
 
 
 SOURCE = Path("page/05_operation_guide_placeholder.rst")
@@ -36,6 +36,41 @@ def _text(tag: object) -> str:
 
 
 class BaseArtOperationTests(unittest.TestCase):
+    def test_native_duration_copy_keeps_one_css_clock(self) -> None:
+        for copy, token in (
+            ("Drei Sekunden lang gedrückt halten", "3s"),
+            ("3 Sekunden lang gedrückt halten", "3s"),
+            ("Tenere premuto per 3 secondi", "3s"),
+            ("Tenere premuto per 5 secondi", "5s"),
+            ("Press and hold for 3s.", "3s"),
+        ):
+            with self.subTest(copy=copy):
+                soup, figure, stage = _figure(
+                    "status-right",
+                    '<img class="hb-operation-art" src="a.png">'
+                    '<div class="line-block hb-operation-steps">'
+                    + _step("off", ("instruction", copy)) + "</div>",
+                )
+                arrange_base_art_operation(
+                    soup, figure=figure, stage=stage,
+                    spec={
+                        "id": "main-power", "layout": "status-right",
+                        "base_art_layout": {
+                            "art_sha256": "a" * 64,
+                            "step_anchors": [[76.5, 34.17]], "step_width": 22.5,
+                            "duration_anchor": [81.4, 48.1],
+                            "duration_icon": "clock",
+                        },
+                    },
+                    source_path=SOURCE, error_type=ValueError,
+                )
+                self.assertEqual(copy, _text(stage.select_one(".hb-operation-step")))
+                clocks = stage.select(".hb-operation-duration")
+                self.assertEqual(1, len(clocks))
+                self.assertEqual(token, _text(clocks[0]))
+                self.assertEqual("clock", clocks[0]["data-duration-icon"])
+                self.assertEqual("true", clocks[0]["aria-hidden"])
+
     def test_summary_steps_sit_on_their_anchors_beside_one_duration(self) -> None:
         soup, figure, stage = _figure(
             "status-right",
@@ -99,6 +134,7 @@ class BaseArtOperationTests(unittest.TestCase):
         duration = canvas.select_one(".hb-operation-art-box > .hb-operation-duration")
         self.assertEqual("3s", _text(duration))
         self.assertEqual("true", duration["aria-hidden"])
+        self.assertNotIn("data-duration-icon", duration.attrs)
         self.assertEqual("--hb-x:81.4%;--hb-y:48.1%", duration["style"])
 
     def test_label_pairs_and_prerequisite_use_the_art_pill(self) -> None:
@@ -300,7 +336,7 @@ class BaseArtOperationTests(unittest.TestCase):
                     )
 
     def test_lead_bolds_through_its_first_colon_only_when_plain(self) -> None:
-        from tools.web_base_art_operation import _bold_colon_lead
+        from tools.web.base_art_operation import _bold_colon_lead
 
         fullwidth = "\uff1a"
         for html, expected in (
@@ -458,7 +494,7 @@ class OperationPanelCopySourceTests(unittest.TestCase):
             )
 
     def test_only_active_panel_copy_reaches_the_page(self) -> None:
-        from tools.web_document_source import operation_panel_copy
+        from tools.web.document_source import operation_panel_copy
 
         text = "\n".join(
             [

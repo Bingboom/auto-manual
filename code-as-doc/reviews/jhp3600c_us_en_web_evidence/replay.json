@@ -1,0 +1,5 @@
+{
+  "deterministic_rebuild": "all frozen files byte-identical",
+  "cold_replay": "IR, CSS, assets only; no PDF, RST, CSV or extraction JSON present",
+  "tamper_rejection": "document asset missing or changed: assets/lcd_parallel.png"
+}

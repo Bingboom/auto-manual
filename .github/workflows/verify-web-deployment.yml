@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-doc.readthedocs.io' }}
+      AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest' }}
       # One global pace for the whole catalog. The first nightly run fired the
       # full closure per target with no pacing and readthedocs.io answered 429
       # for every one of them; 2 req/s clears 52 targets in well under a minute.
@@ -89,7 +89,7 @@ jobs:
         id: verify
         shell: bash
         run: |
-          cmd=(python tools/verify_web_deployment_targets.py
+          cmd=(python -m tools.verify_web_deployment_targets
             --publish-root docs/publish
             --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
             --rps "${AUTO_MANUAL_RTD_VERIFY_RPS}"

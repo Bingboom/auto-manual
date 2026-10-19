@@ -1,0 +1,1435 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/fridgeguard_us_16-0102-000422",
+    "expected_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.15,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "source_artboard",
+      "role": "source_artboard",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Single Illustrator artboard; English pages are isolated by crop coordinates"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/je1000e-sil/us/en/overview",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1107.56494140625,
+            2140.18408203125,
+            1425.56494140625,
+            2362.68408203125
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/overview.png",
+          "scale": 3,
+          "expected_sha256": "a8894d25f8881a6ffaa7ce754e39d7703cb3365f0cb5da1015395e545770fcc4"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/lcd_map",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1483.0689697265625,
+            1932.18408203125,
+            1792.0689697265625,
+            2153.18408203125
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/lcd_map.png",
+          "scale": 3,
+          "expected_sha256": "4535df8d94feca1f95bb5579cf54f5735aee61a2f4c3c1a9feaf2fed959e462d"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/power",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2215.078125,
+            1935.18408203125,
+            2529.578125,
+            2131.68408203125
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/power.png",
+          "scale": 3,
+          "expected_sha256": "5be7e3f9f52f63b42b941591520e31068e4583f09c7dba3f634c3c05eccf6afd"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/ups",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2584.693115234375,
+            1935.90478515625,
+            2898.693115234375,
+            2178.40478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/ups.png",
+          "scale": 3,
+          "expected_sha256": "390465d222cf7307673be54596d03635ca8f8bd3dcd634402e109d146be2e78e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/stand_prepare",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2952.197021484375,
+            2005.40478515625,
+            3152.697021484375,
+            2100.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/stand_prepare.png",
+          "scale": 3,
+          "expected_sha256": "f3c2801d4215fd8145c8378277581352e2d43ed1c878ce54d8d009fc569a1c05"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/stand_1",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2952.197021484375,
+            2108.40478515625,
+            3267.197021484375,
+            2226.40478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/stand_1.png",
+          "scale": 3,
+          "expected_sha256": "e91d0deb535152e45c7f1fae84bff380544acb57a5854de4331b4349bbe3b6ed"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/stand_2",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2952.197021484375,
+            2231.40478515625,
+            3267.197021484375,
+            2362.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/stand_2.png",
+          "scale": 3,
+          "expected_sha256": "31a236ac042305189c00052740d1829bd9884da94dccc8c3af873455d4a278b3"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/stand_3",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3321.531005859375,
+            1891.90478515625,
+            3636.031005859375,
+            2023.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/stand_3.png",
+          "scale": 3,
+          "expected_sha256": "5f3ac0c4bfb8ff74ee5982d10885ad9d7289b0fff5f47a077136a8164e86c498"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_prepare",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3323.031005859375,
+            2102.90478515625,
+            3542.531005859375,
+            2240.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_prepare.png",
+          "scale": 3,
+          "expected_sha256": "2052c214796083bf3cf48cdaf02ada6272e7e95dc5739135b7aecb321fc54eac"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_1",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3321.531005859375,
+            2245.40478515625,
+            3636.031005859375,
+            2363.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_1.png",
+          "scale": 3,
+          "expected_sha256": "bf022cbaf7314e7090f04d274f49aee1765802ecd21efd3ed1357e2d44184c16"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_2_3",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3690.071044921875,
+            1891.90478515625,
+            4004.571044921875,
+            2064.40478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_2_3.png",
+          "scale": 3,
+          "expected_sha256": "6cbc37129030d5e655acd10ce0b60fa8442c0fb0a22d57a6bab69c8bb6f0cb61"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_4_5",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3690.071044921875,
+            2070.40478515625,
+            4004.571044921875,
+            2186.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_4_5.png",
+          "scale": 3,
+          "expected_sha256": "05b0d9db5fc5c39cf2a8398efe64355cc8d1ec5e3bbd60dcfddfbe17a0bb21a2"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/wood_6",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            3690.071044921875,
+            2192.40478515625,
+            4004.571044921875,
+            2361.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/wood_6.png",
+          "scale": 3,
+          "expected_sha256": "1066e3dc65598f0604b106ac4a358ae38f8a1881fb902a680657c69daa60eb54"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_prepare",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4058.0380859375,
+            1924.90478515625,
+            4373.0380859375,
+            2056.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_prepare.png",
+          "scale": 3,
+          "expected_sha256": "5750e9b759a2a3634c44b68148cfc41b8e72394025eaf8daa0c4ea31fae85159"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_1",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4058.0380859375,
+            2065.90478515625,
+            4373.0380859375,
+            2183.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_1.png",
+          "scale": 3,
+          "expected_sha256": "c9e7b64413315b274bc39d2ceaadedbbd3a5326fd9a6b216604c3c175051ec79"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_2",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4058.0380859375,
+            2189.90478515625,
+            4373.0380859375,
+            2361.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_2.png",
+          "scale": 3,
+          "expected_sha256": "398089ec77020fb0f7bcdc409bfeb366b3ddbddec53d57760f7c3b896a028e56"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_3_4",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4426.65087890625,
+            1891.90478515625,
+            4741.65087890625,
+            2121.40478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_3_4.png",
+          "scale": 3,
+          "expected_sha256": "abf397384d2c7c5a072e24f1dd20b0637fc942106be92235fb1e03e246f7d0a9"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_5_6",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4426.65087890625,
+            2127.40478515625,
+            4741.65087890625,
+            2361.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_5_6.png",
+          "scale": 3,
+          "expected_sha256": "82c8b89c5d9586f0c453d52517a4f50b9309a3d84f0a8b90fd75ffbe263a7a33"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/concrete_7_8",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4795.76513671875,
+            1891.90478515625,
+            5109.76513671875,
+            2080.40478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/concrete_7_8.png",
+          "scale": 3,
+          "expected_sha256": "a994f58e1f9a1cc01a608c9761b217b6ca0a827d5f201e73b83e10b493c86e61"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/battery",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            4795.76513671875,
+            2157.90478515625,
+            5112.76513671875,
+            2325.40478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/battery.png",
+          "scale": 3,
+          "expected_sha256": "bbfb0afc92e1f28f010aaeaa51bd2a2d1e251e8c632c2c6b74e838ba81f6a47b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/maintenance",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            5164.28515625,
+            1935.18408203125,
+            5479.28515625,
+            2055.68408203125
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/maintenance.png",
+          "scale": 3,
+          "expected_sha256": "ebb3727d071d4609f21724a23274737ae0c22bdddeea4dd53a08ab843cbab94e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/ac",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            5164.28515625,
+            2218.18408203125,
+            5479.28515625,
+            2362.68408203125
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/ac.png",
+          "scale": 3,
+          "expected_sha256": "beb200b53803e5e75e975ec565f78c12ecff816737feff43565a6610f624bb32"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/solar",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            5532.61328125,
+            1981.72998046875,
+            5848.61328125,
+            2135.22998046875
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/solar.png",
+          "scale": 3,
+          "expected_sha256": "63d0381a0a222ce3ff67b0edd60a14dc3cd5d9db82e36776ac848a50d9bb0a3f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/car",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            5532.61328125,
+            2208.22998046875,
+            5848.61328125,
+            2362.22998046875
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/car.png",
+          "scale": 3,
+          "expected_sha256": "b42cc5609e58e462f802279906efdc8fbbb3287ad472f6a4f1ef4d38f95c7878"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Source panel and crop visually reviewed; boundary corrections applied 2026-10-01"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/app_qr",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            7177.787109375,
+            1931.40478515625,
+            7230.287109375,
+            1984.90478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/app_qr.png",
+          "scale": 3,
+          "expected_sha256": "52d91cbea37c6c3dc07dda2a9348ceec8f624cea62825282f5777dc753e5ad87"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App/QR content retained only for this source target; visually reviewed complete frames and pinned by the Web illustration manifest, not a globally reusable asset."
+        ]
+      },
+      "risk_tags": [
+        "app-ui"
+      ]
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/app_1_2",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            7083.787109375,
+            2078.40478515625,
+            7248.787109375,
+            2240.40478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/app_1_2.png",
+          "scale": 3,
+          "expected_sha256": "fd01914391750f698b74a7ec7ca13a92fce6ac047ffe0185596dadc3513861bd"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App/QR content retained only for this source target; visually reviewed complete frames and pinned by the Web illustration manifest, not a globally reusable asset."
+        ]
+      },
+      "risk_tags": [
+        "app-ui"
+      ]
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/app_power",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            7006.287109375,
+            2252.90478515625,
+            7321.287109375,
+            2347.40478515625
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/app_power.png",
+          "scale": 3,
+          "expected_sha256": "22c61d36b1311304bffb43272e6b10c48f1015a37831ed8f0768b42728a6f869"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App/QR content retained only for this source target; visually reviewed complete frames and pinned by the Web illustration manifest, not a globally reusable asset."
+        ]
+      },
+      "risk_tags": [
+        "app-ui"
+      ]
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/app_3_5",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            7394.89404296875,
+            2019.40380859375,
+            7670.39404296875,
+            2182.90380859375
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/app_3_5.png",
+          "scale": 3,
+          "expected_sha256": "fe5e13572998f2fb9203c6e927e48357fe7de3b71adaffc06d50c72e0b9a01a7"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App/QR content retained only for this source target; visually reviewed complete frames and pinned by the Web illustration manifest, not a globally reusable asset."
+        ]
+      },
+      "risk_tags": [
+        "app-ui"
+      ]
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/inbox_unit",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1128.56494140625,
+            1951.68408203125,
+            1170.56494140625,
+            2037.68408203125
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/inbox_unit.png",
+          "scale": 4,
+          "expected_sha256": "63631662f44f19a79667e3b4b739357c093fc3a1522cbd5ba1a37ab9c0198f56"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Isolated source accessory drawing; shared document pictogram reused separately"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/inbox_cable",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1208.06494140625,
+            1970.18408203125,
+            1243.06494140625,
+            2023.68408203125
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/inbox_cable.png",
+          "scale": 4,
+          "expected_sha256": "326b82ea1e21956d2b93fd9b2897eead39f7b2516488dc8514b6011c329b35e1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Isolated source accessory drawing; shared document pictogram reused separately"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/en/inbox_stand",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1371.56494140625,
+            1969.68408203125,
+            1398.06494140625,
+            2023.18408203125
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/inbox_stand.png",
+          "scale": 4,
+          "expected_sha256": "edb1cf577172c8adcb06b89297b2d09fe8c5dd9b93e10eee0e8b463aeadc65a6"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Isolated source accessory drawing; shared document pictogram reused separately"
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}

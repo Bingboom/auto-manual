@@ -1,0 +1,31 @@
+{
+  "schema_version": "source-operator-acceptance/v1",
+  "target": {
+    "model": "JE-2000F",
+    "region": "EU",
+    "languages": [
+      "pt",
+      "nl",
+      "pl"
+    ]
+  },
+  "operator_quote": "上线提交发布",
+  "operator_decisions": [
+    "按波兰语的顺序调，译文直接用，上线提交发布"
+  ],
+  "date": "2026-10-10",
+  "reviewed_candidate": {
+    "engineering_pr": "Bingboom/auto-manual#1475",
+    "merged_commit": "735de9a",
+    "source_manifest_sha256": "3525990ada94228e2ba36efc07e021ff1c94123697828124521b6dec5d5d8fbd",
+    "batch_1465_changes_sha256": "8bb9a502f5dad85be9031641e8f30de98844868638c5b33354ebd0fc36f09571"
+  },
+  "decisions": {
+    "ups_callout_order": "pt and nl follow the Polish UPS chapter: CAUTION callout before WARNING callout (block order only)",
+    "translations": "the six supplied batch-1465 notices are published as delivered (pt-PT localized from pt-BR, nl, pl); linguistic review/TM upsert is not a release gate"
+  },
+  "original_source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "revision_pdf_sha256": "9a8d19cbd961c7c24b1dd1c16698b637bf4c037d679264a5f9c73eeea873f690",
+  "merge_authorization": "Operator review and merge of the engineering PR (AGENTS.md §8.6); no agent self-merge grant.",
+  "scope": "Git-only pt/nl/pl Web release of git-20261010-1465-web; en/fr/es/de/it/uk and the superseded package unchanged; no Base, queue, source-table, asset-registry or HTML_link writes."
+}

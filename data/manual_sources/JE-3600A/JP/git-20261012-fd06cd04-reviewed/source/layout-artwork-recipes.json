@@ -1,0 +1,167 @@
+[
+  {
+    "asset": "app-phones-native-p28.svg",
+    "physical_page": 28,
+    "source_sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6",
+    "crop": [
+      95.50698852539062,
+      216.62469482421875,
+      254.64010620117188,
+      371
+    ],
+    "drawing_indices": [
+      253,
+      256,
+      257,
+      300
+    ],
+    "embedded_images": [
+      {
+        "xref": 370,
+        "bbox": [
+          189.59967041015625,
+          218.3783416748047,
+          253.1034393310547,
+          355.8070068359375
+        ],
+        "width": 1170,
+        "height": 2532
+      },
+      {
+        "xref": 371,
+        "bbox": [
+          97.03240966796875,
+          218.27333068847656,
+          160.72573852539062,
+          356.11224365234375
+        ],
+        "width": 1170,
+        "height": 2532
+      },
+      {
+        "xref": 372,
+        "bbox": [
+          99.45375061035156,
+          236.45285034179688,
+          158.16921997070312,
+          269.29632568359375
+        ],
+        "width": 379,
+        "height": 212
+      }
+    ],
+    "operator": "native_art_svg preserves all native clipping, transforms, opacity and image layers; source text supplied as live captions",
+    "sha256": "9801f19d114a6607a01ec86d6989e08abf026e86de7cebb0565b9958e3b67db3"
+  },
+  {
+    "asset": "app-phones-native-p29.svg",
+    "physical_page": 29,
+    "source_sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6",
+    "crop": [
+      63.794700622558594,
+      178.33596801757812,
+      300.6514892578125,
+      332.9549560546875
+    ],
+    "drawing_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "embedded_images": [
+      {
+        "xref": 378,
+        "bbox": [
+          238.46539306640625,
+          179.4718017578125,
+          298.9430236816406,
+          300.42706298828125
+        ],
+        "width": 750,
+        "height": 1500
+      },
+      {
+        "xref": 379,
+        "bbox": [
+          238.39866638183594,
+          179.5591583251953,
+          298.8621826171875,
+          310.48284912109375
+        ],
+        "width": 750,
+        "height": 1624
+      },
+      {
+        "xref": 380,
+        "bbox": [
+          238.46527099609375,
+          179.6800537109375,
+          298.9428405761719,
+          310.5597229003906
+        ],
+        "width": 1170,
+        "height": 2532
+      },
+      {
+        "xref": 381,
+        "bbox": [
+          151.74073791503906,
+          179.60987854003906,
+          212.32662963867188,
+          310.72393798828125
+        ],
+        "width": 1170,
+        "height": 2532
+      },
+      {
+        "xref": 382,
+        "bbox": [
+          65.27932739257812,
+          179.88058471679688,
+          125.89344787597656,
+          311.0557556152344
+        ],
+        "width": 1170,
+        "height": 2532
+      },
+      {
+        "xref": 383,
+        "bbox": [
+          238.5305938720703,
+          184.70101928710938,
+          299.78460693359375,
+          317.3662109375
+        ],
+        "width": 591,
+        "height": 1280
+      }
+    ],
+    "operator": "native_art_svg preserves all native clipping, transforms, opacity and image layers; source text supplied as live captions",
+    "sha256": "4955052db7058903f37e07da6ac080186d08b88c66b31ba42ce34c72e6d39f30"
+  },
+  {
+    "asset": "native-key-clock.svg",
+    "physical_page": 15,
+    "source_sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6",
+    "crop": [
+      163.7,
+      310.7,
+      174.9,
+      321.9
+    ],
+    "drawing_indices": [
+      20,
+      21
+    ],
+    "operator": "native_symbol_svg retains complete clock glyph and real transparency",
+    "sha256": "6868179c99f3f7e885860ddfee41e8aee1385f1ed713aa8fb19abba4039a6430"
+  }
+]

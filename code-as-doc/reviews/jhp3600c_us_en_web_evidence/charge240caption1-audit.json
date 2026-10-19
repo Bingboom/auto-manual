@@ -1,0 +1,118 @@
+{
+  "scope": "local-only",
+  "sourceCommit": "9e8043f34214cdf6463c605ea8a105f1644c3186",
+  "checks": [
+    {
+      "artRect": [
+        314.59375,
+        364.2890625,
+        1131.625,
+        635.765625
+      ],
+      "externalCopyCount": 0,
+      "font": "15.5236px",
+      "headingAvailabilityLabels": 7,
+      "headingGap": 7.9921875,
+      "headings": 84,
+      "imageSource": "../../../../_static/manual-assets/_pool/78/78421e939d39ded94f7ec9c48de298d160fb082d1302f8aef16d395679252632.png",
+      "insideArtwork": true,
+      "labelCount": 1,
+      "labelRect": [
+        672.609375,
+        568,
+        1097.4609375,
+        611.4296875
+      ],
+      "loaded": true,
+      "overflow": false,
+      "position": "absolute",
+      "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (Sold Separately).",
+      "userSelect": "auto",
+      "width": 1440
+    },
+    {
+      "artRect": [
+        16,
+        348.734375,
+        625,
+        551.0859375
+      ],
+      "externalCopyCount": 0,
+      "font": "11.571px",
+      "headingAvailabilityLabels": 7,
+      "headingGap": 7.9921875,
+      "headings": 84,
+      "imageSource": "../../../../_static/manual-assets/_pool/78/78421e939d39ded94f7ec9c48de298d160fb082d1302f8aef16d395679252632.png",
+      "insideArtwork": true,
+      "labelCount": 1,
+      "labelRect": [
+        282.859375,
+        500.578125,
+        599.5390625,
+        532.953125
+      ],
+      "loaded": true,
+      "overflow": false,
+      "position": "absolute",
+      "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (Sold Separately).",
+      "userSelect": "auto",
+      "width": 641
+    },
+    {
+      "artRect": [
+        16,
+        390.7421875,
+        374,
+        509.6953125
+      ],
+      "externalCopyCount": 0,
+      "font": "8px",
+      "headingAvailabilityLabels": 7,
+      "headingGap": 7.9921875,
+      "headings": 84,
+      "imageSource": "../../../../_static/manual-assets/_pool/78/78421e939d39ded94f7ec9c48de298d160fb082d1302f8aef16d395679252632.png",
+      "insideArtwork": true,
+      "labelCount": 1,
+      "labelRect": [
+        159.1953125,
+        472.8125,
+        363.25,
+        491.84375
+      ],
+      "loaded": true,
+      "overflow": false,
+      "position": "absolute",
+      "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (Sold Separately).",
+      "userSelect": "auto",
+      "width": 390
+    },
+    {
+      "artRect": [
+        16,
+        373.71875,
+        304,
+        469.4140625
+      ],
+      "externalCopyCount": 0,
+      "font": "8px",
+      "headingAvailabilityLabels": 7,
+      "headingGap": 7.9921875,
+      "headings": 84,
+      "imageSource": "../../../../_static/manual-assets/_pool/78/78421e939d39ded94f7ec9c48de298d160fb082d1302f8aef16d395679252632.png",
+      "insideArtwork": true,
+      "labelCount": 1,
+      "labelRect": [
+        131.1953125,
+        439.7421875,
+        295.3515625,
+        467.5625
+      ],
+      "loaded": true,
+      "overflow": false,
+      "position": "absolute",
+      "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (Sold Separately).",
+      "userSelect": "auto",
+      "width": 320
+    }
+  ]
+}

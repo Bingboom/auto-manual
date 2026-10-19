@@ -22,5 +22,5 @@
 - Lint: `python3 -m ruff check build.py integrations tools tests scripts`
 - Full logic suite: `python3 -m unittest`
 - Utility types: `python3 -m mypy tools/utils`
-- Guardrails: `python3 tools/check_maintainability_guardrails.py`
+- Guardrails: `python3 -m tools.check_maintainability_guardrails`
 - Build check: `python3 build.py check --config configs/config.us.yaml --model JE-1000F --region US`

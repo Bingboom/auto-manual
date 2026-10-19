@@ -115,11 +115,18 @@ body {
 #furo-main-content > section,
 #furo-main-content > section > section {
   margin-top: 2.8rem;
-  scroll-margin-top: 1.5rem;
+  scroll-margin-top: 4rem;
 }
 
 #furo-main-content > section:first-child {
   margin-top: 0;
+}
+
+/* Match Furo's navigation-collapse breakpoint; clear the header and back-to-top. */
+@media (max-width: 63em) {
+  #furo-main-content :is(section[id], :target) {
+    scroll-margin-top: calc(var(--header-height, 3rem) + 3rem);
+  }
 }
 
 /* All full-width manual components share one outer-width and box-model contract. */
@@ -591,7 +598,8 @@ body {
   color: var(--hb-text);
 }
 
-.hb-warranty-intro-panel {
+.hb-warranty-intro-panel,
+.hb-text-panel {
   box-sizing: border-box;
   padding: 0.9rem 1.05rem;
   border-radius: 0.88rem;
@@ -648,6 +656,12 @@ body {
 #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child::before,
 #furo-main-content section:has(> figure.hb-warranty-period-card) > h2:first-child::before {
   display: none;
+}
+
+/* Target highlighting must not remove the white-text title's dark fill. */
+#furo-main-content section:target:has(> figure.hb-warranty-card) > h2:first-child,
+#furo-main-content section:target:has(> figure.hb-warranty-period-card) > h2:first-child {
+  background: var(--hb-brand-dark) !important;
 }
 
 #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child .headerlink,
@@ -870,7 +884,7 @@ body {
   border-bottom: 0 !important;
 }
 
-#furo-main-content table.hb-lcd-icon-table td:last-child {
+#furo-main-content table.hb-lcd-icon-table td.hb-lcd-description {
   border-right: 0 !important;
 }
 
@@ -1021,6 +1035,33 @@ body {
   align-items: center;
   justify-content: center;
   min-width: 0;
+}
+
+/* Tall device artwork leaves most of the row for its operation matrix. */
+.hb-lcd-mode-composition.hb-lcd-mode-portrait {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-art {
+  max-height: 25rem;
+  object-fit: contain;
+}
+
+.hb-lcd-mode-portrait .hb-lcd-mode-table-panel {
+  align-self: stretch;
+}
+
+#furo-main-content .hb-lcd-mode-portrait table.hb-lcd-mode-table {
+  height: 100%;
+  font-size: 0.9rem;
+  line-height: 1.23;
+}
+
+#furo-main-content .hb-lcd-mode-portrait .hb-lcd-mode-action {
+  font-weight: 400;
 }
 
 #furo-main-content .hb-lcd-mode-art {
@@ -1238,13 +1279,13 @@ body {
 .hb-app-download-composition {
   width: 100%;
   max-width: var(--hb-reading-width);
-  margin: 1rem auto 2rem;
+  margin: 0.6rem auto 1.1rem;
 }
 
 .hb-app-download-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2.5rem, 9vw, 7rem);
+  gap: clamp(1.2rem, 5vw, 3rem);
 }
 
 .hb-app-download-column {
@@ -1255,7 +1296,7 @@ body {
 
 .hb-app-download-art-frame {
   display: grid;
-  min-height: clamp(8rem, 18vw, 14rem);
+  min-height: clamp(7rem, 14vw, 9rem);
   place-items: center;
 }
 
@@ -1268,12 +1309,12 @@ body {
 
 #furo-main-content .hb-app-download-art-store {
   width: 60% !important;
-  max-width: 19rem !important;
+  max-width: 10rem !important;
 }
 
 #furo-main-content .hb-app-download-art-qr {
   width: 44% !important;
-  max-width: 15rem !important;
+  max-width: 7.25rem !important;
 }
 
 .hb-app-download-copy {
@@ -1560,6 +1601,10 @@ body {
     border-radius: 0.9rem;
   }
 
+  .hb-lcd-mode-composition.hb-lcd-mode-portrait {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   #furo-main-content .hb-lcd-mode-art {
     width: min(92%, 26rem) !important;
   }
@@ -1573,13 +1618,20 @@ body {
     margin-top: 2rem;
     padding: 1.05rem 0.75rem 0.72rem;
     border-radius: 0.7rem;
+    /* The title sits above the border; keep it clear when this card is targeted. */
+    scroll-margin-top: calc(var(--header-height, 3rem) + 4rem);
   }
 
   #furo-main-content section:has(> figure.hb-warranty-card) > h2:first-child,
   #furo-main-content section:has(> figure.hb-warranty-period-card) > h2:first-child {
-    top: -0.78rem;
-    left: 0.72rem;
-    max-width: calc(100% - 1.44rem);
+    /* Native headings may wrap; their full height must reserve body space. */
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: -1.83rem 0 0.3rem;
     padding: 0.3rem 0.58rem 0.28rem;
     font-size: 0.92rem;
   }
@@ -1722,8 +1774,8 @@ body {
   }
 
   .hb-app-download-copy {
-    font-size: 0.76rem;
-    line-height: 1.28;
+    font-size: 0.875rem;
+    line-height: 1.35;
   }
 
   .hb-annotated-stage,
@@ -1803,6 +1855,8 @@ body {
 .hb-reference-lcd-actions td:nth-child(2),
 .hb-reference-lcd-actions th:nth-child(2) { width: 18%; }
 .hb-reference-symbol-meanings td { width: 50%; }
+.hb-reference-lcd-descriptions td:first-child { width: 35%; }
+.hb-reference-lcd-descriptions td:last-child { width: 65%; }
 @media (max-width: 42rem) {
   .hb-reference-table th, .hb-reference-table td { padding: 0.5rem; }
 }

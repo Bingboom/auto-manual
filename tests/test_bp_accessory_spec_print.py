@@ -5,7 +5,7 @@ formatting keeps the house rules. Every expectation below names its PDF page:
 
 - JBP-2000B EUUK V2.0-2026-09-11: pages 12/20/28/36/44 (en/fr/es/de/it).
 - JBP-3600A EUUK V2.0-2026-08-04: page 11 (en).
-- JA-AD600A EUUK V2.0-2026-05-29: page 5 (en).
+- JA-AD600A operator AI HTO814-EU-9国语言-0924 (1).ai: physical page 4 (en).
 - JS-100I EUUK V2.0-2026-04-01: page 11 (en).
 """
 
@@ -148,8 +148,8 @@ class BatteryPackSpecPrintTests(unittest.TestCase):
 class AccessorySpecHeadingTests(unittest.TestCase):
     def test_ja_ad600a_page_title_is_the_printed_heading(self) -> None:
         content = spec_content(JA_AD600A, "JA-AD600A", "en")
-        # Printed "2. TECHNICAL SPECIFICATIONS"; Web headings drop section numbers.
-        self.assertEqual("TECHNICAL SPECIFICATIONS", content["title_main"])
+        # Current operator source retains its eight chapter numbers on the Web.
+        self.assertEqual("2. TECHNICAL SPECIFICATIONS", content["title_main"])
         rows = [row for section in content["sections"] for row in section["rows"]]
         self.assertEqual(13, len(rows))
         self.assertEqual(("Product Name", "Jackery DC-DC Charger"), rows[0])

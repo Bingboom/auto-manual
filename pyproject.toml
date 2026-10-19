@@ -16,7 +16,7 @@ extend-exclude = [
 # Audited B023 false positives carry an inline `# noqa: B023 -- <reason>`;
 # intentional re-exports use the redundant-alias form (`name as name`).
 # Plan: code-as-doc/dev/code_quality_iterability_plan.md (CQ-4).
-select = ["E722", "F", "B023", "B904", "PLW1510"]
+select = ["E722", "F", "B023", "B904", "B905", "PLW1510"]
 
 [tool.ruff.lint.per-file-ignores]
 # Test helpers routinely build per-iteration closures that run immediately.
@@ -24,7 +24,7 @@ select = ["E722", "F", "B023", "B904", "PLW1510"]
 # The queue facade hands itself to helper modules via _service_module(), which
 # read its re-exported names dynamically; static unused-import analysis cannot
 # see those uses. Removing the forwarders is tracked as plan item CQ-2.4.
-"tools/process_build_queue.py" = ["F401"]
+"tools/build_queue/process_build_queue.py" = ["F401"]
 
 [tool.mypy]
 python_version = "3.12"
@@ -38,3 +38,8 @@ warn_redundant_casts = true
 module = "tools.utils.*"
 disallow_untyped_defs = true
 warn_return_any = true
+
+# CQ-4.5: these packages have no untyped defs; tools/check_mypy_ratchet.py keeps it so in CI.
+[[tool.mypy.overrides]]
+module = ["tools.manual_ir.*", "tools.component_specs.*", "tools.csv_pages.*"]
+disallow_untyped_defs = true

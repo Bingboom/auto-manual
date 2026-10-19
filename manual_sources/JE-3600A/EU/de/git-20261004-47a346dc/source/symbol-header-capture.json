@@ -1,0 +1,24 @@
+{
+  "physical_page": 59,
+  "method": "complete native header spans separated from body",
+  "spans": [
+    {
+      "text": "Symbol",
+      "bbox_pt": [
+        37.0713005065918,
+        374.36090087890625,
+        64.32730102539062,
+        384.264892578125
+      ]
+    },
+    {
+      "text": "Bedeutung",
+      "bbox_pt": [
+        136.5832977294922,
+        374.36090087890625,
+        177.6952667236328,
+        384.264892578125
+      ]
+    }
+  ]
+}

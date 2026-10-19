@@ -1,0 +1,27 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    3690.071044921875,
+    2192.02,
+    4004.571044921875,
+    2361.90478515625
+  ],
+  "sha256": "b3bc37532b4a6a48d53fdea7b7ab2f1ac6ad712ac8835fda42824b567a7ea3eb",
+  "labels": [
+    {
+      "line": 0,
+      "rect": [
+        3.0721352096581875,
+        5.49733211881537,
+        93.69083490659777,
+        0.0
+      ]
+    }
+  ],
+  "source_text": [
+    "6. Hang the product onto the screw vertically. Drive a self tapping screw through the mounting hole in the\nbottom bracket into the wall and tighten it. Then, fully tighten the wood screw."
+  ],
+  "policy": "All PDF annotation text extracted; retain original grey frames, dashed box, artwork and product engravings."
+}

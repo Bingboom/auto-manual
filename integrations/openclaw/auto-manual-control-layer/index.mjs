@@ -11,6 +11,7 @@ import { loadSettings, missingSettings } from "./lib/config.mjs";
 import { dispatchCommandFlow, resolveTrackedRun } from "./lib/dispatch-flow.mjs";
 import { createGitHubClient } from "./lib/github-client.mjs";
 import { createStateStore } from "./lib/state-store.mjs";
+import { registerManualQuery } from "./lib/manual-query/plugin.mjs";
 
 async function dispatchCommand(ctx, api, command) {
   const settings = loadSettings(api.pluginConfig ?? {}, api.resolvePath);
@@ -114,6 +115,7 @@ const plugin = {
   name: "BlockClaw Auto Manual Operator",
   description: "Runs BlockClaw manual review/build/publish dispatches and reports GitHub run status.",
   register(api) {
+    registerManualQuery(api);
     for (const command of COMMAND_DEFINITIONS) {
       api.registerCommand({
         name: command.commandName,

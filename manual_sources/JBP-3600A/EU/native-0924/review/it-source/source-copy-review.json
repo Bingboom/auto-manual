@@ -1,0 +1,77 @@
+{
+  "status": "producer-native-source-review-only",
+  "language": "it",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "copy_map_sha256": "b91742ab46eb02a99923c5d538a9c8db3945d9563d9df91954bd9603179ac2bc",
+  "explicit_mappings": 169,
+  "viewed_pages": [
+    2,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "shared_legal_page": 79,
+  "critical_checks": [
+    "Native safety,signal/symbol descriptions,operation and caution wording checked",
+    "Native specifications and units checked without English-value substitution",
+    "Troubleshooting actions and codes checked",
+    "Native storage/recharge maintenance intervals checked",
+    "Native warranty terms,exclusions,3+2year badges and contact identity checked",
+    "Inline x5 position verified and existing candidate bytes selected for reuse"
+  ],
+  "native_exceptions": [
+    "Native inbox cable is labelled Cavo di ricarica CA; retained alongside the unchanged expansion cable art.",
+    "Native general heading starts NFORMAZIONI; retained.",
+    "Native cycle-life and environmental-temperature heading remain English.",
+    "Native warranty omits 36-month sentence but shows 3+2-year badges; native text retained.",
+    "Native specification adds maximum short-circuit-current/duration row 1160A/860μs.",
+    "Second clearance label reads ≥≈200 mm; retained.",
+    "Native operation text says ucita; retained.",
+    "Native charge-temperature label reads Temperatura di caricatra; retained."
+  ],
+  "browser_acceptance": false,
+  "publication_eligible": false,
+  "files": [
+    {
+      "path": "pages/it-2.png",
+      "sha256": "a2e5d4a7a08ae4d3b2ab5e0657daa64a66ce62bbfb87117cb3809f390a512400"
+    },
+    {
+      "path": "pages/it-39.png",
+      "sha256": "5b5d4b4144b89fc15aed35d13c7027f6adde657e51e20bf622e3556560a44331"
+    },
+    {
+      "path": "pages/it-40.png",
+      "sha256": "eecd93dcc0ae505b5e641e4b76caaadf61a1652f77fe50eacda12b1dc8814747"
+    },
+    {
+      "path": "pages/it-41.png",
+      "sha256": "3ac41c3456edf74a846601bc07d2e8247da35d73d9d5372ff024427270a8235d"
+    },
+    {
+      "path": "pages/it-42.png",
+      "sha256": "9a6cfe2921eb84646dbfb415ca6a47beaa76e6ee92dbdfdab62a755b5b5f3742"
+    },
+    {
+      "path": "pages/it-43.png",
+      "sha256": "d277b2f81f3c9fb096f4fefc3e7051ec71ef4e7b281fb9982e1d95a6be3bc255"
+    },
+    {
+      "path": "pages/it-44.png",
+      "sha256": "84834eee447fea899f241e944855b459a6345758c40c67e357ef5729bb718f33"
+    },
+    {
+      "path": "pages/it-45.png",
+      "sha256": "8c9b666b68428f4ef569269923d910585a2c0c0dee820605ac998b1b7d570b43"
+    },
+    {
+      "path": "pages/it-46.png",
+      "sha256": "722e023432ac9f429f8507eca261e3236c4bd651f5190c5c437d66c9ccd2d18b"
+    }
+  ]
+}

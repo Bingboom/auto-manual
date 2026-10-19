@@ -19,8 +19,10 @@ from tools import (
     check_complexity_ratchet,
     check_facade_patch_ratchet,
     check_language_literal_ratchet,
+    check_top_level_module_ratchet,
 )
 from tools.utils.path_utils import PathSegments, renderer_contracts_of
+from tools.web import frozen_package_registry
 
 
 # Thresholds are set ~25-100 lines above the current size of files that have
@@ -33,49 +35,54 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # (import + 7-line resolver + call site). Bundle-path resolution lives in
     # tools/release_asset_lineage.py, so this is the irreducible minimum.
     "build.py": 761,
-    "tools/build_docs.py": 860,
-    "tools/process_build_queue.py": 650,
+    "tools/build/docs.py": 830,
+    "tools/build_queue/process_build_queue.py": 565,
     "tools/validate_spec_master_runtime.py": 880,
-    "tools/check_docs_generated.py": 880,
-    "tools/word_bundle_docx.py": 740,
-    "tools/word_bundle_docx_styles.py": 1080,
-    "tools/queue_query.py": 1200,
+    "tools/check/docs_generated.py": 880,
+    "tools/word/bundle_docx.py": 740,
+    "tools/word/bundle_docx_styles.py": 1080,
+    # 1200 -> 1240: CQ-3.4 split infer_queue_query_from_text (68 -> 21) into
+    # action / scope / prefix / task-id helpers; the growth is their signatures.
+    "tools/build_queue/query.py": 1240,
     "tools/spec_master_rebuild.py": 1150,
     "tools/process_docs/build_review_preview_targets.py": 430,
-    "tools/queue_lark_ops.py": 360,
+    "tools/build_queue/lark_ops.py": 360,
     # Backport / data-sync surface — previously ungoverned and grew unchecked
     # (cloud_doc_backport.py reached 4183 lines outside any threshold). Now capped.
-    # cloud_doc_backport.py is set EXACTLY at its current size (no headroom) so the
-    # in-progress decomposition can only push it DOWN, never up.
-    "tools/cloud_doc_backport.py": 210,
+    # The facade (tools/backport/cloud_doc.py since CQ-1.3) is set EXACTLY at its
+    # current size (no headroom) so the decomposition can only push it DOWN, never up.
+    "tools/backport/cloud_doc.py": 210,
     # G0 split of the former 1400-line CLI conductor: dispatcher / argparse /
     # single-command runners / multi-step orchestration, one-way imports only.
-    "tools/cloud_doc_backport_cli.py": 260,
-    "tools/cloud_doc_backport_args.py": 470,
-    "tools/cloud_doc_backport_commands.py": 550,
+    "tools/backport/cli.py": 260,
+    "tools/backport/args.py": 470,
+    "tools/backport/commands.py": 550,
     # 880 -> 950: the cross-page-ambiguity plan pass and the per-page gate check
     # (apply-safety fixes) are correctness guards that belong next to the apply
     # loops they protect.
-    "tools/cloud_doc_backport_orchestration.py": 950,
+    # 950 -> 1000: CQ-3.4 split _run_review_branch (50 -> 31) and
+    # _run_review_branch_baseline (58 -> 35) into seed / plan / apply / per-page
+    # worker helpers; the growth is their signatures.
+    "tools/backport/orchestration.py": 1000,
     # 880 -> 900: the delete-verify block-presence check (apply-parity accuracy
     # fix) is a correctness guard that belongs next to the verify verdicts.
-    "tools/cloud_doc_backport_reports.py": 900,
-    "tools/sync_data_runtime.py": 900,
+    "tools/backport/reports.py": 900,
+    "tools/data/sync_data_runtime.py": 900,
     "tools/content_lint.py": 800,
     "tools/translation_memory.py": 790,
-    "tools/source_record_index.py": 500,
-    "tools/source_table_sync.py": 500,
+    "tools/data/source_record_index.py": 500,
+    "tools/data/source_table_sync.py": 500,
     # Web manual presentation surface — source styles are component modules but
     # assemble into one public RTD asset. Keep the orchestration façade, reusable
     # reference component helper, and stylesheet assembler independently pinned.
-    "tools/web_presentation.py": 2134,
-    "tools/web_reference_components.py": 161,
+    "tools/web/presentation.py": 2134,
+    "tools/web/reference_components.py": 161,
     # Component migrations add ordered stylesheet modules while the assembler
     # remains intentionally logic-free and stays at its existing line cap.
     # 40 -> 41: one ordered module entry for the base-art Operation styles.
-    "tools/web_stylesheets.py": 41,
-    "tools/web_fcc_component.py": 150,
-    "tools/web_inbox_component.py": 120,
+    "tools/web/stylesheets.py": 41,
+    "tools/web/fcc_component.py": 150,
+    "tools/web/inbox_component.py": 120,
     "tools/component_specs/fcc.py": 280,
     "tools/component_specs/fcc_adapters.py": 150,
     "tools/component_specs/fcc_html.py": 220,
@@ -88,23 +95,25 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/component_specs/overview.py": 370,
     "tools/component_specs/overview_adapters.py": 220,
     "tools/component_specs/overview_html.py": 240,
-    "tools/component_specs/overview_instance.py": 430,
-    "tools/web_overview_component.py": 190,
+    # 430 -> 475: CQ-3.4 split _validate_instance (CC 56 -> 20) into per-view,
+    # per-callout and decorative-leader validators; the growth is their signatures.
+    "tools/component_specs/overview_instance.py": 475,
+    "tools/web/overview_component.py": 190,
     "tools/idml/page_overview.py": 570,
-    "tools/word_bundle_html_render.py": 330,
-    "tools/word_inbox_component.py": 150,
+    "tools/word/bundle_html_render.py": 330,
+    "tools/word/inbox_component.py": 150,
     # Registered 2026-08-03 at 469 lines with 31 lines of growth headroom.
     "tools/sync_web_composites.py": 500,
     # Registered 2026-08-03 at 434 lines with 31 lines of growth headroom.
     "tools/publish_branch_assembly.py": 465,
     # Registered 2026-08-03 at 347 lines with 33 lines of growth headroom.
-    "tools/web_composite_manifest.py": 380,
+    "tools/web/composite_manifest.py": 380,
     # Registered 2026-08-03 at 202 lines with 38 lines of growth headroom.
     # 240 -> 242: a base-art figure stops after its identity attributes are
-    # bound; its layout lives in tools/web_base_art_operation.py.
-    "tools/web_composite_presentation.py": 242,
+    # bound; its layout lives in tools/web/base_art_operation.py.
+    "tools/web/composite_presentation.py": 242,
     # Registered 2026-08-03 at 139 lines with 41 lines of growth headroom.
-    "tools/web_symbol_components.py": 180,
+    "tools/web/symbol_components.py": 180,
     # Registered 2026-08-03 at 201 lines with 39 lines of growth headroom.
     "tools/dingtalk_delivery_map.py": 240,
     # Registered 2026-08-03 at 517 lines with 43 lines of growth headroom.
@@ -123,8 +132,9 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # (1470 -> 1260; extractor +9 for the parity constant); P3 moved the
     # story builders and composed-page assemblers out (1260 -> 647); P4 moved
     # package assembly (spread chain / designmap / zip) out (647 -> 563).
-    "tools/export_idml.py": 604,  # back-cover placement policy lives in tools/idml/page_placed.py
-    "tools/idml_rst_extract.py": 520,
+    "tools/export_idml.py": 230,  # the production pass lives in tools/idml/reference_export.py
+    # CQ-3.4 moved the scanner's line-structure steps to idml_rst_line_blocks.py (478 -> 282).
+    "tools/idml_rst_extract.py": 300,
     "tools/idml/primitives.py": 300,
     "tools/idml/styles.py": 220,
     # loaders 220 -> 290: the spec footnote ①-marker mirror (PDF-renderer
@@ -139,6 +149,29 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     "tools/idml/stories.py": 259,
     "tools/idml/pages.py": 500,
     "tools/idml/package.py": 160,
+    # Agent-facing docs (2026-10-10 split). Every agent loads AGENTS.md and is
+    # pointed at the rest; the guides had grown to ~76K/~70K tokens because notes
+    # were appended to the hub. The hubs are now indexes over topic pages: put new
+    # content on the owning page, add an index row only for a new page. The live
+    # files shrink by moving entries out: expired grants to
+    # dev/merge_authorizations_archive.md, oldest log records to
+    # code_optimization_log_archive.md.
+    "AGENTS.md": 210,
+    "code-as-doc/build_doc_guide.md": 80,
+    "user-guide/hello_auto-doc.md": 65,
+    "code-as-doc/dev/merge_authorizations.md": 150,
+    "code-as-doc/code_optimization_log.md": 250,
+    # The optimization checklist (~40K tokens) and the style definition (~37K)
+    # became indexes the same way on 2026-10-12: milestones and sections live on
+    # their pages. STYLE_DEFINITION.md keeps §1 and §8 because tests read them.
+    "code-as-doc/next_optimization_checklist.md": 190,
+    "docs/renderers/contracts/STYLE_DEFINITION.md": 270,
+    # 2026-10-13: the module map, the RTD portal doc, the Web publish contract and the
+    # quick start (11-15K tokens each) became indexes too; notes go to their pages.
+    "code-as-doc/dev/orchestration_module_map.md": 100,
+    "code-as-doc/dev/rtd_manual_portal.md": 40,
+    "code-as-doc/dev/web_publish_pipeline.md": 70,
+    "user-guide/quick_start_guide.md": 110,
 }
 
 
@@ -269,7 +302,11 @@ def _registered_web_models(repo_root: Path) -> tuple[str, ...]:
 def _shared_web_python_files(repo_root: Path) -> tuple[Path, ...]:
     tools_root = repo_root / PathSegments.TOOLS
     paths = set(tools_root.glob("web_*.py"))
-    for directory in (tools_root / "manual_ir", tools_root / "component_specs"):
+    for directory in (
+        tools_root / "web",
+        tools_root / "manual_ir",
+        tools_root / "component_specs",
+    ):
         if directory.is_dir():
             paths.update(directory.rglob("*.py"))
     return tuple(sorted(path for path in paths if path.is_file()))
@@ -376,6 +413,14 @@ def main(argv: list[str] | None = None) -> int:
     broad_excepts = check_broad_except_ratchet.check_repository(args.repo_root.resolve())
     if broad_excepts.exit_code:
         return broad_excepts.exit_code
+
+    top_level = check_top_level_module_ratchet.check_repository(args.repo_root.resolve())
+    if top_level.exit_code:
+        return top_level.exit_code
+
+    frozen_packages = frozen_package_registry.check_repository(args.repo_root.resolve())
+    if frozen_packages.exit_code:
+        return frozen_packages.exit_code
 
     print(
         f"[maintainability] Guardrails OK for {len(HOTSPOT_LINE_THRESHOLDS)} hotspot files."

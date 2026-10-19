@@ -28,7 +28,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.source_table_sync import (  # noqa: E402
+from tools.data.source_table_sync import (  # noqa: E402
     _resolve_written_value,
     apply_change_requests,
     plan_apply,
@@ -192,7 +192,7 @@ class PlanApplyGateMatrixTests(unittest.TestCase):
 
     def test_full_gate_matrix(self) -> None:
         for combo in itertools.product((False, True), repeat=len(_GATES)):
-            flags = dict(zip(_GATES, combo))
+            flags = dict(zip(_GATES, combo, strict=True))
             with self.subTest(**flags):
                 request = self._request_for(flags)
                 approved = {"h1"} if flags["approved"] else set()

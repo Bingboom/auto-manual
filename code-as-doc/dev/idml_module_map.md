@@ -10,9 +10,14 @@ golden byte-comparison test at every phase).
 ## Layers (imports point downward only)
 
 ```
-tools/export_idml.py          façade + CLI: main()'s page-composition state machine,
-                              IdmlWriter (state: params/geometry + stories/spreads sinks;
-                              every method is a thin delegate), full re-export surface
+tools/export_idml.py          façade + CLI: main() parses and dispatches to _cmd_check /
+                              _cmd_flow / _cmd_reference; _cmd_reference prepares the
+                              same-source IR and page plan
+tools/idml/reference_export.py
+                              ReferenceExport: the production page-composition pass
+                              (cursor, pending prose/FCC/safety prefix, emitted pages
+                              as instance state; one method per page kind), then
+                              TOC/folio/package/self-check in finish()
 tools/bundle_asset_manifest.py
                               fail-closed renderer boundary for semantic bundle assets:
                               schema/target/consumer/format/path/hash validation;
@@ -122,6 +127,9 @@ tools/idml_rst_extract.py     prepared-bundle RST -> block stream; owns componen
                               test-enforced)
 tools/idml_rst_tables.py      prepared-bundle RST table parsing helpers used by the
                               extractor
+tools/idml_rst_line_blocks.py line-structure steps of the extractor's scanner (comments,
+                              titles, grid tables, line blocks, lists, paragraphs);
+                              directives stay in idml_rst_extract.py
 tools/reference_layout_rebind.py
                               dry-run-by-default maintainer CLI for the atomic approved-
                               contract source rebind; never edits composition geometry
@@ -254,13 +262,13 @@ tools/reference_layout_scaffold.py
 - `python build.py idml --idml-mode both --model M --region R [--lang L]`
   writes the production IDML, the flow artifacts, and the design handoff package
   in one run
-- `python tools/export_idml.py …` (direct CLI; `--check <file.idml>` validates)
-- `python tools/reference_layout_rebind.py --plan <approved.json> --manual-ir
+- `python -m tools.export_idml …` (direct CLI; `--check <file.idml>` validates)
+- `python -m tools.reference_layout_rebind --plan <approved.json> --manual-ir
   <manual.ir.json> [--write]` (complete source rebind; dry-run by default)
-- `python tools/reference_layout_scaffold.py --seed-plan <approved.json>
+- `python -m tools.reference_layout_scaffold --seed-plan <approved.json>
   --manual-ir <manual.ir.json> --output <draft.json>` (composition-preserving,
   non-activating draft)
-- `python tools/indesign_finalize.py --jobs <manifest.json>` (design-host batch
+- `python -m tools.indesign_finalize --jobs <manifest.json>` (design-host batch
   orchestration: explicit print contract per job, one JSX outer loop per
   InDesign application group, isolated per-document finalize reports, and
   incomplete InDesign-package inventory)

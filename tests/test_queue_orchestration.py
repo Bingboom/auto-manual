@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from tools.queue_orchestration import sync_phase2_snapshot_once
+from tools.build_queue.orchestration import sync_phase2_snapshot_once
 
 
 class TestQueueOrchestration(unittest.TestCase):

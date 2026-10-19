@@ -1,0 +1,51 @@
+{
+  "scope": "local-only",
+  "checks": [
+    {
+      "bodyParagraphs": 0,
+      "headingCount": 84,
+      "items": [
+        "Make sure the AC charging cable is fully and securely plugged into the AC input port.",
+        "An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction."
+      ],
+      "label": "CAUTION",
+      "left": 314.59375,
+      "listCount": 1,
+      "listStyle": "disc",
+      "overflow": false,
+      "right": 1131.625,
+      "width": 1440
+    },
+    {
+      "bodyParagraphs": 0,
+      "headingCount": 84,
+      "items": [
+        "Make sure the AC charging cable is fully and securely plugged into the AC input port.",
+        "An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction."
+      ],
+      "label": "CAUTION",
+      "left": 16,
+      "listCount": 1,
+      "listStyle": "disc",
+      "overflow": false,
+      "right": 374,
+      "width": 390
+    },
+    {
+      "bodyParagraphs": 0,
+      "headingCount": 84,
+      "items": [
+        "Make sure the AC charging cable is fully and securely plugged into the AC input port.",
+        "An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction."
+      ],
+      "label": "CAUTION",
+      "left": 16,
+      "listCount": 1,
+      "listStyle": "disc",
+      "overflow": false,
+      "right": 304,
+      "width": 320
+    }
+  ],
+  "sourceCommit": "52ebfa422cc2148c874b201564a55b96d1d67e75"
+}

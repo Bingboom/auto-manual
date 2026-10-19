@@ -1,0 +1,114 @@
+[
+  {
+    "availability": 7,
+    "headings": 84,
+    "images": [
+      {
+        "loaded": true,
+        "src": "../../../../_static/manual-assets/_pool/ed/ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4.png"
+      }
+    ],
+    "items": 2,
+    "lists": 1,
+    "overflow": false,
+    "paragraphs": 4,
+    "previous120VPills": 2,
+    "strong": [
+      {
+        "text": "NEMA 14-50R (240V~ 60Hz):",
+        "weight": "700"
+      },
+      {
+        "text": "9600W",
+        "weight": "700"
+      },
+      {
+        "text": "NEMA 5-20R ×2 (120V~ 60Hz):",
+        "weight": "700"
+      },
+      {
+        "text": "2400W per port, 4800W total",
+        "weight": "700"
+      },
+      {
+        "text": "<10 ms",
+        "weight": "700"
+      }
+    ],
+    "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery. All AC output ports support UPS operation under 240V input: NEMA 14-50R (240V~ 60Hz): Up to 9600W bypass output NEMA 5-20R ×2 (120V~ 60Hz): Up to 2400W per port, 4800W total bypass output The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection). When the 240V grid power fails, the system automatically switches to battery power with a transfer time of <10 ms. When the battery is depleted, all AC outputs turn off.",
+    "width": 1440,
+    "textEqual": true
+  },
+  {
+    "availability": 7,
+    "headings": 84,
+    "images": [
+      {
+        "loaded": true
+      }
+    ],
+    "items": 2,
+    "overflow": false,
+    "strong": [
+      {
+        "text": "NEMA 14-50R (240V~ 60Hz):",
+        "weight": "700"
+      },
+      {
+        "text": "9600W",
+        "weight": "700"
+      },
+      {
+        "text": "NEMA 5-20R ×2 (120V~ 60Hz):",
+        "weight": "700"
+      },
+      {
+        "text": "2400W per port, 4800W total",
+        "weight": "700"
+      },
+      {
+        "text": "<10 ms",
+        "weight": "700"
+      }
+    ],
+    "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery. All AC output ports support UPS operation under 240V input: NEMA 14-50R (240V~ 60Hz): Up to 9600W bypass output NEMA 5-20R ×2 (120V~ 60Hz): Up to 2400W per port, 4800W total bypass output The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection). When the 240V grid power fails, the system automatically switches to battery power with a transfer time of <10 ms. When the battery is depleted, all AC outputs turn off.",
+    "width": 390,
+    "textEqual": true
+  },
+  {
+    "availability": 7,
+    "headings": 84,
+    "images": [
+      {
+        "loaded": true
+      }
+    ],
+    "items": 2,
+    "overflow": false,
+    "strong": [
+      {
+        "text": "NEMA 14-50R (240V~ 60Hz):",
+        "weight": "700"
+      },
+      {
+        "text": "9600W",
+        "weight": "700"
+      },
+      {
+        "text": "NEMA 5-20R ×2 (120V~ 60Hz):",
+        "weight": "700"
+      },
+      {
+        "text": "2400W per port, 4800W total",
+        "weight": "700"
+      },
+      {
+        "text": "<10 ms",
+        "weight": "700"
+      }
+    ],
+    "text": "Connect the product to a 240V AC power supply using a Jackery 40A Charging Cable (sold separately). Press the AC power button to enable AC power delivery. All AC output ports support UPS operation under 240V input: NEMA 14-50R (240V~ 60Hz): Up to 9600W bypass output NEMA 5-20R ×2 (120V~ 60Hz): Up to 2400W per port, 4800W total bypass output The maximum total load allowed is 4000 W for a single unit and 8000 W for dual units (parallel connection). When the 240V grid power fails, the system automatically switches to battery power with a transfer time of <10 ms. When the battery is depleted, all AC outputs turn off.",
+    "width": 320,
+    "textEqual": true
+  }
+]

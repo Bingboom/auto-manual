@@ -21,7 +21,7 @@ from tools.utils.spec_master import (  # noqa: E402
     SpecMasterSectionSummary,
     audit_spec_master_csv,
 )
-from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR, SPEC_MASTER_FILE  # noqa: E402
+from tools.data.snapshot import STRUCTURED_DATA_DEFAULT_DIR, SPEC_MASTER_FILE  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:

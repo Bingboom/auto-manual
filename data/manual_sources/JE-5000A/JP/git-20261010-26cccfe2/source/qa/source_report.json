@@ -1,0 +1,13 @@
+{
+  "model": "JE-5000A",
+  "region": "JP",
+  "language": "ja",
+  "body_lines": 789,
+  "live_selections": 481,
+  "missing_copy": 0,
+  "chapters": 14,
+  "reference_figures": 23,
+  "live_labels": 105,
+  "loaded_asset_bindings": 84,
+  "passed": true
+}

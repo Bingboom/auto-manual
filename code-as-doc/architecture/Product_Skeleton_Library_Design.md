@@ -1,6 +1,6 @@
 # Product Skeleton Library Design
 
-Status: **Phase B design — pending operator approval** · Owner: 夏冰 · Created 2026-08-20, revised same day after the Phase A corpus audit and the Phase B remeasure round
+Status: **Phase B design — operator decision 2026-10-12 (REV-41): modified and deferred.** The built skeleton cells stay in use; new expansion waits for the restart conditions in the [decision record](../dev/revitalization/rev41_skeleton_decision.md) · Owner: 夏冰 · Created 2026-08-20, revised same day after the Phase A corpus audit and the Phase B remeasure round
 
 ## 1. Role
 
@@ -432,8 +432,8 @@ manifest edits.** Rejected alternatives and why:
 Migration cost measured: ~10 `page_shared/<lang>/…` references per manifest ×
 17 manifests, **55 `page_shared` sites across 18 test files**, 5 tool sites —
 and a move would simultaneously break backport sibling resolution
-([`../../tools/cloud_doc_backport_orchestration.py`](../../tools/cloud_doc_backport_orchestration.py)),
-asset preflight ([`../../tools/queue_asset_preflight.py`](../../tools/queue_asset_preflight.py)),
+([`../../tools/backport/orchestration.py`](../../tools/backport/orchestration.py)),
+asset preflight ([`../../tools/build_queue/asset_preflight.py`](../../tools/build_queue/asset_preflight.py)),
 and review-branch sync classification
 ([`../../tools/check_review_branch_sync.py`](../../tools/check_review_branch_sync.py)),
 while review derivatives are frozen per (model, region).

@@ -9,7 +9,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urlsplit
 from urllib.request import Request
 
-from tools import rtd_deployment_receipt as receipt
+from tools.rtd import deployment_receipt as receipt
 
 
 class Response(BytesIO):

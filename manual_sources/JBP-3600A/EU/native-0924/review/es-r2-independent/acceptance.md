@@ -1,0 +1,11 @@
+# JBP-3600A / EU / es-r2 independent candidate acceptance
+
+Result: candidate source content and desktop/mobile layout PASS. This is not operator approval of English baseline, exceptions, locale enrollment, merge or publication.
+
+Producer commit 5de0abb3a86ff53763d6bfe40c117c4577d4aafa; sealed IR 948f3aefddd1946b15724a579c40244cb3f3b241272b28afd6358802dc92491e; HTML ea435f96c7d7a10302c597b5fd5042f49b6d146a0c3568ea80e51cf1164e9c48. Independent snapshots in this folder. 29 package and 60 HTML hashes verified, no mismatches; Markdown and all art unchanged from es-r1. The source SHA was independently checked in r1; body pages23–30, front2 and legal79 reviewed. Rendered source23/29/30 reviewed for outlined safety/storage/exclusions absent from extractable PDF text. Values, units, warnings, storage intervals, troubleshooting codes, 36-month plus2-year warranty and legal manufacturer retained. Native typos retained, not silently corrected.
+
+15 semantic page IDs and block counts match final English; the reported delta contains three native overview/LCD panels, restored x5 symbol, corrected lock label styling and candidate CSS changes. These are evidence-backed candidate differences, not approved exceptions. 18 shared English asset bytes retained.
+
+Independent actual browser 1440x1000 and390x844: 22 images decode; no document horizontal overflow or unresolved article anchors. Desktop upward navigation overview title at64.18px, mobile LCD title96.01px; ES-001 fixed. LCD and native side-panel leader lines intact. Power status bold, native on/off copy and clock visible; locking labels dark/white, readable and correct1/2 sequence. Mobile warranty title at101.59px does not overlap body. Technical tables retain native values. Troubleshooting intentionally scrolls within354px wrapper containing640px table; real horizontal scroll reached286px, full measures remain accessible. Screenshots saved here.
+
+No duplicate full tests run. New CSS revision is still candidate; inherited tests do not approve it. PR1409 checked live OPEN with head2edbda652c3ceb9ed26357ab6fb7004337127793. Fresh admission remains blocked as required. German de-r1 is available but has not been independently accepted by this report.

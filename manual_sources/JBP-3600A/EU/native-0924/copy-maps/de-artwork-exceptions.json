@@ -1,0 +1,56 @@
+[
+  {
+    "asset": "overview_front.png",
+    "source_page": 32,
+    "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+    "bbox_pt": [
+      27,
+      290.37249755859375,
+      152,
+      420.9525146484375
+    ],
+    "render_scale": 4,
+    "sha256": "1a94826b5c24e48fd1337f8c16e1b49a76fcce4b71d7a40d6e52dbee7d69c6c2",
+    "replaces_english_path": "assets/ir/d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5/overview_front.png",
+    "english_sha256": "d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5",
+    "candidate_path": "assets/ir/1a94826b5c24e48fd1337f8c16e1b49a76fcce4b71d7a40d6e52dbee7d69c6c2/overview_front.png",
+    "status": "source-backed-exception-candidate-not-approved",
+    "reason": "English composite embeds English labels; native source panel preserves the same product and dense leader geometry. Existing overview.png and lcd.png also contain English labels."
+  },
+  {
+    "asset": "overview_left.png",
+    "source_page": 32,
+    "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+    "bbox_pt": [
+      157,
+      290.37249755859375,
+      342,
+      420.9525146484375
+    ],
+    "render_scale": 4,
+    "sha256": "258e7756bba265b090ac4c94828a4eeeb8fedae757c3af4a8c42d4e70b15f256",
+    "replaces_english_path": "assets/ir/4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43/overview_left.png",
+    "english_sha256": "4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43",
+    "candidate_path": "assets/ir/258e7756bba265b090ac4c94828a4eeeb8fedae757c3af4a8c42d4e70b15f256/overview_left.png",
+    "status": "source-backed-exception-candidate-not-approved",
+    "reason": "English composite embeds English labels; native source panel preserves the same product and dense leader geometry. Existing overview.png and lcd.png also contain English labels."
+  },
+  {
+    "asset": "lcd_annotated.png",
+    "source_page": 33,
+    "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+    "bbox_pt": [
+      27,
+      54,
+      342,
+      110
+    ],
+    "render_scale": 4,
+    "sha256": "b34cbe53ab2545839604c4eccf47262b964e54c2097fe466d178a59866a049a1",
+    "replaces_english_path": "assets/ir/77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f/lcd_annotated.png",
+    "english_sha256": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f",
+    "candidate_path": "assets/ir/b34cbe53ab2545839604c4eccf47262b964e54c2097fe466d178a59866a049a1/lcd_annotated.png",
+    "status": "source-backed-exception-candidate-not-approved",
+    "reason": "English composite embeds English labels; native source panel preserves the same product and dense leader geometry. Existing overview.png and lcd.png also contain English labels."
+  }
+]

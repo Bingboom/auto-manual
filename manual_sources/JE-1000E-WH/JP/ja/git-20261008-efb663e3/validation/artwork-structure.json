@@ -1,0 +1,154 @@
+[
+  {
+    "asset": "web/je1000e-wh/jp/ja/lcd-04",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-lcd-04.png",
+    "sha256": "13fa155bea6e8e5ad1a6dd6a693dbd39cacd6c178df5cd1fe815dff7124e2e81"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/cover-unit",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-cover-unit.png",
+    "sha256": "6f9452323ac9073238cd789b8d334c380ee11d9f883aa0aaf0ccf00f435bf46a"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/overview",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-overview.png",
+    "sha256": "a43a6e8eaf044558850d4e4a571e3e54a8561a06f1f49ea89f92c865b69f31c4"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/lcd-map",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-lcd-map.png",
+    "sha256": "c203da0caf4cc3538b1d9463dce4566161b82b65d3f1bc43835200a390fec7cd"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/ups",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-ups.png",
+    "sha256": "90f9e334a6c527943284dd74b509fd7759f65b81054ead103552b1f12738bde4"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/ac-charge",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-ac-charge.png",
+    "sha256": "3ff6fe9c38400ad9967b299406585682d4d256e40e9a160eb7cbd653f62c7ca4"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/solar",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-solar.png",
+    "sha256": "a97a1453f0b2478730f27332e8bb654c9b905d69400a0d4ecba473f9f72bbf71"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/car",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-car.png",
+    "sha256": "afe8c490558dba225c3665ab1466b37de5912ce65d0eb54b9483a8a2756d48f8"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/maintenance",
+    "drawing_list_identical": false,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-maintenance.png",
+    "sha256": "e4e0e0b9bd5f2b2fb9d90c9e7a8833b50784d9472db614cc9f1db160410bfa08"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/inbox-unit",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-inbox-unit.png",
+    "sha256": "d3ee72ec024db25ea19e7422ee60beb7212d2a619208ca2160558500c2932f78"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/inbox-cable",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-inbox-cable.png",
+    "sha256": "ff0a0b94e65fd85e148c7f95b74414e38b3ad8f9a1ab6799322fbd657f04d2f2"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/inbox-manual",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-inbox-manual.png",
+    "sha256": "4fa62f372acc9f233dfca89f889e0368314bbcb1b671917b0c2c1903bf2210e8"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/inbox-stand",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-inbox-stand.png",
+    "sha256": "23d9dde69a836cb3fb8f78302e704a2ef516a3f346da1a156e653d99032d59e8"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/app-stores",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-app-stores.png",
+    "sha256": "0fe3671dbe726b8ec6dc474a9f2c17d82e5e828087eeb8b329e5b5d55ddd9f4f"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/app-qr",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-app-qr.png",
+    "sha256": "1c08e307a374c9b3bb36c54cb31eccc32eb9f83c865e1536ddf59d23fcef34b8"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/app-phones",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-app-phones.png",
+    "sha256": "6091ca3a9a468810d7a9a170870d106da10fd16a43119781d74391822e7a5dae"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/app-power",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-app-power.png",
+    "sha256": "51fea631deb0612b17621aab209e567caa93fa5c871853ffaccfb1958b9b42ac"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/app-result",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-app-result.png",
+    "sha256": "0bb98e4c12b8ccd70596e91b93acd6b4390ec9a59e1eea282edf18ec86874396"
+  },
+  {
+    "asset": "web/je1000e-wh/jp/ja/back-qr",
+    "drawing_list_identical": true,
+    "12x_pixels_outside_text_preserved": true,
+    "zoom_render": 12,
+    "corners": "/tmp/h1-corners-back-qr.png",
+    "sha256": "336ee0b98264061141abf5fbeb2542c961096e6263159f6d2e76c8f59067fc90"
+  }
+]

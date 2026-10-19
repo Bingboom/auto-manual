@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 
 from tools.build_paths import resolve_web_illustration_manifest
 from tools.manual_ir import read_manual_ir
-from tools.web_document_ir import render_document_fragments
+from tools.web.document_ir import render_document_fragments
 
 
 ROOT = Path(__file__).resolve().parents[1]

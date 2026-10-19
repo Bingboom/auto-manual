@@ -1,0 +1,1440 @@
+[
+  {
+    "physical_page": 56,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          34.867698669433594,
+          31.208995819091797,
+          292.6996765136719,
+          46.06499481201172
+        ],
+        "text": "INFORMAÇÕES IMPORTANTES DE SEGURANÇA\n"
+      },
+      {
+        "bbox": [
+          28.939001083374023,
+          51.54102325439453,
+          282.33697509765625,
+          58.96902084350586
+        ],
+        "text": "Ao usar este produto, devem ser seguidas as precauções básicas de segurança, incluindo:\n"
+      },
+      {
+        "bbox": [
+          29.6210994720459,
+          60.87900924682617,
+          332.4386901855469,
+          159.10519409179688
+        ],
+        "text": "• Leia todas as instruções antes de usar este produto.\n• É necessária supervisão rigorosa ao usar este produto perto de crianças para reduzir o risco.\n• Há risco de choque elétrico ao usar acessórios recomendados ou vendidos por fabricantes não profissionais.\n• Quando o produto não estiver em uso, desconecte o plugue de alimentação da tomada do produto.\n• Não desmonte o produto, pois isso pode levar a riscos imprevisíveis, como incêndio, explosão ou choque \nelétrico.\n• Não use o produto com cabos ou plugues danificados, nem com cabos de saída danificados, pois isso pode \ncausar choque elétrico.\n• Carregue o produto em uma área bem ventilada e não restrinja a ventilação de nenhuma forma.\n• Guarde o produto em um local ventilado e seco para evitar choque elétrico causado por chuva ou água.\n• Não exponha o produto ao fogo ou a altas temperaturas (sob luz solar direta ou em veículo sob calor \nintenso), o que pode causar acidentes como incêndio ou explosão.\n• Se este produto for armazenado por um longo período (3 meses - 6 meses) com a bateria descarregada, ele \npode não voltar a carregar.\n"
+      },
+      {
+        "bbox": [
+          34.867698669433594,
+          166.22169494628906,
+          200.13169860839844,
+          181.07769775390625
+        ],
+        "text": "SIGNIFICADO DOS SÍMBOLOS\n"
+      },
+      {
+        "bbox": [
+          36.95899963378906,
+          192.4907989501953,
+          152.40777587890625,
+          202.39480590820312
+        ],
+        "text": "Símbolo\nSigniﬁcado\n"
+      },
+      {
+        "bbox": [
+          56.476600646972656,
+          210.51329040527344,
+          320.4388427734375,
+          225.71127319335938
+        ],
+        "text": "Práticas perigosas que podem resultar em lesões graves, morte e/ou danos \nmateriais.\nAVISO \n"
+      },
+      {
+        "bbox": [
+          47.7666015625,
+          236.8452911376953,
+          305.5439147949219,
+          252.04327392578125
+        ],
+        "text": "Práticas perigosas que podem resultar em lesões pessoais e/ou danos \nmateriais.\n CUIDADO\n"
+      },
+      {
+        "bbox": [
+          54.762699127197266,
+          261.9546813964844,
+          323.576904296875,
+          277.1527099609375
+        ],
+        "text": "Práticas perigosas que podem resultar em danos ao equipamento, perda de \ndados, deterioração do desempenho ou resultados imprevistos.\nNOTA\n"
+      },
+      {
+        "bbox": [
+          55.83689880371094,
+          288.8084411621094,
+          308.59967041015625,
+          301.0061950683594
+        ],
+        "text": "Complementa informações importantes ou dicas de operação no texto.\nDICA\n"
+      },
+      {
+        "bbox": [
+          31.356399536132812,
+          312.6100158691406,
+          111.30120086669922,
+          322.5140075683594
+        ],
+        "text": "Símbolo\nSigniﬁcado\n"
+      },
+      {
+        "bbox": [
+          189.54490661621094,
+          312.8541259765625,
+          269.7056884765625,
+          322.75811767578125
+        ],
+        "text": "Símbolo\nSigniﬁcado\n"
+      },
+      {
+        "bbox": [
+          69.64360046386719,
+          328.2536926269531,
+          164.45269775390625,
+          348.97369384765625
+        ],
+        "text": "Símbolos de Advertência e Cuidado. \nDeve ser lido para alertar sobre \npotenciais perigos ou riscos.\n"
+      },
+      {
+        "bbox": [
+          69.64360046386719,
+          363.4496765136719,
+          151.20706176757812,
+          377.169677734375
+        ],
+        "text": "Leia o manual do usuário antes \nde operar.\n"
+      },
+      {
+        "bbox": [
+          69.64360046386719,
+          392.98968505859375,
+          135.35400390625,
+          399.7096862792969
+        ],
+        "text": "Não desmonte o produto.\n"
+      },
+      {
+        "bbox": [
+          228.05079650878906,
+          327.0915832519531,
+          338.0099792480469,
+          417.77801513671875
+        ],
+        "text": "As baterias e os acumuladores não \ndevem ser descartados junto com o lixo \ndoméstico.\nComo consumidor, você é legalmente \nobrigado a descartar todas as baterias e \nacumuladores em pontos de coleta \ndesignados, independentemente de \nconterem substâncias perigosas.\nDevolva as baterias e acumuladores \nusados a um ponto de coleta local, centro \nde reciclagem ou ao revendedor onde \nforam comprados. O descarte adequado \ngarante a reciclagem ambientalmente \nresponsável e evita danos potenciais à \nsaúde humana e ao meio ambiente.\n"
+      },
+      {
+        "bbox": [
+          69.64360046386719,
+          422.0144958496094,
+          161.1470489501953,
+          428.7344970703125
+        ],
+        "text": "Mantenha o produto longe de fogo.\n"
+      },
+      {
+        "bbox": [
+          69.6426010131836,
+          450.7995910644531,
+          170.6666259765625,
+          457.51959228515625
+        ],
+        "text": "Mantenha fora do alcance de crianças.\n"
+      },
+      {
+        "bbox": [
+          228.0498046875,
+          425.9020080566406,
+          336.7008361816406,
+          492.5979919433594
+        ],
+        "text": "Este símbolo indica que o produto não \ndeve ser descartado como lixo doméstico \ne deve ser encaminhado a um ponto de \ncoleta designado para reciclagem. \nO descarte e a reciclagem adequados \npodem ajudar a proteger o meio \nambiente. Para obter mais informações \nsobre o descarte e a reciclagem deste \nproduto, entre em contato com a \nautoridade local, o serviço de coleta ou o \nrevendedor.\n"
+      },
+      {
+        "bbox": [
+          70.0905990600586,
+          470.30438232421875,
+          180.80880737304688,
+          495.0171813964844
+        ],
+        "text": "Este símbolo indica que há uma bateria \nde íons de lítio (Li-ion) dentro do produto e \nque ela deve ser descartada ou reciclada \ncorretamente.\n"
+      },
+      {
+        "bbox": [
+          27.85300064086914,
+          504.8169860839844,
+          33.553001403808594,
+          512.0169677734375
+        ],
+        "text": "01\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 57,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          34.792999267578125,
+          31.208995819091797,
+          193.18099975585938,
+          46.06499481201172
+        ],
+        "text": "CONTEÚDO DA EMBALAGEM\n"
+      },
+      {
+        "bbox": [
+          40.183101654052734,
+          67.33306884765625,
+          43.73957824707031,
+          79.45105743408203
+        ],
+        "text": "1\n"
+      },
+      {
+        "bbox": [
+          147.1123046875,
+          67.33206176757812,
+          261.8691101074219,
+          79.71955108642578
+        ],
+        "text": "2\n3\n"
+      },
+      {
+        "bbox": [
+          94.02439880371094,
+          120.5297622680664,
+          97.1940689086914,
+          121.4716567993164
+        ],
+        "text": "Potência\n"
+      },
+      {
+        "bbox": [
+          69.96829986572266,
+          133.44151306152344,
+          81.36197662353516,
+          135.03575134277344
+        ],
+        "text": "Battery Pack 2000\n"
+      },
+      {
+        "bbox": [
+          266.3301086425781,
+          151.2196044921875,
+          318.0561828613281,
+          158.64761352539062
+        ],
+        "text": "Manual do usuário\n"
+      },
+      {
+        "bbox": [
+          157.81539916992188,
+          151.2205810546875,
+          210.93934631347656,
+          158.64859008789062
+        ],
+        "text": "Cabo de expansão\n"
+      },
+      {
+        "bbox": [
+          38.73970031738281,
+          151.22109985351562,
+          113.84109497070312,
+          158.64910888671875
+        ],
+        "text": "Jackery Battery Pack 2000\n"
+      },
+      {
+        "bbox": [
+          34.792999267578125,
+          186.2769012451172,
+          190.63697814941406,
+          201.13290405273438
+        ],
+        "text": "VISÃO GERAL DO PRODUTO\n"
+      },
+      {
+        "bbox": [
+          41.32619857788086,
+          219.76329040527344,
+          335.30230712890625,
+          240.26498413085938
+        ],
+        "text": "Alça\nVISTA FRONTAL\nVISTA DO LADO ESQUERDO\n"
+      },
+      {
+        "bbox": [
+          30.574310302734375,
+          233.44898986816406,
+          65.98091125488281,
+          240.64898681640625
+        ],
+        "text": "DISPLAY LCD\n"
+      },
+      {
+        "bbox": [
+          266.8663024902344,
+          261.6849670410156,
+          336.6217346191406,
+          268.8849792480469
+        ],
+        "text": "Porta de expansão CC B \n"
+      },
+      {
+        "bbox": [
+          200.54879760742188,
+          276.842041015625,
+          201.3657989501953,
+          278.3832702636719
+        ],
+        "text": "A\n"
+      },
+      {
+        "bbox": [
+          122.4657974243164,
+          276.75054931640625,
+          225.26959228515625,
+          279.6311340332031
+        ],
+        "text": "B\nPotência\n"
+      },
+      {
+        "bbox": [
+          271.6183166503906,
+          270.61895751953125,
+          336.38232421875,
+          284.82098388671875
+        ],
+        "text": "(Conecte ao terminal B \ndo cabo de expansão)\n"
+      },
+      {
+        "bbox": [
+          206.66546630859375,
+          291.54290771484375,
+          220.1287841796875,
+          293.0841369628906
+        ],
+        "text": "Porta de expansão CC\n"
+      },
+      {
+        "bbox": [
+          79.45999908447266,
+          301.0293273925781,
+          99.82868194580078,
+          303.87939453125
+        ],
+        "text": "Battery Pack 2000\n"
+      },
+      {
+        "bbox": [
+          266.6263122558594,
+          321.906982421875,
+          334.9417419433594,
+          329.10699462890625
+        ],
+        "text": "Porta de expansão CC A\n"
+      },
+      {
+        "bbox": [
+          205.9903106689453,
+          329.9169616699219,
+          335.2417297363281,
+          337.1169738769531
+        ],
+        "text": " (Conecte ao terminal A do cabo de expansão)\n"
+      },
+      {
+        "bbox": [
+          30.574310302734375,
+          331.8249816894531,
+          69.8857192993164,
+          339.0249938964844
+        ],
+        "text": "Botão POWER\n"
+      },
+      {
+        "bbox": [
+          330.3222961425781,
+          504.8169860839844,
+          337.1922912597656,
+          512.0169677734375
+        ],
+        "text": "02\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 58,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          34.81930160522461,
+          31.244182586669922,
+          110.99530029296875,
+          46.100181579589844
+        ],
+        "text": "DISPLAY LCD \n"
+      },
+      {
+        "bbox": [
+          29.529300689697266,
+          67.57368469238281,
+          115.07561492919922,
+          86.24267578125
+        ],
+        "text": "Porcentagem de Energia/ \nCódigo de Falha\n"
+      },
+      {
+        "bbox": [
+          276.1042785644531,
+          68.04267883300781,
+          323.94989013671875,
+          86.711669921875
+        ],
+        "text": "Indicador de \nCarregamento\n"
+      },
+      {
+        "bbox": [
+          111.50289916992188,
+          125.98050689697266,
+          331.0002746582031,
+          141.17849731445312
+        ],
+        "text": "O visor mostra a porcentagem atual de energia. \nQuando o sistema falhar, o código de falha correspondente F0-FF será exibido. \n"
+      },
+      {
+        "bbox": [
+          36.90530014038086,
+          119.31541442871094,
+          92.37261199951172,
+          147.98739624023438
+        ],
+        "text": "Porcentagem de \nEnergia/Código \nde Falha\n"
+      },
+      {
+        "bbox": [
+          36.83890151977539,
+          153.31300354003906,
+          322.8637390136719,
+          169.72647094726562
+        ],
+        "text": "O indicador acende durante o carregamento e apaga quando a carga está \ncompleta.\nIndicador de \nCarregamento\n"
+      },
+      {
+        "bbox": [
+          34.81880187988281,
+          185.9268035888672,
+          104.71880340576172,
+          200.78280639648438
+        ],
+        "text": "OPERAÇÕES\n"
+      },
+      {
+        "bbox": [
+          40.79050064086914,
+          211.4943084716797,
+          106.67050170898438,
+          221.3983154296875
+        ],
+        "text": "LIGAR/DESLIGAR \n"
+      },
+      {
+        "bbox": [
+          265.0990905761719,
+          232.00320434570312,
+          279.7491149902344,
+          244.38320922851562
+        ],
+        "text": "ON\n"
+      },
+      {
+        "bbox": [
+          265.42919921875,
+          244.78330993652344,
+          316.1651916503906,
+          251.98330688476562
+        ],
+        "text": "Pressione uma vez\n"
+      },
+      {
+        "bbox": [
+          264.80908203125,
+          255.63320922851562,
+          308.7291259765625,
+          268.0132141113281
+        ],
+        "text": "Apagado\n"
+      },
+      {
+        "bbox": [
+          265.42919921875,
+          267.78131103515625,
+          336.55316162109375,
+          274.9813232421875
+        ],
+        "text": "Pressione e segure por 3 s\n"
+      },
+      {
+        "bbox": [
+          278.62890625,
+          279.2325134277344,
+          285.51690673828125,
+          287.63250732421875
+        ],
+        "text": "3s\n"
+      },
+      {
+        "bbox": [
+          44.1786994934082,
+          327.5356140136719,
+          65.54826354980469,
+          337.38763427734375
+        ],
+        "text": "NOTA\n"
+      },
+      {
+        "bbox": [
+          79.66549682617188,
+          312.30328369140625,
+          323.7796936035156,
+          351.49530029296875
+        ],
+        "text": "• Quando o Jackery Battery Pack 2000 é usado com a estação de energia portátil, você \npode controlar o estado de energia (ligado ou desligado) do Battery Pack 2000 por \nmeio do botão POWER principal da estação de energia portátil.\n• O produto será desligado automaticamente se não for carregado ou se nenhuma \ncarga estiver conectada por 2 horas.\n"
+      },
+      {
+        "bbox": [
+          40.79050064086914,
+          366.1783142089844,
+          151.49449157714844,
+          376.0823059082031
+        ],
+        "text": "LIGA/DESLIGA DO VISOR LCD\n"
+      },
+      {
+        "bbox": [
+          43.45800018310547,
+          471.49908447265625,
+          307.59002685546875,
+          486.6971130371094
+        ],
+        "text": "Ao pressionar o botão POWER principal ou ao carregar o produto, o visor LCD ﬁca iluminado. Ao \npressioná-lo novamente, o visor LCD será desligado.\n"
+      },
+      {
+        "bbox": [
+          27.457500457763672,
+          504.8169860839844,
+          34.29750061035156,
+          512.0169677734375
+        ],
+        "text": "03\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 59,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          35.2495002746582,
+          31.208995819091797,
+          101.08150482177734,
+          46.06499481201172
+        ],
+        "text": "CONEXÕES \n"
+      },
+      {
+        "bbox": [
+          28.8085994720459,
+          54.54301071166992,
+          309.99560546875,
+          69.74099731445312
+        ],
+        "text": "Até 5 conjuntos desses produtos podem ser usados com a estação de energia portátil para atender à \nnecessidade de maior capacidade.\n"
+      },
+      {
+        "bbox": [
+          37.529300689697266,
+          90.96003723144531,
+          73.40015411376953,
+          100.81204223632812
+        ],
+        "text": "CUIDADO\n"
+      },
+      {
+        "bbox": [
+          90.0927963256836,
+          74.48490142822266,
+          329.26422119140625,
+          116.69497680664062
+        ],
+        "text": "• Certifique-se de que todos os produtos estejam desligados antes de conectar a \nestação de energia portátil ao Jackery Battery Pack 2000.\n•Para garantir o funcionamento adequado do produto, certifique-se de que as \nentradas e saídas de ar em ambos os lados estejam desobstruídas. Deixe um espaço \nde pelo menos 200 mm entre as aberturas de ventilação e quaisquer objetos para \npermitir uma dissipação adequada do calor.\n"
+      },
+      {
+        "bbox": [
+          166.99850463867188,
+          325.695556640625,
+          185.7815704345703,
+          330.99774169921875
+        ],
+        "text": "≥200 mm\n"
+      },
+      {
+        "bbox": [
+          73.17279815673828,
+          373.5069580078125,
+          325.2009582519531,
+          388.7049560546875
+        ],
+        "text": "• A exibição do ícone            na tela LCD (a estação de energia portátil) indica uma conexão \nbem-sucedida entre a bateria externa e a estação de energia portátil.\n"
+      },
+      {
+        "bbox": [
+          73.17279815673828,
+          392.5029602050781,
+          266.372802734375,
+          399.7029724121094
+        ],
+        "text": "• Por favor, não empilhe o produto sobre a estação de energia portátil.\n"
+      },
+      {
+        "bbox": [
+          35.95119857788086,
+          402.6934509277344,
+          57.88039016723633,
+          412.54547119140625
+        ],
+        "text": "Notas\n"
+      },
+      {
+        "bbox": [
+          73.17279815673828,
+          403.5009765625,
+          330.6611328125,
+          418.698974609375
+        ],
+        "text": "• Coloque as baterias externas em uma superfície plana e estável com capacidade de carga \nsuficiente. O número máximo padrão de baterias externas que podem ser empilhadas é 3.\n"
+      },
+      {
+        "bbox": [
+          73.17279815673828,
+          422.4969482421875,
+          325.5783996582031,
+          445.6929931640625
+        ],
+        "text": "•Se for necessário empilhar 4 ou mais baterias externas, o produto deve ser colocado em \numa área estável, encostado a uma parede, protegido contra impactos externos, além de \nserem tomadas as medidas necessárias para evitar que tombe.\n"
+      },
+      {
+        "bbox": [
+          332.7510070800781,
+          504.0395812988281,
+          340.0110168457031,
+          511.2395935058594
+        ],
+        "text": "04\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 60,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          84.06449890136719,
+          157.73098754882812,
+          86.44449615478516,
+          166.1309814453125
+        ],
+        "text": "1\n"
+      },
+      {
+        "bbox": [
+          136.5146026611328,
+          158.07669067382812,
+          140.18960571289062,
+          166.4766845703125
+        ],
+        "text": "2\n"
+      },
+      {
+        "bbox": [
+          39.71879959106445,
+          157.2324981689453,
+          73.41480255126953,
+          167.13650512695312
+        ],
+        "text": "Bloquear\n"
+      },
+      {
+        "bbox": [
+          39.2958984375,
+          227.3328857421875,
+          75.24789428710938,
+          234.76089477539062
+        ],
+        "text": "Desbloquear\n"
+      },
+      {
+        "bbox": [
+          82.65139770507812,
+          227.60498046875,
+          85.0313949584961,
+          236.00497436523438
+        ],
+        "text": "1\n"
+      },
+      {
+        "bbox": [
+          135.10159301757812,
+          227.63629150390625,
+          138.77659606933594,
+          236.03628540039062
+        ],
+        "text": "2\n"
+      },
+      {
+        "bbox": [
+          35.082000732421875,
+          310.4068298339844,
+          184.9276123046875,
+          325.2434997558594
+        ],
+        "text": "SOLUÇÃO DE PROBLEMAS\n"
+      },
+      {
+        "bbox": [
+          28.491252899169922,
+          333.53436279296875,
+          329.82183837890625,
+          349.7132873535156
+        ],
+        "text": "Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o \nproblema. Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.\n"
+      },
+      {
+        "bbox": [
+          30.73539924621582,
+          362.5204772949219,
+          135.40863037109375,
+          370.6806335449219
+        ],
+        "text": "Código de erro\nMedidas corretivas\n"
+      },
+      {
+        "bbox": [
+          43.63479995727539,
+          378.8525390625,
+          127.3496322631836,
+          388.74365234375
+        ],
+        "text": "F0\nReinicie o produto.\n"
+      },
+      {
+        "bbox": [
+          75.1259994506836,
+          397.5969543457031,
+          127.35025024414062,
+          404.78759765625
+        ],
+        "text": "Reinicie o produto.\n"
+      },
+      {
+        "bbox": [
+          43.98465347290039,
+          396.17230224609375,
+          52.75446319580078,
+          406.06341552734375
+        ],
+        "text": "F3\n"
+      },
+      {
+        "bbox": [
+          75.1259994506836,
+          414.34515380859375,
+          317.6549987792969,
+          421.5357971191406
+        ],
+        "text": "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.\n"
+      },
+      {
+        "bbox": [
+          43.885746002197266,
+          413.50177001953125,
+          52.861610412597656,
+          423.39288330078125
+        ],
+        "text": "F4\n"
+      },
+      {
+        "bbox": [
+          43.976409912109375,
+          430.8312072753906,
+          52.77094650268555,
+          440.7223205566406
+        ],
+        "text": "F5\n"
+      },
+      {
+        "bbox": [
+          75.12699890136719,
+          428.02899169921875,
+          307.0006408691406,
+          442.2125549316406
+        ],
+        "text": "Carregue o produto por painéis solares ou tomada de parede CA até que a falha \ndesapareça.\n"
+      },
+      {
+        "bbox": [
+          75.12699890136719,
+          449.0256042480469,
+          231.9690704345703,
+          456.21624755859375
+        ],
+        "text": "Entre em contato com o Suporte ao Cliente da Jackery.\n"
+      },
+      {
+        "bbox": [
+          43.97269821166992,
+          448.1582336425781,
+          52.93207931518555,
+          458.0493469238281
+        ],
+        "text": "F8\n"
+      },
+      {
+        "bbox": [
+          75.12699890136719,
+          466.02545166015625,
+          231.9690704345703,
+          473.2160949707031
+        ],
+        "text": "Entre em contato com o Suporte ao Cliente da Jackery.\n"
+      },
+      {
+        "bbox": [
+          43.97269821166992,
+          465.4876708984375,
+          52.618873596191406,
+          475.3787841796875
+        ],
+        "text": "FE\n"
+      },
+      {
+        "bbox": [
+          44.091800689697266,
+          482.8115539550781,
+          52.64731216430664,
+          492.7026672363281
+        ],
+        "text": "FF\n"
+      },
+      {
+        "bbox": [
+          75.12699890136719,
+          480.12518310546875,
+          323.696044921875,
+          494.3087463378906
+        ],
+        "text": "Coloque o produto em um ambiente com temperatura adequada e aguarde até que a \nfalha desapareça.\n"
+      },
+      {
+        "bbox": [
+          28.247100830078125,
+          504.0395812988281,
+          35.2671012878418,
+          511.2395935058594
+        ],
+        "text": "05\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 61,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          34.87160110473633,
+          31.208995819091797,
+          119.26759338378906,
+          46.06499481201172
+        ],
+        "text": "CARREGANDO \n"
+      },
+      {
+        "bbox": [
+          39.79100036621094,
+          55.01530838012695,
+          203.30299377441406,
+          64.9193115234375
+        ],
+        "text": "CARREGAMENTO POR MEIO DE TOMADA CA\n"
+      },
+      {
+        "bbox": [
+          28.801799774169922,
+          68.77399444580078,
+          277.4801330566406,
+          75.9739990234375
+        ],
+        "text": "Ao carregar pela tomada, este produto deve ser usado com a estação de energia portátil.\n"
+      },
+      {
+        "bbox": [
+          39.53810119628906,
+          90.07188415527344,
+          62.75409698486328,
+          99.97589111328125
+        ],
+        "text": "AVISO\n"
+      },
+      {
+        "bbox": [
+          82.04199981689453,
+          87.05719757080078,
+          337.48297119140625,
+          102.25518798828125
+        ],
+        "text": "Certifique-se de que todos os produtos estejam desligados antes de conectar a estação de \nenergia portátil ao Jackery Battery Pack 2000.\n"
+      },
+      {
+        "bbox": [
+          189.9159698486328,
+          151.34103393554688,
+          223.13526916503906,
+          155.44602966308594
+        ],
+        "text": "CA 220 V-240 V 10 A máx.          Entrada CC(8020)\n"
+      },
+      {
+        "bbox": [
+          193.91209411621094,
+          284.80670166015625,
+          275.7020568847656,
+          292.77459716796875
+        ],
+        "text": "VENDIDO SEPARADAMENTE\n"
+      },
+      {
+        "bbox": [
+          39.53810119628906,
+          283.4122314453125,
+          184.506103515625,
+          293.31622314453125
+        ],
+        "text": "CARREGAMENTO VIA PAINÉIS SOLARES\n"
+      },
+      {
+        "bbox": [
+          28.800800323486328,
+          298.5088806152344,
+          336.74725341796875,
+          313.7069091796875
+        ],
+        "text": "Carregue seu produto com painéis solares e a estação de energia portátil conforme mostrado na figura abaixo. \nConsulte o manual do usuário da estação de energia portátil para obter mais informações.\n"
+      },
+      {
+        "bbox": [
+          140.6595458984375,
+          342.8231201171875,
+          172.85009765625,
+          347.08465576171875
+        ],
+        "text": "0 V-240 V 10 A máx.          Entrada CC(8020)\n"
+      },
+      {
+        "bbox": [
+          276.6073913574219,
+          432.39019775390625,
+          319.2493896484375,
+          439.5902099609375
+        ],
+        "text": "SolarSaga 200 \n"
+      },
+      {
+        "bbox": [
+          332.5386047363281,
+          503.9839782714844,
+          339.49859619140625,
+          511.1839904785156
+        ],
+        "text": "06\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 62,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          35.575199127197266,
+          30.907207489013672,
+          128.56321716308594,
+          45.763206481933594
+        ],
+        "text": "Armazenamento\n"
+      },
+      {
+        "bbox": [
+          34.60060119628906,
+          65.1504898071289,
+          334.36724853515625,
+          136.33438110351562
+        ],
+        "text": "Armazene o produto em local limpo, seco e com ventilação adequada. Temperatura e umidade de \narmazenamento:\n• 1 mês: -20°C a 45°C (0-60%UR)\n• 3 meses: 0°C a 45°C (0-60%UR)\n• 12 meses: 0°C a 25°C (0-60%UR)\nSe este produto for armazenado por um longo período (3 meses - 6 meses) com a bateria descarregada, ele \npode não voltar a carregar. Para evitar isso e manter a saúde da bateria, recomenda-se verificar e recarregar \no produto a cada três meses e realizar um ciclo completo de carga e descarga pelo menos uma vez a cada \n6 a 12 meses.\n"
+      },
+      {
+        "bbox": [
+          34.43600082397461,
+          151.96141052246094,
+          130.90399169921875,
+          166.81741333007812
+        ],
+        "text": "ESPECIFICAÇÕES\n"
+      },
+      {
+        "bbox": [
+          39.202598571777344,
+          177.38490295410156,
+          124.62659454345703,
+          187.28890991210938
+        ],
+        "text": "INFORMAÇÕES GERAIS\n"
+      },
+      {
+        "bbox": [
+          31.81450080871582,
+          194.3928985595703,
+          258.56707763671875,
+          201.6708984375
+        ],
+        "text": "Nome do produto\nJackery Battery Pack 2000\n"
+      },
+      {
+        "bbox": [
+          184.474609375,
+          205.39430236816406,
+          216.3225860595703,
+          212.59429931640625
+        ],
+        "text": "JBP-2000B\n"
+      },
+      {
+        "bbox": [
+          31.816600799560547,
+          202.17237854003906,
+          69.8145980834961,
+          215.90037536621094
+        ],
+        "text": "Nº do modelo\n"
+      },
+      {
+        "bbox": [
+          31.816600799560547,
+          216.37437438964844,
+          67.10260772705078,
+          223.65237426757812
+        ],
+        "text": "Capacidade\n"
+      },
+      {
+        "bbox": [
+          184.474609375,
+          213.83628845214844,
+          254.1405792236328,
+          227.5642852783203
+        ],
+        "text": "2048 Wh (40 Ah/51,2 V ⎓)\n"
+      },
+      {
+        "bbox": [
+          184.23460388183594,
+          227.3903045654297,
+          205.07839965820312,
+          234.59030151367188
+        ],
+        "text": "LiFePO4\n"
+      },
+      {
+        "bbox": [
+          31.816600799560547,
+          227.3723602294922,
+          81.97779846191406,
+          234.65036010742188
+        ],
+        "text": "Química da célula\n"
+      },
+      {
+        "bbox": [
+          184.654296875,
+          237.8852996826172,
+          255.4536590576172,
+          245.08529663085938
+        ],
+        "text": "Aproximadamente 14,8 kg\n"
+      },
+      {
+        "bbox": [
+          31.816600799560547,
+          238.37034606933594,
+          44.7826042175293,
+          245.64834594726562
+        ],
+        "text": "Peso\n"
+      },
+      {
+        "bbox": [
+          184.5343017578125,
+          249.4232940673828,
+          235.7856903076172,
+          256.623291015625
+        ],
+        "text": "36,5 × 25,5 × 19,1 cm\n"
+      },
+      {
+        "bbox": [
+          31.816600799560547,
+          249.3683319091797,
+          61.822608947753906,
+          256.6463317871094
+        ],
+        "text": "Dimensões\n"
+      },
+      {
+        "bbox": [
+          184.5343017578125,
+          259.623291015625,
+          286.8643493652344,
+          266.82330322265625
+        ],
+        "text": "6000 ciclos até 70%+ de capacidade\n"
+      },
+      {
+        "bbox": [
+          31.816600799560547,
+          260.3663024902344,
+          79.89399719238281,
+          267.6443176269531
+        ],
+        "text": "Vida útil de ciclos\n"
+      },
+      {
+        "bbox": [
+          39.20309829711914,
+          283.7477111816406,
+          146.07508850097656,
+          293.6517028808594
+        ],
+        "text": "PORTAS DE ENTRADA/SAÍDA\n"
+      },
+      {
+        "bbox": [
+          31.964399337768555,
+          299.7358093261719,
+          249.87301635742188,
+          313.46380615234375
+        ],
+        "text": "Porta de expansão CC (entrada)\n36,8 V-57,6 V⎓75 A máx.\n"
+      },
+      {
+        "bbox": [
+          31.96630859375,
+          314.9372863769531,
+          116.07969665527344,
+          322.2153015136719
+        ],
+        "text": "Porta de expansão CC (Saída)\n"
+      },
+      {
+        "bbox": [
+          184.6243133544922,
+          311.9132995605469,
+          249.87493896484375,
+          325.64129638671875
+        ],
+        "text": "36,8 V-57,6 V⎓75 A máx.\n"
+      },
+      {
+        "bbox": [
+          39.20209884643555,
+          339.8502197265625,
+          189.31410217285156,
+          349.75421142578125
+        ],
+        "text": "TEMPERATURA AMBIENTE DE OPERAÇÃO\n"
+      },
+      {
+        "bbox": [
+          31.814899444580078,
+          360.0310974121094,
+          219.58546447753906,
+          367.59710693359375
+        ],
+        "text": "Temperatura de carregamento\n-10°C a 45°C\n"
+      },
+      {
+        "bbox": [
+          31.816308975219727,
+          372.02728271484375,
+          103.82649230957031,
+          379.3052978515625
+        ],
+        "text": "Temperatura de descarga\n"
+      },
+      {
+        "bbox": [
+          184.85830688476562,
+          372.393310546875,
+          220.06687927246094,
+          379.59332275390625
+        ],
+        "text": "-10°C a 45°C\n"
+      },
+      {
+        "bbox": [
+          27.790000915527344,
+          503.9839782714844,
+          34.38999938964844,
+          511.1839904785156
+        ],
+        "text": "07\n"
+      }
+    ]
+  },
+  {
+    "physical_page": 63,
+    "rect": [
+      0.0,
+      0.0,
+      368.7539978027344,
+      524.6589965820312
+    ],
+    "blocks": [
+      {
+        "bbox": [
+          35.02690124511719,
+          31.208995819091797,
+          93.63490295410156,
+          46.06499481201172
+        ],
+        "text": "GARANTIA\n"
+      },
+      {
+        "bbox": [
+          36.16600036621094,
+          57.30570602416992,
+          319.7724914550781,
+          74.97372436523438
+        ],
+        "text": "Esta garantia aplica-se somente a clientes que compram no site oficial da Jackery, em \nplataformas de terceiros da marca Jackery ou com revendedores locais autorizados.\n"
+      },
+      {
+        "bbox": [
+          29.39259910583496,
+          82.4341812133789,
+          307.38031005859375,
+          96.63619995117188
+        ],
+        "text": "*O período e os detalhes da garantia podem variar de acordo com as leis, regulamentações locais e \nrevendedores autorizados.\n"
+      },
+      {
+        "bbox": [
+          40.86040115356445,
+          101.44490051269531,
+          109.01960754394531,
+          111.34890747070312
+        ],
+        "text": "Garantia Limitada\n"
+      },
+      {
+        "bbox": [
+          37.94139862060547,
+          115.52689361572266,
+          330.9166259765625,
+          136.73092651367188
+        ],
+        "text": "A Jackery garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de \nfabricação e material sob uso normal do consumidor durante o período de garantia aplicável identificado \nna seção \"Período de Garantia\" abaixo, sujeito às exclusões estabelecidas abaixo.\n"
+      },
+      {
+        "bbox": [
+          37.94139862060547,
+          139.3649444580078,
+          312.4419860839844,
+          160.5689697265625
+        ],
+        "text": "Esta declaração de garantia estabelece a obrigação de garantia total e exclusiva da Jackery. Não \nassumiremos, nem autorizaremos qualquer pessoa a assumir em nosso nome, qualquer outra \nresponsabilidade relacionada à venda de nossos produtos.\n"
+      },
+      {
+        "bbox": [
+          40.86040115356445,
+          171.51820373535156,
+          116.56281280517578,
+          181.42221069335938
+        ],
+        "text": "Período de Garantia\n"
+      },
+      {
+        "bbox": [
+          42.03609848022461,
+          186.46075439453125,
+          308.4488220214844,
+          214.4935302734375
+        ],
+        "text": " Garantia Padrão\n ANOS\n3  \nGarantia Estendida\n ANOS\n2  \n"
+      },
+      {
+        "bbox": [
+          218.75100708007812,
+          215.1157989501953,
+          333.3305969238281,
+          257.32586669921875
+        ],
+        "text": "Para ativar a extensão da garantia, você \ndeve registrar seu produto online ou \nentrar em contato com nossa equipe de \natendimento ao cliente em \nhello.eu@jackery.com para estender o \nperíodo de garantia padrão.\n"
+      },
+      {
+        "bbox": [
+          37.94139862060547,
+          215.12098693847656,
+          208.0653839111328,
+          261.30889892578125
+        ],
+        "text": "O período de garantia padrão do Jackery Battery Pack 2000 \né de 36 meses. Em todos os casos, o período de garantia é \ncontado a partir da data de compra pelo comprador \nconsumidor original. O recibo da primeira compra do \nconsumidor, ou outro comprovante documental razoável, é \nnecessário para estabelecer a data de início do período de \ngarantia.\n"
+      },
+      {
+        "bbox": [
+          40.86040115356445,
+          269.88629150390625,
+          61.32440948486328,
+          279.790283203125
+        ],
+        "text": "Troca\n"
+      },
+      {
+        "bbox": [
+          37.942596435546875,
+          285.774169921875,
+          322.982177734375,
+          306.97821044921875
+        ],
+        "text": "A Jackery substituirá, às suas próprias custas, qualquer produto Jackery que apresente falha de \nfuncionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. \nUm produto substituto assume a garantia restante do produto original.\n"
+      },
+      {
+        "bbox": [
+          40.86130142211914,
+          321.8336181640625,
+          203.41171264648438,
+          331.73760986328125
+        ],
+        "text": "Limitado ao comprador consumidor original\n"
+      },
+      {
+        "bbox": [
+          37.94139862060547,
+          337.72027587890625,
+          313.4871826171875,
+          351.92230224609375
+        ],
+        "text": "A garantia dos produtos Jackery é limitada ao comprador consumidor original e não é transferível a \nqualquer proprietário subsequente.\n"
+      },
+      {
+        "bbox": [
+          40.86040115356445,
+          367.56903076171875,
+          76.42040252685547,
+          377.4730224609375
+        ],
+        "text": "Exclusões\n"
+      },
+      {
+        "bbox": [
+          41.938594818115234,
+          382.21820068359375,
+          332.8041687011719,
+          449.418212890625
+        ],
+        "text": "A garantia da Jackery não se aplica a:\n• Qualquer produto que tenha sido utilizado de forma inadequada, submetido a uso abusivo, modificado, \ndanificado acidentalmente ou usado para qualquer finalidade que não seja o uso normal do \nconsumidor, conforme autorizado na documentação atual do produto da Jackery.\n• Tentativa de reparo por qualquer pessoa que não seja uma assistência autorizada.\n• Qualquer produto adquirido por meio de leilão online.\n• A garantia da Jackery não se aplica à célula da bateria, a menos que ela seja totalmente carregada \npor você dentro de sete dias após a compra do produto e, posteriormente, pelo menos uma vez a cada \n6 meses.\n"
+      },
+      {
+        "bbox": [
+          42.815399169921875,
+          461.0035095214844,
+          135.82342529296875,
+          470.9075012207031
+        ],
+        "text": "Direitos de interpretação\n"
+      },
+      {
+        "bbox": [
+          37.94240188598633,
+          480.77789306640625,
+          300.9913024902344,
+          487.9779052734375
+        ],
+        "text": "A Jackery reserva-se o direito de interpretação final da política de pós-venda ao cliente acima.\n"
+      },
+      {
+        "bbox": [
+          333.0483093261719,
+          504.2339782714844,
+          340.1163024902344,
+          511.4339904785156
+        ],
+        "text": "08\n"
+      }
+    ]
+  }
+]

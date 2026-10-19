@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from tools import queue_query, queue_resolve_action
+from tools.build_queue import query as queue_query, resolve_action as queue_resolve_action
 from tools.utils import log
 
 

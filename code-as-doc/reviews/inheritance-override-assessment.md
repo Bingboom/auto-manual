@@ -10,7 +10,7 @@ Status: active
 
 ## 背景与纠偏
 
-本仓库不是 esp-docs 那种 HTML-first 站点——所有配置 `build_html: false`，主产物是 PDF（XeLaTeX）与 Word。
+本仓库不是 esp-docs 那种 HTML-first 站点——所有配置 `build_html: false`；评估时（2026-05-30）主产物是 PDF（XeLaTeX）与 Word。此后 Web 说明书经单独的发布链成为最成熟的交付链（`code-as-doc/architecture/system_evolution_history.md` §0），本评估只覆盖 Sphinx/LaTeX/Word 栈。
 因此「没有自定义 Furo 主题、没有 Jinja `{% block %}` 继承」**基本不构成缺陷**；仓库真正的「模板主题层」是 LaTeX renderer 栈，评判落在那里。
 
 ## 一、总体三问

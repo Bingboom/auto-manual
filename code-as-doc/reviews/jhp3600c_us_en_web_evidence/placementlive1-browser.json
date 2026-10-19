@@ -1,0 +1,441 @@
+{
+  "url": "http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html#power-on-off",
+  "audits": [
+    {
+      "componentOverflow": false,
+      "frames": [
+        {
+          "borders": [
+            "2px",
+            "2px",
+            "2px",
+            "2px"
+          ],
+          "content": "\"\"",
+          "height": "371.5px",
+          "left": "4.97656px",
+          "radius": "13.0725px",
+          "styles": [
+            "solid",
+            "solid",
+            "solid",
+            "solid"
+          ],
+          "top": "3.57031px",
+          "width": "398.734px"
+        },
+        {
+          "borders": [
+            "2px",
+            "2px",
+            "2px",
+            "2px"
+          ],
+          "content": "\"\"",
+          "height": "371.5px",
+          "left": "414.031px",
+          "radius": "13.0725px",
+          "styles": [
+            "solid",
+            "solid",
+            "solid",
+            "solid"
+          ],
+          "top": "3.57031px",
+          "width": "396.469px"
+        }
+      ],
+      "image": {
+        "loaded": true,
+        "natural": [
+          948,
+          441
+        ],
+        "src": "../../../../_static/manual-assets/_pool/2d/2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4.png"
+      },
+      "labels": [
+        {
+          "background": "rgb(235, 235, 236)",
+          "bold": true,
+          "font": "17.076px",
+          "inside": true,
+          "line": "0",
+          "rect": [
+            19.828125,
+            26.109375,
+            216.703125,
+            35.3984375
+          ],
+          "text": "Side-by-side placement",
+          "textInside": true
+        },
+        {
+          "background": "rgb(235, 235, 236)",
+          "bold": true,
+          "font": "17.076px",
+          "inside": true,
+          "line": "1",
+          "rect": [
+            430.7734375,
+            26.109375,
+            179.2109375,
+            35.3984375
+          ],
+          "text": "Stacked placement",
+          "textInside": true
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "bold": false,
+          "font": "15.687px",
+          "inside": true,
+          "line": "2",
+          "rect": [
+            224.609375,
+            316.8984375,
+            143.8203125,
+            21.796875
+          ],
+          "text": "≥ 0.66 ft (≈200 mm)",
+          "textInside": true
+        }
+      ],
+      "panel": [
+        817.03125,
+        380.0703125
+      ],
+      "text": "Side-by-side placement\nStacked placement\n≥ 0.66 ft (≈200 mm)",
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "componentOverflow": false,
+      "frames": [
+        {
+          "borders": [
+            "1.5px",
+            "1.5px",
+            "1.5px",
+            "1.5px"
+          ],
+          "content": "\"\"",
+          "height": "276.906px",
+          "left": "3.70312px",
+          "radius": "9.744px",
+          "styles": [
+            "solid",
+            "solid",
+            "solid",
+            "solid"
+          ],
+          "top": "2.65625px",
+          "width": "297.211px"
+        },
+        {
+          "borders": [
+            "1.5px",
+            "1.5px",
+            "1.5px",
+            "1.5px"
+          ],
+          "content": "\"\"",
+          "height": "276.906px",
+          "left": "308.609px",
+          "radius": "9.744px",
+          "styles": [
+            "solid",
+            "solid",
+            "solid",
+            "solid"
+          ],
+          "top": "2.65625px",
+          "width": "295.516px"
+        }
+      ],
+      "image": {
+        "loaded": true,
+        "natural": [
+          948,
+          441
+        ],
+        "src": "../../../../_static/manual-assets/_pool/2d/2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4.png"
+      },
+      "labels": [
+        {
+          "background": "rgb(235, 235, 236)",
+          "bold": true,
+          "font": "12.7281px",
+          "inside": true,
+          "line": "0",
+          "rect": [
+            14.78125,
+            19.4609375,
+            161.53125,
+            26.3828125
+          ],
+          "text": "Side-by-side placement",
+          "textInside": true
+        },
+        {
+          "background": "rgb(235, 235, 236)",
+          "bold": true,
+          "font": "12.7281px",
+          "inside": true,
+          "line": "1",
+          "rect": [
+            321.0859375,
+            19.4609375,
+            133.578125,
+            26.3828125
+          ],
+          "text": "Stacked placement",
+          "textInside": true
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "bold": false,
+          "font": "11.6928px",
+          "inside": true,
+          "line": "2",
+          "rect": [
+            167.421875,
+            236.2109375,
+            107.203125,
+            16.2421875
+          ],
+          "text": "≥ 0.66 ft (≈200 mm)",
+          "textInside": true
+        }
+      ],
+      "panel": [
+        609,
+        283.296875
+      ],
+      "text": "Side-by-side placement\nStacked placement\n≥ 0.66 ft (≈200 mm)",
+      "viewport": [
+        641,
+        900
+      ]
+    },
+    {
+      "componentOverflow": false,
+      "frames": [
+        {
+          "borders": [
+            "1px",
+            "1px",
+            "1px",
+            "1px"
+          ],
+          "content": "\"\"",
+          "height": "162.773px",
+          "left": "2.17969px",
+          "radius": "5.728px",
+          "styles": [
+            "solid",
+            "solid",
+            "solid",
+            "solid"
+          ],
+          "top": "1.5625px",
+          "width": "174.711px"
+        },
+        {
+          "borders": [
+            "1px",
+            "1px",
+            "1px",
+            "1px"
+          ],
+          "content": "\"\"",
+          "height": "162.773px",
+          "left": "181.414px",
+          "radius": "5.728px",
+          "styles": [
+            "solid",
+            "solid",
+            "solid",
+            "solid"
+          ],
+          "top": "1.5625px",
+          "width": "173.719px"
+        }
+      ],
+      "image": {
+        "loaded": true,
+        "natural": [
+          948,
+          441
+        ],
+        "src": "../../../../_static/manual-assets/_pool/2d/2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4.png"
+      },
+      "labels": [
+        {
+          "background": "rgb(235, 235, 236)",
+          "bold": true,
+          "font": "8px",
+          "inside": true,
+          "line": "0",
+          "rect": [
+            8.6875,
+            11.4375,
+            94.953125,
+            20.6875
+          ],
+          "text": "Side-by-side placement",
+          "textInside": true
+        },
+        {
+          "background": "rgb(235, 235, 236)",
+          "bold": true,
+          "font": "8px",
+          "inside": true,
+          "line": "1",
+          "rect": [
+            188.75,
+            11.4375,
+            78.5234375,
+            20.6875
+          ],
+          "text": "Stacked placement",
+          "textInside": true
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "bold": false,
+          "font": "8px",
+          "inside": true,
+          "line": "2",
+          "rect": [
+            14.3125,
+            138.8515625,
+            153.9375,
+            9.546875
+          ],
+          "text": "≥ 0.66 ft (≈200 mm)",
+          "textInside": true
+        }
+      ],
+      "panel": [
+        358,
+        166.53125
+      ],
+      "text": "Side-by-side placement\nStacked placement\n≥ 0.66 ft (≈200 mm)",
+      "viewport": [
+        390,
+        900
+      ]
+    },
+    {
+      "componentOverflow": false,
+      "frames": [
+        {
+          "borders": [
+            "1px",
+            "1px",
+            "1px",
+            "1px"
+          ],
+          "content": "\"\"",
+          "height": "130.945px",
+          "left": "1.75px",
+          "radius": "4.608px",
+          "styles": [
+            "solid",
+            "solid",
+            "solid",
+            "solid"
+          ],
+          "top": "1.25781px",
+          "width": "140.547px"
+        },
+        {
+          "borders": [
+            "1px",
+            "1px",
+            "1px",
+            "1px"
+          ],
+          "content": "\"\"",
+          "height": "130.945px",
+          "left": "145.938px",
+          "radius": "4.608px",
+          "styles": [
+            "solid",
+            "solid",
+            "solid",
+            "solid"
+          ],
+          "top": "1.25781px",
+          "width": "139.75px"
+        }
+      ],
+      "image": {
+        "loaded": true,
+        "natural": [
+          948,
+          441
+        ],
+        "src": "../../../../_static/manual-assets/_pool/2d/2dc586aea7e86b79daa7f0b0219cdf963ccef0668212657ae0357aaa7a6427a4.png"
+      },
+      "labels": [
+        {
+          "background": "rgb(235, 235, 236)",
+          "bold": true,
+          "font": "8px",
+          "inside": true,
+          "line": "0",
+          "rect": [
+            6.984375,
+            9.203125,
+            76.3828125,
+            20.265625
+          ],
+          "text": "Side-by-side placement",
+          "textInside": true
+        },
+        {
+          "background": "rgb(235, 235, 236)",
+          "bold": true,
+          "font": "8px",
+          "inside": true,
+          "line": "1",
+          "rect": [
+            151.84375,
+            9.203125,
+            63.1640625,
+            20.265625
+          ],
+          "text": "Stacked placement",
+          "textInside": true
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "bold": false,
+          "font": "8px",
+          "inside": true,
+          "line": "2",
+          "rect": [
+            11.515625,
+            111.703125,
+            123.8359375,
+            9.2734375
+          ],
+          "text": "≥ 0.66 ft (≈200 mm)",
+          "textInside": true
+        }
+      ],
+      "panel": [
+        288,
+        133.96875
+      ],
+      "text": "Side-by-side placement\nStacked placement\n≥ 0.66 ft (≈200 mm)",
+      "viewport": [
+        320,
+        900
+      ]
+    }
+  ]
+}

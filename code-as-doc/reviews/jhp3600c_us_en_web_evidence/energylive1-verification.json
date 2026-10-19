@@ -1,0 +1,49 @@
+{
+  "native_geometry": [
+    {
+      "region": "product",
+      "bbox": [
+        55,
+        347,
+        147,
+        455
+      ],
+      "scale": 12,
+      "direct_transform_pixel_identical": true
+    },
+    {
+      "region": "buttons-hands",
+      "bbox": [
+        174,
+        347,
+        335,
+        399
+      ],
+      "scale": 12,
+      "direct_transform_pixel_identical": true
+    },
+    {
+      "region": "bracket-clock",
+      "bbox": [
+        195,
+        436,
+        206,
+        448
+      ],
+      "scale": 12,
+      "direct_transform_pixel_identical": true
+    }
+  ],
+  "source_outer_frame_removed": 610,
+  "explanation_capsule_excluded_by_crop": 677,
+  "source_node_changes": [
+    [
+      "operations",
+      9
+    ]
+  ],
+  "source_coverage_unmatched": 0,
+  "shared_operation_tests": 15,
+  "art_sha256": "6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2",
+  "frozen_replay_files_byte_identical": 120
+}

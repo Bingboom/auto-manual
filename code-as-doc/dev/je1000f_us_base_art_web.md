@@ -1,6 +1,6 @@
 # JE-1000F US base art on the Web
 
-Status: implemented for Web. The IDML counterpart is described in
+Status: done · Web implemented. The IDML counterpart is described in
 [`idml_component_targets.md`](idml_component_targets.md).
 
 ## 1. Scope
@@ -132,7 +132,7 @@ Hello-Docs Web packages validate unchanged.
 
 ## 4. Rendering
 
-`tools/web_base_art_operation.py` runs only for base-art figures. The art and its
+`tools/web/base_art_operation.py` runs only for base-art figures. The art and its
 overlays share one canvas; the overlays are transparent so no drawn line, pill or
 clock is covered. Summary steps such as `On: Press once.` split at the first colon
 into label and instruction (the IDML row rule); nothing is dropped when no colon
@@ -162,7 +162,7 @@ the duration shorthand, step numbers and step glyphs are `aria-hidden`. At 760 p
 and below the copy stacks under the art, except the AC and DC/USB prerequisites,
 which stay on the drawn pill and fill it with its measured tone.
 
-`tools/web_base_art_reference.py` runs only for base-art reference figures (the
+`tools/web/base_art_reference.py` runs only for base-art reference figures (the
 car figure).
 
 - It puts the registered art at the bottom of a panel of the art's tone, below

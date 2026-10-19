@@ -1,0 +1,1382 @@
+[
+  {
+    "asset": "inbox-p6.svg",
+    "decision": "superseded-do-not-reuse",
+    "physical_page": 6,
+    "sha256": "54858dfcfc40f8a3856977cca42633d31246691bc2281f2a77dd0c221d9d649e",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Historical clipped source panel; top card borders missing and baked blank frames/badges retired. Use inbox-artwork.svg with shared CSS frames and editable markers.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "overview-p7.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 7,
+    "sha256": "00703784570734cb4010c74fcc85556a351e8d529ba305305395876775822296",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "lcd-map-p8.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 8,
+    "sha256": "747cea21ee0783262d8989d913000de89cf7fc8cc9ab4a85df39f512f5c12cd2",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "power-p10.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 10,
+    "sha256": "cfb8f2d4291a66622b04b448b35db3c2b83f7cecf8931a08e450618669b424a8",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "ac-output-p10.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 10,
+    "sha256": "7e382d9e84b3eecbf6823b333c262e2818742417bd1e0d3a4074f9783b0bb150",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "usb-output-p11.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 11,
+    "sha256": "98d8732b08034669a2fa692345a1302f831145dde8700bdba316c164a7ceb941",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "energy-saving-p11.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 11,
+    "sha256": "2ae9cd0e15296a897b0c349d4c18afa8852f520514d3dfd97fdcf2b29ddf06c7",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "lcd-screen-p12.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 12,
+    "sha256": "d7a3fa714fcabd464175de67eb1c73ef92a1e25ece80b54a04f879bd4ce62bd4",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "ups-p13.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 13,
+    "sha256": "70c95d199125c6e1b935b29fce9d2e05a0e5bfb6f631740c384c2fdb63a1c79e",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "battery-stack-p14.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 14,
+    "sha256": "1ad654c4b6c891f13b4bab6b2617e59b310acc2b81497d8048a6ef331d7d6c4d",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "battery-accessories-p14.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 14,
+    "sha256": "1718cc3dd382239e724a07e0c7d6f7e021ac49e23b803fc955328c0a89401925",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "parallel-p15.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 15,
+    "sha256": "d3fbab3c3b7289b76fd50c2c5a8ee2d84467c5a4dd71943c06c4f93d835e9e82",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "parallel-interrupted-p16.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 16,
+    "sha256": "a2340ea432c77813ac272ef248b488379c3cc21dcbae7526541c489304ee7ec5",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "parallel-exit-p16.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 16,
+    "sha256": "e8be0f623cc38ff3f1b9b554165cc0be6db52955774ae3535b9959ce3a916090",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "charging-ac-p17.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 17,
+    "sha256": "a50922aefc7a5ba8255f21d044b76d11569dc015344de14e08bfc86666b805d0",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "charging-solar-p17.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 17,
+    "sha256": "fe1d3759573882a13f218bed4c88e35a4797a4d90905c1165e26464b7f5b7ea4",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "charging-car-p18.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 18,
+    "sha256": "5b96f4c1be74759e2c721630919315febfd290107b60525aba97c8cb707e8ece",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "warranty-years-p21.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 21,
+    "sha256": "9260665fdd8026a100e5d78dfddbca9b04c59eeba515cb164a9ebd6f9effca40",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "app-download-p22.svg",
+    "decision": "archived-source-art-only",
+    "physical_page": 22,
+    "sha256": "8ce4364eff1b4ce93c955039d10ebde245a37643a0751adccdd6f7b6e3aa203b",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Historical top-clipped QR panel retained byte-identically in the semantic source carrier only. Visible download columns reuse complete shared store and matching QR assets.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "app-add-p22.svg",
+    "decision": "superseded-do-not-reuse",
+    "physical_page": 22,
+    "sha256": "d4874544fbe4ecd0f291fd833dca9e0086cf5ae4582157c5c01b53768d57c19a",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Native phones are complete but old crop also includes a strip of the next control panel. Archived unchanged; use phone-only source-native SVG with editable native captions.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "app-controls-p22.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 22,
+    "sha256": "1a4f8585b4e6a456718724ba1878355cbc40849a5a808d05fa173075b904fc06",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "app-connect-p23.svg",
+    "decision": "superseded-do-not-reuse",
+    "physical_page": 23,
+    "sha256": "4f065331a4bcca30e5bc514b47eedb0f4c8b1bc0b92b2e32d36e8344513211ae",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Old composition includes a thin slice of the neighboring CAUTION top border; archived unchanged. Native phone-only selection preserves all phone/caption geometry.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "inbox-p6.svg",
+    "decision": "superseded-do-not-reuse",
+    "physical_page": 26,
+    "reason": "Historical clipped source panel; top card borders missing and baked blank frames/badges retired. Use inbox-artwork.svg with shared CSS frames and editable markers.",
+    "sha256": "54858dfcfc40f8a3856977cca42633d31246691bc2281f2a77dd0c221d9d649e"
+  },
+  {
+    "asset": "overview-p7.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 27,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "00703784570734cb4010c74fcc85556a351e8d529ba305305395876775822296"
+  },
+  {
+    "asset": "lcd-map-p8.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 28,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "747cea21ee0783262d8989d913000de89cf7fc8cc9ab4a85df39f512f5c12cd2"
+  },
+  {
+    "asset": "power-p30.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 30,
+    "sha256": "fcf97425dd811b9e3af9226e9046e715473acd02ca92ed230d3136243e937a42",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "ac-output-p30.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 30,
+    "sha256": "905aceee8256a1ed23c79dd9d789a328bdcbd6d406d0b6a71e81b36bc5453fd8",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "usb-output-p31.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 31,
+    "sha256": "1be19e758ce0c8a6c5f8b0ceca4d4a3592ea42444dd62fddfc3a496b48a07264",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "energy-saving-p31.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 31,
+    "sha256": "00d82f788f566b5ae40fd074f52eb969f84d3ee5466e11b7c4ceb8e7179ad363",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "lcd-screen-p32.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 32,
+    "sha256": "23da3bad38a41294277646bd037c13b53e9cf27ae87e381aac76c85a7255d09d",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "ups-p13.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 33,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "70c95d199125c6e1b935b29fce9d2e05a0e5bfb6f631740c384c2fdb63a1c79e"
+  },
+  {
+    "asset": "battery-stack-p34.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 34,
+    "sha256": "62e31e32edb784d90f5936c57d9ac697f925842c801e7f6df8c12ac1f1304b25",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "battery-accessories-p14.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 34,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "1718cc3dd382239e724a07e0c7d6f7e021ac49e23b803fc955328c0a89401925"
+  },
+  {
+    "asset": "parallel-p35.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 35,
+    "sha256": "69f80a802842650c75f8b1246528c36dd1081bd3ca32af6d835e52e5e0372b17",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "parallel-interrupted-p36.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 36,
+    "sha256": "87e0a2b929738b7b39e67aeac1eec1af63f99cbd10dba98e77dbb163ef53df5e",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "parallel-exit-p36.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 36,
+    "sha256": "1c6b8c293af9ff66f4389deb38bca766d57a43503a5d569dd3038f2c0ecad2fc",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "charging-ac-p37.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 37,
+    "sha256": "6653eb5591ded2e9fbc04050099af18a2b565f870866547fb46087401de0eb41",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "charging-solar-p37.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 37,
+    "sha256": "e1419973225961a0418bc2393ce9f69361c8810b6d8b78427e31ae4b563baf38",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "charging-car-p38.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 38,
+    "sha256": "f1a9f45aa994c250428363a83198544bc0ae6564d2157624aba66aaefd80980a",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "warranty-years-p21.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 41,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "9260665fdd8026a100e5d78dfddbca9b04c59eeba515cb164a9ebd6f9effca40"
+  },
+  {
+    "asset": "app-download-p22.svg",
+    "decision": "archived-source-art-only",
+    "physical_page": 42,
+    "reason": "Historical top-clipped QR panel retained byte-identically in the semantic source carrier only. Visible download columns reuse complete shared store and matching QR assets.",
+    "sha256": "8ce4364eff1b4ce93c955039d10ebde245a37643a0751adccdd6f7b6e3aa203b"
+  },
+  {
+    "asset": "app-add-p42.svg",
+    "decision": "superseded-do-not-reuse",
+    "physical_page": 42,
+    "sha256": "7af528b45aa1a4fc77fa1913708573a5a387595155be5c7f0c19fd2d52cca221",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Native phones are complete but old crop also includes a strip of the next control panel. Archived unchanged; use phone-only source-native SVG with editable native captions.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "app-controls-p22.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 42,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "1a4f8585b4e6a456718724ba1878355cbc40849a5a808d05fa173075b904fc06"
+  },
+  {
+    "asset": "app-connect-p43.svg",
+    "decision": "superseded-do-not-reuse",
+    "physical_page": 43,
+    "sha256": "0edbed6cd4f169081e7c054c1b6fd13161ce301c639b32b27a835d057ed3b744",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Old composition includes a thin slice of the neighboring CAUTION top border; archived unchanged. Native phone-only selection preserves all phone/caption geometry.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "inbox-p6.svg",
+    "decision": "superseded-do-not-reuse",
+    "physical_page": 46,
+    "reason": "Historical clipped source panel; top card borders missing and baked blank frames/badges retired. Use inbox-artwork.svg with shared CSS frames and editable markers.",
+    "sha256": "54858dfcfc40f8a3856977cca42633d31246691bc2281f2a77dd0c221d9d649e"
+  },
+  {
+    "asset": "overview-p7.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 47,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "00703784570734cb4010c74fcc85556a351e8d529ba305305395876775822296"
+  },
+  {
+    "asset": "lcd-map-p8.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 48,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "747cea21ee0783262d8989d913000de89cf7fc8cc9ab4a85df39f512f5c12cd2"
+  },
+  {
+    "asset": "power-p50.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 50,
+    "sha256": "cbae725ca2b4cf6cb5a4ac4af137159e303518c392b4a316b4ae7c7598a6a7ec",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "ac-output-p50.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 50,
+    "sha256": "72c03739a8e12fbfd9e166d760bd2ff6fc3ef94789709ac8ca83f6509846c343",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "usb-output-p51.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 51,
+    "sha256": "070ecba9f275a976e174f6ffe48a7226bb1947448900dcaf7551875cc64f0947",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "energy-saving-p51.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 51,
+    "sha256": "706b053e0f65133f1af9afdfe6bc8d08514fc49dacd51247a39ecc3b2cf07f7f",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "lcd-screen-p32.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 52,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "23da3bad38a41294277646bd037c13b53e9cf27ae87e381aac76c85a7255d09d"
+  },
+  {
+    "asset": "ups-p13.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 53,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "70c95d199125c6e1b935b29fce9d2e05a0e5bfb6f631740c384c2fdb63a1c79e"
+  },
+  {
+    "asset": "battery-stack-p34.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 54,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "62e31e32edb784d90f5936c57d9ac697f925842c801e7f6df8c12ac1f1304b25"
+  },
+  {
+    "asset": "battery-accessories-p14.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 54,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "1718cc3dd382239e724a07e0c7d6f7e021ac49e23b803fc955328c0a89401925"
+  },
+  {
+    "asset": "parallel-p55.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 55,
+    "sha256": "b42a3a66d28d5b66efb951d720156f0e500acb5062204eca5e03ee4bc42e8960",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "parallel-interrupted-p36.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 56,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "87e0a2b929738b7b39e67aeac1eec1af63f99cbd10dba98e77dbb163ef53df5e"
+  },
+  {
+    "asset": "parallel-exit-p56.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 56,
+    "sha256": "bd1dcabe6e23d40b5f1420699b59d637509e116e724660f1344337d501e47b2e",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "charging-ac-p57.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 57,
+    "sha256": "795f314dd85efb7ca30ba377e16cf6a553b013f4286985f520268b14467a9b77",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "charging-solar-p57.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 57,
+    "sha256": "1db225b9211c132abcb5fee05215efe0cdedab026d828b8202222285379e7530",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "charging-car-p58.svg",
+    "decision": "native PDF extraction after inventory",
+    "physical_page": 58,
+    "sha256": "9842ae86689d726b35801a068f6e4041bcc26d8727fd5320db10eaaad3c3385e",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Source-specific socket/connector or complete panel geometry differs from available candidates. Matching glyphs use shared assets; locale panels reuse exact matches.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "warranty-years-p21.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 61,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "9260665fdd8026a100e5d78dfddbca9b04c59eeba515cb164a9ebd6f9effca40"
+  },
+  {
+    "asset": "app-download-p22.svg",
+    "decision": "archived-source-art-only",
+    "physical_page": 62,
+    "reason": "Historical top-clipped QR panel retained byte-identically in the semantic source carrier only. Visible download columns reuse complete shared store and matching QR assets.",
+    "sha256": "8ce4364eff1b4ce93c955039d10ebde245a37643a0751adccdd6f7b6e3aa203b"
+  },
+  {
+    "asset": "app-add-p62.svg",
+    "decision": "superseded-do-not-reuse",
+    "physical_page": 62,
+    "sha256": "261edba6051e8b4f51dd022491e2e70bd53307c52bc3766c15af6dcb9922cf24",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Native phones are complete but old crop also includes a strip of the next control panel. Archived unchanged; use phone-only source-native SVG with editable native captions.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "app-controls-p22.svg",
+    "decision": "byte-identical reuse between locales",
+    "physical_page": 62,
+    "reason": "Source panel dimensions and illustrated arrangement match; only live labels change.",
+    "sha256": "1a4f8585b4e6a456718724ba1878355cbc40849a5a808d05fa173075b904fc06"
+  },
+  {
+    "asset": "app-connect-p63.svg",
+    "decision": "superseded-do-not-reuse",
+    "physical_page": 63,
+    "sha256": "a8032a2913c1ff8529c4f6e7ea3e521199adb964455a55142430abc2dff66d2c",
+    "candidates": "JE-3600A EU, JHP-3600C US, shared libraries",
+    "reason": "Old composition includes a thin slice of the neighboring CAUTION top border; archived unchanged. Native phone-only selection preserves all phone/caption geometry.",
+    "background_policy": "preserve structural native panel; independent blank caption frames removed"
+  },
+  {
+    "asset": "shared-symbol_read_manual.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-output-power.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-output-power.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-bluetooth.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-bluetooth.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "button-power.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+    "candidate": "docs/renderers/web/assets/shared/buttons/power.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "key_combination_status": "superseded-do-not-reuse-for-native-US-key-combinations",
+    "key_combination_reason": "Horizontal switch differs from vertical native US source. Historical bytes preserved; original broad shape-reviewed reason was incorrect for this table."
+  },
+  {
+    "asset": "lcd-remaining-battery-percentage.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-remaining-battery-percentage.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-low-battery.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-low-battery.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "lcd-ac-wall-charging.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-ac-wall-charging.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "shared-symbol_heavy_object.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "5316063a33173d4231610b72babd30cb2282d1fd9d76263bf70e9577352e3910",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_heavy_object.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "shared-symbol_warning_triangle.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-fault-code.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "7b251bff4004f01b3fbb6e383230d0c27f6ea17654502eca64240888ebe510a0",
+    "candidate": "docs/renderers/web/assets/shared/lcd/lcd_fault-code.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-energy-saving.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-energy-saving.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "lcd-remaining-charge-time.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-remaining-charge-time.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "button-dc_usb.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+    "candidate": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "key_combination_status": "superseded-do-not-reuse-for-native-US-key-combinations",
+    "key_combination_reason": "Horizontal switch differs from vertical native US source. Historical bytes preserved; original broad shape-reviewed reason was incorrect for this table."
+  },
+  {
+    "asset": "lcd-self-powered.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-self-powered.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "shared-symbol_li_ion.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "button-ac.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+    "candidate": "docs/renderers/web/assets/shared/buttons/ac.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "key_combination_status": "superseded-do-not-reuse-for-native-US-key-combinations",
+    "key_combination_reason": "Horizontal switch differs from vertical native US source. Historical bytes preserved; original broad shape-reviewed reason was incorrect for this table."
+  },
+  {
+    "asset": "lcd-car-charging.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-car-charging.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "lcd-quiet-charging.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-quiet-charging.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "shared-symbol_explosive_material.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "3ef06cba72b60935ea421b1b59ff41e1ca9c4c6597b8d8ce1d4ae1904ee68fa0",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_explosive_material.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "ups-p33.svg",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Preserved earlier extraction candidate; current rendered manuals do not reference this asset.",
+    "sha256": "85ff75184ade18f71b348c36391a220112e503b1faed36cefa0fadf91b28aa5e"
+  },
+  {
+    "asset": "lcd-output-voltage-frequency.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-output-voltage-frequency.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "shared-symbol_no_open_flame.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-charging-plan.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-charging-plan.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-high-temperature.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-high-temperature.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "lcd-solar-charging.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-solar-charging.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "lcd-wifi.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-wifi.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-battery-saving.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-battery-saving.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "shared-symbol_battery_charging.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "6a513fe0122fec428c55a3f840c34ed7afdea311f7f1dd9b6e6fd807d087bf55",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_battery_charging.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-ac-power.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-ac-power.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "shared-symbol_electric_shock.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "a76bd208ea017906cdcb5624307cdf4b4bb092816d45ef3943a4b3367c837d3f",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_electric_shock.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-input-power.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-input-power.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-connected-batteries.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "a1f1a5236ea916b088aebe42a22157ad058cbbd18bd29961091831beeeecffd1",
+    "candidate": "docs/renderers/web/assets/shared/lcd/lcd_connected-batteries.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "shared-symbol_do_not_dismantle.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-remaining-discharge-time.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-remaining-discharge-time.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-parallel.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "1aacd9dc96bbc2ec22ff2364e88a896dd567a0f561f101dd85c93be10779dd04",
+    "candidate": "docs/renderers/web/assets/shared/lcd/lcd_parallel.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "lcd-low-temperature.png",
+    "decision": "superseded-do-not-reuse",
+    "reason": "Actual source glyph differs despite semantic name match. LCD review records original outline/frame differences; use the reviewed replacement variant.",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-low-temperature.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop",
+    "previous_decision": "byte-identical reuse"
+  },
+  {
+    "asset": "lcd-battery-power.png",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "candidate": "manual_sources/JE-3600A/EU/en/git-20261005-47a346dc/assets/lcd-icon-battery-power.png",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "shared-symbol_keep_away_from_children.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "shared-symbol_weee_gray_jp.svg",
+    "decision": "byte-identical reuse",
+    "reason": "Source pictogram shape and transparency reviewed in this intake; reused file hash read back against the existing shared candidate.",
+    "sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1",
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee_gray_jp.svg",
+    "background_policy": "verified transparent glyph; no table-cell backdrop"
+  },
+  {
+    "asset": "shared-warning-triangle-dark.svg",
+    "decision": "verified transparent shared SVG reuse",
+    "source": "docs/templates/word_template/common_assets/symbols/warning_triangle_dark.svg",
+    "sha256": "e1746d6937db78115fcd8e1f80a71943cb6615561e326bebe2605139a886cce5",
+    "reason": "Compared source safety-page triangle shape and dark/white variant; SVG has no canvas fill or caption frame."
+  },
+  {
+    "asset": "shared-warning-triangle-white.svg",
+    "decision": "verified transparent shared SVG reuse",
+    "source": "docs/templates/word_template/common_assets/symbols/warning_triangle_white.svg",
+    "sha256": "5e5fc8a41e7c547ecd55ef8ffdb24df9e9b7e6b9fd4fe0d7bcc00c2eaad7cb15",
+    "reason": "Compared source safety-page triangle shape and dark/white variant; SVG has no canvas fill or caption frame."
+  },
+  {
+    "asset": "shared-fcc-mark.svg",
+    "decision": "verified transparent shared SVG reuse",
+    "source": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "reason": "Native nested-C shape compared with US physical pages 6/26/46. Shared glyph has alpha and no gray canvas/panel. CSS owns the gray rounded panel."
+  },
+  {
+    "asset": "inbox-artwork.svg",
+    "decision": "reuse existing illustration vectors; CSS frames and live labels",
+    "physical_page": 6,
+    "source_asset": "assets/inbox-p6.svg",
+    "source_asset_sha256": "54858dfcfc40f8a3856977cca42633d31246691bc2281f2a77dd0c221d9d649e",
+    "sha256": "65d0b9e5d37cf3504d1e468ac43b1c657958679ee66e229687ce575b0b29b79f",
+    "reason": "Same US product/socket and three-item panel. Existing vectors reused unchanged; removed only three identified card borders and three blank badge circles. All languages bind the same art coordinates.",
+    "background_policy": "blank frames and number circles are shared CSS; product, cable, document geometry and product engravings unchanged"
+  },
+  {
+    "asset": "inbox-artwork.svg",
+    "decision": "reuse existing illustration vectors; CSS frames and live labels",
+    "physical_page": 26,
+    "source_asset": "assets/inbox-p6.svg",
+    "source_asset_sha256": "54858dfcfc40f8a3856977cca42633d31246691bc2281f2a77dd0c221d9d649e",
+    "sha256": "65d0b9e5d37cf3504d1e468ac43b1c657958679ee66e229687ce575b0b29b79f",
+    "reason": "Same US product/socket and three-item panel. Existing vectors reused unchanged; removed only three identified card borders and three blank badge circles. All languages bind the same art coordinates.",
+    "background_policy": "blank frames and number circles are shared CSS; product, cable, document geometry and product engravings unchanged"
+  },
+  {
+    "asset": "inbox-artwork.svg",
+    "decision": "reuse existing illustration vectors; CSS frames and live labels",
+    "physical_page": 46,
+    "source_asset": "assets/inbox-p6.svg",
+    "source_asset_sha256": "54858dfcfc40f8a3856977cca42633d31246691bc2281f2a77dd0c221d9d649e",
+    "sha256": "65d0b9e5d37cf3504d1e468ac43b1c657958679ee66e229687ce575b0b29b79f",
+    "reason": "Same US product/socket and three-item panel. Existing vectors reused unchanged; removed only three identified card borders and three blank badge circles. All languages bind the same art coordinates.",
+    "background_policy": "blank frames and number circles are shared CSS; product, cable, document geometry and product engravings unchanged"
+  },
+  {
+    "asset": "lcd-battery-saving-bars.svg",
+    "sha256": "d727efb9121fbb878d1dc52798c101e83ed272354b4c5d9002a1176ef628dd05",
+    "decision": "native source variant after inventory",
+    "physical_page": 8,
+    "reason": "Complete source-specific glyph including circle/triangle/pill; same native paths verified in FR/ES, shared without recropping.",
+    "background_policy": "native clips retained; true alpha; no cell backdrop",
+    "review": "source/lcd-layout-review.json"
+  },
+  {
+    "asset": "lcd-self-powered-bar.svg",
+    "sha256": "11c9401f7a720a9bd945b2bc15f7ff932f5946bea09fc6560cc0d162f09f6cda",
+    "decision": "native source variant after inventory",
+    "physical_page": 8,
+    "reason": "Complete source-specific glyph including circle/triangle/pill; same native paths verified in FR/ES, shared without recropping.",
+    "background_policy": "native clips retained; true alpha; no cell backdrop",
+    "review": "source/lcd-layout-review.json"
+  },
+  {
+    "asset": "lcd-ac-wall-charging-circle.svg",
+    "sha256": "902b8c9e312ac26d0bf8d7edf3ca3547c2f72bcd3e54e47f29209d5935a13084",
+    "decision": "native source variant after inventory",
+    "physical_page": 9,
+    "reason": "Complete source-specific glyph including circle/triangle/pill; same native paths verified in FR/ES, shared without recropping.",
+    "background_policy": "native clips retained; true alpha; no cell backdrop",
+    "review": "source/lcd-layout-review.json"
+  },
+  {
+    "asset": "lcd-car-charging-circle.svg",
+    "sha256": "76afbae0a0d4303a0c7e1e65bb51faa8cc90226e740cb1e098d1ab5fb4e16a86",
+    "decision": "native source variant after inventory",
+    "physical_page": 9,
+    "reason": "Complete source-specific glyph including circle/triangle/pill; same native paths verified in FR/ES, shared without recropping.",
+    "background_policy": "native clips retained; true alpha; no cell backdrop",
+    "review": "source/lcd-layout-review.json"
+  },
+  {
+    "asset": "lcd-solar-charging-pill.svg",
+    "sha256": "1fa9ef1ffffeddec822c41e8cc67be9644deced36bb2650286bacb0477dd4aaf",
+    "decision": "native source variant after inventory",
+    "physical_page": 9,
+    "reason": "Complete source-specific glyph including circle/triangle/pill; same native paths verified in FR/ES, shared without recropping.",
+    "background_policy": "native clips retained; true alpha; no cell backdrop",
+    "review": "source/lcd-layout-review.json"
+  },
+  {
+    "asset": "lcd-low-battery-outline.svg",
+    "sha256": "386af7c839615aca02f89eb76e60e8ecbee75679eac500349e944dfce1523841",
+    "decision": "native source variant after inventory",
+    "physical_page": 9,
+    "reason": "Complete source-specific glyph including circle/triangle/pill; same native paths verified in FR/ES, shared without recropping.",
+    "background_policy": "native clips retained; true alpha; no cell backdrop",
+    "review": "source/lcd-layout-review.json"
+  },
+  {
+    "asset": "lcd-high-temperature-triangle.svg",
+    "sha256": "07a89b92824a25a4fc5ee5755e74655e9148e82bf5a3cdd4a1397de8f3842eb2",
+    "decision": "native source variant after inventory",
+    "physical_page": 9,
+    "reason": "Complete source-specific glyph including circle/triangle/pill; same native paths verified in FR/ES, shared without recropping.",
+    "background_policy": "native clips retained; true alpha; no cell backdrop",
+    "review": "source/lcd-layout-review.json"
+  },
+  {
+    "asset": "lcd-low-temperature-triangle.svg",
+    "sha256": "00f89c34af22e21eca385336702ce505cd05cba762eb9695bc59d7a51468ede7",
+    "decision": "native source variant after inventory",
+    "physical_page": 9,
+    "reason": "Complete source-specific glyph including circle/triangle/pill; same native paths verified in FR/ES, shared without recropping.",
+    "background_policy": "native clips retained; true alpha; no cell backdrop",
+    "review": "source/lcd-layout-review.json"
+  },
+  {
+    "asset": "lcd-energy-saving-pill.svg",
+    "sha256": "f182a5bd3aeaa6f9699b335457ca0fc602473d9bf0f79d5afd3065f8d2d325eb",
+    "decision": "native source variant after inventory",
+    "physical_page": 9,
+    "reason": "Complete source-specific glyph including circle/triangle/pill; same native paths verified in FR/ES, shared without recropping.",
+    "background_policy": "native clips retained; true alpha; no cell backdrop",
+    "review": "source/lcd-layout-review.json"
+  },
+  {
+    "asset": "lcd-connected-batteries-pill.png",
+    "sha256": "336c1ec5b3fa7e84e58bab85bfd4b4ab8c9300f114b46a557d866de167ae1b0b",
+    "decision": "byte-identical reuse",
+    "candidate": "manual_sources/JE-3600A/EU/pl/git-20261004-47a346dc/assets/lcd-icon-connected-batteries.png",
+    "reason": "Reviewed source-matching battery x5 inside the open capsule; real alpha, unchanged bytes.",
+    "background_policy": "verified alpha; no table-cell backdrop"
+  },
+  {
+    "asset": "button-power-vertical.svg",
+    "decision": "extract distinct native vertical-switch variant; one copy shared by EN/FR/ES",
+    "reason": "Opened candidate SVGs have horizontal switches. Physical pages 12/32/52 have vertical switches, dot at top, and POWER/USB/AC product markings below. No matching vertical variant in target, shared, template, or existing frozen packages.",
+    "candidates": [
+      {
+        "path": "docs/renderers/web/assets/shared/buttons/power-bottom.svg",
+        "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+        "rejected": "horizontal switch"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/buttons/power.svg",
+        "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+        "rejected": "horizontal switch"
+      }
+    ],
+    "searched_inventory": [
+      "target assets_manifest.json",
+      "docs/renderers/web/assets/shared/buttons/manifest.json",
+      "data/manual_sources/JHP-5000C/US",
+      "data/manual_sources/JE-5000A/JP",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "physical_page": 12,
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+    "crop": [
+      50.191698455810545,
+      285.63629760742185,
+      74.7886978149414,
+      310.2322937011719
+    ],
+    "drawing_indices": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "background_policy": "transparent outside complete circular button face; exclude gray table backdrop, frames and external labels",
+    "text_policy": "preserve outlined fixed product marking; editable external labels remain HTML",
+    "registry_status": "local-only candidate; no shared registry or online enrollment",
+    "sha256": "8e9b4b88fd3fcdbe0a3c9760569347f524f6c627c69c961df0b0c883f99d356b"
+  },
+  {
+    "asset": "button-usb-vertical.svg",
+    "decision": "extract distinct native vertical-switch variant; one copy shared by EN/FR/ES",
+    "reason": "Opened candidate SVGs have horizontal switches. Physical pages 12/32/52 have vertical switches, dot at top, and POWER/USB/AC product markings below. No matching vertical variant in target, shared, template, or existing frozen packages.",
+    "candidates": [
+      {
+        "path": "docs/renderers/web/assets/shared/buttons/usb-bottom.svg",
+        "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+        "rejected": "horizontal switch"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+        "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+        "rejected": "horizontal switch"
+      }
+    ],
+    "searched_inventory": [
+      "target assets_manifest.json",
+      "docs/renderers/web/assets/shared/buttons/manifest.json",
+      "data/manual_sources/JHP-5000C/US",
+      "data/manual_sources/JE-5000A/JP",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "physical_page": 12,
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+    "crop": [
+      111.0750946044922,
+      285.63629760742185,
+      135.6720977783203,
+      310.2322937011719
+    ],
+    "drawing_indices": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "background_policy": "transparent outside complete circular button face; exclude gray table backdrop, frames and external labels",
+    "text_policy": "preserve outlined fixed product marking; editable external labels remain HTML",
+    "registry_status": "local-only candidate; no shared registry or online enrollment",
+    "sha256": "6909fdf1d72a992e086f974e942f49bdf81307cb9702c429db42d3369b369797"
+  },
+  {
+    "asset": "button-ac-vertical.svg",
+    "decision": "extract distinct native vertical-switch variant; one copy shared by EN/FR/ES",
+    "reason": "Opened candidate SVGs have horizontal switches. Physical pages 12/32/52 have vertical switches, dot at top, and POWER/USB/AC product markings below. No matching vertical variant in target, shared, template, or existing frozen packages.",
+    "candidates": [
+      {
+        "path": "docs/renderers/web/assets/shared/buttons/ac-bottom.svg",
+        "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+        "rejected": "horizontal switch"
+      },
+      {
+        "path": "docs/renderers/web/assets/shared/buttons/ac.svg",
+        "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+        "rejected": "horizontal switch"
+      }
+    ],
+    "searched_inventory": [
+      "target assets_manifest.json",
+      "docs/renderers/web/assets/shared/buttons/manifest.json",
+      "data/manual_sources/JHP-5000C/US",
+      "data/manual_sources/JE-5000A/JP",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "physical_page": 12,
+    "source_sha256": "541ca8a5543e3b2e36c85b908b5e733b86c5fb766081392c6e22a50493d59f7e",
+    "crop": [
+      111.04118957519532,
+      327.6943115234375,
+      135.63819274902343,
+      352.2903076171875
+    ],
+    "drawing_indices": [
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "background_policy": "transparent outside complete circular button face; exclude gray table backdrop, frames and external labels",
+    "text_policy": "preserve outlined fixed product marking; editable external labels remain HTML",
+    "registry_status": "local-only candidate; no shared registry or online enrollment",
+    "sha256": "cde202ff6bbbd00e43c671031fdb105e6bd811bb39ce5c5e9b97a84f0c2b29d8"
+  },
+  {
+    "asset": "sold-separately-cart.svg",
+    "decision": "reuse byte-identical existing transparent glyph",
+    "source_asset": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/sold-separately-cart.svg",
+    "sha256": "89744f531fea551626f23111830ea30ab3284267b1ec65997f33b83e0519db68",
+    "physical_pages": [
+      14,
+      34,
+      54
+    ],
+    "identity_verification": "All five white vector paths match the native circles/cart under translation within 0.002pt in each locale. No model, socket or language content.",
+    "inventory_checked": [
+      "target assets",
+      "manual_sources",
+      "data/manual_sources",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "reason": "Existing exact glyph; shared CSS cart is approximate and not needed.",
+    "background_policy": "Transparent independent icon; capsule drawn by CSS; base illustration reused unchanged."
+  },
+  {
+    "asset": "shared-app-store.png",
+    "decision": "reuse byte-identical",
+    "physical_page": 22,
+    "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+    "candidates": [
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_store_badges.png",
+      "docs/templates/word_template/common_assets/app/download.png"
+    ],
+    "origin_path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_store_badges.png",
+    "reason": "Same English App Store/Google Play badge stack and complete gray outline.",
+    "background_policy": "Keep full badge/QR frames and source white background; no recrop"
+  },
+  {
+    "asset": "shared-app-qr.png",
+    "decision": "reuse byte-identical",
+    "physical_page": 22,
+    "sha256": "52d91cbea37c6c3dc07dda2a9348ceec8f624cea62825282f5777dc753e5ad87",
+    "candidates": [
+      "docs/renderers/web/assets/je1000e_sil_us_en/app_qr.png",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_download_qr.png",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/app_download_qr.png",
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_download_qr.png",
+      "docs/templates/word_template/common_assets/app/download.png"
+    ],
+    "origin_path": "docs/renderers/web/assets/je1000e_sil_us_en/app_qr.png",
+    "reason": "Dense native QR pattern, central Jackery logo and complete rounded frame match source; 1539/1560 non-logo module interiors match, residual 21 small raster-dot sampling differences. Other package QR candidates have a visibly different, less dense matrix.",
+    "background_policy": "Keep full badge/QR frames and source white background; no recrop"
+  },
+  {
+    "asset": "shared-app-plus.svg",
+    "decision": "reuse byte-identical",
+    "physical_page": 22,
+    "sha256": "3e957c6dedf804a955232acdc40a4e3f308efbc783f189feb98bb3a69458ef52",
+    "candidates": [
+      "docs/templates/word_template/common_assets/app/add_device_plus.svg",
+      "docs/templates/word_template/common_assets/app/add_device_plus.png"
+    ],
+    "origin_path": "docs/templates/word_template/common_assets/app/add_device_plus.svg",
+    "reason": "Existing transparent circular plus icon has the same add-device function and circle/plus shape; shared icon face and stroke are retained unchanged.",
+    "background_policy": "Transparent standalone symbol"
+  },
+  {
+    "asset": "app-phones-native-p22.svg",
+    "decision": "source-native extraction after reuse inventory",
+    "physical_page": 22,
+    "sha256": "fb99bd1e0cbf87d05a94d6bd17d8d441e9e186dd6d245a7715a2b308dc97e38c",
+    "origin_path": "authoritative frozen PDF",
+    "candidates": [
+      "current target app-add-p22/p42/p62.svg",
+      "docs/templates/word_template/common_assets/app/add_device.png",
+      "docs/templates/word_template/common_assets/app/je1000f_us/add_device_je1000f_us.png",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_add.png",
+      "docs/renderers/web/assets/je3600a_eu_en/app_add_device_panel.png",
+      "docs/renderers/web/assets/je3000c_eu_en/setup_add_device.png"
+    ],
+    "reason": "No suitable byte-identical complete native phone-only asset with editable captions; remove neighboring control-panel pixels while preserving all native phone frames and UI.",
+    "background_policy": "Original clipped phone image groups, vector frames, corners, status bars and bottom UI; all source transforms and opacity preserved."
+  },
+  {
+    "asset": "app-phones-native-p42.svg",
+    "decision": "source-native extraction after reuse inventory",
+    "physical_page": 42,
+    "sha256": "e3b04b80da814f2e22621596aec83412720ab8f51736eff83fb2d3dcbc40192b",
+    "origin_path": "authoritative frozen PDF",
+    "candidates": [
+      "current target app-add-p22/p42/p62.svg",
+      "docs/templates/word_template/common_assets/app/add_device.png",
+      "docs/templates/word_template/common_assets/app/je1000f_us/add_device_je1000f_us.png",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_add.png",
+      "docs/renderers/web/assets/je3600a_eu_en/app_add_device_panel.png",
+      "docs/renderers/web/assets/je3000c_eu_en/setup_add_device.png"
+    ],
+    "reason": "No suitable byte-identical complete native phone-only asset with editable captions; remove neighboring control-panel pixels while preserving all native phone frames and UI.",
+    "background_policy": "Original clipped phone image groups, vector frames, corners, status bars and bottom UI; all source transforms and opacity preserved."
+  },
+  {
+    "asset": "app-phones-native-p62.svg",
+    "decision": "source-native extraction after reuse inventory",
+    "physical_page": 62,
+    "sha256": "c079f503daa1a5e5ac23c19b61b95af86913e32d26dc59dc9c3860c22ac4fe6e",
+    "origin_path": "authoritative frozen PDF",
+    "candidates": [
+      "current target app-add-p22/p42/p62.svg",
+      "docs/templates/word_template/common_assets/app/add_device.png",
+      "docs/templates/word_template/common_assets/app/je1000f_us/add_device_je1000f_us.png",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_add.png",
+      "docs/renderers/web/assets/je3600a_eu_en/app_add_device_panel.png",
+      "docs/renderers/web/assets/je3000c_eu_en/setup_add_device.png"
+    ],
+    "reason": "No suitable byte-identical complete native phone-only asset with editable captions; remove neighboring control-panel pixels while preserving all native phone frames and UI.",
+    "background_policy": "Original clipped phone image groups, vector frames, corners, status bars and bottom UI; all source transforms and opacity preserved."
+  },
+  {
+    "asset": "app-connect-native-p23.svg",
+    "decision": "reuse target artwork with source-bound neighboring frame removal",
+    "physical_page": 23,
+    "sha256": "ec9c0a323d7e66a8cb23b7e9c03b77febf20582dd423529924d7a37176d9bfbd",
+    "origin_path": "Jackery HomePower 3600 Plus Portable Power Station User Manual-3600C.pdf",
+    "candidates": [
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_connect_result_steps.png",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_connect_result_steps.png",
+      "docs/renderers/web/assets/je3600a_eu_shared/app_connect_result.png"
+    ],
+    "reason": "Old target crop includes top edge of neighboring CAUTION panel; shared candidates have different device/UI content. Preserve target phone images and native frames, exclude only neighboring callout paths.",
+    "background_policy": "Preserve every complete phone, status bar, bottom UI and native transforms; no repainting, recrop or split cards."
+  },
+  {
+    "asset": "app-connect-native-p43.svg",
+    "decision": "reuse target artwork with source-bound neighboring frame removal",
+    "physical_page": 43,
+    "sha256": "831d0016f6bc34ee4d5ffc416b2658c4b972d3197f1513b6d73274c0cf35c5ea",
+    "origin_path": "Jackery HomePower 3600 Plus Portable Power Station User Manual-3600C.pdf",
+    "candidates": [
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_connect_result_steps.png",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_connect_result_steps.png",
+      "docs/renderers/web/assets/je3600a_eu_shared/app_connect_result.png"
+    ],
+    "reason": "Old target crop includes top edge of neighboring CAUTION panel; shared candidates have different device/UI content. Preserve target phone images and native frames, exclude only neighboring callout paths.",
+    "background_policy": "Preserve every complete phone, status bar, bottom UI and native transforms; no repainting, recrop or split cards."
+  },
+  {
+    "asset": "app-connect-native-p63.svg",
+    "decision": "reuse target artwork with source-bound neighboring frame removal",
+    "physical_page": 63,
+    "sha256": "a9aeec153711196cef93a16c4e1e450d397702b879c9e3f545aa3379e3c9b620",
+    "origin_path": "Jackery HomePower 3600 Plus Portable Power Station User Manual-3600C.pdf",
+    "candidates": [
+      "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_connect_result_steps.png",
+      "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/app_connect_result_steps.png",
+      "docs/renderers/web/assets/je3600a_eu_shared/app_connect_result.png"
+    ],
+    "reason": "Old target crop includes top edge of neighboring CAUTION panel; shared candidates have different device/UI content. Preserve target phone images and native frames, exclude only neighboring callout paths.",
+    "background_policy": "Preserve every complete phone, status bar, bottom UI and native transforms; no repainting, recrop or split cards."
+  },
+  {
+    "asset": "shared-contact-phone.svg",
+    "decision": "reuse byte-identical",
+    "physical_page": 64,
+    "sha256": "86f136f59ab177125cc6aa9d1d720af0e881e8f23483c48d3f3f1cb9df2f2592",
+    "origin_path": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/contact-phone.svg",
+    "candidates": [
+      "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/contact-phone.svg"
+    ],
+    "reason": "Exact native path-geometry multiset match;3 SVG paths. Function and outlined circle/envelope/orbit icon match source.",
+    "background_policy": "Preserve complete standalone icon; native circle face and markings retained, surrounding SVG transparent."
+  },
+  {
+    "asset": "shared-contact-mail.svg",
+    "decision": "reuse byte-identical",
+    "physical_page": 64,
+    "sha256": "212029188a9099c55269ead4d0efbe4c12cfaf767f56d9108beaec4e583e914d",
+    "origin_path": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/contact-mail.svg",
+    "candidates": [
+      "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/contact-mail.svg"
+    ],
+    "reason": "Exact native path-geometry multiset match;2 SVG paths. Function and outlined circle/envelope/orbit icon match source.",
+    "background_policy": "Preserve complete standalone icon; native circle face and markings retained, surrounding SVG transparent."
+  },
+  {
+    "asset": "shared-contact-web.svg",
+    "decision": "reuse byte-identical",
+    "physical_page": 64,
+    "sha256": "b69b985b83286edc306ffaec853b83f0fd006b5efac37ca80811cbd72272ec14",
+    "origin_path": "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/contact-web.svg",
+    "candidates": [
+      "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/contact-web.svg"
+    ],
+    "reason": "Exact native path-geometry multiset match;3 SVG paths. Function and outlined circle/envelope/orbit icon match source.",
+    "background_policy": "Preserve complete standalone icon; native circle face and markings retained, surrounding SVG transparent."
+  },
+  {
+    "asset": "contact-qr-native-p64.svg",
+    "decision": "source-native vector glyph after rejected reuse candidates",
+    "physical_page": 64,
+    "sha256": "b270e8d6543bd57765c258d1307cda48e5552e66281337ee5e33e5c461752acb",
+    "origin_path": "authoritative frozen PDF64",
+    "candidates": [
+      "data/manual_sources/JHP-5000C/US/git-20261010-051169dd-web-layout/assets/contact-qr.svg",
+      "manual_sources/JA-AD500A-SIL/JP/ja/git-20261008-ac3a1f82-reviewed/assets/contact-qr.png",
+      "manual_sources/JA-AD500A-SIL/US/en/git-20261005-a6d1659e/assets/contact-qr.png",
+      "manual_sources/JE-3600A/EU/en/git-20261002-47a346dc/assets/contact-qr.png"
+    ],
+    "reason": "No matching native QR matrix in inventoried assets. Preserve full code geometry; do not substitute another contact or App QR.",
+    "background_policy": "Retain black and white code-cell paths; native quiet area and thin rounded frame drawn with CSS."
+  },
+  {
+    "asset": "shared-symbol_weee-native.png",
+    "decision": "reuse byte-identical after native publication admission",
+    "origin_path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "shared_symbol_key": "weee/crossed-bin-bar",
+    "physical_pages": [
+      5,
+      25,
+      45
+    ],
+    "reason": "Old gray-JP variant differs from native bin geometry; existing crossed-bin-bar variant passes source-bound glyph comparison.",
+    "background_policy": "Preserve original alpha channel; native CSS table cell owns gray fill."
+  }
+]

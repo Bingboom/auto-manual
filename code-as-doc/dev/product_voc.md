@@ -117,7 +117,7 @@ Example **local integration** command (not a persistent production deployment):
 python -m integrations.product_voc.server \
   --base Id29bqWMiaFdNjsuyrAcfrkLnZb --table tblmN7OHIB0HsC23 \
   --state /absolute/private/runtime/voc.sqlite \
-  --origin https://ht-doc.readthedocs.io \
+  --origin https://ht-docs-ht-manuals.readthedocs-hosted.com \
   --origin http://127.0.0.1:9198 --preview
 ```
 
@@ -168,8 +168,8 @@ node --check tools/rtd_portal_assets/_static/product-voc.js
 node --test tests/product_voc_ui.test.mjs
 python -m ruff check build.py integrations tools tests scripts
 python -m unittest
-python tools/check_maintainability_guardrails.py
-python tools/check_doc_link_integrity.py
+python -m tools.check_maintainability_guardrails
+python -m tools.check_doc_link_integrity
 ```
 
 ## Deployment-stage trial (2026-09-19)

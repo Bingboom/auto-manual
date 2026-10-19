@@ -1,0 +1,606 @@
+{
+  "url": "http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html#power-on-off",
+  "source_commit": "6b6aef7e0bbac4f56335e94faeb5a097a99e228f",
+  "audits": [
+    {
+      "component": {
+        "bottom": 1066.609375,
+        "height": 933.0078125,
+        "left": 314.59375,
+        "right": 1131.625,
+        "top": 133.6015625,
+        "width": 817.03125
+      },
+      "image": {
+        "loaded": true,
+        "rect": {
+          "bottom": 1066.609375,
+          "height": 933.0078125,
+          "left": 314.59375,
+          "right": 1131.625,
+          "top": 133.6015625,
+          "width": 817.03125
+        },
+        "src": "../../../../_static/manual-assets/_pool/a1/a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477.png"
+      },
+      "labels": [
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 244.6796875,
+            "height": 61.8515625,
+            "left": 778.515625,
+            "right": 1077.4921875,
+            "top": 182.828125,
+            "width": 298.9765625
+          },
+          "text": "1.\nComplete the Cascade Parallel Connection steps described earlier."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 308.1796875,
+            "height": 61.8515625,
+            "left": 778.515625,
+            "right": 1077.4921875,
+            "top": 246.328125,
+            "width": 298.9765625
+          },
+          "text": "2.\nConnect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 383.6484375,
+            "height": 61.8515625,
+            "left": 778.515625,
+            "right": 1077.4921875,
+            "top": 321.796875,
+            "width": 298.9765625
+          },
+          "text": "3.\nTurn ON both units and enable AC Output."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 424.84375,
+            "height": 45.09375,
+            "left": 384.1796875,
+            "right": 587.7890625,
+            "top": 379.75,
+            "width": 203.609375
+          },
+          "text": "Charging Cable in\nthe MTS package"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 522.78125,
+            "height": 47.4453125,
+            "left": 667.6953125,
+            "right": 928.0078125,
+            "top": 475.3359375,
+            "width": 260.3125
+          },
+          "text": "Jackery 40A Charging Cable\n(sold separately)"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 914.5390625,
+            "height": 63.578125,
+            "left": 879.0390625,
+            "right": 1062.03125,
+            "top": 850.9609375,
+            "width": 182.9921875
+          },
+          "text": "Jackery Parallel\nCommunication Cable\n(sold separately)"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1.",
+          "weight": "700"
+        },
+        {
+          "text": "2.",
+          "weight": "700"
+        },
+        {
+          "text": "3.",
+          "weight": "700"
+        }
+      ],
+      "pageOverflow": false,
+      "steps": [
+        {
+          "fontSize": "15.464px",
+          "rect": {
+            "bottom": 229.203125,
+            "height": 46.375,
+            "left": 813.640625,
+            "right": 1077.4921875,
+            "top": 182.828125,
+            "width": 263.8515625
+          },
+          "text": "Complete the Cascade Parallel Connection steps described earlier."
+        },
+        {
+          "fontSize": "15.464px",
+          "rect": {
+            "bottom": 301.0546875,
+            "height": 54.7265625,
+            "left": 813.640625,
+            "right": 1077.4921875,
+            "top": 246.328125,
+            "width": 263.8515625
+          },
+          "text": "Connect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "fontSize": "15.464px",
+          "rect": {
+            "bottom": 358.28125,
+            "height": 36.484375,
+            "left": 813.640625,
+            "right": 1077.4921875,
+            "top": 321.796875,
+            "width": 263.8515625
+          },
+          "text": "Turn ON both units and enable AC Output."
+        }
+      ],
+      "viewport": 1440
+    },
+    {
+      "component": {
+        "bottom": 972.03125,
+        "height": 844.2265625,
+        "left": 16,
+        "right": 625,
+        "top": 127.8046875,
+        "width": 609
+      },
+      "image": {
+        "loaded": true,
+        "rect": {
+          "bottom": 972.03125,
+          "height": 695.4453125,
+          "left": 16,
+          "right": 625,
+          "top": 276.5859375,
+          "width": 609
+        },
+        "src": "../../../../_static/manual-assets/_pool/a1/a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477.png"
+      },
+      "labels": [
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 169.3984375,
+            "height": 41.59375,
+            "left": 16,
+            "right": 625,
+            "top": 127.8046875,
+            "width": 609
+          },
+          "text": "1.\nComplete the Cascade Parallel Connection steps described earlier."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 234.9921875,
+            "height": 65.59375,
+            "left": 16,
+            "right": 625,
+            "top": 169.3984375,
+            "width": 609
+          },
+          "text": "2.\nConnect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 276.5859375,
+            "height": 41.59375,
+            "left": 16,
+            "right": 625,
+            "top": 234.9921875,
+            "width": 609
+          },
+          "text": "3.\nTurn ON both units and enable AC Output."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 475.0546875,
+            "height": 26.734375,
+            "left": 67.8671875,
+            "right": 220.1171875,
+            "top": 448.3203125,
+            "width": 152.25
+          },
+          "text": "Charging Cable in\nthe MTS package"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 546.9140625,
+            "height": 26.734375,
+            "left": 259.59375,
+            "right": 491.0078125,
+            "top": 520.1796875,
+            "width": 231.4140625
+          },
+          "text": "Jackery 40A Charging Cable\n(sold separately)"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 850.7734375,
+            "height": 40.1015625,
+            "left": 430.1171875,
+            "right": 612.8125,
+            "top": 810.671875,
+            "width": 182.6953125
+          },
+          "text": "Jackery Parallel\nCommunication Cable\n(sold separately)"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1.",
+          "weight": "700"
+        },
+        {
+          "text": "2.",
+          "weight": "700"
+        },
+        {
+          "text": "3.",
+          "weight": "700"
+        }
+      ],
+      "pageOverflow": false,
+      "steps": [
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 160.6015625,
+            "height": 24,
+            "left": 55.9921875,
+            "right": 610.6015625,
+            "top": 136.6015625,
+            "width": 554.609375
+          },
+          "text": "Complete the Cascade Parallel Connection steps described earlier."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 226.1953125,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 610.6015625,
+            "top": 178.1953125,
+            "width": 554.609375
+          },
+          "text": "Connect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 267.7890625,
+            "height": 24,
+            "left": 55.9921875,
+            "right": 610.6015625,
+            "top": 243.7890625,
+            "width": 554.609375
+          },
+          "text": "Turn ON both units and enable AC Output."
+        }
+      ],
+      "viewport": 641
+    },
+    {
+      "component": {
+        "bottom": 864.7734375,
+        "height": 629.59375,
+        "left": 16,
+        "right": 374,
+        "top": 235.1796875,
+        "width": 358
+      },
+      "image": {
+        "loaded": true,
+        "rect": {
+          "bottom": 864.7734375,
+          "height": 408.8125,
+          "left": 16,
+          "right": 374,
+          "top": 455.9609375,
+          "width": 358
+        },
+        "src": "../../../../_static/manual-assets/_pool/a1/a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477.png"
+      },
+      "labels": [
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 300.7734375,
+            "height": 65.59375,
+            "left": 16,
+            "right": 374,
+            "top": 235.1796875,
+            "width": 358
+          },
+          "text": "1.\nComplete the Cascade Parallel Connection steps described earlier."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 390.3671875,
+            "height": 89.59375,
+            "left": 16,
+            "right": 374,
+            "top": 300.7734375,
+            "width": 358
+          },
+          "text": "2.\nConnect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 455.9609375,
+            "height": 65.59375,
+            "left": 16,
+            "right": 374,
+            "top": 390.3671875,
+            "width": 358
+          },
+          "text": "3.\nTurn ON both units and enable AC Output."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 575.4609375,
+            "height": 18.546875,
+            "left": 46.4921875,
+            "right": 135.9921875,
+            "top": 556.9140625,
+            "width": 89.5
+          },
+          "text": "Charging Cable in\nthe MTS package"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 617.703125,
+            "height": 18.546875,
+            "left": 159.1953125,
+            "right": 295.234375,
+            "top": 599.15625,
+            "width": 136.0390625
+          },
+          "text": "Jackery 40A Charging Cable\n(sold separately)"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 797.7421875,
+            "height": 27.8203125,
+            "left": 259.4375,
+            "right": 366.8359375,
+            "top": 769.921875,
+            "width": 107.3984375
+          },
+          "text": "Jackery Parallel\nCommunication Cable\n(sold separately)"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1.",
+          "weight": "700"
+        },
+        {
+          "text": "2.",
+          "weight": "700"
+        },
+        {
+          "text": "3.",
+          "weight": "700"
+        }
+      ],
+      "pageOverflow": false,
+      "steps": [
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 291.9765625,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 359.6015625,
+            "top": 243.9765625,
+            "width": 303.609375
+          },
+          "text": "Complete the Cascade Parallel Connection steps described earlier."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 381.5703125,
+            "height": 72,
+            "left": 55.9921875,
+            "right": 359.6015625,
+            "top": 309.5703125,
+            "width": 303.609375
+          },
+          "text": "Connect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 447.1640625,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 359.6015625,
+            "top": 399.1640625,
+            "width": 303.609375
+          },
+          "text": "Turn ON both units and enable AC Output."
+        }
+      ],
+      "viewport": 390
+    },
+    {
+      "component": {
+        "bottom": 836.8828125,
+        "height": 573.6640625,
+        "left": 16,
+        "right": 304,
+        "top": 263.21875,
+        "width": 288
+      },
+      "image": {
+        "loaded": true,
+        "rect": {
+          "bottom": 836.8828125,
+          "height": 328.8828125,
+          "left": 16,
+          "right": 304,
+          "top": 508,
+          "width": 288
+        },
+        "src": "../../../../_static/manual-assets/_pool/a1/a143c40b3d9936f2a5aa9d48b9a459952760a9b518ad9194e59113e2eb805477.png"
+      },
+      "labels": [
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 352.8125,
+            "height": 89.59375,
+            "left": 16,
+            "right": 304,
+            "top": 263.21875,
+            "width": 288
+          },
+          "text": "1.\nComplete the Cascade Parallel Connection steps described earlier."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 442.40625,
+            "height": 89.59375,
+            "left": 16,
+            "right": 304,
+            "top": 352.8125,
+            "width": 288
+          },
+          "text": "2.\nConnect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 508,
+            "height": 65.59375,
+            "left": 16,
+            "right": 304,
+            "top": 442.40625,
+            "width": 288
+          },
+          "text": "3.\nTurn ON both units and enable AC Output."
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 607.7578125,
+            "height": 18.546875,
+            "left": 40.5234375,
+            "right": 112.5234375,
+            "top": 589.2109375,
+            "width": 72
+          },
+          "text": "Charging Cable in\nthe MTS package"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 641.7421875,
+            "height": 18.546875,
+            "left": 131.1953125,
+            "right": 240.6328125,
+            "top": 623.1953125,
+            "width": 109.4375
+          },
+          "text": "Jackery 40A Charging Cable\n(sold separately)"
+        },
+        {
+          "overflow": false,
+          "rect": {
+            "bottom": 788.390625,
+            "height": 27.8203125,
+            "left": 211.8359375,
+            "right": 298.234375,
+            "top": 760.5703125,
+            "width": 86.3984375
+          },
+          "text": "Jackery Parallel\nCommunication Cable\n(sold separately)"
+        }
+      ],
+      "numbers": [
+        {
+          "text": "1.",
+          "weight": "700"
+        },
+        {
+          "text": "2.",
+          "weight": "700"
+        },
+        {
+          "text": "3.",
+          "weight": "700"
+        }
+      ],
+      "pageOverflow": false,
+      "steps": [
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 344.015625,
+            "height": 72,
+            "left": 55.9921875,
+            "right": 289.6015625,
+            "top": 272.015625,
+            "width": 233.609375
+          },
+          "text": "Complete the Cascade Parallel Connection steps described earlier."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 433.609375,
+            "height": 72,
+            "left": 55.9921875,
+            "right": 289.6015625,
+            "top": 361.609375,
+            "width": 233.609375
+          },
+          "text": "Connect the second device’s 240V Output Port (NEMA 14-50R) to the MTS inlet."
+        },
+        {
+          "fontSize": "16px",
+          "rect": {
+            "bottom": 499.203125,
+            "height": 48,
+            "left": 55.9921875,
+            "right": 289.6015625,
+            "top": 451.203125,
+            "width": 233.609375
+          },
+          "text": "Turn ON both units and enable AC Output."
+        }
+      ],
+      "viewport": 320
+    }
+  ]
+}

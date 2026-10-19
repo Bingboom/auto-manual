@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.source_intake_rules import (  # noqa: E402
+from tools.data.source_intake_rules import (  # noqa: E402
     DIRECT, EXCLUDED, NEEDS_REVIEW, TRANSFORMED,
     FieldRule, apply_op, display_width, extract_candidates, find_field_value,
 )

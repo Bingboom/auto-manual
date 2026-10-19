@@ -1,0 +1,1509 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/fridgeguard_us_v2_20260729",
+    "expected_sha256": "537939d0d62b0cf0d3f91b432f8114e566aeb69b1267d2468410ee4d3f8b0fb1",
+    "expected_page_count": 64
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 64
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.15,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "page_1",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "page_2",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "page_3",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "page_4",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "page_5",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "page_6",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "page_7",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "page_8",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "page_9",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "page_10",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "page_11",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "page_12",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "page_13",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "page_14",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "page_15",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "page_16",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "page_17",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "page_18",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "page_19",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "page_20",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "page_21",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 22,
+      "page_key": "page_22",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 23,
+      "page_key": "page_23",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "page_24",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "page_25",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "page_26",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "page_27",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "page_28",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 29,
+      "page_key": "page_29",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 30,
+      "page_key": "page_30",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 31,
+      "page_key": "page_31",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 32,
+      "page_key": "page_32",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 33,
+      "page_key": "page_33",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 34,
+      "page_key": "page_34",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 35,
+      "page_key": "page_35",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 36,
+      "page_key": "page_36",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 37,
+      "page_key": "page_37",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 38,
+      "page_key": "page_38",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 39,
+      "page_key": "page_39",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 40,
+      "page_key": "page_40",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 41,
+      "page_key": "page_41",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 42,
+      "page_key": "page_42",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 43,
+      "page_key": "page_43",
+      "role": "source_page",
+      "locale": "fr",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 44,
+      "page_key": "page_44",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 45,
+      "page_key": "page_45",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 46,
+      "page_key": "page_46",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 47,
+      "page_key": "page_47",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 48,
+      "page_key": "page_48",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 49,
+      "page_key": "page_49",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 50,
+      "page_key": "page_50",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 51,
+      "page_key": "page_51",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 52,
+      "page_key": "page_52",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 53,
+      "page_key": "page_53",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 54,
+      "page_key": "page_54",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 55,
+      "page_key": "page_55",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 56,
+      "page_key": "page_56",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 57,
+      "page_key": "page_57",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 58,
+      "page_key": "page_58",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 59,
+      "page_key": "page_59",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 60,
+      "page_key": "page_60",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 61,
+      "page_key": "page_61",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 62,
+      "page_key": "page_62",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 63,
+      "page_key": "page_63",
+      "role": "source_page",
+      "locale": "es",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 64,
+      "page_key": "page_64",
+      "role": "source_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Native PDF source archive"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/je1000e-sil/us/fr/app_1_2",
+      "page": 42,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            107,
+            228,
+            267,
+            389.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_fr/app_1_2.png",
+          "scale": 4,
+          "expected_sha256": "7632e9e06bc71dc5b2b225ce4303ad6454e5f757471d37abdc46f543959479d2"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/fr/app_3_5",
+      "page": 43,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            51.5,
+            155.3,
+            310.6,
+            314.7
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_fr/app_3_5.png",
+          "scale": 4,
+          "expected_sha256": "1aed800803214d39132679baf5705228ece603fa38912c3936f60afef7a045e9"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/fr/app_power_art",
+      "page": 42,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            396,
+            343,
+            491
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_fr/app_power_art.png",
+          "scale": 4,
+          "expected_sha256": "2bbcbb64a121b0df1698fccf36002cad7dfe5883412d76d26f41ed7cad0e8695"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/fr/maintenance_art",
+      "page": 37,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.8,
+            70.7,
+            340.4,
+            190.8
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_fr/maintenance_art.png",
+          "scale": 4,
+          "expected_sha256": "481d26e1f79dea0ec175d8e94a28dd30a34c0baa40f111c7c4ccd6ad436e2e82"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/fr/overview",
+      "page": 26,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26,
+            273,
+            343,
+            498
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_fr/overview.png",
+          "scale": 4,
+          "expected_sha256": "6b71629f5c81e7ff2bc851472eb257d267a0ceb66753e1d4964cbd3e1b73585e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/fr/wood_mount_art",
+      "page": 32,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            248,
+            184,
+            343,
+            374
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_fr/wood_mount_art.png",
+          "scale": 4,
+          "expected_sha256": "4157f6100066663cd3829d2d64c4846bacf5908393086d71bb2feab77096ccc7"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/es/app_1_2",
+      "page": 62,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            107,
+            228,
+            267,
+            389.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_es/app_1_2.png",
+          "scale": 4,
+          "expected_sha256": "077b367ab75bfcb4f9375e899b07c05dcec986159577be71a138ae8a702f50a4"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/es/app_3_5",
+      "page": 63,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            51.5,
+            166.8,
+            310.6,
+            325.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_es/app_3_5.png",
+          "scale": 4,
+          "expected_sha256": "ef59c89eccf050b2923172a4f5159c3afc704812c278530836bd80903310445c"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/es/app_power_art",
+      "page": 62,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            396,
+            343,
+            491
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_es/app_power_art.png",
+          "scale": 4,
+          "expected_sha256": "ba64dc693e2d4ef9297bc5cb22b34d034e9566b736f266aa28c0932259ec767e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/es/maintenance_art",
+      "page": 57,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.8,
+            70.7,
+            340.4,
+            190.8
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_es/maintenance_art.png",
+          "scale": 4,
+          "expected_sha256": "2cbc6964c7a96ea2dce518e8125ac9c80e9b33f391c1e952a4f127124ed24464"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/es/overview",
+      "page": 46,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26,
+            273,
+            343,
+            498
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_es/overview.png",
+          "scale": 4,
+          "expected_sha256": "93d391fa43ad5af3e025d1dc8c346c9e49b595f56fcc4a0ac6563f4e1057615a"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/je1000e-sil/us/es/wood_mount_art",
+      "page": 52,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            248,
+            184,
+            343,
+            374
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_es/wood_mount_art.png",
+          "scale": 4,
+          "expected_sha256": "4157f6100066663cd3829d2d64c4846bacf5908393086d71bb2feab77096ccc7"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Git-only native locale preview; no live asset promotion"
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}

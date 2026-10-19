@@ -1,12 +1,14 @@
 """Web-source validation for registered ComponentSpec adapters."""
 from __future__ import annotations
 
+from dataclasses import replace
+
 import re
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from tools.component_specs.adapters import web_callout_classes
-from tools.component_specs.callout import callout_component_spec
+from tools.component_specs.callout import CALLOUT_VARIANTS, callout_component_spec
 from tools.component_specs.model import ComponentSpec, ComponentSpecError
 from tools.component_specs.spec_table import (
     spec_table_component_spec,
@@ -31,6 +33,13 @@ def validate_web_callout_html(
     body_node = soup.select_one(".manual-callout-body")
     if label_node is None or body_node is None:
         raise error_type(f"{source_ref}: manual callout requires label and body cells")
+    # Native RST carries its type independently of Docutils' translated title.
+    # Preserve that declaration instead of guessing from "Caution!", "Avis", etc.
+    native_variant = soup.table.get("data-callout-variant") if soup.table else None
+    if native_variant is not None:
+        if native_variant not in CALLOUT_VARIANTS or (variant and variant != native_variant):
+            raise error_type(f"{source_ref}: invalid or conflicting native callout variant")
+        variant = native_variant
     spec = callout_component_spec(
         label=label_node.get_text(" ", strip=True),
         body=body_node.get_text("\n", strip=True),
@@ -39,6 +48,13 @@ def validate_web_callout_html(
         language=str((soup.table.get("lang") if soup.table else None) or language or "und"),
         variant=variant,
     )
+    if native_variant:
+        # Authored native titles retain punctuation; classification already used
+        # the explicit semantic variant above.
+        spec = replace(spec, slots=tuple(
+            replace(slot, content=label_node.get_text(" ", strip=True))
+            if slot.role == "label" else slot for slot in spec.slots
+        ))
     table_class = web_callout_classes(spec)["table"]
     if soup.select_one(f"table.{table_class}") is None:
         raise error_type(

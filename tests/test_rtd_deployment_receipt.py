@@ -9,7 +9,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from tools import rtd_deployment_receipt as receipt
+from tools.rtd import deployment_receipt as receipt
 
 _no_pacing = patch.object(receipt, "sleep")
 
@@ -159,16 +159,32 @@ class DeploymentReceiptTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "safety limits"):
                 receipt.source_fingerprint(self.web)
 
-    def test_source_storage_budget_retains_file_size_and_count_limits(self):
-        for limit in ("MAX_FILE_BYTES", "MAX_FILES"):
+    def test_source_storage_budget_retains_file_size_and_source_count_limits(self):
+        for limit in ("MAX_FILE_BYTES", "MAX_SOURCE_FILES"):
             with self.subTest(limit=limit), patch.object(receipt, limit, 1):
                 with self.assertRaisesRegex(ValueError, "safety limits"):
                     receipt.source_fingerprint(self.web)
 
+    def test_source_count_budget_does_not_expand_served_or_network_inventory(self):
+        # The two frozen fixture files plus this asset fit the source budget
+        # exactly while exceeding the unchanged output/network file budget.
+        (self.web / "figure.svg").write_text("<svg/>")
+        receipt.write_deployment_receipt(self.app, None)
+        with patch.object(receipt, "MAX_SOURCE_FILES", 3), \
+                patch.object(receipt, "MAX_FILES", 2):
+            self.assertTrue(receipt.source_fingerprint(self.web))
+            with self.assertRaisesRegex(ValueError, "safety limits"):
+                receipt.write_deployment_receipt(self.app, None)
+            with self.assertRaisesRegex(ValueError, "Invalid deployment file inventory"):
+                self.verify()
+            (self.web / "overflow.md").write_text("extra source")
+            with self.assertRaisesRegex(ValueError, "safety limits"):
+                receipt.source_fingerprint(self.web)
+
     def test_real_frozen_sphinx_build_emits_verifiable_receipt(self):
         (self.web / "conf.py").write_text(
             "project='Receipt fixture'\n"
-            "extensions=['myst_parser', 'tools.rtd_portal']\n"
+            "extensions=['myst_parser', 'tools.rtd.portal']\n"
             "html_static_path=['_static']\n"
             "from pathlib import Path\n"
             "def copy_late_asset(app, exception):\n"
@@ -295,15 +311,23 @@ class RtdProjectSlugDerivationTests(unittest.TestCase):
     def test_derives_slug_from_rtd_io_base_urls(self):
         for base in ("https://ht-doc.readthedocs.io",
                      "https://ht-doc.readthedocs.io/",
-                     "https://HT-DOC.readthedocs.io/en/latest/",
-                     receipt.DEFAULT_RTD_BASE_URL):
+                     "https://HT-DOC.readthedocs.io/en/latest/"):
             with self.subTest(base=base):
                 self.assertEqual(receipt.rtd_project_slug_from_base_url(base), "ht-doc")
+
+    def test_derives_slug_from_business_hosted_base_urls(self):
+        for base in ("https://ht-docs-ht-manuals.readthedocs-hosted.com",
+                     "https://HT-DOCS-HT-MANUALS.readthedocs-hosted.com/en/latest/",
+                     receipt.DEFAULT_RTD_BASE_URL):
+            with self.subTest(base=base):
+                self.assertEqual(receipt.rtd_project_slug_from_base_url(base), "ht-docs-ht-manuals")
 
     def test_underivable_hosts_return_none(self):
         for base in ("https://example.org", "https://readthedocs.io",
                      "https://a.b.readthedocs.io", "https://evil-readthedocs.io",
                      "https://ht-doc.readthedocs.io.evil.org",
+                     "https://a.b.readthedocs-hosted.com", "https://evil-readthedocs-hosted.com",
+                     "https://x.readthedocs-hosted.com.evil.org",
                      "https://-bad.readthedocs.io", "not a url", "https://[", None):
             with self.subTest(base=base):
                 self.assertIsNone(receipt.rtd_project_slug_from_base_url(base))

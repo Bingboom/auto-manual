@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from tools import check_docs
+from tools.check import docs as check_docs
 from tools.skeleton_resolve import (
     load_blueprint,
     load_region_profile,

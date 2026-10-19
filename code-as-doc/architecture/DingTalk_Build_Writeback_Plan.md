@@ -47,15 +47,15 @@ Current queue orchestration is intentionally build-provider-agnostic in the midd
 - sync provider selection and auth bootstrap:
   [`../../tools/phase2_support.py`](../../tools/phase2_support.py)
 - phase2 sync runtime:
-  [`../../tools/sync_data_runtime.py`](../../tools/sync_data_runtime.py)
+  [`../../tools/data/sync_data_runtime.py`](../../tools/data/sync_data_runtime.py)
 - build queue entrypoint and orchestration:
-  [`../../tools/process_build_queue.py`](../../tools/process_build_queue.py),
-  [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py),
-  [`../../tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
+  [`../../tools/build_queue/process_build_queue.py`](../../tools/build_queue/process_build_queue.py),
+  [`../../tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py),
+  [`../../tools/build_queue/orchestration.py`](../../tools/build_queue/orchestration.py)
 - provider-specific upload and wiki attach:
-  [`../../tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+  [`../../tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
 - queue binding and preflight:
-  [`../../tools/queue_bound_binding.py`](../../tools/queue_bound_binding.py)
+  [`../../tools/build_queue/bound_binding.py`](../../tools/build_queue/bound_binding.py)
 
 The build core itself should stay unchanged:
 
@@ -173,7 +173,7 @@ We should not create a separate DingTalk-only build entrypoint.
 ### 6.2 Move From `lark_cli` To Provider Contracts
 
 Current config still hardcodes `lark_cli` as the only supported provider in
-[`../../tools/sync_data_config.py`](../../tools/sync_data_config.py).
+[`../../tools/data/sync_data_config.py`](../../tools/data/sync_data_config.py).
 
 We should evolve this into real provider contracts:
 
@@ -204,21 +204,21 @@ Recommended new contracts:
 
 Expected primary refactor surface:
 
-- [`../../tools/sync_data_config.py`](../../tools/sync_data_config.py)
+- [`../../tools/data/sync_data_config.py`](../../tools/data/sync_data_config.py)
   - stop collapsing every provider into `lark_cli`
   - add provider-specific env and auth settings
 - [`../../tools/phase2_support.py`](../../tools/phase2_support.py)
   - expose provider-neutral loader and provider factories
-- [`../../tools/sync_data_runtime.py`](../../tools/sync_data_runtime.py)
+- [`../../tools/data/sync_data_runtime.py`](../../tools/data/sync_data_runtime.py)
   - remove hard stop on `provider != "lark_cli"`
-- [`../../tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
+- [`../../tools/build_queue/process_build_queue_services.py`](../../tools/build_queue/process_build_queue_services.py)
   - replace Lark-specific upload/move binding with provider-selected services
-- [`../../tools/queue_lark_ops.py`](../../tools/queue_lark_ops.py)
+- [`../../tools/build_queue/lark_ops.py`](../../tools/build_queue/lark_ops.py)
   - keep as Feishu implementation
   - add sibling `queue_dingtalk_ops.py`
-- [`../../tools/queue_bound_binding.py`](../../tools/queue_bound_binding.py)
+- [`../../tools/build_queue/bound_binding.py`](../../tools/build_queue/bound_binding.py)
   - generalize binding resolution away from Feishu-only env names
-- [`../../tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
+- [`../../tools/build_queue/process_review_start_queue.py`](../../tools/build_queue/process_review_start_queue.py)
   - leave unchanged in phase 1 unless DingTalk also needs review-init queue parity
 
 ### 6.4 Prefer A Repo-Owned CLI Wrapper

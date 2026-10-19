@@ -1,0 +1,1103 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-power",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "POWER ON/OFF"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-ac-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AC OUTPUT ON/OFF"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-usb-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "USB OUTPUT ON/OFF"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-energy-saving",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENERGY SAVING MODE"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-lcd-screen",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "LCD SCREEN "
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-key-combination",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "KEY COMBINATION"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 1280,
+      "prerequisite_labels": [
+        {
+          "figure": "ac-output",
+          "text": "Prerequisite: The product is turned on.",
+          "horizontal_center_error_px": 0.00217437744140625,
+          "vertical_center_error_px": -0.0022788047790527344,
+          "native_frame_relative_to_art": [
+            0.04032447081601504,
+            0.042068703615308685,
+            0.4082022183320618,
+            0.06149819561017269
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "text": "Prerequisite: The product is powered on.",
+          "horizontal_center_error_px": 0.00215911865234375,
+          "vertical_center_error_px": -0.0022788047790527344,
+          "native_frame_relative_to_art": [
+            0.029017226228155092,
+            0.07026557377049181,
+            0.42301450592121137,
+            0.09621858350409836
+          ]
+        }
+      ],
+      "art_and_frame_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "en",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-power",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "POWER ON/OFF"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-ac-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AC OUTPUT ON/OFF"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-usb-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "USB OUTPUT ON/OFF"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-energy-saving",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENERGY SAVING MODE"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-lcd-screen",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "LCD SCREEN "
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-key-combination",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "KEY COMBINATION"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 711,
+      "prerequisite_labels": [
+        {
+          "figure": "ac-output",
+          "text": "Prerequisite: The product is turned on.",
+          "horizontal_center_error_px": 0.002170562744140625,
+          "vertical_center_error_px": -0.0020079612731933594,
+          "native_frame_relative_to_art": [
+            0.04032134124541392,
+            0.04206689936562586,
+            0.4082048680757686,
+            0.06150072599539041
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "text": "Prerequisite: The product is powered on.",
+          "horizontal_center_error_px": 3.814697265625e-06,
+          "vertical_center_error_px": -0.0015196800231933594,
+          "native_frame_relative_to_art": [
+            0.029015515187279795,
+            0.07026150550306862,
+            0.4230130118650651,
+            0.09622303585662507
+          ]
+        }
+      ],
+      "art_and_frame_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "en",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-power",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "POWER ON/OFF"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-ac-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AC OUTPUT ON/OFF"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-usb-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "USB OUTPUT ON/OFF"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-energy-saving",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENERGY SAVING MODE"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-lcd-screen",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "LCD SCREEN "
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-key-combination",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "KEY COMBINATION"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 390,
+      "prerequisite_labels": [
+        {
+          "figure": "ac-output",
+          "text": "Prerequisite: The product is turned on.",
+          "horizontal_center_error_px": 0.002166748046875,
+          "vertical_center_error_px": -5.245208740234375e-06,
+          "native_frame_relative_to_art": [
+            0.04032389521598816,
+            0.042064576673092435,
+            0.408203125,
+            0.06149886133933514
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "text": "Prerequisite: The product is powered on.",
+          "horizontal_center_error_px": 0.00217437744140625,
+          "vertical_center_error_px": -2.0503997802734375e-05,
+          "native_frame_relative_to_art": [
+            0.02901882529258728,
+            0.07025986201297847,
+            0.42301435470581056,
+            0.09621977310101525
+          ]
+        }
+      ],
+      "art_and_frame_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "es",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-power",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-ac-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA CA"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-usb-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA USB"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-energy-saving",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODO DE AHORRO DE ENERGÍA"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-lcd-screen",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "PANTALLA LCD"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-key-combination",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 1280,
+      "prerequisite_labels": [
+        {
+          "figure": "ac-output",
+          "text": "Requisito previo: el producto está encendido.",
+          "horizontal_center_error_px": 0.0021514892578125,
+          "vertical_center_error_px": -0.0020346641540527344,
+          "native_frame_relative_to_art": [
+            0.042205693114363445,
+            0.033813363671280613,
+            0.46830938947738937,
+            0.06198544899306103
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "text": "Requisito previo:  el producto está encendido.",
+          "horizontal_center_error_px": 1.52587890625e-05,
+          "vertical_center_error_px": -0.0021567344665527344,
+          "native_frame_relative_to_art": [
+            0.03642339322878787,
+            0.049758207226734075,
+            0.4753525209065697,
+            0.09531576933441396
+          ]
+        }
+      ],
+      "art_and_frame_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "es",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-power",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-ac-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA CA"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-usb-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA USB"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-energy-saving",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODO DE AHORRO DE ENERGÍA"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-lcd-screen",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "PANTALLA LCD"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-key-combination",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 711,
+      "prerequisite_labels": [
+        {
+          "figure": "ac-output",
+          "text": "Requisito previo: el producto está encendido.",
+          "horizontal_center_error_px": 0.002166748046875,
+          "vertical_center_error_px": -0.0022521018981933594,
+          "native_frame_relative_to_art": [
+            0.04220032145448741,
+            0.03381206577539369,
+            0.46830662050467464,
+            0.061988166812292265
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "text": "Requisito previo:  el producto está encendido.",
+          "horizontal_center_error_px": 0.002170562744140625,
+          "vertical_center_error_px": -0.0022521018981933594,
+          "native_frame_relative_to_art": [
+            0.03642278324744617,
+            0.049756197462661134,
+            0.4753495987188915,
+            0.09531929641706872
+          ]
+        }
+      ],
+      "art_and_frame_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "es",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-power",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDIDO/APAGADO"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-ac-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA CA"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-usb-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "ENCENDER/APAGAR SALIDA USB"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-energy-saving",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODO DE AHORRO DE ENERGÍA"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-lcd-screen",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "PANTALLA LCD"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-key-combination",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "COMBINACIONES DE TECLAS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 390,
+      "prerequisite_labels": [
+        {
+          "figure": "ac-output",
+          "text": "Requisito previo: el producto está encendido.",
+          "horizontal_center_error_px": 0.002178192138671875,
+          "vertical_center_error_px": -5.245208740234375e-06,
+          "native_frame_relative_to_art": [
+            0.042202425003051755,
+            0.0338143056807293,
+            0.468309211730957,
+            0.061986417490100816
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "text": "Requisito previo:  el producto está encendido.",
+          "horizontal_center_error_px": 0.0021820068359375,
+          "vertical_center_error_px": 4.0531158447265625e-05,
+          "native_frame_relative_to_art": [
+            0.0364244282245636,
+            0.04975661538974906,
+            0.4753486156463623,
+            0.09531648862953818
+          ]
+        }
+      ],
+      "art_and_frame_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "fr",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-power",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MARCHE/ARRÊT"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-ac-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE CA MARCHE/ARRÊT"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-usb-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE USB MARCHE/ARRÊT"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-energy-saving",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODE D’ÉCONOMIE D’ÉNERGIE"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-lcd-screen",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AFFICHAGE LCD"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "17.92px",
+          "fontWeight": "700",
+          "id": "operations-key-combination",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "FONCTIONNEMENT DES BOUTONS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 1280,
+      "prerequisite_labels": [
+        {
+          "figure": "ac-output",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 0.0,
+          "vertical_center_error_px": -0.0022788047790527344,
+          "native_frame_relative_to_art": [
+            0.04114958541449129,
+            0.03579316100243703,
+            0.3400419881131145,
+            0.06432788361139875
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 1.52587890625e-05,
+          "vertical_center_error_px": -0.0013022422790527344,
+          "native_frame_relative_to_art": [
+            0.03885910107714167,
+            0.04449705989704553,
+            0.34120372978903185,
+            0.09748715508653798
+          ]
+        }
+      ],
+      "art_and_frame_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "fr",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-power",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MARCHE/ARRÊT"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-ac-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE CA MARCHE/ARRÊT"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-usb-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE USB MARCHE/ARRÊT"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-energy-saving",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODE D’ÉCONOMIE D’ÉNERGIE"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-lcd-screen",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AFFICHAGE LCD"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-key-combination",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "FONCTIONNEMENT DES BOUTONS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 711,
+      "prerequisite_labels": [
+        {
+          "figure": "ac-output",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 0.0,
+          "vertical_center_error_px": -0.0024962425231933594,
+          "native_frame_relative_to_art": [
+            0.041145794668530786,
+            0.03579786552812603,
+            0.3400439702500689,
+            0.06433112926127837
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 0.002162933349609375,
+          "vertical_center_error_px": -0.0015196800231933594,
+          "native_frame_relative_to_art": [
+            0.03885778391341697,
+            0.044498881999764,
+            0.3412007462467917,
+            0.09749263846648522
+          ]
+        }
+      ],
+      "art_and_frame_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    },
+    {
+      "lang": "fr",
+      "brokenImages": 0,
+      "clippedText": [],
+      "headings": [
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-power",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MARCHE/ARRÊT"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-ac-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE CA MARCHE/ARRÊT"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-usb-output",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "SORTIE USB MARCHE/ARRÊT"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-energy-saving",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "MODE D’ÉCONOMIE D’ÉNERGIE"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-lcd-screen",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "AFFICHAGE LCD"
+        },
+        {
+          "beforeContent": "\"\"",
+          "clipped": false,
+          "display": "flex",
+          "fontSize": "16px",
+          "fontWeight": "700",
+          "id": "operations-key-combination",
+          "markerColor": "rgb(52, 48, 49)",
+          "markerHeight": "11.5191px",
+          "markerRadius": "50%",
+          "markerWidth": "11.5191px",
+          "tag": "H2",
+          "text": "FONCTIONNEMENT DES BOUTONS"
+        }
+      ],
+      "pageOverflow": 0,
+      "selectable": true,
+      "width": 390,
+      "prerequisite_labels": [
+        {
+          "figure": "ac-output",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 0.002174377441392039,
+          "vertical_center_error_px": -5.245208740234375e-06,
+          "native_frame_relative_to_art": [
+            0.04115126132965088,
+            0.035792952394438,
+            0.3400404453277588,
+            0.06432918379707481
+          ]
+        },
+        {
+          "figure": "usb-output",
+          "text": "Prérequis : Le produit est allumé.",
+          "horizontal_center_error_px": 3.814697279835855e-06,
+          "vertical_center_error_px": 4.0531158447265625e-05,
+          "native_frame_relative_to_art": [
+            0.03885905146598816,
+            0.04448997440273038,
+            0.34120688438415525,
+            0.0974895744453925
+          ]
+        }
+      ],
+      "art_and_frame_geometry_unchanged": true,
+      "other_figure_labels_unchanged": true
+    }
+  ]
+}

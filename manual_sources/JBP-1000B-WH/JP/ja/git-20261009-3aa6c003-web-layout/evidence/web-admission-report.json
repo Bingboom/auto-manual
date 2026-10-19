@@ -1,0 +1,114 @@
+{
+  "profile": "prepared-shared-components/v1",
+  "target": {
+    "model": "JBP-1000B-WH",
+    "region": "JP",
+    "language": "ja"
+  },
+  "components": {
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 26,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-SPECIAL-OPERATION": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-CALLOUT-STRIP": 4,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-TABLE-SPEC": 3,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 7
+  },
+  "variants": {
+    "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+    "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1,
+    "HB-SPECIAL-INBOX/responsive-card-grid": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 26,
+    "HB-TABLE-LCD-ICON/icon-catalog": 1,
+    "HB-SPECIAL-OPERATION/status-right": 1,
+    "HB-TABLE-LCD-MODE/two-state-three-action": 1,
+    "HB-CALLOUT-STRIP/caution": 3,
+    "HB-CALLOUT-STRIP/warning": 1,
+    "HB-TABLE-TROUBLESHOOTING/two-column": 1,
+    "HB-TABLE-SPEC/vertical": 3,
+    "HB-WARRANTY-LEAD/intro-panel": 1,
+    "HB-WARRANTY-SECTION/rounded-card": 7
+  },
+  "pages": {
+    "safety": {},
+    "symbols": {
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-SYMBOL-SIGNAL/localized-badges": 1,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-ICON/two-panel-responsive": 1
+    },
+    "in_the_box": {
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-INBOX/responsive-card-grid": 1
+    },
+    "product_overview": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+    },
+    "lcd_display": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-ICON/icon-catalog": 1
+    },
+    "operations": {
+      "HB-SPECIAL-OPERATION": 1,
+      "HB-SPECIAL-OPERATION/status-right": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-LCD-MODE/two-state-three-action": 1
+    },
+    "placement": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 2,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 2,
+      "HB-CALLOUT-STRIP": 1,
+      "HB-CALLOUT-STRIP/caution": 1
+    },
+    "stand": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 5,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 5
+    },
+    "wall_wood": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 7,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 7
+    },
+    "wall_concrete": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 6,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 6
+    },
+    "connection": {
+      "HB-CALLOUT-STRIP": 2,
+      "HB-CALLOUT-STRIP/caution": 2,
+      "HB-SPECIAL-REFERENCE-FIGURE": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 1
+    },
+    "charging": {
+      "HB-CALLOUT-STRIP": 1,
+      "HB-CALLOUT-STRIP/warning": 1,
+      "HB-SPECIAL-REFERENCE-FIGURE": 3,
+      "HB-SPECIAL-REFERENCE-FIGURE/semantic-fallback": 3
+    },
+    "troubleshooting": {
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-TABLE-TROUBLESHOOTING/two-column": 1
+    },
+    "specifications": {
+      "HB-TABLE-SPEC": 3,
+      "HB-TABLE-SPEC/vertical": 3
+    },
+    "warranty": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-LEAD/intro-panel": 1,
+      "HB-WARRANTY-SECTION": 7,
+      "HB-WARRANTY-SECTION/rounded-card": 7
+    },
+    "contact": {}
+  },
+  "legacy_debt": [],
+  "governed_finished_panels": [],
+  "issues": []
+}

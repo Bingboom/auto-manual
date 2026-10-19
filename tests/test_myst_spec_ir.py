@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_md_directives import SpecTableDirective, _inline_html
 from tools.manual_ir import build_manual_ir_from_source, read_manual_ir, write_manual_ir
-from tools.web_spec_component import render_specification_ir
+from tools.web.spec_component import render_specification_ir
 
 
 def directive(rows, label="INPUT PORTS"):
@@ -40,11 +40,11 @@ class MystSpecIRTests(unittest.TestCase):
 
         with (
             patch(
-                "tools.web_spec_component.build_manual_ir_from_source",
+                "tools.web.spec_component.build_manual_ir_from_source",
                 wraps=build_manual_ir_from_source,
             ) as assemble,
             patch(
-                "tools.web_spec_component.render_specification_ir", side_effect=replay
+                "tools.web.spec_component.render_specification_ir", side_effect=replay
             ),
         ):
             output = SpecTableDirective.run(
@@ -82,7 +82,7 @@ class MystSpecIRTests(unittest.TestCase):
             return replace(build_manual_ir_from_source(source), content_sha256="0" * 64)
 
         with patch(
-            "tools.web_spec_component.build_manual_ir_from_source", side_effect=corrupt
+            "tools.web.spec_component.build_manual_ir_from_source", side_effect=corrupt
         ):
             with self.assertRaisesRegex(ValueError, "Manual IR"):
                 SpecTableDirective.run(directive([["AC", "100 V"]]))
@@ -109,7 +109,7 @@ class MystSpecIRTests(unittest.TestCase):
             conf = write_conf_py(source, title="Manual")
             with conf.open("a") as stream:
                 stream.write("""
-from tools import web_spec_component as spec_ir
+from tools.web import spec_component as spec_ir
 from tools.manual_ir import write_manual_ir
 from dataclasses import replace
 original_assemble = spec_ir.build_manual_ir_from_source

@@ -1,0 +1,2842 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-3600A",
+    "region": "JP",
+    "technical_version": "git-20261015-fd06cd04-shared",
+    "languages": [
+      "ja"
+    ]
+  },
+  "derived_from": {
+    "technical_version": "git-20261013-fd06cd04-web-layout",
+    "path": "data/manual_sources/JE-3600A/JP/git-20261013-fd06cd04-web-layout",
+    "derivation": "derive_shared.py"
+  },
+  "original_source": {
+    "filename": "Jackery ポータブル電源 3600 Plus 取扱説明書.pdf",
+    "sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6",
+    "page_count": 30,
+    "printed_version": "unconfirmed"
+  },
+  "scope": "Git-only native JP/ja shared-component edition; no online-table writes",
+  "live_bitable_dependency": false,
+  "phase2_enrolled": false,
+  "web_roots": {
+    "ja": "web/ja"
+  },
+  "repository_regression_gate": {
+    "command": "python3 build.py check --config configs/config.ja.yaml --model JE-1000F --region JP --data-root tests/fixtures/phase2",
+    "scope": "existing phase2 family regression only; does not validate native JE-3600A body",
+    "body_gate": "source-local hash-checked adapter, strict Sphinx, accepted source-byte parity and browser layout audit"
+  },
+  "publication_status": "git-only-source-candidate",
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/component_registry.yaml",
+      "size": 15821,
+      "sha256": "8c2313fc7382808efd5fd59e57a14adcd41423fb873498dd6033637647bd6795"
+    },
+    {
+      "path": "docs/renderers/contracts/manual_style.yaml",
+      "size": 54018,
+      "sha256": "aa2e008e56a284224882177cced938824e4265f9b8ebf8afcf436044c0021818"
+    },
+    {
+      "path": "docs/renderers/contracts/manual_theme.yaml",
+      "size": 8700,
+      "sha256": "8dd02bb2897cfc1982eb144fdb05d7a2267f2a7c97581c455eb408c2b20a0537"
+    },
+    {
+      "path": "docs/renderers/contracts/overview_component_instances.json",
+      "size": 19981,
+      "sha256": "98e00b04a92702e3e7c060790688e4ce3231b93552c05de0183c7a13fd6592a3"
+    },
+    {
+      "path": "docs/renderers/contracts/prepared_component_admission.json",
+      "size": 330806,
+      "sha256": "0c17fd986bb8634dfa08940e2a5c6426fb58ed1fff98dc829d1ae41471c16b9c"
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json",
+      "size": 26001,
+      "sha256": "dc9aa7b4137120e43cd5c1eddd8609827e655f18c54d1cf09132edcc5ee15a8f"
+    },
+    {
+      "path": "docs/renderers/contracts/reference_layout_registry.json",
+      "size": 587,
+      "sha256": "3ac4af5d3b9ff6a074d835597bc2b2bc8aeabab935eb0fb9dc631d89075fdd44"
+    },
+    {
+      "path": "docs/renderers/contracts/symbol_caption_errata.json",
+      "size": 1040,
+      "sha256": "5e6eb78ea050810c2fc0dfef12b3084d72843dcbe07c14b0199e8ba1b0092d5b"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_eu_v1_candidate.json",
+      "size": 35709,
+      "sha256": "0a5ca273a27a13fd8e1f6f3ebeaab693f05b65b54f34fbcbbab6ccc97910361e"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_jp_v1_candidate.json",
+      "size": 5961,
+      "sha256": "1d0d6e803802085fe6603e3cdad106adb96d3b2643d76ee1e15f00e644a7dcf2"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/jbp2000b_us_v1_candidate.json",
+      "size": 16745,
+      "sha256": "4c61eb8384dd63859560a19e8d8b50a829c3452baacda5b620d8e7f449278f48"
+    },
+    {
+      "path": "docs/renderers/contracts/target_assembly/je3000c_kr_v1_candidate.json",
+      "size": 11030,
+      "sha256": "9a349b53da9e6a4c8ff634cef9157c11d230dfde0d5dfefa793015b6a314c390"
+    },
+    {
+      "path": "docs/renderers/contracts/web_app_components.css",
+      "size": 3442,
+      "sha256": "24b5364d0ca23552344685c782db270ddec9e727014aa71441f8a3170b311e6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_base_art_components.css",
+      "size": 20333,
+      "sha256": "a9d5fad3dcb9a104ac10daef583be0c8c93a1818296c604e855e349a66985a6d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_battery_pack_components.css",
+      "size": 10570,
+      "sha256": "a36844c9c4beaa9ea9f93b90ac602d9b62fc44924dff52eb52a0e0dffdf6d7e3"
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_components.css",
+      "size": 3224,
+      "sha256": "f293ec637ef164e78c793d998d93cfeafe8fae9ef40adf6c1fe36cd0d456e83f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_fcc_statement.css",
+      "size": 960,
+      "sha256": "34cf40b5b37310ec2f44c560a2ab65a2465211221f75f0b746eb83752e7f361c"
+    },
+    {
+      "path": "docs/renderers/contracts/web_inbox_components.css",
+      "size": 4296,
+      "sha256": "6290fca45ef5509f510947957ecc1108c4eae848434215459179a53c7175dfa1"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.css",
+      "size": 47733,
+      "sha256": "5519f2d75187aca34b0469657680680d3591bbc844450ea57681e26582ee337a"
+    },
+    {
+      "path": "docs/renderers/contracts/web_manual.json",
+      "size": 603,
+      "sha256": "f4d0628d8655402d2db30d9e92158290ad0f1c1e5a1f2690f9fb726cf93e1280"
+    },
+    {
+      "path": "docs/renderers/contracts/web_operation_clock.css",
+      "size": 649,
+      "sha256": "8b5229d556bfc4accdcb71f14eb46f88cdab2ff9c31571894e04c18d6a02eabd"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/battery_pack_v1.json",
+      "size": 110,
+      "sha256": "8029edd4b59d5fd220f0fa139b65e8290fd2d78845db8949bb02778ae0718dd4"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/charger_v1.json",
+      "size": 307,
+      "sha256": "3cd1160ce052d979d2774834bb779f35774694d11a69d674a820cf636b5830b0"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/figure_debt_baseline.json",
+      "size": 2844,
+      "sha256": "e082c63df83cc4f2a09c6d21e9d0679079075f82e717447fdae3aec8950294a5"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/portable_power_station_v1.json",
+      "size": 9656,
+      "sha256": "d51fcdefb468da99b1e8d8c174382810ef9cdb8dd2f967d2f26a68198452c7a2"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/shared_base.json",
+      "size": 3643,
+      "sha256": "30293c328bfbbe4424321265b2bb52935c9cb0f782b36bb46ec204e6e2488298"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/solar_v1.json",
+      "size": 305,
+      "sha256": "75daf185a72e20bc3011e063a53c035a5fbe07719783ffa841b98987fdf4822f"
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "size": 52438,
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    },
+    {
+      "path": "docs/renderers/contracts/web_registration_components.css",
+      "size": 916,
+      "sha256": "a112dd88a80191254f946e91947a265680d8a99239f1cb60198e37f2e7acb23c"
+    },
+    {
+      "path": "docs/renderers/contracts/web_safety_components.css",
+      "size": 3803,
+      "sha256": "a8d40a22cfbf58e92b3cccf8488400f7af2f6dd5153cb7c71bc489183fc76025"
+    },
+    {
+      "path": "docs/renderers/contracts/web_source_panels.css",
+      "size": 24791,
+      "sha256": "cab398c74bf0cd9610336c422d9129a9257f26edeb3d83579fbd44de567d1719"
+    },
+    {
+      "path": "docs/renderers/contracts/web_symbols_fcc_components.css",
+      "size": 2895,
+      "sha256": "1753be358a168640d2102d6de4ab07d4d8b4605beb31068cdadb7c1050c341a9"
+    },
+    {
+      "path": "docs/renderers/web/assets/shared/symbols/manifest.json",
+      "size": 55788,
+      "sha256": "2d44e509fa77495fdc19e436f9c61d0c7c25929cedc08e5285e91dfa4a527b05"
+    },
+    {
+      "path": "tools/asset_pipeline/__init__.py",
+      "size": 545,
+      "sha256": "6019d91fb049384c74ea00f4c0cfcedc602160412806fc7a673ed6771af5d331"
+    },
+    {
+      "path": "tools/asset_pipeline/base_inventory.py",
+      "size": 50240,
+      "sha256": "f8908034761265175121ac3558caf8e3fafbf4bdd9646581b90ed9ce0eaac481"
+    },
+    {
+      "path": "tools/asset_pipeline/base_reconcile.py",
+      "size": 10058,
+      "sha256": "fef60d41e3b2a60ab5d1b6cf305e222364b7eca3a0f97aa4ea84e6ae2a0d5931"
+    },
+    {
+      "path": "tools/asset_pipeline/extract.py",
+      "size": 33576,
+      "sha256": "634c1b53fbc38b68b5b26d53138d88ac422700d30ab6fcae507972c3c6df863e"
+    },
+    {
+      "path": "tools/asset_pipeline/leaders.py",
+      "size": 7437,
+      "sha256": "cdcafbad09e13c4dbafd582110af1f86a7fc0ea4043212ec6eb86a38fc316c5d"
+    },
+    {
+      "path": "tools/asset_pipeline/models.py",
+      "size": 7552,
+      "sha256": "76c0df2a039bb68ce57acefd11da4cda59b402438ac61864b3d3665fa128729a"
+    },
+    {
+      "path": "tools/asset_pipeline/native_svg.py",
+      "size": 9216,
+      "sha256": "a99ee031a8ef796f562ebb82c542715daf34096df60a3c5cec143f8685a56785"
+    },
+    {
+      "path": "tools/asset_pipeline/package.py",
+      "size": 11252,
+      "sha256": "2adba7bdadc21f0a182699c968cc95a2a82f68a67cea3b79c8ae95ce2a01ea68"
+    },
+    {
+      "path": "tools/asset_pipeline/recipe.py",
+      "size": 33788,
+      "sha256": "d82e799cfde6157ff61fa6a7668148851850f4919df4f72541c73afa48abd3d2"
+    },
+    {
+      "path": "tools/build_paths.py",
+      "size": 14639,
+      "sha256": "13b7db543794ab70a06037ceb274d028e6d75b2d4983d022e39209f70fd536f5"
+    },
+    {
+      "path": "tools/component_specs/__init__.py",
+      "size": 2388,
+      "sha256": "92949fd4505309fa00c05ab8ce47bb641e6e7ab0a973befcdccb86fdb6b3aa1e"
+    },
+    {
+      "path": "tools/component_specs/adapters.py",
+      "size": 3434,
+      "sha256": "d2473634eee20324ac3db18521520ff3af1f03dd6d45c1699bfc35379539db81"
+    },
+    {
+      "path": "tools/component_specs/app.py",
+      "size": 13511,
+      "sha256": "3cb2f3ff415ac5d0cb0cc397d6a8713cd7f409fea811f7d4d113e33f4f1bcf2e"
+    },
+    {
+      "path": "tools/component_specs/app_adapters.py",
+      "size": 2078,
+      "sha256": "c1ffc7dffd98a0842f4e361c1c1ae626c9a8e09c8218841b850a15288b1b9183"
+    },
+    {
+      "path": "tools/component_specs/app_html.py",
+      "size": 9082,
+      "sha256": "9fff02554670f2e9b3e4e6329a0cd5b3b15cb4af2281276329256d1fb4766de2"
+    },
+    {
+      "path": "tools/component_specs/app_label_source.py",
+      "size": 3347,
+      "sha256": "d0ad98835814045f0e3f13d7d38bea66be455a98e4513727e4d3a01c66995e37"
+    },
+    {
+      "path": "tools/component_specs/app_qr_source.py",
+      "size": 1399,
+      "sha256": "687d9de375af3fae3bfcdc40b46ff41baac2fea6ba3a5faadd1d9ec88b56d395"
+    },
+    {
+      "path": "tools/component_specs/authored_tables_html.py",
+      "size": 4900,
+      "sha256": "e39e06ee40622bf0a21e4945a44f00f4bc019ad6cc8b23a3a8765a2fdde2c917"
+    },
+    {
+      "path": "tools/component_specs/auto_resume.py",
+      "size": 2444,
+      "sha256": "2f1eab8d34e4c5209104d2204b1caa56d7551077e78ce3d21d900647c28564e4"
+    },
+    {
+      "path": "tools/component_specs/callout.py",
+      "size": 8691,
+      "sha256": "dbf8f9203833c299f77921eee55e12e1e7bf470080253cfd27f02fd538aa897e"
+    },
+    {
+      "path": "tools/component_specs/fcc.py",
+      "size": 8688,
+      "sha256": "b92a428d1de1265af6e2f1a8c9fcc98f84decb23de24795e457aee031edee3f0"
+    },
+    {
+      "path": "tools/component_specs/fcc_adapters.py",
+      "size": 2837,
+      "sha256": "8c18fa511ba4072c8e6a23a9a62ab265fad6ce83a9d3d45a94e8cee07b81756e"
+    },
+    {
+      "path": "tools/component_specs/fcc_declaration.py",
+      "size": 2329,
+      "sha256": "c630126d0896ef7c2298cb737bfa90efd331ff58d5ccb71df6ac9b91675f6582"
+    },
+    {
+      "path": "tools/component_specs/fcc_html.py",
+      "size": 6970,
+      "sha256": "47b2184fb1727bf0150759ed4ad247288d1360a735272768dc06401f64695e0a"
+    },
+    {
+      "path": "tools/component_specs/inbox.py",
+      "size": 7291,
+      "sha256": "c8b43521005bbc627bc34166a762cd884c869b19b0bade048b3c123a8740d2c7"
+    },
+    {
+      "path": "tools/component_specs/inbox_adapters.py",
+      "size": 2610,
+      "sha256": "28e70bd56ab4b26d02c1b0ed8920a470142b6b3a1e2ba87bd82d0e9d5d91f752"
+    },
+    {
+      "path": "tools/component_specs/inbox_html.py",
+      "size": 3732,
+      "sha256": "825274eeec31587ba7eac69055336acda5f3787997e8d7f1207523acf0eda242"
+    },
+    {
+      "path": "tools/component_specs/key_combinations.py",
+      "size": 2407,
+      "sha256": "e7371092ec249c98be54ec2c111218db188bc98fd7269fb786fac439d5adcd61"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode.py",
+      "size": 4570,
+      "sha256": "77c5a92ec346a1a176868cece9aefb702862aa72cf02c566fe9599666a3718c5"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_adapters.py",
+      "size": 2398,
+      "sha256": "1f7216378bfab118300833859bb169533db081dc5dec57a3d5aec24eb296fdce"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_html.py",
+      "size": 3371,
+      "sha256": "c9de7fd1a12268ed3ac25e35e30d0dfdd0a437c46f3c325f7141577495c8c4bd"
+    },
+    {
+      "path": "tools/component_specs/lcd_mode_source.py",
+      "size": 1640,
+      "sha256": "c2bf859d75a341b8a7e2ca645e37d08e3fe85d77574d02216c262b4fa54ff576"
+    },
+    {
+      "path": "tools/component_specs/manual_table_adapters.py",
+      "size": 5386,
+      "sha256": "f04a1bf1f0b1db1426ceac767467c90181b3d2978eccc7d5d5c76b3c137603c7"
+    },
+    {
+      "path": "tools/component_specs/manual_table_html.py",
+      "size": 6606,
+      "sha256": "8477afedd23af38a21deb4c0239c7038e5da901b05b00c1e00faa13b52bf5b1e"
+    },
+    {
+      "path": "tools/component_specs/manual_tables.py",
+      "size": 10395,
+      "sha256": "c81a8950cfd2c1d6a5b8d6859a3d01af7f4964d4cd2201868cdb22a121d2f172"
+    },
+    {
+      "path": "tools/component_specs/model.py",
+      "size": 3840,
+      "sha256": "06aa31c190fc1490c99aee7646c03b006c79b4e70d1a9a7c6cc8e9a1b9c357d7"
+    },
+    {
+      "path": "tools/component_specs/operation.py",
+      "size": 7060,
+      "sha256": "875bfdcdcc20ac7276bae53bbac1c1782e9ed793cb97057c1f9bbb58471aa840"
+    },
+    {
+      "path": "tools/component_specs/operation_adapters.py",
+      "size": 5423,
+      "sha256": "866930f814195ef82766bf7434c7c60507df8c684c9fd298349678757dc3491e"
+    },
+    {
+      "path": "tools/component_specs/operation_html.py",
+      "size": 9879,
+      "sha256": "588e199ebd80135f737b740133ce520ceab7f1a11b6c387460f175d34c4d3e80"
+    },
+    {
+      "path": "tools/component_specs/operation_tables_html.py",
+      "size": 3505,
+      "sha256": "4ced355fecde5bf0f384af4124177ca068ec9b9b4461db6abe533bd68ebebd32"
+    },
+    {
+      "path": "tools/component_specs/overview.py",
+      "size": 12564,
+      "sha256": "c46fbc1c7bb15a972281cba8277763962d053e81c611f05529d25d7dfa971423"
+    },
+    {
+      "path": "tools/component_specs/overview_adapters.py",
+      "size": 6489,
+      "sha256": "522dc2f54093e9f6ed6490e96773919b8a8ee59fab9cad1de20c478403396eda"
+    },
+    {
+      "path": "tools/component_specs/overview_html.py",
+      "size": 7944,
+      "sha256": "b5e8398832a06d8a20bb5496bd278a63da1bfa85ea6d7764dd651cdea4057ba1"
+    },
+    {
+      "path": "tools/component_specs/overview_instance.py",
+      "size": 18192,
+      "sha256": "4563cc96d90085c8eab7454553a3b3c41e532b8a937744862ff7c1a3e23e1e7b"
+    },
+    {
+      "path": "tools/component_specs/overview_instance_validation.py",
+      "size": 2356,
+      "sha256": "57fe7fd4a307ea737212755edf8caa116d372b86d0bdd188c0efceb6a3f445d3"
+    },
+    {
+      "path": "tools/component_specs/plain_inventory.py",
+      "size": 2092,
+      "sha256": "27fde4d3ab4fc41007614b813f0870a6b648f4d1eef807eb7dff44dfd9616330"
+    },
+    {
+      "path": "tools/component_specs/projection.py",
+      "size": 6354,
+      "sha256": "0698f3d79e9f30e9ad18c57459afed3ab9f0511c457c6a7657cb2b1cdd75ffc1"
+    },
+    {
+      "path": "tools/component_specs/reference_figure.py",
+      "size": 10264,
+      "sha256": "cb0086034f0b21eb8473071723c8852afd5abe0639a9694b12f6d9fcb7ca69c2"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_adapters.py",
+      "size": 2029,
+      "sha256": "390c42bf2784349fafdc0032da2b218e2f048cd8f358900d26f46ef4a500bafe"
+    },
+    {
+      "path": "tools/component_specs/reference_figure_html.py",
+      "size": 10115,
+      "sha256": "21b6b0beace5b76fa4da1af101145835abed241230ae8fa0e385f9eadeacf8da"
+    },
+    {
+      "path": "tools/component_specs/reference_table.py",
+      "size": 3677,
+      "sha256": "48fbda1db0a40d462f3017c252e89c5526ef683eb7e7b8e36067f4bbaa787bad"
+    },
+    {
+      "path": "tools/component_specs/registry.py",
+      "size": 21154,
+      "sha256": "7911481d9e07a2a09647dc7761633286d0f094e42a2914253cb460de75b2720f"
+    },
+    {
+      "path": "tools/component_specs/spec_table.py",
+      "size": 5651,
+      "sha256": "00396f5deb7e6da730acf8f8844745ccba6871fd0f3ecf91b7d169108d9310c1"
+    },
+    {
+      "path": "tools/component_specs/theme.py",
+      "size": 10359,
+      "sha256": "388f7319f1f6dd3afff7dbf5f46124f6c9272c2e388cd40902516fa85bcf5f2a"
+    },
+    {
+      "path": "tools/component_specs/warranty.py",
+      "size": 8641,
+      "sha256": "92c31c7f75e0af54abaa546f65a65a018ace19b78ef01f367964b4a381ff9aec"
+    },
+    {
+      "path": "tools/component_specs/warranty_adapters.py",
+      "size": 4980,
+      "sha256": "dd690dfd4435af1161bca5fe130b769082a47dc43e52f23668f3ac0275221aed"
+    },
+    {
+      "path": "tools/component_specs/warranty_html.py",
+      "size": 6881,
+      "sha256": "da903303a8371344ceea35abfab3c5a80c16025e8304b6d82acad82d2371df51"
+    },
+    {
+      "path": "tools/component_specs/web_source.py",
+      "size": 5434,
+      "sha256": "f26e265af59d5ce5c6420bca2056d8c625220e6ac63c360da49abb2d6d35f30e"
+    },
+    {
+      "path": "tools/manual_ir/__init__.py",
+      "size": 953,
+      "sha256": "b7def9b7164ee8a76f659041d19743de29712ff398e99ebc2db4cd4ecb0feb7b"
+    },
+    {
+      "path": "tools/manual_ir/builder.py",
+      "size": 5647,
+      "sha256": "95e63fe04e93e8609bcb7580509e06d3ce3cefbb5b435281583b050d9a12dba0"
+    },
+    {
+      "path": "tools/manual_ir/components.py",
+      "size": 5841,
+      "sha256": "de4fed1ee9735cdb763e65fee7125984c6140f92934b9ad351047682d0fe2f25"
+    },
+    {
+      "path": "tools/manual_ir/document.py",
+      "size": 8707,
+      "sha256": "699dd73576a4d3c1e05c3597ff96fa54aed9196f0332eb70449cc6e9d63b7e9d"
+    },
+    {
+      "path": "tools/manual_ir/external_languages.py",
+      "size": 1830,
+      "sha256": "3c50eea4ca618ce2b89de638d28bda9137874a8ab60197e448139cb2d0a5326e"
+    },
+    {
+      "path": "tools/manual_ir/flow.py",
+      "size": 21944,
+      "sha256": "36b9d1c2c3f29d3754fbb8056ccedac1ea171ef8302123eb22f989f7806444b8"
+    },
+    {
+      "path": "tools/manual_ir/hashing.py",
+      "size": 4662,
+      "sha256": "ec6b7cfe9219aaf349b194125607364ef99784aa0ef139db84a5f21fdb787fbb"
+    },
+    {
+      "path": "tools/manual_ir/model.py",
+      "size": 1439,
+      "sha256": "ab08ed0fede49aeed565c5bdd28bbd904a68cc738e957e3aee92f1656808500f"
+    },
+    {
+      "path": "tools/manual_ir/prepared_rst.py",
+      "size": 7405,
+      "sha256": "74cfb7d3b13758ece0c4842097b5f44e4ac36e4ff58164b9ca9957e28c27f0f2"
+    },
+    {
+      "path": "tools/manual_ir/serialize.py",
+      "size": 2798,
+      "sha256": "054372fd4d7c2fc166fa92115118f77fae372fbe9145f5b7b3828fddfa2c0fc4"
+    },
+    {
+      "path": "tools/manual_ir/source.py",
+      "size": 1606,
+      "sha256": "e55cdb2ae8ba181437437672703ab1c4f655867ebcf297fc312ed2a30181cd8e"
+    },
+    {
+      "path": "tools/manual_ir/validate.py",
+      "size": 17941,
+      "sha256": "51457cecb374d19bb62aae4323c8210adf2ae0fff00f751236ed9ac4da58c289"
+    },
+    {
+      "path": "tools/manual_ir/web_app_controls.py",
+      "size": 4057,
+      "sha256": "dd9d61786e58d10a091986195ae2ccc6fe86132329df6dffec36f28c31cdf861"
+    },
+    {
+      "path": "tools/manual_ir/web_app_download.py",
+      "size": 5885,
+      "sha256": "444f3639f7cfda287e653609650e19699cf611f0808ca8767020a6b33904a510"
+    },
+    {
+      "path": "tools/manual_ir/web_callouts.py",
+      "size": 3512,
+      "sha256": "dd00d890b0f707e7328de8f7e0567bac290358e62876b7080c9d39e476274f42"
+    },
+    {
+      "path": "tools/manual_ir/web_fcc.py",
+      "size": 3785,
+      "sha256": "eb787b59f6890d3c421c8f4e1224566a41f6657e84409bad00fc606eddcbdbe8"
+    },
+    {
+      "path": "tools/manual_ir/web_inbox.py",
+      "size": 3939,
+      "sha256": "8593147bc0d88e93fd29decf99430b14cf5da6ab46737b1fecc9c797c28b1c84"
+    },
+    {
+      "path": "tools/manual_ir/web_source.py",
+      "size": 1616,
+      "sha256": "865c934376f241008a4cc1f9128004ee02645b620b6b6fae464f0978c7d2949a"
+    },
+    {
+      "path": "tools/manual_ir/web_specs.py",
+      "size": 5459,
+      "sha256": "d69ea70640e77c65b0dfbcc9628fe505f7104a2a5913abeb84fa2d991e0a7bba"
+    },
+    {
+      "path": "tools/manual_ir/web_symbols.py",
+      "size": 10860,
+      "sha256": "91ffb76efd3cb5908f44acd68ec0d02693cc84a078bd239ac59e6e6a946271db"
+    },
+    {
+      "path": "tools/manual_ir/web_tables.py",
+      "size": 8938,
+      "sha256": "b99b778d061834eb4b5a37f45e1324a9865dcc7eec041f3129311fa61eca4402"
+    },
+    {
+      "path": "tools/manual_ir/whole_document_components.py",
+      "size": 37373,
+      "sha256": "bc33b0fdeb8ba21f4a5f9656bae2c3154d8608c8738043e6376075cb631fadd2"
+    },
+    {
+      "path": "tools/markdown_bundle.py",
+      "size": 10075,
+      "sha256": "187fe75dd2e7df9697b9d6b4f9627ab9b5ad78762887b214339cd9c44b9c6d90"
+    },
+    {
+      "path": "tools/utils/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tools/utils/csv_fields.py",
+      "size": 2865,
+      "sha256": "28b60075372d9eaa1a7772d85729106c9f24bd0daf6850f3035ab091c7fbc82d"
+    },
+    {
+      "path": "tools/utils/korean_josa.py",
+      "size": 4325,
+      "sha256": "411394837b70a77d3c89b032f61858d9aaa2fe77e4f824dd8fcdcc32c8900237"
+    },
+    {
+      "path": "tools/utils/log.py",
+      "size": 4459,
+      "sha256": "e57ae5f03005967ed95b8683cc6b1622fe1e50cf17824b699c952c9a23d15916"
+    },
+    {
+      "path": "tools/utils/path_utils.py",
+      "size": 14762,
+      "sha256": "80d5b8baf6c6cb03fc623c3eb684b6e5e7179d17240eb7d4edea1a44a11cce7a"
+    },
+    {
+      "path": "tools/utils/process_utils.py",
+      "size": 1545,
+      "sha256": "aec1f17a102f14aa300189ed5d8a18eb4ced93458d6f87b6b9a326ad33ca820b"
+    },
+    {
+      "path": "tools/utils/spec_footnotes.py",
+      "size": 1060,
+      "sha256": "58039fbb71b169d80082834355c6ffb806b8a447d0484f7ff6dbdd783ed90997"
+    },
+    {
+      "path": "tools/utils/spec_master.py",
+      "size": 3458,
+      "sha256": "bd2683108e211fec7e95f4115c211e718eec171c8558f12a8868935b27c3d783"
+    },
+    {
+      "path": "tools/utils/spec_master_auditing.py",
+      "size": 10749,
+      "sha256": "4f130be99357d930a7aaf6b5d65b92e689bb8732afd823dd4075876284f60966"
+    },
+    {
+      "path": "tools/utils/spec_master_lookup.py",
+      "size": 10483,
+      "sha256": "0e39e10e93e492804e4db916bdf81526b3d17f5ad9b93cc8038af194fdc3c6fa"
+    },
+    {
+      "path": "tools/utils/spec_master_mapping.py",
+      "size": 8771,
+      "sha256": "d7ebc39ea5921cd422565aa6020837e138b19dcdf9b3196fd4631cee8e11e31d"
+    },
+    {
+      "path": "tools/utils/spec_master_repairs.py",
+      "size": 6356,
+      "sha256": "65167e86b03a6791b5031be62c68ebb1b8e3e2d69c1f5f519f38833e3e0f8a0a"
+    },
+    {
+      "path": "tools/utils/spec_master_row_helpers.py",
+      "size": 27168,
+      "sha256": "f0967465f156bf4f975abb3fc4d7ea2b4c5da9d9404d3273616094196c1d0480"
+    },
+    {
+      "path": "tools/utils/spec_master_shared.py",
+      "size": 13658,
+      "sha256": "233164e720ed5d39003fdf3c165a9723d1a43bea91d9bbec8c7754529afea85a"
+    },
+    {
+      "path": "tools/utils/targets.py",
+      "size": 4889,
+      "sha256": "a495084aa2ed5fa758c7d26dc6ab9b7fe762868ab6e873cbc243e382dfbdf99f"
+    },
+    {
+      "path": "tools/utils/tex_utils.py",
+      "size": 531,
+      "sha256": "93dac4769a8b9117d276f9f45bccee5d2803549eef9b6c98fc970ca6c8f99e9b"
+    },
+    {
+      "path": "tools/utils/variable_resolver.py",
+      "size": 6454,
+      "sha256": "7042f3c7a8ad2aacb6d87b5028b68d60acefbd3c25a4a1f66223dbcf21c0260d"
+    },
+    {
+      "path": "tools/web/__init__.py",
+      "size": 34,
+      "sha256": "39cba33dc8fe560c2c3a92fc266404b14bc9df2ca50f72fd5898a18491a92d94"
+    },
+    {
+      "path": "tools/web/app_component.py",
+      "size": 9601,
+      "sha256": "4665694b4004a41340024483b7df07f3b053ccc53a4a0367280f34a53c1dfec8"
+    },
+    {
+      "path": "tools/web/app_controls.py",
+      "size": 1496,
+      "sha256": "d4a02e827bef0400310232920d609b3cfa0b41632ffdf3655bf4c84647b9c4a0"
+    },
+    {
+      "path": "tools/web/app_download.py",
+      "size": 3257,
+      "sha256": "18a7749b784f5fe9ddf28b759153998faf23136a2d07fbd02e245f665fc99903"
+    },
+    {
+      "path": "tools/web/app_qr_component.py",
+      "size": 1202,
+      "sha256": "c5345424d946d9c50d55adae0445fae49baab9c801e15af71b4ee28d19e70006"
+    },
+    {
+      "path": "tools/web/auto_resume_component.py",
+      "size": 1147,
+      "sha256": "99b7c3d1d112393c963897a24e1432d046aee90c05066c7984b14df741738d9a"
+    },
+    {
+      "path": "tools/web/base_art_operation.py",
+      "size": 15862,
+      "sha256": "1b4dd1e734255f8c9ef27ec162d6db55c0e666ed9793cfe249e4695d4154e7c8"
+    },
+    {
+      "path": "tools/web/base_art_reference.py",
+      "size": 6582,
+      "sha256": "834fb1633a783b10eaa389f49e0acba4ae3f91bdb6baa25a3fe08de2da18e1c8"
+    },
+    {
+      "path": "tools/web/callout_alignment.py",
+      "size": 2554,
+      "sha256": "92047c48facfd5156b556b008c3c0900c24a6bf8318696d498dbf08a0f72362a"
+    },
+    {
+      "path": "tools/web/callout_ir.py",
+      "size": 3739,
+      "sha256": "105e1097ce476de238a8df4da53b16f9ba83309c40b07ed3ea895b3d60486f39"
+    },
+    {
+      "path": "tools/web/caption_frame_admission.py",
+      "size": 4872,
+      "sha256": "119ededcf812f6a97f637b42edce26db7f54cc3ff6a33b0336d5767e5e06d088"
+    },
+    {
+      "path": "tools/web/component_admission.py",
+      "size": 3214,
+      "sha256": "271b50f85f1e887dc3fed6e4e94bcc19593d9e62e1b260b252e27f1bfe193f24"
+    },
+    {
+      "path": "tools/web/component_carriers.py",
+      "size": 5563,
+      "sha256": "98042be9f1abda6df1b107a21eb5779d1e6b5a14ff0cc6021f82f64f63b55a6f"
+    },
+    {
+      "path": "tools/web/composite_hashing.py",
+      "size": 1676,
+      "sha256": "ba34a9f03d5106eab12037dd0d7d84a6d87a6984943c9eda1ffbd0534c13e3a4"
+    },
+    {
+      "path": "tools/web/composite_manifest.py",
+      "size": 12260,
+      "sha256": "50183dc218f7e47b8dfa526c4710112e53438eca6042b5af1fb53a5e2a047d72"
+    },
+    {
+      "path": "tools/web/composite_presentation.py",
+      "size": 8035,
+      "sha256": "555781b6c3a1bd9127058e16ddbef36f2f0edb3ec7703948d9063f844e3583a9"
+    },
+    {
+      "path": "tools/web/document_assets.py",
+      "size": 2398,
+      "sha256": "28a8ce6981b60ce1e33d2c864077edb0708ccf030a4e7a26f0a52af4d1b18fa1"
+    },
+    {
+      "path": "tools/web/document_ir.py",
+      "size": 7707,
+      "sha256": "4fcc1787bd4ec4fee0c75923ab07162f7f5bf75182a3eb1ebec6ea1217e0a22d"
+    },
+    {
+      "path": "tools/web/document_link_actions.py",
+      "size": 4247,
+      "sha256": "5be3eeca2e2955219e0536cbb5942043eea3b5d605025023358b91555e015caf"
+    },
+    {
+      "path": "tools/web/document_link_queue.py",
+      "size": 20325,
+      "sha256": "fef4b19a06bff6bfdafe1ef727b300aff9df8ef652fabf29c578863b6f8bc513"
+    },
+    {
+      "path": "tools/web/document_source.py",
+      "size": 19186,
+      "sha256": "b5ac9539f55a0aaed45b0804cbca641ed15954e43f5e7a1046634d2d54e9fb21"
+    },
+    {
+      "path": "tools/web/embedded_components.py",
+      "size": 8140,
+      "sha256": "4028e2a4e1704f60e90abb42e902c844d7b032d26dcc4b35bda9637ff57ae540"
+    },
+    {
+      "path": "tools/web/fcc_component.py",
+      "size": 3728,
+      "sha256": "f78fc4585595b05e8a2a42aa343a6c6935030efea0f6f130a1ffd297ca67071f"
+    },
+    {
+      "path": "tools/web/fcc_markup.py",
+      "size": 2001,
+      "sha256": "16e38dd430c64b34e3dcca3e8217d9df5a7e34c09164074584d8e0a78c5447f0"
+    },
+    {
+      "path": "tools/web/figure_captions.py",
+      "size": 968,
+      "sha256": "d10cee3251ca02bfd19e72146f75c27f45217637da3304c13b4d5e56688b23d3"
+    },
+    {
+      "path": "tools/web/figure_coverage.py",
+      "size": 30995,
+      "sha256": "2f34ba91f8d97e32bc90f464acfba59ebc226568e54de35206e6571e5d9ebbc9"
+    },
+    {
+      "path": "tools/web/frozen_ai_document.py",
+      "size": 8918,
+      "sha256": "f216f3c7732c97b698b29d85ede5ddf1b3e0d3579ce66254326d2f4b411a0326"
+    },
+    {
+      "path": "tools/web/frozen_ai_flow.py",
+      "size": 4100,
+      "sha256": "cddd4ceed3cb165aec2f0f79ca6313f9f9335ebdd8e8efaa51aa7ce324b21fe2"
+    },
+    {
+      "path": "tools/web/frozen_ai_media_components.py",
+      "size": 8154,
+      "sha256": "67112d8abeff8c78a8d8d013d3daeabead6b02754ec5b068a555b5899ef7264a"
+    },
+    {
+      "path": "tools/web/frozen_ai_source.py",
+      "size": 16785,
+      "sha256": "15903a74290bca7f25e299e34ec510edadcdea959e84b3795ac410479682264f"
+    },
+    {
+      "path": "tools/web/frozen_ai_table_components.py",
+      "size": 12143,
+      "sha256": "cdd624a806a1d168eb3770439f2dbe7f8634974e5fa537b37dc5b654f3b5d04b"
+    },
+    {
+      "path": "tools/web/frozen_ai_web.py",
+      "size": 10527,
+      "sha256": "a4cea92679de3741de0e4b2a0c8751b5e61bfb2a5a1c658b47799e7a4a7910ff"
+    },
+    {
+      "path": "tools/web/frozen_pdf_app.py",
+      "size": 15401,
+      "sha256": "51c153d2bea89921b42d1d3e8fe7286e8df33b38759aa92b326b033738cca924"
+    },
+    {
+      "path": "tools/web/frozen_pdf_document.py",
+      "size": 15633,
+      "sha256": "d26886d7929d14c015dd7a53921718d6adbfbdb5311c6cbb782bbfc7f80ad773"
+    },
+    {
+      "path": "tools/web/frozen_pdf_errata.py",
+      "size": 2024,
+      "sha256": "ec936847547e9a656d57df312622f8c8dc1c5c8399093589fa686a90b21d380f"
+    },
+    {
+      "path": "tools/web/frozen_pdf_finished_overview.py",
+      "size": 4284,
+      "sha256": "8e6dee3ff11188b7e831b32f538aebd25cd204e4a5779dc899516fe4929b6916"
+    },
+    {
+      "path": "tools/web/frozen_pdf_frontmatter.py",
+      "size": 4773,
+      "sha256": "9238d292b2ade0112809a95a2937768520d8f7aaac2589684c134c9db5f70b61"
+    },
+    {
+      "path": "tools/web/frozen_pdf_glyphs.py",
+      "size": 9385,
+      "sha256": "8a87aa34fd1bc8b4b6a1d51dd4e4c87f6527bb353643b7f5327cd0b167a8bab7"
+    },
+    {
+      "path": "tools/web/frozen_pdf_intake.py",
+      "size": 29164,
+      "sha256": "84917b942f70c06d23b72c42b1b4cc70863e9804aae3db937cda55df9f439f9c"
+    },
+    {
+      "path": "tools/web/frozen_pdf_lcd.py",
+      "size": 5441,
+      "sha256": "5510d7b5605071b22e86fcde01d059aa5a827314aa0f2c9d719b0e2962d7eb70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_media.py",
+      "size": 17942,
+      "sha256": "39673c0dcb8f13734c3296412388f0c4e19f1c6ab0035b0de32d9c42f139effc"
+    },
+    {
+      "path": "tools/web/frozen_pdf_reference.py",
+      "size": 6185,
+      "sha256": "257f121a75d96e8d2d3f1f21fc4c8d813032ef64dfb16553666b3526c0615585"
+    },
+    {
+      "path": "tools/web/frozen_pdf_source.py",
+      "size": 15285,
+      "sha256": "7cbf3335006d7e27826d27e35b1ab85e2f74f1e7e042280393d11b323a14ae70"
+    },
+    {
+      "path": "tools/web/frozen_pdf_web.py",
+      "size": 1637,
+      "sha256": "9a6c18feefc04b404e16d54d8079af71672fb678ca3a5bc6fe1a2883e3c9a6cd"
+    },
+    {
+      "path": "tools/web/frozen_source_evidence.py",
+      "size": 10498,
+      "sha256": "eac58d951f33206f40f888c2c0a41fd5cb4a4eaab0cfc551c69c780f7c46fca4"
+    },
+    {
+      "path": "tools/web/frozen_web_component_coverage.py",
+      "size": 5724,
+      "sha256": "40f6de3cc40b7ecca381db22b86dc26e5ca7020214501eb16dba035bc25a9db5"
+    },
+    {
+      "path": "tools/web/inbox_component.py",
+      "size": 4985,
+      "sha256": "e3c900bea7dca4ceaf05c91e752e757345a42cbec33a917aac38f3d2d79bfa55"
+    },
+    {
+      "path": "tools/web/key_combinations_component.py",
+      "size": 2102,
+      "sha256": "25df58a8cb28db1660df6f023b651ca7137ce62b5d35506aa2d2e323a65082c3"
+    },
+    {
+      "path": "tools/web/language_bundle.py",
+      "size": 14683,
+      "sha256": "af0c5c4d750ebcf5107e0d0267a90c4bad96821b22f45ad9dca8885324eca20f"
+    },
+    {
+      "path": "tools/web/language_inventory.py",
+      "size": 3984,
+      "sha256": "4148db03c31148e82c2f84166913e010802bcdfb93b4c72fd7fc1d33907e29bb"
+    },
+    {
+      "path": "tools/web/language_release_evidence.py",
+      "size": 23128,
+      "sha256": "a24b9f2780a04a741f276844fdfb1f8c90f35192a1e3dafeaa530b8851120bc6"
+    },
+    {
+      "path": "tools/web/lcd_component.py",
+      "size": 739,
+      "sha256": "f20eace9623c8bbadcff4e107545ef5aa578b05783e4c15d87beb63be0fd8e20"
+    },
+    {
+      "path": "tools/web/lcd_mode_component.py",
+      "size": 3528,
+      "sha256": "2bc5038191826f757ed537697a66791e71621cc97cafd8677422e5112569e16e"
+    },
+    {
+      "path": "tools/web/manual_table_components.py",
+      "size": 10484,
+      "sha256": "746e5e4e5cf2651b4b7acc0764101a1ade509af571c2150c378fc1efaddf2805"
+    },
+    {
+      "path": "tools/web/operation_component.py",
+      "size": 3647,
+      "sha256": "8f3183bcf5dc7ded78d3d187e81ed417fc4b5f5ace7815f5e77ca6963cb70ef0"
+    },
+    {
+      "path": "tools/web/overview_component.py",
+      "size": 5730,
+      "sha256": "60f6a9ff3562bbf5ef1383cc1c8963f5f7937e2123dd8e07633ff40895bac288"
+    },
+    {
+      "path": "tools/web/prepared_style_audit.py",
+      "size": 9128,
+      "sha256": "1600f5efaa5d512ee7434140b6eab7c07dff6a30b6a4cac27b23e763d8c77121"
+    },
+    {
+      "path": "tools/web/presentation.py",
+      "size": 65114,
+      "sha256": "619902e6a286ea17708a7b62831dda0ac0d6fe6294a2b0b7fea6af4f58d812b8"
+    },
+    {
+      "path": "tools/web/presentation_contract.py",
+      "size": 41571,
+      "sha256": "e48ba04f467b2e2cce01a884b2812f1c2536a0c2e595a3ad5de62aff185f9c51"
+    },
+    {
+      "path": "tools/web/reference_components.py",
+      "size": 5500,
+      "sha256": "273b67a7ccb1bf431d5e4e46bf519c5617a30d1c158da60125346ecd6cd8def0"
+    },
+    {
+      "path": "tools/web/reference_figure_component.py",
+      "size": 6340,
+      "sha256": "c81accfb2d13d9961c6b28d0b383fde306574f9e760fa42f9c40e1c846c4418b"
+    },
+    {
+      "path": "tools/web/reference_table_component.py",
+      "size": 1682,
+      "sha256": "5080dd59b341770d0e45dd490a5dbcd5d6738779e637cd6bf8de0c2a8fae5827"
+    },
+    {
+      "path": "tools/web/shared_symbol_assets.py",
+      "size": 1835,
+      "sha256": "b6aab8f2aa26dbd87a623b66d491d22f243e99b68659724bb7a60471c4b11ab6"
+    },
+    {
+      "path": "tools/web/spec_component.py",
+      "size": 7162,
+      "sha256": "c5bd8dae11f74ab71d851facfef0639d46a0288da59c1c4df56ef95855313895"
+    },
+    {
+      "path": "tools/web/stylesheets.py",
+      "size": 1536,
+      "sha256": "216e1c2ecf96e497f00a45c445c87307b9a9a86e9533fbe7c9fcc562a223c623"
+    },
+    {
+      "path": "tools/web/symbol_asset_admission.py",
+      "size": 10865,
+      "sha256": "f685df7e932a8974674e8e59f3d15724355a6f0c0d6886a06f49b32406d433ca"
+    },
+    {
+      "path": "tools/web/symbol_components.py",
+      "size": 3757,
+      "sha256": "3c1f11c6d37e9bc567fc5643caa1a27d07c5fd46a6b525d3fe28cdc9e9535668"
+    },
+    {
+      "path": "tools/web/symbol_pairs.py",
+      "size": 4036,
+      "sha256": "d4ad4248fa57368629d9ca4645bee10dca3871e258cf617bf31ee304fc26e5b2"
+    },
+    {
+      "path": "tools/web/table_ir.py",
+      "size": 6446,
+      "sha256": "a39489f1b0991f4bcdb3e9cf571e05030bdd3a50b8a6b1df0247550cd7ea6076"
+    },
+    {
+      "path": "tools/web/troubleshooting_component.py",
+      "size": 770,
+      "sha256": "7a88f435cfe568b277ff07726a26d1499a4d1ba98c08d3282d5520b84210113a"
+    },
+    {
+      "path": "tools/web/warranty_component.py",
+      "size": 3977,
+      "sha256": "eed66266702da8942a02927d2012ccdc7410bd0a5899fe7b71abf06d5a7adb4a"
+    }
+  ],
+  "symbol_asset_admission": {
+    "schema_version": "auto-manual-symbol-asset-admission/v1",
+    "locales": {
+      "ja": [
+        {
+          "asset_ref": "assets/shared-symbol_warning_triangle.svg",
+          "asset_sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+          "shared_symbol_key": "warning/outline-triangle-tinted",
+          "physical_page": 3,
+          "drawing_indices": [
+            56,
+            57,
+            58
+          ],
+          "glyph_bbox": [
+            38.685499572753905,
+            303.9787353515625,
+            60.66449890136719,
+            323.454736328125
+          ],
+          "caption_bbox": [
+            76.23169555664063,
+            292.817236328125,
+            175.43169555664062,
+            334.0152221679688
+          ],
+          "row_bbox": [
+            37.685499572753905,
+            291.817236328125,
+            176.43169555664062,
+            335.0152221679688
+          ],
+          "caption_text": "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。",
+          "caption_sha256": "0922d5b7a649d29574a9dcda7191603fd86f07baa8bb0abd4c0c7a68d53c6202",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-symbol_read_manual.svg",
+          "asset_sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584",
+          "shared_symbol_key": "read-manual/book-information",
+          "physical_page": 3,
+          "drawing_indices": [
+            62,
+            63,
+            64
+          ],
+          "glyph_bbox": [
+            38.914801025390624,
+            343.9743408203125,
+            60.43580017089844,
+            360.2373291015625
+          ],
+          "caption_bbox": [
+            76.23169555664063,
+            337.6592163085937,
+            175.43169555664062,
+            368.8542419433594
+          ],
+          "row_bbox": [
+            37.914801025390624,
+            336.6592163085937,
+            176.43169555664062,
+            369.8542419433594
+          ],
+          "caption_text": "操作の前に取扱説明書をお読みください。",
+          "caption_sha256": "76afb1b8600e67f2a6d10bae333d455b2ff41ccd2e6b2acafdb1aa88700cbb05",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-symbol_no_open_flame.svg",
+          "asset_sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f",
+          "shared_symbol_key": "no-open-flame/fire-match-prohibited",
+          "physical_page": 3,
+          "drawing_indices": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70
+          ],
+          "glyph_bbox": [
+            40.275499725341795,
+            380.7709106445312,
+            59.73949966430664,
+            400.2329345703125
+          ],
+          "caption_bbox": [
+            76.23169555664063,
+            375.2282470703125,
+            175.43169555664062,
+            406.4232421875
+          ],
+          "row_bbox": [
+            39.275499725341795,
+            374.2282470703125,
+            176.43169555664062,
+            407.4232421875
+          ],
+          "caption_text": "本製品を火気の近くに置かないでください。",
+          "caption_sha256": "3aaf2c7ae0c6a64b596d2ed0cd5090ebf14e6f6d62a53fd3ae53e45f0f568ef3",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-symbol_keep_away_from_children.svg",
+          "asset_sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899",
+          "shared_symbol_key": "keep-away-from-children/adult-child-prohibited",
+          "physical_page": 3,
+          "drawing_indices": [
+            71,
+            72,
+            73,
+            74
+          ],
+          "glyph_bbox": [
+            40.27580108642578,
+            421.1214965820312,
+            59.73880157470703,
+            440.5844970703125
+          ],
+          "caption_bbox": [
+            76.23169555664063,
+            416.02423706054685,
+            175.43169555664062,
+            447.2192321777344
+          ],
+          "row_bbox": [
+            39.27580108642578,
+            415.02423706054685,
+            176.43169555664062,
+            448.2192321777344
+          ],
+          "caption_text": "小さなお子様の手の届かない場所に保管してください。",
+          "caption_sha256": "0e0b67f49bdd9d7d41ce4d0e2de941874f812d970e7cd861500c1f24320728aa",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-symbol_do_not_dismantle.svg",
+          "asset_sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+          "physical_page": 3,
+          "drawing_indices": [
+            59,
+            60,
+            61
+          ],
+          "glyph_bbox": [
+            40.276102447509764,
+            462.5592102050781,
+            58.62210235595703,
+            480.893212890625
+          ],
+          "caption_bbox": [
+            76.23169555664063,
+            456.97421875,
+            168.43169555664062,
+            488.1692138671875
+          ],
+          "row_bbox": [
+            39.276102447509764,
+            455.97421875,
+            169.43169555664062,
+            489.1692138671875
+          ],
+          "caption_text": "製品を分解、改造を禁止する記号",
+          "caption_sha256": "835e94b987882b700182abc96cbac1d34ec7bbb9bb04d187afc867c75072b283",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-unplug.svg",
+          "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "shared_symbol_key": "unplug/h1-jp-native",
+          "physical_page": 3,
+          "drawing_indices": [
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "glyph_bbox": [
+            195.74590148925782,
+            304.5996154785156,
+            213.1928955078125,
+            322.0456176757813
+          ],
+          "caption_bbox": [
+            226.53569641113282,
+            297.9692138671875,
+            332.7356811523438,
+            329.164208984375
+          ],
+          "row_bbox": [
+            194.74590148925782,
+            296.9692138671875,
+            333.7356811523438,
+            330.164208984375
+          ],
+          "caption_text": "コンセントから電源プラグを抜く記号",
+          "caption_sha256": "09f07b7a306df92512989c0970a875c5781b317eb0fec85cdbb4cc986edf804b",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-no_wet_hands.svg",
+          "asset_sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+          "shared_symbol_key": "no-wet-hands/h1-jp-native",
+          "physical_page": 3,
+          "drawing_indices": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "glyph_bbox": [
+            195.59229125976563,
+            342.2760375976562,
+            213.34630737304687,
+            360.0294128417969
+          ],
+          "caption_bbox": [
+            226.53569641113282,
+            336.4482177734375,
+            332.7356811523438,
+            367.643212890625
+          ],
+          "row_bbox": [
+            194.59229125976563,
+            335.4482177734375,
+            333.7356811523438,
+            368.643212890625
+          ],
+          "caption_text": "製品に濡れた手で触れることを禁止する記号",
+          "caption_sha256": "dee35a9138c193c65963144580cf5ed9e28549a3362f41b11a513a11b13baf4b",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-keep_dry.svg",
+          "asset_sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+          "shared_symbol_key": "keep-dry/h1-jp-native",
+          "physical_page": 3,
+          "drawing_indices": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "glyph_bbox": [
+            195.59219970703126,
+            383.79852905273435,
+            213.3471923828125,
+            401.5527282714844
+          ],
+          "caption_bbox": [
+            226.53569641113282,
+            380.443212890625,
+            332.7356811523438,
+            401.6352172851563
+          ],
+          "row_bbox": [
+            194.59219970703126,
+            379.443212890625,
+            333.7356811523438,
+            402.6352172851563
+          ],
+          "caption_text": "製品を濡らすことを禁止する記号",
+          "caption_sha256": "d10bf8885bee43859c84e961da73a27af91c65016bb87c729359435175637717",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-mandatory.svg",
+          "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+          "shared_symbol_key": "mandatory/h1-jp-native",
+          "physical_page": 3,
+          "drawing_indices": [
+            75
+          ],
+          "glyph_bbox": [
+            195.38330688476563,
+            422.3658203125,
+            214.71930847167968,
+            441.7307983398438
+          ],
+          "caption_bbox": [
+            226.53569641113282,
+            420.6162170410156,
+            290.7356811523438,
+            441.8082214355469
+          ],
+          "row_bbox": [
+            194.38330688476563,
+            419.6162170410156,
+            291.7356811523438,
+            442.8082214355469
+          ],
+          "caption_text": "行為を指示する記号",
+          "caption_sha256": "44e4348075dd2d541443e535afad155e799168f442f713e4d289944bcfaefb18",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 3,
+          "drawing_indices": [
+            76,
+            77,
+            78
+          ],
+          "glyph_bbox": [
+            195.38309326171876,
+            463.347509765625,
+            214.7190948486328,
+            482.68450317382815
+          ],
+          "caption_bbox": [
+            226.53569641113282,
+            462.4272216796875,
+            290.7356811523438,
+            483.6192260742188
+          ],
+          "row_bbox": [
+            194.38309326171876,
+            461.4272216796875,
+            291.7356811523438,
+            484.6192260742188
+          ],
+          "caption_text": "行為を禁止する記号",
+          "caption_sha256": "c44770f95bcb064dbd81290041ef3b12518f40662aa436273b46fbc69bbf0077",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-symbol_li_ion.svg",
+          "asset_sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+          "shared_symbol_key": "li-ion/recycle-li-ion",
+          "physical_page": 4,
+          "drawing_indices": [
+            59,
+            60,
+            61
+          ],
+          "glyph_bbox": [
+            37.30130233764648,
+            65.88330688476563,
+            55.64489898681641,
+            83.3684097290039
+          ],
+          "caption_bbox": [
+            70.62329711914063,
+            27.335850143432616,
+            176.82329711914062,
+            118.64693603515624
+          ],
+          "row_bbox": [
+            36.30130233764648,
+            26.335850143432616,
+            177.82329711914062,
+            119.64693603515624
+          ],
+          "caption_text": "充電式電池のリサイクルについて 本機はリサイクル可能な充電池を内蔵しています。 この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。 充電池の取りはずしはお客様自身では行わないでください。",
+          "caption_sha256": "9c343d516741cfc6ee40d8fb5abbbac71a7c9598bc3b3439a59ebc84b446292a",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-symbol_weee_gray_jp.svg",
+          "asset_sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1",
+          "shared_symbol_key": "weee/crossed-bin-bar-gray",
+          "physical_page": 4,
+          "drawing_indices": [
+            62,
+            63
+          ],
+          "glyph_bbox": [
+            39.742498779296874,
+            161.94949951171876,
+            55.374497985839845,
+            178.53150329589843
+          ],
+          "caption_bbox": [
+            69.91629638671876,
+            112.86195220947266,
+            176.11629638671874,
+            234.08385620117187
+          ],
+          "row_bbox": [
+            38.742498779296874,
+            111.86195220947266,
+            177.11629638671874,
+            235.08385620117187
+          ],
+          "caption_text": "このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。 適切な廃棄およびリサイクルは、環境保護に役立ちます。 本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。",
+          "caption_sha256": "45bddbc73c8b2c5b17eaa5f4945e097745c2d8d07448bab3b016d793a6b45695",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-battery-weee.png",
+          "asset_sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+          "shared_symbol_key": "battery-weee/crossed-bin-no-bar",
+          "physical_page": 4,
+          "drawing_indices": [
+            68,
+            69
+          ],
+          "glyph_bbox": [
+            193.714697265625,
+            112.77082672119141,
+            214.4927001953125,
+            134.81781921386718
+          ],
+          "caption_bbox": [
+            227.13139953613282,
+            54.650831604003905,
+            334.89238891601565,
+            205.88170776367187
+          ],
+          "row_bbox": [
+            192.714697265625,
+            53.650831604003905,
+            335.89238891601565,
+            206.88170776367187
+          ],
+          "caption_text": "電池および蓄電池は家庭ごみと一緒に廃棄してはいけません。 消費者の皆様は、有害物質の有無にかかわらず、すべての電池および蓄電池を指定された収集場所で廃棄することが法律で義務付けられています。 使用済みの電池および蓄電池は、お近くの収集拠点、リサイクルセンター、または購入した小売店にお持ちください。 適切な廃棄は環境に配慮したリサイクルを確保し、人間の健康と環境への潜在的な害を防ぎます。",
+          "caption_sha256": "fd50cbbe245528fc0a36970a95bd5ca5f95746e71b90aed6d267bb7819049f37",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 4,
+          "drawing_indices": [
+            15,
+            16,
+            17
+          ],
+          "glyph_bbox": [
+            38.62529983520508,
+            287.0701049804687,
+            56.38030014038086,
+            304.82509765625
+          ],
+          "caption_bbox": [
+            69.72029724121094,
+            267.1980041503906,
+            177.16629943847656,
+            324.3839965820313
+          ],
+          "row_bbox": [
+            37.62529983520508,
+            266.1980041503906,
+            178.16629943847656,
+            325.3839965820313
+          ],
+          "caption_text": "火のそばや炎天下の車内、熱器具の周辺など高温（45℃以上）になる場所で使用したり、放置しない 発熱や発火、破裂する原因になります。",
+          "caption_sha256": "75496d24d26fa68e72bc541c7dc79df935d54114a717e7ae99a2c3205f4dc4a9",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 4,
+          "drawing_indices": [
+            18,
+            19,
+            20
+          ],
+          "glyph_bbox": [
+            38.62529983520508,
+            342.5903076171875,
+            56.38030014038086,
+            360.3454223632813
+          ],
+          "caption_bbox": [
+            69.16729583740235,
+            329.0570129394531,
+            175.36730346679687,
+            377.2409912109375
+          ],
+          "row_bbox": [
+            37.62529983520508,
+            328.0570129394531,
+            176.36730346679687,
+            378.2409912109375
+          ],
+          "caption_text": "強い衝撃を与えたり、投げつけたりしない 発熱や発火、破裂する原因になります。",
+          "caption_sha256": "84f71cc0086fe220283e625bc7024e3af0d62dbdcc2d1f060231b560d69c1307",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-keep_dry.svg",
+          "asset_sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+          "shared_symbol_key": "keep-dry/h1-jp-native",
+          "physical_page": 4,
+          "drawing_indices": [
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32
+          ],
+          "glyph_bbox": [
+            38.62609710693359,
+            402.2119201660156,
+            56.381097412109376,
+            419.9660278320313
+          ],
+          "caption_bbox": [
+            69.72029724121094,
+            391.7280029296875,
+            168.92029724121093,
+            430.9099975585938
+          ],
+          "row_bbox": [
+            37.62609710693359,
+            390.7280029296875,
+            169.92029724121093,
+            431.9099975585938
+          ],
+          "caption_text": "水など、液体を入れたり、濡らしたりしない 発熱や発火の原因になります。",
+          "caption_sha256": "07621486c7dc55098d6b0826eedb4324373caa91c0445fdd349f7a2e5fd8adea",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-no_wet_hands.svg",
+          "asset_sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+          "shared_symbol_key": "no-wet-hands/h1-jp-native",
+          "physical_page": 4,
+          "drawing_indices": [
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "glyph_bbox": [
+            39.197401428222655,
+            458.797705078125,
+            56.95240173339844,
+            476.5510192871094
+          ],
+          "caption_bbox": [
+            69.72029724121094,
+            448.501806640625,
+            168.92029724121093,
+            487.6838012695313
+          ],
+          "row_bbox": [
+            38.197401428222655,
+            447.501806640625,
+            169.92029724121093,
+            488.6838012695313
+          ],
+          "caption_text": "濡れた手で本体や接続するケーブルを触らない 火災や感電の原因になります。",
+          "caption_sha256": "507c1c78cf0c76f18e6438d59e79e5569245d920d2b89b50de25d9fe67c802b5",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 4,
+          "drawing_indices": [
+            44,
+            45
+          ],
+          "glyph_bbox": [
+            196.41849365234376,
+            288.2096313476562,
+            214.173486328125,
+            305.9636169433594
+          ],
+          "caption_bbox": [
+            227.5934051513672,
+            277.2645324707031,
+            333.7934204101563,
+            316.4464965820313
+          ],
+          "row_bbox": [
+            195.41849365234376,
+            276.2645324707031,
+            334.7934204101563,
+            317.4464965820313
+          ],
+          "caption_text": "端子部にケーブル以外の金属類を差し込まない 発熱や発火の原因になります。",
+          "caption_sha256": "6e6611a9d9e7b69b84509e64ffe162ae7f33e33d37582c89c514fbf538ecb69e",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 4,
+          "drawing_indices": [
+            46,
+            47
+          ],
+          "glyph_bbox": [
+            196.41849365234376,
+            344.5300354003906,
+            214.173486328125,
+            362.2840209960938
+          ],
+          "caption_bbox": [
+            227.5934051513672,
+            333.6111206054687,
+            333.7934204101563,
+            372.793115234375
+          ],
+          "row_bbox": [
+            195.41849365234376,
+            332.6111206054687,
+            334.7934204101563,
+            373.793115234375
+          ],
+          "caption_text": "雷が鳴りだしたら、電源プラグにふれない (充電をしない) 感電の原因になります。",
+          "caption_sha256": "d9fdd9379d3beb7e15f32a8ab6e30648c3dd82ce1fbd59fe61449b0136f7e539",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-mandatory.svg",
+          "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+          "shared_symbol_key": "mandatory/h1-jp-native",
+          "physical_page": 4,
+          "drawing_indices": [
+            48,
+            49
+          ],
+          "glyph_bbox": [
+            196.41800537109376,
+            401.0841125488281,
+            214.17369995117187,
+            418.86611328125
+          ],
+          "caption_bbox": [
+            227.5934051513672,
+            385.76642456054685,
+            333.7934204101563,
+            433.9504028320313
+          ],
+          "row_bbox": [
+            195.41800537109376,
+            384.76642456054685,
+            334.7934204101563,
+            434.9504028320313
+          ],
+          "caption_text": "各接続端子には確実に差し込む 差し込みが不十分だと、発熱したりほこりが付着して火災や感電の原因になります。",
+          "caption_sha256": "4c769b35f6a710a293f5c10431df73753ead02588dc5b273a687905c293662c0",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/native-grounding-p4.svg",
+          "asset_sha256": "dbccbfaa302530ad353cb5c4808a1a139800b63b3cebd23fcb64275e0d3580a6",
+          "shared_symbol_key": null,
+          "physical_page": 4,
+          "drawing_indices": [
+            50,
+            51,
+            52,
+            53,
+            54
+          ],
+          "glyph_bbox": [
+            196.9181884765625,
+            458.56500854492185,
+            213.6731964111328,
+            474.89702758789065
+          ],
+          "caption_bbox": [
+            228.41730346679688,
+            438.77484741210935,
+            334.6173034667969,
+            495.96083984375
+          ],
+          "row_bbox": [
+            195.9181884765625,
+            437.77484741210935,
+            335.6173034667969,
+            496.96083984375
+          ],
+          "caption_text": "接地接続は必ず、電源プラグを電源につなぐ前に行って下さい また、接地接続を外す場合は、必ず電源プラグを切り離してから行って下さい。",
+          "caption_sha256": "b6f12553f3809ec0999339e08e19ddcd1a4cf13c45f9be7e4b4790e1d339e436",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-unplug.svg",
+          "asset_sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+          "shared_symbol_key": "unplug/h1-jp-native",
+          "physical_page": 5,
+          "drawing_indices": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "glyph_bbox": [
+            38.98009719848633,
+            105.67291870117188,
+            56.42709884643555,
+            123.1189208984375
+          ],
+          "caption_bbox": [
+            69.48889770507813,
+            49.740728759765624,
+            334.1458984375,
+            181.35906372070312
+          ],
+          "row_bbox": [
+            37.98009719848633,
+            48.740728759765624,
+            335.1458984375,
+            182.35906372070312
+          ],
+          "caption_text": "万が一、次のような異常が発生したときはすぐに使用をやめる 煙が出ている、異臭がする 落としたり、破損したとき 異音がする 内部に水や異物が入ったとき電源コード (AC充電ケーブル) が傷んだとき このような異常が発生したまま使用していると、火災や感電の原因になります。 すぐにAC充電ケーブルをコンセントから抜いてください。また、本製品に接続されている機器もすべて外してください。 万が一発煙や発火したら、大量の水で消火して煙が見えなくなるまで本製品を水浸しにしてください。 煙が出なくなることを確認してからカスタマーサポートにご連絡ください。 お客様による修理は危険ですので絶対におやめください。",
+          "caption_sha256": "1eb9ee868cd875b6a88d37a22b3c3e1c817b5582ede52ce7c69b87bfe561b65a",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-symbol_do_not_dismantle.svg",
+          "asset_sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+          "shared_symbol_key": "do-not-dismantle/screwdriver-prohibited",
+          "physical_page": 5,
+          "drawing_indices": [
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "glyph_bbox": [
+            39.480001831054686,
+            185.66611328125,
+            57.23500213623047,
+            203.42113647460937
+          ],
+          "caption_bbox": [
+            69.48789825439454,
+            179.75693359375,
+            207.572900390625,
+            209.79692993164062
+          ],
+          "row_bbox": [
+            38.480001831054686,
+            178.75693359375,
+            208.572900390625,
+            210.79692993164062
+          ],
+          "caption_text": "分解、改造しない 故障、発熱、火災·感電の原因になります。",
+          "caption_sha256": "6ae049405c7320e123706a5a44b1970c98810e38099e7967cb5351315bb247b2",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 5,
+          "drawing_indices": [
+            34,
+            35,
+            36
+          ],
+          "glyph_bbox": [
+            39.48010101318359,
+            219.24542846679688,
+            57.235101318359376,
+            236.99889526367187
+          ],
+          "caption_bbox": [
+            69.48889770507813,
+            207.74811401367188,
+            333.573876953125,
+            247.87511596679687
+          ],
+          "row_bbox": [
+            38.48010101318359,
+            206.74811401367188,
+            334.573876953125,
+            248.87511596679687
+          ],
+          "caption_text": "表示された電源電圧以外で使用しない 故障、発熱、火災·感電の原因になります。また、本製品を使用できるのは日本国内のみです。",
+          "caption_sha256": "36c585108cf408bbc5d856217aac9461cb0f0e78bdcd0b7bcad39d78e6a1846a",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 5,
+          "drawing_indices": [
+            37,
+            38,
+            39
+          ],
+          "glyph_bbox": [
+            39.347799682617186,
+            254.13651123046876,
+            57.10279998779297,
+            271.8899169921875
+          ],
+          "caption_bbox": [
+            69.48889770507813,
+            252.10010375976563,
+            252.68889770507812,
+            273.26409301757815
+          ],
+          "row_bbox": [
+            38.347799682617186,
+            251.10010375976563,
+            253.68889770507812,
+            274.26409301757815
+          ],
+          "caption_text": "付属品と本製品が破損した場合は、ご自身で修理をしない",
+          "caption_sha256": "7d6d0277e38b9a3664c7b217e0d94ec6d7bb28244720cc97efe5d1d317b77fde",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 5,
+          "drawing_indices": [
+            55,
+            56,
+            57
+          ],
+          "glyph_bbox": [
+            39.347799682617186,
+            319.1523193359375,
+            57.10279998779297,
+            336.90569458007815
+          ],
+          "caption_bbox": [
+            69.48889770507813,
+            312.58502807617185,
+            238.68889770507812,
+            343.766015625
+          ],
+          "row_bbox": [
+            38.347799682617186,
+            311.58502807617185,
+            239.68889770507812,
+            344.766015625
+          ],
+          "caption_text": "本製品の上に物を載せたり、不安定な場所に置かない 倒れたり、落ちたりしてけがの原因になります。",
+          "caption_sha256": "fa69b2ef527af3da834f5da744430b4060e18b48e7672d52f17fd00645409e46",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 5,
+          "drawing_indices": [
+            52,
+            53,
+            54
+          ],
+          "glyph_bbox": [
+            39.347799682617186,
+            373.8085083007812,
+            57.10279998779297,
+            391.5620056152344
+          ],
+          "caption_bbox": [
+            69.48889770507813,
+            344.49103393554685,
+            335.5828796386719,
+            427.2060180664063
+          ],
+          "row_bbox": [
+            38.347799682617186,
+            343.49103393554685,
+            336.5828796386719,
+            428.2060180664063
+          ],
+          "caption_text": "データサーバや医療機器など、非常時に不具合が起こると人命 / 財産に重大な危険を及ぼしうる用途でのご使用はお控えください。次のようなような機器では、万が一使用中に給電ができなくなった場合、人命 / 財産にかかわる被害が想定されます。 医療機器や使用上、生命に関わるような機器 社会的、公共的に重要な機器など 重要な事業用機器など",
+          "caption_sha256": "7d20268a33aa7963287824b9d2f777bba54245f1aad6d8872f3e2aecc7c9a259",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 5,
+          "drawing_indices": [
+            58,
+            59,
+            60
+          ],
+          "glyph_bbox": [
+            39.347799682617186,
+            431.7206176757812,
+            57.10279998779297,
+            449.4739929199219
+          ],
+          "caption_bbox": [
+            69.48889770507813,
+            425.74005737304685,
+            259.68889770507815,
+            456.921044921875
+          ],
+          "row_bbox": [
+            38.347799682617186,
+            424.74005737304685,
+            260.68889770507815,
+            457.921044921875
+          ],
+          "caption_text": "心臓にペースメーカーを装着している方は使用しない ペースメーカーが、本製品の影響を受ける恐れがあります。",
+          "caption_sha256": "abb11a0215c2209d1f64a093748eba33a4ff2610bd852bf23a6b0087b3ba6402",
+          "caption_mode": "native-extractable-text"
+        },
+        {
+          "asset_ref": "assets/shared-h1-jp-prohibited.svg",
+          "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+          "shared_symbol_key": "prohibited/h1-jp-native",
+          "physical_page": 5,
+          "drawing_indices": [
+            61,
+            62,
+            63
+          ],
+          "glyph_bbox": [
+            39.347799682617186,
+            467.00580444335935,
+            57.10279998779297,
+            484.75921020507815
+          ],
+          "caption_bbox": [
+            69.48889770507813,
+            455.41303100585935,
+            331.5089050292969,
+            496.5830322265625
+          ],
+          "row_bbox": [
+            38.347799682617186,
+            454.41303100585935,
+            332.5089050292969,
+            497.5830322265625
+          ],
+          "caption_text": "格納式ハンドルを使用してJackery ポータブル電源 3600 Plus を移動するときは、積み重ねたり、上に他の物を置いたりしないでください。落下して怪我をする場合があります。",
+          "caption_sha256": "b92379758f6551e3713551e353be2a1a07f2f70e4f2b5a57fbd1b45bd5d620ec",
+          "caption_mode": "native-extractable-text"
+        }
+      ]
+    }
+  },
+  "shared_component_exceptions": [
+    {
+      "language": "ja",
+      "page_id": "page-14",
+      "kind": "table",
+      "text_sha256": "4112ff6ec7026e5a4d5ab7c4332de71f3d8c3a28940acc03e3da9bc3e762e4a9",
+      "preview": "出力ポートタイプ / 電力設定値 / デフォルト設定",
+      "reason": "省エネモード threshold table (port type, power threshold, default timeout) that the print draws inside the p14 figure; no shared component holds this table, so it is a plain shared manual table in flow."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "Jackery ポータブル電源 3600 Plus 取扱説明書.pdf",
+      "size": 11867626,
+      "sha256": "fd06cd04653d0c336dfa119ccfb29cbee79fecf4508feee9ccda61df5eeb8dd6"
+    },
+    {
+      "path": "README.md",
+      "size": 6897,
+      "sha256": "349716afe4b8535269aef5858ed829e5a38b2462f86943260feb73d914e59494"
+    },
+    {
+      "path": "assets/ac-output-p12.svg",
+      "size": 436907,
+      "sha256": "2d43f6b4de5051b111bebad2c6003aa96e3acdbae536cb280dfe26cfe7f2f676"
+    },
+    {
+      "path": "assets/app-controls-p28.svg",
+      "size": 816605,
+      "sha256": "d4bccbbfcdf82e25abcbead5be332f87a724ee02db9743f465f7f9a89194b8be"
+    },
+    {
+      "path": "assets/app-download-p28-qr.svg",
+      "size": 775151,
+      "sha256": "e4137150c06e191c8d0bf8a855928104f1e4f86c28e2d003e343f5a1919fd4d8"
+    },
+    {
+      "path": "assets/app-download-p28-store.svg",
+      "size": 775149,
+      "sha256": "37e85a31f331b194c7c8f28c7cc914fca81603f2410ee20fa22d080f0d32cc69"
+    },
+    {
+      "path": "assets/app-download-p28.svg",
+      "size": 775114,
+      "sha256": "0bd7793ece347ae101b56318f99e70e5b5547a751c702594ad094fac9d3221ea"
+    },
+    {
+      "path": "assets/app-download-reminder-p30.svg",
+      "size": 25268,
+      "sha256": "90241c9390075ed5261e016f509c4077d6388908813343f190cd069445be92c7"
+    },
+    {
+      "path": "assets/app-phones-native-p28-web.svg",
+      "size": 443429,
+      "sha256": "b334dba327605c8e5e3316dfed0b94f42072e612e835223dcffa0858f782391d"
+    },
+    {
+      "path": "assets/app-phones-native-p29.svg",
+      "size": 1214079,
+      "sha256": "4955052db7058903f37e07da6ac080186d08b88c66b31ba42ce34c72e6d39f30"
+    },
+    {
+      "path": "assets/battery-accessories-p17.svg",
+      "size": 2912917,
+      "sha256": "6a47ef942fda6c073f7beaf0650c7c7cbf6f83b29657feab3ff8e3a3a8696020"
+    },
+    {
+      "path": "assets/battery-stack-p17.svg",
+      "size": 2928275,
+      "sha256": "1fc214069c0b2618f4e08df3a6be85b6fa1ec62f407c0e6e1b8b62bb40071800"
+    },
+    {
+      "path": "assets/charging-ac-p20.svg",
+      "size": 661157,
+      "sha256": "c17280ffcf34764dab4b7bd1d6d931d0718628ca38d23222829be2969fd39726"
+    },
+    {
+      "path": "assets/charging-car-p23.svg",
+      "size": 692811,
+      "sha256": "8a0335e074017d5c6a871eb293ea131f5000c3c5ba397f1d666ea7a81bef8aa2"
+    },
+    {
+      "path": "assets/charging-solar-four-p22.svg",
+      "size": 1172992,
+      "sha256": "b300c77be1b81f255a8cbbcaf629e59ce84a5ee57de4d56028e6f62531e98155"
+    },
+    {
+      "path": "assets/charging-solar-p21.svg",
+      "size": 584765,
+      "sha256": "07e6bbbe406620ac2c9725cc8c4467e8e718984adc49c186df347f26552dd6b0"
+    },
+    {
+      "path": "assets/energy-saving-p14-web-crop.svg",
+      "size": 212111,
+      "sha256": "b4906c15e643b7d7642b3b4426b99d230f09b08445294f6929d885461c8a2ed4"
+    },
+    {
+      "path": "assets/frequency-p13.svg",
+      "size": 596425,
+      "sha256": "6665ef8094ed317ffa7de58f5557e07d6e873db7577b9e0506c1aa38a6487e6d"
+    },
+    {
+      "path": "assets/inbox-p8-card-1.svg",
+      "size": 355017,
+      "sha256": "20ca76883892ea2af83aa53e4a75f257294591b79a0b6fcc0e7fde0eeb0d9129"
+    },
+    {
+      "path": "assets/inbox-p8-card-2.svg",
+      "size": 355018,
+      "sha256": "b07f1e6794391b1f5eea3b792a8c14e7cd4c575e86dbaff7647b6ef8bccf2241"
+    },
+    {
+      "path": "assets/inbox-p8-card-3.svg",
+      "size": 355018,
+      "sha256": "b34da42214dc4ffff0aec341542faae615f41b989f2d8c5df4171a782f38cd70"
+    },
+    {
+      "path": "assets/lcd-ac-power.png",
+      "size": 3962,
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    {
+      "path": "assets/lcd-ac-wall-charging-native.svg",
+      "size": 40684,
+      "sha256": "64b7a3532dc2a13d91e189d59086d7813d24d9ad19482f5007854c44e1c557b3"
+    },
+    {
+      "path": "assets/lcd-battery-power.png",
+      "size": 4879,
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "assets/lcd-battery-saving-native.svg",
+      "size": 79735,
+      "sha256": "62aed02141aeb524018912255695791d15fad5284d9fa7278519c9740f708da3"
+    },
+    {
+      "path": "assets/lcd-bluetooth.png",
+      "size": 2023,
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    {
+      "path": "assets/lcd-car-charging-native.svg",
+      "size": 41028,
+      "sha256": "8eeef7b9a7a38c787d4d70838703d709083683dc74b9e4ebd3b06be008e0a537"
+    },
+    {
+      "path": "assets/lcd-charging-plan.png",
+      "size": 2759,
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d"
+    },
+    {
+      "path": "assets/lcd-connected-batteries-native.svg",
+      "size": 39932,
+      "sha256": "a177299394ee9973ea7319a5502fea393b8e49c8d1cb21c0df0dc108f955a51c"
+    },
+    {
+      "path": "assets/lcd-energy-saving.png",
+      "size": 2056,
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    {
+      "path": "assets/lcd-fault-code.png",
+      "size": 1275,
+      "sha256": "7b251bff4004f01b3fbb6e383230d0c27f6ea17654502eca64240888ebe510a0"
+    },
+    {
+      "path": "assets/lcd-high-temperature-native.svg",
+      "size": 40388,
+      "sha256": "f33f40e09b19655b8cbbdb9573f0b87d1fd40cb8d7a6c62fb076386578478635"
+    },
+    {
+      "path": "assets/lcd-input-power.png",
+      "size": 4730,
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    {
+      "path": "assets/lcd-low-battery.png",
+      "size": 1293,
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    {
+      "path": "assets/lcd-low-temperature-native.svg",
+      "size": 40376,
+      "sha256": "2e38b08d26340621322c2d3f4f7c9f01daf947e50273c0eacd2f5171cd7f5806"
+    },
+    {
+      "path": "assets/lcd-map-p10.svg",
+      "size": 545716,
+      "sha256": "cf3f3165d61261db43a2122e1d11dd539e5e05bf0c6ed1f0a9352b1ae91a6a38"
+    },
+    {
+      "path": "assets/lcd-output-power.png",
+      "size": 6085,
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "path": "assets/lcd-output-voltage-frequency.png",
+      "size": 3553,
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df"
+    },
+    {
+      "path": "assets/lcd-parallel.png",
+      "size": 1120,
+      "sha256": "1aacd9dc96bbc2ec22ff2364e88a896dd567a0f561f101dd85c93be10779dd04"
+    },
+    {
+      "path": "assets/lcd-quiet-charging.png",
+      "size": 1414,
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    {
+      "path": "assets/lcd-remaining-battery-percentage.png",
+      "size": 3712,
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    {
+      "path": "assets/lcd-remaining-charge-time.png",
+      "size": 1974,
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    {
+      "path": "assets/lcd-remaining-discharge-time.png",
+      "size": 2496,
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    {
+      "path": "assets/lcd-screen-p15.svg",
+      "size": 322986,
+      "sha256": "bb1a715bb8e012e03af6f0a70f1da5b96af950ffc7fb6bc752e73e10835ba1b0"
+    },
+    {
+      "path": "assets/lcd-self-powered-native.svg",
+      "size": 79312,
+      "sha256": "bdfff678688201cdb1ccce0b660c5b28ba54e9565f8a06db8f244a3adebb67cf"
+    },
+    {
+      "path": "assets/lcd-solar-charging-native.svg",
+      "size": 40838,
+      "sha256": "d0c220b37bd9f6c640bb16eee8f786ae9ff33736f054602079efed53aad748d1"
+    },
+    {
+      "path": "assets/lcd-wifi.png",
+      "size": 1814,
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    {
+      "path": "assets/native-energy-saving-12h-p14.svg",
+      "size": 11492,
+      "sha256": "2c406adf8854b08218a6c8fd9009c0088a9aea9c5e75d0ab65cd77e120c591eb"
+    },
+    {
+      "path": "assets/native-grounding-p4.svg",
+      "size": 1337,
+      "sha256": "dbccbfaa302530ad353cb5c4808a1a139800b63b3cebd23fcb64275e0d3580a6"
+    },
+    {
+      "path": "assets/overview-p9.svg",
+      "size": 410525,
+      "sha256": "ee1f22b0a61c8bb5446c586c4cf28985b7653b42f0205203ad1d10cfa292e75b"
+    },
+    {
+      "path": "assets/parallel-exit-p19.svg",
+      "size": 1073175,
+      "sha256": "c9aa4ecb1c11ab75d57b2ac0ff5ec9647d15d02808db743b5f9b5e2a2946196b"
+    },
+    {
+      "path": "assets/parallel-interrupted-p19.svg",
+      "size": 1083937,
+      "sha256": "7ff39af4186803800c1fab31f84831df67020fa6f54552e829f34119b45facd8"
+    },
+    {
+      "path": "assets/parallel-p18.svg",
+      "size": 674709,
+      "sha256": "acb56880b014f56be895bd8bdf20e1c3746152f6180825b6742846eb7f8a1524"
+    },
+    {
+      "path": "assets/power-p12.svg",
+      "size": 367792,
+      "sha256": "241bea0be72bda6f29c0a3dcbf78a27a5fa57551572ce30ae44f95edc9df7f51"
+    },
+    {
+      "path": "assets/shared-battery-weee.png",
+      "size": 19806,
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+    },
+    {
+      "path": "assets/shared-contact-mail.svg",
+      "size": 1163,
+      "sha256": "212029188a9099c55269ead4d0efbe4c12cfaf767f56d9108beaec4e583e914d"
+    },
+    {
+      "path": "assets/shared-contact-phone.svg",
+      "size": 2382,
+      "sha256": "86f136f59ab177125cc6aa9d1d720af0e881e8f23483c48d3f3f1cb9df2f2592"
+    },
+    {
+      "path": "assets/shared-contact-web.svg",
+      "size": 2926,
+      "sha256": "b69b985b83286edc306ffaec853b83f0fd006b5efac37ca80811cbd72272ec14"
+    },
+    {
+      "path": "assets/shared-h1-jp-keep_dry.svg",
+      "size": 5105,
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836"
+    },
+    {
+      "path": "assets/shared-h1-jp-mandatory.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "assets/shared-h1-jp-no_wet_hands.svg",
+      "size": 3972,
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450"
+    },
+    {
+      "path": "assets/shared-h1-jp-prohibited.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "assets/shared-h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "assets/shared-h1-jp-warning_triangle.svg",
+      "size": 1363,
+      "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b"
+    },
+    {
+      "path": "assets/shared-symbol_do_not_dismantle.svg",
+      "size": 6538,
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+    },
+    {
+      "path": "assets/shared-symbol_keep_away_from_children.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "assets/shared-symbol_li_ion.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "assets/shared-symbol_no_open_flame.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "assets/shared-symbol_read_manual.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "assets/shared-symbol_warning_triangle.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "assets/shared-symbol_weee_gray_jp.svg",
+      "size": 3230,
+      "sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1"
+    },
+    {
+      "path": "assets/sold-separately-cart.svg",
+      "size": 97910,
+      "sha256": "89744f531fea551626f23111830ea30ab3284267b1ec65997f33b83e0519db68"
+    },
+    {
+      "path": "assets/ups-p16.svg",
+      "size": 577632,
+      "sha256": "87419e9efc5957b00c72e29f3fbeb2edee4f8679f017733dbe61304606343611"
+    },
+    {
+      "path": "assets/usb-output-p13-crop.svg",
+      "size": 533087,
+      "sha256": "8f75469f162ed73524de7c44ab0c052a95c875d2a74b922bb71025aeb2547b5d"
+    },
+    {
+      "path": "audit/symbol-admission.json",
+      "size": 7159,
+      "sha256": "242debc6d1b40e48a4fed51533e503c34ba75a05209b1419f8861445c0a873d7"
+    },
+    {
+      "path": "derive_shared.py",
+      "size": 48138,
+      "sha256": "870394b033ae778e298ba7cc9ba3258678bba9329109414a7978915308a3c90c"
+    },
+    {
+      "path": "rebuild.py",
+      "size": 8091,
+      "sha256": "d0271d136994a82512d9e8a320fcba25dc88e08911d84d9912a45b4adc035a9e"
+    },
+    {
+      "path": "source/ja/content.json",
+      "size": 495660,
+      "sha256": "b53acb9481d7eb1af2639ca669b6858ffd0d9e3727a840af2f483e6b9f4398c4"
+    },
+    {
+      "path": "source/ja/shared_components.json",
+      "size": 7105,
+      "sha256": "2eab303b1d39032a58a1946bad7b72f6c1d5efa5493e37fcfb1c1acb4302cd9a"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 24857,
+      "sha256": "353bee059b85051bea2ef8e69e1037d8c0eb09ad42d1ee38fd66cfd18b614c02"
+    },
+    {
+      "path": "source/refresh_manifest.py",
+      "size": 3736,
+      "sha256": "9923ebdf8afae4880c18367c2773a0b8f4b63b5916238570778b37811f30f4a0"
+    },
+    {
+      "path": "source/symbol_admission.py",
+      "size": 9428,
+      "sha256": "7249c39b6018313d27cde9a2dc18c97044400ba9a214ac6c57f9d6bad061b87f"
+    },
+    {
+      "path": "web/ja/_static/source_presentation.css",
+      "size": 24857,
+      "sha256": "353bee059b85051bea2ef8e69e1037d8c0eb09ad42d1ee38fd66cfd18b614c02"
+    },
+    {
+      "path": "web/ja/_static/web_manual.css",
+      "size": 123623,
+      "sha256": "4c01adf9222e7faa8fb5552490d8b8fa4ebba550b4ef2a1e7171a1b9a6538434"
+    },
+    {
+      "path": "web/ja/assets/ac-output-p12.svg",
+      "size": 436907,
+      "sha256": "2d43f6b4de5051b111bebad2c6003aa96e3acdbae536cb280dfe26cfe7f2f676"
+    },
+    {
+      "path": "web/ja/assets/app-controls-p28.svg",
+      "size": 816605,
+      "sha256": "d4bccbbfcdf82e25abcbead5be332f87a724ee02db9743f465f7f9a89194b8be"
+    },
+    {
+      "path": "web/ja/assets/app-download-p28-qr.svg",
+      "size": 775151,
+      "sha256": "e4137150c06e191c8d0bf8a855928104f1e4f86c28e2d003e343f5a1919fd4d8"
+    },
+    {
+      "path": "web/ja/assets/app-download-p28-store.svg",
+      "size": 775149,
+      "sha256": "37e85a31f331b194c7c8f28c7cc914fca81603f2410ee20fa22d080f0d32cc69"
+    },
+    {
+      "path": "web/ja/assets/app-download-p28.svg",
+      "size": 775114,
+      "sha256": "0bd7793ece347ae101b56318f99e70e5b5547a751c702594ad094fac9d3221ea"
+    },
+    {
+      "path": "web/ja/assets/app-download-reminder-p30.svg",
+      "size": 25268,
+      "sha256": "90241c9390075ed5261e016f509c4077d6388908813343f190cd069445be92c7"
+    },
+    {
+      "path": "web/ja/assets/app-phones-native-p28-web.svg",
+      "size": 443429,
+      "sha256": "b334dba327605c8e5e3316dfed0b94f42072e612e835223dcffa0858f782391d"
+    },
+    {
+      "path": "web/ja/assets/app-phones-native-p29.svg",
+      "size": 1214079,
+      "sha256": "4955052db7058903f37e07da6ac080186d08b88c66b31ba42ce34c72e6d39f30"
+    },
+    {
+      "path": "web/ja/assets/battery-accessories-p17.svg",
+      "size": 2912917,
+      "sha256": "6a47ef942fda6c073f7beaf0650c7c7cbf6f83b29657feab3ff8e3a3a8696020"
+    },
+    {
+      "path": "web/ja/assets/battery-stack-p17.svg",
+      "size": 2928275,
+      "sha256": "1fc214069c0b2618f4e08df3a6be85b6fa1ec62f407c0e6e1b8b62bb40071800"
+    },
+    {
+      "path": "web/ja/assets/charging-ac-p20.svg",
+      "size": 661157,
+      "sha256": "c17280ffcf34764dab4b7bd1d6d931d0718628ca38d23222829be2969fd39726"
+    },
+    {
+      "path": "web/ja/assets/charging-car-p23.svg",
+      "size": 692811,
+      "sha256": "8a0335e074017d5c6a871eb293ea131f5000c3c5ba397f1d666ea7a81bef8aa2"
+    },
+    {
+      "path": "web/ja/assets/charging-solar-four-p22.svg",
+      "size": 1172992,
+      "sha256": "b300c77be1b81f255a8cbbcaf629e59ce84a5ee57de4d56028e6f62531e98155"
+    },
+    {
+      "path": "web/ja/assets/charging-solar-p21.svg",
+      "size": 584765,
+      "sha256": "07e6bbbe406620ac2c9725cc8c4467e8e718984adc49c186df347f26552dd6b0"
+    },
+    {
+      "path": "web/ja/assets/energy-saving-p14-web-crop.svg",
+      "size": 212111,
+      "sha256": "b4906c15e643b7d7642b3b4426b99d230f09b08445294f6929d885461c8a2ed4"
+    },
+    {
+      "path": "web/ja/assets/frequency-p13.svg",
+      "size": 596425,
+      "sha256": "6665ef8094ed317ffa7de58f5557e07d6e873db7577b9e0506c1aa38a6487e6d"
+    },
+    {
+      "path": "web/ja/assets/inbox-p8-card-1.svg",
+      "size": 355017,
+      "sha256": "20ca76883892ea2af83aa53e4a75f257294591b79a0b6fcc0e7fde0eeb0d9129"
+    },
+    {
+      "path": "web/ja/assets/inbox-p8-card-2.svg",
+      "size": 355018,
+      "sha256": "b07f1e6794391b1f5eea3b792a8c14e7cd4c575e86dbaff7647b6ef8bccf2241"
+    },
+    {
+      "path": "web/ja/assets/inbox-p8-card-3.svg",
+      "size": 355018,
+      "sha256": "b34da42214dc4ffff0aec341542faae615f41b989f2d8c5df4171a782f38cd70"
+    },
+    {
+      "path": "web/ja/assets/lcd-ac-power.png",
+      "size": 3962,
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    {
+      "path": "web/ja/assets/lcd-ac-wall-charging-native.svg",
+      "size": 40684,
+      "sha256": "64b7a3532dc2a13d91e189d59086d7813d24d9ad19482f5007854c44e1c557b3"
+    },
+    {
+      "path": "web/ja/assets/lcd-battery-power.png",
+      "size": 4879,
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "web/ja/assets/lcd-battery-saving-native.svg",
+      "size": 79735,
+      "sha256": "62aed02141aeb524018912255695791d15fad5284d9fa7278519c9740f708da3"
+    },
+    {
+      "path": "web/ja/assets/lcd-bluetooth.png",
+      "size": 2023,
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    {
+      "path": "web/ja/assets/lcd-car-charging-native.svg",
+      "size": 41028,
+      "sha256": "8eeef7b9a7a38c787d4d70838703d709083683dc74b9e4ebd3b06be008e0a537"
+    },
+    {
+      "path": "web/ja/assets/lcd-charging-plan.png",
+      "size": 2759,
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d"
+    },
+    {
+      "path": "web/ja/assets/lcd-connected-batteries-native.svg",
+      "size": 39932,
+      "sha256": "a177299394ee9973ea7319a5502fea393b8e49c8d1cb21c0df0dc108f955a51c"
+    },
+    {
+      "path": "web/ja/assets/lcd-energy-saving.png",
+      "size": 2056,
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    {
+      "path": "web/ja/assets/lcd-fault-code.png",
+      "size": 1275,
+      "sha256": "7b251bff4004f01b3fbb6e383230d0c27f6ea17654502eca64240888ebe510a0"
+    },
+    {
+      "path": "web/ja/assets/lcd-high-temperature-native.svg",
+      "size": 40388,
+      "sha256": "f33f40e09b19655b8cbbdb9573f0b87d1fd40cb8d7a6c62fb076386578478635"
+    },
+    {
+      "path": "web/ja/assets/lcd-input-power.png",
+      "size": 4730,
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    {
+      "path": "web/ja/assets/lcd-low-battery.png",
+      "size": 1293,
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    {
+      "path": "web/ja/assets/lcd-low-temperature-native.svg",
+      "size": 40376,
+      "sha256": "2e38b08d26340621322c2d3f4f7c9f01daf947e50273c0eacd2f5171cd7f5806"
+    },
+    {
+      "path": "web/ja/assets/lcd-map-p10.svg",
+      "size": 545716,
+      "sha256": "cf3f3165d61261db43a2122e1d11dd539e5e05bf0c6ed1f0a9352b1ae91a6a38"
+    },
+    {
+      "path": "web/ja/assets/lcd-output-power.png",
+      "size": 6085,
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "path": "web/ja/assets/lcd-output-voltage-frequency.png",
+      "size": 3553,
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df"
+    },
+    {
+      "path": "web/ja/assets/lcd-parallel.png",
+      "size": 1120,
+      "sha256": "1aacd9dc96bbc2ec22ff2364e88a896dd567a0f561f101dd85c93be10779dd04"
+    },
+    {
+      "path": "web/ja/assets/lcd-quiet-charging.png",
+      "size": 1414,
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    {
+      "path": "web/ja/assets/lcd-remaining-battery-percentage.png",
+      "size": 3712,
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    {
+      "path": "web/ja/assets/lcd-remaining-charge-time.png",
+      "size": 1974,
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    {
+      "path": "web/ja/assets/lcd-remaining-discharge-time.png",
+      "size": 2496,
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    {
+      "path": "web/ja/assets/lcd-screen-p15.svg",
+      "size": 322986,
+      "sha256": "bb1a715bb8e012e03af6f0a70f1da5b96af950ffc7fb6bc752e73e10835ba1b0"
+    },
+    {
+      "path": "web/ja/assets/lcd-self-powered-native.svg",
+      "size": 79312,
+      "sha256": "bdfff678688201cdb1ccce0b660c5b28ba54e9565f8a06db8f244a3adebb67cf"
+    },
+    {
+      "path": "web/ja/assets/lcd-solar-charging-native.svg",
+      "size": 40838,
+      "sha256": "d0c220b37bd9f6c640bb16eee8f786ae9ff33736f054602079efed53aad748d1"
+    },
+    {
+      "path": "web/ja/assets/lcd-wifi.png",
+      "size": 1814,
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    {
+      "path": "web/ja/assets/native-energy-saving-12h-p14.svg",
+      "size": 11492,
+      "sha256": "2c406adf8854b08218a6c8fd9009c0088a9aea9c5e75d0ab65cd77e120c591eb"
+    },
+    {
+      "path": "web/ja/assets/native-grounding-p4.svg",
+      "size": 1337,
+      "sha256": "dbccbfaa302530ad353cb5c4808a1a139800b63b3cebd23fcb64275e0d3580a6"
+    },
+    {
+      "path": "web/ja/assets/overview-p9.svg",
+      "size": 410525,
+      "sha256": "ee1f22b0a61c8bb5446c586c4cf28985b7653b42f0205203ad1d10cfa292e75b"
+    },
+    {
+      "path": "web/ja/assets/parallel-exit-p19.svg",
+      "size": 1073175,
+      "sha256": "c9aa4ecb1c11ab75d57b2ac0ff5ec9647d15d02808db743b5f9b5e2a2946196b"
+    },
+    {
+      "path": "web/ja/assets/parallel-interrupted-p19.svg",
+      "size": 1083937,
+      "sha256": "7ff39af4186803800c1fab31f84831df67020fa6f54552e829f34119b45facd8"
+    },
+    {
+      "path": "web/ja/assets/parallel-p18.svg",
+      "size": 674709,
+      "sha256": "acb56880b014f56be895bd8bdf20e1c3746152f6180825b6742846eb7f8a1524"
+    },
+    {
+      "path": "web/ja/assets/power-p12.svg",
+      "size": 367792,
+      "sha256": "241bea0be72bda6f29c0a3dcbf78a27a5fa57551572ce30ae44f95edc9df7f51"
+    },
+    {
+      "path": "web/ja/assets/shared-battery-weee.png",
+      "size": 19806,
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45"
+    },
+    {
+      "path": "web/ja/assets/shared-contact-mail.svg",
+      "size": 1163,
+      "sha256": "212029188a9099c55269ead4d0efbe4c12cfaf767f56d9108beaec4e583e914d"
+    },
+    {
+      "path": "web/ja/assets/shared-contact-phone.svg",
+      "size": 2382,
+      "sha256": "86f136f59ab177125cc6aa9d1d720af0e881e8f23483c48d3f3f1cb9df2f2592"
+    },
+    {
+      "path": "web/ja/assets/shared-contact-web.svg",
+      "size": 2926,
+      "sha256": "b69b985b83286edc306ffaec853b83f0fd006b5efac37ca80811cbd72272ec14"
+    },
+    {
+      "path": "web/ja/assets/shared-h1-jp-keep_dry.svg",
+      "size": 5105,
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836"
+    },
+    {
+      "path": "web/ja/assets/shared-h1-jp-mandatory.svg",
+      "size": 1292,
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2"
+    },
+    {
+      "path": "web/ja/assets/shared-h1-jp-no_wet_hands.svg",
+      "size": 3972,
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450"
+    },
+    {
+      "path": "web/ja/assets/shared-h1-jp-prohibited.svg",
+      "size": 1452,
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d"
+    },
+    {
+      "path": "web/ja/assets/shared-h1-jp-unplug.svg",
+      "size": 2569,
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf"
+    },
+    {
+      "path": "web/ja/assets/shared-h1-jp-warning_triangle.svg",
+      "size": 1363,
+      "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b"
+    },
+    {
+      "path": "web/ja/assets/shared-symbol_do_not_dismantle.svg",
+      "size": 6538,
+      "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33"
+    },
+    {
+      "path": "web/ja/assets/shared-symbol_keep_away_from_children.svg",
+      "size": 6300,
+      "sha256": "a58074f90ef83ab647ae94215dc0e3315cb9d113aaa4e104a6b26dc3b241d899"
+    },
+    {
+      "path": "web/ja/assets/shared-symbol_li_ion.svg",
+      "size": 7306,
+      "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e"
+    },
+    {
+      "path": "web/ja/assets/shared-symbol_no_open_flame.svg",
+      "size": 5630,
+      "sha256": "4a82cdd8683e595eb3c9f63ecce457ca53cc5ea6c3f5906ecd7e1d8a4b3be01f"
+    },
+    {
+      "path": "web/ja/assets/shared-symbol_read_manual.svg",
+      "size": 4961,
+      "sha256": "1d2087064f92538d3b0762607056ac268f1d1c24e8f446c66626ac35c4e43584"
+    },
+    {
+      "path": "web/ja/assets/shared-symbol_warning_triangle.svg",
+      "size": 4481,
+      "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a"
+    },
+    {
+      "path": "web/ja/assets/shared-symbol_weee_gray_jp.svg",
+      "size": 3230,
+      "sha256": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1"
+    },
+    {
+      "path": "web/ja/assets/sold-separately-cart.svg",
+      "size": 97910,
+      "sha256": "89744f531fea551626f23111830ea30ab3284267b1ec65997f33b83e0519db68"
+    },
+    {
+      "path": "web/ja/assets/ups-p16.svg",
+      "size": 577632,
+      "sha256": "87419e9efc5957b00c72e29f3fbeb2edee4f8679f017733dbe61304606343611"
+    },
+    {
+      "path": "web/ja/assets/usb-output-p13-crop.svg",
+      "size": 533087,
+      "sha256": "8f75469f162ed73524de7c44ab0c052a95c875d2a74b922bb71025aeb2547b5d"
+    },
+    {
+      "path": "web/ja/conf.py",
+      "size": 847,
+      "sha256": "05b3f5222a6e3b0a18a529d52b730835062cacfdb432e67d570d6eb11b2a91fd"
+    },
+    {
+      "path": "web/ja/index.md",
+      "size": 107,
+      "sha256": "ab18802b8d66059f732e2e29b21cd68446206ae92d4ee1f43863a4739b4db966"
+    },
+    {
+      "path": "web/ja/manual.ir.json",
+      "size": 642976,
+      "sha256": "464ad10a677f19024af333762441ffd284b2d0a7751330a4691784c7b2e512fd"
+    },
+    {
+      "path": "web/ja/manual_je3600a_jp_ja.md",
+      "size": 141264,
+      "sha256": "1f9d7b619174a503992873c2c2e84ac539b7bd41b125e6169a44fc5139963ab1"
+    }
+  ]
+}

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import io
 import json
+import subprocess
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
@@ -35,10 +36,23 @@ def diff(*added: str, context: str = "") -> str:
     return "\n".join(lines) + "\n"
 
 
-class FakeRun:
-    """``run(args)`` for git and gh, answering from in-memory fixtures."""
+ARCHIVE = """\
+## Expired registry rows
 
-    def __init__(self, *, main: str, prs: dict[int, tuple[list[str], str]]):
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-180 | x | y | z | 已失效 |
+"""
+
+
+class FakeRun:
+    """``run(args)`` for git and gh, answering from in-memory fixtures.
+
+    ``main`` is one text for every ``git show``, or a ``{path: text}`` map where a
+    missing path fails the way ``git show`` does.
+    """
+
+    def __init__(self, *, main: str | dict[str, str], prs: dict[int, tuple[list[str], str]]):
         self.main = main
         self.prs = prs
         self.calls: list[list[str]] = []
@@ -46,7 +60,12 @@ class FakeRun:
     def __call__(self, args: list[str]) -> str:
         self.calls.append(args)
         if args[:1] == ["git"] and "show" in args:
-            return self.main
+            if isinstance(self.main, str):
+                return self.main
+            path = args[-1].split(":", 1)[1]
+            if path not in self.main:
+                raise subprocess.CalledProcessError(128, args)
+            return self.main[path]
         if args[:1] == ["git"]:
             return ""
         if args[:3] == ["gh", "pr", "list"]:
@@ -102,6 +121,36 @@ class ReportTests(unittest.TestCase):
         nxt, why = nid.report("ma", run=run, root=self.root, fetch=False)
         self.assertEqual((nxt, why), ("MA-175", "main has up to MA-170; this checkout adds MA-174"))
         self.assertFalse(any("fetch" in call for call in run.calls))
+
+    def test_archived_rows_on_main_or_here_count_as_used(self):
+        ma = nid.TABLES["ma"]
+        run = FakeRun(main={ma.path: MAIN_REGISTRY, ma.archive: ARCHIVE}, prs={})
+        self.assertEqual(nid.report("ma", run=run, root=self.root, fetch=False),
+                         ("MA-181", "main has up to MA-180"))
+        archive = self.root / ma.archive
+        archive.write_text(ARCHIVE.replace("| MA-180 |", "| MA-182 | moved | g | e | 已失效 |\n| MA-180 |"),
+                           encoding="utf-8")
+        self.assertEqual(nid.report("ma", run=run, root=self.root, fetch=False),
+                         ("MA-183", "main has up to MA-180; this checkout adds MA-182"))
+
+    def test_an_archive_main_lacks_reads_as_empty_but_the_registry_must_exist(self):
+        ma = nid.TABLES["ma"]
+        run = FakeRun(main={ma.path: MAIN_REGISTRY}, prs={})
+        self.assertEqual(nid.report("ma", run=run, root=self.root, fetch=False),
+                         ("MA-171", "main has up to MA-170"))
+        with self.assertRaises(subprocess.CalledProcessError):
+            nid.report("ma", run=FakeRun(main={}, prs={}), root=self.root, fetch=False)
+
+    def test_moving_rows_to_the_archive_reserves_nothing(self):
+        ma = nid.TABLES["ma"]
+        run = FakeRun(main={ma.path: MAIN_REGISTRY, ma.archive: ARCHIVE}, prs={
+            1290: ([ma.archive], diff("| MA-170 | x | y | z | 已失效（…） |", context="| MA-180 | x | y | z | 已失效 |")),
+            1291: ([ma.archive], diff("| MA-184 | new | g | e | 生效 |")),
+        })
+        nxt, why = nid.report("ma", run=run, root=self.root, fetch=False)
+        self.assertEqual((nxt, why), ("MA-185", "main has up to MA-180; open PRs reserve MA-184 (#1291)"))
+        # A PR that touches only the archive is still diffed.
+        self.assertIn(["gh", "pr", "diff", "1290"], run.calls)
 
     def test_rev_numbers_come_from_the_ledger(self):
         run = FakeRun(main=LEDGER, prs={9: ([nid.TABLES["rev"].path],

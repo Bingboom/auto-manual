@@ -1,0 +1,103 @@
+{
+  "status": "producer-verified-independent-recheck-pending",
+  "french": {
+    "mobile": {
+      "badges": [
+        {
+          "background": "rgb(67, 67, 69)",
+          "color": "rgb(255, 255, 255)",
+          "font": "14px",
+          "text": "Verrouiller"
+        },
+        {
+          "background": "rgb(67, 67, 69)",
+          "color": "rgb(255, 255, 255)",
+          "font": "14px",
+          "text": "Déverrouiller"
+        }
+      ],
+      "clockCount": 1,
+      "decoded": 22,
+      "images": 22,
+      "lcdRows": [
+        2,
+        2
+      ],
+      "overflow": false,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "desktop": {
+      "cssClockCount": 1,
+      "hash": "#specifications",
+      "headingTop": 23.8515625,
+      "overflow": false,
+      "scrollMargin": "24px",
+      "width": 1440
+    },
+    "anchorChecks": [
+      {
+        "hash": "#connexions",
+        "headerBottom": 48,
+        "headingTop": 96.0703125,
+        "method": "direct hash navigation",
+        "scrollMargin": "96px"
+      },
+      {
+        "backToTopBottom": 88,
+        "hash": "#affichage-lcd",
+        "headerBottom": 48,
+        "headingTop": 96.2109375,
+        "scrollMargin": "96px"
+      },
+      {
+        "backToTopBottom": 88,
+        "hash": "#apercu-du-produit",
+        "headerBottom": 48,
+        "headingTop": 95.8828125,
+        "scrollMargin": "96px"
+      },
+      {
+        "hash": "#specifications",
+        "headerBottom": 48,
+        "headingTop": 95.96875,
+        "method": "mobile sidebar click",
+        "scrollMargin": "96px"
+      }
+    ]
+  },
+  "english": {
+    "mobile": {
+      "badges": [
+        {
+          "background": "rgb(67, 67, 69)",
+          "color": "rgb(255, 255, 255)",
+          "font": "14px",
+          "text": "Lock"
+        },
+        {
+          "background": "rgb(67, 67, 69)",
+          "color": "rgb(255, 255, 255)",
+          "font": "14px",
+          "text": "Unlock"
+        }
+      ],
+      "cssClockCount": 1,
+      "decoded": 21,
+      "images": 21,
+      "overflow": false,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "anchor": {
+      "hash": "#lcd-display",
+      "headerBottom": 48,
+      "headingTop": 95.9375,
+      "scrollMargin": "96px"
+    }
+  }
+}

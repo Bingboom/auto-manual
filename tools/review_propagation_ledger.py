@@ -301,7 +301,8 @@ def classify_merge_params_change(
             "The shared-source line structure changed, so merge_params cannot be proven safe.",
         )
 
-    changed = tuple(idx for idx, (old, new) in enumerate(zip(old_lines, new_lines)) if old != new)
+    # zip(strict=False): compares only the common prefix on purpose
+    changed = tuple(idx for idx, (old, new) in enumerate(zip(old_lines, new_lines, strict=False)) if old != new)
     mapping = _map_source_to_target_lines(old_lines, review_lines)
     for idx in changed:
         old_slots = tuple(PLACEHOLDER_RE.findall(old_lines[idx]))

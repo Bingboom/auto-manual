@@ -1,0 +1,415 @@
+{
+  "checked": [],
+  "exported_at": "2026-10-19",
+  "refresh": {
+    "checked_at": "2026-10-19T09:56:00.343419+00:00",
+    "content_sha256": "1824d41b2a10b0f55421e8318c0df568a9866a490b4d6bd8454011def408438b",
+    "execution": "",
+    "source": {
+      "identity_sha256": "4bb050d6bd5084c9f5cbdff7cc3b74624524f64a9a8f4d13c420362d6b36b842"
+    },
+    "status": "changed"
+  },
+  "schema": "hello-docs-web-progress/v1",
+  "sold": {
+    "JA-AD01A": [
+      "EU",
+      "US",
+      "JP",
+      "CN"
+    ],
+    "JA-AD500A-SIL": [
+      "US",
+      "JP",
+      "BR"
+    ],
+    "JA-AD600A": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "KR"
+    ],
+    "JA-CA05B": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "TW",
+      "KR",
+      "AU"
+    ],
+    "JA-CA3SA": [
+      "EU",
+      "US",
+      "JP",
+      "CN"
+    ],
+    "JA-CC30A": [
+      "EU",
+      "US",
+      "JP",
+      "CN"
+    ],
+    "JA-TS02A": [
+      "EU",
+      "US",
+      "JP"
+    ],
+    "JAAC-WHE-100-EUA1": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "KR",
+      "AU"
+    ],
+    "JBP-1000B-SIL": [
+      "US",
+      "JP",
+      "BR"
+    ],
+    "JBP-1000B-WH": [
+      "US",
+      "JP",
+      "BR"
+    ],
+    "JBP-2000B": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "KR"
+    ],
+    "JBP-3600A": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "KR"
+    ],
+    "JBP-5000A": [
+      "US",
+      "JP"
+    ],
+    "JE-1000E-SIL": [
+      "US",
+      "JP",
+      "BR"
+    ],
+    "JE-1000E-WH": [
+      "US",
+      "JP",
+      "BR"
+    ],
+    "JE-1000F": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "TW",
+      "KR",
+      "AU",
+      "BR"
+    ],
+    "JE-1000H": [
+      "EU",
+      "JP",
+      "CN",
+      "KR",
+      "AU"
+    ],
+    "JE-100C": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "KR"
+    ],
+    "JE-1500C": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "TW",
+      "KR",
+      "AU"
+    ],
+    "JE-2000E": [
+      "EU",
+      "JP",
+      "CN",
+      "KR"
+    ],
+    "JE-2000F": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "TW",
+      "KR"
+    ],
+    "JE-3000C": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "KR"
+    ],
+    "JE-300D": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "TW",
+      "KR",
+      "AU"
+    ],
+    "JE-300E": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "TW",
+      "KR",
+      "AU",
+      "BR"
+    ],
+    "JE-3600A": [
+      "EU",
+      "JP",
+      "CN",
+      "KR"
+    ],
+    "JE-5000A": [
+      "US",
+      "JP"
+    ],
+    "JE-500A": [
+      "EU",
+      "US",
+      "JP"
+    ],
+    "JHP-3000D": [
+      "EU",
+      "US"
+    ],
+    "JHP-3600A": [
+      "US"
+    ],
+    "JHP-3600C": [
+      "US"
+    ],
+    "JHP-5000C": [
+      "US"
+    ],
+    "JS-100F": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "KR",
+      "AU",
+      "BR"
+    ],
+    "JS-100I": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "AU",
+      "BR"
+    ],
+    "JS-200E": [
+      "EU",
+      "US",
+      "JP",
+      "CN",
+      "KR",
+      "AU"
+    ],
+    "JS-40C": [
+      "EU",
+      "US",
+      "JP",
+      "CN"
+    ]
+  },
+  "timeline": [
+    {
+      "added": 1,
+      "date": "2026-08-02",
+      "editions": 1,
+      "langs": 1,
+      "models": 1
+    },
+    {
+      "added": 3,
+      "date": "2026-09-08",
+      "editions": 4,
+      "langs": 4,
+      "models": 4
+    },
+    {
+      "added": 17,
+      "date": "2026-09-12",
+      "editions": 21,
+      "langs": 21,
+      "models": 21
+    },
+    {
+      "added": 15,
+      "date": "2026-09-14",
+      "editions": 22,
+      "langs": 36,
+      "models": 21
+    },
+    {
+      "added": 11,
+      "date": "2026-09-15",
+      "editions": 22,
+      "langs": 47,
+      "models": 21
+    },
+    {
+      "added": 6,
+      "date": "2026-09-16",
+      "editions": 23,
+      "langs": 53,
+      "models": 22
+    },
+    {
+      "added": 1,
+      "date": "2026-09-17",
+      "editions": 24,
+      "langs": 54,
+      "models": 23
+    },
+    {
+      "added": 2,
+      "date": "2026-09-20",
+      "editions": 24,
+      "langs": 56,
+      "models": 23
+    },
+    {
+      "added": 4,
+      "date": "2026-09-28",
+      "editions": 24,
+      "langs": 60,
+      "models": 23
+    },
+    {
+      "added": 6,
+      "date": "2026-09-30",
+      "editions": 24,
+      "langs": 66,
+      "models": 23
+    },
+    {
+      "added": 18,
+      "date": "2026-10-01",
+      "editions": 26,
+      "langs": 84,
+      "models": 23
+    },
+    {
+      "added": 6,
+      "date": "2026-10-02",
+      "editions": 26,
+      "langs": 90,
+      "models": 23
+    },
+    {
+      "added": 8,
+      "date": "2026-10-03",
+      "editions": 26,
+      "langs": 98,
+      "models": 23
+    },
+    {
+      "added": 3,
+      "date": "2026-10-04",
+      "editions": 27,
+      "langs": 101,
+      "models": 24
+    },
+    {
+      "added": 6,
+      "date": "2026-10-05",
+      "editions": 27,
+      "langs": 107,
+      "models": 24
+    },
+    {
+      "added": 1,
+      "date": "2026-10-06",
+      "editions": 28,
+      "langs": 108,
+      "models": 25
+    },
+    {
+      "added": 5,
+      "date": "2026-10-07",
+      "editions": 29,
+      "langs": 113,
+      "models": 26
+    },
+    {
+      "added": 18,
+      "date": "2026-10-08",
+      "editions": 33,
+      "langs": 131,
+      "models": 29
+    },
+    {
+      "added": 6,
+      "date": "2026-10-09",
+      "editions": 35,
+      "langs": 137,
+      "models": 31
+    },
+    {
+      "added": 1,
+      "date": "2026-10-10",
+      "editions": 36,
+      "langs": 138,
+      "models": 32
+    },
+    {
+      "added": 1,
+      "date": "2026-10-11",
+      "editions": 37,
+      "langs": 139,
+      "models": 33
+    },
+    {
+      "added": 2,
+      "date": "2026-10-12",
+      "editions": 37,
+      "langs": 141,
+      "models": 33
+    },
+    {
+      "added": 3,
+      "date": "2026-10-13",
+      "editions": 40,
+      "langs": 144,
+      "models": 34
+    },
+    {
+      "added": 6,
+      "date": "2026-10-14",
+      "editions": 42,
+      "langs": 150,
+      "models": 34
+    },
+    {
+      "added": 1,
+      "date": "2026-10-16",
+      "editions": 43,
+      "langs": 151,
+      "models": 35
+    }
+  ]
+}

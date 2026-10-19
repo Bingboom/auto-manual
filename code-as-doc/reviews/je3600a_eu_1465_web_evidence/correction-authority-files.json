@@ -1,0 +1,27 @@
+{
+  "model": "JE-3600A",
+  "batch": "1465",
+  "files": [
+    {
+      "filename": "JE-3600A_修正版_竖版.pdf",
+      "size": 12449907,
+      "sha256": "9b9e5b7b0071a6feddc7b12ad7a9cb511eb6c0bfeff3c186abd757389645cac9"
+    },
+    {
+      "filename": "JE-3600A_修正版.ai",
+      "size": 58829590,
+      "sha256": "0252feded3a3043169fa71410d1747926cab13ce8f3fceb15254b92ae6c00c32"
+    },
+    {
+      "filename": "JE-3600A.json",
+      "size": 1473,
+      "sha256": "cc57ede8049d213cd4c7aea5752a4f68e612292e6502fcf54b374245adfab91d"
+    },
+    {
+      "filename": "changes.json",
+      "size": 6139,
+      "sha256": "77c30b840e19c34371cf9ddc5dafdd0bc858abe7dd322c6cc8e2c559084c1637"
+    }
+  ],
+  "copy_selections": "source/1465-errata.json in the two candidate packages"
+}

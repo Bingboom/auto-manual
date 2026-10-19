@@ -1,0 +1,36 @@
+{
+  "source_page": 13,
+  "shared_component": "HB-TABLE-KEY-COMBINATIONS",
+  "variants": [
+    {
+      "variant": "power-bottom",
+      "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+      "path_count": 8,
+      "transparent_edge": true,
+      "frozen_path": "assets/7b5fa9057ca9_power-bottom.svg"
+    },
+    {
+      "variant": "usb-bottom",
+      "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+      "path_count": 6,
+      "transparent_edge": true,
+      "frozen_path": "assets/4025f864c192_usb-bottom.svg"
+    },
+    {
+      "variant": "ac-bottom",
+      "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+      "path_count": 5,
+      "transparent_edge": true,
+      "frozen_path": "assets/ad437a82a4fe_ac-bottom.svg"
+    }
+  ],
+  "availability_headings": [
+    "CONNECT TO BATTERY PACK(S) \u2014 SOLD SEPARATELY",
+    "CONNECT TO ATS \u2014 SOLD SEPARATELY",
+    "CONNECT TO MTS \u2014 SOLD SEPARATELY",
+    "CHARGING VIA SOLAR PANELS \u2014 SOLD SEPARATELY",
+    "CHARGING WITH A CAR CHARGER \u2014 SOLD SEPARATELY",
+    "Jackery Battery Pack 3600 \u2014 SOLD SEPARATELY",
+    "Jackery Automatic Transfer Switch \u2014 SOLD SEPARATELY"
+  ]
+}

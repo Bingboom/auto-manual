@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>页面已迁移</title>
+</head>
+<body>
+  <p>页面已迁移至 <a id="moved-target" href="{{ pathto(moved_target.split('#')[0])|e }}#{{ moved_target.split('#')[1]|e }}">{{ moved_title|e }}</a>。</p>
+  <noscript><p>请点击上方链接打开新页面。</p></noscript>
+  <script>
+  (() => {
+    const link = document.getElementById("moved-target");
+    const target = new URL(link.href);
+    // Preserve the complete query, including encoded and repeated filter values.
+    target.search = location.search;
+    link.href = target.href;
+    location.replace(target.href);
+  })();
+  </script>
+</body>
+</html>

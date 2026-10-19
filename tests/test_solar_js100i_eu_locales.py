@@ -17,8 +17,8 @@ from PIL import Image
 from tools.manual_ir import read_manual_ir
 from tools.prepared_component_coverage import audit_prepared_component_coverage
 from tools.prepared_component_policy import resolve_prepared_component_policy
-from tools.web_component_admission import require_fresh_component_admission
-from tools.web_document_ir import render_document_fragments
+from tools.web.component_admission import require_fresh_component_admission
+from tools.web.document_ir import render_document_fragments
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT = ROOT / 'data/manual_sources/JS-100I/EU/added-locales/2026-09-28'
@@ -91,7 +91,7 @@ class SolarJs100iEuLocalesTest(unittest.TestCase):
                             self.assertIn(normalized(caption), text, caption)
                     rows = soup.select('table.hb-spec-table tr')
                     self.assertEqual(len(rows), 21)
-                    for rendered, expected in zip(rows, source['spec_rows']):
+                    for rendered, expected in zip(rows, source['spec_rows'], strict=True):
                         cells = rendered.select('th, td')
                         self.assertEqual(
                             [normalized(cell.get_text()) for cell in cells],

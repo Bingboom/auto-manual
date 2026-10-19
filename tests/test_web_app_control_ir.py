@@ -11,7 +11,7 @@ from unittest.mock import patch
 from bs4 import BeautifulSoup
 
 from tools.manual_ir import ManualIR, builder, build_manual_ir_from_source, read_manual_ir, validate_manual_ir, write_manual_ir
-from tools.web_presentation import WebPresentationError, transform_web_fragment
+from tools.web.presentation import WebPresentationError, transform_web_fragment
 
 
 def config():
@@ -38,7 +38,7 @@ class WebAppControlIRTests(unittest.TestCase):
 
     def test_serialized_replay_preserves_language_label_rich_copy_and_assets(self):
         from tools.manual_ir.web_app_controls import load_web_control_source
-        from tools.web_app_controls import render_control_ir
+        from tools.web.app_controls import render_control_ir
 
         for language, term, label in (('en', 'button', 'Add device'), ('fr', 'bouton', 'Ajouter'), ('es', 'botón', 'Añadir')):
             with self.subTest(language=language), TemporaryDirectory() as td:
@@ -66,7 +66,7 @@ class WebAppControlIRTests(unittest.TestCase):
                 self.assertIsNone(soup.strong)
 
     def test_application_preserves_other_paragraphs_and_target_gate(self):
-        from tools import web_app_controls
+        from tools.web import app_controls as web_app_controls
 
         html = '<h2>Title</h2><p>Before</p>' + paragraph() + '<p>After</p>'
         soup = BeautifulSoup(html, 'html.parser')
@@ -79,7 +79,7 @@ class WebAppControlIRTests(unittest.TestCase):
             self.assertNotIn('hb-inline-add-device-icon', output)
 
     def test_malformed_input_does_not_mutate_caller(self):
-        from tools.web_app_controls import transform_app_control
+        from tools.web.app_controls import transform_app_control
 
         html = paragraph()
         for malformed in (html+html, html.replace('2.1', '2.2'), html.replace('button', 'thing'),
@@ -95,7 +95,7 @@ class WebAppControlIRTests(unittest.TestCase):
                 self.assertEqual(str(soup), before)
 
     def test_corrupt_envelope_does_not_mutate_caller(self):
-        from tools import web_app_controls
+        from tools.web import app_controls as web_app_controls
 
         def corrupt(source):
             return replace(build_manual_ir_from_source(source), content_sha256='0'*64)
@@ -109,7 +109,7 @@ class WebAppControlIRTests(unittest.TestCase):
 
     def test_rehashed_owned_payload_drift_is_rejected(self):
         from tools.manual_ir.web_app_controls import load_web_control_source
-        from tools.web_app_controls import render_control_ir
+        from tools.web.app_controls import render_control_ir
 
         for change in ('label', 'assets', 'extra', 'paragraph', 'projection', 'kind'):
             with self.subTest(change=change):

@@ -1,0 +1,125 @@
+{
+  "source_sha256": "16ae12b0426828b921694a496ce699386d92165d5476a10dded83be1a893a91c",
+  "body_pages": 24,
+  "chapters": 12,
+  "figures": {
+    "en": 13,
+    "fr": 13,
+    "es": 13,
+    "files_shared_with_english": 3,
+    "files_cut_per_language": 23
+  },
+  "shared_symbols": 11,
+  "shared_compliance_marks": 1,
+  "native_inline_glyphs": 1,
+  "unmapped_words": 0,
+  "duplicate_live_copy": 0,
+  "text_recoveries_used": {
+    "en": 48,
+    "fr": 59,
+    "es": 61
+  },
+  "cold_replay_byte_parity": true,
+  "input_tamper_rejected": true,
+  "frozen_input_hashes": true,
+  "admissions": {
+    "component": true,
+    "symbol_asset": true,
+    "caption_frame": true,
+    "publishable": "passed after operator acceptance (source/approval.json)"
+  },
+  "layout_reference": "JBP-2000B / JBP-3600A EU Web (chapter set, components, figure style); operator kept the print order (TROUBLESHOOTING before CONNECTIONS)",
+  "languages": {
+    "en": {
+      "physical_pages": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "classified_words": 1144,
+      "unmapped_words": 0,
+      "print_line_breaks": 22,
+      "word_joins": 0,
+      "components": {
+        "HB-CALLOUT-STRIP": 4,
+        "HB-SPECIAL-FCC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 10,
+        "HB-TABLE-REFERENCE": 1,
+        "HB-TABLE-SPEC": 3,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 5,
+        "HB-WARRANTY-YEARS": 1
+      }
+    },
+    "fr": {
+      "physical_pages": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "classified_words": 1249,
+      "unmapped_words": 0,
+      "print_line_breaks": 24,
+      "word_joins": 1,
+      "components": {
+        "HB-CALLOUT-STRIP": 4,
+        "HB-SPECIAL-FCC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 10,
+        "HB-TABLE-REFERENCE": 1,
+        "HB-TABLE-SPEC": 3,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 5,
+        "HB-WARRANTY-YEARS": 1
+      }
+    },
+    "es": {
+      "physical_pages": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "classified_words": 1252,
+      "unmapped_words": 0,
+      "print_line_breaks": 23,
+      "word_joins": 3,
+      "components": {
+        "HB-CALLOUT-STRIP": 4,
+        "HB-SPECIAL-FCC": 1,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-REFERENCE-FIGURE": 10,
+        "HB-TABLE-REFERENCE": 1,
+        "HB-TABLE-SPEC": 3,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 5,
+        "HB-WARRANTY-YEARS": 1
+      }
+    }
+  },
+  "eu_web_figures_reused": 3
+}

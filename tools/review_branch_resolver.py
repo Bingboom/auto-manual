@@ -20,7 +20,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from tools.document_link_queue import field_value, scalar_text
+from tools.web.document_link_queue import field_value, scalar_text
 
 # The path segment that identifies a Feishu doc (wiki node / docx / base / ...).
 _DOC_TOKEN_RE = re.compile(r"/(?:wiki|docx|docs|file|sheets|base)/([A-Za-z0-9]+)")

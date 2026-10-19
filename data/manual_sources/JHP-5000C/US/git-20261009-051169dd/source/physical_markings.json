@@ -1,0 +1,13 @@
+{
+  "base_sha256": "056433b4de82d11efa8244afb024effb9aaef46b366f275e152ea8f549bd82b8",
+  "final_sha256": "c8c56efc0554fb1f194080b986a6864548ecb3f0affb9730796a5a299853759b",
+  "page": 6,
+  "crop": [
+    282,
+    88,
+    326,
+    151
+  ],
+  "native_outlined_glyphs": 119,
+  "purpose": "fixed physical book printing only; exterior captions stay live HTML"
+}

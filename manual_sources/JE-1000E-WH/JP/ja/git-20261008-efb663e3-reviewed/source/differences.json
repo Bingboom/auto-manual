@@ -1,0 +1,45 @@
+{
+  "source_identity": {
+    "filename": "Jackery SlimPower H1取扱説明書V2.0-2026-07-29.pdf",
+    "sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+    "pages": 27,
+    "model": "JE-1000E-WH",
+    "region": "JP",
+    "language": "ja",
+    "printed_version": null,
+    "filename_version": "V2.0-2026-07-29"
+  },
+  "glyph_recovery": [
+    {
+      "physical_page": 21,
+      "before": "F",
+      "after": "F2",
+      "evidence": "native visual source page21 top error-code row"
+    },
+    {
+      "physical_page": 21,
+      "before": "F",
+      "after": "F6",
+      "evidence": "native visual source page21 fifth error-code row"
+    }
+  ],
+  "source_wording_retained": [
+    "出カポート (katakana カ) on p22",
+    "JP AC pass-through 100V-120V/800W with prose UPS maximum current 8A; no technical reconciliation",
+    "JP -20°C to45°C charge/discharge limits; FF recovery0°C/45°C conditions retained",
+    "Main-power panel source says オフ/1回押す and オン/3秒間長押し; retain exact source pairing for review",
+    "Source LCD icon row2 uses input power/time combined row; no invented additional row"
+  ],
+  "normalizations": [
+    "Reflow Japanese print newlines; preserve authored spaces, punctuation, names, values and legal clauses",
+    "Printed folios/TOC mapped to semantic navigation; source snapshot remains complete",
+    "Source vector circled plus recovered as editable +",
+    "Source diagram labels rendered as editable HTML with intact source/base artwork",
+    "Production approval and source-specific prepared-component enrollment pending candidate review",
+    "Parse only native line-start bullets; preserve inline Japanese middle dots",
+    "Split two native thermo-vent/stud labels; reflow source fragments into continuous prose",
+    "Preserve grouped Wi-Fi/Bluetooth row4 with both exact native glyphs and readable source line breaks",
+    "Preserve physical page27 back-cover QR as artwork without inferring its destination",
+    "Four finished localized panels retain complete original captions and numbers with editable semantic companions; no empty baked caption frames. Visible caption revisions need refreshed localized artwork."
+  ]
+}

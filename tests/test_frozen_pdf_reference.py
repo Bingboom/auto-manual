@@ -9,14 +9,14 @@ from unittest.mock import patch
 
 from bs4 import BeautifulSoup
 
-from tools.frozen_ai_web import replay_package
-from tools.frozen_pdf_source import PdfBook
-from tools.frozen_pdf_reference import (
+from tools.web.frozen_ai_web import replay_package
+from tools.web.frozen_pdf_source import PdfBook
+from tools.web.frozen_pdf_reference import (
     bind_reference_labels, labeled_artwork_node, reference_label_regions,
 )
 from tools.manual_ir.flow import flow_nodes_to_html
 from tools.manual_ir.components import component_specs_in_flow
-from tools.web_embedded_components import render_embedded_web_component
+from tools.web.embedded_components import render_embedded_web_component
 
 
 def fixture():
@@ -61,8 +61,9 @@ class FrozenPdfReferenceTests(unittest.TestCase):
                 # This used to contain the empty white source capsule. Its
                 # textless art is now uniformly the native gray panel tone.
                 pixels = list(image.crop((634, 448, 1180, 497)).getdata())
+                # zip(strict=False): pixels may carry an alpha channel the reference colour lacks
                 self.assertTrue(all(max(abs(c - expected) for c, expected in
-                                        zip(pixel, (242, 243, 243))) <= 1 for pixel in pixels))
+                                        zip(pixel, (242, 243, 243), strict=False)) <= 1 for pixel in pixels))
                 image_hashes.add(hashlib.sha256(image_path.read_bytes()).hexdigest())
         self.assertEqual(1, len(image_hashes))
 

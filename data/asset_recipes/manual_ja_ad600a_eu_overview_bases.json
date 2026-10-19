@@ -1,0 +1,1927 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_ja_ad600a_eu_0924_ai",
+    "expected_sha256": "65297e68dbd6c811c5a34bb38a589ef8939b3a9eed6113ef305b60125cffb348",
+    "expected_page_count": 129
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 129
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.5,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "ai_page_1",
+      "role": "cover_front",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "ai_page_2",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "ai_page_3",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "ai_page_4",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "ai_page_5",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "ai_page_6",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "ai_page_7",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "ai_page_8",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "ai_page_9",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "ai_page_10",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "ai_page_11",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "ai_page_12",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "ai_page_13",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "ai_page_14",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "ai_page_15",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "ai_page_16",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "ai_page_17",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "ai_page_18",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "ai_page_19",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "ai_page_20",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "ai_page_21",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 22,
+      "page_key": "ai_page_22",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 23,
+      "page_key": "ai_page_23",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "ai_page_24",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "ai_page_25",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "ai_page_26",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "ai_page_27",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "ai_page_28",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 29,
+      "page_key": "ai_page_29",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 30,
+      "page_key": "ai_page_30",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 31,
+      "page_key": "ai_page_31",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 32,
+      "page_key": "ai_page_32",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 33,
+      "page_key": "ai_page_33",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 34,
+      "page_key": "ai_page_34",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 35,
+      "page_key": "ai_page_35",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 36,
+      "page_key": "ai_page_36",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 37,
+      "page_key": "ai_page_37",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 38,
+      "page_key": "ai_page_38",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 39,
+      "page_key": "ai_page_39",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 40,
+      "page_key": "ai_page_40",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 41,
+      "page_key": "ai_page_41",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 42,
+      "page_key": "ai_page_42",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 43,
+      "page_key": "ai_page_43",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 44,
+      "page_key": "ai_page_44",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 45,
+      "page_key": "ai_page_45",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 46,
+      "page_key": "ai_page_46",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 47,
+      "page_key": "ai_page_47",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 48,
+      "page_key": "ai_page_48",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 49,
+      "page_key": "ai_page_49",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 50,
+      "page_key": "ai_page_50",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 51,
+      "page_key": "ai_page_51",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 52,
+      "page_key": "ai_page_52",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 53,
+      "page_key": "ai_page_53",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 54,
+      "page_key": "ai_page_54",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 55,
+      "page_key": "ai_page_55",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 56,
+      "page_key": "ai_page_56",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 57,
+      "page_key": "ai_page_57",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 58,
+      "page_key": "ai_page_58",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 59,
+      "page_key": "ai_page_59",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 60,
+      "page_key": "ai_page_60",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 61,
+      "page_key": "ai_page_61",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 62,
+      "page_key": "ai_page_62",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 63,
+      "page_key": "ai_page_63",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 64,
+      "page_key": "ai_page_64",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 65,
+      "page_key": "ai_page_65",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 66,
+      "page_key": "ai_page_66",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 67,
+      "page_key": "ai_page_67",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 68,
+      "page_key": "ai_page_68",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 69,
+      "page_key": "ai_page_69",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 70,
+      "page_key": "ai_page_70",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 71,
+      "page_key": "ai_page_71",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 72,
+      "page_key": "ai_page_72",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 73,
+      "page_key": "ai_page_73",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 74,
+      "page_key": "ai_page_74",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 75,
+      "page_key": "ai_page_75",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 76,
+      "page_key": "ai_page_76",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 77,
+      "page_key": "ai_page_77",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 78,
+      "page_key": "ai_page_78",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 79,
+      "page_key": "ai_page_79",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 80,
+      "page_key": "ai_page_80",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 81,
+      "page_key": "ai_page_81",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 82,
+      "page_key": "ai_page_82",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 83,
+      "page_key": "ai_page_83",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 84,
+      "page_key": "ai_page_84",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 85,
+      "page_key": "ai_page_85",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 86,
+      "page_key": "ai_page_86",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 87,
+      "page_key": "ai_page_87",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 88,
+      "page_key": "ai_page_88",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 89,
+      "page_key": "ai_page_89",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 90,
+      "page_key": "ai_page_90",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 91,
+      "page_key": "ai_page_91",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 92,
+      "page_key": "ai_page_92",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 93,
+      "page_key": "ai_page_93",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 94,
+      "page_key": "ai_page_94",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 95,
+      "page_key": "ai_page_95",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 96,
+      "page_key": "ai_page_96",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 97,
+      "page_key": "ai_page_97",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 98,
+      "page_key": "ai_page_98",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 99,
+      "page_key": "ai_page_99",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 100,
+      "page_key": "ai_page_100",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 101,
+      "page_key": "ai_page_101",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 102,
+      "page_key": "ai_page_102",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 103,
+      "page_key": "ai_page_103",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 104,
+      "page_key": "ai_page_104",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 105,
+      "page_key": "ai_page_105",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 106,
+      "page_key": "ai_page_106",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 107,
+      "page_key": "ai_page_107",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 108,
+      "page_key": "ai_page_108",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 109,
+      "page_key": "ai_page_109",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 110,
+      "page_key": "ai_page_110",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 111,
+      "page_key": "ai_page_111",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 112,
+      "page_key": "ai_page_112",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 113,
+      "page_key": "ai_page_113",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 114,
+      "page_key": "ai_page_114",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 115,
+      "page_key": "ai_page_115",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 116,
+      "page_key": "ai_page_116",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 117,
+      "page_key": "ai_page_117",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 118,
+      "page_key": "ai_page_118",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 119,
+      "page_key": "ai_page_119",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 120,
+      "page_key": "ai_page_120",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 121,
+      "page_key": "ai_page_121",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 122,
+      "page_key": "ai_page_122",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 123,
+      "page_key": "ai_page_123",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 124,
+      "page_key": "ai_page_124",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 125,
+      "page_key": "ai_page_125",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 126,
+      "page_key": "ai_page_126",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 127,
+      "page_key": "ai_page_127",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 128,
+      "page_key": "ai_page_128",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 129,
+      "page_key": "ai_page_129",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ad600a/eu/shared/product-overview-base",
+      "page": 5,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-AD600A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "de",
+          "it",
+          "es",
+          "pt",
+          "pl",
+          "sv",
+          "nl"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "risk_tags": [],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            22,
+            350,
+            348,
+            480
+          ]
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            27.335899353027344,
+            437.4828796386719,
+            69.8678970336914,
+            445.88287353515625
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            27.055898666381836,
+            461.32489013671875,
+            56.455902099609375,
+            469.7248840332031
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            304.5008850097656,
+            460.40789794921875,
+            342.4122009277344,
+            468.8078918457031
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            304.17889404296875,
+            437.4828796386719,
+            335.41290283203125,
+            445.88287353515625
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            304.5008850097656,
+            379.5788879394531,
+            326.75390625,
+            387.9788818359375
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            304.5008850097656,
+            388.5809020996094,
+            334.7961730957031,
+            396.98089599609375
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            304.5008850097656,
+            397.5828857421875,
+            320.3558654785156,
+            405.9828796386719
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            27.33587646484375,
+            382.3018798828125,
+            72.26886749267578,
+            390.7018737792969
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad600a_eu_shared/product_overview_base.png",
+          "scale": 6,
+          "expected_sha256": "c002c36a2bd36883140969c0ce3fe12ec4e43fe0f22a4b1db407a52bf915f7ca"
+        },
+        {
+          "format": "pdf",
+          "path": "assets/ja_ad600a_eu_shared/product_overview_base.pdf",
+          "expected_sha256": "4f301a825aa43c2091ea57bbbd62b1b98d87133e8ebbb1ae4a4883b5637a292a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Local source/bare-art and12x verification: explanatory English removed, product engravings and A–F keys retained. Source geometry preserved except isolated installation footer caption backdrop, recreated by shared CSS. No registry or live Base writes."
+        ]
+      }
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/shared/installation-diagram-base",
+      "page": 9,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-AD600A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en",
+          "fr",
+          "de",
+          "it",
+          "es",
+          "pt",
+          "pl",
+          "sv",
+          "nl"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "risk_tags": [],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26,
+            72,
+            344,
+            487
+          ]
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            43.06740188598633,
+            414.7503967285156,
+            102.56259155273438,
+            424.35040283203125
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            163.21139526367188,
+            414.7503967285156,
+            219.5074005126953,
+            424.35040283203125
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            275.35540771484375,
+            414.7503967285156,
+            292.1233825683594,
+            424.35040283203125
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            43.06651306152344,
+            437.08209228515625,
+            111.63529968261719,
+            446.6820983886719
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            163.21051025390625,
+            437.08209228515625,
+            217.4105224609375,
+            446.6820983886719
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            275.1705017089844,
+            435.8981018066406,
+            339.0489196777344,
+            445.49810791015625
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            275.1705017089844,
+            445.8981018066406,
+            325.7392883300781,
+            455.49810791015625
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            26.983400344848633,
+            470.3843078613281,
+            312.0362854003906,
+            478.1842956542969
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            75.02490234375,
+            144.7845916748047,
+            110.90087890625,
+            152.53070068359375
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            26,
+            468.4,
+            318.1,
+            480.8
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad600a_eu_shared/installation_diagram_base.png",
+          "scale": 6,
+          "expected_sha256": "0c716a794cf35e80b73fab35c229ebd318d5a2849baded333f09fdf3e8a4ff7f"
+        },
+        {
+          "format": "pdf",
+          "path": "assets/ja_ad600a_eu_shared/installation_diagram_base.pdf",
+          "expected_sha256": "fa63b5cded77073ef2b8c52cf953e163d236858e95c7f6128fd8695e01cebf8b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Local source/bare-art and12x verification: explanatory English removed, product engravings and A–F keys retained. Source geometry preserved except isolated installation footer caption backdrop, recreated by shared CSS. No registry or live Base writes."
+        ]
+      }
+    }
+  ]
+}

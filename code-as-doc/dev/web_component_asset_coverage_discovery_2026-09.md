@@ -19,7 +19,7 @@ changed by this workstream.
 
 ### Warranty is incorrectly coupled to the frozen-figure allowlist
 
-`tools/web_presentation.py::transform_web_fragment` detects warranty pages but
+`tools/web/presentation.py::transform_web_fragment` detects warranty pages but
 returns before `_transform_warranty` whenever `supports_figure_contract` is
 false. The allowlist in `docs/renderers/contracts/web_manual.json` currently
 contains only `JE-1000F / US`, so the reusable semantic warranty component is

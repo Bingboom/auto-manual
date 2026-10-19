@@ -310,6 +310,9 @@ class SyncWriteTests(unittest.TestCase):
             "sync",
             "--manifest-path",
             str(manifest),
+            # The fixture rows are a dated snapshot of the old site; pin its base, not the tool default.
+            "--base-url",
+            BASE_URL,
             "--spreadsheet-token",
             "TOKEN",
             "--sheet-id",
@@ -417,6 +420,9 @@ class ReconcileTests(unittest.TestCase):
             "reconcile",
             "--manifest-path",
             str(manifest),
+            # The fixture rows are a dated snapshot of the old site; pin its base, not the tool default.
+            "--base-url",
+            BASE_URL,
             "--spreadsheet-token",
             "TOKEN",
             "--sheet-id",

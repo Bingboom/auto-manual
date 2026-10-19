@@ -6,8 +6,9 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from tools import publish_branch_assembly, queue_outputs, release_contract
-from tools.web_language_release_evidence import RECEIPT_FILENAME, capture_projection
+from tools import publish_branch_assembly, release_contract
+from tools.build_queue import outputs as queue_outputs
+from tools.web.language_release_evidence import RECEIPT_FILENAME, capture_projection
 from tests.web_language_evidence_fixture import write_projection_fixture
 from tests.prepared_admission_fixture import install_prepared_admission_fixture
 

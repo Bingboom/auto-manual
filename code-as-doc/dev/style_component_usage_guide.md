@@ -176,7 +176,7 @@ InDesign 重排时重新露白。
 
 ### 5.4 真正修改共享样式
 
-按 [`STYLE_DEFINITION.md` 附录 A](../../docs/renderers/contracts/STYLE_DEFINITION.md#附录-a-组件与维护流程)
+按 [`STYLE_DEFINITION.md` 附录 A](../../docs/renderers/contracts/STYLE_DEFINITION/appendix-a-maintenance.md#附录-a-组件与维护流程)
 执行：先改权威语义/token，再改适用 renderer 和直接测试，最后同步规范与本指南。
 不要先在输出 IDML、`docs/_build/` 或 JSX 最终化里调到“看起来对”。
 
@@ -205,7 +205,7 @@ python -m unittest \
   tests.test_idml_fixed_panel_golden \
   tests.test_export_idml \
   tests.test_indesign_finalize
-python tools/check_doc_link_integrity.py
+python -m tools.check_doc_link_integrity
 ```
 
 涉及可见 IDML 几何或最终化行为时，直接测试之后还必须用真实 InDesign 导出

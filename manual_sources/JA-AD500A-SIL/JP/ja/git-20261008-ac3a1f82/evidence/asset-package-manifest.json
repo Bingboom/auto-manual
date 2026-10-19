@@ -1,0 +1,682 @@
+{
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 10
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "default_scale": 0.35,
+      "page_scale": {},
+      "path_pattern": "archive/previews/page-{page:04d}.png"
+    }
+  },
+  "artifacts": [
+    {
+      "build_eligible": false,
+      "byte_size": 164441,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0001.pdf",
+      "sha256": "5cce255e0df3ec2829557375376660bc8d7ab9784cdf5df06e201977597235af",
+      "source_page": 1,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 202815,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0002.pdf",
+      "sha256": "d3d40d3687e7986dd7ed8062c758f28ba2426ea8a2b159e80adacb2da9a665c1",
+      "source_page": 2,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 177563,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0003.pdf",
+      "sha256": "bb99a6d4d849ee494f9a437247fb0d85f7c3e20f53d752f60ce3fea260495afd",
+      "source_page": 3,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 694099,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0004.pdf",
+      "sha256": "a2bab7cec7b1302db8823051c9378c80b9311741d25051a5977c2dec1ac6a625",
+      "source_page": 4,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 83857,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0005.pdf",
+      "sha256": "afdae959eceac4af78bde4c0a7ce2f1e9e457dc8f17b187c96c84cfb7d79e974",
+      "source_page": 5,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 226226,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0006.pdf",
+      "sha256": "2209cb70385a954b4303567cb79d87db1c920434999b2eb72991ad2c7a13b5f0",
+      "source_page": 6,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 172260,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0007.pdf",
+      "sha256": "0e1724226980c2af56c501fc3489a1675f539c71e66c9d22bb639c7bcb3fdeeb",
+      "source_page": 7,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 129177,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0008.pdf",
+      "sha256": "8eee5321b947e1190d4b1a71dab7fb8579257cd9beddeedfb745cf175cfe64dc",
+      "source_page": 8,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 142792,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0009.pdf",
+      "sha256": "7ff6739f62f9aab1d2a389391df66f999ab37c238ca02f76ebc4873a2c19030a",
+      "source_page": 9,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5262,
+      "format": "pdf",
+      "gate_status": "archive",
+      "kind": "archive_page",
+      "path": "artifacts/archive/pages/page-0010.pdf",
+      "sha256": "3fc50f988599f06d2792bba3e8d36604fb990a9c6b2036ed8911e3b9eead1875",
+      "source_page": 10,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5592,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0001.png",
+      "sha256": "ec2e962f34bea9e42ae11d1caf6888b447cdc1ec13ab9926845d8d6a3a337032",
+      "source_page": 1,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 2490,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0002.png",
+      "sha256": "38026ad6a6fe2b3260b7167a8250d3b7b22107433ade7047ef81f5c34a565c46",
+      "source_page": 2,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 3929,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0003.png",
+      "sha256": "ae437423d2137a87dc3ee9e7f61600cf9f9ae947bbfa85775dc14c8a26abca3b",
+      "source_page": 3,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6879,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0004.png",
+      "sha256": "2cb881e820ccc9661004a54b6ae7da4f193bf98a74277023a1793294469f4b65",
+      "source_page": 4,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7176,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0005.png",
+      "sha256": "27640dc922169cb629af2a221a51fc41deea89566e415196251437c5c1e3f3c7",
+      "source_page": 5,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 7431,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0006.png",
+      "sha256": "40a5595d63e489fa890193b89ed3b3a3b21ca5096fc2891c084ae42867b8fd03",
+      "source_page": 6,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5641,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0007.png",
+      "sha256": "313c4b942a71c74aa367c3a9abbed71723163e19934ad8000befd617a3bf4e54",
+      "source_page": 7,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 6285,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0008.png",
+      "sha256": "efb86af0097c4baa4ece32f1699871ae8e2a7c5629c80bb1cdc3ce7f555a4138",
+      "source_page": 8,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 5246,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0009.png",
+      "sha256": "ef4d7f639bc27c0df388f769b8144c49b86716d8ad6055024238f083947874af",
+      "source_page": 9,
+      "visual_review_required": false
+    },
+    {
+      "build_eligible": false,
+      "byte_size": 795,
+      "format": "png",
+      "gate_status": "archive",
+      "kind": "archive_preview",
+      "path": "artifacts/archive/previews/page-0010.png",
+      "sha256": "699fa8be4b65dea89e05b1ee9f39cf1ee47010f84884fd5bb32a6bf78c808c57",
+      "source_page": 10,
+      "visual_review_required": false
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/car",
+      "build_eligible": false,
+      "byte_size": 91687,
+      "expected_sha256": "29f7b772d7e313cac5527f2d81b82b00716586375fa6bfd562556030a50319fb",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/car.png",
+      "repo_path": "assets/car.png",
+      "sha256": "29f7b772d7e313cac5527f2d81b82b00716586375fa6bfd562556030a50319fb",
+      "source_page": 6,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/contact-qr",
+      "build_eligible": false,
+      "byte_size": 3197,
+      "expected_sha256": "aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/contact-qr.png",
+      "repo_path": "assets/contact-qr.png",
+      "sha256": "aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10",
+      "source_page": 10,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/inbox-manual",
+      "build_eligible": false,
+      "byte_size": 15368,
+      "expected_sha256": "786c47843102633c475c02ce22d32ea089f348d91799195a648d7fca37fc90d4",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/inbox-manual.png",
+      "repo_path": "assets/inbox-manual.png",
+      "sha256": "786c47843102633c475c02ce22d32ea089f348d91799195a648d7fca37fc90d4",
+      "source_page": 2,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/solar",
+      "build_eligible": false,
+      "byte_size": 214039,
+      "expected_sha256": "434a3768abbb54d3f148e55fbe2475ce1a38906a18518ce96f266538e72080d8",
+      "format": "png",
+      "gate_status": "quarantine",
+      "kind": "asset_export",
+      "path": "artifacts/assets/solar.png",
+      "repo_path": "assets/solar.png",
+      "sha256": "434a3768abbb54d3f148e55fbe2475ce1a38906a18518ce96f266538e72080d8",
+      "source_page": 4,
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/inbox-manual",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "786c47843102633c475c02ce22d32ea089f348d91799195a648d7fca37fc90d4",
+          "format": "png",
+          "path": "assets/inbox-manual.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 2,
+      "risk_tags": [],
+      "scope": {
+        "locales": [
+          "ja"
+        ],
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "JP"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            157.0,
+            80.0,
+            202.0,
+            146.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/solar",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "434a3768abbb54d3f148e55fbe2475ce1a38906a18518ce96f266538e72080d8",
+          "format": "png",
+          "path": "assets/solar.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 4,
+      "risk_tags": [],
+      "scope": {
+        "locales": [
+          "ja"
+        ],
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "JP"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            22.0,
+            131.0,
+            234.0,
+            349.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/car",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "29f7b772d7e313cac5527f2d81b82b00716586375fa6bfd562556030a50319fb",
+          "format": "png",
+          "path": "assets/car.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 6,
+      "risk_tags": [],
+      "scope": {
+        "locales": [
+          "ja"
+        ],
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "JP"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            23.0,
+            116.0,
+            234.0,
+            286.0
+          ],
+          "op": "crop"
+        },
+        {
+          "fill": null,
+          "graphics": "preserve",
+          "images": "preserve",
+          "op": "redact_text"
+        },
+        {
+          "bbox_pt": [
+            162.0,
+            255.6,
+            227.6,
+            276.0
+          ],
+          "op": "whiteout"
+        }
+      ],
+      "visual_review_required": true
+    },
+    {
+      "asset_key": "web/ja-ad500a-sil/jp/ja/contact-qr",
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "Git-only JP candidate; no registry promotion"
+        ],
+        "status": "quarantine"
+      },
+      "outputs": [
+        {
+          "expected_sha256": "aaa58d773ab76092d7d3236a2a90ebcad33f992eaeb6491e37bb1c51c5c2ba10",
+          "format": "png",
+          "path": "assets/contact-qr.png",
+          "scale": 4.0
+        }
+      ],
+      "page": 10,
+      "risk_tags": [],
+      "scope": {
+        "locales": [
+          "ja"
+        ],
+        "models": [
+          "JA-AD500A-SIL"
+        ],
+        "regions": [
+          "JP"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "transforms": [
+        {
+          "bbox_pt": [
+            195.0,
+            309.0,
+            234.0,
+            349.0
+          ],
+          "op": "crop"
+        }
+      ],
+      "visual_review_required": true
+    }
+  ],
+  "coordinate_contract": {
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page",
+    "bbox_units": "pt",
+    "page_numbering": "pdf-1-based"
+  },
+  "indexes": {
+    "artifacts_csv": {
+      "path": "artifacts.csv",
+      "sha256": "f9cd508ceb887459819f9a260e725f2c16b35b20dcdd48c495af44790e811fe6"
+    }
+  },
+  "manifest_version": 1,
+  "normalization": {
+    "engine": "pymupdf",
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000,
+    "pdf_save": {
+      "clean": true,
+      "deflate": true,
+      "garbage": 4,
+      "no_new_id": true
+    },
+    "validated_mupdf_version": "1.29.0",
+    "validated_version": "1.28.0"
+  },
+  "page_catalog": [
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 1,
+      "page_key": "jp-1",
+      "risk_tags": [],
+      "role": "source_artboard"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 2,
+      "page_key": "jp-2",
+      "risk_tags": [],
+      "role": "source_artboard"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 3,
+      "page_key": "jp-3",
+      "risk_tags": [],
+      "role": "source_artboard"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 4,
+      "page_key": "jp-4",
+      "risk_tags": [],
+      "role": "source_artboard"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 5,
+      "page_key": "jp-5",
+      "risk_tags": [],
+      "role": "source_artboard"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 6,
+      "page_key": "jp-6",
+      "risk_tags": [],
+      "role": "source_artboard"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 7,
+      "page_key": "jp-7",
+      "risk_tags": [],
+      "role": "source_artboard"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 8,
+      "page_key": "jp-8",
+      "risk_tags": [],
+      "role": "source_artboard"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 9,
+      "page_key": "jp-9",
+      "risk_tags": [],
+      "role": "source_artboard"
+    },
+    {
+      "build_eligible": false,
+      "gate": {
+        "reasons": [
+          "JP source provenance"
+        ],
+        "status": "archive"
+      },
+      "locale": "ja",
+      "page": 10,
+      "page_key": "jp-10",
+      "risk_tags": [],
+      "role": "source_artboard"
+    }
+  ],
+  "recipe_sha256": "8f26f71a0dc81d99e3501378441c7fc1a8c5080498d58a5e7e43ce470328ad04",
+  "runtime": {
+    "mupdf_version": "1.29.0",
+    "pymupdf_version": "1.28.0"
+  },
+  "source": {
+    "ai_metadata_count": 0,
+    "ai_private_data_count": 0,
+    "page_count": 10,
+    "piece_info_count": 0,
+    "sha256": "ac3a1f820d94277f6c1a667bafddfa930363b1d74fb084eb7bed43b1c3749777",
+    "source_key": "source/ja-ad500a-sil-jp-v2"
+  }
+}

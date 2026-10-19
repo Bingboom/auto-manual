@@ -1,0 +1,2022 @@
+{
+  "language": "pt",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "status": "producer-source-checked-awaiting-web-build-and-independent-review",
+  "normalization": [
+    "printed line-wrap whitespace joined",
+    "fi/fl/ff ligatures expanded",
+    "printed bullet markers represented by HTML lists, not duplicated in copy"
+  ],
+  "copy_by_page": {
+    "preface_important_en.rst": {
+      "IMPORTANT": "IMPORTANTE",
+      "Congratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.": "Parabéns pela sua nova Jackery Battery Pack 3600. Leia este manual atentamente antes de usar o produto, especialmente as precauções relevantes, para garantir o uso adequado. Mantenha este manual em um local acessível para consultas frequentes.",
+      "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa.",
+      "Please kindly notice that no further notifications will be given in case of any update, revision or termination.": "Observe que não serão fornecidas notificações adicionais em caso de atualização, revisão ou encerramento."
+    },
+    "toc.rst": {},
+    "safety_info_en.rst": {
+      "IMPORTANT SAFETY INFORMATION": "INFORMAÇÕES IMPORTANTES DE SEGURANÇA",
+      "The basic safety precautions should be followed when using this product, including:": "Ao usar este produto, devem ser seguidas as precauções básicas de segurança, incluindo:",
+      "Please read all instructions before using this product.": "Leia todas as instruções antes de usar este produto.",
+      "Close supervision is required when using this product near children to reduce the risk.": "É necessária supervisão rigorosa ao usar este produto perto de crianças para reduzir o risco.",
+      "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.": "O uso de acessórios recomendados ou vendidos por fabricantes não profissionais pode causar risco de choque elétrico.",
+      "When the product is not in use, please unplug the power plug from the product's socket.": "Quando o produto não estiver em uso, desconecte o plugue de alimentação da tomada do produto.",
+      "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.": "Não desmonte o produto, pois isso pode levar a riscos imprevisíveis, como incêndio, explosão ou choque elétrico.",
+      "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.": "Não use o produto com cabos ou plugues danificados, nem com cabos de saída danificados, pois isso pode causar choque elétrico.",
+      "Charge the product in a well-ventilated area and do not restrict ventilation in any way.": "Carregue o produto em um local bem ventilado e não obstrua a ventilação de nenhuma forma.",
+      "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.": "Guarde o produto em um local ventilado e seco para evitar choque elétrico causado por chuva ou água.",
+      "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.": "Não exponha o produto ao fogo ou a altas temperaturas (sob luz solar direta ou dentro de um veículo sob calor intenso), pois isso pode causar acidentes como incêndio e explosão.",
+      "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.": "Se este produto for armazenado por um longo período (3 a 6 meses) com a bateria descarregada, ele pode se tornar não recarregável."
+    },
+    "symbol_meaning_en.rst": {
+      "MEANING OF SYMBOLS": "SIGNIFICADO DOS SÍMBOLOS",
+      "Symbol": "Símbolo",
+      "Meaning": "Significado",
+      "Symbol / Meaning": "Símbolo / Significado",
+      "WARNING": "AVISO",
+      "Hazardous practices that may result in severe injury, death, and/or property damage.": "Práticas perigosas que podem resultar em lesões graves, morte e/ou danos materiais.",
+      "CAUTION": "CUIDADO",
+      "Hazardous practices that may result in personal injury and/or property damage.": "Práticas perigosas que podem resultar em lesões pessoais e/ou danos materiais.",
+      "NOTE": "NOTA",
+      "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.": "Práticas perigosas que podem resultar em danos ao equipamento, perda de dados, deterioração do desempenho ou resultados imprevistos.",
+      "TIP": "DICA",
+      "Supplements the important information or operation tips in the text.": "Complementa informações importantes ou dicas de operação no texto.",
+      "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.": "Símbolos de Advertência e Cuidado. Deve ser lido para alertar sobre potenciais perigos ou riscos.",
+      "Keep away from children.": "Mantenha fora do alcance de crianças.",
+      "Read the user manual before operation.": "Leia o manual do usuário antes de operar.",
+      "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.": "Este símbolo indica que há uma bateria de íons de lítio (Li-ion) dentro do produto e que ela deve ser descartada ou reciclada corretamente.",
+      "Do not dismantle the product.": "Não desmonte o produto.",
+      "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.": "Este símbolo indica que o produto não deve ser descartado como lixo doméstico e deve ser encaminhado a um ponto de coleta designado para reciclagem. O descarte e a reciclagem adequados podem ajudar a proteger o meio ambiente. Para obter mais informações sobre o descarte e a reciclagem deste produto, entre em contato com a autoridade local, o serviço de coleta ou o revendedor.",
+      "Keep the product away from fire.": "Mantenha o produto longe de fogo.",
+      "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.": "As baterias e os acumuladores não devem ser descartados junto com o lixo doméstico. Como consumidor, você é legalmente obrigado a descartar todas as baterias e acumuladores em pontos de coleta designados, independentemente de conterem substâncias perigosas. Devolva as baterias e acumuladores usados a um ponto de coleta local, centro de reciclagem ou ao revendedor onde foram comprados. O descarte adequado garante a reciclagem ambientalmente responsável e evita danos potenciais à saúde humana e ao meio ambiente."
+    },
+    "box_contents_en.rst": {
+      "WHAT'S IN THE BOX": "CONTEÚDO DA EMBALAGEM",
+      "Jackery Battery Pack 3600.": "Jackery Battery Pack 3600",
+      "Jackery Battery Pack 3600": "Jackery Battery Pack 3600",
+      "Expansion Cable.": "Cabo de expansão",
+      "Expansion Cable": "Cabo de expansão",
+      "User Manual.": "Manual do usuário",
+      "User Manual": "Manual do usuário"
+    },
+    "product_overview_en.rst": {
+      "PRODUCT OVERVIEW": "VISÃO GERAL DO PRODUTO",
+      "FRONT VIEW": "VISTA FRONTAL",
+      "LEFT SIDE VIEW": "VISTA DO LADO ESQUERDO",
+      "POWER button LCD": "Botão POWER DISPLAY LCD",
+      "Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)": "Porta de expansão CC B (Conecte ao terminal B do cabo de expansão) (Conecte ao terminal A do cabo de expansão) Porta de expansão CC A Alça"
+    },
+    "lcd_display_en.rst": {
+      "LCD DISPLAY": "DISPLAY LCD",
+      "Power Percentage/Fault Code": "Porcentagem de Energia/Código de Falha",
+      "The display shows the current power percentage.": "O visor mostra a porcentagem atual de energia.",
+      "When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.": "Quando o sistema falhar, o código de falha correspondente F0-FF será exibido. Se o código FF aparecer, remova as cargas e o produto poderá se recuperar sozinho. Caso contrário, entre em contato com o Suporte ao Cliente Jackery. Caso apareça qualquer outro código, entre em contato com o Suporte ao Cliente.",
+      "Charging Indicator": "Indicador de Carregamento",
+      "The indicator is displayed when charging and disappears when it is fully charged.": "O indicador acende durante o carregamento e apaga quando a carga está completa."
+    },
+    "operation_en.rst": {
+      "OPERATIONS": "OPERAÇÕES",
+      "POWER ON/OFF": "LIGAR/DESLIGAR",
+      "On": "ON",
+      "Press once": "Pressione uma vez",
+      "Off": "Apagado",
+      "Press and hold for 3s": "Pressione e segure por 3 s",
+      "NOTE": "NOTA",
+      "LCD DISPLAY ON/OFF": "LIGA/DESLIGA DO VISOR LCD",
+      "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.": "Ao pressionar o botão POWER principal ou ao carregar o produto, o visor LCD fica iluminado. Ao pressioná-lo novamente, o visor LCD será desligado.",
+      "Jackery Battery Pack 3600 POWER button operation.": "LIGAR/DESLIGAR",
+      "Jackery Battery Pack 3600 LCD display operation.": "LIGA/DESLIGA DO VISOR LCD",
+      "When using with Jackery Explorer 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery Explorer 3600 Plus.": "Quando o Jackery Battery Pack 3600 é usado com o Jackery Explorer 3600 Plus, você pode controlar o estado de energia (ligado ou desligado) do Battery Pack 3600 por meio do botão POWER principal do Jackery Explorer 3600 Plus.",
+      "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.": "O produto será desligado automaticamente se não for carregado ou se nenhuma carga estiver conectada por 2 horas."
+    },
+    "connections_en.rst": {
+      "CONNECTIONS": "CONEXÕES",
+      "Up to 5 sets of these products can be used along with Jackery Explorer 3600 Plus to meet the increased capacity needs.": "Até 5 conjuntos desses produtos podem ser usados com o Jackery Explorer 3600 Plus para atender à necessidade de maior capacidade.",
+      "CAUTION": "CUIDADO",
+      "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.": "Certifique-se de que todos os produtos estejam desligados antes de conectar o Jackery Explorer 3600 Plus ao Jackery Battery Pack 3600.",
+      "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.": "Para garantir o funcionamento adequado do produto, certifique-se de que as entradas e saídas de ar em ambos os lados estejam desobstruídas. Deixe pelo menos 0,66 pé (≈200 mm) de espaço entre as aberturas de ventilação e quaisquer objetos para permitir a dissipação adequada de calor.",
+      "≥0.66 ft (≈200 mm)": "≥0,66 ft (≈200 mm)",
+      "Battery pack connection and clearance diagram.": "CONEXÕES — Jackery Battery Pack 3600",
+      "Correct and incorrect battery pack stacking.": "CONEXÕES — Jackery Battery Pack 3600",
+      "Battery pack stacking and expansion-cable locking and unlocking steps.": "CONEXÕES — Jackery Battery Pack 3600",
+      "NOTES": "Notas",
+      "Lock": "Bloquear",
+      "Unlock": "Desbloquear",
+      "The display of the connection icon on the LCD screen (Jackery Explorer 3600 Plus) signifies a successful connection between the battery pack and the Jackery Explorer 3600 Plus.": "A exibição do ícone na tela LCD (Jackery Explorer 3600 Plus) significa uma conexão bem-sucedida entre a bateria externa e o Jackery Explorer 3600 Plus.",
+      "When using the product, do not stack more than three battery packs in one tower to prevent it from falling and causing injury.": "Ao usar o produto, não empilhe mais de três baterias externas em uma única torre para evitar que a torre caia e cause ferimentos.",
+      "Please do not stack the product on the top of the Jackery Explorer 3600 Plus.": "Por favor, não empilhe o produto sobre o Jackery Explorer 3600 Plus."
+    },
+    "troubleshooting_en.rst": {
+      "TROUBLESHOOTING": "SOLUÇÃO DE PROBLEMAS",
+      "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.": "Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o problema. Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.",
+      "Restart the product.": "Reinicie o produto.",
+      "Contact Jackery Customer Support.": "Entre em contato com o Suporte ao Cliente da Jackery.",
+      "Connect the product to loads to discharge its battery until the fault disappears.": "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.",
+      "Charge the product via solar panels or AC wall outlet until the fault disappears.": "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.",
+      "Place the product in an environment with a proper temperature and wait till the fault disappears.": "Coloque o produto em um ambiente com temperatura adequada e aguarde até que a falha desapareça.",
+      "Error Code": "Código de erro",
+      "Corrective Measures": "Medidas corretivas"
+    },
+    "charging_en.rst": {
+      "CHARGING": "CARREGANDO",
+      "CHARGING VIA AC WALL OUTLET": "CARREGAMENTO POR MEIO DE TOMADA CA",
+      "When charging from the wall, this product must be used with Jackery Explorer 3600 Plus.": "Ao carregar pela tomada, este produto deve ser usado com o Jackery Explorer 3600 Plus.",
+      "WARNING": "AVISO",
+      "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.": "Certifique-se de que todos os produtos estejam desligados antes de conectar o Jackery Explorer 3600 Plus ao Jackery Battery Pack 3600.",
+      "AC wall charging connection through Jackery Explorer 3600 Plus.": "CARREGAMENTO POR MEIO DE TOMADA CA",
+      "Charge your product with solar panels and Jackery Explorer 3600 Plus as shown in the figure below. Please refer to the Jackery Explorer 3600 Plus user manual for more information.": "Carregue seu produto com painéis solares e Jackery Explorer 3600 Plus conforme mostrado na figura abaixo. Consulte o manual do usuário do Jackery Explorer 3600 Plus para obter mais informações.",
+      "Solar charging connection through Jackery Explorer 3600 Plus.": "CARREGAMENTO VIA PAINÉIS SOLARES",
+      "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)": "CARREGAMENTO VIA PAINÉIS SOLARES (VENDIDO SEPARADAMENTE)"
+    },
+    "storage_en.rst": {
+      "STORAGE": "Armazenamento",
+      "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:": "Armazene o produto em local limpo, seco e com ventilação adequada. Temperatura e umidade de armazenamento:",
+      "1 month: -20°C to 45°C (0-60%RH)": "1 mês: -20°C a 45°C (0-60%UR)",
+      "3 months: 0°C to 45°C (0-60%RH)": "3 meses: 0°C a 45°C (0-60% UR)",
+      "12 months: 0°C to 25°C (0-60%RH)": "12 meses: 0°C a 25°C (0-60% UR)",
+      "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.": "Se este produto for armazenado por um longo período (de 3 a 6 meses) com a bateria descarregada, ele pode se tornar impossível de recarregar. Para evitar isso e manter a saúde da bateria, recomenda-se verificar e recarregar o produto a cada três meses e realizar um ciclo completo de carga e descarga pelo menos uma vez a cada 6 a 12 meses."
+    },
+    "specifications_en.rst": {
+      "SPECIFICATIONS": "ESPECIFICAÇÕES",
+      "GENERAL INFO": "INFORMAÇÕES GERAIS",
+      "INPUT/OUTPUT PORTS": "PORTAS DE ENTRADA/SAÍDA",
+      "ENVIRONMENTAL OPERATING TEMPERATURE": "TEMPERATURA AMBIENTE DE OPERAÇÃO",
+      "Model No.": "Nº do modelo",
+      "JBP-3600A": "JBP-3600A",
+      "Capacity": "Capacidade",
+      "80 Ah/44.8 V DC (3584 Wh)": "80 Ah/44,8 Vcc (3584 Wh)",
+      "Cell Chemistry": "Química da célula",
+      "LiFePO₄": "LiFePO₄",
+      "Weight": "Peso",
+      "About 55.1 lbs/25 kg": "Aproximadamente 55,1 lbs/25 kg",
+      "Dimensions": "Dimensões",
+      "14.8 × 12.5 × 9.0 in / 37.5 × 31.7 × 22.9 cm": "14,8 x 12,5 x 9,0 in/37,5 x 31,7 x 22,9 cm",
+      "Cycle Life": "Vida útil de ciclos",
+      "6000 cycles to 70%+ capacity": "6000 ciclos até 70%+ de capacidade",
+      "IEC Code": "Código IEC",
+      "IFpR41/136[14S4P]M/-20+40/90": "IFpR41/136[14S4P]M/-20+40/90",
+      "Product Name": "Nome do produto",
+      "Jackery Battery Pack 3600": "Jackery Battery Pack 3600",
+      "DC Expansion Port (Input)": "Porta de expansão CC (entrada)",
+      "36.4V-50.4V⎓60A Max": "36,4 V–50,4 V ⎓ 60 A máx.",
+      "DC Expansion Port (Output)": "Porta de expansão CC (Saída)",
+      "36.4V-50.4V⎓100A Max": "36,4 V-50,4 V⎓100 A máx.",
+      "Charge Temperature": "Temperatura de carregamento",
+      "-20°C to 45°C": "-20°C a 45°C",
+      "Discharge Temperature": "Temperatura de descarga"
+    },
+    "warranty_en.rst": {
+      "WARRANTY": "GARANTIA",
+      "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.": "A garantia é fornecida apenas a clientes que comprarem no Site oficial da Jackery, em plataformas de terceiros com marca Jackery ou por meio de revendedores locais autorizados.",
+      "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.": "* O período e os termos da garantia podem variar de acordo com as leis e regulamentações locais e com os distribuidores autorizados.",
+      "Limited Warranty": "Garantia Limitada",
+      "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.": "A Jackery garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de fabricação e material sob uso normal do consumidor durante o período de garantia aplicável identificado na seção \"Período de Garantia\" abaixo, sujeito às exclusões estabelecidas abaixo.",
+      "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.": "Esta declaração de garantia estabelece a obrigação de garantia total e exclusiva da Jackery. Não assumiremos, nem autorizaremos qualquer pessoa a assumir em nosso nome, qualquer outra responsabilidade relacionada à venda de nossos produtos.",
+      "Warranty Period": "Período de Garantia",
+      "The standard warranty period for Jackery Battery Pack 3600 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.": "O período de garantia padrão do Jackery Battery Pack 3600 é de 36 meses. Em todos os casos, o período de garantia é contado a partir da data de compra pelo comprador consumidor original. O comprovante de compra do primeiro comprador consumidor, ou outra prova documental razoável, é necessário para estabelecer a data de início do período de garantia.",
+      "Repair or Replacement": "Reparo ou substituição",
+      "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.": "A Jackery reparará ou substituirá (às custas da Jackery) qualquer produto Jackery que apresente falha de funcionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. O produto reparado/substituído assume o período de garantia remanescente a partir da data original de compra.",
+      "Limited to Original Consumer Buyer": "Limitado ao comprador consumidor original",
+      "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.": "A garantia dos produtos Jackery é limitada ao comprador consumidor original e não é transferível a qualquer proprietário subsequente.",
+      "Exclusions": "Exclusões",
+      "Interpretation Rights": "Direitos de interpretação",
+      "Jackery reserves the right to final interpretation of the above customer after-sales policy.": "A Jackery reserva-se o direito de interpretação final da política de pós-venda ao cliente acima.",
+      "3 YEARS": "3 ANOS",
+      "Standard Warranty": "Garantia Padrão",
+      "2 YEARS": "2 ANOS",
+      "Extended Warranty": "Garantia Estendida",
+      "YEARS": "ANOS",
+      "To activate the Warranty Extension, you must register your product online or contact our customer service team at ": "Para ativar a extensão da garantia, registre seu produto online ou entre em contato com nossa equipe de atendimento ao cliente em ",
+      " to extend the standard warranty runtime.": " para estender o período de garantia padrão.",
+      "Jackery's warranty does not apply to:": "A garantia da Jackery não se aplica a:",
+      "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.": "Uso indevido, abuso, modificação, danos causados por acidente ou uso para qualquer finalidade diferente do uso normal do consumidor conforme autorizado na documentação atual do produto da Jackery.",
+      "Attempted repair by anyone other than an authorized facility.": "Tentativa de reparo por qualquer pessoa que não seja uma assistência autorizada.",
+      "Any product purchased through an online auction house.": "Qualquer produto adquirido por meio de leilão online.",
+      "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.": "A garantia da Jackery não se aplica à célula da bateria, a menos que ela seja totalmente carregada por você dentro de sete dias após a compra do produto e, posteriormente, pelo menos uma vez a cada 6 meses."
+    },
+    "regulatory_compliance.rst": {
+      "EU REGULATIONS": "EU REGULATIONS",
+      "RED DECLARATION OF CONFORMITY": "RED DECLARATION OF CONFORMITY",
+      "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "https://de.jackery.com/pages/user-guides": "https://de.jackery.com/pages/user-guides",
+      "MANUFACTURER": "MANUFACTURER",
+      "SHENZHEN HELLO TECH ENERGY CO., LTD.": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "+86 400 668 9293": "+86 400 668 9293",
+      "sales@hello-tech.com": "sales@hello-tech.com",
+      "www.hello-tech.com": "www.hello-tech.com"
+    }
+  },
+  "evidence": [
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "IMPORTANT",
+      "native": "IMPORTANTE",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter heading"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Congratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.",
+      "native": "Parabéns pela sua nova Jackery Battery Pack 3600. Leia este manual atentamente antes de usar o produto, especialmente as precauções relevantes, para garantir o uso adequado. Mantenha este manual em um local acessível para consultas frequentes.",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter body paragraph"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.",
+      "native": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa.",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter body paragraph"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Please kindly notice that no further notifications will be given in case of any update, revision or termination.",
+      "native": "Observe que não serão fornecidas notificações adicionais em caso de atualização, revisão ou encerramento.",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter body paragraph"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "IMPORTANT SAFETY INFORMATION",
+      "native": "INFORMAÇÕES IMPORTANTES DE SEGURANÇA",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "The basic safety precautions should be followed when using this product, including:",
+      "native": "Ao usar este produto, devem ser seguidas as precauções básicas de segurança, incluindo:",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please read all instructions before using this product.",
+      "native": "Leia todas as instruções antes de usar este produto.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Close supervision is required when using this product near children to reduce the risk.",
+      "native": "É necessária supervisão rigorosa ao usar este produto perto de crianças para reduzir o risco.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.",
+      "native": "O uso de acessórios recomendados ou vendidos por fabricantes não profissionais pode causar risco de choque elétrico.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "When the product is not in use, please unplug the power plug from the product's socket.",
+      "native": "Quando o produto não estiver em uso, desconecte o plugue de alimentação da tomada do produto.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.",
+      "native": "Não desmonte o produto, pois isso pode levar a riscos imprevisíveis, como incêndio, explosão ou choque elétrico.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.",
+      "native": "Não use o produto com cabos ou plugues danificados, nem com cabos de saída danificados, pois isso pode causar choque elétrico.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Charge the product in a well-ventilated area and do not restrict ventilation in any way.",
+      "native": "Carregue o produto em um local bem ventilado e não obstrua a ventilação de nenhuma forma.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.",
+      "native": "Guarde o produto em um local ventilado e seco para evitar choque elétrico causado por chuva ou água.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.",
+      "native": "Não exponha o produto ao fogo ou a altas temperaturas (sob luz solar direta ou dentro de um veículo sob calor intenso), pois isso pode causar acidentes como incêndio e explosão.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.",
+      "native": "Se este produto for armazenado por um longo período (3 a 6 meses) com a bateria descarregada, ele pode se tornar não recarregável.",
+      "physical_page": 55,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "MEANING OF SYMBOLS",
+      "native": "SIGNIFICADO DOS SÍMBOLOS",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol",
+      "native": "Símbolo",
+      "physical_page": 55,
+      "selection": {
+        "method": "native table header"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Meaning",
+      "native": "Significado",
+      "physical_page": 55,
+      "selection": {
+        "method": "native table header"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol / Meaning",
+      "native": "Símbolo / Significado",
+      "physical_page": 55,
+      "selection": {
+        "method": "native table header"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "WARNING",
+      "native": "AVISO",
+      "physical_page": 55,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+      "native": "Práticas perigosas que podem resultar em lesões graves, morte e/ou danos materiais.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 15,
+        "exclude_label": "AVISO"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "CAUTION",
+      "native": "CUIDADO",
+      "physical_page": 55,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in personal injury and/or property damage.",
+      "native": "Práticas perigosas que podem resultar em lesões pessoais e/ou danos materiais.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 14,
+        "exclude_label": "CUIDADO"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "NOTE",
+      "native": "NOTA",
+      "physical_page": 55,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+      "native": "Práticas perigosas que podem resultar em danos ao equipamento, perda de dados, deterioração do desempenho ou resultados imprevistos.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 16,
+        "exclude_label": "NOTA"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "TIP",
+      "native": "DICA",
+      "physical_page": 55,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Supplements the important information or operation tips in the text.",
+      "native": "Complementa informações importantes ou dicas de operação no texto.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 17,
+        "exclude_label": "DICA"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+      "native": "Símbolos de Advertência e Cuidado. Deve ser lido para alertar sobre potenciais perigos ou riscos.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep away from children.",
+      "native": "Mantenha fora do alcance de crianças.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Read the user manual before operation.",
+      "native": "Leia o manual do usuário antes de operar.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+      "native": "Este símbolo indica que há uma bateria de íons de lítio (Li-ion) dentro do produto e que ela deve ser descartada ou reciclada corretamente.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Do not dismantle the product.",
+      "native": "Não desmonte o produto.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+      "native": "Este símbolo indica que o produto não deve ser descartado como lixo doméstico e deve ser encaminhado a um ponto de coleta designado para reciclagem. O descarte e a reciclagem adequados podem ajudar a proteger o meio ambiente. Para obter mais informações sobre o descarte e a reciclagem deste produto, entre em contato com a autoridade local, o serviço de coleta ou o revendedor.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep the product away from fire.",
+      "native": "Mantenha o produto longe de fogo.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "native": "As baterias e os acumuladores não devem ser descartados junto com o lixo doméstico. Como consumidor, você é legalmente obrigado a descartar todas as baterias e acumuladores em pontos de coleta designados, independentemente de conterem substâncias perigosas. Devolva as baterias e acumuladores usados a um ponto de coleta local, centro de reciclagem ou ao revendedor onde foram comprados. O descarte adequado garante a reciclagem ambientalmente responsável e evita danos potenciais à saúde humana e ao meio ambiente.",
+      "physical_page": 55,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "WHAT'S IN THE BOX",
+      "native": "CONTEÚDO DA EMBALAGEM",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 3600.",
+      "native": "Jackery Battery Pack 3600",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 3600",
+      "native": "Jackery Battery Pack 3600",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable.",
+      "native": "Cabo de expansão",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable",
+      "native": "Cabo de expansão",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual.",
+      "native": "Manual do usuário",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual",
+      "native": "Manual do usuário",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "PRODUCT OVERVIEW",
+      "native": "VISÃO GERAL DO PRODUTO",
+      "physical_page": 56,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "FRONT VIEW",
+      "native": "VISTA FRONTAL",
+      "physical_page": 56,
+      "selection": {
+        "bbox_pt": [
+          27,
+          288,
+          155,
+          301
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "LEFT SIDE VIEW",
+      "native": "VISTA DO LADO ESQUERDO",
+      "physical_page": 56,
+      "selection": {
+        "bbox_pt": [
+          156,
+          288,
+          346,
+          301
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "POWER button LCD",
+      "native": "Botão POWER DISPLAY LCD",
+      "physical_page": 56,
+      "selection": {
+        "bbox_pt": [
+          27,
+          301,
+          155,
+          434
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)",
+      "native": "Porta de expansão CC B (Conecte ao terminal B do cabo de expansão) (Conecte ao terminal A do cabo de expansão) Porta de expansão CC A Alça",
+      "physical_page": 56,
+      "selection": {
+        "bbox_pt": [
+          156,
+          301,
+          346,
+          434
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "LCD DISPLAY",
+      "native": "DISPLAY LCD",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Power Percentage/Fault Code",
+      "native": "Porcentagem de Energia/Código de Falha",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The display shows the current power percentage.",
+      "native": "O visor mostra a porcentagem atual de energia.",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 4,
+        "part": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.",
+      "native": "Quando o sistema falhar, o código de falha correspondente F0-FF será exibido. Se o código FF aparecer, remova as cargas e o produto poderá se recuperar sozinho. Caso contrário, entre em contato com o Suporte ao Cliente Jackery. Caso apareça qualquer outro código, entre em contato com o Suporte ao Cliente.",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 4,
+        "part": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Charging Indicator",
+      "native": "Indicador de Carregamento",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 5,
+        "part": "label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The indicator is displayed when charging and disappears when it is fully charged.",
+      "native": "O indicador acende durante o carregamento e apaga quando a carga está completa.",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 5,
+        "part": "body"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "OPERATIONS",
+      "native": "OPERAÇÕES",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "POWER ON/OFF",
+      "native": "LIGAR/DESLIGAR",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "On",
+      "native": "ON",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Press once",
+      "native": "Pressione uma vez",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Off",
+      "native": "Apagado",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Press and hold for 3s",
+      "native": "Pressione e segure por 3 s",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "NOTE",
+      "native": "NOTA",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "LCD DISPLAY ON/OFF",
+      "native": "LIGA/DESLIGA DO VISOR LCD",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.",
+      "native": "Ao pressionar o botão POWER principal ou ao carregar o produto, o visor LCD fica iluminado. Ao pressioná-lo novamente, o visor LCD será desligado.",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 3600 POWER button operation.",
+      "native": "LIGAR/DESLIGAR",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 3600 LCD display operation.",
+      "native": "LIGA/DESLIGA DO VISOR LCD",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When using with Jackery Explorer 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery Explorer 3600 Plus.",
+      "native": "Quando o Jackery Battery Pack 3600 é usado com o Jackery Explorer 3600 Plus, você pode controlar o estado de energia (ligado ou desligado) do Battery Pack 3600 por meio do botão POWER principal do Jackery Explorer 3600 Plus.",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 17,
+        "bullet_index": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+      "native": "O produto será desligado automaticamente se não for carregado ou se nenhuma carga estiver conectada por 2 horas.",
+      "physical_page": 57,
+      "selection": {
+        "native_block": 17,
+        "bullet_index": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CONNECTIONS",
+      "native": "CONEXÕES",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Up to 5 sets of these products can be used along with Jackery Explorer 3600 Plus to meet the increased capacity needs.",
+      "native": "Até 5 conjuntos desses produtos podem ser usados com o Jackery Explorer 3600 Plus para atender à necessidade de maior capacidade.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CAUTION",
+      "native": "CUIDADO",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.",
+      "native": "Certifique-se de que todos os produtos estejam desligados antes de conectar o Jackery Explorer 3600 Plus ao Jackery Battery Pack 3600.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 21,
+        "bullet_index": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.",
+      "native": "Para garantir o funcionamento adequado do produto, certifique-se de que as entradas e saídas de ar em ambos os lados estejam desobstruídas. Deixe pelo menos 0,66 pé (≈200 mm) de espaço entre as aberturas de ventilação e quaisquer objetos para permitir a dissipação adequada de calor.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 21,
+        "bullet_index": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "≥0.66 ft (≈200 mm)",
+      "native": "≥0,66 ft (≈200 mm)",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 4,
+        "occurrence": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery pack connection and clearance diagram.",
+      "native": "CONEXÕES — Jackery Battery Pack 3600",
+      "physical_page": 58,
+      "selection": {
+        "method": "accessibility from native section and model"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Correct and incorrect battery pack stacking.",
+      "native": "CONEXÕES — Jackery Battery Pack 3600",
+      "physical_page": 58,
+      "selection": {
+        "method": "accessibility from native section and model"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery pack stacking and expansion-cable locking and unlocking steps.",
+      "native": "CONEXÕES — Jackery Battery Pack 3600",
+      "physical_page": 58,
+      "selection": {
+        "method": "accessibility from native section and model"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "NOTES",
+      "native": "Notas",
+      "physical_page": 59,
+      "selection": {
+        "native_block": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Lock",
+      "native": "Bloquear",
+      "physical_page": 59,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Unlock",
+      "native": "Desbloquear",
+      "physical_page": 59,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "The display of the connection icon on the LCD screen (Jackery Explorer 3600 Plus) signifies a successful connection between the battery pack and the Jackery Explorer 3600 Plus.",
+      "native": "A exibição do ícone na tela LCD (Jackery Explorer 3600 Plus) significa uma conexão bem-sucedida entre a bateria externa e o Jackery Explorer 3600 Plus.",
+      "physical_page": 59,
+      "selection": {
+        "native_block": 6,
+        "bullet_index": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "When using the product, do not stack more than three battery packs in one tower to prevent it from falling and causing injury.",
+      "native": "Ao usar o produto, não empilhe mais de três baterias externas em uma única torre para evitar que a torre caia e cause ferimentos.",
+      "physical_page": 59,
+      "selection": {
+        "native_block": 6,
+        "bullet_index": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Please do not stack the product on the top of the Jackery Explorer 3600 Plus.",
+      "native": "Por favor, não empilhe o produto sobre o Jackery Explorer 3600 Plus.",
+      "physical_page": 59,
+      "selection": {
+        "native_block": 6,
+        "bullet_index": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "TROUBLESHOOTING",
+      "native": "SOLUÇÃO DE PROBLEMAS",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.",
+      "native": "Se qualquer um dos seguintes códigos de falha aparecer, siga as ações corretivas listadas para resolver o problema. Se a falha persistir, entre em contato com o Suporte ao Cliente da Jackery.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 20
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Restart the product.",
+      "native": "Reinicie o produto.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Contact Jackery Customer Support.",
+      "native": "Entre em contato com o Suporte ao Cliente da Jackery.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Connect the product to loads to discharge its battery until the fault disappears.",
+      "native": "Conecte o produto a cargas para descarregar a bateria até que a falha desapareça.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 19
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Charge the product via solar panels or AC wall outlet until the fault disappears.",
+      "native": "Carregue o produto por painéis solares ou tomada de parede CA até que a falha desapareça.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Place the product in an environment with a proper temperature and wait till the fault disappears.",
+      "native": "Coloque o produto em um ambiente com temperatura adequada e aguarde até que a falha desapareça.",
+      "physical_page": 58,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Error Code",
+      "native": "Código de erro",
+      "physical_page": 58,
+      "selection": {
+        "bbox_pt": [
+          28,
+          75.99628143310547,
+          70,
+          92.46609802246094
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Corrective Measures",
+      "native": "Medidas corretivas",
+      "physical_page": 58,
+      "selection": {
+        "bbox_pt": [
+          71,
+          75.99628143310547,
+          345,
+          92.46609802246094
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING",
+      "native": "CARREGANDO",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA AC WALL OUTLET",
+      "native": "CARREGAMENTO POR MEIO DE TOMADA CA",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "When charging from the wall, this product must be used with Jackery Explorer 3600 Plus.",
+      "native": "Ao carregar pela tomada, este produto deve ser usado com o Jackery Explorer 3600 Plus.",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "WARNING",
+      "native": "AVISO",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.",
+      "native": "Certifique-se de que todos os produtos estejam desligados antes de conectar o Jackery Explorer 3600 Plus ao Jackery Battery Pack 3600.",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "AC wall charging connection through Jackery Explorer 3600 Plus.",
+      "native": "CARREGAMENTO POR MEIO DE TOMADA CA",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Charge your product with solar panels and Jackery Explorer 3600 Plus as shown in the figure below. Please refer to the Jackery Explorer 3600 Plus user manual for more information.",
+      "native": "Carregue seu produto com painéis solares e Jackery Explorer 3600 Plus conforme mostrado na figura abaixo. Consulte o manual do usuário do Jackery Explorer 3600 Plus para obter mais informações.",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Solar charging connection through Jackery Explorer 3600 Plus.",
+      "native": "CARREGAMENTO VIA PAINÉIS SOLARES",
+      "physical_page": 60,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+      "native": "CARREGAMENTO VIA PAINÉIS SOLARES (VENDIDO SEPARADAMENTE)",
+      "physical_page": 60,
+      "selection": {
+        "method": "native solar heading and qualifier"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "STORAGE",
+      "native": "Armazenamento",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+      "native": "Armazene o produto em local limpo, seco e com ventilação adequada. Temperatura e umidade de armazenamento:",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 9,
+        "segment": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "1 month: -20°C to 45°C (0-60%RH)",
+      "native": "1 mês: -20°C a 45°C (0-60%UR)",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 9,
+        "segment": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "3 months: 0°C to 45°C (0-60%RH)",
+      "native": "3 meses: 0°C a 45°C (0-60% UR)",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 9,
+        "segment": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "12 months: 0°C to 25°C (0-60%RH)",
+      "native": "12 meses: 0°C a 25°C (0-60% UR)",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 9,
+        "segment": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+      "native": "Se este produto for armazenado por um longo período (de 3 a 6 meses) com a bateria descarregada, ele pode se tornar impossível de recarregar. Para evitar isso e manter a saúde da bateria, recomenda-se verificar e recarregar o produto a cada três meses e realizar um ciclo completo de carga e descarga pelo menos uma vez a cada 6 a 12 meses.",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 9,
+        "segment": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "SPECIFICATIONS",
+      "native": "ESPECIFICAÇÕES",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "GENERAL INFO",
+      "native": "INFORMAÇÕES GERAIS",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "INPUT/OUTPUT PORTS",
+      "native": "PORTAS DE ENTRADA/SAÍDA",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "native": "TEMPERATURA AMBIENTE DE OPERAÇÃO",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Model No.",
+      "native": "Nº do modelo",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "JBP-3600A",
+      "native": "JBP-3600A",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 17
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Capacity",
+      "native": "Capacidade",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "80 Ah/44.8 V DC (3584 Wh)",
+      "native": "80 Ah/44,8 Vcc (3584 Wh)",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cell Chemistry",
+      "native": "Química da célula",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "LiFePO₄",
+      "native": "LiFePO₄",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 19
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Weight",
+      "native": "Peso",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "About 55.1 lbs/25 kg",
+      "native": "Aproximadamente 55,1 lbs/25 kg",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 20
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Dimensions",
+      "native": "Dimensões",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "14.8 × 12.5 × 9.0 in / 37.5 × 31.7 × 22.9 cm",
+      "native": "14,8 x 12,5 x 9,0 in/37,5 x 31,7 x 22,9 cm",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 21
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cycle Life",
+      "native": "Vida útil de ciclos",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "6000 cycles to 70%+ capacity",
+      "native": "6000 ciclos até 70%+ de capacidade",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 22
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "IEC Code",
+      "native": "Código IEC",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "IFpR41/136[14S4P]M/-20+40/90",
+      "native": "IFpR41/136[14S4P]M/-20+40/90",
+      "physical_page": 61,
+      "selection": {
+        "native_block": 23
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Product Name",
+      "native": "Nome do produto",
+      "physical_page": 61,
+      "selection": {
+        "bbox_pt": [
+          28,
+          205.77349548339845,
+          179,
+          213.4514953613281
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Jackery Battery Pack 3600",
+      "native": "Jackery Battery Pack 3600",
+      "physical_page": 61,
+      "selection": {
+        "bbox_pt": [
+          180,
+          205.77349548339845,
+          345,
+          213.4514953613281
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Input)",
+      "native": "Porta de expansão CC (entrada)",
+      "physical_page": 61,
+      "selection": {
+        "bbox_pt": [
+          28,
+          326.65879516601564,
+          179,
+          340.7867919921875
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.4V-50.4V⎓60A Max",
+      "native": "36,4 V–50,4 V ⎓ 60 A máx.",
+      "physical_page": 61,
+      "selection": {
+        "bbox_pt": [
+          180,
+          326.65879516601564,
+          345,
+          340.7867919921875
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Output)",
+      "native": "Porta de expansão CC (Saída)",
+      "physical_page": 61,
+      "selection": {
+        "bbox_pt": [
+          28,
+          338.835888671875,
+          179,
+          352.96388549804686
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.4V-50.4V⎓100A Max",
+      "native": "36,4 V-50,4 V⎓100 A máx.",
+      "physical_page": 61,
+      "selection": {
+        "bbox_pt": [
+          180,
+          338.835888671875,
+          345,
+          352.96388549804686
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Charge Temperature",
+      "native": "Temperatura de carregamento",
+      "physical_page": 61,
+      "selection": {
+        "bbox_pt": [
+          28,
+          386.1807067871094,
+          179,
+          394.14671630859374
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "-20°C to 45°C",
+      "native": "-20°C a 45°C",
+      "physical_page": 61,
+      "selection": {
+        "bbox_pt": [
+          180,
+          386.1807067871094,
+          345,
+          394.14671630859374
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Discharge Temperature",
+      "native": "Temperatura de descarga",
+      "physical_page": 61,
+      "selection": {
+        "bbox_pt": [
+          28,
+          398.18186645507814,
+          179,
+          406.1478759765625
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "WARRANTY",
+      "native": "GARANTIA",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.",
+      "native": "A garantia é fornecida apenas a clientes que comprarem no Site oficial da Jackery, em plataformas de terceiros com marca Jackery ou por meio de revendedores locais autorizados.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "native": "* O período e os termos da garantia podem variar de acordo com as leis e regulamentações locais e com os distribuidores autorizados.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited Warranty",
+      "native": "Garantia Limitada",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.",
+      "native": "A Jackery garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de fabricação e material sob uso normal do consumidor durante o período de garantia aplicável identificado na seção \"Período de Garantia\" abaixo, sujeito às exclusões estabelecidas abaixo.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.",
+      "native": "Esta declaração de garantia estabelece a obrigação de garantia total e exclusiva da Jackery. Não assumiremos, nem autorizaremos qualquer pessoa a assumir em nosso nome, qualquer outra responsabilidade relacionada à venda de nossos produtos.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Warranty Period",
+      "native": "Período de Garantia",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The standard warranty period for Jackery Battery Pack 3600 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+      "native": "O período de garantia padrão do Jackery Battery Pack 3600 é de 36 meses. Em todos os casos, o período de garantia é contado a partir da data de compra pelo comprador consumidor original. O comprovante de compra do primeiro comprador consumidor, ou outra prova documental razoável, é necessário para estabelecer a data de início do período de garantia.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Repair or Replacement",
+      "native": "Reparo ou substituição",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.",
+      "native": "A Jackery reparará ou substituirá (às custas da Jackery) qualquer produto Jackery que apresente falha de funcionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. O produto reparado/substituído assume o período de garantia remanescente a partir da data original de compra.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited to Original Consumer Buyer",
+      "native": "Limitado ao comprador consumidor original",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.",
+      "native": "A garantia dos produtos Jackery é limitada ao comprador consumidor original e não é transferível a qualquer proprietário subsequente.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Exclusions",
+      "native": "Exclusões",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Interpretation Rights",
+      "native": "Direitos de interpretação",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery reserves the right to final interpretation of the above customer after-sales policy.",
+      "native": "A Jackery reserva-se o direito de interpretação final da política de pós-venda ao cliente acima.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "3 YEARS",
+      "native": "3 ANOS",
+      "physical_page": 62,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Standard Warranty",
+      "native": "Garantia Padrão",
+      "physical_page": 62,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "2 YEARS",
+      "native": "2 ANOS",
+      "physical_page": 62,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Extended Warranty",
+      "native": "Garantia Estendida",
+      "physical_page": 62,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "To activate the Warranty Extension, you must register your product online or contact our customer service team at ",
+      "native": "Para ativar a extensão da garantia, registre seu produto online ou entre em contato com nossa equipe de atendimento ao cliente em ",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 1,
+        "part": "before mailto"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": " to extend the standard warranty runtime.",
+      "native": " para estender o período de garantia padrão.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 1,
+        "part": "after mailto"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to:",
+      "native": "A garantia da Jackery não se aplica a:",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 18,
+        "segment": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.",
+      "native": "Uso indevido, abuso, modificação, danos causados por acidente ou uso para qualquer finalidade diferente do uso normal do consumidor conforme autorizado na documentação atual do produto da Jackery.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 18,
+        "segment": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Attempted repair by anyone other than an authorized facility.",
+      "native": "Tentativa de reparo por qualquer pessoa que não seja uma assistência autorizada.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 18,
+        "segment": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Any product purchased through an online auction house.",
+      "native": "Qualquer produto adquirido por meio de leilão online.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 18,
+        "segment": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.",
+      "native": "A garantia da Jackery não se aplica à célula da bateria, a menos que ela seja totalmente carregada por você dentro de sete dias após a compra do produto e, posteriormente, pelo menos uma vez a cada 6 meses.",
+      "physical_page": 62,
+      "selection": {
+        "native_block": 18,
+        "segment": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "EU REGULATIONS",
+      "native": "EU REGULATIONS",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "RED DECLARATION OF CONFORMITY",
+      "native": "RED DECLARATION OF CONFORMITY",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "native": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "https://de.jackery.com/pages/user-guides",
+      "native": "https://de.jackery.com/pages/user-guides",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "MANUFACTURER",
+      "native": "MANUFACTURER",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "native": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "native": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "+86 400 668 9293",
+      "native": "+86 400 668 9293",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "sales@hello-tech.com",
+      "native": "sales@hello-tech.com",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "www.hello-tech.com",
+      "native": "www.hello-tech.com",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    }
+  ],
+  "native_exceptions": [
+    "Native operation uses ON and Apagado; retained."
+  ],
+  "clearance_labels": [
+    "≥0,66 ft (≈200 mm)",
+    "≥0,66 ft (≈200 mm)"
+  ],
+  "extra_spec_row": null,
+  "inline_connection_icon": {
+    "insert_after": "A exibição do ícone",
+    "source_page": 59,
+    "status": "source-position-verified-shared-x5-reuse-candidate",
+    "asset": "assets/shared/connection-x5.png",
+    "sha256": "8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd",
+    "reuse_basis": "Native source page visibly shows the same framed x5 glyph; reuse candidate French-extracted asset without another crop."
+  }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "path": "lcd-icon-2.png",
+    "sha256": "7a9ba67e387f14bbbf5a484f9d9c5e5ed317f238dcd7fb3b9e3ce84e52b95c82",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-3.png",
+    "sha256": "6887264798ddb90c2000acea8c1d65982e69c484f735e56ccfca93b962836c18",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-1.png",
+    "sha256": "acdd38a303f1d0df32ede45a8f8329bc6081567d3d415024280806b666161a05",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-4.png",
+    "sha256": "758e28eaab8b230639c303eed0abf463460dc6977a7535264a15667b8e533f05",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-5.png",
+    "sha256": "6c7550d4406503c400f3a3242752d35f81a8955fba8cc68537ac8f9b334bfec4",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-7.png",
+    "sha256": "82bee2a923cbfa47d3f1d69ae3a6806b66bf17e6f1ecd58014e438440c106c6b",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "lcd-icon-6.png",
+    "sha256": "2842796ebd9eadb2bff012cb867a0a771de33f14673cc28f91b69403120a6a99",
+    "reason": "Superseded by native transparent SVG before freeze; never reuse."
+  },
+  {
+    "path": "wood-5.png",
+    "sha256": "5875dc69d6bfe8ce3a86c6ca70995601c87c50baaeefcc2cff507f8346840245",
+    "reason": "superseded-do-not-reuse: baked outer frame or crop severing cross-panel artwork; native panel correction recipe replaces it."
+  },
+  {
+    "path": "wood-6.png",
+    "sha256": "20ff9428a16c2eb7e2a8ccdb3fbb3bb13260f2ae05df8f6979c7144460b11bec",
+    "reason": "superseded-do-not-reuse: baked outer frame or crop severing cross-panel artwork; native panel correction recipe replaces it."
+  },
+  {
+    "path": "wood-7.png",
+    "sha256": "6464fc2b13e2eede16257681fde646679bdadd219613a1bfd547e424dfb16890",
+    "reason": "superseded-do-not-reuse: baked outer frame or crop severing cross-panel artwork; native panel correction recipe replaces it."
+  },
+  {
+    "path": "concrete-4.png",
+    "sha256": "8abda482264678d71cdc1ce465d77045e147b2235f2275123caa527b3aff493a",
+    "reason": "superseded-do-not-reuse: baked outer frame or crop severing cross-panel artwork; native panel correction recipe replaces it."
+  },
+  {
+    "path": "concrete-5.png",
+    "sha256": "f80f7314f6c4dc02775ee48b11973554b2de08a737ca35347b0e646163fd0220",
+    "reason": "superseded-do-not-reuse: baked outer frame or crop severing cross-panel artwork; native panel correction recipe replaces it."
+  },
+  {
+    "path": "concrete-6.png",
+    "sha256": "ce6c2134af64443a954abb8587b7cecb51884c3afc00f8d844746a4bb8a0cccc",
+    "reason": "superseded-do-not-reuse: baked outer frame or crop severing cross-panel artwork; native panel correction recipe replaces it."
+  },
+  {
+    "path": "concrete-7.png",
+    "sha256": "a345f2dd7ae202f3ff5afb2aa242a56ebea7b5637160eeb815f9175cbcbda985",
+    "reason": "superseded-do-not-reuse: baked outer frame or crop severing cross-panel artwork; native panel correction recipe replaces it."
+  },
+  {
+    "path": "concrete-8.png",
+    "sha256": "93afacde35dcc0540c1afb1cb881129805e2256ba4c83a59e937fe78755d3ee8",
+    "reason": "superseded-do-not-reuse: baked outer frame or crop severing cross-panel artwork; native panel correction recipe replaces it."
+  },
+  {
+    "path": "concrete-9.png",
+    "sha256": "b15145afe2fd13f61d017de4b31cc7f5e6ca052fb2541665ecc93268aba3a291",
+    "reason": "superseded-do-not-reuse: baked outer frame or crop severing cross-panel artwork; native panel correction recipe replaces it."
+  }
+]

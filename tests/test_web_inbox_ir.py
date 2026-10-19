@@ -10,11 +10,11 @@ from unittest.mock import patch
 
 from bs4 import BeautifulSoup
 
-from tools import web_inbox_component
+from tools.web import inbox_component as web_inbox_component
 from tools.manual_ir import (
     build_manual_ir_from_source, read_manual_ir, validate_manual_ir, write_manual_ir,
 )
-from tools.web_presentation import WebPresentationError, transform_web_fragment
+from tools.web.presentation import WebPresentationError, transform_web_fragment
 
 
 HTML = (
@@ -47,7 +47,7 @@ FIVE_CARD_HTML = (
 class WebInboxIRTests(unittest.TestCase):
     def test_three_card_source_without_tip_is_a_complete_component(self) -> None:
         from tools.manual_ir.web_inbox import load_web_inbox_source
-        from tools.web_inbox_component import render_inbox_ir
+        from tools.web.inbox_component import render_inbox_ir
 
         html = HTML.split("\n<table><tbody><tr><td>TIP", 1)[0] + '<p id="after">After</p>'
         source = load_web_inbox_source(
@@ -67,7 +67,7 @@ class WebInboxIRTests(unittest.TestCase):
 
     def test_five_card_variant_round_trips_public_ir_and_reflows_on_web(self) -> None:
         from tools.manual_ir.web_inbox import load_web_inbox_source
-        from tools.web_inbox_component import render_inbox_ir
+        from tools.web.inbox_component import render_inbox_ir
 
         source = load_web_inbox_source(
             FIVE_CARD_HTML,
@@ -95,7 +95,7 @@ class WebInboxIRTests(unittest.TestCase):
 
     def test_five_card_source_without_tip_preserves_both_contract_extensions(self) -> None:
         from tools.manual_ir.web_inbox import load_web_inbox_source
-        from tools.web_inbox_component import render_inbox_ir
+        from tools.web.inbox_component import render_inbox_ir
 
         html = FIVE_CARD_HTML.split('<table><tbody><tr><td>NOTE', 1)[0]
         source = load_web_inbox_source(
@@ -159,7 +159,7 @@ class WebInboxIRTests(unittest.TestCase):
 
     def test_serialized_replay_preserves_rich_tip_assets_without_source(self) -> None:
         from tools.manual_ir.web_inbox import load_web_inbox_source
-        from tools.web_inbox_component import render_inbox_ir
+        from tools.web.inbox_component import render_inbox_ir
 
         with TemporaryDirectory() as td:
             source_path = Path(td) / 'inbox.html'
@@ -196,7 +196,7 @@ class WebInboxIRTests(unittest.TestCase):
 
     def test_rehashed_payload_drift_is_rejected(self) -> None:
         from tools.manual_ir.web_inbox import load_web_inbox_source
-        from tools.web_inbox_component import render_inbox_ir
+        from tools.web.inbox_component import render_inbox_ir
 
         for change in ('tip', 'asset', 'kind', 'projection', 'extra'):
             with self.subTest(change=change):

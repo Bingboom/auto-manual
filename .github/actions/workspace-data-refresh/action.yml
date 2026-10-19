@@ -1,0 +1,35 @@
+name: Refresh workspace frozen data
+description: Export once, validate, and submit a content PR without rebuilding manuals.
+inputs:
+  kind:
+    description: deliverables or corpus
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Export and validate frozen workspace data
+      id: export
+      continue-on-error: true
+      shell: bash
+      env:
+        REFRESH_KIND: ${{ inputs.kind }}
+      run: python -m tools.workspace_refresh refresh "$REFRESH_KIND"
+    - name: Submit reviewed snapshot or failure state
+      if: ${{ !cancelled() }}
+      shell: bash
+      env:
+        REFRESH_KIND: ${{ inputs.kind }}
+      run: python -m tools.workspace_refresh_publish "$REFRESH_KIND"
+    - name: Preserve refresh execution evidence
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: workspace-refresh-${{ inputs.kind }}-${{ github.run_attempt }}
+        path: .tmp/workspace-refresh/
+        retention-days: 30
+    - name: Report refresh failure separately from completed production
+      if: ${{ !cancelled() && steps.export.outcome == 'failure' }}
+      shell: bash
+      run: |
+        echo '::error::Workspace snapshot refresh failed. Completed production is retained; retry Workspace Data Refresh, not the production batch.'
+        exit 1

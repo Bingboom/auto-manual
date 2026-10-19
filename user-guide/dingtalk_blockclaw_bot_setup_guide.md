@@ -12,6 +12,10 @@
 
 ## 前提
 
+**机器人已经连通、只新增欧规产品查询时**，直接按
+[现有网关启用步骤](../code-as-doc/dev/eu_manual_query.md#activation-on-the-existing-gateway)
+更新控制插件、配置 `manualQueryBaseUrl` 并验收即可。下面的新主机接入步骤无需重做。
+
 1. 新主机上 **OpenClaw 网关 + BlockClaw 智能体已在运行**(即飞书那套 `channels.feishu` 已工作,工作目录指向本仓库镜像)。本文只新增钉钉通道;若 OpenClaw 尚未搭好,先跑 `openclaw onboard` 完成网关 / workspace / BlockClaw 基础配置,再回到这里。
 2. OpenClaw 版本 ≥ `2026.3.22`(插件 peer 要求;开发时用的是 `2026.4.10`)。用 `openclaw --version` 查。
 3. 你在该主机所属**钉钉组织**里的账号(用来 @机器人并加入白名单)。

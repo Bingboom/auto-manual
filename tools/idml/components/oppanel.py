@@ -1504,7 +1504,8 @@ def _render_led_light_panel(
         bottom=grey_bottom - 3.0,
         auto_height=True,
     )]
-    for index, (center, step) in enumerate(zip(row_centers, steps)):
+    # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
+    for index, (center, step) in enumerate(zip(row_centers, steps, strict=False)):
         text_layers.append(_editable_text_frame(
             ctx,
             story_id=f"st_anchor_oppanel_led_number_{index}_{tid}",

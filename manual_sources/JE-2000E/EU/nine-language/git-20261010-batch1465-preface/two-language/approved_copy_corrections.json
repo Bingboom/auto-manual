@@ -1,0 +1,78 @@
+{
+  "schema_version": "auto-manual-approved-copy-corrections/v1",
+  "target": {
+    "model": "JE-2000E",
+    "region": "EU",
+    "languages": [
+      "pt",
+      "nl"
+    ]
+  },
+  "approval": {
+    "date": "2026-10-10",
+    "instruction": "欧规就是用的 Jackery",
+    "scope": "Batch 1465 preface wording backport, retain EU legal subject Jackery; do not replace with Jackery Inc.",
+    "confirmation": "Operator explicitly requested commit of the prepared changes on 2026-10-10."
+  },
+  "delivery_pdf": {
+    "filename": "JE-2000E_修正版_竖版.pdf",
+    "sha256": "02960a5f51576d9d8a3d825b3844dbf2f8cacc6240cabeee0639c197271a6cf3",
+    "physical_page": 4
+  },
+  "baseline": {
+    "path": "manual_sources/JE-2000E/EU/nine-language/git-20260929-d6462454-native-web/three-language",
+    "manifest_sha256": "b3566417fedfed4bf4d81853a8d7d84584e4610ff6fb8e0f1f5d1cd6e1e6069e"
+  },
+  "entries": [
+    {
+      "lang": "pt",
+      "paragraph": 1,
+      "old": "Parabéns pelo seu novo Jackery Explorer 2000 Plus. Leia este manual atentamente antes de usar o produto, especialmente as precauções relevantes, para garantir o uso adequado. Mantenha este manual em um local acessível para consulta frequente.",
+      "delivery_new": "Parabéns pela aquisição do seu novo Jackery Explorer 2000 Plus. Leia atentamente este manual antes de utilizar o produto, em especial as precauções relevantes, para garantir uma utilização correta. Guarde este manual num local acessível para consulta futura.",
+      "recommended_candidate": "Parabéns pela aquisição do seu novo Jackery Explorer 2000 Plus. Leia atentamente este manual antes de utilizar o produto, em especial as precauções relevantes, para garantir uma utilização correta. Guarde este manual num local acessível para consulta futura.",
+      "status": "operator-confirmed-retain-Jackery",
+      "source": "JE-2000E_修正版_竖版.pdf physical p4",
+      "source_field": "source/preface_candidates.json/pt/paragraphs/0/text"
+    },
+    {
+      "lang": "pt",
+      "paragraph": 2,
+      "old": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora tenham sido envidados todos os esforços para garantir a precisão deste manual, a Jackery não assume nenhuma responsabilidade por quaisquer erros que possam ocorrer.",
+      "delivery_new": "Em conformidade com a legislação e os regulamentos, a Empresa reserva-se o direito de interpretação final deste documento e de todos os documentos relacionados com este produto. Embora tenham sido envidados todos os esforços para garantir a exatidão deste manual, a Jackery Inc. não assume qualquer responsabilidade por eventuais erros.",
+      "recommended_candidate": "Em conformidade com a legislação e os regulamentos, a Empresa reserva-se o direito de interpretação final deste documento e de todos os documentos relacionados com este produto. Embora tenham sido envidados todos os esforços para garantir a exatidão deste manual, a Jackery não assume qualquer responsabilidade por eventuais erros.",
+      "status": "operator-confirmed-retain-Jackery",
+      "source": "JE-2000E_修正版_竖版.pdf physical p4",
+      "source_field": "source/preface_candidates.json/pt/paragraphs/1/text"
+    },
+    {
+      "lang": "pt",
+      "paragraph": 3,
+      "old": "Observe que não serão enviadas novas notificações em caso de atualização, revisão ou encerramento. Para obter a versão mais recente dos manuais do produto, visite support.jackery.com.",
+      "delivery_new": "Tenha em atenção que não serão emitidas notificações adicionais em caso de atualização, revisão ou descontinuação. Para obter a versão mais recente dos manuais do produto, visite support.jackery.com.",
+      "recommended_candidate": "Tenha em atenção que não serão emitidas notificações adicionais em caso de atualização, revisão ou descontinuação. Para obter a versão mais recente dos manuais do produto, visite support.jackery.com.",
+      "status": "operator-confirmed-retain-Jackery",
+      "source": "JE-2000E_修正版_竖版.pdf physical p4",
+      "source_field": "source/preface_candidates.json/pt/paragraphs/2/text"
+    },
+    {
+      "lang": "pt",
+      "paragraph": 4,
+      "old": "* As imagens são apenas para referência. Consulte o produto real.",
+      "delivery_new": "* As imagens são meramente ilustrativas. Consulte o produto real.",
+      "recommended_candidate": "* As imagens são meramente ilustrativas. Consulte o produto real.",
+      "status": "operator-confirmed-retain-Jackery",
+      "source": "JE-2000E_修正版_竖版.pdf physical p4",
+      "source_field": "source/preface_candidates.json/pt/paragraphs/3/text"
+    },
+    {
+      "lang": "nl",
+      "paragraph": 2,
+      "old": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel alle moeite is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery geen aansprakelijkheid voor eventuele fouten die kunnen voorkomen.",
+      "delivery_new": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel al het mogelijke is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery Inc. geen verantwoordelijkheid voor eventuele fouten die kunnen optreden.",
+      "recommended_candidate": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel al het mogelijke is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery geen verantwoordelijkheid voor eventuele fouten die kunnen optreden.",
+      "status": "operator-confirmed-retain-Jackery",
+      "source": "JE-2000E_修正版_竖版.pdf physical p4",
+      "source_field": "source/preface_candidates.json/nl/paragraphs/1/text"
+    }
+  ]
+}

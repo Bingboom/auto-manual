@@ -1,0 +1,464 @@
+[env-preflight] WARN env.lock: 1 pinned package(s) not installed: roman-numerals
+[env-preflight] WARN env.lock: 20 package(s) differ from requirements.lock: babel 2.17.0 (lock 2.18.0), beautifulsoup4 4.14.2 (lock 4.15.0), certifi 2025.8.3 (lock 2026.6.17), cffi 2.0.0 (lock 2.1.0), charset-normalizer 3.4.3 (lock 3.4.8), cryptography 48.0.0 (lock 49.0.0), idna 3.10 (lock 3.18), imagesize 1.4.1 (lock 2.0.0), mdit-py-plugins 0.6.0 (lock 0.6.1), numpy 2.3.4 (lock 2.5.1), packaging 25.0 (lock 26.2), pillow 11.3.0 (lock 12.3.0), pycparser 2.23 (lock 3.0), Pygments 2.19.2 (lock 2.20.0), requests 2.32.5 (lock 2.34.2), roman-numerals-py 3.1.0 (lock 4.1.0), snowballstemmer 3.0.1 (lock 3.1.1), soupsieve 2.8 (lock 2.8.4), typing_extensions 4.15.0 (lock 4.16.0), urllib3 2.5.0 (lock 2.7.0)
+[env-preflight] WARN env.lock: to match CI: python -m pip install -r requirements.lock (on the pinned Python)
+.....................................................ERROR: --write requires a sandbox --table-binding TABLE=BASE:TABLE_ID
+...........................................................................................................................................................[ci-check-targets] SKIP ratchet failed: current=1 baseline=2 unexpected_targets=[{'config': 'configs/config.old.yaml', 'model': 'MODEL-NEW', 'region': 'US', 'lang': 'en'}]
+[ci-check-targets] FAIL ratchet failed: current=1 baseline=2 unexpected_targets=[{'config': 'configs/config.old.yaml', 'model': 'MODEL-NEW', 'region': 'US', 'lang': 'en'}] — failing targets: configs/config.old.yaml MODEL-NEW_US
+....cloud-doc-backport: --tm-write requires --tm-binding BASE:TABLE_ID
+..........................PARITY ✗ — target lags source: 0 table(s), 0 field(s), 1 drift
+  ⚠ DRIFT T1.St: options ['DIFFERENT'] ≠ ['a']
+PARITY ⚠ — 0 missing table/field; 1 drift reported below (informational under --fail-on missing)
+  ⚠ DRIFT T1.St: options ['DIFFERENT'] ≠ ['a']
+[build] Prepared bundle: /private/tmp/tmpopwfsui0/docs/_build/JE-1000F/US/es/rst
+[build] Bundle source: review
+[build] Prepared bundle: /private/tmp/tmppe7_e573/docs/_build/JE-1000F/US/web/source/rst
+[build] Bundle source: review
+[build] Cleaning preview output: /private/tmp/tmpa_87ketp/staging/docs/_build/JE-1000F/US/preview/05
+[reference-pins] OK for 1 contract(s)
+[PASS] /private/tmp/tmplfwo8pdt/configs/config.us-en.yaml JE-1000F_US: build.py check passed
+[ci-check-targets] PASS=1 SKIP=0 FAIL=0 coverage=1.0000 definition=PASS/(PASS+SKIP+FAIL)
+[PASS] configs/config.old.yaml MODEL-A_US: repaired
+[PASS] configs/config.old.yaml MODEL-B_US: repaired
+[SKIP] configs/config.old.yaml MODEL-NEW_US: regression
+[ci-check-targets] PASS=2 SKIP=1 FAIL=0 coverage=0.6667 definition=PASS/(PASS+SKIP+FAIL)
+[PASS] configs/config.old.yaml MODEL-A_US: repaired
+[PASS] configs/config.old.yaml MODEL-B_US: repaired
+[FAIL] configs/config.old.yaml MODEL-NEW_US: regression
+[ci-check-targets] PASS=2 SKIP=0 FAIL=1 coverage=0.6667 definition=PASS/(PASS+SKIP+FAIL)
+F2 value-index: empty (data-root=data/phase2, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /private/tmp/tmpklvqinwe  BASELINE-DIFF deltas=2  routes={"repo_review_text": 1, "source_table_suggestion": 1}
+WROTE /private/tmp/tmpklvqinwe/out/cloud_doc_backport_report.json
+WROTE /private/tmp/tmpklvqinwe/out/cloud_doc_backport_report.md
+ROUTE: 1 source-bound (Class D) delta(s) -> run `apply-source-table --report /private/tmp/tmpklvqinwe/out/cloud_doc_backport_source_table_change_request.json` (approval-gated F6/TM), NOT the _review RST.
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-2.baseline.md", "baseline_advanced": false, "changed": [], "deltas": 2, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [], "passed": true}, "report": "/private/tmp/tmpklvqinwe/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1, "source_table_suggestion": 1}, "source_table_change_request": "/private/tmp/tmpklvqinwe/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/private/tmp/tmpklvqinwe/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/private/tmp/tmpklvqinwe", "wrote": false}
+F2 value-index: empty (data-root=none, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /private/tmp/tmpmb_ba7us  BASELINE-DIFF deltas=1  routes={"repo_review_text": 1}
+WROTE /private/tmp/tmpmb_ba7us/out/cloud_doc_backport_report.json
+WROTE /private/tmp/tmpmb_ba7us/out/cloud_doc_backport_report.md
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-dry.baseline.md", "baseline_advanced": false, "changed": [], "deltas": 1, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [], "passed": true}, "report": "/private/tmp/tmpmb_ba7us/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1}, "source_table_change_request": "/private/tmp/tmpmb_ba7us/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/private/tmp/tmpmb_ba7us/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/private/tmp/tmpmb_ba7us", "wrote": false}
+F2 value-index: empty (data-root=data/phase2, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /private/tmp/tmphhuzxhh9  BASELINE-DIFF deltas=2  routes={"repo_review_text": 1, "source_table_suggestion": 1}
+WROTE /private/tmp/tmphhuzxhh9/out/cloud_doc_backport_report.json
+WROTE /private/tmp/tmphhuzxhh9/out/cloud_doc_backport_report.md
+ROUTE: 1 source-bound (Class D) delta(s) -> run `apply-source-table --report /private/tmp/tmphhuzxhh9/out/cloud_doc_backport_source_table_change_request.json` (approval-gated F6/TM), NOT the _review RST.
+  APPLIED (Class R) 00_preface.rst  [rebuild+rediff gate OK]
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-seed2.baseline.md", "baseline_advanced": false, "changed": ["docs/_review/JE-1000F/US/page/00_preface.rst"], "deltas": 2, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [{"missing": [], "page": "00_preface.rst", "passed": true, "skipped": false, "unexpected": []}], "passed": true}, "report": "/private/tmp/tmphhuzxhh9/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1, "source_table_suggestion": 1}, "source_table_change_request": "/private/tmp/tmphhuzxhh9/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/private/tmp/tmphhuzxhh9/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/private/tmp/tmphhuzxhh9", "wrote": true}
+WROTE /private/tmp/tmp09ttcczi/out/cloud_doc_backport_apply.json
+WROTE /private/tmp/tmp09ttcczi/out/cloud_doc_backport_apply.md
+UPDATED /private/tmp/tmp09ttcczi/docs/_review/JE-1000F/US/page/00_preface.rst
+WROTE /private/tmp/tmprpp367gy/out/cloud_doc_backport_apply.json
+WROTE /private/tmp/tmprpp367gy/out/cloud_doc_backport_apply.md
+UPDATED /private/tmp/tmprpp367gy/docs/_review/JE-1000F/US/page/00_preface.rst
+WROTE /private/tmp/tmpodimsjqf/out/cloud_doc_backport_report.json
+WROTE /private/tmp/tmpodimsjqf/out/cloud_doc_backport_report.md
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_apply.json
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_apply.md
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_report.json
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_report.md
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_run.json
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_run.md
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_source_table_change_request.json
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_source_table_suggestions.json
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_source_table_suggestions.md
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_template_sync_proposal.json
+WROTE /private/tmp/tmp87s7mkq6/out/cloud_doc_backport_template_sync_proposal.md
+WROTE /private/tmp/tmpyi1xv3hb/out/cloud_doc_backport_verify.json
+WROTE /private/tmp/tmpyi1xv3hb/out/cloud_doc_backport_verify.md
+WROTE /private/tmp/tmpyi1xv3hb/out/cloud_doc_backport_source_table_suggestions.json
+WROTE /private/tmp/tmpyi1xv3hb/out/cloud_doc_backport_source_table_suggestions.md
+WROTE /private/tmp/tmpyi1xv3hb/out/cloud_doc_backport_template_sync_proposal.json
+WROTE /private/tmp/tmpyi1xv3hb/out/cloud_doc_backport_template_sync_proposal.md
+F2 value-index: empty (data-root=none, lang=en) — Class D uses the _looks_data_like heuristic; sync data/phase2 for deterministic detection
+BRANCH review/JE-1000F-US  WORKTREE /private/tmp/tmpwbt8e_68  BASELINE-DIFF deltas=1  routes={"repo_review_text": 1}
+WROTE /private/tmp/tmpwbt8e_68/out/cloud_doc_backport_report.json
+WROTE /private/tmp/tmpwbt8e_68/out/cloud_doc_backport_report.md
+{"backport_pr_url": "", "baseline": "docs/_review/JE-1000F/US/.backport/doc-r7b.baseline.md", "baseline_advanced": false, "changed": ["docs/_review/JE-1000F/US/page/00_preface.rst"], "deltas": 1, "git_ref": "review/JE-1000F-US", "mode": "baseline-diff", "pushed": false, "rebuild_rediff": {"pages": [{"missing": [], "page": "00_preface.rst", "passed": false, "unexpected": ["x->y"]}], "passed": false}, "report": "/private/tmp/tmpwbt8e_68/out/cloud_doc_backport_report.json", "result": "DIFF", "review_branch_pr_url": null, "route_classes": {"repo_review_text": 1}, "source_table_change_request": "/private/tmp/tmpwbt8e_68/out/cloud_doc_backport_source_table_change_request.json", "template_sync_proposal": "/private/tmp/tmpwbt8e_68/out/cloud_doc_backport_template_sync_proposal.json", "template_sync_proposals": 0, "worktree": "/private/tmp/tmpwbt8e_68", "wrote": true}............................................................................................................
+content-lint  (data-root: /private/tmp/tmp43juamvg, langs: fr,es,de,it,uk,ja,ko,zh)
+============================================================
+  [status-word consistency] ........... FAIL (1)
+        - it · TOU: non-canonical prefix 'On'  | 'On: abilitata.'
+  [english residue] ................... FAIL (1)
+        - lcd_icons_blocks.csv [it]: 'On:' in 'On: abilitata.'
+  [slot-key collision] ................ PASS
+  [spec<->overview drift] ............. PASS
+  [tm duplicate (snapshot)] ........... PASS
+------------------------------------------------------------
+RESULT: FAIL  (WARN-level findings do not fail the gate)
+[build-queue] Acquired queue claim for JE-1000F_EU (1 row(s)): expires_at=2026-10-09T03:17:02+00:00
+[build-queue] delivery outbox JE-1000F_EU_0.8_20261009T011702Z: 4 file(s) -> /private/tmp/tmpbyveqbtz/outbox/JE-1000F_EU_0.8_20261009T011702Z
+[build-queue] Published JE-1000F_EU (1 row(s)): /private/tmp/tmpy8phow80/build/handoff.zip -> https://feishu.example.com/wiki/manual
+............................................s.............s............s.......................[draft] missing Spec_Master rows filled with ==MISSING:...== placeholders:
+Draft page 'demo_page' is missing 1 required Spec_Master row(s) [model=JE-1000F, region=US, lang=en]:
+  - field_map.MAIN_POWER_BUTTON_LABEL -> main_power_button[pages=Product overview, usage_type=page_value, value_role=label]
+  Fix: add the listed row(s) to the Spec_Master source (Feishu phase2 page-value / spec table) for this model+region+lang, or set a recipe `default:` for the binding.
+[build-queue] Acquired queue claim for JE-1000F_US (2 row(s)): expires_at=2026-10-09T03:17:50+00:00
+........................................ss..s..s.....s.......From /private/tmp/tmpau47_qpq/remote
+ * branch            main       -> FETCH_HEAD
+[pre-push] Current branch does not contain the latest origin/main.
+[pre-push] Start new work with:
+[pre-push]   powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>
+[pre-push]   ./scripts/start_branch.sh <type>/<area>-<topic>
+[pre-push] Or update this branch before pushing:
+[pre-push]   git fetch origin
+[pre-push]   git rebase origin/main
+[pre-push] Intentional bypass: git push --no-verify
+..................................................................................ss.......s....s.......................................................................................................................................................................................................................................................................................................................................................................................................usage: pdf_annotate [-h] [--pdf PDF] [--findings FINDINGS] [--out OUT]
+                    [--ledger LEDGER] [--no-ledger]
+                    [--backfill-summary BACKFILL_SUMMARY]
+pdf_annotate: error: --backfill-summary cannot be combined with --pdf
+......Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output...
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets...
+copying static files...
+Writing evaluated template result to /private/tmp/tmpfthfq5zn/site/_static/basic.css
+Writing evaluated template result to /private/tmp/tmpfthfq5zn/site/_static/language_data.js
+Writing evaluated template result to /private/tmp/tmpfthfq5zn/site/_static/documentation_options.js
+copying static files: done
+copying extra files...
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/tmp/tmpfthfq5zn/site.
+..........Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output...
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets...
+copying static files...
+Writing evaluated template result to /private/tmp/tmporzg0a2j/site/_static/basic.css
+Writing evaluated template result to /private/tmp/tmporzg0a2j/site/_static/language_data.js
+Writing evaluated template result to /private/tmp/tmporzg0a2j/site/_static/documentation_options.js
+copying static files: done
+copying extra files...
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+copying images... [100%] assets/pic.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/tmp/tmporzg0a2j/site.
+...Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+myst v4.0.1: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=3, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output...
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets...
+copying static files...
+Writing evaluated template result to /private/tmp/tmpdlonpag8/site/_static/basic.css
+Writing evaluated template result to /private/tmp/tmpdlonpag8/site/_static/language_data.js
+Writing evaluated template result to /private/tmp/tmpdlonpag8/site/_static/documentation_options.js
+copying static files: done
+copying extra files...
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in ../../../../../../private/tmp/tmpdlonpag8/site.
+..........................[indesign-finalize] version-pin match: pinned; application=InDesign A jobs=2
+[indesign-finalize] version-pin match: pinned; application=InDesign B jobs=1
+[indesign-finalize] PREFLIGHT FAIL: pages=1 overset=0 fonts=1 glyphs=0 links=0 overset_pages=- report=/private/tmp/tmp7lt3_xoq/report.json
+[indesign-finalize] ERROR: saved INDD failed the mandatory close/reopen preflight gate
+{"indexed_publications": 1, "http_failures": 0}
+[patch_latex_fonts] enabled portable Japanese CJK font: HBManualSansJP-Regular.ttf
+[patch_latex_fonts] local Gilroy dir missing required font files, skipping override: gilroy-bold-4.otf, Gilroy-LightItalic-12.otf, Gilroy-ExtraBoldItalic-10.otf
+{
+  "pdf": "/private/tmp/tmp0e69qibz/manual.pdf",
+  "out": "/private/tmp/tmp0e69qibz/manual_annotated.pdf",
+  "findings": 1,
+  "located": [
+    {
+      "rule": "stale_model_name",
+      "page": 1,
+      "needle": "Charge the JE-2000E battery fully."
+    }
+  ],
+  "unlocated": 0,
+  "annotations": 1,
+  "ledger": {
+    "path": "/private/tmp/tmp0e69qibz/ledger.jsonl",
+    "written": 1
+  }
+}
+[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-09T03:42:40+00:00
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /private/tmp/tmpgap6h5ev/docs/_build/JE-1000F/US/en/word/manual_je1000f_us_en.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-09T03:42:42+00:00
+[build-queue] Syncing DingTalk upload for JE-1000F_US (1 row(s)) with default target.
+[build-queue] WARNING DingTalk sync unavailable for JE-1000F_US (1 row(s)); using Feishu/wiki only: No AliDocs session found for operator_union_id=alice. Expected session file C:/Users/Administrator/.auto-manual/dingtalk-sessions/alice.json or environment variables DINGTALK_DOCS_A_TOKEN, DINGTALK_DOCS_XSRF_TOKEN, DINGTALK_DOCS_COOKIE.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /private/tmp/tmp5z9qhyre/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] DingTalk docs target {"target_node_id": "NkDwLng8ZLyr1dQ5Ha9gj6gBVKMEvZBY"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-09T03:42:44+00:00
+[build-queue] Skipping DingTalk upload for JE-1000F_US (1 row(s)); using Feishu/wiki upload.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /private/tmp/tmplitath39/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] DingTalk docs target {"target_node_id": "DefaultNode", "target_node_url": "https://alidocs.dingtalk.com/i/nodes/DefaultNode"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-09T03:42:46+00:00
+[build-queue] Using DingTalk upload for JE-1000F_US (1 row(s)) with row target https://alidocs.dingtalk.com/i/nodes/RowTargetNode123?utm_scene=team_space.
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /private/tmp/tmp_t8ym3px/docs/_build/JE-1000F/US/word/manual_je1000f_us.docx
+[build-queue] Summary: processed=1 failed=0
+.[build-queue] Wiki destination {"space_id": "space_123", "parent_wiki_token": "wiki_parent"}
+[build-queue] Acquired queue claim for JE-1000F_US (1 row(s)): expires_at=2026-10-09T03:42:47+00:00
+[build-queue] Syncing latest phase2 snapshot before JE-1000F_US (1 row(s)).
+[build-queue] Build Draft Package JE-1000F_US (1 row(s)): /private/tmp/manual.docx
+[build-queue] Summary: processed=1 failed=0
+................[build-queue] DRY-RUN {"record_ids": ["rec_group_1", "rec_group_2"], "record_id": "rec_group_1", "label": "JE-1000F_US_1.0", "document_key": "JE-1000F_US", "model": "JE-1000F", "region": "US", "lang": "", "build_family": "us-merged", "langs": [], "version": "1.0", "workflow_action": "Build Draft Package", "workflow_action_source": "Workflow_action", "legacy_doc_phase": null, "git_ref": "codex/review-je-1000f-us", "config": "configs/config.us.yaml", "data_root": "data/phase2"}
+............[review-start] Syncing latest phase2 snapshot before start review.
+[review-start] Start Review FAILURE JE-1000F_US family=us-merged: Review-start rows merged by Document_Key must agree on Version, Git_ref: JE-1000F_US
+[review-start] Start Review summary: processed=0 blocked=0 failed=1
+.[review-start] Targeted review-start row is already in review; record_id=rec_started git_ref=codex/review-je-1000f-jp. Treating duplicate dispatch as success.
+.[review-start] Syncing latest phase2 snapshot before start review.
+[review-start] Start Review FAILURE JE-1000F_CN family=cn-zh: Failed to resolve Product Name from Spec_Master.csv for model='JE-1000F', region='CN', lang='zh'. Source: /tmp/Spec_Master.csv
+[review-start] Start Review summary: processed=0 blocked=0 failed=1
+...............................................[build-queue] Using local Git_ref branch feature/test
+................................................................................................................................................................................................................................................................................................................................................................................................................................................................{
+  "total_rows": 1,
+  "by_status": {
+    "accepted_as_proposed": 1
+  },
+  "decided": 1,
+  "reflow_rate": 1.0,
+  "acceptance_rate": 1.0,
+  "by_route_class": {
+    "repo_review_text": {
+      "accepted_as_proposed": 1,
+      "decided": 1,
+      "acceptance_rate": 1.0
+    }
+  },
+  "top_corrected_sources": [
+    {
+      "source_path": "docs/_review/JE-1000F/US/en/page/01_overview.rst",
+      "corrections": 1
+    }
+  ]
+}
+{"out": "/private/tmp/tmprqq27fla/pairs.jsonl", "pairs": 1}
+{
+  "ledger": "/private/tmp/tmpy_mti4ih/ledger.jsonl",
+  "run_id": "run-123",
+  "deltas_seen": 1,
+  "rows_written": 1,
+  "rows_skipped": 0,
+  "row_keys": [
+    "run-123:hash-a"
+  ],
+  "reconcile": {
+    "rows_reconciled": 1,
+    "verdicts": {
+      "accepted_as_proposed": 1
+    },
+    "ledger": "/private/tmp/tmpy_mti4ih/ledger.jsonl"
+  }
+}
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/en/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/fr/07_extra_battery.rst
+[bundle-plan] capability '加电包扩容' is FALSE for JE-1000F_US: dropped templates/page_shared/es/07_extra_battery.rst
+[build] Cleaning target output: /private/tmp/tmpa9vby1uc/docs/_build/M1/US
+[build] Cleanup blocked by an open handle; retrying in 0.2s (1/3)...
+[build] Cleanup blocked by an open handle; retrying in 0.5s (2/3)...
+[build] Cleanup blocked by an open handle; retrying in 1.0s (3/3)...
+[build] Sphinx -> LATEX
+[warning-ratchet] stale-baseline sphinx-latex: docs/_build/{target}/rst/page/06_ups_mode.rst: WARNING: Line block ends without a blank line. [docutils]
+[warning-ratchet] sphinx-latex: 0 new, 0 known, 1 stale
+{
+  "ledger": "/private/tmp/tmpah00qym_/ledger.jsonl",
+  "written": 1,
+  "skipped": 0,
+  "entry": {
+    "ledger_schema_version": 1,
+    "run_key": "[fixture ledger SHA1 omitted]",
+    "recorded_at": "2026-10-09T01:46:22+00:00",
+    "input_docx": "/work/manual_en.docx",
+    "output_docx": "/work/manual_ko.docx",
+    "source_lang": "en",
+    "target_lang": "ko",
+    "units_total": 40,
+    "units_matched": 25,
+    "hit_rate": 0.625,
+    "change_count": 3
+  }
+}
+{
+  "runs": 1,
+  "runs_without_counters": 0,
+  "units_total": 40,
+  "units_matched": 25,
+  "hit_rate": 0.625,
+  "by_language_pair": {
+    "en->ko": {
+      "runs": 1,
+      "units_total": 40,
+      "units_matched": 25,
+      "hit_rate": 0.625
+    }
+  }
+}
+VOC receiver listening on 127.0.0.1:9198; fixed table table
+.usage: python3 -m unittest start [-h] [--runtime-dir RUNTIME_DIR] --profile
+                                 PROFILE --base BASE --table TABLE --origin
+                                 ORIGIN [--port PORT] [--preview]
+                                 [--cloudflare-tunnel]
+python3 -m unittest start: error: the following arguments are required: --profile
+...................................................................................................................................................[word_bundle_docx] boom; retrying with pandoc: /private/tmp/tmp5_d8i6vv/manual.docx
+[build-queue] Summary: processed=2 failed=0
+...................EEEEEEEE
+======================================================================
+ERROR: _wukong_bridge_contract_tests (unittest.loader._FailedTest._wukong_bridge_contract_tests)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: _wukong_bridge_contract_tests
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named '_wukong_bridge_contract_tests'
+
+
+======================================================================
+ERROR: _wukong_bridge_contract_tests (unittest.loader._FailedTest._wukong_bridge_contract_tests)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: _wukong_bridge_contract_tests
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named '_wukong_bridge_contract_tests'
+
+
+======================================================================
+ERROR: _wukong_bridge_contract_tests (unittest.loader._FailedTest._wukong_bridge_contract_tests)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: _wukong_bridge_contract_tests
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named '_wukong_bridge_contract_tests'
+
+
+======================================================================
+ERROR: _wukong_bridge_contract_tests (unittest.loader._FailedTest._wukong_bridge_contract_tests)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: _wukong_bridge_contract_tests
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named '_wukong_bridge_contract_tests'
+
+
+======================================================================
+ERROR: _wukong_bridge_contract_tests (unittest.loader._FailedTest._wukong_bridge_contract_tests)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: _wukong_bridge_contract_tests
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named '_wukong_bridge_contract_tests'
+
+
+======================================================================
+ERROR: _wukong_bridge_contract_tests (unittest.loader._FailedTest._wukong_bridge_contract_tests)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: _wukong_bridge_contract_tests
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named '_wukong_bridge_contract_tests'
+
+
+======================================================================
+ERROR: _wukong_bridge_contract_tests (unittest.loader._FailedTest._wukong_bridge_contract_tests)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: _wukong_bridge_contract_tests
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named '_wukong_bridge_contract_tests'
+
+
+======================================================================
+ERROR: _wukong_bridge_contract_tests (unittest.loader._FailedTest._wukong_bridge_contract_tests)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: _wukong_bridge_contract_tests
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named '_wukong_bridge_contract_tests'
+
+
+----------------------------------------------------------------------
+Ran 1739 tests in 1987.860s
+
+FAILED (errors=8, skipped=12)
+[publish-html-link] Updated publish metadata: /private/tmp/tmpqo2cryv0/reports/releases/JE-1000F/US/en/latest/publish_meta.json, /private/tmp/tmpqo2cryv0/reports/releases/JE-1000F/US/en/versions/0.2/publish_meta.json
+[publish-html-link] Updated rec_publish_1: HTML_link=https://manual.example.com/latest
+[publish-html-link] Updated rec_publish_2: HTML_link=https://manual.example.com/latest
+[web-publish-link] Updated metadata: /private/tmp/tmpkgfvgs79/JE-1000F/US/en/latest/web/publish_meta.json -> https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html
+[web-publish-link] PENDING rec_pending_1: HTML_link registration deferred to the post-deploy receipt lane (https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html)
+[web-publish-link] PENDING rec_pending_2: HTML_link registration deferred to the post-deploy receipt lane (https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html)
+[web-receipt] WROTE rec_web_1: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] WROTE rec_web_2: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] registered: 2 written, 0 already registered across 1 registrable target(s) (verify verified after 3 attempt(s))
+[web-receipt] WROTE rec_web_1: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] WROTE rec_web_2: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] registered: 2 written, 0 already registered across 1 registrable target(s) (verify verified after 1 attempt(s))
+[web-receipt] WROTE rec_web_1: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] WROTE rec_web_2: HTML_link=https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html (readback verified)
+[web-receipt] registered: 2 written, 0 already registered across 1 registrable target(s) (verify verified after 1 attempt(s))

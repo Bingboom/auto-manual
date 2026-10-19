@@ -1,0 +1,43 @@
+{
+  "package": {
+    "files": 29,
+    "mismatches": []
+  },
+  "html": {
+    "files": 58,
+    "mismatches": []
+  },
+  "evidence": {
+    "files": 27,
+    "mismatches": []
+  },
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "semantic_pages_match": true,
+  "block_counts_match": true,
+  "shared_assets": {
+    "count": 18,
+    "mismatches": []
+  },
+  "independent_structure_differences": 9,
+  "browser": {
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "decoded_images": 22,
+    "document_overflow": false,
+    "broken_article_anchors": [],
+    "lcd_mobile_top": 95.9375,
+    "lcd_desktop_top": 63.8671875,
+    "warranty_long_title_top": 101.3046875,
+    "warranty_long_title_bottom": 142.359375,
+    "warranty_body_top": 147.15625,
+    "troubleshooting_scroll_left": 286,
+    "table_width": 640,
+    "table_container_width": 354
+  }
+}

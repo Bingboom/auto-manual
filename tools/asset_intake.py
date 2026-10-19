@@ -13,6 +13,9 @@ if __package__ in {None, ""}:
 
 from tools.asset_pipeline import AssetIntakeError, load_recipe, run_intake
 from tools.asset_pipeline.package import result_summary
+from tools.utils.log import get_logger
+
+_ERR = get_logger("asset_intake", stream="stderr")
 
 
 def _resolve_path(value: str | Path, *, repo_root: Path) -> Path:
@@ -66,7 +69,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         run_asset_intake(args, repo_root=Path(__file__).resolve().parents[1])
     except AssetIntakeError as exc:
-        print(f"[asset_intake] ERROR: {exc}", file=sys.stderr)
+        _ERR.error(f"[asset_intake] ERROR: {exc}")
         return 1
     return 0
 

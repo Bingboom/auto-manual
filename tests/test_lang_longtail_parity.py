@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import unittest
 
-from tools import build_docs, build_docs_shared, content_lint, localized_copy
+from tools import content_lint, localized_copy
+from tools.build import docs as build_docs, docs_shared as build_docs_shared
 from tools import lang_registry, signal_words
-from tools.check_docs import _pick_spec_value
+from tools.check.docs import _pick_spec_value
 from tools.idml import loaders
 from tools.idml.page_toc import _LANG_HEADERS
 from tools.manual_copy_source import TM_LANGUAGE_FIELDS
@@ -162,7 +163,7 @@ class LanguageLongTailParityTest(unittest.TestCase):
         for spec in lang_registry.LANGUAGE_REGISTRY:
             if not spec.sync_enabled:
                 with self.subTest(offline_language=spec.code):
-                    self.assertIn(spec.code, expected_labels)
+                    self.assertIn(spec.code.casefold(), expected_labels)
                     self.assertIsNone(lang_registry.idml_language_pack(spec.code))
                     self.assertNotIn(spec.code, lang_registry.governed_languages())
 
@@ -178,7 +179,7 @@ class LanguageLongTailParityTest(unittest.TestCase):
             for alias in spec.aliases
         }
         self.assertEqual(set(TM_LANGUAGE_FIELDS), sync_aliases)
-        self.assertEqual(aliases - sync_aliases, {"pt", "nl", "pl"})
+        self.assertEqual(aliases - sync_aliases, {"pt", "nl", "pl", "zh-tw", "zh_tw", "zh-hant"})
         self.assertEqual(signal_words._SUPPORTED_LANGS, aliases)
         self.assertEqual(
             set(localized_copy._LANG_TEXT_COLUMNS),

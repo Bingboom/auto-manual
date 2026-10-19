@@ -1,0 +1,366 @@
+[
+  {
+    "art": {
+      "loaded": true,
+      "src": "../../../../_static/manual-assets/_pool/6d/6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2.png"
+    },
+    "bodyBorder": "0px",
+    "bounds": [
+      {
+        "inside": true,
+        "scrollWidth": 18,
+        "text": "3s",
+        "width": 17.7109375
+      },
+      {
+        "inside": true,
+        "scrollWidth": 212,
+        "text": "Main power button",
+        "width": 211.90625
+      },
+      {
+        "inside": true,
+        "scrollWidth": 212,
+        "text": "AC power button",
+        "width": 211.90625
+      },
+      {
+        "inside": true,
+        "scrollWidth": 261,
+        "text": "On/Off\nPress and hold for 3s",
+        "width": 260.8046875
+      },
+      {
+        "inside": true,
+        "scrollWidth": 783,
+        "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.\nTo disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.\nWhen powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.",
+        "width": 783.03125
+      }
+    ],
+    "duration": [
+      {
+        "display": "block",
+        "extraIcon": "none",
+        "text": "3s"
+      }
+    ],
+    "energyComponents": 1,
+    "frame": {
+      "borders": [
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ],
+      "radius": "9.92px"
+    },
+    "labels": [
+      "Main power button",
+      "AC power button",
+      "On/Off\nPress and hold for 3s"
+    ],
+    "onOffWeight": "700",
+    "operations": 4,
+    "pageWidth": 1440,
+    "priorArt": [
+      "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png",
+      "../../../../_static/manual-assets/_pool/e7/e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619.png",
+      "../../../../_static/manual-assets/_pool/26/265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19.png"
+    ],
+    "support": [
+      {
+        "font": "16px",
+        "scrollWidth": 745,
+        "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.",
+        "width": 744.640625
+      },
+      {
+        "font": "16px",
+        "scrollWidth": 745,
+        "text": "To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.",
+        "width": 744.640625
+      },
+      {
+        "font": "16px",
+        "scrollWidth": 745,
+        "text": "When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.",
+        "width": 744.640625
+      }
+    ],
+    "supportBeforeArt": true,
+    "viewport": 1440
+  },
+  {
+    "art": {
+      "loaded": true,
+      "src": "../../../../_static/manual-assets/_pool/6d/6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2.png"
+    },
+    "bodyBorder": "0px",
+    "bounds": [
+      {
+        "inside": true,
+        "scrollWidth": 13,
+        "text": "3s",
+        "width": 13.1875
+      },
+      {
+        "inside": true,
+        "scrollWidth": 158,
+        "text": "Main power button",
+        "width": 157.8125
+      },
+      {
+        "inside": true,
+        "scrollWidth": 158,
+        "text": "AC power button",
+        "width": 157.8125
+      },
+      {
+        "inside": true,
+        "scrollWidth": 194,
+        "text": "On/Off\nPress and hold for 3s",
+        "width": 194.234375
+      },
+      {
+        "inside": true,
+        "scrollWidth": 586,
+        "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.\nTo disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.\nWhen powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.",
+        "width": 586.203125
+      }
+    ],
+    "duration": [
+      {
+        "display": "block",
+        "extraIcon": "none",
+        "text": "3s"
+      }
+    ],
+    "energyComponents": 1,
+    "frame": {
+      "borders": [
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ],
+      "radius": "9.92px"
+    },
+    "labels": [
+      "Main power button",
+      "AC power button",
+      "On/Off\nPress and hold for 3s"
+    ],
+    "onOffWeight": "700",
+    "operations": 4,
+    "pageWidth": 641,
+    "priorArt": [
+      "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png",
+      "../../../../_static/manual-assets/_pool/e7/e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619.png",
+      "../../../../_static/manual-assets/_pool/26/265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19.png"
+    ],
+    "support": [
+      {
+        "font": "16px",
+        "scrollWidth": 562,
+        "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.",
+        "width": 562.203125
+      },
+      {
+        "font": "16px",
+        "scrollWidth": 562,
+        "text": "To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.",
+        "width": 562.203125
+      },
+      {
+        "font": "16px",
+        "scrollWidth": 562,
+        "text": "When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.",
+        "width": 562.203125
+      }
+    ],
+    "supportBeforeArt": true,
+    "viewport": 641
+  },
+  {
+    "art": {
+      "loaded": true,
+      "src": "../../../../_static/manual-assets/_pool/6d/6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2.png"
+    },
+    "bodyBorder": "0px",
+    "bounds": [
+      {
+        "inside": true,
+        "scrollWidth": 8,
+        "text": "3s",
+        "width": 7.875
+      },
+      {
+        "inside": true,
+        "scrollWidth": 93,
+        "text": "Main power button",
+        "width": 92.5546875
+      },
+      {
+        "inside": true,
+        "scrollWidth": 93,
+        "text": "AC power button",
+        "width": 92.5546875
+      },
+      {
+        "inside": true,
+        "scrollWidth": 114,
+        "text": "On/Off\nPress and hold for 3s",
+        "width": 113.9140625
+      },
+      {
+        "inside": true,
+        "scrollWidth": 335,
+        "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.\nTo disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.\nWhen powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.",
+        "width": 335.203125
+      }
+    ],
+    "duration": [
+      {
+        "display": "block",
+        "extraIcon": "none",
+        "text": "3s"
+      }
+    ],
+    "energyComponents": 1,
+    "frame": {
+      "borders": [
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ],
+      "radius": "9.92px"
+    },
+    "labels": [
+      "Main power button",
+      "AC power button",
+      "On/Off\nPress and hold for 3s"
+    ],
+    "onOffWeight": "700",
+    "operations": 4,
+    "pageWidth": 390,
+    "priorArt": [
+      "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png",
+      "../../../../_static/manual-assets/_pool/e7/e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619.png",
+      "../../../../_static/manual-assets/_pool/26/265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19.png"
+    ],
+    "support": [
+      {
+        "font": "16px",
+        "scrollWidth": 311,
+        "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.",
+        "width": 311.203125
+      },
+      {
+        "font": "16px",
+        "scrollWidth": 311,
+        "text": "To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.",
+        "width": 311.203125
+      },
+      {
+        "font": "16px",
+        "scrollWidth": 311,
+        "text": "When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.",
+        "width": 311.203125
+      }
+    ],
+    "supportBeforeArt": true,
+    "viewport": 390
+  },
+  {
+    "art": {
+      "loaded": true,
+      "src": "../../../../_static/manual-assets/_pool/6d/6d67c9a092ac2ae9f9144403760601e1463243f6ccf2539aa3859308a2525de2.png"
+    },
+    "bodyBorder": "0px",
+    "bounds": [
+      {
+        "inside": true,
+        "scrollWidth": 8,
+        "text": "3s",
+        "width": 7.875
+      },
+      {
+        "inside": true,
+        "scrollWidth": 74,
+        "text": "Main power button",
+        "width": 74.359375
+      },
+      {
+        "inside": true,
+        "scrollWidth": 74,
+        "text": "AC power button",
+        "width": 74.359375
+      },
+      {
+        "inside": true,
+        "scrollWidth": 92,
+        "text": "On/Off\nPress and hold for 3s",
+        "width": 91.515625
+      },
+      {
+        "inside": true,
+        "scrollWidth": 265,
+        "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.\nTo disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.\nWhen powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.",
+        "width": 265.203125
+      }
+    ],
+    "duration": [
+      {
+        "display": "block",
+        "extraIcon": "none",
+        "text": "3s"
+      }
+    ],
+    "energyComponents": 1,
+    "frame": {
+      "borders": [
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ],
+      "radius": "9.92px"
+    },
+    "labels": [
+      "Main power button",
+      "AC power button",
+      "On/Off\nPress and hold for 3s"
+    ],
+    "onOffWeight": "700",
+    "operations": 4,
+    "pageWidth": 320,
+    "priorArt": [
+      "../../../../_static/manual-assets/_pool/68/6861a84beade703c40a0c2a589f02a8df7270577f85e7ed255982b6127c8aa24.png",
+      "../../../../_static/manual-assets/_pool/e7/e77d56eb6e5bcdcbacf8eb91329335312e54a50eae18dd68bae697f922c6a619.png",
+      "../../../../_static/manual-assets/_pool/26/265f7e2b0e74d5ab407b705d85d396347d7c6039fe0fa5b0ca60454a6b96ce19.png"
+    ],
+    "support": [
+      {
+        "font": "16px",
+        "scrollWidth": 241,
+        "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. If no device is connected or the connected device's power consumption is below a certain threshold (25W AC output or 2W USB output) for 12 hours, the product will automatically turn off the outputs. Please set the Energy Saving Mode duration in the Jackery App.",
+        "width": 241.203125
+      },
+      {
+        "font": "16px",
+        "scrollWidth": 241,
+        "text": "To disable the energy saving mode, press and hold both the AC power button and the main power button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output.",
+        "width": 241.203125
+      },
+      {
+        "font": "16px",
+        "scrollWidth": 241,
+        "text": "When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation.",
+        "width": 241.203125
+      }
+    ],
+    "supportBeforeArt": true,
+    "viewport": 320
+  }
+]

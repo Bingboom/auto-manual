@@ -9,7 +9,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from tools import rtd_deployment_receipt as receipt
+from tools.rtd import deployment_receipt as receipt
 from tools import verify_web_deployment_targets as verifier
 
 

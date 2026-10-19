@@ -1,0 +1,39 @@
+{
+  "schema_version": "manual-reviewed-publication-approval/v1",
+  "authorization": "MA-277",
+  "date": "2026-10-08",
+  "user_instruction": "封面 不要放进去网页版里面啊",
+  "candidate_source_commit": "5e1de68efb780b6a5c529b66e9f6544741c8642c",
+  "candidate_manifest_sha256": "79e5b9757997db3cab0639dff3946fdad31a6ae0599258e45c69723e0ecc7c46",
+  "original_source_sha256": "efb663e3b22fec90bb8d4f602cb830471360034d9ead9293168f708ce937c3be",
+  "model": "JE-1000E-WH",
+  "region": "JP",
+  "language": "ja",
+  "reviewed_markdown_sha256": "3f48213cc0f23cbed3db0374292bbe52beda24ecac708efc1d058f0fe721c1ba",
+  "reviewed_presentation_css_sha256": "5cffa7c23741eed96535925d60c039fb3a114c07d433b04c4dff5d36f01e737d",
+  "reviewed_chapters_sha256": "efbfaea54d0a31be350b823f83d67a02974a4db0568d57784181c46c7171a269",
+  "reviewed_component_requirements": {
+    "HB-SPECIAL-REFERENCE-FIGURE": 28,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-CALLOUT-STRIP": 13,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-YEARS": 1,
+    "HB-WARRANTY-SECTION": 6,
+    "HB-SPECIAL-APP": 2
+  },
+  "retained_boundaries": [
+    "Printed version unknown; filename V2.0/date remain provenance",
+    "Original technical/legal wording and F2/F6 glyph recoveries preserved",
+    "Four finished localized panels retain embedded captions and semantic companions",
+    "Shared Web callouts do not reproduce every PDF warning-row pictogram/frame"
+  ],
+  "decision": "Publish a new Web edition that excludes the whole printed cover only. Preserve the prior approved package and all remaining native copy/artwork; continue Git-only publication and CSS warning resource repair.",
+  "publication_instruction": "上线提交发布",
+  "reviewed_non_cover_chapters_sha256": "7b3bd50e1d4022ee95854c7334b6dd9a38ca976ed2aa9478971832a59e27d052"
+}

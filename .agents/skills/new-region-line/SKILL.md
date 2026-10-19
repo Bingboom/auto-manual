@@ -97,7 +97,7 @@ product name, warranty email, and compliance/symbol sets are the common gaps.
 python build.py check --config configs/config.<region>.yaml --model <MODEL> --region <REGION>
 python build.py check --config configs/config.us.yaml --model JE-1000F --region US   # regression
 python -m unittest
-python tools/check_maintainability_guardrails.py
+python -m tools.check_maintainability_guardrails
 ```
 
 If you changed hardcoded schema/expectations, update the matching tests

@@ -1,0 +1,57 @@
+[
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/warning_triangle.png",
+    "sha256": "24e567ffad0566246aab95bc86be386842af60454f7a4b5f1a5ac77ff37cbb8c",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/read_manual.png",
+    "sha256": "1d9fa89da31dca863889c2e051771a7094826814e249d41996b5d79d4bdc7586",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/electric_shock.png",
+    "sha256": "7638826b23242bfcf056c0d1508ea6b1b1462ada0099aa3196d7343185b7e30f",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/battery_charging.png",
+    "sha256": "85e5185e22e43a05dbbaa5892c404640db1a5faaee92cc60159a842056952ea6",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/explosive_material.png",
+    "sha256": "8de051db1a3a60dfdacf1fbcba7e3a00ae8d63820d0405b02698d8e3195a86f3",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/heavy_object.png",
+    "sha256": "5e156fb879ab9172aea4fd69d25785f58e879bb36448c15ff3df86026f76d96b",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/do_not_dismantle.png",
+    "sha256": "908c33c16c067b87c1b1dc5d6663f159ed88146bbb34b9cdbcfd172a59f9058c",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/no_open_flame.png",
+    "sha256": "460a4a9a19fd00579281005a860145b2de9ffcc10e22f9c48482bd21b84be3fc",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/keep_away_from_children.png",
+    "sha256": "45d63066ac4dfb875d049fd30fe85c33966b6ba401174c672f582d12722be200",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/li_ion.png",
+    "sha256": "f913a65f077499d5c60979c71003f852f6bff932874962ce2337bc31e8543e48",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  },
+  {
+    "legacy": "docs/templates/word_template/common_assets/symbols/weee.png",
+    "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+    "fresh_web": "withdrawn; rename/copy remains blocked"
+  }
+]

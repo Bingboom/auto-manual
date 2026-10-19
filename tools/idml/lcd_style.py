@@ -397,9 +397,10 @@ def fit_governed_row_heights(
         if weight_total <= 1e-9:
             weights[-1] = 1.0
             weight_total = 1.0
+        # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
         heights = [
             height + leftover * weight / weight_total
-            for height, weight in zip(heights, weights)
+            for height, weight in zip(heights, weights, strict=False)
         ]
 
     # IDML is intentionally kept at millipoint precision.  Correct rounding
@@ -408,7 +409,8 @@ def fit_governed_row_heights(
     correction = round(budget - sum(heights), 3)
     target = max(range(len(weights)), key=lambda index: weights[index])
     heights[target] = round(heights[target] + correction, 3)
-    if any(height + 1e-6 < minimum for height, minimum in zip(heights, minimums)):
+    # zip(strict=False): lengths come from separate layout inputs; keep the existing truncation
+    if any(height + 1e-6 < minimum for height, minimum in zip(heights, minimums, strict=False)):
         raise ValueError(
             f"LCD governed row rounding lost content fit for {lang}"
         )

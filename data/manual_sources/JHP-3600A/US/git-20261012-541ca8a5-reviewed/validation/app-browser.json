@@ -1,0 +1,1294 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Download the App and log in"
+        },
+        {
+          "marker": "none",
+          "text": "2. Add device"
+        },
+        {
+          "marker": "none",
+          "text": "3. Unbind the device"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notes"
+        }
+      ],
+      "download": {
+        "columns": [
+          {
+            "art": {
+              "height": 101.82726287841795,
+              "naturalHeight": 410,
+              "naturalWidth": 612,
+              "src": "assets/shared-app-store.png",
+              "width": 151.9965362548828,
+              "x": 458.6241455078125,
+              "y": -2392.560791015625
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 323.5937805175781,
+              "x": 458.6241455078125,
+              "y": -2392.560791015625
+            },
+            "rect": {
+              "height": 189.9045257568359,
+              "width": 323.5937805175781,
+              "x": 458.6241455078125,
+              "y": -2392.560791015625
+            },
+            "text": "Search for \"Jackery\" in Google Play or App Store to install the App. After that, you can register and log in."
+          },
+          {
+            "art": {
+              "height": 105.96788787841795,
+              "naturalHeight": 161,
+              "naturalWidth": 158,
+              "src": "assets/shared-app-qr.png",
+              "width": 103.99739837646484,
+              "x": 830.217041015625,
+              "y": -2392.560791015625
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 231.1415100097656,
+              "x": 830.217041015625,
+              "y": -2392.560791015625
+            },
+            "rect": {
+              "height": 189.9045257568359,
+              "width": 231.1415100097656,
+              "x": 830.217041015625,
+              "y": -2392.560791015625
+            },
+            "text": "Alternatively, scan the QR code below to download and install the App."
+          }
+        ],
+        "overflow": 0,
+        "rect": {
+          "height": 189.9045257568359,
+          "width": 602.73876953125,
+          "x": 458.6241455078125,
+          "y": -2392.560791015625
+        }
+      },
+      "headingCount": 28,
+      "missingImages": [],
+      "pageOverflow": 0,
+      "phones": {
+        "artSrc": "assets/app-phones-native-p22.svg",
+        "captions": [
+          {
+            "clipped": false,
+            "rect": {
+              "height": 19.38802146911621,
+              "width": 17.00520896911621,
+              "x": 660.9505615234375,
+              "y": -1668.381103515625
+            },
+            "text": "2.1"
+          },
+          {
+            "clipped": false,
+            "rect": {
+              "height": 19.38802146911621,
+              "width": 19.34461975097656,
+              "x": 842.1614990234375,
+              "y": -1669.0018310546875
+            },
+            "text": "2.2"
+          }
+        ],
+        "clientWidth": 337,
+        "figureMinWidth": "0px",
+        "figureWidth": 337,
+        "overflowStyle": "visible",
+        "rect": {
+          "height": 347.76910400390625,
+          "width": 337.482666015625,
+          "x": 591.25439453125,
+          "y": -1989.483642578125
+        },
+        "scrollWidth": 337
+      },
+      "plus": {
+        "clipped": false,
+        "complete": true,
+        "naturalWidth": 24,
+        "rect": {
+          "height": 20,
+          "width": 20,
+          "x": 575.43408203125,
+          "y": -2143.190185546875
+        },
+        "src": "assets/shared-app-plus.svg",
+        "step": {
+          "height": 25.273439407348633,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": -2144.96533203125
+        },
+        "stepText": "2.1 Click the button  to add your device;"
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 1280
+    },
+    {
+      "lang": "en",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Download the App and log in"
+        },
+        {
+          "marker": "none",
+          "text": "2. Add device"
+        },
+        {
+          "marker": "none",
+          "text": "3. Unbind the device"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notes"
+        }
+      ],
+      "download": {
+        "columns": [
+          {
+            "art": {
+              "height": 101.82726287841795,
+              "naturalHeight": 410,
+              "naturalWidth": 612,
+              "src": "assets/shared-app-store.png",
+              "width": 151.9965362548828,
+              "x": 15.99826431274414,
+              "y": -2412.2744140625
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 379.5573120117187,
+              "x": 15.99826431274414,
+              "y": -2412.2744140625
+            },
+            "rect": {
+              "height": 162.9166717529297,
+              "width": 379.5573120117187,
+              "x": 15.99826431274414,
+              "y": -2412.2744140625
+            },
+            "text": "Search for \"Jackery\" in Google Play or App Store to install the App. After that, you can register and log in."
+          },
+          {
+            "art": {
+              "height": 105.96788787841795,
+              "naturalHeight": 161,
+              "naturalWidth": 158,
+              "src": "assets/shared-app-qr.png",
+              "width": 103.99739837646484,
+              "x": 423.9974060058594,
+              "y": -2412.2744140625
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 271.1111145019531,
+              "x": 423.9974060058594,
+              "y": -2412.2744140625
+            },
+            "rect": {
+              "height": 162.9166717529297,
+              "width": 271.1111145019531,
+              "x": 423.9974060058594,
+              "y": -2412.2744140625
+            },
+            "text": "Alternatively, scan the QR code below to download and install the App."
+          }
+        ],
+        "overflow": 0,
+        "rect": {
+          "height": 162.9166717529297,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -2412.2744140625
+        }
+      },
+      "headingCount": 28,
+      "missingImages": [],
+      "pageOverflow": 0,
+      "phones": {
+        "artSrc": "assets/app-phones-native-p22.svg",
+        "captions": [
+          {
+            "clipped": false,
+            "rect": {
+              "height": 25.733509063720703,
+              "width": 22.57378578186035,
+              "x": 224.07553100585935,
+              "y": -1618.6719970703125
+            },
+            "text": "2.1"
+          },
+          {
+            "clipped": false,
+            "rect": {
+              "height": 25.733509063720703,
+              "width": 25.681425094604492,
+              "x": 464.6267700195313,
+              "y": -1619.49658203125
+            },
+            "text": "2.2"
+          }
+        ],
+        "clientWidth": 448,
+        "figureMinWidth": "0px",
+        "figureWidth": 448,
+        "overflowStyle": "visible",
+        "rect": {
+          "height": 461.6536560058594,
+          "width": 447.9991455078125,
+          "x": 131.5538330078125,
+          "y": -2044.92626953125
+        },
+        "scrollWidth": 448
+      },
+      "plus": {
+        "clipped": false,
+        "complete": true,
+        "naturalWidth": 24,
+        "rect": {
+          "height": 19.596355438232425,
+          "width": 19.596355438232425,
+          "x": 157.30035400390625,
+          "y": -2194.0234375
+        },
+        "src": "assets/shared-app-plus.svg",
+        "step": {
+          "height": 24.30555725097656,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -2195.568603515625
+        },
+        "stepText": "2.1 Click the button  to add your device;"
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 711
+    },
+    {
+      "lang": "en",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Download the App and log in"
+        },
+        {
+          "marker": "none",
+          "text": "2. Add device"
+        },
+        {
+          "marker": "none",
+          "text": "3. Unbind the device"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notes"
+        }
+      ],
+      "download": {
+        "columns": [
+          {
+            "art": {
+              "height": 101.82726287841795,
+              "naturalHeight": 410,
+              "naturalWidth": 612,
+              "src": "assets/shared-app-store.png",
+              "width": 151.9965362548828,
+              "x": 15.99826431274414,
+              "y": -2840.416748046875
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 199.5008850097656,
+              "x": 15.99826431274414,
+              "y": -2840.416748046875
+            },
+            "rect": {
+              "height": 200.72048950195312,
+              "width": 199.5008850097656,
+              "x": 15.99826431274414,
+              "y": -2840.416748046875
+            },
+            "text": "Search for \"Jackery\" in Google Play or App Store to install the App. After that, you can register and log in."
+          },
+          {
+            "art": {
+              "height": 105.96788787841795,
+              "naturalHeight": 161,
+              "naturalWidth": 158,
+              "src": "assets/shared-app-qr.png",
+              "width": 103.99739837646484,
+              "x": 231.49740600585935,
+              "y": -2840.416748046875
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 142.5043487548828,
+              "x": 231.49740600585935,
+              "y": -2840.416748046875
+            },
+            "rect": {
+              "height": 200.72048950195312,
+              "width": 142.5043487548828,
+              "x": 231.49740600585935,
+              "y": -2840.416748046875
+            },
+            "text": "Alternatively, scan the QR code below to download and install the App."
+          }
+        ],
+        "overflow": 0,
+        "rect": {
+          "height": 200.72048950195312,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -2840.416748046875
+        }
+      },
+      "headingCount": 28,
+      "missingImages": [],
+      "pageOverflow": 0,
+      "phones": {
+        "artSrc": "assets/app-phones-native-p22.svg",
+        "captions": [
+          {
+            "clipped": false,
+            "rect": {
+              "height": 20.564237594604492,
+              "width": 18.03819465637207,
+              "x": 89.93055725097656,
+              "y": -2046.0286865234375
+            },
+            "text": "2.1"
+          },
+          {
+            "clipped": false,
+            "rect": {
+              "height": 20.564237594604492,
+              "width": 20.52083396911621,
+              "x": 282.1614685058594,
+              "y": -2046.68408203125
+            },
+            "text": "2.2"
+          }
+        ],
+        "clientWidth": 358,
+        "figureMinWidth": "0px",
+        "figureWidth": 358,
+        "overflowStyle": "visible",
+        "rect": {
+          "height": 368.9149475097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -2386.65380859375
+        },
+        "scrollWidth": 358
+      },
+      "plus": {
+        "clipped": false,
+        "complete": true,
+        "naturalWidth": 24,
+        "rect": {
+          "height": 19.596355438232425,
+          "width": 19.596355438232425,
+          "x": 157.30035400390625,
+          "y": -2584.362060546875
+        },
+        "src": "assets/shared-app-plus.svg",
+        "step": {
+          "height": 24.30555725097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -2585.9072265625
+        },
+        "stepText": "2.1 Click the button  to add your device;"
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 390
+    },
+    {
+      "lang": "fr",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Télécharger l’application et se connecter"
+        },
+        {
+          "marker": "none",
+          "text": "2. Ajouter un appareil"
+        },
+        {
+          "marker": "none",
+          "text": "3. Dissocier l’appareil"
+        },
+        {
+          "marker": "none",
+          "text": "4. Remarques"
+        }
+      ],
+      "download": {
+        "columns": [
+          {
+            "art": {
+              "height": 101.82726287841795,
+              "naturalHeight": 410,
+              "naturalWidth": 612,
+              "src": "assets/shared-app-store.png",
+              "width": 151.9965362548828,
+              "x": 458.6241455078125,
+              "y": -2464.049560546875
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 323.5937805175781,
+              "x": 458.6241455078125,
+              "y": -2464.049560546875
+            },
+            "rect": {
+              "height": 211.50173950195312,
+              "width": 323.5937805175781,
+              "x": 458.6241455078125,
+              "y": -2464.049560546875
+            },
+            "text": "Recherchez « Jackery » dans Google Play ou dans l’App Store pour installer l’application. Une fois que c’est fait, vous pouvez vous inscrire et vous connecter."
+          },
+          {
+            "art": {
+              "height": 105.96788787841795,
+              "naturalHeight": 161,
+              "naturalWidth": 158,
+              "src": "assets/shared-app-qr.png",
+              "width": 103.99739837646484,
+              "x": 830.217041015625,
+              "y": -2464.049560546875
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 231.1415100097656,
+              "x": 830.217041015625,
+              "y": -2464.049560546875
+            },
+            "rect": {
+              "height": 211.50173950195312,
+              "width": 231.1415100097656,
+              "x": 830.217041015625,
+              "y": -2464.049560546875
+            },
+            "text": "Vous pouvez également scanner le code QR ci-dessous pour télécharger et installer l'application."
+          }
+        ],
+        "overflow": 0,
+        "rect": {
+          "height": 211.50173950195312,
+          "width": 602.73876953125,
+          "x": 458.6241455078125,
+          "y": -2464.049560546875
+        }
+      },
+      "headingCount": 28,
+      "missingImages": [],
+      "pageOverflow": 0,
+      "phones": {
+        "artSrc": "assets/app-phones-native-p42.svg",
+        "captions": [
+          {
+            "clipped": false,
+            "rect": {
+              "height": 18.78038215637207,
+              "width": 16.453994750976562,
+              "x": 664.8958740234375,
+              "y": -1705.7205810546875
+            },
+            "text": "2.1"
+          },
+          {
+            "clipped": false,
+            "rect": {
+              "height": 18.78038215637207,
+              "width": 18.697917938232425,
+              "x": 845.9158325195312,
+              "y": -1706.315185546875
+            },
+            "text": "2.2"
+          }
+        ],
+        "clientWidth": 324,
+        "figureMinWidth": "0px",
+        "figureWidth": 324,
+        "overflowStyle": "visible",
+        "rect": {
+          "height": 331.427978515625,
+          "width": 324.1970520019531,
+          "x": 597.89501953125,
+          "y": -2014.1016845703125
+        },
+        "scrollWidth": 324
+      },
+      "plus": {
+        "clipped": false,
+        "complete": true,
+        "naturalWidth": 24,
+        "rect": {
+          "height": 20,
+          "width": 20,
+          "x": 611.8663330078125,
+          "y": -2193.081787109375
+        },
+        "src": "assets/shared-app-plus.svg",
+        "step": {
+          "height": 25.273439407348633,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": -2194.85693359375
+        },
+        "stepText": "2.1 Cliquez sur le bouton  pour ajouter un appareil."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 1280
+    },
+    {
+      "lang": "fr",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Télécharger l’application et se connecter"
+        },
+        {
+          "marker": "none",
+          "text": "2. Ajouter un appareil"
+        },
+        {
+          "marker": "none",
+          "text": "3. Dissocier l’appareil"
+        },
+        {
+          "marker": "none",
+          "text": "4. Remarques"
+        }
+      ],
+      "download": {
+        "columns": [
+          {
+            "art": {
+              "height": 101.82726287841795,
+              "naturalHeight": 410,
+              "naturalWidth": 612,
+              "src": "assets/shared-app-store.png",
+              "width": 151.9965362548828,
+              "x": 15.99826431274414,
+              "y": -2464.205810546875
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 379.5573120117187,
+              "x": 15.99826431274414,
+              "y": -2464.205810546875
+            },
+            "rect": {
+              "height": 181.8185882568359,
+              "width": 379.5573120117187,
+              "x": 15.99826431274414,
+              "y": -2464.205810546875
+            },
+            "text": "Recherchez « Jackery » dans Google Play ou dans l’App Store pour installer l’application. Une fois que c’est fait, vous pouvez vous inscrire et vous connecter."
+          },
+          {
+            "art": {
+              "height": 105.96788787841795,
+              "naturalHeight": 161,
+              "naturalWidth": 158,
+              "src": "assets/shared-app-qr.png",
+              "width": 103.99739837646484,
+              "x": 423.9974060058594,
+              "y": -2464.205810546875
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 271.1111145019531,
+              "x": 423.9974060058594,
+              "y": -2464.205810546875
+            },
+            "rect": {
+              "height": 181.8185882568359,
+              "width": 271.1111145019531,
+              "x": 423.9974060058594,
+              "y": -2464.205810546875
+            },
+            "text": "Vous pouvez également scanner le code QR ci-dessous pour télécharger et installer l'application."
+          }
+        ],
+        "overflow": 0,
+        "rect": {
+          "height": 181.8185882568359,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -2464.205810546875
+        }
+      },
+      "headingCount": 28,
+      "missingImages": [],
+      "pageOverflow": 0,
+      "phones": {
+        "artSrc": "assets/app-phones-native-p42.svg",
+        "captions": [
+          {
+            "clipped": false,
+            "rect": {
+              "height": 25.954862594604492,
+              "width": 22.73871612548828,
+              "x": 224.14064025878903,
+              "y": -1651.8056640625
+            },
+            "text": "2.1"
+          },
+          {
+            "clipped": false,
+            "rect": {
+              "height": 25.954862594604492,
+              "width": 25.84201431274414,
+              "x": 474.2838745117187,
+              "y": -1652.6259765625
+            },
+            "text": "2.2"
+          }
+        ],
+        "clientWidth": 448,
+        "figureMinWidth": "0px",
+        "figureWidth": 448,
+        "overflowStyle": "visible",
+        "rect": {
+          "height": 457.9948120117187,
+          "width": 447.9991455078125,
+          "x": 131.5538330078125,
+          "y": -2077.955810546875
+        },
+        "scrollWidth": 448
+      },
+      "plus": {
+        "clipped": false,
+        "complete": true,
+        "naturalWidth": 24,
+        "rect": {
+          "height": 19.596355438232425,
+          "width": 19.596355438232425,
+          "x": 192.9991455078125,
+          "y": -2227.052978515625
+        },
+        "src": "assets/shared-app-plus.svg",
+        "step": {
+          "height": 24.30555725097656,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -2228.59814453125
+        },
+        "stepText": "2.1 Cliquez sur le bouton  pour ajouter un appareil."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 711
+    },
+    {
+      "lang": "fr",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Télécharger l’application et se connecter"
+        },
+        {
+          "marker": "none",
+          "text": "2. Ajouter un appareil"
+        },
+        {
+          "marker": "none",
+          "text": "3. Dissocier l’appareil"
+        },
+        {
+          "marker": "none",
+          "text": "4. Remarques"
+        }
+      ],
+      "download": {
+        "columns": [
+          {
+            "art": {
+              "height": 101.82726287841795,
+              "naturalHeight": 410,
+              "naturalWidth": 612,
+              "src": "assets/shared-app-store.png",
+              "width": 151.9965362548828,
+              "x": 15.99826431274414,
+              "y": -3104.527099609375
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 199.5008850097656,
+              "x": 15.99826431274414,
+              "y": -3104.527099609375
+            },
+            "rect": {
+              "height": 238.5243225097656,
+              "width": 199.5008850097656,
+              "x": 15.99826431274414,
+              "y": -3104.527099609375
+            },
+            "text": "Recherchez « Jackery » dans Google Play ou dans l’App Store pour installer l’application. Une fois que c’est fait, vous pouvez vous inscrire et vous connecter."
+          },
+          {
+            "art": {
+              "height": 105.96788787841795,
+              "naturalHeight": 161,
+              "naturalWidth": 158,
+              "src": "assets/shared-app-qr.png",
+              "width": 103.99739837646484,
+              "x": 231.49740600585935,
+              "y": -3104.527099609375
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 142.5043487548828,
+              "x": 231.49740600585935,
+              "y": -3104.527099609375
+            },
+            "rect": {
+              "height": 238.5243225097656,
+              "width": 142.5043487548828,
+              "x": 231.49740600585935,
+              "y": -3104.527099609375
+            },
+            "text": "Vous pouvez également scanner le code QR ci-dessous pour télécharger et installer l'application."
+          }
+        ],
+        "overflow": 0,
+        "rect": {
+          "height": 238.5243225097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -3104.527099609375
+        }
+      },
+      "headingCount": 28,
+      "missingImages": [],
+      "pageOverflow": 0,
+      "phones": {
+        "artSrc": "assets/app-phones-native-p42.svg",
+        "captions": [
+          {
+            "clipped": false,
+            "rect": {
+              "height": 20.742189407348633,
+              "width": 18.16840362548828,
+              "x": 89.98698425292969,
+              "y": -2199.5009765625
+            },
+            "text": "2.1"
+          },
+          {
+            "clipped": false,
+            "rect": {
+              "height": 20.742189407348633,
+              "width": 20.651042938232425,
+              "x": 289.87847900390625,
+              "y": -2200.16064453125
+            },
+            "text": "2.2"
+          }
+        ],
+        "clientWidth": 358,
+        "figureMinWidth": "0px",
+        "figureWidth": 358,
+        "overflowStyle": "visible",
+        "rect": {
+          "height": 365.9895935058594,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -2540.04345703125
+        },
+        "scrollWidth": 358
+      },
+      "plus": {
+        "clipped": false,
+        "complete": true,
+        "naturalWidth": 24,
+        "rect": {
+          "height": 19.596355438232425,
+          "width": 19.596355438232425,
+          "x": 192.9991455078125,
+          "y": -2810.66845703125
+        },
+        "src": "assets/shared-app-plus.svg",
+        "step": {
+          "height": 48.611114501953125,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": -2812.213623046875
+        },
+        "stepText": "2.1 Cliquez sur le bouton  pour ajouter un appareil."
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 390
+    },
+    {
+      "lang": "es",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Descargar la aplicación e iniciar sesión"
+        },
+        {
+          "marker": "none",
+          "text": "2. Añadir un dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "3. Desvincular el dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notas"
+        }
+      ],
+      "download": {
+        "columns": [
+          {
+            "art": {
+              "height": 101.82726287841795,
+              "naturalHeight": 410,
+              "naturalWidth": 612,
+              "src": "assets/shared-app-store.png",
+              "width": 151.9965362548828,
+              "x": 458.6241455078125,
+              "y": -2458.342041015625
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 323.5937805175781,
+              "x": 458.6241455078125,
+              "y": -2458.342041015625
+            },
+            "rect": {
+              "height": 211.50173950195312,
+              "width": 323.5937805175781,
+              "x": 458.6241455078125,
+              "y": -2458.342041015625
+            },
+            "text": "Buscar \"Jackery\" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarte e iniciar sesión."
+          },
+          {
+            "art": {
+              "height": 105.96788787841795,
+              "naturalHeight": 161,
+              "naturalWidth": 158,
+              "src": "assets/shared-app-qr.png",
+              "width": 103.99739837646484,
+              "x": 830.217041015625,
+              "y": -2458.342041015625
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 231.1415100097656,
+              "x": 830.217041015625,
+              "y": -2458.342041015625
+            },
+            "rect": {
+              "height": 211.50173950195312,
+              "width": 231.1415100097656,
+              "x": 830.217041015625,
+              "y": -2458.342041015625
+            },
+            "text": "Alternativamente, escanee el código QR a continuación para descargar e instalar la app."
+          }
+        ],
+        "overflow": 0,
+        "rect": {
+          "height": 211.50173950195312,
+          "width": 602.73876953125,
+          "x": 458.6241455078125,
+          "y": -2458.342041015625
+        }
+      },
+      "headingCount": 28,
+      "missingImages": [],
+      "pageOverflow": 0,
+      "phones": {
+        "artSrc": "assets/app-phones-native-p62.svg",
+        "captions": [
+          {
+            "clipped": false,
+            "rect": {
+              "height": 19.38802146911621,
+              "width": 17.00520896911621,
+              "x": 644.709228515625,
+              "y": -1700.74658203125
+            },
+            "text": "2.1"
+          },
+          {
+            "clipped": false,
+            "rect": {
+              "height": 19.38802146911621,
+              "width": 19.34461975097656,
+              "x": 860.2517700195312,
+              "y": -1701.3673095703125
+            },
+            "text": "2.2"
+          }
+        ],
+        "clientWidth": 360,
+        "figureMinWidth": "0px",
+        "figureWidth": 360,
+        "overflowStyle": "visible",
+        "rect": {
+          "height": 334.6658020019531,
+          "width": 360.26043701171875,
+          "x": 579.865478515625,
+          "y": -2008.3941650390625
+        },
+        "scrollWidth": 360
+      },
+      "plus": {
+        "clipped": false,
+        "complete": true,
+        "naturalWidth": 24,
+        "rect": {
+          "height": 20,
+          "width": 20,
+          "x": 749.0191040039062,
+          "y": -2187.374267578125
+        },
+        "src": "assets/shared-app-plus.svg",
+        "step": {
+          "height": 25.273439407348633,
+          "width": 657.5347290039062,
+          "x": 431.2283325195313,
+          "y": -2189.1494140625
+        },
+        "stepText": "2.1 Haga clic en el botón Añadir dispositivo ;"
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 1280
+    },
+    {
+      "lang": "es",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Descargar la aplicación e iniciar sesión"
+        },
+        {
+          "marker": "none",
+          "text": "2. Añadir un dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "3. Desvincular el dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notas"
+        }
+      ],
+      "download": {
+        "columns": [
+          {
+            "art": {
+              "height": 101.82726287841795,
+              "naturalHeight": 410,
+              "naturalWidth": 612,
+              "src": "assets/shared-app-store.png",
+              "width": 151.9965362548828,
+              "x": 15.99826431274414,
+              "y": -2490.759765625
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 379.5573120117187,
+              "x": 15.99826431274414,
+              "y": -2490.759765625
+            },
+            "rect": {
+              "height": 181.8185882568359,
+              "width": 379.5573120117187,
+              "x": 15.99826431274414,
+              "y": -2490.759765625
+            },
+            "text": "Buscar \"Jackery\" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarte e iniciar sesión."
+          },
+          {
+            "art": {
+              "height": 105.96788787841795,
+              "naturalHeight": 161,
+              "naturalWidth": 158,
+              "src": "assets/shared-app-qr.png",
+              "width": 103.99739837646484,
+              "x": 423.9974060058594,
+              "y": -2490.759765625
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 271.1111145019531,
+              "x": 423.9974060058594,
+              "y": -2490.759765625
+            },
+            "rect": {
+              "height": 181.8185882568359,
+              "width": 271.1111145019531,
+              "x": 423.9974060058594,
+              "y": -2490.759765625
+            },
+            "text": "Alternativamente, escanee el código QR a continuación para descargar e instalar la app."
+          }
+        ],
+        "overflow": 0,
+        "rect": {
+          "height": 181.8185882568359,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -2490.759765625
+        }
+      },
+      "headingCount": 28,
+      "missingImages": [],
+      "pageOverflow": 0,
+      "phones": {
+        "artSrc": "assets/app-phones-native-p62.svg",
+        "captions": [
+          {
+            "clipped": false,
+            "rect": {
+              "height": 24.11024475097656,
+              "width": 21.14583396911621,
+              "x": 212.1918487548828,
+              "y": -1697.6302490234375
+            },
+            "text": "2.1"
+          },
+          {
+            "clipped": false,
+            "rect": {
+              "height": 24.11024475097656,
+              "width": 24.05381965637207,
+              "x": 480.2257080078125,
+              "y": -1698.40283203125
+            },
+            "text": "2.2"
+          }
+        ],
+        "clientWidth": 448,
+        "figureMinWidth": "0px",
+        "figureWidth": 448,
+        "overflowStyle": "visible",
+        "rect": {
+          "height": 416.1719055175781,
+          "width": 447.9991455078125,
+          "x": 131.5538330078125,
+          "y": -2080.2041015625
+        },
+        "scrollWidth": 448
+      },
+      "plus": {
+        "clipped": false,
+        "complete": true,
+        "naturalWidth": 24,
+        "rect": {
+          "height": 19.596355438232425,
+          "width": 19.596355438232425,
+          "x": 327.3871765136719,
+          "y": -2253.60693359375
+        },
+        "src": "assets/shared-app-plus.svg",
+        "step": {
+          "height": 24.30555725097656,
+          "width": 679.1146240234375,
+          "x": 15.99826431274414,
+          "y": -2255.152099609375
+        },
+        "stepText": "2.1 Haga clic en el botón Añadir dispositivo ;"
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 711
+    },
+    {
+      "lang": "es",
+      "appTitles": [
+        {
+          "marker": "none",
+          "text": "1. Descargar la aplicación e iniciar sesión"
+        },
+        {
+          "marker": "none",
+          "text": "2. Añadir un dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "3. Desvincular el dispositivo"
+        },
+        {
+          "marker": "none",
+          "text": "4. Notas"
+        }
+      ],
+      "download": {
+        "columns": [
+          {
+            "art": {
+              "height": 101.82726287841795,
+              "naturalHeight": 410,
+              "naturalWidth": 612,
+              "src": "assets/shared-app-store.png",
+              "width": 151.9965362548828,
+              "x": 15.99826431274414,
+              "y": 243.3420257568359
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 199.5008850097656,
+              "x": 15.99826431274414,
+              "y": 243.3420257568359
+            },
+            "rect": {
+              "height": 219.62240600585935,
+              "width": 199.5008850097656,
+              "x": 15.99826431274414,
+              "y": 243.3420257568359
+            },
+            "text": "Buscar \"Jackery\" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarte e iniciar sesión."
+          },
+          {
+            "art": {
+              "height": 105.96788787841795,
+              "naturalHeight": 161,
+              "naturalWidth": 158,
+              "src": "assets/shared-app-qr.png",
+              "width": 103.99739837646484,
+              "x": 231.49740600585935,
+              "y": 243.3420257568359
+            },
+            "clipped": false,
+            "frame": {
+              "height": 111.9965362548828,
+              "width": 142.5043487548828,
+              "x": 231.49740600585935,
+              "y": 243.3420257568359
+            },
+            "rect": {
+              "height": 219.62240600585935,
+              "width": 142.5043487548828,
+              "x": 231.49740600585935,
+              "y": 243.3420257568359
+            },
+            "text": "Alternativamente, escanee el código QR a continuación para descargar e instalar la app."
+          }
+        ],
+        "overflow": 0,
+        "rect": {
+          "height": 219.62240600585935,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 243.3420257568359
+        }
+      },
+      "headingCount": 28,
+      "missingImages": [],
+      "pageOverflow": 0,
+      "phones": {
+        "artSrc": "assets/app-phones-native-p62.svg",
+        "captions": [
+          {
+            "clipped": false,
+            "rect": {
+              "height": 19.26649475097656,
+              "width": 16.89670181274414,
+              "x": 80.43402862548828,
+              "y": 1094.6441650390625
+            },
+            "text": "2.1"
+          },
+          {
+            "clipped": false,
+            "rect": {
+              "height": 19.26649475097656,
+              "width": 19.22309112548828,
+              "x": 294.6267395019531,
+              "y": 1094.02783203125
+            },
+            "text": "2.2"
+          }
+        ],
+        "clientWidth": 358,
+        "figureMinWidth": "0px",
+        "figureWidth": 358,
+        "overflowStyle": "visible",
+        "rect": {
+          "height": 332.5694580078125,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 788.9236450195312
+        },
+        "scrollWidth": 358
+      },
+      "plus": {
+        "clipped": false,
+        "complete": true,
+        "naturalWidth": 24,
+        "rect": {
+          "height": 19.596355438232425,
+          "width": 19.596355438232425,
+          "x": 327.3871765136719,
+          "y": 518.2986450195312
+        },
+        "src": "assets/shared-app-plus.svg",
+        "step": {
+          "height": 24.30555725097656,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 516.7534790039062
+        },
+        "stepText": "2.1 Haga clic en el botón Añadir dispositivo ;"
+      },
+      "trademarkSUP": 2,
+      "warrantyPanels": 6,
+      "width": 390
+    }
+  ],
+  "operator_acceptance": "pending combined review",
+  "gray_strip_resolution": "Native next-panel remnant removed with native phone-only source SVG; dense640px canvas removed separately."
+}

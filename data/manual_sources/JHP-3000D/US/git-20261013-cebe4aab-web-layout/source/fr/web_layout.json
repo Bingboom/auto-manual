@@ -1,0 +1,399 @@
+{
+ "schema_version": "jhp3000d-web-layout-changes/v1",
+ "language": "fr",
+ "approved_source": "../git-20261009-cebe4aab/source/fr/content.json",
+ "changes": [
+  {
+   "chapter": "*",
+   "action": "regular-state-words",
+   "removed": [
+    {
+     "chapter": "lcd",
+     "word": "Allumé",
+     "context": "Allumé : Wi-Fi connecté. Clignotant : Prêt à se connecter au Wi-Fi. Éteint : Wi-Fi déconnecté."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Clignotant",
+     "context": "Allumé : Wi-Fi connecté. Clignotant : Prêt à se connecter au Wi-Fi. Éteint : Wi-Fi déconnecté."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Éteint",
+     "context": "Allumé : Wi-Fi connecté. Clignotant : Prêt à se connecter au Wi-Fi. Éteint : Wi-Fi déconnecté."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Allumé",
+     "context": "Allumé : Bluetooth connecté. Clignotant : Prêt à se connecter au Bluetooth. Éteint : Bluetooth déconnecté."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Clignotant",
+     "context": "Allumé : Bluetooth connecté. Clignotant : Prêt à se connecter au Bluetooth. Éteint : Bluetooth déconnecté."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Éteint",
+     "context": "Allumé : Bluetooth connecté. Clignotant : Prêt à se connecter au Bluetooth. Éteint : Bluetooth déconnecté."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Allumé",
+     "context": "Allumé : Le bruit pendant la charge est considérablement réduit, tandis que la puissance de charge est diminuée et la vi"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Éteint",
+     "context": "Allumé : Le bruit pendant la charge est considérablement réduit, tandis que la puissance de charge est diminuée et la vi"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Allumé",
+     "context": "Allumé : Limite la capacité maximale utilisable de la batterie pour prolonger sa durée de vie. Éteint : Le mode d'économ"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Éteint",
+     "context": "Allumé : Limite la capacité maximale utilisable de la batterie pour prolonger sa durée de vie. Éteint : Le mode d'économ"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Allumé",
+     "context": "Allumé : La limite de puissance de charge est activée dans l'application Jackery. Éteint : La limite de puissance de cha"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Éteint",
+     "context": "Allumé : La limite de puissance de charge est activée dans l'application Jackery. Éteint : La limite de puissance de cha"
+    },
+    {
+     "chapter": "lcd",
+     "word": "On",
+     "context": "On: TOU mode is enabled (default backup SOC: 60%). During peak periods, when the stored energy exceeds the backup SOC, t"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Off",
+     "context": "On: TOU mode is enabled (default backup SOC: 60%). During peak periods, when the stored energy exceeds the backup SOC, t"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Allumé",
+     "context": "Allumé : Le produit est en mode bypass, durant lequel le temps de commutation de l'alimentation électrique du réseau à l"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Éteint",
+     "context": "Allumé : Le produit est en mode bypass, durant lequel le temps de commutation de l'alimentation électrique du réseau à l"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Allumé",
+     "context": "Allumé : Le niveau de la batterie est inférieur à 20 %. Clignotant : Le niveau de la batterie est inférieur à 5 %. Étein"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Clignotant",
+     "context": "Allumé : Le niveau de la batterie est inférieur à 20 %. Clignotant : Le niveau de la batterie est inférieur à 5 %. Étein"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Éteint",
+     "context": "Allumé : Le niveau de la batterie est inférieur à 20 %. Clignotant : Le niveau de la batterie est inférieur à 5 %. Étein"
+    },
+    {
+     "chapter": "lcd",
+     "word": "On",
+     "context": "On: A discharge timer is set. Off: No discharge timer is set. Activez/désactivez cette fonction dans l'application Jacke"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Off",
+     "context": "On: A discharge timer is set. Off: No discharge timer is set. Activez/désactivez cette fonction dans l'application Jacke"
+    },
+    {
+     "chapter": "lcd",
+     "word": "Allumé",
+     "context": "Allumé : Mode d'économie d'énergie activé. Éteint : Mode d'économie d'énergie désactivé."
+    },
+    {
+     "chapter": "lcd",
+     "word": "Éteint",
+     "context": "Allumé : Mode d'économie d'énergie activé. Éteint : Mode d'économie d'énergie désactivé."
+    },
+    {
+     "chapter": "operations",
+     "word": "allumé",
+     "context": "Lorsque le mode Économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton d'alim"
+    },
+    {
+     "chapter": "operations",
+     "word": "allumé",
+     "context": "Lorsque le mode Économie d'énergie est activé, le produit s'éteindra automatiquement après 12heures si le bouton d'alime"
+    }
+   ]
+  },
+  {
+   "chapter": "fcc",
+   "action": "unprinted-title-removed",
+   "title": "FCC",
+   "follows": "symbols"
+  },
+  {
+   "chapter": "safety",
+   "action": "print-pill-title",
+   "title": "INSTRUCTIONS D’UTILISATION"
+  },
+  {
+   "chapter": "safety",
+   "action": "plain-title",
+   "title": "INSTRUCTION DE MISE À LA TERRE"
+  },
+  {
+   "chapter": "safety",
+   "action": "print-pill-title",
+   "title": "INSTRUCTIONS D’ENTRETIEN PAR L’UTILISATEUR"
+  },
+  {
+   "chapter": "safety",
+   "action": "signal-lockup",
+   "label": "AVERTISSEMENT",
+   "bold_body": true,
+   "print_lines": 1
+  },
+  {
+   "chapter": "safety",
+   "action": "signal-lockup",
+   "label": "AVERTISSEMENT",
+   "bold_body": true,
+   "print_lines": 2
+  },
+  {
+   "chapter": "lcd",
+   "action": "lcd-icon-print-structure",
+   "description_line_breaks": 20,
+   "shared_numbers": [
+    "21"
+   ]
+  },
+  {
+   "chapter": "operations",
+   "action": "shared-auto-resume",
+   "page": 29,
+   "conditions": [
+    3,
+    4
+   ]
+  },
+  {
+   "chapter": "operations",
+   "action": "shared-key-combinations",
+   "page": 31,
+   "names": [
+    [
+     "Bouton d'alimentation principal",
+     "Bouton d'alimentation CA"
+    ],
+    [
+     "Bouton d'alimentation principal",
+     "Bouton d'alimentation CC/USB"
+    ],
+    [
+     "Bouton d'alimentation CC/USB",
+     "Bouton d'alimentation CA"
+    ]
+   ],
+   "reordered_rows": [
+    2,
+    3
+   ],
+   "hold_times": [
+    "3s",
+    "3s",
+    "1s"
+   ]
+  },
+  {
+   "chapter": "troubleshooting",
+   "action": "stacked-fault-codes",
+   "codes": [
+    "F0 / F1 / F2 / F3"
+   ]
+  },
+  {
+   "chapter": "warranty",
+   "action": "warranty-print-paragraphs",
+   "component": "HB-WARRANTY-SECTION"
+  },
+  {
+   "chapter": "specifications",
+   "action": "spec-value-print-lines",
+   "table": "PORTS D’ENTRÉE",
+   "values": [
+    "100-120 V~60 Hz, 15 A max. Mode dérivation① : 100-120 V~60 Hz, 15 A max. (réduit à 12 A après 3 h)",
+    "12-16 V⎓8 A max., double à 8 A max. 16-60 V⎓12 A max., double à 24 A, 1000 W max."
+   ]
+  },
+  {
+   "chapter": "specifications",
+   "action": "trademark-note"
+  },
+  {
+   "chapter": "app",
+   "action": "soft-wrap-joined",
+   "text": "Cliquez sur le bouton des paramètres en haut à droite de l’interface principale ",
+   "joined": "paramètres. Cliquez sur le bouton de dis"
+  },
+  {
+   "chapter": "ups",
+   "action": "print-paragraph-break",
+   "starts": [
+    "Connectez le produit à une prise murale ",
+    "Une alimentation sans interruption (ASI)",
+    "En cas de perte soudaine de l’alimentati",
+    "En mode UPS, le courant de sortie maxima"
+   ]
+  },
+  {
+   "chapter": "charging",
+   "action": "print-paragraph-break",
+   "starts": [
+    "L'énergie verte d'abord : nous préconiso",
+    "Quand la recharge par prise murale CA et"
+   ]
+  },
+  {
+   "chapter": "charging",
+   "action": "print-paragraph-break",
+   "starts": [
+    "Le Jackery HomePower 3000 dispose de deu",
+    "Si un seul port d’entrée DC8020 doit êtr"
+   ]
+  },
+  {
+   "chapter": "charging",
+   "action": "prose-pill",
+   "text": "Chargez complètement le produit avant sa première utilisatio"
+  },
+  {
+   "chapter": "safety",
+   "action": "shared-safety-two-columns",
+   "page": 22,
+   "label": "AVERTISSEMENT",
+   "items_left_right": [
+    [
+     6,
+     5
+    ],
+    [
+     5,
+     9
+    ]
+   ],
+   "left_column_head": "CONSERVEZ CES INSTRUCTIONS"
+  },
+  {
+   "chapter": "*",
+   "action": "print-emphasis",
+   "items": [
+    {
+     "chapter": "charging",
+     "text": "L'énergie verte d'abord : nous préconisons l'utilisation de l'énergie ",
+     "bold": [
+      "L'énergie verte d'abord :"
+     ]
+    },
+    {
+     "chapter": "contact",
+     "text": "hello@jackery.com www.jackery.com 1-888-502-2236 (US)",
+     "bold": [
+      "1-888-502-2236"
+     ]
+    }
+   ]
+  },
+  {
+   "chapter": "contact",
+   "action": "back-cover-card",
+   "company": "JACKERY INC."
+  },
+  {
+   "chapter": "operations",
+   "action": "standby-bubble-sentence-wrap",
+   "joined_before": [
+    "d’inactivité,"
+   ]
+  },
+  {
+   "chapter": "app",
+   "action": "native-app-screens",
+   "figure": "app_connect_result_steps",
+   "art": "assets/app-steps-2-3-to-2-5.png",
+   "replaced": "assets/app_connect_result_steps.png"
+  },
+  {
+   "chapter": "*",
+   "action": "reference-figures-rebound",
+   "figures": [
+    "native-pdf/page-10/power"
+   ]
+  }
+ ],
+ "copy_restorations": [
+  {
+   "chapter": "fcc",
+   "kind": "unprinted-title",
+   "approved": "FCC",
+   "pdf": null
+  },
+  {
+   "chapter": "operations",
+   "kind": "table-row-boundary",
+   "approved": [
+    "Mise sous tension/redémarrage après arrêt ou redémarrage",
+    "SOC de la batterie ≥ limite de décharge",
+    "+10% après avoir atteint la limite",
+    "Mise à niveau OTA terminée"
+   ],
+   "pdf": [
+    "Mise sous tension/redémarrage après arrêt ou redémarrage",
+    "SOC de la batterie ≥ limite de décharge +10% après avoir atteint la limite",
+    "",
+    "Mise à niveau OTA terminée"
+   ]
+  },
+  {
+   "chapter": "operations",
+   "kind": "button-name-order",
+   "approved": [
+    "Bouton d'alimentation CC/USB Bouton d'alimentation principal",
+    "Bouton d'alimentation CA Bouton d'alimentation CC/USB"
+   ],
+   "pdf": [
+    "Bouton d'alimentation principal | Bouton d'alimentation CC/USB",
+    "Bouton d'alimentation CC/USB | Bouton d'alimentation CA"
+   ]
+  },
+  {
+   "chapter": "operations",
+   "kind": "print-hold-times",
+   "approved": null,
+   "pdf": [
+    "3s",
+    "3s",
+    "1s"
+   ]
+  },
+  {
+   "chapter": "troubleshooting",
+   "kind": "fault-code-separators",
+   "approved": [
+    "F0 / F1 / F2 / F3"
+   ],
+   "pdf": [
+    "F0 | F1 | F2 | F3"
+   ]
+  }
+ ]
+}

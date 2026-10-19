@@ -1,0 +1,20 @@
+/* Source-local dimensions only; shared component geometry and tokens remain authoritative. */
+#furo-main-content .hb-reference-figure[data-reference-id="cover-unit"] { max-width: 12rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-control"] { max-width: 10rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="stand-installed"],
+#furo-main-content .hb-reference-figure[data-reference-id="wood-installed"] { max-width: 13rem; margin-inline: auto; }
+#furo-main-content .hb-reference-figure[data-reference-id="wood-installed"] .hb-reference-live-label { font-size: .65rem; }
+#furo-main-content .hb-reference-figure[data-reference-id="lcd-map"] .hb-reference-live-label { font-size: .8rem; }
+#furo-main-content .hb-callout-copy img { width: 1em; height: auto; vertical-align: middle; }
+
+/* Preserve native table semantics while making this Japanese source readable without panning. */
+@media (max-width: 760px) {
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] table,
+ #furo-main-content .hb-troubleshooting-composition[aria-label="エラーコード / 対処方法"] table { min-width: 0 !important; width: 100% !important; }
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] .hb-lcd-col-number { width: 8%; }
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] .hb-lcd-col-icon { width: 14%; }
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] .hb-lcd-col-name { width: 28%; }
+ #furo-main-content .hb-lcd-table-composition[aria-label="液晶画面"] .hb-lcd-col-description { width: 50%; }
+ #furo-main-content .hb-troubleshooting-composition[aria-label="エラーコード / 対処方法"] .hb-troubleshooting-col-code { width: 22%; }
+ #furo-main-content .hb-troubleshooting-composition[aria-label="エラーコード / 対処方法"] .hb-troubleshooting-col-measures { width: 78%; }
+}

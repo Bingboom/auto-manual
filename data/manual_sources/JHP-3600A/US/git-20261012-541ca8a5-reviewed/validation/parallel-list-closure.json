@@ -1,0 +1,35 @@
+{
+  "en": {
+    "selected_text_lines": 723,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "numbered_steps": 4,
+    "result_bullets": 2,
+    "native_wording_emphasis_and_artwork_unchanged": true,
+    "source_change_only_targeted_list_spacing": true,
+    "publication_eligible": false,
+    "fresh_rebuild_files_byte_identical": 110
+  },
+  "fr": {
+    "selected_text_lines": 874,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "numbered_steps": 4,
+    "result_bullets": 2,
+    "native_wording_emphasis_and_artwork_unchanged": true,
+    "source_change_only_targeted_list_spacing": true,
+    "publication_eligible": false,
+    "fresh_rebuild_files_byte_identical": 110
+  },
+  "es": {
+    "selected_text_lines": 863,
+    "missing_text_lines": 0,
+    "missing_resources": 0,
+    "numbered_steps": 4,
+    "result_bullets": 2,
+    "native_wording_emphasis_and_artwork_unchanged": true,
+    "source_change_only_targeted_list_spacing": true,
+    "publication_eligible": false,
+    "fresh_rebuild_files_byte_identical": 110
+  }
+}

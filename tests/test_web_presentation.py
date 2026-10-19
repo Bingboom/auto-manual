@@ -12,10 +12,10 @@ from bs4 import BeautifulSoup, Tag
 from PIL import Image
 
 from tools.component_specs.web_source import validate_web_callout_html
-from tools.web_callout_ir import render_callout_ir
-from tools.web_composite_manifest import load_web_composite_manifest
-from tools.web_composite_presentation import WebCompositeContext
-from tools.web_presentation import (
+from tools.web.callout_ir import render_callout_ir
+from tools.web.composite_manifest import load_web_composite_manifest
+from tools.web.composite_presentation import WebCompositeContext
+from tools.web.presentation import (
     _transform_product_overview,
     WebPresentationError,
     protect_web_callouts_for_pandoc,
@@ -26,7 +26,7 @@ from tools.web_presentation import (
     restore_web_inline_controls_after_pandoc,
     transform_web_fragment,
 )
-from tools.word_bundle_html import _convert_rst_fragment_to_html
+from tools.word.bundle_html import _convert_rst_fragment_to_html
 
 
 _ANNOTATED_FIGURE_RE = re.compile(
@@ -89,10 +89,10 @@ class WebPresentationTests(unittest.TestCase):
 
         with (
             patch(
-                "tools.web_presentation.resolve_overview_instance",
+                "tools.web.presentation.resolve_overview_instance",
                 return_value=resolved,
             ) as resolver,
-            patch("tools.web_presentation.transform_overview") as transform,
+            patch("tools.web.presentation.transform_overview") as transform,
         ):
             _transform_product_overview(
                 BeautifulSoup("<section></section>", "html.parser"),
@@ -257,6 +257,22 @@ class WebPresentationTests(unittest.TestCase):
         self.assertIn('data-callout-id="demo.label"', restored)
         self.assertIn('<svg class="hb-leader-layer">', restored)
 
+    def test_source_layout_guard_owns_nested_figures_and_preserves_neighbors(self):
+        markup = ('<h2>Screen</h2><div class="hb-device-actions">'
+                  '<img src="device.png"><figure class="hb-reference-composition">'
+                  '<table><tr><td>Screen Wake-Up</td></tr></table></figure>'
+                  '</div><p>After</p>')
+        protected, replacements = protect_web_figures_for_pandoc(markup)
+        self.assertEqual(1, len(replacements))
+        self.assertNotIn("Screen Wake-Up", protected)
+        token = next(iter(replacements))
+        pandoc_output = f"<h2>Screen</h2>\n{token}\n<p>After</p>"
+        restored = BeautifulSoup(restore_web_figures_after_pandoc(pandoc_output, replacements), "html.parser")
+        group = restored.select_one(".hb-device-actions")
+        self.assertIsNotNone(group.select_one("img"))
+        self.assertEqual("Screen Wake-Up", group.select_one("td").text)
+        self.assertEqual("After", group.find_next_sibling("p").text)
+
     def test_pandoc_guard_restores_inbox_composition(self) -> None:
         figure = (
             '<figure class="hb-inbox-composition"><ol class="hb-inbox-grid">'
@@ -269,6 +285,13 @@ class WebPresentationTests(unittest.TestCase):
         restored = restore_web_figures_after_pandoc(token, placeholders)
         self.assertIn('class="hb-inbox-composition"', restored)
         self.assertIn('class="hb-inbox-card"', restored)
+
+    def test_pandoc_guard_preserves_text_panel_and_list(self) -> None:
+        figure = '<figure class="hb-text-panel"><p>Storage</p><ul><li>1 month</li></ul></figure>'
+        protected, placeholders = protect_web_figures_for_pandoc(figure)
+        self.assertNotIn('<figure', protected)
+        restored = restore_web_figures_after_pandoc(next(iter(placeholders)), placeholders)
+        self.assertIn(figure, restored)
 
     def test_pandoc_guard_restores_reference_figure(self) -> None:
         figure = (
@@ -1028,9 +1051,10 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertTrue(
                     all(
                         badge.select_one(".hb-signal-icon").get("aria-hidden") == "true"
-                        for badge in table.select(".hb-signal-badge")
+                        for badge in table.select(".hb-signal-badge")[:2]
                     )
                 )
+                self.assertEqual(2, len(table.select(".hb-signal-icon")))
                 self.assertIsNone(table.find("col", attrs={"style": re.compile("width:")}))
                 self.assertFalse(any(node.get("style") for node in table.find_all(True)))
 

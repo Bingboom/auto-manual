@@ -1,0 +1,2825 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "scrollWidth": 1440,
+    "brokenImages": [],
+    "imageCount": 56,
+    "duplicateIds": [],
+    "sectionHeadings": [
+      "IMPORTANT SAFETY INFORMATION",
+      "MEANING OF SYMBOLS",
+      "WHAT’S IN THE BOX",
+      "PRODUCT OVERVIEW",
+      "LCD DISPLAY",
+      "OPERATIONS",
+      "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "CONNECTIONS",
+      "CHARGING",
+      "STORAGE",
+      "TROUBLESHOOTING",
+      "SPECIFICATIONS",
+      "GENERAL INFO",
+      "INPUT PORTS",
+      "OUTPUT PORTS",
+      "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "WARRANTY",
+      "APP SETUP",
+      "EU REGULATIONS"
+    ],
+    "tableScrolls": [],
+    "lcdRows": 23,
+    "lcdRowspans": [
+      "4",
+      "18"
+    ],
+    "appLabels": [
+      {
+        "text": "POWER Button",
+        "fontSize": "16px",
+        "rect": {
+          "left": 322.75,
+          "right": 445.296875,
+          "top": 435.984375,
+          "bottom": 455.984375
+        }
+      },
+      {
+        "text": "USB Power Button",
+        "fontSize": "16px",
+        "rect": {
+          "left": 322.75,
+          "right": 453.46875,
+          "top": 521.84375,
+          "bottom": 561.84375
+        }
+      },
+      {
+        "text": "AC Button",
+        "fontSize": "16px",
+        "rect": {
+          "left": 1033.578125,
+          "right": 1123.4375,
+          "top": 531.84375,
+          "bottom": 551.84375
+        }
+      }
+    ],
+    "errors": [],
+    "text_sha256": "2aeab5d033ae433db95095a0637e0dc5599488d15fad4031a6e328f72e0586b1",
+    "screenshots": [
+      {
+        "name": "01-important-safety-information.png",
+        "sha256": "ad503d303264cc4a5cbbcac9a96a8a4245454b63d0d7131b576bd049b2cfd501"
+      },
+      {
+        "name": "02-meaning-of-symbols.png",
+        "sha256": "936207e419b1a4ad58f29987cb99bb16cd26c3851a006044c5e5abfbf0979a3f"
+      },
+      {
+        "name": "03-what-s-in-the-box.png",
+        "sha256": "538d8dc62b43a21452d790abe49293d1800c6a046d4f4cddc17ac07a89a2b533"
+      },
+      {
+        "name": "04-product-overview.png",
+        "sha256": "5f81d3fce2c9ce3a42eda005325ff4d7aa2d38cac08633db5ff9d01008e19ab0"
+      },
+      {
+        "name": "05-lcd-display.png",
+        "sha256": "53fbcec94a58b825a9871525d594d60f18a1557b518da7c597e4d4e3ece81c7c"
+      },
+      {
+        "name": "06-operations.png",
+        "sha256": "cfea3e307da8ee28a31ee3d871cbe6c74a4c07e824ea2084c07ecbb3cf5aa162"
+      },
+      {
+        "name": "07-uninterruptible-power-supply-ups.png",
+        "sha256": "6cf5a9497eaadf1f987f1b62fe9993b5dc90ccb6e0831beb6333df137486c0f4"
+      },
+      {
+        "name": "08-connections.png",
+        "sha256": "ddf4dfb2fac9deb3b2178bb1ea2d8a1b265dc74be7c988e2f38b50348ea8eee1"
+      },
+      {
+        "name": "09-charging.png",
+        "sha256": "fec899faf346d9522e0390ff5ffdd308cbf260a929822674147b811e30ed3009"
+      },
+      {
+        "name": "10-storage.png",
+        "sha256": "73a05e16de1855bafe32b613341cddfd72e7573f69bdae2f2143fec6f760313a"
+      },
+      {
+        "name": "11-troubleshooting.png",
+        "sha256": "1d00c60d607cd6f283b9e126fa9f3f1a434240d2489e7129d82db168a778fa2d"
+      },
+      {
+        "name": "12-specifications.png",
+        "sha256": "2eae5f64e1f97a45563dc896a3cca29f834f24b1f62cb02bb7e31344a9d4e289"
+      },
+      {
+        "name": "13-general-info.png",
+        "sha256": "3c80e2d3610af9b922b43d3205fbe60b9ebeff45f1be75a66e73881890b93830"
+      },
+      {
+        "name": "13-warranty.png",
+        "sha256": "e3edfa022719917a3ae4cd08e4176b65b46c636d3fca6436f4452b325cd7746f"
+      },
+      {
+        "name": "14-app-setup.png",
+        "sha256": "d98353ddbd2257f514d22169985c7bacb026652db8c44d7409da3f842ece66b2"
+      },
+      {
+        "name": "14-input-ports.png",
+        "sha256": "48fba846aea66849b3c50ec80b5e58c5ab1cb5dd389f9d40cdf4b0d5ae097017"
+      },
+      {
+        "name": "15-eu-regulations.png",
+        "sha256": "1b09b857f6e21053e40eb4dd5eea3c544ff245dde19968ac44fa77ca03472b44"
+      },
+      {
+        "name": "15-output-ports.png",
+        "sha256": "709f6167b55c2617b7554e5145ed83eb6f7023eb1698ecc6615f2d0d1c026c7a"
+      },
+      {
+        "name": "16-environmental-operating-temperature.png",
+        "sha256": "f06aee4523cd44bb69b8a465f4442c90ffda473a1ed99af9e20a0f3d2daa2f40"
+      },
+      {
+        "name": "17-warranty.png",
+        "sha256": "257226cef1f3ff3c30835616c3a2166519f401981ebc6db61cff704789946c4c"
+      },
+      {
+        "name": "18-app-setup.png",
+        "sha256": "ef1c0c813cdcfc7f70848ffcc3356b53b6b1623452941a90727a99854bc1edc9"
+      },
+      {
+        "name": "19-eu-regulations.png",
+        "sha256": "28bcc8127d9d857b714d8c9fd390eda4fde8ea009c29c783002a03641ad53ff1"
+      },
+      {
+        "name": "app-controls.png",
+        "sha256": "b78ec3e88292caaa496de849f26ea4412daacfe881b6173e6f04876b8fb6089f"
+      },
+      {
+        "name": "full.png",
+        "sha256": "a730bbb7472f0f9a019bf1ca002ce1ab376083d55a2935797b22e9a95410191c"
+      }
+    ],
+    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review; main-power label typography/alignment superseded by main_power_alignment_review; USB/AC frame and prerequisite placement superseded by operation_frame_prerequisite_review",
+    "review_correction": {
+      "brokenImages": [],
+      "duplicateIds": [],
+      "h1": "IMPORTANT",
+      "imageCount": 56,
+      "scrollWidth": 1440,
+      "symbolImages": [
+        {
+          "height": 161,
+          "src": "assets/symbol-warning_triangle.png",
+          "width": 183
+        },
+        {
+          "height": 132,
+          "src": "assets/symbol-read_manual.png",
+          "width": 179
+        },
+        {
+          "height": 162,
+          "src": "assets/symbol-do_not_dismantle.png",
+          "width": 162
+        },
+        {
+          "height": 161,
+          "src": "assets/symbol-no_open_flame.png",
+          "width": 162
+        },
+        {
+          "height": 162,
+          "src": "assets/symbol-keep_away_from_children.png",
+          "width": 162
+        },
+        {
+          "height": 170,
+          "src": "assets/symbol-li_ion.png",
+          "width": 148
+        },
+        {
+          "height": 519,
+          "src": "assets/symbol-battery_disposal.png",
+          "width": 492
+        },
+        {
+          "height": 200,
+          "src": "assets/symbol-weee.png",
+          "width": 135
+        }
+      ],
+      "symbolTables": [
+        {
+          "height": 627.1171875,
+          "left": 316.59375,
+          "top": -16288.09375,
+          "width": 396.515625
+        },
+        {
+          "height": 612.7578125,
+          "left": 733.109375,
+          "top": -16288.09375,
+          "width": 396.515625
+        }
+      ],
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "text_sha256": "ce2189075620d549dad2fb00aaef5640eb480c9c7447beec0eb74caa524e6384",
+      "screenshots": [
+        {
+          "name": "review-introduction-1440.png",
+          "sha256": "32603d2a17671d860291165dda4499a91a55a429ccbae061ddb6c622aa2ead3e"
+        },
+        {
+          "name": "review-symbols-1440.png",
+          "sha256": "bde996e05ba307435c232b5caa12dbe0d2414151b2931deb2508a817d9eb4d74"
+        }
+      ],
+      "scope": "IMPORTANT chapter title and eight shared semantic Symbols; whole-document load, text and overflow checks"
+    },
+    "operation_background_review": {
+      "brokenImages": [],
+      "duplicateIds": [],
+      "h1": "IMPORTANT",
+      "imageCount": 56,
+      "operationImages": [
+        {
+          "loaded": true,
+          "src": "assets/operation-main-power.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/operation-dc-usb-output.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/operation-ac-output.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/operation-energy-saving.png"
+        }
+      ],
+      "prerequisiteOverlays": 0,
+      "prerequisiteParagraphs": [
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "insideFigure": false,
+          "text": "Prerequisite: The product is turned on."
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "insideFigure": false,
+          "text": "Prerequisite: The product is turned on."
+        }
+      ],
+      "scrollWidth": 1440,
+      "symbolImages": [
+        {
+          "loaded": true,
+          "src": "assets/symbol-warning_triangle.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-read_manual.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-do_not_dismantle.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-no_open_flame.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-keep_away_from_children.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-li_ion.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-battery_disposal.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-weee.png"
+        }
+      ],
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "clocks": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "caption": "Off: Press and hold for 3s",
+          "containsImage": false,
+          "display": "block",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 17.8828125,
+          "hidden": "true",
+          "width": 17.8828125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "caption": "On/Off: Press and hold for 3s",
+          "containsImage": false,
+          "display": "block",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 17.8828125,
+          "hidden": "true",
+          "width": 17.8828125
+        }
+      ],
+      "errors": [],
+      "text_sha256": "ce2189075620d549dad2fb00aaef5640eb480c9c7447beec0eb74caa524e6384",
+      "screenshots": [
+        {
+          "name": "operation-background-ac-1440.png",
+          "sha256": "a8b75b75c62083a38743f14538923010328b9e0d1e46928eb8769218001a186b"
+        },
+        {
+          "name": "operation-background-energy-1440.png",
+          "sha256": "38ad76414c004c11fa271a0f441d3d5acbbbb788291d5525d5319c618f441741"
+        },
+        {
+          "name": "operation-background-power-1440.png",
+          "sha256": "4d6c404d3da8925f9da28d903670673722c82ac4b686f47a70634998d97e5609"
+        }
+      ],
+      "scope": "Four operation panels: five explanatory gray boxes and two baked clocks removed; CSS-only inline clocks follow long-press copy; native prerequisites outside artwork. Whole-document image/text/overflow checks."
+    },
+    "style_restoration_review": {
+      "appBullets": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "1. Download the App and log in¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "2. Add device¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "3. Unbind the device¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "4. Notes¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "4.1 To turn on Wi-Fi & Bluetooth:¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "4.2 To turn off Wi-Fi & Bluetooth:¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "4.3 To reset Wi-Fi & Bluetooth:¶"
+        }
+      ],
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "17.6333px",
+          "color": "rgb(255, 255, 255)",
+          "left": 598.09375,
+          "right": 742.421875,
+          "text": "SOLD SEPARATELY",
+          "topRadius": "17.6333px",
+          "weight": "700",
+          "width": 144.328125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "17.6333px",
+          "color": "rgb(255, 255, 255)",
+          "left": 592.5234375,
+          "right": 736.8515625,
+          "text": "SOLD SEPARATELY",
+          "topRadius": "17.6333px",
+          "weight": "700",
+          "width": 144.328125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "17.6333px",
+          "color": "rgb(255, 255, 255)",
+          "left": 608.703125,
+          "right": 753.03125,
+          "text": "SOLD SEPARATELY",
+          "topRadius": "17.6333px",
+          "weight": "700",
+          "width": 144.328125
+        }
+      ],
+      "brokenImages": [],
+      "chapterBars": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "IMPORTANT¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "IMPORTANT SAFETY INFORMATION¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "MEANING OF SYMBOLS¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "WHAT’S IN THE BOX¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "PRODUCT OVERVIEW¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "LCD DISPLAY¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "OPERATIONS¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "UNINTERRUPTIBLE POWER SUPPLY (UPS)¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "CONNECTIONS¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "CHARGING¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "STORAGE¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "TROUBLESHOOTING¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "SPECIFICATIONS¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "WARRANTY¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "APP SETUP¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "9.92px",
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "text": "EU Regulations¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 842.8125
+        }
+      ],
+      "chapterCount": 16,
+      "clocks": [
+        {
+          "containsImage": false,
+          "hidden": "true"
+        },
+        {
+          "containsImage": false,
+          "hidden": "true"
+        }
+      ],
+      "duplicateIds": [],
+      "firstCharge": {
+        "background": "rgb(52, 48, 49)",
+        "bottomRadius": "19.2px",
+        "color": "rgb(255, 255, 255)",
+        "left": 314.59375,
+        "right": 657.1328125,
+        "text": "Fully charge the product before its first use.",
+        "topRadius": "19.2px",
+        "weight": "700",
+        "width": 342.5390625
+      },
+      "greenLead": {
+        "background": "rgba(0, 0, 0, 0)",
+        "bottomRadius": "0px",
+        "color": "rgb(52, 48, 49)",
+        "left": 314.59375,
+        "right": 451.859375,
+        "text": "Green energy first:",
+        "topRadius": "0px",
+        "weight": "700",
+        "width": 137.265625
+      },
+      "imageCount": 56,
+      "manualBullets": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "POWER ON/OFF¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "USB OUTPUT ON/OFF¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "AC OUTPUT ON/OFF¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "ENERGY SAVING MODE¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "LCD SCREEN¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "KEY COMBINATION¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "CONNECT TO BATTERY PACK(S) SOLD SEPARATELY"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "CHARGING VIA AC WALL OUTLET¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "CHARGING VIA SOLAR PANELS SOLD SEPARATELY"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "CHARGING VIA A CAR CHARGER SOLD SEPARATELY"
+        }
+      ],
+      "scrollWidth": 1440,
+      "storage": {
+        "background": "rgb(244, 243, 243)",
+        "bottomRadius": "20px",
+        "color": "rgb(52, 48, 49)",
+        "items": 3,
+        "left": 314.59375,
+        "right": 1157.40625,
+        "text": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:1 month: -20°C to 45°C (0-60%RH)3 months: 0°C to 45°C (0-60%RH)12 months: 0°C to 25°C (0-60%RH)If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+        "topRadius": "20px",
+        "weight": "400",
+        "width": 842.8125
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "errors": [],
+      "text_sha256": "b2eeba11d30f8c03c33d5efc87eecf97767df2a0534de004d840816a17004f31",
+      "screenshots": [
+        {
+          "name": "style-charging-1440.png",
+          "sha256": "a9369c8e84aff7e57aeec22087af1b1ff98a95bed69f9b7245cea1eb9f23654c"
+        },
+        {
+          "name": "style-connections-1440.png",
+          "sha256": "29ae838a41e3fdcb7c9780f4953fc70b832a4539f9e23d202bb9bcf0dec296c8"
+        },
+        {
+          "name": "style-storage-1440.png",
+          "sha256": "136393609056d71953918d67f16ca7d8d3db51fb2abb7def7b666b575042db57"
+        }
+      ],
+      "scope": "Source heading hierarchy, three SOLD SEPARATELY badges, first-charge pill, bold green-energy lead and storage panel; prior artwork/CSS clocks preserved."
+    },
+    "spec_warranty_app_review": {
+      "app": {
+        "downloads": [
+          {
+            "artCenter": 497.29296875,
+            "columnCenter": 497.296875,
+            "copyTop": 750.6953125,
+            "loaded": true,
+            "renderedHeight": 146.875,
+            "renderedWidth": 219.2421875,
+            "src": "assets/app-store.png"
+          },
+          {
+            "artCenter": 974.69921875,
+            "columnCenter": 974.703125,
+            "copyTop": 750.6953125,
+            "loaded": true,
+            "renderedHeight": 160.7734375,
+            "renderedWidth": 160.7734375,
+            "src": "assets/app-qr.png"
+          }
+        ],
+        "emphasis": [
+          {
+            "text": "POWER",
+            "weight": "700"
+          },
+          {
+            "text": "Icon Flashed",
+            "weight": "700"
+          }
+        ],
+        "headings": [
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 510.6953125,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H2",
+            "text": "1. Download the App and log in",
+            "textLeft": 314.59375,
+            "top": 488.8359375,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 893.9609375,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H2",
+            "text": "2. Add device",
+            "textLeft": 314.59375,
+            "top": 872.1015625,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3279.9375,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H2",
+            "text": "3. Unbind the device",
+            "textLeft": 314.59375,
+            "top": 3258.078125,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3408.65625,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H2",
+            "text": "4. Notes",
+            "textLeft": 314.59375,
+            "top": 3386.796875,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3446.3125,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H3",
+            "text": "4.1 To turn on Wi-Fi & Bluetooth:",
+            "textLeft": 314.59375,
+            "top": 3426.25,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3608.8984375,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H3",
+            "text": "4.2 To turn off Wi-Fi & Bluetooth:",
+            "textLeft": 314.59375,
+            "top": 3588.8359375,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 3746.2109375,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 314.59375,
+            "marker": "none",
+            "right": 1157.40625,
+            "tag": "H3",
+            "text": "4.3 To reset Wi-Fi & Bluetooth:",
+            "textLeft": 314.59375,
+            "top": 3726.1484375,
+            "transform": "none"
+          }
+        ],
+        "left": 314.59375,
+        "paragraphs": [
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 930.75,
+            "color": "rgb(52, 48, 49)",
+            "left": 314.59375,
+            "right": 1146.59375,
+            "tag": "P",
+            "text": "2.1 Click the button + to add your device;",
+            "top": 905.4765625,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 1020.6875,
+            "color": "rgb(52, 48, 49)",
+            "left": 314.59375,
+            "right": 1146.59375,
+            "tag": "P",
+            "text": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “Icon Flashed” button and allow the App to connect to nearby devices and open Bluetooth permissions.",
+            "top": 943.8671875,
+            "transform": "none"
+          }
+        ],
+        "step2": {
+          "background": "rgba(0, 0, 0, 0)",
+          "bottom": 893.9609375,
+          "color": "rgb(52, 48, 49)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "tag": "H2",
+          "text": "2. Add device",
+          "top": 872.1015625,
+          "transform": "none"
+        }
+      },
+      "brokenImages": [],
+      "chapters": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": -1960.921875,
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "tag": "H1",
+          "text": "SPECIFICATIONS",
+          "top": -2012.6328125,
+          "transform": "uppercase"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": -717.234375,
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "tag": "H1",
+          "text": "WARRANTY",
+          "top": -768.9453125,
+          "transform": "uppercase"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": 444.0390625,
+          "color": "rgb(255, 255, 255)",
+          "left": 314.59375,
+          "right": 1157.40625,
+          "tag": "H1",
+          "text": "APP SETUP",
+          "top": 392.328125,
+          "transform": "uppercase"
+        }
+      ],
+      "duplicateIds": [],
+      "imageCount": 56,
+      "scrollWidth": 1440,
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "warranty": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": -543.390625,
+          "bottom": -545.0546875,
+          "cardLeft": 314.59375,
+          "cardTop": -562.1875,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 520.9609375,
+          "tag": "H2",
+          "text": "Limited Warranty",
+          "top": -573.9453125,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": -378.6328125,
+          "bottom": -380.296875,
+          "cardLeft": 314.59375,
+          "cardTop": -397.4296875,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 513.4765625,
+          "tag": "H2",
+          "text": "Warranty Period",
+          "top": -409.1875,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": -137.6640625,
+          "bottom": -139.328125,
+          "cardLeft": 314.59375,
+          "cardTop": -156.4609375,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 460.84375,
+          "tag": "H2",
+          "text": "Exchange",
+          "top": -168.21875,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": -11.484375,
+          "bottom": -13.1484375,
+          "cardLeft": 314.59375,
+          "cardTop": -30.28125,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 666.1640625,
+          "tag": "H2",
+          "text": "Limited to Original Consumer Buyer",
+          "top": -42.0390625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 95.40625,
+          "bottom": 93.7421875,
+          "cardLeft": 314.59375,
+          "cardTop": 76.609375,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 463.8828125,
+          "tag": "H2",
+          "text": "Exclusions",
+          "top": 64.8515625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 313.125,
+          "bottom": 311.4609375,
+          "cardLeft": 314.59375,
+          "cardTop": 294.328125,
+          "color": "rgb(255, 255, 255)",
+          "left": 332.59375,
+          "position": "absolute",
+          "right": 548.3125,
+          "tag": "H2",
+          "text": "Interpretation Rights",
+          "top": 282.5703125,
+          "transform": "none"
+        }
+      ],
+      "errors": [],
+      "text_sha256": "b194a3bfd88a95cebb6dac4465c24fdd1ebd499e9416ef2e3b87338004615f0a",
+      "screenshots": [
+        {
+          "name": "final-sections-app-1440.png",
+          "sha256": "5b4142856fb9a78e3730d7d02cf0c3f46db37d59e87780a1d82f5f55d604c11b"
+        },
+        {
+          "name": "final-sections-specifications-1440.png",
+          "sha256": "e128fe7150222b9fdb9056c6f144fba8b873611abc562fcf7212d7eb3e853c62"
+        },
+        {
+          "name": "final-sections-warranty-1440.png",
+          "sha256": "f45d0dce538aee320300807fbeb74a8b9175708a5a119f8085a943d47ebb0315"
+        }
+      ],
+      "scope": "Specifications/Warranty/App: dark chapter bands, six floating warranty labels, numbered App heading case/text-edge alignment, two emphasized control names and two naturally loaded download images."
+    },
+    "main_power_alignment_review": {
+      "brokenImages": [],
+      "clocks": [
+        {
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "bottom": 214.703125,
+          "containsImage": false,
+          "fontSize": "12.6422px",
+          "fontWeight": "400",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 13.90625,
+          "hidden": "true",
+          "left": 1068.4609375,
+          "lineHeight": "13.9064px",
+          "right": 1082.3671875,
+          "text": "",
+          "top": 200.796875,
+          "width": 13.90625
+        },
+        {
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "bottom": 2563.484375,
+          "containsImage": false,
+          "fontSize": "16.772px",
+          "fontWeight": "400",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 18.4453125,
+          "hidden": "true",
+          "left": 796.1953125,
+          "lineHeight": "19.4555px",
+          "right": 814.640625,
+          "text": "",
+          "top": 2545.0390625,
+          "width": 18.4453125
+        }
+      ],
+      "duplicateIds": [],
+      "imageCount": 56,
+      "main": {
+        "art": {
+          "bottom": 532.8203125,
+          "height": 465.546875,
+          "left": 314.59375,
+          "right": 1157.40625,
+          "top": 67.2734375,
+          "width": 842.8125
+        },
+        "steps": [
+          {
+            "instruction": {
+              "bottom": 146.3515625,
+              "fontSize": "12.6422px",
+              "fontWeight": "400",
+              "height": 13.8984375,
+              "left": 946.03125,
+              "lineHeight": "13.9064px",
+              "right": 1135.9921875,
+              "text": "Press once",
+              "top": 132.453125,
+              "width": 189.9609375
+            },
+            "label": {
+              "bottom": 132.453125,
+              "fontSize": "23.5987px",
+              "fontWeight": "700",
+              "height": 25.9609375,
+              "left": 946.03125,
+              "lineHeight": "25.9586px",
+              "right": 1135.9921875,
+              "text": "On",
+              "top": 106.4921875,
+              "width": 189.9609375
+            }
+          },
+          {
+            "instruction": {
+              "bottom": 214.703125,
+              "fontSize": "12.6422px",
+              "fontWeight": "400",
+              "height": 13.90625,
+              "left": 946.03125,
+              "lineHeight": "13.9064px",
+              "right": 1135.9921875,
+              "text": "Press and hold for 3s",
+              "top": 200.796875,
+              "width": 189.9609375
+            },
+            "label": {
+              "bottom": 200.796875,
+              "fontSize": "23.5987px",
+              "fontWeight": "700",
+              "height": 25.9609375,
+              "left": 946.03125,
+              "lineHeight": "25.9586px",
+              "right": 1135.9921875,
+              "text": "Off",
+              "top": 174.8359375,
+              "width": 189.9609375
+            }
+          }
+        ],
+        "support": [
+          {
+            "bottom": 415.0859375,
+            "fontSize": "16.772px",
+            "fontWeight": "400",
+            "height": 98.9921875,
+            "left": 710.578125,
+            "lineHeight": "19.4555px",
+            "right": 1109.234375,
+            "text": "Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App.",
+            "top": 316.09375,
+            "width": 398.65625
+          },
+          {
+            "bottom": 498.03125,
+            "fontSize": "16.772px",
+            "fontWeight": "400",
+            "height": 58.859375,
+            "left": 365.421875,
+            "lineHeight": "19.4555px",
+            "right": 1125.2890625,
+            "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+            "top": 439.171875,
+            "width": 759.8671875
+          }
+        ]
+      },
+      "scrollWidth": 1440,
+      "usb": {
+        "steps": [
+          {
+            "instruction": {
+              "bottom": 744.8671875,
+              "fontSize": "12.6122px",
+              "fontWeight": "400",
+              "height": 13.8671875,
+              "left": 1013.4609375,
+              "lineHeight": "13.8734px",
+              "right": 1147.984375,
+              "text": "Press once",
+              "top": 731,
+              "width": 134.5234375
+            },
+            "label": {
+              "bottom": 731,
+              "fontSize": "23.5427px",
+              "fontWeight": "700",
+              "height": 25.890625,
+              "left": 1013.4609375,
+              "lineHeight": "25.897px",
+              "right": 1147.984375,
+              "text": "On",
+              "top": 705.109375,
+              "width": 134.5234375
+            }
+          },
+          {
+            "instruction": {
+              "bottom": 812.7734375,
+              "fontSize": "12.6122px",
+              "fontWeight": "400",
+              "height": 13.8671875,
+              "left": 1013.4609375,
+              "lineHeight": "13.8734px",
+              "right": 1147.984375,
+              "text": "Press once",
+              "top": 798.90625,
+              "width": 134.5234375
+            },
+            "label": {
+              "bottom": 798.90625,
+              "fontSize": "23.5427px",
+              "fontWeight": "700",
+              "height": 25.890625,
+              "left": 1013.4609375,
+              "lineHeight": "25.897px",
+              "right": 1147.984375,
+              "text": "Off",
+              "top": 773.015625,
+              "width": 134.5234375
+            }
+          }
+        ]
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "errors": [],
+      "text_sha256": "5f3b6d500057c4780a5a7a6f9ced58f50cdcbdcb130962c36475c11d327fc7ba",
+      "screenshots": [
+        {
+          "name": "power-alignment-1440.png",
+          "sha256": "6da07fa22f7311be6b9b37b3232eef0eb9cede297730baa9945000499cda333b"
+        }
+      ],
+      "scope": "Main-power shared On/Off typography, common text left edge, native bracket-arm title centers, CSS clock after long-press instruction; mobile readable stacked text. Fresh whole-document image/text/overflow check after main sync."
+    },
+    "operation_frame_prerequisite_review": {
+      "outsidePrerequisites": [],
+      "panels": [
+        {
+          "art": {
+            "bottom": 492.984375,
+            "height": 425.4140625,
+            "left": 314.59375,
+            "right": 1157.40625,
+            "top": 67.5703125,
+            "width": 842.8125
+          },
+          "artLoaded": true,
+          "artSrc": "assets/operation-dc-usb-output.png",
+          "bodyWeight": "400",
+          "fill": "rgb(235, 235, 236)",
+          "fontSize": "15.592px",
+          "id": "dc-usb-output",
+          "insideArt": true,
+          "pill": {
+            "bottom": 124.953125,
+            "height": 36.6328125,
+            "left": 346.078125,
+            "right": 689.140625,
+            "top": 88.3203125,
+            "width": 343.0625
+          },
+          "pillRadius": "999px",
+          "prefix": "Prerequisite:",
+          "prefixWeight": "700",
+          "stageBorder": "0px",
+          "stageRadius": "0px",
+          "text": "Prerequisite: The product is turned on.",
+          "textBounds": {
+            "bottom": 115.8125,
+            "left": 362.0859375,
+            "right": 633.875,
+            "top": 97.3125
+          },
+          "wrapper": "true",
+          "artwork_intersection": {
+            "sample_box_px": [
+              47,
+              31,
+              560,
+              86
+            ],
+            "nonwhite_pixels_below_capsule": 0,
+            "threshold": 245
+          }
+        },
+        {
+          "art": {
+            "bottom": 1351.515625,
+            "height": 494.984375,
+            "left": 314.59375,
+            "right": 1157.40625,
+            "top": 856.53125,
+            "width": 842.8125
+          },
+          "artLoaded": true,
+          "artSrc": "assets/operation-ac-output.png",
+          "bodyWeight": "400",
+          "fill": "rgb(235, 235, 236)",
+          "fontSize": "15.592px",
+          "id": "ac-output",
+          "insideArt": true,
+          "pill": {
+            "bottom": 914.890625,
+            "height": 36.6328125,
+            "left": 349.53125,
+            "right": 692.625,
+            "top": 878.2578125,
+            "width": 343.09375
+          },
+          "pillRadius": "999px",
+          "prefix": "Prerequisite:",
+          "prefixWeight": "700",
+          "stageBorder": "0px",
+          "stageRadius": "0px",
+          "text": "Prerequisite: The product is turned on.",
+          "textBounds": {
+            "bottom": 905.75,
+            "left": 365.5390625,
+            "right": 637.328125,
+            "top": 887.25
+          },
+          "wrapper": "true",
+          "artwork_intersection": {
+            "sample_box_px": [
+              52,
+              32,
+              565,
+              87
+            ],
+            "nonwhite_pixels_below_capsule": 0,
+            "threshold": 245
+          }
+        }
+      ],
+      "scrollWidth": 1440,
+      "totalPrerequisiteMentions": 2,
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "errors": [],
+      "screenshots": [
+        {
+          "name": "operation-frame-ac-1440.png",
+          "sha256": "f42efe21952797691b1f9aa1974e20b6318930aa785a41d8e1bf5a06347da826"
+        },
+        {
+          "name": "operation-frame-usb-1440.png",
+          "sha256": "dabecdca9ef20c59cc0805238e786727dd5de9d7fd9c24b5e756e749582dda6d"
+        }
+      ],
+      "scope": "Complete English prerequisite audit: source p13 USB and p14 AC only; both live captions inside the source frame, bold prefix/normal body, measured CSS capsule fill; extra stage border removed. Earlier external-prerequisite placement is superseded."
+    }
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scrollWidth": 390,
+    "brokenImages": [],
+    "imageCount": 56,
+    "duplicateIds": [],
+    "sectionHeadings": [
+      "IMPORTANT SAFETY INFORMATION",
+      "MEANING OF SYMBOLS",
+      "WHAT’S IN THE BOX",
+      "PRODUCT OVERVIEW",
+      "LCD DISPLAY",
+      "OPERATIONS",
+      "UNINTERRUPTIBLE POWER SUPPLY (UPS)",
+      "CONNECTIONS",
+      "CHARGING",
+      "STORAGE",
+      "TROUBLESHOOTING",
+      "SPECIFICATIONS",
+      "GENERAL INFO",
+      "INPUT PORTS",
+      "OUTPUT PORTS",
+      "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "WARRANTY",
+      "APP SETUP",
+      "EU REGULATIONS"
+    ],
+    "tableScrolls": [
+      {
+        "class": "hb-lcd-table-composition",
+        "width": 354,
+        "scrollWidth": 640,
+        "reachedEnd": true
+      },
+      {
+        "class": "hb-key-combination-composition",
+        "width": 354,
+        "scrollWidth": 640,
+        "reachedEnd": true
+      },
+      {
+        "class": "hb-troubleshooting-composition",
+        "width": 354,
+        "scrollWidth": 640,
+        "reachedEnd": true
+      }
+    ],
+    "lcdRows": 23,
+    "lcdRowspans": [
+      "4",
+      "18"
+    ],
+    "appLabels": [
+      {
+        "text": "POWER Button",
+        "fontSize": "12px",
+        "rect": {
+          "left": 19.578125,
+          "right": 73.265625,
+          "top": 383.015625,
+          "bottom": 413.015625
+        }
+      },
+      {
+        "text": "USB Power Button",
+        "fontSize": "12px",
+        "rect": {
+          "left": 19.578125,
+          "right": 76.84375,
+          "top": 417.515625,
+          "bottom": 462.515625
+        }
+      },
+      {
+        "text": "AC Button",
+        "fontSize": "12px",
+        "rect": {
+          "left": 331.03125,
+          "right": 370.40625,
+          "top": 425.015625,
+          "bottom": 455.015625
+        }
+      }
+    ],
+    "errors": [],
+    "text_sha256": "046c73c2e3861bbf3721196ab0a3623dfcaa3aa4905ddfa23a0f020826a3903f",
+    "screenshots": [
+      {
+        "name": "01-important-safety-information.png",
+        "sha256": "07acbf522c3c8dd6240541994ed26e41bf4851663c134b5f1928fad8110c8ab7"
+      },
+      {
+        "name": "02-meaning-of-symbols.png",
+        "sha256": "bb50c3a8d3945417fc67e14fcb6f4dbb4026a087177bc274a7019d7f21feccfc"
+      },
+      {
+        "name": "03-what-s-in-the-box.png",
+        "sha256": "a1530bc5caafe3222341d3efc8ceaf6779415557b02a32a21207c85b81c4700b"
+      },
+      {
+        "name": "04-product-overview.png",
+        "sha256": "e136c2271b8389e7d08ed7cf8509ae222a3dafc2063355533a9fae45774b73ac"
+      },
+      {
+        "name": "05-lcd-display.png",
+        "sha256": "0c82e78f8fb14b8fa002713ab0cca784626e274cd9db566f14168b64c2e156eb"
+      },
+      {
+        "name": "06-operations.png",
+        "sha256": "510f07a7f20796336b1b13ba1ab05e3c2866bc3f4d1047c6c101986ad2a4ad92"
+      },
+      {
+        "name": "07-uninterruptible-power-supply-ups.png",
+        "sha256": "385cf3634b7b08230421a2025a2a1cbfd8afd2832f700e5a016bbc9b1870f2ba"
+      },
+      {
+        "name": "08-connections.png",
+        "sha256": "5f879eef93ca6f0db6625121a4d9a8dbfa7384b15cf7f9af68d000b69e3fcf9e"
+      },
+      {
+        "name": "09-charging.png",
+        "sha256": "12dee54eb731bd0e7a55e02232a75ae26b77f5911469e4083e2e81b9136dbef4"
+      },
+      {
+        "name": "10-storage.png",
+        "sha256": "2a29ed2f9ee5e9949c3d40d71a851dd9d5242c52a7a3c5b863ede549bea74de0"
+      },
+      {
+        "name": "11-troubleshooting.png",
+        "sha256": "6058fa3747c1481573aa2af6ebdf92d331a6327e5c1956b4d9c008b57603e390"
+      },
+      {
+        "name": "12-specifications.png",
+        "sha256": "a6b003fc3fbd3a083517d583b31db43a9275f05a615d2863941a72789410d685"
+      },
+      {
+        "name": "13-general-info.png",
+        "sha256": "7c45b19c62349f10e6438d0638aa3b77a67d03ba948be7881e82ee9ac9d40d9c"
+      },
+      {
+        "name": "13-warranty.png",
+        "sha256": "1c5c0d75e8ae0ec9765a244779da27f4e5f475fc73a5e0231fa8372e169e6558"
+      },
+      {
+        "name": "14-app-setup.png",
+        "sha256": "84859f796fa900a033a85919d8346e58194fcf08d16bf86d0f17a17cae485483"
+      },
+      {
+        "name": "14-input-ports.png",
+        "sha256": "91cf83edb9afd61bbc575f32524e0e78ece30c5c8feb72d33667a92a9236a273"
+      },
+      {
+        "name": "15-eu-regulations.png",
+        "sha256": "dd248fad227120ec497dde135ce306680bfcd62d024a9ad3c58b89abcb8456e3"
+      },
+      {
+        "name": "15-output-ports.png",
+        "sha256": "e6373839d09663bb7c82ebb8c8c2d58fc6dda3f910d349caaf222e921e969298"
+      },
+      {
+        "name": "16-environmental-operating-temperature.png",
+        "sha256": "82140fcdf4c9acfa5d381f3ad88268ba69bb0af7a1b6b9164f57eb20559b4dac"
+      },
+      {
+        "name": "17-warranty.png",
+        "sha256": "c58438a0c622e4c13fc98fb9994cb021da89e8999d47a176385dbfad5bc44dd8"
+      },
+      {
+        "name": "18-app-setup.png",
+        "sha256": "cfc8f39be72838d38f9765fc255004d146f46429bb23b0ecdd18c95f677c922a"
+      },
+      {
+        "name": "19-eu-regulations.png",
+        "sha256": "2478c4c8b30e4fffb3d2f641dbc0c0629b13f31ae7e02051631fb967fe2ecef7"
+      },
+      {
+        "name": "app-controls.png",
+        "sha256": "611e56bb154c03aabc1cf3efe5cae21fad643396392cfd67c09d115dc3dfe2ec"
+      },
+      {
+        "name": "full.png",
+        "sha256": "617157b9bf8bb391d127a40ebe07d5f8d5c99b8a674a999afa2eb90a3c692944"
+      }
+    ],
+    "audit_scope": "Initial full-manual browser audit; title/Symbols superseded by review_correction; operation decoration and clock layout superseded by operation_background_review; chapter and subsection styles superseded by style_restoration_review; Specifications/Warranty/App verified in spec_warranty_app_review; main-power label typography/alignment superseded by main_power_alignment_review; USB/AC frame and prerequisite placement superseded by operation_frame_prerequisite_review",
+    "review_correction": {
+      "brokenImages": [],
+      "duplicateIds": [],
+      "h1": "IMPORTANT",
+      "imageCount": 56,
+      "scrollWidth": 390,
+      "symbolImages": [
+        {
+          "height": 161,
+          "src": "assets/symbol-warning_triangle.png",
+          "width": 183
+        },
+        {
+          "height": 132,
+          "src": "assets/symbol-read_manual.png",
+          "width": 179
+        },
+        {
+          "height": 162,
+          "src": "assets/symbol-do_not_dismantle.png",
+          "width": 162
+        },
+        {
+          "height": 161,
+          "src": "assets/symbol-no_open_flame.png",
+          "width": 162
+        },
+        {
+          "height": 162,
+          "src": "assets/symbol-keep_away_from_children.png",
+          "width": 162
+        },
+        {
+          "height": 170,
+          "src": "assets/symbol-li_ion.png",
+          "width": 148
+        },
+        {
+          "height": 519,
+          "src": "assets/symbol-battery_disposal.png",
+          "width": 492
+        },
+        {
+          "height": 200,
+          "src": "assets/symbol-weee.png",
+          "width": 135
+        }
+      ],
+      "symbolTables": [
+        {
+          "height": 521.140625,
+          "left": 18,
+          "top": -15590.3828125,
+          "width": 354
+        },
+        {
+          "height": 559.8203125,
+          "left": 18,
+          "top": -15051.6484375,
+          "width": 354
+        }
+      ],
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "text_sha256": "0224397ad99c7a614784ffcffa4ee79d9707f63a6357fc648dfc17e13d486644",
+      "screenshots": [
+        {
+          "name": "review-disposal-390.png",
+          "sha256": "184107f366da3cf505940720ec9ed6104ddc94ce6b935fab03a343f46233849b"
+        },
+        {
+          "name": "review-introduction-390.png",
+          "sha256": "fef6d2e5df430b92dbbbe49171c3f8fdf2f66aabc4be03797f8c96b79be95d04"
+        },
+        {
+          "name": "review-symbols-390.png",
+          "sha256": "3c38eb0fa186b0143cc628ecc0a1ce032809a4d8917be73786444fee1592ae1c"
+        }
+      ],
+      "scope": "IMPORTANT chapter title and eight shared semantic Symbols; whole-document load, text and overflow checks"
+    },
+    "operation_background_review": {
+      "brokenImages": [],
+      "duplicateIds": [],
+      "h1": "IMPORTANT",
+      "imageCount": 56,
+      "operationImages": [
+        {
+          "loaded": true,
+          "src": "assets/operation-main-power.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/operation-dc-usb-output.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/operation-ac-output.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/operation-energy-saving.png"
+        }
+      ],
+      "prerequisiteOverlays": 0,
+      "prerequisiteParagraphs": [
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "insideFigure": false,
+          "text": "Prerequisite: The product is turned on."
+        },
+        {
+          "background": "rgba(0, 0, 0, 0)",
+          "insideFigure": false,
+          "text": "Prerequisite: The product is turned on."
+        }
+      ],
+      "scrollWidth": 390,
+      "symbolImages": [
+        {
+          "loaded": true,
+          "src": "assets/symbol-warning_triangle.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-read_manual.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-do_not_dismantle.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-no_open_flame.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-keep_away_from_children.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-li_ion.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-battery_disposal.png"
+        },
+        {
+          "loaded": true,
+          "src": "assets/symbol-weee.png"
+        }
+      ],
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "clocks": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "caption": "Off: Press and hold for 3s",
+          "containsImage": false,
+          "display": "block",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 15.484375,
+          "hidden": "true",
+          "width": 15.484375
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "caption": "On/Off: Press and hold for 3s",
+          "containsImage": false,
+          "display": "block",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 15.484375,
+          "hidden": "true",
+          "width": 15.484375
+        }
+      ],
+      "errors": [],
+      "text_sha256": "0224397ad99c7a614784ffcffa4ee79d9707f63a6357fc648dfc17e13d486644",
+      "screenshots": [
+        {
+          "name": "operation-background-ac-390.png",
+          "sha256": "d5e377e2da58c3fe38487eb61e82997161a28cda5dc490bdc8a4bd81be4b403a"
+        },
+        {
+          "name": "operation-background-energy-390.png",
+          "sha256": "aad1ed5017bedf00af087ce0c68251798c0329e041e51801b87337d418e0348c"
+        },
+        {
+          "name": "operation-background-power-390.png",
+          "sha256": "65552a2da631210fb958d870622cc68a8c7a0705f5b27f48f6ee8297affce558"
+        },
+        {
+          "name": "operation-background-usb-390.png",
+          "sha256": "6dce3cd6bf946f9e233273f08d26570fbfff690dfabff965605f7a1b9b027145"
+        }
+      ],
+      "scope": "Four operation panels: five explanatory gray boxes and two baked clocks removed; CSS-only inline clocks follow long-press copy; native prerequisites outside artwork. Whole-document image/text/overflow checks."
+    },
+    "style_restoration_review": {
+      "appBullets": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "1. Download the App and log in¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "2. Add device¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "3. Unbind the device¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "4. Notes¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "4.1 To turn on Wi-Fi & Bluetooth:¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "4.2 To turn off Wi-Fi & Bluetooth:¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "none",
+          "text": "4.3 To reset Wi-Fi & Bluetooth:¶"
+        }
+      ],
+      "badges": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "15.744px",
+          "color": "rgb(255, 255, 255)",
+          "left": 36.7890625,
+          "right": 165.6875,
+          "text": "SOLD SEPARATELY",
+          "topRadius": "15.744px",
+          "weight": "700",
+          "width": 128.8984375
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "15.744px",
+          "color": "rgb(255, 255, 255)",
+          "left": 36.7890625,
+          "right": 165.6875,
+          "text": "SOLD SEPARATELY",
+          "topRadius": "15.744px",
+          "weight": "700",
+          "width": 128.8984375
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "15.744px",
+          "color": "rgb(255, 255, 255)",
+          "left": 36.7890625,
+          "right": 165.6875,
+          "text": "SOLD SEPARATELY",
+          "topRadius": "15.744px",
+          "weight": "700",
+          "width": 128.8984375
+        }
+      ],
+      "brokenImages": [],
+      "chapterBars": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "IMPORTANT¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "IMPORTANT SAFETY INFORMATION¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "MEANING OF SYMBOLS¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "WHAT’S IN THE BOX¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "PRODUCT OVERVIEW¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "LCD DISPLAY¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "OPERATIONS¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "UNINTERRUPTIBLE POWER SUPPLY (UPS)¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "CONNECTIONS¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "CHARGING¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "STORAGE¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "TROUBLESHOOTING¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "SPECIFICATIONS¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "WARRANTY¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "APP SETUP¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottomRadius": "7.68px",
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "text": "EU Regulations¶",
+          "topRadius": "0px",
+          "weight": "700",
+          "width": 358
+        }
+      ],
+      "chapterCount": 16,
+      "clocks": [
+        {
+          "containsImage": false,
+          "hidden": "true"
+        },
+        {
+          "containsImage": false,
+          "hidden": "true"
+        }
+      ],
+      "duplicateIds": [],
+      "firstCharge": {
+        "background": "rgb(52, 48, 49)",
+        "bottomRadius": "18.816px",
+        "color": "rgb(255, 255, 255)",
+        "left": 16,
+        "right": 351.6796875,
+        "text": "Fully charge the product before its first use.",
+        "topRadius": "18.816px",
+        "weight": "700",
+        "width": 335.6796875
+      },
+      "greenLead": {
+        "background": "rgba(0, 0, 0, 0)",
+        "bottomRadius": "0px",
+        "color": "rgb(52, 48, 49)",
+        "left": 16,
+        "right": 150.5234375,
+        "text": "Green energy first:",
+        "topRadius": "0px",
+        "weight": "700",
+        "width": 134.5234375
+      },
+      "imageCount": 56,
+      "manualBullets": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "POWER ON/OFF¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "USB OUTPUT ON/OFF¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "AC OUTPUT ON/OFF¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "ENERGY SAVING MODE¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "LCD SCREEN¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "KEY COMBINATION¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "CONNECT TO BATTERY PACK(S) SOLD SEPARATELY"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "CHARGING VIA AC WALL OUTLET¶"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "CHARGING VIA SOLAR PANELS SOLD SEPARATELY"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "display": "block",
+          "text": "CHARGING VIA A CAR CHARGER SOLD SEPARATELY"
+        }
+      ],
+      "scrollWidth": 390,
+      "storage": {
+        "background": "rgb(244, 243, 243)",
+        "bottomRadius": "20px",
+        "color": "rgb(52, 48, 49)",
+        "items": 3,
+        "left": 16,
+        "right": 374,
+        "text": "Store the product in a dry clean place with proper ventilation. Storage temperature and humidity:1 month: -20°C to 45°C (0-60%RH)3 months: 0°C to 45°C (0-60%RH)12 months: 0°C to 25°C (0-60%RH)If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+        "topRadius": "20px",
+        "weight": "400",
+        "width": 358
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "errors": [],
+      "text_sha256": "c36b36cac2800491ff7a85b43d71f264f8a78fc51436ffe84d3468dc2e7b8e0a",
+      "screenshots": [
+        {
+          "name": "style-charging-390.png",
+          "sha256": "3511a705f21bd16a4da030e9129c9aa0d4c71ea03e75cdd69b886680337faa41"
+        },
+        {
+          "name": "style-connections-390.png",
+          "sha256": "e967d41ab2b67a0d18fc9fc5570b2767df700699060f60e3d3b1d836a08763d2"
+        },
+        {
+          "name": "style-energy-regression-390.png",
+          "sha256": "b6838c5ecf170e5b332561ecaf1cb6ef34f806952c05ca20694c97574fc76d7f"
+        },
+        {
+          "name": "style-storage-390.png",
+          "sha256": "6fc6d1eaf3f27fa25a3830e75b3d18a536a01d409df0786569ff6063d02916d7"
+        }
+      ],
+      "scope": "Source heading hierarchy, three SOLD SEPARATELY badges, first-charge pill, bold green-energy lead and storage panel; prior artwork/CSS clocks preserved."
+    },
+    "spec_warranty_app_review": {
+      "app": {
+        "downloads": [
+          {
+            "artCenter": 100.6953125,
+            "columnCenter": 100.69921875,
+            "copyTop": 2111.96875,
+            "loaded": true,
+            "renderedHeight": 88.5078125,
+            "renderedWidth": 132.125,
+            "src": "assets/app-store.png"
+          },
+          {
+            "artCenter": 289.296875,
+            "columnCenter": 289.296875,
+            "copyTop": 2111.96875,
+            "loaded": true,
+            "renderedHeight": 101.640625,
+            "renderedWidth": 101.640625,
+            "src": "assets/app-qr.png"
+          }
+        ],
+        "emphasis": [
+          {
+            "text": "POWER",
+            "weight": "700"
+          },
+          {
+            "text": "Icon Flashed",
+            "weight": "700"
+          }
+        ],
+        "headings": [
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 1983.96875,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H2",
+            "text": "1. Download the App and log in",
+            "textLeft": 16,
+            "top": 1964.453125,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 2242.015625,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H2",
+            "text": "2. Add device",
+            "textLeft": 16,
+            "top": 2222.5,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 4477.6015625,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H2",
+            "text": "3. Unbind the device",
+            "textLeft": 16,
+            "top": 4458.0859375,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 4641.015625,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H2",
+            "text": "4. Notes",
+            "textLeft": 16,
+            "top": 4621.5,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 4678.671875,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H3",
+            "text": "4.1 To turn on Wi-Fi & Bluetooth:",
+            "textLeft": 16,
+            "top": 4658.609375,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 4885.9453125,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H3",
+            "text": "4.2 To turn off Wi-Fi & Bluetooth:",
+            "textLeft": 16,
+            "top": 4865.8828125,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 5093.21875,
+            "color": "rgb(52, 48, 49)",
+            "gap": "0px",
+            "left": 16,
+            "marker": "none",
+            "right": 374,
+            "tag": "H3",
+            "text": "4.3 To reset Wi-Fi & Bluetooth:",
+            "textLeft": 16,
+            "top": 5073.15625,
+            "transform": "none"
+          }
+        ],
+        "left": 16,
+        "paragraphs": [
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 2277.828125,
+            "color": "rgb(52, 48, 49)",
+            "left": 16,
+            "right": 374,
+            "tag": "P",
+            "text": "2.1 Click the button + to add your device;",
+            "top": 2253.53125,
+            "transform": "none"
+          },
+          {
+            "background": "rgba(0, 0, 0, 0)",
+            "bottom": 2437.7265625,
+            "color": "rgb(52, 48, 49)",
+            "left": 16,
+            "right": 374,
+            "tag": "P",
+            "text": "2.2 Press the POWER button on the device to turn on, the Wi-Fi and Bluetooth icons on the device flash to indicate that the device has entered the network configuring mode, tap the “Icon Flashed” button and allow the App to connect to nearby devices and open Bluetooth permissions.",
+            "top": 2290.9453125,
+            "transform": "none"
+          }
+        ],
+        "step2": {
+          "background": "rgba(0, 0, 0, 0)",
+          "bottom": 2242.015625,
+          "color": "rgb(52, 48, 49)",
+          "left": 16,
+          "right": 374,
+          "tag": "H2",
+          "text": "2. Add device",
+          "top": 2222.5,
+          "transform": "none"
+        }
+      },
+      "brokenImages": [],
+      "chapters": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": -1353.8125,
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "tag": "H1",
+          "text": "SPECIFICATIONS",
+          "top": -1399.859375,
+          "transform": "uppercase"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": 212.5234375,
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "tag": "H1",
+          "text": "WARRANTY",
+          "top": 166.4765625,
+          "transform": "uppercase"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bottom": 1929.2578125,
+          "color": "rgb(255, 255, 255)",
+          "left": 16,
+          "right": 374,
+          "tag": "H1",
+          "text": "APP SETUP",
+          "top": 1883.2109375,
+          "transform": "uppercase"
+        }
+      ],
+      "duplicateIds": [],
+      "imageCount": 56,
+      "scrollWidth": 390,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "warranty": [
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 438.6328125,
+          "bottom": 434.5234375,
+          "cardLeft": 16,
+          "cardTop": 419.8359375,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 191.46875,
+          "tag": "H2",
+          "text": "Limited Warranty",
+          "top": 409.359375,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 715.125,
+          "bottom": 711.015625,
+          "cardLeft": 16,
+          "cardTop": 696.328125,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 185.09375,
+          "tag": "H2",
+          "text": "Warranty Period",
+          "top": 685.8515625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 1144.953125,
+          "bottom": 1140.84375,
+          "cardLeft": 16,
+          "cardTop": 1126.15625,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 140.2578125,
+          "tag": "H2",
+          "text": "Exchange",
+          "top": 1115.6796875,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 1325,
+          "bottom": 1320.890625,
+          "cardLeft": 16,
+          "cardTop": 1306.203125,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 315.15625,
+          "tag": "H2",
+          "text": "Limited to Original Consumer Buyer",
+          "top": 1295.7265625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 1447.1796875,
+          "bottom": 1443.0703125,
+          "cardLeft": 16,
+          "cardTop": 1428.3828125,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 142.84375,
+          "tag": "H2",
+          "text": "Exclusions",
+          "top": 1417.90625,
+          "transform": "none"
+        },
+        {
+          "background": "rgb(52, 48, 49)",
+          "bodyTop": 1795.921875,
+          "bottom": 1791.8125,
+          "cardLeft": 16,
+          "cardTop": 1777.125,
+          "color": "rgb(255, 255, 255)",
+          "left": 29.515625,
+          "position": "absolute",
+          "right": 214.765625,
+          "tag": "H2",
+          "text": "Interpretation Rights",
+          "top": 1766.6484375,
+          "transform": "none"
+        }
+      ],
+      "errors": [],
+      "text_sha256": "3a6f6f25a00d3e3da04c4b98eb1d2a7703fe97921c4b08d5e3fbec70c351bf0b",
+      "screenshots": [
+        {
+          "name": "final-sections-app-390.png",
+          "sha256": "f938fc77b775a2e7460d81d211f6eb4965ea94e369fa48eb1bce23c101961f7c"
+        },
+        {
+          "name": "final-sections-specifications-390.png",
+          "sha256": "7354b5e5670c3116932f207dd3978a3685cf57a57b0029c1d0b486f842168cfa"
+        },
+        {
+          "name": "final-sections-warranty-390.png",
+          "sha256": "bc944e0d63c596f1a32d123a22a58facdef3146bf5cc633a7f1d3aecc58df285"
+        }
+      ],
+      "scope": "Specifications/Warranty/App: dark chapter bands, six floating warranty labels, numbered App heading case/text-edge alignment, two emphasized control names and two naturally loaded download images."
+    },
+    "main_power_alignment_review": {
+      "brokenImages": [],
+      "clocks": [
+        {
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "bottom": 343.4140625,
+          "containsImage": false,
+          "fontSize": "14.08px",
+          "fontWeight": "400",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 15.484375,
+          "hidden": "true",
+          "left": 162.7734375,
+          "lineHeight": "15.488px",
+          "right": 178.2578125,
+          "text": "",
+          "top": 327.9296875,
+          "width": 15.484375
+        },
+        {
+          "backgroundImage": "none",
+          "borderRadius": "50%",
+          "bottom": 2248.7421875,
+          "containsImage": false,
+          "fontSize": "14.08px",
+          "fontWeight": "400",
+          "hands": {
+            "bottom": "solid",
+            "left": "solid"
+          },
+          "height": 15.484375,
+          "hidden": "true",
+          "left": 26.3984375,
+          "lineHeight": "16.3328px",
+          "right": 41.8828125,
+          "text": "",
+          "top": 2233.2578125,
+          "width": 15.484375
+        }
+      ],
+      "duplicateIds": [],
+      "imageCount": 56,
+      "main": {
+        "art": {
+          "bottom": 262.8671875,
+          "height": 197.75,
+          "left": 16,
+          "right": 374,
+          "top": 65.1171875,
+          "width": 358
+        },
+        "steps": [
+          {
+            "instruction": {
+              "bottom": 303.140625,
+              "fontSize": "14.08px",
+              "fontWeight": "400",
+              "height": 15.484375,
+              "left": 26.3984375,
+              "lineHeight": "15.488px",
+              "right": 363.6015625,
+              "text": "Press once",
+              "top": 287.65625,
+              "width": 337.203125
+            },
+            "label": {
+              "bottom": 287.65625,
+              "fontSize": "16px",
+              "fontWeight": "700",
+              "height": 17.59375,
+              "left": 26.3984375,
+              "lineHeight": "17.6px",
+              "right": 363.6015625,
+              "text": "On",
+              "top": 270.0625,
+              "width": 337.203125
+            }
+          },
+          {
+            "instruction": {
+              "bottom": 343.4140625,
+              "fontSize": "14.08px",
+              "fontWeight": "400",
+              "height": 15.484375,
+              "left": 26.3984375,
+              "lineHeight": "15.488px",
+              "right": 363.6015625,
+              "text": "Press and hold for 3s",
+              "top": 327.9296875,
+              "width": 337.203125
+            },
+            "label": {
+              "bottom": 327.9296875,
+              "fontSize": "16px",
+              "fontWeight": "700",
+              "height": 17.59375,
+              "left": 26.3984375,
+              "lineHeight": "17.6px",
+              "right": 363.6015625,
+              "text": "Off",
+              "top": 310.3359375,
+              "width": 337.203125
+            }
+          }
+        ],
+        "support": [
+          {
+            "bottom": 415.921875,
+            "fontSize": "14.08px",
+            "fontWeight": "400",
+            "height": 65.3125,
+            "left": 26.3984375,
+            "lineHeight": "16.3328px",
+            "right": 363.6015625,
+            "text": "Default standby time: 2 hours The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App.",
+            "top": 350.609375,
+            "width": 337.203125
+          },
+          {
+            "bottom": 488.4296875,
+            "fontSize": "14.08px",
+            "fontWeight": "400",
+            "height": 65.3125,
+            "left": 26.3984375,
+            "lineHeight": "16.3328px",
+            "right": 363.6015625,
+            "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or USB power button is ON but the product is neither charging nor discharging.",
+            "top": 423.1171875,
+            "width": 337.203125
+          }
+        ]
+      },
+      "scrollWidth": 390,
+      "usb": {
+        "steps": [
+          {
+            "instruction": {
+              "bottom": 832.90625,
+              "fontSize": "14.08px",
+              "fontWeight": "400",
+              "height": 15.484375,
+              "left": 27.3984375,
+              "lineHeight": "15.488px",
+              "right": 191,
+              "text": "Press once",
+              "top": 817.421875,
+              "width": 163.6015625
+            },
+            "label": {
+              "bottom": 817.421875,
+              "fontSize": "16px",
+              "fontWeight": "700",
+              "height": 17.59375,
+              "left": 27.3984375,
+              "lineHeight": "17.6px",
+              "right": 191,
+              "text": "On",
+              "top": 799.828125,
+              "width": 163.6015625
+            }
+          },
+          {
+            "instruction": {
+              "bottom": 832.90625,
+              "fontSize": "14.08px",
+              "fontWeight": "400",
+              "height": 15.484375,
+              "left": 199,
+              "lineHeight": "15.488px",
+              "right": 362.6015625,
+              "text": "Press once",
+              "top": 817.421875,
+              "width": 163.6015625
+            },
+            "label": {
+              "bottom": 817.421875,
+              "fontSize": "16px",
+              "fontWeight": "700",
+              "height": 17.59375,
+              "left": 199,
+              "lineHeight": "17.6px",
+              "right": 362.6015625,
+              "text": "Off",
+              "top": 799.828125,
+              "width": 163.6015625
+            }
+          }
+        ]
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "errors": [],
+      "text_sha256": "555e162b7f8add9faa8055564f605e6320277e3b5929f9bc8c112c2b465b6515",
+      "screenshots": [
+        {
+          "name": "power-alignment-390.png",
+          "sha256": "9a7cb9fcb82883db69ffc03fe57a7140f72d5fd917763894fd75cf7a9a43637c"
+        }
+      ],
+      "scope": "Main-power shared On/Off typography, common text left edge, native bracket-arm title centers, CSS clock after long-press instruction; mobile readable stacked text. Fresh whole-document image/text/overflow check after main sync."
+    },
+    "operation_frame_prerequisite_review": {
+      "outsidePrerequisites": [],
+      "panels": [
+        {
+          "art": {
+            "bottom": 641.234375,
+            "height": 180.703125,
+            "left": 16,
+            "right": 374,
+            "top": 460.53125,
+            "width": 358
+          },
+          "artLoaded": true,
+          "artSrc": "assets/operation-dc-usb-output.png",
+          "bodyWeight": "400",
+          "fill": "rgb(235, 235, 236)",
+          "fontSize": "12.48px",
+          "id": "dc-usb-output",
+          "insideArt": true,
+          "pill": {
+            "bottom": 503.171875,
+            "height": 33.828125,
+            "left": 29.375,
+            "right": 201.2109375,
+            "top": 469.34375,
+            "width": 171.8359375
+          },
+          "pillRadius": "999px",
+          "prefix": "Prerequisite:",
+          "prefixWeight": "700",
+          "stageBorder": "0px",
+          "stageRadius": "0px",
+          "text": "Prerequisite: The product is turned on.",
+          "textBounds": {
+            "bottom": 500.2578125,
+            "left": 40.5703125,
+            "right": 185.3984375,
+            "top": 471.5390625
+          },
+          "wrapper": "true",
+          "artwork_intersection": {
+            "sample_box_px": [
+              47,
+              31,
+              652,
+              150
+            ],
+            "nonwhite_pixels_below_capsule": 0,
+            "threshold": 245
+          }
+        },
+        {
+          "art": {
+            "bottom": 1443.2578125,
+            "height": 210.25,
+            "left": 16,
+            "right": 374,
+            "top": 1233.0078125,
+            "width": 358
+          },
+          "artLoaded": true,
+          "artSrc": "assets/operation-ac-output.png",
+          "bodyWeight": "400",
+          "fill": "rgb(235, 235, 236)",
+          "fontSize": "12.48px",
+          "id": "ac-output",
+          "insideArt": true,
+          "pill": {
+            "bottom": 1276.0625,
+            "height": 33.828125,
+            "left": 30.8359375,
+            "right": 202.671875,
+            "top": 1242.234375,
+            "width": 171.8359375
+          },
+          "pillRadius": "999px",
+          "prefix": "Prerequisite:",
+          "prefixWeight": "700",
+          "stageBorder": "0px",
+          "stageRadius": "0px",
+          "text": "Prerequisite: The product is turned on.",
+          "textBounds": {
+            "bottom": 1273.1484375,
+            "left": 42.03125,
+            "right": 186.859375,
+            "top": 1244.4296875
+          },
+          "wrapper": "true",
+          "artwork_intersection": {
+            "sample_box_px": [
+              52,
+              32,
+              657,
+              152
+            ],
+            "nonwhite_pixels_below_capsule": 0,
+            "threshold": 245
+          }
+        }
+      ],
+      "scrollWidth": 390,
+      "totalPrerequisiteMentions": 2,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "errors": [],
+      "screenshots": [
+        {
+          "name": "operation-frame-ac-390.png",
+          "sha256": "4273850510414ca4c5f4e30a756bd5a5f2387caa31ae1fdf214c838633417bef"
+        },
+        {
+          "name": "operation-frame-usb-390.png",
+          "sha256": "727c67f0a8afd71923fa0fefe44d4bc93db5ee2ecc5b8dfcd0bfc78126da557d"
+        }
+      ],
+      "scope": "Complete English prerequisite audit: source p13 USB and p14 AC only; both live captions inside the source frame, bold prefix/normal body, measured CSS capsule fill; extra stage border removed. Earlier external-prerequisite placement is superseded."
+    }
+  }
+]

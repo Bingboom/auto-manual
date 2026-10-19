@@ -1,0 +1,167 @@
+[
+  {
+    "asset": "web/je3600a/eu/en/overview-front",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/overview-right",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/operation-main-power",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/operation-dc-usb-output",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/operation-ac-output",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/operation-energy-saving",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/ups",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/battery",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/battery-accessories",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/charging-ac",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/charging-solar",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/charging-car",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/app-phone",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/app-control",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "asset": "web/je3600a/eu/en/app-result",
+    "scale": 12,
+    "edge_width_pt": 1,
+    "top_bottom_left_right_identical": [
+      true,
+      true,
+      true,
+      true
+    ]
+  }
+]

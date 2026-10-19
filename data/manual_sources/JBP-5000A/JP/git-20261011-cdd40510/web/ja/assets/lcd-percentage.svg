@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="27.0" height="18.0" viewBox="52.0 147.0 27.0 18.0"><defs>
+<clipPath id="clip_1">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_2">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_3">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_4">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_5">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_6">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_7">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_8">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M177.258 186.859C177.258 174.345 187.401 164.202 199.913 164.202 212.427 164.202 222.57 174.345 222.57 186.859 222.57 199.372 212.427 209.515 199.913 209.515 187.401 209.515 177.258 199.372 177.258 186.859" />
+</clipPath>
+<clipPath id="clip_9">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_10">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_11">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M129.169 182.104H139.894V192.828H129.169Z" />
+</clipPath>
+<clipPath id="clip_12">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+<clipPath id="clip_13">
+<path transform="matrix(1,0,0,-1,0,524.659)" d="M0 524.659H368.754V0H0Z" />
+</clipPath>
+</defs>
+<g><g ns1:groupmode="layer" ns1:label="图层 1"><g clip-path="url(#clip_2)"><path transform="matrix(1,0,0,-1,74.5731,162.45221)" d="M0 0H-4.249L-4.878 .628-3.608 1.894H-.641L.629 .628Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,64.7492,162.45221)" d="M0 0H-4.247L-4.877 .628-3.607 1.894H-.641L.63 .628Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,59.4006,150.18561)" d="M0 0-.63-.628V-4.306L.181-5.115 1.271-4.029V-1.267Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,59.4006,161.3552)" d="M0 0-.63 .629V4.307L.181 5.116 1.271 4.03V1.267Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,66.4807,150.81369)" d="M0 0-.63 .628-1.901-.638V-3.401L-.811-4.487 0-3.678Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,66.4807,160.72641)" d="M0 0-.63-.629-1.901 .638V3.401L-.811 4.487 0 3.678Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,69.2241,150.18561)" d="M0 0-.63-.628V-4.306L.18-5.115 1.27-4.029V-1.267Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,69.2241,161.3552)" d="M0 0-.63 .629V4.307L.18 5.116 1.27 4.03V1.267Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,56.6568,160.72641)" d="M0 0-.63-.629-1.9 .638V3.401L-.811 4.487 0 3.678Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,56.6568,150.81369)" d="M0 0-.63 .628-1.9-.638V-3.401L-.811-4.487 0-3.678Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,76.3035,154.49188)" d="M0 0V3.678L-.63 4.306-1.9 3.04V.278L-.812-.809Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,76.3035,157.0481)" d="M0 0V-3.678L-.63-4.307-1.9-3.04V-.277L-.812 .809Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,70.3243,149.0885)" d="M0 0-.629-.627 .641-1.894H3.607L4.878-.627 4.249 0Z" fill="#434141" fill-rule="evenodd" />
+<path transform="matrix(1,0,0,-1,60.5021,149.0885)" d="M0 0-.63-.627 .64-1.894H3.607L4.877-.627 4.247 0Z" fill="#434141" fill-rule="evenodd" />
+</g></g></g></svg>

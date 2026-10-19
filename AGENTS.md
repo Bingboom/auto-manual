@@ -5,24 +5,12 @@ It is not the architecture strategy and it is not the optimization roadmap.
 
 This file is the single source of truth for **every** AI agent working in this repo (Claude Code, Codex, future agents). The root [`CLAUDE.md`](CLAUDE.md) is a thin entrypoint that pulls this file into Claude Code via `@AGENTS.md`; Codex reads this file directly. When rules change, edit this file — do not fork rules into per-agent files.
 
-Document boundary:
+Document boundary (open the others only when the task needs them; see §10):
 
 - `AGENTS.md`: how an agent should operate in this repo today
-- `System Evolution Strategy.md`: long-term system direction and stable architecture boundaries
-- `code-as-doc/optimization_project.md`: repo-level execution roadmap and next optimization priorities
-
-For long-term direction, read:
-
-- [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md)
-
-For repo optimization priorities, read:
-
-- [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md)
-
-For current human workflows, read:
-
-- [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md)
-- [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
+- [`code-as-doc/architecture/System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md): long-term system direction and stable architecture boundaries
+- [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md): repo-level execution roadmap and next optimization priorities
+- Current human workflows: the [build guide](code-as-doc/build_doc_guide.md) and the [workflow guide](user-guide/hello_auto-doc.md). Both are indexes: read the index, then only the topic page the task needs.
 - [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) — the two-plane topology (auto-manual = engineering plane, Hello-Docs mirror = business plane, old/new Feishu bases, TM-B as the single corpus): read this before reasoning about which repo, base, or tenant an operation touches
 
 ## 1. Entrypoint
@@ -41,11 +29,12 @@ For current human workflows, read:
 
 ## 3. Workflow Rules
 
-- Before any manual-to-Web asset work, follow the [Web artwork reuse order](docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则): inventory existing assets and record reuse decisions before extracting; preserve complete panels and App screenshot frames. A new language or source PDF alone is not a reason to recrop.
+- Before any manual-to-Web asset work, follow the [Web artwork reuse order](docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则): inventory existing assets and record reuse decisions before extracting; preserve complete panels and App screenshot frames. A new language or source PDF alone is not a reason to recrop.
+- Web packages use shared components and the shared theme, never source-drawn styles. Before converting a manual to Web, map every printed block (symbol, LCD, button, troubleshooting, specification, inbox, callout, App) to its shared component and record the map in the package; an unmappable block is a plain table declared with its reason, never a package colour, border or `ht-*` class. Review pages show the shared reference edition (e.g. the same model's EU Web) beside the new one. The [prepared-document shared-style gate](code-as-doc/dev/web_publish_pipeline/shared-component-admission.md#prepared-document-shared-style-admission) enforces it.
 - Do not create one config per model just because the model changed.
 - Keep the shared family config pattern with [`configs/config.us.yaml`](configs/config.us.yaml) and [`configs/config.ja.yaml`](configs/config.ja.yaml).
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.
-- **Cloud-doc backport (Claude Code / Codex / CLI — _not_ BlockClaw / IM; LLM target-resolution in chat is too uncertain):** to back-port a Feishu cloud-doc's edits, run `python tools/cloud_doc_backport.py run-review-branch --doc-name <doc name, e.g. manual_je1000f_eu_en_0.8> --cloud-doc <url>` (add `--page <p>` for one page; omit it to diff the whole doc against every `docs/_review/<model>/<region>/page/*.rst`). It resolves the review branch from the doc name/URL via the `文档构建表`, runs in a sparse worktree of that branch, and writes only `docs/_review/...`. Do **NOT** guess a path or write `docs/templates/`, `docs/_build/`, or `data/phase2/` source tables from a backport — the review derivative is the only writable target (template changes go through the template-sync role; source-table writes through the approval-gated F6 path). Dry-run by default; `--write` applies, `--push` opens a draft PR **into the review branch** (a `backport/...` sub-branch → base = the review branch) for the operator to verify and merge — it never commits straight onto the review branch.
+- **Cloud-doc backport (Claude Code / Codex / CLI — _not_ BlockClaw / IM; LLM target-resolution in chat is too uncertain):** to back-port a Feishu cloud-doc's edits, run `python -m tools.backport.cloud_doc run-review-branch --doc-name <doc name, e.g. manual_je1000f_eu_en_0.8> --cloud-doc <url>` (add `--page <p>` for one page; omit it to diff the whole doc against every `docs/_review/<model>/<region>/page/*.rst`). It resolves the review branch from the doc name/URL via the `文档构建表`, runs in a sparse worktree of that branch, and writes only `docs/_review/...`. Do **NOT** guess a path or write `docs/templates/`, `docs/_build/`, or `data/phase2/` source tables from a backport — the review derivative is the only writable target (template changes go through the template-sync role; source-table writes through the approval-gated F6 path). Dry-run by default; `--write` applies, `--push` opens a draft PR **into the review branch** (a `backport/...` sub-branch → base = the review branch) for the operator to verify and merge — it never commits straight onto the review branch.
 - Review overrides must stay under `overrides/_assets/`, `overrides/_static/`, or `overrides/renderers/`.
 - Avoid hardcoded model defaults such as `JE-1000F` in CLI behavior, report paths, or release paths.
 - Build repo-relative paths through [`tools/utils/path_utils.py`](tools/utils/path_utils.py) — its `PathSegments` constants, `Paths` members, and `*_of(base)` helpers — instead of hardcoding segments such as `docs/_build`, `_review`, `reports/version_tracking`, or `renderers/latex`. When a site already holds a base (repo root, a worktree, a config-resolved `docs_dir`), pass that base to the `*_of(base)` helpers rather than re-anchoring at repo root.
@@ -63,11 +52,12 @@ For current human workflows, read:
 ## 5. Documentation
 
 - Update docs in the same change when behavior changes.
-- Minimum set: [`README.md`](README.md), [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md), [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md)
-- [`README.md`](README.md) is the workflow roadmap + quickstart + navigation map only. Touch it when the stable workflow topology, an entry point, a navigation pointer, or an editing-surface rule changes; behavior and contract details go to the owning document, with at most a one-line pointer in the README. Treat a README beyond ~350 lines as documentation debt.
-- If a code change affects the current workflow, editing surface, environment setup, or release flow, update [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) in the same change.
-- If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) in the same change.
-- When a phase or workstream from [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md) is completed, add a matching maintenance record to [`code-as-doc/code_optimization_log.md`](code-as-doc/code_optimization_log.md).
+- Update the affected owning topic pages under [`code-as-doc/build_doc_guide/`](code-as-doc/build_doc_guide.md) and [`user-guide/hello_auto-doc/`](user-guide/hello_auto-doc.md); there is no mandatory README edit for an ordinary behavior change. The two guide files themselves are indexes: edit them only to add, rename or re-scope a page, never to append notes. Split a page that passes ~400 lines and update its index row.
+- [`README.md`](README.md) owns project positioning, the stable workflow roadmap, quickstart and top-level navigation. Edit it only when one of those changes. Link to a topic hub rather than listing its subpages; extend an existing navigation row before adding another. Keep the page concise; the ~350-line ceiling is a backstop, not a content allowance.
+- Do not append feature announcements, model/language intake or acceptance records, field/flag contracts, implementation details, temporary status or per-PR evidence to README, even as one-line links. Put them in the owning guide, review record or execution ledger and link from that topic hub. When removing README detail, verify that the owning topic remains reachable from the retained navigation.
+- If a code change affects the current workflow, editing surface, environment setup, or release flow, update the owning page of [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) in the same change.
+- If a code change affects the happy-path example, onboarding steps, or target-specific sample commands, update the owning page of [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) in the same change.
+- When a phase or workstream from [`code-as-doc/optimization_project.md`](code-as-doc/optimization_project.md) is completed, add a matching maintenance record at the top of [`code-as-doc/code_optimization_log.md`](code-as-doc/code_optimization_log.md); older records live in its archive.
 
 ## 6. Working Tree Safety
 
@@ -169,8 +159,9 @@ The PR cannot be opened until the validation set that matches the change passes 
 | any Python under `build.py`, `tools/`, `tests/`, `scripts/`, `integrations/` | `python -m ruff check build.py integrations tools tests scripts` |
 | logic in `tools/`, `build.py`, `tests/` | `python -m unittest` |
 | `tools/utils/**` types | `python -m mypy tools/utils` |
-| `tools/` boundary, `build.py`, `tools/build_docs.py`, `tools/process_build_queue.py` | `python tools/check_maintainability_guardrails.py` |
-| any `code-as-doc/**` or `user-guide/**` docs | `python tools/check_doc_link_integrity.py` |
+| `tools/` boundary, `build.py`, `tools/build/docs.py`, `tools/build_queue/process_build_queue.py` | `python -m tools.check_maintainability_guardrails` |
+| a frozen source package under `manual_sources/` or `data/manual_sources/`, or a shared file one pins | `python -m tools.check_maintainability_guardrails`; register a new package or record drift with `python -m tools.web.frozen_package_registry` |
+| any `code-as-doc/**` or `user-guide/**` docs | `python -m tools.check_doc_link_integrity` |
 | build / quality-gate behaviour | `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US` |
 | JP review or publish behaviour | `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP` |
 | diff-report behaviour | `python build.py diff-report --config configs/config.us.yaml --model JE-1000F --region US` |
@@ -183,7 +174,7 @@ If any check fails, do not open the PR. Report which check failed and the last c
 1. Open the PR with `gh pr create --base main`. Title format: Conventional Commits (`feat(area): topic` etc.), ≤72 chars.
 2. Fill in every field of [`.github/pull_request_template.md`](.github/pull_request_template.md), including the validation block with the actual commands you ran.
 3. Tick the impact-surface and anti-debt boxes honestly. An empty Anti-Debt section is a signal you skipped the checklist, not that nothing was relevant.
-4. Do **not** self-merge. Wait for the operator (夏冰) to review. Do not run `gh pr merge` from the window. **Single exception — gate-on-green authorization:** when a live entry in [`code-as-doc/dev/merge_authorizations.md`](code-as-doc/dev/merge_authorizations.md) covers the PR, merge is allowed after that file's protocol passes (EVERY check green — non-required included, pending ≠ green — and no changes-requested review). A chat grant is recorded in that registry *before* being acted on; doubt about coverage means no coverage. Take a new row's number with `python tools/next_registry_id.py ma` right before you push; it counts main, every open PR and your checkout, and `rev` does the same for new ledger rows.
+4. Do **not** self-merge. Wait for the operator (夏冰) to review. Do not run `gh pr merge` from the window. **Single exception — gate-on-green authorization:** when a live entry in [`code-as-doc/dev/merge_authorizations.md`](code-as-doc/dev/merge_authorizations.md) covers the PR, merge is allowed after that file's protocol passes (EVERY check green — non-required included, pending ≠ green — and no changes-requested review). A chat grant is recorded in that registry *before* being acted on; doubt about coverage means no coverage. The registry holds only live rows; expired rows move to its archive. Take a new row's number with `python -m tools.next_registry_id ma` right before you push; it counts main (registry and archive), every open PR and your checkout, and `rev` does the same for new ledger rows.
 5. After merge, delete the head branch (`gh pr` already does this when the repo has *Automatically delete head branches* on, which it does — see §8.8 of `git_branching_guide.md`). Do not keep it open as a second working lane.
 
 ### 8.7 Communication boundaries with the operator
@@ -196,3 +187,13 @@ If any check fails, do not open the PR. Report which check failed and the last c
 ## 9. Delegation (Fable)
 
 When the active model is Fable, do not do the work yourself. Never read the documentation, write the code, or run the tests in person — decompose the task and deploy every piece to others through Sub-agents and Dynamic Workflows, and keep your own turn to routing, briefing, and accepting their results. When staffing that work: (1) never assign Fable to it — Opus is the highest model an assignee may use; (2) the single exception is a high-stakes architecture review, which may be given to Fable.
+
+## 10. Reading Docs On Demand
+
+Each agent and sub-agent loads this file and pays again for every document it opens.
+
+- Treat the [build guide](code-as-doc/build_doc_guide.md), [workflow guide](user-guide/hello_auto-doc.md), [style definition](docs/renderers/contracts/STYLE_DEFINITION.md), [optimization checklist](code-as-doc/next_optimization_checklist.md), [quick start](user-guide/quick_start_guide.md), the `dev/` hubs that [`code-as-doc.md`](code-as-doc/code-as-doc.md) Rule 7 lists and [`code-as-doc/README.md`](code-as-doc/README.md) as indexes: open only the topic page the task needs.
+- Logs, registries, archives and `code-as-doc/reviews/` are lookups: grep by ID or keyword and read the hit, unless the task is about that file.
+- In a long doc that has no index yet, `grep -n` the section and read that range.
+- When delegating, hand each sub-agent the exact files or sections its piece needs, never "read the docs first".
+- New content goes to the owning page; the maintainability guardrails cap the hubs' line counts.

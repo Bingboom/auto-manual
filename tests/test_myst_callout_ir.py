@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 from tools.manual_ir import read_manual_ir
 from tools.plain_markdown_site import stage_component_extension, write_conf_py
-from tools.web_callout_ir import render_callout_ir
+from tools.web.callout_ir import render_callout_ir
 
 
 DOCUMENT = '''# Manual
@@ -41,7 +41,7 @@ CAPTURE = '''
 language = 'ja'
 import manual_md_directives as carrier
 from tools.manual_ir import write_manual_ir, read_manual_ir
-from tools.web_callout_ir import render_callout_ir
+from tools.web.callout_ir import render_callout_ir
 from dataclasses import replace
 _original = carrier.build_manual_ir_from_source
 _count = 0

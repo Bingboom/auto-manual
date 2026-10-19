@@ -1,0 +1,83 @@
+{
+  "scope": "US en/fr/es inbox only; local candidate pending operator acceptance",
+  "source_pages": {
+    "en": 6,
+    "fr": 26,
+    "es": 46
+  },
+  "inventory": [
+    "assets/inbox-p6.svg",
+    "source/artwork-recipes.json",
+    "assets_manifest.json",
+    "docs/renderers/contracts/web_inbox_components.css",
+    "docs/renderers/contracts/web_source_panels.css"
+  ],
+  "art_decision": "Reuse existing US panel artwork unchanged except six explicitly identified blank outline/badge paths; no new PDF extraction. Preserve three unequal native card widths and arrangement.",
+  "old_asset": {
+    "path": "assets/inbox-p6.svg",
+    "sha256": "54858dfcfc40f8a3856977cca42633d31246691bc2281f2a77dd0c221d9d649e",
+    "admission": "superseded-do-not-reuse"
+  },
+  "base_art": {
+    "path": "assets/inbox-artwork.svg",
+    "sha256": "65d0b9e5d37cf3504d1e468ac43b1c657958679ee66e229687ce575b0b29b79f",
+    "retained_svg_elements": "byte-identical",
+    "viewbox": [
+      -0.5,
+      -12.5,
+      313.5,
+      188.5
+    ]
+  },
+  "source_card_rectangles": [
+    [
+      28.069290161132812,
+      248.7068328857422,
+      142.43629455566406,
+      434.3768310546875
+    ],
+    [
+      147.15069580078125,
+      248.7068328857422,
+      239.75669860839844,
+      434.3768310546875
+    ],
+    [
+      243.94969177246094,
+      248.7068328857422,
+      339.19970703125,
+      434.3768310546875
+    ]
+  ],
+  "source_number_rectangles": [
+    [
+      78.14469909667969,
+      282.5282287597656,
+      91.92970275878906,
+      296.3122253417969
+    ],
+    [
+      186.7864990234375,
+      282.5282287597656,
+      200.57150268554688,
+      296.3122253417969
+    ],
+    [
+      285.37579345703125,
+      282.5282287597656,
+      299.1607971191406,
+      296.3122253417969
+    ]
+  ],
+  "shared_styles": {
+    "card": "hb-inbox-card",
+    "editable_number": "hb-inbox-marker",
+    "tokens": [
+      "hb-line-soft",
+      "hb-brand-dark",
+      "hb-paper"
+    ]
+  },
+  "geometry": "All live label coordinates now belong to the shared English base-art canvas. Caption source text remains localized; only coordinates change.",
+  "prior_chapters": "Safety/symbol/FCC and all other nodes preserved."
+}

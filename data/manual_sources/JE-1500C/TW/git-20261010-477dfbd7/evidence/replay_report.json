@@ -1,0 +1,41 @@
+{
+  "cold_replay": [
+    {
+      "language": "zh-TW",
+      "file_count": 61,
+      "byte_parity": true
+    }
+  ],
+  "tamper_rejection": [
+    {
+      "kind": "copy",
+      "path": "source/zh-TW/content.json",
+      "rejected": true
+    },
+    {
+      "kind": "art",
+      "path": "assets/power.svg",
+      "rejected": true
+    },
+    {
+      "kind": "source-style",
+      "path": "source/presentation.css",
+      "rejected": true
+    },
+    {
+      "kind": "shared-style",
+      "path": "docs/renderers/contracts/web_manual.css",
+      "rejected": true
+    },
+    {
+      "kind": "theme",
+      "path": "docs/renderers/contracts/manual_theme.yaml",
+      "rejected": true
+    },
+    {
+      "kind": "language-registry",
+      "path": "tools/lang_registry.py",
+      "rejected": true
+    }
+  ]
+}

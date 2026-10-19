@@ -1,0 +1,2033 @@
+{
+  "language": "pl",
+  "source": {
+    "file": "HTE162-EU-9国语言-0928(1).ai",
+    "sha256": "04d5a4075fc9fc5ad630416dca8e138576e9159fcfd4ce9a06328b8aa1a39cb5",
+    "pages": [
+      101,
+      112
+    ]
+  },
+  "fields": {
+    "signal_label_70.98281860351562": {
+      "page": 102,
+      "bbox": [
+        20,
+        70.98281860351562,
+        76,
+        85.98281860351562
+      ],
+      "lines": [
+        "OSTRZEŻENIE"
+      ]
+    },
+    "signal_body_70.98281860351562": {
+      "page": 102,
+      "bbox": [
+        76,
+        70.98281860351562,
+        239,
+        85.98281860351562
+      ],
+      "lines": [
+        "Niebezpieczne praktyki, które mogą prowadzić do poważnych obrażeń,",
+        "śmierci i/lub szkód materialnych."
+      ]
+    },
+    "signal_label_85.98281860351562": {
+      "page": 102,
+      "bbox": [
+        20,
+        85.98281860351562,
+        76,
+        100.98281860351562
+      ],
+      "lines": [
+        "PRZESTROGA"
+      ]
+    },
+    "signal_body_85.98281860351562": {
+      "page": 102,
+      "bbox": [
+        76,
+        85.98281860351562,
+        239,
+        100.98281860351562
+      ],
+      "lines": [
+        "Niebezpieczne praktyki, które mogą skutkować obrażeniami ciała i/lub",
+        "szkodami materialnymi."
+      ]
+    },
+    "signal_label_100.98281860351562": {
+      "page": 102,
+      "bbox": [
+        20,
+        100.98281860351562,
+        76,
+        115.98281860351562
+      ],
+      "lines": [
+        "Uwaga"
+      ]
+    },
+    "signal_body_100.98281860351562": {
+      "page": 102,
+      "bbox": [
+        76,
+        100.98281860351562,
+        239,
+        115.98281860351562
+      ],
+      "lines": [
+        "Niebezpieczne praktyki, które mogą prowadzić do uszkodzenia sprzętu, utraty",
+        "danych, pogorszenia wydajności lub nieprzewidzianych wyników."
+      ]
+    },
+    "signal_label_115.98281860351562": {
+      "page": 102,
+      "bbox": [
+        20,
+        115.98281860351562,
+        76,
+        131.98281860351562
+      ],
+      "lines": [
+        "WSKAZÓWKA"
+      ]
+    },
+    "signal_body_115.98281860351562": {
+      "page": 102,
+      "bbox": [
+        76,
+        115.98281860351562,
+        239,
+        131.98281860351562
+      ],
+      "lines": [
+        "Uzupełnia ważne informacje lub wskazówki dotyczące obsługi zawarte w",
+        "tekście."
+      ]
+    },
+    "symbol_header": {
+      "page": 102,
+      "bbox": [
+        20,
+        62.982818603515625,
+        76,
+        71.98281860351562
+      ],
+      "lines": [
+        "Symbol"
+      ]
+    },
+    "meaning_header": {
+      "page": 102,
+      "bbox": [
+        76,
+        62.982818603515625,
+        239,
+        71.98281860351562
+      ],
+      "lines": [
+        "Znaczenie"
+      ]
+    },
+    "safety_title": {
+      "page": 101,
+      "bbox": [
+        18,
+        15,
+        240,
+        39
+      ],
+      "lines": [
+        "WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA"
+      ]
+    },
+    "safety_strip": {
+      "page": 101,
+      "bbox": [
+        40,
+        40,
+        240,
+        67
+      ],
+      "lines": [
+        "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻENIA",
+        "PRĄDEM LUB OBRAŻEŃ CIAŁA"
+      ]
+    },
+    "safety_warning": {
+      "page": 101,
+      "bbox": [
+        45,
+        67,
+        240,
+        81
+      ],
+      "lines": [
+        "OSTRZEŻENIE:"
+      ]
+    },
+    "safety_intro": {
+      "page": 101,
+      "bbox": [
+        45,
+        81,
+        240,
+        98
+      ],
+      "lines": [
+        "Podczas korzystania z tego produktu należy zawsze",
+        "przestrzegać wskazanych podstawowych środków ostrożności."
+      ]
+    },
+    "safety_bullets": {
+      "page": 101,
+      "bbox": [
+        18,
+        98,
+        240,
+        273.38568115234375
+      ],
+      "lines": [
+        "a) Przed przystąpieniem do korzystania z produktu należy przeczytać wszystkie instrukcje.",
+        "b) W przypadku korzystania z produktu w pobliżu dzieci należy zapewnić im ścisły nadzór, aby",
+        "ograniczyć ryzyko obrażeń ciała.",
+        "c) Nie wkładać palców ani rąk do produktu.",
+        "d) Nie wystawiać powerbanka na deszcz ani śnieg.",
+        "e) Nie wystawiać powerbanka na działanie wysokiej temperatury lub ognia. Nie przechowywać w",
+        "miejscu bezpośrednio nasłonecznionym ani w pojeździe.",
+        "f) Używanie modeli zasilaczy lub ładowarek niezalecanych ani nie sprzedawanych przez",
+        "producenta powerbanka może stwarzać ryzyko pożaru lub obrażeń.",
+        "g) Nie przekraczać znamionowej mocy wyjściowej powerbanka. Przeciążenie wyjść powyżej",
+        "wartości znamionowej może stwarzać ryzyko pożaru lub obrażeń.",
+        "h) Nie używać powerbanka, jeśli został uszkodzony lub zmodyfikowany. Uszkodzone lub",
+        "zmodyfikowane baterie mogą wykazywać nieprzewidywalne zachowanie, prowadząc do pożaru,",
+        "wybuchu lub stwarzając ryzyko obrażeń.",
+        "i) Nie rozbierać powerbanka na części. W razie potrzeby serwisu lub naprawy należy oddać",
+        "urządzenie do wykwalifikowanego serwisu. Nieprawidłowe zmontowanie urządzenia może stwarzać",
+        "ryzyko pożaru lub obrażeń.",
+        "j) Nie narażać powerbanka na działanie ognia ani nadmierną temperaturę. Narażenie na działanie",
+        "ognia lub temperatur powyżej 60°C może spowodować wybuch.",
+        "k) Prace serwisowe powinny być wykonywane przez wykwalifikowany personel serwisowy lub",
+        "naprawczy, z wykorzystaniem wyłącznie identycznych części zamiennych. Pozwoli to zapewnić",
+        "bezpieczeństwo produktu.",
+        "l) Gdy powerbank nie jest używany, należy go wyłączać."
+      ]
+    },
+    "safety_caution_label": {
+      "page": 101,
+      "bbox": [
+        20,
+        288.05169677734375,
+        66,
+        307
+      ],
+      "lines": [
+        "PRZESTROGA"
+      ]
+    },
+    "safety_caution": {
+      "page": 101,
+      "bbox": [
+        66,
+        288.05169677734375,
+        240,
+        307
+      ],
+      "lines": [
+        "Ryzyko pożaru i oparzeń. Nie otwierać, nie zgniatać, nie nagrzewać",
+        "powyżej (60°C) ani nie spalać. Przestrzegać instrukcji producenta."
+      ]
+    },
+    "safety_disposal": {
+      "page": 101,
+      "bbox": [
+        18,
+        307,
+        240,
+        351
+      ],
+      "lines": [
+        "Utylizacja baterii w ogniu lub piecu topielniczym, albo mechaniczne zgniatanie lub cięcie baterii",
+        "mogą spowodować wybuch.",
+        "Pozostawienie baterii w środowisku o wyjątkowo wysokiej temperaturze może spowodować",
+        "wybuch lub wyciek łatwopalnej cieczy lub gazu, podobnie jak narażenie jej na działanie skrajnie",
+        "niskiego ciśnienia."
+      ]
+    },
+    "maintenance_title": {
+      "page": 102,
+      "bbox": [
+        18,
+        15,
+        240,
+        30
+      ],
+      "lines": [
+        "INSTRUKCJE KONSERWACJI DLA UŻYTKOWNIKA"
+      ]
+    },
+    "maintenance_body": {
+      "page": 102,
+      "bbox": [
+        18,
+        30,
+        240,
+        49.982818603515625
+      ],
+      "lines": [
+        "W cyklu życia produktów do magazynowania energii należy spodziewać się pewnej degradacji pojemności i energii.",
+        "Wraz ze wzrostem liczby cykli ładowania i rozładowywania oraz wydłużeniem czasu przechowywania, degradacja ta",
+        "będzie się stopniowo nasilać, co jest normalnym zjawiskiem zgodnym z naturalnym starzeniem się ogniw baterii."
+      ]
+    },
+    "symbol_warning": {
+      "page": 102,
+      "bbox": [
+        48,
+        144.6173095703125,
+        126,
+        161.09881591796875
+      ],
+      "lines": [
+        "Symbole ostrzeżeń i środków ostrożności.",
+        "Należy koniecznie przeczytać, aby poznać",
+        "potencjalne zagrożenia lub ryzyka."
+      ]
+    },
+    "symbol_dismantle": {
+      "page": 102,
+      "bbox": [
+        159,
+        144.6173095703125,
+        239,
+        161.09881591796875
+      ],
+      "lines": [
+        "Nie rozmontowuj produktu."
+      ]
+    },
+    "symbol_manual": {
+      "page": 102,
+      "bbox": [
+        48,
+        161.09881591796875,
+        126,
+        175.22080993652344
+      ],
+      "lines": [
+        "Przed przystąpieniem do użytkowania",
+        "przeczytaj instrukcję obsługi."
+      ]
+    },
+    "symbol_fire": {
+      "page": 102,
+      "bbox": [
+        159,
+        161.09881591796875,
+        239,
+        177.58021545410156
+      ],
+      "lines": [
+        "Trzymaj produkt z dala od ognia."
+      ]
+    },
+    "symbol_weee": {
+      "page": 102,
+      "bbox": [
+        48,
+        175.22080993652344,
+        126,
+        226.87811279296875
+      ],
+      "lines": [
+        "Ten symbol oznacza, że produktu nie wolno",
+        "wyrzucać razem z odpadami domowymi i",
+        "należy go dostarczyć do wyznaczonego",
+        "punktu zbiórki w celu recyklingu.",
+        "Prawidłowa utylizacja i recykling przyczynią",
+        "się do ochrony środowiska. Aby uzyskać",
+        "więcej informacji na temat utylizacji i",
+        "recyklingu tego produktu, skontaktuj się z",
+        "lokalną gminą, firmą zajmującą się utylizacją",
+        "lub sprzedawcą."
+      ]
+    },
+    "symbol_children": {
+      "page": 102,
+      "bbox": [
+        159,
+        177.58021545410156,
+        239,
+        194.06170654296875
+      ],
+      "lines": [
+        "Przechowuj w miejscu niedostępnym dla",
+        "dzieci."
+      ]
+    },
+    "symbol_li_ion": {
+      "page": 102,
+      "bbox": [
+        159,
+        194.06170654296875,
+        239,
+        226.62510681152344
+      ],
+      "lines": [
+        "Ten symbol oznacza, że wewnątrz produktu",
+        "znajduje się bateria litowo-jonowa (Li-ion),",
+        "którą należy prawidłowo utylizować lub",
+        "poddać recyklingowi."
+      ]
+    },
+    "inbox_label_0": {
+      "page": 103,
+      "bbox": [
+        18,
+        118,
+        90,
+        135
+      ],
+      "lines": [
+        "Jackery Explorer 100D"
+      ]
+    },
+    "inbox_label_1": {
+      "page": 103,
+      "bbox": [
+        91,
+        118,
+        163,
+        135
+      ],
+      "lines": [
+        "Kabel USB-C"
+      ]
+    },
+    "inbox_label_2": {
+      "page": 103,
+      "bbox": [
+        164,
+        118,
+        236,
+        135
+      ],
+      "lines": [
+        "Instrukcja obsługi"
+      ]
+    },
+    "inbox_title": {
+      "page": 103,
+      "bbox": [
+        18,
+        15,
+        240,
+        40
+      ],
+      "lines": [
+        "ZAWARTOŚĆ OPAKOWANIA"
+      ]
+    },
+    "overview_title": {
+      "page": 103,
+      "bbox": [
+        18,
+        140,
+        240,
+        163
+      ],
+      "lines": [
+        "WIDOK OGÓLNY PRODUKTU"
+      ]
+    },
+    "strap_notice": {
+      "page": 103,
+      "bbox": [
+        28,
+        324,
+        240,
+        346
+      ],
+      "lines": [
+        "Dodatkowe paski można dokupić i zamocować do boków produktu."
+      ]
+    },
+    "lcd_title": {
+      "page": 104,
+      "bbox": [
+        18,
+        15,
+        240,
+        36
+      ],
+      "lines": [
+        "WYŚWIETLACZ LCD"
+      ]
+    },
+    "interface1": {
+      "page": 104,
+      "bbox": [
+        18,
+        36,
+        240,
+        48
+      ],
+      "lines": [
+        "INTERFEJS 1"
+      ]
+    },
+    "lcd_name_input": {
+      "page": 104,
+      "bbox": [
+        58,
+        125.55741882324219,
+        108,
+        143.08120727539062
+      ],
+      "lines": [
+        "Moc wejściowa"
+      ]
+    },
+    "lcd_body_input": {
+      "page": 104,
+      "bbox": [
+        108,
+        125.55741882324219,
+        239,
+        143.08120727539062
+      ],
+      "lines": [
+        "Wyświetla moc wejściową w watach."
+      ]
+    },
+    "lcd_name_charge_time": {
+      "page": 104,
+      "bbox": [
+        58,
+        143.08120727539062,
+        108,
+        160.6369171142578
+      ],
+      "lines": [
+        "Pozostały czas",
+        "ładowania"
+      ]
+    },
+    "lcd_body_charge_time": {
+      "page": 104,
+      "bbox": [
+        108,
+        143.08120727539062,
+        239,
+        160.6369171142578
+      ],
+      "lines": [
+        "Wyświetla pozostały czas ładowania."
+      ]
+    },
+    "lcd_name_steady": {
+      "page": 104,
+      "bbox": [
+        58,
+        160.6369171142578,
+        108,
+        178.1925048828125
+      ],
+      "lines": [
+        "Tryb ciągłego",
+        "włączenia"
+      ]
+    },
+    "lcd_body_steady": {
+      "page": 104,
+      "bbox": [
+        108,
+        160.6369171142578,
+        239,
+        178.1925048828125
+      ],
+      "lines": [
+        "Wł.: Tryb ciągłego włączenia jest włączony.",
+        "Wył.: Tryb ciągłego włączenia jest wyłączony."
+      ]
+    },
+    "lcd_name_thermal": {
+      "page": 104,
+      "bbox": [
+        58,
+        178.1925048828125,
+        108,
+        203.3996124267578
+      ],
+      "lines": [
+        "Ograniczenie",
+        "termiczne mocy"
+      ]
+    },
+    "lcd_body_thermal": {
+      "page": 104,
+      "bbox": [
+        108,
+        178.1925048828125,
+        239,
+        203.3996124267578
+      ],
+      "lines": [
+        "Wł.: Temperatura baterii jest wysoka. Limit mocy zasilania",
+        "urządzeń odbiorczych jest włączony.",
+        "Wył.: Limit mocy zasilania urządzeń odbiorczych jest",
+        "wyłączony."
+      ]
+    },
+    "lcd_name_energy": {
+      "page": 104,
+      "bbox": [
+        58,
+        203.3996124267578,
+        108,
+        222.62220764160156
+      ],
+      "lines": [
+        "Tryb oszczędzania",
+        "energii"
+      ]
+    },
+    "lcd_body_energy": {
+      "page": 104,
+      "bbox": [
+        108,
+        203.3996124267578,
+        239,
+        222.62220764160156
+      ],
+      "lines": [
+        "Wł.: Tryb oszczędzania energii jest włączony.",
+        "Wył.: Tryb oszczędzania energii jest wyłączony."
+      ]
+    },
+    "lcd_name_ring": {
+      "page": 104,
+      "bbox": [
+        58,
+        222.62220764160156,
+        108,
+        250.2501220703125
+      ],
+      "lines": [
+        "Wskaźnik",
+        "poziomu baterii"
+      ]
+    },
+    "lcd_body_ring": {
+      "page": 104,
+      "bbox": [
+        108,
+        222.62220764160156,
+        239,
+        250.2501220703125
+      ],
+      "lines": [
+        "W trakcie ładowania produktu pomarańczowy pierścień wokół",
+        "wartości procentowej baterii będzie się zapalał sekwencyjnie.",
+        "Podczas ładowania innych urządzeń pomarańczowy pierścień",
+        "będzie stale zaświecony."
+      ]
+    },
+    "lcd_name_low_battery": {
+      "page": 104,
+      "bbox": [
+        58,
+        250.2501220703125,
+        108,
+        271.04412841796875
+      ],
+      "lines": [
+        "Wskaźnik",
+        "poziomu baterii"
+      ]
+    },
+    "lcd_body_low_battery": {
+      "page": 104,
+      "bbox": [
+        108,
+        250.2501220703125,
+        239,
+        271.04412841796875
+      ],
+      "lines": [
+        "Wł.: Poziom naładowania baterii jest niższy niż 20%.",
+        "Miga: Poziom naładowania baterii jest niższy niż 5%.",
+        "Wył.: Poziom baterii nie jest niższy niż 20% lub produkt jest",
+        "ładowany."
+      ]
+    },
+    "lcd_name_percentage": {
+      "page": 104,
+      "bbox": [
+        58,
+        271.04412841796875,
+        108,
+        291.8390197753906
+      ],
+      "lines": [
+        "Pozostały",
+        "procent baterii"
+      ]
+    },
+    "lcd_body_percentage": {
+      "page": 104,
+      "bbox": [
+        108,
+        271.04412841796875,
+        239,
+        291.8390197753906
+      ],
+      "lines": [
+        "Wyświetla pozostały procent baterii."
+      ]
+    },
+    "lcd_name_discharge_time": {
+      "page": 104,
+      "bbox": [
+        58,
+        291.8390197753906,
+        108,
+        312.63299560546875
+      ],
+      "lines": [
+        "Pozostały czas",
+        "zasilania urządzeń",
+        "odbiorczych"
+      ]
+    },
+    "lcd_body_discharge_time": {
+      "page": 104,
+      "bbox": [
+        108,
+        291.8390197753906,
+        239,
+        312.63299560546875
+      ],
+      "lines": [
+        "Wyświetla pozostały czas do rozładowania."
+      ]
+    },
+    "lcd_name_output": {
+      "page": 104,
+      "bbox": [
+        58,
+        312.63299560546875,
+        108,
+        334.0724182128906
+      ],
+      "lines": [
+        "Moc wyjściowa"
+      ]
+    },
+    "lcd_body_output": {
+      "page": 104,
+      "bbox": [
+        108,
+        312.63299560546875,
+        239,
+        334.0724182128906
+      ],
+      "lines": [
+        "Wyświetla moc wyjściową w watach."
+      ]
+    },
+    "lcd_name_fault": {
+      "page": 105,
+      "bbox": [
+        59,
+        19.509017944335938,
+        103,
+        42.44561767578125
+      ],
+      "lines": [
+        "Kod błędu"
+      ]
+    },
+    "lcd_body_fault": {
+      "page": 105,
+      "bbox": [
+        103,
+        19.509017944335938,
+        239,
+        42.44561767578125
+      ],
+      "lines": [
+        "Odłącz urządzenie odbiorcze lub wtyczkę ładowania. Jeśli nie uda",
+        "się rozwiązać problemu, skontaktuj się z działem obsługi klienta",
+        "Jackery."
+      ]
+    },
+    "lcd_name_high_temperature": {
+      "page": 105,
+      "bbox": [
+        59,
+        42.44561767578125,
+        103,
+        63.240509033203125
+      ],
+      "lines": [
+        "Wskaźnik",
+        "wysokiej",
+        "temperatury"
+      ]
+    },
+    "lcd_body_high_temperature": {
+      "page": 105,
+      "bbox": [
+        103,
+        42.44561767578125,
+        239,
+        63.240509033203125
+      ],
+      "lines": [
+        "Zadziałało zabezpieczenie przed wysoką temperaturą. Produkt",
+        "może nie działać do czasu przywrócenia temperatury do",
+        "normalnego zakresu roboczego."
+      ]
+    },
+    "lcd_name_low_temperature": {
+      "page": 105,
+      "bbox": [
+        59,
+        63.240509033203125,
+        103,
+        83.29910278320312
+      ],
+      "lines": [
+        "Wskaźnik niskiej",
+        "temperatury"
+      ]
+    },
+    "lcd_body_low_temperature": {
+      "page": 105,
+      "bbox": [
+        103,
+        63.240509033203125,
+        239,
+        83.29910278320312
+      ],
+      "lines": [
+        "Zadziałało zabezpieczenie przed niską temperaturą. Produkt może",
+        "nie działać do czasu przywrócenia temperatury do normalnego",
+        "zakresu roboczego."
+      ]
+    },
+    "lcd_name_discharging": {
+      "page": 105,
+      "bbox": [
+        61,
+        185.1807098388672,
+        121,
+        203.82740783691406
+      ],
+      "lines": [
+        "Wskaźnik zasilania",
+        "urządzenia",
+        "odbiorczego"
+      ]
+    },
+    "lcd_body_discharging": {
+      "page": 105,
+      "bbox": [
+        121,
+        185.1807098388672,
+        239,
+        203.82740783691406
+      ],
+      "lines": [
+        "Na tym porcie USB trwa zasilanie urządzenia",
+        "odbiorczego."
+      ]
+    },
+    "lcd_name_charging": {
+      "page": 105,
+      "bbox": [
+        61,
+        203.82740783691406,
+        121,
+        220.82740783691406
+      ],
+      "lines": [
+        "Wskaźnik",
+        "ładowania"
+      ]
+    },
+    "lcd_body_charging": {
+      "page": 105,
+      "bbox": [
+        121,
+        203.82740783691406,
+        239,
+        220.82740783691406
+      ],
+      "lines": [
+        "Na tym porcie USB trwa ładowanie."
+      ]
+    },
+    "lcd_name_watts": {
+      "page": 105,
+      "bbox": [
+        61,
+        220.82740783691406,
+        121,
+        237.81570434570312
+      ],
+      "lines": [
+        "Moc ładowania lub",
+        "zasilania"
+      ]
+    },
+    "lcd_body_watts": {
+      "page": 105,
+      "bbox": [
+        121,
+        220.82740783691406,
+        239,
+        237.81570434570312
+      ],
+      "lines": [
+        "Wyświetla moc ładowania lub zasilania",
+        "odpowiedniego portu."
+      ]
+    },
+    "lcd_name_health": {
+      "page": 106,
+      "bbox": [
+        59,
+        19.393699645996094,
+        116,
+        58.789215087890625
+      ],
+      "lines": [
+        "Kondycja baterii i",
+        "liczba cykli"
+      ]
+    },
+    "lcd_body_health": {
+      "page": 106,
+      "bbox": [
+        116,
+        19.393699645996094,
+        239,
+        58.789215087890625
+      ],
+      "lines": [
+        "Wyświetla aktualną kondycję baterii w",
+        "procentach oraz liczbę cykli",
+        "ładowania/rozładowania.",
+        "• Zielony: dobra kondycja baterii.",
+        "• Żółty: umiarkowana kondycja baterii.",
+        "• Czerwony: słaba kondycja baterii."
+      ]
+    },
+    "lcd_name_temperature": {
+      "page": 106,
+      "bbox": [
+        59,
+        58.789215087890625,
+        116,
+        82.06069946289062
+      ],
+      "lines": [
+        "Temperatura",
+        "baterii"
+      ]
+    },
+    "lcd_body_temperature": {
+      "page": 106,
+      "bbox": [
+        116,
+        58.789215087890625,
+        239,
+        82.06069946289062
+      ],
+      "lines": [
+        "Wyświetla bieżącą temperaturę baterii."
+      ]
+    },
+    "output_connect": {
+      "page": 106,
+      "bbox": [
+        27,
+        123.8423080444336,
+        239,
+        153.8423080444336
+      ],
+      "lines": [
+        "• Podłącz urządzenie odbiorcze, aby uruchomić wyjście."
+      ]
+    },
+    "output_notice": {
+      "page": 106,
+      "bbox": [
+        18,
+        218,
+        239,
+        340
+      ],
+      "lines": [
+        "• USB-C MAKS. 140 W to port wyjściowy USB-PD Power Source 3 (PS3) o dużej",
+        "mocy. Jeśli podłączone urządzenie użytkownika lub akcesorium nie spełnia",
+        "wymogów bezpieczeństwa, może występować ryzyko pożaru. Przed użyciem",
+        "tych portów należy się upewnić, że podłączone urządzenie lub akcesorium ma",
+        "zabezpieczenie przeciwpożarowe.",
+        "PRZESTROGA",
+        "• 100D wolno podłączać wyłącznie do urządzeń lub akcesoriów spełniających",
+        "wymagania punktów 6.3, 6.4 i 6.5 norm IEC/EN/UL 62368-1 (lub innych",
+        "równoważnych norm).",
+        "• Aby uzyskać maksymalną moc wyjściową, należy użyć kabla USB-C do",
+        "USB-C 5 A (20 V DC/5 A, 100 W; 28 V DC / 5 A, 140 W)."
+      ]
+    },
+    "energy_title": {
+      "page": 107,
+      "bbox": [
+        18,
+        12,
+        240,
+        28
+      ],
+      "lines": [
+        "TRYB OSZCZĘDZANIA ENERGII"
+      ]
+    },
+    "energy_body": {
+      "page": 107,
+      "bbox": [
+        20,
+        28,
+        240,
+        76
+      ],
+      "lines": [
+        "Tryb oszczędzania energii jest domyślnie wyłączony. Aby zapobiec niepotrzebnemu",
+        "rozładowaniu baterii, jeśli przez przypadek pozostawi się wyjście włączone, naciśnij i",
+        "przytrzymaj przycisk DISPLAY, aby włączyć tryb oszczędzania energii.",
+        "Jeśli żadne urządzenie nie jest podłączone lub pobór mocy podłączonego urządzenia",
+        "utrzymuje się przez 2 godziny na poziomie poniżej 2 W, produkt automatycznie",
+        "wyłącza wyjścia.",
+        "Gdy wyjście jest włączone, na ekranie pojawia się ikona „2H”."
+      ]
+    },
+    "energy_action": {
+      "page": 107,
+      "bbox": [
+        174,
+        77,
+        239,
+        143
+      ],
+      "lines": [
+        "Naciśnij i przytrzymaj",
+        "przez 3 sekundy, aby",
+        "włączyć/wyłączyć tryb",
+        "oszczędzania energii."
+      ]
+    },
+    "energy_note": {
+      "page": 107,
+      "bbox": [
+        18,
+        147,
+        239,
+        179
+      ],
+      "lines": [
+        "Po włączeniu zasilania tryb oszczędzania energii powraca do poprzedniego",
+        "UWAGA",
+        "stanu. Zmiana trybu wymaga ręcznego przełączenia."
+      ]
+    },
+    "screen_title": {
+      "page": 107,
+      "bbox": [
+        18,
+        179,
+        240,
+        191
+      ],
+      "lines": [
+        "WYŚWIETLACZ LCD"
+      ]
+    },
+    "screen_function_191.42311096191406": {
+      "page": 107,
+      "bbox": [
+        103,
+        191.42311096191406,
+        148,
+        207.97781372070312
+      ],
+      "lines": [
+        "Funkcja"
+      ]
+    },
+    "screen_description_191.42311096191406": {
+      "page": 107,
+      "bbox": [
+        148,
+        191.42311096191406,
+        239,
+        207.97781372070312
+      ],
+      "lines": [
+        "Opis"
+      ]
+    },
+    "screen_function_207.97781372070312": {
+      "page": 107,
+      "bbox": [
+        103,
+        207.97781372070312,
+        148,
+        235.31280517578125
+      ],
+      "lines": [
+        "Wybudzanie",
+        "ekranu"
+      ]
+    },
+    "screen_description_207.97781372070312": {
+      "page": 107,
+      "bbox": [
+        148,
+        207.97781372070312,
+        239,
+        235.31280517578125
+      ],
+      "lines": [
+        "Podświetla się po krótkim",
+        "naciśnięciu przycisku DISPLAY lub",
+        "automatycznie podczas ładowania",
+        "lub zasilania urządzeń odbiorczych."
+      ]
+    },
+    "screen_function_235.31280517578125": {
+      "page": 107,
+      "bbox": [
+        103,
+        235.31280517578125,
+        148,
+        262.6487121582031
+      ],
+      "lines": [
+        "Ekran zawsze",
+        "włączony"
+      ]
+    },
+    "screen_description_235.31280517578125": {
+      "page": 107,
+      "bbox": [
+        148,
+        235.31280517578125,
+        239,
+        262.6487121582031
+      ],
+      "lines": [
+        "Gdy ekran jest podświetlony, naciśnij",
+        "dwukrotnie przycisk DISPLAY."
+      ]
+    },
+    "screen_function_262.6487121582031": {
+      "page": 107,
+      "bbox": [
+        103,
+        262.6487121582031,
+        148,
+        289.984619140625
+      ],
+      "lines": [
+        "Przełączanie",
+        "ekranu"
+      ]
+    },
+    "screen_description_262.6487121582031": {
+      "page": 107,
+      "bbox": [
+        148,
+        262.6487121582031,
+        239,
+        289.984619140625
+      ],
+      "lines": [
+        "Po podświetleniu ekranu naciśnij",
+        "krótko przycisk DISPLAY, aby",
+        "przełączać strony."
+      ]
+    },
+    "screen_function_289.984619140625": {
+      "page": 107,
+      "bbox": [
+        103,
+        289.984619140625,
+        148,
+        317.3196105957031
+      ],
+      "lines": [
+        "Wyłączanie",
+        "trybu zawsze",
+        "włączonego",
+        "ekranu"
+      ]
+    },
+    "screen_description_289.984619140625": {
+      "page": 107,
+      "bbox": [
+        148,
+        289.984619140625,
+        239,
+        317.3196105957031
+      ],
+      "lines": [
+        "Ponownie naciśnij dwukrotnie",
+        "przycisk DISPLAY."
+      ]
+    },
+    "screen_function_317.3196105957031": {
+      "page": 107,
+      "bbox": [
+        103,
+        317.3196105957031,
+        148,
+        345.0901184082031
+      ],
+      "lines": [
+        "Automatyczne",
+        "wyłączanie",
+        "ekranu"
+      ]
+    },
+    "screen_description_317.3196105957031": {
+      "page": 107,
+      "bbox": [
+        148,
+        317.3196105957031,
+        239,
+        345.0901184082031
+      ],
+      "lines": [
+        "Po 10 sekundach podświetlenia bez",
+        "wykonania jakiejkolwiek czynności",
+        "lub 2 godziny po wejściu w tryb",
+        "zawsze włączonego ekranu."
+      ]
+    },
+    "charging_title": {
+      "page": 108,
+      "bbox": [
+        18,
+        12,
+        239,
+        30
+      ],
+      "lines": [
+        "ŁADOWANIE"
+      ]
+    },
+    "charging_intro": {
+      "page": 108,
+      "bbox": [
+        18,
+        30,
+        239,
+        42
+      ],
+      "lines": [
+        "Przed pierwszym użyciem w pełni naładuj produkt."
+      ]
+    },
+    "charging_notice": {
+      "page": 108,
+      "bbox": [
+        18,
+        42,
+        239,
+        92
+      ],
+      "lines": [
+        "• Zalecany zakres temperatury otoczenia podczas ładowania produktu",
+        "wynosi od 0°C do 45°C, a zakres temperatury otoczenia podczas",
+        "zasilania urządzeń odbiorczych – od -20°C do 45°C. Eksploatacja",
+        "produktu poza tym zakresem temperatur może ograniczyć możliwości",
+        "PRZESTROGA",
+        "ładowania i zasilania urządzeń odbiorczych, a nawet uniemożliwić te",
+        "czynności.",
+        "• Moc ładowania i pojemność baterii produktu mogą się zmieniać w",
+        "zależności od wahań temperatury."
+      ]
+    },
+    "ac_title": {
+      "page": 108,
+      "bbox": [
+        18,
+        92,
+        239,
+        105
+      ],
+      "lines": [
+        "ŁADOWANIE PRZEZ PRZEWÓD SIECIOWY DO ŁADOWANIA AC"
+      ]
+    },
+    "ac_notice": {
+      "page": 108,
+      "bbox": [
+        18,
+        182,
+        239,
+        220
+      ],
+      "lines": [
+        "• Przewód sieciowy do ładowania AC należy zakupić oddzielnie.",
+        "• Upewnij się, że przewód ładowania AC jest solidnie i bezpiecznie podłączony do",
+        "PRZESTROGA",
+        "portu wejściowego AC. Niedokładne podpięcie przewodu może powodować",
+        "niestabilność prądu, przegrzanie, słaby styk lub awarię urządzenia."
+      ]
+    },
+    "solar_intro": {
+      "page": 108,
+      "bbox": [
+        18,
+        227.9813232421875,
+        239,
+        246.3463897705078
+      ],
+      "lines": [
+        "Ten produkt obsługuje ładowanie z paneli słonecznych o maksymalnej mocy 100 W i może",
+        "być używany z panelami słonecznymi z serii Jackery SolarSaga."
+      ]
+    },
+    "solar_panel_charge": {
+      "page": 108,
+      "bbox": [
+        18,
+        246.3463897705078,
+        239,
+        253.84932861328124
+      ],
+      "lines": [
+        "Ładowanie z panelu słonecznego 40 W lub 100 W:"
+      ]
+    },
+    "solar_purchase": {
+      "page": 109,
+      "bbox": [
+        29,
+        15,
+        239,
+        30
+      ],
+      "lines": [
+        "Przewód DC8020 do USB-C jest sprzedawany oddzielnie."
+      ]
+    },
+    "solar_recommendation": {
+      "page": 109,
+      "bbox": [
+        18,
+        30,
+        239,
+        68
+      ],
+      "lines": [
+        "Do ładowania produktu zaleca się korzystanie z panelu słonecznego Jackery. Upewnij się, że",
+        "napięcie obwodu otwartego (Voc) panelu słonecznego mieści się w zakresie napięcia",
+        "wejściowego DC (10 V – 30 V) urządzenia 100D. Jackery nie ponosi odpowiedzialności za",
+        "jakiekolwiek szkody lub straty wynikające z użycia paneli słonecznych innych producentów."
+      ]
+    },
+    "car_title": {
+      "page": 109,
+      "bbox": [
+        18,
+        68,
+        239,
+        78
+      ],
+      "lines": [
+        "ŁADOWANIE ZA POMOCĄ ŁADOWARKI SAMOCHODOWEJ (SPRZEDAWANEJ ODDZIELNIE)"
+      ]
+    },
+    "car_intro": {
+      "page": 109,
+      "bbox": [
+        18,
+        78,
+        239,
+        99
+      ],
+      "lines": [
+        "Produkt można ładować za pomocą ładowarek samochodowych 12 V i 24 V. Upewnij się,",
+        "że ładowarka samochodowa i gniazdo zasilania samochodu (zapalniczka samochodowa)",
+        "są prawidłowo podłączone."
+      ]
+    },
+    "car_purchase": {
+      "page": 109,
+      "bbox": [
+        28,
+        209,
+        239,
+        229
+      ],
+      "lines": [
+        "Przewód samochodowy do ładowania oraz przewód DC8020 do USB-C są sprzedawane oddzielnie."
+      ]
+    },
+    "car_notice": {
+      "page": 109,
+      "bbox": [
+        18,
+        229,
+        239,
+        340
+      ],
+      "lines": [
+        "• Uruchomić pojazd przed przystąpieniem do ładowania powerbanka.",
+        "• Jeśli pojazd porusza się po wyboistych drogach, zabrania się korzystania z",
+        "PRZESTROGA",
+        "ładowarki samochodowej, aby uniknąć niestandardowego działania. Firma",
+        "nie ponosi odpowiedzialności za jakiekolwiek straty spowodowane",
+        "niestandardowym działaniem."
+      ]
+    },
+    "storage_title": {
+      "page": 110,
+      "bbox": [
+        18,
+        14,
+        239,
+        35
+      ],
+      "lines": [
+        "PRZECHOWYWANIE"
+      ]
+    },
+    "spec_title": {
+      "page": 111,
+      "bbox": [
+        18,
+        12,
+        239,
+        32
+      ],
+      "lines": [
+        "DANE TECHNICZNE"
+      ]
+    },
+    "spec_section_32": {
+      "page": 111,
+      "bbox": [
+        18,
+        32,
+        239,
+        45
+      ],
+      "lines": [
+        "Informacje ogólne"
+      ]
+    },
+    "spec_label_46": {
+      "page": 111,
+      "bbox": [
+        18,
+        46,
+        100,
+        60
+      ],
+      "lines": [
+        "Nazwa produktu"
+      ]
+    },
+    "spec_value_46": {
+      "page": 111,
+      "bbox": [
+        100,
+        46,
+        239,
+        60
+      ],
+      "lines": [
+        "Jackery Explorer 100D"
+      ]
+    },
+    "spec_label_60": {
+      "page": 111,
+      "bbox": [
+        18,
+        60,
+        100,
+        73
+      ],
+      "lines": [
+        "Numer modelu"
+      ]
+    },
+    "spec_value_60": {
+      "page": 111,
+      "bbox": [
+        100,
+        60,
+        239,
+        73
+      ],
+      "lines": [
+        "JE-100C"
+      ]
+    },
+    "spec_label_73": {
+      "page": 111,
+      "bbox": [
+        18,
+        73,
+        100,
+        86
+      ],
+      "lines": [
+        "Pojemność"
+      ]
+    },
+    "spec_value_73": {
+      "page": 111,
+      "bbox": [
+        100,
+        73,
+        239,
+        86
+      ],
+      "lines": [
+        "96 Wh (5 Ah / 19,2 V DC)"
+      ]
+    },
+    "spec_label_86": {
+      "page": 111,
+      "bbox": [
+        18,
+        86,
+        100,
+        100
+      ],
+      "lines": [
+        "Typ ogniw"
+      ]
+    },
+    "spec_value_86": {
+      "page": 111,
+      "bbox": [
+        100,
+        86,
+        239,
+        100
+      ],
+      "lines": [
+        "LiFePO4"
+      ]
+    },
+    "spec_label_100": {
+      "page": 111,
+      "bbox": [
+        18,
+        100,
+        100,
+        112
+      ],
+      "lines": [
+        "Waga"
+      ]
+    },
+    "spec_value_100": {
+      "page": 111,
+      "bbox": [
+        100,
+        100,
+        239,
+        112
+      ],
+      "lines": [
+        "855 g ± 10 g"
+      ]
+    },
+    "spec_label_112": {
+      "page": 111,
+      "bbox": [
+        18,
+        112,
+        100,
+        125
+      ],
+      "lines": [
+        "Wymiary"
+      ]
+    },
+    "spec_value_112": {
+      "page": 111,
+      "bbox": [
+        100,
+        112,
+        239,
+        125
+      ],
+      "lines": [
+        "(118,7 ± 1) × (82,6 ± 0,5) × (85,68 ± 0,8) mm"
+      ]
+    },
+    "spec_section_126": {
+      "page": 111,
+      "bbox": [
+        18,
+        126,
+        239,
+        139
+      ],
+      "lines": [
+        "Porty wejściowe"
+      ]
+    },
+    "spec_label_139": {
+      "page": 111,
+      "bbox": [
+        18,
+        139,
+        100,
+        189
+      ],
+      "lines": [
+        "USB-C1"
+      ]
+    },
+    "spec_value_139": {
+      "page": 111,
+      "bbox": [
+        100,
+        139,
+        239,
+        189
+      ],
+      "lines": [
+        "5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 3 A, 15 V ⎓ 3 A,",
+        "20 V ⎓ 5 A, 28 V ⎓ 5 A, maks. 140 W",
+        "Pojazd: 12 V ⎓ maks. 5 A, 24 V ⎓ maks. 5 A",
+        "Fotowoltaika: 10 V – 30 V ⎓ maks. 5 A, maks.",
+        "100 W"
+      ]
+    },
+    "spec_input_part_0": {
+      "page": 111,
+      "bbox": [
+        100,
+        139,
+        239,
+        161.9162139892578
+      ],
+      "lines": [
+        "5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 3 A, 15 V ⎓ 3 A,",
+        "20 V ⎓ 5 A, 28 V ⎓ 5 A, maks. 140 W"
+      ]
+    },
+    "spec_input_part_1": {
+      "page": 111,
+      "bbox": [
+        100,
+        161.9162139892578,
+        239,
+        175.0675048828125
+      ],
+      "lines": [
+        "Pojazd: 12 V ⎓ maks. 5 A, 24 V ⎓ maks. 5 A"
+      ]
+    },
+    "spec_input_part_2": {
+      "page": 111,
+      "bbox": [
+        100,
+        175.0675048828125,
+        239,
+        189
+      ],
+      "lines": [
+        "Fotowoltaika: 10 V – 30 V ⎓ maks. 5 A, maks.",
+        "100 W"
+      ]
+    },
+    "spec_section_189": {
+      "page": 111,
+      "bbox": [
+        18,
+        189,
+        239,
+        200
+      ],
+      "lines": [
+        "Porty wyjściowe"
+      ]
+    },
+    "spec_label_200": {
+      "page": 111,
+      "bbox": [
+        18,
+        200,
+        100,
+        215
+      ],
+      "lines": [
+        "USB-A"
+      ]
+    },
+    "spec_value_200": {
+      "page": 111,
+      "bbox": [
+        100,
+        200,
+        239,
+        215
+      ],
+      "lines": [
+        "5 V ⎓ 2 A, 9 V ⎓ 2 A, 12 V ⎓ 1,5 A, maks. 18 W"
+      ]
+    },
+    "spec_label_215": {
+      "page": 111,
+      "bbox": [
+        18,
+        215,
+        100,
+        237
+      ],
+      "lines": [
+        "USB-C1 / USB-C2"
+      ]
+    },
+    "spec_value_215": {
+      "page": 111,
+      "bbox": [
+        100,
+        215,
+        239,
+        237
+      ],
+      "lines": [
+        "5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 3 A, 15 V ⎓ 3 A,",
+        "20 V ⎓ 5 A, 28 V ⎓ 5 A, maks. 140 W"
+      ]
+    },
+    "spec_section_237": {
+      "page": 111,
+      "bbox": [
+        18,
+        237,
+        239,
+        249
+      ],
+      "lines": [
+        "Całkowita moc wyjściowa"
+      ]
+    },
+    "spec_label_249": {
+      "page": 111,
+      "bbox": [
+        18,
+        249,
+        100,
+        263.9
+      ],
+      "lines": [
+        "USB-C1 + USB-C2"
+      ]
+    },
+    "spec_value_249": {
+      "page": 111,
+      "bbox": [
+        100,
+        249,
+        239,
+        263.9
+      ],
+      "lines": [
+        "Maks. ( 70 W + 70 W )"
+      ]
+    },
+    "spec_label_263.9": {
+      "page": 111,
+      "bbox": [
+        18,
+        263.9,
+        100,
+        277
+      ],
+      "lines": [
+        "Temperatura robocza otoczenia",
+        "USB-C1 + USB-A / USB-C2 + USB-A"
+      ]
+    },
+    "spec_value_263.9": {
+      "page": 111,
+      "bbox": [
+        100,
+        263.9,
+        239,
+        277
+      ],
+      "lines": [
+        "Maks. ( 140W + 18W )"
+      ]
+    },
+    "spec_label_277": {
+      "page": 111,
+      "bbox": [
+        18,
+        277,
+        100,
+        289.5
+      ],
+      "lines": [
+        "USB-C1 + USB-C2 + USB-A"
+      ]
+    },
+    "spec_value_277": {
+      "page": 111,
+      "bbox": [
+        100,
+        277,
+        239,
+        289.5
+      ],
+      "lines": [
+        "Maks. ( 70 W + 70 W + 18 W )"
+      ]
+    },
+    "spec_section_289.5": {
+      "page": 111,
+      "bbox": [
+        18,
+        289.5,
+        239,
+        306
+      ],
+      "lines": [
+        "TEMPERATURA OTOCZENIA ROBOCZEGO"
+      ]
+    },
+    "spec_label_306": {
+      "page": 111,
+      "bbox": [
+        18,
+        306,
+        100,
+        322
+      ],
+      "lines": [
+        "Temperatura ładowania"
+      ]
+    },
+    "spec_value_306": {
+      "page": 111,
+      "bbox": [
+        100,
+        306,
+        239,
+        322
+      ],
+      "lines": [
+        "0°C do 45°C"
+      ]
+    },
+    "spec_label_322": {
+      "page": 111,
+      "bbox": [
+        18,
+        322,
+        100,
+        336
+      ],
+      "lines": [
+        "Temperatura zasilania urządzeń",
+        "odbiorczych"
+      ]
+    },
+    "spec_value_322": {
+      "page": 111,
+      "bbox": [
+        100,
+        322,
+        239,
+        336
+      ],
+      "lines": [
+        "-20°C do 45°C"
+      ]
+    },
+    "spec_footnote": {
+      "page": 111,
+      "bbox": [
+        18,
+        336,
+        239,
+        350
+      ],
+      "lines": [
+        "※ USB Type-C® i USB-C® są zastrzeżonymi znakami towarowymi USB Implementers Forum."
+      ]
+    },
+    "warranty_title": {
+      "page": 112,
+      "bbox": [
+        18,
+        12,
+        240,
+        32
+      ],
+      "lines": [
+        "GWARANCJA"
+      ]
+    },
+    "contact_title": {
+      "page": 112,
+      "bbox": [
+        20,
+        37,
+        239,
+        52
+      ],
+      "lines": [
+        "Kontakt"
+      ]
+    },
+    "contact_body": {
+      "page": 112,
+      "bbox": [
+        20,
+        52,
+        239,
+        89
+      ],
+      "lines": [
+        "W przypadku jakichkolwiek pytań lub uwag dotyczących naszych produktów wyślij",
+        "wiadomość e-mail na adres hello.eu@jackery.com, a my postaramy się jak najszybciej",
+        "odpowiedzieć. Jeśli produkt wykazuje jakiekolwiek problemy związane z jakością, można",
+        "poprosić o wymianę lub zwrot pieniędzy, przesyłając formularz na stronie",
+        "www.jackery.com."
+      ]
+    },
+    "customer_title": {
+      "page": 112,
+      "bbox": [
+        20,
+        90,
+        239,
+        103
+      ],
+      "lines": [
+        "Obsługa klienta"
+      ]
+    }
+  },
+  "assets": [
+    {
+      "key": "overview",
+      "path": "docs/renderers/web/assets/je100c_eu_pl/overview.svg",
+      "source_page": 103,
+      "bbox_pt": [
+        16,
+        164,
+        240,
+        323
+      ],
+      "removed_layout_paths": [],
+      "sha256": "395802cec38b5455ea4df84115527b5c8278b84ebcc27c875b8c34c21d42e0f6"
+    },
+    {
+      "key": "lcd1",
+      "path": "docs/renderers/web/assets/je100c_eu_pl/lcd1.svg",
+      "source_page": 104,
+      "bbox_pt": [
+        37,
+        48,
+        213,
+        123
+      ],
+      "removed_layout_paths": [],
+      "sha256": "fe2898be00b357c66dfc39bbfe42bb1e88077d14d35cd0d9b3a5bffecf8c673c"
+    },
+    {
+      "key": "lcd2",
+      "path": "docs/renderers/web/assets/je100c_eu_pl/lcd2.svg",
+      "source_page": 105,
+      "bbox_pt": [
+        18,
+        101.63660430908203,
+        238,
+        181.1807098388672
+      ],
+      "removed_layout_paths": [],
+      "sha256": "f34e444a94942329df303f517b6b83268d4a28525f496776cb72a7e12c6ed43b"
+    },
+    {
+      "key": "lcd3",
+      "path": "docs/renderers/web/assets/je100c_eu_pl/lcd3.svg",
+      "source_page": 105,
+      "bbox_pt": [
+        43,
+        261.5555114746094,
+        207,
+        339
+      ],
+      "removed_layout_paths": [],
+      "sha256": "5aaa165e8c7bbc43b9ce95c11a061d5bf9ae3ca7a6fe08f6763c78beba2c38a8"
+    },
+    {
+      "key": "lcd_icon_health",
+      "path": "docs/renderers/web/assets/je100c_eu_pl/lcd_icon_health.svg",
+      "source_page": 106,
+      "bbox_pt": [
+        32.2,
+        33.5,
+        57.65,
+        47
+      ],
+      "removed_layout_paths": [
+        {
+          "transform": "matrix(1,0,0,-1,116.02,82.42981)",
+          "d": "M0 0H-96.931C-97.97 0-98.821 .851-98.821 1.891V60.39C-98.821 61.647-97.802 62.667-96.544 62.667H0Z",
+          "fill": "#ebecec"
+        }
+      ],
+      "sha256": "2a3ff32d87e56bfdcb47aa246799780cb041486d5da791dd068d88bd2232a894"
+    },
+    {
+      "key": "charging_solar",
+      "path": "docs/renderers/web/assets/je100c_eu_pl/charging_solar.svg",
+      "source_page": 108,
+      "bbox_pt": [
+        18.211297607421876,
+        253.84932861328124,
+        235.52030029296876,
+        335.1493286132812
+      ],
+      "removed_layout_paths": [],
+      "sha256": "5fe22f62afedac2f80d265fa386dc63ffa18461e5fe62f128d770239a0800d0f"
+    },
+    {
+      "key": "charging_car",
+      "path": "docs/renderers/web/assets/je100c_eu_pl/charging_car.svg",
+      "source_page": 109,
+      "bbox_pt": [
+        17.61800537109375,
+        99.14380798339843,
+        234.9279998779297,
+        205.46280517578126
+      ],
+      "removed_layout_paths": [],
+      "sha256": "0ae6e47e32e3620662e686c94592bbe3fdbf596d104a1527d9c03bda9fb9885b"
+    }
+  ],
+  "status": "local-source-intake-candidate"
+}

@@ -8,11 +8,11 @@ import unittest
 from PIL import Image
 from bs4 import BeautifulSoup
 
-from tools.frozen_pdf_reference import (
+from tools.web.frozen_pdf_reference import (
     bind_reference_labels, labeled_artwork_node, reference_label_regions,
 )
 from tools.manual_ir.flow import flow_nodes_to_html
-from tools.web_embedded_components import render_embedded_web_component
+from tools.web.embedded_components import render_embedded_web_component
 
 
 SOURCE = (Path(__file__).resolve().parents[1] / 'manual_sources/JE-2000F/EU/nine-language'

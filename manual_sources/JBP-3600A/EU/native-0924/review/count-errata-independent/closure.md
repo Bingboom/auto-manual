@@ -1,0 +1,1 @@
+IT-META-001 CLOSED for count-label correction only. Independently recomputed all eight map hashes and170 entries/169 evidence records; extra YEARS badge matches the appendix. Appendix two-file hashes match manifest. Producer appendix commit54cc7f47748760c154cffc005e4adc36593e3dcc. Frozen source/HTML not changed. Does not approve source exceptions or publication.

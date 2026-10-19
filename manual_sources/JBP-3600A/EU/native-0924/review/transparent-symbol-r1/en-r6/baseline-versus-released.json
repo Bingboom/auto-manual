@@ -1,0 +1,97 @@
+{
+  "status": "candidate_trial",
+  "publication_eligible": false,
+  "target": "JBP-3600A/EU/en",
+  "differences": [
+    {
+      "path": "/pages/3/items/2/assets/0/sha256",
+      "expected": "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+      "actual": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "expected_sha256": "7bfb45c2b523e8d0931878858baa178fea62686320262344a67a60ea3d39a090",
+      "actual_sha256": "dc41d9914da10b84c6e4f4e748bd5086333c6e88d6a332eda75bfcb737fa3998",
+      "chapter": "symbols",
+      "component_slot": "symbols#symbol-icons"
+    },
+    {
+      "path": "/pages/3/items/2/assets/7/sha256",
+      "expected": "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+      "actual": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "expected_sha256": "7e76e5ed1f067342c8ee6acee180383b7a3cd11bd7b69370d6cf5b7bfb77598c",
+      "actual_sha256": "a33e73a9ae6a7c8817bc88b24f93a1517354309ca61add48c111251bd23f6407",
+      "chapter": "symbols",
+      "component_slot": "symbols#symbol-icons"
+    },
+    {
+      "path": "/pages/3/items/2/carrier_layout/0/children/1/children/1/children/0/children/0/sha256",
+      "expected": "ff4be9faf9fbc1e2bd00a54328e6ef1cb9204a6f5541e5f585397408a2e3d62d",
+      "actual": "ead6abb99089c0c223d8d89588c1a48bc158bb93be15ed402bbcfc7563a02bf8",
+      "expected_sha256": "7bfb45c2b523e8d0931878858baa178fea62686320262344a67a60ea3d39a090",
+      "actual_sha256": "dc41d9914da10b84c6e4f4e748bd5086333c6e88d6a332eda75bfcb737fa3998",
+      "chapter": "symbols",
+      "component_slot": "symbols#symbol-icons"
+    },
+    {
+      "path": "/pages/3/items/2/carrier_layout/0/children/1/children/4/children/2/children/0/sha256",
+      "expected": "4a69fed312019a87eb77f39ba6222a5050c1c7239599bcf5e11572851c7e6c74",
+      "actual": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "expected_sha256": "7e76e5ed1f067342c8ee6acee180383b7a3cd11bd7b69370d6cf5b7bfb77598c",
+      "actual_sha256": "a33e73a9ae6a7c8817bc88b24f93a1517354309ca61add48c111251bd23f6407",
+      "chapter": "symbols",
+      "component_slot": "symbols#symbol-icons"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/0/color",
+      "expected": {
+        "$absent": true
+      },
+      "actual": "#ffffff",
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "f8a3cb06987be2388c54198c21d334a007f9b0b1717161cc050357401c1de839",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/0/fill",
+      "expected": "#efefef",
+      "actual": "#434345",
+      "expected_sha256": "7e8cdcf81db242c56f2406631873db3c05970d59ce40903acccced5bfbb5f508",
+      "actual_sha256": "17a87785482e5f44b533ab4d9f2b442978b850cf25ff3b7c01f6289c68a9e2e7",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/1/color",
+      "expected": {
+        "$absent": true
+      },
+      "actual": "#ffffff",
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "f8a3cb06987be2388c54198c21d334a007f9b0b1717161cc050357401c1de839",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/1/fill",
+      "expected": "#efefef",
+      "actual": "#434345",
+      "expected_sha256": "7e8cdcf81db242c56f2406631873db3c05970d59ce40903acccced5bfbb5f508",
+      "actual_sha256": "17a87785482e5f44b533ab4d9f2b442978b850cf25ff3b7c01f6289c68a9e2e7",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/style_contract_sha256",
+      "expected": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+      "actual": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+      "expected_sha256": "c3e934822ec8e718cb977f98c5ea27770e5fa3205e321e9520977548c5ba86f9",
+      "actual_sha256": "a40f5932ab5ea3ad38af804ad7cca8cb1f8b53431adb16ac2536c447c2e2dfd6"
+    },
+    {
+      "path": "/web_contract_sha256",
+      "expected": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+      "actual": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+      "expected_sha256": "c3e934822ec8e718cb977f98c5ea27770e5fa3205e321e9520977548c5ba86f9",
+      "actual_sha256": "a40f5932ab5ea3ad38af804ad7cca8cb1f8b53431adb16ac2536c447c2e2dfd6"
+    }
+  ]
+}

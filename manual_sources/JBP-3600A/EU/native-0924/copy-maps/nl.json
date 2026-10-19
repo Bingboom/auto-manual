@@ -1,0 +1,2052 @@
+{
+  "language": "nl",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "status": "producer-source-checked-awaiting-web-build-and-independent-review",
+  "normalization": [
+    "printed line-wrap whitespace joined",
+    "fi/fl/ff ligatures expanded",
+    "printed bullet markers represented by HTML lists, not duplicated in copy"
+  ],
+  "copy_by_page": {
+    "preface_important_en.rst": {
+      "IMPORTANT": "BELANGRIJK",
+      "Congratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.": "Gefeliciteerd met uw nieuwe Jackery Battery Pack 3600. Lees deze handleiding goed door voordat u het product gebruikt. Neem vooral de relevante voorzorgsmaatregelen door om een correct gebruik te garanderen. Bewaar deze handleiding op een gemakkelijk bereikbare plaats, zodat u deze regelmatig kunt raadplegen.",
+      "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen.",
+      "Please kindly notice that no further notifications will be given in case of any update, revision or termination.": "Houd er rekening mee dat er bij een update, herziening of beëindiging geen verdere kennisgevingen volgen."
+    },
+    "toc.rst": {},
+    "safety_info_en.rst": {
+      "IMPORTANT SAFETY INFORMATION": "BELANGRIJKE VEILIGHEIDSINFORMATIE",
+      "The basic safety precautions should be followed when using this product, including:": "Bij het gebruik van dit product moeten de basisveiligheidsvoorschriften worden gevolgd, waaronder:",
+      "Please read all instructions before using this product.": "Lees alle instructies voordat u dit product gebruikt.",
+      "Close supervision is required when using this product near children to reduce the risk.": "Houd kinderen onder strikt toezicht bij gebruik van dit product om het risico te beperken.",
+      "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.": "Er bestaat een risico op elektrische schokken als accessoires worden aanbevolen of verkocht door niet-professionele productfabrikanten.",
+      "When the product is not in use, please unplug the power plug from the product's socket.": "Haal de stekker uit de voedingsaansluiting van het product wanneer het product niet wordt gebruikt.",
+      "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.": "Demonteer het product niet, omdat dit kan leiden tot onvoorspelbare risico's zoals brand, explosie of elektrische schokken.",
+      "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.": "Gebruik het product niet met beschadigde snoeren, stekkers of uitgangskabels, omdat dit kan leiden tot een elektrische schok.",
+      "Charge the product in a well-ventilated area and do not restrict ventilation in any way.": "Laad het product op in een goed geventileerde ruimte en beperk de ventilatie op geen enkele manier.",
+      "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.": "Plaats het product op een geventileerde en droge plaats om te voorkomen dat regen en water elektrische schokken veroorzaken.",
+      "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.": "Stel het product niet bloot aan vuur of hoge temperaturen (zoals direct zonlicht of in voertuigen bij grote hitte), dit kan ongevallen zoals brand en explosie veroorzaken.",
+      "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.": "Als dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt bewaard, kan het zijn dat het niet meer kan worden opgeladen."
+    },
+    "symbol_meaning_en.rst": {
+      "MEANING OF SYMBOLS": "BETEKENIS VAN SYMBOLEN",
+      "Symbol": "Symbool",
+      "Meaning": "Betekenis",
+      "Symbol / Meaning": "Symbool / Betekenis",
+      "WARNING": "WAARSCHUWING",
+      "Hazardous practices that may result in severe injury, death, and/or property damage.": "Gevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of materiële schade.",
+      "CAUTION": "OPGELET",
+      "Hazardous practices that may result in personal injury and/or property damage.": "Gevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade aan eigendommen.",
+      "NOTE": "OPMERKING",
+      "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.": "Gevaarlijke praktijken die kunnen leiden tot schade aan apparatuur, gegevensverlies, slechtere prestaties of onverwachte resultaten.",
+      "TIP": "TIP",
+      "Supplements the important information or operation tips in the text.": "Vult de belangrijke informatie of bedieningstips in de tekst aan.",
+      "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.": "Waarschuwings- en voorzorgssymbolen. Moet worden gelezen om personen te waarschuwen voor mogelijke gevaren of risico's.",
+      "Keep away from children.": "Houd het product buiten het bereik van kinderen.",
+      "Read the user manual before operation.": "Lees de gebruikershandleiding voor gebruik.",
+      "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.": "Dit symbool geeft aan dat zich een lithium-ion (Li-ion) batterij in het product bevindt en dat deze op de juiste manier moet worden afgevoerd of gerecycled.",
+      "Do not dismantle the product.": "Demonteer het product niet.",
+      "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.": "Dit symbool geeft aan dat het product niet als huishoudelijk afval mag worden weggegooid en naar een aangewezen inzamelingspunt voor recycling moet worden gebracht. Een juiste afvalverwerking en recycling dragen bij aan een beter milieu. Voor meer informatie over de verwijdering en recycling van dit product, neem contact op met uw gemeente, afvalverwerkingsdienst of leverancier.",
+      "Keep the product away from fire.": "Houd het product uit de buurt van vuur.",
+      "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.": "Batterijen en accu's mogen niet bij het huishoudelijk afval worden weggegooid. Als consument bent u wettelijk verplicht om alle batterijen en accu's in te leveren bij daarvoor aangewezen inzamelpunten, ongeacht of ze gevaarlijke stoffen bevatten. Lever gebruikte batterijen en accu's in bij een plaatselijk inleverpunt, recyclingcentrum of bij de winkel waar u ze heeft gekocht. Een juiste afvalverwerking verzekert dat recycling op een milieuvriendelijke manier gebeurt en voorkomt mogelijke schade aan de menselijke gezondheid en het milieu."
+    },
+    "box_contents_en.rst": {
+      "WHAT'S IN THE BOX": "WAT ZIT ER IN DE DOOS",
+      "Jackery Battery Pack 3600.": "Jackery Battery Pack 3600",
+      "Jackery Battery Pack 3600": "Jackery Battery Pack 3600",
+      "Expansion Cable.": "Uitbreidingskabel",
+      "Expansion Cable": "Uitbreidingskabel",
+      "User Manual.": "Gebruikershandleiding",
+      "User Manual": "Gebruikershandleiding"
+    },
+    "product_overview_en.rst": {
+      "PRODUCT OVERVIEW": "PRODUCTOVERZICHT",
+      "FRONT VIEW": "VOORAANZICHT",
+      "LEFT SIDE VIEW": "LINKERAANZICHT",
+      "POWER button LCD": "Aan/Uit-knop LCD-scherm",
+      "Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)": "DC-uitbreidingspoort B (Sluit aan op klem B van de uitbreidingskabel) (Sluit aan op klem A van de uitbreidingskabel) DC-uitbreidingspoort A Handvat"
+    },
+    "lcd_display_en.rst": {
+      "LCD DISPLAY": "LCD-SCHERM",
+      "Power Percentage/Fault Code": "Batterijpercentage /Foutcode",
+      "The display shows the current power percentage.": "De weergave toont het actuele batterijpercentage.",
+      "When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.": "Wanneer het systeem faalt, wordt de bijbehorende foutcode F0-FF weergegeven. Als de foutcode FF verschijnt, verwijder dan de belastingen, zodat het product zichzelf kan herstellen. Zo niet, neem dan contact op met de klantenservice van Jackery. Als er een andere code verschijnt, neem dan contact op met onze klantenservice.",
+      "Charging Indicator": "Laadindicator",
+      "The indicator is displayed when charging and disappears when it is fully charged.": "De indicator wordt weergegeven tijdens het opladen en verdwijnt wanneer het product volledig is opgeladen."
+    },
+    "operation_en.rst": {
+      "OPERATIONS": "HANDELINGEN",
+      "POWER ON/OFF": "IN-/UITSCHAKELEN",
+      "On": "Aan",
+      "Press once": "Druk één keer",
+      "Off": "Uit",
+      "Press and hold for 3s": "Houd 3 seconden ingedrukt.",
+      "NOTE": "OPMERKING",
+      "LCD DISPLAY ON/OFF": "LCD-SCHERM AAN/UIT",
+      "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.": "Wanneer u de hoofdschakelaar indrukt of het product oplaadt, wordt het LCD-scherm verlicht. Wanneer u er nogmaals op drukt, wordt het LCD-scherm uitgeschakeld.",
+      "Jackery Battery Pack 3600 POWER button operation.": "IN-/UITSCHAKELEN",
+      "Jackery Battery Pack 3600 LCD display operation.": "LCD-SCHERM AAN/UIT",
+      "When using with Jackery Explorer 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery Explorer 3600 Plus.": "Bij gebruik met de Jackery Explorer 3600 Plus kunt u de aan/uit-status van het Jackery Battery Pack 3600 bedienen via de hoofdschakelaar van de Jackery Explorer 3600 Plus.",
+      "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.": "Het product wordt automatisch uitgeschakeld als het gedurende 2 uur niet wordt opgeladen of als er geen belastingen zijn aangesloten."
+    },
+    "connections_en.rst": {
+      "CONNECTIONS": "VERBINDINGEN",
+      "Up to 5 sets of these products can be used along with Jackery Explorer 3600 Plus to meet the increased capacity needs.": "Er kunnen maximaal 5 sets van deze producten worden gebruikt, samen met de Jackery Explorer 3600 Plus, om aan de toegenomen capaciteitsbehoefte te voldoen.",
+      "CAUTION": "OPGELET",
+      "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.": "Zorg ervoor dat alle producten zijn uitgeschakeld voordat u de Jackery Explorer 3600 Plus aansluit op het Jackery Battery Pack 3600.",
+      "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.": "Zorg voor een goede werking van het product door ervoor te zorgen dat de luchtinlaat- en uitlaatopeningen aan beide zijden niet geblokkeerd zijn. Houd minimaal 0,66 ft (≈200 mm) ruimte tussen de ventilatieopeningen en objecten voor een goede warmteafvoer.",
+      "≥0.66 ft (≈200 mm)": "≥0,66 ft (≈200 mm)",
+      "Battery pack connection and clearance diagram.": "VERBINDINGEN — Jackery Battery Pack 3600",
+      "Correct and incorrect battery pack stacking.": "VERBINDINGEN — Jackery Battery Pack 3600",
+      "Battery pack stacking and expansion-cable locking and unlocking steps.": "VERBINDINGEN — Jackery Battery Pack 3600",
+      "NOTES": "Opmerkingen",
+      "Lock": "Vergrendelen",
+      "Unlock": "Ontgrendelen",
+      "The display of the connection icon on the LCD screen (Jackery Explorer 3600 Plus) signifies a successful connection between the battery pack and the Jackery Explorer 3600 Plus.": "De weergave van het -pictogram op het LCD-scherm (van de Jackery Explorer 3600 Plus) geeft aan dat de verbinding tussen het batterijpakket en de Jackery Explorer 3600 Plus succesvol is.",
+      "When using the product, do not stack more than three battery packs in one tower to prevent it from falling and causing injury.": "Stapel bij gebruik maximaal drie batterijpakketten in één toren om vallen en letsel te voorkomen.",
+      "Please do not stack the product on the top of the Jackery Explorer 3600 Plus.": "Stapel het product niet bovenop de Jackery Explorer 3600 Plus."
+    },
+    "troubleshooting_en.rst": {
+      "TROUBLESHOOTING": "PROBLEEMOPLOSSING",
+      "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.": "Als een van de volgende foutcodes verschijnt, volg dan de vermelde corrigerende acties om het probleem op te lossen. Als het probleem aanhoudt, neem dan contact op met Jackery-klantenondersteuning.",
+      "Restart the product.": "Herstart het product.",
+      "Contact Jackery Customer Support.": "Neem contact op met de Jackery-klantenondersteuning.",
+      "Connect the product to loads to discharge its battery until the fault disappears.": "Sluit het product aan op belastingen om de batterij te ontladen totdat de fout verdwijnt.",
+      "Charge the product via solar panels or AC wall outlet until the fault disappears.": "Laad het product op via zonnepanelen of een AC-stopcontact tot de fout verdwijnt.",
+      "Place the product in an environment with a proper temperature and wait till the fault disappears.": "Plaats het product in een omgeving met de juiste temperatuur en wacht tot de fout verdwijnt.",
+      "Error Code": "Foutcode",
+      "Corrective Measures": "Oplossingsmaatregelen"
+    },
+    "charging_en.rst": {
+      "CHARGING": "OPLADEN",
+      "CHARGING VIA AC WALL OUTLET": "OPLADEN VIA AC-STOPCONTACT",
+      "When charging from the wall, this product must be used with Jackery Explorer 3600 Plus.": "Bij het opladen via het stopcontact moet dit product worden gebruikt in combinatie met de Jackery Explorer 3600 Plus.",
+      "WARNING": "WAARSCHUWING",
+      "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.": "Zorg ervoor dat alle producten zijn uitgeschakeld voordat u de Jackery Explorer 3600 Plus aansluit op het Jackery Battery Pack 3600.",
+      "AC wall charging connection through Jackery Explorer 3600 Plus.": "OPLADEN VIA AC-STOPCONTACT",
+      "Charge your product with solar panels and Jackery Explorer 3600 Plus as shown in the figure below. Please refer to the Jackery Explorer 3600 Plus user manual for more information.": "Laad uw product op met zonnepanelen en de Jackery Explorer 3600 Plus, zoals weergegeven in de onderstaande afbeelding. Raadpleeg de gebruikershandleiding van de Jackery Explorer 3600 Plus voor meer informatie.",
+      "Solar charging connection through Jackery Explorer 3600 Plus.": "OPLADEN VIA ZONNEPANELEN",
+      "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)": "OPLADEN VIA ZONNEPANELEN (APART VERKOCHT)"
+    },
+    "storage_en.rst": {
+      "STORAGE": "Opslag",
+      "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:": "Bewaar het product op een droge, schone plaats met goede ventilatie. Opslagtemperatuur en -vochtigheid:",
+      "1 month: -20°C to 45°C (0-60%RH)": "1 maand: -20°C tot 45°C (0-60%RH)",
+      "3 months: 0°C to 45°C (0-60%RH)": "3 maanden: 0°C tot 45°C (0-60%RH)",
+      "12 months: 0°C to 25°C (0-60%RH)": "12 maanden: 0°C tot 25°C (0-60%RH)",
+      "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.": "Als dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt bewaard, kan het zijn dat het niet meer kan worden opgeladen. Om dit te voorkomen en de batterij in goede conditie te houden, is het aan te raden om het product elke drie maanden te controleren en op te laden, waarbij minstens één keer per 6 tot 12 maanden een volledige laad- en ontlaadcyclus moet worden uitgevoerd."
+    },
+    "specifications_en.rst": {
+      "SPECIFICATIONS": "SPECIFICATIES",
+      "GENERAL INFO": "ALGEMENE INFORMATIE",
+      "INPUT/OUTPUT PORTS": "INGANGS//UITGANGSPOORTEN",
+      "ENVIRONMENTAL OPERATING TEMPERATURE": "BEDRIJFSTEMPERATUUR",
+      "Model No.": "Modelnummer",
+      "JBP-3600A": "JBP-3600A",
+      "Capacity": "Capaciteit",
+      "80 Ah/44.8 V DC (3584 Wh)": "80 Ah/44,8 Vdc (3584 Wh)",
+      "Cell Chemistry": "Celchemie",
+      "LiFePO₄": "LiFePO₄",
+      "Weight": "Gewicht",
+      "About 55.1 lbs/25 kg": "Ongeveer 55,1 lbs/25 kg",
+      "Dimensions": "Afmetingen",
+      "14.8 × 12.5 × 9.0 in / 37.5 × 31.7 × 22.9 cm": "14,8 x 12,5 x 9,0 in/37,5 x 31,7 x 22,9 cm",
+      "Cycle Life": "Levenscyclus",
+      "6000 cycles to 70%+ capacity": "6000 cycli tot 70%+ capaciteit",
+      "IEC Code": "IEC-code",
+      "IFpR41/136[14S4P]M/-20+40/90": "IFpR41/136[14S4P]M/-20+40/90",
+      "Product Name": "Productnaam",
+      "Jackery Battery Pack 3600": "Jackery Battery Pack 3600",
+      "DC Expansion Port (Input)": "DC-uitbreidingspoort (ingang)",
+      "36.4V-50.4V⎓60A Max": "36,4 V-50,4 V⎓60 A Max",
+      "DC Expansion Port (Output)": "DC-uitbreidingspoort (Uitgang)",
+      "36.4V-50.4V⎓100A Max": "36,4 V-50,4 V⎓100 A Max",
+      "Charge Temperature": "Oplaadtemperatuur",
+      "-20°C to 45°C": "-20°C tot 45°C",
+      "Discharge Temperature": "Ontlaadtemperatuur"
+    },
+    "warranty_en.rst": {
+      "WARRANTY": "GARANTIE",
+      "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.": "We bieden onze garantie alleen aan klanten die aankopen bij de officiële Jackery-website, Jackery-merkplatformen van derden of lokale erkende dealers.",
+      "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.": "* De garantieperiode en -details kunnen variëren afhankelijk van lokale wetten, regelgeving en geautoriseerde dealers.",
+      "Limited Warranty": "Beperkte garantie",
+      "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.": "Jackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en materiaalfouten bij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de sectie 'Garantieperiode' hieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen.",
+      "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.": "In deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij aanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere aansprakelijkheid te aanvaarden in verband met de verkoop van onze producten.",
+      "Warranty Period": "Garantieperiode",
+      "The standard warranty period for Jackery Battery Pack 3600 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.": "De standaard garantieperiode voor het Jackery Battery Pack 3600 is 36 maanden. In alle gevallen gaat de garantieperiode in op de datum van aankoop door de oorspronkelijke consument-koper. Het aankoopbewijs van de eerste consument-koper, of ander redelijk documentair bewijs, is vereist om de startdatum van de garantieperiode vast te stellen.",
+      "Repair or Replacement": "Reparatie of vervanging",
+      "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.": "Jackery repareert of vervangt (op kosten van Jackery) elk Jackery-product dat gedurende de toepasselijke garantieperiode niet functioneert als gevolg van een fabricage- of materiaalfout. Het gerepareerde of vervangen product neemt de resterende garantie over, gerekend vanaf de oorspronkelijke aankoopdatum.",
+      "Limited to Original Consumer Buyer": "Beperkt tot de oorspronkelijke koper",
+      "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet overdraagbaar aan een volgende eigenaar.",
+      "Exclusions": "Uitsluitingen",
+      "Interpretation Rights": "Interpretatierechten",
+      "Jackery reserves the right to final interpretation of the above customer after-sales policy.": "Jackery behoudt zich het recht voor op definitieve interpretatie van het bovengenoemde after-salesbeleid voor klanten.",
+      "3 YEARS": "3 JAAR",
+      "Standard Warranty": "Standaardgarantie",
+      "2 YEARS": "2 JAAR",
+      "Extended Warranty": "Verlengde garantie",
+      "YEARS": "JAAR",
+      "To activate the Warranty Extension, you must register your product online or contact our customer service team at ": "Om de garantieverlenging te activeren, moet u uw product online registreren of contact opnemen met onze klantenservice via ",
+      " to extend the standard warranty runtime.": " om de duur van de standaardgarantie te verlengen.",
+      "Jackery's warranty does not apply to:": "De garantie van Jackery is niet van toepassing op:",
+      "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.": "Onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal consumentengebruik, zoals toegestaan in de huidige productliteratuur van Jackery.",
+      "Attempted repair by anyone other than an authorized facility.": "Een poging tot reparatie door iemand anders dan een erkend servicecentrum.",
+      "Any product purchased through an online auction house.": "Elk product dat via een online veilinghuis is gekocht.",
+      "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.": "De garantie van Jackery is niet van toepassing op de batterijcel, tenzij u de batterijcel binnen zeven dagen na aankoop van het product volledig oplaadt en daarna ten minste één keer per zes maanden."
+    },
+    "regulatory_compliance.rst": {
+      "EU REGULATIONS": "EU REGULATIONS",
+      "RED DECLARATION OF CONFORMITY": "RED DECLARATION OF CONFORMITY",
+      "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "https://de.jackery.com/pages/user-guides": "https://de.jackery.com/pages/user-guides",
+      "MANUFACTURER": "MANUFACTURER",
+      "SHENZHEN HELLO TECH ENERGY CO., LTD.": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "+86 400 668 9293": "+86 400 668 9293",
+      "sales@hello-tech.com": "sales@hello-tech.com",
+      "www.hello-tech.com": "www.hello-tech.com"
+    }
+  },
+  "evidence": [
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "IMPORTANT",
+      "native": "BELANGRIJK",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter heading"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Congratulations on your new Jackery Battery Pack 3600. Please read this manual carefully before using the product, particularly the relevant precautions to ensure proper use. Keep this manual in an accessible place for frequent reference.",
+      "native": "Gefeliciteerd met uw nieuwe Jackery Battery Pack 3600. Lees deze handleiding goed door voordat u het product gebruikt. Neem vooral de relevante voorzorgsmaatregelen door om een correct gebruik te garanderen. Bewaar deze handleiding op een gemakkelijk bereikbare plaats, zodat u deze regelmatig kunt raadplegen.",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter body paragraph"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "In compliance with laws and regulations, the right of final interpretation of this document and all related documents of this product resides with the Company.",
+      "native": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen.",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter body paragraph"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "preface_important_en.rst",
+      "english": "Please kindly notice that no further notifications will be given in case of any update, revision or termination.",
+      "native": "Houd er rekening mee dat er bij een update, herziening of beëindiging geen verdere kennisgevingen volgen.",
+      "physical_page": 3,
+      "selection": {
+        "method": "native frontmatter body paragraph"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "IMPORTANT SAFETY INFORMATION",
+      "native": "BELANGRIJKE VEILIGHEIDSINFORMATIE",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "The basic safety precautions should be followed when using this product, including:",
+      "native": "Bij het gebruik van dit product moeten de basisveiligheidsvoorschriften worden gevolgd, waaronder:",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please read all instructions before using this product.",
+      "native": "Lees alle instructies voordat u dit product gebruikt.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Close supervision is required when using this product near children to reduce the risk.",
+      "native": "Houd kinderen onder strikt toezicht bij gebruik van dit product om het risico te beperken.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Risk of electric shock may occur when using accessories recommended or sold by non-professional product manufacturers.",
+      "native": "Er bestaat een risico op elektrische schokken als accessoires worden aanbevolen of verkocht door niet-professionele productfabrikanten.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "When the product is not in use, please unplug the power plug from the product's socket.",
+      "native": "Haal de stekker uit de voedingsaansluiting van het product wanneer het product niet wordt gebruikt.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not dismantle the product, which may lead to unpredictable risks such as fire, explosion or electric shock.",
+      "native": "Demonteer het product niet, omdat dit kan leiden tot onvoorspelbare risico's zoals brand, explosie of elektrische schokken.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not use the product through damaged cords or plugs, or damaged output cables, which may cause electric shock.",
+      "native": "Gebruik het product niet met beschadigde snoeren, stekkers of uitgangskabels, omdat dit kan leiden tot een elektrische schok.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Charge the product in a well-ventilated area and do not restrict ventilation in any way.",
+      "native": "Laad het product op in een goed geventileerde ruimte en beperk de ventilatie op geen enkele manier.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Please put the product in a ventilated and dry place to avoid rain and water causing electric shock.",
+      "native": "Plaats het product op een geventileerde en droge plaats om te voorkomen dat regen en water elektrische schokken veroorzaken.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "Do not expose the product to fire or high temperature (under direct sunlight or in a vehicle under high heat), which may cause accidents such as fire or explosion.",
+      "native": "Stel het product niet bloot aan vuur of hoge temperaturen (zoals direct zonlicht of in voertuigen bij grote hitte), dit kan ongevallen zoals brand en explosie veroorzaken.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "safety_info_en.rst",
+      "english": "If this product is stored for a long period of time (3 months–6 months) with the power depleted, it may become unchargeable.",
+      "native": "Als dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt bewaard, kan het zijn dat het niet meer kan worden opgeladen.",
+      "physical_page": 63,
+      "selection": {
+        "method": "native safety bullet; printed bullet marker represented by HTML list"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "MEANING OF SYMBOLS",
+      "native": "BETEKENIS VAN SYMBOLEN",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol",
+      "native": "Symbool",
+      "physical_page": 63,
+      "selection": {
+        "method": "native table header"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Meaning",
+      "native": "Betekenis",
+      "physical_page": 63,
+      "selection": {
+        "method": "native table header"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Symbol / Meaning",
+      "native": "Symbool / Betekenis",
+      "physical_page": 63,
+      "selection": {
+        "method": "native table header"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "WARNING",
+      "native": "WAARSCHUWING",
+      "physical_page": 63,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in severe injury, death, and/or property damage.",
+      "native": "Gevaarlijke handelingen die kunnen leiden tot ernstig letsel, overlijden en/of materiële schade.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 15,
+        "exclude_label": "WAARSCHUWING"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "CAUTION",
+      "native": "OPGELET",
+      "physical_page": 63,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in personal injury and/or property damage.",
+      "native": "Gevaarlijke praktijken die kunnen leiden tot persoonlijk letsel en/of schade aan eigendommen.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 14,
+        "exclude_label": "OPGELET"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "NOTE",
+      "native": "OPMERKING",
+      "physical_page": 63,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",
+      "native": "Gevaarlijke praktijken die kunnen leiden tot schade aan apparatuur, gegevensverlies, slechtere prestaties of onverwachte resultaten.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 16,
+        "exclude_label": "OPMERKING"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "TIP",
+      "native": "TIP",
+      "physical_page": 63,
+      "selection": {
+        "method": "native signal label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Supplements the important information or operation tips in the text.",
+      "native": "Vult de belangrijke informatie of bedieningstips in de tekst aan.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 17,
+        "exclude_label": "TIP"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Warning and Caution Symbols. Must read to alert individuals to potential hazards or risks.",
+      "native": "Waarschuwings- en voorzorgssymbolen. Moet worden gelezen om personen te waarschuwen voor mogelijke gevaren of risico's.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep away from children.",
+      "native": "Houd het product buiten het bereik van kinderen.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Read the user manual before operation.",
+      "native": "Lees de gebruikershandleiding voor gebruik.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.",
+      "native": "Dit symbool geeft aan dat zich een lithium-ion (Li-ion) batterij in het product bevindt en dat deze op de juiste manier moet worden afgevoerd of gerecycled.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Do not dismantle the product.",
+      "native": "Demonteer het product niet.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.",
+      "native": "Dit symbool geeft aan dat het product niet als huishoudelijk afval mag worden weggegooid en naar een aangewezen inzamelingspunt voor recycling moet worden gebracht. Een juiste afvalverwerking en recycling dragen bij aan een beter milieu. Voor meer informatie over de verwijdering en recycling van dit product, neem contact op met uw gemeente, afvalverwerkingsdienst of leverancier.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Keep the product away from fire.",
+      "native": "Houd het product uit de buurt van vuur.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "symbol_meaning_en.rst",
+      "english": "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+      "native": "Batterijen en accu's mogen niet bij het huishoudelijk afval worden weggegooid. Als consument bent u wettelijk verplicht om alle batterijen en accu's in te leveren bij daarvoor aangewezen inzamelpunten, ongeacht of ze gevaarlijke stoffen bevatten. Lever gebruikte batterijen en accu's in bij een plaatselijk inleverpunt, recyclingcentrum of bij de winkel waar u ze heeft gekocht. Een juiste afvalverwerking verzekert dat recycling op een milieuvriendelijke manier gebeurt en voorkomt mogelijke schade aan de menselijke gezondheid en het milieu.",
+      "physical_page": 63,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "WHAT'S IN THE BOX",
+      "native": "WAT ZIT ER IN DE DOOS",
+      "physical_page": 64,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 3600.",
+      "native": "Jackery Battery Pack 3600",
+      "physical_page": 64,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Jackery Battery Pack 3600",
+      "native": "Jackery Battery Pack 3600",
+      "physical_page": 64,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable.",
+      "native": "Uitbreidingskabel",
+      "physical_page": 64,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "Expansion Cable",
+      "native": "Uitbreidingskabel",
+      "physical_page": 64,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual.",
+      "native": "Gebruikershandleiding",
+      "physical_page": 64,
+      "selection": {
+        "native_block": 17
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "box_contents_en.rst",
+      "english": "User Manual",
+      "native": "Gebruikershandleiding",
+      "physical_page": 64,
+      "selection": {
+        "native_block": 17
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "PRODUCT OVERVIEW",
+      "native": "PRODUCTOVERZICHT",
+      "physical_page": 64,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "FRONT VIEW",
+      "native": "VOORAANZICHT",
+      "physical_page": 64,
+      "selection": {
+        "bbox_pt": [
+          27,
+          288,
+          155,
+          301
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "LEFT SIDE VIEW",
+      "native": "LINKERAANZICHT",
+      "physical_page": 64,
+      "selection": {
+        "bbox_pt": [
+          156,
+          288,
+          346,
+          301
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "POWER button LCD",
+      "native": "Aan/Uit-knop LCD-scherm",
+      "physical_page": 64,
+      "selection": {
+        "bbox_pt": [
+          27,
+          301,
+          155,
+          434
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "product_overview_en.rst",
+      "english": "Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)",
+      "native": "DC-uitbreidingspoort B (Sluit aan op klem B van de uitbreidingskabel) (Sluit aan op klem A van de uitbreidingskabel) DC-uitbreidingspoort A Handvat",
+      "physical_page": 64,
+      "selection": {
+        "bbox_pt": [
+          156,
+          301,
+          346,
+          434
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "LCD DISPLAY",
+      "native": "LCD-SCHERM",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Power Percentage/Fault Code",
+      "native": "Batterijpercentage /Foutcode",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The display shows the current power percentage.",
+      "native": "De weergave toont het actuele batterijpercentage.",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 3,
+        "part": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "When the system fails, it will be displayed as the corresponding fault code F0-FF. If the FF code appears, please remove the loads and the product can recover by itself. If not, please contact Jackery Customer Support. In case of any other code appears, please contact our Customer Support.",
+      "native": "Wanneer het systeem faalt, wordt de bijbehorende foutcode F0-FF weergegeven. Als de foutcode FF verschijnt, verwijder dan de belastingen, zodat het product zichzelf kan herstellen. Zo niet, neem dan contact op met de klantenservice van Jackery. Als er een andere code verschijnt, neem dan contact op met onze klantenservice.",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 3,
+        "part": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "Charging Indicator",
+      "native": "Laadindicator",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 4,
+        "part": "label"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "lcd_display_en.rst",
+      "english": "The indicator is displayed when charging and disappears when it is fully charged.",
+      "native": "De indicator wordt weergegeven tijdens het opladen en verdwijnt wanneer het product volledig is opgeladen.",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 4,
+        "part": "body"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "OPERATIONS",
+      "native": "HANDELINGEN",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "POWER ON/OFF",
+      "native": "IN-/UITSCHAKELEN",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "On",
+      "native": "Aan",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Press once",
+      "native": "Druk één keer",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Off",
+      "native": "Uit",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Press and hold for 3s",
+      "native": "Houd 3 seconden ingedrukt.",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "NOTE",
+      "native": "OPMERKING",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "LCD DISPLAY ON/OFF",
+      "native": "LCD-SCHERM AAN/UIT",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When you press the main POWER button or when charging the product, the LCD display is illuminated. When you press it again, the LCD display will be switched off.",
+      "native": "Wanneer u de hoofdschakelaar indrukt of het product oplaadt, wordt het LCD-scherm verlicht. Wanneer u er nogmaals op drukt, wordt het LCD-scherm uitgeschakeld.",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 3600 POWER button operation.",
+      "native": "IN-/UITSCHAKELEN",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "Jackery Battery Pack 3600 LCD display operation.",
+      "native": "LCD-SCHERM AAN/UIT",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "When using with Jackery Explorer 3600 Plus, you can control the power status (on or off) of Jackery Battery Pack 3600 through the main POWER button of Jackery Explorer 3600 Plus.",
+      "native": "Bij gebruik met de Jackery Explorer 3600 Plus kunt u de aan/uit-status van het Jackery Battery Pack 3600 bedienen via de hoofdschakelaar van de Jackery Explorer 3600 Plus.",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 16,
+        "bullet_index": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "operation_en.rst",
+      "english": "The product will automatically shut down if it is not charged or no loads are connected for 2 hours.",
+      "native": "Het product wordt automatisch uitgeschakeld als het gedurende 2 uur niet wordt opgeladen of als er geen belastingen zijn aangesloten.",
+      "physical_page": 65,
+      "selection": {
+        "native_block": 16,
+        "bullet_index": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CONNECTIONS",
+      "native": "VERBINDINGEN",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Up to 5 sets of these products can be used along with Jackery Explorer 3600 Plus to meet the increased capacity needs.",
+      "native": "Er kunnen maximaal 5 sets van deze producten worden gebruikt, samen met de Jackery Explorer 3600 Plus, om aan de toegenomen capaciteitsbehoefte te voldoen.",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "CAUTION",
+      "native": "OPGELET",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.",
+      "native": "Zorg ervoor dat alle producten zijn uitgeschakeld voordat u de Jackery Explorer 3600 Plus aansluit op het Jackery Battery Pack 3600.",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 21,
+        "bullet_index": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.",
+      "native": "Zorg voor een goede werking van het product door ervoor te zorgen dat de luchtinlaat- en uitlaatopeningen aan beide zijden niet geblokkeerd zijn. Houd minimaal 0,66 ft (≈200 mm) ruimte tussen de ventilatieopeningen en objecten voor een goede warmteafvoer.",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 21,
+        "bullet_index": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "≥0.66 ft (≈200 mm)",
+      "native": "≥0,66 ft (≈200 mm)",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 4,
+        "occurrence": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery pack connection and clearance diagram.",
+      "native": "VERBINDINGEN — Jackery Battery Pack 3600",
+      "physical_page": 66,
+      "selection": {
+        "method": "accessibility from native section and model"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Correct and incorrect battery pack stacking.",
+      "native": "VERBINDINGEN — Jackery Battery Pack 3600",
+      "physical_page": 66,
+      "selection": {
+        "method": "accessibility from native section and model"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Battery pack stacking and expansion-cable locking and unlocking steps.",
+      "native": "VERBINDINGEN — Jackery Battery Pack 3600",
+      "physical_page": 66,
+      "selection": {
+        "method": "accessibility from native section and model"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "NOTES",
+      "native": "Opmerkingen",
+      "physical_page": 67,
+      "selection": {
+        "native_block": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Lock",
+      "native": "Vergrendelen",
+      "physical_page": 67,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Unlock",
+      "native": "Ontgrendelen",
+      "physical_page": 67,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "The display of the connection icon on the LCD screen (Jackery Explorer 3600 Plus) signifies a successful connection between the battery pack and the Jackery Explorer 3600 Plus.",
+      "native": "De weergave van het -pictogram op het LCD-scherm (van de Jackery Explorer 3600 Plus) geeft aan dat de verbinding tussen het batterijpakket en de Jackery Explorer 3600 Plus succesvol is.",
+      "physical_page": 67,
+      "selection": {
+        "native_block": 6,
+        "bullet_index": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "When using the product, do not stack more than three battery packs in one tower to prevent it from falling and causing injury.",
+      "native": "Stapel bij gebruik maximaal drie batterijpakketten in één toren om vallen en letsel te voorkomen.",
+      "physical_page": 67,
+      "selection": {
+        "native_block": 6,
+        "bullet_index": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "connections_en.rst",
+      "english": "Please do not stack the product on the top of the Jackery Explorer 3600 Plus.",
+      "native": "Stapel het product niet bovenop de Jackery Explorer 3600 Plus.",
+      "physical_page": 67,
+      "selection": {
+        "native_block": 6,
+        "bullet_index": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "TROUBLESHOOTING",
+      "native": "PROBLEEMOPLOSSING",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "If any of the following fault codes appear, follow the listed corrective actions to resolve the issue.\nIf the fault persists, please contact Jackery Customer Support.",
+      "native": "Als een van de volgende foutcodes verschijnt, volg dan de vermelde corrigerende acties om het probleem op te lossen. Als het probleem aanhoudt, neem dan contact op met Jackery-klantenondersteuning.",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 20
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Restart the product.",
+      "native": "Herstart het product.",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Contact Jackery Customer Support.",
+      "native": "Neem contact op met de Jackery-klantenondersteuning.",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Connect the product to loads to discharge its battery until the fault disappears.",
+      "native": "Sluit het product aan op belastingen om de batterij te ontladen totdat de fout verdwijnt.",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 19
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Charge the product via solar panels or AC wall outlet until the fault disappears.",
+      "native": "Laad het product op via zonnepanelen of een AC-stopcontact tot de fout verdwijnt.",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Place the product in an environment with a proper temperature and wait till the fault disappears.",
+      "native": "Plaats het product in een omgeving met de juiste temperatuur en wacht tot de fout verdwijnt.",
+      "physical_page": 66,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Error Code",
+      "native": "Foutcode",
+      "physical_page": 66,
+      "selection": {
+        "bbox_pt": [
+          28,
+          81.07629852294922,
+          70,
+          89.85397644042969
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "troubleshooting_en.rst",
+      "english": "Corrective Measures",
+      "native": "Oplossingsmaatregelen",
+      "physical_page": 66,
+      "selection": {
+        "bbox_pt": [
+          71,
+          81.07629852294922,
+          345,
+          89.85397644042969
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING",
+      "native": "OPLADEN",
+      "physical_page": 68,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA AC WALL OUTLET",
+      "native": "OPLADEN VIA AC-STOPCONTACT",
+      "physical_page": 68,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "When charging from the wall, this product must be used with Jackery Explorer 3600 Plus.",
+      "native": "Bij het opladen via het stopcontact moet dit product worden gebruikt in combinatie met de Jackery Explorer 3600 Plus.",
+      "physical_page": 68,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "WARNING",
+      "native": "WAARSCHUWING",
+      "physical_page": 68,
+      "selection": {
+        "native_block": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Ensure all products are powered off before connecting the Jackery Explorer 3600 Plus to the Jackery Battery Pack 3600.",
+      "native": "Zorg ervoor dat alle producten zijn uitgeschakeld voordat u de Jackery Explorer 3600 Plus aansluit op het Jackery Battery Pack 3600.",
+      "physical_page": 68,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "AC wall charging connection through Jackery Explorer 3600 Plus.",
+      "native": "OPLADEN VIA AC-STOPCONTACT",
+      "physical_page": 68,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Charge your product with solar panels and Jackery Explorer 3600 Plus as shown in the figure below. Please refer to the Jackery Explorer 3600 Plus user manual for more information.",
+      "native": "Laad uw product op met zonnepanelen en de Jackery Explorer 3600 Plus, zoals weergegeven in de onderstaande afbeelding. Raadpleeg de gebruikershandleiding van de Jackery Explorer 3600 Plus voor meer informatie.",
+      "physical_page": 68,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "Solar charging connection through Jackery Explorer 3600 Plus.",
+      "native": "OPLADEN VIA ZONNEPANELEN",
+      "physical_page": 68,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "charging_en.rst",
+      "english": "CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)",
+      "native": "OPLADEN VIA ZONNEPANELEN (APART VERKOCHT)",
+      "physical_page": 68,
+      "selection": {
+        "method": "native solar heading and qualifier"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "STORAGE",
+      "native": "Opslag",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "Store the product in a dry, clean place with proper ventilation. Storage temperature and humidity:",
+      "native": "Bewaar het product op een droge, schone plaats met goede ventilatie. Opslagtemperatuur en -vochtigheid:",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 9,
+        "segment": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "1 month: -20°C to 45°C (0-60%RH)",
+      "native": "1 maand: -20°C tot 45°C (0-60%RH)",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 9,
+        "segment": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "3 months: 0°C to 45°C (0-60%RH)",
+      "native": "3 maanden: 0°C tot 45°C (0-60%RH)",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 9,
+        "segment": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "12 months: 0°C to 25°C (0-60%RH)",
+      "native": "12 maanden: 0°C tot 25°C (0-60%RH)",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 9,
+        "segment": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "storage_en.rst",
+      "english": "If this product is stored for a long period of time (3 months - 6 months) with the power depleted, it may become unchargeable. To prevent this and maintain battery health, it is recommended to check and recharge the product every three months and perform a full charge and discharge cycle at least once every 6 to 12 months.",
+      "native": "Als dit product gedurende langere tijd (3 maanden - 6 maanden) met een lege batterij wordt bewaard, kan het zijn dat het niet meer kan worden opgeladen. Om dit te voorkomen en de batterij in goede conditie te houden, is het aan te raden om het product elke drie maanden te controleren en op te laden, waarbij minstens één keer per 6 tot 12 maanden een volledige laad- en ontlaadcyclus moet worden uitgevoerd.",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 9,
+        "segment": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "SPECIFICATIONS",
+      "native": "SPECIFICATIES",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "GENERAL INFO",
+      "native": "ALGEMENE INFORMATIE",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "INPUT/OUTPUT PORTS",
+      "native": "INGANGS//UITGANGSPOORTEN",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "ENVIRONMENTAL OPERATING TEMPERATURE",
+      "native": "BEDRIJFSTEMPERATUUR",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Model No.",
+      "native": "Modelnummer",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "JBP-3600A",
+      "native": "JBP-3600A",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 17
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Capacity",
+      "native": "Capaciteit",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "80 Ah/44.8 V DC (3584 Wh)",
+      "native": "80 Ah/44,8 Vdc (3584 Wh)",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 18
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cell Chemistry",
+      "native": "Celchemie",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "LiFePO₄",
+      "native": "LiFePO₄",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 19
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Weight",
+      "native": "Gewicht",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "About 55.1 lbs/25 kg",
+      "native": "Ongeveer 55,1 lbs/25 kg",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 20
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Dimensions",
+      "native": "Afmetingen",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "14.8 × 12.5 × 9.0 in / 37.5 × 31.7 × 22.9 cm",
+      "native": "14,8 x 12,5 x 9,0 in/37,5 x 31,7 x 22,9 cm",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 21
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Cycle Life",
+      "native": "Levenscyclus",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "6000 cycles to 70%+ capacity",
+      "native": "6000 cycli tot 70%+ capaciteit",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 22
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "IEC Code",
+      "native": "IEC-code",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "IFpR41/136[14S4P]M/-20+40/90",
+      "native": "IFpR41/136[14S4P]M/-20+40/90",
+      "physical_page": 69,
+      "selection": {
+        "native_block": 23
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Product Name",
+      "native": "Productnaam",
+      "physical_page": 69,
+      "selection": {
+        "bbox_pt": [
+          28,
+          205.77349548339845,
+          179,
+          213.4514953613281
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Jackery Battery Pack 3600",
+      "native": "Jackery Battery Pack 3600",
+      "physical_page": 69,
+      "selection": {
+        "bbox_pt": [
+          180,
+          205.77349548339845,
+          345,
+          213.4514953613281
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Input)",
+      "native": "DC-uitbreidingspoort (ingang)",
+      "physical_page": 69,
+      "selection": {
+        "bbox_pt": [
+          28,
+          326.65879516601564,
+          179,
+          340.7867919921875
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.4V-50.4V⎓60A Max",
+      "native": "36,4 V-50,4 V⎓60 A Max",
+      "physical_page": 69,
+      "selection": {
+        "bbox_pt": [
+          180,
+          326.65879516601564,
+          345,
+          340.7867919921875
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "DC Expansion Port (Output)",
+      "native": "DC-uitbreidingspoort (Uitgang)",
+      "physical_page": 69,
+      "selection": {
+        "bbox_pt": [
+          28,
+          338.8354919433594,
+          179,
+          352.96348876953124
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "36.4V-50.4V⎓100A Max",
+      "native": "36,4 V-50,4 V⎓100 A Max",
+      "physical_page": 69,
+      "selection": {
+        "bbox_pt": [
+          180,
+          338.8354919433594,
+          345,
+          352.96348876953124
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Charge Temperature",
+      "native": "Oplaadtemperatuur",
+      "physical_page": 69,
+      "selection": {
+        "bbox_pt": [
+          28,
+          386.1807067871094,
+          179,
+          394.14671630859374
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "-20°C to 45°C",
+      "native": "-20°C tot 45°C",
+      "physical_page": 69,
+      "selection": {
+        "bbox_pt": [
+          180,
+          386.1807067871094,
+          345,
+          394.14671630859374
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "specifications_en.rst",
+      "english": "Discharge Temperature",
+      "native": "Ontlaadtemperatuur",
+      "physical_page": 69,
+      "selection": {
+        "bbox_pt": [
+          28,
+          398.1754577636719,
+          179,
+          406.14146728515624
+        ]
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "WARRANTY",
+      "native": "GARANTIE",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 5
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "We only provide our warranty to customers who purchase from the official Jackery website, Jackery-branded third-party platforms, or local authorized dealers.",
+      "native": "We bieden onze garantie alleen aan klanten die aankopen bij de officiële Jackery-website, Jackery-merkplatformen van derden of lokale erkende dealers.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "*Warranty period and details may vary according to local laws, regulations, and authorized dealers.",
+      "native": "* De garantieperiode en -details kunnen variëren afhankelijk van lokale wetten, regelgeving en geautoriseerde dealers.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited Warranty",
+      "native": "Beperkte garantie",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 9
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery warrants to the original consumer purchaser that the Jackery product will be free from defects in workmanship and material under normal consumer use during the applicable warranty period identified in the 'Warranty Period' section below, subject to the exclusions set forth below.",
+      "native": "Jackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en materiaalfouten bij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de sectie 'Garantieperiode' hieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 6
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "This warranty statement sets forth Jackery's total and exclusive warranty obligation. We will not assume, nor authorize any person to assume for us, any other liability in connection with the sale of our products.",
+      "native": "In deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij aanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere aansprakelijkheid te aanvaarden in verband met de verkoop van onze producten.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 7
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Warranty Period",
+      "native": "Garantieperiode",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 16
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The standard warranty period for Jackery Battery Pack 3600 is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchaser, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.",
+      "native": "De standaard garantieperiode voor het Jackery Battery Pack 3600 is 36 maanden. In alle gevallen gaat de garantieperiode in op de datum van aankoop door de oorspronkelijke consument-koper. Het aankoopbewijs van de eerste consument-koper, of ander redelijk documentair bewijs, is vereist om de startdatum van de garantieperiode vast te stellen.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 8
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Repair or Replacement",
+      "native": "Reparatie of vervanging",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 10
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery will repair or replace (at Jackery's expense) any Jackery product that fails to operate during the applicable warranty period due to a defect in workmanship or material. The repaired/replaced product assumes the remaining warranty of the original date of purchase.",
+      "native": "Jackery repareert of vervangt (op kosten van Jackery) elk Jackery-product dat gedurende de toepasselijke garantieperiode niet functioneert als gevolg van een fabricage- of materiaalfout. Het gerepareerde of vervangen product neemt de resterende garantie over, gerekend vanaf de oorspronkelijke aankoopdatum.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Limited to Original Consumer Buyer",
+      "native": "Beperkt tot de oorspronkelijke koper",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 12
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "The warranty on Jackery's product is limited to the original consumer purchaser and is not transferable to any subsequent owner.",
+      "native": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet overdraagbaar aan een volgende eigenaar.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 11
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Exclusions",
+      "native": "Uitsluitingen",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 13
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Interpretation Rights",
+      "native": "Interpretatierechten",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 15
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery reserves the right to final interpretation of the above customer after-sales policy.",
+      "native": "Jackery behoudt zich het recht voor op definitieve interpretatie van het bovengenoemde after-salesbeleid voor klanten.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 14
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "3 YEARS",
+      "native": "3 JAAR",
+      "physical_page": 70,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Standard Warranty",
+      "native": "Standaardgarantie",
+      "physical_page": 70,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "2 YEARS",
+      "native": "2 JAAR",
+      "physical_page": 70,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Extended Warranty",
+      "native": "Verlengde garantie",
+      "physical_page": 70,
+      "selection": {
+        "method": "native warranty badge reading order"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "To activate the Warranty Extension, you must register your product online or contact our customer service team at ",
+      "native": "Om de garantieverlenging te activeren, moet u uw product online registreren of contact opnemen met onze klantenservice via ",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 1,
+        "part": "before mailto"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": " to extend the standard warranty runtime.",
+      "native": " om de duur van de standaardgarantie te verlengen.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": 1,
+        "part": "after mailto"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to:",
+      "native": "De garantie van Jackery is niet van toepassing op:",
+      "physical_page": 70,
+      "selection": {
+        "native_block": [
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "segment": 0
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Misused, abused, modified, damaged by accident, or used for anything other than normal consumer use as authorized in Jackery's current product literature.",
+      "native": "Onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal consumentengebruik, zoals toegestaan in de huidige productliteratuur van Jackery.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": [
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "segment": 1
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Attempted repair by anyone other than an authorized facility.",
+      "native": "Een poging tot reparatie door iemand anders dan een erkend servicecentrum.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": [
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "segment": 2
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Any product purchased through an online auction house.",
+      "native": "Elk product dat via een online veilinghuis is gekocht.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": [
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "segment": 3
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "warranty_en.rst",
+      "english": "Jackery's warranty does not apply to the battery cell unless the battery cell is fully charged by you within seven days after you purchase the product and at least once every 6 months thereafter.",
+      "native": "De garantie van Jackery is niet van toepassing op de batterijcel, tenzij u de batterijcel binnen zeven dagen na aankoop van het product volledig oplaadt en daarna ten minste één keer per zes maanden.",
+      "physical_page": 70,
+      "selection": {
+        "native_block": [
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "segment": 4
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "EU REGULATIONS",
+      "native": "EU REGULATIONS",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "RED DECLARATION OF CONFORMITY",
+      "native": "RED DECLARATION OF CONFORMITY",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "native": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this Jackery Battery Pack 3600 with Bluetooth and Wi-Fi JBP-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU. The full text of the EU declaration of conformity is available at the following internet address:",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "https://de.jackery.com/pages/user-guides",
+      "native": "https://de.jackery.com/pages/user-guides",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "MANUFACTURER",
+      "native": "MANUFACTURER",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "native": "SHENZHEN HELLO TECH ENERGY CO., LTD.",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "native": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "+86 400 668 9293",
+      "native": "+86 400 668 9293",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "sales@hello-tech.com",
+      "native": "sales@hello-tech.com",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    },
+    {
+      "page_id": "regulatory_compliance.rst",
+      "english": "www.hello-tech.com",
+      "native": "www.hello-tech.com",
+      "physical_page": 79,
+      "selection": {
+        "method": "shared native English regulatory/manufacturer page"
+      },
+      "visual_review": "producer source-page comparison completed; independent acceptance pending"
+    }
+  ],
+  "native_exceptions": [
+    "Native port group heading has INGANGS//UITGANGSPOORTEN; retained."
+  ],
+  "clearance_labels": [
+    "≥0,66 ft (≈200 mm)",
+    "≥0,66 ft (≈200 mm)"
+  ],
+  "extra_spec_row": null,
+  "inline_connection_icon": {
+    "insert_after": "De weergave van het",
+    "source_page": 67,
+    "status": "source-position-verified-shared-x5-reuse-candidate",
+    "asset": "assets/shared/connection-x5.png",
+    "sha256": "8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd",
+    "reuse_basis": "Native source page visibly shows the same framed x5 glyph; reuse candidate French-extracted asset without another crop."
+  }
+}

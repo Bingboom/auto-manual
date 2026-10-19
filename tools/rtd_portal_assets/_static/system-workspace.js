@@ -1,8 +1,6 @@
 /* Check only this deployed site's receipt. A main push is not a deployment. */
 (() => {
   "use strict";
-  const menu = document.querySelector(".mobile-menu");
-  if (menu) menu.addEventListener("click", () => document.body.classList.toggle("menu-open"));
   const panel = document.querySelector(".sw-update");
   if (!panel) return;
   const status = document.getElementById("sw-update-status");

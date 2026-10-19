@@ -25,7 +25,7 @@ from tools.config_pages import (
 from tools.bundle_asset_finalize import finalize_materialized_bundle
 from tools.capability_pages import strip_capability_sections
 from tools.contract_assets import ContractAssetResolver
-from tools.data_snapshot import resolve_data_snapshot_paths
+from tools.data.snapshot import resolve_data_snapshot_paths
 from tools.draft_engine import (
     GeneratedPageRender,
     render_generated_page,
@@ -106,11 +106,11 @@ from tools.utils.path_utils import (  # noqa: E402
     web_composite_manifest_of,
     word_common_assets_of,
 )
-from tools.web_composite_manifest import stage_web_composite_snapshot
+from tools.web.composite_manifest import stage_web_composite_snapshot
 from tools.utils.targets import (
     resolve_output_lang,
 )
-from tools.word_bundle_common import (  # noqa: E402
+from tools.word.bundle_common import (  # noqa: E402
     apply_rst_substitutions,
     derive_word_title,
     ensure_csv_page_rsts,

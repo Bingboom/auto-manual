@@ -1,0 +1,13 @@
+manifest_id: manual_je100c_eu_it
+pages:
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/safety_it.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/01_user_maintenance_instructions.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/symbol_meaning_it.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/02_whats_in_the_box.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/03_product_overview.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/lcd_display_it.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/operation_it.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/charging_it.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/storage_it.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/spec_it.rst}
+  - {type: rst_include, lang: it, file: templates/page_je100c_eu-it/warranty_it.rst}

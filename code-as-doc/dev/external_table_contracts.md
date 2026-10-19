@@ -11,7 +11,7 @@ queue, review, and release code.
 Machine-readable phase2 source-table contract:
 
 - [`../../data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json)
-- Loader/validator: [`../../tools/source_table_contract.py`](../../tools/source_table_contract.py)
+- Loader/validator: [`../../tools/data/source_table_contract.py`](../../tools/data/source_table_contract.py)
 - Drift-facing tests: [`../../tests/test_source_table_contract.py`](../../tests/test_source_table_contract.py)
 
 Use the JSON contract as the durable index when changing online source-table
@@ -21,13 +21,13 @@ index mapping, and guarded writer boundary used by automation.
 
 Keep this document aligned when changing:
 
-- [`tools/data_snapshot.py`](../../tools/data_snapshot.py)
-- [`tools/source_table_contract.py`](../../tools/source_table_contract.py)
+- [`tools/data/snapshot.py`](../../tools/data/snapshot.py)
+- [`tools/data/source_table_contract.py`](../../tools/data/source_table_contract.py)
 - [`data/source_table_contracts/phase2_source_tables.json`](../../data/source_table_contracts/phase2_source_tables.json)
 - [`tools/validate_config.py`](../../tools/validate_config.py)
-- [`tools/queue_contract.py`](../../tools/queue_contract.py)
-- [`tools/process_review_start_queue_records.py`](../../tools/process_review_start_queue_records.py)
-- [`tools/sync_data.py`](../../tools/sync_data.py)
+- [`tools/build_queue/contract.py`](../../tools/build_queue/contract.py)
+- [`tools/build_queue/process_review_start_queue_records.py`](../../tools/build_queue/process_review_start_queue_records.py)
+- [`tools/data/sync_data.py`](../../tools/data/sync_data.py)
 
 ## 1. Phase2 Snapshot Tables
 
@@ -320,7 +320,7 @@ Writeback fields:
   queue run can depend on them.
 - Schema drift checks should run against fixed fixtures or dry-run payloads
   before depending on real Feishu network state.
-- First offline gate: `python3 tools/schema_drift.py --payload tests/fixtures/schema_drift/passing_payload.json`
+- First offline gate: `python3 -m tools.schema_drift --payload tests/fixtures/schema_drift/passing_payload.json`
   validates required phase2 logical tables, required CSV headers, required queue
   writeback fields, and the source-table contract without contacting Feishu.
 - Source-table contract gate: `python3 -m unittest tests.test_source_table_contract`

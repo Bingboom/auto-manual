@@ -1,0 +1,44 @@
+[
+  {
+    "availability": 7,
+    "caption": "Jackery 40A Charging Cable\n(sold separately)",
+    "captionCount": 1,
+    "fontSize": "16.2589px",
+    "headings": 84,
+    "imageSource": "../../../../_static/manual-assets/_pool/ed/ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4.png",
+    "insideArtwork": true,
+    "loaded": true,
+    "overflow": false,
+    "position": "absolute",
+    "userSelect": "auto",
+    "width": 1440
+  },
+  {
+    "availability": 7,
+    "caption": "Jackery 40A Charging Cable\n(sold separately)",
+    "captionCount": 1,
+    "fontSize": "8px",
+    "headings": 84,
+    "imageSource": "../../../../_static/manual-assets/_pool/ed/ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4.png",
+    "insideArtwork": true,
+    "loaded": true,
+    "overflow": false,
+    "position": "absolute",
+    "userSelect": "auto",
+    "width": 390
+  },
+  {
+    "availability": 7,
+    "caption": "Jackery 40A Charging Cable\n(sold separately)",
+    "captionCount": 1,
+    "fontSize": "8px",
+    "headings": 84,
+    "imageSource": "../../../../_static/manual-assets/_pool/ed/ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4.png",
+    "insideArtwork": true,
+    "loaded": true,
+    "overflow": false,
+    "position": "absolute",
+    "userSelect": "auto",
+    "width": 320
+  }
+]

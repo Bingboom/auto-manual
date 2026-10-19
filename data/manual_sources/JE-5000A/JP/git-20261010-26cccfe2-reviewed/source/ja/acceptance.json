@@ -1,0 +1,51 @@
+{
+  "schema": "native-web-local-acceptance/v1",
+  "target": {
+    "model": "JE-5000A",
+    "region": "JP",
+    "language": "ja"
+  },
+  "source_sha256": "26cccfe203b43a346743a0db7bf1757bb8f9c1e10aa716fe5aa5dbe1b58a48f8",
+  "local_browser_visual_review": "passed",
+  "source_body_physical_pages": [
+    3,
+    23
+  ],
+  "reviewed_widths": [
+    1280,
+    768,
+    390
+  ],
+  "body_lines": 789,
+  "live_copy_selections": 481,
+  "reference_figures": 23,
+  "live_labels": 105,
+  "image_references": 84,
+  "reviewed_source_geometry": [
+    "complete native front/side frames and magnification circles",
+    "power/AC/USB/DC grouped diagrams; independent plates drawn in CSS",
+    "LCD image and two rowspan-three action groups on one row",
+    "four native button combinations and three-second durations",
+    "UPS/battery pack/solar/car connection groups",
+    "complete Japanese phone frames with live 2.1–2.5 labels",
+    "shared safety glyphs with fixed symbol column width",
+    "four inbox items using shared component",
+    "shared H1/H2, tables and bold state words",
+    "native p23 brand lockup and right-aligned selectable contact text; no source QR"
+  ],
+  "native_source_questions_retained": [
+    "p17 handle precaution names Jackery portable power 2000",
+    "p19 charge-temperature text contains 45℃℃",
+    "p21 binding-reset sentence spells くだい"
+  ],
+  "engineering_ci": "candidate c8edfaed: 17/17 SUCCESS; final approved head checks required",
+  "merge": "authorized under MA-285; not yet merged",
+  "online_release": "authorized Git-only under MA-285; not yet deployed",
+  "publication_eligible": true,
+  "business_plane_writes": false,
+  "cold_replay": {
+    "files": 71,
+    "byte_parity": true,
+    "mutated_input_classes_rejected": 6
+  }
+}

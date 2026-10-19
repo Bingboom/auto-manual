@@ -6,8 +6,8 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from tools import build_docs
-from tools import build_docs_artifacts
+from tools.build import docs as build_docs
+from tools.build import docs_artifacts as build_docs_artifacts
 from tools import gen_index_bundle
 from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
 from tools.gen_index_bundle_runtime import resolve_bundle_materialization_context

@@ -5,8 +5,8 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.component_specs.model import ComponentSpec
-from tools.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS, lcd_icon_flow
-from tools.web_manual_table_components import render_manual_table_component
+from tools.web.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS, lcd_icon_flow
+from tools.web.manual_table_components import render_manual_table_component
 
 
 def _record():

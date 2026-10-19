@@ -1,6 +1,6 @@
 # 闭环运营手册（操作者版）
 
-Updated: 2026-07-15
+Updated: 2026-10-18
 
 这是 Milestone G（G0–G7，PR #514–#521）交付的闭环机制的**操作者视角**说明：
 日常要跑什么命令、什么时候跑、看到什么算正常。实现细节和字段含义在
@@ -115,7 +115,7 @@ python3 -m tools.tm_hit_rate stats
 - 有没回收的编辑 → 仓库里自动开/更新一个
   **`[backport-reminder]`** issue，列出哪些文档、哪个分支、云文档链接。
 - **你要做的**：看到 issue，对着列出的文档跑
-  `python tools/cloud_doc_backport.py run-review-branch --doc-name <名> --cloud-doc <链接>`。
+  `python -m tools.backport.cloud_doc run-review-branch --doc-name <名> --cloud-doc <链接>`。
   回收完成后，下一次哨兵运行会自动把 issue 关掉——不用手动关。
 - 从没回收过的评审文档会标 `no_baseline`（评审开始后一次 backport 都没跑），
   处理方式相同。
@@ -147,10 +147,10 @@ python3 -m tools.tm_hit_rate stats
 
 ```bash
 # ① 先出 QC 结果（已有流程）：
-python tools/content_lint.py --data-root data/phase2 --json --write-report
+python -m tools.content_lint --data-root data/phase2 --json --write-report
 
 # ② 渲染到构建好的 PDF 上：
-python tools/pdf_annotate.py \
+python -m tools.pdf_annotate \
   --pdf docs/_build/<model>/<region>/pdf/<manual>.pdf \
   --findings reports/content_qc/<run-id>/findings.json
 ```
@@ -193,7 +193,7 @@ main，分钟级、零手工）；但**在飞的评审分支不会自动吃到�
 ## 4.6 三流转双面仪表（一条命令看全局）
 
 ```bash
-python tools/flow_dashboard.py report
+python -m tools.flow_dashboard report
 ```
 
 只读聚合既有台账/报告，输出 `reports/flow_dashboard/dashboard.md`（同目录还有
@@ -216,7 +216,7 @@ python tools/flow_dashboard.py report
   获取规格书后文案 3 天、设计排版+评审约 1 周；产品阶段 EVT→DVT→PVT
   每轮规格变更都触发同流程的修订（文案→设计→评审→发布），PVT 变更较少
   但仍有。月度例行跑法：
-  `python tools/flow_dashboard.py report --baseline-hours-per-manual 80`。
+  `python -m tools.flow_dashboard report --baseline-hours-per-manual 80`。
   修订轮的省时暂未单独计价（可数轮数在修订台账里，等 H2 一起做每轮基准）
 - 已审计 PDF 数的数据源是 `reports/pdf_annotate/ledger.jsonl`——
   `pdf_annotate` 每次运行自动记账（`--no-ledger` 关闭）；
@@ -235,11 +235,11 @@ python tools/flow_dashboard.py report
 lark-cli base +base-create --name "演练-base重建-<日期>"
 # 2. 从 schema 镜像重建表结构（幂等，dry-run 默认，--write 执行）
 # 完整重建用整库镜像（21 表）；promote 流程的 2 表小 manifest 仍是 manifest.json
-python tools/bitable_schema.py apply --manifest bitable_schema/business_base_manifest.json \
+python -m tools.bitable_schema apply --manifest bitable_schema/business_base_manifest.json \
   --base-token <scratch> --identity user --write --yes
 # 复杂字段（公式/lookup/link）apply 会列跳过清单——按 manifest 里的 detail 手工重建
 # 3. 从种子/快照灌数据
-python tools/bitable_schema.py seed-import --base-token <scratch> \
+python -m tools.bitable_schema seed-import --base-token <scratch> \
   --table 规格书字段映射规则 --seed bitable_schema/seed/规格书字段映射规则.csv \
   --key 规格书字段 --identity user --write --yes
 # 4. 回读核对行数/字段数，记录耗时到本节
@@ -285,11 +285,11 @@ secret 在 base API 下无效 → 0 表。**bot 权限本身无问题**（同一
 # 1. 从 Actions 下载最近的 phase2-content-backup-<run_id> 工件并解压
 # 2. scratch base + 结构（同 4.7 步骤 1-2）
 # 3. 回灌内容（dry-run 默认；--write --yes 执行；空表才允许写入）
-python tools/bitable_content_backup.py restore \
+python -m tools.bitable_content_backup restore \
   --backup <解压目录>/business --base-token <scratch> \
   --tables <误删的表> --identity user --write --yes
 # 4. 行数核对
-python tools/bitable_content_backup.py verify \
+python -m tools.bitable_content_backup verify \
   --backup <解压目录>/business --base-token <scratch> --identity user
 # 5. 核对通过后，把需要的行从 scratch 手工/按表搬回生产表（或对生产空表重复 3）
 ```
@@ -504,6 +504,18 @@ manifest 与附件，不连接实时 Base。
 两个主文件并固化原生画板命名后，再按 `indesign_finalize.jsx` 的模式评估独立、可重跑
 的 Illustrator 批量导出脚本。
 
+### 4.9.4 仓库现存素材入表（先跑 dry-run）
+
+已定的方向是：日常只在多维表一个地方管图，仓库里那份是同步命令生成的副本。第一步是把仓库里四个目录的生产素材逐个登记进三张 `04_资产*` 表，附件放文件本身。四个目录是：网页共享、网页机型、LaTeX、Word 公共素材。
+
+先用 lark-cli 只读保存三张表的线上快照，命令见设计文档 §11；再跑 dry-run，核对暂存清单：
+
+```bash
+python -m tools.asset_pipeline.base_inventory --output-dir <新的或空的目录> --live-snapshot <快照目录>
+```
+
+这一步不调用飞书，只写 CSV 和 `summary.json`。每行都会标出动作：新建、保留、补字段，或等待晋级。之后的每一步都要操作者逐项确认：表结构变更、第一批写入、建议定义晋级。写入后要逐行回读。注册表外的建议定义在状态确定之前不能上传，否则下次 `sync-data` 会失败。方案、字段对应和当前盘点见 [`asset_base_inventory.md`](../code-as-doc/dev/asset_base_inventory.md)。
+
 ## 4.10 发布标记与回滚（K14）
 
 版本化 Publish 完成后，release manifest 会给出稳定标记，例如：
@@ -518,13 +530,13 @@ manual-release/je-1000f/us/en-fr-es/0.8
 
 ```bash
 # 1. 空跑：显示将绑定的 tag / commit / manifest SHA，不改 Git
-python tools/release_tag.py --manifest <release-manifest.json>
+python -m tools.release_tag --manifest <release-manifest.json>
 
 # 2. 创建本地 annotated tag，再核对一次
-python tools/release_tag.py --manifest <release-manifest.json> --write
+python -m tools.release_tag --manifest <release-manifest.json> --write
 
 # 3. 推送；重复执行是幂等的
-python tools/release_tag.py --manifest <release-manifest.json> --write --push
+python -m tools.release_tag --manifest <release-manifest.json> --write --push
 ```
 
 tag 指向 manifest 的完整 `git_sha`；注释同时记录 manifest SHA-256 和 E1
@@ -541,7 +553,7 @@ fail-closed，不能删 tag 后强行重绑。先确认是不是版本号复用�
 
    ```bash
    python build.py release-rebuild-verify --manifest <release-manifest.json>
-   python tools/release_tag.py --manifest <release-manifest.json>
+   python -m tools.release_tag --manifest <release-manifest.json>
    ```
 
    第一条验证 E1 快照+历史构建；第二条若 tag 已存在则验证 commit 和注释绑定。
@@ -596,6 +608,15 @@ Publish，并逐字节比较 DOCX/Markdown/PDF。原归档文件丢失而必须�
 | --- | --- | --- | ---: | ---: | ---: | --- |
 | 待操作者演练 | — | — | — | — | — | 未执行 |
 
+## 4.11 知识问题台账（机读 Phase 3a，EU）
+
+说明书知识问题（如某些语言版缺少的警示）记在 Hello-Docs 的 `docs/knowledge/governance/findings.json`，
+只经含 `docs/knowledge/**` 的内容 PR 修改，在 **Hello-Docs checkout** 里操作。机器只提出候选并给出核验结果；
+确认、批准与关闭由人给出，写明人和日期。命令 `python -m tools.manual_knowledge.findings` 的
+`check`（只读校验）、`verify`（重新发布后核验）、`propose`（新候选）、`coverage`（覆盖矩阵）、
+`bindings`（各版本的编辑入口）见[构建指南 · Web 发布与 RTD](../code-as-doc/build_doc_guide/web-publish-and-rtd.md)；
+条目字段、状态与闭环流程见[知识治理方案](../code-as-doc/dev/machine_readable_knowledge_governance.md) §6–§7。
+
 ## 5. 首跑清单（一次性，做完划掉）
 
 - [ ] **命中率基线**：跑一次真实的 docx 预翻译，`tm_hit_rate stats` 出现
@@ -612,6 +633,6 @@ Publish，并逐字节比较 DOCX/Markdown/PDF。原归档文件丢失而必须�
 | --- | --- |
 | 每轮评审收尾 | `tm-candidates` → 过目 → `tm-apply`（§1.2 ②③） |
 | 有 `[backport-reminder]` issue 时 | 对着清单跑回收（§3） |
-| 每月 | `python tools/flow_dashboard.py report`（§4.6，一条命令出两面）；`python tools/printed_url_inventory.py check && python tools/printed_url_inventory.py liveness`（§4.8 印刷外链）；`top_corrected_sources` 里反复出现的文件记下来（模板优化候选） |
+| 每月 | `python -m tools.flow_dashboard report`（§4.6，一条命令出两面）；`python -m tools.printed_url_inventory check && python -m tools.printed_url_inventory liveness`（§4.8 印刷外链）；`top_corrected_sources` 里反复出现的文件记下来（模板优化候选） |
 
 跑了 2–3 轮、流程顺手之后，这套程序会固化成 skill（届时本文档仍是底层参考）。

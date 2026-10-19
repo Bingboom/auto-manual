@@ -180,7 +180,7 @@ IR 里现在是 1× `warranty_lead` + 5× `warranty_section` + 1× `warranty_yea
 |---|---|---|
 | `tools/render_contract.py:90 resolve_layout_tokens`（通用 `lang_<code>_<key>` 级联） | **0**（仅 `tests/test_render_contract.py:235-237`） | IDML 7 处各自重写级联，门还互不一致 |
 | `tools/csv_pages/renderers_safety.py`（成套安全页生成器，配对发射 LaTeX + HTML 占位） | **0**（`PAGE_RENDERERS`（`renderers.py:47-52`）只注册 spec/symbols/lcd_icons/troubleshooting，无 safety；无外部 import） | 14 个安全页模板双通道手写两遍 |
-| `tools/signal_words.py signal_label_entries`（十语数据驱动标签表） | **1**（只有 `tools/word_bundle_html_rewrite.py:13`） | 同一个日语 `警告` 表格：Word 有框，LaTeX / IDML 丢框 |
+| `tools/signal_words.py signal_label_entries`（十语数据驱动标签表） | **1**（只有 `tools/word/bundle_html_rewrite.py:13`） | 同一个日语 `警告` 表格：Word 有框，LaTeX / IDML 丢框 |
 
 第三行是渲染器不对称的机制解释，在 import 层就看得见——不需要构建就能确认。
 

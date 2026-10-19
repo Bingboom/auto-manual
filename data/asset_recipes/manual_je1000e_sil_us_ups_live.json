@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/fridgeguard_us_16-0102-000422",
+    "expected_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.15,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "source_artboard",
+      "role": "source_artboard",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Single Illustrator artboard; English pages are isolated by crop coordinates"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/je1000e-sil/us/en/ups_art",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-1000E-SIL"
+        ],
+        "regions": [
+          "US"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2584.693115234375,
+            1935.90478515625,
+            2898.693115234375,
+            2178.40478515625
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/je1000e_sil_us_en/ups_art.png",
+          "scale": 4,
+          "expected_sha256": "30ece347e4e314b835c7b558faf4c4b82eb7f1dfca8f209ee084ddc51a3dd97d"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Local editable-label preview; registry promotion not requested"
+        ]
+      },
+      "risk_tags": []
+    }
+  ]
+}

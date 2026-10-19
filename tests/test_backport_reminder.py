@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from tools import backport_reminder
+from tools.backport import reminder as backport_reminder
 
 
 def _record(

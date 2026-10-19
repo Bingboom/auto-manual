@@ -9,7 +9,7 @@ from pathlib import Path
 from unittest.mock import patch
 from xml.etree import ElementTree as ET
 
-from tools.word_bundle_docx import (
+from tools.word.bundle_docx import (
     WordComExportError,
     _embed_external_docx_images,
     _enforce_docx_outline_levels,
@@ -20,9 +20,9 @@ from tools.word_bundle_docx import (
     export_word_from_bundle,
     normalize_word_bundle_html_for_pandoc,
 )
-from tools.word_bundle_docx_pandoc import ensure_supported_pandoc_for_reference_doc, resolve_pandoc_binary
-from tools.word_bundle_docx_reproducible import normalize_docx_for_reproducibility
-from tools.word_bundle_html import WordBundlePageMeta
+from tools.word.bundle_docx_pandoc import ensure_supported_pandoc_for_reference_doc, resolve_pandoc_binary
+from tools.word.bundle_docx_reproducible import normalize_docx_for_reproducibility
+from tools.word.bundle_html import WordBundlePageMeta
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 _W = "{%s}" % _W_NS
@@ -65,10 +65,10 @@ class TestWordBundleDocx(unittest.TestCase):
                 observed["html"] = Path(command[1]).read_text(encoding="utf-8")
 
             with patch(
-                "tools.word_bundle_docx.resolve_pandoc_binary",
+                "tools.word.bundle_docx.resolve_pandoc_binary",
                 return_value="pandoc",
             ), patch(
-                "tools.word_bundle_docx.subprocess.run",
+                "tools.word.bundle_docx.subprocess.run",
                 side_effect=capture,
             ):
                 _export_docx_via_pandoc(bundle_html, root / "manual.docx", None)
@@ -84,10 +84,10 @@ class TestWordBundleDocx(unittest.TestCase):
             self.assertIsNone(_word_com_timeout_seconds())
 
     def test_export_docx_via_word_should_cleanup_and_raise_on_timeout(self) -> None:
-        with patch("tools.word_bundle_docx.sys.platform", "win32"), \
+        with patch("tools.word.bundle_docx.sys.platform", "win32"), \
             patch.dict(os.environ, {"AUTO_MANUAL_WORD_COM_TIMEOUT_SECONDS": "12"}, clear=False), \
-            patch("tools.word_bundle_docx.subprocess.run") as run_mock, \
-            patch("tools.word_bundle_docx._cleanup_timed_out_word_processes") as cleanup_mock:
+            patch("tools.word.bundle_docx.subprocess.run") as run_mock, \
+            patch("tools.word.bundle_docx._cleanup_timed_out_word_processes") as cleanup_mock:
             run_mock.side_effect = subprocess.TimeoutExpired(cmd=["powershell"], timeout=12)
 
             with self.assertRaisesRegex(WordComExportError, "timed out after 12s"):
@@ -103,14 +103,14 @@ class TestWordBundleDocx(unittest.TestCase):
             bundle_html.write_text("<html><body>demo</body></html>", encoding="utf-8")
             out_path = root / "manual.docx"
 
-            with patch("tools.word_bundle_docx.build_word_bundle_html", return_value=(bundle_html, None, ())), \
-                patch("tools.word_bundle_docx._export_docx_via_word", side_effect=WordComExportError("boom")) as word_mock, \
-                patch("tools.word_bundle_docx._export_docx_via_pandoc") as pandoc_mock, \
-                patch("tools.word_bundle_docx._docx_is_valid", return_value=True), \
-                patch("tools.word_bundle_docx._embed_external_docx_images") as images_mock, \
-                patch("tools.word_bundle_docx._remap_reference_doc_styles") as styles_mock, \
-                patch("tools.word_bundle_docx._enforce_docx_outline_levels") as outline_mock, \
-                patch("tools.word_bundle_docx.normalize_docx_for_reproducibility") as normalize_mock:
+            with patch("tools.word.bundle_docx.build_word_bundle_html", return_value=(bundle_html, None, ())), \
+                patch("tools.word.bundle_docx._export_docx_via_word", side_effect=WordComExportError("boom")) as word_mock, \
+                patch("tools.word.bundle_docx._export_docx_via_pandoc") as pandoc_mock, \
+                patch("tools.word.bundle_docx._docx_is_valid", return_value=True), \
+                patch("tools.word.bundle_docx._embed_external_docx_images") as images_mock, \
+                patch("tools.word.bundle_docx._remap_reference_doc_styles") as styles_mock, \
+                patch("tools.word.bundle_docx._enforce_docx_outline_levels") as outline_mock, \
+                patch("tools.word.bundle_docx.normalize_docx_for_reproducibility") as normalize_mock:
                 result = export_word_from_bundle({}, "JE-1000F", "JP", str(out_path), output_dir=root)
 
             self.assertEqual(out_path, result)
@@ -412,7 +412,7 @@ class TestWordBundleDocx(unittest.TestCase):
 
     def test_older_pandoc_version_should_be_rejected_for_reference_doc_exports(self) -> None:
         with patch(
-            "tools.word_bundle_docx_pandoc.subprocess.run",
+            "tools.word.bundle_docx_pandoc.subprocess.run",
             return_value=subprocess.CompletedProcess(
                 args=["pandoc", "--version"],
                 returncode=0,
@@ -424,7 +424,7 @@ class TestWordBundleDocx(unittest.TestCase):
 
     def test_newer_pandoc_version_should_be_allowed_for_reference_doc_exports(self) -> None:
         with patch(
-            "tools.word_bundle_docx_pandoc.subprocess.run",
+            "tools.word.bundle_docx_pandoc.subprocess.run",
             return_value=subprocess.CompletedProcess(
                 args=["pandoc", "--version"],
                 returncode=0,
@@ -442,7 +442,7 @@ class TestWordBundleDocx(unittest.TestCase):
             }[binary]
             return subprocess.CompletedProcess(args=args, returncode=0, stdout=stdout)
 
-        with patch("tools.word_bundle_docx_pandoc.subprocess.run", side_effect=fake_run):
+        with patch("tools.word.bundle_docx_pandoc.subprocess.run", side_effect=fake_run):
             resolved = resolve_pandoc_binary(
                 Path("reference_en.docx"),
                 candidates=("/opt/homebrew/bin/pandoc", "/usr/local/bin/pandoc"),

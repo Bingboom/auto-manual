@@ -8,7 +8,7 @@ import unittest
 from unittest import mock
 
 from tools import publish_branch_assembly, write_web_publish_receipt_links as receipt_links
-from tools.document_link_queue import (
+from tools.web.document_link_queue import (
     describe_url_field,
     split_rendered_url,
     url_field_matches,

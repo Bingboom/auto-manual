@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from tools.rtd_feedback import context_text, manual_feedback_markup, normalize_channels
+from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_channels
 from tests.web_language_evidence_fixture import seal_language_evidence_fixture
 
 
@@ -162,9 +162,9 @@ class RtdFeedbackTests(unittest.TestCase):
         (assets / "settings.json").write_text(json.dumps(settings), encoding="utf-8")
         (source / "conf.py").write_text(
             "from pathlib import Path\n"
-            "import tools.rtd_portal as portal\n"
+            "import tools.rtd.portal as portal\n"
             f"portal.ASSETS = Path({str(assets)!r})\n"
-            "extensions = ['myst_parser', 'tools.rtd_portal']\nhtml_theme = 'furo'\n",
+            "extensions = ['myst_parser', 'tools.rtd.portal']\nhtml_theme = 'furo'\n",
             encoding="utf-8",
         )
         return source, assets

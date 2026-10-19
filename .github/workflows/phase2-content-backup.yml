@@ -61,7 +61,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          python tools/bitable_content_backup.py export \
+          python -m tools.bitable_content_backup export \
             --manifest bitable_schema/business_base_manifest.json \
             --base-token-env FEISHU_PHASE2_BASE_TOKEN \
             --label business --out backup_out | tee -a "$GITHUB_STEP_SUMMARY"
@@ -71,7 +71,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          python tools/bitable_content_backup.py export \
+          python -m tools.bitable_content_backup export \
             --manifest bitable_schema/tm_base_manifest.json \
             --base-token-env FEISHU_TRANSLATION_MEMORY_BASE_TOKEN \
             --label tm --out backup_out | tee -a "$GITHUB_STEP_SUMMARY"

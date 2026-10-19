@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.check_docs_capability import collect_capability_issues  # noqa: E402
+from tools.check.docs_capability import collect_capability_issues  # noqa: E402
 
 
 @dataclass(frozen=True)

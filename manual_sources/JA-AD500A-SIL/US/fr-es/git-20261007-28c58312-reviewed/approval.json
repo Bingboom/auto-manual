@@ -1,0 +1,64 @@
+{
+  "schema_version": "manual-reviewed-publication-approval/v1",
+  "authorization": "MA-262",
+  "date": "2026-10-07",
+  "user_instruction": "上线发布",
+  "candidate_source_commit": "e657ed079246dbe6beb3b8db2154ab6cdb0ece6a",
+  "candidate_manifest_sha256": "675efbbde7f96588ceca0e517b5ab982d88564f6169230f994060a7530aede9e",
+  "original_source_sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530",
+  "model": "JA-AD500A-SIL",
+  "region": "US",
+  "languages": [
+    "fr",
+    "es"
+  ],
+  "retained_source_concerns": [
+    {
+      "language": "fr",
+      "pdf_page": 11,
+      "issue": "Oiture and English Double to in native overview",
+      "disposition": "native wording retained"
+    },
+    {
+      "language": "fr",
+      "pdf_page": 14,
+      "issue": "Sortie CC labels 11–16/16–60 input rows; Entrée CC labels 42–58 output row",
+      "disposition": "preserved as printed; requires operator/source-owner correction decision"
+    },
+    {
+      "language": "es",
+      "pdf_page": 21,
+      "issue": "DERECHOS DE INTERPRETACIÓN repeats original-buyer/non-transfer clause",
+      "disposition": "native copy retained"
+    },
+    {
+      "language": "fr/es",
+      "pdf_pages": [
+        13,
+        19
+      ],
+      "issue": "PV Voc guidance refers to downstream FridgeGuard/Battery Pack ranges",
+      "disposition": "retained; no technical correction authorized"
+    },
+    {
+      "language": "fr/es",
+      "pdf_pages": [
+        15,
+        21
+      ],
+      "issue": "Battery-cell charging condition in module warranty",
+      "disposition": "retained per operator instruction 你先不用删"
+    }
+  ],
+  "reviewed_languages": {
+    "fr": {
+      "markdown_sha256": "e8834969b5ec56aa07c256a9b8fd5ff4dc68c79e332dfca0ddd471ebdc268eac",
+      "css_sha256": "8f58d19bed88349a595a5c22e6205e0e93c956d6dc4c4a6278e2780f05ca7c8b"
+    },
+    "es": {
+      "markdown_sha256": "6a2062de21be4ce4223d241f139f23252993d8e5128f2d2ffb81e4e370764598",
+      "css_sha256": "8f58d19bed88349a595a5c22e6205e0e93c956d6dc4c4a6278e2780f05ca7c8b"
+    }
+  },
+  "decision": "Publish reviewed native French and Spanish with documented source concerns retained, English unchanged, no live-table writes; printed version remains unknown."
+}

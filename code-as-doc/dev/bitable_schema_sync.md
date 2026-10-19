@@ -38,7 +38,7 @@ After adding/changing tables in the dev tenant:
 
 ```bash
 set -a; source ~/.auto-manual-phase2.env; set +a
-python3 tools/bitable_schema.py export \
+python3 -m tools.bitable_schema export \
   --tables "数据入库表,规格书字段映射规则" \
   --out bitable_schema/manifest.json
 ```
@@ -61,10 +61,10 @@ the production repo. No extra step.
 self-gated command. Dry-run first, then `--write --yes`:
 
 ```bash
-python3 tools/bitable_schema.py promote \
+python3 -m tools.bitable_schema promote \
   --manifest bitable_schema/manifest.json --seeds bitable_schema/seeds.json \
   --base-token <PROD_BASE_TOKEN> --profile prod --identity user            # dry-run plan
-python3 tools/bitable_schema.py promote ... --profile prod --identity user --write --yes
+python3 -m tools.bitable_schema promote ... --profile prod --identity user --write --yes
 ```
 
 It prints `[structure]` (tables/fields created, drift, manual-complex), `[reference data]`
@@ -81,18 +81,18 @@ On the prod side, with the **prod** tenant's base token:
 ```bash
 # dry-run first — prints "Target base: <token> (N tables)" so you can confirm the
 # tenant, plus what would be created and any DRIFT (see below)
-python3 tools/bitable_schema.py apply \
+python3 -m tools.bitable_schema apply \
 
 On the prod side, with the **prod** tenant's base token:
 
 ```bash
 # dry-run first — prints "Target base: <token> (N tables)" so you can confirm the
 # tenant, plus what would be created and any DRIFT (see below)
-python3 tools/bitable_schema.py apply \
+python3 -m tools.bitable_schema apply \
   --manifest bitable_schema/manifest.json --base-token <PROD_BASE_TOKEN>
 
 # apply — --write is REFUSED without --yes (guards against pointing at the wrong base)
-python3 tools/bitable_schema.py apply \
+python3 -m tools.bitable_schema apply \
   --manifest bitable_schema/manifest.json --base-token <PROD_BASE_TOKEN> --write --yes
 ```
 
@@ -127,7 +127,7 @@ lark-cli --profile prod auth login --device-code <code>                  # compl
 
 # apply through that profile as the owner's USER token (the prod app's bot is usually
 # not a base collaborator, so --identity user is the reliable choice)
-python3 tools/bitable_schema.py apply \
+python3 -m tools.bitable_schema apply \
   --manifest bitable_schema/manifest.json --base-token <PROD_BASE_TOKEN> \
   --profile prod --identity user --write --yes
 ```
@@ -145,15 +145,15 @@ loop created dups).
 
 ```bash
 # dev: refresh the committed seed from the live table (it rides the code mirror to prod)
-python3 tools/bitable_schema.py seed-export \
+python3 -m tools.bitable_schema seed-export \
   --table 规格书字段映射规则 --out bitable_schema/seed/规格书字段映射规则.csv
 
 # prod: dry-run plan first, then apply (idempotent). --profile/--identity as in step 3.
-python3 tools/bitable_schema.py seed-import \
+python3 -m tools.bitable_schema seed-import \
   --base-token <PROD_BASE_TOKEN> --table 规格书字段映射规则 \
   --seed bitable_schema/seed/规格书字段映射规则.csv --key "Row_key,规格书字段" \
   --profile prod --identity user                 # plan: create/update/skip/extras
-python3 tools/bitable_schema.py seed-import ... --profile prod --identity user --write --yes
+python3 -m tools.bitable_schema seed-import ... --profile prod --identity user --write --yes
 ```
 
 `--key` must be **unique per row** — comma-separated for a composite. For the rule library
@@ -174,7 +174,7 @@ left unset (it does not clear an existing value).
 
 ```bash
 python3 build.py sync-data --config configs/config.us.yaml --data-root data/phase2 --dry-run
-python3 tools/schema_drift.py   # snapshot header parity (see REQUIRED_CSV_HEADERS)
+python3 -m tools.schema_drift   # snapshot header parity (see REQUIRED_CSV_HEADERS)
 ```
 
 ## Tenant parity check (catch silent drift)
@@ -185,7 +185,7 @@ exports both and reports what prod lacks or has differently. Read-only; exits no
 when prod lags, so it can run as a scheduled / CI parity gate.
 
 ```bash
-python3 tools/bitable_schema.py parity \
+python3 -m tools.bitable_schema parity \
   --source-base <DEV_BASE_TOKEN> --target-base <PROD_BASE_TOKEN>
 # PARITY ✅            -> prod has every table/field dev defines (extra prod tables are OK)
 # PARITY ✗ + a list   -> MISSING TABLE / MISSING FIELD / ⚠ DRIFT  (exit 1)

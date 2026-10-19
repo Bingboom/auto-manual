@@ -1,0 +1,64 @@
+{
+  "schema_version": "auto-manual-web-layout-validation/v1",
+  "target": {
+    "model": "JA-AD500A-SIL",
+    "region": "JP",
+    "language": "ja"
+  },
+  "accepted_candidate": "618c31e",
+  "commands": [
+    {
+      "command": "python -m sphinx -n -W --keep-going -b html <package>/web/ja <tmp>",
+      "result": "passed",
+      "log": "strict-sphinx.log"
+    },
+    {
+      "command": "python -m unittest -v tests.test_jaad500a_sil_jp_web_layout",
+      "result": "passed (1 candidate-only test skipped)",
+      "log": "target-tests.log"
+    },
+    {
+      "command": "python -m ruff check build.py integrations tools tests scripts <package>",
+      "result": "passed",
+      "log": "ruff.log"
+    },
+    {
+      "command": "python -m tools.check_maintainability_guardrails",
+      "result": "passed",
+      "log": "maintainability.log"
+    },
+    {
+      "command": "python -m tools.check_doc_link_integrity",
+      "result": "passed",
+      "log": "doc-links.log"
+    },
+    {
+      "command": "python -m unittest",
+      "result": "5250 tests, 2 failures, 37 skipped",
+      "log": "unittest-full-summary.log",
+      "failures": [
+        {
+          "test": "tests.test_bitable_schema_cli ...test_all_command_help_and_offline_failures_match_frozen_contract",
+          "disposition": "environment: sandbox Python 3.13 argparse help wrapping differs from the pinned 3.12 contract; unrelated to this package; CI is authoritative"
+        },
+        {
+          "test": "tests.test_jaad500a_sil_jp_web_layout ...test_derivation_is_reproducible",
+          "disposition": "race: evidence files were being written into the package during the 21-minute run; re-run on the final tree passes"
+        }
+      ]
+    },
+    {
+      "command": "seal_frozen_web_evidence dry run on a package copy (git_ref placeholder)",
+      "result": "passed; real seal follows at the merged main commit"
+    },
+    {
+      "command": "Playwright Chromium 1280 and 390 px",
+      "result": "passed",
+      "log": "browser-acceptance.json",
+      "screenshots": [
+        "desktop-full.jpg",
+        "mobile-full.jpg"
+      ]
+    }
+  ]
+}

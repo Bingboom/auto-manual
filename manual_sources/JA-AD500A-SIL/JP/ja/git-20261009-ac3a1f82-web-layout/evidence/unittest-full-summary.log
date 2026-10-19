@@ -1,0 +1,7 @@
+# python3 -m unittest (full suite, sandbox Python 3.13.16; repository pins 3.12)
+FAIL: test_all_command_help_and_offline_failures_match_frozen_contract (tests.test_bitable_schema_cli.BitableSchemaCliTests.test_all_command_help_and_offline_failures_match_frozen_contract)
+FAIL: test_derivation_is_reproducible (tests.test_jaad500a_sil_jp_web_layout.WebLayoutEditionTests.test_derivation_is_reproducible)
+Ran 5250 tests in 1260.309s
+
+FAILED (failures=2, skipped=37)
+exit=1

@@ -1,0 +1,1376 @@
+[
+  {
+    "slot": "lcd-01.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-01.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-01.svg",
+    "sha256": "04f2429baa45133fc0ff99840b2f3acb42e2fe7987010f86f9d6d88fb10efb21",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-02.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-02.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-02.svg",
+    "sha256": "e50006c59af293f0a3c9e43ef97c32fd26b83707b30a593c731739ddcc98aa3b",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-03.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-03.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-03.svg",
+    "sha256": "22a5d9bdac7cb0748db6885cae3acdf87aeca565a72b052bb98a7e69e0dd91b9",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-04.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-04.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-04.svg",
+    "sha256": "3f35f4ea44f9455ba8fda098628012e779db4fd7b8613a92ab2daf0810840bfb",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-06.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-05.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-06.svg",
+    "sha256": "0ed7eacc074d1516e347043115f76c449995dda1bc21105a466a0adf22531c7b",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-07.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-06.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-07.svg",
+    "sha256": "3294ca7af1fc603747a6a9efba45435350ac0a72450e2a8a79f0f8b691dde73e",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-08.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-07.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-08.svg",
+    "sha256": "c1305d80758ffa89bbfe57cc30c2d403513c5a38d893fbb35d4a3c2d855955ea",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-09.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-08.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-09.svg",
+    "sha256": "30441e8c3690c5ff96ea18c58e05b6f224697783d63e04052cf4a8dbfa4c3660",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-10.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-09.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-10.svg",
+    "sha256": "65a7ad2a1b4bfb353872fc4ed429c86b206337928bc55166424eb186260a15dd",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-11.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-10.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-11.svg",
+    "sha256": "06b7b4b8692bca9f25ad25049705a8f7d69d1f48e8fa8692b24807426c2c33e9",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-12.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-11.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-12.svg",
+    "sha256": "daba8dc8b566867e92269c53011de7159ec772a0ae2aaaa3d5c171b87d76cb3d",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-13.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-12.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-13.svg",
+    "sha256": "23992b3da93fc64bf08991fd5f6019e27c308f1ea53f8c1ca5f9ba5cbd3b33e5",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-14.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-13.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-14.svg",
+    "sha256": "ede509006e160d7a16260d2d9d0b48c0e89b7f17461cec646a6cc6edf9f6487f",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-15.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-17.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-15.svg",
+    "sha256": "463a1423db307feeb0045dbe94a9844b65ffcde9977db8de1c5993c046469aa4",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-16.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-18.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-16.svg",
+    "sha256": "ca5ada8245c8497aa362cc837052cb50ac255be8f39c83377465f252909f7a22",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-17.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-19.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-17.svg",
+    "sha256": "4c193d86cf13bc2f9b41a3da4a1dee9af7427976c5039115a2641aa3b7c283d7",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-18.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-20.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-18.svg",
+    "sha256": "e83e8f4142517d2d9771312ce4fc90c68bc0dcde47b2b5df5b6e20269cf4dcfb",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-19.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-21.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-19.svg",
+    "sha256": "4be378f0248b6d1faa6dab9b8c3237952bf248b73bc11d63d1cd3ab91c88fff0",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-20.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-22.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-20.svg",
+    "sha256": "a537f928a74ad454c4acb95479890fae8fb929841ab46a7ab2e7becdea178806",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-21.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-23.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-21.svg",
+    "sha256": "b4bc3ea53dccdfdadf8a172db138ecd691b36bf510da7f383b27d5cf31bc82a1",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-22.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-24.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-22.svg",
+    "sha256": "1dc3f1b40d814deba684f8ee818ebe8bd9ad17b9a8c6a29330c939925ac780cd",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-23.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-25.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-23.svg",
+    "sha256": "e90d4a517505ea1d9687b3b0f98a08b3e044a997d5deb6487472249b5405fd9c",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "lcd-24.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/lcd-native-26.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Compared native p6–7 catalogue with Chromium-rendered transparent candidate: exact indicator glyph; JP numbering is native, not US numbering.",
+    "final_path": "assets/lcd-24.svg",
+    "sha256": "24f44a724c11c7d63aeb242b56e9ccf9e62b584046cd3f1f63d06bd4ae2e5e9e",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "symbol-unplug.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native Japanese safety-table symbol: matching unplug/dismantle/hands/mandatory/dry/prohibition/fire/triangle variant, no cell fill.",
+    "final_path": "assets/symbol-unplug.svg",
+    "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "symbol-do_not_dismantle.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-do_not_dismantle.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native Japanese safety-table symbol: matching unplug/dismantle/hands/mandatory/dry/prohibition/fire/triangle variant, no cell fill.",
+    "final_path": "assets/symbol-do_not_dismantle.svg",
+    "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "symbol-no_wet_hands.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_wet_hands.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native Japanese safety-table symbol: matching unplug/dismantle/hands/mandatory/dry/prohibition/fire/triangle variant, no cell fill.",
+    "final_path": "assets/symbol-no_wet_hands.svg",
+    "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "symbol-mandatory.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native Japanese safety-table symbol: matching unplug/dismantle/hands/mandatory/dry/prohibition/fire/triangle variant, no cell fill.",
+    "final_path": "assets/symbol-mandatory.svg",
+    "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "symbol-keep_dry.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_dry.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native Japanese safety-table symbol: matching unplug/dismantle/hands/mandatory/dry/prohibition/fire/triangle variant, no cell fill.",
+    "final_path": "assets/symbol-keep_dry.svg",
+    "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "symbol-prohibited.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native Japanese safety-table symbol: matching unplug/dismantle/hands/mandatory/dry/prohibition/fire/triangle variant, no cell fill.",
+    "final_path": "assets/symbol-prohibited.svg",
+    "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "symbol-no_open_flame.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_open_flame.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native Japanese safety-table symbol: matching unplug/dismantle/hands/mandatory/dry/prohibition/fire/triangle variant, no cell fill.",
+    "final_path": "assets/symbol-no_open_flame.svg",
+    "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "symbol-warning_triangle.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-warning_triangle.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native Japanese safety-table symbol: matching unplug/dismantle/hands/mandatory/dry/prohibition/fire/triangle variant, no cell fill.",
+    "final_path": "assets/symbol-warning_triangle.svg",
+    "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "symbol-li-ion.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_dark.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native p3 Li-ion recycling artwork; source text Li-ion is a fixed symbol marking.",
+    "final_path": "assets/symbol-li-ion.svg",
+    "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "inbox-mc4.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets/inbox-mc4.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Same complete MC4 wrench line art; exterior number and caption are HTML.",
+    "final_path": "assets/inbox-mc4.svg",
+    "sha256": "6722c03f08dd596a277c52d073d94dbf30787d3c38a2ce3ff09c1fd998d9f660",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "button-power-bottom.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/power-bottom.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native p10 button face/product marking below oval switch matches shared variant.",
+    "final_path": "assets/button-power-bottom.svg",
+    "sha256": "7b5fa9057ca9527e66b6b49e77f4620f3e0e93cf2b045422c7341654c2ef4d2d",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "button-usb-bottom.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/usb-bottom.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native p10 button face/product marking below oval switch matches shared variant.",
+    "final_path": "assets/button-usb-bottom.svg",
+    "sha256": "4025f864c19285cad8c4706c8866fba8e24a3f9142e2d457902f9c7efa79db80",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "button-ac-bottom.svg",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/ac-bottom.svg",
+    "decision": "reuse byte-identical",
+    "identity_check": "Native p10 button face/product marking below oval switch matches shared variant.",
+    "final_path": "assets/button-ac-bottom.svg",
+    "sha256": "ad437a82a4fe6538b6d65da6639d426919855a4ae2056ce410c526b96734c07a",
+    "background_policy": "true transparent SVG; native glyph reviewed on contrasting background"
+  },
+  {
+    "slot": "inbox-main",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 4,
+    "bbox": [
+      43,
+      83,
+      91,
+      154
+    ],
+    "final_path": "assets/inbox-main.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "fb33a782e600f7648ed378a56f3d8b00e218f9cb26beaaf192e698b31961f1e3"
+  },
+  {
+    "slot": "inbox-cable",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 4,
+    "bbox": [
+      124,
+      86,
+      167,
+      153
+    ],
+    "final_path": "assets/inbox-cable.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "42bf189f5027693e966ec923aeec74968f7a5d0ee33570e8155e3cba94c916d0"
+  },
+  {
+    "slot": "inbox-manual",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 4,
+    "bbox": [
+      285,
+      94,
+      323,
+      151
+    ],
+    "final_path": "assets/inbox-manual.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "1c20e77a3e7de057b55aa064d706660c389f9911b9726d1443a7aa50c29a2569"
+  },
+  {
+    "slot": "overview-front",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 4,
+    "bbox": [
+      26,
+      262,
+      343,
+      494
+    ],
+    "final_path": "assets/overview-front.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [
+      1376
+    ],
+    "sha256": "2fc5967073188a8484a48dbabb86f814061b39d498df8e54e03b0321f58e564d",
+    "prior_candidate_sha256": "59087b242a6f683e4743193cb6a5cae5f46953998f42eb7e3de1c7f9f5729e86",
+    "prior_candidate_status": "superseded-do-not-reuse",
+    "prior_candidate_reason": "Source geometry or editable exterior text corrected after native visual comparison."
+  },
+  {
+    "slot": "overview-left",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 5,
+    "bbox": [
+      27,
+      34,
+      341,
+      251.9
+    ],
+    "final_path": "assets/overview-left.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [
+      0
+    ],
+    "sha256": "bd0c529fae6d093fcea8a2f3c7d81c1a0ec8bfdcdf75b88e820d5eb4c74f3cbb",
+    "prior_candidate_sha256": "ef241d86d3a610ce97fe409b41fd38bd3c8778b06e01277c5bf4287b84c8f9b4",
+    "prior_candidate_status": "superseded-do-not-reuse",
+    "prior_candidate_reason": "Source geometry or editable exterior text corrected after native visual comparison."
+  },
+  {
+    "slot": "overview-right",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 5,
+    "bbox": [
+      27,
+      248,
+      342,
+      501
+    ],
+    "final_path": "assets/overview-right.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [
+      1
+    ],
+    "sha256": "57b5e0f1a4923a37c5858a7d9977ee3c821c6fe6d24c99e5e56a5f437c3c5edb",
+    "prior_candidate_sha256": "d33499ce9a228a7e3d899b4146dff3883dad808d044a4ec0100f51359c9d8f9f",
+    "prior_candidate_status": "superseded-do-not-reuse",
+    "prior_candidate_reason": "Source geometry or editable exterior text corrected after native visual comparison."
+  },
+  {
+    "slot": "lcd-map",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 6,
+    "bbox": [
+      28,
+      61,
+      341,
+      235
+    ],
+    "final_path": "assets/lcd-map.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "53f8a3df73520af0d091153046e04ce0df0630e5301d76f2face77360d9e5e01"
+  },
+  {
+    "slot": "power",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 8,
+    "bbox": [
+      27,
+      107,
+      342,
+      285
+    ],
+    "final_path": "assets/power.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [
+      {
+        "drawing_index": 1167,
+        "bbox": [
+          163.43019104003906,
+          212.52398681640625,
+          326.27618408203125,
+          269.1719970703125
+        ],
+        "fill": [
+          0.9032272696495056,
+          0.9066758155822754,
+          0.9101853966712952
+        ]
+      },
+      {
+        "drawing_index": 1260,
+        "bbox": [
+          35.40550231933594,
+          114.79769134521484,
+          166.9654998779297,
+          128.49069213867188
+        ],
+        "fill": [
+          0.9032272696495056,
+          0.9066758155822754,
+          0.9101853966712952
+        ]
+      }
+    ],
+    "excluded_non_art_drawings": [],
+    "sha256": "d9b23cfcda28eba027b6769afe8eb27794a449fac9e351326e9af1397ea16d45"
+  },
+  {
+    "slot": "ac-output",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 8,
+    "bbox": [
+      27,
+      309,
+      342,
+      498
+    ],
+    "final_path": "assets/ac-output.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [
+      {
+        "drawing_index": 1259,
+        "bbox": [
+          35.40550231933594,
+          316.7703857421875,
+          207.66751098632812,
+          330.46337890625
+        ],
+        "fill": [
+          0.9032272696495056,
+          0.9066758155822754,
+          0.9101853966712952
+        ]
+      }
+    ],
+    "excluded_non_art_drawings": [],
+    "sha256": "ce7185afe740892298ebc9b8936ab3a09d11d79b51d5c60d3731fa452053a583"
+  },
+  {
+    "slot": "usb-output",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 9,
+    "bbox": [
+      27,
+      44,
+      342,
+      177
+    ],
+    "final_path": "assets/usb-output.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [
+      {
+        "drawing_index": 1872,
+        "bbox": [
+          35.158599853515625,
+          50.77770233154297,
+          207.4206085205078,
+          64.470703125
+        ],
+        "fill": [
+          0.9032272696495056,
+          0.9066758155822754,
+          0.9101853966712952
+        ]
+      }
+    ],
+    "excluded_non_art_drawings": [],
+    "sha256": "626cd8d01400ae59b7f3de978942788dcef3a8cbe4d38b149a0a349b6b56eff9"
+  },
+  {
+    "slot": "dc-output",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 9,
+    "bbox": [
+      27,
+      204,
+      342,
+      337
+    ],
+    "final_path": "assets/dc-output.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [
+      {
+        "drawing_index": 1873,
+        "bbox": [
+          35.158599853515625,
+          211.3804931640625,
+          207.4206085205078,
+          225.073486328125
+        ],
+        "fill": [
+          0.9032272696495056,
+          0.9066758155822754,
+          0.9101853966712952
+        ]
+      }
+    ],
+    "excluded_non_art_drawings": [],
+    "sha256": "3990abf260ec3ec792a37547ee627a0a71b79bed7101200d62e60eafbbfb99f9"
+  },
+  {
+    "slot": "lcd-button",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 9,
+    "bbox": [
+      40,
+      371,
+      176,
+      490
+    ],
+    "final_path": "assets/lcd-button.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "393924fdba24b2a3e896cc03827a8e33892d0b11b25024a651b84bf7367ab3a8"
+  },
+  {
+    "slot": "ups",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 11,
+    "bbox": [
+      28,
+      82,
+      343,
+      282
+    ],
+    "final_path": "assets/ups.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [
+      {
+        "drawing_index": 4045,
+        "bbox": [
+          174.17611694335938,
+          218.88929748535156,
+          325.80010986328125,
+          261.89129638671875
+        ],
+        "fill": [
+          0.9032272696495056,
+          0.9066758155822754,
+          0.9101853966712952
+        ]
+      }
+    ],
+    "excluded_non_art_drawings": [],
+    "sha256": "5678654e7bde444f154810fd7bf101dda3d2f4bdf1876c8b919e19a1798c1719"
+  },
+  {
+    "slot": "battery-packs",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 12,
+    "bbox": [
+      27,
+      72,
+      343,
+      228
+    ],
+    "final_path": "assets/battery-packs.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "81af55ff98f81ada561b90c77deefb99b1c99bc668dcefa232725fdba0e08278"
+  },
+  {
+    "slot": "ac-charge",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 13,
+    "bbox": [
+      27,
+      88,
+      342,
+      221
+    ],
+    "final_path": "assets/ac-charge.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "e8b206685bd151f7b9db3e3c3f44f8e1810bb22c3617314643d65181268528d4"
+  },
+  {
+    "slot": "low-pv",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 13,
+    "bbox": [
+      27,
+      337,
+      343,
+      497
+    ],
+    "final_path": "assets/low-pv.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "5e5eb666170ec68844576b37756718c3187ca48a4c906ad2b92571a27fee3a08",
+    "prior_candidate_sha256": "7f6ae899e943211532905005cdcb28bac6a63db7156dece73cc8a7136ecbdac5",
+    "prior_candidate_status": "superseded-do-not-reuse",
+    "prior_candidate_reason": "Source geometry or editable exterior text corrected after native visual comparison."
+  },
+  {
+    "slot": "high-pv",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 14,
+    "bbox": [
+      27,
+      157,
+      342,
+      380
+    ],
+    "final_path": "assets/high-pv.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "88a1c2d8b6700fa62ae22bd4ae27960652564f065471280f59e20ccc76ec92fb"
+  },
+  {
+    "slot": "high-pv-lock",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 14,
+    "bbox": [
+      28,
+      382,
+      342,
+      499
+    ],
+    "final_path": "assets/high-pv-lock.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "cd1b0901eac9150c7bc4b34e0f8054d38a1348d250bf6de32ee056d97d3a9f21"
+  },
+  {
+    "slot": "dual-pv",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 15,
+    "bbox": [
+      27,
+      62,
+      342,
+      211
+    ],
+    "final_path": "assets/dual-pv.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "afe654d73507189df8f11ac4421bdb780eeee615ebd3944d65a743d49a732aff"
+  },
+  {
+    "slot": "car-charge",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 15,
+    "bbox": [
+      27,
+      307,
+      342,
+      416
+    ],
+    "final_path": "assets/car-charge.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [
+      {
+        "drawing_index": 11124,
+        "bbox": [
+          183.29989624023438,
+          396.64739990234375,
+          308.31591796875,
+          408.5964050292969
+        ],
+        "fill": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "excluded_non_art_drawings": [],
+    "sha256": "2ed15a3b589a229cf20ba78211ca00b1d88fcbbf2f0d30515127b6461916a948"
+  },
+  {
+    "slot": "app-download",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 20,
+    "bbox": [
+      28,
+      98,
+      94,
+      139
+    ],
+    "final_path": "assets/app-download.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "f05131f7a4244365728bcf17c8b10553c2c3ddd4769dfd78e945219be2a4530f"
+  },
+  {
+    "slot": "app-qr",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 20,
+    "bbox": [
+      214,
+      98,
+      265,
+      150
+    ],
+    "final_path": "assets/app-qr.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "4d7fa0f90cfd9bc536bf56cdaccac8e2a31d74eb9935bd0118635c6caa217a2b"
+  },
+  {
+    "slot": "app-add",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 20,
+    "bbox": [
+      94,
+      208,
+      260,
+      367
+    ],
+    "final_path": "assets/app-add.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "d3c95c74c18a4c77d2200ddbc8b6524f59bb26a3b2c1c0c8fbe27e4493b093d8"
+  },
+  {
+    "slot": "app-control",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 20,
+    "bbox": [
+      79,
+      389,
+      292,
+      471
+    ],
+    "final_path": "assets/app-control.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "20bf04164ee6998ca5ffaae86fd9fb8a0a5e8b5f54b8150a60e2d200d471be00"
+  },
+  {
+    "slot": "app-results",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "No matching transparent full JP panel: native 100/200V ports, JP connection geometry or Japanese App screen/book differs. Old opaque cable PNG rejected.",
+    "source_page": 21,
+    "bbox": [
+      26,
+      120,
+      320,
+      303
+    ],
+    "final_path": "assets/app-results.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "b8d1b7ebcf1a74268f46c22da4ace6a292691365e0282e8bf5f32a64a35c873e"
+  },
+  {
+    "slot": "service-logo",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "candidate": null,
+    "decision": "native-source-panel",
+    "new_extraction_reason": "Source p23 has the Jackery/Solar Generator brand lockup, not a QR code. The complete native outlined lockup differs from standalone shared wordmarks.",
+    "source_page": 23,
+    "bbox": [
+      267,
+      432,
+      339,
+      446
+    ],
+    "final_path": "assets/service-logo.svg",
+    "background_policy": "Complete native panels/phone edges/leaders retained; only identified independent caption shapes removed; captions drawn in CSS.",
+    "removed_caption_frames": [],
+    "excluded_non_art_drawings": [],
+    "sha256": "00889b66437ecd87e2c6ba008a202edcd1e352e07bb7fd3ec07713c946e8635c",
+    "prior_candidate_sha256": "c0a66d06c875eb78c2db0702176f79565f9e8d93ab48dd4d3cce5ac721efb0eb",
+    "prior_candidate_status": "superseded-do-not-reuse",
+    "prior_candidate_reason": "Prior bbox was blank; source p23 has no QR."
+  },
+  {
+    "slot": "lcd-05",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "native-source-glyph",
+    "new_extraction_reason": "Native empty self-generation battery, grounding or DC 12V/10A marking differs from inventoried shared glyphs.",
+    "source_page": 6,
+    "bbox": [
+      60,
+      386,
+      74,
+      402
+    ],
+    "drawing_indices": [
+      29,
+      30,
+      31,
+      32
+    ],
+    "sha256": "b812158a271b6568fbc60a5a2c1a892e4d036dcc019898fbd4ba1664a8e38909",
+    "background_policy": "all contained native glyph paths; no cell/page background"
+  },
+  {
+    "slot": "symbol-ground",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "native-source-glyph",
+    "new_extraction_reason": "Native empty self-generation battery, grounding or DC 12V/10A marking differs from inventoried shared glyphs.",
+    "source_page": 16,
+    "bbox": [
+      196,
+      463,
+      218,
+      483
+    ],
+    "drawing_indices": [
+      113,
+      114,
+      115,
+      116,
+      117
+    ],
+    "sha256": "29105915e90dc077fcf4a8b7d19f0de037db4e859e6d6c0191f776c1aafdff63",
+    "background_policy": "all contained native glyph paths; no cell/page background"
+  },
+  {
+    "slot": "button-dc",
+    "searched": [
+      "data/manual_sources/JE-5000A",
+      "data/manual_sources/JHP-5000C/US/git-20261009-051169dd/assets",
+      "docs/renderers/web/assets/shared",
+      "docs/templates/word_template/common_assets"
+    ],
+    "decision": "native-source-glyph",
+    "new_extraction_reason": "Native empty self-generation battery, grounding or DC 12V/10A marking differs from inventoried shared glyphs.",
+    "source_page": 10,
+    "bbox": [
+      57,
+      181,
+      81,
+      207
+    ],
+    "drawing_indices": [
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42
+    ],
+    "sha256": "387228b19111429291080e3283df27790c6a57e972bc182178ebaf999d014c67",
+    "background_policy": "all contained native glyph paths; no cell/page background"
+  }
+]

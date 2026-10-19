@@ -8,7 +8,9 @@ Status: active
 - 语义规则（方案 §5.2-3）：本表只登记「最新版稳定入口」；绑定历史版本的链接（发布目录 alidocs 行、旧站冻结快照）**不入本表**，保留版本语义，见 rev02_link_audit.csv。
 - 入口生成机制（读码证据见 rev02_conclusions.md §2）：根别名 = `tools/readthedocs_source.py::_write_short_aliases`（按 manual stem 自动派生）+ `tools/rtd_alias_entry.py`（noindex+canonical+延迟跳转，beacon 可计数）；legacy 兼容页 = `publish_meta.json` 的 `legacy_default/legacy_aliases/legacy_route` → `tools/publish_branch_assembly.py::_write_legacy_compatibility_routes`。
 
-站点基址：`https://ht-doc.readthedocs.io`（单版本、根路径直出）。
+站点基址：`https://ht-doc.readthedocs.io`（v1 数据时点；单版本、根路径直出）。2026-10-13 起门户与发布工具的默认基址改为
+`https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest`（#1514，见[盘活方案](../../manual_production_revitalization_plan.md)第二章）；
+本表是 v1 数据时点的快照，未按新基址复核。
 
 ## 0. 门户入口
 

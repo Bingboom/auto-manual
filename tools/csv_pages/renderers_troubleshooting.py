@@ -17,7 +17,7 @@ PH_TROUBLESHOOTING_ROWS_RST = "{{ troubleshooting_rows_rst }}"
 _TRUE_VALUES = {"1", "true", "yes", "y"}
 _FALSE_VALUES = {"0", "false", "no", "n"}
 
-def _truthy(value: str, *, default: bool = True) -> bool:
+def _truthy(value: str | None, *, default: bool = True) -> bool:
     raw = (value or "").strip().casefold()
     if not raw:
         return default

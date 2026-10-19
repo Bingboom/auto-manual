@@ -1,0 +1,1212 @@
+[
+  {
+    "slot": "symbol_warning_triangle.svg",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_warning_triangle.svg",
+    "identity_check": "Compared native p5 pictograms: outline warning; circular reading person; adult-child panel; native Li-ion lettering; screwdriver prohibited; crossed flame; WEEE. Select exact glyph/tint; true transparent margins.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_warning_triangle.svg",
+    "sha256": "0f41fe5ea49fb7a830cab90d2a5473587dd8a0c04db775b42953f58dbea3fb0a",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "symbol_read_manual_person.svg",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": null,
+    "identity_check": "Compared native p5 pictograms: outline warning; circular reading person; adult-child panel; native Li-ion lettering; screwdriver prohibited; crossed flame; WEEE. Select exact glyph/tint; true transparent margins.",
+    "decision": "native-variant-for-reuse",
+    "new_extraction_reason": "All current shared variants were compared with p5 original glyph paths and transparency; none passes 0.02 fixed admission tolerance.",
+    "final_path": "assets/symbol_read_manual_person.svg",
+    "sha256": "b925552372b168a3e354081d97e43ccd08eb74803f685fc32223e49a27d0c0e5",
+    "background_policy": "standalone-transparent; original glyph only; no backdrop",
+    "rejected_candidates": [
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_read_manual_person.svg",
+        "sha256": "ccadc4dc7305913805f0023f27924c3a995cb236b8da71c9d65f58496123bf8c",
+        "status": "superseded-do-not-reuse-for-this-native-glyph",
+        "reason": "No current shared symbol passes the original path/tint gate; this is a concrete source variant, not a new-locale recrop."
+      }
+    ],
+    "source_page": 5,
+    "drawing_indices": [
+      53,
+      54,
+      55,
+      56,
+      57
+    ],
+    "bbox": [
+      39.1083984375,
+      366.3433837890625,
+      58.26740264892578,
+      385.4894104003906
+    ]
+  },
+  {
+    "slot": "symbol_keep_away_from_children_gray_jp.svg",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_gray_jp.svg",
+    "identity_check": "Existing shared variant passes the native glyph/alpha/tint gate with original source paths; no acquisition.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_keep_away_from_children_gray_jp.svg",
+    "sha256": "af71ae09a5498979d0722d5a8a11347936d4be2b994898f2aabda0e2cea5c817",
+    "background_policy": "standalone-transparent",
+    "rejected_candidates": [
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_keep_away_from_children_panel.svg",
+        "sha256": "c1b6f3f1dfd75146e51ec42dc964a75c667aaffc69919969bbc7adb955fe11fd",
+        "status": "superseded-do-not-reuse-for-this-native-glyph",
+        "reason": "Direct source-bound glyph/alpha comparison selected a closer existing shared variant."
+      }
+    ]
+  },
+  {
+    "slot": "symbol_li_ion.svg",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion.svg",
+    "identity_check": "Existing shared variant passes the native glyph/alpha/tint gate with original source paths; no acquisition.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_li_ion.svg",
+    "sha256": "317b9e9feb7747092569a1074d5e05e43bca5ddb96e9404f8e33746df9da7a8e",
+    "background_policy": "standalone-transparent",
+    "rejected_candidates": [
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_li_ion_dark.svg",
+        "sha256": "00ce194f2bd6b45d8b61766ee0e15d21b51a49992b4c0e3165953c8c779a79b1",
+        "status": "superseded-do-not-reuse-for-this-native-glyph",
+        "reason": "Direct source-bound glyph/alpha comparison selected a closer existing shared variant."
+      }
+    ]
+  },
+  {
+    "slot": "symbol_do_not_dismantle.svg",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle.svg",
+    "identity_check": "Existing shared variant passes the native glyph/alpha/tint gate with original source paths; no acquisition.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_do_not_dismantle.svg",
+    "sha256": "5ad4fa830a5b4f9bf23af4c09493fc2610f8fda94ea6fcf925288d1cb6491f33",
+    "background_policy": "standalone-transparent",
+    "rejected_candidates": [
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_do_not_dismantle_dark.svg",
+        "sha256": "6b24c36910b2df208f154b87ac72049d49e3f6d5b91de82ab954134c8fc8f8c8",
+        "status": "superseded-do-not-reuse-for-this-native-glyph",
+        "reason": "Direct source-bound glyph/alpha comparison selected a closer existing shared variant."
+      }
+    ]
+  },
+  {
+    "slot": "symbol_no_open_flame_gray_jp.svg",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_gray_jp.svg",
+    "identity_check": "Existing shared variant passes the native glyph/alpha/tint gate with original source paths; no acquisition.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_no_open_flame_gray_jp.svg",
+    "sha256": "5d52569eb51f41f45826b7b144efe59410b5017b0557508b1577c4620d7e8aee",
+    "background_policy": "standalone-transparent",
+    "rejected_candidates": [
+      {
+        "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_no_open_flame_crossed.svg",
+        "sha256": "07bbf02d3adfc960851f7bb220abf7268ca9adc6a868abf91c4571e34ee66c22",
+        "status": "superseded-do-not-reuse-for-this-native-glyph",
+        "reason": "Direct source-bound glyph/alpha comparison selected a closer existing shared variant."
+      }
+    ]
+  },
+  {
+    "slot": "symbol_weee.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
+    "identity_check": "Compared native p5 pictograms: outline warning; circular reading person; adult-child panel; native Li-ion lettering; screwdriver prohibited; crossed flame; WEEE. Select exact glyph/tint; true transparent margins.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/symbol_weee.png",
+    "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-01.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/fc4cc02b42ef_fc4cc02b42ef_fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+    "identity_check": "Existing shared semantic LCD icon 1; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-01.png",
+    "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-02.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/7e1392ba6a45_7e1392ba6a45_7e1392ba6a45_2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+    "identity_check": "Existing shared semantic LCD icon 2; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-02.png",
+    "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-03.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/7f743182c050_7f743182c050_7f743182c050_3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+    "identity_check": "Existing shared semantic LCD icon 3; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-03.png",
+    "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-04.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/e32e6ae96321_e32e6ae96321_e32e6ae96321_15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+    "identity_check": "Existing shared semantic LCD icon 4; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-04.png",
+    "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-05.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/71017f43bab4_71017f43bab4_71017f43bab4_4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+    "identity_check": "Existing shared semantic LCD icon 5; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-05.png",
+    "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-06.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/21b5f19ca9a6_21b5f19ca9a6_21b5f19ca9a6_16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+    "identity_check": "Existing shared semantic LCD icon 6; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-06.png",
+    "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-07.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/73225cf9faa8_73225cf9faa8_73225cf9faa8_5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+    "identity_check": "Existing shared semantic LCD icon 7; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-07.png",
+    "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-08.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/f4cdcb551105_f4cdcb551105_f4cdcb551105_6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+    "identity_check": "Existing shared semantic LCD icon 8; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-08.png",
+    "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-09.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/e422a56922eb_e422a56922eb_e422a56922eb_7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+    "identity_check": "Existing shared semantic LCD icon 10; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-09.png",
+    "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-10.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/8be87c5a0849_8be87c5a0849_8be87c5a0849_8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+    "identity_check": "Existing shared semantic LCD icon 11; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-10.png",
+    "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-11.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/d5100a538e96_d5100a538e96_d5100a538e96_10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+    "identity_check": "Existing shared semantic LCD icon 13; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-11.png",
+    "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-12.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/cfb69b1ffc0b_cfb69b1ffc0b_cfb69b1ffc0b_11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+    "identity_check": "Existing shared semantic LCD icon 14; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-12.png",
+    "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-13.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/28f3cad42ae3_28f3cad42ae3_28f3cad42ae3_12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+    "identity_check": "Existing shared semantic LCD icon 15; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-13.png",
+    "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-14.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/eed3299c3f6a_eed3299c3f6a_eed3299c3f6a_13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+    "identity_check": "Existing shared semantic LCD icon 16; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-14.png",
+    "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-15.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/91cec82eeaa5_91cec82eeaa5_91cec82eeaa5_14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+    "identity_check": "Existing shared semantic LCD icon 17; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-15.png",
+    "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-16.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/85921a9ad7fb_85921a9ad7fb_85921a9ad7fb_17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+    "identity_check": "Existing shared semantic LCD icon 22; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-16.png",
+    "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-17.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/c7862a87e742_c7862a87e742_c7862a87e742_19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+    "identity_check": "Existing shared semantic LCD icon 23; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-17.png",
+    "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-18.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/747147be99d7_747147be99d7_747147be99d7_18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+    "identity_check": "Existing shared semantic LCD icon 24; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-18.png",
+    "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-19.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/6aab9a14900a_6aab9a14900a_6aab9a14900a_20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+    "identity_check": "Existing shared semantic LCD icon 26; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-19.png",
+    "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-20.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/c4b830c769a3_c4b830c769a3_c4b830c769a3_22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+    "identity_check": "Existing shared semantic LCD icon 28; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-20.png",
+    "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-21.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/f548c6504f49_f548c6504f49_f548c6504f49_23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+    "identity_check": "Existing shared semantic LCD icon 29; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-21.png",
+    "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-22.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/bdbf602db74a_bdbf602db74a_bdbf602db74a_24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+    "identity_check": "Existing shared semantic LCD icon 30; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-22.png",
+    "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-23.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/lcd_fault-code.png",
+    "identity_check": "Existing shared semantic LCD icon 31; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-23.png",
+    "sha256": "7b251bff4004f01b3fbb6e383230d0c27f6ea17654502eca64240888ebe510a0",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-24.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/7623ef10e229_7623ef10e229_7623ef10e229_9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+    "identity_check": "Existing shared semantic LCD icon 12; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-24.png",
+    "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-25.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/58c1d3604ca7_58c1d3604ca7_58c1d3604ca7_26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+    "identity_check": "Existing shared semantic LCD icon 32; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-25.png",
+    "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "lcd-26.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/9b148ea95d3a_9b148ea95d3a_9b148ea95d3a_27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+    "identity_check": "Existing shared semantic LCD icon 33; native p8/p9 symbol compared; original RGBA bytes reused without recrop.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/lcd-26.png",
+    "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "inbox-cable.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/in_the_box/ac_charging_cable.png",
+    "identity_check": "Same two-pin IEC AC cable line art as native p6; region and connector match.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/inbox-cable.png",
+    "sha256": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef",
+    "background_policy": "product-line-art"
+  },
+  {
+    "slot": "inbox-manual.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/templates/word_template/common_assets/in_the_box/manual_icon1.png",
+    "identity_check": "Same folded-page document icon as native p6.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/inbox-manual.png",
+    "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "app_store_badges.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_store_badges.png",
+    "identity_check": "Native p20/p21 screenshots inspected against existing JHP-3600C assets. Store badges/QR and complete two/three phone frames match, including 2.1-2.5; app UI is source English across all three locales. No recrop or translation of UI.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/app_store_badges.png",
+    "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+    "background_policy": "complete-app-frames-and-ui"
+  },
+  {
+    "slot": "app_download_qr.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_download_qr.png",
+    "identity_check": "Native p20/p21 screenshots inspected against existing JHP-3600C assets. Store badges/QR and complete two/three phone frames match, including 2.1-2.5; app UI is source English across all three locales. No recrop or translation of UI.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/app_download_qr.png",
+    "sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+    "background_policy": "complete-app-frames-and-ui"
+  },
+  {
+    "slot": "app_add.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_add.png",
+    "identity_check": "Native p20/p21 screenshots inspected against existing JHP-3600C assets. Store badges/QR and complete two/three phone frames match, including 2.1-2.5; app UI is source English across all three locales. No recrop or translation of UI.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/app_add.png",
+    "sha256": "7998672fe6e308902b49332024bb09d21a7bb1dd06cc87dec160c81603a7c9b7",
+    "background_policy": "complete-app-frames-and-ui"
+  },
+  {
+    "slot": "app_connect_result_steps.png",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/web/en/assets/app_connect_result_steps.png",
+    "identity_check": "Native p20/p21 screenshots inspected against existing JHP-3600C assets. Store badges/QR and complete two/three phone frames match, including 2.1-2.5; app UI is source English across all three locales. No recrop or translation of UI.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/app_connect_result_steps.png",
+    "sha256": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3",
+    "background_policy": "complete-app-frames-and-ui"
+  },
+  {
+    "slot": "power.svg",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/power.svg",
+    "identity_check": "Exact POWER, AC and DC/USB round button face symbols in native shortcut table p13; transparent shared SVG.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/power.svg",
+    "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "ac.svg",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/ac.svg",
+    "identity_check": "Exact POWER, AC and DC/USB round button face symbols in native shortcut table p13; transparent shared SVG.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/ac.svg",
+    "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "dc_usb.svg",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+    "identity_check": "Exact POWER, AC and DC/USB round button face symbols in native shortcut table p13; transparent shared SVG.",
+    "decision": "reuse byte-identical",
+    "new_extraction_reason": null,
+    "final_path": "assets/dc_usb.svg",
+    "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+    "background_policy": "standalone-transparent"
+  },
+  {
+    "slot": "inbox-main",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 6,
+    "crop_bbox": [
+      43,
+      308,
+      130,
+      381
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": [],
+    "superseded_crop": {
+      "bbox": [
+        49,
+        314,
+        130,
+        381
+      ],
+      "status": "superseded-do-not-reuse",
+      "reason": "Left enclosure edge clipped by the original tight crop."
+    }
+  },
+  {
+    "slot": "overview",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 7,
+    "crop_bbox": [
+      27,
+      89,
+      343,
+      438
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": []
+  },
+  {
+    "slot": "lcd-map",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 8,
+    "crop_bbox": [
+      40,
+      52,
+      325,
+      196
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": []
+  },
+  {
+    "slot": "power",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 10,
+    "crop_bbox": [
+      27,
+      72,
+      342,
+      240
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": [
+      [
+        320,
+        169,
+        321,
+        170
+      ],
+      [
+        320,
+        211,
+        321,
+        212
+      ],
+      [
+        178,
+        143,
+        179,
+        144
+      ]
+    ],
+    "rejected_candidates": [
+      {
+        "path": "data/manual_sources/JHP-3000D/US/git-20261009-cebe4aab/assets/power.svg",
+        "sha256": "dfad3e58f354cbd8eb2855f550d1acd7009eece0f5ace0b8cbaba91973122a2e",
+        "status": "superseded-do-not-reuse",
+        "reason": "Retained the empty speech-bubble tail. Both capsule and tail must be CSS, never baked into base art."
+      }
+    ],
+    "final_path": "assets/power.svg",
+    "sha256": "6ebb0b28a8fc426f4d892a76837c420c471dc5af7dccf03eabb388b84f9bcba9"
+  },
+  {
+    "slot": "ac-output",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 10,
+    "crop_bbox": [
+      27,
+      268,
+      342,
+      480
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": [
+      [
+        158,
+        280,
+        159,
+        281
+      ],
+      [
+        325,
+        455,
+        326,
+        456
+      ]
+    ]
+  },
+  {
+    "slot": "dc-output",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 11,
+    "crop_bbox": [
+      28,
+      43,
+      342,
+      201
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": [
+      [
+        160,
+        55,
+        161,
+        56
+      ]
+    ]
+  },
+  {
+    "slot": "energy",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 12,
+    "crop_bbox": [
+      28,
+      124,
+      342,
+      222
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": []
+  },
+  {
+    "slot": "lcd-button",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 12,
+    "crop_bbox": [
+      48,
+      289,
+      294,
+      370
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": []
+  },
+  {
+    "slot": "ups",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 13,
+    "crop_bbox": [
+      27,
+      301,
+      342,
+      427
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": []
+  },
+  {
+    "slot": "ac-charge",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 14,
+    "crop_bbox": [
+      27,
+      235,
+      342,
+      367
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": []
+  },
+  {
+    "slot": "solar",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 15,
+    "crop_bbox": [
+      27,
+      77,
+      342,
+      254
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": []
+  },
+  {
+    "slot": "car",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 16,
+    "crop_bbox": [
+      28,
+      62,
+      342,
+      210
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": [
+      [
+        328,
+        190,
+        329,
+        191
+      ]
+    ]
+  },
+  {
+    "slot": "app-control",
+    "searched": [
+      "data/manual_sources/JHP-3000D",
+      "manual_sources/JHP-3000D",
+      "data/manual_sources/JHP-3600C",
+      "docs/renderers/web/assets",
+      "docs/templates/word_template/common_assets",
+      "docs/renderers/latex/assets"
+    ],
+    "candidate": "existing JHP-3600C/JE-2000E scenes inspected; no same JHP-3000D package",
+    "identity_check": "Authoritative JHP-3000D has a 30A TT-30R plus four 20A sockets, different enclosure/control/port geometry; generic or other-model scene cannot replace it. LCD numbering differs.",
+    "decision": "new target-source acquisition",
+    "new_extraction_reason": "No matching same-model US artwork; specific enclosure, TT-30R socket/control geometry or 25-number LCD differs.",
+    "physical_page": 20,
+    "crop_bbox": [
+      33,
+      383,
+      336,
+      452
+    ],
+    "recipe": "data/asset_recipes/manual_jhp3000d_us_native.json",
+    "background_policy": "Original product shading/engraving and complete panel retained; native annotations become HTML; identified small caption frames removed and redrawn with CSS.",
+    "removed_caption_probes": []
+  },
+  {
+    "slot": "fcc-mark.svg",
+    "candidate": "data/manual_sources/JBP-1000B-SIL/US/git-20261008-7afcb2a1/assets/fcc-mark.svg",
+    "identity_check": "Native p6 FCC compliance mark compared with existing transparent native FCC vector. Exact glyph and dark tint; margins transparent.",
+    "decision": "reuse byte-identical",
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "final_path": "assets/fcc-mark.svg",
+    "background_policy": "standalone-transparent"
+  }
+]

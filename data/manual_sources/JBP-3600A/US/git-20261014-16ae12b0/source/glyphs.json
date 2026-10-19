@@ -1,0 +1,191 @@
+[
+  {
+    "language": "en",
+    "physical_page": 8,
+    "slot": "connection-icon",
+    "meaning": "battery pack connection icon (HomePower 3600 Plus LCD)",
+    "decision": "native source glyph",
+    "reason": "Inline LCD icon printed as vector outlines inside the p8 NOTES sentence; no shared or EU Web asset carries it (the EU Web page replaced it with the words \"connection icon\").",
+    "local_path": "assets/inline-connection-icon.svg",
+    "search_box": [
+      125.5,
+      205,
+      141.5,
+      215
+    ],
+    "drawing_indices": [
+      1308,
+      1309,
+      1310,
+      1311,
+      1312,
+      1313,
+      1314,
+      1315
+    ],
+    "glyph_bbox": [
+      126.19200134277344,
+      205.38699340820312,
+      141.16000366210938,
+      214.6719970703125
+    ],
+    "sha256": "3712585cb630b77884bc3d7d7f96cf57463fec74b7a406bacd279c9c740a94a8"
+  },
+  {
+    "language": "en",
+    "physical_page": 5,
+    "slot": "fcc-mark",
+    "meaning": "FCC mark",
+    "decision": "reuse shared symbol (native-v1)",
+    "shared_symbol_key": "fcc/nested-c-native-dark",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "local_path": "assets/fcc_mark.svg",
+    "search_box": [
+      34.36,
+      37.9,
+      68.81,
+      62.03
+    ],
+    "drawing_indices": [
+      4960
+    ],
+    "glyph_bbox": [
+      34.66429901123047,
+      38.195106506347656,
+      68.51129913330078,
+      61.73110580444336
+    ],
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.017123
+    }
+  },
+  {
+    "language": "fr",
+    "physical_page": 16,
+    "slot": "connection-icon",
+    "meaning": "battery pack connection icon (HomePower 3600 Plus LCD)",
+    "decision": "share the English native glyph (fixed glyph comparison)",
+    "reason": "Inline LCD icon printed as vector outlines inside the p8 NOTES sentence; no shared or EU Web asset carries it (the EU Web page replaced it with the words \"connection icon\").",
+    "local_path": "assets/inline-connection-icon.svg",
+    "search_box": [
+      150.7,
+      205.99,
+      166.3,
+      215.87
+    ],
+    "drawing_indices": [
+      1331,
+      1332,
+      1333,
+      1334,
+      1335,
+      1336,
+      1337,
+      1338
+    ],
+    "glyph_bbox": [
+      151.0290069580078,
+      206.2869873046875,
+      165.99700927734375,
+      215.57199096679688
+    ],
+    "printed_pixel_comparison": {
+      "differing_pixel_share": 0.01835
+    },
+    "sha256": "3712585cb630b77884bc3d7d7f96cf57463fec74b7a406bacd279c9c740a94a8"
+  },
+  {
+    "language": "fr",
+    "physical_page": 13,
+    "slot": "fcc-mark",
+    "meaning": "FCC mark",
+    "decision": "reuse shared symbol (native-v1)",
+    "shared_symbol_key": "fcc/nested-c-native-dark",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "local_path": "assets/fcc_mark.svg",
+    "search_box": [
+      34.96,
+      35.75,
+      61.1,
+      54.11
+    ],
+    "drawing_indices": [
+      5442
+    ],
+    "glyph_bbox": [
+      35.25559997558594,
+      36.050811767578125,
+      60.796600341796875,
+      53.81081008911133
+    ],
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.017115
+    }
+  },
+  {
+    "language": "es",
+    "physical_page": 24,
+    "slot": "connection-icon",
+    "meaning": "battery pack connection icon (HomePower 3600 Plus LCD)",
+    "decision": "share the English native glyph (fixed glyph comparison)",
+    "reason": "Inline LCD icon printed as vector outlines inside the p8 NOTES sentence; no shared or EU Web asset carries it (the EU Web page replaced it with the words \"connection icon\").",
+    "local_path": "assets/inline-connection-icon.svg",
+    "search_box": [
+      166.07,
+      201.69,
+      181.64,
+      211.57
+    ],
+    "drawing_indices": [
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307
+    ],
+    "glyph_bbox": [
+      166.3730010986328,
+      201.98599243164062,
+      181.34100341796875,
+      211.27099609375
+    ],
+    "printed_pixel_comparison": {
+      "differing_pixel_share": 0.0122
+    },
+    "sha256": "3712585cb630b77884bc3d7d7f96cf57463fec74b7a406bacd279c9c740a94a8"
+  },
+  {
+    "language": "es",
+    "physical_page": 21,
+    "slot": "fcc-mark",
+    "meaning": "FCC mark",
+    "decision": "reuse shared symbol (native-v1)",
+    "shared_symbol_key": "fcc/nested-c-native-dark",
+    "shared_path": "docs/renderers/web/assets/shared/symbols/native-v1/fcc_mark.svg",
+    "local_path": "assets/fcc_mark.svg",
+    "search_box": [
+      34.96,
+      34.09,
+      61.1,
+      52.45
+    ],
+    "drawing_indices": [
+      5452
+    ],
+    "glyph_bbox": [
+      35.25559997558594,
+      34.38861083984375,
+      60.796600341796875,
+      52.14860916137695
+    ],
+    "sha256": "eeb4731c3bf989a31adc56b161f96690332624f7c8649f16a0d17a1d7eb743fe",
+    "glyph_comparison": {
+      "max_mean_channel_error": 0.017115
+    }
+  }
+]

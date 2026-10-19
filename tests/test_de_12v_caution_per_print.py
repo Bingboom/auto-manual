@@ -20,8 +20,8 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
-from tools.word_bundle_html import _normalize_sphinx_only_blocks_for_docutils
-from tools.word_bundle_html_only import _build_word_only_tags
+from tools.word.bundle_html import _normalize_sphinx_only_blocks_for_docutils
+from tools.word.bundle_html_only import _build_word_only_tags
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATES = ROOT / "docs" / "templates"

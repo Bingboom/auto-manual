@@ -1,0 +1,138 @@
+{
+  "bottom-cleaning": [
+    {
+      "data-text": "A",
+      "{http://www.w3.org/1999/xlink}href": "#font_6_34",
+      "transform": "matrix(7,0,0,-7,145.9487,310.08479)",
+      "fill": "#ffffff"
+    },
+    {
+      "data-text": "B",
+      "{http://www.w3.org/1999/xlink}href": "#font_6_35",
+      "transform": "matrix(7,0,0,-7,146.9956,349.3338)",
+      "fill": "#ffffff"
+    }
+  ],
+  "app-result": [
+    {
+      "data-text": "1",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_18",
+      "transform": "matrix(2.9044,0,0,-2.9044,253.3066,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "5",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_22",
+      "transform": "matrix(2.9044,0,0,-2.9044,254.91854,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "0",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_17",
+      "transform": "matrix(2.9044,0,0,-2.9044,256.5305,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "0",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_17",
+      "transform": "matrix(2.9044,0,0,-2.9044,258.14244,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": " ",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_1",
+      "transform": "matrix(2.9044,0,0,-2.9044,259.75437,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "U",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_54",
+      "transform": "matrix(2.9044,0,0,-2.9044,260.40495,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "l",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_77",
+      "transform": "matrix(2.9044,0,0,-2.9044,262.49903,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "t",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_85",
+      "transform": "matrix(2.9044,0,0,-2.9044,263.32679,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "r",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_83",
+      "transform": "matrix(2.9044,0,0,-2.9044,264.42176,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "a",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_66",
+      "transform": "matrix(2.9044,0,0,-2.9044,265.46965,151.7044)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "1",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_18",
+      "transform": "matrix(2.9044,0,0,-2.9044,67.4434,238.99881)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "5",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_22",
+      "transform": "matrix(2.9044,0,0,-2.9044,69.055339,238.99881)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "0",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_17",
+      "transform": "matrix(2.9044,0,0,-2.9044,70.667278,238.99881)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "0",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_17",
+      "transform": "matrix(2.9044,0,0,-2.9044,72.27921,238.99881)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": " ",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_1",
+      "transform": "matrix(2.9044,0,0,-2.9044,73.89115,238.99881)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "U",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_54",
+      "transform": "matrix(2.9044,0,0,-2.9044,74.54174,238.99881)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "l",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_77",
+      "transform": "matrix(2.9044,0,0,-2.9044,76.63581,238.99881)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "t",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_85",
+      "transform": "matrix(2.9044,0,0,-2.9044,77.46356,238.99881)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "r",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_83",
+      "transform": "matrix(2.9044,0,0,-2.9044,78.55852,238.99881)",
+      "fill": "#2c292a"
+    },
+    {
+      "data-text": "a",
+      "{http://www.w3.org/1999/xlink}href": "#font_14_66",
+      "transform": "matrix(2.9044,0,0,-2.9044,79.60642,238.99881)",
+      "fill": "#2c292a"
+    }
+  ]
+}

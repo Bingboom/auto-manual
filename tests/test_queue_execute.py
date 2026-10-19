@@ -9,7 +9,7 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from unittest import mock
 
-from tools import queue_execute, queue_query
+from tools.build_queue import execute as queue_execute, query as queue_query
 
 
 def _control_layer_side_effect(*, dispatch_payload, status_outcomes):

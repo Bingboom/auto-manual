@@ -2,15 +2,17 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import json
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Iterator, Mapping
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.reference_figure import reference_figure_component_spec
 from tools.manual_ir.hashing import file_sha256
-from tools.web_composite_hashing import reference_source_fragment_sha256
-from tools.web_composite_manifest import WebCompositeEntry
+from tools.web.composite_hashing import reference_source_fragment_sha256
+from tools.web.composite_manifest import WebCompositeEntry
 
 
 def _sibling(tag: Tag, *, previous: bool) -> Tag | None:
@@ -68,7 +70,7 @@ def parse_reference_figure_html(
     approved_entry: WebCompositeEntry | None,
     approved_path: Path | None,
 ) -> tuple[
-    object,
+    ComponentSpec,
     tuple[Tag, ...],
     tuple[tuple[str, Tag], ...],
     tuple[tuple[str, Path], ...],
@@ -238,3 +240,18 @@ def parse_reference_figure_html(
 
 
 __all__ = ["parse_reference_figure_html"]
+
+
+def parse_declared_references(
+    soup: BeautifulSoup, *, source_path: Path, language: str,
+) -> Iterator[tuple[ComponentSpec, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]]:
+    """Explicit source binding to the existing live-label reference component."""
+    for image in soup.select("img.hb-source-reference"):
+        config = json.loads(str(image.get("data-reference") or "{}"))
+        if not isinstance(config, dict) or config.get("presentation_mode") != "base-art-live-copy":
+            raise ValueError(f"{source_path}: declared reference requires base-art-live-copy")
+        config["image_key"] = str(image.get("src") or "")
+        yield parse_reference_figure_html(
+            soup, image=image, config=config, source_path=source_path, language=language,
+            composite_locale=None, approved_entry=None, approved_path=None,
+        )

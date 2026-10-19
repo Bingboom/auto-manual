@@ -200,7 +200,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         repo_root = None
         try:
             repo_root = branch_guard.resolve_repo_root(getattr(args, "repo_root", None))
-        except Exception:
+        except Exception:  # noqa: BLE001 - no repo root means the guard runs without one
             repo_root = None
         emit_payload(
             {

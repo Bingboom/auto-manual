@@ -7,13 +7,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.web_presentation import WebPresentationError, load_web_manual_contract
-from tools.web_presentation_contract import merge_contract_layers
+from tools.web.presentation import WebPresentationError, load_web_manual_contract
+from tools.web.presentation_contract import merge_contract_layers
 from tools.operation_artwork_mode import operation_artwork_mode
 
 
 COMPATIBILITY_CANONICAL_SHA256 = (
-    "a8e222a084242334776f19a9eb084698787fc170726181507076710c4694929c"
+    "dc8519d531c28de4f366c32dbee411147123648ce2c3f919ed51414654b7be3c"
 )
 
 
@@ -131,12 +131,23 @@ class WebPresentationContractTests(unittest.TestCase):
         )
         self.assertEqual([], contract["preface"]["targets"])
         requirement = contract["figure_coverage"]["requirements"][0]
-        self.assertEqual("ja-ad600a-eu-en-finished-figures-v1", requirement["policy_id"])
-        self.assertEqual(5, len(requirement["required_slots"]))
+        self.assertEqual("ja-ad600a-eu-en-shared-labels-v5", requirement["policy_id"])
+        self.assertEqual(13, len(requirement["required_slots"]))
+        self.assertEqual(
+            {"reference.charger-connection": ["base-art-live-copy"],
+             "reference.wiring-fuse": ["base-art-live-copy"],
+             "reference.wiring-acc": ["base-art-live-copy"],
+             "reference.product-overview": ["base-art-live-copy"],
+             "reference.installation-diagram": ["base-art-live-copy"]},
+            requirement["slot_status_overrides"],
+        )
+        self.assertIn("reference.charger-connection", requirement["required_slots"])
         self.assertEqual(
             ["finished-panel", "approved-composite"],
             requirement["allowed_statuses"],
         )
+        self.assertEqual([], contract["operations"]["figures"])
+        self.assertEqual([], contract["warranty"]["source_patterns"])
         self.assertIsNone(contract["operations"]["lcd_mode_table"])
         self.assertIsNone(contract["operations"]["auto_resume_table"])
 
@@ -596,6 +607,16 @@ class WebPresentationContractTests(unittest.TestCase):
             ),
             ("no measured layout", overlay(coverage=grant), "base_art_layout is required"),
             (
+                "unsupported duration icon",
+                overlay(coverage=grant, base_art_layout={**layout, "duration_icon": "image"}),
+                "duration_icon must be none or clock",
+            ),
+            (
+                "clock has no anchor",
+                overlay(coverage=grant, base_art_layout={**layout, "duration_icon": "clock"}),
+                "duration_icon requires duration_anchor",
+            ),
+            (
                 "layout names an unknown key",
                 overlay(coverage=grant, base_art_layout={**layout, "leader_path": []}),
                 "unknown keys",
@@ -737,6 +758,7 @@ class WebPresentationContractTests(unittest.TestCase):
             ("a line that was not captured", overlay(placed(line=2)), "distinct captured line"),
             ("rect outside the panel", overlay(placed(rect=[55, 3.73, 42.12, 111])), "rect must be 4 percentages"),
             ("pill tone that is not #rrggbb", overlay(placed(fill="white")), "fill must be a #rrggbb tone"),
+            ("foreground that is not #rrggbb", overlay(placed(color="white")), "color must be a #rrggbb tone"),
             ("label names a leader", overlay(placed(leader=[1, 2])), "must name only"),
         )
         for label, candidate, message in rejected:

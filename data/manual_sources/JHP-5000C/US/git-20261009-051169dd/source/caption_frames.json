@@ -1,0 +1,536 @@
+{
+  "en": [
+    {
+      "body_bbox": [
+        159.89599609375,
+        205.16159057617188,
+        328.2019958496094,
+        254.15359497070312
+      ],
+      "physical_page": 10,
+      "drawing_index": 765,
+      "english_drawing_index": 765,
+      "bbox": [
+        159.89599609375,
+        197.50558471679688,
+        328.2019958496094,
+        254.15359497070312
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "power",
+      "text": "Default standby time: 2 hours · The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. · The standby time can be set in the Jackery App."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 10,
+      "drawing_index": 875,
+      "english_drawing_index": 875,
+      "bbox": [
+        35.405303955078125,
+        305.40240478515625,
+        192.19430541992188,
+        319.09539794921875
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "ac-output",
+      "text": "Prerequisite: Ensure the Main Power Button is on."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 11,
+      "drawing_index": 1642,
+      "english_drawing_index": 1642,
+      "bbox": [
+        35.15879821777344,
+        51.085994720458984,
+        177.435791015625,
+        63.511993408203125
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "usb-output",
+      "text": "Prerequisite: Ensure the Main Power Button is on."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 11,
+      "drawing_index": 1643,
+      "english_drawing_index": 1643,
+      "bbox": [
+        35.15879821777344,
+        176.23941040039062,
+        177.435791015625,
+        188.6654052734375
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "dc-output",
+      "text": "Prerequisite: Ensure the Main Power Button is on."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 13,
+      "drawing_index": 4038,
+      "english_drawing_index": 4038,
+      "bbox": [
+        147.65431213378906,
+        290.07421875,
+        325.80029296875,
+        333.0762023925781
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "ups",
+      "text": "Connect the product to a wall outlet with the AC charging cable, then press the AC output button and power your appliances at the same time ."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 14,
+      "drawing_index": 59,
+      "english_drawing_index": 59,
+      "bbox": [
+        145.5596160888672,
+        337.3079833984375,
+        327.6056213378906,
+        380.30999755859375
+      ],
+      "fill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "figure": "sts-connect",
+      "text": "Jackery HomePower 5000 Plus can power your home loads via the Smart Transfer Switch. For details on how to use it, please refer to the Jackery Smart Transfer Switch user manual."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 18,
+      "drawing_index": 15435,
+      "english_drawing_index": 15435,
+      "bbox": [
+        187.8979949951172,
+        396.5820007324219,
+        331.1600036621094,
+        410.2749938964844
+      ],
+      "fill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "figure": "car",
+      "text": "*The car charging cable is sold separately."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 27,
+      "drawing_index": 697,
+      "english_drawing_index": 697,
+      "bbox": [
+        267.7454833984375,
+        300.38287353515625,
+        337.5364990234375,
+        334.17388916015625
+      ],
+      "fill": [
+        0.7089952230453491,
+        0.7119859457015991,
+        0.7139849066734314
+      ],
+      "figure": "package-battery",
+      "text": "Sold separately"
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 27,
+      "drawing_index": 703,
+      "english_drawing_index": 703,
+      "bbox": [
+        267.7454833984375,
+        449.51837158203125,
+        337.5364990234375,
+        483.30938720703125
+      ],
+      "fill": [
+        0.7089952230453491,
+        0.7119859457015991,
+        0.7139849066734314
+      ],
+      "figure": "package-sts",
+      "text": "Sold separately"
+    }
+  ],
+  "fr": [
+    {
+      "body_bbox": [
+        163.43019104003906,
+        201.3446044921875,
+        326.27618408203125,
+        250.33660888671875
+      ],
+      "physical_page": 34,
+      "drawing_index": 1508,
+      "english_drawing_index": 765,
+      "bbox": [
+        163.43019104003906,
+        193.6885986328125,
+        326.27618408203125,
+        250.33660888671875
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "power",
+      "text": "Temps de veille par défaut : 2 heures · Le produit s’éteindra automatiquement après 2 heures d’inactivité, sans charge ni décharge. · La durée de veille peut être définie dans l’application Jackery."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 34,
+      "drawing_index": 1618,
+      "english_drawing_index": 875,
+      "bbox": [
+        35.40498352050781,
+        295.27349853515625,
+        266.9919738769531,
+        308.96649169921875
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "ac-output",
+      "text": "Prérequis : Assurez-vous que le bouton d'alimentation principal est activé."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 35,
+      "drawing_index": 1626,
+      "english_drawing_index": 1642,
+      "bbox": [
+        31.404205322265625,
+        42.81948471069336,
+        242.0001983642578,
+        55.2454833984375
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "usb-output",
+      "text": "Prérequis : Assurez-vous que le bouton d'alimentation principal est activé."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 35,
+      "drawing_index": 1627,
+      "english_drawing_index": 1643,
+      "bbox": [
+        31.404205322265625,
+        169.4453125,
+        242.0001983642578,
+        181.87130737304688
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "dc-output",
+      "text": "Prérequis : Assurez-vous que le bouton d'alimentation principal est activé."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 37,
+      "drawing_index": 4038,
+      "english_drawing_index": 4038,
+      "bbox": [
+        147.65431213378906,
+        303.56988525390625,
+        325.80029296875,
+        346.5718994140625
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "ups",
+      "text": "Connectez le produit à une prise murale à l’aide du câble de charge CA, puis appuyez sur le bouton de sortie CA pour alimenter vos appareils en même temps."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 38,
+      "drawing_index": 9,
+      "english_drawing_index": 59,
+      "bbox": [
+        144.3448944091797,
+        336.42449951171875,
+        326.3908996582031,
+        379.426513671875
+      ],
+      "fill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "figure": "sts-connect",
+      "text": "Le Jackery HomePower 5000 Plus peut alimenter votre maison via le STS. Pour plus de détails, consultez le manuel d’utilisation du STS."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 42,
+      "drawing_index": 15435,
+      "english_drawing_index": 15435,
+      "bbox": [
+        186.1638946533203,
+        391.6710205078125,
+        329.4259033203125,
+        405.364013671875
+      ],
+      "fill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "figure": "car",
+      "text": "*Le câble de charge pour voiture est vendu séparément."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 51,
+      "drawing_index": 350,
+      "english_drawing_index": 697,
+      "bbox": [
+        267.7454833984375,
+        300.38287353515625,
+        337.5364990234375,
+        334.17388916015625
+      ],
+      "fill": [
+        0.7089952230453491,
+        0.7119859457015991,
+        0.7139849066734314
+      ],
+      "figure": "package-battery",
+      "text": "Vendu séparément"
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 51,
+      "drawing_index": 356,
+      "english_drawing_index": 703,
+      "bbox": [
+        267.7454833984375,
+        452.45050048828125,
+        337.5364990234375,
+        486.2414855957031
+      ],
+      "fill": [
+        0.7089952230453491,
+        0.7119859457015991,
+        0.7139849066734314
+      ],
+      "figure": "package-sts",
+      "text": "Vendu séparément"
+    }
+  ],
+  "es": [
+    {
+      "body_bbox": [
+        163.43019104003906,
+        201.2222900390625,
+        326.27618408203125,
+        250.21429443359375
+      ],
+      "physical_page": 58,
+      "drawing_index": 1508,
+      "english_drawing_index": 765,
+      "bbox": [
+        163.43019104003906,
+        193.5662841796875,
+        326.27618408203125,
+        250.21429443359375
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "power",
+      "text": "Tiempo de espera predeterminado: 2 horas · El producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga. · El tiempo de espera puede configurarse desde la app Jackery"
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 58,
+      "drawing_index": 1618,
+      "english_drawing_index": 875,
+      "bbox": [
+        35.40519714355469,
+        295.3901062011719,
+        297.32318115234375,
+        309.0830993652344
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "ac-output",
+      "text": "Requisito previo : Asegúrate de que el botón de encendido principal esté activado."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 59,
+      "drawing_index": 1626,
+      "english_drawing_index": 1642,
+      "bbox": [
+        30.57940673828125,
+        40.650691986083984,
+        267.8994140625,
+        53.076690673828125
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "usb-output",
+      "text": "Requisito previo : Asegúrate de que el botón de encendido principal esté activado."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 59,
+      "drawing_index": 1627,
+      "english_drawing_index": 1643,
+      "bbox": [
+        30.57940673828125,
+        167.4237060546875,
+        267.8994140625,
+        179.84970092773438
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "dc-output",
+      "text": "Requisito previo : Asegúrate de que el botón de encendido principal esté activado."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 61,
+      "drawing_index": 4038,
+      "english_drawing_index": 4038,
+      "bbox": [
+        147.65431213378906,
+        290.07421875,
+        325.80029296875,
+        333.0762023925781
+      ],
+      "fill": [
+        0.9499961733818054,
+        0.9509879946708679,
+        0.9509879946708679
+      ],
+      "figure": "ups",
+      "text": "Conecte el producto a una toma de corriente con el cable de carga de CA, luego presione el botón de salida CA y cargue sus electrodomésticos al mismo tiempo."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 62,
+      "drawing_index": 9,
+      "english_drawing_index": 59,
+      "bbox": [
+        144.3448944091797,
+        336.42449951171875,
+        326.3908996582031,
+        379.426513671875
+      ],
+      "fill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "figure": "sts-connect",
+      "text": "Jackery HomePower 5000 Plus puede alimentar las cargas de su hogar a través del interruptor STS Para más información, consulte el manual del STS de Jackery."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 66,
+      "drawing_index": 15435,
+      "english_drawing_index": 15435,
+      "bbox": [
+        147.84938049316406,
+        381.58038330078125,
+        331.160400390625,
+        395.27337646484375
+      ],
+      "fill": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "figure": "car",
+      "text": "*El cable de carga para automóvil se vende por separado."
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 75,
+      "drawing_index": 697,
+      "english_drawing_index": 697,
+      "bbox": [
+        265.64727783203125,
+        301.18359375,
+        335.43829345703125,
+        334.974609375
+      ],
+      "fill": [
+        0.7089952230453491,
+        0.7119859457015991,
+        0.7139849066734314
+      ],
+      "figure": "package-battery",
+      "text": "Vendu séparément"
+    },
+    {
+      "body_bbox": null,
+      "physical_page": 75,
+      "drawing_index": 703,
+      "english_drawing_index": 703,
+      "bbox": [
+        265.64727783203125,
+        450.3189697265625,
+        335.43829345703125,
+        484.1099853515625
+      ],
+      "fill": [
+        0.7089952230453491,
+        0.7119859457015991,
+        0.7139849066734314
+      ],
+      "figure": "package-sts",
+      "text": "Vendu séparément"
+    }
+  ]
+}

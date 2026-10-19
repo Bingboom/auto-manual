@@ -1,0 +1,10 @@
+# Source-local intake discovery and phase record
+
+Scope: only the supplied Japanese Battery Pack PDF, engineering Git-only draft delivery. Work in a dedicated clean worktree; preserve root tmp/ and other windows. No merge/publication/live-data writes.
+
+1. Identity: SHA-256, PDF metadata, cover, specifications and all 20 physical pages agree on JBP-1000B-WH / JP / ja. Filename version is not a body-printed version.
+2. Existing capabilities: no exact target/source package. Historical BP-JP content is JBP-2000B/2000 Plus; do not inherit its content. Inventory shared symbols/LCD art before native panel extraction, record byte-identical reuse and glyph exceptions.
+3. Native assembly: use existing ManualSource/SourcePage/manual-ir/v2 and registered ComponentSpecs. Source-native independent admission records the 17 actual chapters; absent portable-host UPS/App/auto-resume/key-combination requirements do not apply. No family renderer/config/registry branch.
+4. Artwork: package-only asset intake and source-local native SVG selection. All candidates remain unpromoted. Iterate in scratch directories; restore complete source frames, separate wood upright/stud diagram, remove independent car caption capsule, retain original SVG clipping groups. Compare bare panels before live labels.
+5. Verification: hash checks before output, independent shared component admission, actual caption-frame pixel admission, deterministic PDF-free cold rebuild, tamper/identity/missing-step rejection, strict Sphinx, source fidelity tests, shared regression, lint/guardrail/doc-link checks, browser 1280/390 resource/anchor/page and internal-label checks. Evidence records command outcomes and any failure/retry boundaries.
+6. Delivery: freeze shared IR/MyST/CSS/assets/scaffold in web/ja; source/differences.md records original-source questions. Engineering draft PR only, publication_eligible=false and pending_source_review retained. Merge/release authorization and operator asset acceptance remain separate.

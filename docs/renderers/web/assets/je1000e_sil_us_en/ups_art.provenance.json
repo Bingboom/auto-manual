@@ -1,0 +1,43 @@
+{
+  "source": "/Users/pika/Downloads/16-0102-000422 \u8bf4\u660e\u4e66HTE1511000A-US-JAK RoHS REACH.ai",
+  "source_sha256": "9d3b811ebb829fc824c0959ee63ee25a177076a68c0955b74a1465ea39fcba27",
+  "page": 1,
+  "bbox_pt": [
+    2584.693115234375,
+    1935.90478515625,
+    2898.693115234375,
+    2178.40478515625
+  ],
+  "sha256": "30ece347e4e314b835c7b558faf4c4b82eb7f1dfca8f209ee084ddc51a3dd97d",
+  "recipe": "data/asset_recipes/manual_je1000e_sil_us_ups_live.json",
+  "labels": [
+    {
+      "text": "Step 1",
+      "rect": [
+        4.301306852109873,
+        3.2994724548969074,
+        15,
+        4
+      ]
+    },
+    {
+      "text": "Step 2",
+      "rect": [
+        72.9738660678742,
+        3.056640625,
+        15,
+        4
+      ]
+    },
+    {
+      "text": "Step 3",
+      "rect": [
+        4.371594471536625,
+        35.60134101159794,
+        15,
+        4
+      ]
+    }
+  ],
+  "policy": "Remove PDF label text only; preserve all artwork and backgrounds."
+}

@@ -83,7 +83,7 @@ def _direct_string_literals(node: ast.AST) -> tuple[str, ...]:
     if isinstance(node, (ast.Set, ast.List, ast.Tuple)):
         items = node.elts
     elif isinstance(node, ast.Dict):
-        items = [item for pair in zip(node.keys, node.values) for item in pair]
+        items = [item for pair in zip(node.keys, node.values, strict=True) for item in pair]
     else:
         return ()
     return tuple(

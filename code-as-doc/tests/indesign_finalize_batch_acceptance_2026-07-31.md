@@ -10,7 +10,7 @@ Design host:
 
 - Adobe InDesign 2026 21.0.1.6
 - committed version pin: exact match
-- runner: `python tools/indesign_finalize.py --jobs <manifest.json>`
+- runner: `python -m tools.indesign_finalize --jobs <manifest.json>`
 - both manifests contained two jobs with `application=Adobe InDesign 2026`
 
 All acceptance outputs were written under `/private/tmp`; no generated output

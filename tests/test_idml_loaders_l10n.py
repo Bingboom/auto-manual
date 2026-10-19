@@ -37,7 +37,7 @@ class LocalizedLoaderTests(unittest.TestCase):
         self.assertEqual(len(en), len(fr))
         wifi_fr = next(r for r in fr if r["name"] == "Wi-Fi")
         self.assertIn("Allumé", wifi_fr["desc"])
-        self.assertTrue(any(e["desc"] != f["desc"] for e, f in zip(en, fr)))
+        self.assertTrue(any(e["desc"] != f["desc"] for e, f in zip(en, fr, strict=True)))
 
     def test_lcd_rows_uk_uses_ukr_suffix_alias(self) -> None:
         uk = load_lcd_rows(FIXTURES, "JE-1000F", lang="uk")

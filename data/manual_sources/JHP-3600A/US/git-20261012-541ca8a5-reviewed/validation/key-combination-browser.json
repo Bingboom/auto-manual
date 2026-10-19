@@ -1,0 +1,4316 @@
+{
+  "zoom_preserved": "180%",
+  "checks": [
+    {
+      "lang": "en",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 21.236980438232425,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 167.6085205078125,
+          "x": 712.8472290039062,
+          "y": 744.1884155273438
+        },
+        {
+          "clock": "clock",
+          "height": 21.236980438232425,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 167.6085205078125,
+          "x": 712.8472290039062,
+          "y": 830.12158203125
+        },
+        {
+          "clock": "clock",
+          "height": 21.236980438232425,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 167.6085205078125,
+          "x": 712.8472290039062,
+          "y": 919.1580200195312
+        }
+      ],
+      "figure": {
+        "height": 297.3046875,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 691.467041015625
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Buttons",
+          "width": 268.89324951171875
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Operation",
+          "width": 190.0043487548828
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Function",
+          "width": 194.7482757568359
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 66.6015625,
+                "width": 109.2013931274414,
+                "x": 441.6666870117187,
+                "y": 732.9080200195312
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 470.5338745117187,
+                "y": 732.9080200195312
+              },
+              "label": "Main power button"
+            },
+            {
+              "box": {
+                "height": 66.6015625,
+                "width": 109.2013931274414,
+                "x": 583.537353515625,
+                "y": 732.9080200195312
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 612.404541015625,
+                "y": 732.9080200195312
+              },
+              "label": "USB power button"
+            }
+          ],
+          "plus": {
+            "height": 51.462677001953125,
+            "text": "+",
+            "width": 26.14149475097656,
+            "x": 554.1319580078125,
+            "y": 732.9080200195312
+          },
+          "text": "Main power button\n+\nUSB power button"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 66.6015625,
+                "width": 109.2013931274414,
+                "x": 441.6666870117187,
+                "y": 818.8411865234375
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 470.5338745117187,
+                "y": 818.8411865234375
+              },
+              "label": "Main power button"
+            },
+            {
+              "box": {
+                "height": 66.6015625,
+                "width": 109.2013931274414,
+                "x": 583.537353515625,
+                "y": 818.8411865234375
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 612.404541015625,
+                "y": 818.8411865234375
+              },
+              "label": "AC power button"
+            }
+          ],
+          "plus": {
+            "height": 51.462677001953125,
+            "text": "+",
+            "width": 26.14149475097656,
+            "x": 554.1319580078125,
+            "y": 818.8411865234375
+          },
+          "text": "Main power button\n+\nAC power button"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 66.6015625,
+                "width": 109.2013931274414,
+                "x": 441.6666870117187,
+                "y": 907.873291015625
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 470.5338745117187,
+                "y": 907.873291015625
+              },
+              "label": "USB power button"
+            },
+            {
+              "box": {
+                "height": 66.6015625,
+                "width": 109.2013931274414,
+                "x": 583.537353515625,
+                "y": 907.873291015625
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 612.404541015625,
+                "y": 907.873291015625
+              },
+              "label": "AC power button"
+            }
+          ],
+          "plus": {
+            "height": 51.462677001953125,
+            "text": "+",
+            "width": 26.14149475097656,
+            "x": 554.1319580078125,
+            "y": 907.873291015625
+          },
+          "text": "USB power button\n+\nAC power button"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Main power button\n+\nUSB power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nPress and hold both for 3s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Reset Wi-Fi and Bluetooth"
+            }
+          ],
+          "height": 85.93316650390625
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Main power button\n+\nAC power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nPress and hold both for 3s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Turn on/off the\nEnergy Saving Mode"
+            }
+          ],
+          "height": 85.93316650390625
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "USB power button\n+\nAC power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nPress and hold both for 1s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Turn on/off Wi-Fi and\nBluetooth"
+            }
+          ],
+          "height": 91.30208587646484
+        }
+      ],
+      "table": {
+        "height": 293.4158020019531,
+        "width": 653.6458740234375,
+        "x": 433.1727600097656,
+        "y": 693.4114990234375
+      },
+      "width": 1280,
+      "wrapper": {
+        "clientWidth": 658,
+        "height": 301.3020935058594,
+        "scrollLeft": 0,
+        "scrollWidth": 658,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 691.467041015625
+      }
+    },
+    {
+      "lang": "en",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1684112548828,
+          "x": 306.8533020019531,
+          "y": 194.8654632568359
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1684112548828,
+          "x": 306.8533020019531,
+          "y": 283.654541015625
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 173.1684112548828,
+          "x": 306.8533020019531,
+          "y": 375.6380310058594
+        }
+      ],
+      "figure": {
+        "height": 307.0616455078125,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 140.43836975097656
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Buttons",
+          "width": 277.7734375
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Operation",
+          "width": 196.2760467529297
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Function",
+          "width": 201.1762237548828
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.8168487548828,
+                "x": 26.718751907348633,
+                "y": 183.2074737548828
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.545143127441406,
+                "y": 183.2074737548828
+              },
+              "label": "Main power button"
+            },
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.82118225097656,
+                "x": 173.2855987548828,
+                "y": 183.2074737548828
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.1119842529297,
+                "y": 183.2074737548828
+              },
+              "label": "USB power button"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 142.90798950195312,
+            "y": 183.2074737548828
+          },
+          "text": "Main power button\n+\nUSB power button"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.8168487548828,
+                "x": 26.718751907348633,
+                "y": 271.9965515136719
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.545143127441406,
+                "y": 271.9965515136719
+              },
+              "label": "Main power button"
+            },
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.82118225097656,
+                "x": 173.2855987548828,
+                "y": 271.9965515136719
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.1119842529297,
+                "y": 271.9965515136719
+              },
+              "label": "AC power button"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 142.90798950195312,
+            "y": 271.9965515136719
+          },
+          "text": "Main power button\n+\nAC power button"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.8168487548828,
+                "x": 26.718751907348633,
+                "y": 363.98004150390625
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.545143127441406,
+                "y": 363.98004150390625
+              },
+              "label": "USB power button"
+            },
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.82118225097656,
+                "x": 173.2855987548828,
+                "y": 363.98004150390625
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.1119842529297,
+                "y": 363.98004150390625
+              },
+              "label": "AC power button"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 142.90798950195312,
+            "y": 363.98004150390625
+          },
+          "text": "USB power button\n+\nAC power button"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Main power button\n+\nUSB power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nPress and hold both for 3s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Reset Wi-Fi and Bluetooth"
+            }
+          ],
+          "height": 88.78907012939453
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Main power button\n+\nAC power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nPress and hold both for 3s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Turn on/off the\nEnergy Saving Mode"
+            }
+          ],
+          "height": 88.78907012939453
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "USB power button\n+\nAC power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nPress and hold both for 1s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Turn on/off Wi-Fi and\nBluetooth"
+            }
+          ],
+          "height": 94.34461975097656
+        }
+      ],
+      "table": {
+        "height": 303.1727600097656,
+        "width": 675.2257080078125,
+        "x": 17.94270896911621,
+        "y": 142.3828125
+      },
+      "width": 711,
+      "wrapper": {
+        "clientWidth": 679,
+        "height": 311.0590515136719,
+        "scrollLeft": 0,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 140.43836975097656
+      }
+    },
+    {
+      "lang": "en",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 20.66840362548828,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 163.08160400390625,
+          "x": 290.1171875,
+          "y": 568.3290405273438
+        },
+        {
+          "clock": "clock",
+          "height": 20.66840362548828,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 163.08160400390625,
+          "x": 290.1171875,
+          "y": 651.9401245117188
+        },
+        {
+          "clock": "clock",
+          "height": 20.66840362548828,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 163.08160400390625,
+          "x": 290.1171875,
+          "y": 738.5807495117188
+        }
+      ],
+      "figure": {
+        "height": 289.375,
+        "width": 640,
+        "x": 15.99826431274414,
+        "y": 516.99658203125
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Buttons",
+          "width": 261.6796875
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Operation",
+          "width": 184.9045257568359
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Function",
+          "width": 189.52691650390625
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 64.81336975097656,
+                "width": 106.2543487548828,
+                "x": 26.210939407348633,
+                "y": 557.34814453125
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 54.296878814697266,
+                "y": 557.34814453125
+              },
+              "label": "Main power button"
+            },
+            {
+              "box": {
+                "height": 64.81336975097656,
+                "width": 106.25868225097656,
+                "x": 164.2621612548828,
+                "y": 557.34814453125
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 192.3480987548828,
+                "y": 557.34814453125
+              },
+              "label": "USB power button"
+            }
+          ],
+          "plus": {
+            "height": 50.08246612548828,
+            "text": "+",
+            "width": 25.44270896911621,
+            "x": 135.64236450195312,
+            "y": 557.34814453125
+          },
+          "text": "Main power button\n+\nUSB power button"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 64.81336975097656,
+                "width": 106.2543487548828,
+                "x": 26.210939407348633,
+                "y": 640.959228515625
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 54.296878814697266,
+                "y": 640.959228515625
+              },
+              "label": "Main power button"
+            },
+            {
+              "box": {
+                "height": 64.81336975097656,
+                "width": 106.25868225097656,
+                "x": 164.2621612548828,
+                "y": 640.959228515625
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 192.3480987548828,
+                "y": 640.959228515625
+              },
+              "label": "AC power button"
+            }
+          ],
+          "plus": {
+            "height": 50.08246612548828,
+            "text": "+",
+            "width": 25.44270896911621,
+            "x": 135.64236450195312,
+            "y": 640.959228515625
+          },
+          "text": "Main power button\n+\nAC power button"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 64.81336975097656,
+                "width": 106.2543487548828,
+                "x": 26.210939407348633,
+                "y": 727.599853515625
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 54.296878814697266,
+                "y": 727.599853515625
+              },
+              "label": "USB power button"
+            },
+            {
+              "box": {
+                "height": 64.81336975097656,
+                "width": 106.25868225097656,
+                "x": 164.2621612548828,
+                "y": 727.599853515625
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 192.3480987548828,
+                "y": 727.599853515625
+              },
+              "label": "AC power button"
+            }
+          ],
+          "plus": {
+            "height": 50.08246612548828,
+            "text": "+",
+            "width": 25.44270896911621,
+            "x": 135.64236450195312,
+            "y": 727.599853515625
+          },
+          "text": "USB power button\n+\nAC power button"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Main power button\n+\nUSB power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nPress and hold both for 3s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Reset Wi-Fi and Bluetooth"
+            }
+          ],
+          "height": 83.61111450195312
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Main power button\n+\nAC power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nPress and hold both for 3s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Turn on/off the\nEnergy Saving Mode"
+            }
+          ],
+          "height": 83.61111450195312
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "USB power button\n+\nAC power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nPress and hold both for 1s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Turn on/off Wi-Fi and\nBluetooth"
+            }
+          ],
+          "height": 88.83680725097656
+        }
+      ],
+      "table": {
+        "height": 285.4861145019531,
+        "width": 636.1111450195312,
+        "x": 17.94270896911621,
+        "y": 518.9409790039062
+      },
+      "width": 390,
+      "wrapper": {
+        "clientWidth": 358,
+        "height": 293.3724060058594,
+        "scrollLeft": 0,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 516.99658203125
+      }
+    },
+    {
+      "lang": "fr",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 21.236980438232425,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 167.63455200195312,
+          "x": 713.6719360351562,
+          "y": 10884.3232421875
+        },
+        {
+          "clock": "clock",
+          "height": 21.236980438232425,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 167.63455200195312,
+          "x": 713.6719360351562,
+          "y": 10970.5390625
+        },
+        {
+          "clock": "clock",
+          "height": 21.236980438232425,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 167.63455200195312,
+          "x": 713.6719360351562,
+          "y": 11059.44921875
+        }
+      ],
+      "figure": {
+        "height": 297.3481140136719,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 10831.4541015625
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Boutons",
+          "width": 269.7178955078125
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Utilisation",
+          "width": 190.0303955078125
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Fonction",
+          "width": 193.8975830078125
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 76.95746612548828,
+                "width": 109.6137237548828,
+                "x": 441.6666870117187,
+                "y": 10867.8603515625
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 470.7422180175781,
+                "y": 10867.8603515625
+              },
+              "label": "Bouton d’alimentation\nprincipal"
+            },
+            {
+              "box": {
+                "height": 76.95746612548828,
+                "width": 109.6137237548828,
+                "x": 583.94970703125,
+                "y": 10867.8603515625
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 613.0252075195312,
+                "y": 10867.8603515625
+              },
+              "label": "Bouton d’alimentation\nUSB"
+            }
+          ],
+          "plus": {
+            "height": 51.462677001953125,
+            "text": "+",
+            "width": 26.14149475097656,
+            "x": 554.5443115234375,
+            "y": 10867.8603515625
+          },
+          "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 76.95746612548828,
+                "width": 109.6137237548828,
+                "x": 441.6666870117187,
+                "y": 10954.076171875
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 470.7422180175781,
+                "y": 10954.076171875
+              },
+              "label": "Bouton d’alimentation\nprincipal"
+            },
+            {
+              "box": {
+                "height": 76.95746612548828,
+                "width": 109.6137237548828,
+                "x": 583.94970703125,
+                "y": 10954.076171875
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 613.0252075195312,
+                "y": 10954.076171875
+              },
+              "label": "Bouton d’alimentation\nCA"
+            }
+          ],
+          "plus": {
+            "height": 51.462677001953125,
+            "text": "+",
+            "width": 26.14149475097656,
+            "x": 554.5443115234375,
+            "y": 10954.076171875
+          },
+          "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 76.95746612548828,
+                "width": 109.6137237548828,
+                "x": 441.6666870117187,
+                "y": 11042.9912109375
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 470.7422180175781,
+                "y": 11042.9912109375
+              },
+              "label": "Bouton d’alimentation\nUSB"
+            },
+            {
+              "box": {
+                "height": 76.95746612548828,
+                "width": 109.6137237548828,
+                "x": 583.94970703125,
+                "y": 11042.9912109375
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 613.0252075195312,
+                "y": 11042.9912109375
+              },
+              "label": "Bouton d’alimentation\nCA"
+            }
+          ],
+          "plus": {
+            "height": 51.462677001953125,
+            "text": "+",
+            "width": 26.14149475097656,
+            "x": 554.5443115234375,
+            "y": 11042.9912109375
+          },
+          "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nAppuyer 3 secondes sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Réinitialiser le Wi-Fi et le\nBluetooth"
+            }
+          ],
+          "height": 86.21527862548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nAppuyer 3 secondes sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Activer/désactiver le mode\néconomie d’énergie"
+            }
+          ],
+          "height": 86.21527862548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nAppuyer 1 seconde sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Activer le Wi-Fi et le Bluetooth"
+            }
+          ],
+          "height": 90.77691650390624
+        }
+      ],
+      "table": {
+        "height": 293.459228515625,
+        "width": 653.6458740234375,
+        "x": 433.1727600097656,
+        "y": 10833.3994140625
+      },
+      "width": 1280,
+      "wrapper": {
+        "clientWidth": 658,
+        "height": 301.3454895019531,
+        "scrollLeft": 0,
+        "scrollWidth": 658,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 10831.4541015625
+      }
+    },
+    {
+      "lang": "fr",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1944580078125,
+          "x": 307.6996765136719,
+          "y": 4529.314453125
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1944580078125,
+          "x": 307.6996765136719,
+          "y": 4618.38134765625
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 173.1944580078125,
+          "x": 307.6996765136719,
+          "y": 4710.24755859375
+        }
+      ],
+      "figure": {
+        "height": 307.10504150390625,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 4474.744140625
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Boutons",
+          "width": 278.61981201171875
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Utilisation",
+          "width": 196.30209350585935
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Fonction",
+          "width": 200.3038330078125
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 26.718751907348633,
+                "y": 4512.3046875
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.757816314697266,
+                "y": 4512.3046875
+              },
+              "label": "Bouton d’alimentation\nprincipal"
+            },
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 173.71095275878906,
+                "y": 4512.3046875
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.75001525878903,
+                "y": 4512.3046875
+              },
+              "label": "Bouton d’alimentation\nUSB"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 143.33334350585938,
+            "y": 4512.3046875
+          },
+          "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 26.718751907348633,
+                "y": 4601.37158203125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.757816314697266,
+                "y": 4601.37158203125
+              },
+              "label": "Bouton d’alimentation\nprincipal"
+            },
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 173.71095275878906,
+                "y": 4601.37158203125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.75001525878903,
+                "y": 4601.37158203125
+              },
+              "label": "Bouton d’alimentation\nCA"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 143.33334350585938,
+            "y": 4601.37158203125
+          },
+          "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 26.718751907348633,
+                "y": 4693.23828125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.757816314697266,
+                "y": 4693.23828125
+              },
+              "label": "Bouton d’alimentation\nUSB"
+            },
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 173.71095275878906,
+                "y": 4693.23828125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.75001525878903,
+                "y": 4693.23828125
+              },
+              "label": "Bouton d’alimentation\nCA"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 143.33334350585938,
+            "y": 4693.23828125
+          },
+          "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nAppuyer 3 secondes sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Réinitialiser le Wi-Fi et le\nBluetooth"
+            }
+          ],
+          "height": 89.06684112548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nAppuyer 3 secondes sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Activer/désactiver le mode\néconomie d’énergie"
+            }
+          ],
+          "height": 89.06684112548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nAppuyer 1 seconde sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Activer le Wi-Fi et le Bluetooth"
+            }
+          ],
+          "height": 93.82813262939452
+        }
+      ],
+      "table": {
+        "height": 303.2161560058594,
+        "width": 675.2257080078125,
+        "x": 17.94270896911621,
+        "y": 4476.6884765625
+      },
+      "width": 711,
+      "wrapper": {
+        "clientWidth": 679,
+        "height": 311.1024475097656,
+        "scrollLeft": 0,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 4474.744140625
+      }
+    },
+    {
+      "lang": "fr",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 20.66840362548828,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 163.10765075683594,
+          "x": 290.920166015625,
+          "y": 289.357666015625
+        },
+        {
+          "clock": "clock",
+          "height": 20.66840362548828,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 163.10765075683594,
+          "x": 290.920166015625,
+          "y": 373.2595520019531
+        },
+        {
+          "clock": "clock",
+          "height": 20.66840362548828,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 163.10765075683594,
+          "x": 290.920166015625,
+          "y": 459.7743225097656
+        }
+      ],
+      "figure": {
+        "height": 289.4184265136719,
+        "width": 640,
+        "x": 15.99826431274414,
+        "y": 237.8776092529297
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Boutons",
+          "width": 262.482666015625
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Utilisation",
+          "width": 184.93055725097656
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Fonction",
+          "width": 188.6979217529297
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 74.89149475097656,
+                "width": 106.65798950195312,
+                "x": 26.210939407348633,
+                "y": 273.342041015625
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 54.49652862548828,
+                "y": 273.342041015625
+              },
+              "label": "Bouton d’alimentation\nprincipal"
+            },
+            {
+              "box": {
+                "height": 74.89149475097656,
+                "width": 106.65798950195312,
+                "x": 164.66580200195312,
+                "y": 273.342041015625
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 192.9514007568359,
+                "y": 273.342041015625
+              },
+              "label": "Bouton d’alimentation\nUSB"
+            }
+          ],
+          "plus": {
+            "height": 50.08246612548828,
+            "text": "+",
+            "width": 25.44270896911621,
+            "x": 136.0460205078125,
+            "y": 273.342041015625
+          },
+          "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 74.89149475097656,
+                "width": 106.65798950195312,
+                "x": 26.210939407348633,
+                "y": 357.2439270019531
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 54.49652862548828,
+                "y": 357.2439270019531
+              },
+              "label": "Bouton d’alimentation\nprincipal"
+            },
+            {
+              "box": {
+                "height": 74.89149475097656,
+                "width": 106.65798950195312,
+                "x": 164.66580200195312,
+                "y": 357.2439270019531
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 192.9514007568359,
+                "y": 357.2439270019531
+              },
+              "label": "Bouton d’alimentation\nCA"
+            }
+          ],
+          "plus": {
+            "height": 50.08246612548828,
+            "text": "+",
+            "width": 25.44270896911621,
+            "x": 136.0460205078125,
+            "y": 357.2439270019531
+          },
+          "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 74.89149475097656,
+                "width": 106.65798950195312,
+                "x": 26.210939407348633,
+                "y": 443.7586975097656
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 54.49652862548828,
+                "y": 443.7586975097656
+              },
+              "label": "Bouton d’alimentation\nUSB"
+            },
+            {
+              "box": {
+                "height": 74.89149475097656,
+                "width": 106.65798950195312,
+                "x": 164.66580200195312,
+                "y": 443.7586975097656
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 192.9514007568359,
+                "y": 443.7586975097656
+              },
+              "label": "Bouton d’alimentation\nCA"
+            }
+          ],
+          "plus": {
+            "height": 50.08246612548828,
+            "text": "+",
+            "width": 25.44270896911621,
+            "x": 136.0460205078125,
+            "y": 443.7586975097656
+          },
+          "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nAppuyer 3 secondes sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Réinitialiser le Wi-Fi et le\nBluetooth"
+            }
+          ],
+          "height": 83.90191650390625
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nAppuyer 3 secondes sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Activer/désactiver le mode\néconomie d’énergie"
+            }
+          ],
+          "height": 83.90191650390625
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nAppuyer 1 seconde sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Activer le Wi-Fi et le Bluetooth"
+            }
+          ],
+          "height": 88.29427337646484
+        }
+      ],
+      "table": {
+        "height": 285.529541015625,
+        "width": 636.1111450195312,
+        "x": 17.94270896911621,
+        "y": 239.8220672607422
+      },
+      "width": 390,
+      "wrapper": {
+        "clientWidth": 358,
+        "height": 293.4158020019531,
+        "scrollLeft": 0,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 237.8776092529297
+      }
+    },
+    {
+      "lang": "es",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 21.236980438232425,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 167.63021850585938,
+          "x": 715.0477905273438,
+          "y": 11209.9091796875
+        },
+        {
+          "clock": "clock",
+          "height": 21.236980438232425,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 167.63021850585938,
+          "x": 715.0477905273438,
+          "y": 11296.12890625
+        },
+        {
+          "clock": "clock",
+          "height": 21.236980438232425,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 167.63021850585938,
+          "x": 715.0477905273438,
+          "y": 11385.0400390625
+        }
+      ],
+      "figure": {
+        "height": 297.34375,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 11165.8818359375
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Botones",
+          "width": 271.09375
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Operación",
+          "width": 190.0260467529297
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Función",
+          "width": 192.5260467529297
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 76.96614837646484,
+                "width": 110.29948425292967,
+                "x": 441.6666870117187,
+                "y": 11202.283203125
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 471.0850830078125,
+                "y": 11202.283203125
+              },
+              "label": "Botón de encendido\nprincipal"
+            },
+            {
+              "box": {
+                "height": 76.96614837646484,
+                "width": 110.30382537841795,
+                "x": 584.6354370117188,
+                "y": 11202.283203125
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 614.0538330078125,
+                "y": 11202.283203125
+              },
+              "label": "Botón de energía USB"
+            }
+          ],
+          "plus": {
+            "height": 51.462677001953125,
+            "text": "+",
+            "width": 26.14149475097656,
+            "x": 555.2300415039062,
+            "y": 11202.283203125
+          },
+          "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 76.96614837646484,
+                "width": 110.29948425292967,
+                "x": 441.6666870117187,
+                "y": 11288.5029296875
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 471.0850830078125,
+                "y": 11288.5029296875
+              },
+              "label": "Botón de encendido\nprincipal"
+            },
+            {
+              "box": {
+                "height": 76.96614837646484,
+                "width": 110.30382537841795,
+                "x": 584.6354370117188,
+                "y": 11288.5029296875
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 614.0538330078125,
+                "y": 11288.5029296875
+              },
+              "label": "Botón de energía CA"
+            }
+          ],
+          "plus": {
+            "height": 51.462677001953125,
+            "text": "+",
+            "width": 26.14149475097656,
+            "x": 555.2300415039062,
+            "y": 11288.5029296875
+          },
+          "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 76.96614837646484,
+                "width": 110.29948425292967,
+                "x": 441.6666870117187,
+                "y": 11377.4140625
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 471.0850830078125,
+                "y": 11377.4140625
+              },
+              "label": "Botón de energía USB"
+            },
+            {
+              "box": {
+                "height": 76.96614837646484,
+                "width": 110.30382537841795,
+                "x": 584.6354370117188,
+                "y": 11377.4140625
+              },
+              "img": {
+                "complete": true,
+                "height": 51.462677001953125,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 51.462677001953125,
+                "x": 614.0538330078125,
+                "y": 11377.4140625
+              },
+              "label": "Botón de energía CA"
+            }
+          ],
+          "plus": {
+            "height": 51.462677001953125,
+            "text": "+",
+            "width": 26.14149475097656,
+            "x": 555.2300415039062,
+            "y": 11377.4140625
+          },
+          "text": "Botón de energía USB\n+\nBotón de energía CA"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Restablecer Wi-Fi y Bluetooth"
+            }
+          ],
+          "height": 86.21961975097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Encender/apagar el modo\nde ahorro de energía"
+            }
+          ],
+          "height": 86.21961975097656
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de energía USB\n+\nBotón de energía CA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nMantenga pulsados ambos\nbotones durante 1 segundo"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Encender/apagar\nWi-Fi y Bluetooth"
+            }
+          ],
+          "height": 90.76823425292967
+        }
+      ],
+      "table": {
+        "height": 293.4548645019531,
+        "width": 653.6458740234375,
+        "x": 433.1727600097656,
+        "y": 11167.826171875
+      },
+      "width": 1280,
+      "wrapper": {
+        "clientWidth": 658,
+        "height": 301.3411560058594,
+        "scrollLeft": 0,
+        "scrollWidth": 658,
+        "width": 657.5347290039062,
+        "x": 431.2283325195313,
+        "y": 11165.8818359375
+      }
+    },
+    {
+      "lang": "es",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1944580078125,
+          "x": 309.123291015625,
+          "y": 7472.41796875
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1944580078125,
+          "x": 309.123291015625,
+          "y": 7561.48486328125
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 173.1944580078125,
+          "x": 309.123291015625,
+          "y": 7653.3466796875
+        }
+      ],
+      "figure": {
+        "height": 307.1007080078125,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 7426.9794921875
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Botones",
+          "width": 280.0434265136719
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Operación",
+          "width": 196.30209350585935
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Función",
+          "width": 198.88021850585935
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 26.718751907348633,
+                "y": 7464.54052734375
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 57.11371612548828,
+                "y": 7464.54052734375
+              },
+              "label": "Botón de encendido\nprincipal"
+            },
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 174.42274475097656,
+                "y": 7464.54052734375
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 204.81771850585935,
+                "y": 7464.54052734375
+              },
+              "label": "Botón de energía USB"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 144.04515075683594,
+            "y": 7464.54052734375
+          },
+          "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 26.718751907348633,
+                "y": 7553.60693359375
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 57.11371612548828,
+                "y": 7553.60693359375
+              },
+              "label": "Botón de encendido\nprincipal"
+            },
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 174.42274475097656,
+                "y": 7553.60693359375
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 204.81771850585935,
+                "y": 7553.60693359375
+              },
+              "label": "Botón de energía CA"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 144.04515075683594,
+            "y": 7553.60693359375
+          },
+          "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 26.718751907348633,
+                "y": 7645.46923828125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 57.11371612548828,
+                "y": 7645.46923828125
+              },
+              "label": "Botón de energía USB"
+            },
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 174.42274475097656,
+                "y": 7645.46923828125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 204.81771850585935,
+                "y": 7645.46923828125
+              },
+              "label": "Botón de energía CA"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 144.04515075683594,
+            "y": 7645.46923828125
+          },
+          "text": "Botón de energía USB\n+\nBotón de energía CA"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Restablecer Wi-Fi y Bluetooth"
+            }
+          ],
+          "height": 89.06684112548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Encender/apagar el modo\nde ahorro de energía"
+            }
+          ],
+          "height": 89.06684112548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de energía USB\n+\nBotón de energía CA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nMantenga pulsados ambos\nbotones durante 1 segundo"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Encender/apagar\nWi-Fi y Bluetooth"
+            }
+          ],
+          "height": 93.82379150390624
+        }
+      ],
+      "table": {
+        "height": 303.2118225097656,
+        "width": 675.2257080078125,
+        "x": 17.94270896911621,
+        "y": 7428.923828125
+      },
+      "width": 711,
+      "wrapper": {
+        "clientWidth": 679,
+        "height": 311.0981140136719,
+        "scrollLeft": 0,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 7426.9794921875
+      }
+    },
+    {
+      "lang": "es",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 20.66840362548828,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 163.10765075683594,
+          "x": 292.2569580078125,
+          "y": 236.9618225097656
+        },
+        {
+          "clock": "clock",
+          "height": 20.66840362548828,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 163.10765075683594,
+          "x": 292.2569580078125,
+          "y": 320.8637390136719
+        },
+        {
+          "clock": "clock",
+          "height": 20.66840362548828,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 163.10765075683594,
+          "x": 292.2569580078125,
+          "y": 407.37847900390625
+        }
+      ],
+      "figure": {
+        "height": 289.4140625,
+        "width": 640,
+        "x": 15.99826431274414,
+        "y": 194.0842132568359
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Botones",
+          "width": 263.8194580078125
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Operación",
+          "width": 184.93055725097656
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Función",
+          "width": 187.36111450195312
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 74.89583587646484,
+                "width": 107.3263931274414,
+                "x": 26.210939407348633,
+                "y": 229.54428100585935
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 54.83073043823242,
+                "y": 229.54428100585935
+              },
+              "label": "Botón de encendido\nprincipal"
+            },
+            {
+              "box": {
+                "height": 74.89583587646484,
+                "width": 107.3263931274414,
+                "x": 165.33421325683594,
+                "y": 229.54428100585935
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 193.95399475097656,
+                "y": 229.54428100585935
+              },
+              "label": "Botón de energía USB"
+            }
+          ],
+          "plus": {
+            "height": 50.08246612548828,
+            "text": "+",
+            "width": 25.44270896911621,
+            "x": 136.71441650390625,
+            "y": 229.54428100585935
+          },
+          "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 74.89583587646484,
+                "width": 107.3263931274414,
+                "x": 26.210939407348633,
+                "y": 313.4461975097656
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 54.83073043823242,
+                "y": 313.4461975097656
+              },
+              "label": "Botón de encendido\nprincipal"
+            },
+            {
+              "box": {
+                "height": 74.89583587646484,
+                "width": 107.3263931274414,
+                "x": 165.33421325683594,
+                "y": 313.4461975097656
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 193.95399475097656,
+                "y": 313.4461975097656
+              },
+              "label": "Botón de energía CA"
+            }
+          ],
+          "plus": {
+            "height": 50.08246612548828,
+            "text": "+",
+            "width": 25.44270896911621,
+            "x": 136.71441650390625,
+            "y": 313.4461975097656
+          },
+          "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 74.89583587646484,
+                "width": 107.3263931274414,
+                "x": 26.210939407348633,
+                "y": 399.9609680175781
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 54.83073043823242,
+                "y": 399.9609680175781
+              },
+              "label": "Botón de energía USB"
+            },
+            {
+              "box": {
+                "height": 74.89583587646484,
+                "width": 107.3263931274414,
+                "x": 165.33421325683594,
+                "y": 399.9609680175781
+              },
+              "img": {
+                "complete": true,
+                "height": 50.08246612548828,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 50.08246612548828,
+                "x": 193.95399475097656,
+                "y": 399.9609680175781
+              },
+              "label": "Botón de energía CA"
+            }
+          ],
+          "plus": {
+            "height": 50.08246612548828,
+            "text": "+",
+            "width": 25.44270896911621,
+            "x": 136.71441650390625,
+            "y": 399.9609680175781
+          },
+          "text": "Botón de energía USB\n+\nBotón de energía CA"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Restablecer Wi-Fi y Bluetooth"
+            }
+          ],
+          "height": 83.90191650390625
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Encender/apagar el modo\nde ahorro de energía"
+            }
+          ],
+          "height": 83.90191650390625
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de energía USB\n+\nBotón de energía CA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nMantenga pulsados ambos\nbotones durante 1 segundo"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Encender/apagar\nWi-Fi y Bluetooth"
+            }
+          ],
+          "height": 88.28993225097656
+        }
+      ],
+      "table": {
+        "height": 285.5251770019531,
+        "width": 636.1111450195312,
+        "x": 17.94270896911621,
+        "y": 196.02865600585935
+      },
+      "width": 390,
+      "wrapper": {
+        "clientWidth": 358,
+        "height": 293.4114685058594,
+        "scrollLeft": 0,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 194.0842132568359
+      }
+    }
+  ],
+  "visual_checks": [
+    {
+      "lang": "en",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1684112548828,
+          "x": 306.8533020019531,
+          "y": 569.5877075195312
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1684112548828,
+          "x": 306.8533020019531,
+          "y": 658.3767700195312
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 173.1684112548828,
+          "x": 306.8533020019531,
+          "y": 750.3602905273438
+        }
+      ],
+      "figure": {
+        "height": 307.0616455078125,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 515.16064453125
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Buttons",
+          "width": 277.7734375
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Operation",
+          "width": 196.2760467529297
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Function",
+          "width": 201.1762237548828
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.8168487548828,
+                "x": 26.718751907348633,
+                "y": 557.9296875
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.545143127441406,
+                "y": 557.9296875
+              },
+              "label": "Main power button"
+            },
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.82118225097656,
+                "x": 173.2855987548828,
+                "y": 557.9296875
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.1119842529297,
+                "y": 557.9296875
+              },
+              "label": "USB power button"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 142.90798950195312,
+            "y": 557.9296875
+          },
+          "text": "Main power button\n+\nUSB power button"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.8168487548828,
+                "x": 26.718751907348633,
+                "y": 646.7188110351562
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.545143127441406,
+                "y": 646.7188110351562
+              },
+              "label": "Main power button"
+            },
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.82118225097656,
+                "x": 173.2855987548828,
+                "y": 646.7188110351562
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.1119842529297,
+                "y": 646.7188110351562
+              },
+              "label": "AC power button"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 142.90798950195312,
+            "y": 646.7188110351562
+          },
+          "text": "Main power button\n+\nAC power button"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.8168487548828,
+                "x": 26.718751907348633,
+                "y": 738.7022705078125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.545143127441406,
+                "y": 738.7022705078125
+              },
+              "label": "USB power button"
+            },
+            {
+              "box": {
+                "height": 68.80208587646484,
+                "width": 112.82118225097656,
+                "x": 173.2855987548828,
+                "y": 738.7022705078125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.1119842529297,
+                "y": 738.7022705078125
+              },
+              "label": "AC power button"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 142.90798950195312,
+            "y": 738.7022705078125
+          },
+          "text": "USB power button\n+\nAC power button"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Main power button\n+\nUSB power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nPress and hold both for 3s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Reset Wi-Fi and Bluetooth"
+            }
+          ],
+          "height": 88.78907012939453
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Main power button\n+\nAC power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nPress and hold both for 3s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Turn on/off the\nEnergy Saving Mode"
+            }
+          ],
+          "height": 88.78907012939453
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "USB power button\n+\nAC power button"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nPress and hold both for 1s"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Turn on/off Wi-Fi and\nBluetooth"
+            }
+          ],
+          "height": 94.34461975097656
+        }
+      ],
+      "table": {
+        "height": 303.1727600097656,
+        "width": 675.2257080078125,
+        "x": 17.94270896911621,
+        "y": 517.1050415039062
+      },
+      "width": 711,
+      "wrapper": {
+        "clientWidth": 679,
+        "height": 311.0590515136719,
+        "scrollLeft": 0,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 515.16064453125
+      }
+    },
+    {
+      "lang": "fr",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1944580078125,
+          "x": 307.6996765136719,
+          "y": 294.0364685058594
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1944580078125,
+          "x": 307.6996765136719,
+          "y": 383.1033020019531
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 173.1944580078125,
+          "x": 307.6996765136719,
+          "y": 474.9696350097656
+        }
+      ],
+      "figure": {
+        "height": 307.10504150390625,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 239.46615600585935
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Boutons",
+          "width": 278.61981201171875
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Utilisation",
+          "width": 196.30209350585935
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Fonction",
+          "width": 200.3038330078125
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 26.718751907348633,
+                "y": 277.02691650390625
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.757816314697266,
+                "y": 277.02691650390625
+              },
+              "label": "Bouton d’alimentation\nprincipal"
+            },
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 173.71095275878906,
+                "y": 277.02691650390625
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.75001525878903,
+                "y": 277.02691650390625
+              },
+              "label": "Bouton d’alimentation\nUSB"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 143.33334350585938,
+            "y": 277.02691650390625
+          },
+          "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 26.718751907348633,
+                "y": 366.0937805175781
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.757816314697266,
+                "y": 366.0937805175781
+              },
+              "label": "Bouton d’alimentation\nprincipal"
+            },
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 173.71095275878906,
+                "y": 366.0937805175781
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.75001525878903,
+                "y": 366.0937805175781
+              },
+              "label": "Bouton d’alimentation\nCA"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 143.33334350585938,
+            "y": 366.0937805175781
+          },
+          "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 26.718751907348633,
+                "y": 457.9600830078125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 56.757816314697266,
+                "y": 457.9600830078125
+              },
+              "label": "Bouton d’alimentation\nUSB"
+            },
+            {
+              "box": {
+                "height": 79.50521087646484,
+                "width": 113.24219512939452,
+                "x": 173.71095275878906,
+                "y": 457.9600830078125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 203.75001525878903,
+                "y": 457.9600830078125
+              },
+              "label": "Bouton d’alimentation\nCA"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 143.33334350585938,
+            "y": 457.9600830078125
+          },
+          "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nAppuyer 3 secondes sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Réinitialiser le Wi-Fi et le\nBluetooth"
+            }
+          ],
+          "height": 89.06684112548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nAppuyer 3 secondes sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Activer/désactiver le mode\néconomie d’énergie"
+            }
+          ],
+          "height": 89.06684112548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nAppuyer 1 seconde sur les deux"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Activer le Wi-Fi et le Bluetooth"
+            }
+          ],
+          "height": 93.82813262939452
+        }
+      ],
+      "table": {
+        "height": 303.2161560058594,
+        "width": 675.2257080078125,
+        "x": 17.94270896911621,
+        "y": 241.4105987548828
+      },
+      "width": 711,
+      "wrapper": {
+        "clientWidth": 679,
+        "height": 311.1024475097656,
+        "scrollLeft": 0,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 239.46615600585935
+      }
+    },
+    {
+      "lang": "es",
+      "clipped": [],
+      "completedImageErrors": [],
+      "component": "HB-TABLE-KEY-COMBINATIONS",
+      "durations": [
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1944580078125,
+          "x": 309.123291015625,
+          "y": 216.8619842529297
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "3s",
+          "width": 173.1944580078125,
+          "x": 309.123291015625,
+          "y": 305.9288330078125
+        },
+        {
+          "clock": "clock",
+          "height": 21.93576431274414,
+          "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+          "text": "1s",
+          "width": 173.1944580078125,
+          "x": 309.123291015625,
+          "y": 397.7908325195313
+        }
+      ],
+      "figure": {
+        "height": 307.1007080078125,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 171.42361450195312
+      },
+      "headers": [
+        {
+          "bg": "rgb(233, 231, 232)",
+          "text": "Botones",
+          "width": 280.0434265136719
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Operación",
+          "width": 196.30209350585935
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "Función",
+          "width": 198.88021850585935
+        }
+      ],
+      "pageOverflow": 0,
+      "pairs": [
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 26.718751907348633,
+                "y": 208.98439025878903
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 57.11371612548828,
+                "y": 208.98439025878903
+              },
+              "label": "Botón de encendido\nprincipal"
+            },
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 174.42274475097656,
+                "y": 208.98439025878903
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 204.81771850585935,
+                "y": 208.98439025878903
+              },
+              "label": "Botón de energía USB"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 144.04515075683594,
+            "y": 208.98439025878903
+          },
+          "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 26.718751907348633,
+                "y": 298.0512390136719
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-power-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 57.11371612548828,
+                "y": 298.0512390136719
+              },
+              "label": "Botón de encendido\nprincipal"
+            },
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 174.42274475097656,
+                "y": 298.0512390136719
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 204.81771850585935,
+                "y": 298.0512390136719
+              },
+              "label": "Botón de energía CA"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 144.04515075683594,
+            "y": 298.0512390136719
+          },
+          "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+        },
+        {
+          "buttons": [
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 26.718751907348633,
+                "y": 389.9132080078125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-usb-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 57.11371612548828,
+                "y": 389.9132080078125
+              },
+              "label": "Botón de energía USB"
+            },
+            {
+              "box": {
+                "height": 79.50955200195312,
+                "width": 113.95399475097656,
+                "x": 174.42274475097656,
+                "y": 389.9132080078125
+              },
+              "img": {
+                "complete": true,
+                "height": 53.164066314697266,
+                "naturalWidth": 25,
+                "src": "assets/button-ac-vertical.svg",
+                "width": 53.164066314697266,
+                "x": 204.81771850585935,
+                "y": 389.9132080078125
+              },
+              "label": "Botón de energía CA"
+            }
+          ],
+          "plus": {
+            "height": 53.164066314697266,
+            "text": "+",
+            "width": 27.00520896911621,
+            "x": 144.04515075683594,
+            "y": 389.9132080078125
+          },
+          "text": "Botón de energía USB\n+\nBotón de energía CA"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Restablecer Wi-Fi y Bluetooth"
+            }
+          ],
+          "height": 89.06684112548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Encender/apagar el modo\nde ahorro de energía"
+            }
+          ],
+          "height": 89.06684112548828
+        },
+        {
+          "cells": [
+            {
+              "bg": "rgb(233, 231, 232)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Botón de energía USB\n+\nBotón de energía CA"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "1s\n\nMantenga pulsados ambos\nbotones durante 1 segundo"
+            },
+            {
+              "bg": "rgba(0, 0, 0, 0)",
+              "border": "rgb(52, 48, 49)",
+              "text": "Encender/apagar\nWi-Fi y Bluetooth"
+            }
+          ],
+          "height": 93.82379150390624
+        }
+      ],
+      "table": {
+        "height": 303.2118225097656,
+        "width": 675.2257080078125,
+        "x": 17.94270896911621,
+        "y": 173.36805725097656
+      },
+      "width": 711,
+      "wrapper": {
+        "clientWidth": 679,
+        "height": 311.0981140136719,
+        "scrollLeft": 0,
+        "scrollWidth": 679,
+        "width": 679.1146240234375,
+        "x": 15.99826431274414,
+        "y": 171.42361450195312
+      }
+    }
+  ],
+  "mobile_horizontal_scroll": [
+    {
+      "lang": "en",
+      "left": {
+        "clientWidth": 358,
+        "height": 293.3724060058594,
+        "scrollLeft": 0,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 425.607666015625
+      },
+      "right": {
+        "clientWidth": 358,
+        "height": 293.3724060058594,
+        "scrollLeft": 281.9444580078125,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 425.607666015625
+      },
+      "after": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "component": "HB-TABLE-KEY-COMBINATIONS",
+        "durations": [
+          {
+            "clock": "clock",
+            "height": 20.66840362548828,
+            "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+            "text": "3s",
+            "width": 163.08160400390625,
+            "x": 8.172743797302246,
+            "y": 476.9401245117187
+          },
+          {
+            "clock": "clock",
+            "height": 20.66840362548828,
+            "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+            "text": "3s",
+            "width": 163.08160400390625,
+            "x": 8.172743797302246,
+            "y": 560.55126953125
+          },
+          {
+            "clock": "clock",
+            "height": 20.66840362548828,
+            "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+            "text": "1s",
+            "width": 163.08160400390625,
+            "x": 8.172743797302246,
+            "y": 647.19189453125
+          }
+        ],
+        "figure": {
+          "height": 289.375,
+          "width": 640,
+          "x": -265.9461975097656,
+          "y": 425.607666015625
+        },
+        "headers": [
+          {
+            "bg": "rgb(233, 231, 232)",
+            "text": "Buttons",
+            "width": 261.6796875
+          },
+          {
+            "bg": "rgb(255, 255, 255)",
+            "text": "Operation",
+            "width": 184.9045257568359
+          },
+          {
+            "bg": "rgb(255, 255, 255)",
+            "text": "Function",
+            "width": 189.52691650390625
+          }
+        ],
+        "pageOverflow": 0,
+        "pairs": [
+          {
+            "buttons": [
+              {
+                "box": {
+                  "height": 64.81336975097656,
+                  "width": 106.2543487548828,
+                  "x": -255.7335205078125,
+                  "y": 465.959228515625
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-power-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -227.6475830078125,
+                  "y": 465.959228515625
+                },
+                "label": "Main power button"
+              },
+              {
+                "box": {
+                  "height": 64.81336975097656,
+                  "width": 106.25868225097656,
+                  "x": -117.68229675292967,
+                  "y": 465.959228515625
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-usb-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -89.59635925292969,
+                  "y": 465.959228515625
+                },
+                "label": "USB power button"
+              }
+            ],
+            "plus": {
+              "height": 50.08246612548828,
+              "text": "+",
+              "width": 25.44270896911621,
+              "x": -146.30209350585938,
+              "y": 465.959228515625
+            },
+            "text": "Main power button\n+\nUSB power button"
+          },
+          {
+            "buttons": [
+              {
+                "box": {
+                  "height": 64.81336975097656,
+                  "width": 106.2543487548828,
+                  "x": -255.7335205078125,
+                  "y": 549.5703125
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-power-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -227.6475830078125,
+                  "y": 549.5703125
+                },
+                "label": "Main power button"
+              },
+              {
+                "box": {
+                  "height": 64.81336975097656,
+                  "width": 106.25868225097656,
+                  "x": -117.68229675292967,
+                  "y": 549.5703125
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-ac-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -89.59635925292969,
+                  "y": 549.5703125
+                },
+                "label": "AC power button"
+              }
+            ],
+            "plus": {
+              "height": 50.08246612548828,
+              "text": "+",
+              "width": 25.44270896911621,
+              "x": -146.30209350585938,
+              "y": 549.5703125
+            },
+            "text": "Main power button\n+\nAC power button"
+          },
+          {
+            "buttons": [
+              {
+                "box": {
+                  "height": 64.81336975097656,
+                  "width": 106.2543487548828,
+                  "x": -255.7335205078125,
+                  "y": 636.2109375
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-usb-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -227.6475830078125,
+                  "y": 636.2109375
+                },
+                "label": "USB power button"
+              },
+              {
+                "box": {
+                  "height": 64.81336975097656,
+                  "width": 106.25868225097656,
+                  "x": -117.68229675292967,
+                  "y": 636.2109375
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-ac-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -89.59635925292969,
+                  "y": 636.2109375
+                },
+                "label": "AC power button"
+              }
+            ],
+            "plus": {
+              "height": 50.08246612548828,
+              "text": "+",
+              "width": 25.44270896911621,
+              "x": -146.30209350585938,
+              "y": 636.2109375
+            },
+            "text": "USB power button\n+\nAC power button"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Main power button\n+\nUSB power button"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "3s\n\nPress and hold both for 3s"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Reset Wi-Fi and Bluetooth"
+              }
+            ],
+            "height": 83.61111450195312
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Main power button\n+\nAC power button"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "3s\n\nPress and hold both for 3s"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Turn on/off the\nEnergy Saving Mode"
+              }
+            ],
+            "height": 83.61111450195312
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "border": "rgb(52, 48, 49)",
+                "text": "USB power button\n+\nAC power button"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "1s\n\nPress and hold both for 1s"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Turn on/off Wi-Fi and\nBluetooth"
+              }
+            ],
+            "height": 88.83680725097656
+          }
+        ],
+        "table": {
+          "height": 285.4861145019531,
+          "width": 636.1111450195312,
+          "x": -264.0017395019531,
+          "y": 427.5520935058594
+        },
+        "width": 390,
+        "wrapper": {
+          "clientWidth": 358,
+          "height": 293.3724060058594,
+          "scrollLeft": 281.9444580078125,
+          "scrollWidth": 640,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 425.607666015625
+        }
+      }
+    },
+    {
+      "lang": "fr",
+      "left": {
+        "clientWidth": 358,
+        "height": 293.4158020019531,
+        "scrollLeft": 0,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 473.1553955078125
+      },
+      "right": {
+        "clientWidth": 358,
+        "height": 293.4158020019531,
+        "scrollLeft": 281.9444580078125,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 473.1553955078125
+      },
+      "after": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "component": "HB-TABLE-KEY-COMBINATIONS",
+        "durations": [
+          {
+            "clock": "clock",
+            "height": 20.66840362548828,
+            "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+            "text": "3s",
+            "width": 163.10765075683594,
+            "x": 8.97569465637207,
+            "y": 524.6354370117188
+          },
+          {
+            "clock": "clock",
+            "height": 20.66840362548828,
+            "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+            "text": "3s",
+            "width": 163.10765075683594,
+            "x": 8.97569465637207,
+            "y": 608.537353515625
+          },
+          {
+            "clock": "clock",
+            "height": 20.66840362548828,
+            "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+            "text": "1s",
+            "width": 163.10765075683594,
+            "x": 8.97569465637207,
+            "y": 695.0521240234375
+          }
+        ],
+        "figure": {
+          "height": 289.4184265136719,
+          "width": 640,
+          "x": -265.9461975097656,
+          "y": 473.1553955078125
+        },
+        "headers": [
+          {
+            "bg": "rgb(233, 231, 232)",
+            "text": "Boutons",
+            "width": 262.482666015625
+          },
+          {
+            "bg": "rgb(255, 255, 255)",
+            "text": "Utilisation",
+            "width": 184.93055725097656
+          },
+          {
+            "bg": "rgb(255, 255, 255)",
+            "text": "Fonction",
+            "width": 188.6979217529297
+          }
+        ],
+        "pageOverflow": 0,
+        "pairs": [
+          {
+            "buttons": [
+              {
+                "box": {
+                  "height": 74.89149475097656,
+                  "width": 106.65798950195312,
+                  "x": -255.7335205078125,
+                  "y": 508.6198120117187
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-power-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -227.4479217529297,
+                  "y": 508.6198120117187
+                },
+                "label": "Bouton d’alimentation\nprincipal"
+              },
+              {
+                "box": {
+                  "height": 74.89149475097656,
+                  "width": 106.65798950195312,
+                  "x": -117.27864837646484,
+                  "y": 508.6198120117187
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-usb-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -88.99305725097656,
+                  "y": 508.6198120117187
+                },
+                "label": "Bouton d’alimentation\nUSB"
+              }
+            ],
+            "plus": {
+              "height": 50.08246612548828,
+              "text": "+",
+              "width": 25.44270896911621,
+              "x": -145.8984375,
+              "y": 508.6198120117187
+            },
+            "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+          },
+          {
+            "buttons": [
+              {
+                "box": {
+                  "height": 74.89149475097656,
+                  "width": 106.65798950195312,
+                  "x": -255.7335205078125,
+                  "y": 592.521728515625
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-power-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -227.4479217529297,
+                  "y": 592.521728515625
+                },
+                "label": "Bouton d’alimentation\nprincipal"
+              },
+              {
+                "box": {
+                  "height": 74.89149475097656,
+                  "width": 106.65798950195312,
+                  "x": -117.27864837646484,
+                  "y": 592.521728515625
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-ac-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -88.99305725097656,
+                  "y": 592.521728515625
+                },
+                "label": "Bouton d’alimentation\nCA"
+              }
+            ],
+            "plus": {
+              "height": 50.08246612548828,
+              "text": "+",
+              "width": 25.44270896911621,
+              "x": -145.8984375,
+              "y": 592.521728515625
+            },
+            "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+          },
+          {
+            "buttons": [
+              {
+                "box": {
+                  "height": 74.89149475097656,
+                  "width": 106.65798950195312,
+                  "x": -255.7335205078125,
+                  "y": 679.0364990234375
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-usb-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -227.4479217529297,
+                  "y": 679.0364990234375
+                },
+                "label": "Bouton d’alimentation\nUSB"
+              },
+              {
+                "box": {
+                  "height": 74.89149475097656,
+                  "width": 106.65798950195312,
+                  "x": -117.27864837646484,
+                  "y": 679.0364990234375
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-ac-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -88.99305725097656,
+                  "y": 679.0364990234375
+                },
+                "label": "Bouton d’alimentation\nCA"
+              }
+            ],
+            "plus": {
+              "height": 50.08246612548828,
+              "text": "+",
+              "width": 25.44270896911621,
+              "x": -145.8984375,
+              "y": 679.0364990234375
+            },
+            "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nUSB"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "3s\n\nAppuyer 3 secondes sur les deux"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Réinitialiser le Wi-Fi et le\nBluetooth"
+              }
+            ],
+            "height": 83.90191650390625
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Bouton d’alimentation\nprincipal\n+\nBouton d’alimentation\nCA"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "3s\n\nAppuyer 3 secondes sur les deux"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Activer/désactiver le mode\néconomie d’énergie"
+              }
+            ],
+            "height": 83.90191650390625
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Bouton d’alimentation\nUSB\n+\nBouton d’alimentation\nCA"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "1s\n\nAppuyer 1 seconde sur les deux"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Activer le Wi-Fi et le Bluetooth"
+              }
+            ],
+            "height": 88.29427337646484
+          }
+        ],
+        "table": {
+          "height": 285.529541015625,
+          "width": 636.1111450195312,
+          "x": -264.0017395019531,
+          "y": 475.099853515625
+        },
+        "width": 390,
+        "wrapper": {
+          "clientWidth": 358,
+          "height": 293.4158020019531,
+          "scrollLeft": 281.9444580078125,
+          "scrollWidth": 640,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 473.1553955078125
+        }
+      }
+    },
+    {
+      "lang": "es",
+      "left": {
+        "clientWidth": 358,
+        "height": 293.4114685058594,
+        "scrollLeft": 0,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 471.8663330078125
+      },
+      "right": {
+        "clientWidth": 358,
+        "height": 293.4114685058594,
+        "scrollLeft": 281.9444580078125,
+        "scrollWidth": 640,
+        "width": 358.00347900390625,
+        "x": 15.99826431274414,
+        "y": 471.8663330078125
+      },
+      "after": {
+        "clipped": [],
+        "completedImageErrors": [],
+        "component": "HB-TABLE-KEY-COMBINATIONS",
+        "durations": [
+          {
+            "clock": "clock",
+            "height": 20.66840362548828,
+            "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+            "text": "3s",
+            "width": 163.10765075683594,
+            "x": 10.312500953674316,
+            "y": 514.7439575195312
+          },
+          {
+            "clock": "clock",
+            "height": 20.66840362548828,
+            "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+            "text": "3s",
+            "width": 163.10765075683594,
+            "x": 10.312500953674316,
+            "y": 598.6458740234375
+          },
+          {
+            "clock": "clock",
+            "height": 20.66840362548828,
+            "pseudo": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), none",
+            "text": "1s",
+            "width": 163.10765075683594,
+            "x": 10.312500953674316,
+            "y": 685.16064453125
+          }
+        ],
+        "figure": {
+          "height": 289.4140625,
+          "width": 640,
+          "x": -265.9461975097656,
+          "y": 471.8663330078125
+        },
+        "headers": [
+          {
+            "bg": "rgb(233, 231, 232)",
+            "text": "Botones",
+            "width": 263.8194580078125
+          },
+          {
+            "bg": "rgb(255, 255, 255)",
+            "text": "Operación",
+            "width": 184.93055725097656
+          },
+          {
+            "bg": "rgb(255, 255, 255)",
+            "text": "Función",
+            "width": 187.36111450195312
+          }
+        ],
+        "pageOverflow": 0,
+        "pairs": [
+          {
+            "buttons": [
+              {
+                "box": {
+                  "height": 74.89583587646484,
+                  "width": 107.3263931274414,
+                  "x": -255.7335205078125,
+                  "y": 507.326416015625
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-power-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -227.1137237548828,
+                  "y": 507.326416015625
+                },
+                "label": "Botón de encendido\nprincipal"
+              },
+              {
+                "box": {
+                  "height": 74.89583587646484,
+                  "width": 107.3263931274414,
+                  "x": -116.6102523803711,
+                  "y": 507.326416015625
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-usb-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -87.9904556274414,
+                  "y": 507.326416015625
+                },
+                "label": "Botón de energía USB"
+              }
+            ],
+            "plus": {
+              "height": 50.08246612548828,
+              "text": "+",
+              "width": 25.44270896911621,
+              "x": -145.23004150390625,
+              "y": 507.326416015625
+            },
+            "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+          },
+          {
+            "buttons": [
+              {
+                "box": {
+                  "height": 74.89583587646484,
+                  "width": 107.3263931274414,
+                  "x": -255.7335205078125,
+                  "y": 591.2283325195312
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-power-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -227.1137237548828,
+                  "y": 591.2283325195312
+                },
+                "label": "Botón de encendido\nprincipal"
+              },
+              {
+                "box": {
+                  "height": 74.89583587646484,
+                  "width": 107.3263931274414,
+                  "x": -116.6102523803711,
+                  "y": 591.2283325195312
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-ac-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -87.9904556274414,
+                  "y": 591.2283325195312
+                },
+                "label": "Botón de energía CA"
+              }
+            ],
+            "plus": {
+              "height": 50.08246612548828,
+              "text": "+",
+              "width": 25.44270896911621,
+              "x": -145.23004150390625,
+              "y": 591.2283325195312
+            },
+            "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+          },
+          {
+            "buttons": [
+              {
+                "box": {
+                  "height": 74.89583587646484,
+                  "width": 107.3263931274414,
+                  "x": -255.7335205078125,
+                  "y": 677.7431030273438
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-usb-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -227.1137237548828,
+                  "y": 677.7431030273438
+                },
+                "label": "Botón de energía USB"
+              },
+              {
+                "box": {
+                  "height": 74.89583587646484,
+                  "width": 107.3263931274414,
+                  "x": -116.6102523803711,
+                  "y": 677.7431030273438
+                },
+                "img": {
+                  "complete": true,
+                  "height": 50.08246612548828,
+                  "naturalWidth": 25,
+                  "src": "assets/button-ac-vertical.svg",
+                  "width": 50.08246612548828,
+                  "x": -87.9904556274414,
+                  "y": 677.7431030273438
+                },
+                "label": "Botón de energía CA"
+              }
+            ],
+            "plus": {
+              "height": 50.08246612548828,
+              "text": "+",
+              "width": 25.44270896911621,
+              "x": -145.23004150390625,
+              "y": 677.7431030273438
+            },
+            "text": "Botón de energía USB\n+\nBotón de energía CA"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Botón de encendido\nprincipal\n+\nBotón de energía USB"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Restablecer Wi-Fi y Bluetooth"
+              }
+            ],
+            "height": 83.90191650390625
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Botón de encendido\nprincipal\n+\nBotón de energía CA"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "3s\n\nMantenga pulsados ambos\nbotones durante 3 segundos"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Encender/apagar el modo\nde ahorro de energía"
+              }
+            ],
+            "height": 83.90191650390625
+          },
+          {
+            "cells": [
+              {
+                "bg": "rgb(233, 231, 232)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Botón de energía USB\n+\nBotón de energía CA"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "1s\n\nMantenga pulsados ambos\nbotones durante 1 segundo"
+              },
+              {
+                "bg": "rgba(0, 0, 0, 0)",
+                "border": "rgb(52, 48, 49)",
+                "text": "Encender/apagar\nWi-Fi y Bluetooth"
+              }
+            ],
+            "height": 88.28993225097656
+          }
+        ],
+        "table": {
+          "height": 285.5251770019531,
+          "width": 636.1111450195312,
+          "x": -264.0017395019531,
+          "y": 473.810791015625
+        },
+        "width": 390,
+        "wrapper": {
+          "clientWidth": 358,
+          "height": 293.4114685058594,
+          "scrollLeft": 281.9444580078125,
+          "scrollWidth": 640,
+          "width": 358.00347900390625,
+          "x": 15.99826431274414,
+          "y": 471.8663330078125
+        }
+      }
+    }
+  ],
+  "previous_USB_energy_LCD_geometry_preserved": true,
+  "operator_layout_acceptance": "pending combined review"
+}

@@ -1,0 +1,48 @@
+{
+  "status": "candidate-not-approved",
+  "classification": "small standalone LCD icon",
+  "source": "/Users/pika/Downloads/HTP011-EU-9国语言-0924.ai",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "physical_page": 19,
+  "transforms": [
+    {
+      "op": "crop",
+      "bbox_pt": [
+        150.0,
+        201.2,
+        166.1,
+        211.6
+      ]
+    },
+    {
+      "op": "retain_vector_drawings",
+      "drawing_indices": [
+        997,
+        998,
+        999,
+        1001,
+        1003
+      ],
+      "fill_rgb_overrides": {},
+      "stroke_suppressed_indices": []
+    }
+  ],
+  "background_policy": "retain only identified source icon vectors; exclude enclosing gray callout backdrop, alpha PNG",
+  "render_scale": 12,
+  "rejected_reuse": [
+    {
+      "path": "manual_sources/JE-2000E/EU/en/2.0/phase2/_attachments/lcd_icons/21_Connected_Batteries_ZeHlbv3HEoRcq2xIXacchUcTndg.png",
+      "reason": "x8 and different frame geometry"
+    },
+    {
+      "path": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake/artwork/shared/lcd-connected-batteries.png",
+      "reason": "x8 and different frame geometry"
+    },
+    {
+      "path": "tests/fixtures/phase2/_attachments/lcd_icons/21_Connected_Batteries_JUdEbyBUeo6BHWxDDzBc6X2Hntc.png",
+      "reason": "tiny opaque fixture, not authoritative production source"
+    }
+  ],
+  "sha256": "8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd",
+  "pdf_sha256": "87833a0dd6c76272cb833521d9536e1ff85955cd2692240c13aafcf512396855"
+}

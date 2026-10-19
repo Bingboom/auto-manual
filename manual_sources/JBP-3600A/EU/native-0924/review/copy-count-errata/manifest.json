@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "path": "IT-META-001.json",
+      "sha256": "bd35b9e0c86ca2faa336a2ef1746f6825452e3d250f80d81cd3dc591f4771a74"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1d9479f2b2fae93b862d99471e6df1f48cff57cf08ee2cf79f4b5b0299108b9f"
+    }
+  ]
+}

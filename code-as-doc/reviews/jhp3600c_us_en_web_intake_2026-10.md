@@ -1,0 +1,718 @@
+# JHP-3600C / US / en Git-only Web intake
+
+Status: active
+
+The current local English candidate includes the safety layout correction and checked shared symbol variants (symbols1). Visual confirmation of this revised candidate is pending.
+
+## Source and scope
+
+- User-selected authority: `Jackery HomePower3600 Pro Max Portable Power Station User Manual.pdf`.
+- SHA-256: `31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7`.
+- Model: JHP-3600C. Product: Jackery HomePower 3600 Pro Max. Region: US; language: en.
+- Source has 97 physical pages: English preface on p2, English body on p4–34 (printed 01–31); cover/contact metadata on p1/p97. FR/ES excluded.
+- Printed manual revision: unknown. Technical Git snapshot only.
+- Base: `ed4d4ec5071d000d590d5b53322aea6c12186f7c`.
+- Root checkout and its foreign `tmp/` are preserved. Work is isolated on `feat/web-jhp3600c-us-en`.
+
+## Plan and safety boundaries
+
+1. Freeze PDF identity, positioned native extraction and asset reuse/extraction decisions in a source-local package under `data/manual_sources/JHP-3600C/US/en/`.
+2. Use existing public ManualSource/Manual IR, registered components, shared Web renderer and MyST scaffold. Native paragraphs/lists/tables remain searchable. No whole-page screenshots or new model-specific build config.
+3. Preserve source wording, technical values, warnings, fault codes and manufacturer/contact identity. Normalize only line wrapping, ligatures and page furniture. Record source anomalies rather than silently correcting them.
+4. Run an existing US target `build.py check` as a repository regression gate; JHP-3600C is external frozen source, not an enrolled phase2/print target. Validate this new body independently against all included source regions.
+5. Validate strict Sphinx, packaged-image hashes, cold IR replay, asset tamper rejection and browser at desktop/mobile widths. Commit source package and evidence only after local validation.
+
+No live table, queue, source, asset, build or HTML_link writes. No merge/deployment authorization is inferred. No phase2 schemas, public flags, dependencies or workflows change.
+
+## Asset inventory before extraction
+
+Searched `manual_sources/`, `data/manual_sources/`, `docs/renderers/web/assets/`, `docs/renderers/latex/assets/`, `docs/templates/word_template/common_assets/`, asset recipes and registries. No JHP-3600C/HomePower 3600 Pro Max target binding exists on the verified base. JE-3600A/JBP-3600A and JE-1000F drawings are candidates only: model name is insufficient to establish matching US sockets, dual-voltage routing, cascade/EPO or ATS arrangement. Detailed per-slot decisions and hashes belong to `asset_decisions.json` in the frozen input.
+
+Shared safety symbols/LCD semantics are checked first. Exact matching files are copied byte-for-byte with path/hash provenance. Dense annotated overview and declared finished operation panels retain complete source borders/labels with no duplicate visible transcription. App screenshots retain full phone frames. Ordinary connection drawings use textless art plus native instructions; tables always use native cells.
+
+
+## Implemented source
+
+The [frozen manifest](../../data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/source_manifest.json) binds the unchanged original PDF, complete positioned extraction, 399 selected/recovered fields, semantic chapter data, 84 asset decisions, shared IR, MyST and scaffold. It also pins 204 repository renderer/component/style/asset inputs. `rebuild.py` verifies both inventories before compiling through the shared APIs. No new family config, phase2 enrollment, parallel renderer or public CLI is added.
+
+The result has 20 chapters, 26 warning/note/tip components, a 33-row glossary covering LCD numbers 1–31 (18 and 28 have two subrows), 14 native specification groups, FCC/Inbox/auto-resume/LCD-mode/symbol/troubleshooting compositions and native 3+2-year warranty cards. Eight source-specific LCD symbols are stored with true alpha under the shared Web LCD asset directory; existing matching safety/button/LCD assets are reused byte-identically. Dense finished panels remain image-led with accessible native copy; no whole source page is used as a Web page.
+
+Complete operation/charging panel borders, solar connector drawings and phone frames were checked against rendered PDF pages. The ATS App panel retains both phone screenshots and the complete adjacent product-connection drawing. Its instructions are removed from the artwork and retained as native copy. Text redaction retains the original vector background without a grey fill overlay. Source callout severity, F0–F9/FA/FC/FF measures, JHP-3600C ratings, JBP-3600A battery and JA-TS05A specifications, contact identity and native legal copy are preserved.
+
+## Normalizations and source anomalies
+
+- Restore positioned ® immediately after USB Type-C and USB-C; expand ligatures and normalize wrapping.
+- Keep charging/ventilation subitems nested, separate four footnotes, and separate specification submodes into native lines. Existing spec components require an h2 carrier hook; explicit `aria-level=3/4` restores accessible hierarchy and a source-local class prevents those headings from becoming sibling chapter TOC entries.
+- Printed p28 uses literal `1440W4`; expose its 4 as `1440W⁴`. Printed p23 uses circled ④. The two source forms remain distinct.
+- Retain `energe flow` (physical p22), the `The area is completely waterproof.` installation-site requirement (p30), and native product/name variation. No inferred engineering corrections.
+- Exclude FR/ES, covers as reading pages and page furniture. Cover/contact identity remains traceable.
+
+## Verification
+
+- Strict Sphinx passed with warnings treated as errors.
+- `audit_source.py` passed: 1,128 positioned extractable English/contact lines covered by semantic copy (including image alt) or retained panels; zero unmatched. This is a coverage check, not proof of reading order or visual geometry. Outlined symbol text and panel/image glyphs were checked visually and have explicit recovery/provenance records.
+- Deterministic rebuild: every frozen MyST/IR/scaffold/style/asset file is byte-identical. Cold replay used only IR, CSS and assets, with no PDF/RST/CSV/extraction JSON. Altered LCD asset bytes were rejected: `document asset missing or changed: assets/lcd_parallel.png`.
+- 26 focused shared replay/table/evidence tests passed. Ruff passed. Documentation link/lifecycle check passed after assigning the required active status.
+- Existing-target regression gate passed using US/en JE-1000F phase2 fixtures. This result does **not** validate the JHP-3600C body or enroll a print target.
+- Desktop 1440×1000, mobile 390×844 and narrow 320×844 had equal viewport/document scroll widths. All 86 image references resolve locally; observed loaded images had no failures. Wide LCD/auto-resume/troubleshooting tables scroll within their own figures. [Browser/replay evidence](jhp3600c_us_en_web_evidence/browser.json), [desktop](jhp3600c_us_en_web_evidence/desktop-operations.jpg), [mobile specs](jhp3600c_us_en_web_evidence/mobile-specs.jpg), [App frames](jhp3600c_us_en_web_evidence/mobile-app.jpg).
+
+The current local runtime warns that some installed package versions differ from `requirements.lock`; no dependency versions were changed. The stated checks passed in this runtime. The branch wrapper could not switch to main because main is owned by the root worktree; the clean isolated branch was created directly from the verified origin/main ref.
+
+## Reproduce
+
+From the engineering worktree, choose unused output directories:
+
+```bash
+python3 data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/audit_source.py
+python3 data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/rebuild.py --output /tmp/jhp3600c-rebuilt
+python3 -m sphinx -W -b html /tmp/jhp3600c-rebuilt /tmp/jhp3600c-html
+python3 -m ruff check build.py integrations tools tests scripts data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692 --exclude conf.py
+python3 -m unittest tests.test_frozen_ai_web tests.test_frozen_ai_table_components tests.test_web_frozen_source_evidence
+python3 tools/check_doc_link_integrity.py
+AUTO_MANUAL_OSS_ARCHIVE_CONFIG=off AUTO_MANUAL_PRESENTATION_PROFILE=web python3 build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --lang en --data-root tests/fixtures/phase2 --staging-root /tmp/jhp3600c-us-regression --skip-root-index
+```
+
+Operator visual confirmation of this English baseline is pending. No remote branch push, PR, merge, production RTD deployment or online record write is part of the completed local intake boundary.
+
+
+## Local publication candidate
+
+Previous candidate (superseded by the revised candidate below). Source commit: `7bf6b36750532f891968c1b3064e8ca9b50dd0ac`. At this exact ref the existing US regression gate passed again, the frozen MyST passed strict Sphinx, and [language evidence](jhp3600c_us_en_web_evidence/language_projection_receipt.json) sealed source inventory, version, commit, MyST and verification HTML.
+
+A read-only archive of Hello-Docs/main at `83cc003714a81a6d8fa1e89b9b38829b76ed598e` supplied the existing `docs/publish/**` base. The shared assembler produced a local-only 106-target candidate. All 5,609 pre-existing files under `docs/publish/sources/**` remain byte-identical to that base; no target was removed. [Candidate fingerprint](jhp3600c_us_en_web_evidence/candidate.json).
+
+Aggregate preflight passed:
+
+```bash
+python3 -m tools.publish_branch_assembly --releases-root tmp/jhp3600c-releases --output-dir /tmp/jhp3600c-publish-base/docs/publish
+python3 -m sphinx -W -b html -D extensions=myst_parser,tools.rtd.portal /tmp/jhp3600c-publish-base/docs/publish/web /tmp/jhp3600c-publish-html
+```
+
+The portal emitted its local query corpus/deployment receipt, and every aggregate HTML image points to a packaged local file. These are local preflight receipts, not an RTD production build receipt. The final local page is `http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html`; its desktop/mobile DOM and packaged images were checked. The short local alias is `http://127.0.0.1:8765/manual_jhp3600c_us_en.html`.
+
+The candidate is assembled at `/tmp/jhp3600c-publish-base/docs/publish`, with isolated versioned release evidence under this worktree's `tmp/jhp3600c-releases`. Source and permanent QC evidence are committed in the engineering branch. Candidate publication/PR/merge/deployment and human English-baseline confirmation remain pending.
+
+Mobile LCD scrolling was exercised: the table's scroll position advanced to 286 px within its 354 px figure while the page stayed 390 px wide. [Scrolled description view](jhp3600c_us_en_web_evidence/mobile-lcd-scrolled.jpg).
+
+Final aggregate [desktop screenshot](jhp3600c_us_en_web_evidence/final-desktop.jpg) and [mobile screenshot](jhp3600c_us_en_web_evidence/final-mobile.jpg) record the actual portal candidate, including its language selector.
+
+
+## Operator safety layout correction (layout3)
+
+The operator's annotated screenshots showed that the previous local candidate's product-title bar, bullet-style safety heading and single-column safety body did not match physical p4. The prior content/build/overflow checks did not establish visual fidelity for this page.
+
+The visible product-title bar is now suppressed while its Sphinx document identity and chapter navigation remain available. Safety uses a white-on-dark full-width chapter bar, a reused filled warning triangle with bold source label/risk text, the original 6+5 safety list split, and the original 5+9 operating list split. Both bold leads and nested temperature/ventilation subitems remain native selectable text; grounding stays full width. Shared safety styles stack the columns in source order at 640px and below. Frozen source-local `presentation.css` supplies the title/bar geometry and warning-column sizing without changing shared rendering or other targets.
+
+No wording, values, warning labels or reading order changed: semantic leaf comparison against the preceding commit passed, and all other chapters remain structurally identical. There are now 84 asset decisions; the added triangle is a byte-identical shared SVG with explicit p4 provenance. All 1,128 positioned English/contact lines remain covered with no unmatched lines.
+
+Current source commit: `10b89f4343a001bc9b91d5ccb8c4503a69d5ce7a`. Technical candidate version: `git-20261005-31fd0692-layout3`. The preceding sealed release remains intact; the revised release has a separate versioned directory and [new source receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-layout3.json). Deterministic rebuild, cold IR replay, strict target Sphinx, Ruff and 26 shared replay/table/evidence tests passed. [Revised candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-layout3.json) records 106 targets and all 5,609 pre-existing source files byte-identical to the read-only Hello-Docs base.
+
+The local preview URL remains `http://127.0.0.1:8765/JHP-3600C/US/en/md/manual_jhp3600c_us_en.html`. [Desktop safety](jhp3600c_us_en_web_evidence/safety-desktop-layout3.jpg), [mobile safety](jhp3600c_us_en_web_evidence/safety-mobile-layout3.jpg), [mobile operating subitems](jhp3600c_us_en_web_evidence/safety-mobile-operating-layout3.jpg), [320px](jhp3600c_us_en_web_evidence/safety-narrow-layout3.jpg), [top without product bar](jhp3600c_us_en_web_evidence/top-without-product-bar-layout3.jpg) and [DOM measurements](jhp3600c_us_en_web_evidence/browser-safety-layout3.json) verify the actual assembled portal page. Desktop cells are equal-width and top-aligned; 390px/320px stack left then right, with viewport/document widths equal. The warning icon loads and all aggregate HTML images resolve to packaged local files. No push, PR, production publication or live data write occurred. Root `tmp/` was preserved.
+
+
+The intermediate layout2 standalone preview passed, but the aggregate's global stylesheet did not load source-local CSS. The shared frozen replay now accepts a package-contained, hash-bound `source_stylesheet` declaration and retains its style block in MyST, so the existing assembler carries it into each document. Historical packages without that declaration retain their existing replay. A regression test covers aggregate HTML preservation, style tampering, path escape and HTML closure rejection. Layout3 passed strict standalone and aggregate Sphinx, deterministic rebuild/cold IR+CSS replay, Ruff, maintainability, document links and the existing-target US fixture check. This remains a local candidate pending operator visual approval, with no remote push or publication.
+
+## Shared symbol correction and recurrence prevention (symbols1)
+
+The original name/meaning-only reuse decision was wrong. Several common PNGs
+contained cell backgrounds; the read-manual glyph was a person instead of the
+source's open book/information mark, and the Li-ion artwork included an extra
+`32`. The legacy decisions remain explicitly marked as superseded provenance.
+
+Selection now starts at the shared [Web symbol catalog](../../docs/renderers/web/assets/shared/symbols/manifest.json).
+Two existing native SVGs were repaired once in that common library (warning,
+book/information), WEEE reuses the pre-existing shared PNG unchanged, and eight
+missing suitable transparent variants are supplied once through the existing
+asset-intake recipe. No per-language or per-model second library is introduced.
+Every consumed target copy matches the selected shared variant byte-for-byte.
+The variant assets remain local review candidates; no live registry promotion.
+
+The catalog withdraws the eleven legacy asset hashes for new Web symbol tables.
+Renaming or copying a withdrawn file does not restore eligibility. The legacy
+print/Word source files and previous sealed releases are preserved. New external
+frozen Web sealing requires complete actual ComponentSpec row coverage, explicit
+shared glyph keys, unchanged shared bytes, authoritative PDF page/objects/caption
+bindings, real alpha and normalized native-glyph comparison. No candidate metadata
+can disable these checks. Historical stored receipts retain their sealed rules;
+ordinary complete panels do not enter this small-symbol gate.
+
+The source symbol captions are outlined. Their reviewed transcription and row
+coordinates are bound to independently rendered source caption pixels; this is
+not OCR or automated approval. Desktop/mobile and source comparisons remain
+required. [Before/after and source artwork](jhp3600c_us_en_web_evidence/symbols-shared-before-after.png)
+shows all eleven symbols on a checkerboard alongside the legacy and PDF artwork.
+
+Validation: 84 focused tests pass, including renamed withdrawn bytes, RGB gray
+background, RGBA rectangle, inset rectangle with transparent borders, transparent
+wrong glyph after rehash, row/meaning swap, source/caption tampering, traversal,
+shared-byte mismatch, preservation of original group opacity, native SVG recipe
+extraction, and seal rejection before evidence creation. Ruff, maintainability,
+doc links, source line coverage, deterministic rebuild and strict standalone and
+aggregate Sphinx pass. The US JE-1000F check is an existing-target regression only;
+its missing local Spec_Master snapshot is reported by the command and is not a
+JHP-3600C content check.
+
+The preceding full run tested 5,180 cases with one existing macOS path-alias error
+(`/var` versus `/private/var`) in identity provenance. The unchanged test passes
+with canonical `TMPDIR=/private/tmp`; the complete suite passes with that setting for this change: **5,194 tests
+in 745.862 seconds, 35 skipped**. No unrelated identity-path repair is included.
+
+Local browser checks: 1440px uses two equal symbol panels; 390px and 320px stack
+panels in native order with no page overflow. All eleven symbol images load and
+all page images resolve. [Desktop](jhp3600c_us_en_web_evidence/symbols-desktop-symbols1.jpg),
+[desktop lower](jhp3600c_us_en_web_evidence/symbols-desktop-lower-symbols1.jpg),
+[mobile](jhp3600c_us_en_web_evidence/symbols-mobile-symbols1.jpg),
+[mobile right panel](jhp3600c_us_en_web_evidence/symbols-mobile-right-symbols1.jpg),
+[narrow](jhp3600c_us_en_web_evidence/symbols-narrow-symbols1.jpg).
+Root `tmp/` is untouched; this remains an isolated Git-only local candidate.
+
+Final source commit: `c6206a0a1dde99817aee3b324d267be5d883d18e`; candidate version:
+`git-20261005-31fd0692-symbols1`. [Fresh source receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-symbols1.json)
+verifies at that commit. [Validation record](jhp3600c_us_en_web_evidence/validation-symbols1.json),
+[withdrawn-byte record](jhp3600c_us_en_web_evidence/withdrawn-symbols1.json),
+[browser measurements](jhp3600c_us_en_web_evidence/browser-symbols1.json) and
+[final candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-symbols1.json)
+record the boundary. The final 106-target assembly preserves all 5,609 original
+source files byte-for-byte and passes strict Sphinx. The final local preview was
+reloaded and checked against the selected shared symbol pool. No push, PR, merge,
+production deployment or online data/registry write occurred.
+
+
+## Operator FCC heading correction (fcc1)
+
+The annotated Web screenshot requests removal of the added visible “● FCC”
+chapter heading. Native physical p6 starts directly with the compliance card.
+Source-local `presentation.css` suppresses that heading, including its generated
+bullet and layout box; the FCC chapter anchor, original compliance component,
+copy and artwork are unchanged. The technical candidate version is
+`git-20261005-31fd0692-fcc1`; previous sealed releases remain intact.
+
+Deterministic rebuild and strict standalone Sphinx pass. The correction is
+limited to this source package and stays in the isolated Git-only worktree.
+
+Source commit: `2302c2580222def3d217e8dbe506f9527c3724f7`.
+[Fresh receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-fcc1.json),
+[validation](jhp3600c_us_en_web_evidence/validation-fcc1.json) and
+[browser measurements](jhp3600c_us_en_web_evidence/browser-fcc1.json) bind the result.
+All 18 focused frozen replay/evidence tests pass, as do document links and
+strict aggregate Sphinx. The 106-target assembly preserves all 5,609 original
+Hello-Docs source files byte-for-byte. At 1440px the FCC card retains two equal
+columns; at 390px it stacks in order, with no page overflow. The visible heading
+has zero layout height on both. [Desktop](jhp3600c_us_en_web_evidence/fcc-desktop-fcc1.jpg),
+[mobile](jhp3600c_us_en_web_evidence/fcc-mobile-fcc1.jpg) and
+[restored user pane](jhp3600c_us_en_web_evidence/fcc-final-preview-fcc1.jpg) record
+the local preview. This correction has not been pushed or published.
+
+
+## Operator overview heading correction (overview1)
+
+Native physical p7 (printed p04) has a full-width dark PRODUCT OVERVIEW bar
+with white copy, followed by flush-left round FRONT VIEW / RIGHT SIDE VIEW
+markers. The generic Web H2 marker style missed the bar, and theme H3 padding
+added an 8px inset. Source-local CSS restores the bar with shared color/radius
+tokens and removes that inset while using the native-sized round markers.
+The existing complete labeled front/side artwork is reused without extraction
+or byte changes; semantic copy is byte-identical to the previous source.
+
+Technical version: `git-20261005-31fd0692-overview1`. Deterministic rebuild
+and strict standalone Sphinx pass. The preceding releases remain sealed.
+
+Source commit: `d89212af49cfbcb08a57b1f6e23e682a390d59d5`.
+[Fresh receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-overview1.json),
+[validation](jhp3600c_us_en_web_evidence/validation-overview1.json) and
+[browser measurements](jhp3600c_us_en_web_evidence/browser-overview1.json) record
+the result. Strict aggregate Sphinx and document links pass. The assembly
+retains 106 targets and preserves all 5,609 pre-existing source files byte-for-byte.
+At 1440px and 390px the dark/white bar spans the artwork band; both view markers
+have zero padding and share its left edge. Both original images load and the
+page has no horizontal overflow. The FCC heading remains hidden.
+[Desktop](jhp3600c_us_en_web_evidence/overview-desktop-overview1.jpg),
+[mobile](jhp3600c_us_en_web_evidence/overview-mobile-overview1.jpg) and
+[restored user pane](jhp3600c_us_en_web_evidence/overview-final-preview-overview1.jpg)
+show the local candidate. Root `tmp/` stays untouched; no remote push or publication.
+
+
+## Operator LCD status emphasis correction (lcdstatus1)
+
+The LCD description table now marks all leading status words with explicit
+`strong` emphasis in its existing ComponentSpec rich HTML: 12 `On:`, 4 `Blink:`
+and 12 `Off:` labels across rows 1, 2, 3, 4, 6, 8, 9, 19, 22, 24, 25 and 27.
+The rich-text input carries the correction through shared rendering and frozen
+replay. Removing only those new tags reproduces the previous semantic source
+exactly; wording, plain-text fields, icons and other rows are unchanged.
+
+Technical version: `git-20261005-31fd0692-lcdstatus1`. Deterministic rebuild,
+source line coverage and strict standalone Sphinx pass. Previous seals remain.
+
+Source commit: `50db389f24bbb3fe98c3d9d300c2718e72a5c5a8`.
+[Fresh receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-lcdstatus1.json),
+[validation](jhp3600c_us_en_web_evidence/validation-lcdstatus1.json) and
+[browser measurements](jhp3600c_us_en_web_evidence/browser-lcdstatus1.json) bind
+the result. Strict aggregate Sphinx passes. The 106-target assembly retains
+all 5,609 existing source files unchanged. Browser checks at 1440px and 390px
+confirm all 28 labels have computed weight 700 while their paragraph weight
+stays 400; no leading status label is unmarked. The existing mobile LCD table
+scrolls to its description column (286px), with no page overflow.
+[Desktop](jhp3600c_us_en_web_evidence/lcdstatus-desktop-lcdstatus1.jpg),
+[mobile description](jhp3600c_us_en_web_evidence/lcdstatus-mobile-lcdstatus1.jpg)
+and [restored user pane](jhp3600c_us_en_web_evidence/lcdstatus-final-preview-lcdstatus1.jpg)
+show the corrected local preview. Root `tmp/` remains untouched; no push or publication.
+
+
+## Whole-manual shared heading correction (headings3)
+
+The stylesheet was loaded, but the whole-book intake shifted native chapter
+H1 to H2 and section H2 to H3 beneath a synthetic document title. Generic H2
+round markers and theme H3 padding therefore replaced chapter bars and native
+section markers. Earlier safety/overview CSS fixed individual symptoms only.
+
+[Heading review inventory](../../data/manual_sources/JHP-3600C/US/en/git-20261005-31fd0692/source/heading_audit.json)
+records all 84 flow and specification-carrier headings with original physical
+pages and reviewed roles. Native chapter/product bars now use actual H1 and
+native section markers use H2, directly consuming the existing shared
+`web_manual.css`. The duplicate overview and major safety title CSS is removed.
+No new renderer, family stylesheet, model-specific global rule or asset exists.
+
+Original exceptions remain explicit: plain preface; hidden synthetic document,
+FCC/contact and panel labels; safety subsection strips; six shared warranty card
+tabs; numbered App steps; six small gray labels. The two accessory product bars
+use native H1. Thirteen specification group headings carry accessible level 2;
+the duplicate ATS component label is hidden beneath its source product bar.
+
+Technical version: `git-20261005-31fd0692-headings3`. All 84 actual standalone
+HTML headings match the reviewed source level in order. Removing only heading
+metadata reproduces the previous semantic source exactly: body wording,
+component semantics and artwork are unchanged. Deterministic rebuild,
+source coverage, strict standalone Sphinx and document links pass.
+
+The interim headings1 browser check found that Furo hides the TOC when the first
+H1 has no child heading. The plain preface remains at level 2 under the hidden
+document identity, while native chapter bars remain H1 siblings. Existing Furo
+navigation is thus preserved without a template fork or extension. A stronger
+source selector also hides the redundant ATS carrier against generic H2 rules.
+Headings2 is a separately sealed candidate; the interim release stays intact.
+
+A hash-target browser regression exposed Furo's transparent heading highlight
+overriding the native safety subbar fill while retaining white copy. The source
+exception now outranks that theme selector. Final version is headings3; both
+interim sealed releases remain available for provenance.
+
+
+## Key combinations and accessory labels (styles4)
+
+The operator identified a generic table in place of the native key-combination
+panel, and availability copy flattened into seven titles. The key table now
+declares the existing `HB-TABLE-KEY-COMBINATIONS` ComponentSpec with its original
+three-column copy and a native carrier. Shared CSS owns the gray first column,
+white operation/function columns, paired button captions with POWER/USB/AC
+emphasis, plus signs, and shared CSS clocks for 3s/3s/1s. The component scrolls
+inside its frame on narrow screens. Seven `SOLD SEPARATELY` labels use the shared
+dark rounded badge; inline heading spans survive MyST replay and navigation.
+
+Visual inventory exposed a separate artwork mismatch: old shared POWER/AC marks
+were above their switches, and DC/USB did not match native USB. Three original
+PDF p13 lower-marking variants are added to the existing shared button directory
+as Git review candidates. The new recipe retains every path inside each glyph,
+including circular face, border, switch, indicator and outlined marking, while
+excluding the table backdrop. No colors or strokes are changed. Existing assets
+remain intact; prior target bindings record their superseded status. No online
+registry promotion is performed in this Git-only task.
+
+MuPDF emits filled-and-stroked objects as two SVG paths on this page. The shared
+vector selector now accepts the verified paired mapping and retains both paths
+and ancestor transforms/opacity; unsupported mappings still fail. A regression
+checks transparent edges, a white face, and a black indicator. Source line
+coverage still has zero unmatched lines. Final browser/build evidence follows.
+
+
+Final source commit: `36a2629946ab01dbd40079a7c23552b0b98203f2`, including the
+heading correction at `c12696732e1f5464564d373e4f02ec2c584a0d30`.
+[Seal receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-styles4.json),
+[validation](jhp3600c_us_en_web_evidence/validation-styles4.json) and
+[browser measurements](jhp3600c_us_en_web_evidence/browser-styles4.json) bind the
+final `git-20261005-31fd0692-styles4` local candidate. All 84 heading roles, native
+levels, hidden exceptions, bar colors and round-marker alignment pass at 1440px,
+390px and 320px. Hash-targeted safety strips retain their dark/white treatment.
+All 28 LCD status labels remain weight 700. Seven availability labels have
+rounded source-appropriate contrast: dark/white on ordinary headings and
+white/dark inside accessory chapter bars. No page overflows; narrow key tables
+scroll inside their own frame. All six button image references load unchanged
+from the three shared variants; POWER/USB/AC captions are weight 700.
+
+Strict standalone and aggregate Sphinx, byte-identical replay, source coverage,
+ruff, maintainability and doc links pass. Full unittest: 5,196 tests, 35 skipped;
+final focused tests: 33 pass. The 106-target assembly preserves all 5,609 baseline
+source files byte-for-byte. The generic JE-1000F US fixture check cannot complete
+because this isolated checkout lacks its local phase2 snapshot; the failed
+command and output are recorded in validation. No online synchronization was
+performed, and no PR is opened with an incomplete generic fixture check.
+
+Visual evidence: [headings desktop](jhp3600c_us_en_web_evidence/headings-desktop-styles4.jpg),
+[headings mobile](jhp3600c_us_en_web_evidence/headings-mobile-styles4.jpg),
+[key table desktop](jhp3600c_us_en_web_evidence/key-combinations-desktop-styles4.jpg),
+[mobile buttons](jhp3600c_us_en_web_evidence/key-combinations-mobile-buttons-styles4.jpg),
+[mobile operation column](jhp3600c_us_en_web_evidence/key-combinations-mobile-operation-styles4.jpg),
+[availability desktop](jhp3600c_us_en_web_evidence/sold-separately-desktop-styles4.jpg),
+[availability mobile](jhp3600c_us_en_web_evidence/sold-separately-mobile-styles4.jpg),
+[12x original-vector variants](jhp3600c_us_en_web_evidence/native-buttons-12x-styles4.png),
+and [restored user pane](jhp3600c_us_en_web_evidence/final-preview-styles4.jpg).
+The browser viewport is restored to its default 641×770 pane. Root `tmp/` remains
+untouched. This records local browser acceptance only; operator approval and
+production publication remain separate.
+
+## car1 — Native car labels and CSS-only caption frame (2026-10-06)
+
+The p24 car figure used text-stripped artwork but retained its empty white
+capsule. Its source text was only represented approximately by ALT. The new
+source uses the existing `HB-SPECIAL-REFERENCE-FIGURE` / `base-art-live-copy`
+component with exact, selectable `Vehicle` and
+`*The car charging cable is sold separately.` labels. The capsule is drawn by
+shared `.hb-reference-live-pill`; the full native gray panel stays in the art.
+
+The same-model and shared inventory remains in `source/asset_decisions.json`.
+No available shared figure matches this US housing/port geometry. The corrected
+asset is replayable through `manual_jhp3600c_us_car_framefree.json`, with the
+original PDF hash, p24 crop, retained drawing indices and excluded caption
+object 1068. Generic retained-path SVG export now preserves source clipping,
+opacity and transforms; symbol reconstruction still requires every drawing
+inside the glyph bounds. The old PNG is retained for traceability and marked
+`superseded-do-not-reuse`; it fails the new caption-region check.
+
+The shared artwork contract, Codex extraction skill, UI prompt and operator
+playbook prohibit acquiring/reusing independent empty caption frames and require
+bare-art review before CSS labels. Fresh frozen-Web sealing checks actual
+ReferenceFigure specs, bound asset hashes and contrasting CSS fill rectangles.
+A baked fill occupying >=85% of the inset rectangle fails. Same-tone,
+outline-only and undeclared frames still require visual review; this check is
+not OCR or an arbitrary image classifier. Historical receipt verification is
+unchanged. No live asset registry promotion or online writes were performed.
+
+Completed before source commit: 37 focused regressions, repository ruff,
+maintainability guardrails, skill quick validation, document links, source line
+coverage (zero unmatched), recipe pipeline byte parity, deterministic source
+replay and strict standalone Sphinx. Bare SVG inspected in-browser at 12x;
+standalone desktop, 390px and 320px show the exact labels, CSS capsule and no
+page overflow. At 320px the CSS capsule grows to two lines.
+
+Full-suite results, final aggregate browser checks and source-HEAD receipt are
+recorded separately in the car1 evidence after completion. The generic
+`build.py check --config configs/config.us-en.yaml --model JE-1000F --region US`
+remains blocked by this worktree's missing local `data/phase2/Spec_Master.csv`;
+no unrelated snapshot was fabricated or synchronized under Git-only scope.
+
+car1 final acceptance: source commit `49c3d8ff47f6f663c977398992f9c369912ca851`,
+version `git-20261005-31fd0692-car1`; full unittest **5,203 passed, 35 skipped,
+837.624s**. Fresh receipt verified against the exact source commit. Strict
+aggregate Sphinx passed after removing this turn's temporary preview symlink
+from the output tree; the receipt's symlink rejection was kept intact. Aggregate
+contains 106 targets and all 5,609 baseline source files remain byte-identical.
+Final browser assertions passed at 1440/390/320: 84 heading roles, 28 bold LCD
+status labels, seven availability pills, loaded shared key-combination artwork,
+two live car labels, one CSS caption capsule, no old car PNG reference and no
+page/label overflow. Primary checkout still has only its pre-existing `tmp/`.
+
+Evidence: [validation](jhp3600c_us_en_web_evidence/validation-car1.json),
+[browser DOM](jhp3600c_us_en_web_evidence/browser-car1.json),
+[source-HEAD receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-car1.json),
+[desktop](jhp3600c_us_en_web_evidence/car-caption-desktop-car1.png),
+[390px](jhp3600c_us_en_web_evidence/car-caption-mobile-car1.png),
+[320px](jhp3600c_us_en_web_evidence/car-caption-320-car1.png),
+[bare native art at 12x](jhp3600c_us_en_web_evidence/native-car-framefree-12x-car1.png),
+[baseline parity](jhp3600c_us_en_web_evidence/baseline-source-parity-car1.json), and
+[final user-window preview](jhp3600c_us_en_web_evidence/final-preview-car1.png).
+Local commits only; no push/PR/merge/publication. The generic phase2 fixture
+check limitation above remains explicit and is not counted as a passing check.
+
+## App shared download and inline control correction (app1)
+
+Physical p28 now uses the existing `HB-SPECIAL-APP/download` component with two artwork-over-copy columns. Store badges and the complete Jackery QR are byte-identical copies of `docs/renderers/contracts/assets/app/app_store_badges.png` and `app_download_qr.png`. Apple Vision independently decoded the shared QR, the retained source crop and the rendered native p28 to `https://download.jackery.com/app/jackery.html`. The old combined crop is retained for traceability with `superseded-do-not-reuse`; no generated document references it. Complete phone screenshots remain unchanged.
+
+Step 2.1 uses the existing `HB-SPECIAL-APP/inline-control` and shared `.hb-inline-add-device-icon`; step 2.2 restores native bold `POWER` and `"Icon Flashed"`. The source-local coverage audit now assembles rich paragraph spans through the existing flow HTML API before matching native lines, so bold boundaries do not create false missing-text reports. No shared renderer or CSS logic changes.
+
+The 26 relevant App component/IR tests passed (one skipped), ruff passed, source-native coverage has zero unmatched lines, strict standalone Sphinx passed, and frozen output replay is byte-identical. Final aggregate browser evidence is recorded separately after sealing the source commit. This remains a local Git-only candidate.
+
+Final app1 acceptance: strict aggregate Sphinx passed for 106 targets; all 5,609 baseline source files remain byte-identical. Desktop 1440px, mobile 390px and narrow 320px show two artwork-over-copy columns, the shared circular plus, native bold spans and no document overflow. All 84 heading roles, 28 bold LCD status labels, seven SOLD pills and the key table passed regression checks; the CSS car caption still passes. See [App validation](jhp3600c_us_en_web_evidence/validation-app1.json), [browser evidence](jhp3600c_us_en_web_evidence/browser-app1.json), [desktop](jhp3600c_us_en_web_evidence/desktop-app1.png) and [mobile](jhp3600c_us_en_web_evidence/mobile-app1.png). Source commit: `6c72996742b72f226a8052dcab65627e89ca05d7`. No full-suite repeat was needed for the unchanged shared renderer; relevant App tests and the source-local rich-span audit negative control passed.
+
+## App phone artwork size correction (app2)
+
+The complete two-phone `app_add.png` source now declares the existing `hb-app-add-device-phone-art hb-app-phone-pair` shared classes, limiting its centered display to `min(100%, 22rem)`. The three-phone result uses the existing `hb-app-phone-trio` limit of `36.75rem`. These are source presentation bindings; shared CSS, phone artwork bytes, full frames and embedded native step numbers are unchanged. Strict source/aggregate builds and desktop/mobile evidence are recorded in the app2 validation artifact.
+
+App2 accepted at 1440px, 390px and 320px: centered pair widths 352px / 352px / 288px and trio widths 588px / 358px / 288px match the unchanged shared CSS limits. Aspect ratios and original asset hashes are preserved, parent overflow remains visible, and document widths equal viewports. Source-native coverage is zero unmatched, 107 replay files are byte-identical, strict standalone/aggregate Sphinx passed, and all 5,609 baseline source files are unchanged. Prior 84 heading roles, bold status words and App emphasis remain correct. [Size validation](jhp3600c_us_en_web_evidence/validation-app2.json), [current preview](jhp3600c_us_en_web_evidence/preview-app2.png). Source commit: `c4e352ec0e80a552a21a7816b04a5ae4d52af663`.
+
+## Shared reference screenshot reuse (app3)
+
+The user explicitly marked the cropped three-phone result image “用共用图啊 边缘不完整”. The candidate now reuses `docs/renderers/contracts/assets/app/app_connect_result_steps.png` byte-identically, with SHA-256 `17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3`. All phone corners, status bars, bottom controls and steps 2.3/2.4/2.5 are present. The original crop is retained only for traceability and marked `superseded-do-not-reuse`. The unchanged shared `hb-app-phone-trio` size rule remains in use.
+
+This is an explicit reference-UI exception: the shared demonstration displays Explorer 1000 / 80% / 25°C / DC and AC, whereas the native screenshot displays HomePower 3600 Pro Max / 100% / 33°C / USB, AC and DC. The native functional instructions, product specifications and identity elsewhere remain authoritative; the source sentence “The above screenshots are for reference only.” is now selectable Web copy after the image. The image alt identifies it as a generic Explorer 1000 example. No screenshot was cropped or edited, and no shared renderer/CSS logic changed.
+
+App3 accepted at 1440px, 390px and 320px: the complete shared image loads at the existing trio limit, centered with unchanged aspect ratio and no clipping/overflow. Exactly one selectable reference-only paragraph follows it. There are zero references to the retired cropped result. Native-source line coverage is zero unmatched, 108 frozen replay files are byte-identical, strict standalone/aggregate Sphinx passed, and 5,609 baseline files remain unchanged. [Shared-art validation](jhp3600c_us_en_web_evidence/validation-app3.json), [preview](jhp3600c_us_en_web_evidence/preview-app3.png). Source commit: `e12ab22b09c4d9f715a61816858961009c659f88`.
+
+## ESS source labels, model strips and warning correction (ess1)
+
+The unchanged `ess_connection.png` is now bound to existing ReferenceFigure `base-art-live-copy` with all three native p30 captions inside their source rectangles: the ATS power cable, expansion cable and installation-reference footnote. Full panel edges are preserved; the three former image-following paragraphs are removed from display. No bitmap is edited or extracted.
+
+The p30 ESS title and p31 SPECIFICATIONS title carry their original `Model:` labels inside the same navigable H1 using shared `hb-heading-model`. The invented “— SMART HOME BACKUP SYSTEM” suffix is removed from the visible p31 title; its distinct source anchor remains. The warning uses the existing callout component and shared dark transparent triangle, restoring a white outlined whole-row warning with bold native body via `hb-source-warning-lockup`. Shared CSS owns these declarations and mobile stacking.
+
+Narrow-screen follow-up (ess2): the heading permalink is absolutely positioned within the model strip, preserving keyboard access without adding a blank flex row at 320px. The source/artwork and native text remain unchanged.
+
+Final ESS acceptance (ess2): source commit `5be6bdf2a3d6d5dfe22ec57d57e08e5ddf1f706f`. Strict standalone and 106-target aggregate builds passed. All 108 replay files and all 5,609 baseline source files are byte-identical. The 17 focused ReferenceFigure/callout regressions passed; native-source coverage is zero unmatched. Final 1440px/390px/320px browser assertions confirm three contained selectable captions, two model labels inside their H1 strips, white/dark-outline warning with loaded shared triangle and 700-weight body, no broken images or document overflow. Previous 84 heading roles, 28 bold status labels, seven availability pills and key artwork pass. No full-suite repeat is needed for this source/CSS repair without shared Python logic changes.
+
+Evidence: [validation](jhp3600c_us_en_web_evidence/validation-ess2.json), [browser](jhp3600c_us_en_web_evidence/browser-ess2.json), [source receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-ess2.json), [desktop diagram](jhp3600c_us_en_web_evidence/desktop-ess2.png), [title and warning](jhp3600c_us_en_web_evidence/title-warning-desktop-ess2.png), [specifications](jhp3600c_us_en_web_evidence/specifications-desktop-ess2.png), [390px](jhp3600c_us_en_web_evidence/mobile-ess2.png), [320px diagram](jhp3600c_us_en_web_evidence/narrow-ess2.png), and [320px specifications](jhp3600c_us_en_web_evidence/specifications-narrow-ess2.png). Local Git only; no push/PR/merge/publication or online writes. The primary checkout remains untouched with its pre-existing `tmp/`.
+
+## Product title availability recheck (sold2)
+
+The operator highlighted the Battery Pack 3600 and Automatic Transfer Switch title availability labels against native pp32–33. Current ess2 source already splits both headings into `hb-heading-title` and the existing shared `hb-sold-separately` span. A fresh browser inspection confirms one white pill per dark product strip, dark 700-weight text, 999px radius, no visible dash, and contained labels without page overflow at 1440px, 390px and 320px. No source, artwork or CSS modification was required. [Current desktop evidence](jhp3600c_us_en_web_evidence/sold-product-desktop-sold2.png) and [DOM checks](jhp3600c_us_en_web_evidence/browser-sold2.json) record this acceptance. The preview was refreshed and positioned on the product section. Local evidence commit only.
+
+## PACKAGE LIST reuse decisions before extraction (package1)
+
+| Slot | Candidates checked | Identity/content | Decision and reason | Source | Boundary policy |
+| --- | --- | --- | --- | --- | --- |
+| Station items | Frozen `inbox_unit.png`, `inbox_ac.png`, `inbox_terminal.png`, common `manual_icon1.png` | Same JHP-3600C front silhouette, US charging plug, terminal and document icon | Reuse existing bytes; no extraction | Existing p6 assets and shared document icon | CSS whole-panel outline; editable labels |
+| Battery items | `docs/renderers/web/assets/jbp3600a_eu_en/inbox_unit_clean.png`, `inbox_cable_clean.png`, shared document icon | Same JBP-3600A front silhouette and expansion cable; no region-specific ports exposed | Reuse existing bytes; generic document pictogram replaces English cover miniature for language-neutral illustration | Existing clean package art | CSS dashed outline and availability capsule |
+| ATS items | Target panels, manual_sources, Web/LaTeX assets, template common assets and asset recipes | No complete matching JA-TS05A, marking template, power cable, neutral wire, gland or bonding jumper individual art | Extract six original illustrations because existing three-panel PNGs clip the upper outline and contain copy | Native PDF physical p34 | No baked frame/caption text; CSS panel outline and item labels |
+| Availability label | Existing shared capsule rules and native p34 | Decorative cart and gray caption capsule | Draw both capsule and decorative cart with CSS; no new glyph asset | Native p34 visual reference | Native selectable Sold separately wording |
+
+All document covers use the existing generic document icon, with native selectable labels distinguishing User Manual, Owner's Manual, Installation Manual and Quick Start Guide. Tiny cover text is illustrative detail and will be explicitly recorded as omitted, not counted as preserved copy. New art is a Git-only quarantined candidate; no online registry write is in scope.
+
+Native SVG selection on p34 fails the existing fill/stroke mapping guard. The six needed illustrations therefore use the existing crop-only high-resolution PNG pipeline, preserving original clipping and opacity. No mapping guard is weakened and no paths are replayed into an unclipped drawing.
+
+#### PACKAGE LIST editable groups — package1
+
+- Physical p34 three groups now use shared package panel/list CSS, native captions, complete solid/dashed outlines and CSS availability capsules/cart. 4/3/9 item labels preserve native order; mobile uses two columns. No empty text frame or capsule remains in bound item art.
+- Reused station unit/AC/terminal bytes are exposed under `jhp3600c_us_shared`; battery/cable reuse existing `jbp3600a_eu_en`; all document illustrations reuse `common_assets/in_the_box/manual_icon1.png`. Six ATS assets use the pinned crop-only quarantine recipe; native source 12x four-edge inspection and repeat pipeline bytes agree. Product/template fixed printed markings remain.
+- Retired whole package panels remain traceable as `superseded-do-not-reuse`. Their bboxes are excluded from coverage. `illustrative_detail_omissions.json` explicitly records the four miniature covers; native item labels remain visible. The audit excludes image paths/CSS/anchors from the semantic corpus; removing the Neutral Wire caption is correctly rejected by a negative control.
+- Source-local replay and audit also reject any rebinding of retired package art; a negative control for `ess_station_package.png` passed. This keeps old bytes for traceability without allowing future accidental reuse.
+- Focused Manual Flow/render contract/Web presentation tests passed (89); Ruff, doc links, source-native coverage (zero unmatched), strict standalone Sphinx and 116-file byte-identical replay passed. Browser 1440/390/320 verified all images loaded, 16 editable item labels, complete CSS borders, two availability labels and no horizontal overflow.
+
+Final local package1 source commit: `be3ad420f7fb7ea86c1bed54073cff3cd56c34ed`; technical version `git-20261005-31fd0692-package1`. [Sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-package1.json) pins this source, frozen MyST and strict standalone HTML. Aggregate strict Sphinx passed for 106 targets; all 5,609 baseline source files remain byte-identical ([fingerprint](jhp3600c_us_en_web_evidence/candidate-package1.json)). The canonical port8765 preview now serves these three editable package groups. [Final desktop](jhp3600c_us_en_web_evidence/package1-final-desktop.png) and [mobile](jhp3600c_us_en_web_evidence/package1-final-mobile.png) show the actual aggregated page. Desktop/390px/320px DOM audits verify no overflow, all art loaded, all native item labels present, and no retired package image bound. Existing 84 heading roles and 7 heading availability pills are preserved. Local-only: no push, PR, merge, publication or live-data write. Root `tmp/` and earlier sealed releases remain intact.
+
+#### Charging introduction — charging1
+
+Physical p21: restored native bold `Green energy first:` and split `Fully charge the product before its first use.` into its own selectable dark/white/bold prose capsule using shared `hb-prose-pill`. Native wording remains byte-identical after joining the two paragraphs with a space; all other chapters are identical to package1. No artwork, callout severity or title hierarchy changes.
+
+Native font inspection confirms the first-charge capsule uses 6.6pt bold vs 6.0pt body. Shared prose capsule therefore uses 1.1em, preserving this ratio (charging2).
+
+Final charging2 source commit: `169ee17e8f18c4372dad4d6689e89dc59788e7e2`. Strict standalone and 106-target aggregate Sphinx passed; 116 frozen files replay byte-identically, source-native coverage has zero unmatched lines, and all 5,609 baseline source files remain byte-identical. [Sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-charging2.json), [candidate](jhp3600c_us_en_web_evidence/candidate-charging2.json), [desktop](jhp3600c_us_en_web_evidence/charging2-final-desktop.png), [mobile](jhp3600c_us_en_web_evidence/charging2-final-mobile.png), [320px](jhp3600c_us_en_web_evidence/charging2-narrow.png) and [DOM audit](jhp3600c_us_en_web_evidence/charging2-final-audit.json) record bold 700, white text on brand-dark fill, separate paragraph, no overflow, and the unchanged 84 headings. Original local preview refreshed. Only local commits; root `tmp/`, all earlier releases and unrelated target sources are preserved.
+
+#### 120V charging native inset caption — charge120
+
+Physical p21: moved `Connect the AC charging cable to the AC input port of the product and a wall outlet.` into the existing ReferenceFigure base-art-live-copy component at the native lower-right rectangle. The current textless `charge120.png` is byte-identical (SHA-256 `378983dcedd288cc23b4752b949ca53ddf98dcf5a1334ce6b0319c59a0e3ecbb`); complete source edges retained. Removed separate visible paragraph; no copy rewording or duplicate text. Shared `hb-reference-contained-copy` keeps the component's readable mobile labels within the same gray frame. No new artwork extraction, registry, schema or renderer adapter.
+
+The reused crop contains six white exterior page-bleed rows (309–314/315) below its complete gray frame (last border rows306–308). Source geometry declares `--hb-art-page-bleed-bottom:1.9%` so mobile CSS hides only this outside white strip against the panel tone. The gray frame/product drawing and asset bytes remain intact; no global color removal or asset recrop. Desktop uses the source 6pt/316pt caption ratio (1.9cqw) and mobile keeps 0.88rem text.
+
+Final charge120 source commit: `55e0f059a80da752971a3d478cf821f76b151a15`; technical version `git-20261005-31fd0692-charge120`. The 10 focused ReferenceFigure tests passed, source-native coverage has zero unmatched lines, and all 116 frozen files replay byte-identically. Strict standalone and 106-target aggregate Sphinx builds passed; all 5,609 baseline source files remain unchanged. [Sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-charge120.json), [candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-charge120.json), [canonical desktop](jhp3600c_us_en_web_evidence/charge120-final-desktop.png), [canonical mobile](jhp3600c_us_en_web_evidence/charge120-final-mobile.png) and [final DOM audit](jhp3600c_us_en_web_evidence/charge120-final-audit.json) record the current port8765 preview. At 1440px, 390px and 320px, the caption remains selectable and contained within the gray figure, the reused art loads, the external duplicate paragraph count is zero, and there is no page overflow. Only local Git commits; the root checkout's `tmp/`, earlier sealed releases and other target sources remain intact.
+
+#### Outlet label spacing — spacing1
+
+The operator requested tighter space above and below `240V AC Outlet`. Source-local geometry now sets the preceding paragraph bottom margin and heading top margin to 0.4rem, heading bottom margin to 0.2rem, and adjacent diagram top margin to 0.3rem. This removes the accumulated paragraph/heading/image margins without changing shared heading appearance, native copy, diagram bytes or other sections. The frozen package was rebuilt from source; 116 replay files are byte-identical and strict standalone Sphinx passed. Technical version: `git-20261005-31fd0692-spacing1`. Canonical responsive evidence follows after sealing.
+
+Spacing1 source commit: `497be74868c7f86ae027b2041628167d74cf76d4`. The canonical preview now has 12.80px above the outlet label and 7.99px below it, compared with 30.71px and 27.51px before. Browser widths 1440/390/320 verify loaded art and no horizontal overflow. Strict aggregate Sphinx passed for 106 targets; all 5,609 baseline source files remain byte-identical. [Spacing audit](jhp3600c_us_en_web_evidence/spacing1-audit.json), [desktop](jhp3600c_us_en_web_evidence/spacing1-desktop.png), [mobile](jhp3600c_us_en_web_evidence/spacing1-mobile.png), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-spacing1.json) and [candidate](jhp3600c_us_en_web_evidence/candidate-spacing1.json) record acceptance. Local-only Git commits; root `tmp/` and prior sealed versions are preserved.
+
+#### ATS independent title/availability capsules — atspills1
+
+Native physical p18 has separate light `CONNECT TO ATS` and dark `SOLD SEPARATELY` capsules. The source H3 now binds shared `hb-heading-label-pair`, whose transparent container holds the existing `hb-heading-title` and `hb-sold-separately` spans. Each capsule owns its own background; the row uses a 0.65rem gap and wraps on narrow screens. Native wording, title level/anchor and all artwork remain unchanged. Shared styling and authoring guides document the reusable composition. Strict standalone Sphinx passed and all 116 frozen files replay byte-identically. Version: `git-20261005-31fd0692-atspills1`.
+
+Final atspills1 source commit: `79fd58123fe776a233e1ba741148c1d0e1b4e201`. Strict aggregate Sphinx passed for 106 targets; all 5,609 baseline source files remain byte-identical. Canonical browser widths 1440/390/320 confirm transparent heading container, separate light/dark capsule fills, matching heights, 10.4px gap and no horizontal overflow. Existing 84 headings and seven title availability labels remain present. [Desktop](jhp3600c_us_en_web_evidence/atspills1-desktop.png), [mobile](jhp3600c_us_en_web_evidence/atspills1-mobile.png), [DOM audit](jhp3600c_us_en_web_evidence/atspills1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-atspills1.json) and [candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-atspills1.json) record the refreshed local preview. Local Git only; no online writes, push, PR, merge or publication. Root `tmp/` and prior sealed releases are preserved.
+
+#### Balanced FCC Web copy flow — fccbalance1
+
+The operator reported a much taller left column with large empty space below the right column. An opt-in shared `hb-fcc-balanced-flow` container now presents the existing FCC component as a balanced two-column text flow on desktop. The approved FCC mark floats at the opening so text can continue below it. The unchanged opening, NOTE body, four measures and MODIFICATION retain their DOM order; phones use one column. The complete semantic ComponentSpec, its print column break, native wording and artwork are unchanged. No renderer/schema adapter or new asset. Strict standalone Sphinx passed, 20 FCC semantic/rendering/contract tests passed, source-native coverage is zero unmatched and 116 files replay byte-identically. Version: `git-20261005-31fd0692-fccbalance1`.
+
+Final fccbalance1 source commit: `22fc451e1f348c0633b13cd20566556f0858a21b`. Strict aggregate Sphinx passed for 106 targets; all 5,609 baseline source files remain byte-identical. Canonical browser checks at 1440px and 1024px confirm balanced two-column copy, with bottom differences of 4.85px and 0px respectively. At 390px/320px the copy becomes a single column. All widths preserve exactly the previous FCC text, four measure items, loaded original logo, 84 headings and seven title availability labels, with no horizontal overflow. [Desktop](jhp3600c_us_en_web_evidence/fccbalance1-desktop.png), [mobile](jhp3600c_us_en_web_evidence/fccbalance1-mobile.png), [mobile ending](jhp3600c_us_en_web_evidence/fccbalance1-mobile-bottom.png), [DOM audit](jhp3600c_us_en_web_evidence/fccbalance1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-fccbalance1.json) and [candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-fccbalance1.json) record the current canonical preview. Local Git only; root `tmp/`, all earlier sealed releases and unrelated targets remain intact.
+
+#### 120V UPS load-condition emphasis — ups120style1
+
+Native physical p14 / printed p11 uses separate dark bold capsules for `Total Loads ≤1440 W:` and `Total Loads >1440W:`. Source Manual Flow now splits the former continuous paragraph into an introduction, the two shared `p.hb-prose-pill > strong` labels and their native body paragraphs. Restored bold native output-voltage phrase, primary left NEMA port instruction, one 1440 W and three 2880 W values, and the complete depleted-battery interruption sentence. Joining the new paragraphs with spaces exactly reproduces the original copy. Shared CSS, H2 structure and artwork remain unchanged; no new component or asset. Strict standalone Sphinx passed, native-source coverage has zero unmatched lines and all 116 frozen files replay byte-identically. Version: `git-20261005-31fd0692-ups120style1`.
+
+Final ups120style1 source commit: `a08d816979a0036607db43a37a2a6954f6f7dced`. Strict aggregate Sphinx passed for 106 targets and all 5,609 baseline source files remain byte-identical. Canonical browser checks at 1440/390/320px confirm six native paragraphs, two independent dark/white/bold shared prose capsules, seven 700-weight body emphasis spans, unchanged joined native copy, loaded existing artwork and no horizontal overflow. The existing 84 heading roles remain unchanged. [Desktop](jhp3600c_us_en_web_evidence/ups120style1-desktop.png), [mobile](jhp3600c_us_en_web_evidence/ups120style1-mobile.png), [DOM audit](jhp3600c_us_en_web_evidence/ups120style1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-ups120style1.json) and [candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-ups120style1.json) record the current canonical preview. Local Git only; primary `tmp/`, earlier sealed versions and unrelated target sources remain intact.
+
+
+#### 240V UPS native list and emphasis — ups240style1
+
+Native physical p15 separates the connection introduction from UPS operation and lists the two NEMA port specifications as bullets. Source Manual Flow now uses four paragraphs and one two-item list, with native bold port names, 9600W, 2400W per port / 4800W total and <10 ms. Joining paragraph/list-item text exactly reproduces the former copy; artwork and shared CSS are unchanged. The source-local coverage audit admits joined list-item text as well as paragraphs so strong spans cannot falsely appear missing. Native-source coverage is zero unmatched, strict standalone Sphinx passed and all 116 frozen files replay byte-identically. Version: `git-20261005-31fd0692-ups240style1`.
+
+Final ups240style1 source commit: `7c8204f85f03b0894990532765e06aa032dbf092`. Strict aggregate Sphinx passed for 106 targets; all 5,609 baseline source files remain byte-identical. Canonical browser checks at 1440/390/320px confirm four native text paragraphs, one two-item bullet list, five 700-weight emphasis spans, exact joined native copy, loaded reused artwork and no horizontal overflow. The prior two 120V prose capsules, 84 heading roles and seven heading availability labels remain unchanged. The source audit negative control detects a removed 9600W list-item value; focused Ruff and doc links passed. [Desktop](jhp3600c_us_en_web_evidence/ups240style1-desktop.png), [mobile](jhp3600c_us_en_web_evidence/ups240style1-mobile.png), [narrow](jhp3600c_us_en_web_evidence/ups240style1-narrow.png), [DOM audit](jhp3600c_us_en_web_evidence/ups240style1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-ups240style1.json) and [candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-ups240style1.json) record the current local preview. Only local Git commits; primary `tmp/`, earlier sealed versions and unrelated targets remain intact.
+
+Full `python3 -m unittest` ran 5,203 tests in 586.690s: one error, 35 skipped. The sole error is `IdentityProvenanceTests.test_provenance_names_release_path_from_frozen_files_only`, where macOS `/var/...` vs resolved `/private/var/...` makes `relative_to` reject a temporary source path. Its test and implementation are byte-identical to pre-task commit `09871197a`; running this same test with `TMPDIR=/private/tmp` passes. This is an existing environment-dependent issue; no out-of-scope publication code changes were made, and the full default-environment suite is not claimed green.
+
+
+#### 240V UPS editable cable caption — ups240caption1
+
+Native physical p15 labels the existing cable leader with `Jackery 40A Charging Cable` and `(sold separately)`. Reused the existing governed ReferenceFigure component and shared `hb-reference-contained-copy` wrapper, binding one native HTML caption with a line break and centered alignment to the right-hand empty art region. Shared `mobile_labels=overlay` retains live selectable copy on the illustration at phone widths. Existing `ups240.png` remains byte-identical (SHA-256 `ed1d46eb529548addc353a34055753b2854d7989835fc3deccad422b11d75fa4`), preserving original frame, product markings, background and leader. No new asset extraction, shared CSS, audit or renderer code changes. Native-source coverage is zero unmatched; strict standalone Sphinx and 116-file byte-identical replay passed. Version: `git-20261005-31fd0692-ups240caption1`.
+
+The final caption2 binding uses the governed ReferenceFigure directly, preserving its shared overlay sizing and zero mobile label margin. This avoids the contained-copy wrapper’s readable-stacked-caption spacing interfering with explicit mobile overlays. Desktop uses the shared 1.99cqw native-relative label size; narrow phones retain the shared 8px floor and wrap within the native empty region. No CSS or implementation change. Final technical version: `git-20261005-31fd0692-ups240caption2`. Six focused declared-reference/base-art tests passed; strict standalone and 116-file deterministic replay passed.
+
+Final ups240caption2 source commit: `aadb4710604f31090518545bc537a9b5aca5590a`. Strict aggregate Sphinx passed for 106 targets, with all 5,609 baseline source files byte-identical. Canonical browser checks at 1440/390/320px verify exactly one caption, native two-line text, live selectable HTML (`user-select:auto`), an absolute text layer fully inside the original image rectangle, loaded original art and no page overflow. Existing 84 headings and seven title availability labels remain unchanged. [Desktop](jhp3600c_us_en_web_evidence/ups240caption2-desktop.png), [mobile](jhp3600c_us_en_web_evidence/ups240caption2-mobile.png), [narrow](jhp3600c_us_en_web_evidence/ups240caption2-narrow.png), [DOM audit](jhp3600c_us_en_web_evidence/ups240caption2-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-ups240caption2.json) and [candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-ups240caption2.json) record the actual port8765 preview. No full-suite repeat for this source-only change; the prior macOS path-dependent suite result remains documented above. Local Git only; primary `tmp/`, every earlier sealed version and unrelated targets remain intact.
+
+
+#### Cascade editable cable labels — cascadecaption1
+
+Native physical p17 labels both cable leaders. The existing `cascade.png` now binds directly to the shared governed ReferenceFigure with two selectable HTML captions: `Jackery 40A Charging Cable` / `(sold separately)` and `Jackery Parallel` / `Communication Cable` / `(sold separately)`. The complete asset remains byte-identical (SHA-256 `c73793a80a50ef9eb0e2f3ac4b7d28478110bad1b05999bce390bf86a93a67fb`), retaining panel, leader lines and numbered units. No extraction or renderer/shared-CSS change. Source-local mobile geometry places both captions above their existing leaders at the shared 8px label floor; 320px measured lower caption boundaries are 21.91% and 66.87% of artwork height, above respective leader lines. All other source nodes are unchanged. Six focused declared-reference/base-art tests passed, native-source coverage is zero unmatched, strict standalone Sphinx passed and all 116 frozen files replay byte-identically. Version: `git-20261005-31fd0692-cascadecaption1`.
+
+Final cascadecaption1 source commit: `dfbad0c22901bb89283daf16ca9f17765532c069`. Strict aggregate Sphinx passed for 106 targets; all 5,609 baseline source files remain byte-identical. Canonical 1440/390/320px browser inspection confirms two native selectable HTML captions, complete original artwork loaded, both label rectangles fully inside the art and above the respective source leaders, and no horizontal overflow. Existing 84 heading roles and seven heading availability labels remain unchanged. [Desktop](jhp3600c_us_en_web_evidence/cascadecaption1-desktop.png), [mobile](jhp3600c_us_en_web_evidence/cascadecaption1-mobile.png), [narrow](jhp3600c_us_en_web_evidence/cascadecaption1-narrow.png), [DOM audit](jhp3600c_us_en_web_evidence/cascadecaption1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-cascadecaption1.json) and [candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-cascadecaption1.json) capture the actual port8765 preview. Source-only change: no full-suite repeat; the previously recorded macOS path issue remains unchanged. Local Git commits only; primary `tmp/`, earlier sealed releases and other target sources are preserved.
+
+
+#### EPO editable figure label — epocaption1
+
+Native physical p18 places `EPO` above the external emergency-stop switch. The existing `epo.png` now binds directly to the shared governed ReferenceFigure with one live centered HTML label at the measured source region. Shared explicit mobile overlays retain the label on the drawing at all widths. The complete image remains byte-identical (SHA-256 `73538543ce16f0a0fbce0da4f719b4c69163a881ba9f66e3376603b1047bc068`), preserving product markings, inset magnifier, cable, background and frame. No new extraction, CSS or implementation changes; every other source node is unchanged. Native-source coverage is zero unmatched; strict standalone Sphinx and 116-file deterministic replay passed. Version: `git-20261005-31fd0692-epocaption1`.
+
+Final epocaption1 source commit: `e4f80e6c5640d911390f511caec0bad0a3f80d36`. Strict aggregate Sphinx passed for 106 targets; all 5,609 baseline source files remain byte-identical. Canonical browser checks at 1440/390/320px verify exactly one `EPO` HTML label, selectable text, placement above the external switch, a label rectangle fully within the original artwork, loaded unchanged artwork and no horizontal overflow. Existing 84 heading roles and seven title availability labels remain unchanged. [Desktop](jhp3600c_us_en_web_evidence/epocaption1-desktop.png), [mobile](jhp3600c_us_en_web_evidence/epocaption1-mobile.png), [narrow](jhp3600c_us_en_web_evidence/epocaption1-narrow.png), [DOM audit](jhp3600c_us_en_web_evidence/epocaption1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-epocaption1.json) and [candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-epocaption1.json) capture the actual port8765 preview. Source-only change; no full-suite repeat. Local Git only; primary `tmp/`, earlier sealed releases and unrelated target sources remain intact.
+
+
+#### 120V charging caption stays inside artwork at narrow widths — charge120overlay1
+
+The 641px browser window exposed the prior shared mobile stacked-caption behavior: native copy appeared below the illustration. The charging source now binds directly to the existing governed ReferenceFigure with explicit `mobile_labels=overlay`. It preserves the source 6pt/316pt font ratio and shared 8px floor; small phones use the available lower-right blank region for the complete two-line editable caption. The exact native sentence, original image rectangle and byte-identical `charge120.png` remain. Only charging node5 changes; other source nodes and shared renderer/CSS remain unchanged. Source-native coverage is zero unmatched, strict standalone Sphinx passed and all 116 frozen files replay byte-identically. Version: `git-20261005-31fd0692-charge120overlay1`.
+
+Final charge120overlay1 source commit: `9d58a7f8934c837632675de99bd1cdd251905230`. Strict 106-target aggregate Sphinx passed; all 5,609 baseline source files remain byte-identical. Canonical browser widths 1440/641/390/320px confirm one exact native editable HTML caption wholly inside the original artwork, zero external duplicate paragraphs, loaded unchanged art and no horizontal overflow. Existing 84 headings and seven heading availability labels remain unchanged. [Problem-width screenshot](jhp3600c_us_en_web_evidence/charge120overlay1-window641.png), [desktop](jhp3600c_us_en_web_evidence/charge120overlay1-desktop.png), [mobile](jhp3600c_us_en_web_evidence/charge120overlay1-mobile.png), [320px](jhp3600c_us_en_web_evidence/charge120overlay1-narrow.png), [DOM audit](jhp3600c_us_en_web_evidence/charge120overlay1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-charge120overlay1.json) and [baseline fingerprint](jhp3600c_us_en_web_evidence/candidate-charge120overlay1.json) record the actual port8765 preview. Temporary preview server/tab closed and viewport override reset. Source-only change; no full-suite repeat. Local Git only; primary `tmp/`, earlier releases and unrelated target sources preserved.
+
+
+#### 120V charging CAUTION native two-item list — cautionitems1
+
+Native physical p21 has two bullet items. The existing shared CAUTION ComponentSpec now carries both native sentences as `list_items`, with matching unordered-list carrier flow instead of one joined paragraph. Joining the two list items with a space exactly preserves the former wording. Only charging node6 changes; severity, label, shared CSS/renderer, other source nodes and all artwork remain unchanged. Native-source coverage is zero unmatched, strict standalone Sphinx passed and all 116 frozen files replay byte-identically. Version: `git-20261005-31fd0692-cautionitems1`.
+
+Final cautionitems1 source commit: `52ebfa422cc2148c874b201564a55b96d1d67e75`. Strict 106-target aggregate Sphinx passed; all 5,609 baseline source files remain byte-identical. Canonical desktop/390px/320px browser checks confirm one unordered list with exactly the two native sentences, visible disc markers, zero old body paragraphs and no horizontal overflow. Existing 84 headings and the earlier editable in-art caption remain. [Desktop](jhp3600c_us_en_web_evidence/cautionitems1-desktop.png), [normal window](jhp3600c_us_en_web_evidence/cautionitems1-window.png), [mobile](jhp3600c_us_en_web_evidence/cautionitems1-mobile.png), [320px](jhp3600c_us_en_web_evidence/cautionitems1-narrow.png), [DOM audit](jhp3600c_us_en_web_evidence/cautionitems1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-cautionitems1.json) and [baseline fingerprint](jhp3600c_us_en_web_evidence/candidate-cautionitems1.json) record the updated port8765 preview. Viewport override reset. Source-only change; no full-suite repeat. Local Git only; primary `tmp/`, prior sealed releases and unrelated target sources preserved.
+
+
+#### 240V charging native in-art caption — charge240caption1
+
+| Slot | Candidate and identity check | Reuse decision | Final source/hash | Background and boundary |
+| --- | --- | --- | --- | --- |
+| 240V charging | Existing `assets/charge240.png`, matched native physical p21 JHP-3600C US housing, expansion port, cable and 240V outlet | Reuse existing complete textless art; no extraction or recrop | SHA-256 `78421e939d39ded94f7ec9c48de298d160fb082d1302f8aef16d395679252632` | Complete native gray panel and frame remain byte-identical; editable HTML caption in lower-right blank region |
+
+The charging image and external paragraph now bind directly to the shared governed ReferenceFigure. Native caption rectangle derives from physical p21 text origin and existing crop; source 6pt/316pt font ratio is preserved with the shared 8px floor. Explicit mobile overlays retain the complete sentence inside the illustration; small phones use the existing blank region and wrap naturally. The former external paragraph is removed. Native wording, outlet-heading gap, CAUTION bullets, all other nodes and shared renderer/CSS remain unchanged. Standalone desktop and 320px browser inspection confirm in-art text without clipping. Native-source coverage has zero unmatched lines and strict standalone Sphinx passed. Version: `git-20261005-31fd0692-charge240caption1`.
+
+Final charge240caption1 source commit: `9e8043f34214cdf6463c605ea8a105f1644c3186`. All 116 files replay byte-identically. Strict 106-target aggregate Sphinx passed and all 5,609 baseline source files remain byte-identical. Canonical browser checks at 1440/641/390/320px confirm one exact native HTML caption wholly inside unchanged original art, selectable live copy, zero duplicate external paragraphs, loaded image and no horizontal overflow. The 7.99px outlet-heading gap, 84 headings and seven heading availability labels remain unchanged. [Desktop](jhp3600c_us_en_web_evidence/charge240caption1-desktop.png), [641px](jhp3600c_us_en_web_evidence/charge240caption1-window641.png), [mobile](jhp3600c_us_en_web_evidence/charge240caption1-mobile.png), [320px](jhp3600c_us_en_web_evidence/charge240caption1-narrow.png), [DOM audit](jhp3600c_us_en_web_evidence/charge240caption1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-charge240caption1.json) and [baseline fingerprint](jhp3600c_us_en_web_evidence/candidate-charge240caption1.json) record the actual port8765 preview. Temporary tab/server closed and viewport override reset. Source-only correction; no full-suite repeat. Local Git only; root `tmp/`, earlier sealed releases and unrelated sources preserved.
+
+
+#### Native specification subrows and input-mode emphasis — specsubrows1
+
+Physical pp26 and31 repeat the same native INPUT/OUTPUT PORTS table structure. Four existing shared `HB-TABLE-SPEC` components now use `label_rowspan=2` with two source-authored values for AC charging/bypass mode and 120V/240V bypass output. Matching carrier rows use actual merged labels; the existing renderer and table borders draw right-column internal separators. Both native input-voltage leads use semantic strong nodes (native PDF Gilroy-Bold), preserving original line order, all parameters and main/ESS footnote differences. Joined semantic rows exactly match the previous copy. Shared CSS/renderer and all other nodes remain unchanged. Native-source coverage is zero unmatched, 21 existing specification component/Web/MyST tests passed, strict standalone Sphinx passed and all 116 frozen files replay byte-identically. Desktop and320px standalone inspection confirm correct row grouping and no page overflow. Version: `git-20261005-31fd0692-specsubrows1`.
+
+Final specsubrows1 source commit: `e2253503dc02b6e22b45dc0d87bea131372ea291`. Strict106-target aggregate Sphinx passed, with all5,609 baseline source files byte-identical. Canonical 1440/641/390/320px browser audits verify four INPUT/OUTPUT PORTS tables with native two-row merged labels, visible1px right-column internal separators, complete parameter copy, and 700-weight 120V/240V leads in both output tables. Merged-label heights equal the sum of their two value-row heights; continuation rows have no duplicate labels. Main circled④ and ESS literal superscript4 remain distinct. Existing84 headings remain and no page overflow occurs. [Desktop](jhp3600c_us_en_web_evidence/specsubrows1-desktop.png), [ESS desktop](jhp3600c_us_en_web_evidence/specsubrows1-ess-desktop.png), [normal window](jhp3600c_us_en_web_evidence/specsubrows1-window.png), [mobile](jhp3600c_us_en_web_evidence/specsubrows1-mobile.png), [mobile output](jhp3600c_us_en_web_evidence/specsubrows1-mobile-output.png), [320px output](jhp3600c_us_en_web_evidence/specsubrows1-narrow-output.png), [DOM audit](jhp3600c_us_en_web_evidence/specsubrows1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-specsubrows1.json) and [baseline fingerprint](jhp3600c_us_en_web_evidence/candidate-specsubrows1.json) record the actual port8765 preview. Temporary preview tab/server closed and viewport override reset. Source-only change; no full-suite repeat. Local Git only; primary `tmp/`, previous sealed releases and unrelated sources preserved.
+
+
+#### Compact native specification footnotes — footcompact1
+
+Native physical pp26 and31 set the four numbered specification footnotes as continuous compact copy. Both existing groups now bind eight source paragraphs to the existing shared `manual-spec-footnote` class, inheriting its 0.9rem font and 1.4 line height. A source-local scoped margin rule removes body paragraph gaps within these groups. Exact text, numbering, trademark note, surrounding tables, artwork and shared CSS/renderer remain unchanged. Native-source coverage has zero unmatched lines, strict standalone Sphinx passed and all 116 frozen files replay byte-identically. Version: `git-20261005-31fd0692-footcompact1`.
+
+Final footcompact1 source commit: `3f6b408c5fc6a98cb9a1acadc9592feacb60c883`. Strict 106-target aggregate Sphinx passed and all 5,609 baseline source files remain byte-identical. Canonical browser checks at 1440/641/390/320px confirm four live footnotes in each of the two specification sections, shared 14.4px font / 20.16px line height, zero paragraph margins and zero inter-paragraph gaps, unchanged exact text/order, 84 existing headings and no page overflow. The audit scopes to the actual section element to exclude existing same-name anchor spans. [Desktop](jhp3600c_us_en_web_evidence/footcompact1-desktop.png), [ESS desktop](jhp3600c_us_en_web_evidence/footcompact1-ess-desktop.png), [normal window](jhp3600c_us_en_web_evidence/footcompact1-window641.png), [mobile](jhp3600c_us_en_web_evidence/footcompact1-mobile.png), [320px](jhp3600c_us_en_web_evidence/footcompact1-narrow.png), [DOM audit](jhp3600c_us_en_web_evidence/footcompact1-audit.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-footcompact1.json) and [baseline fingerprint](jhp3600c_us_en_web_evidence/candidate-footcompact1.json) record the actual port8765 preview. Viewport override reset. Source/CSS-only correction; no full-suite repeat. Local Git only; primary `tmp/`, earlier sealed releases and unrelated target sources remain preserved.
+
+
+#### POWER ON/OFF editable operation panel — powerlive2
+
+| Slot | Searched candidates and identity check | Decision / extraction reason | Source | Background / boundary |
+| --- | --- | --- | --- | --- |
+| Main power | Existing `assets/power.png` contains native burned copy; shared `common_assets/operation/main_power.png` and `op_main_power` use Explorer 1000 housing and upper POWER marking. Target/manual-source inventories have no matching textless JHP-3600C US panel. | Extract native art once: target housing, sockets and lower POWER marking differ. Bind shared Operation component and live CSS frames. | Authoritative physical p11 | Preserve complete product, hand, button, clock and leaders; remove independent caption shapes and draw outer frame with shared CSS. |
+
+The existing native SVG exporter rejects two off-panel source path mappings on this PDF page; the vector replay operator also rejects a native `qu` primitive. Used the existing crop + graphics-preserving `redact_text` operator and two bounded `redact_text_region` removals of the independent bubble/triangle instead, retaining original clipped native geometry without repainting. At 12x, product, button/hand and clock regions are pixel-identical to the original source. No shared code changes or registry promotion.
+
+Only operations node 2 changes. Shared `HB-SPECIAL-OPERATION` renders two On/Off steps, live `3s` beside the native clock, and all four native supporting blocks exactly once. Standby prefix is bold; `2 hours` is regular. Product/button/hand/clock artwork remains native. Caption bubble, pointer, footer note and outer frame are CSS. Old burned-copy `power.png` is retained as `superseded-do-not-reuse`.
+
+Validation: source coverage zero unmatched; all 117 frozen replay files byte-identical; strict standalone Sphinx passed; 15 existing base-art/declared-operation tests passed. Direct source transform at 12x was pixel-identical in product/button/hand/clock regions. Packaged vector PDF introduces crop-translation antialias rounding; [verification receipt](jhp3600c_us_en_web_evidence/powerlive2-verification.json) records differences and 12x side-by-side images, visually confirming unchanged geometry.
+
+Final publish package keeps only the PNG in Web assets; vector derivative is archived in `source/power_framefree.pdf`. Superseded powerlive1 remains local diagnostic history because the assembler correctly rejected a PDF in its Web assets. Final candidate is powerlive2.
+
+Sealed source commit: `3af6b08bd`. Strict final standalone and aggregate Sphinx and assembly passed (106 targets); all 5,609 baseline source files remain byte-identical. [Final candidate](jhp3600c_us_en_web_evidence/candidate-powerlive2.json), [source receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-powerlive2.json), and [canonical browser audit](jhp3600c_us_en_web_evidence/powerlive2-browser.json) record acceptance at 1440, normal 641, 390 and 320 px: one loaded textless base, two live steps, four exact native supporting blocks, correct bold prefixes, one native clock plus live duration, no component/text overflow. Screenshots: [desktop](jhp3600c_us_en_web_evidence/powerlive2-desktop.png), [normal](jhp3600c_us_en_web_evidence/powerlive2-normal.png), [mobile](jhp3600c_us_en_web_evidence/powerlive2-mobile.png), [narrow](jhp3600c_us_en_web_evidence/powerlive2-narrow.png). Normal viewport restored; temporary tab/server closed. Git-only local boundary; no remote push, PR or publication. Root `tmp/` and all prior sealed releases preserved.
+
+#### USB OUTPUT ON/OFF editable operation panel — usblive1
+
+| Slot | Searched candidates and identity check | Decision / extraction reason | Source | Background / boundary |
+| --- | --- | --- | --- | --- |
+| USB output | Target/source inventories contain only burned-copy `usb.png`; shared `common_assets/operation/dc_usb_output.png` uses Explorer 1000 housing, 2 USB-C plus DC socket and DC/USB marking. `je3600a_eu_en/operation_usb.png` uses wheeled Explorer 3600 housing, vertical USB switch and 2+2 ports. | No matching native textless panel; extract target art once and bind shared Operation component. | Authoritative physical p11, bbox [26,262,343,420] | Preserve product, horizontal USB switch, hand, 1 USB-C/1 USB-A ports and two connected devices. Remove native prerequisite capsule (drawing765) and external copy; CSS draws capsule and outer frame. |
+
+Only operations node 4 changes. Shared `HB-SPECIAL-OPERATION` renders the native prerequisite and two On/Off steps with editable `Press once` instructions. The prerequisite capsule and outer frame are CSS; mobile copy moves above the full illustration. Product engravings, outlined USB-C 100W MAX / USB-A 18W MAX markings, hand, leaders and connected devices remain native. Old burned-copy `usb.png` is retained as `superseded-do-not-reuse`; vector derivative stays in `source/usb_framefree.pdf`, outside Web assets.
+
+Validation: source coverage zero unmatched; all 118 frozen replay files byte-identical; strict standalone Sphinx passed; 15 existing base-art/declared-operation tests passed. At 12x direct source transform, product, button/hand and ports/devices regions remain pixel-identical. [Verification receipt](jhp3600c_us_en_web_evidence/usblive1-verification.json) records the checks; packaged vector crop translation may introduce antialias rounding. Shared renderer/CSS unchanged.
+
+Sealed source commit: `2655882e5df72396f11a3ecaac2528042c3d16ce`. Strict aggregate Sphinx and assembly passed for 106 targets; all 5,609 baseline source files remain byte-identical. [Candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-usblive1.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-usblive1.json), and [canonical browser audit](jhp3600c_us_en_web_evidence/usblive1-browser.json) record 1440, 641, 390 and 320 px checks: one loaded new textless base, one exact prerequisite, bold prefix/regular body, two bold On/Off labels, two live Press once instructions, all text inside the component and no overflow. Prior POWER artwork and component remain. Screenshots: [desktop](jhp3600c_us_en_web_evidence/usblive1-desktop.png), [normal](jhp3600c_us_en_web_evidence/usblive1-normal.png), [mobile](jhp3600c_us_en_web_evidence/usblive1-mobile.png), [narrow](jhp3600c_us_en_web_evidence/usblive1-narrow.png). Viewport reset; temporary tab/server closed. Local Git-only scope; no remote push, PR or publication. Primary tmp/ and earlier sealed releases preserved.
+
+#### AC OUTPUT ON/OFF complete CSS frame and editable panel — aclive1
+
+| Slot | Searched candidates and identity check | Decision / extraction reason | Source | Background / boundary |
+| --- | --- | --- | --- | --- |
+| AC output | Target/source inventories contain only burned-copy ac.png. Shared op_ac_output.png has Explorer 1000 housing and one socket; je3600a_eu_en/operation_ac.png has wheels, vertical AC button and EU socket. | No matching textless JHP-3600C US panel. Native horizontal AC button, NEMA 14-50R / 5-20R sockets and housing differ. Extract native panel and use shared Operation. | Physical p12, crop [29,41,345,209] | Original crop started at y45, cutting top border at y43.02. Remove outer frame597 and independent prerequisite capsule613; complete CSS frame replaces both. Preserve all product/hand/socket/appliance artwork. |
+
+Only operations node 7 changes. Shared `HB-SPECIAL-OPERATION` renders the native prerequisite and two On/Off / Press once steps. Shared stage draws a complete four-sided rounded frame; native frame597 and prerequisite capsule613 are removed from the base. A bounded [43,52,100,65] region selects only independent caption/frame objects; broader bounds can damage the native button ring and are rejected. At 12x direct source transform, product, button/hand and sockets/appliances remain pixel-identical. The PNG is the Web base; vector derivative stays in source/. Old ac.png is retained as superseded-do-not-reuse.
+
+Native-source coverage is zero unmatched; 119 frozen replay files are byte-identical, strict standalone Sphinx passes and all 15 existing operation tests pass. No shared renderer/CSS changes or registry promotion. [Verification receipt](jhp3600c_us_en_web_evidence/aclive1-verification.json) and [native comparison](jhp3600c_us_en_web_evidence/aclive1-panel-comparison.png) record the checks.
+
+Sealed source commit: `b020b4c632615122cf3fd01a4392f1dc253533bc`. Strict aggregate Sphinx and assembly passed for 106 targets; all 5,609 baseline source files remain byte-identical. [Candidate fingerprint](jhp3600c_us_en_web_evidence/candidate-aclive1.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-aclive1.json), and [canonical browser audit](jhp3600c_us_en_web_evidence/aclive1-browser.json) record 1440, 641, 390 and 320 px checks: one loaded new textless base, four complete 1px solid CSS edges with rounded corners, one exact live prerequisite, bold prefix/regular body, two bold On/Off labels and two Press once instructions. All text remains within the component without overflow. Prior POWER and USB art hashes remain unchanged. Screenshots: [desktop](jhp3600c_us_en_web_evidence/aclive1-desktop.png), [normal](jhp3600c_us_en_web_evidence/aclive1-normal.png), [mobile](jhp3600c_us_en_web_evidence/aclive1-mobile.png), [narrow](jhp3600c_us_en_web_evidence/aclive1-narrow.png). Viewport reset. Local Git-only scope; no remote push, PR or publication. Primary tmp/ and prior releases preserved.
+
+#### ENERGY SAVING MODE editable panel — energylive1
+
+| Slot | Searched candidates and identity check | Decision / extraction reason | Source | Background / boundary |
+| --- | --- | --- | --- | --- |
+| Energy saving | Target/source inventory has burned-copy energy_saving.png; common_assets/operation/energy_saving.png uses Explorer 1000 housing and upper POWER marking without native hands; je3600a_eu_en/operation_energy.png uses wheels and vertical switches. | No matching target textless panel. Native JHP-3600C housing, horizontal lower-marking buttons, hands and leaders differ. Extract native lower artwork and bind shared Operation. | Physical p12, lower-art crop [28,345,345,463] | Original explanation capsule677 is excluded from art entirely; outer frame610 removed through [29,455,40,460] in blank edge area. Shared CSS draws complete frame and gray live explanation. Preserve product, buttons, hands, plus, clock and leaders. |
+
+Only operations node9 changes. Shared Operation carries three exact native explanatory paragraphs, Main power button / AC power button captions, bold On/Off, Press and hold for 3s, and live 3s beside the original clock. The explanation is flowing native text in a CSS gray rounded box above the lower native art; small screens retain 16px body copy and explicit in-art labels with an 8px floor. Shared CSS draws the complete frame. Product engravings POWER/AC, plus, hands, clock and leaders remain native. Old burned-copy energy_saving.png is retained as superseded-do-not-reuse.
+
+Source coverage is zero unmatched, all 120 frozen replay files are byte-identical, strict standalone Sphinx passes and 15 existing operation tests pass. Direct source transform at12x is pixel-identical in product, buttons/hands and native clock regions. [Verification receipt](jhp3600c_us_en_web_evidence/energylive1-verification.json) and [comparison](jhp3600c_us_en_web_evidence/energylive1-panel-comparison.png) record the checks. No shared code changes or registry promotion.
+
+Sealed source commit: `115e57226ccb6e151127dc5cda598818f6360849`. Strict aggregate Sphinx and assembly passed for 106 targets; all 5,609 baseline source files remain byte-identical. [Candidate](jhp3600c_us_en_web_evidence/candidate-energylive1.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-energylive1.json), and [canonical browser audit](jhp3600c_us_en_web_evidence/energylive1-browser.json) record 1440,641,390,320px checks: one loaded native base, three exact native body paragraphs at16px, supporting copy above the art, two editable button captions, bold On/Off and native long-press instruction, one live3s beside the original clock with no extra CSS clock, complete CSS frame and no overflow. Prior POWER/USB/AC art remains unchanged. Screenshots: [desktop](jhp3600c_us_en_web_evidence/energylive1-desktop.png), [normal](jhp3600c_us_en_web_evidence/energylive1-normal.png), [mobile copy](jhp3600c_us_en_web_evidence/energylive1-mobile-copy.png), [mobile art](jhp3600c_us_en_web_evidence/energylive1-mobile.png), [320px copy](jhp3600c_us_en_web_evidence/energylive1-narrow-copy.png), [320px art](jhp3600c_us_en_web_evidence/energylive1-narrow.png). Viewport reset; temporary tab/server closed. Local Git-only scope; no remote push, PR or publication. Primary tmp/ and prior releases preserved.
+
+
+#### Battery placement CSS captions — placementlive1
+
+| Slot | Searched candidates and identity check | Decision / extraction reason | Source | Background / boundary |
+| --- | --- | --- | --- | --- |
+| Battery placement | Target inventory has burned-copy battery_placement.png only. Opened shared jbp3600a_eu_en/stacking_clean.png, jbp2000b_jp/stacking.png and JE-1000H shared reference-battery_stack.png; product housings, sockets, pack count and placement differ. | No matching frame-free native two-configuration artwork. Reuse shared ReferenceFigure/CSS captions; extract target art once. | Physical p16, crop [26,287,342,434], source PDF SHA256 31fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7 | Remove independent title pills11611/11612 and source labels; preserve products, native engravings, connection cable and distance leaders. CSS draws labels and both complete structural frames. |
+
+Native SVG selection rejected unsupported fill/stroke mapping. Use existing graphics-preserving text redaction followed by bounded title-pill removals. These also remove surrounding native frames20/21; target-scoped CSS will restore their complete measured rectangles. No unclipped drawing replay, whiteout or color-based removal. Distance wording becomes editable along with both titles. Registry promotion is excluded by Git-only scope.
+
+Only connections node5 changes. Shared ReferenceFigure renders bold Side-by-side placement / Stacked placement as editable HTML inside CSS gray capsules; distance ≥ 0.66 ft (≈200 mm) is live text too. Target geometry CSS draws both complete four-sided structural frames. Native products, engravings, cables and distance leaders remain unchanged. Old battery_placement.png remains traceable as superseded-do-not-reuse; vector derivative is retained in source/, outside Web assets.
+
+Source coverage is zero unmatched, all121 frozen replay files are byte-identical, strict standalone Sphinx passes and9 existing ReferenceFigure/caption-admission tests pass. Direct native transformation at12x preserves both product/cable regions and the distance leaders pixel-identically. [Verification receipt](jhp3600c_us_en_web_evidence/placementlive1-verification.json) and [comparison](jhp3600c_us_en_web_evidence/placementlive1-panel-comparison.png) record removed caption/frame paths and retained native geometry. Bare art has no independent caption boxes. Desktop1440px and narrow320px preview shows complete CSS frames and editable labels; final canonical browser acceptance follows sealing. No shared renderer changes or registry promotion.
+
+Sealed source commit: `872c42ae44892d76c65d2b68b80da7abc12cf34b`. Strict aggregate Sphinx and assembly passed for106 targets; all5,609 baseline source files remain byte-identical. [Candidate](jhp3600c_us_en_web_evidence/candidate-placementlive1.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-placementlive1.json) and [canonical browser audit](jhp3600c_us_en_web_evidence/placementlive1-browser.json) record1440,641,390,320px checks: one loaded native frame-free base; two bold live titles inside CSS gray capsules; one live distance label; two complete four-sided CSS frames; all label text fits without component overflow. Screenshots: [desktop](jhp3600c_us_en_web_evidence/placementlive1-desktop.png), [normal](jhp3600c_us_en_web_evidence/placementlive1-normal.png), [mobile](jhp3600c_us_en_web_evidence/placementlive1-mobile.png), [narrow](jhp3600c_us_en_web_evidence/placementlive1-narrow.png). Viewport reset; temporary tab/server closed. Local Git-only scope; no remote push, PR or publication. Root tmp/ and all earlier sealed releases preserved.
+
+
+#### ATS connection editable captions — atslive1
+
+| Slot | Searched candidates and identity check | Decision / extraction reason | Source | Background / boundary |
+| --- | --- | --- | --- | --- |
+| ATS lock/unlock connection | Target inventory has burned-copy ats_lock.png only; opened jbp3600a_eu_en/locking_native.png and jbp2000b_eu_en/locking.png. Shared ja_ts05a_us_shared/ats.png is an isolated product, not a connection panel. | Candidate devices, battery topology and socket routing differ; none contains the target ATS, two native HomePower units and paired lock/unlock views. Extract native panel once; reuse shared ReferenceFigure live-label rendering. | Physical p18, crop [28,270,343,450], PDF SHA25631fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7 | Preserve native complete gray/white panel, structural hands/connectors view frames, numbered sequence markers, products and all leaders/cables. Only Lock, Unlock and cable caption become live HTML. No independent empty caption frames are acquired. |
+
+The native SVG exporter rejects this page's fill/stroke mapping. Use existing bounded graphics-preserving text redaction on the three requested captions; original clipping and all native graphics remain. The base retains only the four numeric step markers as native diagram sequence detail (`numeric-only` policy). No whiteout, graphics replay or registry promotion.
+
+Only connections node24 changes. Shared ReferenceFigure renders bold Lock / Unlock above their original native operation views and the exact two-line power-cable caption above its unchanged leader. Complete gray/white backdrop and structural panel frames remain native. No independent caption frames are present. Narrow-screen caption moves upward in the existing blank right-side space to retain readable8px minimum and avoid crossing its cable leader. Old ats_lock.png remains traceable as superseded-do-not-reuse. Vector derivative remains in source/, outside Web assets.
+
+Source coverage is zero unmatched; strict standalone Sphinx and9 existing ReferenceFigure/caption-admission tests pass. At12x all retained graphics and all four panel edges are pixel-identical, including both hands/connectors views, product outlines, cables and leaders. [Verification receipt](jhp3600c_us_en_web_evidence/atslive1-verification.json) and [native comparison](jhp3600c_us_en_web_evidence/atslive1-panel-comparison.png) record the checks. Desktop1440px and320px preview shows exact live copy inside the native panel. No shared renderer changes or registry promotion.
+
+Final geometry correction — atslive2:320px DOM inspection measured only0.65px between the cable caption and the original leader center in atslive1. Moved only the small-screen live caption from43% to41.5% of the native panel height; base-art bytes are unchanged. This adds2.47px of clearance at320px. Final version is atslive2; initial sealed atslive1 remains local diagnostic history. All122 frozen files replay byte-identically and strict standalone Sphinx passes again.
+
+Sealed final source commit: `fda2c6d189cc5ae3b2a8ca7b2d49d9dde3d8bb63`. Strict aggregate Sphinx and assembly passed for106 targets; all5,609 baseline source files remain byte-identical. [Candidate](jhp3600c_us_en_web_evidence/candidate-atslive2.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-atslive2.json) and [canonical browser audit](jhp3600c_us_en_web_evidence/atslive2-browser.json) record1440,641,390,320px checks: one loaded native base; exact bold Lock/Unlock and regular cable caption; all live text remains inside its panel without overflow; cable caption clearance is8.47,6.32,19.91,3.12px respectively. Structural operation view frames and outer panel remain native and complete. Screenshots: [desktop](jhp3600c_us_en_web_evidence/atslive2-desktop.png), [normal](jhp3600c_us_en_web_evidence/atslive2-normal.png), [mobile](jhp3600c_us_en_web_evidence/atslive2-mobile.png), [narrow](jhp3600c_us_en_web_evidence/atslive2-narrow.png). Viewport reset; temporary tab/server closed. Git-only local scope; no remote push, PR or publication. Primary tmp/ and earlier releases preserved.
+
+
+#### Single-unit MTS connection editable steps/captions — mtssinglelive1
+
+| Slot | Searched candidates and identity check | Decision / extraction reason | Source | Background / boundary |
+| --- | --- | --- | --- | --- |
+| Single-unit MTS connection | Target/source inventory has only burned-copy mts_single.png; opened target mts_cascade.png (two-unit topology and additional communication cable). Shared/template/Web/LaTeX inventories contain no MTS connection panel. | No matching native single-unit base; two-unit topology is not interchangeable. Extract native panel once and use shared ReferenceFigure live copy. | Physical p19, crop [28,210,344,443], source SHA25631fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7 | Preserve complete gray/white panel, product, MTS box, AC button/hand, cables and leaders. Preserve native NEMA 14-50R marking explicitly requested by operator. Five steps including numbers and both cable captions become live text; no independent empty caption frames acquired. |
+
+Use bounded graphics-preserving source text redaction. Desktop preserves native left-column steps and cable label anchors; on narrow screens the five steps flow as readable16px text above the unchanged native art, while cable captions remain positioned beside their leaders. No whiteout, un-clipped geometry replay, registry promotion or shared renderer changes.
+
+Only connections node33 changes. Shared ReferenceFigure carries five exact source instructions with editable bold1–5 numbers and two editable cable captions. NEMA14-50R remains in the native base by explicit user annotation; the AC button marking and all product engravings remain native. Target geometry CSS keeps the native desktop layout; at≤760px steps flow at16px above the full unchanged art, while cable labels share the art's grid cell with measured source positions. No shared renderer changes.
+
+Source coverage is zero unmatched; strict standalone Sphinx and9 existing ReferenceFigure/caption-admission tests pass. At12x all retained graphics and all four source edges are pixel-identical, including MTS box, product/cables, AC button/hand and NEMA marking. [Verification receipt](jhp3600c_us_en_web_evidence/mtssinglelive1-verification.json) and [comparison](jhp3600c_us_en_web_evidence/mtssinglelive1-panel-comparison.png) record the retained native geometry. Bare art has no independent empty caption frames. Desktop1440px and320px preview confirms live copy, complete native frame and readable mobile steps. Old mts_single.png is retained as superseded-do-not-reuse. No registry promotion; vector derivative stays in source/ outside Web assets.
+
+Sealed source commit: `639834bfcbbde3806108e82ea19d7d883911b5fc`. All123 frozen replay files are byte-identical. Strict aggregate Sphinx and assembly passed for106 targets; all5,609 baseline source files remain byte-identical. [Candidate](jhp3600c_us_en_web_evidence/candidate-mtssinglelive1.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-mtssinglelive1.json), and [canonical browser audit](jhp3600c_us_en_web_evidence/mtssinglelive1-browser.json) record1440,641,390,320px checks: one loaded native base; seven exact editable labels; five bold ordered numbers; all text inside the component with no overflow. Desktop steps retain their native positions; mobile steps flow above art at16px, with both cable captions inside the art. Complete original frame and native NEMA14-50R remain visible. Screenshots: [desktop](jhp3600c_us_en_web_evidence/mtssinglelive1-desktop.png), [normal](jhp3600c_us_en_web_evidence/mtssinglelive1-normal.png), [mobile](jhp3600c_us_en_web_evidence/mtssinglelive1-mobile.png), [narrow](jhp3600c_us_en_web_evidence/mtssinglelive1-narrow.png). Viewport reset; temporary tab/server closed; canonical preview retained. Local Git-only scope; no remote push, PR or publication. Primary tmp/ and earlier releases preserved.
+
+#### Cascade parallel MTS connection editable steps/captions — mtscascadelive1
+
+| Slot | Searched candidates and identity check | Decision / extraction reason | Source | Background / boundary |
+| --- | --- | --- | --- | --- |
+| Cascade MTS connection | Target/source inventory contains burned-copy mts_cascade.png; existing mts_single_live.png has one unit and no parallel communication cable. Shared/template/Web/LaTeX inventories have no matching MTS cascade panel. Opened native cascade candidate. | No matching textless two-unit MTS base. Reuse shared ReferenceFigure and native source geometry; one-unit diagram is not interchangeable. | Physical p20, crop [26,63,343,425], source SHA25631fd069216fb282968bf90ba8ef7da0e885a875140667e083bca5cbc9e0122c7 | Preserve full gray/white panel, complete frame, two products, MTS box, AC button/hand, cables and leaders. Retain NEMA14-50R per user annotation. Three numbered steps and three cable captions become editable HTML. No independent empty caption frames acquired. |
+
+Only connections node38 changes. Shared ReferenceFigure carries three numbered instructions and three cable captions as selectable/editable HTML; original NEMA14-50R remains native per user annotation. Mobile steps flow above the full unchanged panel at16px; cable labels stay beside their source leaders. All retained native graphics and four edges are pixel-identical at12x, with no independent empty caption frame. [Verification](jhp3600c_us_en_web_evidence/mtscascadelive1-verification.json) and [native comparison](jhp3600c_us_en_web_evidence/mtscascadelive1-panel-comparison.png) record the transformation. Source coverage has zero unmatched lines; strict standalone Sphinx passes; nine existing ReferenceFigure/caption-admission tests pass. All124 frozen replay files are byte-identical. Old mts_cascade.png remains traceable as superseded-do-not-reuse. No shared renderer change or registry promotion.
+
+Sealed source commit: `6b6aef7e0bbac4f56335e94faeb5a097a99e228f`. Strict aggregate Sphinx and assembly passed for106 targets; all5,609 baseline source files remain byte-identical. [Candidate](jhp3600c_us_en_web_evidence/candidate-mtscascadelive1.json), [sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-mtscascadelive1.json) and [canonical browser audit](jhp3600c_us_en_web_evidence/mtscascadelive1-browser.json) record1440,641,390,320px checks: one loaded native base, six exact editable labels, three bold ordered numbers, complete original frame and retained NEMA14-50R. All text is inside the component with no overflow. Mobile steps flow above art at16px; all three cable captions stay inside art beside their leaders. Screenshots: [desktop](jhp3600c_us_en_web_evidence/mtscascadelive1-desktop.png), [normal](jhp3600c_us_en_web_evidence/mtscascadelive1-normal.png), [mobile](jhp3600c_us_en_web_evidence/mtscascadelive1-mobile.png), [narrow](jhp3600c_us_en_web_evidence/mtscascadelive1-narrow.png). Viewport reset; temporary tab/server closed; canonical preview retained. Local Git-only scope; no push, PR or publication. Primary tmp/ and earlier releases preserved.
+
+## Authorized production release — 2026-10-06
+
+Operator instruction: “推送上去发布”. MA-260 records the scoped engineering and Git-only publication grant. Updated engineering branch to origin/main ba0f95313d7cc763d5360549e081a413cb89a4eb. Preflight found the FCC stylesheet exceeded the existing120-line guardrail by5 lines; removed blank lines and shortened one redundant comment without changing declarations. Refreshed pinned repository inputs and rebuilt the release1 frozen source with current shared inputs. Root tmp/, other manual targets and suspended Hello-Docs #177 remain preserved. No online table/queue writes.
+
+Release1 source commit: `8ebf69713d1479a20a825c8373a2f9a9995c669f`. [Sealed receipt](jhp3600c_us_en_web_evidence/language_projection_receipt-release1.json) binds the124-file exact frozen replay. [Production preflight](jhp3600c_us_en_web_evidence/release1-production-preflight.json) starts from Hello-Docs main f40abc51f25166672a8ba18ae442b9c07d187213, preserves all5,624 existing source files byte-identically, and assembles107 targets. Strict Sphinx with `myst_parser,tools.rtd.portal` passed, including query-corpus and deployment-receipt callbacks. Ruff, skill quick validation, maintenance guardrails, document links and JE-1000F US/en fixture build check passed; no dependency versions changed.
+
+Production-candidate browser check with the RTD portal enabled:1440px and390px show all six cascade MTS live labels, the loaded native base, and no page overflow. [Desktop](jhp3600c_us_en_web_evidence/release1-candidate-desktop.png) and [mobile](jhp3600c_us_en_web_evidence/release1-candidate-mobile.png) capture the exact preflight tree. The default macOS full suite ran5203 tests with35 skips and one error in an unchanged provenance test caused by /var vs /private/var temp-root identity. The same test passes with TMPDIR=/private/tmp;56 targeted extraction/frozen replay/symbol/evidence/caption tests pass. Full suite rerun uses that canonical temporary root. No unrelated code fix.
+
+Canonical temporary-root full suite passed: `TMPDIR=/private/tmp python3 -m unittest` —5203 tests,35 skips, zero failures/errors (672.840s). Publication PR is https://github.com/Bingboom/Hello-Docs/pull/180 and remains gated on engineering merge/mirror sync plus every check/review gate.

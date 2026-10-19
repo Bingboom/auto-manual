@@ -1,0 +1,2562 @@
+{
+  "source_sha256": "47a346dcfec4966ac98fbe1426e4f2b89cf54a964e4d1baf2ad9c7b02dc78043",
+  "spans": [
+    {
+      "id": "preface",
+      "page": 4,
+      "bbox": [
+        34,
+        297,
+        344,
+        387
+      ],
+      "method": "native-preface",
+      "raw": "Gratulujemy zakupu nowego urządzenia Jackery Explorer 3600 Plus. Prosimy o dokładne \nprzeczytanie niniejszej instrukcji przed użyciem produktu, ze szczególnym uwzględnieniem \nśrodków ostrożności, aby zapewnić prawidłowe użytkowanie. Instrukcję należy przechowy-\nwać w łatwo dostępnym miejscu, aby można było po nią sięgać w przyszłości.\nZgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich \ndokumentów związanych z tym produktem przysługuje firmie.\nNależy pamiętać, że w przypadku jakichkolwiek aktualizacji, zmian lub zakończenia publikacji \nnie będą wysyłane żadne dodatkowe powiadomienia.",
+      "text": "Gratulujemy zakupu nowego urządzenia Jackery Explorer 3600 Plus. Prosimy o dokładne przeczytanie niniejszej instrukcji przed użyciem produktu, ze szczególnym uwzględnieniem środków ostrożności, aby zapewnić prawidłowe użytkowanie. Instrukcję należy przechowywać w łatwo dostępnym miejscu, aby można było po nią sięgać w przyszłości. Zgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich dokumentów związanych z tym produktem przysługuje firmie. Należy pamiętać, że w przypadku jakichkolwiek aktualizacji, zmian lub zakończenia publikacji nie będą wysyłane żadne dodatkowe powiadomienia."
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Przed przystąpieniem do korzystania z produktu należy przeczytać wszystkie instrukcje.",
+      "text": "Przed przystąpieniem do korzystania z produktu należy przeczytać wszystkie instrukcje."
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Dzieciom nie wolno bawić się produktem. Gdy produkt będzie używany w pobliżu dzieci, należy szczególnie \nuważnie ich pilnować.",
+      "text": "Dzieciom nie wolno bawić się produktem. Gdy produkt będzie używany w pobliżu dzieci, należy szczególnie uważnie ich pilnować."
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "native-complete-source-block",
+      "raw": "W przypadku korzystania z akcesoriów, które nie są zalecane ani sprzedawane przez producenta produktu, \nmoże występować ryzyko porażenia prądem.",
+      "text": "W przypadku korzystania z akcesoriów, które nie są zalecane ani sprzedawane przez producenta produktu, może występować ryzyko porażenia prądem."
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Gdy produkt nie jest używany, należy odłączyć wtyczkę zasilania od gniazda produktu.",
+      "text": "Gdy produkt nie jest używany, należy odłączyć wtyczkę zasilania od gniazda produktu."
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Nie wolno rozmontowywać produktu, ponieważ może to prowadzić do nieprzewidywalnych zagrożeń, takich jak \npożar, wybuch lub porażenie prądem.",
+      "text": "Nie wolno rozmontowywać produktu, ponieważ może to prowadzić do nieprzewidywalnych zagrożeń, takich jak pożar, wybuch lub porażenie prądem."
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Nie używać produktu z uszkodzonymi przewodami, wtyczkami lub kablami wyjściowymi, gdyż może to \nspowodować porażenie prądem.",
+      "text": "Nie używać produktu z uszkodzonymi przewodami, wtyczkami lub kablami wyjściowymi, gdyż może to spowodować porażenie prądem."
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Aby zapewnić prawidłową cyrkulację powietrza, nie wolno zasłaniać otworów wentylacyjnych produktu. \nProduktu należy używać w suchym i chłodnym miejscu, o odpowiedniej cyrkulacji powietrza. Inaczej może \ndochodzić do jego przegrzania.\n- Ładowanie w wilgotnych lub słabo wentylowanych pomieszczeniach może stwarzać zagrożenie dla \nbezpieczeństwa.\n- Woda może powodować zwarcia lub uszkodzenie stacji ładowania, stwarzając zagrożenia dla \nbezpieczeństwa.",
+      "text": "Aby zapewnić prawidłową cyrkulację powietrza, nie wolno zasłaniać otworów wentylacyjnych produktu. Produktu należy używać w suchym i chłodnym miejscu, o odpowiedniej cyrkulacji powietrza. Inaczej może dochodzić do jego przegrzania. - Ładowanie w wilgotnych lub słabo wentylowanych pomieszczeniach może stwarzać zagrożenie dla bezpieczeństwa. - Woda może powodować zwarcia lub uszkodzenie stacji ładowania, stwarzając zagrożenia dla bezpieczeństwa."
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "source-nested-copy-preserved-in-parent",
+      "raw": "",
+      "text": ""
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "source-nested-copy-preserved-in-parent",
+      "raw": "",
+      "text": ""
+    },
+    {
+      "id": "safety-precaution",
+      "page": 144,
+      "bbox": [
+        25,
+        110,
+        344,
+        285.9703063964844
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Nie narażać produktu na działanie ognia, wysokich temperatur, bezpośredniego światła słonecznego ani \nśrodowisk o wysokiej temperaturze, takich jak wnętrze zaparkowanego pojazdu. Mogłoby to doprowadzić do \npożaru lub wybuchu.",
+      "text": "Nie narażać produktu na działanie ognia, wysokich temperatur, bezpośredniego światła słonecznego ani środowisk o wysokiej temperaturze, takich jak wnętrze zaparkowanego pojazdu. Mogłoby to doprowadzić do pożaru lub wybuchu."
+    },
+    {
+      "id": "",
+      "page": 144,
+      "bbox": [
+        28,
+        27,
+        340,
+        48
+      ],
+      "method": "native-source-title",
+      "raw": "WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA",
+      "text": "WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA"
+    },
+    {
+      "id": "safety-lead",
+      "page": 144,
+      "bbox": [
+        110,
+        62,
+        344,
+        91
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻE-\nNIA PRĄDEM LUB OBRAŻEŃ CIAŁA",
+      "text": "INSTRUKCJE DOTYCZĄCE RYZYKA POŻARU, PORAŻE- NIA PRĄDEM LUB OBRAŻEŃ CIAŁA"
+    },
+    {
+      "id": "safety-intro",
+      "page": 144,
+      "bbox": [
+        28.81839942932129,
+        102.2193832397461,
+        315.0654296875,
+        118.06637573242188
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Podczas korzystania z tego produktu należy zawsze przestrzegać wskazanych podstawowych \nśrodków ostrożności.\n",
+      "text": "Podczas korzystania z tego produktu należy zawsze przestrzegać wskazanych podstawowych środków ostrożności."
+    },
+    {
+      "id": "maintenance-title",
+      "page": 144,
+      "bbox": [
+        36.5166015625,
+        285.9703063964844,
+        212.82859802246094,
+        295.8742980957031
+      ],
+      "method": "native-complete-source-block",
+      "raw": "INSTRUKCJE KONSERWACJI DLA UŻYTKOWNIKA\n",
+      "text": "INSTRUKCJE KONSERWACJI DLA UŻYTKOWNIKA"
+    },
+    {
+      "id": "maintenance-body",
+      "page": 144,
+      "bbox": [
+        29.243200302124023,
+        301.91357421875,
+        338.15802001953125,
+        330.1195983886719
+      ],
+      "method": "native-complete-source-block",
+      "raw": "W cyklu życia produktów do magazynowania energii należy spodziewać się pewnej degradacji pojemności i \nenergii. Wraz ze wzrostem liczby cykli ładowania i rozładowywania oraz wydłużeniem czasu przechowywania, \ndegradacja ta będzie się stopniowo nasilać, co jest normalnym zjawiskiem zgodnym z naturalnym starzeniem się \nogniw baterii.\n",
+      "text": "W cyklu życia produktów do magazynowania energii należy spodziewać się pewnej degradacji pojemności i energii. Wraz ze wzrostem liczby cykli ładowania i rozładowywania oraz wydłużeniem czasu przechowywania, degradacja ta będzie się stopniowo nasilać, co jest normalnym zjawiskiem zgodnym z naturalnym starzeniem się ogniw baterii."
+    },
+    {
+      "id": "signal-table",
+      "page": 144,
+      "bbox": [
+        28,
+        377,
+        342,
+        496
+      ],
+      "method": "native-source-table-cell",
+      "raw": "",
+      "text": [
+        [
+          "OSTRZEŻENIE",
+          "Niebezpieczne praktyki, które mogą prowadzić do poważnych obrażeń, śmierci i/lub szkód materialnych."
+        ],
+        [
+          "PRZESTROGA",
+          "Niebezpieczne praktyki, które mogą skutkować obrażeniami ciała i/lub szkodami materialnymi."
+        ],
+        [
+          "Uwaga",
+          "Niebezpieczne praktyki, które mogą prowadzić do uszkodzenia sprzętu, utraty danych, pogorszenia wydajności lub nieprzewidzianych wyników."
+        ],
+        [
+          "WSKAZÓWKA",
+          "Uzupełnia ważne informacje lub wskazówki dotyczące obsługi zawarte w tekście."
+        ]
+      ]
+    },
+    {
+      "id": "battery-disposal",
+      "page": 145,
+      "bbox": [
+        227.48049926757812,
+        45.97431182861328,
+        335.8744812011719,
+        141.07351684570312
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Baterii i akumulatorów nie wolno \nwyrzucać razem z odpadami domowymi.\nJako konsument masz prawny obowiązek \noddawania wszystkich baterii i \nakumulatorów do wyznaczonych punktów \nzbiórki, niezależnie od tego, czy zawierają \nsubstancje niebezpieczne.\nZużyte baterie i akumulatory należy \nprzekazać do lokalnego punktu zbiórki, \ncentrum recyklingu lub do sprzedawcy, u \nktórego zostały zakupione. Prawidłowa \nutylizacja zapewnia recykling przyjazny \ndla środowiska i zapobiega potencjalnym \nszkodom dla zdrowia ludzi i środowiska.\n",
+      "text": "Baterii i akumulatorów nie wolno wyrzucać razem z odpadami domowymi. Jako konsument masz prawny obowiązek oddawania wszystkich baterii i akumulatorów do wyznaczonych punktów zbiórki, niezależnie od tego, czy zawierają substancje niebezpieczne. Zużyte baterie i akumulatory należy przekazać do lokalnego punktu zbiórki, centrum recyklingu lub do sprzedawcy, u którego zostały zakupione. Prawidłowa utylizacja zapewnia recykling przyjazny dla środowiska i zapobiega potencjalnym szkodom dla zdrowia ludzi i środowiska."
+    },
+    {
+      "id": "symbol-warning_triangle",
+      "page": 145,
+      "bbox": [
+        74.46089935302734,
+        43.8422966003418,
+        175.8831024169922,
+        72.04833984375
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Symbole ostrzeżeń i środków \nostrożności. Należy koniecznie \nprzeczytać, aby poznać potencjalne \nzagrożenia lub ryzyka.\n",
+      "text": "Symbole ostrzeżeń i środków ostrożności. Należy koniecznie przeczytać, aby poznać potencjalne zagrożenia lub ryzyka."
+    },
+    {
+      "id": "symbol-read_manual",
+      "page": 145,
+      "bbox": [
+        74.26290130615234,
+        80.43634796142578,
+        179.03489685058594,
+        94.63836669921875
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Przed przystąpieniem do użytkowania \nprzeczytaj instrukcję obsługi.\n",
+      "text": "Przed przystąpieniem do użytkowania przeczytaj instrukcję obsługi."
+    },
+    {
+      "id": "symbol-do_not_dismantle",
+      "page": 145,
+      "bbox": [
+        74.52090454101562,
+        110.39435577392578,
+        147.46653747558594,
+        117.5943603515625
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Nie rozmontowuj produktu.\n",
+      "text": "Nie rozmontowuj produktu."
+    },
+    {
+      "id": "symbol-no_open_flame",
+      "page": 145,
+      "bbox": [
+        75.78690338134766,
+        138.12635803222656,
+        165.7568817138672,
+        145.32635498046875
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Trzymaj produkt z dala od ognia.\n",
+      "text": "Trzymaj produkt z dala od ognia."
+    },
+    {
+      "id": "symbol-keep_away_from_children",
+      "page": 145,
+      "bbox": [
+        75.19290161132812,
+        161.4303741455078,
+        143.27432250976562,
+        175.63238525390625
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Przechowuj w miejscu \nniedostępnym dla dzieci.\n",
+      "text": "Przechowuj w miejscu niedostępnym dla dzieci."
+    },
+    {
+      "id": "symbol-li_ion",
+      "page": 145,
+      "bbox": [
+        71.5781021118164,
+        182.90631103515625,
+        181.7046356201172,
+        207.50778198242188
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Ten symbol oznacza, że wewnątrz produktu \nznajduje się bateria litowo-jonowa (Li-ion), \nktórą należy prawidłowo utylizować lub \npoddać recyklingowi.\n",
+      "text": "Ten symbol oznacza, że wewnątrz produktu znajduje się bateria litowo-jonowa (Li-ion), którą należy prawidłowo utylizować lub poddać recyklingowi."
+    },
+    {
+      "id": "symbol-weee",
+      "page": 145,
+      "bbox": [
+        226.40859985351562,
+        144.95626831054688,
+        339.5386047363281,
+        205.5606689453125
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Ten symbol oznacza, że produktu nie wolno \nwyrzucać razem z odpadami domowymi i \nnależy go dostarczyć do wyznaczonego \npunktu zbiórki w celu recyklingu.\nPrawidłowa utylizacja i recykling przyczynią \nsię do ochrony środowiska. Aby uzyskać \nwięcej informacji na temat utylizacji i \nrecyklingu tego produktu, skontaktuj się z \nlokalną gminą, firmą zajmującą się utylizacją \nlub sprzedawcą.\n",
+      "text": "Ten symbol oznacza, że produktu nie wolno wyrzucać razem z odpadami domowymi i należy go dostarczyć do wyznaczonego punktu zbiórki w celu recyklingu. Prawidłowa utylizacja i recykling przyczynią się do ochrony środowiska. Aby uzyskać więcej informacji na temat utylizacji i recyklingu tego produktu, skontaktuj się z lokalną gminą, firmą zajmującą się utylizacją lub sprzedawcą."
+    },
+    {
+      "id": "inbox-tip",
+      "page": 145,
+      "bbox": [
+        25,
+        460,
+        344,
+        490
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Przewód do ładowania samochodowego nie jest dołączony do zestawu, ale można \ngo kupić osobno na naszej stronie internetowej. W celu uzyskania pomocy prosimy o \nkontakt z obsługą klienta Jackery.",
+      "text": "Przewód do ładowania samochodowego nie jest dołączony do zestawu, ale można go kupić osobno na naszej stronie internetowej. W celu uzyskania pomocy prosimy o kontakt z obsługą klienta Jackery."
+    },
+    {
+      "id": "lcd-wifi-name",
+      "page": 147,
+      "bbox": [
+        83,
+        200.9342041015625,
+        165,
+        225.09579467773438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wi-Fi",
+      "text": "Wi-Fi"
+    },
+    {
+      "id": "lcd-wifi-description",
+      "page": 147,
+      "bbox": [
+        165,
+        200.9342041015625,
+        344,
+        225.09579467773438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wł.: Połączono z Wi-Fi.\nMiga: Gotowość do połączenia z Wi-Fi.\nWył.: Rozłączono z Wi-Fi.",
+      "text": "Wł.: Połączono z Wi-Fi. Miga: Gotowość do połączenia z Wi-Fi. Wył.: Rozłączono z Wi-Fi."
+    },
+    {
+      "id": "lcd-bluetooth-name",
+      "page": 147,
+      "bbox": [
+        83,
+        225.09579467773438,
+        165,
+        249.055908203125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Bluetooth",
+      "text": "Bluetooth"
+    },
+    {
+      "id": "lcd-bluetooth-description",
+      "page": 147,
+      "bbox": [
+        165,
+        225.09579467773438,
+        344,
+        249.055908203125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wł.: Połączono z Bluetooth.\nMiga: Gotowość do połączenia z Bluetooth.\nWył.: Rozłączono z Bluetooth.",
+      "text": "Wł.: Połączono z Bluetooth. Miga: Gotowość do połączenia z Bluetooth. Wył.: Rozłączono z Bluetooth."
+    },
+    {
+      "id": "lcd-quiet-charging-name",
+      "page": 147,
+      "bbox": [
+        83,
+        249.055908203125,
+        165,
+        290.264892578125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Tryb cichego \nładowania",
+      "text": "Tryb cichego ładowania"
+    },
+    {
+      "id": "lcd-quiet-charging-description",
+      "page": 147,
+      "bbox": [
+        165,
+        249.055908203125,
+        344,
+        290.264892578125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wł.: Hałas podczas ładowania jest znacznie \nzminimalizowany, przy czym moc ładowania jest \nzmniejszona, a prędkość ładowania maleje.\nWył.: Tryb cichego ładowania jest wyłączony.\nTę funkcję można włączyć lub wyłączyć w aplikacji Jackery.",
+      "text": "Wł.: Hałas podczas ładowania jest znacznie zminimalizowany, przy czym moc ładowania jest zmniejszona, a prędkość ładowania maleje. Wył.: Tryb cichego ładowania jest wyłączony. Tę funkcję można włączyć lub wyłączyć w aplikacji Jackery."
+    },
+    {
+      "id": "lcd-battery-saving-name",
+      "page": 147,
+      "bbox": [
+        83,
+        290.264892578125,
+        165,
+        339.34381103515625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Tryb oszczędzania \nbaterii",
+      "text": "Tryb oszczędzania baterii"
+    },
+    {
+      "id": "lcd-battery-saving-description",
+      "page": 147,
+      "bbox": [
+        165,
+        290.264892578125,
+        344,
+        339.34381103515625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wł.: Ogranicza maksymalną użyteczną pojemność baterii, \naby przedłużyć jej żywotność.\nWył.: Tryb oszczędzania baterii jest wyłączony.\nTę funkcję można włączyć lub wyłączyć w aplikacji Jackery. \nTa funkcja nie jest dostępna, gdy produkt jest podłączony \ndo co najmniej jednego zestawu baterii.",
+      "text": "Wł.: Ogranicza maksymalną użyteczną pojemność baterii, aby przedłużyć jej żywotność. Wył.: Tryb oszczędzania baterii jest wyłączony. Tę funkcję można włączyć lub wyłączyć w aplikacji Jackery. Ta funkcja nie jest dostępna, gdy produkt jest podłączony do co najmniej jednego zestawu baterii."
+    },
+    {
+      "id": "lcd-self-powered-name",
+      "page": 147,
+      "bbox": [
+        83,
+        339.34381103515625,
+        165,
+        388.6781005859375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Tryb samozasilania",
+      "text": "Tryb samozasilania"
+    },
+    {
+      "id": "lcd-self-powered-description",
+      "page": 147,
+      "bbox": [
+        165,
+        339.34381103515625,
+        344,
+        388.6781005859375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Maksymalizuje wykorzystanie energii słonecznej i zmniejsza \nzależność od energii z sieci, priorytetowo wykorzystując \nzmagazynowaną energię słoneczną, co obniża koszty energii \nelektrycznej (funkcję tę można włączyć i wyłączyć w aplikacji). \nStacja zasilająca musi być jednocześnie podłączona do paneli \nsłonecznych i sieci energetycznej, a moc urządzeń odbiorczych \njest ograniczona przez moc obejściową.",
+      "text": "Maksymalizuje wykorzystanie energii słonecznej i zmniejsza zależność od energii z sieci, priorytetowo wykorzystując zmagazynowaną energię słoneczną, co obniża koszty energii elektrycznej (funkcję tę można włączyć i wyłączyć w aplikacji). Stacja zasilająca musi być jednocześnie podłączona do paneli słonecznych i sieci energetycznej, a moc urządzeń odbiorczych jest ograniczona przez moc obejściową."
+    },
+    {
+      "id": "lcd-charging-plan-name",
+      "page": 147,
+      "bbox": [
+        83,
+        388.6781005859375,
+        165,
+        433.4002990722656
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Plan ładowania",
+      "text": "Plan ładowania"
+    },
+    {
+      "id": "lcd-charging-plan-description",
+      "page": 147,
+      "bbox": [
+        165,
+        388.6781005859375,
+        344,
+        433.4002990722656
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Dostosowuje czas ładowania urządzenia Jackery Explorer \n3600 Plus. W sytuacjach, gdy ceny energii elektrycznej są \nzmienne, pozwala planować ładowanie w godzinach \nszczytu i poza szczytem, co obniża koszty energii \nelektrycznej (opcję można włączyć w aplikacji Jackery).",
+      "text": "Dostosowuje czas ładowania urządzenia Jackery Explorer 3600 Plus. W sytuacjach, gdy ceny energii elektrycznej są zmienne, pozwala planować ładowanie w godzinach szczytu i poza szczytem, co obniża koszty energii elektrycznej (opcję można włączyć w aplikacji Jackery)."
+    },
+    {
+      "id": "lcd-ac-power-name",
+      "page": 147,
+      "bbox": [
+        83,
+        433.4002990722656,
+        165,
+        464.5549011230469
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wskaźnik zasilania AC ",
+      "text": "Wskaźnik zasilania AC"
+    },
+    {
+      "id": "lcd-ac-power-description",
+      "page": 147,
+      "bbox": [
+        165,
+        433.4002990722656,
+        344,
+        464.5549011230469
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wyjście AC (czysta sinusoida) jest włączone.",
+      "text": "Wyjście AC (czysta sinusoida) jest włączone."
+    },
+    {
+      "id": "lcd-output-voltage-frequency-name",
+      "page": 147,
+      "bbox": [
+        83,
+        464.5549011230469,
+        165,
+        495.9862060546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Napięcie wyjściowe \ni częstotliwość",
+      "text": "Napięcie wyjściowe i częstotliwość"
+    },
+    {
+      "id": "lcd-output-voltage-frequency-description",
+      "page": 147,
+      "bbox": [
+        165,
+        464.5549011230469,
+        344,
+        495.9862060546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Gdy wyjście AC jest włączone, wyświetla wartości \nwyjściowe napięcia i częstotliwości.",
+      "text": "Gdy wyjście AC jest włączone, wyświetla wartości wyjściowe napięcia i częstotliwości."
+    },
+    {
+      "id": "lcd-input-power-name",
+      "page": 148,
+      "bbox": [
+        83,
+        28.761688232421875,
+        165,
+        55.08148193359375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Moc wejściowa",
+      "text": "Moc wejściowa"
+    },
+    {
+      "id": "lcd-input-power-description",
+      "page": 148,
+      "bbox": [
+        165,
+        28.761688232421875,
+        344,
+        55.08148193359375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wyświetla moc wejściową w watach.",
+      "text": "Wyświetla moc wejściową w watach."
+    },
+    {
+      "id": "lcd-remaining-charge-time-name",
+      "page": 148,
+      "bbox": [
+        83,
+        55.08148193359375,
+        165,
+        80.65158081054688
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Pozostały czas \nładowania",
+      "text": "Pozostały czas ładowania"
+    },
+    {
+      "id": "lcd-remaining-charge-time-description",
+      "page": 148,
+      "bbox": [
+        165,
+        55.08148193359375,
+        344,
+        80.65158081054688
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wyświetla pozostały czas ładowania.",
+      "text": "Wyświetla pozostały czas ładowania."
+    },
+    {
+      "id": "lcd-ac-wall-charging-name",
+      "page": 148,
+      "bbox": [
+        83,
+        80.65158081054688,
+        165,
+        104.11770629882812
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wskaźnik ładowania \nz sieci AC",
+      "text": "Wskaźnik ładowania z sieci AC"
+    },
+    {
+      "id": "lcd-ac-wall-charging-description",
+      "page": 148,
+      "bbox": [
+        165,
+        80.65158081054688,
+        344,
+        104.11770629882812
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Produkt jest ładowany przez wejście AC z sieci elektrycznej.",
+      "text": "Produkt jest ładowany przez wejście AC z sieci elektrycznej."
+    },
+    {
+      "id": "lcd-car-charging-name",
+      "page": 148,
+      "bbox": [
+        83,
+        104.11770629882812,
+        165,
+        128.31307983398438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wskaźnik ładowania z \ngniazda samochodowego",
+      "text": "Wskaźnik ładowania z gniazda samochodowego"
+    },
+    {
+      "id": "lcd-car-charging-description",
+      "page": 148,
+      "bbox": [
+        165,
+        104.11770629882812,
+        344,
+        128.31307983398438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Produkt jest ładowany przez wejście DC (DC8020) przy użyciu \nzasilania DC 12 V (z ładowarki samochodowej).",
+      "text": "Produkt jest ładowany przez wejście DC (DC8020) przy użyciu zasilania DC 12 V (z ładowarki samochodowej)."
+    },
+    {
+      "id": "lcd-solar-charging-name",
+      "page": 148,
+      "bbox": [
+        83,
+        128.31307983398438,
+        165,
+        151.72509765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wskaźnik ładowania \nz paneli słonecznych",
+      "text": "Wskaźnik ładowania z paneli słonecznych"
+    },
+    {
+      "id": "lcd-solar-charging-description",
+      "page": 148,
+      "bbox": [
+        165,
+        128.31307983398438,
+        344,
+        151.72509765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Produkt jest ładowany przez wejście DC (DC8020) za \npomocą paneli słonecznych.",
+      "text": "Produkt jest ładowany przez wejście DC (DC8020) za pomocą paneli słonecznych."
+    },
+    {
+      "id": "lcd-battery-power-name",
+      "page": 148,
+      "bbox": [
+        83,
+        151.72509765625,
+        165,
+        179.44500732421875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wskaźnik \npoziomu baterii ",
+      "text": "Wskaźnik poziomu baterii"
+    },
+    {
+      "id": "lcd-battery-power-description",
+      "page": 148,
+      "bbox": [
+        165,
+        151.72509765625,
+        344,
+        179.44500732421875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "W trakcie ładowania produktu pomarańczowy pierścień \nwokół wartości procentowej baterii będzie się zapalał \nsekwencyjnie. Podczas ładowania innych urządzeń \npomarańczowy pierścień będzie stale zaświecony.",
+      "text": "W trakcie ładowania produktu pomarańczowy pierścień wokół wartości procentowej baterii będzie się zapalał sekwencyjnie. Podczas ładowania innych urządzeń pomarańczowy pierścień będzie stale zaświecony."
+    },
+    {
+      "id": "lcd-low-battery-name",
+      "page": 148,
+      "bbox": [
+        83,
+        179.44500732421875,
+        165,
+        219.81698608398438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wskaźnik niskiego \npoziomu baterii",
+      "text": "Wskaźnik niskiego poziomu baterii"
+    },
+    {
+      "id": "lcd-low-battery-description",
+      "page": 148,
+      "bbox": [
+        165,
+        179.44500732421875,
+        344,
+        219.81698608398438
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wł.: Poziom naładowania baterii jest niższy niż 20%.\nMiga: Poziom naładowania baterii jest niższy niż 5%.\nWył.: Poziom baterii nie jest niższy niż 20% lub produkt jest \nładowany.",
+      "text": "Wł.: Poziom naładowania baterii jest niższy niż 20%. Miga: Poziom naładowania baterii jest niższy niż 5%. Wył.: Poziom baterii nie jest niższy niż 20% lub produkt jest ładowany."
+    },
+    {
+      "id": "lcd-remaining-battery-percentage-name",
+      "page": 148,
+      "bbox": [
+        83,
+        219.81698608398438,
+        165,
+        247.65289306640625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Pozostały procent \nbaterii",
+      "text": "Pozostały procent baterii"
+    },
+    {
+      "id": "lcd-remaining-battery-percentage-description",
+      "page": 148,
+      "bbox": [
+        165,
+        219.81698608398438,
+        344,
+        247.65289306640625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wyświetla pozostały procent baterii.",
+      "text": "Wyświetla pozostały procent baterii."
+    },
+    {
+      "id": "lcd-connected-batteries-name",
+      "page": 148,
+      "bbox": [
+        83,
+        247.65289306640625,
+        165,
+        289.377197265625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wskaźnik zestawu \nbaterii i liczba \npodłączonych \nzestawów baterii",
+      "text": "Wskaźnik zestawu baterii i liczba podłączonych zestawów baterii"
+    },
+    {
+      "id": "lcd-connected-batteries-description",
+      "page": 148,
+      "bbox": [
+        165,
+        247.65289306640625,
+        344,
+        289.377197265625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wyświetla liczbę zestawów baterii, jeśli są podłączone.",
+      "text": "Wyświetla liczbę zestawów baterii, jeśli są podłączone."
+    },
+    {
+      "id": "lcd-fault-code-name",
+      "page": 148,
+      "bbox": [
+        83,
+        289.377197265625,
+        165,
+        321.4207763671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Kod błędu",
+      "text": "Kod błędu"
+    },
+    {
+      "id": "lcd-fault-code-description",
+      "page": 148,
+      "bbox": [
+        165,
+        289.377197265625,
+        344,
+        321.4207763671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wystąpił błąd produktu. Szczegóły można znaleźć w sekcji \nRozwiązywanie problemów.",
+      "text": "Wystąpił błąd produktu. Szczegóły można znaleźć w sekcji Rozwiązywanie problemów."
+    },
+    {
+      "id": "lcd-high-temperature-name",
+      "page": 148,
+      "bbox": [
+        83,
+        321.4207763671875,
+        165,
+        358.31988525390625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wskaźnik wysokiej \ntemperatury",
+      "text": "Wskaźnik wysokiej temperatury"
+    },
+    {
+      "id": "lcd-high-temperature-description",
+      "page": 148,
+      "bbox": [
+        165,
+        321.4207763671875,
+        344,
+        358.31988525390625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Zadziałało zabezpieczenie przed wysoką temperaturą. \nProdukt może nie działać do czasu przywrócenia \ntemperatury do normalnego zakresu roboczego.",
+      "text": "Zadziałało zabezpieczenie przed wysoką temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+    },
+    {
+      "id": "lcd-low-temperature-name",
+      "page": 148,
+      "bbox": [
+        83,
+        358.31988525390625,
+        165,
+        394.3095703125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wskaźnik niskiej \ntemperatury",
+      "text": "Wskaźnik niskiej temperatury"
+    },
+    {
+      "id": "lcd-low-temperature-description",
+      "page": 148,
+      "bbox": [
+        165,
+        358.31988525390625,
+        344,
+        394.3095703125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Zadziałało zabezpieczenie przed niską temperaturą. Produkt \nmoże nie działać do czasu przywrócenia temperatury do \nnormalnego zakresu roboczego.",
+      "text": "Zadziałało zabezpieczenie przed niską temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+    },
+    {
+      "id": "lcd-energy-saving-name",
+      "page": 148,
+      "bbox": [
+        83,
+        394.3095703125,
+        165,
+        435.618896484375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Tryb oszczędzania \nenergii",
+      "text": "Tryb oszczędzania energii"
+    },
+    {
+      "id": "lcd-energy-saving-description",
+      "page": 148,
+      "bbox": [
+        165,
+        394.3095703125,
+        344,
+        435.618896484375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Gdy wyjście AC lub USB zostanie włączone przez naciśnięcie \nprzycisku zasilania AC lub USB:\nWł.: Tryb oszczędzania energii jest włączony.\nWył.: Tryb oszczędzania energii jest wyłączony.",
+      "text": "Gdy wyjście AC lub USB zostanie włączone przez naciśnięcie przycisku zasilania AC lub USB: Wł.: Tryb oszczędzania energii jest włączony. Wył.: Tryb oszczędzania energii jest wyłączony."
+    },
+    {
+      "id": "lcd-output-power-name",
+      "page": 148,
+      "bbox": [
+        83,
+        435.618896484375,
+        165,
+        465.9848937988281
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Moc wyjściowa",
+      "text": "Moc wyjściowa"
+    },
+    {
+      "id": "lcd-output-power-description",
+      "page": 148,
+      "bbox": [
+        165,
+        435.618896484375,
+        344,
+        465.9848937988281
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wyświetla moc wyjściową w watach.",
+      "text": "Wyświetla moc wyjściową w watach."
+    },
+    {
+      "id": "lcd-remaining-discharge-time-name",
+      "page": 148,
+      "bbox": [
+        83,
+        465.9848937988281,
+        165,
+        495.9126892089844
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Pozostały czas \nzasilania urządzeń \nodbiorczych ",
+      "text": "Pozostały czas zasilania urządzeń odbiorczych"
+    },
+    {
+      "id": "lcd-remaining-discharge-time-description",
+      "page": 148,
+      "bbox": [
+        165,
+        465.9848937988281,
+        344,
+        495.9126892089844
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wyświetla pozostały czas do rozładowania.",
+      "text": "Wyświetla pozostały czas do rozładowania."
+    },
+    {
+      "id": "standby",
+      "page": 149,
+      "bbox": [
+        150,
+        165,
+        344,
+        207
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Domyślny czas czuwania: 2 godziny\nProdukt automatycznie wyłączy się po 2 godzinach bezczynności, \nbez ładowania i zasilania urządzeń odbiorczych.\n*Czas czuwania można ustawić w aplikacji Jackery.",
+      "text": "Domyślny czas czuwania: 2 godziny Produkt automatycznie wyłączy się po 2 godzinach bezczynności, bez ładowania i zasilania urządzeń odbiorczych. *Czas czuwania można ustawić w aplikacji Jackery."
+    },
+    {
+      "id": "12-hour-shutdown",
+      "page": 149,
+      "bbox": [
+        25,
+        211,
+        344,
+        240
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Gdy tryb oszczędzania energii jest włączony, a przycisk zasilania AC lub USB jest włączony w pozycji \nON, ale produkt nie ładuje się ani nie zasila urządzeń odbiorczych, produkt wyłączy się \nautomatycznie po 12 godzinach.",
+      "text": "Gdy tryb oszczędzania energii jest włączony, a przycisk zasilania AC lub USB jest włączony w pozycji ON, ale produkt nie ładuje się ani nie zasila urządzeń odbiorczych, produkt wyłączy się automatycznie po 12 godzinach."
+    },
+    {
+      "id": "usb-prerequisite",
+      "page": 149,
+      "bbox": [
+        40,
+        270,
+        165,
+        289
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Wymaganie wstępne: Produkt musi być włączony.",
+      "text": "Wymaganie wstępne: Produkt musi być włączony."
+    },
+    {
+      "id": "usb-caution",
+      "page": 149,
+      "bbox": [
+        84,
+        428,
+        344,
+        498
+      ],
+      "method": "native-complete-source-panel",
+      "raw": "• USB-C MAKS. 100 W to port wyjściowy USB-PD Power Source 3 (PS3) o dużej mocy. Jeśli podłączone \nurządzenie użytkownika lub akcesorium nie spełnia wymogów bezpieczeństwa, może występować ryzyko \npożaru. Przed użyciem tych portów należy się upewnić, że podłączone urządzenie lub akcesorium ma \nzabezpieczenie przeciwpożarowe.\n• Stację Jackery Explorer 3600 Plus należy podłączać wyłącznie do urządzeń lub akcesoriów spełniających \nwymagania przewidziane w punktach 6.3, 6.4 i 6.5 normy IEC/EN/UL 62368-1 (lub innych równoważnych norm).\n• Aby uzyskać maksymalną moc wyjściową, należy użyć oﬁcjalnego kabla Jackery USB-C do USB-C 5 A (20 V \nDC / 5 A, 100 W).",
+      "text": [
+        "USB-C MAKS. 100 W to port wyjściowy USB-PD Power Source 3 (PS3) o dużej mocy. Jeśli podłączone urządzenie użytkownika lub akcesorium nie spełnia wymogów bezpieczeństwa, może występować ryzyko pożaru. Przed użyciem tych portów należy się upewnić, że podłączone urządzenie lub akcesorium ma zabezpieczenie przeciwpożarowe.",
+        "Stację Jackery Explorer 3600 Plus należy podłączać wyłącznie do urządzeń lub akcesoriów spełniających wymagania przewidziane w punktach 6.3, 6.4 i 6.5 normy IEC/EN/UL 62368-1 (lub innych równoważnych norm).",
+        "Aby uzyskać maksymalną moc wyjściową, należy użyć oficjalnego kabla Jackery USB-C do USB-C 5 A (20 V DC / 5 A, 100 W)."
+      ]
+    },
+    {
+      "id": "ac-prerequisite",
+      "page": 150,
+      "bbox": [
+        40,
+        49,
+        165,
+        68
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Wymaganie wstępne: Produkt musi być włączony.",
+      "text": "Wymaganie wstępne: Produkt musi być włączony."
+    },
+    {
+      "id": "energy-saving-description",
+      "page": 150,
+      "bbox": [
+        40,
+        269,
+        344,
+        330
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Aby zapobiec niepotrzebnemu zużyciu baterii spowodowanemu zapomnieniem o wyłączeniu \nwyjścia, produkt domyślnie włącza tryb oszczędzania energii. Jeżeli przez 12 godzin nie jest \npodłączone żadne urządzenie lub pobór mocy podłączonego urządzenia nie przekracza wartości \nprogowej (25 W dla wyjścia AC lub 2 W dla wyjścia USB), produkt automatycznie wyłącza zasilanie \nna wyjściach.\nAby wyłączyć tryb oszczędzania energii, naciśnij i przytrzymaj jednocześnie przycisk zasilania AC oraz \nprzycisk POWER na dłużej niż 3 sekundy. Produkt nie wyłączy automatycznie wyjścia AC ani DC.",
+      "text": "Aby zapobiec niepotrzebnemu zużyciu baterii spowodowanemu zapomnieniem o wyłączeniu wyjścia, produkt domyślnie włącza tryb oszczędzania energii. Jeżeli przez 12 godzin nie jest podłączone żadne urządzenie lub pobór mocy podłączonego urządzenia nie przekracza wartości progowej (25 W dla wyjścia AC lub 2 W dla wyjścia USB), produkt automatycznie wyłącza zasilanie na wyjściach. Aby wyłączyć tryb oszczędzania energii, naciśnij i przytrzymaj jednocześnie przycisk zasilania AC oraz przycisk POWER na dłużej niż 3 sekundy. Produkt nie wyłączy automatycznie wyjścia AC ani DC."
+    },
+    {
+      "id": "energy-saving-memory",
+      "page": 150,
+      "bbox": [
+        80,
+        465,
+        344,
+        499
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Po włączeniu zasilania tryb oszczędzania energii powraca do poprzedniego stanu. \nZmiana trybu wymaga ręcznego przełączenia.",
+      "text": "Po włączeniu zasilania tryb oszczędzania energii powraca do poprzedniego stanu. Zmiana trybu wymaga ręcznego przełączenia."
+    },
+    {
+      "id": "lcd-mode-Turn on",
+      "page": 151,
+      "bbox": [
+        244,
+        64.44149780273438,
+        344,
+        92.78558349609375
+      ],
+      "method": "native-source-table-cell",
+      "raw": "Naciśnij przycisk POWER, gdy \nprodukt się ładuje.",
+      "text": "Naciśnij przycisk POWER, gdy produkt się ładuje."
+    },
+    {
+      "id": "lcd-mode-Turn off",
+      "page": 151,
+      "bbox": [
+        244,
+        92.78558349609375,
+        344,
+        108.67111206054688
+      ],
+      "method": "native-source-table-cell",
+      "raw": "Naciśnij przycisk POWER.",
+      "text": "Naciśnij przycisk POWER."
+    },
+    {
+      "id": "lcd-mode-Auto-off",
+      "page": 151,
+      "bbox": [
+        244,
+        108.67111206054688,
+        344,
+        136.095703125
+      ],
+      "method": "native-source-table-cell",
+      "raw": "Ekran LCD wyłącza się \nautomatycznie i przechodzi w \ntryb uśpienia po 2 minutach \nbezczynności.",
+      "text": "Ekran LCD wyłącza się automatycznie i przechodzi w tryb uśpienia po 2 minutach bezczynności."
+    },
+    {
+      "id": "lcd-mode-Turn on",
+      "page": 151,
+      "bbox": [
+        244,
+        136.095703125,
+        344,
+        167.02349853515625
+      ],
+      "method": "native-source-table-cell",
+      "raw": "Naciśnij dwukrotnie przycisk \nPOWER, gdy produkt jest \nwłączony.",
+      "text": "Naciśnij dwukrotnie przycisk POWER, gdy produkt jest włączony."
+    },
+    {
+      "id": "lcd-mode-Turn off",
+      "page": 151,
+      "bbox": [
+        244,
+        167.02349853515625,
+        344,
+        184.10079956054688
+      ],
+      "method": "native-source-table-cell",
+      "raw": "Naciśnij przycisk POWER.",
+      "text": "Naciśnij przycisk POWER."
+    },
+    {
+      "id": "lcd-mode-Auto-off",
+      "page": 151,
+      "bbox": [
+        244,
+        184.10079956054688,
+        344,
+        215.114501953125
+      ],
+      "method": "native-source-table-cell",
+      "raw": "Ekran LCD wyłącza się \nautomatycznie po 2 \ngodzinach bezczynności.",
+      "text": "Ekran LCD wyłącza się automatycznie po 2 godzinach bezczynności."
+    },
+    {
+      "id": "lcd-app-mode",
+      "page": 151,
+      "bbox": [
+        25,
+        229,
+        344,
+        255
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Tryb pracy wyświetlacza ekranu można również ustawić w aplikacji Jackery.",
+      "text": "Tryb pracy wyświetlacza ekranu można również ustawić w aplikacji Jackery."
+    },
+    {
+      "id": "ups-intro",
+      "page": 152,
+      "bbox": [
+        25,
+        54,
+        344,
+        78
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Podłącz produkt do gniazdka ściennego za pomocą przewodu sieciowego do ładowania AC, następnie naciśnij \nprzycisk zasilania AC, aby równocześnie zasilać urządzenia odbiorcze.",
+      "text": "Podłącz produkt do gniazdka ściennego za pomocą przewodu sieciowego do ładowania AC, następnie naciśnij przycisk zasilania AC, aby równocześnie zasilać urządzenia odbiorcze."
+    },
+    {
+      "id": "ups-body",
+      "page": 152,
+      "bbox": [
+        128,
+        242,
+        344,
+        312
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Zasilacz bezprzerwowy (UPS) to rodzaj systemu ciągłego zasilania, który \nautomatycznie dostarcza rezerwową energię elektryczną do urządzenia \nodbiorczego w przypadku zaniku napięcia w sieci energetycznej.\nW przypadku nagłego zaniku zasilania sieciowego, stacja Explorer 3600 Plus \nautomatycznie przełączy się na zasilanie z baterii w ciągu 10 ms, aby \npodtrzymać pracę urządzeń.",
+      "text": "Zasilacz bezprzerwowy (UPS) to rodzaj systemu ciągłego zasilania, który automatycznie dostarcza rezerwową energię elektryczną do urządzenia odbiorczego w przypadku zaniku napięcia w sieci energetycznej. W przypadku nagłego zaniku zasilania sieciowego, stacja Explorer 3600 Plus automatycznie przełączy się na zasilanie z baterii w ciągu 10 ms, aby podtrzymać pracę urządzeń."
+    },
+    {
+      "id": "ups-bypass",
+      "page": 152,
+      "bbox": [
+        25,
+        329,
+        344,
+        366
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "W trybie UPS maksymalna moc wyjściowa urządzenia osiąga 10A przed wystąpieniem awarii zasilania. Ponieważ w \ntrybie obejściowym możliwe jest jednoczesne ładowanie i rozładowywanie, rzeczywista moc wyjściowa jest niższa \nod mocy znamionowej, ale podczas awarii przywracana jest moc znamionowa.",
+      "text": "W trybie UPS maksymalna moc wyjściowa urządzenia osiąga 10A przed wystąpieniem awarii zasilania. Ponieważ w trybie obejściowym możliwe jest jednoczesne ładowanie i rozładowywanie, rzeczywista moc wyjściowa jest niższa od mocy znamionowej, ale podczas awarii przywracana jest moc znamionowa."
+    },
+    {
+      "id": "ups-caution",
+      "page": 152,
+      "bbox": [
+        82,
+        370,
+        344,
+        424
+      ],
+      "method": "native-complete-source-panel",
+      "raw": "• Produkt nie obsługuje przełączania w czasie 0 ms. Nie należy podłączać go do urządzeń \nwymagających zasilania z przełączaniem w czasie 0 ms, takich jak serwery danych lub \nstacje robocze.\n• Przed użyciem należy kilkakrotnie przetestować zgodność z urządzeniem.\n• Nie podłączać urządzeń odbiorczych o mocy przekraczającej maksymalną moc \nwyjściową produktu. W przeciwnym razie zadziała zabezpieczenie przeciążeniowe. ",
+      "text": [
+        "Produkt nie obsługuje przełączania w czasie 0 ms. Nie należy podłączać go do urządzeń wymagających zasilania z przełączaniem w czasie 0 ms, takich jak serwery danych lub stacje robocze.",
+        "Przed użyciem należy kilkakrotnie przetestować zgodność z urządzeniem.",
+        "Nie podłączać urządzeń odbiorczych o mocy przekraczającej maksymalną moc wyjściową produktu. W przeciwnym razie zadziała zabezpieczenie przeciążeniowe."
+      ]
+    },
+    {
+      "id": "battery-body",
+      "page": 153,
+      "bbox": [
+        25,
+        73,
+        344,
+        106
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "W razie dużego zapotrzebowania na pojemność energetyczną do tego produktu można podłączyć maksymalnie \n5 zestawów baterii. Szczegółowe informacje na temat użytkowania można znaleźć w instrukcji obsługi urządzenia \nJackery Battery Pack 3600.",
+      "text": "W razie dużego zapotrzebowania na pojemność energetyczną do tego produktu można podłączyć maksymalnie 5 zestawów baterii. Szczegółowe informacje na temat użytkowania można znaleźć w instrukcji obsługi urządzenia Jackery Battery Pack 3600."
+    },
+    {
+      "id": "battery-caution",
+      "page": 153,
+      "bbox": [
+        87,
+        316,
+        344,
+        372
+      ],
+      "method": "native-complete-source-panel",
+      "raw": "• Przed podłączeniem urządzenia Explorer 3600 Plus do urządzenia Jackery Battery Pack \n3600 upewnij się, że wszystkie urządzenia są wyłączone.\n• Aby zapewnić prawidłowe działanie produktu, upewnij się, że wlotowe i wylotowe \notwory wentylacyjne po obu stronach są odsłonięte. Zachowaj co najmniej 200 mm \nodstępu między otworami wentylacyjnymi a jakimikolwiek przedmiotami, aby zapewnić \nprawidłowe odprowadzanie ciepła.",
+      "text": [
+        "Przed podłączeniem urządzenia Explorer 3600 Plus do urządzenia Jackery Battery Pack 3600 upewnij się, że wszystkie urządzenia są wyłączone.",
+        "Aby zapewnić prawidłowe działanie produktu, upewnij się, że wlotowe i wylotowe otwory wentylacyjne po obu stronach są odsłonięte. Zachowaj co najmniej 200 mm odstępu między otworami wentylacyjnymi a jakimikolwiek przedmiotami, aby zapewnić prawidłowe odprowadzanie ciepła."
+      ]
+    },
+    {
+      "id": "green-energy",
+      "page": 154,
+      "bbox": [
+        25,
+        51,
+        350,
+        91
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Ekologiczna energia przede wszystkim! Propagujemy korzystanie w pierwszej kolejności z energii ekologicznej. Ten \nprodukt obsługuje jednocześnie dwa tryby ładowania: ładowanie z paneli słonecznych i ładowanie z gniazdka \nściennego AC. Gdy ładowanie z gniazdka ściennego AC i ładowanie z paneli słonecznych są włączone \njednocześnie, produkt będzie preferować ładowanie z paneli, a obie metody będą ładować baterię z maksymalną \ndopuszczalną mocą.",
+      "text": "Ekologiczna energia przede wszystkim! Propagujemy korzystanie w pierwszej kolejności z energii ekologicznej. Ten produkt obsługuje jednocześnie dwa tryby ładowania: ładowanie z paneli słonecznych i ładowanie z gniazdka ściennego AC. Gdy ładowanie z gniazdka ściennego AC i ładowanie z paneli słonecznych są włączone jednocześnie, produkt będzie preferować ładowanie z paneli, a obie metody będą ładować baterię z maksymalną dopuszczalną mocą."
+    },
+    {
+      "id": "first-charge",
+      "page": 154,
+      "bbox": [
+        25,
+        90,
+        344,
+        104
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Przed pierwszym użyciem w pełni naładuj produkt.",
+      "text": "Przed pierwszym użyciem w pełni naładuj produkt."
+    },
+    {
+      "id": "charging-temperature",
+      "page": 154,
+      "bbox": [
+        77,
+        108,
+        344,
+        160
+      ],
+      "method": "native-complete-source-panel",
+      "raw": "• Zalecany zakres temperatury otoczenia podczas ładowania produktu wynosi od -20°C do \n45°C, a zakres temperatury otoczenia podczas zasilania urządzeń odbiorczych – od -20°C \ndo 45°C. Eksploatacja produktu poza tym zakresem temperatur może ograniczyć \nmożliwości ładowania i zasilania urządzeń odbiorczych, a nawet uniemożliwić te czynności.\n• Moc ładowania i pojemność baterii produktu mogą się zmieniać w zależności od wahań \ntemperatury.",
+      "text": [
+        "Zalecany zakres temperatury otoczenia podczas ładowania produktu wynosi od -20°C do 45°C, a zakres temperatury otoczenia podczas zasilania urządzeń odbiorczych – od -20°C do 45°C. Eksploatacja produktu poza tym zakresem temperatur może ograniczyć możliwości ładowania i zasilania urządzeń odbiorczych, a nawet uniemożliwić te czynności.",
+        "Moc ładowania i pojemność baterii produktu mogą się zmieniać w zależności od wahań temperatury."
+      ]
+    },
+    {
+      "id": "ac-caution",
+      "page": 154,
+      "bbox": [
+        80,
+        279,
+        344,
+        312
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Upewnij się, że przewód ładowania AC jest solidnie i bezpiecznie podłączony do portu \nwejściowego AC. Niedokładne podpięcie przewodu może powodować niestabilność prądu, \nprzegrzanie, słaby styk lub awarię urządzenia.",
+      "text": "Upewnij się, że przewód ładowania AC jest solidnie i bezpiecznie podłączony do portu wejściowego AC. Niedokładne podpięcie przewodu może powodować niestabilność prądu, przegrzanie, słaby styk lub awarię urządzenia."
+    },
+    {
+      "id": "solar-description",
+      "page": 154,
+      "bbox": [
+        28,
+        320,
+        350,
+        367
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "ŁADOWANIE ZA POMOCĄ PANELI SŁONECZNYCH\nSPRZEDAWANE ODDZIELNIE\nStacja Jackery Explorer 3600 Plus ma dwa porty wejściowe DC8020 i jest kompatybilna z panelami słonecznymi \nJackery. Jeśli do jednego portu wejściowego DC8020 trzeba podłączyć jednocześnie dwa panele słoneczne, \nnależy skorzystać z poniższego rysunku ilustrującego ładowanie przez łącznik paneli słonecznych (sprzedawany \noddzielnie, nie wchodzi w skład standardowego wyposażenia).",
+      "text": "ŁADOWANIE ZA POMOCĄ PANELI SŁONECZNYCH SPRZEDAWANE ODDZIELNIE Stacja Jackery Explorer 3600 Plus ma dwa porty wejściowe DC8020 i jest kompatybilna z panelami słonecznymi Jackery. Jeśli do jednego portu wejściowego DC8020 trzeba podłączyć jednocześnie dwa panele słoneczne, należy skorzystać z poniższego rysunku ilustrującego ładowanie przez łącznik paneli słonecznych (sprzedawany oddzielnie, nie wchodzi w skład standardowego wyposażenia)."
+    },
+    {
+      "id": "solar-maximum",
+      "page": 155,
+      "bbox": [
+        80,
+        28,
+        344,
+        46
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Do jednego portu wejściowego DC8020 można podłączyć maksymalnie dwa panele słoneczne.",
+      "text": "Do jednego portu wejściowego DC8020 można podłączyć maksymalnie dwa panele słoneczne."
+    },
+    {
+      "id": "solar-caution",
+      "page": 155,
+      "bbox": [
+        84,
+        50,
+        344,
+        111
+      ],
+      "method": "native-complete-source-panel",
+      "raw": "Należy się upewnić, że napięcie wejściowe na obu portach DC jest takie samo. Nieprzestrzeganie \ntego zalecenia może uszkodzić produkt. Na przykład:\n• W przypadku podłączania paneli słonecznych do obu portów wejściowych DC8020 zaleca się \nużywanie tych samych modeli paneli słonecznych Jackery i jednakowej liczby paneli. \n• Nie ładować produktu jednocześnie za pomocą ładowarki samochodowej i panelu \nsłonecznego. Może to spowodować przepalenie bezpiecznika samochodowego lub awarię \nładowania.",
+      "text": [
+        "Należy się upewnić, że napięcie wejściowe na obu portach DC jest takie samo. Nieprzestrzeganie tego zalecenia może uszkodzić produkt. Na przykład:",
+        "W przypadku podłączania paneli słonecznych do obu portów wejściowych DC8020 zaleca się używanie tych samych modeli paneli słonecznych Jackery i jednakowej liczby paneli.",
+        "Nie ładować produktu jednocześnie za pomocą ładowarki samochodowej i panelu słonecznego. Może to spowodować przepalenie bezpiecznika samochodowego lub awarię ładowania."
+      ]
+    },
+    {
+      "id": "solar-voc",
+      "page": 155,
+      "bbox": [
+        25,
+        110,
+        344,
+        151
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Do ładowania produktu zaleca się korzystanie z panelu słonecznego Jackery. Należy upewnić się, że napięcie \nobwodu otwartego (VOC) panelu słonecznego mieści się w zakresie wejściowym DC (16 V – 60 V) urządzenia Explorer \n3600 Plus. Jackery nie ponosi odpowiedzialności za jakiekolwiek szkody lub straty wynikające z użycia paneli \nsłonecznych innych producentów.",
+      "text": "Do ładowania produktu zaleca się korzystanie z panelu słonecznego Jackery. Należy upewnić się, że napięcie obwodu otwartego (VOC) panelu słonecznego mieści się w zakresie wejściowym DC (16 V – 60 V) urządzenia Explorer 3600 Plus. Jackery nie ponosi odpowiedzialności za jakiekolwiek szkody lub straty wynikające z użycia paneli słonecznych innych producentów."
+    },
+    {
+      "id": "car-description",
+      "page": 155,
+      "bbox": [
+        28,
+        169,
+        344,
+        190
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Produkt ten można ładować za pomocą ładowarki samochodowej 12 V. Należy zapewnić właściwe połączenie \nmiędzy ładowarką samochodową a gniazdem zasilania 12 V (zapalniczką samochodową).",
+      "text": "Produkt ten można ładować za pomocą ładowarki samochodowej 12 V. Należy zapewnić właściwe połączenie między ładowarką samochodową a gniazdem zasilania 12 V (zapalniczką samochodową)."
+    },
+    {
+      "id": "car-caution",
+      "page": 155,
+      "bbox": [
+        83,
+        334,
+        344,
+        404
+      ],
+      "method": "native-complete-source-panel",
+      "raw": "• Uruchomić pojazd przed przystąpieniem do ładowania stacji zasilającej.\n• Jeśli pojazd porusza się po wyboistych drogach, zabrania się korzystania z ładowarki \nsamochodowej, aby uniknąć niestandardowego działania. Firma nie ponosi odpowied-\nzialności za jakiekolwiek straty spowodowane niestandardowym działaniem.\n• Ładowanie z pojazdu jest możliwe wyłącznie w pojazdach z instalacją 12 V DC, a nie 24 V \nDC. Nie wolno ładować tego produktu w pojeździe z instalacją 24 V, gdyż mogłoby to \ndoprowadzić do obrażeń ciała i strat materialnych.",
+      "text": [
+        "Uruchomić pojazd przed przystąpieniem do ładowania stacji zasilającej.",
+        "Jeśli pojazd porusza się po wyboistych drogach, zabrania się korzystania z ładowarki samochodowej, aby uniknąć niestandardowego działania. Firma nie ponosi odpowiedzialności za jakiekolwiek straty spowodowane niestandardowym działaniem.",
+        "Ładowanie z pojazdu jest możliwe wyłącznie w pojazdach z instalacją 12 V DC, a nie 24 V DC. Nie wolno ładować tego produktu w pojeździe z instalacją 24 V, gdyż mogłoby to doprowadzić do obrażeń ciała i strat materialnych."
+      ]
+    },
+    {
+      "id": "storage-intro",
+      "page": 156,
+      "bbox": [
+        36,
+        59,
+        344,
+        146
+      ],
+      "method": "native-complete-source-panel",
+      "raw": "Produkt należy przechowywać w suchym, czystym i odpowiednio wentylowanym miejscu. Temperatura i \nwilgotność w miejscu przechowywania:\n",
+      "text": "Produkt należy przechowywać w suchym, czystym i odpowiednio wentylowanym miejscu. Temperatura i wilgotność w miejscu przechowywania:"
+    },
+    {
+      "id": "storage-body",
+      "page": 156,
+      "bbox": [
+        36,
+        59,
+        344,
+        146
+      ],
+      "method": "native-complete-source-panel",
+      "raw": "Jeśli produkt będzie przechowywany przez długi czas (3–6 miesięcy) z rozładowaną baterią, jego \nnaładowanie może okazać się niemożliwe. Aby temu zapobiec i zadbać o kondycję baterii, zaleca się \nsprawdzanie i ładowanie produktu co trzy miesiące oraz przeprowadzanie pełnego cyklu ładowania i \nrozładowania co najmniej raz na 6–12 miesięcy.",
+      "text": "Jeśli produkt będzie przechowywany przez długi czas (3–6 miesięcy) z rozładowaną baterią, jego naładowanie może okazać się niemożliwe. Aby temu zapobiec i zadbać o kondycję baterii, zaleca się sprawdzanie i ładowanie produktu co trzy miesiące oraz przeprowadzanie pełnego cyklu ładowania i rozładowania co najmniej raz na 6–12 miesięcy."
+    },
+    {
+      "id": "fault-F0",
+      "page": 156,
+      "bbox": [
+        70,
+        235.226806640625,
+        344,
+        248.20941162109375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Uruchom produkt ponownie.",
+      "text": "Uruchom produkt ponownie."
+    },
+    {
+      "id": "fault-F1",
+      "page": 156,
+      "bbox": [
+        70,
+        248.20941162109375,
+        344,
+        260.2972106933594
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Uruchom produkt ponownie.",
+      "text": "Uruchom produkt ponownie."
+    },
+    {
+      "id": "fault-F2",
+      "page": 156,
+      "bbox": [
+        70,
+        260.2972106933594,
+        344,
+        272.385009765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Uruchom produkt ponownie.",
+      "text": "Uruchom produkt ponownie."
+    },
+    {
+      "id": "fault-F3",
+      "page": 156,
+      "bbox": [
+        70,
+        272.385009765625,
+        344,
+        284.564697265625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Uruchom produkt ponownie.",
+      "text": "Uruchom produkt ponownie."
+    },
+    {
+      "id": "fault-F4",
+      "page": 156,
+      "bbox": [
+        70,
+        284.564697265625,
+        344,
+        297.83660888671875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Podłącz produkt do urządzeń odbiorczych, aby rozładować baterię, aż usterka zniknie.",
+      "text": "Podłącz produkt do urządzeń odbiorczych, aby rozładować baterię, aż usterka zniknie."
+    },
+    {
+      "id": "fault-F5",
+      "page": 156,
+      "bbox": [
+        70,
+        297.83660888671875,
+        344,
+        312.281005859375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Do czasu zniknięcia usterki ładuj produkt z paneli słonecznych lub gniazdka ściennego AC.",
+      "text": "Do czasu zniknięcia usterki ładuj produkt z paneli słonecznych lub gniazdka ściennego AC."
+    },
+    {
+      "id": "fault-F6",
+      "page": 156,
+      "bbox": [
+        70,
+        312.281005859375,
+        344,
+        384.58941650390625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "1.  Przed przystąpieniem do ładowania produktu z gniazdka ściennego AC poczekaj, aż \nnapięcie w sieci się ustabilizuje.\n2. Sprawdź, czy wlotowe i wylotowe otwory wentylacyjne nie są zablokowane. Pozostaw 200 \nmm odstępu po obu stronach produktu.\n3. Umieść produkt w miejscu nienarażonym na bezpośrednie działanie promieni słonecznych ani \nna wysokie temperatury otoczenia.\n4. Odłącz wszystkie urządzenia odbiorcze od produktu. Pozostaw produkt w stanie \nbezczynności i poczekaj, aż usterka zniknie.\n5. Uruchom produkt ponownie.",
+      "text": "1. Przed przystąpieniem do ładowania produktu z gniazdka ściennego AC poczekaj, aż napięcie w sieci się ustabilizuje. 2. Sprawdź, czy wlotowe i wylotowe otwory wentylacyjne nie są zablokowane. Pozostaw 200 mm odstępu po obu stronach produktu. 3. Umieść produkt w miejscu nienarażonym na bezpośrednie działanie promieni słonecznych ani na wysokie temperatury otoczenia. 4. Odłącz wszystkie urządzenia odbiorcze od produktu. Pozostaw produkt w stanie bezczynności i poczekaj, aż usterka zniknie. 5. Uruchom produkt ponownie."
+    },
+    {
+      "id": "fault-F7",
+      "page": 156,
+      "bbox": [
+        70,
+        384.58941650390625,
+        344,
+        419.0404052734375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "1. Odłącz wszystkie wtyki DC podłączone do produktu.\n2. Sprawdź napięcie obwodu otwartego (Voc) podłączonych paneli słonecznych. Produkt \ndopuszcza maksymalne napięcie wejściowe DC wynoszące 60 V.\n3. Zrestartuj produkt i pozostaw go w stanie bezczynności. Poczekaj, aż usterka zniknie.",
+      "text": "1. Odłącz wszystkie wtyki DC podłączone do produktu. 2. Sprawdź napięcie obwodu otwartego (Voc) podłączonych paneli słonecznych. Produkt dopuszcza maksymalne napięcie wejściowe DC wynoszące 60 V. 3. Zrestartuj produkt i pozostaw go w stanie bezczynności. Poczekaj, aż usterka zniknie."
+    },
+    {
+      "id": "fault-F8",
+      "page": 156,
+      "bbox": [
+        70,
+        419.0404052734375,
+        344,
+        433.64630126953125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Kontakt z działem wsparcia Jackery",
+      "text": "Kontakt z działem wsparcia Jackery"
+    },
+    {
+      "id": "fault-F9",
+      "page": 156,
+      "bbox": [
+        70,
+        433.64630126953125,
+        344,
+        446.53521728515625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Odłącz urządzenia odbiorcze podłączone do portów USB produktu. Poczekaj, aż usterka zniknie.",
+      "text": "Odłącz urządzenia odbiorcze podłączone do portów USB produktu. Poczekaj, aż usterka zniknie."
+    },
+    {
+      "id": "fault-FA",
+      "page": 156,
+      "bbox": [
+        70,
+        446.53521728515625,
+        344,
+        465.95233154296875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "1.  Wyłącz wyjście AC w obu urządzeniach.\n2. W ciągu 1 minuty naciśnij ponownie przycisk zasilania AC na każdym urządzeniu.",
+      "text": "1. Wyłącz wyjście AC w obu urządzeniach. 2. W ciągu 1 minuty naciśnij ponownie przycisk zasilania AC na każdym urządzeniu."
+    },
+    {
+      "id": "fault-FC",
+      "page": 156,
+      "bbox": [
+        70,
+        465.95233154296875,
+        344,
+        495.2458190917969
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "1.  Zrestartuj osobno zestawy baterii oraz urządzenie Jackery Explorer 3600 Plus.\n2. Jeśli usterka nie ustąpi, odłącz zestaw baterii od urządzenia Jackery Explorer 3600 Plus i \npodłącz go ponownie.",
+      "text": "1. Zrestartuj osobno zestawy baterii oraz urządzenie Jackery Explorer 3600 Plus. 2. Jeśli usterka nie ustąpi, odłącz zestaw baterii od urządzenia Jackery Explorer 3600 Plus i podłącz go ponownie."
+    },
+    {
+      "id": "troubleshooting-intro",
+      "page": 156,
+      "bbox": [
+        25,
+        192,
+        344,
+        216
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Jeśli pojawi się którykolwiek z poniższych kodów błędów, wykonaj wymienione działania naprawcze, aby rozwiązać \nproblem. Jeśli usterka nie ustąpi, skontaktuj się z działem wsparcia Jackery.",
+      "text": "Jeśli pojawi się którykolwiek z poniższych kodów błędów, wykonaj wymienione działania naprawcze, aby rozwiązać problem. Jeśli usterka nie ustąpi, skontaktuj się z działem wsparcia Jackery."
+    },
+    {
+      "id": "spec-label",
+      "page": 157,
+      "bbox": [
+        28,
+        74.05372619628906,
+        139,
+        87.23672485351562
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Nazwa produktu",
+      "text": "Nazwa produktu"
+    },
+    {
+      "id": "spec-value",
+      "page": 157,
+      "bbox": [
+        139,
+        74.05372619628906,
+        344,
+        87.23672485351562
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Jackery Explorer 3600 Plus",
+      "text": "Jackery Explorer 3600 Plus"
+    },
+    {
+      "id": "spec-label",
+      "page": 157,
+      "bbox": [
+        28,
+        87.23672485351562,
+        139,
+        100.80020141601562
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Numer modelu",
+      "text": "Numer modelu"
+    },
+    {
+      "id": "spec-value",
+      "page": 157,
+      "bbox": [
+        139,
+        87.23672485351562,
+        344,
+        100.80020141601562
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "JE-3600A",
+      "text": "JE-3600A"
+    },
+    {
+      "id": "spec-label",
+      "page": 157,
+      "bbox": [
+        28,
+        100.80020141601562,
+        139,
+        113.72250366210938
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Pojemność",
+      "text": "Pojemność"
+    },
+    {
+      "id": "spec-value",
+      "page": 157,
+      "bbox": [
+        139,
+        100.80020141601562,
+        344,
+        113.72250366210938
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "80 Ah / 44,8 V DC (3584 Wh)",
+      "text": "80 Ah / 44,8 V DC (3584 Wh)"
+    },
+    {
+      "id": "spec-label",
+      "page": 157,
+      "bbox": [
+        28,
+        113.72250366210938,
+        139,
+        126.0050048828125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Typ ogniw",
+      "text": "Typ ogniw"
+    },
+    {
+      "id": "spec-value",
+      "page": 157,
+      "bbox": [
+        139,
+        113.72250366210938,
+        344,
+        126.0050048828125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "LiFePO4 ",
+      "text": "LiFePO4"
+    },
+    {
+      "id": "spec-label",
+      "page": 157,
+      "bbox": [
+        28,
+        126.0050048828125,
+        139,
+        139.26840209960938
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Waga",
+      "text": "Waga"
+    },
+    {
+      "id": "spec-value",
+      "page": 157,
+      "bbox": [
+        139,
+        126.0050048828125,
+        344,
+        139.26840209960938
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Około 35 kg",
+      "text": "Około 35 kg"
+    },
+    {
+      "id": "spec-label",
+      "page": 157,
+      "bbox": [
+        28,
+        139.26840209960938,
+        139,
+        152.7451171875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wymiary",
+      "text": "Wymiary"
+    },
+    {
+      "id": "spec-value",
+      "page": 157,
+      "bbox": [
+        139,
+        139.26840209960938,
+        344,
+        152.7451171875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "38,5 × 30,9 × 49,1 cm",
+      "text": "38,5 × 30,9 × 49,1 cm"
+    },
+    {
+      "id": "spec-label",
+      "page": 157,
+      "bbox": [
+        28,
+        152.7451171875,
+        139,
+        165.31613159179688
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Żywotność",
+      "text": "Żywotność"
+    },
+    {
+      "id": "spec-value",
+      "page": 157,
+      "bbox": [
+        139,
+        152.7451171875,
+        344,
+        165.31613159179688
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "6000 cykli do 70%+ pojemności",
+      "text": "6000 cykli do 70%+ pojemności"
+    },
+    {
+      "id": "spec-label",
+      "page": 157,
+      "bbox": [
+        28,
+        165.31613159179688,
+        139,
+        178.83572387695312
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Kod IEC",
+      "text": "Kod IEC"
+    },
+    {
+      "id": "spec-value",
+      "page": 157,
+      "bbox": [
+        139,
+        165.31613159179688,
+        344,
+        178.83572387695312
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "IFpR41/136[14S4P]M/-20+40/90",
+      "text": "IFpR41/136[14S4P]M/-20+40/90"
+    },
+    {
+      "id": "input-value",
+      "page": 157,
+      "bbox": [
+        139,
+        212.57471313476563,
+        344,
+        222.37470397949218
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Tryb ładowania: 220–240 V ~50 Hz, maks. 10 A",
+      "text": "Tryb ładowania: 220–240 V ~50 Hz, maks. 10 A"
+    },
+    {
+      "id": "input-value",
+      "page": 157,
+      "bbox": [
+        139,
+        225.81262817382813,
+        344,
+        235.72461853027343
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Tryb obejściowy①: 220–240 V ~50 Hz, maks. 10 A",
+      "text": "Tryb obejściowy①: 220–240 V ~50 Hz, maks. 10 A"
+    },
+    {
+      "id": "input-value",
+      "page": 157,
+      "bbox": [
+        139,
+        238.81433715820313,
+        344,
+        248.70232543945312
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "12–16 V ⎓ maks. 8 A, w trybie podwójnym do maks. 8 A",
+      "text": "12–16 V ⎓ maks. 8 A, w trybie podwójnym do maks. 8 A"
+    },
+    {
+      "id": "input-value",
+      "page": 157,
+      "bbox": [
+        139,
+        249.77432861328126,
+        344,
+        258.451318359375
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "16–60 V ⎓ 12 A, w trybie podwójnym do maks. 24 A / maks. 1000 W",
+      "text": "16–60 V ⎓ 12 A, w trybie podwójnym do maks. 24 A / maks. 1000 W"
+    },
+    {
+      "id": "input-value",
+      "page": 157,
+      "bbox": [
+        139,
+        261.814306640625,
+        344,
+        271.702294921875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "36,4 V – 50,4 V ⎓ maks. 100 A",
+      "text": "36,4 V – 50,4 V ⎓ maks. 100 A"
+    },
+    {
+      "id": "output-label",
+      "page": 157,
+      "bbox": [
+        28,
+        306.4425354003906,
+        139,
+        319.7467041015625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "3 wyjścia AC",
+      "text": "3 wyjścia AC"
+    },
+    {
+      "id": "output-value",
+      "page": 157,
+      "bbox": [
+        139,
+        306.4425354003906,
+        344,
+        319.7467041015625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "230 V ~50 Hz, 3600 W",
+      "text": "230 V ~50 Hz, 3600 W"
+    },
+    {
+      "id": "output-label",
+      "page": 157,
+      "bbox": [
+        28,
+        319.7467041015625,
+        139,
+        332.41259765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Całkowita moc wyjściowa AC②",
+      "text": "Całkowita moc wyjściowa AC②"
+    },
+    {
+      "id": "output-value",
+      "page": 157,
+      "bbox": [
+        139,
+        319.7467041015625,
+        344,
+        332.41259765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Moc znamionowa 3600 W, moc szczytowa 7200 W",
+      "text": "Moc znamionowa 3600 W, moc szczytowa 7200 W"
+    },
+    {
+      "id": "output-label",
+      "page": 157,
+      "bbox": [
+        28,
+        332.41259765625,
+        139,
+        345.28143310546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Wyjście AC w trybie obejściowym ①",
+      "text": "Wyjście AC w trybie obejściowym ①"
+    },
+    {
+      "id": "output-value",
+      "page": 157,
+      "bbox": [
+        139,
+        332.41259765625,
+        344,
+        345.28143310546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "220–240 V ~50 Hz, maks. 10 A",
+      "text": "220–240 V ~50 Hz, maks. 10 A"
+    },
+    {
+      "id": "output-label",
+      "page": 157,
+      "bbox": [
+        28,
+        345.28143310546875,
+        139,
+        358.28143310546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "2 wyjścia USB-C 100 W",
+      "text": "2 wyjścia USB-C 100 W"
+    },
+    {
+      "id": "output-value",
+      "page": 157,
+      "bbox": [
+        139,
+        345.28143310546875,
+        344,
+        358.28143310546875
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Maks. 100 W, 5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 3 A, 15 V ⎓ 3 A, 20 V ⎓ 5 A",
+      "text": "Maks. 100 W, 5 V ⎓ 3 A, 9 V ⎓ 3 A, 12 V ⎓ 3 A, 15 V ⎓ 3 A, 20 V ⎓ 5 A"
+    },
+    {
+      "id": "output-label",
+      "page": 157,
+      "bbox": [
+        28,
+        358.28143310546875,
+        139,
+        371.5986328125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "2 wyjścia USB-A 18 W",
+      "text": "2 wyjścia USB-A 18 W"
+    },
+    {
+      "id": "output-value",
+      "page": 157,
+      "bbox": [
+        139,
+        358.28143310546875,
+        344,
+        371.5986328125
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Maks. 18 W, 5–6 V ⎓ 3 A, 6–9 V ⎓ 2 A, 9–12 V ⎓ 1,5 A",
+      "text": "Maks. 18 W, 5–6 V ⎓ 3 A, 6–9 V ⎓ 2 A, 9–12 V ⎓ 1,5 A"
+    },
+    {
+      "id": "output-label",
+      "page": 157,
+      "bbox": [
+        28,
+        371.5986328125,
+        139,
+        384.08453369140625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "1 port rozszerzeń DC",
+      "text": "1 port rozszerzeń DC"
+    },
+    {
+      "id": "output-value",
+      "page": 157,
+      "bbox": [
+        139,
+        371.5986328125,
+        344,
+        384.08453369140625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "36,4 V – 50,4 V ⎓ maks. 60 A",
+      "text": "36,4 V – 50,4 V ⎓ maks. 60 A"
+    },
+    {
+      "id": "temperature-label",
+      "page": 157,
+      "bbox": [
+        28,
+        415.28582763671875,
+        139,
+        428.9137268066406
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Temperatura ładowania",
+      "text": "Temperatura ładowania"
+    },
+    {
+      "id": "temperature-value",
+      "page": 157,
+      "bbox": [
+        139,
+        415.28582763671875,
+        344,
+        428.9137268066406
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": " -20°C do 45°C",
+      "text": "-20°C do 45°C"
+    },
+    {
+      "id": "temperature-label",
+      "page": 157,
+      "bbox": [
+        28,
+        428.9137268066406,
+        139,
+        441.6588134765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Temperatura zasilania urządzeń odbiorczych",
+      "text": "Temperatura zasilania urządzeń odbiorczych"
+    },
+    {
+      "id": "temperature-value",
+      "page": 157,
+      "bbox": [
+        139,
+        428.9137268066406,
+        344,
+        441.6588134765625
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": " -20°C do 45°C",
+      "text": "-20°C do 45°C"
+    },
+    {
+      "id": "footnote-1",
+      "page": 157,
+      "bbox": [
+        25,
+        472,
+        334,
+        524
+      ],
+      "method": "native-complete-numbered-footnote",
+      "raw": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty \nwyjściowe AC.\n",
+      "text": "① Baterię produktu można ładować z gniazdka ściennego AC, jednocześnie zapewniając zasilanie innych urządzeń przez porty wyjściowe AC."
+    },
+    {
+      "id": "footnote-2",
+      "page": 157,
+      "bbox": [
+        25,
+        472,
+        334,
+        524
+      ],
+      "method": "native-complete-numbered-footnote",
+      "raw": "② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą.",
+      "text": "② Wskazuje, że co najmniej dwa porty wyjściowe AC współpracują ze sobą."
+    },
+    {
+      "id": "warranty-title",
+      "page": 158,
+      "bbox": [
+        34.900901794433594,
+        31.031200408935547,
+        111.34089660644531,
+        45.88719940185547
+      ],
+      "method": "native-complete-source-block",
+      "raw": "GWARANCJA\n",
+      "text": "GWARANCJA"
+    },
+    {
+      "id": "warranty-scope",
+      "page": 158,
+      "bbox": [
+        36.040000915527344,
+        58.93468475341797,
+        329.7509460449219,
+        75.98419189453125
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Gwarancji udzielamy wyłącznie klientom, którzy dokonali zakupu na oficjalnej stronie Jackery, na \nplatformach zewnętrznych marki Jackery lub u lokalnych autoryzowanych sprzedawców. \n",
+      "text": "Gwarancji udzielamy wyłącznie klientom, którzy dokonali zakupu na oficjalnej stronie Jackery, na platformach zewnętrznych marki Jackery lub u lokalnych autoryzowanych sprzedawców."
+    },
+    {
+      "id": "warranty-local_law_note",
+      "page": 158,
+      "bbox": [
+        29.26759910583496,
+        82.81690216064453,
+        311.3516845703125,
+        97.0189208984375
+      ],
+      "method": "native-complete-source-block",
+      "raw": "*Okres i szczegóły gwarancji mogą się różnić w zależności od lokalnych przepisów prawa, regulacji oraz \nautoryzowanych sprzedawców.\n",
+      "text": "*Okres i szczegóły gwarancji mogą się różnić w zależności od lokalnych przepisów prawa, regulacji oraz autoryzowanych sprzedawców."
+    },
+    {
+      "id": "warranty-limited_heading",
+      "page": 158,
+      "bbox": [
+        40.73540115356445,
+        99.59428405761719,
+        130.1514129638672,
+        109.498291015625
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Ograniczona gwarancja\n",
+      "text": "Ograniczona gwarancja"
+    },
+    {
+      "id": "warranty-limited_body",
+      "page": 158,
+      "bbox": [
+        25,
+        111,
+        344,
+        167
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Jackery gwarantuje pierwotnemu nabywcy konsumenckiemu, że produkt Jackery będzie wolny od wad \nwykonania i materiałowych przy normalnym użytkowaniu konsumenckim w odpowiednim okresie \ngwarancyjnym określonym w sekcji „Okres gwarancji” poniżej, z zastrzeżeniem wyłączeń określonych poniżej.\n\nNiniejsze oświadczenie gwarancyjne określa wszystkie i jedyne zobowiązania gwarancyjne Jackery. Nie \nprzyjmujemy ani nie upoważniamy żadnej osoby do przyjmowania w naszym imieniu jakiejkolwiek innej \nodpowiedzialności w związku ze sprzedażą naszych produktów.\n",
+      "text": "Jackery gwarantuje pierwotnemu nabywcy konsumenckiemu, że produkt Jackery będzie wolny od wad wykonania i materiałowych przy normalnym użytkowaniu konsumenckim w odpowiednim okresie gwarancyjnym określonym w sekcji „Okres gwarancji” poniżej, z zastrzeżeniem wyłączeń określonych poniżej. Niniejsze oświadczenie gwarancyjne określa wszystkie i jedyne zobowiązania gwarancyjne Jackery. Nie przyjmujemy ani nie upoważniamy żadnej osoby do przyjmowania w naszym imieniu jakiejkolwiek innej odpowiedzialności w związku ze sprzedażą naszych produktów."
+    },
+    {
+      "id": "warranty-period_heading",
+      "page": 158,
+      "bbox": [
+        25,
+        161,
+        344,
+        186
+      ],
+      "method": "native-complete-source-heading",
+      "raw": "Okres gwarancji",
+      "text": "Okres gwarancji"
+    },
+    {
+      "id": "warranty-standard_body",
+      "page": 158,
+      "bbox": [
+        37.81639862060547,
+        214.22535705566406,
+        203.65518188476562,
+        260.41326904296875
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Standardowy okres gwarancji dla urządzenia Jackery \nExplorer 3600 Plus wynosi 36 miesięcy. W każdym przypadku \nokres gwarancji liczony jest od daty zakupu przez \npierwotnego nabywcę konsumenckiego. W celu ustalenia \ndaty rozpoczęcia okresu gwarancyjnego wymagany jest \nparagon lub inny wiarygodny dowód zakupu od pierwszego \nnabywcy.\n",
+      "text": "Standardowy okres gwarancji dla urządzenia Jackery Explorer 3600 Plus wynosi 36 miesięcy. W każdym przypadku okres gwarancji liczony jest od daty zakupu przez pierwotnego nabywcę konsumenckiego. W celu ustalenia daty rozpoczęcia okresu gwarancyjnego wymagany jest paragon lub inny wiarygodny dowód zakupu od pierwszego nabywcy."
+    },
+    {
+      "id": "warranty-extension_body",
+      "page": 158,
+      "bbox": [
+        218.62600708007812,
+        214.2183074951172,
+        333.3088073730469,
+        256.4283752441406
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Aby aktywować przedłużenie gwarancji, \nnależy zarejestrować produkt online lub \nskontaktować się z naszym zespołem \nobsługi klienta pod adresem \nhello.eu@jackery.com w celu przedłużenia \nstandardowego okresu gwarancji.\n",
+      "text": "Aby aktywować przedłużenie gwarancji, należy zarejestrować produkt online lub skontaktować się z naszym zespołem obsługi klienta pod adresem hello.eu@jackery.com w celu przedłużenia standardowego okresu gwarancji."
+    },
+    {
+      "id": "warranty-exchange_heading",
+      "page": 158,
+      "bbox": [
+        25,
+        261,
+        344,
+        286
+      ],
+      "method": "native-complete-source-heading",
+      "raw": "Wymiana",
+      "text": "Wymiana"
+    },
+    {
+      "id": "warranty-exchange_body",
+      "page": 158,
+      "bbox": [
+        37.817596435546875,
+        286.660888671875,
+        327.69854736328125,
+        307.86492919921875
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Jackery wymieni na swój koszt każdy produkt Jackery, który nie będzie działać w odpowiednim okresie \ngwarancyjnym z powodu wady wykonania lub materiałowej. Produkt zastępczy przejmuje pozostały okres \ngwarancji pierwotnego produktu.\n",
+      "text": "Jackery wymieni na swój koszt każdy produkt Jackery, który nie będzie działać w odpowiednim okresie gwarancyjnym z powodu wady wykonania lub materiałowej. Produkt zastępczy przejmuje pozostały okres gwarancji pierwotnego produktu."
+    },
+    {
+      "id": "warranty-buyer_heading",
+      "page": 158,
+      "bbox": [
+        40.73540115356445,
+        323.52301025390625,
+        250.60653686523438,
+        333.427001953125
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Ograniczenie do pierwotnego nabywcy konsumenckiego\n",
+      "text": "Ograniczenie do pierwotnego nabywcy konsumenckiego"
+    },
+    {
+      "id": "warranty-buyer_body",
+      "page": 158,
+      "bbox": [
+        37.81639862060547,
+        340.1889953613281,
+        328.1497802734375,
+        354.3909912109375
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Gwarancja na produkt Jackery jest ograniczona do pierwotnego nabywcy konsumenckiego i nie podlega \nprzeniesieniu na żadnego kolejnego właściciela.\n",
+      "text": "Gwarancja na produkt Jackery jest ograniczona do pierwotnego nabywcy konsumenckiego i nie podlega przeniesieniu na żadnego kolejnego właściciela."
+    },
+    {
+      "id": "warranty-exclusions_heading",
+      "page": 158,
+      "bbox": [
+        25,
+        360,
+        344,
+        385
+      ],
+      "method": "native-complete-source-heading",
+      "raw": "Wyłączenia",
+      "text": "Wyłączenia"
+    },
+    {
+      "id": "warranty-interpretation_heading",
+      "page": 158,
+      "bbox": [
+        25,
+        453,
+        344,
+        478
+      ],
+      "method": "native-complete-source-heading",
+      "raw": "Prawo do interpretacji",
+      "text": "Prawo do interpretacji"
+    },
+    {
+      "id": "warranty-interpretation_body",
+      "page": 158,
+      "bbox": [
+        37.815399169921875,
+        476.37548828125,
+        318.3484802246094,
+        490.5775146484375
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Jackery zastrzega sobie prawo do ostatecznej interpretacji powyższej polityki posprzedażowej wobec \nklientów.\n",
+      "text": "Jackery zastrzega sobie prawo do ostatecznej interpretacji powyższej polityki posprzedażowej wobec klientów."
+    },
+    {
+      "id": "warranty-exclusions",
+      "page": 158,
+      "bbox": [
+        36,
+        383,
+        344,
+        455
+      ],
+      "method": "native-complete-source-panel",
+      "raw": "Gwarancja Jackery nie obejmuje:\n• Produktu, który był niewłaściwie użytkowany, używany niezgodnie z przeznaczeniem, modyfikowany, \nuszkodzony w wyniku wypadku lub używany do celów innych niż normalne użytkowanie konsumenckie \nzgodnie z aktualną dokumentacją produktową Jackery.\n• Prób naprawy podejmowanych przez osoby inne niż autoryzowany serwis.\n• Jakiegokolwiek produktu zakupionego za pośrednictwem internetowego serwisu aukcyjnego.\n• Gwarancja Jackery nie obejmuje ogniwa baterii, chyba że ogniwo zostanie w pełni naładowane przez \nużytkownika w ciągu siedmiu dni od zakupu produktu oraz co najmniej raz na 6 miesięcy w późniejszym \nokresie.",
+      "text": "Gwarancja Jackery nie obejmuje: • Produktu, który był niewłaściwie użytkowany, używany niezgodnie z przeznaczeniem, modyfikowany, uszkodzony w wyniku wypadku lub używany do celów innych niż normalne użytkowanie konsumenckie zgodnie z aktualną dokumentacją produktową Jackery. • Prób naprawy podejmowanych przez osoby inne niż autoryzowany serwis. • Jakiegokolwiek produktu zakupionego za pośrednictwem internetowego serwisu aukcyjnego. • Gwarancja Jackery nie obejmuje ogniwa baterii, chyba że ogniwo zostanie w pełni naładowane przez użytkownika w ciągu siedmiu dni od zakupu produktu oraz co najmniej raz na 6 miesięcy w późniejszym okresie."
+    },
+    {
+      "id": "app-download-title",
+      "page": 159,
+      "bbox": [
+        25,
+        49,
+        344,
+        69
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "1. Pobierz aplikację i się zaloguj",
+      "text": "1. Pobierz aplikację i się zaloguj"
+    },
+    {
+      "id": "app-download-store",
+      "page": 159,
+      "bbox": [
+        40,
+        118,
+        190,
+        155
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Wyszukaj „Jackery” w Google Play lub \nApp Store, aby zainstalować aplikację. \nWówczas pojawi się możliwość \nzarejestrowania i zalogowania.",
+      "text": "Wyszukaj „Jackery” w Google Play lub App Store, aby zainstalować aplikację. Wówczas pojawi się możliwość zarejestrowania i zalogowania."
+    },
+    {
+      "id": "app-download-qr",
+      "page": 159,
+      "bbox": [
+        195,
+        119,
+        344,
+        155
+      ],
+      "method": "native-span-start-and-line-center",
+      "raw": "Alternatywnie zeskanuj kod \nQR poniżej, aby pobrać i \nzainstalować aplikację.",
+      "text": "Alternatywnie zeskanuj kod QR poniżej, aby pobrać i zainstalować aplikację."
+    },
+    {
+      "id": "app-2.2",
+      "page": 159,
+      "bbox": [
+        29.356399536132812,
+        181.43539428710938,
+        325.9029846191406,
+        213.45201110839844
+      ],
+      "method": "native-complete-source-block",
+      "raw": "2.2 Naciśnij przycisk POWER na urządzeniu, aby je włączyć. Ikony Wi-Fi i Bluetooth na urządzeniu \nmigają, wskazując, że urządzenie weszło w tryb konﬁguracji sieci. Naciśnij przycisk „Icon Flashed” \npotwierdzający, że ikona zamigała, i zezwól aplikacji na łączenie się z pobliskimi urządzeniami oraz \nprzyznaj jej uprawnienia Bluetooth.\n",
+      "text": "2.2 Naciśnij przycisk POWER na urządzeniu, aby je włączyć. Ikony Wi-Fi i Bluetooth na urządzeniu migają, wskazując, że urządzenie weszło w tryb konfiguracji sieci. Naciśnij przycisk „Icon Flashed” potwierdzający, że ikona zamigała, i zezwól aplikacji na łączenie się z pobliskimi urządzeniami oraz przyznaj jej uprawnienia Bluetooth."
+    },
+    {
+      "id": "app-timeout",
+      "page": 159,
+      "bbox": [
+        96.03130340576172,
+        469.7189025878906,
+        333.68182373046875,
+        492.67529296875
+      ],
+      "method": "native-complete-app-timeout-block",
+      "raw": "Jeśli urządzenie po włączeniu nie zostanie połączone z aplikacją w ciągu 2 godzin, Wi-Fi i \nBluetooth zostaną automatycznie wyłączone. Naciśnij i przytrzymaj przycisk zasilania USB \noraz przycisk zasilania AC, aby ponownie włączyć Wi-Fi i Bluetooth.\n",
+      "text": "Jeśli urządzenie po włączeniu nie zostanie połączone z aplikacją w ciągu 2 godzin, Wi-Fi i Bluetooth zostaną automatycznie wyłączone. Naciśnij i przytrzymaj przycisk zasilania USB oraz przycisk zasilania AC, aby ponownie włączyć Wi-Fi i Bluetooth."
+    },
+    {
+      "id": "app-2.3",
+      "page": 160,
+      "bbox": [
+        32.316898345947266,
+        27.827360153198242,
+        327.0121765136719,
+        43.74656677246094
+      ],
+      "method": "native-complete-source-block",
+      "raw": "2.3 Po dotknięciu ikony wyszukanego urządzenia aplikacja automatycznie łączy się z urządzeniem \nprzez Bluetooth.\n",
+      "text": "2.3 Po dotknięciu ikony wyszukanego urządzenia aplikacja automatycznie łączy się z urządzeniem przez Bluetooth."
+    },
+    {
+      "id": "app-bound-lead",
+      "page": 160,
+      "bbox": [
+        86.93709564208984,
+        46.14209747314453,
+        317.1300964355469,
+        60.43410873413086
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Jeśli podczas parowania pojawi się komunikat „Urządzenie zostało już sparowane”, \nmożna skorzystać z następujących dwóch sposobów połączenia:\n",
+      "text": "Jeśli podczas parowania pojawi się komunikat „Urządzenie zostało już sparowane”, można skorzystać z następujących dwóch sposobów połączenia:"
+    },
+    {
+      "id": "app-bound-steps",
+      "page": 160,
+      "bbox": [
+        83,
+        60,
+        344,
+        94
+      ],
+      "method": "native-source-bullet-blocks",
+      "raw": "• Właściciel urządzenia może udostępnić to urządzenie innym użytkownikom za \npośrednictwem aplikacji.\n• Naciśnij i przytrzymaj przycisk POWER oraz przycisk zasilania USB przez 3 sekundy, aby \nzresetować urządzenie, a następnie sparuj je ponownie. \n",
+      "text": [
+        "Właściciel urządzenia może udostępnić to urządzenie innym użytkownikom za pośrednictwem aplikacji.",
+        "Naciśnij i przytrzymaj przycisk POWER oraz przycisk zasilania USB przez 3 sekundy, aby zresetować urządzenie, a następnie sparuj je ponownie."
+      ]
+    },
+    {
+      "id": "app-2.4",
+      "page": 160,
+      "bbox": [
+        32.31639862060547,
+        94.64328002929688,
+        293.16033935546875,
+        102.56327819824219
+      ],
+      "method": "native-complete-source-block",
+      "raw": "2.4 Po pomyślnym podłączeniu urządzenia wprowadź hasło Wi-Fi i naciśnij przycisk OK.\n",
+      "text": "2.4 Po pomyślnym podłączeniu urządzenia wprowadź hasło Wi-Fi i naciśnij przycisk OK."
+    },
+    {
+      "id": "app-wifi-note",
+      "page": 160,
+      "bbox": [
+        86.51709747314453,
+        110.43811798095703,
+        333.84429931640625,
+        117.63812255859375
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Wybierz sieć Wi-Fi w paśmie 2,4GHz. Urządzenie nie obsługuje sieci Wi-Fi w paśmie 5 GHz.\n",
+      "text": "Wybierz sieć Wi-Fi w paśmie 2,4GHz. Urządzenie nie obsługuje sieci Wi-Fi w paśmie 5 GHz."
+    },
+    {
+      "id": "app-2.5",
+      "page": 160,
+      "bbox": [
+        32.31639862060547,
+        127.71588134765625,
+        337.41326904296875,
+        135.63587951660156
+      ],
+      "method": "native-complete-source-block",
+      "raw": "2.5 Po pomyślnym dodaniu urządzenia w aplikacji ikona Wi-Fi na urządzeniu będzie zawsze włączona.\n",
+      "text": "2.5 Po pomyślnym dodaniu urządzenia w aplikacji ikona Wi-Fi na urządzeniu będzie zawsze włączona."
+    },
+    {
+      "id": "app-screenshots-note",
+      "page": 160,
+      "bbox": [
+        60,
+        283,
+        344,
+        297
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "2.3\n2.4\n2.5\nPowyższe zrzuty ekranu mają charakter wyłącznie poglądowy.",
+      "text": "2.3 2.4 2.5 Powyższe zrzuty ekranu mają charakter wyłącznie poglądowy."
+    },
+    {
+      "id": "app-bluetooth-caution",
+      "page": 160,
+      "bbox": [
+        80,
+        295,
+        344,
+        328
+      ],
+      "method": "native-complete-lines-pending-source-check",
+      "raw": "Aplikacja Jackery może łączyć się jednocześnie tylko z jedną stacją zasilającą poprzez \nBluetooth. Powrót do listy urządzeń automatycznie rozłącza połączenie Bluetooth. Ponowne \nkliknięcie stacji zasilającej na liście spowoduje automatycznie ponowne połączenie.",
+      "text": "Aplikacja Jackery może łączyć się jednocześnie tylko z jedną stacją zasilającą poprzez Bluetooth. Powrót do listy urządzeń automatycznie rozłącza połączenie Bluetooth. Ponowne kliknięcie stacji zasilającej na liście spowoduje automatycznie ponowne połączenie."
+    },
+    {
+      "id": "app-unbind",
+      "page": 160,
+      "bbox": [
+        32.31740188598633,
+        330.18829345703125,
+        340.51654052734375,
+        378.7010803222656
+      ],
+      "method": "native-complete-source-block",
+      "raw": "3. Usuń sparowane urządzenie\nKliknij ikonę ustawień w prawym górnym rogu głównego interfejsu urządzenia, aby przejść do strony \nustawień, a następnie kliknij przycisk Unbind (Usuń parowanie) u dołu strony, aby usunąć sparowane \nurządzenie.",
+      "text": "3. Usuń sparowane urządzenie Kliknij ikonę ustawień w prawym górnym rogu głównego interfejsu urządzenia, aby przejść do strony ustawień, a następnie kliknij przycisk Unbind (Usuń parowanie) u dołu strony, aby usunąć sparowane urządzenie."
+    },
+    {
+      "id": "app-enable",
+      "page": 160,
+      "bbox": [
+        25,
+        381,
+        344,
+        427
+      ],
+      "method": "native-source-bullet-blocks",
+      "raw": "• Wi-Fi i Bluetooth włączają się automatycznie po uruchomieniu urządzenia, a ikony Wi-Fi i \nBluetooth na ekranie zaświecają się.\n• Przytrzymaj jednocześnie przycisk zasilania USB i przycisk zasilania AC, aż na ekranie zaświecą się \nikony Wi-Fi i Bluetooth.\n",
+      "text": [
+        "Wi-Fi i Bluetooth włączają się automatycznie po uruchomieniu urządzenia, a ikony Wi-Fi i Bluetooth na ekranie zaświecają się.",
+        "Przytrzymaj jednocześnie przycisk zasilania USB i przycisk zasilania AC, aż na ekranie zaświecą się ikony Wi-Fi i Bluetooth."
+      ]
+    },
+    {
+      "id": "app-disable",
+      "page": 160,
+      "bbox": [
+        25,
+        430,
+        344,
+        469
+      ],
+      "method": "native-source-bullet-blocks",
+      "raw": "• Przytrzymaj jednocześnie przycisk zasilania USB oraz przycisk zasilania AC, aż ikony Wi-Fi i Bluetooth \nna ekranie zgasną.\n• Jeśli w ciągu 2 godzin nie zostanie podłączone żadne urządzenie, Wi-Fi i Bluetooth zostaną \nautomatycznie wyłączone.\n",
+      "text": [
+        "Przytrzymaj jednocześnie przycisk zasilania USB oraz przycisk zasilania AC, aż ikony Wi-Fi i Bluetooth na ekranie zgasną.",
+        "Jeśli w ciągu 2 godzin nie zostanie podłączone żadne urządzenie, Wi-Fi i Bluetooth zostaną automatycznie wyłączone."
+      ]
+    },
+    {
+      "id": "app-reset",
+      "page": 160,
+      "bbox": [
+        32.31740188598633,
+        477.5738830566406,
+        320.7422180175781,
+        501.4922790527344
+      ],
+      "method": "native-complete-source-block",
+      "raw": "Przytrzymaj jednocześnie przycisk POWER oraz przycisk zasilania USB przez 3 sekundy, aby \nzresetować Wi-Fi i Bluetooth do ustawień fabrycznych oraz zrestartować system. Parowanie z \npołączonym kontem w aplikacji zostanie usunięte.\n",
+      "text": "Przytrzymaj jednocześnie przycisk POWER oraz przycisk zasilania USB przez 3 sekundy, aby zresetować Wi-Fi i Bluetooth do ustawień fabrycznych oraz zrestartować system. Parowanie z połączonym kontem w aplikacji zostanie usunięte."
+    },
+    {
+      "id": "declaration",
+      "page": 161,
+      "bbox": [
+        26,
+        397,
+        344,
+        432
+      ],
+      "method": "shared-native-English-EU-back-panel",
+      "raw": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 3600 Plus with \nBluetooth and Wi-Fi  JE-3600A is in compliance with the essential requirements and other relevant \nprovisions of the RED Directive 2014/53/EU,The full text of the EU declaration of conformity is \navailable at the following internet address: https://de.jackery.com/pages/user-guides",
+      "text": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 3600 Plus with Bluetooth and Wi-Fi JE-3600A is in compliance with the essential requirements and other relevant provisions of the RED Directive 2014/53/EU,The full text of the EU declaration of conformity is available at the following internet address: https://de.jackery.com/pages/user-guides"
+    },
+    {
+      "id": "manufacturer",
+      "page": 161,
+      "bbox": [
+        26,
+        449,
+        344,
+        459
+      ],
+      "method": "shared-native-English-EU-back-panel",
+      "raw": "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO., LTD. ",
+      "text": "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO., LTD."
+    },
+    {
+      "id": "manufacturer-address",
+      "page": 161,
+      "bbox": [
+        26,
+        461,
+        294,
+        484
+      ],
+      "method": "shared-native-English-EU-back-panel",
+      "raw": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side \nof Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, \nGuangdong, China",
+      "text": "Address: F2-3, Bldg. 7, Jiaanda Science and technology industrial park factory, the east side of Huafan Road, Tongsheng Community, Dalang Street, Longhua District, Shenzhen, Guangdong, China"
+    },
+    {
+      "id": "manufacturer-contact",
+      "page": 161,
+      "bbox": [
+        26,
+        486,
+        294,
+        500
+      ],
+      "method": "shared-native-English-EU-back-panel",
+      "raw": "sales@hello-tech.com\n+86 400 668 9293\nwww.hello-tech.com",
+      "text": "sales@hello-tech.com +86 400 668 9293 www.hello-tech.com"
+    }
+  ]
+}

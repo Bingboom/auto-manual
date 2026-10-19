@@ -13,7 +13,7 @@ from unittest.mock import Mock, patch
 from integrations.product_voc.intake import BotWriter, Intake, IntakeError, validate
 from integrations.product_voc.server import MAX_BODY, make_handler
 from tests import test_rtd_feedback as feedback_fixture
-from tools.rtd_product_voc import normalize_endpoint, page_markup, suggestion_markup
+from tools.rtd.product_voc import normalize_endpoint, page_markup, suggestion_markup
 
 
 def payload(**updates):

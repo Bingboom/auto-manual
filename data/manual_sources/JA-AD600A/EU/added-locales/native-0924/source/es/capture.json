@@ -1,0 +1,4620 @@
+{
+  "language": "es",
+  "source_start": 31,
+  "roles": [
+    {
+      "role": "heading:1.",
+      "physical_page": 31,
+      "rect": [
+        20,
+        58.11060333251953,
+        350,
+        77.77860260009766
+      ],
+      "text": "1. AVISO",
+      "lines": [
+        {
+          "y": 59.11060333251953,
+          "text": "1. AVISO"
+        }
+      ]
+    },
+    {
+      "role": "disclaimer-body",
+      "physical_page": 31,
+      "rect": [
+        20,
+        81.11060333251953,
+        350,
+        503
+      ],
+      "text": "Gracias por adquirir el cargador DC-DC de Jackery (en adelante «el producto»). Lea atentamente esta guía del usuario antes de utilizarlo, siga las instrucciones para un uso correcto y guárdelo de forma segura. Jackery se reserva el derecho a la interpretación final de este documento y de todos los documentos de productos relacionados de conformidad con los requisitos legales y reglamentarios. Para cualquier actualización, revisión o suspensión, consulte los últimos anuncios oficiales. La garantía no cubre las siguientes condiciones: - Daños causados por eventos de fuerza mayor como terremotos, incendios, tormentas, inundaciones o deslizamientos de tierra. - Daños causados por no almacenar el producto en las condiciones especificadas en este manual. - Daños causados por negligencia, operación incorrecta, incumplimiento de las instrucciones del manual o mal uso intencional. - Daños causados por el desmontaje no autorizado del producto, la sustitución de piezas o la modificación del código de software. - Daños causados por un transporte inadecuado por parte del cliente. - Daños o consecuencias adversas resultantes de ajustes, modificaciones o retirada de etiquetas que infrinjan este manual. - Daños o efectos adversos derivados del uso de este producto para alimentar centrales portátiles que no sean de Jackery. - Incidentes de lesiones personales, incendios, fallos del equipo u otras consecuencias adversas causadas por el uso de este producto en los campos de la energía atómica, la aviación, la medicina u otros campos críticos para la seguridad.",
+      "lines": [
+        {
+          "y": 80.50680541992188,
+          "text": "Gracias por adquirir el cargador DC-DC de Jackery (en adelante «el producto»). Lea atentamente"
+        },
+        {
+          "y": 92.50479125976562,
+          "text": "esta guía del usuario antes de utilizarlo, siga las instrucciones para un uso correcto y guárdelo de"
+        },
+        {
+          "y": 104.50277709960938,
+          "text": "forma segura. Jackery se reserva el derecho a la interpretación ﬁnal de este documento y de todos"
+        },
+        {
+          "y": 116.50076293945312,
+          "text": "los documentos de productos relacionados de conformidad con los requisitos legales y reglamenta-"
+        },
+        {
+          "y": 128.49874877929688,
+          "text": "rios. Para cualquier actualización, revisión o suspensión, consulte los últimos anuncios oﬁciales."
+        },
+        {
+          "y": 150.53018188476562,
+          "text": "La garantía no cubre las siguientes condiciones:"
+        },
+        {
+          "y": 162.52816772460938,
+          "text": "- Daños causados por eventos de fuerza mayor como terremotos, incendios, tormentas, inunda-"
+        },
+        {
+          "y": 174.52615356445312,
+          "text": "ciones o deslizamientos de tierra."
+        },
+        {
+          "y": 186.52413940429688,
+          "text": "- Daños causados por no almacenar el producto en las condiciones especiﬁcadas en este manual."
+        },
+        {
+          "y": 198.52212524414062,
+          "text": "- Daños causados por negligencia, operación incorrecta, incumplimiento de las instrucciones del"
+        },
+        {
+          "y": 210.52011108398438,
+          "text": "manual o mal uso intencional."
+        },
+        {
+          "y": 222.51809692382812,
+          "text": "- Daños causados por el desmontaje no autorizado del producto, la sustitución de piezas o la"
+        },
+        {
+          "y": 234.51608276367188,
+          "text": "modiﬁcación del código de software."
+        },
+        {
+          "y": 246.51406860351562,
+          "text": "- Daños causados por un transporte inadecuado por parte del cliente."
+        },
+        {
+          "y": 258.5120544433594,
+          "text": "- Daños o consecuencias adversas resultantes de ajustes, modiﬁcaciones o retirada de etiquetas"
+        },
+        {
+          "y": 270.5100402832031,
+          "text": "que infrinjan este manual."
+        },
+        {
+          "y": 282.508056640625,
+          "text": "- Daños o efectos adversos derivados del uso de este producto para alimentar centrales portátiles"
+        },
+        {
+          "y": 294.5060729980469,
+          "text": "que no sean de Jackery."
+        },
+        {
+          "y": 306.5040588378906,
+          "text": "- Incidentes de lesiones personales, incendios, fallos del equipo u otras consecuencias adversas"
+        },
+        {
+          "y": 318.5020446777344,
+          "text": "causadas por el uso de este producto en los campos de la energía atómica, la aviación, la"
+        },
+        {
+          "y": 330.50006103515625,
+          "text": "medicina u otros campos críticos para la seguridad."
+        }
+      ]
+    },
+    {
+      "role": "heading:2.",
+      "physical_page": 32,
+      "rect": [
+        20,
+        25.589210510253906,
+        350,
+        45.25720977783203
+      ],
+      "text": "2. ESPECIFICACIONES TÉCNICAS",
+      "lines": [
+        {
+          "y": 26.589210510253906,
+          "text": "2. ESPECIFICACIONES TÉCNICAS"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-0",
+      "physical_page": 32,
+      "rect": [
+        20,
+        52.44091033935547,
+        174,
+        69.44091033935547
+      ],
+      "text": "Nombre del producto:",
+      "lines": [
+        {
+          "y": 57.44091033935547,
+          "text": "Nombre del producto:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-0",
+      "physical_page": 32,
+      "rect": [
+        174,
+        52.44091033935547,
+        350,
+        69.44091033935547
+      ],
+      "text": "Jackery DC-DC Charger",
+      "lines": [
+        {
+          "y": 57.44091033935547,
+          "text": "Jackery DC-DC Charger"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-1",
+      "physical_page": 32,
+      "rect": [
+        20,
+        69.44091033935547,
+        174,
+        85.44091033935547
+      ],
+      "text": "Modelo:",
+      "lines": [
+        {
+          "y": 73.44091033935547,
+          "text": "Modelo:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-1",
+      "physical_page": 32,
+      "rect": [
+        174,
+        69.44091033935547,
+        350,
+        85.44091033935547
+      ],
+      "text": "JA-AD600A",
+      "lines": [
+        {
+          "y": 73.44091033935547,
+          "text": "JA-AD600A"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-2",
+      "physical_page": 32,
+      "rect": [
+        20,
+        85.44091033935547,
+        174,
+        101.44091033935547
+      ],
+      "text": "Entrada de CC:",
+      "lines": [
+        {
+          "y": 89.44091033935547,
+          "text": "Entrada de CC:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-2",
+      "physical_page": 32,
+      "rect": [
+        174,
+        85.44091033935547,
+        350,
+        101.44091033935547
+      ],
+      "text": "⎓ 11.8V-32V , 60A",
+      "lines": [
+        {
+          "y": 85.29691314697266,
+          "text": "⎓"
+        },
+        {
+          "y": 89.6089096069336,
+          "text": "11.8V-32V , 60A"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-3",
+      "physical_page": 32,
+      "rect": [
+        20,
+        101.44091033935547,
+        174,
+        117.44091033935547
+      ],
+      "text": "Voltaje de salida:",
+      "lines": [
+        {
+          "y": 105.44091033935547,
+          "text": "Voltaje de salida:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-3",
+      "physical_page": 32,
+      "rect": [
+        174,
+        101.44091033935547,
+        350,
+        117.44091033935547
+      ],
+      "text": "⎓ 50V",
+      "lines": [
+        {
+          "y": 101.29691314697266,
+          "text": "⎓"
+        },
+        {
+          "y": 105.6089096069336,
+          "text": "50V"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-4",
+      "physical_page": 32,
+      "rect": [
+        20,
+        117.44091033935547,
+        174,
+        133.44091415405273
+      ],
+      "text": "Corriente de salida:",
+      "lines": [
+        {
+          "y": 121.44091033935547,
+          "text": "Corriente de salida:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-4",
+      "physical_page": 32,
+      "rect": [
+        174,
+        117.44091033935547,
+        350,
+        133.44091415405273
+      ],
+      "text": "12 A Máx.",
+      "lines": [
+        {
+          "y": 121.44091033935547,
+          "text": "12 A Máx."
+        }
+      ]
+    },
+    {
+      "role": "spec-label-5",
+      "physical_page": 32,
+      "rect": [
+        20,
+        133.44091415405273,
+        174,
+        149.44091796875
+      ],
+      "text": "Potencia de salida:",
+      "lines": [
+        {
+          "y": 137.44091796875,
+          "text": "Potencia de salida:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-5",
+      "physical_page": 32,
+      "rect": [
+        174,
+        133.44091415405273,
+        350,
+        149.44091796875
+      ],
+      "text": "600W Máx.",
+      "lines": [
+        {
+          "y": 137.44091796875,
+          "text": "600W Máx."
+        }
+      ]
+    },
+    {
+      "role": "spec-label-6",
+      "physical_page": 32,
+      "rect": [
+        20,
+        149.44091796875,
+        174,
+        165.44091796875
+      ],
+      "text": "Temperatura de trabajo:",
+      "lines": [
+        {
+          "y": 153.44091796875,
+          "text": "Temperatura de trabajo:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-6",
+      "physical_page": 32,
+      "rect": [
+        174,
+        149.44091796875,
+        350,
+        165.44091796875
+      ],
+      "text": "-20℃~60℃",
+      "lines": [
+        {
+          "y": 149.12890625,
+          "text": "-20℃~60℃"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-7",
+      "physical_page": 32,
+      "rect": [
+        20,
+        165.44091796875,
+        174,
+        181.44091796875
+      ],
+      "text": "Humedad de trabajo:",
+      "lines": [
+        {
+          "y": 169.44091796875,
+          "text": "Humedad de trabajo:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-7",
+      "physical_page": 32,
+      "rect": [
+        174,
+        165.44091796875,
+        350,
+        181.44091796875
+      ],
+      "text": "5%~95%",
+      "lines": [
+        {
+          "y": 169.44091796875,
+          "text": "5%~95%"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-8",
+      "physical_page": 32,
+      "rect": [
+        20,
+        181.44091796875,
+        174,
+        197.44091796875
+      ],
+      "text": "Temperatura de almacenamiento:",
+      "lines": [
+        {
+          "y": 185.44091796875,
+          "text": "Temperatura de almacenamiento:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-8",
+      "physical_page": 32,
+      "rect": [
+        174,
+        181.44091796875,
+        350,
+        197.44091796875
+      ],
+      "text": "-30℃~80℃",
+      "lines": [
+        {
+          "y": 181.12890625,
+          "text": "-30℃~80℃"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-9",
+      "physical_page": 32,
+      "rect": [
+        20,
+        197.44091796875,
+        174,
+        213.44091796875
+      ],
+      "text": "Altitud de trabajo:",
+      "lines": [
+        {
+          "y": 201.44091796875,
+          "text": "Altitud de trabajo:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-9",
+      "physical_page": 32,
+      "rect": [
+        174,
+        197.44091796875,
+        350,
+        213.44091796875
+      ],
+      "text": "≤3000m",
+      "lines": [
+        {
+          "y": 201.44091796875,
+          "text": "≤3000m"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-10",
+      "physical_page": 32,
+      "rect": [
+        20,
+        213.44091796875,
+        174,
+        229.44091796875
+      ],
+      "text": "Grado de protección:",
+      "lines": [
+        {
+          "y": 217.44091796875,
+          "text": "Grado de protección:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-10",
+      "physical_page": 32,
+      "rect": [
+        174,
+        213.44091796875,
+        350,
+        229.44091796875
+      ],
+      "text": "IP40",
+      "lines": [
+        {
+          "y": 217.44091796875,
+          "text": "IP40"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-11",
+      "physical_page": 32,
+      "rect": [
+        20,
+        229.44091796875,
+        174,
+        245.44091796875
+      ],
+      "text": "Peso:",
+      "lines": [
+        {
+          "y": 233.44091796875,
+          "text": "Peso:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-11",
+      "physical_page": 32,
+      "rect": [
+        174,
+        229.44091796875,
+        350,
+        245.44091796875
+      ],
+      "text": "Alrededor de 1,6 kg",
+      "lines": [
+        {
+          "y": 233.44091796875,
+          "text": "Alrededor de 1,6 kg"
+        }
+      ]
+    },
+    {
+      "role": "spec-label-12",
+      "physical_page": 32,
+      "rect": [
+        20,
+        245.44091796875,
+        174,
+        262.44091796875
+      ],
+      "text": "Dimensiones:",
+      "lines": [
+        {
+          "y": 249.44091796875,
+          "text": "Dimensiones:"
+        }
+      ]
+    },
+    {
+      "role": "spec-value-12",
+      "physical_page": 32,
+      "rect": [
+        174,
+        245.44091796875,
+        350,
+        262.44091796875
+      ],
+      "text": "259×154,5×39,3 mm",
+      "lines": [
+        {
+          "y": 249.44091796875,
+          "text": "259×154,5×39,3 mm"
+        }
+      ]
+    },
+    {
+      "role": "heading:3.",
+      "physical_page": 33,
+      "rect": [
+        20,
+        25.59009552001953,
+        350,
+        45.258094787597656
+      ],
+      "text": "3. ¿QUÉ HAY EN LA CAJA?",
+      "lines": [
+        {
+          "y": 26.59009552001953,
+          "text": "3. ¿QUÉ HAY EN LA CAJA?"
+        }
+      ]
+    },
+    {
+      "role": "inbox-A",
+      "physical_page": 33,
+      "rect": [
+        20,
+        115,
+        118,
+        148
+      ],
+      "text": "Cargador Jackery DC-DC",
+      "lines": [
+        {
+          "y": 126.99468231201172,
+          "text": "Cargador Jackery DC-DC"
+        }
+      ]
+    },
+    {
+      "role": "inbox-B",
+      "physical_page": 33,
+      "rect": [
+        20,
+        212,
+        111,
+        243
+      ],
+      "text": "Cable de entrada de 6 m",
+      "lines": [
+        {
+          "y": 221.69869995117188,
+          "text": "Cable de entrada de 6 m"
+        }
+      ]
+    },
+    {
+      "role": "inbox-connector-B",
+      "physical_page": 33,
+      "rect": [
+        20,
+        157,
+        111,
+        185
+      ],
+      "text": "Conector Anderson",
+      "lines": [
+        {
+          "y": 159.66078186035156,
+          "text": "Conector"
+        },
+        {
+          "y": 166.66127014160156,
+          "text": "Anderson"
+        }
+      ]
+    },
+    {
+      "role": "inbox-C",
+      "physical_page": 33,
+      "rect": [
+        111,
+        212,
+        172,
+        243
+      ],
+      "text": "Fusible",
+      "lines": [
+        {
+          "y": 221.69869995117188,
+          "text": "Fusible"
+        }
+      ]
+    },
+    {
+      "role": "inbox-connector-C",
+      "physical_page": 33,
+      "rect": [
+        111,
+        157,
+        172,
+        185
+      ],
+      "text": "OT Terminal",
+      "lines": [
+        {
+          "y": 165.68629455566406,
+          "text": "OT Terminal"
+        }
+      ]
+    },
+    {
+      "role": "inbox-D",
+      "physical_page": 33,
+      "rect": [
+        172,
+        212,
+        261,
+        243
+      ],
+      "text": "Cable de salida de 1,5",
+      "lines": [
+        {
+          "y": 221.5067138671875,
+          "text": "Cable de salida de 1,5"
+        }
+      ]
+    },
+    {
+      "role": "inbox-connector-D",
+      "physical_page": 33,
+      "rect": [
+        172,
+        157,
+        261,
+        185
+      ],
+      "text": "Conector Conector Anderson DC8020",
+      "lines": [
+        {
+          "y": 160.98680114746094,
+          "text": "Conector Conector"
+        },
+        {
+          "y": 167.98728942871094,
+          "text": "Anderson DC8020"
+        }
+      ]
+    },
+    {
+      "role": "inbox-E",
+      "physical_page": 33,
+      "rect": [
+        261,
+        212,
+        350,
+        243
+      ],
+      "text": "m Cable ACC de 6 m",
+      "lines": [
+        {
+          "y": 221.5067138671875,
+          "text": "m Cable ACC de 6 m"
+        }
+      ]
+    },
+    {
+      "role": "inbox-connector-E",
+      "physical_page": 33,
+      "rect": [
+        261,
+        157,
+        350,
+        185
+      ],
+      "text": "Conector Anderson",
+      "lines": [
+        {
+          "y": 164.94529724121094,
+          "text": "Conector Anderson"
+        }
+      ]
+    },
+    {
+      "role": "inbox-F",
+      "physical_page": 33,
+      "rect": [
+        20,
+        278,
+        110,
+        316
+      ],
+      "text": "Tornillo ST5,5 ×4",
+      "lines": [
+        {
+          "y": 292.1307067871094,
+          "text": "Tornillo ST5,5 ×4"
+        }
+      ]
+    },
+    {
+      "role": "inbox-G",
+      "physical_page": 33,
+      "rect": [
+        110,
+        278,
+        197,
+        316
+      ],
+      "text": "Perno M6 ×4",
+      "lines": [
+        {
+          "y": 292.1307067871094,
+          "text": "Perno M6 ×4"
+        }
+      ]
+    },
+    {
+      "role": "inbox-H",
+      "physical_page": 33,
+      "rect": [
+        197,
+        278,
+        282,
+        316
+      ],
+      "text": "Tuerca M6 ×4",
+      "lines": [
+        {
+          "y": 292.1307067871094,
+          "text": "Tuerca M6 ×4"
+        }
+      ]
+    },
+    {
+      "role": "inbox-I",
+      "physical_page": 33,
+      "rect": [
+        282,
+        278,
+        350,
+        316
+      ],
+      "text": "Guía del usuario",
+      "lines": [
+        {
+          "y": 292.13128662109375,
+          "text": "Guía del usuario"
+        }
+      ]
+    },
+    {
+      "role": "heading:4.",
+      "physical_page": 33,
+      "rect": [
+        20,
+        322.236083984375,
+        350,
+        341.9040832519531
+      ],
+      "text": "4. DESCRIPCIÓN GENERAL DEL PRODUCTO",
+      "lines": [
+        {
+          "y": 323.236083984375,
+          "text": "4. DESCRIPCIÓN GENERAL DEL PRODUCTO"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-0",
+      "physical_page": 33,
+      "rect": [
+        15,
+        350,
+        140,
+        413
+      ],
+      "text": "Orificio de montaje",
+      "lines": [
+        {
+          "y": 368.9590759277344,
+          "text": "Oriﬁcio de montaje"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-1",
+      "physical_page": 33,
+      "rect": [
+        270,
+        350,
+        356,
+        413
+      ],
+      "text": "Luz indicadora de estado",
+      "lines": [
+        {
+          "y": 367.1670837402344,
+          "text": "Luz indicadora"
+        },
+        {
+          "y": 375.1680908203125,
+          "text": "de estado"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-2",
+      "physical_page": 33,
+      "rect": [
+        15,
+        413,
+        140,
+        447
+      ],
+      "text": "Botón de encendido",
+      "lines": [
+        {
+          "y": 424.4551086425781,
+          "text": "Botón de encendido"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-3",
+      "physical_page": 33,
+      "rect": [
+        270,
+        413,
+        356,
+        447
+      ],
+      "text": "Puerto de entrada",
+      "lines": [
+        {
+          "y": 424.4551086425781,
+          "text": "Puerto de entrada"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-4",
+      "physical_page": 33,
+      "rect": [
+        15,
+        447,
+        140,
+        503
+      ],
+      "text": "Puerto ACC",
+      "lines": [
+        {
+          "y": 448.35308837890625,
+          "text": "Puerto ACC"
+        }
+      ]
+    },
+    {
+      "role": "overview-label-5",
+      "physical_page": 33,
+      "rect": [
+        270,
+        447,
+        356,
+        503
+      ],
+      "text": "Puerto de salida",
+      "lines": [
+        {
+          "y": 448.35308837890625,
+          "text": "Puerto de salida"
+        }
+      ]
+    },
+    {
+      "role": "heading:5.",
+      "physical_page": 34,
+      "rect": [
+        20,
+        26.00568389892578,
+        350,
+        45.673683166503906
+      ],
+      "text": "5. INSTRUCCIONES DE SEGURIDAD IMPORTANTES",
+      "lines": [
+        {
+          "y": 27.00568389892578,
+          "text": "5. INSTRUCCIONES DE SEGURIDAD IMPORTANTES"
+        }
+      ]
+    },
+    {
+      "role": "driving-note",
+      "physical_page": 34,
+      "rect": [
+        20,
+        48.4,
+        350,
+        93.0
+      ],
+      "text": "Cuando el vehículo está en movimiento, la carga rápida utilizará la energía redundante del generador para cargar la fuente de alimentación exterior. La potencia de carga real se ve afectada por el estado de conducción, el modelo y la condición del vehículo.",
+      "lines": [
+        {
+          "y": 50.58211135864258,
+          "text": "Cuando el vehículo está en movimiento, la carga rápida utilizará la energía"
+        },
+        {
+          "y": 60.58211135864258,
+          "text": "redundante del generador para cargar la fuente de alimentación exterior. La"
+        },
+        {
+          "y": 70.58210754394531,
+          "text": "potencia de carga real se ve afectada por el estado de conducción, el modelo y la"
+        },
+        {
+          "y": 80.58210754394531,
+          "text": "condición del vehículo."
+        }
+      ]
+    },
+    {
+      "role": "safety-guidelines",
+      "physical_page": 34,
+      "rect": [
+        20,
+        94.0,
+        350,
+        188.24191284179688
+      ],
+      "text": "Para garantizar un funcionamiento seguro, es fundamental tener en cuenta lo siguiente: • Guarde este manual para futuras consultas. • Utilice o almacene siempre el producto en las condiciones especificadas en este manual. • Lea todas las instrucciones y advertencias de este producto, de la batería del coche y de la central eléctrica Jackery, así como sus respectivos manuales de usuario.ía Jackery, así como sus respectivos manuales de usuario. • No desmonte el producto ni sustituya sus piezas sin autorización, ya que esto anulará la garantía y puede dañar el producto. Busque ayuda del servicio de atención al cliente de Jackery para reemplazar componentes.",
+      "lines": [
+        {
+          "y": 96.538330078125,
+          "text": "Para garantizar un funcionamiento seguro, es fundamental tener en cuenta lo siguiente:"
+        },
+        {
+          "y": 107.08740234375,
+          "text": "• Guarde este manual para futuras consultas."
+        },
+        {
+          "y": 117.09039306640625,
+          "text": "• Utilice o almacene siempre el producto en las condiciones especiﬁcadas en este manual."
+        },
+        {
+          "y": 127.0933837890625,
+          "text": "• Lea todas las instrucciones y advertencias de este producto, de la batería del coche y de la central"
+        },
+        {
+          "y": 137.09637451171875,
+          "text": "eléctrica Jackery, así como sus respectivos manuales de usuario.ía Jackery, así como sus respectivos"
+        },
+        {
+          "y": 147.099365234375,
+          "text": "manuales de usuario."
+        },
+        {
+          "y": 157.10235595703125,
+          "text": "• No desmonte el producto ni sustituya sus piezas sin autorización, ya que esto anulará la garantía y"
+        },
+        {
+          "y": 167.1053466796875,
+          "text": "puede dañar el producto. Busque ayuda del servicio de atención al cliente de Jackery para"
+        },
+        {
+          "y": 177.10833740234375,
+          "text": "reemplazar componentes."
+        }
+      ]
+    },
+    {
+      "role": "compatibility-heading",
+      "physical_page": 34,
+      "rect": [
+        20,
+        188.24191284179688,
+        350,
+        202.62191772460938
+      ],
+      "text": "Compatibilidad de productos",
+      "lines": [
+        {
+          "y": 189.24191284179688,
+          "text": "Compatibilidad de productos"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-warning",
+      "physical_page": 34,
+      "rect": [
+        56,
+        201.62191772460938,
+        350,
+        266.2
+      ],
+      "text": "Este producto es compatible con todas las centrales eléctricas portátiles Jackery con un puerto de entrada DC8020. Los usuarios tienen estrictamente prohibido utilizar adaptadores para conectar este producto a un puerto de entrada DC7909 o USB-C de una central eléctrica portátil. Dicha conexión puede provocar daños en el dispositivo, incendios o incluso explosiones, lo que supone un grave riesgo para la seguridad personal.",
+      "lines": [
+        {
+          "y": 209.2421875,
+          "text": "Este producto es compatible con todas las centrales eléctricas portátiles Jackery con"
+        },
+        {
+          "y": 218.24420166015625,
+          "text": "un puerto de entrada DC8020."
+        },
+        {
+          "y": 227.2462158203125,
+          "text": "Los usuarios tienen estrictamente prohibido utilizar adaptadores para conectar este"
+        },
+        {
+          "y": 236.24822998046875,
+          "text": "producto a un puerto de entrada DC7909 o USB-C de una central eléctrica portátil."
+        },
+        {
+          "y": 245.250244140625,
+          "text": "Dicha conexión puede provocar daños en el dispositivo, incendios o incluso"
+        },
+        {
+          "y": 254.25225830078125,
+          "text": "explosiones, lo que supone un grave riesgo para la seguridad personal."
+        }
+      ]
+    },
+    {
+      "role": "battery-precautions",
+      "physical_page": 34,
+      "rect": [
+        20,
+        266.2,
+        350,
+        342.2
+      ],
+      "text": "• Este producto solo es compatible con baterías de coche de 12 V/24 V. Antes de usar el producto, verifique que el voltaje nominal de su vehículo sea de 12 V o 24 V y siga siempre las pautas de seguridad eléctrica durante el uso. • Este producto es compatible con estaciones de energía portátiles Jackery que cuenten con un puerto de entrada DC8020. Consulte la tabla a continuación para conocer algunos modelos compatibles. Para más información, comuníquese con el servicio al cliente o visite el sitio web oficial de Jackery.",
+      "lines": [
+        {
+          "y": 270.1883850097656,
+          "text": "• Este producto solo es compatible con baterías de coche de 12 V/24 V. Antes de usar el producto,"
+        },
+        {
+          "y": 280.19140625,
+          "text": "veriﬁque que el voltaje nominal de su vehículo sea de 12 V o 24 V y siga siempre las pautas de"
+        },
+        {
+          "y": 290.1944274902344,
+          "text": "seguridad eléctrica durante el uso."
+        },
+        {
+          "y": 300.1974182128906,
+          "text": "• Este producto es compatible con estaciones de energía portátiles Jackery que cuenten con un"
+        },
+        {
+          "y": 310.2004089355469,
+          "text": "puerto de entrada DC8020. Consulte la tabla a continuación para conocer algunos modelos"
+        },
+        {
+          "y": 320.20343017578125,
+          "text": "compatibles. Para más información, comuníquese con el servicio al cliente o visite el sitio web"
+        },
+        {
+          "y": 330.2064514160156,
+          "text": "oﬁcial de Jackery."
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-0",
+      "physical_page": 34,
+      "rect": [
+        23,
+        342.2,
+        113,
+        362.2
+      ],
+      "text": "Estación de energía portátil",
+      "lines": [
+        {
+          "y": 344.05450439453125,
+          "text": "Estación de"
+        },
+        {
+          "y": 352.0559997558594,
+          "text": "energía portátil"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-1",
+      "physical_page": 34,
+      "rect": [
+        113,
+        342.2,
+        158,
+        362.2
+      ],
+      "text": "Capacidad",
+      "lines": [
+        {
+          "y": 348.3899841308594,
+          "text": "Capacidad"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-2",
+      "physical_page": 34,
+      "rect": [
+        158,
+        342.2,
+        222,
+        362.2
+      ],
+      "text": "Voltaje y corriente de carga",
+      "lines": [
+        {
+          "y": 344.5290222167969,
+          "text": "Voltaje y corriente"
+        },
+        {
+          "y": 352.5304870605469,
+          "text": "de carga"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-3",
+      "physical_page": 34,
+      "rect": [
+        222,
+        342.2,
+        279,
+        362.2
+      ],
+      "text": "Potencia de carga",
+      "lines": [
+        {
+          "y": 344.05450439453125,
+          "text": "Potencia de"
+        },
+        {
+          "y": 352.0559997558594,
+          "text": "carga"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-0-4",
+      "physical_page": 34,
+      "rect": [
+        279,
+        342.2,
+        348,
+        362.2
+      ],
+      "text": "Tiempo de carga (0-100%)",
+      "lines": [
+        {
+          "y": 344.5290222167969,
+          "text": "Tiempo de carga"
+        },
+        {
+          "y": 352.5304870605469,
+          "text": "(0-100%)"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-0",
+      "physical_page": 34,
+      "rect": [
+        23,
+        362.2,
+        113,
+        376.6
+      ],
+      "text": "Explorer 1000 Plus",
+      "lines": [
+        {
+          "y": 365.2001953125,
+          "text": "Explorer 1000 Plus"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-1",
+      "physical_page": 34,
+      "rect": [
+        113,
+        362.2,
+        158,
+        376.6
+      ],
+      "text": "1265 Wh",
+      "lines": [
+        {
+          "y": 365.2001953125,
+          "text": "1265 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-2",
+      "physical_page": 34,
+      "rect": [
+        158,
+        362.2,
+        222,
+        376.6
+      ],
+      "text": "Alrededor de 50V 8A",
+      "lines": [
+        {
+          "y": 365.2001953125,
+          "text": "Alrededor de 50V 8A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-3",
+      "physical_page": 34,
+      "rect": [
+        222,
+        362.2,
+        279,
+        376.6
+      ],
+      "text": "Alrededor de 400W",
+      "lines": [
+        {
+          "y": 365.2001953125,
+          "text": "Alrededor de 400W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-1-4",
+      "physical_page": 34,
+      "rect": [
+        279,
+        362.2,
+        348,
+        376.6
+      ],
+      "text": "Alrededor de 3,5 horas",
+      "lines": [
+        {
+          "y": 365.2001953125,
+          "text": "Alrededor de 3,5 horas"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-0",
+      "physical_page": 34,
+      "rect": [
+        23,
+        376.6,
+        113,
+        390.9
+      ],
+      "text": "Explorer 1000 v2",
+      "lines": [
+        {
+          "y": 379.4730529785156,
+          "text": "Explorer 1000 v2"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-1",
+      "physical_page": 34,
+      "rect": [
+        113,
+        376.6,
+        158,
+        390.9
+      ],
+      "text": "1070 Wh",
+      "lines": [
+        {
+          "y": 379.47955322265625,
+          "text": "1070 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-2",
+      "physical_page": 34,
+      "rect": [
+        158,
+        376.6,
+        222,
+        390.9
+      ],
+      "text": "Alrededor de 50V 8A",
+      "lines": [
+        {
+          "y": 379.48602294921875,
+          "text": "Alrededor de 50V 8A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-3",
+      "physical_page": 34,
+      "rect": [
+        222,
+        376.6,
+        279,
+        390.9
+      ],
+      "text": "Alrededor de 400W",
+      "lines": [
+        {
+          "y": 379.49249267578125,
+          "text": "Alrededor de 400W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-2-4",
+      "physical_page": 34,
+      "rect": [
+        279,
+        376.6,
+        348,
+        390.9
+      ],
+      "text": "Alrededor de 3,0 horas",
+      "lines": [
+        {
+          "y": 379.4989929199219,
+          "text": "Alrededor de 3,0 horas"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-0",
+      "physical_page": 34,
+      "rect": [
+        23,
+        390.9,
+        113,
+        405.3
+      ],
+      "text": "Explorer 2000 Plus",
+      "lines": [
+        {
+          "y": 393.7886047363281,
+          "text": "Explorer 2000 Plus"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-1",
+      "physical_page": 34,
+      "rect": [
+        113,
+        390.9,
+        158,
+        405.3
+      ],
+      "text": "2042 Wh",
+      "lines": [
+        {
+          "y": 393.7730407714844,
+          "text": "2042 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-2",
+      "physical_page": 34,
+      "rect": [
+        158,
+        390.9,
+        222,
+        405.3
+      ],
+      "text": "Alrededor de 50V 12A",
+      "lines": [
+        {
+          "y": 393.779541015625,
+          "text": "Alrededor de 50V 12A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-3",
+      "physical_page": 34,
+      "rect": [
+        222,
+        390.9,
+        279,
+        405.3
+      ],
+      "text": "Alrededor de 600W",
+      "lines": [
+        {
+          "y": 393.7860107421875,
+          "text": "Alrededor de 600W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-3-4",
+      "physical_page": 34,
+      "rect": [
+        279,
+        390.9,
+        348,
+        405.3
+      ],
+      "text": "Alrededor de 3,7 horas",
+      "lines": [
+        {
+          "y": 393.79248046875,
+          "text": "Alrededor de 3,7 horas"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-0",
+      "physical_page": 34,
+      "rect": [
+        23,
+        405.3,
+        113,
+        419.6
+      ],
+      "text": "Explorer 2000 v2",
+      "lines": [
+        {
+          "y": 408.08209228515625,
+          "text": "Explorer 2000 v2"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-1",
+      "physical_page": 34,
+      "rect": [
+        113,
+        405.3,
+        158,
+        419.6
+      ],
+      "text": "2042 Wh",
+      "lines": [
+        {
+          "y": 408.0665283203125,
+          "text": "2042 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-2",
+      "physical_page": 34,
+      "rect": [
+        158,
+        405.3,
+        222,
+        419.6
+      ],
+      "text": "Alrededor de 50V 8A",
+      "lines": [
+        {
+          "y": 408.0730285644531,
+          "text": "Alrededor de 50V 8A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-3",
+      "physical_page": 34,
+      "rect": [
+        222,
+        405.3,
+        279,
+        419.6
+      ],
+      "text": "Alrededor de 400W",
+      "lines": [
+        {
+          "y": 408.07952880859375,
+          "text": "Alrededor de 400W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-4-4",
+      "physical_page": 34,
+      "rect": [
+        279,
+        405.3,
+        348,
+        419.6
+      ],
+      "text": "Alrededor de 5,6 horas",
+      "lines": [
+        {
+          "y": 408.08599853515625,
+          "text": "Alrededor de 5,6 horas"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-0",
+      "physical_page": 34,
+      "rect": [
+        23,
+        419.6,
+        113,
+        434.0
+      ],
+      "text": "Explorer 3000 Pro",
+      "lines": [
+        {
+          "y": 422.3778991699219,
+          "text": "Explorer 3000 Pro"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-1",
+      "physical_page": 34,
+      "rect": [
+        113,
+        419.6,
+        158,
+        434.0
+      ],
+      "text": "3024 Wh",
+      "lines": [
+        {
+          "y": 422.36004638671875,
+          "text": "3024 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-2",
+      "physical_page": 34,
+      "rect": [
+        158,
+        419.6,
+        222,
+        434.0
+      ],
+      "text": "Alrededor de 50V 12A",
+      "lines": [
+        {
+          "y": 422.36651611328125,
+          "text": "Alrededor de 50V 12A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-3",
+      "physical_page": 34,
+      "rect": [
+        222,
+        419.6,
+        279,
+        434.0
+      ],
+      "text": "Alrededor de 600W",
+      "lines": [
+        {
+          "y": 422.3730163574219,
+          "text": "Alrededor de 600W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-5-4",
+      "physical_page": 34,
+      "rect": [
+        279,
+        419.6,
+        348,
+        434.0
+      ],
+      "text": "Alrededor de 5,5 horas",
+      "lines": [
+        {
+          "y": 422.3795166015625,
+          "text": "Alrededor de 5,5 horas"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-0",
+      "physical_page": 34,
+      "rect": [
+        23,
+        434.0,
+        113,
+        450.0
+      ],
+      "text": "Explorer 3000 v2",
+      "lines": [
+        {
+          "y": 436.67138671875,
+          "text": "Explorer 3000 v2"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-1",
+      "physical_page": 34,
+      "rect": [
+        113,
+        434.0,
+        158,
+        450.0
+      ],
+      "text": "3072 Wh",
+      "lines": [
+        {
+          "y": 436.653564453125,
+          "text": "3072 Wh"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-2",
+      "physical_page": 34,
+      "rect": [
+        158,
+        434.0,
+        222,
+        450.0
+      ],
+      "text": "Alrededor de 50V 12A",
+      "lines": [
+        {
+          "y": 436.6600341796875,
+          "text": "Alrededor de 50V 12A"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-3",
+      "physical_page": 34,
+      "rect": [
+        222,
+        434.0,
+        279,
+        450.0
+      ],
+      "text": "Alrededor de 600W",
+      "lines": [
+        {
+          "y": 436.66650390625,
+          "text": "Alrededor de 600W"
+        }
+      ]
+    },
+    {
+      "role": "compatibility-6-4",
+      "physical_page": 34,
+      "rect": [
+        279,
+        434.0,
+        348,
+        450.0
+      ],
+      "text": "Alrededor de 5,6 horas",
+      "lines": [
+        {
+          "y": 436.6730041503906,
+          "text": "Alrededor de 5,6 horas"
+        }
+      ]
+    },
+    {
+      "role": "test-note",
+      "physical_page": 34,
+      "rect": [
+        20,
+        450.0,
+        350,
+        503
+      ],
+      "text": "Nota: Los datos de tiempo de carga de este producto se basan en pruebas simuladas realizadas a una temperatura constante de 25°C. En condiciones reales de uso, la potencia de carga puede variar según el estado de conducción, el modelo del vehículo y su estado general. El tiempo de carga también puede verse afectado por cambios en la temperatura ambiente. Entorno de prueba estándar: 25°C constant; Fuente de datos: Laboratorio Jackery",
+      "lines": [
+        {
+          "y": 450.4634094238281,
+          "text": "Nota: Los datos de tiempo de carga de este producto se basan en pruebas simuladas realizadas a una"
+        },
+        {
+          "y": 460.4604187011719,
+          "text": "temperatura constante de 25°C. En condiciones reales de uso, la potencia de carga puede variar según el"
+        },
+        {
+          "y": 470.4573974609375,
+          "text": "estado de conducción, el modelo del vehículo y su estado general. El tiempo de carga también puede verse"
+        },
+        {
+          "y": 480.45440673828125,
+          "text": "afectado por cambios en la temperatura ambiente."
+        },
+        {
+          "y": 490.451416015625,
+          "text": "Entorno de prueba estándar: 25°C constant; Fuente de datos: Laboratorio Jackery"
+        }
+      ]
+    },
+    {
+      "role": "power-controls",
+      "physical_page": 35,
+      "rect": [
+        20,
+        155,
+        350,
+        286.2
+      ],
+      "text": "Encendido del producto 1 Presione brevemente el botón de encendido: cuando no haya señal ACC, puede encender el dispositivo presionando brevemente el botón de encendido. 2 Encendido mediante señal ACC: si el cable ACC está conectado, el dispositivo se encenderá automáticamente al detectar una señal ACC (por ejemplo, después de arrancar el vehículo). Modo de espera y apagado Cuando no hay señal ACC o la tensión cae por debajo del umbral de arranque, el producto entra en modo de espera. Si permanece en espera más de 24 horas o si la tensión desciende por debajo del umbral de protección, el dispositivo se apagará automáticamente. Para reiniciarlo, siga los mismos pasos descritos anteriormente. Mientras esté en modo de espera, si no hay señal ACC, también puede apagar manualmente el dispositivo presionando y manteniendo pulsado el botón de encendido durante 3 segundos.",
+      "lines": [
+        {
+          "y": 162.7353057861328,
+          "text": "Encendido del producto"
+        },
+        {
+          "y": 172.81829833984375,
+          "text": "1 Presione brevemente el botón de encendido: cuando no haya señal ACC, puede encender el"
+        },
+        {
+          "y": 181.8203125,
+          "text": "dispositivo presionando brevemente el botón de encendido."
+        },
+        {
+          "y": 190.38868713378906,
+          "text": "2 Encendido mediante señal ACC: si el cable ACC está conectado, el dispositivo se encenderá"
+        },
+        {
+          "y": 199.8243408203125,
+          "text": "automáticamente al detectar una señal ACC (por ejemplo, después de arrancar el vehículo)."
+        },
+        {
+          "y": 217.29335021972656,
+          "text": "Modo de espera y apagado"
+        },
+        {
+          "y": 226.36529541015625,
+          "text": "Cuando no hay señal ACC o la tensión cae por debajo del umbral de arranque, el producto entra"
+        },
+        {
+          "y": 235.3673095703125,
+          "text": "en modo de espera. Si permanece en espera más de 24 horas o si la tensión desciende por debajo"
+        },
+        {
+          "y": 244.36932373046875,
+          "text": "del umbral de protección, el dispositivo se apagará automáticamente. Para reiniciarlo, siga los"
+        },
+        {
+          "y": 253.371337890625,
+          "text": "mismos pasos descritos anteriormente."
+        },
+        {
+          "y": 262.3733215332031,
+          "text": "Mientras esté en modo de espera, si no hay señal ACC, también puede apagar manualmente el"
+        },
+        {
+          "y": 271.3753356933594,
+          "text": "dispositivo presionando y manteniendo pulsado el botón de encendido durante 3 segundos."
+        }
+      ]
+    },
+    {
+      "role": "status-0-0",
+      "physical_page": 35,
+      "rect": [
+        23,
+        286.2,
+        68,
+        301.3
+      ],
+      "text": "Estado de la luz",
+      "lines": [
+        {
+          "y": 290.423095703125,
+          "text": "Estado de la luz"
+        }
+      ]
+    },
+    {
+      "role": "status-0-1",
+      "physical_page": 35,
+      "rect": [
+        68,
+        286.2,
+        115,
+        301.3
+      ],
+      "text": "Color de la luz",
+      "lines": [
+        {
+          "y": 290.423095703125,
+          "text": "Color de la luz"
+        }
+      ]
+    },
+    {
+      "role": "status-0-2",
+      "physical_page": 35,
+      "rect": [
+        115,
+        286.2,
+        171,
+        301.3
+      ],
+      "text": "Estado del producto",
+      "lines": [
+        {
+          "y": 290.423095703125,
+          "text": "Estado del producto"
+        }
+      ]
+    },
+    {
+      "role": "status-0-3",
+      "physical_page": 35,
+      "rect": [
+        171,
+        286.2,
+        348,
+        301.3
+      ],
+      "text": "Observaciones",
+      "lines": [
+        {
+          "y": 289.5478515625,
+          "text": "Observaciones"
+        }
+      ]
+    },
+    {
+      "role": "status-1-0",
+      "physical_page": 35,
+      "rect": [
+        23,
+        301.3,
+        68,
+        326.0
+      ],
+      "text": "Sólido",
+      "lines": [
+        {
+          "y": 309.10589599609375,
+          "text": "Sólido"
+        }
+      ]
+    },
+    {
+      "role": "status-1-1",
+      "physical_page": 35,
+      "rect": [
+        68,
+        301.3,
+        115,
+        326.0
+      ],
+      "text": "Verde",
+      "lines": [
+        {
+          "y": 304.35986328125,
+          "text": "Verde"
+        }
+      ]
+    },
+    {
+      "role": "status-1-2",
+      "physical_page": 35,
+      "rect": [
+        115,
+        301.3,
+        171,
+        326.0
+      ],
+      "text": "Cargando",
+      "lines": [
+        {
+          "y": 309.10589599609375,
+          "text": "Cargando"
+        }
+      ]
+    },
+    {
+      "role": "status-1-3",
+      "physical_page": 35,
+      "rect": [
+        171,
+        301.3,
+        348,
+        326.0
+      ],
+      "text": "/",
+      "lines": [
+        {
+          "y": 310.04388427734375,
+          "text": "/"
+        }
+      ]
+    },
+    {
+      "role": "status-2-0",
+      "physical_page": 35,
+      "rect": [
+        23,
+        326.0,
+        68,
+        359.5
+      ],
+      "text": "Sólido",
+      "lines": [
+        {
+          "y": 338.02288818359375,
+          "text": "Sólido"
+        }
+      ]
+    },
+    {
+      "role": "status-2-1",
+      "physical_page": 35,
+      "rect": [
+        68,
+        326.0,
+        115,
+        359.5
+      ],
+      "text": "Rojo",
+      "lines": [
+        {
+          "y": 333.3748474121094,
+          "text": "Rojo"
+        }
+      ]
+    },
+    {
+      "role": "status-2-2",
+      "physical_page": 35,
+      "rect": [
+        115,
+        326.0,
+        171,
+        359.5
+      ],
+      "text": "Abnormal",
+      "lines": [
+        {
+          "y": 338.02288818359375,
+          "text": "Abnormal"
+        }
+      ]
+    },
+    {
+      "role": "status-2-3",
+      "physical_page": 35,
+      "rect": [
+        171,
+        326.0,
+        348,
+        359.5
+      ],
+      "text": "Si se detecta algún problema, comuníquese de inmediato con el servicio de atención al cliente de Jackery para obtener asistencia.",
+      "lines": [
+        {
+          "y": 329.5878601074219,
+          "text": "Si se detecta algún problema, comuníquese de"
+        },
+        {
+          "y": 338.5898742675781,
+          "text": "inmediato con el servicio de atención al cliente de"
+        },
+        {
+          "y": 347.5918884277344,
+          "text": "Jackery para obtener asistencia."
+        }
+      ]
+    },
+    {
+      "role": "status-3-0",
+      "physical_page": 35,
+      "rect": [
+        23,
+        359.5,
+        68,
+        464.5
+      ],
+      "text": "Intermitente",
+      "lines": [
+        {
+          "y": 400.5118713378906,
+          "text": "Intermitente"
+        }
+      ]
+    },
+    {
+      "role": "status-3-1",
+      "physical_page": 35,
+      "rect": [
+        68,
+        359.5,
+        115,
+        464.5
+      ],
+      "text": "Verde",
+      "lines": [
+        {
+          "y": 396.0738525390625,
+          "text": "Verde"
+        }
+      ]
+    },
+    {
+      "role": "status-3-2",
+      "physical_page": 35,
+      "rect": [
+        115,
+        359.5,
+        171,
+        464.5
+      ],
+      "text": "La conexión es normal, a espera de que se cargue.",
+      "lines": [
+        {
+          "y": 388.2268981933594,
+          "text": "La conexión"
+        },
+        {
+          "y": 397.2288818359375,
+          "text": "es normal, a"
+        },
+        {
+          "y": 406.2308654785156,
+          "text": "espera de que"
+        },
+        {
+          "y": 415.2328796386719,
+          "text": "se cargue."
+        }
+      ]
+    },
+    {
+      "role": "status-3-3",
+      "physical_page": 35,
+      "rect": [
+        171,
+        359.5,
+        348,
+        464.5
+      ],
+      "text": "Si se produce el mismo problema después de conectar la central eléctrica portátil, las posibles causas incluyen: 1. Conexión inestable entre el cable de salida y la la estación de alimentación portátil. 2. Cable dañado. 3. La central eléctrica portátil está completamente cargada. Si el problema persiste después de solucionarlo, comuníquese con el servicio de atención al cliente de Jackery para obtener asistencia.",
+      "lines": [
+        {
+          "y": 362.0748596191406,
+          "text": "Si se produce el mismo problema después de"
+        },
+        {
+          "y": 371.0768737792969,
+          "text": "conectar la central eléctrica portátil, las posibles"
+        },
+        {
+          "y": 380.078857421875,
+          "text": "causas incluyen:"
+        },
+        {
+          "y": 389.0808410644531,
+          "text": "1. Conexión inestable entre el cable de salida y la"
+        },
+        {
+          "y": 397.2288818359375,
+          "text": "la estación de alimentación portátil."
+        },
+        {
+          "y": 407.0848693847656,
+          "text": "2. Cable dañado."
+        },
+        {
+          "y": 416.08685302734375,
+          "text": "3. La central eléctrica portátil está completa-"
+        },
+        {
+          "y": 425.0888366699219,
+          "text": "mente cargada."
+        },
+        {
+          "y": 434.0908508300781,
+          "text": "Si el problema persiste después de solucionarlo,"
+        },
+        {
+          "y": 443.0928649902344,
+          "text": "comuníquese con el servicio de atención al"
+        },
+        {
+          "y": 452.0948486328125,
+          "text": "cliente de Jackery para obtener asistencia."
+        }
+      ]
+    },
+    {
+      "role": "status-4-0",
+      "physical_page": 35,
+      "rect": [
+        23,
+        464.5,
+        68,
+        497.0
+      ],
+      "text": "Sin luz",
+      "lines": [
+        {
+          "y": 475.50286865234375,
+          "text": "Sin luz"
+        }
+      ]
+    },
+    {
+      "role": "status-4-1",
+      "physical_page": 35,
+      "rect": [
+        68,
+        464.5,
+        115,
+        497.0
+      ],
+      "text": "Sin color",
+      "lines": [
+        {
+          "y": 471.88385009765625,
+          "text": "Sin color"
+        }
+      ]
+    },
+    {
+      "role": "status-4-2",
+      "physical_page": 35,
+      "rect": [
+        115,
+        464.5,
+        171,
+        497.0
+      ],
+      "text": "El producto no está encendido.",
+      "lines": [
+        {
+          "y": 468.0058898925781,
+          "text": "El producto"
+        },
+        {
+          "y": 476.0068664550781,
+          "text": "no está"
+        },
+        {
+          "y": 484.00787353515625,
+          "text": "encendido."
+        }
+      ]
+    },
+    {
+      "role": "status-4-3",
+      "physical_page": 35,
+      "rect": [
+        171,
+        464.5,
+        348,
+        497.0
+      ],
+      "text": "Si el problema persiste después de completar el cableado y arrancar el vehículo, comuníquese con el servicio de atención al cliente de Jackery.",
+      "lines": [
+        {
+          "y": 467.2778625488281,
+          "text": "Si el problema persiste después de completar el"
+        },
+        {
+          "y": 476.27984619140625,
+          "text": "cableado y arrancar el vehículo, comuníquese"
+        },
+        {
+          "y": 485.2818298339844,
+          "text": "con el servicio de atención al cliente de Jackery."
+        }
+      ]
+    },
+    {
+      "role": "heading:6.",
+      "physical_page": 36,
+      "rect": [
+        20,
+        25.582801818847656,
+        350,
+        45.25080108642578
+      ],
+      "text": "6. PREGUNTAS MÁS FRECUENTES",
+      "lines": [
+        {
+          "y": 26.582801818847656,
+          "text": "6. PREGUNTAS MÁS FRECUENTES"
+        }
+      ]
+    },
+    {
+      "role": "faq-body",
+      "physical_page": 36,
+      "rect": [
+        20,
+        48.582801818847656,
+        350,
+        503
+      ],
+      "text": "PREGUNTA #1: ¿Es necesario contar con un profesional para la instalación de este producto? Respuesta: Para garantizar la seguridad y un cableado ordenado, se recomienda que la instalación la realice un taller de modificación profesional. Los no profesionales no deben intentar instalarlo por sí mismos. PREGUNTA #2 ¿Qué comprobaciones se deben llevar a cabo durante el mantenimiento mensual del producto? Respuesta: 1. Limpie la superficie del producto con un paño seco. Para las manchas difíciles, utilice un detergente neutro diluido. 2. Revise los conectores, el cableado, los tornillos y los fusibles en busca de daños o envejecimiento. Si necesita ayuda, póngase en contacto con el servicio de atención al cliente de Jackery. 3. Asegúrese de que el producto esté instalado de forma segura y evite la luz solar directa y los entornos de alta temperatura. PREGUNTA #3: El uso de este producto, ¿agota la batería del vehículo? Respuesta: Para evitar la descarga excesiva de la batería de arranque de un automóvil o de una batería de un vehículo recreativo, el producto monitorea el voltaje en la batería. Cuando el voltaje sea menor que el voltaje de inicio, el producto dejará de funcionar automáticamente; Si el vehículo no arranca, el producto entrará en modo de espera y se apagará automáticamente después de 24 horas. PREGUNTA #4: ¿Por qué no funciona el producto? Respuesta: Algunos modelos de vehículos antiguos o específicos tienen un voltaje más bajo, que puede no coincidir con el voltaje de funcionamiento del producto. Si el voltaje es superior al voltaje del sistema del vehículo (12V/24V) y el producto no funciona después de encenderlo, comuníquese con el servicio al cliente de Jackery para obtener asistencia. PREGUNTA #5: EL uso de este producto, ¿aumentará el consumo de combustible? Respuesta: No. El producto utiliza la energía sobrante del generador, por lo que es eficiente, ahorra energía y es respetuoso con el medio ambiente. PREGUNTA #6: ¿Con qué características de protección de seguridad cuenta este producto? Respuesta: Este producto incluye protección contra sobretensión, subtensión, sobrecorriente, sobrecarga, cortocircuito y alta/baja temperatura para garantizar una carga segura y fiable. Además, la función inteligente de detección de tensión evita la descarga excesiva de la batería, garantizando que el vehículo arranque con normalidad. PREGUNTA 7#: ¿Por qué es inestable la potencia de carga? Respuesta: La potencia de carga se ajusta dinámicamente según las condiciones de conducción del vehículo y las condiciones de la carretera. Esto ayuda a proteger la batería del vehículo al tiempo que logra la máxima eficiencia de carga. Las fluctuaciones de energía son normales. PREGUNTA #8: El ruido de funcionamiento del producto, ¿puede afectar al sueño? Respuesta: El producto está diseñado sin ventilador y su nivel de ruido es inferior a 40 dB, por lo que cumple las normas sobre ruido en entornos de sueño.",
+      "lines": [
+        {
+          "y": 44.782196044921875,
+          "text": "PREGUNTA #1: ¿Es necesario contar con un profesional para la instalación de este producto?"
+        },
+        {
+          "y": 55.282196044921875,
+          "text": "Respuesta: Para garantizar la seguridad y un cableado ordenado, se recomienda que la instalación"
+        },
+        {
+          "y": 65.78219604492188,
+          "text": "la realice un taller de modiﬁcación profesional. Los no profesionales no deben intentar instalarlo por sí"
+        },
+        {
+          "y": 76.28219604492188,
+          "text": "mismos."
+        },
+        {
+          "y": 91.78018188476562,
+          "text": "PREGUNTA #2 ¿Qué comprobaciones se deben llevar a cabo durante el mantenimiento mensual del"
+        },
+        {
+          "y": 102.28018188476562,
+          "text": "producto?"
+        },
+        {
+          "y": 112.78018188476562,
+          "text": "Respuesta: 1. Limpie la superﬁcie del producto con un paño seco. Para las manchas difíciles, utilice un"
+        },
+        {
+          "y": 123.28018188476562,
+          "text": "detergente neutro diluido."
+        },
+        {
+          "y": 133.78018188476562,
+          "text": "2. Revise los conectores, el cableado, los tornillos y los fusibles en busca de daños o envejecimiento. Si"
+        },
+        {
+          "y": 144.28018188476562,
+          "text": "necesita ayuda, póngase en contacto con el servicio de atención al cliente de Jackery."
+        },
+        {
+          "y": 154.78018188476562,
+          "text": "3. Asegúrese de que el producto esté instalado de forma segura y evite la luz solar directa y los"
+        },
+        {
+          "y": 165.28018188476562,
+          "text": "entornos de alta temperatura."
+        },
+        {
+          "y": 180.77816772460938,
+          "text": "PREGUNTA #3: El uso de este producto, ¿agota la batería del vehículo?"
+        },
+        {
+          "y": 191.27816772460938,
+          "text": "Respuesta: Para evitar la descarga excesiva de la batería de arranque de un automóvil o de una"
+        },
+        {
+          "y": 201.77816772460938,
+          "text": "batería de un vehículo recreativo, el producto monitorea el voltaje en la batería. Cuando el voltaje"
+        },
+        {
+          "y": 212.27816772460938,
+          "text": "sea menor que el voltaje de inicio, el producto dejará de funcionar automáticamente; Si el vehículo no"
+        },
+        {
+          "y": 222.77816772460938,
+          "text": "arranca, el producto entrará en modo de espera y se apagará automáticamente después de 24"
+        },
+        {
+          "y": 233.27816772460938,
+          "text": "horas."
+        },
+        {
+          "y": 248.77615356445312,
+          "text": "PREGUNTA #4: ¿Por qué no funciona el producto?"
+        },
+        {
+          "y": 259.2761535644531,
+          "text": "Respuesta: Algunos modelos de vehículos antiguos o especíﬁcos tienen un voltaje más bajo, que"
+        },
+        {
+          "y": 269.7761535644531,
+          "text": "puede no coincidir con el voltaje de funcionamiento del producto. Si el voltaje es superior al voltaje"
+        },
+        {
+          "y": 280.2761535644531,
+          "text": "del sistema del vehículo (12V/24V) y el producto no funciona después de encenderlo, comuníquese"
+        },
+        {
+          "y": 290.7761535644531,
+          "text": "con el servicio al cliente de Jackery para obtener asistencia."
+        },
+        {
+          "y": 306.2741394042969,
+          "text": "PREGUNTA #5: EL uso de este producto, ¿aumentará el consumo de combustible?"
+        },
+        {
+          "y": 316.7741394042969,
+          "text": "Respuesta: No. El producto utiliza la energía sobrante del generador, por lo que es eﬁciente, ahorra"
+        },
+        {
+          "y": 327.2741394042969,
+          "text": "energía y es respetuoso con el medio ambiente."
+        },
+        {
+          "y": 342.77215576171875,
+          "text": "PREGUNTA #6: ¿Con qué características de protección de seguridad cuenta este producto?"
+        },
+        {
+          "y": 353.27215576171875,
+          "text": "Respuesta: Este producto incluye protección contra sobretensión, subtensión, sobrecorriente,"
+        },
+        {
+          "y": 363.77215576171875,
+          "text": "sobrecarga, cortocircuito y alta/baja temperatura para garantizar una carga segura y ﬁable."
+        },
+        {
+          "y": 374.27215576171875,
+          "text": "Además, la función inteligente de detección de tensión evita la descarga excesiva de la batería,"
+        },
+        {
+          "y": 384.77215576171875,
+          "text": "garantizando que el vehículo arranque con normalidad."
+        },
+        {
+          "y": 400.2701721191406,
+          "text": "PREGUNTA 7#: ¿Por qué es inestable la potencia de carga?"
+        },
+        {
+          "y": 410.7701721191406,
+          "text": "Respuesta: La potencia de carga se ajusta dinámicamente según las condiciones de conducción del"
+        },
+        {
+          "y": 421.2701721191406,
+          "text": "vehículo y las condiciones de la carretera. Esto ayuda a proteger la batería del vehículo al tiempo que"
+        },
+        {
+          "y": 431.7701721191406,
+          "text": "logra la máxima eﬁciencia de carga. Las ﬂuctuaciones de energía son normales."
+        },
+        {
+          "y": 447.2681579589844,
+          "text": "PREGUNTA #8: El ruido de funcionamiento del producto, ¿puede afectar al sueño?"
+        },
+        {
+          "y": 457.7681579589844,
+          "text": "Respuesta: El producto está diseñado sin ventilador y su nivel de ruido es inferior a 40 dB, por lo que"
+        },
+        {
+          "y": 468.2681579589844,
+          "text": "cumple las normas sobre ruido en entornos de sueño."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.",
+      "physical_page": 37,
+      "rect": [
+        20,
+        25.92359161376953,
+        350,
+        45.591590881347656
+      ],
+      "text": "7. INSTALACIÓN DEL PRODUCTO",
+      "lines": [
+        {
+          "y": 26.92359161376953,
+          "text": "7. INSTALACIÓN DEL PRODUCTO"
+        }
+      ]
+    },
+    {
+      "role": "heading:7.1",
+      "physical_page": 37,
+      "rect": [
+        20,
+        51.151611328125,
+        350,
+        65.53160858154297
+      ],
+      "text": "7.1 Diagrama de instalación",
+      "lines": [
+        {
+          "y": 52.151611328125,
+          "text": "7.1 Diagrama de instalación"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-0",
+      "physical_page": 37,
+      "rect": [
+        45,
+        130,
+        140,
+        175
+      ],
+      "text": "ACC del vehículo",
+      "lines": [
+        {
+          "y": 147.53269958496094,
+          "text": "ACC del vehículo"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-1",
+      "physical_page": 37,
+      "rect": [
+        20,
+        403,
+        142,
+        425
+      ],
+      "text": "Cargador CC-CC",
+      "lines": [
+        {
+          "y": 410.11370849609375,
+          "text": "Cargador CC-CC"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-2",
+      "physical_page": 37,
+      "rect": [
+        142,
+        403,
+        256,
+        425
+      ],
+      "text": "Cable de entrada de 6 m",
+      "lines": [
+        {
+          "y": 410.11370849609375,
+          "text": "Cable de entrada de 6 m"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-3",
+      "physical_page": 37,
+      "rect": [
+        256,
+        403,
+        356,
+        425
+      ],
+      "text": "Fusible",
+      "lines": [
+        {
+          "y": 410.11370849609375,
+          "text": "Fusible"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-4",
+      "physical_page": 37,
+      "rect": [
+        20,
+        425,
+        142,
+        465
+      ],
+      "text": "Cable de salida de 1,5 m",
+      "lines": [
+        {
+          "y": 429.6138000488281,
+          "text": "Cable de salida de 1,5 m"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-5",
+      "physical_page": 37,
+      "rect": [
+        142,
+        425,
+        256,
+        465
+      ],
+      "text": "Cable ACC de 6 m",
+      "lines": [
+        {
+          "y": 429.6138000488281,
+          "text": "Cable ACC de 6 m"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-6",
+      "physical_page": 37,
+      "rect": [
+        256,
+        425,
+        356,
+        465
+      ],
+      "text": "Estación de energía portátil Jackery",
+      "lines": [
+        {
+          "y": 429.1337890625,
+          "text": "Estación de"
+        },
+        {
+          "y": 439.1337890625,
+          "text": "energía portátil"
+        },
+        {
+          "y": 449.1337890625,
+          "text": "Jackery"
+        }
+      ]
+    },
+    {
+      "role": "installation-label-7",
+      "physical_page": 37,
+      "rect": [
+        20,
+        465,
+        356,
+        503
+      ],
+      "text": "* El cableado y el agrupamiento de cables deben realizarse de acuerdo con las condiciones reales del vehículo.",
+      "lines": [
+        {
+          "y": 475.7964172363281,
+          "text": "* El cableado y el agrupamiento de cables deben realizarse de acuerdo con las condiciones reales del vehículo."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.2",
+      "physical_page": 38,
+      "rect": [
+        20,
+        27.174591064453125,
+        350,
+        41.55459213256836
+      ],
+      "text": "7.2 Instrucciones de seguridad importantes",
+      "lines": [
+        {
+          "y": 28.174591064453125,
+          "text": "7.2 Instrucciones de seguridad importantes"
+        }
+      ]
+    },
+    {
+      "role": "installation-warning-intro",
+      "physical_page": 38,
+      "rect": [
+        20,
+        44.174591064453125,
+        350,
+        93.17459106445312
+      ],
+      "text": "Advertencia: siga estas precauciones básicas de seguridad cuando utilice este producto. Advertencia",
+      "lines": [
+        {
+          "y": 56.17229461669922,
+          "text": "Advertencia: siga estas precauciones básicas de seguridad"
+        },
+        {
+          "y": 68.17229461669922,
+          "text": "cuando utilice este producto."
+        },
+        {
+          "y": 72.22028350830078,
+          "text": "Advertencia"
+        }
+      ]
+    },
+    {
+      "role": "installation-safety",
+      "physical_page": 38,
+      "rect": [
+        20,
+        93.17459106445312,
+        350,
+        328.489501953125
+      ],
+      "text": "• Se recomienda que un profesional realice el cableado. • Antes de cablear o conectar, tome medidas de protección personal, como usar gafas de seguridad y guantes aislantes, y siga siempre las pautas de seguridad eléctrica. • Apague siempre el vehículo antes de iniciar cualquier trabajo eléctrico. • Mantenga el producto seco durante su uso. • No inserte objetos extraños en los puertos del producto. • No utilice el producto si el cableado, los conectores o el producto en sí están dañados. • Evite colocar cables cerca de altas temperaturas, objetos afilados o áreas propensas a la fricción. • Asegure los cables correctamente para evitar posibles problemas causados por el desgaste o las conexiones sueltas. • Antes de arrancar el vehículo y el producto, asegúrese de que el cableado esté completo y de que todos los tornillos y conectores estén bien apretados. • No utilice este producto para cargar centrales eléctricas portátiles dañadas o no recargables o baterías de respaldo. • Si el producto no funciona correctamente después de arrancar el vehículo, compruebe el indicador luminoso de estado y consulte el manual para solucionar el problema. • Antes de enchufar, desenchufar o modificar el cableado, asegúrese de que el vehículo esté apagado, el producto esté apagado y la conexión esté desconectada.",
+      "lines": [
+        {
+          "y": 99.81048583984375,
+          "text": "• Se recomienda que un profesional realice el cableado."
+        },
+        {
+          "y": 111.8084716796875,
+          "text": "• Antes de cablear o conectar, tome medidas de protección personal, como usar gafas de"
+        },
+        {
+          "y": 123.80645751953125,
+          "text": "seguridad y guantes aislantes, y siga siempre las pautas de seguridad eléctrica."
+        },
+        {
+          "y": 135.804443359375,
+          "text": "• Apague siempre el vehículo antes de iniciar cualquier trabajo eléctrico."
+        },
+        {
+          "y": 147.80242919921875,
+          "text": "• Mantenga el producto seco durante su uso."
+        },
+        {
+          "y": 159.8004150390625,
+          "text": "• No inserte objetos extraños en los puertos del producto."
+        },
+        {
+          "y": 171.79840087890625,
+          "text": "• No utilice el producto si el cableado, los conectores o el producto en sí están dañados."
+        },
+        {
+          "y": 183.79638671875,
+          "text": "• Evite colocar cables cerca de altas temperaturas, objetos aﬁlados o áreas propensas a la fricción."
+        },
+        {
+          "y": 195.79437255859375,
+          "text": "• Asegure los cables correctamente para evitar posibles problemas causados por el desgaste o las"
+        },
+        {
+          "y": 207.7923583984375,
+          "text": "conexiones sueltas."
+        },
+        {
+          "y": 219.79034423828125,
+          "text": "• Antes de arrancar el vehículo y el producto, asegúrese de que el cableado esté completo y de que"
+        },
+        {
+          "y": 231.788330078125,
+          "text": "todos los tornillos y conectores estén bien apretados."
+        },
+        {
+          "y": 243.78631591796875,
+          "text": "• No utilice este producto para cargar centrales eléctricas portátiles dañadas o no recargables o"
+        },
+        {
+          "y": 255.7843017578125,
+          "text": "baterías de respaldo."
+        },
+        {
+          "y": 267.7823181152344,
+          "text": "• Si el producto no funciona correctamente después de arrancar el vehículo, compruebe el"
+        },
+        {
+          "y": 279.7803039550781,
+          "text": "indicador luminoso de estado y consulte el manual para solucionar el problema."
+        },
+        {
+          "y": 291.7782897949219,
+          "text": "• Antes de enchufar, desenchufar o modiﬁcar el cableado, asegúrese de que el vehículo esté"
+        },
+        {
+          "y": 303.77630615234375,
+          "text": "apagado, el producto esté apagado y la conexión esté desconectada."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.3",
+      "physical_page": 38,
+      "rect": [
+        20,
+        328.489501953125,
+        350,
+        342.8695068359375
+      ],
+      "text": "7.3 En caso de emergencia",
+      "lines": [
+        {
+          "y": 329.489501953125,
+          "text": "7.3 En caso de emergencia"
+        }
+      ]
+    },
+    {
+      "role": "emergency",
+      "physical_page": 38,
+      "rect": [
+        20,
+        345.489501953125,
+        350,
+        503
+      ],
+      "text": "• En caso de emergencia (como daños graves por impacto), utilice guantes aislantes y traslade el producto a una zona abierta alejada de materiales inflamables y personas. Deseche el producto de acuerdo con las leyes y normativas locales. • Si el producto cae accidentalmente al agua, le cae encima la lluvia o tiene humedad visible en su superficie, no toque el producto ni el agua circundante directamente. Tome las precauciones necesarias contra descargas eléctricas y traslade el producto a un área segura, seca y bien ventilada. No utilice ni toque el producto hasta que esté completamente seco. Si necesita ayuda, comuníquese con el servicio de atención al cliente de Jackery de inmediato. • Si el producto se incendia, utilice los siguientes métodos de extinción de incendios en orden: agua CO₂ o neblina, arena, manta ignífuga, polvo seco o un extintor.",
+      "lines": [
+        {
+          "y": 347.40869140625,
+          "text": "• En caso de emergencia (como daños graves por impacto), utilice guantes aislantes y traslade el"
+        },
+        {
+          "y": 359.4067077636719,
+          "text": "producto a una zona abierta alejada de materiales inﬂamables y personas. Deseche el producto"
+        },
+        {
+          "y": 371.4046936035156,
+          "text": "de acuerdo con las leyes y normativas locales."
+        },
+        {
+          "y": 383.4026794433594,
+          "text": "• Si el producto cae accidentalmente al agua, le cae encima la lluvia o tiene humedad visible en su"
+        },
+        {
+          "y": 395.40069580078125,
+          "text": "superﬁcie, no toque el producto ni el agua circundante directamente. Tome las precauciones"
+        },
+        {
+          "y": 407.3987121582031,
+          "text": "necesarias contra descargas eléctricas y traslade el producto a un área segura, seca y bien"
+        },
+        {
+          "y": 419.3966979980469,
+          "text": "ventilada. No utilice ni toque el producto hasta que esté completamente seco. Si necesita ayuda,"
+        },
+        {
+          "y": 431.3946838378906,
+          "text": "comuníquese con el servicio de atención al cliente de Jackery de inmediato."
+        },
+        {
+          "y": 443.3927001953125,
+          "text": "• Si el producto se incendia, utilice los siguientes métodos de extinción de incendios en orden: agua"
+        },
+        {
+          "y": 451.6177062988281,
+          "text": "CO₂"
+        },
+        {
+          "y": 455.3907165527344,
+          "text": "o neblina, arena, manta ignífuga, polvo seco o un extintor."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.4",
+      "physical_page": 39,
+      "rect": [
+        20,
+        34.096893310546875,
+        350,
+        48.47689437866211
+      ],
+      "text": "7.4 Comprobaciones previas a la instalación",
+      "lines": [
+        {
+          "y": 35.096893310546875,
+          "text": "7.4 Comprobaciones previas a la instalación"
+        }
+      ]
+    },
+    {
+      "role": "pre-checks-before-warning",
+      "physical_page": 39,
+      "rect": [
+        20,
+        51.096893310546875,
+        350,
+        188.75057983398438
+      ],
+      "text": "1. Asegúrese de que el vehículo esté apagado antes de la instalación. 2. Confirme que el voltaje del sistema del vehículo sea de 12 V o 24 V. 3. Asegúrese de que el voltaje de salida del producto coincida con el voltaje de entrada de CC de la estación de energía portátil. 4. Identifique la ubicación de la batería del vehículo y asegúrese de que haya suficiente espacio para que pase el cable de entrada. 5. Elija una posición de instalación adecuada. Se recomienda instalar el producto en el maletero asegurando al menos 20 cm de espacio libre en todos los lados para evitar el sobrecalentamiento por un funcionamiento prolongado. * Se recomienda instalar el producto en el mismo lado que la batería. Por ejemplo, si la batería está en el lado izquierdo del vehículo, instale el producto en el lado izquierdo.",
+      "lines": [
+        {
+          "y": 51.034210205078125,
+          "text": "1. Asegúrese de que el vehículo esté apagado antes de la instalación."
+        },
+        {
+          "y": 63.032196044921875,
+          "text": "2. Conﬁrme que el voltaje del sistema del vehículo sea de 12 V o 24 V."
+        },
+        {
+          "y": 75.03018188476562,
+          "text": "3. Asegúrese de que el voltaje de salida del producto coincida con el voltaje de entrada de CC de la"
+        },
+        {
+          "y": 87.02816772460938,
+          "text": "estación de energía portátil."
+        },
+        {
+          "y": 99.02615356445312,
+          "text": "4. Identiﬁque la ubicación de la batería del vehículo y asegúrese de que haya suﬁciente espacio para"
+        },
+        {
+          "y": 111.02413940429688,
+          "text": "que pase el cable de entrada."
+        },
+        {
+          "y": 123.02212524414062,
+          "text": "5. Elija una posición de instalación adecuada. Se recomienda instalar el producto en el maletero"
+        },
+        {
+          "y": 135.02011108398438,
+          "text": "asegurando al menos 20 cm de espacio libre en todos los lados para evitar el sobrecalentamiento"
+        },
+        {
+          "y": 147.01809692382812,
+          "text": "por un funcionamiento prolongado."
+        },
+        {
+          "y": 159.01608276367188,
+          "text": "* Se recomienda instalar el producto en el mismo lado que la batería. Por ejemplo, si la batería"
+        },
+        {
+          "y": 171.01406860351562,
+          "text": "está en el lado izquierdo del vehículo, instale el producto en el lado izquierdo."
+        }
+      ]
+    },
+    {
+      "role": "waterproof-warning",
+      "physical_page": 39,
+      "rect": [
+        20,
+        188.75057983398438,
+        350,
+        235.41058349609375
+      ],
+      "text": "El cargador DC-DC Jackery no es resistente al agua. Para evitar daños al dispositivo, instálelo dentro del vehículo para evitar la Advertencia exposición a la lluvia o ambientes húmedos.",
+      "lines": [
+        {
+          "y": 195.13079833984375,
+          "text": "El cargador DC-DC Jackery no es resistente al agua. Para evitar"
+        },
+        {
+          "y": 207.1287841796875,
+          "text": "daños al dispositivo, instálelo dentro del vehículo para evitar la"
+        },
+        {
+          "y": 216.8433074951172,
+          "text": "Advertencia exposición a la lluvia o ambientes húmedos."
+        }
+      ]
+    },
+    {
+      "role": "pre-checks-after-warning",
+      "physical_page": 39,
+      "rect": [
+        20,
+        235.41058349609375,
+        350,
+        503
+      ],
+      "text": "6. Compruebe la longitud del cable El producto incluye un cable de entrada de 6 metros. Asegúrese de que esta longitud sea suficiente para extenderse desde la batería del vehículo hasta la ubicación de instalación prevista para el cargador CC-CC. 7. Revise los paneles del vehículo a lo largo de la ruta de cableado Para mantener un diseño de cableado ordenado, puede ser necesario quitar y reinstalar algunos paneles del vehículo durante el proceso. 8. Asegúrese de que el producto esté completamente seco y sin daños antes del cableado y la instalación 9. Prepare las herramientas necesarias, incluido un destornillador Phillips, una llave hexagonal, una llave ajustable, una herramienta para quitar el clip del panel, alambre, cinta aislante, bridas, cortadores de alambre y un bolígrafo de prueba.",
+      "lines": [
+        {
+          "y": 244.11669921875,
+          "text": "6. Compruebe la longitud del cable El producto incluye un cable de entrada de 6 metros. Asegúrese"
+        },
+        {
+          "y": 256.11468505859375,
+          "text": "de que esta longitud sea suﬁciente para extenderse desde la batería del vehículo hasta la"
+        },
+        {
+          "y": 268.1127014160156,
+          "text": "ubicación de instalación prevista para el cargador CC-CC."
+        },
+        {
+          "y": 280.1106872558594,
+          "text": "7. Revise los paneles del vehículo a lo largo de la ruta de cableado Para mantener un diseño de"
+        },
+        {
+          "y": 292.1086730957031,
+          "text": "cableado ordenado, puede ser necesario quitar y reinstalar algunos paneles del vehículo durante"
+        },
+        {
+          "y": 304.106689453125,
+          "text": "el proceso."
+        },
+        {
+          "y": 316.1047058105469,
+          "text": "8. Asegúrese de que el producto esté completamente seco y sin daños antes del cableado y la"
+        },
+        {
+          "y": 328.1026916503906,
+          "text": "instalación"
+        },
+        {
+          "y": 340.1006774902344,
+          "text": "9. Prepare las herramientas necesarias, incluido un destornillador Phillips, una llave hexagonal, una"
+        },
+        {
+          "y": 352.09869384765625,
+          "text": "llave ajustable, una herramienta para quitar el clip del panel, alambre, cinta aislante, bridas,"
+        },
+        {
+          "y": 364.0967102050781,
+          "text": "cortadores de alambre y un bolígrafo de prueba."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.5",
+      "physical_page": 40,
+      "rect": [
+        20,
+        26.298583984375,
+        350,
+        40.678585052490234
+      ],
+      "text": "7.5 Pasos de cableado",
+      "lines": [
+        {
+          "y": 27.298583984375,
+          "text": "7.5 Pasos de cableado"
+        }
+      ]
+    },
+    {
+      "role": "wiring-precautions",
+      "physical_page": 40,
+      "rect": [
+        20,
+        44,
+        350,
+        100
+      ],
+      "text": "Precauciones: • Asegúrese de que los cables estén bien sujetos para evitar altas temperaturas o cortocircuitos causados por conexiones sueltas. • Cuando conecte el terminal OT a la batería del vehículo, asegúrese de que la conexión sea segura para evitar aumentos anormales de temperatura. • Asegúrese de que el vehículo esté apagado.",
+      "lines": [
+        {
+          "y": 42.46339797973633,
+          "text": "Precauciones:"
+        },
+        {
+          "y": 53.54339599609375,
+          "text": "• Asegúrese de que los cables estén bien sujetos para evitar altas temperaturas o cortocircuitos"
+        },
+        {
+          "y": 63.54638671875,
+          "text": "causados por conexiones sueltas."
+        },
+        {
+          "y": 73.54937744140625,
+          "text": "• Cuando conecte el terminal OT a la batería del vehículo, asegúrese de que la conexión sea segura"
+        },
+        {
+          "y": 83.5523681640625,
+          "text": "para evitar aumentos anormales de temperatura."
+        },
+        {
+          "y": 93.55535888671875,
+          "text": "• Asegúrese de que el vehículo esté apagado."
+        }
+      ]
+    },
+    {
+      "role": "fuse-label",
+      "physical_page": 40,
+      "rect": [
+        195,
+        101,
+        257,
+        156
+      ],
+      "text": "Fusible",
+      "lines": [
+        {
+          "y": 117.90618896484375,
+          "text": "Fusible"
+        }
+      ]
+    },
+    {
+      "role": "torque-label",
+      "physical_page": 40,
+      "rect": [
+        265,
+        101,
+        356,
+        156
+      ],
+      "text": "3~4 N·m",
+      "lines": [
+        {
+          "y": 117.82217407226562,
+          "text": "3~4 N·m"
+        }
+      ]
+    },
+    {
+      "role": "washer-label",
+      "physical_page": 40,
+      "rect": [
+        197,
+        240,
+        253,
+        275
+      ],
+      "text": "Arandela",
+      "lines": [
+        {
+          "y": 250.8192901611328,
+          "text": "Arandela"
+        }
+      ]
+    },
+    {
+      "role": "lock-washer-label",
+      "physical_page": 40,
+      "rect": [
+        253,
+        240,
+        305,
+        275
+      ],
+      "text": "Arandela de seguridad",
+      "lines": [
+        {
+          "y": 246.9552764892578,
+          "text": "Arandela de"
+        },
+        {
+          "y": 252.76927185058594,
+          "text": "seguridad"
+        }
+      ]
+    },
+    {
+      "role": "nut-label",
+      "physical_page": 40,
+      "rect": [
+        305,
+        240,
+        356,
+        275
+      ],
+      "text": "Tuerca",
+      "lines": [
+        {
+          "y": 250.8192596435547,
+          "text": "Tuerca"
+        }
+      ]
+    },
+    {
+      "role": "cable-label",
+      "physical_page": 40,
+      "rect": [
+        202,
+        165,
+        255,
+        211
+      ],
+      "text": "Câble d’entrée de 6 m",
+      "lines": [
+        {
+          "y": 181.41709899902344,
+          "text": "Câble"
+        },
+        {
+          "y": 189.4149627685547,
+          "text": "d’entrée"
+        },
+        {
+          "y": 197.41282653808594,
+          "text": "de 6 m"
+        }
+      ]
+    },
+    {
+      "role": "terminal-note",
+      "physical_page": 40,
+      "rect": [
+        253,
+        199,
+        356,
+        241
+      ],
+      "text": "Nota: Apriete los terminales ① y ② con un par de 3–4 N·m.",
+      "lines": [
+        {
+          "y": 210.93849182128906,
+          "text": "Nota: Apriete los terminales"
+        },
+        {
+          "y": 218.75050354003906,
+          "text": "① y ② con un par de 3–4"
+        },
+        {
+          "y": 226.56251525878906,
+          "text": "N·m."
+        }
+      ]
+    },
+    {
+      "role": "acc-label",
+      "physical_page": 40,
+      "rect": [
+        210,
+        425,
+        262,
+        460
+      ],
+      "text": "Cable ACC",
+      "lines": [
+        {
+          "y": 432.6366882324219,
+          "text": "Cable ACC"
+        }
+      ]
+    },
+    {
+      "role": "vehicle-acc-label",
+      "physical_page": 40,
+      "rect": [
+        284,
+        425,
+        349,
+        470
+      ],
+      "text": "Cable ACC del vehículo",
+      "lines": [
+        {
+          "y": 430.9272155761719,
+          "text": "Cable ACC"
+        },
+        {
+          "y": 438.9281921386719,
+          "text": "del vehículo"
+        }
+      ]
+    },
+    {
+      "role": "wiring-step-1",
+      "physical_page": 40,
+      "rect": [
+        20,
+        100,
+        193,
+        280
+      ],
+      "text": "1 Conecte el terminal OT del fusible al terminal positivo del cable de entrada de 6m (en rojo) con un par de apriete de 3~4 N·m . Asegúrese del orden correcto del terminal redondo, la arandela, la arandela de seguridad y la tuerca, y aplique el par de apriete necesario. Un par de apriete insuficiente puede provocar una conexión floja que derrita el cable, mientras que un par de apriete superior a 6 N-m puede romper el fusible. Durante la instalación, verifique y asegúrese de que ambos extremos de los terminales del fusible ① y ② estén bien apretados. Se recomienda apretarlos manualmente hasta que ya no se puedan girar. (Si utiliza un destornillador eléctrico, ajuste el par a 4 N·m antes de apretar).",
+      "lines": [
+        {
+          "y": 110.6026382446289,
+          "text": "1 Conecte el terminal OT del fusible al terminal"
+        },
+        {
+          "y": 120.47346496582031,
+          "text": "positivo del cable de entrada de 6m (en rojo)"
+        },
+        {
+          "y": 129.580322265625,
+          "text": "con un par de apriete de 3~4 N·m ."
+        },
+        {
+          "y": 138.58218383789062,
+          "text": "Asegúrese del orden correcto del terminal"
+        },
+        {
+          "y": 147.58404541015625,
+          "text": "redondo, la arandela, la arandela de"
+        },
+        {
+          "y": 156.58590698242188,
+          "text": "seguridad y la tuerca, y aplique el par de"
+        },
+        {
+          "y": 165.5877685546875,
+          "text": "apriete necesario."
+        },
+        {
+          "y": 174.58963012695312,
+          "text": "Un par de apriete insuﬁciente puede provocar"
+        },
+        {
+          "y": 183.59149169921875,
+          "text": "una conexión ﬂoja que derrita el cable,"
+        },
+        {
+          "y": 192.59335327148438,
+          "text": "mientras que un par de apriete superior a 6"
+        },
+        {
+          "y": 201.59521484375,
+          "text": "N-m puede romper el fusible."
+        },
+        {
+          "y": 210.59707641601562,
+          "text": "Durante la instalación, veriﬁque y asegúrese"
+        },
+        {
+          "y": 219.59893798828125,
+          "text": "de que ambos extremos de los terminales del"
+        },
+        {
+          "y": 228.60079956054688,
+          "text": "fusible ① y ② estén bien apretados. Se"
+        },
+        {
+          "y": 237.6026611328125,
+          "text": "recomienda apretarlos manualmente hasta"
+        },
+        {
+          "y": 246.60452270507812,
+          "text": "que ya no se puedan girar. (Si utiliza un"
+        },
+        {
+          "y": 255.60638427734375,
+          "text": "destornillador eléctrico, ajuste el par a 4 N·m"
+        },
+        {
+          "y": 264.6082763671875,
+          "text": "antes de apretar)."
+        }
+      ]
+    },
+    {
+      "role": "wiring-step-2",
+      "physical_page": 40,
+      "rect": [
+        20,
+        280,
+        193,
+        390
+      ],
+      "text": "2 Conecte los terminales OT del cable de entrada a los terminales positivo y negativo de la batería del vehículo. Asegúrese de que el cable rojo está conectado al terminal positivo y el cable negro al terminal negativo.",
+      "lines": [
+        {
+          "y": 287.7623291015625,
+          "text": "2 Conecte los terminales OT del cable de"
+        },
+        {
+          "y": 298.2294921875,
+          "text": "entrada a los terminales positivo y"
+        },
+        {
+          "y": 307.2314758300781,
+          "text": "negativo de la batería del vehículo."
+        },
+        {
+          "y": 316.2334899902344,
+          "text": "Asegúrese de que el cable rojo está"
+        },
+        {
+          "y": 325.2355041503906,
+          "text": "conectado al terminal positivo y el"
+        },
+        {
+          "y": 334.1324768066406,
+          "text": "cable negro al terminal negativo."
+        }
+      ]
+    },
+    {
+      "role": "wiring-step-3",
+      "physical_page": 40,
+      "rect": [
+        20,
+        390,
+        193,
+        503
+      ],
+      "text": "3 Corte el extremo no conector del cable ACC para dejar al descubierto el hilo de cobre y conéctelo a la línea ACC del vehículo. ※ Al conectar el cable ACC, si no está seguro de la ubicación del cableado o del método de conexión, se recomienda contactar al fabricante del vehículo para obtener confirmación antes de proceder con la instalación.",
+      "lines": [
+        {
+          "y": 405.20953369140625,
+          "text": "3 Corte el extremo no conector del cable"
+        },
+        {
+          "y": 414.6748046875,
+          "text": "ACC para dejar al descubierto el hilo de"
+        },
+        {
+          "y": 422.6758117675781,
+          "text": "cobre y conéctelo a la línea ACC del"
+        },
+        {
+          "y": 430.6767883300781,
+          "text": "vehículo."
+        },
+        {
+          "y": 446.356201171875,
+          "text": "※ Al conectar el cable ACC, si no está"
+        },
+        {
+          "y": 453.9721984863281,
+          "text": "seguro de la ubicación del cableado o"
+        },
+        {
+          "y": 461.97320556640625,
+          "text": "del método de conexión, se recomienda"
+        },
+        {
+          "y": 469.9742126464844,
+          "text": "contactar al fabricante del vehículo"
+        },
+        {
+          "y": 477.9751892089844,
+          "text": "para obtener conﬁrmación antes de"
+        },
+        {
+          "y": 485.9761962890625,
+          "text": "proceder con la instalación."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.6",
+      "physical_page": 41,
+      "rect": [
+        20,
+        26.306884765625,
+        350,
+        40.686885833740234
+      ],
+      "text": "7.6 Instalación del producto",
+      "lines": [
+        {
+          "y": 27.306884765625,
+          "text": "7.6 Instalación del producto"
+        }
+      ]
+    },
+    {
+      "role": "drilling-note",
+      "physical_page": 41,
+      "rect": [
+        20,
+        42,
+        350,
+        67
+      ],
+      "text": "* Antes de perforar o fijar el cargador DC-DC, inspeccione el área detrás del lugar previsto de instalación para evitar dañar los arneses de cables u otros componentes internos.",
+      "lines": [
+        {
+          "y": 44.351585388183594,
+          "text": "* Antes de perforar o ﬁjar el cargador DC-DC, inspeccione el área detrás del lugar previsto de instalación"
+        },
+        {
+          "y": 52.35308074951172,
+          "text": "para evitar dañar los arneses de cables u otros componentes internos."
+        }
+      ]
+    },
+    {
+      "role": "method-one",
+      "physical_page": 41,
+      "rect": [
+        20,
+        67,
+        350,
+        82
+      ],
+      "text": "Método 1: Fije el producto a la carrocería del vehículo.",
+      "lines": [
+        {
+          "y": 65.33888244628906,
+          "text": "Método 1: Fije el producto a la carrocería del vehículo."
+        }
+      ]
+    },
+    {
+      "role": "body-step-1",
+      "physical_page": 41,
+      "rect": [
+        20,
+        78.27301788330078,
+        192,
+        163.8921775817871
+      ],
+      "text": "1 Mantenga al menos 20 cm de espacio libre alrededor del producto (arriba, abajo, izquierda, derecha).",
+      "lines": [
+        {
+          "y": 80.27301788330078,
+          "text": "1 Mantenga al menos 20 cm de"
+        },
+        {
+          "y": 93.73577880859375,
+          "text": "espacio libre alrededor del producto"
+        },
+        {
+          "y": 105.7337646484375,
+          "text": "(arriba, abajo, izquierda, derecha)."
+        }
+      ]
+    },
+    {
+      "role": "body-step-2",
+      "physical_page": 41,
+      "rect": [
+        20,
+        163.8921775817871,
+        192,
+        271.50353240966797
+      ],
+      "text": "2 Marque las posiciones de perforación.",
+      "lines": [
+        {
+          "y": 187.51133728027344,
+          "text": "2 Marque las posiciones de perforación."
+        }
+      ]
+    },
+    {
+      "role": "body-step-3",
+      "physical_page": 41,
+      "rect": [
+        20,
+        271.50353240966797,
+        192,
+        378.7581787109375
+      ],
+      "text": "3 Taladre agujeros en las posiciones marcadas.",
+      "lines": [
+        {
+          "y": 295.4957275390625,
+          "text": "3 Taladre agujeros en las posiciones"
+        },
+        {
+          "y": 309.8260803222656,
+          "text": "marcadas."
+        }
+      ]
+    },
+    {
+      "role": "body-step-4",
+      "physical_page": 41,
+      "rect": [
+        20,
+        378.7581787109375,
+        192,
+        503
+      ],
+      "text": "4 Fije el producto con tornillos autorroscantes.",
+      "lines": [
+        {
+          "y": 402.0206298828125,
+          "text": "4 Fije el producto con tornillos"
+        },
+        {
+          "y": 416.3504943847656,
+          "text": "autorroscantes."
+        }
+      ]
+    },
+    {
+      "role": "method-two",
+      "physical_page": 42,
+      "rect": [
+        20,
+        26,
+        350,
+        49
+      ],
+      "text": "Método 2: Fije el producto a un panel de modificación.",
+      "lines": [
+        {
+          "y": 28.490802764892578,
+          "text": "Método 2: Fije el producto a un panel de modiﬁcación."
+        }
+      ]
+    },
+    {
+      "role": "panel-step-1",
+      "physical_page": 42,
+      "rect": [
+        20,
+        49,
+        193,
+        145.2237377166748
+      ],
+      "text": "1 Marque las posiciones de taladrado en el panel de modificación.",
+      "lines": [
+        {
+          "y": 51.4244499206543,
+          "text": "1 Marque las posiciones de taladrado"
+        },
+        {
+          "y": 64.88241577148438,
+          "text": "en el panel de modiﬁcación."
+        }
+      ]
+    },
+    {
+      "role": "panel-step-2",
+      "physical_page": 42,
+      "rect": [
+        20,
+        145.2237377166748,
+        193,
+        263.68468475341797
+      ],
+      "text": "2 Taladre agujeros en las posiciones marcadas.",
+      "lines": [
+        {
+          "y": 169.0230255126953,
+          "text": "2 Taladre agujeros en las posiciones"
+        },
+        {
+          "y": 183.35247802734375,
+          "text": "marcadas."
+        }
+      ]
+    },
+    {
+      "role": "panel-step-3",
+      "physical_page": 42,
+      "rect": [
+        20,
+        263.68468475341797,
+        193,
+        422.356201171875
+      ],
+      "text": "3 Inserte los pernos M6 a través del producto y en los orificios, luego apriete las tuercas M6.",
+      "lines": [
+        {
+          "y": 288.3463439941406,
+          "text": "3 Inserte los pernos M6 a través del"
+        },
+        {
+          "y": 302.6747131347656,
+          "text": "producto y en los oriﬁcios, luego"
+        },
+        {
+          "y": 314.6726989746094,
+          "text": "apriete las tuercas M6."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.7",
+      "physical_page": 42,
+      "rect": [
+        20,
+        421.356201171875,
+        350,
+        435.7362060546875
+      ],
+      "text": "7.7 Conexión del producto y de la central eléctrica portátil",
+      "lines": [
+        {
+          "y": 422.356201171875,
+          "text": "7.7 Conexión del producto y de la central eléctrica portátil"
+        }
+      ]
+    },
+    {
+      "role": "connection-steps",
+      "physical_page": 42,
+      "rect": [
+        20,
+        438.356201171875,
+        350,
+        503
+      ],
+      "text": "1. Conecte el conector Anderson del cable de entrada al puerto de entrada del producto. 2. Conecte el conector Anderson del cable ACC al puerto ACC del producto. 3. Conecte el conector Anderson del cable de salida al puerto de salida del producto. 4. Conecte el conector DC8020 del cable de salida a la estación de alimentación portátil.",
+      "lines": [
+        {
+          "y": 437.9613952636719,
+          "text": "1. Conecte el conector Anderson del cable de entrada al puerto de entrada del producto."
+        },
+        {
+          "y": 449.9593811035156,
+          "text": "2. Conecte el conector Anderson del cable ACC al puerto ACC del producto."
+        },
+        {
+          "y": 461.9573974609375,
+          "text": "3. Conecte el conector Anderson del cable de salida al puerto de salida del producto."
+        },
+        {
+          "y": 473.9554138183594,
+          "text": "4. Conecte el conector DC8020 del cable de salida a la estación de alimentación portátil."
+        }
+      ]
+    },
+    {
+      "role": "connection-acc",
+      "physical_page": 43,
+      "rect": [
+        40,
+        130,
+        121,
+        186.46749877929688
+      ],
+      "text": "Cable ACC",
+      "lines": [
+        {
+          "y": 144.06939697265625,
+          "text": "Cable ACC"
+        }
+      ]
+    },
+    {
+      "role": "connection-output",
+      "physical_page": 43,
+      "rect": [
+        121,
+        150,
+        206,
+        186.46749877929688
+      ],
+      "text": "Cable de salida",
+      "lines": [
+        {
+          "y": 164.5093994140625,
+          "text": "Cable de salida"
+        }
+      ]
+    },
+    {
+      "role": "connection-input",
+      "physical_page": 43,
+      "rect": [
+        206,
+        150,
+        356,
+        186.46749877929688
+      ],
+      "text": "Cable de entrada con fusible",
+      "lines": [
+        {
+          "y": 164.71240234375,
+          "text": "Cable de entrada con fusible"
+        }
+      ]
+    },
+    {
+      "role": "heading:7.8",
+      "physical_page": 43,
+      "rect": [
+        20,
+        186.46749877929688,
+        350,
+        200.84750366210938
+      ],
+      "text": "7.8 Comprobaciones posteriores a la instalación",
+      "lines": [
+        {
+          "y": 187.46749877929688,
+          "text": "7.8 Comprobaciones posteriores a la instalación"
+        }
+      ]
+    },
+    {
+      "role": "post-checks",
+      "physical_page": 43,
+      "rect": [
+        20,
+        203.46749877929688,
+        350,
+        287.4411926269531
+      ],
+      "text": "1. Compruebe que todos los tornillos del sistema de cableado estén bien apretados. 2. Inspeccione y asegure todo el cableado para evitar el desgaste o el aflojamiento causado por el movimiento del vehículo. 3. Antes de arrancar el vehículo, asegúrese de que todo el cableado esté completo y que los tornillos y cables estén en buenas condiciones. 4. Después de arrancar el vehículo, presione brevemente el botón de encendido para encender el producto. Si la luz indicadora se vuelve verde fija, la instalación se ha realizado correctamente.",
+      "lines": [
+        {
+          "y": 203.91058349609375,
+          "text": "1. Compruebe que todos los tornillos del sistema de cableado estén bien apretados."
+        },
+        {
+          "y": 214.9075927734375,
+          "text": "2. Inspeccione y asegure todo el cableado para evitar el desgaste o el aﬂojamiento causado por el"
+        },
+        {
+          "y": 225.90460205078125,
+          "text": "movimiento del vehículo."
+        },
+        {
+          "y": 236.901611328125,
+          "text": "3. Antes de arrancar el vehículo, asegúrese de que todo el cableado esté completo y que los tornillos"
+        },
+        {
+          "y": 247.89862060546875,
+          "text": "y cables estén en buenas condiciones."
+        },
+        {
+          "y": 258.8956298828125,
+          "text": "4. Después de arrancar el vehículo, presione brevemente el botón de encendido para encender el"
+        },
+        {
+          "y": 269.8926086425781,
+          "text": "producto. Si la luz indicadora se vuelve verde ﬁja, la instalación se ha realizado correctamente."
+        }
+      ]
+    },
+    {
+      "role": "heading:7.9",
+      "physical_page": 43,
+      "rect": [
+        20,
+        286.4411926269531,
+        350,
+        300.8211975097656
+      ],
+      "text": "7.9 Precauciones de uso diario",
+      "lines": [
+        {
+          "y": 287.4411926269531,
+          "text": "7.9 Precauciones de uso diario"
+        }
+      ]
+    },
+    {
+      "role": "fcc-heading",
+      "physical_page": 43,
+      "rect": [
+        48,
+        446.6040954589844,
+        350,
+        459.6040954589844
+      ],
+      "text": "Declaración de conformidad de la FCC",
+      "lines": [
+        {
+          "y": 447.6040954589844,
+          "text": "Declaración de conformidad de la FCC"
+        }
+      ]
+    },
+    {
+      "role": "fcc-body",
+      "physical_page": 43,
+      "rect": [
+        48,
+        459.6040954589844,
+        350,
+        503
+      ],
+      "text": "Este dispositivo cumple con la Parte 15 de las Reglas de la FCC. Su funcionamiento está sujeto a las siguientes dos condiciones: (1) Este dispositivo no puede causar interferencias perjudiciales, y (2) este dispositivo debe aceptar cualquier interferencia recibida, incluida la interferencia que pueda causar un funcionamiento no deseado.",
+      "lines": [
+        {
+          "y": 456.6410827636719,
+          "text": "Este dispositivo cumple con la Parte 15 de las Reglas de la FCC. Su funcionamiento está"
+        },
+        {
+          "y": 465.6430969238281,
+          "text": "sujeto a las siguientes dos condiciones: (1) Este dispositivo no puede causar interferencias"
+        },
+        {
+          "y": 474.6451110839844,
+          "text": "perjudiciales, y (2) este dispositivo debe aceptar cualquier interferencia recibida, incluida la"
+        },
+        {
+          "y": 483.6470947265625,
+          "text": "interferencia que pueda causar un funcionamiento no deseado."
+        }
+      ]
+    },
+    {
+      "role": "daily-precautions",
+      "physical_page": 43,
+      "rect": [
+        20,
+        303.4411926269531,
+        350,
+        446.6040954589844
+      ],
+      "text": "• No tire del cableado con fuerza al desconectar el producto para evitar daños. • El uso prolongado del producto puede hacer que la carcasa exterior se caliente. Evite el contacto directo para evitar quemaduras. • Revise regularmente el cableado todos los meses para asegurarse de que los terminales OT estén conectados de forma segura y que no haya grietas, desgaste o corrosión en los cables. • Utilice un paño o pañuelo de papel seco y suave para limpiar el producto. No lo laves directamente con agua. • Al utilizar el producto, asegúrese de que no haya objetos colocados a menos de 20 cm del mismo en ninguna dirección para evitar que el calor afecte a los artículos circundantes. • Si se detecta envejecimiento, daños u otros problemas en el producto o los cables, deje de utilizarlos inmediatamente y solicite su reparación o sustitución. • Apague la alimentación cuando el producto no esté en uso.",
+      "lines": [
+        {
+          "y": 304.5373840332031,
+          "text": "• No tire del cableado con fuerza al desconectar el producto para evitar daños."
+        },
+        {
+          "y": 315.5343933105469,
+          "text": "• El uso prolongado del producto puede hacer que la carcasa exterior se caliente. Evite el contacto"
+        },
+        {
+          "y": 326.5314025878906,
+          "text": "directo para evitar quemaduras."
+        },
+        {
+          "y": 337.52838134765625,
+          "text": "• Revise regularmente el cableado todos los meses para asegurarse de que los terminales OT estén"
+        },
+        {
+          "y": 348.5253601074219,
+          "text": "conectados de forma segura y que no haya grietas, desgaste o corrosión en los cables."
+        },
+        {
+          "y": 359.5223693847656,
+          "text": "• Utilice un paño o pañuelo de papel seco y suave para limpiar el producto. No lo laves directa-"
+        },
+        {
+          "y": 370.5193786621094,
+          "text": "mente con agua."
+        },
+        {
+          "y": 381.516357421875,
+          "text": "• Al utilizar el producto, asegúrese de que no haya objetos colocados a menos de 20 cm del mismo"
+        },
+        {
+          "y": 392.51336669921875,
+          "text": "en ninguna dirección para evitar que el calor afecte a los artículos circundantes."
+        },
+        {
+          "y": 403.5103454589844,
+          "text": "• Si se detecta envejecimiento, daños u otros problemas en el producto o los cables, deje de"
+        },
+        {
+          "y": 414.5073547363281,
+          "text": "utilizarlos inmediatamente y solicite su reparación o sustitución."
+        },
+        {
+          "y": 425.5043640136719,
+          "text": "• Apague la alimentación cuando el producto no esté en uso."
+        }
+      ]
+    },
+    {
+      "role": "heading:8.",
+      "physical_page": 44,
+      "rect": [
+        20,
+        25.72388458251953,
+        350,
+        45.391883850097656
+      ],
+      "text": "8. GARANTÍA",
+      "lines": [
+        {
+          "y": 26.72388458251953,
+          "text": "8. GARANTÍA"
+        }
+      ]
+    },
+    {
+      "role": "warranty-intro",
+      "physical_page": 44,
+      "rect": [
+        20,
+        49,
+        350,
+        77
+      ],
+      "text": "Solo ofrecemos nuestra garantía a los clientes que compren en el sitio web oficial de Jackery, plataformas de terceros con la marca Jackery o distribuidores autorizados locales.",
+      "lines": [
+        {
+          "y": 53.60538864135742,
+          "text": "Solo ofrecemos nuestra garantía a los clientes que compren en el sitio web oficial de Jackery,"
+        },
+        {
+          "y": 63.60837936401367,
+          "text": "plataformas de terceros con la marca Jackery o distribuidores autorizados locales."
+        }
+      ]
+    },
+    {
+      "role": "warranty-local-law-note",
+      "physical_page": 44,
+      "rect": [
+        20,
+        77,
+        350,
+        108.723388671875
+      ],
+      "text": "* El período y los detalles de la garantía pueden variar según las leyes locales, regulaciones y distribuidores autorizados.",
+      "lines": [
+        {
+          "y": 83.98538208007812,
+          "text": "* El período y los detalles de la garantía pueden variar según las leyes locales, regulaciones y"
+        },
+        {
+          "y": 93.98837280273438,
+          "text": "distribuidores autorizados."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-0",
+      "physical_page": 44,
+      "rect": [
+        20,
+        107.723388671875,
+        350,
+        122.10338592529297
+      ],
+      "text": "Garantía limitada",
+      "lines": [
+        {
+          "y": 108.723388671875,
+          "text": "Garantía limitada"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-0",
+      "physical_page": 44,
+      "rect": [
+        20,
+        122.10338592529297,
+        350,
+        193.92919921875
+      ],
+      "text": "Jackery garantiza al consumidor original que el producto Jackery estará libre de defectos relativos al acabado y a los materiales en condiciones normales de uso por parte del consumidor durante el período de garantía aplicable identificado en la sección \"Período de garantía\" que figura a continuación, sujeto a las exclusiones que se establecen a continuación. Esta declaración de garantía establece la obligación de garantía total y exclusiva de Jackery. No asumiremos ni autorizaremos que ninguna persona asuma por nosotros ninguna otra responsabilidad en relación con la venta de nuestros productos.",
+      "lines": [
+        {
+          "y": 122.80038452148438,
+          "text": "Jackery garantiza al consumidor original que el producto Jackery estará libre de defectos relativos"
+        },
+        {
+          "y": 131.80239868164062,
+          "text": "al acabado y a los materiales en condiciones normales de uso por parte del consumidor durante el"
+        },
+        {
+          "y": 140.80441284179688,
+          "text": "período de garantía aplicable identificado en la sección \"Período de garantía\" que figura a"
+        },
+        {
+          "y": 149.80642700195312,
+          "text": "continuación, sujeto a las exclusiones que se establecen a continuación."
+        },
+        {
+          "y": 158.80844116210938,
+          "text": "Esta declaración de garantía establece la obligación de garantía total y exclusiva de Jackery. No"
+        },
+        {
+          "y": 167.81045532226562,
+          "text": "asumiremos ni autorizaremos que ninguna persona asuma por nosotros ninguna otra responsabili-"
+        },
+        {
+          "y": 176.81246948242188,
+          "text": "dad en relación con la venta de nuestros productos."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-1",
+      "physical_page": 44,
+      "rect": [
+        20,
+        193.92919921875,
+        350,
+        208.3092041015625
+      ],
+      "text": "Período de garantía",
+      "lines": [
+        {
+          "y": 194.92919921875,
+          "text": "Período de garantía"
+        }
+      ]
+    },
+    {
+      "role": "warranty-badge",
+      "physical_page": 44,
+      "rect": [
+        20,
+        208.3092041015625,
+        111,
+        282.3433837890625
+      ],
+      "text": "2 AÑOS Garantía Estándar",
+      "lines": [
+        {
+          "y": 210.91932678222656,
+          "text": "2"
+        },
+        {
+          "y": 251.3013916015625,
+          "text": "AÑOS"
+        },
+        {
+          "y": 266.9076843261719,
+          "text": "Garantía Estándar"
+        }
+      ]
+    },
+    {
+      "role": "warranty-period",
+      "physical_page": 44,
+      "rect": [
+        111,
+        208.3092041015625,
+        350,
+        282.3433837890625
+      ],
+      "text": "El periodo de garantía estándar de Jackery DC-DC Charger es de 24 meses. En cada caso, el período de garantía se mide a partir de la fecha de compra por parte del comprador consumidor original. Para establecer la fecha de inicio del período de garantía, se necesita el recibo de venta de la primera compra del consumidor u otra prueba documental razonable.",
+      "lines": [
+        {
+          "y": 215.15145874023438,
+          "text": "El periodo de garantía estándar de Jackery DC-DC Charger es de"
+        },
+        {
+          "y": 225.15444946289062,
+          "text": "24 meses. En cada caso, el período de garantía se mide a partir de"
+        },
+        {
+          "y": 235.15744018554688,
+          "text": "la fecha de compra por parte del comprador consumidor original."
+        },
+        {
+          "y": 245.16043090820312,
+          "text": "Para establecer la fecha de inicio del período de garantía, se"
+        },
+        {
+          "y": 255.16342163085938,
+          "text": "necesita el recibo de venta de la primera compra del consumidor u"
+        },
+        {
+          "y": 265.1664123535156,
+          "text": "otra prueba documental razonable."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-2",
+      "physical_page": 44,
+      "rect": [
+        20,
+        282.3433837890625,
+        350,
+        296.723388671875
+      ],
+      "text": "Servicio de garantía",
+      "lines": [
+        {
+          "y": 283.3433837890625,
+          "text": "Servicio de garantía"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-2",
+      "physical_page": 44,
+      "rect": [
+        20,
+        296.723388671875,
+        350,
+        362.2926940917969
+      ],
+      "text": "Si un producto Jackery deja de funcionar durante el periodo de garantía aplicable debido a un defecto de fabricación o de materiales, Jackery prestará el servicio de garantía sin coste, de conformidad con las leyes locales aplicables y la política regional de posventa de Jackery. El servicio de garantía puede incluir la reparación, sustitución o intercambio del producto. Cualquier producto reparado, sustituido o intercambiado estará cubierto durante el periodo de garantía restante del producto original.",
+      "lines": [
+        {
+          "y": 297.8913879394531,
+          "text": "Si un producto Jackery deja de funcionar durante el periodo de garantía aplicable debido a un"
+        },
+        {
+          "y": 307.8943786621094,
+          "text": "defecto de fabricación o de materiales, Jackery prestará el servicio de garantía sin coste, de"
+        },
+        {
+          "y": 317.8973693847656,
+          "text": "conformidad con las leyes locales aplicables y la política regional de posventa de Jackery. El"
+        },
+        {
+          "y": 327.900390625,
+          "text": "servicio de garantía puede incluir la reparación, sustitución o intercambio del producto."
+        },
+        {
+          "y": 337.9034118652344,
+          "text": "Cualquier producto reparado, sustituido o intercambiado estará cubierto durante el periodo de"
+        },
+        {
+          "y": 347.9064025878906,
+          "text": "garantía restante del producto original."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-3",
+      "physical_page": 44,
+      "rect": [
+        20,
+        362.2926940917969,
+        350,
+        376.6726989746094
+      ],
+      "text": "Limitado al comprador consumidor original",
+      "lines": [
+        {
+          "y": 363.2926940917969,
+          "text": "Limitado al comprador consumidor original"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-3",
+      "physical_page": 44,
+      "rect": [
+        20,
+        376.6726989746094,
+        350,
+        403.701904296875
+      ],
+      "text": "La garantía del producto de Jackery se limita al consumidor original y no es transferible a ningún propietario posterior.",
+      "lines": [
+        {
+          "y": 377.2367858886719,
+          "text": "La garantía del producto de Jackery se limita al consumidor original y no es transferible a ningún"
+        },
+        {
+          "y": 386.2388000488281,
+          "text": "propietario posterior."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-4",
+      "physical_page": 44,
+      "rect": [
+        20,
+        403.701904296875,
+        350,
+        418.0819091796875
+      ],
+      "text": "Exclusions",
+      "lines": [
+        {
+          "y": 404.701904296875,
+          "text": "Exclusions"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-4",
+      "physical_page": 44,
+      "rect": [
+        20,
+        418.0819091796875,
+        350,
+        469.3992004394531
+      ],
+      "text": "La garantía de Jackery no se aplica a: Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso normal del consumidor según lo autorizado en los folletos actuales del producto de Jackery. Intento de reparación por cualquier persona que no sea un centro autorizado. Cualquier producto adquirido a través de una casa de subastas en línea.",
+      "lines": [
+        {
+          "y": 418.2065124511719,
+          "text": "La garantía de Jackery no se aplica a:"
+        },
+        {
+          "y": 427.20849609375,
+          "text": "Mal uso, abuso, modificación, daño por accidente, o uso para cualquier cosa que no sea el uso"
+        },
+        {
+          "y": 436.2104797363281,
+          "text": "normal del consumidor según lo autorizado en los folletos actuales del producto de Jackery."
+        },
+        {
+          "y": 445.2124938964844,
+          "text": "Intento de reparación por cualquier persona que no sea un centro autorizado."
+        },
+        {
+          "y": 454.2145080566406,
+          "text": "Cualquier producto adquirido a través de una casa de subastas en línea."
+        }
+      ]
+    },
+    {
+      "role": "warranty-heading-5",
+      "physical_page": 44,
+      "rect": [
+        20,
+        469.3992004394531,
+        350,
+        483.7792053222656
+      ],
+      "text": "Derechos de interpretación",
+      "lines": [
+        {
+          "y": 470.3992004394531,
+          "text": "Derechos de interpretación"
+        }
+      ]
+    },
+    {
+      "role": "warranty-body-5",
+      "physical_page": 44,
+      "rect": [
+        20,
+        483.7792053222656,
+        350,
+        504
+      ],
+      "text": "Jackery se reserva el derecho a la interpretación final de la política posventa de los clientes anterior.",
+      "lines": [
+        {
+          "y": 483.63720703125,
+          "text": "Jackery se reserva el derecho a la interpretación final de la política posventa de los clientes"
+        },
+        {
+          "y": 492.6391906738281,
+          "text": "anterior."
+        }
+      ]
+    }
+  ],
+  "unassigned": [
+    {
+      "page": 31,
+      "bbox": [
+        29.176799774169922,
+        27.24374008178711,
+        44.94778823852539,
+        44.785953521728516
+      ],
+      "text": "ES"
+    },
+    {
+      "page": 31,
+      "bbox": [
+        231.72459411621094,
+        29.409751892089844,
+        273.7774353027344,
+        43.38553237915039
+      ],
+      "text": "Modelo:"
+    },
+    {
+      "page": 31,
+      "bbox": [
+        276.629638671875,
+        29.409751892089844,
+        338.7950744628906,
+        43.38553237915039
+      ],
+      "text": "JA-AD600A"
+    },
+    {
+      "page": 31,
+      "bbox": [
+        49.15629959106445,
+        34.88062286376953,
+        72.84454345703125,
+        42.824256896972656
+      ],
+      "text": "Español"
+    },
+    {
+      "page": 32,
+      "bbox": [
+        176.1143035888672,
+        422.82470703125,
+        187.0343017578125,
+        431.2247009277344
+      ],
+      "text": "259"
+    },
+    {
+      "page": 32,
+      "bbox": [
+        188.7843017578125,
+        422.82470703125,
+        200.65631103515625,
+        431.2247009277344
+      ],
+      "text": "mm"
+    },
+    {
+      "page": 32,
+      "bbox": [
+        73.9303970336914,
+        330.372802734375,
+        82.33039855957031,
+        346.05279541015625
+      ],
+      "text": "154,5"
+    },
+    {
+      "page": 32,
+      "bbox": [
+        73.9303970336914,
+        347.80279541015625,
+        82.33039855957031,
+        359.6748046875
+      ],
+      "text": "mm"
+    },
+    {
+      "page": 32,
+      "bbox": [
+        73.9303970336914,
+        444.997314453125,
+        82.33039855957031,
+        456.2322998046875
+      ],
+      "text": "39,3"
+    },
+    {
+      "page": 32,
+      "bbox": [
+        73.9303970336914,
+        457.6322937011719,
+        82.33039855957031,
+        469.3293151855469
+      ],
+      "text": "mm"
+    },
+    {
+      "page": 32,
+      "bbox": [
+        176.0269012451172,
+        409.23480224609375,
+        187.1219024658203,
+        417.6347961425781
+      ],
+      "text": "225"
+    },
+    {
+      "page": 32,
+      "bbox": [
+        188.8719024658203,
+        409.23480224609375,
+        200.74391174316406,
+        417.6347961425781
+      ],
+      "text": "mm"
+    },
+    {
+      "page": 33,
+      "bbox": [
+        67.81009674072266,
+        58.17569351196289,
+        73.68209838867188,
+        67.335693359375
+      ],
+      "text": "A"
+    },
+    {
+      "page": 33,
+      "bbox": [
+        65.4375,
+        150.95889282226562,
+        70.39749908447266,
+        160.5588836669922
+      ],
+      "text": "B"
+    },
+    {
+      "page": 33,
+      "bbox": [
+        143.3231964111328,
+        150.95889282226562,
+        149.283203125,
+        160.5588836669922
+      ],
+      "text": "C"
+    },
+    {
+      "page": 33,
+      "bbox": [
+        216.77879333496094,
+        150.95889282226562,
+        222.53878784179688,
+        160.5588836669922
+      ],
+      "text": "D"
+    },
+    {
+      "page": 33,
+      "bbox": [
+        309.731689453125,
+        150.95889282226562,
+        313.9716796875,
+        160.5588836669922
+      ],
+      "text": "E"
+    },
+    {
+      "page": 33,
+      "bbox": [
+        65.8573989868164,
+        246.64889526367188,
+        69.97740173339844,
+        256.2489013671875
+      ],
+      "text": "F"
+    },
+    {
+      "page": 33,
+      "bbox": [
+        143.1479034423828,
+        246.64889526367188,
+        149.45989990234375,
+        256.2489013671875
+      ],
+      "text": "G"
+    },
+    {
+      "page": 33,
+      "bbox": [
+        216.93850708007812,
+        246.64889526367188,
+        222.37850952148438,
+        256.2489013671875
+      ],
+      "text": "H"
+    },
+    {
+      "page": 33,
+      "bbox": [
+        310.9280090332031,
+        246.64889526367188,
+        312.76800537109375,
+        256.2489013671875
+      ],
+      "text": "I"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        55.66699981689453,
+        291.7417297363281,
+        59.76448059082031,
+        298.1335754394531
+      ],
+      "text": "A"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        85.49849700927734,
+        286.3277587890625,
+        89.55690002441406,
+        292.7196044921875
+      ],
+      "text": "E"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        79.32520294189453,
+        328.1353454589844,
+        83.70738983154297,
+        334.5271911621094
+      ],
+      "text": "D"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        330.2651062011719,
+        276.7779541015625,
+        334.69195556640625,
+        283.1697998046875
+      ],
+      "text": "C"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        96.98880004882812,
+        298.2456359863281,
+        100.71784210205078,
+        304.6374816894531
+      ],
+      "text": "F"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        149.54299926757812,
+        313.1763610839844,
+        153.60140991210938,
+        319.5682067871094
+      ],
+      "text": "B"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        32.15629959106445,
+        409.9418029785156,
+        37.1963005065918,
+        419.54180908203125
+      ],
+      "text": "A"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        152.8795928955078,
+        409.9418029785156,
+        157.839599609375,
+        419.54180908203125
+      ],
+      "text": "B"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        263.276611328125,
+        409.9418029785156,
+        269.2366027832031,
+        419.54180908203125
+      ],
+      "text": "C"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        31.79640007019043,
+        429.4403991699219,
+        37.556400299072266,
+        439.0404052734375
+      ],
+      "text": "D"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        153.239501953125,
+        429.4403991699219,
+        157.47950744628906,
+        439.0404052734375
+      ],
+      "text": "E"
+    },
+    {
+      "page": 37,
+      "bbox": [
+        264.1965026855469,
+        429.4403991699219,
+        268.3164978027344,
+        439.0404052734375
+      ],
+      "text": "F"
+    },
+    {
+      "page": 41,
+      "bbox": [
+        258.37548828125,
+        103.32595825195312,
+        274.2587585449219,
+        112.72039794921875
+      ],
+      "text": "＞20"
+    },
+    {
+      "page": 41,
+      "bbox": [
+        275.5743408203125,
+        103.08435821533203,
+        286.0687255859375,
+        112.2933578491211
+      ],
+      "text": "cm"
+    }
+  ]
+}

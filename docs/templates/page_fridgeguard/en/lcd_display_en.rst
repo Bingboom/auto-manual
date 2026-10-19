@@ -1,0 +1,26 @@
+LCD SCREEN
+==========
+
+.. image:: renderers/web/assets/je1000e_sil_us_en/lcd_map.png
+   :alt: Numbered LCD display map, indicators 1–12.
+   :width: 100%
+
+.. raw:: html
+
+   <table class="hb-lcd-icon-table hb-lcd-merge-number hb-lcd-merge-description"><tbody>
+   <tr><td><p>1</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_01.png" alt="Remaining Battery Percentage" /></td><td><p>Remaining Battery Percentage</p></td><td><p>Displays the remaining battery percentage.</p></td></tr>
+   <tr><td><p>2</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_02.png" alt="Input Power" /></td><td><p>Input Power</p></td><td><p>Displays the input power and remaining charging time alternately.</p></td></tr>
+   <tr><td><p>2</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_03.png" alt="Remaining Charge Time" /></td><td><p>Remaining Charge Time</p></td><td><p>Displays the input power and remaining charging time alternately.</p></td></tr>
+   <tr><td><p>3</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_04.png" alt="UPS" /></td><td><p>UPS</p></td><td><p><strong>On:</strong> The product is in bypass mode, and the switchover time from grid power to the internal battery is 10 ms.<br /><strong>Off:</strong> The product is not in bypass mode.</p></td></tr>
+   <tr><td><p>4</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_05.png" alt="Wi-Fi" /></td><td><p>Wi-Fi</p></td><td><p><strong>On:</strong> Wi-Fi connected.<br /><strong>Blink:</strong> Ready to connect to Wi-Fi.<br /><strong>Off:</strong> Wi-Fi disconnected.</p></td></tr>
+   <tr><td><p>4</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_06.png" alt="Bluetooth" /></td><td><p>Bluetooth</p></td><td><p><strong>On:</strong> Bluetooth connected.<br /><strong>Blink:</strong> Ready to connect to Bluetooth.<br /><strong>Off:</strong> Bluetooth disconnected.</p></td></tr>
+   <tr><td><p>5</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_07.png" alt="Output Power" /></td><td><p>Output Power</p></td><td><p>Displays the output power and remaining discharging time alternately.</p></td></tr>
+   <tr><td><p>5</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_08.png" alt="Remaining Discharge Time" /></td><td><p>Remaining Discharge Time</p></td><td><p>Displays the output power and remaining discharging time alternately.</p></td></tr>
+   <tr><td><p>6</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_09.png" alt="Fault Code" /></td><td><p>Fault Code</p></td><td><p>A product error has occurred. Please refer to the Troubleshooting section for details.</p></td></tr>
+   <tr><td><p>7</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_10.png" alt="Charging Indicator" /></td><td><p>Charging Indicator</p></td><td><p><strong>On:</strong> The Jackery FridgeGuard is in the charging state.<br /><strong>Off:</strong> The Jackery FridgeGuard is not in the charging state.</p></td></tr>
+   <tr><td><p>8</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_11.png" alt="TOU" /></td><td><p>TOU</p></td><td><p><strong>On:</strong> TOU (time-of-use) mode is enabled (default backup SOC: 60%). During peak periods, when the stored energy exceeds the backup SOC, the product prioritizes battery discharge to reduce peak electricity costs. During off-peak periods, the system charges the battery from the grid to achieve peak-shaving and valley-filling.<br /><strong>Off:</strong> TOU mode is disabled. The device does not follow the TOU strategy and operates according to the default power supply and charging logic. Enable/disable this mode in the Jackery App. The setting is retained when the device is powered off.</p></td></tr>
+   <tr><td><p>9</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_12.png" alt="AC Output Delay" /></td><td><p>AC Output Delay</p></td><td><p><strong>On:</strong> AC Output Delay mode is enabled. Connected to the AC wall outlet, the device discharges in Bypass Mode. Without AC input, the device pauses discharge and initiates an LCD countdown. Discharge will resume after the countdown ends, unless it is stopped manually beforehand.<br /><strong>Off:</strong> AC Output Delay mode is disabled. Set the AC Output Delay period in the Jackery App.</p></td></tr>
+   <tr><td><p>10</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_13.png" alt="Battery Pack Indicator" /></td><td><p>Battery Pack Indicator</p></td><td><p><strong>On:</strong> The battery pack is connected.<br /><strong>Off:</strong> The battery pack is disconnected.</p></td></tr>
+   <tr><td><p>11</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_14.png" alt="DC Input" /></td><td><p>DC Input</p></td><td><p><strong>On:</strong> The Jackery DC Input Module is connected.<br /><strong>Off:</strong> The Jackery DC Input Module is disconnected.</p></td></tr>
+   <tr><td><p>12</p></td><td><img src="renderers/web/assets/je1000e_sil_us_en/lcd_icon_15.png" alt="Battery Power Indicator" /></td><td><p>Battery Power Indicator</p></td><td><p>The orange circle indicates the remaining battery level.</p></td></tr>
+   </tbody></table>

@@ -13,7 +13,7 @@ from typing import Any, Literal, overload
 
 import yaml
 
-from tools.build_docs_theme import normalize_sphinx_tag_value
+from tools.build.docs_theme import normalize_sphinx_tag_value
 from tools.idml_rst_extract import bundle_page_order, extract_page
 from tools.idml.page_identity import page_language
 from tools.render_contract import (

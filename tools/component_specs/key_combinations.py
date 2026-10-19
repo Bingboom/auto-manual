@@ -14,7 +14,7 @@ _ADAPTERS = {"web": "hb_key_combinations", "latex": "hb_latex_key_combinations",
              "idml": "idml_key_combinations", "word": "word_key_combinations"}
 
 
-def _copy(headers, rows):
+def _copy(headers: Sequence[str], rows: Sequence[Sequence[str]]) -> dict[str, list[object]]:
     if len(headers) != 3 or len(rows) < 3 or any(len(row) != 3 for row in rows):
         raise ComponentSpecError("key-combinations requires three headers and three-column rows")
     if any(not isinstance(value, str) or not value.strip()

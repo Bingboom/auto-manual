@@ -11,7 +11,7 @@ from tools.component_specs.theme import require_component_theme_roles
 
 COMPONENT_ID = "HB-TABLE-REFERENCE"
 # Variant semantics, not language/model heuristics, determine table geometry.
-VARIANTS = {"lcd-legend": (3, True), "lcd-actions": (3, True), "lcd-actions-compact": (2, True), "symbol-meanings": (2, False), "plain-inventory": (3, False)}
+VARIANTS = {"lcd-descriptions": (2, False), "lcd-legend": (3, True), "lcd-actions": (3, True), "lcd-actions-compact": (2, True), "symbol-meanings": (2, False), "plain-inventory": (3, False)}
 
 
 def _cells(cells: Sequence[Mapping[str, str]], columns: int) -> list[dict[str, str]]:

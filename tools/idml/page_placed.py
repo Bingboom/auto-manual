@@ -7,15 +7,11 @@ InDesign; in particular, the LaTeX-only ``product_overview-<lang>.pdf`` and
 """
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 import re
 import math
 from xml.sax.saxutils import escape
 
-_REPO_ROOT = str(Path(__file__).resolve().parents[2])
-if _REPO_ROOT not in sys.path:  # export_idml.py runs as a direct script
-    sys.path.insert(0, _REPO_ROOT)
 
 from tools.utils.path_utils import latex_renderer_of
 from tools.lang_registry import canonical_language

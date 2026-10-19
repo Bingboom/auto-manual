@@ -1,5 +1,5 @@
 document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Model,Source_lang,page_title_source
-JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,1,product_name,,Product Name,,1,,,Jackery DC-DC Charger,,JA-AD600A,en,TECHNICAL SPECIFICATIONS
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,1,product_name,,Product Name,,1,,,Jackery DC-DC Charger,,JA-AD600A,en,2. TECHNICAL SPECIFICATIONS
 JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,2,model_no,,Model,,1,,,JA-AD600A,,JA-AD600A,en,
 JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,3,dc_input,,DC Input,,1,,,"11.8V–32V⎓, 60A",,JA-AD600A,en,
 JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,4,output_voltage,,Output Voltage,,1,,,50V⎓,,JA-AD600A,en,

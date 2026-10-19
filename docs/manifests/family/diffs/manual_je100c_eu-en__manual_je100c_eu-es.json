@@ -1,0 +1,122 @@
+{
+  "schema_version": "family-manifest-diff/v1",
+  "base_manifest_id": "manual_je100c_eu_en",
+  "target_manifest_id": "manual_je100c_eu_es",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_je100c_eu_es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/0/file",
+      "value": "templates/page_je100c_eu-es/safety_es.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/0/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/1/file",
+      "value": "templates/page_je100c_eu-es/01_user_maintenance_instructions.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/1/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/2/file",
+      "value": "templates/page_je100c_eu-es/symbol_meaning_es.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/2/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/3/file",
+      "value": "templates/page_je100c_eu-es/02_whats_in_the_box.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/3/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/4/file",
+      "value": "templates/page_je100c_eu-es/03_product_overview.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/4/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/5/file",
+      "value": "templates/page_je100c_eu-es/lcd_display_es.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/5/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/6/file",
+      "value": "templates/page_je100c_eu-es/operation_es.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/6/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/7/file",
+      "value": "templates/page_je100c_eu-es/charging_es.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/7/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/8/file",
+      "value": "templates/page_je100c_eu-es/storage_es.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/8/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/9/file",
+      "value": "templates/page_je100c_eu-es/spec_es.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/9/lang",
+      "value": "es"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/10/file",
+      "value": "templates/page_je100c_eu-es/warranty_es.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/10/lang",
+      "value": "es"
+    }
+  ]
+}

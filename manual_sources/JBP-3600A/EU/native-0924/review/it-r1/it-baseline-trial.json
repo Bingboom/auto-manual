@@ -1,0 +1,161 @@
+{
+  "status": "candidate_trial",
+  "publication_eligible": false,
+  "target": "JBP-3600A/EU/it",
+  "differences": [
+    {
+      "path": "/pages/5/items/1/children/1/sha256",
+      "expected": "d78ec62e108200261f73d80500a68b962162cec2d09350b85b88d15c1d9631e5",
+      "actual": "7b03b55091b34f8afac0cc7b0061e28de903029ca28259095e9ad6a9cdad2ee6",
+      "expected_sha256": "2c68dd88918345f6c58c0bdb945a27b698354a2ec5a55b26d34e2788e8f0029b",
+      "actual_sha256": "b34ccee2417393c042379e461e95d9cdf22bac78fa8a21fab0e75399f8290fae",
+      "chapter": "overview"
+    },
+    {
+      "path": "/pages/5/items/2/children/1/sha256",
+      "expected": "4391ac1711f7aee6c3eee2164f059279ec41a9ecceb95c0106925e7bd04eaa43",
+      "actual": "8869331cdcea5e84a66c926b7ee88ecaf2e092706a392266398c101c5e1cb572",
+      "expected_sha256": "88f5ad6f617c5eeb34f622d99047f2adc2cbef26cd6a7507994e6877f23b755e",
+      "actual_sha256": "275d301bb433af97fb66b5e1d6957882dea657033eb99fdffba5bd810a9d0349",
+      "chapter": "overview"
+    },
+    {
+      "path": "/pages/6/items/1/sha256",
+      "expected": "77ae95b18f3fe93fc26ce6d5de6d29953ff25b285d65ddf4e5f5df464203ed7f",
+      "actual": "9e8665d32678bc79983a2bf254a43252a281f7e134aa976bfd4a745865c31071",
+      "expected_sha256": "608d04f6c71a36e24b0b467b698d10e4c41c735489b5d87dede2947090f58144",
+      "actual_sha256": "d15655e29de2437ae52b07540cee42979f418dca7475d090657ca177d37acbc0",
+      "chapter": "lcd"
+    },
+    {
+      "path": "/pages/8/items/4/carrier_layout/0/children/0/children/0/children/1/children/0",
+      "expected": {
+        "$absent": true
+      },
+      "actual": {
+        "kind": "paragraph",
+        "layout": {},
+        "children": [
+          {
+            "kind": "image",
+            "sha256": "8f7a4344e1d965ea755614244602fb78162c697a9ebe5865f560d890c4a1e6cd",
+            "presentation": {
+              "class": [
+                "manual-finished-illustration"
+              ],
+              "style": "display:inline-block;width:1.9em;height:auto;vertical-align:middle;"
+            }
+          }
+        ]
+      },
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "e641436469321b6d9010c541571a54fc62f91602bb120e447a74cd75346285b2",
+      "chapter": "connections",
+      "component_slot": "connections#callout-2"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/0/color",
+      "expected": {
+        "$absent": true
+      },
+      "actual": "#ffffff",
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "f8a3cb06987be2388c54198c21d334a007f9b0b1717161cc050357401c1de839",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/0/fill",
+      "expected": "#efefef",
+      "actual": "#434345",
+      "expected_sha256": "7e8cdcf81db242c56f2406631873db3c05970d59ce40903acccced5bfbb5f508",
+      "actual_sha256": "17a87785482e5f44b533ab4d9f2b442978b850cf25ff3b7c01f6289c68a9e2e7",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/1/color",
+      "expected": {
+        "$absent": true
+      },
+      "actual": "#ffffff",
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "f8a3cb06987be2388c54198c21d334a007f9b0b1717161cc050357401c1de839",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/8/items/5/presentation/base_art_layout/labels/1/fill",
+      "expected": "#efefef",
+      "actual": "#434345",
+      "expected_sha256": "7e8cdcf81db242c56f2406631873db3c05970d59ce40903acccced5bfbb5f508",
+      "actual_sha256": "17a87785482e5f44b533ab4d9f2b442978b850cf25ff3b7c01f6289c68a9e2e7",
+      "chapter": "connections",
+      "component_slot": "connections#reference-locking"
+    },
+    {
+      "path": "/pages/12/items/2/carrier_layout/1/children/0/children/2",
+      "expected": {
+        "$absent": true
+      },
+      "actual": {
+        "kind": "table_row",
+        "presentation": {},
+        "children": [
+          {
+            "kind": "table_cell",
+            "header": true,
+            "presentation": {
+              "class": [
+                "hb-spec-label"
+              ]
+            },
+            "children": []
+          },
+          {
+            "kind": "table_cell",
+            "header": false,
+            "presentation": {
+              "class": [
+                "hb-spec-value"
+              ]
+            },
+            "children": []
+          }
+        ]
+      },
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "26e077e52548dc33734e05421b4d622e2423f67472a4860d2f359078022cd1ae",
+      "chapter": "specifications",
+      "component_slot": "specifications#specification-2"
+    },
+    {
+      "path": "/pages/12/items/2/slots/1/shape/2",
+      "expected": {
+        "$absent": true
+      },
+      "actual": {
+        "label": null,
+        "label_rowspan": 1,
+        "references": [],
+        "values": [
+          {
+            "references": [],
+            "text": null
+          }
+        ]
+      },
+      "expected_sha256": "6f5c340475735097a4842c77023d42c1c7f8ea9dcc3d3e5fa139cc1d70932382",
+      "actual_sha256": "04ae07c47bdf6f084f918a484eef5cbef63066a6ba4862b6b14ad75ad5e13f7e",
+      "chapter": "specifications",
+      "component_slot": "specifications#specification-2"
+    },
+    {
+      "path": "/web_contract_sha256",
+      "expected": "2e54d12c34488a07edabaa40abb232644bc699d907e06beed6ef21cb4287b70f",
+      "actual": "15c3af8c769f3fa45fd3b9b3a430734292ca3124e62b6eedaa7942f6e893512b",
+      "expected_sha256": "c3e934822ec8e718cb977f98c5ea27770e5fa3205e321e9520977548c5ba86f9",
+      "actual_sha256": "a40f5932ab5ea3ad38af804ad7cca8cb1f8b53431adb16ac2536c447c2e2dfd6"
+    }
+  ]
+}

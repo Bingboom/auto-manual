@@ -11,7 +11,7 @@ POWER ON/OFF
 | **On**
 | Press once
 | **Off**
-| Press and hold for 3 seconds
+| Press and hold for 3s
 
 .. list-table::
    :header-rows: 0

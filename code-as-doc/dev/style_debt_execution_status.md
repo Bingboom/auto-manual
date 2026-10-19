@@ -114,9 +114,9 @@ v2 的 assembly hash 覆盖 source 顺序、语言、页面角色和 composition
 | `python3 -m ruff check build.py integrations tools tests scripts` | 通过 |
 | 直接改动覆盖的定向 unittest | 320 项通过，5 项跳过 |
 | `python3 -m unittest` | 2716 项通过，5 项跳过 |
-| `python3 tools/check_maintainability_guardrails.py` | 44 个热点全部通过；0 个新增语言常量 |
-| `python3 tools/check_doc_link_integrity.py` | 116 份 Markdown、1497 条链接、0 断链 |
-| `python3 tools/check_reference_layout_pins.py` | 1 份批准合同通过 |
+| `python3 -m tools.check_maintainability_guardrails` | 44 个热点全部通过；0 个新增语言常量 |
+| `python3 -m tools.check_doc_link_integrity` | 116 份 Markdown、1497 条链接、0 断链 |
+| `python3 -m tools.check_reference_layout_pins` | 1 份批准合同通过 |
 
 最终 production 入口使用 fixture snapshot 运行：
 

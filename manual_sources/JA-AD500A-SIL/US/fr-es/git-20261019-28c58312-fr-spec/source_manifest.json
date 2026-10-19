@@ -1,0 +1,277 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JA-AD500A-SIL",
+    "region": "US",
+    "languages": [
+      "fr"
+    ],
+    "technical_version": "git-20261019-28c58312-fr-spec"
+  },
+  "original_source": {
+    "filename": "Jackery DC Input Module User Manual V2.0-2026-05-25.pdf",
+    "path": "source/original.pdf",
+    "sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530",
+    "physical_page_count": 22
+  },
+  "printed_manual_version": null,
+  "source_authority": "Operator-supplied PDF; visual transcription of native outlined text, LED table crosschecked with embedded PDF text",
+  "baseline_main": "07859f7eae1fe90b72ee950025b28b12cf2c36ff",
+  "source_role": "Git-only French spec-label correction edition of the live solar-Voc edition",
+  "live_bitable_dependency": false,
+  "publication_eligible": true,
+  "page_order": {
+    "fr": [
+      "box_contents_fr.rst",
+      "product_overview_fr.rst",
+      "charging_fr.rst",
+      "spec_fr.rst",
+      "warranty_fr.rst",
+      "contact_fr.rst"
+    ]
+  },
+  "required_components": {
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 3,
+    "HB-CALLOUT-STRIP": 3,
+    "HB-TABLE-SPEC": 2,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 5,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "chapter_source_panels": {
+    "fr": {
+      "box_contents": [
+        10
+      ],
+      "product_overview": [
+        11
+      ],
+      "charging": [
+        12,
+        13,
+        14
+      ],
+      "spec": [
+        14
+      ],
+      "warranty": [
+        14,
+        15
+      ],
+      "contact": [
+        22
+      ]
+    }
+  },
+  "normalizations": [
+    "source wrapping joined",
+    "drawn DC sign represented by Unicode ⎓",
+    "native × and en-dash used for measurement/range signs",
+    "print page numbers/blank panel excluded; generated Web navigation replaces print TOC",
+    "source heading case retained; warranty continuation is one section",
+    "Solar DC8020 retained in original artwork by operator instruction; no duplicate live label",
+    "No added CONTACT US chapter: original back-cover contact copy remains in an untitled page-end block, per operator correction",
+    "LED Light is a source-authored bold table label, not a bullet subsection; native three-column table declares the existing shared grid presentation",
+    "Operator removed the added Model and US / English / User Manual introduction lines; Web body begins at WHAT'S IN THE BOX",
+    "Operator requested a smaller complete product overview; source-authored display width is bounded at 40rem and scales to the phone width, with original artwork bytes unchanged",
+    "Operator requested the car-cable note on one desktop line with a compact capsule; its source-bound live-copy rectangle is widened and shortened, without forcing phone nowrap or altering words/art",
+    "Product overview external annotations are native editable Web text on one und-locale base art; immutable Jackery product markings and complete leaders remain in the drawing",
+    "Native FR/ES PDF text; joined source line wraps; drawn DC sign rendered ⎓; paragraph and numeric meaning unchanged",
+    "Localized LED table header padding reduced from 0.6rem to 0.4rem so Couleur remains one word at 390px; column widths and all body words unchanged."
+  ],
+  "source_concerns": [
+    {
+      "language": "fr",
+      "pdf_page": 11,
+      "issue": "Oiture and English Double to in native overview",
+      "disposition": "native wording retained"
+    },
+    {
+      "language": "fr",
+      "pdf_page": 14,
+      "issue": "Sortie CC labels 11–16/16–60 input rows; Entrée CC labels 42–58 output row",
+      "disposition": "corrected in this edition on operator instruction 2026-10-19 (法语版规格表 Input/Output 写反了，改掉发布); native_copy.json keeps the printed labels"
+    },
+    {
+      "language": "fr/es",
+      "pdf_pages": [
+        13,
+        19
+      ],
+      "issue": "PV Voc guidance refers to downstream FridgeGuard/Battery Pack ranges",
+      "disposition": "corrected in this edition's prepared pages on operator instruction 2026-10-15; native_copy.json keeps the printed wording"
+    },
+    {
+      "language": "fr/es",
+      "pdf_pages": [
+        15,
+        21
+      ],
+      "issue": "Battery-cell charging condition in module warranty",
+      "disposition": "retained per operator instruction 你先不用删"
+    }
+  ],
+  "build_boundary": "New target is not registered in phase2. Existing prepared RST → manual-ir/v2 → shared Web/MyST pipeline validates this body. build.py check of a historical fixture is a repository regression only.",
+  "pending_source_review": [],
+  "inputs": [
+    {
+      "path": "assets/car.png",
+      "size": 89548,
+      "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+    },
+    {
+      "path": "assets/contact-qr.png",
+      "size": 2217,
+      "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+    },
+    {
+      "path": "assets/inbox-manual.png",
+      "size": 11774,
+      "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+    },
+    {
+      "path": "assets/inbox-module.png",
+      "size": 14353,
+      "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+    },
+    {
+      "path": "assets/overview-textless.png",
+      "size": 72743,
+      "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+    },
+    {
+      "path": "assets/solar.png",
+      "size": 222637,
+      "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+    },
+    {
+      "path": "derive_fr_spec.py",
+      "size": 11091,
+      "sha256": "98a83f179a19a43db4c284cbc9041dc1a224178a5d611aedb8d20329e82ffe7e"
+    },
+    {
+      "path": "render.py",
+      "size": 8083,
+      "sha256": "7ff83a078f1467603fc78f67aee70c7290e6e4d2410ccbfc5310f57b3aef5032"
+    },
+    {
+      "path": "source/approval.json",
+      "size": 3223,
+      "sha256": "a6ffe789e6e81d355300a3d6495ccbece18f290b52d832104b9b37343560ddc1"
+    },
+    {
+      "path": "source/differences.md",
+      "size": 1884,
+      "sha256": "f25b17920c959019b96c7af12d9e8a5679ef46593968d3b5178aede53686185d"
+    },
+    {
+      "path": "source/native_copy.json",
+      "size": 13561,
+      "sha256": "b1bae9a035d05389ba9cb42b85f62079ea152c803895e4b3ba7e7a8ba6054b19"
+    },
+    {
+      "path": "source/original.pdf",
+      "size": 3410276,
+      "sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530"
+    },
+    {
+      "path": "source/page/box_contents_fr.rst",
+      "size": 334,
+      "sha256": "78801518c24f331a4e04f909986cb5a45c53efd837d0f1fdc6dd7636e1b6c747"
+    },
+    {
+      "path": "source/page/charging_fr.rst",
+      "size": 3653,
+      "sha256": "e3cb27f5e986c8907dda38c84345a22b61e80e7ffcda6cb3544d5fb3ab530047"
+    },
+    {
+      "path": "source/page/contact_fr.rst",
+      "size": 495,
+      "sha256": "5854055220c5320aed6e210a1ba3332f8a7d59b46b381b0328532949eb0f037f"
+    },
+    {
+      "path": "source/page/product_overview_fr.rst",
+      "size": 2228,
+      "sha256": "3432d673a76b77c52b87730d02efbfcd045a9402c8120470bcfb6f93ac6ec59b"
+    },
+    {
+      "path": "source/page/spec_fr.rst",
+      "size": 854,
+      "sha256": "45e7c4693796c702b16ad56025068badeb9909ca073dd35558ebbab6b07397d2"
+    },
+    {
+      "path": "source/page/warranty_fr.rst",
+      "size": 3390,
+      "sha256": "bb237bfdb36aa0c285cac61a55c199d54a781b35b89abe444b2b53bd709443c8"
+    },
+    {
+      "path": "source/presentation.css",
+      "size": 993,
+      "sha256": "0606b636278a4710ccb5e1e4f7fb2eb6949c6ccadc031cc5e53324e25da760ed"
+    }
+  ],
+  "repo_inputs": [
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "6337f537ac3b8b7248e00632d9f3d899a410fbadad4319a718b0e39905717a9d"
+    }
+  ],
+  "web_roots": {
+    "fr": "web/fr"
+  },
+  "english_baseline": {
+    "path": "manual_sources/JA-AD500A-SIL/US/en/git-20261006-a6d1659e-reviewed",
+    "manifest_sha256": "d24e3a11daf168221d9061eada6a0ba475cdd3be8ee8846508b67eb7d1529eba",
+    "source_commit": "ba0f95313d7cc763d5360549e081a413cb89a4eb",
+    "structure": "same chapter order, component types/counts, table geometry, reference IDs and art hashes; native text governs all copy"
+  },
+  "filename_version_label": "V2.0-2026-05-25; filename metadata only, no printed version located",
+  "publication_status": "operator-approved-git-only-release",
+  "derived_from": {
+    "package": "git-20261016-28c58312-solar-voc",
+    "authorization": "MA-312",
+    "manifest_sha256": "820e4e06f7c35499dc4d17ef02d365000bbf16c7f97c4eda5ae0402aef70bb9e"
+  },
+  "text_corrections": [
+    {
+      "page": "source/page/charging_fr.rst",
+      "approved": "Il est recommandé d’utiliser le panneau solaire Jackery pour charger le Jackery FridgeGuard et Jackery Battery Pack. Assurez-vous que la tension en circuit ouvert (Voc) du panneau solaire se situe dans la plage d’entrée CC (36.8 V–56 V) du Jackery FridgeGuard ou dans la plage d’entrée CC (40 V–57.6 V) du Jackery Battery Pack. Jackery décline toute responsabilité en cas de pertes causées par l’utilisation de panneaux solaires d’autres marques.",
+      "corrected": "Il est recommandé d’utiliser des panneaux solaires Jackery pour charger le produit connecté via le Jackery DC Input Module. Assurez-vous que la tension en circuit ouvert (Voc) des panneaux solaires connectés se situe dans la plage de tension d’entrée CC du module (16 V–60 V). Jackery décline toute responsabilité en cas de pertes causées par l’utilisation de panneaux solaires d’autres marques.",
+      "reason": "Solar panels connect through the Jackery DC Input Module; the panel Voc limit is the module's DC input voltage range (16V–60V), not the downstream FridgeGuard / Battery Pack ranges cited by the printed source.",
+      "instruction": "operator, 2026-10-15: replace the paragraph (整段替换), keep the disclaimer (不删免责句); the printed source and its transcription stay unchanged"
+    },
+    {
+      "page": "source/page/spec_fr.rst",
+      "approved": "<tr><th rowspan=\"2\">Sortie CC</th>",
+      "corrected": "<tr><th rowspan=\"2\">Entrée CC</th>",
+      "reason": "The French specification table swapped the DC input and output labels: 11–16V and 16–60V are the module inputs, 42–58V its output (English and Spanish editions and the module design agree).",
+      "instruction": "operator, 2026-10-19: 法语版规格表 Input/Output 写反了 == 这个改掉发布"
+    },
+    {
+      "page": "source/page/spec_fr.rst",
+      "approved": "<tr><th>Entrée CC</th><td>42V",
+      "corrected": "<tr><th>Sortie CC</th><td>42V",
+      "reason": "The French specification table swapped the DC input and output labels: 11–16V and 16–60V are the module inputs, 42–58V its output (English and Spanish editions and the module design agree).",
+      "instruction": "operator, 2026-10-19: 法语版规格表 Input/Output 写反了 == 这个改掉发布"
+    }
+  ],
+  "shared_component_exceptions": [
+    {
+      "language": "fr",
+      "page_id": "product_overview_fr.rst",
+      "kind": "table",
+      "text_sha256": "92faf574c0344bf52f7d32a1cdf2660717d6ba29da621c8a7826835b17a373a5",
+      "reason": "module LED status/colour/meaning table: no shared ComponentSpec covers an LED-state table; it uses the shared hb-source-status-table classes"
+    }
+  ],
+  "style_migration": {
+    "gate": "prepared-document-shared-styles/v1",
+    "pages": [
+      "source/page/contact_fr.rst",
+      "source/page/product_overview_fr.rst"
+    ],
+    "stylesheet": "source/presentation.css",
+    "reason": "a re-frozen locale must pass the shared-style gate: page-local classes and inline styles replaced by shared theme classes and a geometry-only stylesheet; visible copy unchanged"
+  }
+}

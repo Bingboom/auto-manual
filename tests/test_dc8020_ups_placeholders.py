@@ -6,7 +6,7 @@ from pathlib import Path
 
 from tools.page_contracts import load_page_contracts, required_page_values_for_lang
 from tools.utils.spec_master import resolve_template_substitutions_from_spec_master
-from tools.word_bundle_common import apply_rst_substitutions
+from tools.word.bundle_common import apply_rst_substitutions
 
 
 ROOT = Path(__file__).resolve().parents[1]

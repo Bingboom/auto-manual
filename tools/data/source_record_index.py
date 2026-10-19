@@ -1,0 +1,497 @@
+"""Source record index sidecar (Milestone F, PR F1).
+
+`sync-data` can emit a ``source_record_index.json`` sidecar next to the phase2
+CSV snapshot. The sidecar maps each indexed source table's business key to its
+live Feishu ``record_id`` so that downstream consumers (``content_lint`` today,
+the approval-gated backport writer later) can resolve a finding to an exact live
+row.
+
+Design constraints (see ``code-as-doc/dev/closed_loop_qc_implementation_plan.md``
+M2 and ``code-as-doc/architecture/Feishu_Cloud_Doc_Backport_Design.md`` R9):
+
+- **No CSV schema change.** The sidecar is a separate file; no ``record_id``
+  column is added to any existing CSV contract.
+- **Exact-or-abstain.** A key that maps to zero rows resolves to ``unresolved``;
+  a key that maps to more than one distinct ``record_id`` resolves to
+  ``ambiguous``. The sidecar never guesses.
+- **Abstain diagnostics.** Each indexed table records counts for rows rejected
+  because their live id or required business key was missing, plus ambiguous
+  primary keys. The counts are additive metadata; consumers still use the
+  existing ``records`` / ``ambiguous`` maps.
+- **Optional derived file.** It is not in ``PHASE2_REQUIRED_DERIVED_FILES`` and a
+  snapshot without it is still valid; consumers degrade to ``snapshot_only``.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+from collections.abc import Sequence
+from pathlib import Path
+from typing import Any
+
+from tools.data.source_record_index_contract import (
+    registry_issues_from_namespace as _registry_issues_from_namespace,
+    validate_namespace as _validate_registry_namespace,
+)
+
+SIDECAR_FILENAME = "source_record_index.json"
+SCHEMA_VERSION = "source-record-index/v1"
+
+# Reserved key under which `normalize_records` stows a row's live Feishu record_id so it
+# **travels with the row through the normalize-time sort** (the row's business key and its
+# record_id must stay together). Not a CSV column — the CSV writers filter to the schema's
+# columns, so it never leaks into the snapshot.
+SOURCE_RECORD_ID_KEY = "__source_record_id__"
+
+# Unit Separator. Unlikely to appear inside a business-key value, so it makes a
+# stable composite-key string for JSON object keys.
+_KEY_SEP = "\x1f"
+
+# index table name -> the CSV columns whose tuple uniquely identifies a row.
+# Keep the column names identical to what ``content_lint`` reads from the CSV.
+TABLE_KEY_FIELDS: dict[str, tuple[str, ...]] = {
+    # icon_en + Model + Version uniquely identifies an LCD icon row.
+    "lcd_icons_blocks": ("icon_en", "Model", "Version"),
+    # document_key + Row_key + Slot_key uniquely identifies a Spec_Master row
+    # (Slot_key disambiguates the usb_c 30w/100w collision class).
+    "Spec_Master": ("document_key", "Row_key", "Slot_key"),
+    # Page value placeholders share the same business key tuple but live in a
+    # separate Feishu source table. Keep them separately resolvable so a backport
+    # write does not aim a placeholder record_id at the Spec_Master table binding.
+    "Page_Placeholders_Source": ("document_key", "Row_key", "Slot_key"),
+    # copy_key identifies the authoring row in Manual_Copy_Source. A
+    # Localized_Copy value (the rendered derivative) is written back here by
+    # copy_key (operator decision: source-of-truth is the authoring table, not
+    # the localized derivative). Historical rows are filtered out at index time
+    # (see TABLE_ROW_FILTERS) so only the current authoring row is keyed; a
+    # genuine cross-row copy_key collision still abstains.
+    "Manual_Copy_Source": ("copy_key",),
+}
+
+# Key fields that are an OPTIONAL disambiguator, not part of the row's primary
+# identity. ``Slot_key`` is filled only for collision classes (e.g. usb_c
+# 30w/100w sharing one Row_key) and is legitimately EMPTY for ~half of
+# Spec_Master rows (product_name, capacity, weight…), which are uniquely keyed by
+# (document_key, Row_key) alone. Such rows must still be indexed/resolvable — the
+# earlier "all key fields non-empty" rule dropped them, so their Class D source
+# edits could never be written back. The composite key still keeps the (empty)
+# slot segment, so a filled-slot key (``doc␟row␟30w``) never collides with an
+# empty-slot one (``doc␟row␟``); and a genuine empty-slot collision — a Row_key
+# that repeats with an empty Slot_key, disambiguated elsewhere (e.g.
+# storage_temperature ×3 by Line_order) — still abstains via the ambiguity guard.
+TABLE_OPTIONAL_KEY_FIELDS: dict[str, frozenset[str]] = {
+    "Spec_Master": frozenset({"Slot_key"}),
+    "Page_Placeholders_Source": frozenset({"Slot_key"}),
+}
+
+# A FALLBACK disambiguator used only when the primary composite key is ambiguous
+# (a Row_key with an empty Slot_key that legitimately repeats — a multi-line spec
+# like ``storage_temperature`` ×3 = 1/3/12 months, disambiguated by ``Line_order``;
+# or an input-vs-output port like ``dc_expansion_port`` with the SAME Line_order,
+# disambiguated by ``Section``). An ORDERED tuple of (CSV column, source_ref field):
+# the fallback key is ``primary_key + each value``, so Line_order separates the
+# multi-line rows and Section separates the same-Line_order port rows. Applied ONLY
+# to keys that landed in ``ambiguous``, so the primary records map (the already-
+# resolving rows) is byte-identical and an older sidecar without the extra map
+# degrades gracefully (those rows stay ``ambiguous`` until the next sync-data).
+TABLE_FALLBACK_KEY_FIELDS: dict[str, tuple[tuple[str, str], ...]] = {
+    "Spec_Master": (("Line_order", "line_order"), ("Section", "section")),
+    "Page_Placeholders_Source": (("Line_order", "line_order"), ("Section", "section")),
+}
+
+# sync logical table name -> index table name used in the sidecar / source_ref.
+INDEXED_LOGICAL_TABLES: dict[str, str] = {
+    "lcd_icons": "lcd_icons_blocks",
+    "spec_master": "Spec_Master",
+    "manual_copy_source": "Manual_Copy_Source",
+}
+
+# content_lint source_ref ``kind`` -> (index table, ((source_ref_field, key_field), ...)).
+# The key_field order must match ``TABLE_KEY_FIELDS`` for that table so the
+# composite key built here matches the one built at sync time.
+KIND_RESOLUTION: dict[str, tuple[str, tuple[tuple[str, str], ...]]] = {
+    "lcd_icon": (
+        "lcd_icons_blocks",
+        (("key", "icon_en"), ("model", "Model"), ("version", "Version")),
+    ),
+}
+
+
+# Resolve a source_ref by its ``table`` directly, for F2/F6 source_refs that
+# carry a table + key fields but no content_lint ``kind``. The map value is
+# ``(index_table, ((source_ref_field, index_key_field), ...))`` so the *origin*
+# table named in a source_ref can resolve against a *different* index table — a
+# Localized_Copy-origin value writes back to its Manual_Copy_Source authoring
+# row. The index-key-field order must match that index table's
+# ``TABLE_KEY_FIELDS``.
+TABLE_RESOLUTION: dict[str, tuple[str, tuple[tuple[str, str], ...]]] = {
+    "Spec_Master": (
+        "Spec_Master",
+        (("document_key", "document_key"), ("row_key", "Row_key"), ("slot_key", "Slot_key")),
+    ),
+    "Page_Placeholders_Source": (
+        "Page_Placeholders_Source",
+        (("document_key", "document_key"), ("row_key", "Row_key"), ("slot_key", "Slot_key")),
+    ),
+    "Localized_Copy": ("Manual_Copy_Source", (("copy_key", "copy_key"),)),
+}
+
+
+def _is_latest(row: dict[str, Any]) -> bool:
+    """Whether an authoring row is the current version.
+
+    Coverage-safe: a row is treated as current unless ``Is_Latest`` is an
+    explicit false-marker. A blank/absent column keeps the row (the snapshot may
+    not populate it), so the filter never silently empties an index — genuine
+    duplicate keys still abstain downstream.
+    """
+
+    raw = _clean(row.get("Is_Latest")).lower()
+    return raw not in {"false", "0", "no", "n", "off"}
+
+
+# Optional per-index-table row predicate applied when collecting index rows.
+# A row that fails the predicate is not indexed, so non-current authoring rows
+# never shadow the current row nor create false ambiguity.
+TABLE_ROW_FILTERS: dict[str, Any] = {
+    "Manual_Copy_Source": _is_latest,
+}
+
+
+def source_record_index_registry_issues() -> tuple[str, ...]:
+    """Return configuration drift in the source-record resolver registries."""
+    return _registry_issues_from_namespace(globals())
+
+
+def validate_source_record_index_registries() -> None:
+    """Fail closed when source-record index registries drift apart."""
+    _validate_registry_namespace(globals())
+
+
+def _join_key(values: list[str]) -> str:
+    return _KEY_SEP.join(values)
+
+
+def _required_key_present(table: str, key_fields: Sequence[str], values: Sequence[str]) -> bool:
+    """True when every REQUIRED (non-optional) key field has a non-empty value.
+
+    ``key_fields`` and ``values`` are positionally aligned. A field listed in
+    ``TABLE_OPTIONAL_KEY_FIELDS`` (e.g. Spec_Master ``Slot_key``) may be empty;
+    every other key field must be present, else the row cannot be safely keyed.
+    """
+    optional = TABLE_OPTIONAL_KEY_FIELDS.get(table, frozenset())
+    # zip(strict=False): source data may differ in length; keep the existing truncation
+    return all(value for field, value in zip(key_fields, values, strict=False) if field not in optional)
+
+
+def _clean(value: Any) -> str:
+    return str(value if value is not None else "").strip()
+
+
+def _page_tokens(value: Any) -> set[str]:
+    return {
+        token.strip().lower()
+        for token in re.split(r"[,;/]+", str(value or "").replace("；", ";").replace("，", ","))
+        if token.strip()
+    }
+
+
+def _spec_master_index_table(row: dict[str, Any]) -> str:
+    tokens = _page_tokens(row.get("Page"))
+    if tokens and "specifications" not in tokens:
+        return "Page_Placeholders_Source"
+    return "Spec_Master"
+
+
+def build_index(rows_by_table: dict[str, list[tuple[dict[str, Any], str]]]) -> dict[str, Any]:
+    """Build the sidecar payload.
+
+    ``rows_by_table`` maps an index table name to a list of
+    ``(normalized_row, record_id)`` pairs. ``normalized_row`` uses the same column
+    names as the emitted CSV.
+    """
+
+    validate_source_record_index_registries()
+    tables: dict[str, Any] = {}
+    for table, key_fields in TABLE_KEY_FIELDS.items():
+        pairs = rows_by_table.get(table) or []
+        records: dict[str, str] = {}
+        ambiguous: set[str] = set()
+        rows_by_key: dict[str, list[tuple[str, dict[str, Any]]]] = {}
+        abstain_counts = {"missing_record_id": 0, "missing_required_key": 0}
+        for row, record_id in pairs:
+            rid = _clean(record_id)
+            values = [_clean(row.get(field)) for field in key_fields]
+            if not rid:
+                abstain_counts["missing_record_id"] += 1
+                continue
+            if not _required_key_present(table, key_fields, values):
+                abstain_counts["missing_required_key"] += 1
+                # A missing REQUIRED key field cannot resolve safely. An optional
+                # Slot_key may be empty; the row is still keyed by its required fields.
+                continue
+            key = _join_key(values)
+            rows_by_key.setdefault(key, []).append((rid, row))
+            existing = records.get(key)
+            if existing is None and key not in ambiguous:
+                records[key] = rid
+            elif existing is not None and existing != rid:
+                ambiguous.add(key)
+        for key in ambiguous:
+            records.pop(key, None)
+        table_entry: dict[str, Any] = {
+            "key_fields": list(key_fields),
+            "records": records,
+            "ambiguous": sorted(ambiguous),
+            "abstain_counts": {
+                **abstain_counts,
+                "ambiguous_key": len(ambiguous),
+            },
+        }
+        fallback = _build_fallback_records(table, ambiguous, rows_by_key)
+        if fallback:
+            table_entry["records_by_fallback"] = fallback
+        tables[table] = table_entry
+    return {"schema_version": SCHEMA_VERSION, "tables": tables}
+
+
+def _build_fallback_records(
+    table: str, ambiguous: set[str], rows_by_key: dict[str, list[tuple[str, dict[str, Any]]]]
+) -> dict[str, str]:
+    """For each ambiguous primary key, key its rows by ``primary_key + fallback values``
+    so a multi-line row (``storage_temperature`` ×3) resolves by ``Line_order`` and a
+    same-Line_order port row (``dc_expansion_port`` INPUT/OUTPUT) resolves by ``Section``.
+
+    Exact-or-abstain still holds: a key that still maps to >1 record, or rows with no
+    fallback value at all, are dropped.
+    """
+    specs = TABLE_FALLBACK_KEY_FIELDS.get(table)
+    if not specs or not ambiguous:
+        return {}
+    csv_columns = [csv_column for csv_column, _ in specs]
+    fallback: dict[str, str] = {}
+    fb_ambiguous: set[str] = set()
+    for key in ambiguous:
+        for rid, row in rows_by_key.get(key, []):
+            fb_values = [_clean(row.get(col)) for col in csv_columns]
+            if not any(fb_values):
+                continue
+            ext = _join_key([key, *fb_values])
+            existing = fallback.get(ext)
+            if existing is None and ext not in fb_ambiguous:
+                fallback[ext] = rid
+            elif existing is not None and existing != rid:
+                fb_ambiguous.add(ext)
+    for ext in fb_ambiguous:
+        fallback.pop(ext, None)
+    return fallback
+
+
+def collect_index_rows(
+    normalized_rows_by_table: dict[str, list[dict[str, Any]]],
+    raw_records_by_table: dict[str, list[dict[str, Any]]],
+) -> dict[str, list[tuple[dict[str, Any], str]]]:
+    """Pair normalized rows with their live ``record_id``, keyed by index table.
+
+    The record_id is read from the row's ``SOURCE_RECORD_ID_KEY`` — which
+    ``normalize_records`` threads onto each row so it **survives the normalize-time
+    sort** (a row's business key and its record_id must stay together; pairing the
+    *sorted* normalized list positionally with the *unsorted* raw records mapped each
+    key to the wrong record). It falls back to positional pairing with ``raw_records``
+    only for rows that do not carry the key (legacy callers / a fetch without ids).
+    Raw records without a ``record_id`` contribute an empty id, which ``build_index``
+    then abstains on.
+    """
+
+    validate_source_record_index_registries()
+    out: dict[str, list[tuple[dict[str, Any], str]]] = {}
+    for logical_name, index_table in INDEXED_LOGICAL_TABLES.items():
+        normalized = normalized_rows_by_table.get(logical_name)
+        if not normalized:
+            continue
+        raws = raw_records_by_table.get(logical_name) or []
+        for index, row in enumerate(normalized):
+            effective_index_table = _spec_master_index_table(row) if index_table == "Spec_Master" else index_table
+            row_filter = TABLE_ROW_FILTERS.get(effective_index_table)
+            if row_filter is not None and not row_filter(row):
+                continue
+            record_id = _clean(row.get(SOURCE_RECORD_ID_KEY))
+            if not record_id and index < len(raws):
+                record_id = _clean((raws[index] or {}).get("record_id"))
+            out.setdefault(effective_index_table, []).append((row, record_id))
+    return out
+
+
+def index_json_text(index: dict[str, Any]) -> str:
+    """Deterministic JSON text for the sidecar (stable for reproducible snapshots)."""
+
+    return json.dumps(index, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+
+
+def record_count(index: dict[str, Any]) -> int:
+    return sum(len((t or {}).get("records") or {}) for t in (index.get("tables") or {}).values())
+
+
+def load_index(root: Path) -> dict[str, Any] | None:
+    """Load the sidecar from ``root`` if present and well-formed, else ``None``."""
+
+    path = Path(root) / SIDECAR_FILENAME
+    if not path.exists():
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(payload, dict) or not isinstance(payload.get("tables"), dict):
+        return None
+    return payload
+
+
+def resolve(index: dict[str, Any], *, kind: str, source_ref: dict[str, Any]) -> tuple[str | None, str]:
+    """Resolve one finding's ``source_ref`` to ``(record_id, resolution_status)``.
+
+    ``resolution_status`` is one of ``resolved`` / ``unresolved`` / ``ambiguous``.
+    Callers handle the no-sidecar ``snapshot_only`` case before calling this.
+    """
+
+    spec = KIND_RESOLUTION.get(kind)
+    if spec is None:
+        return None, "unresolved"
+    table, field_map = spec
+    table_index = (index.get("tables") or {}).get(table)
+    if not isinstance(table_index, dict):
+        return None, "unresolved"
+    values = [_clean(source_ref.get(ref_field)) for ref_field, _ in field_map]
+    if not all(values):
+        return None, "unresolved"
+    key = _join_key(values)
+    if key in (table_index.get("ambiguous") or []):
+        return None, "ambiguous"
+    record_id = (table_index.get("records") or {}).get(key)
+    if record_id:
+        return record_id, "resolved"
+    return None, "unresolved"
+
+
+def resolve_by_table(index: dict[str, Any], source_ref: dict[str, Any]) -> tuple[str | None, str]:
+    """Resolve a `source_ref` that has a `table` + key fields but no `kind`
+    (the shape F2/F6 produce). Returns `(record_id, resolution_status)`.
+
+    The source_ref's origin ``table`` may resolve against a different index
+    table (e.g. a Localized_Copy value resolves to its Manual_Copy_Source
+    authoring row); ``TABLE_RESOLUTION`` carries that index-table redirect.
+    """
+    table = source_ref.get("table")
+    resolution = TABLE_RESOLUTION.get(str(table) if table else "")
+    if resolution is None:
+        return None, "unresolved"
+    index_table, field_map = resolution
+    table_index = (index.get("tables") or {}).get(index_table)
+    if not isinstance(table_index, dict):
+        return None, "unresolved"
+    values = [_clean(source_ref.get(ref_field)) for ref_field, _ in field_map]
+    key_fields = [key_field for _, key_field in field_map]
+    if not _required_key_present(index_table, key_fields, values):
+        return None, "unresolved"
+    key = _join_key(values)
+    if key in (table_index.get("ambiguous") or []):
+        # Primary key is ambiguous (a repeating empty-Slot_key Row_key). Try the
+        # fallback disambiguator (e.g. Line_order) before giving up.
+        return _resolve_fallback(index_table, table_index, key, source_ref)
+    record_id = (table_index.get("records") or {}).get(key)
+    if record_id:
+        return record_id, "resolved"
+    return None, "unresolved"
+
+
+def _resolve_fallback(
+    index_table: str, table_index: dict[str, Any], key: str, source_ref: dict[str, Any]
+) -> tuple[str | None, str]:
+    """Disambiguate an ambiguous primary key via the fallback fields; else ``ambiguous``."""
+    specs = TABLE_FALLBACK_KEY_FIELDS.get(index_table)
+    if specs:
+        fb_values = [_clean(source_ref.get(ref_field)) for _, ref_field in specs]
+        if any(fb_values):
+            record_id = (table_index.get("records_by_fallback") or {}).get(_join_key([key, *fb_values]))
+            if record_id:
+                return record_id, "resolved"
+    return None, "ambiguous"
+
+
+# content_lint ``source_ref`` ``kind`` -> (index table, ((source_ref_field, key_field), ...))
+# for ROW-LEVEL findings: a finding about a whole spec row (the sidecar indexes at
+# Slot_key granularity, so a row maps to MANY slot records). The fields here are a
+# *prefix* of the index table's key — unlisted key fields (e.g. Slot_key) act as
+# wildcards. Resolution returns the LIST of the row's slot record_ids.
+ROW_KIND_RESOLUTION: dict[str, tuple[str, tuple[tuple[str, str], ...]]] = {
+    "spec_master_row": ("Spec_Master", (("document_key", "document_key"), ("key", "Row_key"))),
+}
+
+
+def resolve_row_record_ids(
+    index: dict[str, Any], *, kind: str, source_ref: dict[str, Any]
+) -> tuple[list[str], str]:
+    """Resolve a row-level finding to ALL matching slot record_ids.
+
+    The finding fixes a whole row that spans multiple ``Slot_key`` records, so a
+    single ``record_id`` does not exist; this returns the de-duplicated list of
+    the row's slot record_ids. 0 matches -> ``unresolved``; otherwise ``resolved``.
+    """
+    spec = ROW_KIND_RESOLUTION.get(kind)
+    if spec is None:
+        return [], "unresolved"
+    table, field_map = spec
+    table_index = (index.get("tables") or {}).get(table)
+    if not isinstance(table_index, dict):
+        return [], "unresolved"
+    key_fields = list(table_index.get("key_fields") or [])
+    want = {key_field: _clean(source_ref.get(ref_field)) for ref_field, key_field in field_map}
+    if not all(want.values()):
+        return [], "unresolved"
+    out: list[str] = []
+    seen: set[str] = set()
+    for composite, record_id in (table_index.get("records") or {}).items():
+        # zip(strict=False): source data may differ in length; keep the existing truncation
+        parts = dict(zip(key_fields, composite.split(_KEY_SEP), strict=False))
+        if all(parts.get(key_field) == value for key_field, value in want.items()):
+            if record_id not in seen:
+                seen.add(record_id)
+                out.append(record_id)
+    return out, ("resolved" if out else "unresolved")
+
+
+def resolve_findings(findings: list[dict[str, Any]], root: Path) -> list[dict[str, Any]]:
+    """Fill ``record_id`` / ``record_ids`` / ``resolution_status`` on findings using
+    the sidecar.
+
+    - A single-record kind (e.g. ``lcd_icon``) sets ``record_id``.
+    - A row-level kind (e.g. ``spec_master_row``) sets ``record_ids`` (the row's
+      slot records) and also ``record_id`` when the row has exactly one slot.
+    - Other kinds are left as-is (``snapshot_only``) rather than marked unresolved
+      against a sidecar that never tried to resolve them.
+
+    When no sidecar exists the findings are returned unchanged. ``record_id`` /
+    ``record_ids`` are not part of the finding hash, so resolving in place does not
+    change ``finding_hash``.
+    """
+
+    index = load_index(root)
+    if index is None:
+        return findings
+    for finding in findings:
+        source_ref = finding.get("source_ref") or {}
+        kind = source_ref.get("kind")
+        if kind and kind in KIND_RESOLUTION:
+            record_id, status = resolve(index, kind=str(kind), source_ref=source_ref)
+            finding["resolution_status"] = status
+            if record_id is not None:
+                finding["record_id"] = record_id
+        elif kind and kind in ROW_KIND_RESOLUTION:
+            record_ids, status = resolve_row_record_ids(index, kind=str(kind), source_ref=source_ref)
+            finding["resolution_status"] = status
+            if record_ids:
+                finding["record_ids"] = record_ids
+                if len(record_ids) == 1:
+                    finding["record_id"] = record_ids[0]
+    return findings

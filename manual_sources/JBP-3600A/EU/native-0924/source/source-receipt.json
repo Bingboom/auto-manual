@@ -1,0 +1,103 @@
+{
+  "source_filename": "HTP011-EU-9国语言-0924.ai",
+  "source_sha256": "8c6c25ddbc885b8e186b3b643fb53677a383ddf22295b3a2ba689c4d5d8cf8d1",
+  "physical_page_count": 79,
+  "body_pages": {
+    "en": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "fr": [
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "es": [
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "de": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38
+    ],
+    "it": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "uk": [
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54
+    ],
+    "pt": [
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62
+    ],
+    "nl": [
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70
+    ],
+    "pl": [
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78
+    ]
+  },
+  "english_source_commit": "565c52a2d450d2b353e0186b22d0b230a2fb13ee",
+  "english_publication_commit": "4dee7b55ba99a2fdfaad7a004a5bbf4e6a656e94",
+  "english_rtd_build": 34910454,
+  "baseline_status": "candidate-not-promoted",
+  "baseline_gate_pr": 1409,
+  "native_semantics_status": "review-in-progress"
+}

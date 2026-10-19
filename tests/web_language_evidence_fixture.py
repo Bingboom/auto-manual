@@ -7,7 +7,7 @@ import shutil
 import tempfile
 from unittest.mock import patch
 
-from tools.web_language_release_evidence import capture_projection, seal_release_evidence
+from tools.web.language_release_evidence import capture_projection, seal_release_evidence
 
 
 def _sha256(path: Path) -> str:
@@ -101,5 +101,5 @@ def isolate_shared_component_admission(test):
     real-IR evidence/integration tests; do not use this helper in those tests.
     Pending source review and all existing receipt checks stay active.
     """
-    for consumer in ("web_language_release_evidence", "web_frozen_source_evidence"):
+    for consumer in ("web.language_release_evidence", "web.frozen_source_evidence"):
         test.enterContext(patch(f"tools.{consumer}.require_fresh_component_admission"))

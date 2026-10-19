@@ -1,0 +1,86 @@
+{
+  "schema_version": "je100c-native-svg-derivatives/v1",
+  "source": {
+    "file": "HTE162-EU-9国语言-0928(1).ai",
+    "sha256": "04d5a4075fc9fc5ad630416dca8e138576e9159fcfd4ce9a06328b8aa1a39cb5"
+  },
+  "method": "Native source SVG bounded to the original panel. Charging panels retain all original backgrounds and in-figure labels; operation figures retain their original product geometry.",
+  "review_status": "local-candidate-not-registry-promoted",
+  "assets": [
+    {
+      "key": "operation_output",
+      "source_page": 10,
+      "crop": [
+        35,
+        148,
+        212,
+        210
+      ],
+      "removed_layout_paths": [],
+      "sha256": "c25182d0e50c8a44830818e968d34ebdac362c9c3cc790bea11fbd35394411cc",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/operation_output.svg"
+    },
+    {
+      "key": "operation_energy",
+      "source_page": 11,
+      "crop": [
+        37,
+        75,
+        174,
+        142
+      ],
+      "removed_layout_paths": [],
+      "sha256": "c582c9d79e57ac0e4eebac1b9390198382eecb59a466a4c3fccf5da988337641",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/operation_energy.svg"
+    },
+    {
+      "key": "charging_ac",
+      "source_page": 11,
+      "crop": [
+        18.3,
+        106,
+        235.9,
+        182.1
+      ],
+      "removed_layout_paths": [],
+      "sha256": "6bff228a0b7875ef8050494728e7508021d5b000c1be40215f71b344964bd132",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/charging_ac.svg",
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "source_name": "16-0102-000467 HTE162100A-EUUK-JAK 说明书 RoHS REACH A0(1).pdf",
+      "preserved_layout": "Original gray backdrop, rounded panel, original in-figure labels; requested by operator"
+    },
+    {
+      "key": "charging_solar",
+      "source_page": 11,
+      "crop": [
+        18.5,
+        242,
+        235.7,
+        322.9
+      ],
+      "removed_layout_paths": [],
+      "sha256": "5eb099893149f9aac69ec57ee62cd720a5170089a7fc8a03f8726515f9971cad",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/charging_solar.svg",
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "source_name": "16-0102-000467 HTE162100A-EUUK-JAK 说明书 RoHS REACH A0(1).pdf",
+      "preserved_layout": "Original gray backdrop, rounded panel, original in-figure labels; requested by operator"
+    },
+    {
+      "key": "charging_car",
+      "source_page": 12,
+      "crop": [
+        17.7,
+        99,
+        235.1,
+        205.5
+      ],
+      "removed_layout_paths": [],
+      "sha256": "5ddae892082187a1bf6aa2f2e112aa606112a2cb7b14eda14a87abee8cdac327",
+      "path": "docs/renderers/web/assets/je100c_eu_shared/charging_car.svg",
+      "source_sha256": "efc2b120e28c562068675836ea977aa9db4e4b2571b7247f8c39be586a1b1621",
+      "source_name": "16-0102-000467 HTE162100A-EUUK-JAK 说明书 RoHS REACH A0(1).pdf",
+      "preserved_layout": "Original gray backdrop, rounded panel, original in-figure labels; requested by operator"
+    }
+  ],
+  "operator_correction": "Preserve the gray backgrounds and rounded composition of the three charging panels, per operator screenshot instruction."
+}

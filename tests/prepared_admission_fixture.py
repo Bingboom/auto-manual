@@ -5,7 +5,7 @@ import tempfile
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from tools.word_bundle_html import build_word_bundle_html
+from tools.word.bundle_html import build_word_bundle_html
 
 
 def install_prepared_admission_fixture(test, markdown_dir, *, model, language, region="EU"):
@@ -33,7 +33,7 @@ def install_prepared_admission_fixture(test, markdown_dir, *, model, language, r
             {"id": "spec", "components": ["HB-TABLE-SPEC/vertical"], "minimum": 1},
         ]}],
     }
-    patcher = patch("tools.web_component_admission.resolve_prepared_component_policy", return_value=policy)
+    patcher = patch("tools.web.component_admission.resolve_prepared_component_policy", return_value=policy)
     patcher.start()
     test.addCleanup(patcher.stop)
     return policy
