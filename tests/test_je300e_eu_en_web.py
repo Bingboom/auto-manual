@@ -114,6 +114,12 @@ class Je300eEuEnWebTests(unittest.TestCase):
         link_or_copy(str(PACKAGE / SOURCE_FILE), str(dest / SOURCE_FILE))
         manifest = read(dest / 'source_manifest.json')
         manifest['inputs'] = [row for row in manifest['inputs'] if not row['path'].startswith('web/')]
+        # Isolate negative fixtures from the App stylesheet registration change.
+        # Historical manifests and their cold-replay drift checks stay untouched.
+        for row in manifest['repo_inputs']:
+            if row['path'] == 'tools/web/stylesheets.py':
+                path = ROOT / row['path']
+                row.update(sha256=file_sha256(path), size=path.stat().st_size)
         write(dest / 'source_manifest.json', manifest)
         return dest
 

@@ -3,14 +3,15 @@ from __future__ import annotations
 
 import importlib.util
 import json
-import os
 from pathlib import Path
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
+from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
@@ -54,9 +55,10 @@ def tree(root: Path) -> dict:
 
 
 def rebuild_h1(source: Path, output: Path) -> None:
-    env = {**os.environ, 'PYTHONPATH': str(ROOT)}
-    subprocess.run([sys.executable, str(source / 'rebuild.py'), '--output', str(output)],
-                   check=True, capture_output=True, env=env, cwd=ROOT)
+    # Invoke the same CLI main in-process so its historical stylesheet dependency
+    # can be isolated without altering the immutable rebuild script.
+    with mock.patch.object(sys, 'argv', [str(source / 'rebuild.py'), '--output', str(output)]):
+        h1_rebuild.main()
 
 
 def squeeze(text: str) -> str:
@@ -169,6 +171,7 @@ class JapaneseSolarVocEditionTests(unittest.TestCase):
                 self.assertNotIn('Jackeryブランド以外の付属品を使用して充電しないでください。', mine)
                 self.assertIn(new + '他社ソーラーパネルで充電することによる損失について、当社は一切の責任を負いません。', mine)
 
+    @pre_four_control_styles
     def test_ad500a_cold_render_matches_committed_web(self):
         # The prepared RST pipeline converts through Pandoc; the CI unit runner has none.
         try:
@@ -180,6 +183,7 @@ class JapaneseSolarVocEditionTests(unittest.TestCase):
         self.assertEqual(tree(self.root / 'out'), tree(AD500A_PACKAGE / 'web/ja'))
         self.assertEqual(report['publication_eligible'], read(AD500A_PACKAGE / 'source_manifest.json')['publication_eligible'])
 
+    @pre_four_control_styles
     def test_h1_cold_replay_matches_committed_web(self):
         rebuild_h1(H1_PACKAGE, self.root / 'out')
         self.assertEqual(tree(self.root / 'out'), tree(H1_PACKAGE / 'web/ja'))

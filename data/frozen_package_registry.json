@@ -21,6 +21,11 @@
           "handling": "keep-frozen",
           "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
           "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
+          "since": "2026-10-19"
         }
       }
     },
@@ -31,6 +36,11 @@
         "docs/renderers/web/assets/shared/symbols/manifest.json": {
           "handling": "keep-frozen",
           "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         }
       }
@@ -109,6 +119,11 @@
           "handling": "keep-frozen",
           "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
           "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
+          "since": "2026-10-19"
         }
       }
     },
@@ -119,6 +134,11 @@
         "docs/renderers/web/assets/shared/symbols/manifest.json": {
           "handling": "keep-frozen",
           "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         }
       }
@@ -146,6 +166,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
+          "since": "2026-10-19"
         }
       }
     },
@@ -171,6 +196,11 @@
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         }
       }
@@ -296,6 +326,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
+          "since": "2026-10-19"
         }
       }
     },
@@ -327,6 +362,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
+          "since": "2026-10-19"
         }
       }
     },
@@ -337,6 +377,11 @@
         "docs/renderers/web/assets/shared/symbols/manifest.json": {
           "handling": "keep-frozen",
           "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         }
       }
@@ -359,6 +404,11 @@
           "handling": "keep-frozen",
           "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
           "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
+          "since": "2026-10-19"
         }
       }
     },
@@ -379,6 +429,11 @@
         "docs/renderers/web/assets/shared/symbols/manifest.json": {
           "handling": "keep-frozen",
           "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         }
       }
@@ -406,6 +461,11 @@
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
           "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
+          "since": "2026-10-19"
         }
       }
     },
@@ -431,6 +491,11 @@
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         }
       }
@@ -508,6 +573,11 @@
         "docs/renderers/web/assets/shared/symbols/manifest.json": {
           "handling": "keep-frozen",
           "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision.",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         }
       }
@@ -782,6 +852,11 @@
         "tools/web/symbol_asset_admission.py": {
           "handling": "keep-frozen",
           "reason": "建档基线（操作者 2026-10-19「失败 + 保持冻结」）：已发布字节不变，下次修订该书时重建并重审",
+          "since": "2026-10-19"
+        },
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
           "since": "2026-10-19"
         }
       }
@@ -1103,7 +1178,13 @@
     "manual_sources/JE-1500D/JP/ja/git-20261019-6ddeef54-v2": {
       "approval": "MA-322",
       "registered": "2026-10-19",
-      "known_drift": {}
+      "known_drift": {
+        "tools/web/stylesheets.py": {
+          "handling": "keep-frozen",
+          "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release.",
+          "since": "2026-10-19"
+        }
+      }
     },
     "manual_sources/JE-2000E/EU/en/2.0": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
@@ -1341,6 +1422,15 @@
       "packages": 8,
       "handling": "keep-frozen",
       "reason": "MA-322: append JE-1500D JP source-matched symbol variants only; existing variant paths/bytes and frozen manuals stay unchanged. Rebuild each older book at its next authorized revision."
+    },
+    {
+      "date": "2026-10-19",
+      "files": [
+        "tools/web/stylesheets.py"
+      ],
+      "packages": 16,
+      "handling": "keep-frozen",
+      "reason": "MA-323 / PR #1382: register the migrated four-control App label stylesheet; preserve all historical package bytes and approvals. Rebuild and publication require a separate scoped release."
     }
   ]
 }

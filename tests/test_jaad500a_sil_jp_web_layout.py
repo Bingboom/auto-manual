@@ -13,6 +13,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
+from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
 
@@ -103,6 +104,7 @@ class WebLayoutEditionTests(unittest.TestCase):
             else:
                 self.assertEqual(mine.read_bytes(), art.read_bytes(), art.name)
 
+    @pre_four_control_styles
     def test_cold_render_matches_committed_web(self):
         # The prepared RST pipeline converts through Pandoc; the CI unit runner has none.
         try:

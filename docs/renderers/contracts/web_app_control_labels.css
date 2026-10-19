@@ -1,0 +1,29 @@
+/* Four-control panels use two label columns beside the shared leader lines.
+ * PDF glyph bounds are provenance, not suitable wrapping boxes: their widths
+ * vary with each translated name. Override those inline boxes for this layout.
+ */
+.hb-app-add-device-control-panel:has(.hb-app-add-device-live-label-ac-power-2) {
+  container-type: inline-size;
+}
+
+.hb-app-add-device-control-panel:has(.hb-app-add-device-live-label-ac-power-2) > .hb-app-add-device-live-label {
+  font-size: min(0.95rem, 2cqw);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.hb-app-add-device-control-panel:has(.hb-app-add-device-live-label-ac-power-2) > :is(.hb-app-add-device-live-label-main-power, .hb-app-add-device-live-label-dc-usb) {
+  left: 6% !important;
+  width: 23% !important;
+  text-align: right;
+}
+
+.hb-app-add-device-control-panel:has(.hb-app-add-device-live-label-ac-power-2) > :is(.hb-app-add-device-live-label-ac-power-1, .hb-app-add-device-live-label-ac-power-2) {
+  left: 74.5% !important;
+  width: 21.5% !important;
+  text-align: left;
+}
+
+.hb-app-add-device-control-panel:has(.hb-app-add-device-live-label-ac-power-2) > :is(.hb-app-add-device-live-label-dc-usb, .hb-app-add-device-live-label-ac-power-1) {
+  top: 59.3% !important;
+}
