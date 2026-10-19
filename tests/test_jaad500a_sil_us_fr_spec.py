@@ -9,6 +9,7 @@ import subprocess
 import tempfile
 import unittest
 
+from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.web.prepared_style_audit import audit_prepared_package_locale
 from tools.word.bundle_docx_pandoc import resolve_pandoc_binary
@@ -115,6 +116,7 @@ class FrenchSpecLabelEditionTests(unittest.TestCase):
         self.assertEqual(report['issues'], [])
         self.assertEqual(report['declared_tables'], 1)
 
+    @pre_four_control_styles
     def test_cold_render_matches_committed_web(self):
         # The prepared RST pipeline converts through Pandoc; the CI unit runner has none.
         try:

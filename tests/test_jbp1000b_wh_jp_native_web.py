@@ -8,6 +8,7 @@ import shutil
 import tempfile
 import unittest
 
+from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.web.frozen_ai_web import replay_package
 from tools.utils.path_utils import PathSegments
@@ -62,6 +63,7 @@ class NativePackWebTests(unittest.TestCase):
         self.assertEqual(policy['legacy_debt'], [])
         self.assertEqual(manifest['publication_status'], 'operator-approved-git-only-release')
 
+    @pre_four_control_styles
     def test_cold_rebuild_without_pdf_is_deterministic(self):
         source = self.fixture()
         self.assertFalse(list(source.rglob('*.pdf')))
