@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">内容生命周期</title>
-  <desc id="desc">线稿图：一个闭环。内容治理（共性基线派生各目标，差异显式，未确认的关系标为未决；关系登记规划中）→ 内容生产（快照、装配、构建、发布；历史 PDF / AI 原稿不经构建，直接转为网页交付物）→ 交付与使用（PDF、Word、IDML、网页、Markdown、机读语料同源，逐目标线上验证）→ 内容洞察（只读观察）→ 受控反馈（人来决定）→ 回到内容治理。第一层反馈内容纠错已有；第二层修正规则为规划中。环心：可信内容，一处维护，可验证传播，同源多面，受控演进。</desc>
+  <desc id="desc">线稿图：一个闭环。内容治理（共性基线派生各目标，差异显式，未确认的关系标为未决；关系登记规划中）→ 内容生产（快照、装配、构建、发布；批准的 PDF / AI 原稿冻结为源包，经构建与封存发布为网页）→ 交付与使用（PDF、Word、IDML、网页、Markdown、机读语料同源，逐目标线上验证）→ 内容洞察（只读观察）→ 受控反馈（人来决定）→ 回到内容治理。第一层反馈内容纠错已有；第二层修正规则为规划中。环心：可信内容，一处维护、可验证传播（规划中），同源多面，受控演进。</desc>
   <defs>
     <pattern id="dots" width="48" height="48" patternUnits="userSpaceOnUse">
       <circle cx="24" cy="24" r="1.5" fill="#343031" fill-opacity="0.11"/>
@@ -46,7 +46,7 @@
   <text x="690" y="482" class="s p" text-anchor="middle">修正规则（规划中）</text>
 
   <text x="800" y="550" class="t" text-anchor="middle" style="font-size:32px">可信内容</text>
-  <text x="800" y="588" class="b" text-anchor="middle">一处维护 · 可验证传播</text>
+  <text x="800" y="588" class="b p" text-anchor="middle">一处维护 · 可验证传播（规划中）</text>
   <text x="800" y="614" class="b" text-anchor="middle">同源多面 · 受控演进</text>
 
   <!-- 01 governance: one baseline, derived targets, explicit differences, unconfirmed = unresolved -->
@@ -86,12 +86,12 @@
   <rect x="1376" y="480" width="64" height="36" rx="9" class="ink-mid" style="fill:#FFFFFF"/>
   <text x="1408" y="504" class="b" text-anchor="middle" style="fill:#343031">发布</text>
 
-  <!-- legacy manuscripts: PDF / AI originals skip the build and become web deliverables directly -->
+  <!-- approved originals: PDF / AI sources are frozen, built and sealed as web deliverables, bypassing table snapshot and assembly -->
   <path d="M 1144 578 H 1162 L 1170 586 V 622 H 1144" class="ink-thin"/>
   <path d="M 1132 584 H 1154 L 1164 594 V 630 H 1132 Z M 1154 584 V 594 H 1164 M 1139 602 H 1157 M 1139 610 H 1157 M 1139 618 H 1151" class="ink-mid" style="fill:#FFFFFF"/>
   <path d="M 1148 636 C 1148 700 1238 700 1238 776" class="ink-thin" marker-end="url(#head)"/>
-  <text x="1186" y="600" class="t" style="font-size:17px">历史文稿 → 网页</text>
-  <text x="1186" y="623" class="s">PDF / AI 原稿不经构建，直接成为交付物</text>
+  <text x="1186" y="600" class="t" style="font-size:17px">批准原稿 → 网页</text>
+  <text x="1186" y="623" class="s">PDF / AI 原稿冻结为源包，经构建与封存发布</text>
   <!-- 03 delivery: one production, many surfaces for people and machines, each verified online -->
   <circle cx="946.9" cy="767.3" r="56" class="ink" style="fill:#FFFFFF"/>
   <text x="946.9" y="756.3" class="num" text-anchor="middle">03</text>
