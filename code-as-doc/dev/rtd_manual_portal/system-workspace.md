@@ -164,13 +164,18 @@ the page was built.
 
 The operator decides the focus. Since 2026-09-26 the sequence is:
 
-1. Web publication and real maintenance: REV-07 → REV-09 → G1 acceptance → G2 pilot.
+1. Web publication and real maintenance: REV-09 → G1 acceptance → G2 pilot
+   (REV-07 accepted 2026-10-19).
 2. Corpus reuse and SSOT support that work concurrently. REV-18 checks actual
    translation hits/corrections; source authority, writers, approvers and frozen
    release inputs are established as real data needs arise.
-3. Shared IR: settle REV-39 boundaries, then accept a representative REV-40 target
-   and its dependencies before expansion. IDML acceptance does not block Web.
-4. Expand skeletons and coverage once production and maintenance are stable.
+3. Shared IR is deferred (REV-39, operator 2026-10-19); the #1278 boundary draft
+   stays as input. It restarts when REV-20 or REV-40 starts, shared-layer
+   consolidation starts, or a shared change cannot reach frozen packages for
+   lack of a common semantic contract. IDML acceptance does not block Web.
+4. Skeleton expansion is deferred by the REV-41 decision (done 2026-10-19):
+   existing skeletons are maintained, and the decision record's §4 restart
+   conditions reopen it.
 5. Multi-agent work remains a design reference, reconsidered only after persistent
    handoff or concurrency bottlenecks. It is absent from the current-work list.
 

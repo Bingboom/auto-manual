@@ -9,7 +9,7 @@
  },
  "operator_quote": "法语版规格表 Input/Output 写反了== 这个改掉发布",
  "date": "2026-10-19",
- "merge_authorization": "MA-317",
+ "merge_authorization": "MA-318",
  "reviewed_source_commit": "21ffa69a",
  "operator_decisions": [
   "French spec table: 11V–16V and 16V–60V rows are Entrée CC (input), 42V–58V is Sortie CC (output)",

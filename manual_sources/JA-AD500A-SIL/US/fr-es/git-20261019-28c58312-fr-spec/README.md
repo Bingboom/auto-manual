@@ -4,7 +4,7 @@ Operator instruction, 2026-10-19: 「法语版规格表 Input/Output 写反了 =
 
 This French-only edition is derived from the live [solar-Voc edition](../git-20261016-28c58312-solar-voc/README.md) (MA-312). That edition stays immutable and keeps serving Spanish. The base edition, its printed source and its release evidence stay unchanged.
 
-**Status: `operator-approved-git-only-release`.** Accepted on 2026-10-19 (MA-317). `source/approval.json` binds every reviewed `source/` and `assets/` input, and the IR is publication-eligible. Release is the Git-only Web Publish sealed at the merged `main` commit.
+**Status: `operator-approved-git-only-release`.** Accepted on 2026-10-19 (MA-318). `source/approval.json` binds every reviewed `source/` and `assets/` input, and the IR is publication-eligible. Release is the Git-only Web Publish sealed at the merged `main` commit.
 
 ## What changed
 

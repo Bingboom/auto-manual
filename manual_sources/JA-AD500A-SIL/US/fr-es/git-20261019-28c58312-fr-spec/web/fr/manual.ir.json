@@ -1321,7 +1321,7 @@
         },
         {
           "path": "source/approval.json",
-          "sha256": "c2bcde7c23233586daa078d962ed66764aa0deb2011246e962cd72e00a415cbe",
+          "sha256": "e5d0e06368582a33c9b57acd6de7654cab8270e43183a9a62433a51efd7caac9",
           "size": 3223
         },
         {
@@ -2098,7 +2098,7 @@
     "markdown_filename": "manual_jaad500asil_us_fr.md",
     "operator_source_acceptance": {
       "date": "2026-10-19",
-      "merge_authorization": "MA-317",
+      "merge_authorization": "MA-318",
       "operator_decisions": [
         "French spec table: 11V–16V and 16V–60V rows are Entrée CC (input), 42V–58V is Sortie CC (output)",
         "French pages re-frozen on shared theme classes for the prepared-document shared-style gate; copy unchanged"
