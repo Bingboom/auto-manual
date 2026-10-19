@@ -1,0 +1,73 @@
+{#- 网页说明书进度 on the 交付物 tab: Web manuals only. Context: `progress` from tools/rtd/web_progress.py. -#}
+{%- set p = progress -%}
+{%- macro wp_stale(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
+<section class="sw-section wp" id="web-progress" aria-labelledby="web-progress-title">
+  <div class="dl-section-title"><h2 id="web-progress-title">网页说明书进度</h2>
+    <p>只看网页说明书 · 已上线部分按发布清单实时统计{% if p.snapshot_date %} · 待转、核对与上线进度来自飞书网页文档表快照 {{ p.snapshot_date|e }}{% elif p.available %} · {{ p.fallback|e }}{% endif %}{{ wp_stale(p.stale) }}</p></div>
+  {%- if not p.available %}
+  <div class="empty-state"><h3>Unavailable</h3><p>发布清单当前不可读，构建日志有告警。</p></div>
+  {%- else %}
+  <div class="kpi-row wp-kpis" aria-label="网页说明书进度">
+    <div class="kpi"><span>已上线型号</span><strong>{{ p.kpis.models }}<small>个</small></strong><em>{% for c in p.categories %}{{ c.label|e }} {{ c.count }}{% if not loop.last %} · {% endif %}{% endfor %}</em></div>
+    <div class="kpi"><span>待转市场版本</span><strong>{% if p.kpis.gaps is none %}—{% else %}{{ p.kpis.gaps }}<small>本</small>{% endif %}</strong><em>已转型号在有在用 SKU 的市场里还没有网页版</em></div>
+    <div class="kpi"><span>语言未齐</span><strong>{{ p.kpis.partial }}<small>本</small></strong><em>少于该市场已上线的语言种数</em></div>
+    <div class="kpi"><span>内容已核对</span><strong>{% if p.kpis.checked is none %}—{% else %}{{ p.kpis.checked }}<small>/ {{ p.kpis.routes }}</small>{% endif %}</strong>
+      <div class="kpi-bar" aria-hidden="true"><i style="width: {{ ((100 * p.kpis.checked / p.kpis.routes) if (p.kpis.checked and p.kpis.routes) else 0)|round(1) }}%"></i></div><em>飞书网页文档表「内容是否核对」</em></div>
+  </div>
+
+  <div class="wp-cards">
+    <article class="wp-card" id="web-progress-trend" aria-labelledby="wp-trend-title">
+      <h3 id="wp-trend-title">上线进度</h3>
+      <p class="wp-note">当前每个语言版本按它第一次进入发布清单的日期累计，改过名的旧路由按最早的名字算。</p>
+      {%- if p.timeline %}
+      <div class="wp-trend" data-wp-trend><script type="application/json">{{ p.timeline|tojson }}</script></div>
+      <ul class="wp-legend" aria-hidden="true"><li><i class="is-langs"></i>语言版本</li><li><i class="is-editions"></i>市场版本</li><li><i class="is-models"></i>型号</li></ul>
+      {%- else %}
+      <p class="wp-empty">{{ p.fallback|e }}，上线进度暂不显示。</p>
+      {%- endif %}
+    </article>
+    <article class="wp-card" id="web-progress-markets" aria-labelledby="wp-markets-title">
+      <h3 id="wp-markets-title">各市场进度</h3>
+      <p class="wp-note">已上线的市场版本语言是否齐全；待转是已转型号在这个市场有在用 SKU、但还没有网页版。</p>
+      <ul class="wp-legend" aria-hidden="true"><li><i class="is-full"></i>语言齐全</li><li><i class="is-partial"></i>语言未齐</li>{% if p.snapshot %}<li><i class="is-gap"></i>待转</li>{% endif %}</ul>
+      <div class="wp-bars">
+        {%- for m in p.market_rows %}
+        <div class="wp-bar-row"><span class="wp-bar-label">{{ m.label|e }}</span>
+          <div class="wp-bar" role="img" aria-label="{{ m.label|e }}：语言齐全 {{ m.full }}，语言未齐 {{ m.partial }}{% if p.snapshot %}，待转 {{ m.gap }}{% endif %}"><i class="is-full" style="width: {{ m.widths.full }}%"></i><i class="is-partial" style="width: {{ m.widths.partial }}%"></i><i class="is-gap" style="width: {{ m.widths.gap }}%"></i></div>
+          <span class="wp-bar-value">{{ m.online }} 上线{% if p.snapshot %} · {{ m.gap }} 待转{% endif %}</span></div>
+        {%- endfor %}
+      </div>
+    </article>
+  </div>
+
+  <div class="wp-matrix" id="web-progress-matrix">
+    <h3>覆盖矩阵</h3>
+    <p class="wp-note">数字是已有语言 / 该市场已上线的语言种数，点开是这本网页说明书；“旧版”是旧路由，语言范围待核对；“待转”表示有在用 SKU 但还没有网页版；空白表示该市场没有在用 SKU。</p>
+    <div class="dl-toolbar">
+      <label class="dl-select"><span>类别</span><select id="wp-category"><option value="">全部类别</option>{% for c in p.categories %}<option value="{{ c.label|e }}">{{ c.label|e }}</option>{% endfor %}</select></label>
+      <label class="wp-check"><input type="checkbox" id="wp-gaps"> 只看还有待转或语言未齐的型号</label>
+    </div>
+    <div class="dl-table-wrap" role="region" aria-label="覆盖矩阵，可横向滚动" tabindex="0">
+      <table class="wp-table">
+        <caption class="wb-sr-only">已转型号在各市场的网页说明书状态</caption>
+        <thead><tr><th scope="col">型号</th>{% for m in p.markets %}<th scope="col">{{ m.label|e }}<small>{% if m.expected %}{{ m.expected }} 种语言{% else %}暂无网页版{% endif %}</small></th>{% endfor %}<th scope="col" class="wp-n">待转</th></tr></thead>
+        {%- for c in p.categories %}
+        <tbody data-category="{{ c.label|e }}">
+          <tr class="wp-group"><th colspan="{{ p.markets|length + 2 }}">{{ c.label|e }}<span>{{ c.count }} 个型号</span></th></tr>
+          {%- for r in p.rows if r.category == c.label %}
+          <tr data-open="{{ 1 if (r.gaps or r.partial) else 0 }}">
+            <th scope="row"><b>{{ r.model|e }}</b>{% if r.name %}<span>{{ r.name|e }}</span>{% endif %}</th>
+            {%- for cell in r.cells %}
+            <td>{% if cell.docname %}<a class="wp-chip is-{{ cell.state }}" href="{{ pathto(cell.docname)|e }}" title="{{ cell.title|e }}">{{ cell.text|e }}{% if cell.legacy %}<em>旧版</em>{% endif %}</a>{% elif cell.state == 'gap' %}<span class="wp-chip is-gap" title="{{ cell.title|e }}">待转</span>{% endif %}</td>
+            {%- endfor %}
+            <td class="wp-n">{% if p.snapshot %}{{ r.gaps }}{% else %}—{% endif %}</td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+        {%- endfor %}
+      </table>
+    </div>
+    <p class="dl-empty" id="wp-empty" hidden>没有符合筛选条件的型号。</p>
+  </div>
+  {%- endif %}
+</section>

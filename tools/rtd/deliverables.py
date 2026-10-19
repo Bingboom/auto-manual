@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Build-time Deliverables page: one row per model and region, a link per format; no network.
 
-``/workspace/deliverables/`` lists what the pipeline has delivered, grouped by
-model, one row per region and one column per format:
+``/workspace/deliverables/`` reads what the pipeline has delivered, grouped by
+model, one row per region and one column per format. Since 2026-10-19 its 交付物
+tab shows Web manuals only (operator: 「这个交付物 我现在 只想看 网页文档」):
+网页说明书进度 (``tools/rtd/web_progress.py``) and then every language version.
+The Feishu formats below still feed the page summary and 生产与资产:
 
 - 网页 (Web): every target in ``docs/publish/publish_manifest.json``, linked to
   its page on this site. It is read at build time, so it is always current.
@@ -395,6 +398,11 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
     view = deliverables_view(targets, snapshot, names=names,
                              labels=labels, language_order=language_order, today=today,
                              feishu_domain=domain)
+    # The 交付物 tab shows Web manuals only: 网页说明书进度 above, then each language version.
+    from tools.rtd.web_progress import progress_page_context, web_only
+    view["progress"] = progress_page_context(assets, targets, labels=labels, names=names, language_order=language_order,
+                                             today=today, warn=logger.warning)
+    view["web_models"], view["web_regions"] = web_only(view["models"], view["regions"])
     # The 网页说明书 KPI's sub-line, largest region first: this page owns the publication counts.
     books = publication_facts(targets or [])["books_by_region"]
     view["books_by_region"] = [f"{labels.get(region, region)} {books[region]}"

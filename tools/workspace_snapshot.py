@@ -143,6 +143,8 @@ def loss_problems(candidate: dict, previous: dict | None) -> list[str]:
         return []
     if "documents" in candidate:
         return _delivery_losses(candidate, previous)
+    if "timeline" in candidate:
+        return []  # 网页说明书进度: a withdrawn route or a cleared 核对 tick may shrink it legitimately
     problems = []
     for kind in ("sentence_pairs", "terms"):
         before, after = previous[kind]["total"], candidate[kind]["total"]
