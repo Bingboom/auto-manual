@@ -118,7 +118,7 @@
     {
       "path": "README.md",
       "size": 3269,
-      "sha256": "b415c83611d6e45409546464eea0635587522ce25ae4eb9a65578a3c5ba77c16"
+      "sha256": "f5e827606fde191b0106a981b85a9cc2c38c6cbc2beedda7460acceef71206ab"
     },
     {
       "path": "assets/car.png",
@@ -163,7 +163,7 @@
     {
       "path": "source/approval.json",
       "size": 3223,
-      "sha256": "e5d0e06368582a33c9b57acd6de7654cab8270e43183a9a62433a51efd7caac9"
+      "sha256": "a6ffe789e6e81d355300a3d6495ccbece18f290b52d832104b9b37343560ddc1"
     },
     {
       "path": "source/differences.md",
@@ -218,7 +218,7 @@
     {
       "path": "source_manifest.json",
       "size": 11885,
-      "sha256": "2ddf22d4ad239d5d7e6589fbad75fab23cb4accfa75a3d5bde16320a985dde76"
+      "sha256": "9a3ee75c89a6d8621ce9a47b49f55b9f1a05bcc31651b0ea461bbd14dc9000be"
     },
     {
       "path": "web/fr/_static/source.css",
@@ -273,7 +273,7 @@
     {
       "path": "web/fr/manual.ir.json",
       "size": 215110,
-      "sha256": "f3996c7ccf072cbab0d229bf0161a93819ccd5bc0bbd10861b68117250f4c9bf"
+      "sha256": "6d7ece49c8929c7be766d85bac1714089db2b88672912d8e5601db0d0f8af873"
     },
     {
       "path": "web/fr/manual_bundle.html",
