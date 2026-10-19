@@ -48,6 +48,7 @@ Add new notes for this topic here, not to the hub.
   whole-document tests project every embedded instance through the registered
   Web, LaTeX, IDML and Word adapters; each renderer still owns its geometry.
   See
+  [presentation layer inheritance](../dev/web_presentation_overlay_plan_2026-09.md),
   [the bounded execution record](../dev/ir_document_closeout.md),
   [v2 plan](../dev/manual_ir_v2_neutral_flow_plan.md), and
   [embedded-component record](../dev/manual_ir_embedded_components_plan.md),
