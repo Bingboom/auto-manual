@@ -167,6 +167,12 @@ class JaTs02aUsFrEsWebTests(unittest.TestCase):
         manifest = read(source / 'source_manifest.json')
         row = next(row for row in manifest['inputs'] if row['path'] == 'source/approval.json')
         row.update(size=path.stat().st_size, sha256=file_sha256(path))
+        # This negative fixture targets acceptance, not historical shared-input drift.
+        # Rebind only its temporary manifest; frozen production inputs stay unchanged.
+        symbols = ROOT / 'docs/renderers/web/assets/shared/symbols/manifest.json'
+        dependency = next(row for row in manifest['repo_inputs']
+                          if row['path'] == symbols.relative_to(ROOT).as_posix())
+        dependency.update(size=symbols.stat().st_size, sha256=file_sha256(symbols))
         write(source / 'source_manifest.json', manifest)
         for language in LANGUAGES:
             with self.subTest(language=language):

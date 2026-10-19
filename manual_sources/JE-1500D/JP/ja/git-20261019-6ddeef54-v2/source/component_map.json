@@ -1,0 +1,119 @@
+{
+  "reference": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed",
+  "reference_scope": "structure and shared components; source facts/artwork remain JE-1500D JP",
+  "chapters": [
+    {
+      "chapter": "safety",
+      "title": "安全上のご注意",
+      "shared_components": [
+        "HB-CALLOUT-STRIP",
+        "HB-TABLE-SYMBOL-ICON",
+        "HB-TABLE-SYMBOL-SIGNAL"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "usage_precautions",
+      "title": "使用上のご注意",
+      "shared_components": [
+        "HB-CALLOUT-STRIP"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "disclaimer",
+      "title": "免責事項",
+      "shared_components": [],
+      "fallback": "native paragraphs and lists"
+    },
+    {
+      "chapter": "in_the_box",
+      "title": "同梱品",
+      "shared_components": [
+        "HB-SPECIAL-INBOX"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "product_overview",
+      "title": "各部の名称",
+      "shared_components": [
+        "HB-SPECIAL-REFERENCE-FIGURE"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "lcd_display",
+      "title": "液晶画面",
+      "shared_components": [
+        "HB-SPECIAL-REFERENCE-FIGURE",
+        "HB-TABLE-LCD-ICON"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "operations",
+      "title": "使い方",
+      "shared_components": [
+        "HB-CALLOUT-STRIP",
+        "HB-SPECIAL-REFERENCE-FIGURE",
+        "HB-TABLE-KEY-COMBINATIONS",
+        "HB-TABLE-LCD-MODE"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "ups",
+      "title": "UPS 機能",
+      "shared_components": [
+        "HB-SPECIAL-REFERENCE-FIGURE"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "charging",
+      "title": "充電方法",
+      "shared_components": [
+        "HB-CALLOUT-STRIP",
+        "HB-SPECIAL-REFERENCE-FIGURE"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "troubleshooting",
+      "title": "トラブルシューティング",
+      "shared_components": [
+        "HB-TABLE-TROUBLESHOOTING"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "specifications",
+      "title": "主な仕様",
+      "shared_components": [
+        "HB-TABLE-SPEC"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "warranty",
+      "title": "保証について",
+      "shared_components": [
+        "HB-WARRANTY-LEAD",
+        "HB-WARRANTY-SECTION",
+        "HB-WARRANTY-YEARS"
+      ],
+      "fallback": null
+    },
+    {
+      "chapter": "app_setup",
+      "title": "Jackeryアプリ ユーザーマニュアル",
+      "shared_components": [
+        "HB-CALLOUT-STRIP",
+        "HB-SPECIAL-APP",
+        "HB-SPECIAL-REFERENCE-FIGURE"
+      ],
+      "fallback": null
+    }
+  ]
+}
