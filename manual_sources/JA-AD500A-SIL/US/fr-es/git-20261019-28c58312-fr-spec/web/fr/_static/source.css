@@ -1,0 +1,15 @@
+/* JA-AD500A-SIL US fr spec-label edition: page-local geometry only.
+   Colours, borders and panels come from the shared Web theme (prepared-document shared-style gate). */
+
+/* The product overview figure keeps its print width. */
+#furo-main-content .hb-reference-figure[data-reference-id="product-overview"] { width: min(100%, 40rem); margin-inline: auto; }
+
+/* LED status table columns follow the print. */
+#furo-main-content table.hb-source-status-table { min-width: 0; }
+#furo-main-content table.hb-source-status-table :is(th, td) { text-align: left; }
+#furo-main-content table.hb-source-status-table tr > :nth-child(1) { width: 25%; }
+#furo-main-content table.hb-source-status-table tr > :nth-child(2) { width: 20%; }
+
+/* Contact block and the back-cover QR code keep their print size. */
+#furo-main-content div.hb-text-panel[role="contentinfo"] { margin-top: 2rem; }
+#furo-main-content img[alt="Jackery contact QR from the original back cover"] { width: 96px !important; height: auto; }

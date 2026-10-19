@@ -867,6 +867,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JA-AD500A-SIL/US/fr-es/git-20261019-28c58312-fr-spec": {
+      "approval": "MA-319（见 source/approval.json）",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
     "manual_sources/JBP-1000B-WH/JP/ja/git-20261008-3aa6c003-native": {
       "approval": "MA-275（见 source/approval.json）",
       "registered": "2026-10-19",
