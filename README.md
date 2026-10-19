@@ -1,43 +1,30 @@
-# Auto-Manual
+# Hello-Docs
 
-*One source of truth — every market's manual, in every format.*
+*让产品内容成为可信、可复用、持续演进的知识资产。*
 
-Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产，转换为可评审、
-可追溯的多语言说明书，并同源输出 PDF、DOCX、IDML、HTML、Markdown 和 ZIP。
+本仓库是产品说明书生产线的工程面：把飞书受控数据、共享模板和批准原稿冻结为快照，
+构建出网页、Word、PDF、IDML、Markdown 和机器可读内容，并保留评审、发布与追溯记录。
+交付与使用中发现的问题经责任人审核后，从对应编辑入口修订，形成新版本。
 
-## 工作流路线图
+## 工作流程
 
-系统建设页新增三类访问入口的[架构视图](code-as-doc/dev/rtd_manual_portal/system-workspace.md#system-workspace-page)，与演进史共用记录。
-[设计规范页](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#design-system-page)汇总网页版的颜色、字体与组件、共享图标素材和印刷规格，取值和预览在构建时读自仓库。
-[说明书工作台「数据统计」](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#deliverables-page)：发布、机型能力（只列已发布型号）与素材登记，可按区域和机型筛选；旧 `/workspace/data/` 地址自动转入此标签。
-[产品矩阵页](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#product-matrix-page)按产品线、容量和发布市场排列已发布说明书里的产品，附规格、功能与搭配对照。
-说明书工作台提供工作入口、三类资产管理与生产复用证据；统计边界见 [工作台统计契约](code-as-doc/dev/workspace_production_evidence.md)，生产后刷新与补做见 [数据持续更新](code-as-doc/dev/workspace_data_refresh.md)。
+![内容生命周期](docs/readme-assets/content-lifecycle.svg)
 
-说明书资料库按冻结发布记录提供[独立语言切换](code-as-doc/dev/rtd_locale_navigation.md)，区分已验证单语与语言身份待核验的旧出版物。
+内容生产沿用现有主线：**治理 → 快照 → 装配 → 构建／渲染 → 发布／追溯**。
+Web、Word、PDF、IDML、Markdown 和机器可读内容由各目标的批准来源派生，
+共同服务于交付、阅读与查询。
 
-Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。
-说明书网页化先按[素材复用与背景规则](docs/renderers/contracts/STYLE_DEFINITION/web-artwork-reuse.md#共用图标优先web-插图选材规则)盘点已有素材，确认不能复用后再提取；新外部冻结稿的符号表须通过原稿图形与真实透明度准入，停用旧错误素材并按共用图形变体复用。
-Git-only 显式撤回、恢复与独立回执见[操作说明](code-as-doc/dev/web_publication_withdrawal.md)。
-外部原稿按源文件哈希登记章节准入，见 [Git-only 发布流程](code-as-doc/dev/web_publish_pipeline/input-paths.md#22-git-only-transaction)。冻结源库与输出的独立容量、数量预算也由该契约维护。
-FridgeGuard US 英法西三语的冻结源、共享组件与发布验收见[录入记录](code-as-doc/reviews/je1000e_sil_us_en_web_intake.md)。
-SlimPower H1 日规日文的批准快照、回放与来源边界见[Git-only 发布源](manual_sources/JE-1000E-WH/JP/ja/git-20261008-efb663e3-no-cover-reviewed/README.md)。
-封存源辅助文件的复制边界和原稿版式回放见[构建指南](code-as-doc/build_doc_guide/web-publish-and-rtd.md)。
-Web 资源池的图片与内嵌 CSS 引用边界也见[构建指南](code-as-doc/build_doc_guide/web-publish-and-rtd.md)。
+交付与使用中发现的问题，经责任人审核后返回对应编辑入口，形成可追溯的新版本。
 
-Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。
-JE-1000F/EU 新增四语按[原生 PDF 与共享 IR 接入](code-as-doc/dev/four_language_shared_ir_alignment.md)维护；原稿与勘误保留，正文、表格和图内标签使用网页组件。
-冻结目录也可运行[只读线上链接检查](code-as-doc/dev/manual_operations_online_health.md)，HTTP成功不等于版本验收。
+## 两条正式生产路径
 
-Web profile 配合显式 `--lang` 会冻结完整配置语言源，再将所选语言投影为
-`check`、Markdown 和 HTML 共用的规范 RST；边界见[说明](code-as-doc/dev/web_language_projection.md)。
-JE-1000F US 的三语前言仅在 Web 投影中拆分，IDML/Word/PDF 仍保留三语；配置边界见[构建指南](code-as-doc/build_doc_guide/config-and-manifests.md)。
-这项本地构建能力不代表已接通独立语言发布。
-审稿语言裁剪同时清理生成页副本和目录引用，原审稿文件保留；见[构建指南](code-as-doc/build_doc_guide/quality-gates.md)。
-Web 队列支持显式语言的单语配置，约束与未释放的发布门禁见[队列契约](code-as-doc/dev/web_publish_locale_queue.md)。
+| 路径 | 内容如何进入生产 |
+| --- | --- |
+| 结构化数据与共享模板 | 飞书受控数据、仓库模板和配置冻结为快照，经装配、构建、评审后发布 |
+| 批准原稿与冻结源包 | 已批准的 PDF / AI 原稿或 Git 原稿冻结为源包，声明权威版本和编辑入口，经构建、校验和封存后发布网页版 |
 
-![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)
-
-内容源 → 冻结输入 → 构建检查 → 评审回写 → 多格式输出 → 发布追踪。
+两条路径并存，已批准的原稿目标无需为统一形式迁入数据表。
+已封存的版本不再改动；修订从声明的编辑入口生成新版本，并记录来源关系。
 
 ## 视频演示
 
@@ -47,73 +34,46 @@ Web 队列支持显式语言的单语配置，约束与未释放的发布门禁�
 
 ## 快速开始
 
-[`build.py`](build.py) 是统一入口。最小 US/EN 验证路径：
+先按[接手手册](ONBOARDING.md)配置本地环境。[`build.py`](build.py) 是统一入口；
+以下使用仓库测试快照验证 US/EN 示例，不需要飞书凭据：
 
 ```bash
 python build.py doctor --config configs/config.us-en.yaml --model JE-1000F --region US
-python build.py doctor --data-plane --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2
-python build.py check  --config configs/config.us-en.yaml --model JE-1000F --region US
-python build.py review --config configs/config.us-en.yaml --model JE-1000F --region US
+python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root .tmp/readme-check
 ```
 
-`check` 会在进入 Word/Web 导出前校验 FCC 的目标语言、结构和受控分栏标记；
-manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
+`doctor` 检查本机工具链，会列出 pandoc、xelatex 等缺口；`check` 只需 Python 依赖，
+中间产物写入已忽略的 `.tmp/`，不改动工作树。
 
-## 只记住四条规则
+业务评审与发布从[快速开始指南](user-guide/quick_start_guide.md)进入；
+命令、参数和故障处理见[构建指南](code-as-doc/build_doc_guide.md)。
 
-- **修改源头，不修改生成物：** 共享内容在 `docs/templates/`，结构化数据在飞书源表，
-  评审后的目标专属修改在 `docs/_review/`；不要手改 `docs/_build/`。
-- **一个冻结包，多种输出：** 不同格式可以采用不同排版，但不能分叉文案、规格、
-  法务内容、术语或资产身份。
-- **代码只改工程面：** `auto-manual/main` 单向同步到 `Hello-Docs/main`；不要直接
-  修改 Hello-Docs 的工程树。
-- **触发不等于完成：** 队列验收读取阶段化 `delivery_ready / delivery_url`（Draft
-  云文档、Publish IDML 交付包、Web HTML），并核对提交、产物和飞书回读；不读取已退役的 `Document link`。
+## 维护原则
+
+- **权威明确：** 每个目标声明权威来源和批准版本；网页、文档、机器语料和知识页面只消费批准内容，不另立权威。
+- **反馈有人负责：** 观察结果先作为候选，由责任人决定后从对应编辑入口修订；批准、构建、发布和线上验证分别留证。
+- **治理有轻重（原则）：** 警告、安全与合规文本、规格值要求逐项记录并由责任人审核，其他内容默认轻量元数据。
+- **一处维护、可验证传播（规划中）：** 依据确认的内容关系共享维护、差异保留理由、修改后逐目标验证传播结果。
+  内容关系登记（身份、适用性、基线与派生关系）和修正治理规则的反馈尚未实现，
+  方向与已实现边界见[系统演进战略](code-as-doc/architecture/System%20Evolution%20Strategy.md)。
+
+工程修改在本仓库进行，业务运行在 Hello-Docs 镜像仓库；运行位置见[双平面地图](user-guide/two_plane_map.md)，
+具体编辑位置见[操作指南](user-guide/hello_auto-doc.md)。
 
 ## 文档入口
 
-JE-100C/EU 九语 Web 本地构建与源稿差异记录见[构建指南](code-as-doc/build_doc_guide/web-target-notes.md#je-100ceu-nine-language-web-source)。
-
-| 想了解什么 | 从这里开始 |
+| 想做什么 | 从这里开始 |
 | --- | --- |
-| 第一次接手项目 | [`ONBOARDING.md`](ONBOARDING.md) |
-| 完整命令和运维流程 | [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md) |
-| 说明书资料库首页与目录缩略图替换 | [`RTD manual center`](code-as-doc/dev/rtd_manual_portal.md) |
-| Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`Web 发布与原生多语共享组件准入`](code-as-doc/dev/web_publish_pipeline.md)；[`欧规共享组件存量迁移`](code-as-doc/dev/eu_shared_component_rollout_2026-09.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md)；[`RTD 部署回执与严格读取`](code-as-doc/dev/rtd_deployment_receipt.md) |
-| RTD 说明书资料库：US/EU/UK/CN/JP 地区筛选、发布链接与构建排查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
-| 飞书／钉钉机器人查询 RTD 已发布欧规产品信息 | [`欧规说明书查询与启用`](code-as-doc/dev/eu_manual_query.md) |
-| RTD 知识库：首页、产品与市场、说明书生产（同项目私有站点，登录后直达，说明书资料库不提供入口） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#personal-workspace-entry) |
-| RTD 系统建设页：当前工作、系统架构、能力、工具与工程规模、系统演变 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/system-workspace.md#system-workspace-page) |
-| RTD 说明书工作台：交付物矩阵（各型号网页手册、印刷交付包与 Word 云文档）、数据统计、工作入口与生产证据 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal/knowledge-pages.md#deliverables-page) |
-| RTD 手册反馈：售后邮箱入口与发布后健康检查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
-| 产品改进建议：网页表单与飞书机器人代提交 | [`VOC 接入`](code-as-doc/dev/product_voc.md) |
-| RTD 访问统计（默认关闭，Cloudflare Web Analytics） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
-| RTD 页面元数据：标题/hreflang/canonical 按发布身份派生 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
-| 说明书产线盘活、发布入口整合与中长期计划 | [盘活与演进方案](code-as-doc/manual_production_revitalization_plan.md)；[逐项执行台账](code-as-doc/dev/manual_revitalization_execution.md) |
-| 手册运营能力规划与第 0 步决策清单 | [`code-as-doc/manual_operations_growth_plan.md`](code-as-doc/manual_operations_growth_plan.md) |
-| 当前工作流和编辑规则 | [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) |
-| 复用已有样式和完整组件 | [`code-as-doc/dev/style_component_usage_guide.md`](code-as-doc/dev/style_component_usage_guide.md) |
-| 规格书结构化入库 | [`.agents/skills/spec-sheet-structured-intake/SKILL.md`](.agents/skills/spec-sheet-structured-intake/SKILL.md) |
-| 工程面、业务面与飞书 Base | [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) |
-| 最短上手示例 | [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) |
-| 公共 IR 的调用方与迁移边界 | [`Shared-source plan`](code-as-doc/dev/latex_indesign_same_source_plan.md) |
-| 整本 IR → Web 收口与加电包日语验收 | [`执行目标与证据`](code-as-doc/dev/ir_document_closeout.md) |
-| JS-100I 欧规 Web 目标与九语候选验收 | [`英语实现记录`](code-as-doc/dev/js100i_eu_en_web_acceptance.md) · [`九语候选记录`](code-as-doc/reviews/js100i_eu_nine_language_2026-09.md) |
-| JBP-3600A / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md) |
-| JE-2000F / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/je2000f_eu_en_web_intake_2026-09.md) |
-| JE-2000E / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/je2000e_eu_en_web_intake_2026-09.md) |
-| ManualIR v2 中立 flow、v1 兼容与后续组件边界 | [`ManualIR v2 plan`](code-as-doc/dev/manual_ir_v2_neutral_flow_plan.md) |
-| Web 共享层、产品骨架与目标差异如何继承 | [`Web presentation overlay`](code-as-doc/dev/web_presentation_overlay_plan_2026-09.md) |
-| 长期架构边界 | [`System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md) |
-| AI Agent 操作规则 | [`AGENTS.md`](AGENTS.md) |
-| 钉钉悟空 MCP Bridge 源码与部署 | [`agent/wukong-bridge/README.md`](agent/wukong-bridge/README.md) |
+| 配置环境、第一次接手 | [接手手册](ONBOARDING.md) |
+| 发起评审、构建和发布 | [快速开始](user-guide/quick_start_guide.md) |
+| 确认日常流程和编辑位置 | [操作指南](user-guide/hello_auto-doc.md) |
+| 查命令、参数和排障方法 | [构建指南](code-as-doc/build_doc_guide.md) |
+| 查 Web 发布与冻结快照流程 | [Web 发布指南](code-as-doc/dev/web_publish_pipeline.md) |
+| 查说明书资料库、知识库与工作台 | [RTD 门户指南](code-as-doc/dev/rtd_manual_portal.md) |
+| 复用样式和完整组件 | [样式与组件使用指南](code-as-doc/dev/style_component_usage_guide.md) |
+| 区分仓库、飞书 Base 和运行位置 | [双平面地图](user-guide/two_plane_map.md) |
+| 使用 AI Agent 协作开发 | [仓库操作规则](AGENTS.md) |
 
-README 只保留路线图、视频位和最短入口；详细机制由上表中的权威文档维护。
-
-Prepared EU Web admission and legacy migration debt: [shared-component admission](code-as-doc/dev/prepared_component_admission.md).
-
-中规/日规审核源的纯文字清单、LCD 表和 App 接入规则见 [构建说明](code-as-doc/build_doc_guide/web-component-admission.md)。
-
-旧版 RST 网页表格的共享组件声明见 [样式定义](docs/renderers/contracts/STYLE_DEFINITION/appendix-b-boundaries.md#authored-text-references-hb-table-reference)。
-
-Intake preparation: [source-copy work packets and shared-art review](code-as-doc/dev/manual_intake_assistance.md) enumerate pending work without approving a baseline or publishing.
+<!-- README maintenance: update only for project positioning, stable workflow,
+quickstart or top-level navigation changes. Feature details, target acceptance,
+contracts and temporary status belong in the owning topic pages. See AGENTS.md §5. -->

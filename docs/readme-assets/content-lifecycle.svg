@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">内容生命周期</title>
+  <desc id="desc">线稿图：一个闭环。内容治理（共性基线派生各目标，差异显式，未确认的关系标为未决；关系登记规划中）→ 内容生产（快照、装配、构建、发布；批准的 PDF / AI 原稿冻结为源包，经构建与封存发布为网页）→ 交付与使用（PDF、Word、IDML、网页、Markdown、机读语料同源，逐目标线上验证）→ 内容洞察（只读观察）→ 受控反馈（人来决定）→ 回到内容治理。第一层反馈内容纠错已有；第二层修正规则为规划中。环心：可信内容，一处维护、可验证传播（规划中），同源多面，受控演进。</desc>
+  <defs>
+    <pattern id="dots" width="48" height="48" patternUnits="userSpaceOnUse">
+      <circle cx="24" cy="24" r="1.5" fill="#343031" fill-opacity="0.11"/>
+    </pattern>
+    <marker id="head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 1 1 L 8 5 L 1 9" fill="none" stroke="#343031" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif; }
+      .ink { fill: none; stroke: #343031; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .ink-mid { fill: none; stroke: #343031; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      .ink-thin { fill: none; stroke: #AEACAD; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .plan { fill: none; stroke: #8E8B8C; stroke-width: 2; stroke-dasharray: 8 7; stroke-linecap: round; stroke-linejoin: round; }
+      .go { fill: #00AE58; }
+      .halo { fill: #00AE58; fill-opacity: 0.24; }
+      .kicker { font-size: 17px; font-weight: 650; letter-spacing: 4px; fill: #666264; }
+      .title { font-size: 40px; font-weight: 700; letter-spacing: 1px; fill: #343031; }
+      .t { font-size: 21px; font-weight: 700; fill: #343031; }
+      .b { font-size: 16px; fill: #666264; }
+      .s { font-size: 13px; fill: #666264; }
+      .num { font-size: 13px; font-weight: 650; fill: #666264; letter-spacing: 1px; }
+      .p { fill: #8E8B8C; }
+    </style>
+  </defs>
+  <rect width="1600" height="900" rx="28" fill="#FFFFFF"/>
+  <rect width="1600" height="900" rx="28" fill="url(#dots)"/>
+  <g transform="translate(0 -104)">
+
+  <!-- The loop, as in the film. -->
+  <circle cx="800" cy="565" r="250" class="ink"/>
+  <g class="ink">
+    <path d="M -7 -8 L 5 0 L -7 8" transform="translate(946.9 362.7) rotate(36)"/>
+    <path d="M -7 -8 L 5 0 L -7 8" transform="translate(1037.8 642.3) rotate(108)"/>
+    <path d="M -7 -8 L 5 0 L -7 8" transform="translate(800 815) rotate(180)"/>
+    <path d="M -7 -8 L 5 0 L -7 8" transform="translate(562.2 642.3) rotate(252)"/>
+    <path d="M -7 -8 L 5 0 L -7 8" transform="translate(653.1 362.7) rotate(324)"/>
+  </g>
+  <circle cx="1047.6" cy="599.8" r="22" class="halo"/>
+  <circle cx="1047.6" cy="599.8" r="11" class="go"/>
+  <!-- feedback: correcting content exists (the ring itself); correcting the rules is planned -->
+  <text x="640" y="320" class="s" text-anchor="end">内容纠错（已有）</text>
+  <path d="M 612 455 Q 700 470 760 362" class="plan" marker-end="url(#head)"/>
+  <text x="690" y="482" class="s p" text-anchor="middle">修正规则（规划中）</text>
+
+  <text x="800" y="550" class="t" text-anchor="middle" style="font-size:32px">可信内容</text>
+  <text x="800" y="588" class="b p" text-anchor="middle">一处维护 · 可验证传播（规划中）</text>
+  <text x="800" y="614" class="b" text-anchor="middle">同源多面 · 受控演进</text>
+
+  <!-- 01 governance: one baseline, derived targets, explicit differences, unconfirmed = unresolved -->
+  <circle cx="800" cy="315" r="56" class="ink" style="fill:#FFFFFF"/>
+  <text x="800" y="304" class="num" text-anchor="middle">01</text>
+  <text x="800" y="331" class="t" text-anchor="middle">治理</text>
+  <text x="880" y="196" class="t">内容治理</text>
+  <rect x="972" y="178" width="124" height="24" rx="12" class="plan" style="fill:#FFFFFF"/>
+  <text x="1034" y="195" class="s p" text-anchor="middle">关系登记规划中</text>
+  <path d="M 888 218 H 952 Q 960 218 960 226 V 270 Q 960 278 952 278 H 888 Q 880 278 880 270 V 226 Q 880 218 888 218 Z" class="ink-mid" style="fill:#FFFFFF"/>
+  <path d="M 880 232 H 960 M 880 248 H 960 M 880 263 H 960 M 908 232 V 278" class="ink-thin"/>
+  <path d="M 960 248 C 980 248 984 230 1000 230 M 960 248 H 1000 M 960 248 C 980 248 984 266 1000 266" class="ink-thin"/>
+  <path d="M 1004 220 H 1040 V 240 H 1004 Z M 1004 238 H 1040 V 258 H 1004 Z" class="ink-mid" style="fill:#FFFFFF"/>
+  <path d="M 1004 256 H 1040 V 276 H 1004 Z" class="ink-mid" style="fill:#FFFFFF"/>
+  <path d="M 1046 248 L 1052 237 L 1058 248 Z" class="go"/>
+  <path d="M 1072 238 H 1108 V 258 H 1072 Z" class="plan" style="fill:#FFFFFF"/>
+  <path d="M 1040 248 H 1066" class="plan"/>
+  <text x="920" y="300" class="s" text-anchor="middle">共性基线</text>
+  <text x="1022" y="300" class="s" text-anchor="middle">派生 · 显式差异</text>
+  <text x="1090" y="278" class="s p" text-anchor="middle">未决</text>
+
+  <!-- 02 production: freeze, assemble, build, publish -->
+  <circle cx="1037.8" cy="487.7" r="65" class="ink-thin"/>
+  <circle cx="1037.8" cy="487.7" r="56" class="ink" style="fill:#FFFFFF"/>
+  <text x="1037.8" y="476.7" class="num" text-anchor="middle">02</text>
+  <text x="1037.8" y="503.7" class="t" text-anchor="middle">生产</text>
+  <text x="1124" y="462" class="t">内容生产</text>
+  <rect x="1124" y="480" width="64" height="36" rx="9" class="ink-mid" style="fill:#FFFFFF"/>
+  <text x="1156" y="504" class="b" text-anchor="middle" style="fill:#343031">快照</text>
+  <path d="M 1192 498 H 1202" class="ink-thin" marker-end="url(#head)"/>
+  <rect x="1208" y="480" width="64" height="36" rx="9" class="ink-mid" style="fill:#FFFFFF"/>
+  <text x="1240" y="504" class="b" text-anchor="middle" style="fill:#343031">装配</text>
+  <path d="M 1276 498 H 1286" class="ink-thin" marker-end="url(#head)"/>
+  <rect x="1292" y="480" width="64" height="36" rx="9" class="ink-mid" style="fill:#FFFFFF"/>
+  <text x="1324" y="504" class="b" text-anchor="middle" style="fill:#343031">构建</text>
+  <path d="M 1360 498 H 1370" class="ink-thin" marker-end="url(#head)"/>
+  <rect x="1376" y="480" width="64" height="36" rx="9" class="ink-mid" style="fill:#FFFFFF"/>
+  <text x="1408" y="504" class="b" text-anchor="middle" style="fill:#343031">发布</text>
+
+  <!-- approved originals: PDF / AI sources are frozen, built and sealed as web deliverables, bypassing table snapshot and assembly -->
+  <path d="M 1144 578 H 1162 L 1170 586 V 622 H 1144" class="ink-thin"/>
+  <path d="M 1132 584 H 1154 L 1164 594 V 630 H 1132 Z M 1154 584 V 594 H 1164 M 1139 602 H 1157 M 1139 610 H 1157 M 1139 618 H 1151" class="ink-mid" style="fill:#FFFFFF"/>
+  <path d="M 1148 636 C 1148 700 1238 700 1238 776" class="ink-thin" marker-end="url(#head)"/>
+  <text x="1186" y="600" class="t" style="font-size:17px">批准原稿 → 网页</text>
+  <text x="1186" y="623" class="s">PDF / AI 原稿冻结为源包，经构建与封存发布</text>
+  <!-- 03 delivery: one production, many surfaces for people and machines, each verified online -->
+  <circle cx="946.9" cy="767.3" r="56" class="ink" style="fill:#FFFFFF"/>
+  <text x="946.9" y="756.3" class="num" text-anchor="middle">03</text>
+  <text x="946.9" y="783.3" class="t" text-anchor="middle">交付</text>
+  <circle cx="988" cy="726" r="15" class="go"/>
+  <path d="M 981 726 L 986 731 L 996 720" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1030" y="752" class="t">交付与使用</text>
+  <g class="ink-mid">
+    <path transform="translate(1046 800) scale(.5)" d="M-22 -28H12L22 -18V28H-22ZM12 -28V-18H22M-12 -6H10M-12 4H10M-12 14H2"/>
+    <path transform="translate(1110 800) scale(.5)" d="M-20 -28H20V28H-20ZM-11 -14H11M-11 -4H11M-11 6H4"/>
+    <path transform="translate(1174 800) scale(.5)" d="M-16 -10V-26H16V-10M-26 -10H26V12H-26ZM-16 4H16V26H-16Z"/>
+    <path transform="translate(1238 800) scale(.5)" d="M-28 -22H28V22H-28ZM-28 -10H28M-21 -16H-19M-14 -16H-12"/>
+    <path transform="translate(1302 800) scale(.5)" d="M-20 -28H20V28H-20ZM-9 -12L-13 12M5 -12L1 12M-15 -4H11M-17 4H9"/>
+    <path transform="translate(1366 802) scale(.5)" d="M-22 -16H22Q28 -16 28 -10V18Q28 24 22 24H-22Q-28 24 -28 18V-10Q-28 -16 -22 -16ZM0 -16V-25M-3 -28a3 3 0 1 1 6 0a3 3 0 1 1 -6 0M-15.5 2a4.5 4.5 0 1 1 9 0a4.5 4.5 0 1 1 -9 0M6.5 2a4.5 4.5 0 1 1 9 0a4.5 4.5 0 1 1 -9 0M-8 14H8M-28 0H-33V9H-28M28 0H33V9H28"/>
+  </g>
+  <text x="1046" y="842" class="s" text-anchor="middle">PDF</text>
+  <text x="1110" y="842" class="s" text-anchor="middle">Word</text>
+  <text x="1174" y="842" class="s" text-anchor="middle">IDML</text>
+  <text x="1238" y="842" class="s" text-anchor="middle">网页</text>
+  <text x="1302" y="842" class="s" text-anchor="middle">Markdown</text>
+  <text x="1366" y="842" class="s" text-anchor="middle">机读</text>
+
+  <!-- 04 insight: read-only observation of what was published -->
+  <circle cx="653.1" cy="767.3" r="56" class="ink" style="fill:#FFFFFF"/>
+  <text x="653.1" y="756.3" class="num" text-anchor="middle">04</text>
+  <text x="653.1" y="783.3" class="t" text-anchor="middle">洞察</text>
+  <text x="570" y="752" class="t" text-anchor="end">内容洞察</text>
+  <text x="570" y="778" class="b" text-anchor="end">只读观察</text>
+  <path d="M 404 790 H 456 M 404 806 H 470 M 404 822 H 446" class="ink-thin"/>
+  <circle cx="452" cy="806" r="20" class="ink"/>
+  <path d="M 466 820 L 482 836" class="ink"/>
+
+  <!-- 05 governed feedback: a person decides -->
+  <circle cx="562.2" cy="487.7" r="56" class="ink" style="fill:#FFFFFF"/>
+  <text x="562.2" y="476.7" class="num" text-anchor="middle">05</text>
+  <text x="562.2" y="503.7" class="t" text-anchor="middle">反馈</text>
+  <text x="480" y="480" class="t" text-anchor="end">受控反馈</text>
+  <text x="480" y="506" class="b" text-anchor="end">人来决定</text>
+  <path transform="translate(252 436) scale(.42)" d="M180 260C176 220 205 190 205 120C205 50 160 8 105 8C50 8 30 50 34 82C36 98 26 110 12 126C8 132 22 136 30 138C28 148 34 152 30 160C28 168 38 172 36 182C34 196 50 204 70 202C86 200 92 214 92 260" class="ink" style="stroke-width:6"/>
+  <circle cx="338" cy="450" r="13" class="go"/>
+  <path d="M 332 450 L 336 454 L 345 445" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Legend. -->
+  <path d="M 80 944 H 112" class="ink"/>
+  <text x="122" y="949" class="s">已有</text>
+  <path d="M 172 944 H 204" class="plan"/>
+  <text x="214" y="949" class="s">规划中</text>
+  <circle cx="284" cy="944" r="6" class="go"/>
+  <text x="298" y="949" class="s">内容流</text>
+  <circle cx="370" cy="944" r="9" class="go"/>
+  <path d="M 366 944 L 369 947 L 375 941" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="386" y="949" class="s">逐目标验证</text>
+  </g>
+</svg>
