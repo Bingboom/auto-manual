@@ -57,8 +57,8 @@ python build.py check --config configs/config.us-en.yaml --model JE-1000F --regi
   内容关系登记（身份、适用性、基线与派生关系）和修正治理规则的反馈尚未实现，
   方向与已实现边界见[系统演进战略](code-as-doc/architecture/System%20Evolution%20Strategy.md)。
 
-本说明同时适用于两个仓库：代码在 auto-manual 修改，合入后单向镜像到 Hello-Docs；队列构建、评审和发布在 Hello-Docs 运行，
-不要在 Hello-Docs 直接改代码。分工见[双平面地图](user-guide/two_plane_map.md)，
+代码在 auto-manual 修改，合入后单向镜像到 Hello-Docs；队列构建、评审和发布在 Hello-Docs 运行。
+分工见[双平面地图](user-guide/two_plane_map.md)，
 具体编辑位置见[操作指南](user-guide/hello_auto-doc.md)。
 
 ## 文档入口
