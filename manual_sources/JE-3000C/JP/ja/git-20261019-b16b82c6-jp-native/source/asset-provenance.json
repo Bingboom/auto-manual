@@ -1,0 +1,526 @@
+{
+  "reused_assets": [
+    {
+      "asset_ref": "assets/shared-symbols/warning_triangle.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-warning_triangle.svg",
+      "sha256": "0c96a5da3d0b96d01ce96d0874341b93a06db419a4008eaceb1d8b44a4f1f42b",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/read_manual.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-read_manual.svg",
+      "sha256": "d77bdba4899e5d56d0502a10732bd3488d90aa88639ce336cab9ff42d35cfd30",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/no_open_flame.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_open_flame.svg",
+      "sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/keep_away_from_children.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_away_from_children.svg",
+      "sha256": "e6bd4396d07232ba7668b5fe72425341b55c3d3918bbb71bf8711741a1f91efe",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/unplug.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-unplug.svg",
+      "sha256": "929b4c29510c6360c244a2000a47b265549270d571e78f91fe4d06e45db9cdaf",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/do_not_dismantle.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-do_not_dismantle.svg",
+      "sha256": "1e600dc9623481ec1950e4cee277d32620bdf1e82a99984ddfce91353ffb173b",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/no_wet_hands.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-no_wet_hands.svg",
+      "sha256": "d14a9720367b40d5a498a03d92ad0417bbc70d64fd0cea99c8891e0eb9725450",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/mandatory.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-mandatory.svg",
+      "sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/battery_recycle.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-battery_recycle.svg",
+      "sha256": "4ece7680add5525499da868786eec13e2b1b20dd831fca2f54bfb9840e608f8d",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/weee.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-weee.svg",
+      "sha256": "21fd7d31c0d22590a0f461da3821869eee28a23122edc994b471642a89ad3e92",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/keep_dry.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-keep_dry.svg",
+      "sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-symbols/prohibited.svg",
+      "source_path": "docs/renderers/web/assets/shared/symbols/native-v1/h1-jp-prohibited.svg",
+      "sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/inbox-ac-cable.svg",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/inbox-ac-cable.svg",
+      "sha256": "39890a48e00c673b9b7834e39a06a43088858fdd1e20eaf0ef50652de11490a1",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/inbox-documents.svg",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/inbox-documents.svg",
+      "sha256": "56fc08a6c7056ee343aac2684164a4e0bebb8693c378734533e939bb0ba47402",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png",
+      "sha256": "220422befdf990375fe244f80f922b17b8a887d137be8b250a0587550fce99fc",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png",
+      "sha256": "ea0607778881880f46a7038f164e31294c57234902c2f4794ac58ef967d62256",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png",
+      "sha256": "eb4a5d8fab7844fdf36461c6583787d5ba9da24059724028f931091d23ddff86",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png",
+      "sha256": "5701dcaf741ecb4e7607185ea8bdf34d4a1413c4a1f75bac5df959291ef63b1b",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png",
+      "sha256": "b556af88ead6ae32d20eba6e77411f78211d9724194b9c9af30ddd7ecfda3a55",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png",
+      "sha256": "bdf3caf214a8b3cf2425e8dc9e71a1078b143b4b4ab7af571458618a05441108",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+      "sha256": "c45de286ee70636b16fd833440c7ed92b560d2fe987c48031bd02191ef4ca8a1",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png",
+      "sha256": "be336ccbd531420b8a2418a084fa63753f6e98090e34c30a8b961c37020f451f",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png",
+      "sha256": "a05735b7276a37de99d3bc5a98ea6e61bb23b9ce79bc26b4ca837a7550fc8f51",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png",
+      "sha256": "a6df1c82717a47c895b2e496e71a47122ec6369475975b0dec1d3ffa61aefad0",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+      "sha256": "182e6b96b78860011722a6f127073bca8eb297cea98a1f1ec1b46172141e5658",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png",
+      "sha256": "6bdbda943b9ad2457d9113f1f1fd4be8d60c2f97c2b8803e57a3af9612e03272",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png",
+      "sha256": "def927403a067872c225eec7e14fc095e074a5ef5dc80f4e53dc80e21f2a91ee",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png",
+      "sha256": "d169703b0f4c468c8b4c39cdb62afa97dc87da0da12d864f1215e73d8ea51025",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png",
+      "sha256": "c97df8c3470a071ea4a22683179cd47600d04452469202ec4957c1f70c409de8",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png",
+      "sha256": "b55c4a4f8f424f6d758f739682ca4e58d3baa86876a01be836b212b0b1f0ecd2",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+      "sha256": "8c3c5ff517ff51988805f90c9262b743aa0da43a1058f83b784925179305f11e",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png",
+      "sha256": "123aa9b551fc88ad288c55db76f12f706353fc22a6f7d32ae2a1a6518cc614ac",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png",
+      "sha256": "9305fc61862b95c4e888edba9517f3f6281fea37d553deea3a899c67cfa2360c",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "sha256": "3b51b98d7199d32f7b286bdf5ce3de4cb41971ed942820091053fd1d87bf0a7a",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png",
+      "sha256": "5558fdd5e8d405d6c8c86be16c85785346b0da3088352bc2c85e40a65684f4ec",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-lcd/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png",
+      "source_path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-lcd/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png",
+      "sha256": "14b7fae06ace57348de6185c2aac7435c2a88b340d44626388a6db75f6b65162",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-buttons/power.svg",
+      "source_path": "docs/renderers/web/assets/shared/buttons/power.svg",
+      "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-buttons/ac.svg",
+      "source_path": "docs/renderers/web/assets/shared/buttons/ac.svg",
+      "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+      "decision": "reuse-byte-identical"
+    },
+    {
+      "asset_ref": "assets/shared-buttons/dc_usb.svg",
+      "source_path": "docs/renderers/web/assets/shared/buttons/dc_usb.svg",
+      "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+      "decision": "reuse-byte-identical"
+    }
+  ],
+  "new_assets_recipe": "asset-recipe.json",
+  "source_pdf_sha256": "b16b82c6c6b2ac86bf4dd438cd597e7d0be66344a9da3e2b7ea9c2d561d61a7b",
+  "new_assets": [
+    {
+      "asset_key": "je3000c/jp/inbox-main",
+      "physical_page": 8,
+      "bbox": [
+        41,
+        142,
+        117,
+        200
+      ],
+      "asset_ref": "assets/inbox-main.svg",
+      "sha256": "8d58829b64f7c4a16849e49a34938ab20b0099cfc458643ac74605bd671037cb",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/overview-front",
+      "physical_page": 9,
+      "bbox": [
+        27,
+        78,
+        342,
+        260
+      ],
+      "asset_ref": "assets/overview-front.png",
+      "sha256": "027b6db8fa12b6b048e5bc15bd0b0630d3fc564f4044aea6a71b76f0acd88b00",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/overview-right",
+      "physical_page": 9,
+      "bbox": [
+        27,
+        303,
+        342,
+        383
+      ],
+      "asset_ref": "assets/overview-right.png",
+      "sha256": "d2dbb7e30862ee201b692754fa7c466c4a3b6ecdc8731b5353a5cb769a4fbfce",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/lcd-map",
+      "physical_page": 10,
+      "bbox": [
+        41,
+        55,
+        320,
+        197
+      ],
+      "asset_ref": "assets/lcd-map.png",
+      "sha256": "1545fd217d7315bfd76df90ba49d1316d35595f7c3a106e24ff06bbed9d70952",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/main-power",
+      "physical_page": 12,
+      "bbox": [
+        34,
+        74,
+        340,
+        177
+      ],
+      "asset_ref": "assets/main-power.svg",
+      "sha256": "02233fe811f533f299c286fb17572ee350f1a95b50e7c2206af3eb67fdbc34cc",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/dc-usb",
+      "physical_page": 12,
+      "bbox": [
+        35,
+        249,
+        337,
+        409
+      ],
+      "asset_ref": "assets/dc-usb.svg",
+      "sha256": "a11711b181ff4ba04b7a5ce5267b560fd436804ed6cf4c8676ba708b1ebc87fa",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/ac-output",
+      "physical_page": 13,
+      "bbox": [
+        35,
+        148,
+        337,
+        317
+      ],
+      "asset_ref": "assets/ac-output.svg",
+      "sha256": "3889d162cc2bc051a0628c8dc28c961683f258ad202c88f138a9779d0dfffeaa",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/frequency",
+      "physical_page": 13,
+      "bbox": [
+        40,
+        411,
+        335,
+        488
+      ],
+      "asset_ref": "assets/frequency.svg",
+      "sha256": "742acbfecf99d20e02942c2987f58b945b43cd32376d780db015c56892d47fb6",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/energy-saving",
+      "physical_page": 14,
+      "bbox": [
+        35,
+        215,
+        331,
+        318
+      ],
+      "asset_ref": "assets/energy-saving.svg",
+      "sha256": "95b29c4077709289a4443b6012fac6ff2dc378c5d22434e576654c4d97b9393e",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/lcd-mode",
+      "physical_page": 15,
+      "bbox": [
+        72,
+        49,
+        295,
+        124
+      ],
+      "asset_ref": "assets/lcd-mode.svg",
+      "sha256": "c0481dec624c1f01bdc53056319b67ed1cedc8e38067636c61302c3db9174f0d",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/ups",
+      "physical_page": 16,
+      "bbox": [
+        29,
+        61,
+        341,
+        195
+      ],
+      "asset_ref": "assets/ups.svg",
+      "sha256": "ce4a7942d67cba04f6ecf6e85f4ef884b32438811d74641ea38fca6e52318537",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/ac-charge",
+      "physical_page": 17,
+      "bbox": [
+        30,
+        291,
+        340,
+        411
+      ],
+      "asset_ref": "assets/ac-charge.svg",
+      "sha256": "3474527acbcd720e9b878b1b68840f7dec294a6c90ad2eab5c824ee1b106af15",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/solar-two",
+      "physical_page": 18,
+      "bbox": [
+        29,
+        181,
+        341,
+        297
+      ],
+      "asset_ref": "assets/solar-two.png",
+      "sha256": "c91c9b95c8da26435f98892f457640023337842ef7e3085b0b7953992763892a",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/solar-four",
+      "physical_page": 18,
+      "bbox": [
+        29,
+        350,
+        341,
+        495
+      ],
+      "asset_ref": "assets/solar-four.png",
+      "sha256": "76188640b2843ae3634d53ba6da1e2f3cf0dcfc6f1b64d2ad768c44f050314a1",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/car-charge",
+      "physical_page": 19,
+      "bbox": [
+        29,
+        316,
+        340,
+        428
+      ],
+      "asset_ref": "assets/car-charge.svg",
+      "sha256": "c4fe832866091c7ccc79aa0b26244d536bddda97d40ae4dd4c1ec947d7b177d3",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/app-store",
+      "physical_page": 24,
+      "bbox": [
+        30,
+        95,
+        182,
+        119
+      ],
+      "asset_ref": "assets/app-store.png",
+      "sha256": "695619679ff7ba3b33480cf1d9e69088f05be6210cbf119c4e91d5bf2d04281e",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/app-qr",
+      "physical_page": 24,
+      "bbox": [
+        211,
+        86,
+        254,
+        129
+      ],
+      "asset_ref": "assets/app-qr.png",
+      "sha256": "2ac3f32a0a6dd4d7f8e6cbf0d21675c61e462fa89900d7283b2c2d698153a87f",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/app-pairing",
+      "physical_page": 24,
+      "bbox": [
+        90,
+        188,
+        251,
+        341
+      ],
+      "asset_ref": "assets/app-pairing.png",
+      "sha256": "aa09c7f4149614ef3c38c2bc04d5e13e337cfb9249686ffa50458bcfef582350",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/app-controls",
+      "physical_page": 24,
+      "bbox": [
+        35,
+        348,
+        335,
+        420
+      ],
+      "asset_ref": "assets/app-controls.png",
+      "sha256": "6ad9af4ba992af06fe4713414606b48fe2551c94d60246fd9f59734b0b210817",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    },
+    {
+      "asset_key": "je3000c/jp/app-result",
+      "physical_page": 25,
+      "bbox": [
+        30,
+        111,
+        337,
+        284
+      ],
+      "asset_ref": "assets/app-result.png",
+      "sha256": "fe4125ee9cc00630454b4808788141d3c542cdbc3630685288d9201abe6ba17e",
+      "background_policy": "Complete UI / dense callouts retain their source frame; ordinary art uses native paths; no body or table images."
+    }
+  ]
+}

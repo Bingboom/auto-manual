@@ -1,0 +1,48 @@
+{
+  "source_sha256": "b16b82c6c6b2ac86bf4dd438cd597e7d0be66344a9da3e2b7ea9c2d561d61a7b",
+  "physical_pages": 26,
+  "printed_version": "V2",
+  "chapters": 13,
+  "component_coverage": "passed",
+  "component_inventory": {
+    "HB-CALLOUT-STRIP": 12,
+    "HB-SPECIAL-APP": 2,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-OPERATION": 3,
+    "HB-SPECIAL-REFERENCE-FIGURE": 13,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-SECTION": 6,
+    "HB-WARRANTY-YEARS": 1
+  },
+  "strict_sphinx": "passed, zero warnings",
+  "cold_replay": {
+    "markdown_sha256": "87f051d9ae379abe31306611932d428862a543316b641fc123a284681e29b2ae",
+    "identical": true
+  },
+  "browser": {
+    "desktop_content_viewport": 1280,
+    "mobile_content_viewport": 390,
+    "horizontal_overflow": false,
+    "broken_loaded_images": 0,
+    "internal_horizontal_clipping": false,
+    "method": "Actual same-origin browser frames at 1280 and 390 pixels; no production visual acceptance claimed."
+  },
+  "git_only": true,
+  "publication_eligible": false,
+  "pending_source_review": [
+    {
+      "field": "specification-footnote-1",
+      "issue": "Source visibly ends at できま; preserved verbatim without inferring missing text.",
+      "physical_page": 21
+    }
+  ]
+}
