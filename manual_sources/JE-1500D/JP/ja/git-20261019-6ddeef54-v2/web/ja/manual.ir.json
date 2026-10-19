@@ -13,7 +13,7 @@
     "assets/symbol-11.svg",
     "assets/symbol-12.svg",
     "assets/inbox-unit.png",
-    "assets/inbox-cable.png",
+    "assets/inbox-cable.svg",
     "assets/inbox-manual.png",
     "assets/overview-front.png",
     "assets/overview-right.png",
@@ -65,8 +65,8 @@
     "assets/app-results.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "3fd654a3fe38548efc7c2e90539a0fc626ef8abdaa71496bb8c59bef96d58c8c",
-  "content_sha256": "9c15c8e3b8700efbf74cce89cca5213cee6b2ae16735ba11b24fe5f3abb71a7d",
+  "bundle_sha256": "edfd0d23cbaa7a30f8f9106feb127a4dc524a83a102516bb2c72b7fdfd7bb9b1",
+  "content_sha256": "fc11bf5564526208f5ec1f95677e81d7eeda31ece8f953e6ac7ce3e5239a50cf",
   "language": "ja",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -74,16 +74,16 @@
       "assets/ac-charge.png": "a55df2d3804a000fb98f02f3ec2ab26b081f98108459002856fe90bfaba6182b",
       "assets/ac-output.png": "64b4e880b60cbdc95d64bfa96fc772e444f0fdcb518f9f8dfd7bebf6d9745c79",
       "assets/app-add.png": "7f381d2a63b16195b404993e7a7f3e995806a11c333df557aefa8f05d2d2c657",
-      "assets/app-control.png": "63de03d94dcaaaee191bbbdbf5b0a7ca045f5488e7820d2c115a0e713ccf42d5",
+      "assets/app-control.png": "a9ebf5bed858aaed8e9161047944e40148a8a9b924b54376a297353b9196aac6",
       "assets/app-qr.png": "2866b4137dbda45912a99f408c9c9e57bf1e93d1e4ee4be67b1dff003754808d",
       "assets/app-results.png": "f30dafdc26d2f48e199681f4a538fa5a86aa76892fa7bf9bdbf514fd91f3be4b",
       "assets/app-store.png": "68f52e91ae7922be046a46f78de8d17295dc4447290ef60c9ff0bfad48953a29",
-      "assets/car-charge.png": "6a9e600e13c34fe72865f9f97ee14d858c297c96cf3447b94fe00472d3103526",
+      "assets/car-charge.png": "6181d0d5e0cb666b065e41da6c5b71dbe5b67c063dee61c6c511314fac167048",
       "assets/dc-usb.png": "87dd10ad099f85f4bfdba65b3da011d0770c80fbfa3fffd93342c9eee3de86d6",
       "assets/energy-controls.png": "6c8a797b448fdf387f8a3a5556591498eb27b62bb59f8f64e19581e26491ed2b",
       "assets/energy-sleep.png": "be3da3ddcd1b14b9bb3850b5d2416fc6ae770fd00184f93a3e91503aef1b4196",
       "assets/frequency.png": "57962fb087f2002051cfdaaa5f57d911d7cdebad3a3508c120996c645e634d4e",
-      "assets/inbox-cable.png": "4fd08a123d35ee5b4fb649182b84a2325cd455a886c27c771600180fb2d40017",
+      "assets/inbox-cable.svg": "39890a48e00c673b9b7834e39a06a43088858fdd1e20eaf0ef50652de11490a1",
       "assets/inbox-manual.png": "7271c509d06549b74fdac11a42c0f9f271220708db327d75e7ecde0f94daa347",
       "assets/inbox-unit.png": "069caea34ee33d6c5dfbc218fa2a9b4e1d9993378ed2f43928ed18c9c2dcdb34",
       "assets/lcd-button.png": "a70fb382f7f65ba07dad7ebaa62711e0b7707d4d3502130d7b5ed478cde95450",
@@ -122,8 +122,8 @@
       "assets/shared-lcd/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png": "a05735b7276a37de99d3bc5a98ea6e61bb23b9ce79bc26b4ca837a7550fc8f51",
       "assets/shared-lcd/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png": "a6df1c82717a47c895b2e496e71a47122ec6369475975b0dec1d3ffa61aefad0",
       "assets/shared-lcd/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png": "5558fdd5e8d405d6c8c86be16c85785346b0da3088352bc2c85e40a65684f4ec",
-      "assets/solar-adapter.png": "dc2914157f27252b639ff72b78d453e63c64b519b5769b30c60e2bcc7f1eab48",
-      "assets/solar-direct.png": "cfaa49fdca73fa6dd6975bfe3e596b28d65689a0cc30c6bdcabfec4cdfab5caf",
+      "assets/solar-adapter.png": "317088315d76d16e2b0bdd185b6726913c0f8a6f5bb7a1f2a9c7315c7f64ca6e",
+      "assets/solar-direct.png": "794fcfc03e93d01a715ce99078111b03fd4d28849d05d23308b8a02c03ed31ad",
       "assets/symbol-01.svg": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2",
       "assets/symbol-02.svg": "ad44bd9df9eddf4ad13bcd6f63d2fe7269002237c318c4cb55f4ed9348f692a5",
       "assets/symbol-03.svg": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
@@ -136,12 +136,12 @@
       "assets/symbol-10.png": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
       "assets/symbol-11.svg": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
       "assets/symbol-12.svg": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
-      "assets/ups.png": "005cf3683ddc76c9fd67d26a264e24e857c1ea9d297d870cd125df561a4cb57a"
+      "assets/ups.png": "43f05d882e6a53124ae6976a78232ba08ef0741fd2f584d9889ddadc66bb8acb"
     },
-    "block_count": 159,
+    "block_count": 162,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 29,
-      "HB-SPECIAL-APP": 1,
+      "HB-SPECIAL-APP": 2,
       "HB-SPECIAL-INBOX": 1,
       "HB-SPECIAL-REFERENCE-FIGURE": 18,
       "HB-TABLE-KEY-COMBINATIONS": 1,
@@ -1371,8 +1371,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "ea965a9fd7cd9d5a7f3637cd94f27e5ed5982f5e0010adf0ae2a5e48e54df8e8",
-          "size": 3082
+          "sha256": "c950a5c3140874f887097325aa0950633f85db0eed2915b6ba7cbb54d6c529a8",
+          "size": 3153
         },
         {
           "path": "assets/ac-charge.png",
@@ -1391,8 +1391,8 @@
         },
         {
           "path": "assets/app-control.png",
-          "sha256": "63de03d94dcaaaee191bbbdbf5b0a7ca045f5488e7820d2c115a0e713ccf42d5",
-          "size": 16449
+          "sha256": "a9ebf5bed858aaed8e9161047944e40148a8a9b924b54376a297353b9196aac6",
+          "size": 16769
         },
         {
           "path": "assets/app-qr.png",
@@ -1411,8 +1411,8 @@
         },
         {
           "path": "assets/car-charge.png",
-          "sha256": "6a9e600e13c34fe72865f9f97ee14d858c297c96cf3447b94fe00472d3103526",
-          "size": 147656
+          "sha256": "6181d0d5e0cb666b065e41da6c5b71dbe5b67c063dee61c6c511314fac167048",
+          "size": 82953
         },
         {
           "path": "assets/dc-usb.png",
@@ -1435,9 +1435,9 @@
           "size": 45598
         },
         {
-          "path": "assets/inbox-cable.png",
-          "sha256": "4fd08a123d35ee5b4fb649182b84a2325cd455a886c27c771600180fb2d40017",
-          "size": 4655
+          "path": "assets/inbox-cable.svg",
+          "sha256": "39890a48e00c673b9b7834e39a06a43088858fdd1e20eaf0ef50652de11490a1",
+          "size": 629779
         },
         {
           "path": "assets/inbox-manual.png",
@@ -1631,13 +1631,13 @@
         },
         {
           "path": "assets/solar-adapter.png",
-          "sha256": "dc2914157f27252b639ff72b78d453e63c64b519b5769b30c60e2bcc7f1eab48",
-          "size": 164741
+          "sha256": "317088315d76d16e2b0bdd185b6726913c0f8a6f5bb7a1f2a9c7315c7f64ca6e",
+          "size": 164944
         },
         {
           "path": "assets/solar-direct.png",
-          "sha256": "cfaa49fdca73fa6dd6975bfe3e596b28d65689a0cc30c6bdcabfec4cdfab5caf",
-          "size": 96674
+          "sha256": "794fcfc03e93d01a715ce99078111b03fd4d28849d05d23308b8a02c03ed31ad",
+          "size": 96845
         },
         {
           "path": "assets/symbol-01.svg",
@@ -1701,8 +1701,8 @@
         },
         {
           "path": "assets/ups.png",
-          "sha256": "005cf3683ddc76c9fd67d26a264e24e857c1ea9d297d870cd125df561a4cb57a",
-          "size": 80661
+          "sha256": "43f05d882e6a53124ae6976a78232ba08ef0741fd2f584d9889ddadc66bb8acb",
+          "size": 81003
         },
         {
           "path": "rebuild.py",
@@ -1711,13 +1711,13 @@
         },
         {
           "path": "source/approval.json",
-          "sha256": "0ff7fe69c0468e78aaedbc0e93a2374336866c9e4b0bb58d85ffa7cc878bb46d",
-          "size": 14661
+          "sha256": "5f2f90a665951949cc3501994f6ca99726301dfbaece83085bdd957cd8de5286",
+          "size": 14791
         },
         {
           "path": "source/asset_decisions.json",
-          "sha256": "c77c7cd099f3381bd914bb56064c75a43b62752e974ca4da5dce6fa896f7c68c",
-          "size": 36321
+          "sha256": "14dd2dc0eeb3850e69b2b0631760b4aa8fc743b665627868a2275edf53388112",
+          "size": 36160
         },
         {
           "path": "source/component_map.json",
@@ -1726,8 +1726,8 @@
         },
         {
           "path": "source/figures.json",
-          "sha256": "55d10f2e7ea4d172e21348daffc26c6d0b9ffa3178488a0aa33232439a9d2007",
-          "size": 2124
+          "sha256": "2da2b1be1145a075a663de6fe349022320dae0d52162e86bb85bf1142ab91bd6",
+          "size": 2134
         },
         {
           "path": "source/geometry.css",
@@ -1736,8 +1736,8 @@
         },
         {
           "path": "source/ja/content.json",
-          "sha256": "15f408d6241234359b0f17278d36fe6398140625fc3096f905c3615327fd26f5",
-          "size": 307047
+          "sha256": "0da1d9a4394dc4f3efe5b16ddd7a28486fe66c3997d9e6d4b4a8182105464e84",
+          "size": 310797
         },
         {
           "path": "source/native_pages.json",
@@ -1746,8 +1746,8 @@
         },
         {
           "path": "source/outlined_recoveries.json",
-          "sha256": "c8969cc59bac0d56a183f6acf7872d5d545059f003e19b9a115029c4cc289539",
-          "size": 6984
+          "sha256": "e5cdc60d30fad4554b6955528441423ba1397e2fee0cd8193075f11950d360e1",
+          "size": 8302
         },
         {
           "path": "source/symbol_provenance.json",
@@ -2014,6 +2014,11 @@
           "path": "docs/renderers/web/assets/shared/symbols/native-v1/symbol_weee.png",
           "sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
           "size": 7672
+        },
+        {
+          "path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/inbox-ac-cable.svg",
+          "sha256": "39890a48e00c673b9b7834e39a06a43088858fdd1e20eaf0ef50652de11490a1",
+          "size": 629779
         },
         {
           "path": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/shared-buttons/ac.svg",
@@ -4079,6 +4084,7 @@
         "technical_version": "git-20261019-6ddeef54-v2"
       },
       "validation": {
+        "complete_panel_boundary_audit": "native PDF drawing bounds retained; outlined page-19 charging copy restored to live HTML",
         "desktop_mobile_viewports": [
           1280,
           390
@@ -4099,8 +4105,8 @@
         },
         {
           "path": "README.md",
-          "sha256": "ea965a9fd7cd9d5a7f3637cd94f27e5ed5982f5e0010adf0ae2a5e48e54df8e8",
-          "size": 3082
+          "sha256": "c950a5c3140874f887097325aa0950633f85db0eed2915b6ba7cbb54d6c529a8",
+          "size": 3153
         },
         {
           "path": "assets/ac-charge.png",
@@ -4119,8 +4125,8 @@
         },
         {
           "path": "assets/app-control.png",
-          "sha256": "63de03d94dcaaaee191bbbdbf5b0a7ca045f5488e7820d2c115a0e713ccf42d5",
-          "size": 16449
+          "sha256": "a9ebf5bed858aaed8e9161047944e40148a8a9b924b54376a297353b9196aac6",
+          "size": 16769
         },
         {
           "path": "assets/app-qr.png",
@@ -4139,8 +4145,8 @@
         },
         {
           "path": "assets/car-charge.png",
-          "sha256": "6a9e600e13c34fe72865f9f97ee14d858c297c96cf3447b94fe00472d3103526",
-          "size": 147656
+          "sha256": "6181d0d5e0cb666b065e41da6c5b71dbe5b67c063dee61c6c511314fac167048",
+          "size": 82953
         },
         {
           "path": "assets/dc-usb.png",
@@ -4163,9 +4169,9 @@
           "size": 45598
         },
         {
-          "path": "assets/inbox-cable.png",
-          "sha256": "4fd08a123d35ee5b4fb649182b84a2325cd455a886c27c771600180fb2d40017",
-          "size": 4655
+          "path": "assets/inbox-cable.svg",
+          "sha256": "39890a48e00c673b9b7834e39a06a43088858fdd1e20eaf0ef50652de11490a1",
+          "size": 629779
         },
         {
           "path": "assets/inbox-manual.png",
@@ -4359,13 +4365,13 @@
         },
         {
           "path": "assets/solar-adapter.png",
-          "sha256": "dc2914157f27252b639ff72b78d453e63c64b519b5769b30c60e2bcc7f1eab48",
-          "size": 164741
+          "sha256": "317088315d76d16e2b0bdd185b6726913c0f8a6f5bb7a1f2a9c7315c7f64ca6e",
+          "size": 164944
         },
         {
           "path": "assets/solar-direct.png",
-          "sha256": "cfaa49fdca73fa6dd6975bfe3e596b28d65689a0cc30c6bdcabfec4cdfab5caf",
-          "size": 96674
+          "sha256": "794fcfc03e93d01a715ce99078111b03fd4d28849d05d23308b8a02c03ed31ad",
+          "size": 96845
         },
         {
           "path": "assets/symbol-01.svg",
@@ -4429,8 +4435,8 @@
         },
         {
           "path": "assets/ups.png",
-          "sha256": "005cf3683ddc76c9fd67d26a264e24e857c1ea9d297d870cd125df561a4cb57a",
-          "size": 80661
+          "sha256": "43f05d882e6a53124ae6976a78232ba08ef0741fd2f584d9889ddadc66bb8acb",
+          "size": 81003
         },
         {
           "path": "rebuild.py",
@@ -4439,8 +4445,8 @@
         },
         {
           "path": "source/asset_decisions.json",
-          "sha256": "c77c7cd099f3381bd914bb56064c75a43b62752e974ca4da5dce6fa896f7c68c",
-          "size": 36321
+          "sha256": "14dd2dc0eeb3850e69b2b0631760b4aa8fc743b665627868a2275edf53388112",
+          "size": 36160
         },
         {
           "path": "source/component_map.json",
@@ -4449,8 +4455,8 @@
         },
         {
           "path": "source/figures.json",
-          "sha256": "55d10f2e7ea4d172e21348daffc26c6d0b9ffa3178488a0aa33232439a9d2007",
-          "size": 2124
+          "sha256": "2da2b1be1145a075a663de6fe349022320dae0d52162e86bb85bf1142ab91bd6",
+          "size": 2134
         },
         {
           "path": "source/geometry.css",
@@ -4459,8 +4465,8 @@
         },
         {
           "path": "source/ja/content.json",
-          "sha256": "15f408d6241234359b0f17278d36fe6398140625fc3096f905c3615327fd26f5",
-          "size": 307047
+          "sha256": "0da1d9a4394dc4f3efe5b16ddd7a28486fe66c3997d9e6d4b4a8182105464e84",
+          "size": 310797
         },
         {
           "path": "source/native_pages.json",
@@ -4469,8 +4475,8 @@
         },
         {
           "path": "source/outlined_recoveries.json",
-          "sha256": "c8969cc59bac0d56a183f6acf7872d5d545059f003e19b9a115029c4cc289539",
-          "size": 6984
+          "sha256": "e5cdc60d30fad4554b6955528441423ba1397e2fee0cd8193075f11950d360e1",
+          "size": 8302
         },
         {
           "path": "source/symbol_provenance.json",
@@ -7579,11 +7585,11 @@
         {
           "asset_refs": [
             "assets/inbox-unit.png",
-            "assets/inbox-cable.png",
+            "assets/inbox-cable.svg",
             "assets/inbox-manual.png"
           ],
           "block_id": "in_the_box:block-0002",
-          "content_sha256": "e3dcf22444f7f4d645df5639a3e9a15f7df20cd62833d9594bee0ba40965df06",
+          "content_sha256": "d45fcac1368ee7705e88800a19dfe3d51cfbec830273ad7eac5fb778b2f9f5ba",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -7618,7 +7624,7 @@
                               {
                                 "alt": "AC充電ケーブル",
                                 "kind": "image",
-                                "source": "assets/inbox-cable.png"
+                                "source": "assets/inbox-cable.svg"
                               },
                               {
                                 "children": [
@@ -7678,7 +7684,7 @@
                   "role": "card_1_art"
                 },
                 {
-                  "asset_ref": "assets/inbox-cable.png",
+                  "asset_ref": "assets/inbox-cable.svg",
                   "locale_policy": "shared",
                   "role": "card_2_art"
                 },
@@ -7835,7 +7841,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#in_the_box",
       "source_ref": "native-pdf/in_the_box",
-      "source_sha256": "2c82b4e9de9858897f45efa28ab43099df51bf23e19daaa8d0794643769994b2"
+      "source_sha256": "17b5af48d78c9b7d51f16bff84cf58962af8ca7de10c0aeb1776f42bacdee4c1"
     },
     {
       "blocks": [
@@ -10955,10 +10961,95 @@
           "source_ref": "native-pdf/charging#block-19"
         },
         {
+          "asset_refs": [],
+          "block_id": "charging:block-0020",
+          "content_sha256": "b8ce7d491afa3c728c676f93c94b34414e6f32986cfc2201305d8246c4ce934f",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "本製品は、12V/10A 出力の車載シガーソケットからの充電に対応しています。"
+              }
+            ],
+            "kind": "heading",
+            "level": 3,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/charging#block-20"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "charging:block-0021",
+          "content_sha256": "1aa460a6c30376a13ffef8d5cd2d097d340f2c6520c5991fd8e44ccad74e8e1c",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "ご使用の際は、以下にご注意ください："
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/charging#block-21"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "charging:block-0022",
+          "content_sha256": "8d6ff743322d9af87e774cdbe4bbffdae983029dc6aa0b704b190bf0e7069c43",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "必ず車のエンジンを始動させてから接続してください。エンジン停止状態で使用すると、車両のバッテリーが上がる恐れがあります。"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "車の充電ポートとシガーソケット充電ケーブルの接触状態をご確認ください。ケーブルが確実に奥まで差し込まれていることをご確認ください。"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "悪路などで車両の振動が激しい場合は、接触不良や発熱・焼損の恐れがあるため、充電を中止してください。"
+                  }
+                ],
+                "kind": "list_item"
+              },
+              {
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "誤使用による故障・損傷については、弊社では責任を負いかねます。あらかじめご了承ください。"
+                  }
+                ],
+                "kind": "list_item"
+              }
+            ],
+            "kind": "list",
+            "ordered": false,
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "native-pdf/charging#block-22"
+        },
+        {
           "asset_refs": [
             "assets/car-charge.png"
           ],
-          "block_id": "charging:block-0020",
+          "block_id": "charging:block-0023",
           "content_sha256": "6e286bcb369296dcf334e1cdd5ed34960a1e187186d0a917ad58cba7bbebfaea",
           "kind": "flow",
           "payload": {
@@ -11016,11 +11107,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-20"
+          "source_ref": "native-pdf/charging#block-23"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0021",
+          "block_id": "charging:block-0024",
           "content_sha256": "12eb008f17c34e86e2a2b2045d3b61e6d67ebf4abaab3f862aa3e3371e93f320",
           "kind": "flow",
           "payload": {
@@ -11114,7 +11205,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "native-pdf/charging#block-21"
+          "source_ref": "native-pdf/charging#block-24"
         }
       ],
       "language": "ja",
@@ -11122,7 +11213,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#charging",
       "source_ref": "native-pdf/charging",
-      "source_sha256": "3787b56afac4dc2b5d8364c2cae1401a53097b851ca111bc6d9e944d0ae89503"
+      "source_sha256": "fb12949183a9cae88c1bb76c09e225167f3da9519ff9176c0c99c363b0a2098d"
     },
     {
       "blocks": [
@@ -12959,16 +13050,61 @@
         {
           "asset_refs": [],
           "block_id": "app_setup:block-0005",
-          "content_sha256": "cb9144f56a1245f7e63a2b6727fbb616c16f4478cfea29efa0f53bf33d306aac",
+          "content_sha256": "24219c85f7465eddcd46f6f61e9f47635be517241e3be3de24239aadecef8609",
           "kind": "flow",
           "payload": {
-            "children": [
+            "carrier_flow": [
               {
-                "kind": "text",
-                "text": "2.1  APPの右上にあるデバイス追加ボタン        をクリックします；"
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "2.1  APPの右上にある"
+                  },
+                  {
+                    "children": [
+                      {
+                        "kind": "text",
+                        "text": "デバイス追加ボタン"
+                      }
+                    ],
+                    "kind": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "        をクリックします；"
+                  }
+                ],
+                "kind": "paragraph"
               }
             ],
-            "kind": "paragraph",
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-SPECIAL-APP",
+              "language": "ja",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "デバイス追加ボタン",
+                  "content_kind": "inline_text",
+                  "role": "accessibility_label"
+                },
+                {
+                  "content": {
+                    "html": "2.1  APPの右上にある<strong>デバイス追加ボタン</strong>        をクリックします；",
+                    "text": "2.1  APPの右上にある デバイス追加ボタン         をクリックします；"
+                  },
+                  "content_kind": "rich_text",
+                  "role": "paragraph"
+                }
+              ],
+              "source_ref": "native-pdf/app_setup/43",
+              "token_roles": [
+                "component.special.app"
+              ],
+              "variant": "inline-control"
+            },
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "native-pdf/app_setup#block-5"
@@ -13057,7 +13193,7 @@
         {
           "asset_refs": [],
           "block_id": "app_setup:block-0008",
-          "content_sha256": "e1ead492472f4c4e923f71f5bb5234d5540fd4b5a417b18067c481c76861ff11",
+          "content_sha256": "ff4ae3513c5dd5d91afb23426b067de4ae64e6586bf031d4efa8578313cd40bc",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -13141,7 +13277,7 @@
                   "role": "body"
                 }
               ],
-              "source_ref": "native-pdf/app_setup/notice-43",
+              "source_ref": "native-pdf/app_setup/notice-44",
               "token_roles": [
                 "component.callout"
               ],
@@ -13236,7 +13372,7 @@
         {
           "asset_refs": [],
           "block_id": "app_setup:block-0011",
-          "content_sha256": "02be29a7fe484983b40d0626ce7c2e752481de7c1b471cb30f9b21b68a570a25",
+          "content_sha256": "3238562b5f2a247925324489c440319718cb3985202b9a85502470f7de1f65b3",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -13320,7 +13456,7 @@
                   "role": "body"
                 }
               ],
-              "source_ref": "native-pdf/app_setup/notice-44",
+              "source_ref": "native-pdf/app_setup/notice-45",
               "token_roles": [
                 "component.callout"
               ],
@@ -13351,7 +13487,7 @@
         {
           "asset_refs": [],
           "block_id": "app_setup:block-0013",
-          "content_sha256": "3cd473850af5774da4b2ee7231d8003becf26457dc8a44405272c5d6e9c3d0a2",
+          "content_sha256": "f767f273ac4ed9ffe84063e79c6cb641f1fe55ab5b3864e63b5524ba8255fb31",
           "kind": "flow",
           "payload": {
             "carrier_flow": [
@@ -13435,7 +13571,7 @@
                   "role": "body"
                 }
               ],
-              "source_ref": "native-pdf/app_setup/notice-45",
+              "source_ref": "native-pdf/app_setup/notice-46",
               "token_roles": [
                 "component.callout"
               ],
@@ -13725,7 +13861,7 @@
       "skipped_raw": 0,
       "source_path": "source/ja/content.json#app_setup",
       "source_ref": "native-pdf/app_setup",
-      "source_sha256": "73990e275e6df75387414aba91baae822513f06953efd69bd5868f14c61de627"
+      "source_sha256": "ba728d1eb3b58fffd5acd1a5b55aa55aeb2ca1fc1e00bb243916621530eafaac"
     }
   ],
   "region": "JP",

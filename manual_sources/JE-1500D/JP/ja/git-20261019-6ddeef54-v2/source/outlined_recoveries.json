@@ -123,5 +123,24 @@
     ],
     "method": "manual transcription checked against 4x original PDF render",
     "source_pixels_sha256": "ee21009f9e2f44df32b4d46d7c9b70afa06bd5a855a963391b91f005dd03e200"
+  },
+  {
+    "physical_page": 19,
+    "bbox": [
+      27,
+      243,
+      343,
+      352
+    ],
+    "heading": "本製品は、12V/10A 出力の車載シガーソケットからの充電に対応しています。",
+    "paragraphs": [
+      "ご使用の際は、以下にご注意ください：",
+      "必ず車のエンジンを始動させてから接続してください。エンジン停止状態で使用すると、車両のバッテリーが上がる恐れがあります。",
+      "車の充電ポートとシガーソケット充電ケーブルの接触状態をご確認ください。ケーブルが確実に奥まで差し込まれていることをご確認ください。",
+      "悪路などで車両の振動が激しい場合は、接触不良や発熱・焼損の恐れがあるため、充電を中止してください。",
+      "誤使用による故障・損傷については、弊社では責任を負いかねます。あらかじめご了承ください。"
+    ],
+    "method": "manual transcription checked against 5x authoritative PDF render; this is charging the power station from a vehicle, distinct from the page-12 warning for charging a vehicle battery from the power station",
+    "source_pixels_sha256": "6b2698c500c593cb1eb97aa54728ba1ba7c1927b390ccd94341df37830f4b162"
   }
 ]

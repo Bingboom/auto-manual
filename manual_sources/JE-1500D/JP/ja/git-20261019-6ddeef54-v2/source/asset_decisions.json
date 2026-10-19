@@ -20,22 +20,17 @@
   },
   {
     "slot": "inbox-cable",
-    "searched": [
-      "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets",
-      "docs/renderers/web/assets/shared/"
-    ],
-    "decision": "extract target artwork",
-    "reason": "JE-1500D differs in chassis/ports/ratings/display/App model; JE-1000F product art is not interchangeable",
+    "candidate": "manual_sources/JE-1000F/JP/ja/git-20260930-d88b32fe-jp-reviewed/web/ja/assets/inbox-ac-cable.svg",
+    "decision": "reuse byte-identical",
+    "reason": "same Japanese AC charging cable plug/body verified against target source; no model-specific markings",
+    "sha256": "39890a48e00c673b9b7834e39a06a43088858fdd1e20eaf0ef50652de11490a1",
     "physical_page": 8,
     "bbox": [
       168,
       113,
       202,
       213
-    ],
-    "final_path": "assets/inbox-cable.png",
-    "sha256": "4fd08a123d35ee5b4fb649182b84a2325cd455a886c27c771600180fb2d40017",
-    "background": "retain complete panel and product/UI; no body/table screenshot"
+    ]
   },
   {
     "slot": "inbox-manual",
@@ -276,12 +271,12 @@
     "physical_page": 16,
     "bbox": [
       27,
-      65,
+      62,
       342,
       239
     ],
     "final_path": "assets/ups.png",
-    "sha256": "005cf3683ddc76c9fd67d26a264e24e857c1ea9d297d870cd125df561a4cb57a",
+    "sha256": "43f05d882e6a53124ae6976a78232ba08ef0741fd2f584d9889ddadc66bb8acb",
     "background": "retain complete panel and product/UI; no body/table screenshot"
   },
   {
@@ -316,10 +311,10 @@
       27,
       180,
       342,
-      298
+      300.5
     ],
     "final_path": "assets/solar-direct.png",
-    "sha256": "cfaa49fdca73fa6dd6975bfe3e596b28d65689a0cc30c6bdcabfec4cdfab5caf",
+    "sha256": "794fcfc03e93d01a715ce99078111b03fd4d28849d05d23308b8a02c03ed31ad",
     "background": "retain complete panel and product/UI; no body/table screenshot"
   },
   {
@@ -332,13 +327,13 @@
     "reason": "JE-1500D differs in chassis/ports/ratings/display/App model; JE-1000F product art is not interchangeable",
     "physical_page": 18,
     "bbox": [
-      27,
-      353,
+      26.5,
+      352.5,
       342,
-      498
+      500.5
     ],
     "final_path": "assets/solar-adapter.png",
-    "sha256": "dc2914157f27252b639ff72b78d453e63c64b519b5769b30c60e2bcc7f1eab48",
+    "sha256": "317088315d76d16e2b0bdd185b6726913c0f8a6f5bb7a1f2a9c7315c7f64ca6e",
     "background": "retain complete panel and product/UI; no body/table screenshot"
   },
   {
@@ -352,12 +347,12 @@
     "physical_page": 19,
     "bbox": [
       27,
-      251,
-      342,
-      494
+      353,
+      343,
+      490
     ],
     "final_path": "assets/car-charge.png",
-    "sha256": "6a9e600e13c34fe72865f9f97ee14d858c297c96cf3447b94fe00472d3103526",
+    "sha256": "6181d0d5e0cb666b065e41da6c5b71dbe5b67c063dee61c6c511314fac167048",
     "background": "retain complete panel and product/UI; no body/table screenshot"
   },
   {
@@ -428,12 +423,12 @@
     "physical_page": 24,
     "bbox": [
       27,
-      417,
+      411.7,
       342,
       482
     ],
     "final_path": "assets/app-control.png",
-    "sha256": "63de03d94dcaaaee191bbbdbf5b0a7ca045f5488e7820d2c115a0e713ccf42d5",
+    "sha256": "a9ebf5bed858aaed8e9161047944e40148a8a9b924b54376a297353b9196aac6",
     "background": "retain complete panel and product/UI; no body/table screenshot"
   },
   {

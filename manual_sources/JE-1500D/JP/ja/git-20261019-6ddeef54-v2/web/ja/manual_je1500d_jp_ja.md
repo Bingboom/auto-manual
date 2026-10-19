@@ -102,7 +102,7 @@
 
 ## 同梱品
 
-<figure aria-label="同梱品" class="hb-inbox-composition" data-card-count="3" data-component-id="HB-SPECIAL-INBOX" data-inbox-variant="three-card-responsive"><ol class="hb-inbox-grid"><li class="hb-inbox-card" data-item-number="1"><img alt="本体" class="hb-inbox-art" src="assets/inbox-unit.png"/><div class="hb-inbox-label"><p>本体</p></div></li><li class="hb-inbox-card" data-item-number="2"><img alt="AC充電ケーブル" class="hb-inbox-art" src="assets/inbox-cable.png"/><div class="hb-inbox-label"><p>AC充電ケーブル</p></div></li><li class="hb-inbox-card" data-item-number="3"><img alt="取扱説明書" class="hb-inbox-art" src="assets/inbox-manual.png"/><div class="hb-inbox-label"><p>取扱説明書</p></div></li></ol></figure>
+<figure aria-label="同梱品" class="hb-inbox-composition" data-card-count="3" data-component-id="HB-SPECIAL-INBOX" data-inbox-variant="three-card-responsive"><ol class="hb-inbox-grid"><li class="hb-inbox-card" data-item-number="1"><img alt="本体" class="hb-inbox-art" src="assets/inbox-unit.png"/><div class="hb-inbox-label"><p>本体</p></div></li><li class="hb-inbox-card" data-item-number="2"><img alt="AC充電ケーブル" class="hb-inbox-art" src="assets/inbox-cable.svg"/><div class="hb-inbox-label"><p>AC充電ケーブル</p></div></li><li class="hb-inbox-card" data-item-number="3"><img alt="取扱説明書" class="hb-inbox-art" src="assets/inbox-manual.png"/><div class="hb-inbox-label"><p>取扱説明書</p></div></li></ol></figure>
 
 <p>※ 付属品を故障、紛失等してしまった場合はカスタマーサポートまでご連絡ください。</p>
 
@@ -238,6 +238,12 @@
 
 ### シガーソケット充電
 
+### 本製品は、12V/10A 出力の車載シガーソケットからの充電に対応しています。
+
+<p>ご使用の際は、以下にご注意ください：</p>
+
+<ul><li>必ず車のエンジンを始動させてから接続してください。エンジン停止状態で使用すると、車両のバッテリーが上がる恐れがあります。</li><li>車の充電ポートとシガーソケット充電ケーブルの接触状態をご確認ください。ケーブルが確実に奥まで差し込まれていることをご確認ください。</li><li>悪路などで車両の振動が激しい場合は、接触不良や発熱・焼損の恐れがあるため、充電を中止してください。</li><li>誤使用による故障・損傷については、弊社では責任を負いかねます。あらかじめご了承ください。</li></ul>
+
 <figure class="hb-reference-figure" data-component-id="HB-SPECIAL-REFERENCE-FIGURE" data-reference-id="car-charge" data-source-fragment-sha256="9794aea8d1920685300bf558071273b2244b54b09702eb86e87dc7c0dcca0aa2" data-step-captions="embedded"><div class="hb-reference-semantic" data-reference-id="car-charge.semantic"><img alt="※ 車載用シガーソケット充電ケーブルは別売りです。車" class="hb-reference-art hb-composite-art" src="assets/car-charge.png"/></div></figure>
 
 <table class="manual-callout-table manual-callout-table"><tbody><tr><td class="manual-callout-label">ご注意</td><td class="manual-callout-body"><p>・シガーソケット充電とソーラー充電を同時に使用しないでください。同時に使用すると、車のヒューズが損傷する可能性があります。・シガーソケット充電は 12V, 10A 車専用で、24V 車は充電できません。人身傷害や物的損害を避けるため、本製品の充電に 24V 車を使用しないでください。</p></td></tr></tbody></table>
@@ -316,7 +322,7 @@
 
 ### 2. デバイスを追加するには
 
-<p>2.1  APPの右上にあるデバイス追加ボタン        をクリックします；</p>
+<p>2.1  APPの右上にある<span aria-label="デバイス追加ボタン" class="hb-inline-add-device-icon" data-component-id="HB-SPECIAL-APP" role="img">+</span>        をクリックします；</p>
 
 <p>2.2 デバイスの主電源ボタンを長押しして電源をいれると、ディスプレー画面にWi-FiとBluetoothのアイコンが点滅し、デバイスがネットワーク設定モードに入ったことを示します。アイコン点滅中ボタンをクリックし、アプリが近くのデバイスに接続し、Bluetoothのアクセス許可を開くことを許可します；</p>
 

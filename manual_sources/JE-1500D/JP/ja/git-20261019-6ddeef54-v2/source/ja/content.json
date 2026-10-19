@@ -2624,7 +2624,7 @@
               },
               {
                 "role": "card_2_art",
-                "asset_ref": "assets/inbox-cable.png",
+                "asset_ref": "assets/inbox-cable.svg",
                 "locale_policy": "shared"
               },
               {
@@ -2682,7 +2682,7 @@
                           "children": [
                             {
                               "kind": "image",
-                              "source": "assets/inbox-cable.png",
+                              "source": "assets/inbox-cable.svg",
                               "alt": "AC充電ケーブル"
                             },
                             {
@@ -5422,6 +5422,70 @@
           "schema_version": "manual-flow/v2"
         },
         {
+          "kind": "heading",
+          "level": 3,
+          "children": [
+            {
+              "kind": "text",
+              "text": "本製品は、12V/10A 出力の車載シガーソケットからの充電に対応しています。"
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "paragraph",
+          "children": [
+            {
+              "kind": "text",
+              "text": "ご使用の際は、以下にご注意ください："
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "children": [
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "必ず車のエンジンを始動させてから接続してください。エンジン停止状態で使用すると、車両のバッテリーが上がる恐れがあります。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "車の充電ポートとシガーソケット充電ケーブルの接触状態をご確認ください。ケーブルが確実に奥まで差し込まれていることをご確認ください。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "悪路などで車両の振動が激しい場合は、接触不良や発熱・焼損の恐れがあるため、充電を中止してください。"
+                }
+              ]
+            },
+            {
+              "kind": "list_item",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "誤使用による故障・損傷については、弊社では責任を負いかねます。あらかじめご了承ください。"
+                }
+              ]
+            }
+          ],
+          "schema_version": "manual-flow/v2"
+        },
+        {
           "kind": "component",
           "component_spec": {
             "component_id": "HB-SPECIAL-REFERENCE-FIGURE",
@@ -7186,14 +7250,59 @@
           "schema_version": "manual-flow/v2"
         },
         {
-          "kind": "paragraph",
-          "children": [
+          "schema_version": "manual-flow/v2",
+          "kind": "component",
+          "component_spec": {
+            "component_id": "HB-SPECIAL-APP",
+            "variant": "inline-control",
+            "source_ref": "native-pdf/app_setup/43",
+            "language": "ja",
+            "slots": [
+              {
+                "role": "accessibility_label",
+                "content_kind": "inline_text",
+                "content": "デバイス追加ボタン"
+              },
+              {
+                "role": "paragraph",
+                "content_kind": "rich_text",
+                "content": {
+                  "html": "2.1  APPの右上にある<strong>デバイス追加ボタン</strong>        をクリックします；",
+                  "text": "2.1  APPの右上にある デバイス追加ボタン         をクリックします；"
+                }
+              }
+            ],
+            "assets": [],
+            "token_roles": [
+              "component.special.app"
+            ],
+            "metadata": {},
+            "schema_version": "component-spec/v1"
+          },
+          "carrier_flow": [
             {
-              "kind": "text",
-              "text": "2.1  APPの右上にあるデバイス追加ボタン        をクリックします；"
+              "kind": "paragraph",
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "2.1  APPの右上にある"
+                },
+                {
+                  "kind": "strong",
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "デバイス追加ボタン"
+                    }
+                  ]
+                },
+                {
+                  "kind": "text",
+                  "text": "        をクリックします；"
+                }
+              ]
             }
-          ],
-          "schema_version": "manual-flow/v2"
+          ]
         },
         {
           "kind": "paragraph",
@@ -7265,7 +7374,7 @@
           "component_spec": {
             "component_id": "HB-CALLOUT-STRIP",
             "variant": "note",
-            "source_ref": "native-pdf/app_setup/notice-43",
+            "source_ref": "native-pdf/app_setup/notice-44",
             "language": "ja",
             "slots": [
               {
@@ -7421,7 +7530,7 @@
           "component_spec": {
             "component_id": "HB-CALLOUT-STRIP",
             "variant": "note",
-            "source_ref": "native-pdf/app_setup/notice-44",
+            "source_ref": "native-pdf/app_setup/notice-45",
             "language": "ja",
             "slots": [
               {
@@ -7522,7 +7631,7 @@
           "component_spec": {
             "component_id": "HB-CALLOUT-STRIP",
             "variant": "note",
-            "source_ref": "native-pdf/app_setup/notice-45",
+            "source_ref": "native-pdf/app_setup/notice-46",
             "language": "ja",
             "slots": [
               {

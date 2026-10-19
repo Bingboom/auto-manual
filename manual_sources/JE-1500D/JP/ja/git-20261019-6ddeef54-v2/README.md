@@ -4,11 +4,11 @@ The operator supplied the Japanese **Jackery ポータブル電源 1500 New** PD
 
 - Web body: physical pages 3–26; printed cover, TOC and back cover remain in the original archive.
 - `source/native_pages.json` and `source/text_selections.json` retain the positioned source text and disposition of every native line; `source/unassigned_text.json` must be empty.
-- `source/outlined_recoveries.json` holds manually checked transcriptions with physical coordinates and source pixel hashes for outlined precautions/disclaimer text and the 12V vehicle warning. These are original-source recoveries, not new wording.
+- `source/outlined_recoveries.json` holds manually checked transcriptions with physical coordinates and source pixel hashes for outlined precautions/disclaimer text and the distinct 12V vehicle input/output warnings. These are original-source recoveries, not new wording.
 - `source/ja/content.json` binds shared ComponentSpecs. Prose, warnings, symbols, specifications, LCD descriptions, LCD mode actions, button combinations, troubleshooting and warranty stay native HTML. Target-specific overview, operation, charging and App artwork retains complete panels/phone frames. Embedded artwork captions remain in searchable source/IR and image accessibility text; body/table screenshots are not used.
 - `source/asset_decisions.json` inventories the JE-1000F JP reference and shared candidates before extraction. Shared LCD/button bytes are unchanged. The 12 source symbols are independently matched against native glyphs; six existing variants match, while six native variants preserve the source glyph shape/tint as additions to the shared catalog. No existing shared bytes are replaced.
 - `source/geometry.css` contains only geometry for readable diagram panning; shared theme/component contracts own presentation.
-- The structure follows JE-1000F JP; all model facts/artwork come from JE-1500D. There is no inherited emergency-charge button shortcut, expansion pack chapter or auto-resume feature absent from this source.
+- The structure follows JE-1000F JP; all model facts and product-specific art come from JE-1500D; matching shared art is reused. There is no inherited emergency-charge button shortcut, expansion pack chapter or auto-resume feature absent from this source.
 
 Source wording is retained, including the 5 cm general ventilation guidance versus the 30 cm F6 remedy, the printed “主電源ボタン/オフ”, “充電速度限制”, “出カポート”, two temperature entries sharing LCD number 20, and the three AC ports/two simultaneously used wording. These are source statements, not conversion corrections. Source US/EU data and other models are not imported.
 
