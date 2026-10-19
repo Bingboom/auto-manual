@@ -1,0 +1,102 @@
+{
+ "schema_version": "source-operator-acceptance/v1",
+ "target": {
+  "model": "JA-AD500A-SIL",
+  "region": "US",
+  "languages": [
+   "fr"
+  ]
+ },
+ "operator_quote": "法语版规格表 Input/Output 写反了== 这个改掉发布",
+ "date": "2026-10-19",
+ "merge_authorization": "MA-319",
+ "reviewed_source_commit": "21ffa69a",
+ "operator_decisions": [
+  "French spec table: 11V–16V and 16V–60V rows are Entrée CC (input), 42V–58V is Sortie CC (output)",
+  "French pages re-frozen on shared theme classes for the prepared-document shared-style gate; copy unchanged"
+ ],
+ "original_source_sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530",
+ "reviewed_inputs": [
+  {
+   "path": "assets/car.png",
+   "size": 89548,
+   "sha256": "c8237a9bc6433746f86bdbd7e6de26895f426b4fa3d0abf4320f8cbae3662dd2"
+  },
+  {
+   "path": "assets/contact-qr.png",
+   "size": 2217,
+   "sha256": "98dd52bc02290abea21f6bfdaa105dfe77a831b99c845ce8f44e2adc9009deaa"
+  },
+  {
+   "path": "assets/inbox-manual.png",
+   "size": 11774,
+   "sha256": "93420c29dca6c234752aafc094f1f342eb61547215ad73b1fa667785a54f2290"
+  },
+  {
+   "path": "assets/inbox-module.png",
+   "size": 14353,
+   "sha256": "3c140171d4ae33f68026b81db880318d28ccf3ecd4d4d201c0ec9015080db49d"
+  },
+  {
+   "path": "assets/overview-textless.png",
+   "size": 72743,
+   "sha256": "910a6ce8542f5be9df214a28699b57df6c5abb97c788f1efd72c3b6507f967c2"
+  },
+  {
+   "path": "assets/solar.png",
+   "size": 222637,
+   "sha256": "0db544e58c9043e70d74311a01ca46edb3b174f5962a28b523da348064df5dfd"
+  },
+  {
+   "path": "source/differences.md",
+   "size": 1884,
+   "sha256": "f25b17920c959019b96c7af12d9e8a5679ef46593968d3b5178aede53686185d"
+  },
+  {
+   "path": "source/native_copy.json",
+   "size": 13561,
+   "sha256": "b1bae9a035d05389ba9cb42b85f62079ea152c803895e4b3ba7e7a8ba6054b19"
+  },
+  {
+   "path": "source/original.pdf",
+   "size": 3410276,
+   "sha256": "28c58312ffafae322161d17701869ede8f6b87e58799379a84fad2850c638530"
+  },
+  {
+   "path": "source/page/box_contents_fr.rst",
+   "size": 334,
+   "sha256": "78801518c24f331a4e04f909986cb5a45c53efd837d0f1fdc6dd7636e1b6c747"
+  },
+  {
+   "path": "source/page/charging_fr.rst",
+   "size": 3653,
+   "sha256": "e3cb27f5e986c8907dda38c84345a22b61e80e7ffcda6cb3544d5fb3ab530047"
+  },
+  {
+   "path": "source/page/contact_fr.rst",
+   "size": 495,
+   "sha256": "5854055220c5320aed6e210a1ba3332f8a7d59b46b381b0328532949eb0f037f"
+  },
+  {
+   "path": "source/page/product_overview_fr.rst",
+   "size": 2228,
+   "sha256": "3432d673a76b77c52b87730d02efbfcd045a9402c8120470bcfb6f93ac6ec59b"
+  },
+  {
+   "path": "source/page/spec_fr.rst",
+   "size": 854,
+   "sha256": "45e7c4693796c702b16ad56025068badeb9909ca073dd35558ebbab6b07397d2"
+  },
+  {
+   "path": "source/page/warranty_fr.rst",
+   "size": 3390,
+   "sha256": "bb237bfdb36aa0c285cac61a55c199d54a781b35b89abe444b2b53bd709443c8"
+  },
+  {
+   "path": "source/presentation.css",
+   "size": 993,
+   "sha256": "0606b636278a4710ccb5e1e4f7fb2eb6949c6ccadc031cc5e53324e25da760ed"
+  }
+ ],
+ "scope": "Git-only Web release of git-20261019-28c58312-fr-spec (French only; Spanish stays on git-20261016-28c58312-solar-voc); no Feishu/Base/source-table, queue, asset-registry or HTML_link writes."
+}
