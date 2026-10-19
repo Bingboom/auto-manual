@@ -125,36 +125,23 @@ JavaScript, every panel stays visible. Styling is scoped to the workbench and
 reuses the workspace shell. The key-metric cards link to `#deliverables`, the
 交付物 tab that holds the matrix.
 
-In the 交付物 tab, the delivery data is grouped by model, with one row per
-region and one column per format:
+The 交付物 tab shows Web manuals only (2026-10-19). It opens with
+网页说明书进度, described on [its own page](web-progress.md), and then 语言版本明细,
+collapsed. That list groups the language versions by model, one row per region.
+Each chip is one language and its version, linked to its page on this site.
+Two selects filter by model and by region. On a phone each region becomes a
+card. Product names come from the manual center; a model the manual center
+does not list shows its code only.
 
-| Column | What it links to | Source |
-| --- | --- | --- |
-| 网页手册 | each language edition's page on this site | `docs/publish/publish_manifest.json`, read at build time |
-| 印刷交付包 (IDML + PDF) | the Publish handoff ZIP in the Feishu wiki | the build table's `idml_file` column, through the snapshot |
-| Word 云文档 | the Draft Word output, imported as a Feishu cloud doc | the build table's `飞书云文档` column, through the snapshot |
-
-- Each cell holds one chip per language, with its version. 整本 marks a
-  whole-book document that carries all its languages in one file.
-- The PDF has no link of its own: it ships inside the handoff ZIP, and the
-  publish tree refuses PDF files.
-- Two selects filter the table by model and by region. On a phone, the table
-  remains a matrix in a keyboard-focusable horizontal scroll region, with the
-  region column pinned. Long version identifiers wrap instead of widening the page.
-- Product names come from the manual center. A model that the manual center
-  does not list shows its code only. The build table's own product names are
-  not used, because some of them are wrong or empty.
-
-The Feishu links open only for signed-in Feishu users, but anyone who can open
-this page sees their addresses. The operator chose this on 2026-09-25
-(「直接放飞书链接」), while the site was public. Since 2026-10-13 the site has
-been private (Read the Docs for Business), but the operator can make it public
-at any time, so treat these addresses as published. The page accepts only
-https links on a Feishu or Lark host.
+The Feishu snapshot below no longer shows on this tab. It still feeds the
+page summary's Word 云文档 and 印刷交付包 counts and 生产与资产. Its links stay in
+the snapshot: the operator chose on 2026-09-25 to list them (「直接放飞书链接」),
+the site can be made public at any time, and only https Feishu or Lark links
+are accepted.
 
 ### Refreshing the Feishu snapshot
 
-RTD never reads Feishu, so the two Feishu columns come from
+RTD never reads Feishu, so the two Feishu formats come from
 `tools/rtd_portal_assets/deliverables_snapshot.json`, the snapshot of the
 source registry's `deliverables_feishu` domain. Refresh it through a PR
 after new Draft or Publish builds:
@@ -177,10 +164,10 @@ fails the export instead of silently dropping a format.
 
 ### Failure behaviour
 
-- Without a publish manifest, the web column is empty and the page says
+- Without a publish manifest, 网页说明书进度 and 语言版本明细 say
   发布清单当前不可读.
-- An unreadable or unsound snapshot empties the two Feishu columns only, with a
-  Sphinx warning.
+- An unreadable or unsound snapshot empties the Word 云文档 and 印刷交付包 counts
+  only, with a Sphinx warning.
 - A snapshot older than the `deliverables_feishu` domain's `stale_after_days`
   in `source_registry.yaml` shows 待复核, and
   `check` warns about it.

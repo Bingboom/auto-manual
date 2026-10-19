@@ -286,10 +286,10 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn("<h1>说明书工作台", page)
             self.assertIn("打开说明书资料库", page)
             self.assertIn('<tbody data-model="JE-1000F">', page)
-            self.assertIn('<tr data-region="pt-BR">', page)
-            # Web manuals link to their page on this site; Feishu links open in a new tab.
+            # The 交付物 tab lists Web manuals only: a region or model with Feishu formats alone has no row.
+            self.assertNotIn('<tr data-region="pt-BR">', page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
-            self.assertIn('href="https://t.feishu.cn/wiki/print-us"', page)
+            self.assertNotIn("t.feishu.cn", page)
             soup = BeautifulSoup(page, 'html.parser')
             sections = [section.get('id') for section in soup.select('#production-evidence > section')]
             self.assertLess(sections.index('production-overview'), sections.index('reuse'))
@@ -320,9 +320,18 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIsNotNone(soup.select_one('head script[src="../../_static/system-data.js"]'))
             self.assertTrue((base / "good" / "_static" / "system-data.js").is_file())
 
-            self.assertEqual(len(soup.select('.dl-table a[target="_blank"][rel="noopener"]')), 4)
-            self.assertIn('<option value="JE-1800B">JE-1800B</option>', page)
-            self.assertIn("飞书快照 2026-09-25", page)
+            self.assertFalse(soup.select('.dl-table a[target="_blank"]'))
+            self.assertNotIn('<option value="JE-1800B">', page)
+            # 网页说明书进度 leads the tab; its matrix links each market version to its page.
+            tab = soup.select_one('#deliverables.tab-panel')
+            self.assertEqual(tab.find(['section', 'details'])['id'], 'web-progress')
+            self.assertTrue(soup.select_one('details#deliverables-matrix'))
+            rows = soup.select('#web-progress .wp-table tr[data-open]')
+            self.assertEqual([row.th.b.text for row in rows], ['JE-1000F'])
+            chip = rows[0].select_one('a.wp-chip')
+            self.assertEqual((chip.text, chip['href']), ('1/1', '../../JE-1000F/US/en/md/manual_je1000f_us.html'))
+            self.assertTrue((base / "good" / "_static" / "web-progress.js").is_file())
+            self.assertIsNotNone(soup.select_one('[data-wp-trend] script[type="application/json"]'))
             self.assertTrue((base / "good" / "_static" / "deliverables.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             home = BeautifulSoup(workspace, "html.parser")
@@ -379,14 +388,14 @@ class RealSphinxTests(unittest.TestCase):
             (assets / SNAPSHOT_NAME).write_text("{not json", encoding="utf-8")
             result, page = build("no-snapshot")
             self.assertIn("Deliverables page shows no Feishu links", result.stderr)
-            self.assertIn("飞书快照当前不可读", page)
+            self.assertIn("交付快照 Unavailable", page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("t.feishu.cn", page)
 
             # Without a publish manifest the page still renders; with neither input it says so.
             manifest.unlink()
             _, page = build("nothing")
-            self.assertIn("发布清单和飞书快照当前都不可读", page)
+            self.assertIn("发布清单当前不可读，构建日志有告警。", page)
             self.assertIn("网页手册：发布清单当前不可读", page)
             self.assertIn("无数据：本次构建没有可读的发布清单", page)
             self.assertIn("无数据：发布清单当前不可读，无法确定已发布型号。", page)
@@ -394,8 +403,8 @@ class RealSphinxTests(unittest.TestCase):
             (assets / SNAPSHOT_NAME).write_text(json.dumps({"schema": dl.SNAPSHOT_SCHEMA,
                 "exported_at": "2026-09-25", "documents": []}), encoding="utf-8")
             _, page = build("empty")
-            self.assertIn("当前有效快照没有交付物", page)
-            self.assertNotIn("发布清单和飞书快照当前都不可读", page)
+            self.assertIn("发布清单里还没有网页说明书", page)
+            self.assertNotIn("发布清单当前不可读，构建日志有告警。", page)
 
             # An unreadable capability table empties only the 数据统计 tab; the old 系统数据 URL still redirects.
             with (web / "conf.py").open("a", encoding="utf-8") as conf:
@@ -404,7 +413,7 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn("Workbench statistics show no data", result.stderr)
             self.assertIn("机型能力表或素材登记表不可读，构建日志有告警。", page)
             self.assertNotIn("system-data-json", page)
-            self.assertIn("当前有效快照没有交付物", page)
+            self.assertIn("发布清单里还没有网页说明书", page)
             moved = BeautifulSoup(
                 (base / "no-statistics" / "workspace" / "data" / "index.html").read_text(), "html.parser")
             self.assertEqual(moved.select_one("#moved-target")["href"], "../deliverables/index.html#statistics")

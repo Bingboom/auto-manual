@@ -27,7 +27,7 @@ REGISTRY_NAME = "source_registry.yaml"
 REGISTRY_SCHEMA = "hello-docs-source-registry/v1"
 READ_LABELS = {"build": "构建时读", "snapshot": "读快照"}
 # The domains the workspace pages read; each must be registered.
-PAGE_DOMAINS = ("publications", "ledger", "corpus", "deliverables_feishu", "skeletons", "tooling",
+PAGE_DOMAINS = ("publications", "ledger", "corpus", "deliverables_feishu", "web_progress", "skeletons", "tooling",
                 "capabilities", "focus", "codebase")
 
 _ID = re.compile(r"^[a-z][a-z0-9_]*$")
