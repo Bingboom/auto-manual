@@ -11,7 +11,8 @@ from typing import Any
 
 from tools.utils.path_utils import PathSegments
 
-NAMES = {"deliverables": "deliverables_snapshot.json", "corpus": "system_workspace_corpus.json"}
+NAMES = {"deliverables": "deliverables_snapshot.json", "corpus": "system_workspace_corpus.json",
+         "web_progress": "web_progress_snapshot.json"}
 
 
 def data_dir(root: Path) -> Path:

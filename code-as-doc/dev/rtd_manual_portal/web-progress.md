@@ -65,19 +65,33 @@ domain's `stale_after_days` (7) shows 待复核.
 
 ## Refreshing
 
-Run this from a full clone of Hello-Docs (`git fetch --unshallow` if needed),
-with lark-cli signed in:
+Hello-Docs **Workspace Data Refresh** refreshes it every day at 07:17 Beijing time
+(cron `17 23 * * *` UTC); **Run workflow** with `web_progress` refreshes it at once.
+The 网页文档 table has no completion receipt, unlike the Word and print batches,
+so this source runs on a schedule (operator, 2026-10-19). The job:
+
+- checks out `main` with its full history (`fetch-depth: 0`, `filter: blob:none`), so
+  the timeline can date every language version;
+- runs `python tools/workspace_refresh.py refresh web_progress`, which reads the
+  table named by the Hello-Docs secrets `FEISHU_PUBLISHED_DOCS_BASE_TOKEN` and
+  `FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID` with the bot, after checking them against
+  the `web_progress` identity in `workspace_refresh_sources.json`;
+- writes `docs/knowledge/workspace-data/web_progress_snapshot.json` and opens or
+  updates the content PR `chore/workspace-web_progress`, like the other sources.
+  Nothing is merged automatically, and an unchanged read makes no commit.
+
+A missing secret, a shallow clone, a missing column or a ticked row without a
+Web manual link fails the run and keeps the last snapshot; the failure opens one
+`Workspace data update: web_progress` issue. Freshness shows as 网页进度快照 in the
+page's 数据更新时间, and Workspace Data Verify checks its hash like the others.
+
+By hand, from a full clone with lark-cli signed in:
 
 ```bash
 python -m tools.rtd.web_progress export --cli-bin "lark-cli --profile prod" --as bot
 python -m tools.rtd.web_progress check
 ```
 
-`export` is read-only. It reads the 网页文档 table named by
-`$FEISHU_PUBLISHED_DOCS_BASE_TOKEN` and `$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID`, and
-the history of `docs/publish/publish_manifest.json` at `--ref` (default `HEAD`)
-in `--history-repo` (default this checkout). A shallow clone, a missing column
-or a ticked row without a Web manual link fails the export, and the previous
-snapshot stays. It writes the snapshot only when its content changes; commit
-it through a PR. The workflow-driven Workspace Data Refresh does not run this
-export yet.
+`export` is read-only and takes the same table from `$FEISHU_PUBLISHED_DOCS_BASE_TOKEN`
+and `$FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID`; `--history-repo` and `--ref` choose the
+history to date from (default: this checkout at `HEAD`).

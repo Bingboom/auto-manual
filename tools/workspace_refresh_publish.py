@@ -30,7 +30,7 @@ def equivalent(left: Path, right: Path) -> bool:
     if not left.exists() or not right.exists():
         return False
     a, b = json.loads(left.read_text()), json.loads(right.read_text())
-    if "schema" in a and ("documents" in a or "sentence_pairs" in a):
+    if "schema" in a and ("documents" in a or "sentence_pairs" in a or "timeline" in a):
         return content_digest(a) == content_digest(b)
     def state(value):
         return "success" if value in ("changed", "unchanged") else value

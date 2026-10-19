@@ -60,7 +60,7 @@ domains:
       - "file:hello-docs:docs/publish/publish_manifest.json"
     read: snapshot
     snapshot: web_progress_snapshot.json
-    refresh: python -m tools.rtd.web_progress export
+    refresh: python tools/workspace_refresh.py refresh web_progress
     stale_after_days: 7
     fallback: 网页进度快照当前不可读
     used_by: 说明书工作台·交付物的待转、已核对与上线进度

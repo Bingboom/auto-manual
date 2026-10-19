@@ -374,7 +374,7 @@ class RealSphinxTests(unittest.TestCase):
             self.assertEqual(kpis['网页说明书'].em.text, '美规 1')
             self.assertIsNone(kpis['语言版本'].em)
             # Both snapshot freshness spans stay here for Workspace Data Verify; the rules sit on 系统建设.
-            for kind in ('deliverables', 'corpus'):
+            for kind in ('deliverables', 'corpus', 'web_progress'):
                 self.assertIsNotNone(soup.select_one(f'[data-workspace-source="{kind}"]'), kind)
             self.assertTrue(soup.select('.page-meta a[href="../system/index.html#sources"]'))
             # Corpus and skeleton totals belong to 系统建设: the asset cards and the ledger point there.
