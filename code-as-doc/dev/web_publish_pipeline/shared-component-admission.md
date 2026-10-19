@@ -48,6 +48,13 @@ component first. Do not add a per-language stylesheet or relabel a screenshot
 as a semantic table. Rebuild into a new immutable version; do not edit the
 historical package. A library fix alone does not update already frozen books:
 rebuild and republish every affected language, then verify the live routes.
+The maintainability guardrails keep that visible: a change to a shared input
+that frozen packages pin fails until each affected package's handling is
+recorded in `data/frozen_package_registry.json` (`keep-frozen` or
+`rebuild-pending`, with a reason). Run
+`python -m tools.web.frozen_package_registry report --changed <path>` before
+changing a shared file to see which packages pin it; see the
+[CI guide](../../build_doc_guide/ci-and-guardrails.md).
 
 Regression coverage includes the ten reviewed native imports (JE-1000F four
 languages and JE-2000F/E three each), the actual pre-fix four-language snapshot,

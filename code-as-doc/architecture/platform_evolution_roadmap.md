@@ -171,6 +171,7 @@ All on the existing [`flow_dashboard`](../../tools/flow_dashboard.py), extended.
 - reflow rate and TM hit rate (already measured)
 - content-restore drill time
 - % of agent writes carrying a full audit trail
+- frozen-package drift per shared change: packages affected, their handling and operator minutes, from the `drift_log` of [`data/frozen_package_registry.json`](../../data/frozen_package_registry.json) (read from the registry, not yet on the dashboard); packages without pins count as impact unknown
 
 ## 7. Operating Under Long-Term Constraints (core philosophy)
 

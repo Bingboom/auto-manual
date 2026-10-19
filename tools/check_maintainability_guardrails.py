@@ -22,6 +22,7 @@ from tools import (
     check_top_level_module_ratchet,
 )
 from tools.utils.path_utils import PathSegments, renderer_contracts_of
+from tools.web import frozen_package_registry
 
 
 # Thresholds are set ~25-100 lines above the current size of files that have
@@ -416,6 +417,10 @@ def main(argv: list[str] | None = None) -> int:
     top_level = check_top_level_module_ratchet.check_repository(args.repo_root.resolve())
     if top_level.exit_code:
         return top_level.exit_code
+
+    frozen_packages = frozen_package_registry.check_repository(args.repo_root.resolve())
+    if frozen_packages.exit_code:
+        return frozen_packages.exit_code
 
     print(
         f"[maintainability] Guardrails OK for {len(HOTSPOT_LINE_THRESHOLDS)} hotspot files."
