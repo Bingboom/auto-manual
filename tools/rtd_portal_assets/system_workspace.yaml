@@ -59,12 +59,13 @@ focus:
     - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
     - "ack:夏冰 2026-09-26「按这个顺序 当下的系统建设布局 做一下 更清晰的布局版面的调整」"
     - "ack:操作者 2026-10-12「好，写成 REV-41 决定记录开 PR」"
+    - "ack:操作者 2026-10-19「REV-39 暂缓」"
   lanes:
     - id: web
       horizon: now
       title: 网页发布与维护闭环
       goal: 先收口发布基线，再用真实修订验证发布、恢复与维护全过程
-      action: 收口 REV-07 → 完成 REV-09 修订、发布与恢复演练 → 验收 G1 → 开始 G2 维护试点
+      action: 完成 REV-09 修订、发布与恢复演练 → 验收 G1 → 开始 G2 维护试点
       card: web_publishing
       gates: [G1, G2]
     - id: corpus
@@ -83,10 +84,10 @@ focus:
       items: [agent_operations.source_registry]
       revs: [REV-44]
     - id: shared_ir
-      horizon: next
+      horizon: deferred
       title: Shared IR（共享底稿）
       goal: 先明确公共语义与各格式排版边界，再用代表目标验证共享收益
-      action: 完成 REV-39 边界设计；按 REV-40 及其依赖验收代表目标，再决定扩展。IDML 独立验收不阻塞 Web 交付
+      action: REV-39 暂缓（操作者 2026-10-19），边界摸底草稿 #1278 保留作输入；REV-20 或 REV-40 开工、启动共享层收敛，或共享修改因缺少公共语义契约无法传到冻结整本包时再启动。IDML 独立验收不阻塞 Web 交付
       card: document_production
       items: [document_production.shared_ir]
       revs: [REV-39..REV-40]
@@ -382,11 +383,11 @@ capabilities:
           - "rev:REV-44=done"
           - "ack:夏冰 2026-09-25「验收」"
       - id: agent_dispatch
-        label: 多 Agent 调度与任务续接
+        label: 多 Agent 设计储备（暂缓）
         status: planned
-        note: 仅保留设计参考，当前暂不启动；出现持续交接或并发瓶颈后再评估，不作为网页交付前置条件
+        note: 操作者尚未准备建设多 Agent；仅保留设计参考，实施暂缓，重启须另行批准，不阻塞网页化、语料、SSOT、IR 或 IDML 工作
         evidence:
-          - "rev:REV-45=planned"
+          - "rev:REV-45=deferred"
           - "file:auto-manual:code-as-doc/dev/multi_agent_dispatch_design.md"
 
 corpus:
@@ -495,9 +496,7 @@ now_next:
     - {id: IDML, label: 印刷独立验收, revs: [REV-20, REV-26], fold: true}
     - {id: G4, label: 协作与服务准备, revs: [REV-29..REV-31], fold: true}
   now_labels:
-    REV-07: 发布登记幂等与失败重试
     REV-09: 代表目标修订、发布与恢复演练
-    REV-39: Shared IR（共享底稿）：共用内容结构边界摸底
 
 # Skills and hooks: read from the tree at build time (.agents/skills,
 # .claude/skills, .claude/settings.json, .githooks/pre-push); nothing is
