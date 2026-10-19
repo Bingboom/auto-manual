@@ -159,6 +159,7 @@ The PR cannot be opened until the validation set that matches the change passes 
 | logic in `tools/`, `build.py`, `tests/` | `python -m unittest` |
 | `tools/utils/**` types | `python -m mypy tools/utils` |
 | `tools/` boundary, `build.py`, `tools/build/docs.py`, `tools/build_queue/process_build_queue.py` | `python -m tools.check_maintainability_guardrails` |
+| a frozen source package under `manual_sources/` or `data/manual_sources/`, or a shared file one pins | `python -m tools.check_maintainability_guardrails`; register a new package or record drift with `python -m tools.web.frozen_package_registry` |
 | any `code-as-doc/**` or `user-guide/**` docs | `python -m tools.check_doc_link_integrity` |
 | build / quality-gate behaviour | `python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US` |
 | JP review or publish behaviour | `python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP` |
