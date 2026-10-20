@@ -19,13 +19,21 @@ def fact(value, source_type, *, state="known"):
 
 
 def product(*, model="JE-A", region="US", category="homebackup"):
-    return {
+    route = f"{model}/{region}/en/md"
+    value = {
         "id": f"{model}/{region}/en/1.0", "model": model, "name": "Product A", "region": region,
         "language": "en", "version": "1.0", "category": fact(category, "curated_configuration"),
+        "source": {"route": route, "manual": "manual.md", "url": f"{route}/manual.html",
+                   "sha256": "a" * 64, "language_scope": "single"},
         "capabilities": {key: fact(True, "capability_registry") for key in ("自发自用模式", "UPS功能")},
         "specifications": {"capacity_wh": fact(1024, "published_manual"),
                            "ac_output_w": fact(2000, "published_manual")},
     }
+    for key, capability in value["capabilities"].items():
+        capability["evidence"][0].update(path="data/model_capabilities.csv", locator=f"{model}_{region}/{key}")
+    for specification in value["specifications"].values():
+        specification["evidence"][0].update(path=f"{route}/manual.md", url=f"{route}/manual.html")
+    return value
 
 
 def knowledge(*products):
@@ -68,6 +76,10 @@ class ResearchContractTests(unittest.TestCase):
         result = research_context(knowledge(product()), self.root)
         row = association(result)
         self.assertEqual(row["status"], "candidate")
+        self.assertEqual(row["source_type"], "rule_inference")
+        self.assertEqual(row["provenance"]["evidence_sha256"], content_hash(row["evidence"]))
+        self.assertEqual(row["provenance"]["product_sha256"], content_hash(product()))
+        self.assertEqual(row["provenance"]["rule_source"]["path"], "tools/rtd_portal_assets/product_intelligence_cases.json")
         self.assertEqual({reason["dimension"] for reason in row["reasons"]},
                          {"market", "category", "capability", "evidence", "verification"})
         self.assertEqual({item["source_type"] for item in row["evidence"]},
@@ -108,8 +120,39 @@ class ResearchContractTests(unittest.TestCase):
         for value, state, expected in ((False, "known", "excluded"), (None, "unknown", "unknown")):
             with self.subTest(value=value):
                 candidate = product()
-                candidate["capabilities"]["UPS功能"] = fact(value, "capability_registry", state=state)
+                candidate["capabilities"]["UPS功能"].update(value=value, state=state)
                 self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], expected)
+
+    def test_known_capability_without_bound_registry_evidence_is_unknown(self):
+        for change in (
+            {"evidence": []},
+            {"evidence": [{"source_type": "capability_registry", "sha256": "a" * 64}]},
+            {"source_type": "published_manual"},
+        ):
+            with self.subTest(change=change):
+                candidate = product()
+                candidate["capabilities"]["UPS功能"].update(change)
+                self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], "unknown")
+        for field, value in (("sha256", ""), ("locator", "JE-A_EU/UPS功能"),
+                             ("path", "other.csv"), ("source_type", "published_manual")):
+            with self.subTest(field=field):
+                candidate = product()
+                candidate["capabilities"]["UPS功能"]["evidence"][0][field] = value
+                self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], "unknown")
+
+    def test_foreign_manual_evidence_cannot_be_injected_into_current_variant(self):
+        for field, value in (
+            ("path", "JE-A/EU/en/md/manual.md"), ("url", "JE-A/EU/en/md/manual.html"),
+            ("sha256", "b" * 64), ("source_type", "capability_registry"),
+        ):
+            with self.subTest(field=field):
+                candidate = product()
+                candidate["specifications"]["ac_output_w"]["evidence"][0][field] = value
+                self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], "unknown")
+        candidate = product()
+        candidate["specifications"]["ac_output_w"] = product(region="EU")["specifications"]["ac_output_w"]
+        self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], "unknown")
+        self.assertEqual(association(research_context(knowledge(product()), self.root))["status"], "candidate")
 
     def test_positive_number_without_direct_traceable_manual_evidence_is_unknown(self):
         for change in (

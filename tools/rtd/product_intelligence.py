@@ -3,12 +3,15 @@ from __future__ import annotations
 
 from copy import deepcopy
 from pathlib import Path
+import re
 from typing import Any
 
 from tools.rtd.intelligence_events import content_hash, load_events
 
 SCHEMA_VERSION = "product-intelligence/v1"
+ENGINE_VERSION = "2"
 CASES = Path(__file__).resolve().parents[1] / "rtd_portal_assets" / "product_intelligence_cases.json"
+_SHA256 = re.compile(r"[0-9a-f]{64}")
 
 
 def _reason(dimension: str, state: str, source_type: str, message: str) -> dict:
@@ -26,20 +29,47 @@ def _category(product: dict, rule: dict) -> dict:
 
 def _capability(product: dict, name: str) -> tuple[dict, list[dict]]:
     fact = product.get("capabilities", {}).get(name, {})
-    if fact.get("state") != "known" or type(fact.get("value")) is not bool:
+    evidence = [entry for entry in fact.get("evidence", [])
+                if _registry_evidence(entry, product, name)]
+    if (fact.get("state") != "known" or type(fact.get("value")) is not bool
+            or fact.get("source_type") != "capability_registry" or not evidence):
         return _reason("capability", "unknown", "capability_registry",
-                       f"当前市场没有可判定的「{name}」登记。"), []
+                       f"当前市场没有可判定且带来源指纹的「{name}」登记。"), []
     state = "match" if fact["value"] else "no_match"
     return _reason("capability", state, "capability_registry",
-                   f"当前市场能力登记「{name}」={'true' if fact['value'] else 'false'}；登记不等于手册认证。"), fact.get("evidence", [])
+                   f"当前市场能力登记「{name}」={'true' if fact['value'] else 'false'}；登记不等于手册认证。"), evidence
+
+
+def _registry_evidence(entry: dict, product: dict, name: str) -> bool:
+    return (
+        entry.get("source_type") == "capability_registry"
+        and entry.get("path") == "data/model_capabilities.csv"
+        and entry.get("locator") == f"{product['model']}_{product['region']}/{name}"
+        and bool(_SHA256.fullmatch(str(entry.get("sha256", ""))))
+        and bool(entry.get("quote"))
+    )
+
+
+def _manual_evidence(entry: dict, source: dict) -> bool:
+    """The variant's selected source binds its evidence; another market cannot lend a quote."""
+    return (
+        entry.get("source_type") == "published_manual"
+        and bool(_SHA256.fullmatch(str(source.get("sha256", ""))))
+        and entry.get("sha256") == source["sha256"]
+        and bool(source.get("route")) and bool(source.get("manual"))
+        and entry.get("path") == f"{source['route']}/{source['manual']}"
+        and bool(source.get("url")) and entry.get("url") == source["url"]
+        and bool(entry.get("quote"))
+    )
 
 
 def _manual_fact(product: dict, key: str) -> tuple[dict, list[dict]]:
     fact = product.get("specifications", {}).get(key, {})
     evidence = [entry for entry in fact.get("evidence", [])
-                if entry.get("source_type") == "published_manual" and entry.get("sha256") and entry.get("quote")]
+                if _manual_evidence(entry, product.get("source", {}))]
     value = fact.get("value")
-    present = (fact.get("state") == "known" and type(value) in (int, float) and value > 0 and bool(evidence))
+    present = (fact.get("state") == "known" and fact.get("source_type") == "published_manual"
+               and type(value) in (int, float) and value > 0 and bool(evidence))
     if not present:
         return _reason("evidence", "unknown", "published_manual",
                        f"本市场、本语言发布手册尚未提供可追溯的 {key} 正值证据。"), []
@@ -82,11 +112,18 @@ def evaluate_association(event: dict, product: dict) -> dict:
         reasons.append(reason)
         evidence.extend(refs)
     state = _status(reasons)
+    evidence = _deduplicate(evidence)
     return {
+        "source_type": "rule_inference",
         "event_id": event["id"], "product_id": product["id"], "model": product["model"],
         "name": product.get("name", product["model"]), "market": region,
         "language": product["language"], "version": product.get("version"), "status": state,
-        "reasons": reasons, "evidence": _deduplicate(evidence),
+        "reasons": reasons, "evidence": evidence,
+        "provenance": {
+            "engine_version": ENGINE_VERSION, "rule_sha256": content_hash(event["rule"]),
+            "rule_source": deepcopy(event["rule_source"]), "event_sha256": event["content_sha256"],
+            "product_sha256": content_hash(product), "evidence_sha256": content_hash(evidence),
+        },
         "hypotheses": deepcopy(event["hypotheses"]) if state == "candidate" else [],
         "unknowns": [reason["message"] for reason in reasons if reason["state"] == "unknown"]
         + deepcopy(event["unknowns"]),
@@ -102,7 +139,7 @@ def research_context(knowledge: dict, knowledge_root: Path | None, *, cases_path
     events = load_events(knowledge_root, cases_path or CASES)
     associations = [evaluate_association(event, product) for event in events for product in knowledge["products"]]
     result: dict[str, Any] = {
-        "schema_version": SCHEMA_VERSION, "engine_version": "1",
+        "schema_version": SCHEMA_VERSION, "engine_version": ENGINE_VERSION,
         "knowledge_snapshot_id": knowledge["content_sha256"], "events": events,
         "associations": associations, "history": [row for event in events for row in event["history"]],
     }

@@ -113,15 +113,18 @@ def _case(case: dict, ids: set[str]) -> None:
         _revision(revision, expected, source_kind == "external_event")
 
 
-def load_cases(path: Path) -> list[dict]:
-    """Malformed intake fails visibly, instead of silently promoting incomplete evidence."""
-    data = json.loads(path.read_text(encoding="utf-8"))
+def _validated_cases(data: dict) -> list[dict]:
     if data.get("schema_version") != SCHEMA_VERSION or not isinstance(data.get("cases"), list):
         raise ValueError(f"research intake needs {SCHEMA_VERSION}")
     ids: set[str] = set()
     for case in data["cases"]:
         _case(case, ids)
     return data["cases"]
+
+
+def load_cases(path: Path) -> list[dict]:
+    """Malformed intake fails visibly, instead of silently promoting incomplete evidence."""
+    return _validated_cases(json.loads(path.read_text(encoding="utf-8")))
 
 
 def _policy(record: dict | None) -> dict:
@@ -149,7 +152,7 @@ def _history(case: dict) -> list[dict]:
     return rows
 
 
-def _event(case: dict, policies: dict[str, dict]) -> dict:
+def _event(case: dict, policies: dict[str, dict], rule_source: dict) -> dict:
     latest = deepcopy(case["revisions"][-1])
     keys = ("id", "title", "kind", "market", "catalog_markets", "market_mapping_note",
             "occurred_on", "source_kind", "rule")
@@ -161,6 +164,7 @@ def _event(case: dict, policies: dict[str, dict]) -> dict:
         event.update(_policy(policies.get(case["source_record_id"])))
         event["unknowns"].append("EU 目录范围只用于研究筛选，不能证明在该国家销售或满足当地并网要求。")
     event["history"] = _history(case)
+    event["rule_source"] = rule_source
     event["content_sha256"] = content_hash(event)
     return event
 
@@ -169,4 +173,15 @@ def load_events(knowledge_root: Path | None, cases_path: Path) -> list[dict]:
     """Join by existing policy ID; never copy policy facts into an engineering fallback."""
     records = market_context(knowledge_root)["records"] if knowledge_root is not None else []
     policies = {record["id"]: record for record in records}
-    return [_event(case, policies) for case in load_cases(cases_path)]
+    payload = cases_path.read_bytes()
+    cases = _validated_cases(json.loads(payload))
+    source = {
+        "source_type": "curated_configuration",
+        "path": cases_path.name,
+        "sha256": hashlib.sha256(payload).hexdigest(),
+    }
+    try:
+        source["path"] = cases_path.resolve().relative_to(Path(__file__).resolve().parents[2]).as_posix()
+    except ValueError:
+        pass
+    return [_event(case, policies, {**source, "locator": f"cases/{case['id']}/rule"}) for case in cases]
