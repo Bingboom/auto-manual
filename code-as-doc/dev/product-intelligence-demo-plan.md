@@ -47,7 +47,8 @@ Discovery, source boundaries and implementation ownership are frozen in the
 - [x] Verify no changes to authoritative production content and no duplicate product master data.
 - [ ] Run RTD branch build and verify page, links, evidence, and responsive display.
 - [x] Test update scenario: product evidence/event change updates associations without silently rewriting historical research.
-- [ ] Post preview URL and screenshots in PR when actually available.
+- [x] Save verified local screenshots for the existing PR.
+- [ ] Post the hosted preview URL after RTD verification.
 - [x] Keep PR in Draft until user reviews RTD branch preview; do not merge automatically.
 
 ## Parallel execution contract
@@ -68,6 +69,9 @@ Agent A owns product knowledge contract + extraction tests. Agent B owns event/a
   unchanged and human review remains pending.
 - Browser checks cover market filtering, zero results, reset, the matching
   published manual, and mobile navigation/layout with no horizontal overflow.
+  Review captures: [desktop](../reviews/product-intelligence-demo/desktop.jpg)
+  and [mobile](../reviews/product-intelligence-demo/mobile.jpg).
+  These show the local build, not a hosted RTD deployment.
 - Tests also rebuild the same output directory with the demo disabled and with
   the public manuals role; the three research artifacts disappear and unrelated
   files remain.
