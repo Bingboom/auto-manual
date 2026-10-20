@@ -112,17 +112,17 @@ def _unknown(value: object) -> str:
     return f"{label}：{_text(value.get('reason'), '缺少可核实的资料。')}"
 
 
-def _product_view(association: dict, product: dict | None, routes: set[str]) -> dict:
-    product = product or {}
-    source = product.get("source") or {}
-    route = _local_route(source.get("url"))
-    reasons = [{
+def _reason_view(reason: dict) -> dict:
+    return {
         "dimension": DIMENSION_LABELS.get(reason.get("dimension"), "关联依据"),
         "state": reason.get("state") if reason.get("state") in {"match", "unknown", "no_match"} else "unknown",
         "state_label": {"match": "符合", "unknown": "待核实", "no_match": "不符合"}.get(reason.get("state"), "待核实"),
         "source_label": SOURCE_LABELS.get(reason.get("source_type"), "来源类型未标明"),
         "message": _text(reason.get("message")),
-    } for reason in association.get("reasons", [])]
+    }
+
+
+def _product_facts(product: dict) -> list[dict]:
     facts = []
     if product.get("category"):
         facts.append(_fact("产品分类", product["category"]))
@@ -130,6 +130,13 @@ def _product_view(association: dict, product: dict | None, routes: set[str]) -> 
         facts.append(_fact(SPEC_LABELS.get(key, key), record))
     for key, record in (product.get("capabilities") or {}).items():
         facts.append(_fact(key, record))
+    return facts
+
+
+def _product_view(association: dict, product: dict | None, routes: set[str]) -> dict:
+    product = product or {}
+    source = product.get("source") or {}
+    route = _local_route(source.get("url"))
     unknowns = list(dict.fromkeys(
         _unknown(value) for value in [*association.get("unknowns", []), *product.get("unknowns", [])]
     ))
@@ -146,7 +153,8 @@ def _product_view(association: dict, product: dict | None, routes: set[str]) -> 
         "status": association["status"], "status_label": ASSOCIATION_LABELS[association["status"]],
         "association_source_label": SOURCE_LABELS.get(association.get("source_type"), "规则推导"),
         "provenance": association.get("provenance") or {},
-        "reasons": reasons, "facts": facts,
+        "reasons": [_reason_view(reason) for reason in association.get("reasons", [])],
+        "facts": _product_facts(product),
         "evidence": [_reference(record, routes) for record in association.get("evidence", [])],
         "hypotheses": association.get("hypotheses", []), "unknowns": unknowns,
         "source": {key: _text(source.get(key), "未记录")
@@ -170,6 +178,41 @@ def _history_view(event: dict) -> list[dict]:
     } for row in event.get("history", [])]
 
 
+def _event_view(event: dict) -> dict:
+    review = event.get("review") or {}
+    return {
+        **event, "status_label": STATUS_LABELS[event["status"]],
+        "kind_label": {"policy": "政策变化", "market": "市场变化", "competitor": "竞品动态"}.get(
+            event.get("kind"), "外部事件"),
+        "review_label": "已人工复核" if review.get("status") == "reviewed" else "待人工复核",
+        "review_decision": _text(review.get("decision"), "尚未记录人工判断。"),
+        "reviewed_by": _text(review.get("reviewed_by")) if review.get("status") == "reviewed" else "",
+        "human_reviewed_on": _text(review.get("reviewed_on")) if review.get("status") == "reviewed" else "",
+        "source_label": SOURCE_LABELS.get(event.get("source_kind"), "外部资料"),
+        "sources": [{
+            **source, "safe_url": _external_url(source.get("url")),
+            "kind_label": SOURCE_LABELS.get(source.get("kind"), "参考来源"),
+        } for source in event.get("sources", [])],
+        "candidates": [], "unknown_products": [], "excluded_products": [],
+        "history": _history_view(event),
+    }
+
+
+def _event_views(records: list[dict]) -> list[dict]:
+    """Validate event identities before building safe page anchors and labels."""
+    events = []
+    event_ids = set()
+    for event in records:
+        key = event["id"]
+        if not isinstance(key, str) or not _ID.fullmatch(key) or key in event_ids:
+            raise ValueError("research page event ids must be unique safe identifiers")
+        event_ids.add(key)
+        if event.get("status") not in STATUS_LABELS:
+            raise ValueError("research page has an unknown event status")
+        events.append(_event_view(event))
+    return events
+
+
 def research_page_context(knowledge: dict, research: dict) -> dict:
     """Adapt matching snapshots without mutating contracts or inferring new facts."""
     if knowledge.get("schema_version") != "product-knowledge/v1":
@@ -183,33 +226,7 @@ def research_page_context(knowledge: dict, research: dict) -> dict:
     products = {product["id"]: product for product in knowledge["products"]}
     routes = {route for product in products.values()
               if (route := _local_route((product.get("source") or {}).get("url")))}
-    events = []
-    event_ids = set()
-    for event in research["events"]:
-        key = event["id"]
-        if not isinstance(key, str) or not _ID.fullmatch(key) or key in event_ids:
-            raise ValueError("research page event ids must be unique safe identifiers")
-        event_ids.add(key)
-        if event.get("status") not in STATUS_LABELS:
-            raise ValueError("research page has an unknown event status")
-        review = event.get("review") or {}
-        view = {
-            **event, "status_label": STATUS_LABELS[event["status"]],
-            "kind_label": {"policy": "政策变化", "market": "市场变化", "competitor": "竞品动态"}.get(
-                event.get("kind"), "外部事件"),
-            "review_label": "已人工复核" if review.get("status") == "reviewed" else "待人工复核",
-            "review_decision": _text(review.get("decision"), "尚未记录人工判断。"),
-            "reviewed_by": _text(review.get("reviewed_by")) if review.get("status") == "reviewed" else "",
-            "human_reviewed_on": _text(review.get("reviewed_on")) if review.get("status") == "reviewed" else "",
-            "source_label": SOURCE_LABELS.get(event.get("source_kind"), "外部资料"),
-            "sources": [{
-                **source, "safe_url": _external_url(source.get("url")),
-                "kind_label": SOURCE_LABELS.get(source.get("kind"), "参考来源"),
-            } for source in event.get("sources", [])],
-            "candidates": [], "unknown_products": [], "excluded_products": [],
-            "history": _history_view(event),
-        }
-        events.append(view)
+    events = _event_views(research["events"])
     by_event = {event["id"]: event for event in events}
     groups = {"candidate": "candidates", "unknown": "unknown_products", "excluded": "excluded_products"}
     for association in research["associations"]:
