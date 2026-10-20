@@ -17,6 +17,11 @@ build:
         # main snapshot and never reads live Feishu data. Keep the review-bundle
         # path as a bootstrap fallback until the first publish snapshot exists.
         - |
+          # Enable research only on this private preview carrier, never latest.
+          if [ "${READTHEDOCS_PROJECT:-}" = "ht-docs-ht-manuals" ] &&
+             [ "${READTHEDOCS_GIT_IDENTIFIER:-}" = "preview/product-intelligence-1579" ]; then
+            export RTD_PRODUCT_INTELLIGENCE_DEMO=1
+          fi
           if [ -f docs/publish/web/conf.py ]; then
             python -m sphinx -b html -D extensions=myst_parser,tools.rtd.portal docs/publish/web "$READTHEDOCS_OUTPUT/html"
           else

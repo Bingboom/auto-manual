@@ -82,7 +82,7 @@ revisions preserve earlier human judgments in history without inheriting approva
 
 Each worker uses its own managed worktree. Commits are integrated into the one
 existing branch `feat/product-intelligence-demo`; PR #1579 remains Draft.
-No production templates, source tables, publication snapshots or workflows are
+No production templates, source tables, publication snapshots or GitHub workflows are
 edited. No new service, crawler, graph database or dependency is required.
 
 The page route is `research/product-intelligence.html`. Enable with Sphinx
