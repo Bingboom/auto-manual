@@ -2,7 +2,7 @@
 
 *让产品内容成为可信、可复用、持续演进的知识资产。*
 
-本仓库是产品说明书生产线的工程面：把飞书受控数据、共享模板和批准原稿冻结为快照，
+Hello-Docs 是产品说明书生产线：把飞书受控数据、共享模板和批准原稿冻结为快照，
 构建出网页、Word、PDF、IDML、Markdown 和机器可读内容，并保留评审、发布与追溯记录。
 交付与使用中发现的问题经责任人审核后，从对应编辑入口修订，形成新版本。
 
@@ -57,7 +57,8 @@ python build.py check --config configs/config.us-en.yaml --model JE-1000F --regi
   内容关系登记（身份、适用性、基线与派生关系）和修正治理规则的反馈尚未实现，
   方向与已实现边界见[系统演进战略](code-as-doc/architecture/System%20Evolution%20Strategy.md)。
 
-工程修改在本仓库进行，业务运行在 Hello-Docs 镜像仓库；运行位置见[双平面地图](user-guide/two_plane_map.md)，
+代码在 auto-manual 修改，合入后单向镜像到 Hello-Docs；队列构建、评审和发布在 Hello-Docs 运行。
+分工见[双平面地图](user-guide/two_plane_map.md)，
 具体编辑位置见[操作指南](user-guide/hello_auto-doc.md)。
 
 ## 文档入口

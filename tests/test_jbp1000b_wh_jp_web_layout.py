@@ -12,6 +12,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
+from tests.historical_app_styles import pre_four_control_styles
 from tools.manual_ir.hashing import file_sha256
 from tools.utils.path_utils import PathSegments
 from tools.web.frozen_ai_web import replay_package
@@ -96,6 +97,7 @@ class WebLayoutEditionTests(unittest.TestCase):
         self.assertEqual(policy['expected_pages'], CHAPTERS)
         self.assertEqual(policy['legacy_debt'], [])
 
+    @pre_four_control_styles
     def test_cold_rebuild_matches_frozen_web_and_carries_acceptance(self):
         source = self.fixture()
         a, b = self.root / 'a', self.root / 'b'

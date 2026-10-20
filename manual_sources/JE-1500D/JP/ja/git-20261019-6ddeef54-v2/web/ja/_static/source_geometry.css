@@ -1,0 +1,6 @@
+/* Geometry only: keep the target's dense native diagrams readable by panning. */
+#furo-main-content .hb-reference-figure { max-width: 48rem; }
+@media (max-width: 760px) {
+  #furo-main-content .hb-reference-figure { overflow-x: auto; }
+  #furo-main-content .hb-reference-figure > .hb-reference-semantic { min-width: 38rem; }
+}

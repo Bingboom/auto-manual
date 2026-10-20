@@ -1,0 +1,447 @@
+[
+  {
+    "asset_ref": "assets/symbol-01.svg",
+    "asset_sha256": "42ca4108169a476569b3d874d9fe73eb444512e4f62a5bf4d5f8f5f3b8a2e6a2",
+    "physical_page": 3,
+    "drawing_indices": [
+      72
+    ],
+    "glyph_bbox": [
+      37,
+      281,
+      59,
+      302
+    ],
+    "caption_bbox": [
+      70.78910064697266,
+      273.59478759765625,
+      175.78909301757812,
+      311.5907897949219
+    ],
+    "row_bbox": [
+      36.0,
+      272.59478759765625,
+      176.78909301757812,
+      312.5907897949219
+    ],
+    "caption_text": "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。",
+    "caption_sha256": "c8542451dca98fd3a3028eea089aedcd11414161243cb4d54fb8a8e547c9d537",
+    "shared_symbol_key": "native/je1500d-jp-6ddeef54-01",
+    "max_mean_channel_error": 0.0,
+    "block_index": 20
+  },
+  {
+    "asset_ref": "assets/symbol-02.svg",
+    "asset_sha256": "ad44bd9df9eddf4ad13bcd6f63d2fe7269002237c318c4cb55f4ed9348f692a5",
+    "physical_page": 3,
+    "drawing_indices": [
+      73,
+      74,
+      75,
+      76,
+      77
+    ],
+    "glyph_bbox": [
+      38,
+      311,
+      58,
+      331
+    ],
+    "caption_bbox": [
+      70.78910064697266,
+      306.6977844238281,
+      175.78909301757812,
+      336.69281005859375
+    ],
+    "row_bbox": [
+      37.0,
+      305.6977844238281,
+      176.78909301757812,
+      337.69281005859375
+    ],
+    "caption_text": "操作の前に取扱説明書をお読みください。",
+    "caption_sha256": "9b79108a70306c6872b65612083137562941b44f3e2e3020a03e8a52ef5235b8",
+    "shared_symbol_key": "native/je1500d-jp-6ddeef54-02",
+    "max_mean_channel_error": 0.0,
+    "block_index": 21
+  },
+  {
+    "asset_ref": "assets/symbol-03.svg",
+    "asset_sha256": "414e01f2e6b76ab3575eedc88cf2d8e3ebb8622f68fc62b4f1302397536bd0a8",
+    "physical_page": 3,
+    "drawing_indices": [
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84
+    ],
+    "glyph_bbox": [
+      38,
+      338,
+      58,
+      357
+    ],
+    "caption_bbox": [
+      70.78910064697266,
+      333.2207946777344,
+      175.78909301757812,
+      363.2158203125
+    ],
+    "row_bbox": [
+      37.0,
+      332.2207946777344,
+      176.78909301757812,
+      364.2158203125
+    ],
+    "caption_text": "本製品を火気の近くに置かないでください。",
+    "caption_sha256": "7449c018de2409cf1333aa6ddbcdf739b4099ca5ab5f79f5d2f5503179ef32c8",
+    "shared_symbol_key": "no-open-flame/h1-jp-native",
+    "max_mean_channel_error": 0.009231,
+    "block_index": 22
+  },
+  {
+    "asset_ref": "assets/symbol-04.svg",
+    "asset_sha256": "5a343701c01a73a9620c0525f786774e89bc6a3531fd439a77d7f772029b3b23",
+    "physical_page": 3,
+    "drawing_indices": [
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94
+    ],
+    "glyph_bbox": [
+      40,
+      366,
+      56,
+      382
+    ],
+    "caption_bbox": [
+      70.78910064697266,
+      359.5548095703125,
+      175.78909301757812,
+      389.5498046875
+    ],
+    "row_bbox": [
+      39.0,
+      358.5548095703125,
+      176.78909301757812,
+      390.5498046875
+    ],
+    "caption_text": "小さなお子様の手の届かない場所に保管してください。",
+    "caption_sha256": "fdb22850d482d7075918a8ff641111df6824b24ae041515ad68f8ac5a59ddf07",
+    "shared_symbol_key": "native/je1500d-jp-6ddeef54-04",
+    "max_mean_channel_error": 0.0,
+    "block_index": 23
+  },
+  {
+    "asset_ref": "assets/symbol-05.svg",
+    "asset_sha256": "e5988a0e4dfcfba253ad8b85f36ec213e8d7c29584160c05a7e3cec0344ea207",
+    "physical_page": 3,
+    "drawing_indices": [
+      38,
+      39,
+      40,
+      41,
+      42
+    ],
+    "glyph_bbox": [
+      38,
+      391,
+      58,
+      411
+    ],
+    "caption_bbox": [
+      70.78910064697266,
+      385.6377868652344,
+      175.78909301757812,
+      415.6328125
+    ],
+    "row_bbox": [
+      37.0,
+      384.6377868652344,
+      176.78909301757812,
+      416.6328125
+    ],
+    "caption_text": "コンセントから電源プラグを抜く記号",
+    "caption_sha256": "f26c41634c140dd430581765b6584bb0b08f772193e66eeded7a7f21bb5dd95f",
+    "shared_symbol_key": "native/je1500d-jp-6ddeef54-05",
+    "max_mean_channel_error": 0.0,
+    "block_index": 24
+  },
+  {
+    "asset_ref": "assets/symbol-06.svg",
+    "asset_sha256": "9629d601e6cd919cbbd5f1bcf2ff31f01daceeb3a287c07c1eddfd82160c2888",
+    "physical_page": 3,
+    "drawing_indices": [
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59
+    ],
+    "glyph_bbox": [
+      38,
+      418,
+      58,
+      438
+    ],
+    "caption_bbox": [
+      70.78910064697266,
+      418.27178955078125,
+      175.78909301757812,
+      438.2637939453125
+    ],
+    "row_bbox": [
+      37.0,
+      417.0,
+      176.78909301757812,
+      439.2637939453125
+    ],
+    "caption_text": "製品を分解、改造を禁止する記号",
+    "caption_sha256": "8d29c169989df961a4a021fa5e1a26f80ba131fe1faba7db2e3ddcd8d49f6728",
+    "shared_symbol_key": "do-not-dismantle/screwdriver-circle-gray",
+    "max_mean_channel_error": 0.006085,
+    "block_index": 26
+  },
+  {
+    "asset_ref": "assets/symbol-07.svg",
+    "asset_sha256": "f062577eefb0ba67932bf2b0faec0617a3cafd366b185d69434659ac365b70e3",
+    "physical_page": 3,
+    "drawing_indices": [
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70
+    ],
+    "glyph_bbox": [
+      38,
+      444,
+      58,
+      465
+    ],
+    "caption_bbox": [
+      70.78910064697266,
+      440.67877197265625,
+      175.78909301757812,
+      470.6737976074219
+    ],
+    "row_bbox": [
+      37.0,
+      439.67877197265625,
+      176.78909301757812,
+      471.6737976074219
+    ],
+    "caption_text": "製品に濡れた手で触れることを禁止する記号",
+    "caption_sha256": "f880d35bddf22f9eddf19389446368e35d1bc8bb683bd74cc749490bfa5ed214",
+    "shared_symbol_key": "native/je1500d-jp-6ddeef54-07",
+    "max_mean_channel_error": 0.0,
+    "block_index": 27
+  },
+  {
+    "asset_ref": "assets/symbol-08.svg",
+    "asset_sha256": "15085233115a91f206f200ae9f6e83fff442666c8db13ba61a76bea84575c7c2",
+    "physical_page": 3,
+    "drawing_indices": [
+      71
+    ],
+    "glyph_bbox": [
+      38,
+      473,
+      58,
+      494
+    ],
+    "caption_bbox": [
+      70.78910064697266,
+      472.76678466796875,
+      133.78909301757812,
+      492.7587890625
+    ],
+    "row_bbox": [
+      37.0,
+      471.76678466796875,
+      134.78909301757812,
+      495.0
+    ],
+    "caption_text": "行為を指示する記号",
+    "caption_sha256": "e987fcb48656986d62f712b42f0cb543ff967d201f580380d866273abef767f8",
+    "shared_symbol_key": "mandatory/h1-jp-native",
+    "max_mean_channel_error": 0.004097,
+    "block_index": 25
+  },
+  {
+    "asset_ref": "assets/symbol-09.svg",
+    "asset_sha256": "a3ede7a32d579f9e8403132e2cd2e99521dd7996b5243f3ebafff2ab0e0757aa",
+    "physical_page": 3,
+    "drawing_indices": [
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108
+    ],
+    "glyph_bbox": [
+      196,
+      303,
+      215,
+      322
+    ],
+    "caption_bbox": [
+      227.720703125,
+      274.4430847167969,
+      331.720703125,
+      352.5211181640625
+    ],
+    "row_bbox": [
+      195.0,
+      273.4430847167969,
+      332.720703125,
+      353.5211181640625
+    ],
+    "caption_text": "充電式電池のリサイクルについて本機はリサイクル可能な充電池を内蔵しています。この商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。充電池の取りはずしはお客様自身では行わないでください。",
+    "caption_sha256": "11e1751b77b78d978e8db1276a9090117abea81ddaff61ee28f62009f040998e",
+    "shared_symbol_key": "native/je1500d-jp-6ddeef54-09",
+    "max_mean_channel_error": 0.0,
+    "block_index": 15
+  },
+  {
+    "asset_ref": "assets/symbol-10.png",
+    "asset_sha256": "6883f899f43ac0642f43b8f9cf4118a394c1382ee409f4498544f90ba37b56a5",
+    "physical_page": 3,
+    "drawing_indices": [
+      95,
+      96,
+      97
+    ],
+    "glyph_bbox": [
+      196,
+      381,
+      213,
+      405
+    ],
+    "caption_bbox": [
+      227.720703125,
+      347.8865966796875,
+      331.720703125,
+      442.9685974121094
+    ],
+    "row_bbox": [
+      195.0,
+      346.8865966796875,
+      332.720703125,
+      443.9685974121094
+    ],
+    "caption_text": "このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。適切な廃棄およびリサイクルは、環境保護に役立ちます。本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。",
+    "caption_sha256": "c0edb0931ea9d619a6c100f465d2c2871a2576f91cbb217b6403283774e7c9e3",
+    "shared_symbol_key": "weee/crossed-bin-bar",
+    "max_mean_channel_error": 0.006553,
+    "block_index": 16
+  },
+  {
+    "asset_ref": "assets/symbol-11.svg",
+    "asset_sha256": "fbd39d4686c3a26a73fa4c2dfec299d8055d9b9446edd973a397ce6d4e21a836",
+    "physical_page": 3,
+    "drawing_indices": [
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "glyph_bbox": [
+      195,
+      445,
+      215,
+      465
+    ],
+    "caption_bbox": [
+      229.27540588378906,
+      444.9195861816406,
+      334.275390625,
+      464.9115905761719
+    ],
+    "row_bbox": [
+      194.0,
+      443.9195861816406,
+      335.275390625,
+      466.0
+    ],
+    "caption_text": "製品を濡らすことを禁止する記号",
+    "caption_sha256": "c487fccd720defb80f4d264002d628b4f7d4e4051b037a8a26112625eb7e5ba9",
+    "shared_symbol_key": "keep-dry/h1-jp-native",
+    "max_mean_channel_error": 0.014223,
+    "block_index": 19
+  },
+  {
+    "asset_ref": "assets/symbol-12.svg",
+    "asset_sha256": "62ab4ebf16c135818b65e1a9e78f5638ee063a331c43883a9e72af66ee39738d",
+    "physical_page": 3,
+    "drawing_indices": [
+      12,
+      13,
+      14
+    ],
+    "glyph_bbox": [
+      195,
+      471,
+      215,
+      492
+    ],
+    "caption_bbox": [
+      229.27540588378906,
+      471.6875915527344,
+      292.275390625,
+      491.6795959472656
+    ],
+    "row_bbox": [
+      194.0,
+      470.0,
+      293.275390625,
+      493.0
+    ],
+    "caption_text": "行為を禁止する記号",
+    "caption_sha256": "decbe8847e24d13534bb4a18f83e7579e58c2ba1d7dc30153b3697b942a63add",
+    "shared_symbol_key": "prohibited/h1-jp-native",
+    "max_mean_channel_error": 0.007664,
+    "block_index": 18
+  }
+]
