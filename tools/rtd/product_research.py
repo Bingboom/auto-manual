@@ -161,6 +161,9 @@ def _history_view(event: dict) -> list[dict]:
         "summary": _text(row.get("summary")),
         "reason": _text(row.get("reason")),
         "review_label": "已人工复核" if row.get("review_status") == "reviewed" else "待人工复核",
+        "review_decision": _text(row.get("decision")) if row.get("review_status") == "reviewed" else "",
+        "reviewed_by": _text(row.get("reviewed_by")) if row.get("review_status") == "reviewed" else "",
+        "reviewed_on": _text(row.get("reviewed_on")) if row.get("review_status") == "reviewed" else "",
         "content_sha256": _text(row.get("content_sha256")),
         "evidence_refs": [{"url": _external_url(url), "label": _text(url)}
                           for url in row.get("evidence_refs", [])],
@@ -196,6 +199,8 @@ def research_page_context(knowledge: dict, research: dict) -> dict:
                 event.get("kind"), "外部事件"),
             "review_label": "已人工复核" if review.get("status") == "reviewed" else "待人工复核",
             "review_decision": _text(review.get("decision"), "尚未记录人工判断。"),
+            "reviewed_by": _text(review.get("reviewed_by")) if review.get("status") == "reviewed" else "",
+            "human_reviewed_on": _text(review.get("reviewed_on")) if review.get("status") == "reviewed" else "",
             "source_label": SOURCE_LABELS.get(event.get("source_kind"), "外部资料"),
             "sources": [{
                 **source, "safe_url": _external_url(source.get("url")),

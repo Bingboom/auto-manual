@@ -105,6 +105,7 @@
 .human-review>div {display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
 .human-review h3 {font-size:13px;margin:0}
 .human-review p {font-size:13px;margin:8px 0 0;line-height:1.8}
+.human-review .review-attribution,.history-list .review-attribution {font-size:11px;color:var(--app-muted)}
 .research-history {margin-top:22px;font-size:12px}
 .research-history>summary {color:var(--app-muted)}
 .research-history>summary>span {margin-left:8px;color:var(--app-faint)}

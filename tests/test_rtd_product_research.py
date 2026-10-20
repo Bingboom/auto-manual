@@ -225,6 +225,33 @@ class ProductResearchTests(unittest.TestCase):
         for value in ("rule-v2", "event-v2", "product-v1", "evidence-v1", "research-cases.json", "case:example"):
             self.assertIn(value, basis)
 
+    def test_current_and_historical_human_review_keep_their_own_attribution(self):
+        knowledge, research = snapshots()
+        event = research["events"][0]
+        event["review"] = {"status": "reviewed", "decision": "继续验证当地接入条件。",
+                           "reviewed_by": "当前复核人", "reviewed_on": "2026-10-22"}
+        event["history"][0].update(review_status="reviewed", decision="先补充产品资料。",
+                                   reviewed_by="历史复核人", reviewed_on="2026-10-21")
+        page = render(knowledge, research)
+        current, previous = page.select_one(".human-review"), page.select_one(".history-list")
+        for value in ("继续验证当地接入条件。", "当前复核人", "2026-10-22"):
+            self.assertIn(value, current.get_text())
+            self.assertNotIn(value, previous.get_text())
+        for value in ("先补充产品资料。", "历史复核人", "2026-10-21"):
+            self.assertIn(value, previous.get_text())
+            self.assertNotIn(value, current.get_text())
+        self.assertIn("2026-10-20（核对）", page.select_one(".event-dates").get_text())
+
+    def test_pending_review_does_not_render_reviewer_attribution(self):
+        knowledge, research = snapshots()
+        # Even a malformed stale reviewer field must not imply completed human review.
+        research["events"][0]["review"].update(reviewed_by="不可显示", reviewed_on="2026-10-22")
+        research["events"][0]["history"][0].update(reviewed_by="不可显示", reviewed_on="2026-10-21")
+        page = render(knowledge, research)
+        self.assertIsNone(page.select_one(".review-attribution"))
+        self.assertNotIn("不可显示", page.get_text())
+        self.assertIn("待人工复核", page.select_one(".human-review").get_text())
+
     def test_missing_products_sources_and_evidence_have_readable_fallbacks(self):
         knowledge, research = snapshots()
         knowledge["products"] = []
