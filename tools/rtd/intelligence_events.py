@@ -64,8 +64,15 @@ def _review(review: Any) -> None:
         raise ValueError("research review must be pending or reviewed")
     if review["status"] == "reviewed":
         _text(review.get("decision"), "human review decision")
-    elif review.get("decision") is not None:
-        raise ValueError("pending research cannot carry a human review decision")
+        _text(review.get("reviewed_by"), "human reviewer")
+        _date(review.get("reviewed_on"), "human review reviewed_on")
+    elif any(review.get(field) is not None for field in ("decision", "reviewed_by", "reviewed_on")):
+        raise ValueError("pending research cannot carry human review details")
+
+
+def _review_details(review: dict) -> dict:
+    """Normalize pending metadata without manufacturing an operator or decision."""
+    return {key: review.get(key) for key in ("decision", "reviewed_by", "reviewed_on")}
 
 
 def _revision(revision: dict, expected: int, external: bool) -> None:
@@ -148,6 +155,7 @@ def _history(case: dict) -> list[dict]:
             "summary": revision["research_question"],
             "evidence_refs": [s["url"] for s in revision.get("sources", [])],
             "review_status": revision["review"]["status"], "content_sha256": content_hash(revision),
+            **_review_details(revision["review"]),
         })
     return rows
 
@@ -158,6 +166,7 @@ def _event(case: dict, policies: dict[str, dict], rule_source: dict) -> dict:
             "occurred_on", "source_kind", "rule")
     event = {key: deepcopy(case[key]) for key in keys}
     event.update(latest)
+    event["review"] = {"status": latest["review"]["status"], **_review_details(latest["review"])}
     event["source_record_id"] = case.get("source_record_id")
     event["reviewed_on"] = latest["recorded_on"]
     if case["source_kind"] == "market_policy":

@@ -85,7 +85,9 @@ class ResearchContractTests(unittest.TestCase):
         self.assertEqual({item["source_type"] for item in row["evidence"]},
                          {"curated_configuration", "capability_registry", "published_manual"})
         event = result["events"][1]
-        self.assertEqual(event["review"], {"status": "pending", "decision": None})
+        self.assertEqual(event["review"], {
+            "status": "pending", "decision": None, "reviewed_by": None, "reviewed_on": None,
+        })
         self.assertEqual(event["revision"], 2)
         self.assertEqual(len(event["history"]), 2)
         self.assertNotEqual(event["history"][0]["content_sha256"], event["history"][1]["content_sha256"])
@@ -233,13 +235,55 @@ class ResearchContractTests(unittest.TestCase):
             load_cases(self.write_cases())
 
     def test_human_decisions_are_explicit_and_not_overwritten_by_evaluation(self):
-        self.data["cases"][1]["revisions"][-1]["review"] = {
+        review = {
             "status": "reviewed", "decision": "Research scope reviewed; no product applicability decision.",
+            "reviewed_by": "Fixture reviewer", "reviewed_on": "2026-10-20",
         }
+        self.data["cases"][1]["revisions"][-1]["review"] = review
         result = research_context(knowledge(product()), self.root, cases_path=self.write_cases())
-        self.assertEqual(result["events"][1]["review"]["status"], "reviewed")
+        self.assertEqual(result["events"][1]["review"], review)
+        historical = result["events"][1]["history"][-1]
+        for key in ("decision", "reviewed_by", "reviewed_on"):
+            self.assertEqual(historical[key], review[key])
         self.assertEqual(association(result)["status"], "candidate")
         self.assertEqual(result["events"][1]["history"][0]["review_status"], "pending")
+        self.assertIsNone(result["events"][1]["history"][0]["decision"])
+
+    def test_reviewed_revisions_require_identity_and_iso_date(self):
+        for changes in (
+            {"reviewed_by": None}, {"reviewed_by": " "}, {"reviewed_on": None},
+            {"reviewed_on": "2026/10/20"}, {"reviewed_on": "20261020"}, {"reviewed_on": "2026-02-30"},
+        ):
+            with self.subTest(changes=changes):
+                self.data["cases"][1]["revisions"][-1]["review"] = {
+                    "status": "reviewed", "decision": "Fixture scope decision.",
+                    "reviewed_by": "Fixture reviewer", "reviewed_on": "2026-10-20", **changes,
+                }
+                with self.assertRaises(ValueError):
+                    load_cases(self.write_cases())
+
+    def test_pending_reviews_reject_decision_identity_or_date(self):
+        for field in ("decision", "reviewed_by", "reviewed_on"):
+            with self.subTest(field=field):
+                self.data["cases"][1]["revisions"][-1]["review"] = {"status": "pending", field: "2026-10-20"}
+                with self.assertRaisesRegex(ValueError, "pending"):
+                    load_cases(self.write_cases())
+
+    def test_later_pending_revision_preserves_prior_human_judgment_in_history(self):
+        review = {
+            "status": "reviewed", "decision": "Fixture: needs target load evidence.",
+            "reviewed_by": "Fixture reviewer", "reviewed_on": "2026-10-20",
+        }
+        self.data["cases"][1]["revisions"][0]["review"] = review
+        result = research_context(knowledge(product()), self.root, cases_path=self.write_cases())
+        event = result["events"][1]
+        self.assertEqual(event["review"], {
+            "status": "pending", "decision": None, "reviewed_by": None, "reviewed_on": None,
+        })
+        historical = next(row for row in result["history"] if row["event_id"] == event["id"])
+        self.assertEqual(historical["review_status"], "reviewed")
+        for key in ("decision", "reviewed_by", "reviewed_on"):
+            self.assertEqual(historical[key], review[key])
 
 
 if __name__ == "__main__":
