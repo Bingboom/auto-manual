@@ -3,6 +3,10 @@
 Part of the [build guide](../build_doc_guide.md); its index lists the other topics.
 Add new notes for this topic here, not to the hub.
 
+The opt-in product-intelligence preview consumes frozen product knowledge without
+changing the production pipeline. See the [consumer contracts and checks](../dev/product-intelligence-contract.md)
+and [local preview guide](../../user-guide/hello_auto-doc/product-intelligence-demo.md).
+
 Frozen external Web sources can bind a source-local presentation sheet in Manual IR
 metadata as `source_stylesheet: {path, sha256}`. `replay_package` requires that file
 to remain inside the package with matching bytes and emits its CSS in the document's

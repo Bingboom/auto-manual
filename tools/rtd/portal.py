@@ -22,6 +22,7 @@ from tools.rtd.feedback import context_text, manual_feedback_markup, normalize_c
 from tools.rtd.knowledge_updates import PAGES as UPDATE_PAGES, load_updates, updates_view
 from tools.rtd.product_voc import normalize_endpoint, page_markup
 from tools.rtd.product_matrix import PAGE as MATRIX_PAGE, TEMPLATE as MATRIX_TEMPLATE, product_matrix_page_context
+from tools.rtd.research_build import clear_research_outputs, demo_enabled, research_bundle, write_research_exports
 from tools.rtd.page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
 )
@@ -175,10 +176,12 @@ def clear_catalog_cache(app, exception) -> None:
     app._rtd_design_context = _UNSET
     app._rtd_data_context = _UNSET
     app._rtd_matrix_context = _UNSET
+    app._rtd_research_bundle = None
 
 
 def page_context(app, pagename, templatename, context, doctree):
     settings, products = portal_data(app)
+    context["research_entry"] = demo_enabled(app)
     feedback_channels = normalize_channels(settings.get("feedback_channels", []))
     beacon_token = normalize_beacon_token(settings.get("analytics_beacon_token", ""))
     site_base_url = site_base_url_for(settings)
@@ -331,6 +334,7 @@ def site_nav(app) -> dict:
         "deliverables": True,
         "design": cached_design_context(app) is not None,
         "matrix": cached_matrix_context(app) is not None,
+        "research": demo_enabled(app),
     }
 
 
@@ -371,6 +375,15 @@ def collect_workspace_pages(app):
         sphinx_logging.getLogger(__name__).warning(
             "Market policy record %s links to unknown product knowledge topic #%s", record, anchor)
     yield MARKET_PAGE, {**market, "site_nav": site_nav(app)}, MARKET_TEMPLATE
+    if demo_enabled(app):
+        from tools.rtd.product_research import (
+            PAGE as RESEARCH_PAGE, TEMPLATE as RESEARCH_TEMPLATE, research_page_context,
+        )
+
+        knowledge, research = research_bundle(app, ASSETS, settings, products, workspace_content(app))
+        yield RESEARCH_PAGE, {
+            **research_page_context(knowledge, research), "site_nav": site_nav(app),
+        }, RESEARCH_TEMPLATE
     entries, problems = load_updates(ASSETS)
     for problem in problems:
         sphinx_logging.getLogger(__name__).warning("Knowledge home update skipped: %s", problem)
@@ -383,6 +396,7 @@ def collect_workspace_pages(app):
         "deliverables_entry": True,
         "design_entry": design is not None,
         "matrix_entry": matrix is not None,
+        "research_entry": demo_enabled(app),
         "updates": updates_view(entries, built),
     }, "workspace_portal.html"
     if system is not None:
@@ -436,9 +450,11 @@ def setup(app):
 
     app.add_config_value("rtd_knowledge_dir", "", "html")
     app.add_config_value("rtd_site_role", os.environ.get("RTD_SITE_ROLE", "combined"), "html")
+    app.add_config_value("rtd_product_intelligence_demo", os.environ.get("RTD_PRODUCT_INTELLIGENCE_DEMO", "0"), "html")
     # ISO date for the system and deliverables pages' staleness rules; empty means the build date (UTC).
     app.add_config_value("rtd_system_workspace_date", "", "html")
     app.connect("config-inited", configure)
+    app.connect("builder-inited", clear_research_outputs)
     app.connect("builder-inited", prepare_catalog)
     app.connect("html-page-context", page_context)
     app.connect("html-collect-pages", collect_workspace_pages)
@@ -447,6 +463,7 @@ def setup(app):
     app.connect("build-finished", write_design_pages, priority=850)
     app.connect("build-finished", write_search_index, priority=900)
     app.connect("build-finished", write_knowledge, priority=925)
+    app.connect("build-finished", write_research_exports, priority=940)
     app.connect("build-finished", write_workspace_revision, priority=950)
     app.connect("build-finished", write_deployment_receipt, priority=1000)
     app.connect("build-finished", clear_catalog_cache, priority=1100)
