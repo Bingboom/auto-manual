@@ -83,7 +83,9 @@ Build RTD from `feat/product-intelligence-demo` using a separate preview version
 The existing private RTD project is bound to `Bingboom/Hello-Docs`, not the
 engineering repository. A preview carrier may combine the exact engineering
 commit and the frozen business snapshot on `preview/product-intelligence-1579`
-in that private mirror. It is a deployment artifact, not another implementation
+in the Hello-Docs mirror. That GitHub repository is public; the RTD project's
+private access is a separate setting. Generated research HTML/JSON are not
+committed to the carrier. It is a deployment artifact, not another implementation
 PR; record both source commits and enable the demo only on that carrier. Do not
 change either repository's `main`, the RTD default version or project visibility.
 
