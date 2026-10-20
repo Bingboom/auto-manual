@@ -1,7 +1,7 @@
 # Product Intelligence Demo — Execution Plan
 
 Status: active
-Implementation: three phases integrated; focused and browser validation complete; full regression and private RTD deployment pending.
+Implementation: three phases integrated; local validation complete; private RTD deployment pending.
 Branch: `feat/product-intelligence-demo`
 Scope: three phases, one integration branch, one PR; do not modify the README positioning or merge to main until reviewed.
 
@@ -71,6 +71,11 @@ Agent A owns product knowledge contract + extraction tests. Agent B owns event/a
 - Tests also rebuild the same output directory with the demo disabled and with
   the public manuals role; the three research artifacts disappear and unrelated
   files remain.
+- Validation passed: full unittest (5,664 tests, 67 skipped, canonical
+  `TMPDIR=/private/tmp` on macOS), final focused suite (54 tests), all Node UI
+  tests (42), full Ruff, maintainability guardrails, document links, and
+  `build.py check --config configs/config.us-en.yaml --model JE-1000F --region US
+  --data-root tests/fixtures/phase2`.
 
 ## Preview deployment
 Build RTD from `feat/product-intelligence-demo` using a separate preview version/project configuration where available. The existing RTD project may be private; do not change project visibility, production default branch, or public routes to expose the demo. A GitHub branch by itself does not automatically create a working RTD preview URL. Document the verified URL after the build succeeds.
@@ -81,6 +86,10 @@ commit and the frozen business snapshot on `preview/product-intelligence-1579`
 in that private mirror. It is a deployment artifact, not another implementation
 PR; record both source commits and enable the demo only on that carrier. Do not
 change either repository's `main`, the RTD default version or project visibility.
+
+Hosted verification remains pending: the signed-in Chrome session became
+unavailable because the Mac is locked. No successful RTD build or hosted preview
+URL is claimed until the operator unlocks it and the branch build is read back.
 
 ## Out of scope
 Crawling at scale, autonomous agents in production, Feishu writeback, graph databases, automated product specification edits, unverified sales forecasts, and changing Hello-Docs core positioning.
