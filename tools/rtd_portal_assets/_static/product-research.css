@@ -62,6 +62,7 @@
 .section-note {margin:6px 0 14px}
 .research-product {margin-top:14px;padding:18px;border:1px solid var(--app-line);border-radius:8px;background:#fff;min-width:0}
 .product-heading {display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.product-status {display:flex;align-items:center;flex-wrap:wrap;gap:5px}
 .product-heading h4 {font-size:17px;margin:0;line-height:1.5}
 .product-heading p {font-size:12px;line-height:1.8;color:var(--app-muted);margin:5px 0 0}
 .product-heading p>span {margin:0 4px;color:var(--app-faint)}

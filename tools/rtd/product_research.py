@@ -144,6 +144,8 @@ def _product_view(association: dict, product: dict | None, routes: set[str]) -> 
         "version": _text(product.get("version") or association.get("version"), "版本未知"),
         "page": route[:-5] if route in routes else "",
         "status": association["status"], "status_label": ASSOCIATION_LABELS[association["status"]],
+        "association_source_label": SOURCE_LABELS.get(association.get("source_type"), "规则推导"),
+        "provenance": association.get("provenance") or {},
         "reasons": reasons, "facts": facts,
         "evidence": [_reference(record, routes) for record in association.get("evidence", [])],
         "hypotheses": association.get("hypotheses", []), "unknowns": unknowns,

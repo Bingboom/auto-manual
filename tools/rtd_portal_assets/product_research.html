@@ -14,7 +14,7 @@
 <article class="research-product">
   <header class="product-heading">
     <div><h4>{{ product.name|e }}</h4><p>{{ product.model|e }} <span>·</span> {{ product.market|e }} <span>·</span> {{ product.language|e }} <span>·</span> {{ product.version|e }}</p></div>
-    <span class="research-badge {{ product.status|e }}">{{ product.status_label|e }}</span>
+    <div class="product-status"><span class="research-badge {{ product.status|e }}">{{ product.status_label|e }}</span><span class="source-type">{{ product.association_source_label|e }}</span></div>
   </header>
   <div class="product-body">
     <section class="association-basis" aria-label="关联依据">
@@ -22,6 +22,14 @@
       {% if product.reasons %}<ul class="reason-list">
       {% for reason in product.reasons %}<li><div class="reason-meta"><strong>{{ reason.dimension|e }}</strong><span>{{ reason.state_label|e }}</span><span class="source-type">{{ reason.source_label|e }}</span></div><p>{{ reason.message|e }}</p></li>{% endfor %}
       </ul>{% else %}<p class="missing-note">尚未提供关联理由。</p>{% endif %}
+      {% if product.provenance %}<details class="evidence-meta"><summary>查看规则与计算依据</summary><dl class="snapshot-fields">
+        <div><dt>规则版本</dt><dd>{{ product.provenance.engine_version|default('未记录', true)|e }}</dd></div>
+        {% if product.provenance.rule_source %}<div><dt>规则出处</dt><dd>{{ product.provenance.rule_source.path|e }} · {{ product.provenance.rule_source.locator|e }}</dd></div>{% endif %}
+        <div><dt>规则指纹</dt><dd><code>{{ product.provenance.rule_sha256|default('未记录', true)|e }}</code></dd></div>
+        <div><dt>事件指纹</dt><dd><code>{{ product.provenance.event_sha256|default('未记录', true)|e }}</code></dd></div>
+        <div><dt>产品指纹</dt><dd><code>{{ product.provenance.product_sha256|default('未记录', true)|e }}</code></dd></div>
+        <div><dt>证据指纹</dt><dd><code>{{ product.provenance.evidence_sha256|default('未记录', true)|e }}</code></dd></div>
+      </dl></details>{% endif %}
     </section>
     <section class="evidence-section" aria-label="产品证据">
       <h5>依据与出处</h5>

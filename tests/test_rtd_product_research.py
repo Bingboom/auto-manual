@@ -210,6 +210,21 @@ class ProductResearchTests(unittest.TestCase):
         self.assertIn("语言范围：Legacy publication", page.select_one(".research-unknowns").get_text())
         self.assertNotIn("{'field':", page.get_text())
 
+    def test_association_inference_and_rule_provenance_are_explicit(self):
+        knowledge, research = snapshots()
+        association = research["associations"][0]
+        association["source_type"] = "rule_inference"
+        association["provenance"] = {
+            "engine_version": "2", "rule_sha256": "rule-v2", "event_sha256": "event-v2",
+            "product_sha256": "product-v1", "evidence_sha256": "evidence-v1",
+            "rule_source": {"path": "research-cases.json", "locator": "case:example"},
+        }
+        page = render(knowledge, research)
+        self.assertIn("规则推导", page.select_one(".product-status").get_text())
+        basis = page.select_one(".association-basis").get_text()
+        for value in ("rule-v2", "event-v2", "product-v1", "evidence-v1", "research-cases.json", "case:example"):
+            self.assertIn(value, basis)
+
     def test_missing_products_sources_and_evidence_have_readable_fallbacks(self):
         knowledge, research = snapshots()
         knowledge["products"] = []
