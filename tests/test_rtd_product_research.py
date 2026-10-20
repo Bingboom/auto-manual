@@ -28,7 +28,8 @@ def snapshots():
                           "reason": "重量未见于本变体手册。"},
         },
         "capabilities": {"UPS功能": {"state": "known", "value": False, "source_type": "capability_registry"}},
-        "unknowns": ["当地接入许可未知。"],
+        "unknowns": [{"field": "specifications.weight_kg", "reason": "重量未见于本变体手册。"},
+                     {"field": "language", "reason": "Legacy publication does not verify a single-language edition"}],
     }
     event = {
         "id": "test-policy", "title": "政策变化研究", "kind": "policy", "market": "NL",
@@ -151,7 +152,7 @@ class ProductResearchTests(unittest.TestCase):
         self.assertIsNone(page.select_one(".evidence-list a"))
 
     def test_unsafe_external_sources_and_history_are_plain_text(self):
-        urls = ("javascript:alert(1)", "http://example.org", "https://u:p@example.org",
+        urls = ("javascript:alert(1)", "http://example.org", "https://u:p@example.org", "https://@example.org",
                 "https://example.org\\@evil.org", "https://example.org/\nunsafe", "https://[bad")
         for url in urls:
             with self.subTest(url=url):
@@ -194,6 +195,20 @@ class ProductResearchTests(unittest.TestCase):
         context["research_events"][0]["hypotheses"].append("presentation edit")
         self.assertEqual((knowledge, research), old)
         self.assertIn("历史判断不会随本次计算改写", page.get_text())
+
+    def test_structured_knowledge_gaps_and_association_prose_are_both_preserved(self):
+        knowledge, research = snapshots()
+        knowledge["products"][0]["unknowns"].extend([
+            {"field": "capabilities.自发自用模式", "reason": "Missing registry value"},
+            {"field": "specifications.weight_kg", "reason": "重量未见于本变体手册。"},
+        ])
+        view = research_page_context(knowledge, research)["research_events"][0]["candidates"][0]
+        self.assertEqual(view["unknowns"].count("重量：重量未见于本变体手册。"), 1)
+        self.assertIn("能力需复核。", view["unknowns"])
+        self.assertIn("自发自用模式：Missing registry value", view["unknowns"])
+        page = render(knowledge, research)
+        self.assertIn("语言范围：Legacy publication", page.select_one(".research-unknowns").get_text())
+        self.assertNotIn("{'field':", page.get_text())
 
     def test_missing_products_sources_and_evidence_have_readable_fallbacks(self):
         knowledge, research = snapshots()

@@ -62,7 +62,8 @@ def _external_url(value: object) -> str:
     try:
         parts = urlsplit(value)
         return value if (
-            parts.scheme == "https" and parts.hostname and not parts.username and not parts.password
+            parts.scheme == "https" and parts.hostname
+            and parts.username is None and parts.password is None
         ) else ""
     except ValueError:
         return ""
@@ -100,6 +101,17 @@ def _fact(label: str, record: dict) -> dict:
     }
 
 
+def _unknown(value: object) -> str:
+    """Knowledge unknowns identify a field; association unknowns are already prose."""
+    if not isinstance(value, dict):
+        return _text(value, "尚待核实。")
+    field = _text(value.get("field"), "未知字段")
+    field = field.removeprefix("specifications.").removeprefix("capabilities.")
+    label = {**SPEC_LABELS, "category": "产品分类", "language": "语言范围",
+             "version": "发布版本", "capabilities": "能力登记"}.get(field, field)
+    return f"{label}：{_text(value.get('reason'), '缺少可核实的资料。')}"
+
+
 def _product_view(association: dict, product: dict | None, routes: set[str]) -> dict:
     product = product or {}
     source = product.get("source") or {}
@@ -119,7 +131,7 @@ def _product_view(association: dict, product: dict | None, routes: set[str]) -> 
     for key, record in (product.get("capabilities") or {}).items():
         facts.append(_fact(key, record))
     unknowns = list(dict.fromkeys(
-        [*association.get("unknowns", []), *product.get("unknowns", [])]
+        _unknown(value) for value in [*association.get("unknowns", []), *product.get("unknowns", [])]
     ))
     if not product:
         unknowns.append("当前产品知识快照没有该产品变体，无法核对其发布证据。")
