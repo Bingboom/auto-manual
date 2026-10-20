@@ -48,7 +48,13 @@ python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledge
 其他入库工具尚无完成回执时，批次负责人在完成后使用下面的统一补刷入口。
 
 打开 Hello-Docs **Actions → Workspace Data Refresh → Run workflow**，
-选择 `deliverables`（交付）或 `corpus`（语料）。它只刷新对应来源，不重建说明书。
+选择 `deliverables`（交付）、`corpus`（语料）或 `web_progress`（网页说明书进度）。它只刷新对应来源，不重建说明书。
+
+网页说明书进度是唯一按时间刷新的来源：「网页文档」表由人工维护，没有批次完成回执，
+操作者 2026-10-19 批准每天北京时间 07:17（`17 23 * * *` UTC）定时运行。该来源需要 Hello-Docs
+密钥 `FEISHU_PUBLISHED_DOCS_BASE_TOKEN`、`FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID`，
+并完整拉取提交历史（`fetch-depth: 0`、`filter: blob:none`）来给语言版本定首次上线日期。
+其余来源仍不定时轮询。规则见 [网页说明书进度](rtd_manual_portal/web-progress.md#refreshing)。
 导出失败保留旧值并提交可审核的失败状态；同一事件仅一个 GitHub issue，不重复评论。
 已有内容 PR 会被复用，不自动合入。审核人员检查来源、减少保护和执行记录后合入。
 
@@ -77,13 +83,13 @@ python -m tools.workspace_refresh_batch corpus -- python -m tools.revision_ledge
   不把读取失败或失联目标当成合法删除。人工确认的真实删除应另开范围明确的快照内容 PR，
   通过同样审核更新基线后恢复自动刷新。
 - 页面显示构建时间、交付快照日期、语料快照日期与内容 SHA256。
-  新鲜度阈值集中在 `source_registry.yaml`：交付 3 天、语料 7 天。
+  新鲜度阈值集中在 `source_registry.yaml`：交付 3 天、语料 7 天、网页进度 7 天。
 - 无内容变化的成功检查只记录在执行日志；冻结快照仍保留上次内容日期，
   页面过期提示不会因一次新的页面构建或未发布的检查记录消失。
   该提示表示需要确认，并非数据必然错误；近期无变化检查可从更新记录查证。
 - 工程代码先经过审核、合入、镜像同步；之后业务数据内容 PR 直接进入 Hello-Docs main，
   不需要把业务数据再送回工程面。正常 RTD 构建继续消费冻结文件。
-- 部署回执新增 `workspace_revision`、两类快照及状态文件哈希。
+- 部署回执新增 `workspace_revision`、各类快照（交付、语料、网页进度）及状态文件哈希。
   Workspace Data Verify 检查 mainline 身份、目标 RTD 构建成功、线上回执版本、快照哈希、
   页面字节及页面引用的快照哈希。未完成最后一步不能称为“工作台已更新”。
   网站在 Read the Docs for Business 上，其构建接口只认令牌：Hello-Docs 配置了

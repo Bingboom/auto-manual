@@ -160,7 +160,9 @@ class ReleaseTests(unittest.TestCase):
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             expected = inventory(root)
-            html = b'<span data-workspace-source="deliverables" data-snapshot-sha256=""></span><span data-workspace-source="corpus" data-snapshot-sha256=""></span>'
+            html = (b'<span data-workspace-source="deliverables" data-snapshot-sha256=""></span>'
+                    b'<span data-workspace-source="corpus" data-snapshot-sha256=""></span>'
+                    b'<span data-workspace-source="web_progress" data-snapshot-sha256=""></span>')
             receipt = {"workspace_revision": "target", "workspace_sources": expected,
                        "files": {verify.ROUTE: hashlib.sha256(html).hexdigest()}}
             def fetch(url):
@@ -189,6 +191,31 @@ class ExportServiceTests(unittest.TestCase):
             self.assertEqual(result["status"], "failed")
             self.assertNotIn(secret, out.getvalue())
             self.assertEqual(json.loads((assets / snap.NAMES["deliverables"]).read_text())["documents"], snapshot()["documents"])
+
+    def test_web_progress_reads_the_bound_table_and_history(self):
+        from tools.rtd import web_progress as wp
+        site = "https://ht-docs-ht-manuals.readthedocs-hosted.com/en/latest"
+        grid = {"data": {"fields": ["型号", wp.LINK_FIELD, wp.CHECK_FIELD, wp.SKU_FIELD], "record_id_list": ["r1"],
+                         "data": [["JE-A", {"link": f"{site}/JE-A/EU/en/md/manual.html"}, True, [{"text": "HTE1-EU-JAK"}]]],
+                         "total": 1, "has_more": False}}
+        timeline = [{"date": "2026-10-01", "added": 1, "langs": 1, "editions": 1, "models": 1}]
+        env = {"FEISHU_PUBLISHED_DOCS_BASE_TOKEN": "base", "FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID": "web"}
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            assets = root / "tools" / "rtd_portal_assets"
+            assets.mkdir(parents=True)
+            (assets / "workspace_refresh_sources.json").write_text(json.dumps({"web_progress": snap.digest(["base", "web"])}))
+            with patch.dict(os.environ, env), redirect_stdout(io.StringIO()):
+                result = refresh.refresh("web_progress", root=root, log=root / "result.json", cli_bin="unused",
+                                         identity="bot", run=lambda _: grid, history=lambda _: timeline)
+            self.assertEqual(result["status"], "changed")
+            saved = json.loads((snap.data_dir(root) / snap.NAMES["web_progress"]).read_text())
+            self.assertEqual((saved["checked"], saved["sold"], saved["timeline"]), (["JE-A/EU/en"], {"JE-A": ["EU"]}, timeline))
+            # A table the binding does not name is refused before any read.
+            with patch.dict(os.environ, dict(env, FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID="other")), redirect_stdout(io.StringIO()):
+                failed = refresh.refresh("web_progress", root=root, log=root / "result.json", cli_bin="unused",
+                                         identity="bot", run=Mock(side_effect=AssertionError("read")), history=lambda _: timeline)
+            self.assertEqual(failed["status"], "failed")
 
     def test_corpus_revision_changes_hash_without_changing_counts(self):
         from tools.rtd.system_workspace import corpus_export

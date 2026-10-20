@@ -1,18 +1,22 @@
 name: Workspace Data Refresh
 on:
+  # 网页说明书进度 has no completion receipt (the 网页文档 table is kept by hand), so it
+  # refreshes every day at 07:17 Beijing time; the other sources refresh after their batches.
+  schedule:
+    - cron: '17 23 * * *'
   workflow_dispatch:
     inputs:
       source:
         description: Source to recheck after a completed production or asset batch
         type: choice
-        options: [deliverables, corpus]
+        options: [deliverables, corpus, web_progress]
         required: true
 permissions:
   contents: write
   pull-requests: write
   issues: write
 concurrency:
-  group: workspace-refresh-${{ inputs.source }}
+  group: workspace-refresh-${{ inputs.source || 'web_progress' }}
   cancel-in-progress: false
 jobs:
   refresh:
@@ -27,18 +31,25 @@ jobs:
       FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
       FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID: ${{ secrets.FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID }}
       FEISHU_TRANSLATION_MEMORY_BASE_TOKEN: ${{ secrets.FEISHU_TRANSLATION_MEMORY_BASE_TOKEN }}
+      FEISHU_PUBLISHED_DOCS_BASE_TOKEN: ${{ secrets.FEISHU_PUBLISHED_DOCS_BASE_TOKEN }}
+      FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID: ${{ secrets.FEISHU_PUBLISHED_DOCS_WEB_TABLE_ID }}
+      REFRESH_SOURCE: ${{ inputs.source || 'web_progress' }}
     steps:
+      # web_progress dates each language version from the publish manifest's history, so it
+      # needs every commit; blob:none keeps that clone to commits and trees, fetching blobs on use.
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: ${{ (inputs.source || 'web_progress') == 'web_progress' && '0' || '1' }}
+          filter: ${{ (inputs.source || 'web_progress') == 'web_progress' && 'blob:none' || '' }}
       - uses: ./.github/actions/feishu-common-setup
       - uses: ./.github/actions/workspace-data-refresh
         with:
-          kind: ${{ inputs.source }}
+          kind: ${{ env.REFRESH_SOURCE }}
       - name: Source failure notice
         if: ${{ !cancelled() }}
         env:
-          REFRESH_KIND: ${{ inputs.source }}
+          REFRESH_KIND: ${{ env.REFRESH_SOURCE }}
           JOB_STATUS: ${{ job.status }}
         run: |
           args=()

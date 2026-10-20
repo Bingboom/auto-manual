@@ -23,7 +23,8 @@ def inventory(root: Path) -> dict:
 def freshness(root: Path, registry: dict, today: dt.date) -> list[dict]:
     assets = root / "tools" / "rtd_portal_assets"
     rows = []
-    for kind, domain, label in (("deliverables", "deliverables_feishu", "交付快照"), ("corpus", "corpus", "语料快照")):
+    for kind, domain, label in (("deliverables", "deliverables_feishu", "交付快照"), ("corpus", "corpus", "语料快照"),
+                                ("web_progress", "web_progress", "网页进度快照")):
         row = {"kind": kind, "label": label, "state": "Unavailable", "date": "无有效数据", "hash": "", "execution": ""}
         try:
             path = snapshot_path(assets, NAMES[kind])
@@ -31,6 +32,9 @@ def freshness(root: Path, registry: dict, today: dt.date) -> list[dict]:
             if kind == "deliverables":
                 from tools.rtd.deliverables import snapshot_problems
                 problems = snapshot_problems(payload)
+            elif kind == "web_progress":
+                from tools.rtd.web_progress import snapshot_problems as progress_problems
+                problems = progress_problems(payload)
             else:
                 from tools.rtd.system_workspace import CONTRACT_NAME, corpus_problems, load_contract
                 contract = load_contract(assets / CONTRACT_NAME)
