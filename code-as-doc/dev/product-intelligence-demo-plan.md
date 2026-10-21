@@ -75,7 +75,8 @@ Operator direction: the demo must later be easy to decouple and run on its own. 
 - [x] Keep the research page, Sphinx build, product lens and the portal's stricter policy reader in the host; the RTD build passes `market_context` records to the package.
 - [x] Guard it: an import scan of the package and its tests, a run of a copy with nothing else from this repository on the path, and checks of the package's parallel readers and page route against the host's.
 - [x] Prove behavior unchanged: CLI outputs, the written intake and the five research exports and page are byte-identical before and after on the same real input.
-- [ ] Borrow from llm_wiki next, each as its own step: a generated Markdown view (`index.md`, `log.md`, market and event pages, `purpose.md`), rule-based health checks folded into the push, and later LLM-drafted intake that a person confirms.
+- [x] Borrow from llm_wiki, first step: a generated Markdown view (`python -m tools.intel wiki`) with `index.md`, `overview.md`, `log.md`, event and market pages, and `purpose.md`/`schema.md` templates that people own. It opens in Obsidian and llm_wiki, is byte-stable for an unchanged intake and has a `--check` mode.
+- [ ] Next llm_wiki steps, each its own change: rule-based health checks folded into the push, then LLM-drafted intake that a person confirms.
 
 ## Parallel execution contract
 Agent A owns product knowledge contract + extraction tests. Agent B owns event/association module + tests. Agent C owns RTD templates/assets + UI tests. Integration owner alone changes shared builders/registration and resolves contracts. A minimal contract must be agreed first; B/C can implement against fixtures while A completes.

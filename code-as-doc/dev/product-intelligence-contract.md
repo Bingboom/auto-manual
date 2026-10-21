@@ -215,6 +215,33 @@ repository as they are:
   `tests/fixtures/external_intel/`, then rename the `tools.intel` import prefix
   in those tests. The guard's host checks stay here with the host readers.
 
+## Markdown view
+
+`tools.intel.wiki.wiki_pages(snapshot)` renders a snapshot as `{path: Markdown}` under
+the external-intel folder. It follows the LLM Wiki layout of
+[nashsu/llm_wiki](https://github.com/nashsu/llm_wiki) without its code (GPL-3.0):
+
+- `wiki/index.md` lists every event by kind and every market. `wiki/overview.md` lists
+  pending decisions in `decision_order`, judgments, market counts and the intake's
+  `source_sha256`. `wiki/log.md` has one `## [date] action | title · rN` entry per
+  revision, newest first. Each event has `wiki/events/<id>.md` and each market
+  `wiki/markets/market-<slug>.md`; markets differing only in case or punctuation share one.
+- Links are `[[file name|title]]`, because llm_wiki resolves links by file name, so every
+  page name is unique and a collision raises `ValueError`. Frontmatter values are JSON,
+  which is valid YAML. Event pages carry `kind`, `market`, `verification`,
+  `decision_state`, `owner`, `due_on`, `related` (their market page) and `sources`
+  (validated URLs, so events citing one source are connected).
+- Intake text is escaped: markup characters are backslash-escaped in text and replaced by
+  full-width look-alikes in link titles, leading list and heading markers are escaped,
+  and only validated HTTPS URLs become links. The view holds no product data and no build
+  date, so an unchanged intake regenerates byte for byte.
+- `plan(root, pages)` lists pages to write, stale pages to delete (only under
+  `wiki/events/` and `wiki/markets/`) and missing templates. `apply` writes them
+  atomically. `purpose.md` and `schema.md` are created from templates once and never
+  overwritten; nothing else under `wiki/` is touched.
+- `python -m tools.intel wiki --knowledge-dir DIR [--write | --check]` previews, writes,
+  or exits 1 when the view on disk is stale.
+
 ## Page, exports and ownership
 
 - Package (see [Package boundary](#package-boundary)): `tools/intel/` with

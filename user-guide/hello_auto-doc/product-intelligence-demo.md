@@ -135,6 +135,35 @@ python -m tools.intel sync --knowledge-dir "$KNOWLEDGE" --write --push  # 写入
 若事件文件已被另行修改，命令停止并保留现场，请先核对候选与人工改动。超过飞书一小时
 幂等窗口再重试，若上次实际已发送但回执丢失，可能产生重复消息，应先核对群记录。
 
+## Markdown 知识视图
+
+借鉴 [llm_wiki](https://github.com/nashsu/llm_wiki) 的知识库结构（只借鉴结构，不使用它的代码），
+把 `events.json` 生成一组相互链接的 Markdown 页面：可以直接用 Obsidian 或 llm_wiki 打开，
+AI 助手也能先读索引再回答问题。
+
+```sh
+python -m tools.intel wiki --knowledge-dir "$KNOWLEDGE"           # 预览：列出要写入和删除的页面
+python -m tools.intel wiki --knowledge-dir "$KNOWLEDGE" --write   # 写入
+python -m tools.intel wiki --knowledge-dir "$KNOWLEDGE" --check   # 视图过期时退出码为 1
+```
+
+页面生成在 `external-intel/` 下：
+
+- `wiki/index.md` 按类型列出全部事件和市场，`wiki/overview.md` 列出待决策、人工判断和各市场
+  数量，`wiki/log.md` 每条修订一项、按记录日倒序，另有每个事件一页
+  `wiki/events/<事件ID>.md`、每个市场一页 `wiki/markets/market-<市场>.md`。
+- `purpose.md`（目的、关键问题、范围、决策人）和 `schema.md`（页面约定）只在缺少时按模板
+  创建，之后由人维护，不会被覆盖。
+
+`wiki/` 下这些页面每次都从 `events.json` 重新生成，手改会被覆盖：事实在飞书表格里改，同步
+后再生成。生成只写这些页面，并删除已不存在事件的旧页面；`wiki/` 下的其他文件（例如 llm_wiki
+保存的问答）不动。页面不含产品数据，也不带生成时间，数据不变时重新生成没有差异。
+
+同步写入 `events.json` 后运行 `--write`，把 `events.json`、`wiki/`、`purpose.md` 和
+`schema.md` 放进同一个 Hello-Docs 内容 PR。用 Obsidian 打开 `external-intel/` 文件夹即可
+浏览页面和关系图；用 llm_wiki 把同一文件夹作为项目打开即可问答。两个应用会在该文件夹里建
+`.obsidian/`、`.llm-wiki/`，不要提交。
+
 ## 本地运行
 
 在工程分支和已安装仓库依赖的 Python 环境中，指向一份独立的冻结发布源，以及包含

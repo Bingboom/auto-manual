@@ -82,7 +82,8 @@ Prepared Web admission: `tools/web/component_admission.py` owns fresh-publicatio
 `digest.py` 只用事件生成可推送的决策摘要；`sync.py` 只读飞书「外部情报」表，按行追加
 事件修订；`push.py` 用摘要条目组装飞书群消息；`delivery.py` 在业务仓库外保存待发消息和
 候选写入，收到发送回执后清除，失败重试先重放原消息；`feishu.py` 是包内自带的 lark-cli
-调用与完整分页读取；`policies.py` 读取政策记录；`files.py` 负责原子写入；`cli.py`
+调用与完整分页读取；`policies.py` 读取政策记录；`files.py` 负责原子写入；`wiki.py`
+生成可用 Obsidian、llm_wiki 打开的 Markdown 视图；`cli.py`
 （`python -m tools.intel`）是尚未接入工作流的命令行入口。边界由
 `tests/test_external_intel_boundary.py` 守住。产品视角是可选附录：
 `tools/product_knowledge/` 复用矩阵的 `product_row` 与 `production_evidence` 的清单校验，
