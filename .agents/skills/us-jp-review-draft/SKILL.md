@@ -12,8 +12,10 @@ magenta, Chinese glosses in blue, review notes in orange. Proven on JHP-3600C
 (v0.14 → v0.69); see `references/jhp3600c-case.md`.
 
 This is an off-pipeline review artifact. It never writes `docs/templates`,
-`docs/_review`, `data/phase2` or live source tables, and it is not committed to
-the repo. The only live write is the operator-requested Feishu wiki upload.
+`docs/_review`, `data/phase2` or live source tables, and it never enters the
+public repositories (auto-manual, Hello-Docs). Published drafts live only in
+the private `Bingboom/Hello-Docs-Review` mirror; the other live write is the
+operator-requested Feishu wiki upload.
 
 ## Inputs (ask for what is missing)
 
@@ -73,6 +75,12 @@ the repo. The only live write is the operator-requested Feishu wiki upload.
     HTML, assets, registers, xlsx and an updated `README.md`/`review.zh.md`;
     send it to the operator. Upload to the Feishu wiki only when asked
     (`references/feishu-io.md`), next to the original, then read back.
+12. **Publish to the private 审核稿 site** when asked: commit the version
+    directory with a `draft.json` manifest to `Bingboom/Hello-Docs-Review` under
+    `docs/review-drafts/<MODEL>/<REGION>/<version>/` (newest version plus
+    milestones; drop superseded in-between versions). The private RTD project
+    rebuilds the list. Manifest and rules:
+    [`review-drafts-site.md`](../../../code-as-doc/dev/rtd_manual_portal/review-drafts-site.md).
 
 One operator instruction = one version: a `make_vNNN.py` that copies the last
 version directory, applies exact-count replacements, bumps every version
