@@ -3,7 +3,7 @@
 ``runner(cli_bin, identity)`` returns ``run(args) -> payload``: one lark-cli call
 with ``--as identity`` after the subcommand, its printed JSON object returned,
 rate-limited replies retried with bounded backoff. A failure raises
-``LarkError`` naming the exit status or response code and never the command
+``LarkError`` naming the exit status and any response code, never the command
 line, whose arguments hold base tokens and message bodies.
 
 ``complete_rows(run, base_token, table_id)`` reads every page of
@@ -58,6 +58,28 @@ def payload_of(text: str) -> dict:
     return value
 
 
+def _code(payload: dict | None) -> str | None:
+    """The response code of a reply, at the top or under ``error`` as lark-cli 1.x prints it; digits only."""
+    if not isinstance(payload, dict):
+        return None
+    error = payload.get("error")
+    for value in (payload.get("code"), error.get("code") if isinstance(error, dict) else None):
+        text = "" if value is None or isinstance(value, bool) else str(value).strip()
+        if text.lstrip("-").isdigit() and text != "0":
+            return text
+    return None
+
+
+def _reply(stdout: str, stderr: str) -> dict | None:
+    """The JSON object a failed call printed, if any; lark-cli prints its error object to stderr."""
+    for text in (stdout, stderr):
+        try:
+            return payload_of(text)
+        except LarkError:
+            continue
+    return None
+
+
 def _limited(payload: dict | None, stdout: str, stderr: str) -> bool:
     if payload and any(str(payload.get(key) or "").strip() == "429"
                        for key in ("code", "status", "status_code", "http_status")):
@@ -94,9 +116,11 @@ def runner(cli_bin: str, identity: str, *, execute=subprocess.run,
                 sleep(_delay(attempt, payload))
                 continue
             if done.returncode or payload is None:
-                raise LarkError(f"lark-cli exited with status {done.returncode}")
+                code = _code(_reply(stdout, stderr))
+                raise LarkError(f"lark-cli exited with status {done.returncode}"
+                                + (f", response code {code}" if code else ""))
             if payload.get("code") not in (None, 0, "0") or payload.get("ok") is False:
-                raise LarkError(f"lark-cli request failed with code {payload.get('code')}")
+                raise LarkError(f"lark-cli request failed with code {_code(payload)}")
             return payload
         raise LarkError("lark-cli stayed rate-limited")
 

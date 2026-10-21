@@ -56,8 +56,12 @@ class RunnerTests(unittest.TestCase):
         Recorder(done(stdout='{"code": 0}')).run(identity="")(["base", "+record-list"])
 
     def test_failures_name_the_status_or_code_never_the_arguments(self):
+        # lark-cli 1.x exits 3 and prints {"ok": false, "error": {...}} to stderr.
+        cli_error = json.dumps({"ok": False, "error": {"type": "api", "code": 91403, "message": f"no access {TOKEN}"}})
         for result, message in ((done(1, stderr=f"invalid token {TOKEN}"), "status 1"),
+                                (done(3, stderr=f"[WARN] proxy detected\n{cli_error}"), "status 3, response code 91403"),
                                 (done(stdout='{"code": 91403, "msg": "forbidden"}'), "code 91403"),
+                                (done(stdout='{"ok": false, "error": {"code": 10014}}'), "code 10014"),
                                 (done(stdout='{"ok": false}'), "code None"),
                                 (done(stdout="not json"), "no JSON object")):
             with self.subTest(message=message):
@@ -65,6 +69,17 @@ class RunnerTests(unittest.TestCase):
                     Recorder(result).run()(["base", "+record-list", "--base-token", TOKEN])
                 self.assertIn(message, str(raised.exception))
                 self.assertNotIn(TOKEN, str(raised.exception))
+
+    def test_a_failed_call_adds_only_a_numeric_response_code(self):
+        for stderr, expected in (('{"ok": false, "error": {"code": 91403}}', ", response code 91403"),
+                                 ('{"ok": false, "error": {"code": true}}', ""),
+                                 ('{"ok": false, "error": {"code": "0"}}', ""),
+                                 ('{"code": "x91403"}', ""),
+                                 ("Error: broken pipe", "")):
+            with self.subTest(stderr=stderr):
+                with self.assertRaises(feishu.LarkError) as raised:
+                    Recorder(done(3, stderr=stderr)).run()(["base", "+record-list"])
+                self.assertEqual(str(raised.exception), "lark-cli exited with status 3" + expected)
 
     def test_rate_limits_are_retried_with_bounded_backoff(self):
         limited = done(stdout='{"code": 429, "retry_after": 5}')

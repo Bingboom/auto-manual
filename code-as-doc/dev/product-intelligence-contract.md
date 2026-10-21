@@ -200,9 +200,10 @@ repository as they are:
   event joins as `policies`, the date as `today`; the pending push lives
   outside any checkout (`EXTERNAL_INTEL_STATE_DIR`). By default `run` is
   `tools.intel.feishu.runner`, the package's own lark-cli transport, and table
-  pages come from its own reader. A `LarkError` names an exit status or a
-  response code, never an argument, so the CLI prints it; any other transport
-  error prints only its type.
+  pages come from its own reader. A `LarkError` names the exit status and the
+  response code lark-cli printed (lark-cli 1.x exits 3 with `error.code` on
+  stderr), never an argument, so the CLI prints it; any other transport error
+  prints only its type.
 - This repository keeps what is its own: the research page, the Sphinx build,
   the product lens and the portal's stricter policy reader. They import the
   package; the package never imports them.
