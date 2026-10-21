@@ -55,7 +55,7 @@ def _item(event: dict, page: str, base_url: str) -> dict:
         "review": {key: review.get(key) for key in ("status", "decision", "reviewed_by", "reviewed_on")},
         "hypotheses": list(event["hypotheses"]), "open_questions": list(event["unknowns"]),
         "page": anchor, "url": f"{base_url}/{anchor}" if base_url else None,
-        "event_sha256": event["content_sha256"],
+        "record_id": event.get("intake_record_id"), "event_sha256": event["content_sha256"],
     }
 
 

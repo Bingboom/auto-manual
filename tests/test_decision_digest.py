@@ -36,6 +36,7 @@ class DecisionDigestTests(unittest.TestCase):
         self.assertEqual(item["verification"], "verified")
         self.assertEqual(item["page"], f"{PAGE}.html#event-us-outage-resilience-research")
         self.assertIsNone(item["url"])
+        self.assertIsNone(item["record_id"])
         for text in (json.dumps(digest, ensure_ascii=False), digest["text"]):
             for product_term in ("product_lens", "required_capabilities", "UPS功能", "catalog_markets"):
                 self.assertNotIn(product_term, text)
@@ -53,6 +54,10 @@ class DecisionDigestTests(unittest.TestCase):
         self.assertLess(text.index("## 已有人工判断（1）"), text.index("美国 2024 飓风季"))
         self.assertIn("截止：2026-12-01", text)
         self.assertIn("人工判断：先按州收集停电数据。（Fixture reviewer，2026-10-22）", text)
+
+    def test_items_name_the_table_row_an_event_is_synced_from(self):
+        self.us["intake_record_id"] = "recUS1"
+        self.assertEqual(self.item(self.digest())["record_id"], "recUS1")
 
     def test_unassigned_owner_and_missing_due_date_are_explicit(self):
         message = self.item(self.digest())["message"]

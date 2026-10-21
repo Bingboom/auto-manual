@@ -7,7 +7,8 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from tools.rtd.intelligence_events import (
-    CONTENT_DIR, EVENTS_FILE, SCHEMA_VERSION, compare_event_snapshots, content_hash, load_events,
+    CONTENT_DIR, EVENTS_FILE, SCHEMA_VERSION, compare_event_snapshots, content_hash, encode_intake,
+    events_snapshot, load_events,
 )
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "external_intel" / "events.json"
@@ -69,6 +70,26 @@ class IntakeTests(unittest.TestCase):
         })
         self.assertEqual((event["revision"], event["recorded_on"]), (3, "2026-10-21"))
         self.assertFalse({"associations", "candidates", "knowledge_snapshot_id"} & set(event))
+
+    def test_table_row_link_is_optional_unique_and_carried(self):
+        self.us["intake_record_id"] = "recUS1"
+        snapshot = self.load()
+        self.assertEqual(self.event(snapshot)["intake_record_id"], "recUS1")
+        self.assertIsNone(self.event(snapshot, "nl-self-consumption-research")["intake_record_id"])
+        for value in ("", "US1", "rec-1", 7):
+            with self.subTest(value=value):
+                self.us["intake_record_id"] = value
+                self.rejects("intake_record_id")
+        self.us["intake_record_id"] = self.nl["intake_record_id"] = "recSAME"
+        self.rejects("intake_record_id")
+
+    def test_candidate_bytes_snapshot_exactly_like_the_written_file(self):
+        payload = encode_intake(self.data)
+        self.assertEqual(json.loads(payload), self.data)
+        self.assertTrue(payload.endswith(b"\n"))
+        self.path.write_bytes(payload)
+        self.assertEqual(events_snapshot(payload, self.root), load_events(self.root))
+        self.assertEqual(events_snapshot(None, self.root)["snapshot_id"], load_events(None)["snapshot_id"])
 
     def test_source_names_the_business_file_and_its_bytes(self):
         snapshot = self.load()
