@@ -1,0 +1,12 @@
+{
+  "source": "/Users/hello-tech-team/Desktop/包材评审/HTE156 V2包材评审/55060100010 HTE1563000A-KR-JAK-A0 说明书 RoHS REACH.pdf",
+  "backup": "/Users/hello-tech-team/Desktop/包材评审/HTE156 V2包材评审/原始PDF备份/55060100010 HTE1563000A-KR-JAK-A0 说明书 RoHS REACH.pdf",
+  "original_sha256": "5f1190d731821c9bcceada2cef940a9365b334eedb8e84d5e08926b814f490e7",
+  "edited_sha256": "78316033826380d2786a495562d1a09c3193ede98d9bbcb4fdb2e81b1872ad37",
+  "original_pages": 21,
+  "removed_physical_pages": [
+    1
+  ],
+  "result_pages": 20,
+  "retained_media_boxes_and_content_streams_identical": true
+}
