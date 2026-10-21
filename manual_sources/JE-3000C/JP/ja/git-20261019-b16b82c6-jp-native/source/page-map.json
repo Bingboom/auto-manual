@@ -1,0 +1,165 @@
+{
+  "cover": {
+    "physical_page": 1,
+    "included_in_web_body": false
+  },
+  "printed_contents": {
+    "physical_page": 2,
+    "replaced_by": "native Sphinx navigation"
+  },
+  "blank_back": 26,
+  "chapters": [
+    {
+      "id": "symbols",
+      "title": "安全上のご注意",
+      "physical_pages": [
+        3,
+        4,
+        5
+      ],
+      "printed_pages": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "usage",
+      "title": "使用上のご注意",
+      "physical_pages": [
+        6,
+        7
+      ],
+      "printed_pages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "disclaimer",
+      "title": "免責事項",
+      "physical_pages": [
+        7
+      ],
+      "printed_pages": [
+        5
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "title": "同梱品",
+      "physical_pages": [
+        8
+      ],
+      "printed_pages": [
+        6
+      ]
+    },
+    {
+      "id": "product_overview",
+      "title": "各部の名称",
+      "physical_pages": [
+        9
+      ],
+      "printed_pages": [
+        7
+      ]
+    },
+    {
+      "id": "lcd_display",
+      "title": "液晶画面",
+      "physical_pages": [
+        10,
+        11
+      ],
+      "printed_pages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "operations",
+      "title": "使い方",
+      "physical_pages": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "printed_pages": [
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "ups",
+      "title": "UPS 機能",
+      "physical_pages": [
+        16
+      ],
+      "printed_pages": [
+        14
+      ]
+    },
+    {
+      "id": "charging",
+      "title": "充電方法",
+      "physical_pages": [
+        17,
+        18,
+        19
+      ],
+      "printed_pages": [
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "title": "トラブルシューティング",
+      "physical_pages": [
+        20
+      ],
+      "printed_pages": [
+        18
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "主な仕様",
+      "physical_pages": [
+        21
+      ],
+      "printed_pages": [
+        19
+      ]
+    },
+    {
+      "id": "warranty",
+      "title": "保証について",
+      "physical_pages": [
+        22,
+        23
+      ],
+      "printed_pages": [
+        20,
+        21
+      ]
+    },
+    {
+      "id": "app_setup",
+      "title": "Jackeryアプリ ユーザーマニュアル",
+      "physical_pages": [
+        24,
+        25
+      ],
+      "printed_pages": [
+        22,
+        23
+      ]
+    }
+  ]
+}

@@ -1266,6 +1266,11 @@
       "registered": "2026-10-19",
       "known_drift": {}
     },
+    "manual_sources/JE-3000C/JP/ja/git-20261019-b16b82c6-jp-native": {
+      "approval": "User request 2026-10-19: Git-only JE-3000C JP Web conversion; candidate only, no merge or publication authority",
+      "registered": "2026-10-19",
+      "known_drift": {}
+    },
     "manual_sources/JE-300D/EU/en/candidate-2025-10-24": {
       "approval": "存量：2026-10-19 建档前已入库，批准依据未逐包回溯",
       "registered": "2026-10-19",

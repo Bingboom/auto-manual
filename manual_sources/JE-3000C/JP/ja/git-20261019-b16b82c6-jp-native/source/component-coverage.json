@@ -1,0 +1,133 @@
+{
+  "profile": "native-portable-shared-components/v1",
+  "applicable": true,
+  "model": "JE-3000C",
+  "region": "JP",
+  "language": "ja",
+  "chapters": {
+    "symbols": {
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-SYMBOL-ICON": 1
+    },
+    "usage": {
+      "HB-CALLOUT-STRIP": 1
+    },
+    "disclaimer": {},
+    "in_the_box": {
+      "HB-SPECIAL-INBOX": 1
+    },
+    "product_overview": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 2
+    },
+    "lcd_display": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 1,
+      "HB-TABLE-LCD-ICON": 1
+    },
+    "operations": {
+      "HB-SPECIAL-OPERATION": 3,
+      "HB-CALLOUT-STRIP": 3,
+      "HB-SPECIAL-REFERENCE-FIGURE": 2,
+      "HB-TABLE-REFERENCE": 1,
+      "HB-TABLE-AUTO-RESUME": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1
+    },
+    "ups": {
+      "HB-SPECIAL-REFERENCE-FIGURE": 1
+    },
+    "charging": {
+      "HB-CALLOUT-STRIP": 5,
+      "HB-SPECIAL-REFERENCE-FIGURE": 4
+    },
+    "troubleshooting": {
+      "HB-TABLE-TROUBLESHOOTING": 1
+    },
+    "specifications": {
+      "HB-TABLE-SPEC": 4
+    },
+    "warranty": {
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-YEARS": 1,
+      "HB-WARRANTY-SECTION": 6
+    },
+    "app_setup": {
+      "HB-SPECIAL-APP": 2,
+      "HB-SPECIAL-REFERENCE-FIGURE": 3,
+      "HB-CALLOUT-STRIP": 3
+    }
+  },
+  "components": {
+    "HB-TABLE-SYMBOL-SIGNAL": 1,
+    "HB-TABLE-SYMBOL-ICON": 1,
+    "HB-CALLOUT-STRIP": 12,
+    "HB-SPECIAL-INBOX": 1,
+    "HB-SPECIAL-REFERENCE-FIGURE": 13,
+    "HB-TABLE-LCD-ICON": 1,
+    "HB-SPECIAL-OPERATION": 3,
+    "HB-TABLE-REFERENCE": 1,
+    "HB-TABLE-AUTO-RESUME": 1,
+    "HB-TABLE-LCD-MODE": 1,
+    "HB-TABLE-KEY-COMBINATIONS": 1,
+    "HB-TABLE-TROUBLESHOOTING": 1,
+    "HB-TABLE-SPEC": 4,
+    "HB-WARRANTY-LEAD": 1,
+    "HB-WARRANTY-YEARS": 1,
+    "HB-WARRANTY-SECTION": 6,
+    "HB-SPECIAL-APP": 2
+  },
+  "governed_reference_figures": [
+    {
+      "location": "ja/product_overview#block-3",
+      "source_ref": "ja/pdf-9#overview-front"
+    },
+    {
+      "location": "ja/product_overview#block-5",
+      "source_ref": "ja/pdf-9#overview-right"
+    },
+    {
+      "location": "ja/lcd_display#block-2",
+      "source_ref": "ja/pdf-10#lcd-map"
+    },
+    {
+      "location": "ja/operations#block-14",
+      "source_ref": "ja/pdf-13#frequency"
+    },
+    {
+      "location": "ja/operations#block-21",
+      "source_ref": "ja/pdf-14#energy-saving"
+    },
+    {
+      "location": "ja/ups#block-2",
+      "source_ref": "ja/pdf-16#ups"
+    },
+    {
+      "location": "ja/charging#block-7",
+      "source_ref": "ja/pdf-17#ac-charge"
+    },
+    {
+      "location": "ja/charging#block-14",
+      "source_ref": "ja/pdf-18#solar-two"
+    },
+    {
+      "location": "ja/charging#block-17",
+      "source_ref": "ja/pdf-18#solar-four"
+    },
+    {
+      "location": "ja/charging#block-24",
+      "source_ref": "ja/pdf-19#car-charge"
+    },
+    {
+      "location": "ja/app_setup#block-6",
+      "source_ref": "ja/pdf-24#app-pairing"
+    },
+    {
+      "location": "ja/app_setup#block-7",
+      "source_ref": "ja/pdf-24#app-controls"
+    },
+    {
+      "location": "ja/app_setup#block-13",
+      "source_ref": "ja/pdf-25#app-result"
+    }
+  ],
+  "issues": []
+}
