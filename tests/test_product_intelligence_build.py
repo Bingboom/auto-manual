@@ -52,7 +52,7 @@ class FlagTests(unittest.TestCase):
 
 class ProductIntelligenceBuildTests(unittest.TestCase):
     def _build(self, root, flag="1", role="combined", *, events=fixture_events, manifest=None, output_name=None,
-               expect_success=True, source_dir=("publish", "web")):
+               expect_success=True, source_dir=("publish", "web"), conf_extra=""):
         build = root / "build"
         manual = build / "JE-TEST" / "EU" / "md"
         manual.mkdir(parents=True, exist_ok=True)
@@ -61,6 +61,9 @@ class ProductIntelligenceBuildTests(unittest.TestCase):
         (manual / "manual.md").write_text("# Test manual\n\nFrozen content.\n", encoding="utf-8")
         source = build.joinpath(*source_dir)
         assemble_rtd_source(build_root=build, output_dir=source, title="Test library")
+        if conf_extra:
+            with (source / "conf.py").open("a", encoding="utf-8") as conf:
+                conf.write(conf_extra)
         manifest_path = source.parent / "publish_manifest.json"
         manifest_path.unlink(missing_ok=True)
         if manifest is not None:
@@ -174,6 +177,12 @@ class ProductIntelligenceBuildTests(unittest.TestCase):
             home = (out / "workspace" / "index.html").read_text()
             self.assertNotIn("research/product-intelligence", home)
             self.assertNotIn("research/product-intelligence", (out / "market" / "policy.html").read_text())
+
+    def test_boolean_flag_from_conf_py_enables_without_a_type_warning(self):
+        with TemporaryDirectory() as temporary:
+            out, result = self._build(Path(temporary), "0", conf_extra="\nrtd_product_intelligence_demo = True\n")
+            self.assertTrue((out / PAGE).is_file())
+            self.assertNotIn("has type", result.stderr)
 
     def test_misspelt_flag_stops_the_build_once_with_a_clear_message(self):
         for role in ("combined", "manuals"):

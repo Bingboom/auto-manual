@@ -458,7 +458,9 @@ def setup(app):
 
     app.add_config_value("rtd_knowledge_dir", "", "html")
     app.add_config_value("rtd_site_role", os.environ.get("RTD_SITE_ROLE", "combined"), "html")
-    app.add_config_value("rtd_product_intelligence_demo", os.environ.get("RTD_PRODUCT_INTELLIGENCE_DEMO", "0"), "html")
+    # The environment gives a string; conf.py may set a bool. validate_flag checks the spelling.
+    app.add_config_value("rtd_product_intelligence_demo", os.environ.get("RTD_PRODUCT_INTELLIGENCE_DEMO", "0"), "html",
+                         (str, bool, int))
     # ISO date for the system and deliverables pages' staleness rules; empty means the build date (UTC).
     app.add_config_value("rtd_system_workspace_date", "", "html")
     app.connect("config-inited", configure)
