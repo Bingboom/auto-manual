@@ -1,12 +1,16 @@
-"""Research rules preserve source authority, missingness and immutable input snapshots."""
+"""The optional product lens keeps source authority, missingness and immutable snapshots."""
 from copy import deepcopy
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.rtd.intelligence_events import content_hash, load_cases
-from tools.rtd.product_intelligence import CASES, compare_research_snapshots, research_context
+from tools.product_knowledge import NUMERIC_FACTS, REGISTRY_PATH
+from tools.rtd.intelligence_events import CONTENT_DIR, EVENTS_FILE, content_hash, load_events
+from tools.rtd.product_intelligence import compare_lens_snapshots, product_lens_context
+
+FIXTURE = Path(__file__).resolve().parent / "fixtures" / "external_intel" / "events.json"
+US, NL = "us-outage-resilience-research", "nl-self-consumption-research"
 
 
 def fact(value, source_type, *, state="known"):
@@ -30,92 +34,106 @@ def product(*, model="JE-A", region="US", category="homebackup"):
                            "ac_output_w": fact(2000, "published_manual")},
     }
     for key, capability in value["capabilities"].items():
-        capability["evidence"][0].update(path="data/model_capabilities.csv", locator=f"{model}_{region}/{key}")
-    for specification in value["specifications"].values():
+        capability["evidence"][0].update(path=REGISTRY_PATH, locator=f"{model}_{region}/{key}")
+    for name, specification in value["specifications"].items():
+        specification["unit"] = "Wh" if name == "capacity_wh" else "W"
         specification["evidence"][0].update(path=f"{route}/manual.md", url=f"{route}/manual.html")
     return value
 
 
-def knowledge(*products):
+def knowledge(*products, capabilities=("自发自用模式", "UPS功能")):
     return {"schema_version": "product-knowledge/v1", "content_sha256": content_hash(products),
+            "vocabulary": {"categories": ["appliance", "expandable", "homebackup", "dedicated", "solar"],
+                           "capabilities": list(capabilities), "facts": list(NUMERIC_FACTS)},
             "products": list(products)}
 
 
-def association(result, event="us-outage-resilience-research", index=0):
+def association(result, event=US, index=0):
     return [row for row in result["associations"] if row["event_id"] == event][index]
 
 
-class ResearchContractTests(unittest.TestCase):
+class ProductLensTests(unittest.TestCase):
     def setUp(self):
         temp = TemporaryDirectory()
         self.addCleanup(temp.cleanup)
         self.root = Path(temp.name)
-        self.cases = self.root / "cases.json"
-        self.data = json.loads(CASES.read_text(encoding="utf-8"))
+        (self.root / CONTENT_DIR).mkdir()
+        self.data = json.loads(FIXTURE.read_text(encoding="utf-8"))
 
-    def write_cases(self):
-        self.cases.write_text(json.dumps(self.data), encoding="utf-8")
-        return self.cases
+    def intel(self):
+        (self.root / CONTENT_DIR / EVENTS_FILE).write_text(json.dumps(self.data, ensure_ascii=False), encoding="utf-8")
+        return load_events(self.root)
 
-    def write_policy(self, *, status="verified", summary="Policy snapshot fact", official=True):
+    def lens(self, *products, **options):
+        return product_lens_context(knowledge(*products, **options), self.intel())
+
+    def write_policy(self, *, status="verified", summary="Policy snapshot fact"):
         directory = self.root / "market-policy"
         directory.mkdir(exist_ok=True)
         record = {key: "recorded basis" for key in (
             "title", "country", "region", "timeline", "mechanism", "impact", "boundary", "reviewed")}
-        record.update(id="nl-net-metering", status=status, change=summary, reviewed="2026-10-06",
-                      tags=["solar"], sources=[{
-                          "kind": "official" if official else "commentary", "title": "Policy",
-                          "url": "https://example.org/policy", "note": "Source verification scope",
-                      }])
+        record.update(id="nl-net-metering", status=status, change=summary, reviewed="2026-10-06", tags=["solar"],
+                      sources=[{"kind": "official", "title": "Policy", "url": "https://example.org/policy",
+                                "note": "Source verification scope"}])
         (directory / "records.json").write_text(json.dumps({
             "schema_version": 1, "reviewed": "2026-10-06", "records": [record],
         }), encoding="utf-8")
-        return record
 
-    def test_official_event_with_four_distinct_dimensions_is_candidate_not_reviewed(self):
-        result = research_context(knowledge(product()), self.root)
+    def test_official_event_with_every_dimension_is_candidate_not_reviewed(self):
+        result = self.lens(product())
         row = association(result)
-        self.assertEqual(row["status"], "candidate")
-        self.assertEqual(row["source_type"], "rule_inference")
+        self.assertEqual((row["status"], row["source_type"]), ("candidate", "rule_inference"))
         self.assertEqual(row["provenance"]["evidence_sha256"], content_hash(row["evidence"]))
         self.assertEqual(row["provenance"]["product_sha256"], content_hash(product()))
-        self.assertEqual(row["provenance"]["rule_source"]["path"], "tools/rtd_portal_assets/product_intelligence_cases.json")
+        self.assertEqual((row["provenance"]["rule_source"]["path"], row["provenance"]["rule_source"]["locator"]),
+                         (f"{CONTENT_DIR}/{EVENTS_FILE}", f"events/{US}/product_lens"))
         self.assertEqual({reason["dimension"] for reason in row["reasons"]},
                          {"market", "category", "capability", "evidence", "verification"})
         self.assertEqual({item["source_type"] for item in row["evidence"]},
                          {"curated_configuration", "capability_registry", "published_manual"})
-        event = result["events"][1]
-        self.assertEqual(event["review"], {
-            "status": "pending", "decision": None, "reviewed_by": None, "reviewed_on": None,
-        })
-        self.assertEqual(event["revision"], 2)
-        self.assertEqual(len(event["history"]), 2)
-        self.assertNotEqual(event["history"][0]["content_sha256"], event["history"][1]["content_sha256"])
+        self.assertNotIn("hypotheses", row)
+        self.assertEqual(result["lenses"], [{"event_id": NL, "status": "evaluated", "problems": []},
+                                            {"event_id": US, "status": "evaluated", "problems": []}])
 
-    def test_policy_facts_are_joined_by_id_and_source_file_is_not_changed(self):
-        record = self.write_policy()
-        source = self.root / "market-policy" / "records.json"
-        before = source.read_bytes()
-        result = research_context(knowledge(product(region="EU")), self.root)
-        event = result["events"][0]
-        self.assertEqual((event["summary"], event["policy_record_sha256"]),
-                         (record["change"], content_hash(record)))
-        self.assertEqual(association(result, event["id"])["status"], "candidate")
-        self.assertEqual(source.read_bytes(), before)
+    def test_events_without_a_lens_are_not_evaluated(self):
+        del self.data["events"][1]["product_lens"]
+        result = self.lens(product())
+        self.assertEqual([entry["event_id"] for entry in result["lenses"]], [NL])
+        self.assertFalse([row for row in result["associations"] if row["event_id"] == US])
 
-    def test_absent_policy_cannot_fall_back_to_demo_verified_facts(self):
-        result = research_context(knowledge(product(region="EU")), self.root)
-        event = result["events"][0]
-        self.assertEqual(event["status"], "missing")
-        self.assertEqual(event["sources"], [])
-        self.assertEqual(association(result, event["id"])["status"], "unknown")
+    def test_unknown_rule_terms_mark_the_lens_invalid_instead_of_matching_nothing(self):
+        rule = self.data["events"][1]["product_lens"]["rule"]
+        for field, term in (("categories", "home-backup"), ("required_capabilities", "UPS 功能"),
+                            ("required_facts", "ip_rating"), ("required_facts", "capacity_kwh")):
+            with self.subTest(term=term):
+                original = list(rule[field])
+                rule[field] = [*original, term]
+                result = self.lens(product())
+                entry = next(entry for entry in result["lenses"] if entry["event_id"] == US)
+                self.assertEqual(entry["status"], "invalid")
+                self.assertEqual(len(entry["problems"]), 1)
+                self.assertIn(f"「{term}」", entry["problems"][0])
+                self.assertFalse([row for row in result["associations"] if row["event_id"] == US])
+                rule[field] = original
+
+    def test_a_vocabulary_the_snapshot_lacks_is_not_checked(self):
+        result = self.lens(product(), capabilities=())
+        self.assertEqual({entry["status"] for entry in result["lenses"]}, {"evaluated"})
+
+    def test_policy_lens_follows_the_joined_policy_status(self):
+        self.assertEqual(association(self.lens(product(region="EU")), NL)["status"], "unknown")
+        self.write_policy()
+        self.assertEqual(association(self.lens(product(region="EU")), NL)["status"], "candidate")
+        for state in ("unverified", "demand"):
+            with self.subTest(state=state):
+                self.write_policy(status=state)
+                self.assertEqual(association(self.lens(product(region="EU")), NL)["status"], "unknown")
 
     def test_region_mismatch_and_category_mismatch_are_explicit_exclusions(self):
         for candidate in (product(region="EU"), product(category="solar")):
             with self.subTest(product=candidate["id"]):
-                row = association(research_context(knowledge(candidate), self.root))
+                row = association(self.lens(candidate))
                 self.assertEqual(row["status"], "excluded")
-                self.assertEqual(row["hypotheses"], [])
                 self.assertIn("no_match", {reason["state"] for reason in row["reasons"]})
 
     def test_registry_false_is_not_the_same_as_missing_registry(self):
@@ -123,7 +141,7 @@ class ResearchContractTests(unittest.TestCase):
             with self.subTest(value=value):
                 candidate = product()
                 candidate["capabilities"]["UPS功能"].update(value=value, state=state)
-                self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], expected)
+                self.assertEqual(association(self.lens(candidate))["status"], expected)
 
     def test_known_capability_without_bound_registry_evidence_is_unknown(self):
         for change in (
@@ -134,13 +152,13 @@ class ResearchContractTests(unittest.TestCase):
             with self.subTest(change=change):
                 candidate = product()
                 candidate["capabilities"]["UPS功能"].update(change)
-                self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], "unknown")
+                self.assertEqual(association(self.lens(candidate))["status"], "unknown")
         for field, value in (("sha256", ""), ("locator", "JE-A_EU/UPS功能"),
                              ("path", "other.csv"), ("source_type", "published_manual")):
             with self.subTest(field=field):
                 candidate = product()
                 candidate["capabilities"]["UPS功能"]["evidence"][0][field] = value
-                self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], "unknown")
+                self.assertEqual(association(self.lens(candidate))["status"], "unknown")
 
     def test_foreign_manual_evidence_cannot_be_injected_into_current_variant(self):
         for field, value in (
@@ -150,11 +168,11 @@ class ResearchContractTests(unittest.TestCase):
             with self.subTest(field=field):
                 candidate = product()
                 candidate["specifications"]["ac_output_w"]["evidence"][0][field] = value
-                self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], "unknown")
+                self.assertEqual(association(self.lens(candidate))["status"], "unknown")
         candidate = product()
         candidate["specifications"]["ac_output_w"] = product(region="EU")["specifications"]["ac_output_w"]
-        self.assertEqual(association(research_context(knowledge(candidate), self.root))["status"], "unknown")
-        self.assertEqual(association(research_context(knowledge(product()), self.root))["status"], "candidate")
+        self.assertEqual(association(self.lens(candidate))["status"], "unknown")
+        self.assertEqual(association(self.lens(product()))["status"], "candidate")
 
     def test_positive_number_without_direct_traceable_manual_evidence_is_unknown(self):
         for change in (
@@ -165,125 +183,60 @@ class ResearchContractTests(unittest.TestCase):
             with self.subTest(change=change):
                 candidate = product()
                 candidate["specifications"]["ac_output_w"].update(change)
-                row = association(research_context(knowledge(candidate), self.root))
+                row = association(self.lens(candidate))
                 self.assertEqual(row["status"], "unknown")
                 self.assertTrue(any("ac_output_w" in unknown for unknown in row["unknowns"]))
 
+    def test_manual_fact_reasons_use_the_matrix_number_format(self):
+        for value in (1024, 1024.0):
+            with self.subTest(value=value):
+                candidate = product()
+                candidate["specifications"]["capacity_wh"]["value"] = value
+                messages = [reason["message"] for reason in association(self.lens(candidate))["reasons"]]
+                self.assertIn("发布手册直接事实：capacity_wh=1,024 Wh。", messages)
+
     def test_unverified_event_remains_unknown_even_with_an_official_link(self):
-        self.data["cases"][1]["revisions"][-1]["status"] = "unverified"
-        result = research_context(knowledge(product()), self.root, cases_path=self.write_cases())
-        self.assertEqual(association(result)["status"], "unknown")
-        self.assertEqual(result["events"][1]["review"]["status"], "pending")
-
-    def test_unverified_policy_and_demand_do_not_become_verified_from_rules(self):
-        for state in ("unverified", "demand"):
-            with self.subTest(state=state):
-                self.write_policy(status=state)
-                result = research_context(knowledge(product(region="EU")), self.root)
-                self.assertEqual(association(result, "nl-self-consumption-research")["status"], "unknown")
-
-    def test_policy_change_changes_hash_without_rewriting_previous_results(self):
-        self.write_policy(summary="Earlier supported source statement")
-        inputs = knowledge(product(region="EU"))
-        previous = research_context(inputs, self.root)
-        preserved = deepcopy(previous)
-        self.write_policy(summary="New source statement with changed scope")
-        current = research_context(inputs, self.root)
-        receipt = compare_research_snapshots(previous, current)
-        self.assertEqual(previous, preserved)
-        self.assertNotEqual(receipt["previous_snapshot_id"], receipt["current_snapshot_id"])
-        self.assertFalse(receipt["knowledge_changed"])
-        self.assertEqual(receipt["event_changes"][0]["id"], "nl-self-consumption-research")
-        self.assertEqual(receipt["review_status"], "pending")
+        self.data["events"][1]["revisions"][-1]["status"] = "unverified"
+        self.assertEqual(association(self.lens(product()))["status"], "unknown")
 
     def test_removed_product_evidence_recomputes_candidate_to_unknown_with_receipt(self):
         candidate = product()
-        previous = research_context(knowledge(candidate), self.root)
+        previous = self.lens(candidate)
         saved = deepcopy(previous)
         candidate["specifications"]["ac_output_w"]["evidence"] = []
-        current = research_context(knowledge(candidate), self.root)
-        receipt = compare_research_snapshots(previous, current)
+        current = self.lens(candidate)
+        receipt = compare_lens_snapshots(previous, current)
         self.assertTrue(receipt["knowledge_changed"])
-        change = next(row for row in receipt["association_changes"] if row["event_id"].startswith("us-"))
+        self.assertFalse(receipt["events_changed"])
+        change = next(row for row in receipt["association_changes"] if row["event_id"] == US)
         self.assertEqual((change["previous_status"], change["current_status"]), ("candidate", "unknown"))
         self.assertEqual(previous, saved)
-        self.assertEqual(current["events"][1]["history"], previous["events"][1]["history"])
+        self.assertEqual(receipt["review_status"], "pending")
+
+    def test_event_change_is_reported_without_knowledge_change(self):
+        previous = self.lens(product())
+        self.write_policy(summary="New source statement")
+        receipt = compare_lens_snapshots(previous, self.lens(product()))
+        self.assertEqual((receipt["knowledge_changed"], receipt["events_changed"]), (False, True))
 
     def test_rebuild_is_deterministic_and_does_not_mutate_inputs(self):
-        inputs = knowledge(product())
-        before = deepcopy(inputs)
-        first = research_context(inputs, self.root)
-        second = research_context(inputs, self.root)
-        self.assertEqual(first, second)
-        self.assertEqual(inputs, before)
-        self.assertEqual(compare_research_snapshots(first, second)["association_changes"], [])
+        inputs, intel = knowledge(product()), self.intel()
+        before = deepcopy((inputs, intel))
+        first = product_lens_context(inputs, intel)
+        self.assertEqual(first, product_lens_context(inputs, intel))
+        self.assertEqual((inputs, intel), before)
+        self.assertEqual(compare_lens_snapshots(first, first)["association_changes"], [])
 
-    def test_invalid_source_urls_verification_and_revision_order_fail_loudly(self):
-        revisions = self.data["cases"][1]["revisions"]
-        for url in ("javascript:alert(1)", "http://example.org", "https://user:secret@example.org"):
-            with self.subTest(url=url):
-                revisions[-1]["sources"][0]["url"] = url
-                with self.assertRaisesRegex(ValueError, "HTTPS"):
-                    load_cases(self.write_cases())
-        revisions[-1]["sources"][0]["url"] = "https://example.org"
-        revisions[-1]["sources"][0]["kind"] = "commentary"
-        with self.assertRaisesRegex(ValueError, "official"):
-            load_cases(self.write_cases())
-        revisions[-1]["sources"][0]["kind"] = "official"
-        revisions[-1]["revision"] = 1
-        with self.assertRaisesRegex(ValueError, "consecutive"):
-            load_cases(self.write_cases())
-
-    def test_human_decisions_are_explicit_and_not_overwritten_by_evaluation(self):
-        review = {
-            "status": "reviewed", "decision": "Research scope reviewed; no product applicability decision.",
-            "reviewed_by": "Fixture reviewer", "reviewed_on": "2026-10-20",
-        }
-        self.data["cases"][1]["revisions"][-1]["review"] = review
-        result = research_context(knowledge(product()), self.root, cases_path=self.write_cases())
-        self.assertEqual(result["events"][1]["review"], review)
-        historical = result["events"][1]["history"][-1]
-        for key in ("decision", "reviewed_by", "reviewed_on"):
-            self.assertEqual(historical[key], review[key])
-        self.assertEqual(association(result)["status"], "candidate")
-        self.assertEqual(result["events"][1]["history"][0]["review_status"], "pending")
-        self.assertIsNone(result["events"][1]["history"][0]["decision"])
-
-    def test_reviewed_revisions_require_identity_and_iso_date(self):
-        for changes in (
-            {"reviewed_by": None}, {"reviewed_by": " "}, {"reviewed_on": None},
-            {"reviewed_on": "2026/10/20"}, {"reviewed_on": "20261020"}, {"reviewed_on": "2026-02-30"},
+    def test_lens_requires_bound_snapshots(self):
+        intel = self.intel()
+        for broken_knowledge, broken_intel in (
+            ({**knowledge(product()), "schema_version": "product-knowledge/v2"}, intel),
+            ({**knowledge(product()), "content_sha256": ""}, intel),
+            (knowledge(product()), {**intel, "schema_version": "product-intelligence/v1"}),
+            (knowledge(product()), {**intel, "snapshot_id": ""}),
         ):
-            with self.subTest(changes=changes):
-                self.data["cases"][1]["revisions"][-1]["review"] = {
-                    "status": "reviewed", "decision": "Fixture scope decision.",
-                    "reviewed_by": "Fixture reviewer", "reviewed_on": "2026-10-20", **changes,
-                }
-                with self.assertRaises(ValueError):
-                    load_cases(self.write_cases())
-
-    def test_pending_reviews_reject_decision_identity_or_date(self):
-        for field in ("decision", "reviewed_by", "reviewed_on"):
-            with self.subTest(field=field):
-                self.data["cases"][1]["revisions"][-1]["review"] = {"status": "pending", field: "2026-10-20"}
-                with self.assertRaisesRegex(ValueError, "pending"):
-                    load_cases(self.write_cases())
-
-    def test_later_pending_revision_preserves_prior_human_judgment_in_history(self):
-        review = {
-            "status": "reviewed", "decision": "Fixture: needs target load evidence.",
-            "reviewed_by": "Fixture reviewer", "reviewed_on": "2026-10-20",
-        }
-        self.data["cases"][1]["revisions"][0]["review"] = review
-        result = research_context(knowledge(product()), self.root, cases_path=self.write_cases())
-        event = result["events"][1]
-        self.assertEqual(event["review"], {
-            "status": "pending", "decision": None, "reviewed_by": None, "reviewed_on": None,
-        })
-        historical = next(row for row in result["history"] if row["event_id"] == event["id"])
-        self.assertEqual(historical["review_status"], "reviewed")
-        for key in ("decision", "reviewed_by", "reviewed_on"):
-            self.assertEqual(historical[key], review[key])
+            with self.subTest(), self.assertRaises(ValueError):
+                product_lens_context(broken_knowledge, broken_intel)
 
 
 if __name__ == "__main__":

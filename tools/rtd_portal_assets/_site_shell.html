@@ -25,7 +25,7 @@
     {{ nav_link(pathto('products/knowledge'), '◇', '产品知识', active == 'product-knowledge') }}
     {% if nav.matrix %}{{ nav_link(pathto('products/matrix'), '⊞', '产品矩阵', active == 'product-matrix') }}{% endif %}
     {{ nav_link(pathto('market/policy'), '◎', '市场与政策', active == 'market-policy') }}
-    {% if nav.research or research_entry|default(false) %}{{ nav_link(pathto('research/product-intelligence'), '↗', '产品情报研究 · Demo', active == 'product-intelligence') }}{% endif %}
+    {% if nav.research or research_entry|default(false) %}{{ nav_link(pathto('research/product-intelligence'), '↗', '外部情报 · Demo', active == 'product-intelligence') }}{% endif %}
     <div class="app-nav-group">说明书生产</div>
     {% if nav.deliverables %}{{ nav_link(pathto('workspace/deliverables/index'), '▦', '说明书工作台', active == 'deliverables') }}{% endif %}
     {% if nav.system %}{{ nav_link(pathto('workspace/system/index'), '◈', '系统建设', active == 'system') }}{% endif %}

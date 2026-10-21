@@ -8,9 +8,15 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from tools.product_knowledge import SCHEMA_VERSION, build_product_knowledge
+from unittest import mock
+
+from tools.product_knowledge import NUMERIC_FACTS, REGISTRY_PATH, SCHEMA_VERSION, build_product_knowledge
 from tools.rtd.product_matrix import matrix_context
 from tools.utils.path_utils import Paths
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 class ProductKnowledgeTests(unittest.TestCase):
@@ -34,6 +40,7 @@ class ProductKnowledgeTests(unittest.TestCase):
                            {"model": "M", "parts": [{"label": "Battery Pack (B1)", "match": "Battery Pack"}]}]}
         self.write_config()
         self.settings = {"navigation": {"needs": [{"id": "appliance", "title": "Appliances", "models": ["M"]}]}}
+        (self.assets / "settings.json").write_text(json.dumps(self.settings), encoding="utf-8")
         self.catalog = [{"model": "M", "region": "EU", "name": "European product"},
                         {"model": "M", "region": "US", "name": "US product"}]
         self.web = self.root / "frozen" / "web"
@@ -54,12 +61,14 @@ class ProductKnowledgeTests(unittest.TestCase):
                 body += "Use the Battery Pack. Supply backup power to home circuits."
             path.write_text(body, encoding="utf-8")
         self.manifest = {"built_at": "2026-10-02T00:00:00Z", "targets": self.targets}
+        self.manifest_path = self.web.parent / "publish_manifest.json"
 
     def write_config(self):
         (self.assets / "product_matrix.json").write_text(json.dumps(self.config), encoding="utf-8")
 
     def build(self):
-        return build_product_knowledge(self.root, self.web, self.manifest, self.assets, self.settings, self.catalog)
+        self.manifest_path.write_text(json.dumps(self.manifest), encoding="utf-8")
+        return build_product_knowledge(self.root, self.web, self.manifest_path, self.assets, self.settings, self.catalog)
 
     def product(self, snapshot, model="M", region="EU", language="en"):
         return next(p for p in snapshot["products"]
@@ -163,10 +172,78 @@ class ProductKnowledgeTests(unittest.TestCase):
         expected = hashlib.sha256(json.dumps(payload, sort_keys=True, ensure_ascii=False,
                                              separators=(",", ":")).encode()).hexdigest()
         self.assertEqual(first["content_sha256"], expected)
-        paths = {entry["path"] for entry in first["snapshot"]["inputs"]}
-        self.assertTrue({"data/model_capabilities.csv", "data/model_languages.csv",
-                         "portal/product_matrix.json", "portal/settings.json",
-                         "portal/catalog.json", "M/EU/en/md/manual.md"} <= paths)
+        inputs = {(entry["base"], entry["path"]): entry for entry in first["snapshot"]["inputs"]}
+        self.assertTrue({("repository", "data/model_capabilities.csv"), ("repository", "data/model_languages.csv"),
+                         ("repository", "assets/product_matrix.json"), ("repository", "assets/settings.json"),
+                         ("web_source", "index.md"), ("web_source", "M/EU/en/md/manual.md")} <= set(inputs))
+        self.assertEqual(first["snapshot"]["manifest_sha256"], sha256(self.manifest_path))
+        for (base, path), entry in inputs.items():
+            with self.subTest(path=path):
+                if entry["hash_of"] == "bytes":
+                    self.assertEqual(entry["sha256"], sha256((self.root if base == "repository" else self.web) / path))
+        # The catalog is parsed from index.md, so its hash says it covers that parse, not the file bytes.
+        self.assertEqual(inputs[("web_source", "index.md")]["hash_of"], "parsed_catalog")
+
+    def test_curated_and_registry_evidence_name_real_files_with_their_byte_hashes(self):
+        snapshot = self.build()
+        navigation = self.product(snapshot)["category"]["evidence"][0]
+        assigned = self.product(snapshot, model="H")["category"]["evidence"][0]
+        registry = self.product(snapshot)["capabilities"]["UPS功能"]["evidence"][0]
+        for evidence, name in ((navigation, "settings.json"), (assigned, "product_matrix.json"),
+                               (registry, "model_capabilities.csv")):
+            with self.subTest(name=name):
+                path = self.root / evidence["path"]
+                self.assertEqual(path.name, name)
+                self.assertEqual(evidence["sha256"], sha256(path))
+        self.assertEqual(registry["path"], REGISTRY_PATH)
+
+    def test_whole_figures_stay_integers_and_fractions_stay_exact(self):
+        path = self.web / "M/US/en/md/manual.md"
+        path.write_text(path.read_text().replace("12 kg", "12.5 kg"), encoding="utf-8")
+        snapshot = self.build()
+        capacity = self.product(snapshot)["specifications"]["capacity_wh"]["value"]
+        self.assertEqual((capacity, type(capacity)), (1024, int))
+        self.assertEqual(self.product(snapshot)["specifications"]["weight_kg"]["value"], 12)
+        self.assertEqual(self.product(snapshot, region="US")["specifications"]["weight_kg"]["value"], 12.5)
+        self.assertNotIn("1024.0", json.dumps(snapshot))
+
+    def test_edition_warnings_appear_once_and_name_editions_when_not_shared(self):
+        self.catalog.append({"model": "X", "region": "EU", "name": "Unplaced product"})
+        for region in ("EU", "US"):
+            target = {"model": "X", "region": region, "lang": "en", "version": "1.0", "language_scope": "single",
+                      "route": f"X/{region}/en/md", "manual": "manual.md"}
+            self.targets.append(target)
+            path = self.web / target["route"] / target["manual"]
+            path.parent.mkdir(parents=True)
+            path.write_text("# Manual\n", encoding="utf-8")
+        warnings = self.build()["warnings"]
+        unplaced = [w for w in warnings if w.startswith("X: no navigation group")]
+        self.assertEqual(len(unplaced), 1)
+        self.assertNotIn("[", unplaced[0])
+        dropped = [w for w in warnings if "pairing dropped" in w]
+        self.assertEqual(dropped, ["M: manual no longer names 'Battery Pack'; pairing dropped [M/US/en@1.2]"])
+
+    def test_unreadable_or_malformed_manifest_is_rejected_without_local_paths(self):
+        for payload in (None, "{", json.dumps({"built_at": "2026-10-02"}), json.dumps({"targets": [{"model": "M"}]})):
+            with self.subTest(payload=payload):
+                self.manifest_path.unlink(missing_ok=True)
+                if payload is not None:
+                    self.manifest_path.write_text(payload, encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "Publication manifest publish_manifest.json") as raised:
+                    build_product_knowledge(self.root, self.web, self.manifest_path, self.assets,
+                                            self.settings, self.catalog)
+                self.assertNotIn(str(self.root), str(raised.exception))
+
+    def test_vocabulary_lists_rule_terms_the_snapshot_can_evaluate(self):
+        vocabulary = self.build()["vocabulary"]
+        self.assertEqual(vocabulary["categories"], ["appliance", "homebackup"])
+        self.assertEqual(vocabulary["capabilities"], ["UPS功能", "加电包扩容"])
+        self.assertEqual(vocabulary["facts"], list(NUMERIC_FACTS))
+        self.assertNotIn("ip_rating", vocabulary["facts"])
+
+    def test_registry_switches_do_not_scan_review_pages(self):
+        with mock.patch("tools.rtd.system_data.review_page_counts", side_effect=AssertionError("scanned")):
+            self.assertIs(self.product(self.build())["capabilities"]["UPS功能"]["value"], True)
 
     def test_evidence_changes_recompute_without_mutating_the_previous_snapshot(self):
         first = self.build()
