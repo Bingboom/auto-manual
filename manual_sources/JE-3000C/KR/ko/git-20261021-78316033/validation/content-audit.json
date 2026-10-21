@@ -1,5 +1,5 @@
 {
-  "status": "passed-with-reviewed-source-reading-order-cases",
+  "status": "conversion-verified-publication-pending-symbol-admission",
   "native_pdf_text_blocks_exact_normalized_match": 236,
   "reviewed_non_contiguous_or_artwork_cases": [
     {
@@ -148,6 +148,9 @@
   ],
   "source_erratum": "Only user-approved full first-use sentence restored; PDF body unchanged",
   "cover": "Web cover block removed per latest user direction",
+  "warranty_section_cards": 5,
+  "warranty_period_cards": 1,
+  "spec_headings": "H2 under H1 chapter",
   "lcd_rows": 26,
   "lcd_numbers": [
     "1",
@@ -191,7 +194,7 @@
     "FE"
   ],
   "spec_sections": 4,
-  "cold_replay_markdown_sha256_unchanged": "4b79f1f82b15038808fb1ee40eb3c12c498e0a99b08732f0ccac4bfcd2ffcf70",
+  "cold_replay_markdown_sha256_unchanged": "921a41582cfa244a1f50261eca73784be7a29356a0c59155f53bdf7210368223",
   "tampered_asset_rejected": "document asset missing or changed: assets/inbox-main.png",
   "strict_sphinx": "python -m sphinx -W --keep-going -q -b html; passed",
   "targeted_shared_contract_tests": {

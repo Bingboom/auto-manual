@@ -54,8 +54,8 @@
     "assets/app-connect.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "7eeb4b97662b9a5c2334d9462d5ac3d0949fbfeffc70f00d79669499e606ddda",
-  "content_sha256": "8ea877fc5aa5a909777c19db356e2ad57a5a58b44f1fbe5499f0deb4f00a71da",
+  "bundle_sha256": "4f00ea78c6c75440f02f299585d23198b1445d23255d45c66317ae93ab74bc81",
+  "content_sha256": "00446bad88890db0e9128f1401c6df937900851555046cf82b0e228528330bba",
   "language": "ko",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -92,7 +92,6 @@
       "assets/app-qr.png": "9fcecb9a1ecfd4b5c150b9814c1083475d9a9668b91bf112393e55f19b31b76d",
       "assets/app-store.png": "c745cc534903c6e059874c28d5ac2060e06c1438732c31beb9fc656b31c46540",
       "assets/car.png": "cbb5d7fa78de39b81eab5a25b5d1c03ca20dd4e659463e6eee3f0f08ace89ef9",
-      "assets/charging_ac_wall.pdf": "7cf4f7678e87d9efae872a2540b5d93f55b935c77f726e9a8b909c93c480ba50",
       "assets/charging_ac_wall.svg": "abfdee922641b333e15b643d10cbed34efe6adb0239a42e4caa278459b49bf8a",
       "assets/energy-saving.png": "d94484e3bb477a18d1239a42dd961d47848395fe51a9a4c616008bb0dae6e5ee",
       "assets/inbox-cable.png": "18719ce46241a80cc209e509c01933040272b150083fbab85e1035384f3a413f",
@@ -104,7 +103,6 @@
       "assets/operation-ac.png": "1c0e13438d4b47fbd57547f4a0bdc5494d3cd9b99432afdff2d906bb0e017257",
       "assets/operation-dc.png": "447d6c79216f4732f031b2bdfade579d53841d398f8ecec4444e20d9880b7795",
       "assets/operation-main.png": "44f463d3f80a66f645e20a391042e3e1d8eefc690c8ae827ec44a13fe97ed768",
-      "assets/operation_ups_mode.pdf": "4c6cadca9a690f8019c43fcf4c82dfab9735a194c3058e3d0dc0b883fa47f125",
       "assets/operation_ups_mode.svg": "899801760f19da504ba8c41bdd958b2e68f9e7735e1f022113e77d73ff5ad159",
       "assets/overview-front.png": "bb19e5218d527116028b0343a66e1266ac9017a0ba2da4c9a97744252b1d68db",
       "assets/overview-right.png": "06ff28156476794a75258a27addf6dc1f65730248e32ec05a0e11a1123274619",
@@ -116,7 +114,7 @@
       "assets/symbol_warning_triangle_gray_jp.svg": "25010027afb12cdffa2ee29be0da86b358e6c05bd7e2deab0e1f975eaed0eeb0",
       "assets/symbol_weee_gray_jp.svg": "b44fa52c396de4a7944718d279b2b26bb90b0964328aa5a9e177bc65b982acb1"
     },
-    "block_count": 128,
+    "block_count": 124,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 14,
       "HB-SPECIAL-APP": 2,
@@ -130,6 +128,7 @@
       "HB-TABLE-SYMBOL-SIGNAL": 1,
       "HB-TABLE-TROUBLESHOOTING": 1,
       "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
       "HB-WARRANTY-YEARS": 1
     },
     "component_registry": {
@@ -2590,17 +2589,21 @@
         {
           "asset_refs": [],
           "block_id": "introduction:block-0001",
-          "content_sha256": "7c774f40cfe04533b39a7ea3a5d8d4a048fa45e45fcb815251c68d564d338172",
+          "content_sha256": "f711bd7abb1852740ff37ea5ead8391bd7559660f970554a2cc3b4c479d309d2",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "중요"
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "중요"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
-            "kind": "heading",
-            "level": 3,
+            "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/introduction#block-1"
@@ -2686,7 +2689,7 @@
         {
           "asset_refs": [],
           "block_id": "safety:block-0001",
-          "content_sha256": "849cd67729efd6725d61fe6147bf5e6bd3f4d2fd36f7f318432251fcf9240a7a",
+          "content_sha256": "b2c85946dd425318f38e5babdcff5b199fc40cb6db96ca2058cb25ead7703017",
           "kind": "flow",
           "payload": {
             "children": [
@@ -2696,7 +2699,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/safety#block-1"
@@ -2933,7 +2936,7 @@
         {
           "asset_refs": [],
           "block_id": "maintenance:block-0001",
-          "content_sha256": "fd305febcd58302f42d77ebe3f5eecc7a522609ac82570f62d18ae7ba9c6d64c",
+          "content_sha256": "59f6d2f7ea47ef5b8611d3e719e9c6b795fbd90e981a8fd1f1377145342d1d8d",
           "kind": "flow",
           "payload": {
             "children": [
@@ -2943,7 +2946,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/maintenance#block-1"
@@ -2978,7 +2981,7 @@
         {
           "asset_refs": [],
           "block_id": "symbols:block-0001",
-          "content_sha256": "b6670134863473bd63f2a60be6f80f8edeee5b9a54e8fa3c0acae711f864139c",
+          "content_sha256": "33b49a31b2cfade56075343d08d63252fbb08f50a9ecfb4ce4a76229200c5b94",
           "kind": "flow",
           "payload": {
             "children": [
@@ -2988,7 +2991,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/symbols#block-1"
@@ -3228,7 +3231,7 @@
         {
           "asset_refs": [],
           "block_id": "inbox:block-0001",
-          "content_sha256": "d5e7518f07627861c27f7c501a1e29e73184f2029b260b8d44294871044c1bf3",
+          "content_sha256": "266997ed9494dc95a217e5a701a12339bb279a4014982b16a60d2f11f5c748d3",
           "kind": "flow",
           "payload": {
             "children": [
@@ -3238,7 +3241,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/inbox#block-1"
@@ -3427,7 +3430,7 @@
         {
           "asset_refs": [],
           "block_id": "overview:block-0001",
-          "content_sha256": "7f814c554a297b2364fef95d7c7129bb44e3015a8fccd5733811a0403299c0fd",
+          "content_sha256": "d4f21ae8d59f022f9b9de7014a040af15409a2ebd52aaf109d2818694caa8e86",
           "kind": "flow",
           "payload": {
             "children": [
@@ -3437,7 +3440,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/overview#block-1"
@@ -3531,7 +3534,7 @@
         {
           "asset_refs": [],
           "block_id": "lcd:block-0001",
-          "content_sha256": "6ca671e16297993b1f1fa0c7c19c26fdf2817c5131064537792d1bc3baacf45d",
+          "content_sha256": "68b8a94edca3e067282490aef3d38d363ffcc407cac6f80904403556fe1a7062",
           "kind": "flow",
           "payload": {
             "children": [
@@ -3541,7 +3544,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/lcd#block-1"
@@ -4089,7 +4092,7 @@
         {
           "asset_refs": [],
           "block_id": "operation:block-0001",
-          "content_sha256": "ba7649fa3031f879fcbda4ba8f991201be14c8f2140b822de10ca050ab41d04a",
+          "content_sha256": "381accde4c0fe4a06877ff5d594ed0be48addbefc8203a9c7db4a3b00a860ff4",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4099,7 +4102,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/operation#block-1"
@@ -4107,7 +4110,7 @@
         {
           "asset_refs": [],
           "block_id": "operation:block-0002",
-          "content_sha256": "391d66fe53f193c118ca6b306e70bdd348d91a9f82c6315c692786965da4ae6a",
+          "content_sha256": "b8968fb209c48fabb3e6793a7063597c313e200bcb494d3d3c0bc6ea5c09e371",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4117,7 +4120,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/operation#block-2"
@@ -4218,7 +4221,7 @@
         {
           "asset_refs": [],
           "block_id": "operation:block-0005",
-          "content_sha256": "952ef991ef7d85b3e8d0506d308c55943b66b4e1c1ff3426269e74f344fff4bf",
+          "content_sha256": "26db43243ed012b3062f6d5c3fac741cd9d91105385b5b987cff851772e51f22",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4228,7 +4231,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/operation#block-5"
@@ -4312,7 +4315,7 @@
         {
           "asset_refs": [],
           "block_id": "operation:block-0007",
-          "content_sha256": "d275642481371dd04df29b3521b9522da058a981346f82c06d7b8e2fc46b19f7",
+          "content_sha256": "4172fbf93fa6e144fc81cb2f6e86b2482b2022e1fee05f9df6e08ad2416ef220",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4322,7 +4325,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/operation#block-7"
@@ -4655,7 +4658,7 @@
         {
           "asset_refs": [],
           "block_id": "operation:block-0012",
-          "content_sha256": "94e64b084bc9cf463bc9bb405c1eb1b3f89c313d269a27d5565a85f77cdf210e",
+          "content_sha256": "7cefe62c39b8db4ed2a7983416d28b1d62e78178eaab69b127c26ba974740ca6",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4665,7 +4668,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/operation#block-12"
@@ -4898,7 +4901,7 @@
         {
           "asset_refs": [],
           "block_id": "operation:block-0018",
-          "content_sha256": "4d34815412f22e3158e0077feac17591081dcd01f9461f052686d5c3b791f707",
+          "content_sha256": "2afc9d05bf793f280a041d621e58357cbc8271aa693e7feb81912e7c764ebebd",
           "kind": "flow",
           "payload": {
             "children": [
@@ -4908,7 +4911,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/operation#block-18"
@@ -5025,7 +5028,7 @@
         {
           "asset_refs": [],
           "block_id": "operation:block-0021",
-          "content_sha256": "8b20a3005dd9c4188c7e25764c98412a2b55edae9cd46d9137f8d12a33fa3711",
+          "content_sha256": "36ce428940884707dcac493affbc3d4e45824413d027fb9b03abb3115460f4dc",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5035,7 +5038,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/operation#block-21"
@@ -5108,7 +5111,7 @@
         {
           "asset_refs": [],
           "block_id": "ups:block-0001",
-          "content_sha256": "b0aa198870ca1ff59012dffccf8cd67eab5bf61da87332c4bcbef8dc2a198780",
+          "content_sha256": "81fba0a8db8e81f7309641dcdc202fe1a6455ff9d1a12d18e7d188cbb509376c",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5118,7 +5121,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/ups#block-1"
@@ -5396,7 +5399,7 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0001",
-          "content_sha256": "6be62a868dc6627952c30ea3512755cdba2293a697d1242f4224e8cd7ea78d66",
+          "content_sha256": "3442fd5ae074225769a5468eb7412df24c4511109cf71dde2bced70dcee501b7",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5406,7 +5409,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/charging#block-1"
@@ -5645,7 +5648,7 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0005",
-          "content_sha256": "57d45e41f7e6f6c8050477626a4f9223be14fdc1f13238b59b128dcef60e66e1",
+          "content_sha256": "e32f5735d554fb44d10155e5abfab63f53c5a287060e3804e05ec4e0e9db7407",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5655,7 +5658,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/charging#block-5"
@@ -5854,7 +5857,7 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0009",
-          "content_sha256": "9b24cd9a20ed7c18db976518bb110b7fc00454653eb5c837a9d684aee6e5e84b",
+          "content_sha256": "8f0fc4c269ba420f12ba44c6c299b1bc3f642a77d015f4df5d53ce4aad0f4a6f",
           "kind": "flow",
           "payload": {
             "children": [
@@ -5864,7 +5867,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/charging#block-9"
@@ -6213,7 +6216,7 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0016",
-          "content_sha256": "6c086c86aa4ffed58062b97ca85eb0ca6224af157c87e62f6fd6a277709fce5e",
+          "content_sha256": "a1c74c54661f8b042d266e4f19a915014094c310d340c0fb13225ff86ef11fc8",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6223,7 +6226,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/charging#block-16"
@@ -6450,7 +6453,7 @@
         {
           "asset_refs": [],
           "block_id": "storage:block-0001",
-          "content_sha256": "333a33131a86a4310b6dfaf89f483af0bd12ff7a18995a76f70adcced0675545",
+          "content_sha256": "48b92b1cbabcbe5e06eea4853c5551d09aaa4e54de3a58927280afa1ddac72ce",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6460,7 +6463,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/storage#block-1"
@@ -6553,7 +6556,7 @@
         {
           "asset_refs": [],
           "block_id": "troubleshooting:block-0001",
-          "content_sha256": "ec12d15086bbd36db5b2beb6fa01e0115f7cfe9d55c0d51ed975eaed4358d41e",
+          "content_sha256": "b34d9fb93efd037d3a2abc8b8d82dca225e9f562d555066e3c47493a4405566b",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6563,7 +6566,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/troubleshooting#block-1"
@@ -6709,7 +6712,7 @@
         {
           "asset_refs": [],
           "block_id": "specifications:block-0001",
-          "content_sha256": "01a2e28a89d17c42b492084a7f89607057955e3438ee6c1bd65116a5f9de922c",
+          "content_sha256": "1e0a1b63384717bad2fe74753c9c4e9fd8c1b3f3a7001a57b38afa5ffb571c1c",
           "kind": "flow",
           "payload": {
             "children": [
@@ -6719,7 +6722,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/specifications#block-1"
@@ -7747,7 +7750,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0001",
-          "content_sha256": "415164b56e5ac951fd1645aa7a5bceba10aeee2879cfe3652135c8ac49a3eca9",
+          "content_sha256": "a4521a466bef6d049609787d8d06aa1158eb9bad2ab20c624ebf0fabb4472d38",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7757,7 +7760,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-1"
@@ -7805,7 +7808,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0003",
-          "content_sha256": "84251e248e94394f247d28b290035c2c7c4de40ba7ca0a9b8488ebe766f37d6a",
+          "content_sha256": "f341c755ee207c57bf3201e79fa84b8ce49111a94a4ed4c36ed47af21b8e17c2",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7815,7 +7818,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-3"
@@ -7823,16 +7826,50 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0004",
-          "content_sha256": "c6a0db5a2172f1816e794a20e6067c38c2f6e35ba1df7eb52ebbbe8c7e4e337a",
+          "content_sha256": "8931b9de10d2cceaa079cc6b9c5f9b3ca852f6512492f5e0214c371eef83a836",
           "kind": "flow",
           "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery는 아래 \"보증 기간\" 섹션에 명시된 해당 보증 기간 동안, 아래에 명시된 제외 사항을 조건으로 정상적인 소비자 사용 환경에서 Jackery 제품에 제조상 또는 재료상의 결함이 없음을 최초 소비자 구매자에게 보증합니다."
-              }
-            ],
-            "kind": "paragraph",
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "ko",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "제한 보증",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 1,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>Jackery는 아래 \"보증 기간\" 섹션에 명시된 해당 보증 기간 동안, 아래에 명시된 제외 사항을 조건으로 정상적인 소비자 사용 환경에서 Jackery 제품에 제조상 또는 재료상의 결함이 없음을 최초 소비자 구매자에게 보증합니다.</p>",
+                      "kind": "paragraph",
+                      "text": "Jackery는 아래 \"보증 기간\" 섹션에 명시된 해당 보증 기간 동안, 아래에 명시된 제외 사항을 조건으로 정상적인 소비자 사용 환경에서 Jackery 제품에 제조상 또는 재료상의 결함이 없음을 최초 소비자 구매자에게 보증합니다."
+                    },
+                    {
+                      "html": "<p>본 보증서는 Jackery의 전적이며 배타적인 보증 의무를 규정합니다. 당사는 제품 판매와 관련하여 그 밖의 어떠한 책임도 부담하지 않으며, 제3자가 당사를 대신하여 어떠한 추가 책임을 부담하도록 승인하지 않습니다.</p>",
+                      "kind": "paragraph",
+                      "text": "본 보증서는 Jackery의 전적이며 배타적인 보증 의무를 규정합니다. 당사는 제품 판매와 관련하여 그 밖의 어떠한 책임도 부담하지 않으며, 제3자가 당사를 대신하여 어떠한 추가 책임을 부담하도록 승인하지 않습니다."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "ko/pdf-16/warranty-section-1",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-4"
@@ -7840,16 +7877,17 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0005",
-          "content_sha256": "c2356f83e695908d7f435c72a47f8c692edb09664bc356bc776453f7a1311c0c",
+          "content_sha256": "babdcbe700f78684f1a9fa024201a27258cce0f03f4057f7fdecdae087c50a9b",
           "kind": "flow",
           "payload": {
             "children": [
               {
                 "kind": "text",
-                "text": "본 보증서는 Jackery의 전적이며 배타적인 보증 의무를 규정합니다. 당사는 제품 판매와 관련하여 그 밖의 어떠한 책임도 부담하지 않으며, 제3자가 당사를 대신하여 어떠한 추가 책임을 부담하도록 승인하지 않습니다."
+                "text": "보증 기간"
               }
             ],
-            "kind": "paragraph",
+            "kind": "heading",
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-5"
@@ -7907,7 +7945,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0007",
-          "content_sha256": "db08c0495e87b04bc21a7531535eaf2681b34d28da51efb156e8855865347685",
+          "content_sha256": "943df612770dd035723a7044b1d1b51bf8098ae73b4fad685a150d8ab052d5a0",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7917,7 +7955,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-7"
@@ -7925,16 +7963,45 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0008",
-          "content_sha256": "f014ff4a6efcce13fef6150785488f408105616f57073fa8468a607a40402e76",
+          "content_sha256": "c4e65f24c42cf1f89df1e68bb9d2eb5a187cd704179e43b2a6cc10e3376d1ac7",
           "kind": "flow",
           "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery는 해당 보증 기간 내에 제조상 또는 재료상의 결함으로 작동하지 않는 모든 Jackery 제품을 Jackery의 비용으로 교체합니다. 교체 제품은 원래 제품의 남은 보증 기간을 승계합니다."
-              }
-            ],
-            "kind": "paragraph",
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "ko",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "교환",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 2,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>Jackery는 해당 보증 기간 내에 제조상 또는 재료상의 결함으로 작동하지 않는 모든 Jackery 제품을 Jackery의 비용으로 교체합니다. 교체 제품은 원래 제품의 남은 보증 기간을 승계합니다.</p>",
+                      "kind": "paragraph",
+                      "text": "Jackery는 해당 보증 기간 내에 제조상 또는 재료상의 결함으로 작동하지 않는 모든 Jackery 제품을 Jackery의 비용으로 교체합니다. 교체 제품은 원래 제품의 남은 보증 기간을 승계합니다."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "ko/pdf-16/warranty-section-2",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-8"
@@ -7942,7 +8009,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0009",
-          "content_sha256": "81e1fc3b64dcd3c7a28eca5749e149352530c8b5890975d4228599e6db5f24e4",
+          "content_sha256": "c3b7b3abe685d626a6f1f407974f3fdf28e065e94642a90b1428855bc39d1c11",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7952,7 +8019,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-9"
@@ -7960,16 +8027,45 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0010",
-          "content_sha256": "374c69d7e54bbcf9aabe8c724e2f10f87cc0d36106b9bce2c64437834ff5fc1e",
+          "content_sha256": "7bce9897f1c8370feba0285c8c5074c3f0b355ed1863097f4dbf176a8b2d3f87",
           "kind": "flow",
           "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery 제품의 보증은 최초 소비자 구매자에게만 적용되며 이후 소유자에게 양도할 수 없습니다."
-              }
-            ],
-            "kind": "paragraph",
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "ko",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "최초 소비자 구매자에 한정",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 3,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>Jackery 제품의 보증은 최초 소비자 구매자에게만 적용되며 이후 소유자에게 양도할 수 없습니다.</p>",
+                      "kind": "paragraph",
+                      "text": "Jackery 제품의 보증은 최초 소비자 구매자에게만 적용되며 이후 소유자에게 양도할 수 없습니다."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "ko/pdf-16/warranty-section-3",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-10"
@@ -7977,7 +8073,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0011",
-          "content_sha256": "d7fa0470a87b9e98ecd2e88df50fce35411afd0093335142ab046ea52a6c1e13",
+          "content_sha256": "fc244a56a3ad3c913d68cf477c4a437bfb0e42555178ff520653cbede3dcca93",
           "kind": "flow",
           "payload": {
             "children": [
@@ -7987,7 +8083,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-11"
@@ -7995,16 +8091,65 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0012",
-          "content_sha256": "1f906fc072f6bdf30b2b8086ce5d375ac3fc55350abc3f82e902d793cdc064e5",
+          "content_sha256": "8e22cd74b81a2852ae48844083385666fe7951bddb79bf7b1bd45b94f1f66e1d",
           "kind": "flow",
           "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "다음의 경우 Jackery의 보증은 적용되지 않습니다:"
-              }
-            ],
-            "kind": "paragraph",
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "ko",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "제외 사항",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 4,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>다음의 경우 Jackery의 보증은 적용되지 않습니다:</p>",
+                      "kind": "paragraph",
+                      "text": "다음의 경우 Jackery의 보증은 적용되지 않습니다:"
+                    },
+                    {
+                      "html": "<p>오용, 남용, 개조, 사고로 인한 손상 또는 Jackery의 최신 제품 문서에서 허용한 정상적인 소비자 사용 범위를 벗어난 용도로 사용된 제품.</p>",
+                      "kind": "paragraph",
+                      "text": "오용, 남용, 개조, 사고로 인한 손상 또는 Jackery의 최신 제품 문서에서 허용한 정상적인 소비자 사용 범위를 벗어난 용도로 사용된 제품."
+                    },
+                    {
+                      "html": "<p>공인된 서비스 기관이 아닌 곳에서 수리를 시도한 경우.</p>",
+                      "kind": "paragraph",
+                      "text": "공인된 서비스 기관이 아닌 곳에서 수리를 시도한 경우."
+                    },
+                    {
+                      "html": "<p>온라인 경매를 통해 구매한 제품.</p>",
+                      "kind": "paragraph",
+                      "text": "온라인 경매를 통해 구매한 제품."
+                    },
+                    {
+                      "html": "<p>제품 구매 후 7일 이내에 배터리 셀을 완전히 충전하고, 이후에도 최소 6개월마다 한 번 이상 완전 충전을 수행해야 합니다. 이 조건을 충족하지 않을 경우 배터리 셀에는 Jackery의 보증이 적용되지 않습니다.</p>",
+                      "kind": "paragraph",
+                      "text": "제품 구매 후 7일 이내에 배터리 셀을 완전히 충전하고, 이후에도 최소 6개월마다 한 번 이상 완전 충전을 수행해야 합니다. 이 조건을 충족하지 않을 경우 배터리 셀에는 Jackery의 보증이 적용되지 않습니다."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "ko/pdf-16/warranty-section-4",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/warranty#block-12"
@@ -8012,75 +8157,7 @@
         {
           "asset_refs": [],
           "block_id": "warranty:block-0013",
-          "content_sha256": "0e3110816e6383241db2d0e1a40c79597631633b4905987545089ec3790b21ea",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "오용, 남용, 개조, 사고로 인한 손상 또는 Jackery의 최신 제품 문서에서 허용한 정상적인 소비자 사용 범위를 벗어난 용도로 사용된 제품."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ko/warranty#block-13"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0014",
-          "content_sha256": "193456b9a5a071defcf8724cabe5043141b74627a87c2b478c202e05c64d3705",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "공인된 서비스 기관이 아닌 곳에서 수리를 시도한 경우."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ko/warranty#block-14"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0015",
-          "content_sha256": "8789128eb8301268c1ab11c9e952a9eb63b25ad4cb721c2b0829a913343baf52",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "온라인 경매를 통해 구매한 제품."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ko/warranty#block-15"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0016",
-          "content_sha256": "81282afe49972ffb7609ca9e986e8844079027ada777055c48f2df24dd02bec4",
-          "kind": "flow",
-          "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "제품 구매 후 7일 이내에 배터리 셀을 완전히 충전하고, 이후에도 최소 6개월마다 한 번 이상 완전 충전을 수행해야 합니다. 이 조건을 충족하지 않을 경우 배터리 셀에는 Jackery의 보증이 적용되지 않습니다."
-              }
-            ],
-            "kind": "paragraph",
-            "schema_version": "manual-flow/v2"
-          },
-          "source_ref": "ko/warranty#block-16"
-        },
-        {
-          "asset_refs": [],
-          "block_id": "warranty:block-0017",
-          "content_sha256": "2239e253eb4e70db80e3b93d91b66f9d35b089385586240cdd2da10ccab1392d",
+          "content_sha256": "83d6274d1a5cc5a576ce71bf7bd14655111243e12cbf1188bff03d5f730a67a9",
           "kind": "flow",
           "payload": {
             "children": [
@@ -8090,27 +8167,56 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "ko/warranty#block-17"
+          "source_ref": "ko/warranty#block-13"
         },
         {
           "asset_refs": [],
-          "block_id": "warranty:block-0018",
-          "content_sha256": "7b70ea3285c661ddace6f369de3304c7ccc08757666a045c334252a762ae3459",
+          "block_id": "warranty:block-0014",
+          "content_sha256": "dc1f3b9154f781997da966a5ef56da433af53b963dd316b286d13f67ad2c00e0",
           "kind": "flow",
           "payload": {
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery는 상기 애프터서비스 정책에 대한 최종 해석 권한을 보유합니다."
-              }
-            ],
-            "kind": "paragraph",
+            "component_spec": {
+              "assets": [],
+              "component_id": "HB-WARRANTY-SECTION",
+              "language": "ko",
+              "metadata": {},
+              "schema_version": "component-spec/v1",
+              "slots": [
+                {
+                  "content": "해석 권한",
+                  "content_kind": "inline_text",
+                  "role": "title"
+                },
+                {
+                  "content": 5,
+                  "content_kind": "block_index",
+                  "role": "section_index"
+                },
+                {
+                  "content": [
+                    {
+                      "html": "<p>Jackery는 상기 애프터서비스 정책에 대한 최종 해석 권한을 보유합니다.</p>",
+                      "kind": "paragraph",
+                      "text": "Jackery는 상기 애프터서비스 정책에 대한 최종 해석 권한을 보유합니다."
+                    }
+                  ],
+                  "content_kind": "ordered_blocks",
+                  "role": "blocks"
+                }
+              ],
+              "source_ref": "ko/pdf-16/warranty-section-5",
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "variant": "rounded-card"
+            },
+            "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "ko/warranty#block-18"
+          "source_ref": "ko/warranty#block-14"
         }
       ],
       "language": "ko",
@@ -8125,7 +8231,7 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0001",
-          "content_sha256": "7abf1a7464be74c656dc5a67ac4a2821d2f1533937118bffeecabfdc1c30cd7a",
+          "content_sha256": "ac32ffd705fbe32f88e91059bfe104c2d727027bf3a2d8e67604ac9fd2c8a939",
           "kind": "flow",
           "payload": {
             "children": [
@@ -8135,7 +8241,7 @@
               }
             ],
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/app#block-1"
@@ -8143,7 +8249,7 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0002",
-          "content_sha256": "8e068ff8c60623cb7a4240ee8355e9c56041f66def17dccedc067f3cc34392f7",
+          "content_sha256": "e8c4d813244c643b20d54c5049bd65062bb7e553b13697c55db0d4c18e37b2a2",
           "kind": "flow",
           "payload": {
             "children": [
@@ -8153,7 +8259,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/app#block-2"
@@ -8257,7 +8363,7 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0004",
-          "content_sha256": "9e2b92a61c74bbdf4ea81e8a8de90ac3b19ed8f7d2e75e1fa3b48b1572a4d39a",
+          "content_sha256": "5712ded71da25ff067511105e473bd9f9d3e97de3272c0e88e864708f579b558",
           "kind": "flow",
           "payload": {
             "children": [
@@ -8267,7 +8373,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/app#block-4"
@@ -8972,7 +9078,7 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0017",
-          "content_sha256": "ae67e6a810156929cd353c7ee2ef56edc87df18298403368360e7017df2cbb46",
+          "content_sha256": "86619ef8d67e22a5f98c7fb3a089022dc6cd9b8dc9ce72080fe9fa46bf3d060d",
           "kind": "flow",
           "payload": {
             "children": [
@@ -8982,7 +9088,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/app#block-17"
@@ -9007,7 +9113,7 @@
         {
           "asset_refs": [],
           "block_id": "app:block-0019",
-          "content_sha256": "b340d7658670592fbddea38191aa46d84186badcb2272716f5e70552bc86b9cd",
+          "content_sha256": "30a75308ffa8071c8e077654d8082048e319282d5a1f6db0eaa018aaa01098f9",
           "kind": "flow",
           "payload": {
             "children": [
@@ -9017,7 +9123,7 @@
               }
             ],
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "schema_version": "manual-flow/v2"
           },
           "source_ref": "ko/app#block-19"

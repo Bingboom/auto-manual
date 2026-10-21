@@ -20,12 +20,16 @@
           "flow",
           {
             "schema_version": "manual-flow/v2",
-            "kind": "heading",
-            "level": 3,
+            "kind": "paragraph",
             "children": [
               {
-                "kind": "text",
-                "text": "중요"
+                "kind": "strong",
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "중요"
+                  }
+                ]
               }
             ]
           }
@@ -99,7 +103,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -332,7 +336,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -371,7 +375,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -603,7 +607,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -792,7 +796,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -889,7 +893,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -1411,7 +1415,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -1425,7 +1429,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -1522,7 +1526,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -1606,7 +1610,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -1927,7 +1931,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -2144,7 +2148,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -2257,7 +2261,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -2334,7 +2338,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -2595,7 +2599,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -2828,7 +2832,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -3019,7 +3023,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -3348,7 +3352,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -3569,7 +3573,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -3658,7 +3662,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -3804,7 +3808,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -4812,7 +4816,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -4862,7 +4866,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -4875,24 +4879,59 @@
           "flow",
           {
             "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery는 아래 \"보증 기간\" 섹션에 명시된 해당 보증 기간 동안, 아래에 명시된 제외 사항을 조건으로 정상적인 소비자 사용 환경에서 Jackery 제품에 제조상 또는 재료상의 결함이 없음을 최초 소비자 구매자에게 보증합니다."
-              }
-            ]
+            "kind": "component",
+            "component_spec": {
+              "component_id": "HB-WARRANTY-SECTION",
+              "variant": "rounded-card",
+              "source_ref": "ko/pdf-16/warranty-section-1",
+              "language": "ko",
+              "slots": [
+                {
+                  "role": "title",
+                  "content_kind": "inline_text",
+                  "content": "제한 보증"
+                },
+                {
+                  "role": "section_index",
+                  "content_kind": "block_index",
+                  "content": 1
+                },
+                {
+                  "role": "blocks",
+                  "content_kind": "ordered_blocks",
+                  "content": [
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>Jackery는 아래 \"보증 기간\" 섹션에 명시된 해당 보증 기간 동안, 아래에 명시된 제외 사항을 조건으로 정상적인 소비자 사용 환경에서 Jackery 제품에 제조상 또는 재료상의 결함이 없음을 최초 소비자 구매자에게 보증합니다.</p>",
+                      "text": "Jackery는 아래 \"보증 기간\" 섹션에 명시된 해당 보증 기간 동안, 아래에 명시된 제외 사항을 조건으로 정상적인 소비자 사용 환경에서 Jackery 제품에 제조상 또는 재료상의 결함이 없음을 최초 소비자 구매자에게 보증합니다."
+                    },
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>본 보증서는 Jackery의 전적이며 배타적인 보증 의무를 규정합니다. 당사는 제품 판매와 관련하여 그 밖의 어떠한 책임도 부담하지 않으며, 제3자가 당사를 대신하여 어떠한 추가 책임을 부담하도록 승인하지 않습니다.</p>",
+                      "text": "본 보증서는 Jackery의 전적이며 배타적인 보증 의무를 규정합니다. 당사는 제품 판매와 관련하여 그 밖의 어떠한 책임도 부담하지 않으며, 제3자가 당사를 대신하여 어떠한 추가 책임을 부담하도록 승인하지 않습니다."
+                    }
+                  ]
+                }
+              ],
+              "assets": [],
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "metadata": {},
+              "schema_version": "component-spec/v1"
+            }
           }
         ],
         [
           "flow",
           {
             "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
+            "kind": "heading",
+            "level": 2,
             "children": [
               {
                 "kind": "text",
-                "text": "본 보증서는 Jackery의 전적이며 배타적인 보증 의무를 규정합니다. 당사는 제품 판매와 관련하여 그 밖의 어떠한 책임도 부담하지 않으며, 제3자가 당사를 대신하여 어떠한 추가 책임을 부담하도록 승인하지 않습니다."
+                "text": "보증 기간"
               }
             ]
           }
@@ -4948,7 +4987,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -4961,13 +5000,42 @@
           "flow",
           {
             "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery는 해당 보증 기간 내에 제조상 또는 재료상의 결함으로 작동하지 않는 모든 Jackery 제품을 Jackery의 비용으로 교체합니다. 교체 제품은 원래 제품의 남은 보증 기간을 승계합니다."
-              }
-            ]
+            "kind": "component",
+            "component_spec": {
+              "component_id": "HB-WARRANTY-SECTION",
+              "variant": "rounded-card",
+              "source_ref": "ko/pdf-16/warranty-section-2",
+              "language": "ko",
+              "slots": [
+                {
+                  "role": "title",
+                  "content_kind": "inline_text",
+                  "content": "교환"
+                },
+                {
+                  "role": "section_index",
+                  "content_kind": "block_index",
+                  "content": 2
+                },
+                {
+                  "role": "blocks",
+                  "content_kind": "ordered_blocks",
+                  "content": [
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>Jackery는 해당 보증 기간 내에 제조상 또는 재료상의 결함으로 작동하지 않는 모든 Jackery 제품을 Jackery의 비용으로 교체합니다. 교체 제품은 원래 제품의 남은 보증 기간을 승계합니다.</p>",
+                      "text": "Jackery는 해당 보증 기간 내에 제조상 또는 재료상의 결함으로 작동하지 않는 모든 Jackery 제품을 Jackery의 비용으로 교체합니다. 교체 제품은 원래 제품의 남은 보증 기간을 승계합니다."
+                    }
+                  ]
+                }
+              ],
+              "assets": [],
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "metadata": {},
+              "schema_version": "component-spec/v1"
+            }
           }
         ],
         [
@@ -4975,7 +5043,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -4988,13 +5056,42 @@
           "flow",
           {
             "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery 제품의 보증은 최초 소비자 구매자에게만 적용되며 이후 소유자에게 양도할 수 없습니다."
-              }
-            ]
+            "kind": "component",
+            "component_spec": {
+              "component_id": "HB-WARRANTY-SECTION",
+              "variant": "rounded-card",
+              "source_ref": "ko/pdf-16/warranty-section-3",
+              "language": "ko",
+              "slots": [
+                {
+                  "role": "title",
+                  "content_kind": "inline_text",
+                  "content": "최초 소비자 구매자에 한정"
+                },
+                {
+                  "role": "section_index",
+                  "content_kind": "block_index",
+                  "content": 3
+                },
+                {
+                  "role": "blocks",
+                  "content_kind": "ordered_blocks",
+                  "content": [
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>Jackery 제품의 보증은 최초 소비자 구매자에게만 적용되며 이후 소유자에게 양도할 수 없습니다.</p>",
+                      "text": "Jackery 제품의 보증은 최초 소비자 구매자에게만 적용되며 이후 소유자에게 양도할 수 없습니다."
+                    }
+                  ]
+                }
+              ],
+              "assets": [],
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "metadata": {},
+              "schema_version": "component-spec/v1"
+            }
           }
         ],
         [
@@ -5002,7 +5099,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -5015,65 +5112,62 @@
           "flow",
           {
             "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
-            "children": [
-              {
-                "kind": "text",
-                "text": "다음의 경우 Jackery의 보증은 적용되지 않습니다:"
-              }
-            ]
-          }
-        ],
-        [
-          "flow",
-          {
-            "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
-            "children": [
-              {
-                "kind": "text",
-                "text": "오용, 남용, 개조, 사고로 인한 손상 또는 Jackery의 최신 제품 문서에서 허용한 정상적인 소비자 사용 범위를 벗어난 용도로 사용된 제품."
-              }
-            ]
-          }
-        ],
-        [
-          "flow",
-          {
-            "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
-            "children": [
-              {
-                "kind": "text",
-                "text": "공인된 서비스 기관이 아닌 곳에서 수리를 시도한 경우."
-              }
-            ]
-          }
-        ],
-        [
-          "flow",
-          {
-            "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
-            "children": [
-              {
-                "kind": "text",
-                "text": "온라인 경매를 통해 구매한 제품."
-              }
-            ]
-          }
-        ],
-        [
-          "flow",
-          {
-            "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
-            "children": [
-              {
-                "kind": "text",
-                "text": "제품 구매 후 7일 이내에 배터리 셀을 완전히 충전하고, 이후에도 최소 6개월마다 한 번 이상 완전 충전을 수행해야 합니다. 이 조건을 충족하지 않을 경우 배터리 셀에는 Jackery의 보증이 적용되지 않습니다."
-              }
-            ]
+            "kind": "component",
+            "component_spec": {
+              "component_id": "HB-WARRANTY-SECTION",
+              "variant": "rounded-card",
+              "source_ref": "ko/pdf-16/warranty-section-4",
+              "language": "ko",
+              "slots": [
+                {
+                  "role": "title",
+                  "content_kind": "inline_text",
+                  "content": "제외 사항"
+                },
+                {
+                  "role": "section_index",
+                  "content_kind": "block_index",
+                  "content": 4
+                },
+                {
+                  "role": "blocks",
+                  "content_kind": "ordered_blocks",
+                  "content": [
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>다음의 경우 Jackery의 보증은 적용되지 않습니다:</p>",
+                      "text": "다음의 경우 Jackery의 보증은 적용되지 않습니다:"
+                    },
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>오용, 남용, 개조, 사고로 인한 손상 또는 Jackery의 최신 제품 문서에서 허용한 정상적인 소비자 사용 범위를 벗어난 용도로 사용된 제품.</p>",
+                      "text": "오용, 남용, 개조, 사고로 인한 손상 또는 Jackery의 최신 제품 문서에서 허용한 정상적인 소비자 사용 범위를 벗어난 용도로 사용된 제품."
+                    },
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>공인된 서비스 기관이 아닌 곳에서 수리를 시도한 경우.</p>",
+                      "text": "공인된 서비스 기관이 아닌 곳에서 수리를 시도한 경우."
+                    },
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>온라인 경매를 통해 구매한 제품.</p>",
+                      "text": "온라인 경매를 통해 구매한 제품."
+                    },
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>제품 구매 후 7일 이내에 배터리 셀을 완전히 충전하고, 이후에도 최소 6개월마다 한 번 이상 완전 충전을 수행해야 합니다. 이 조건을 충족하지 않을 경우 배터리 셀에는 Jackery의 보증이 적용되지 않습니다.</p>",
+                      "text": "제품 구매 후 7일 이내에 배터리 셀을 완전히 충전하고, 이후에도 최소 6개월마다 한 번 이상 완전 충전을 수행해야 합니다. 이 조건을 충족하지 않을 경우 배터리 셀에는 Jackery의 보증이 적용되지 않습니다."
+                    }
+                  ]
+                }
+              ],
+              "assets": [],
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "metadata": {},
+              "schema_version": "component-spec/v1"
+            }
           }
         ],
         [
@@ -5081,7 +5175,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -5094,13 +5188,42 @@
           "flow",
           {
             "schema_version": "manual-flow/v2",
-            "kind": "paragraph",
-            "children": [
-              {
-                "kind": "text",
-                "text": "Jackery는 상기 애프터서비스 정책에 대한 최종 해석 권한을 보유합니다."
-              }
-            ]
+            "kind": "component",
+            "component_spec": {
+              "component_id": "HB-WARRANTY-SECTION",
+              "variant": "rounded-card",
+              "source_ref": "ko/pdf-16/warranty-section-5",
+              "language": "ko",
+              "slots": [
+                {
+                  "role": "title",
+                  "content_kind": "inline_text",
+                  "content": "해석 권한"
+                },
+                {
+                  "role": "section_index",
+                  "content_kind": "block_index",
+                  "content": 5
+                },
+                {
+                  "role": "blocks",
+                  "content_kind": "ordered_blocks",
+                  "content": [
+                    {
+                      "kind": "paragraph",
+                      "html": "<p>Jackery는 상기 애프터서비스 정책에 대한 최종 해석 권한을 보유합니다.</p>",
+                      "text": "Jackery는 상기 애프터서비스 정책에 대한 최종 해석 권한을 보유합니다."
+                    }
+                  ]
+                }
+              ],
+              "assets": [],
+              "token_roles": [
+                "component.warranty.section"
+              ],
+              "metadata": {},
+              "schema_version": "component-spec/v1"
+            }
           }
         ]
       ]
@@ -5121,7 +5244,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 2,
+            "level": 1,
             "children": [
               {
                 "kind": "text",
@@ -5135,7 +5258,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -5238,7 +5361,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -5895,7 +6018,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",
@@ -5922,7 +6045,7 @@
           {
             "schema_version": "manual-flow/v2",
             "kind": "heading",
-            "level": 3,
+            "level": 2,
             "children": [
               {
                 "kind": "text",

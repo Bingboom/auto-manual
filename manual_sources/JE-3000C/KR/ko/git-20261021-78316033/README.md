@@ -22,3 +22,9 @@ Both output directories must be fresh. The assembler verifies all frozen inputs 
 See `validation/content-audit.json` and `source/pdf-edit-verification.json`. Native prose, LCD descriptions, fault measures and specifications remain selectable and searchable. Dense localized operation/overview panels and native App frames retain their approved artwork. The LCD table has 26 rows; high/low temperature intentionally share source number 21. The source PDF's thresholds and binding prompt are preserved without translation changes.
 
 Shared-component style admission and strict Sphinx passed. A cold replay reproduced the same Markdown and rejected a deliberately corrupted illustration. Thirty-four targeted shared-contract tests passed. Desktop/mobile previews were visually reviewed. This is conversion verification, not a renewed engineering approval of source technical specifications or a publication acceptance.
+
+## 2026-10-21 style correction and release gate
+
+Chapter headings use the shared H1 scale and subsection headings use H2; the preface IMPORTANT label is a strong paragraph. Five warranty sections are registered rounded-card components, with a separate warranty-period card. Spec group headings remain H2 under the specification chapter. All wording, periods and values are preserved.
+
+Publication is pending source-bound admission of the Li-ion 32 and WEEE symbols. Existing shared variants failed the original-PDF glyph tolerance; adding exact source variants would touch the shared catalog and historical freeze records, so scope approval was requested before those changes. The package remains publication-ineligible. The repository US regression check passes. The KR fixture check has no JE-3000C KR source rows, and the historical EU snapshot lacks the current usb_c row; neither was used to validate this Korean body.

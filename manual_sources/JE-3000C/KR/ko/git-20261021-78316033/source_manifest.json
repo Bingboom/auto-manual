@@ -68,7 +68,8 @@
     "App source heading APP preserved; live native steps2.1-2.5 and4.1-4.3 retained",
     "Preserve source threshold and binding-prompt wording without undocumented translation changes",
     "Keep the front/right overview as one complete connected panel to preserve the native dashed connector",
-    "User 2026-10-21: Web body begins with 중요; omit cover title/identity/customer-email block"
+    "User 2026-10-21: Web body begins with 중요; omit cover title/identity/customer-email block",
+    "2026-10-21 user style corrections: template H1 chapters/H2 subsections; IMPORTANT stays a strong paragraph; warranty sections use registered rounded cards and separate warranty-period heading"
   ],
   "approved_errata": [
     {
@@ -199,8 +200,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 2488,
-      "sha256": "ac92b26656742cfd29b0c597c68ac15d97197a05c025e1321a6072066fab44f7"
+      "size": 3413,
+      "sha256": "bd526fce7fa550295f9e4577d16460fc5d5a70c296e30f9928e1cab1a735d6fb"
     },
     {
       "path": "rebuild.py",
@@ -209,8 +210,8 @@
     },
     {
       "path": "source/asset_decisions.json",
-      "size": 32808,
-      "sha256": "eb2708c3aef8344db3182b8d27ae9dd0e80bab439b4bb489c5f7573af3c00318"
+      "size": 32816,
+      "sha256": "981a727b75b1f7bf097b647307401a93549befa827be2b08f51fa2b82ffaf54a"
     },
     {
       "path": "source/asset_inventory.json",
@@ -224,8 +225,8 @@
     },
     {
       "path": "source/document.json",
-      "size": 234828,
-      "sha256": "46c9ce396145ad25e96873d562ca092f575845b4393341afb5c91a271addcb5f"
+      "size": 241415,
+      "sha256": "a268489fce4cbbef12028e8f40b5ee9e09f8467c354cbe9cb771bc7dac130910"
     },
     {
       "path": "source/geometry.css",
@@ -248,9 +249,19 @@
       "sha256": "531a2eca4ce2f6bcfd80f5eeaa59775d4b33a2162c952b1aeab398e464b842c0"
     },
     {
+      "path": "source/reused_art/charging_ac_wall.pdf",
+      "size": 252991,
+      "sha256": "7cf4f7678e87d9efae872a2540b5d93f55b935c77f726e9a8b909c93c480ba50"
+    },
+    {
+      "path": "source/reused_art/operation_ups_mode.pdf",
+      "size": 237831,
+      "sha256": "4c6cadca9a690f8019c43fcf4c82dfab9735a194c3058e3d0dc0b883fa47f125"
+    },
+    {
       "path": "validation/content-audit.json",
-      "size": 7634,
-      "sha256": "8812a94a40f8c750f938740a01cc289d6e3d42c5acd3174571d47ce9ad42787e"
+      "size": 7746,
+      "sha256": "d838a706ae5fb5b166657044fb5c3a448ed0df4f59da3b21356bbdd6fed6233e"
     },
     {
       "path": "web/ko/_static/source_geometry.css",
@@ -423,11 +434,6 @@
       "sha256": "cbb5d7fa78de39b81eab5a25b5d1c03ca20dd4e659463e6eee3f0f08ace89ef9"
     },
     {
-      "path": "web/ko/assets/charging_ac_wall.pdf",
-      "size": 252991,
-      "sha256": "7cf4f7678e87d9efae872a2540b5d93f55b935c77f726e9a8b909c93c480ba50"
-    },
-    {
       "path": "web/ko/assets/charging_ac_wall.svg",
       "size": 661585,
       "sha256": "abfdee922641b333e15b643d10cbed34efe6adb0239a42e4caa278459b49bf8a"
@@ -481,11 +487,6 @@
       "path": "web/ko/assets/operation-main.png",
       "size": 56811,
       "sha256": "44f463d3f80a66f645e20a391042e3e1d8eefc690c8ae827ec44a13fe97ed768"
-    },
-    {
-      "path": "web/ko/assets/operation_ups_mode.pdf",
-      "size": 237831,
-      "sha256": "4c6cadca9a690f8019c43fcf4c82dfab9735a194c3058e3d0dc0b883fa47f125"
     },
     {
       "path": "web/ko/assets/operation_ups_mode.svg",
@@ -549,14 +550,17 @@
     },
     {
       "path": "web/ko/manual.ir.json",
-      "size": 342876,
-      "sha256": "1102f403157d7d07a7c2bd10e47d70dac62f4cc6930a1a0d837652a61042fca7"
+      "size": 348339,
+      "sha256": "8c48b8596b48d0e6715fc3cac7598958a65f5bb305403ee622c01ce270b1cd02"
     },
     {
       "path": "web/ko/manual_je3000c_kr_ko.md",
-      "size": 62974,
-      "sha256": "4b79f1f82b15038808fb1ee40eb3c12c498e0a99b08732f0ccac4bfcd2ffcf70"
+      "size": 63676,
+      "sha256": "921a41582cfa244a1f50261eca73784be7a29356a0c59155f53bdf7210368223"
     }
   ],
-  "web_markdown_sha256": "4b79f1f82b15038808fb1ee40eb3c12c498e0a99b08732f0ccac4bfcd2ffcf70"
+  "web_markdown_sha256": "921a41582cfa244a1f50261eca73784be7a29356a0c59155f53bdf7210368223",
+  "publication_gate_pending": [
+    "Two exact native symbol variants (Li-ion 32 and WEEE) require shared-catalog additions; scope approval requested from operator."
+  ]
 }
